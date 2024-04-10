@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: contact-form
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffering: 'on'
+    nginx.ingress.kubernetes.io/proxy-buffers-number: '8'
+    nginx.ingress.kubernetes.io/proxy-buffer-size: '32k'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: new.fellesdatakatalog.digdir.no
+      http:
+        paths:
+          - backend:
+              service:
+                name: contact-form
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix

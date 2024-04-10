@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-form
+  labels:
+    app: contact-form
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contact-form
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: contact-form
+      annotations:
+        prometheus.io/scrape: 'false'
+    spec:
+      containers:
+        - name: contact-form
+          image: contact-form
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /api/ping
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 1
+            initialDelaySeconds: 20
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /api/ping
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 1
+            initialDelaySeconds: 20
+          resources:
+            requests:
+              cpu: 50m
+              memory: 50Mi
+            limits:
+              memory: 50Mi
