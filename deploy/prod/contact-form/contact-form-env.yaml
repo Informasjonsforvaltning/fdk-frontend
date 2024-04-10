@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-form
+  labels:
+    app: contact-form
+spec:
+  selector:
+    matchLabels:
+      app: contact-form
+  template:
+    spec:
+      containers:
+        - name: contact-form
