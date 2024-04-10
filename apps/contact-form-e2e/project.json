@@ -1,0 +1,8 @@
+{
+  "name": "contact-form-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/contact-form-e2e/src",
+  "implicitDependencies": ["contact-form"],
+  "// targets": "to see all targets run: nx show project contact-form-e2e --web",
+  "targets": {}
+}
