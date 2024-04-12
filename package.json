@@ -1,12 +1,18 @@
 {
   "name": "fdk-frontend",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "private": true,
   "engines": {
     "node": ">=20.11.1"
   },
   "packageManager": "yarn@4.1.1",
+  "lint-staged": {
+    "*.tsx": [
+      "eslint --cache --fix",
+      "prettier --write --cache --ignore-unknown"
+    ]
+  },
   "scripts": {
     "build": "nx run-many --target=build --all",
     "dev": "nx run-many --target=dev --all",
@@ -16,11 +22,11 @@
     "affected:build": "nx affected:build",
     "affected:dev": "nx affected:dev",
     "affected:lint": "nx affected:lint --base=develop",
-    "affected:test": "nx affected:test",
-    "affected:e2e": "nx affected:e2e",
-    "affected:dep-graph": "nx affected:dep-graph",
-    "affected:apps": "nx affected:apps",
-    "affected:libs": "nx affected:libs",
+    "affected:test": "nx affected:test --base=develop",
+    "affected:e2e": "nx affected:e2e --base=develop",
+    "affected:dep-graph": "nx affected:dep-graph --base=develop",
+    "affected:apps": "nx affected:apps --base=develop",
+    "affected:libs": "nx affected:libs --base=develop",
     "affected:build:ci": "nx affected:build --base=origin/main --head=HEAD",
     "affected:dev:ci": "nx affected:dev --base=origin/main --head=HEAD",
     "affected:lint:ci": "nx affected:lint --base=origin/main --head=HEAD",
@@ -29,7 +35,8 @@
     "affected:dep-graph:ci": "nx affected:dep-graph --base=origin/main --head=HEAD",
     "affected:apps:ci": "nx affected:apps --base=origin/main --head=HEAD",
     "affected:libs:ci": "nx affected:libs --base=origin/main --head=HEAD",
-    "format": "nx format:write"
+    "format": "nx format:write",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "next": "14.1.4",
@@ -69,8 +76,10 @@
     "eslint-plugin-playwright": "^1.6.0",
     "eslint-plugin-react": "7.34.1",
     "eslint-plugin-react-hooks": "4.6.0",
+    "husky": ">=6",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": ">=10",
     "nx": "18.2.4",
     "prettier": "3.2.5",
     "ts-jest": "^29.1.2",
