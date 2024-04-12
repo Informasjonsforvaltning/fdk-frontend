@@ -1,0 +1,10 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.inlineSuggest.suppressSuggestions": false,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true
+}
