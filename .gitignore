@@ -47,3 +47,6 @@ out
 
 # yarn
 .yarn
+
+# lint
+.eslintcache
