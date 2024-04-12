@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "ms-playwright.playwright",
+    "github.copilot",
+    "nrwl.angular-console",
+    "esbenp.prettier-vscode"
+  ]
+}
