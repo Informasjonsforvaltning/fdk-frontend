@@ -33,10 +33,11 @@
         "prettier"
       ],
       "rules": {
+        "import/no-unresolved": "off",
         "react/react-in-jsx-scope": "off",
         "no-console": "error",
         "no-duplicate-imports": "error",
-        "arrow-body-style": ["warn", "always"],
+        "arrow-body-style": ["warn", "as-needed"],
         "require-atomic-updates": "error",
         "no-use-before-define":"error",
         "no-unreachable-loop": "error",
@@ -78,7 +79,7 @@
         "react/react-in-jsx-scope": "off",
         "no-console": "warn",
         "no-duplicate-imports": "error",
-        "arrow-body-style": ["warn", "always"],
+        "arrow-body-style": ["warn", "as-needed"],
         "require-atomic-updates": "error",
         "no-use-before-define": "error",
         "no-unreachable-loop": "error",

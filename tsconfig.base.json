@@ -24,6 +24,8 @@
       "@fdk-frontend/ui/server": ["libs/ui/src/server.ts"],
       "@fdk-frontend/utils": ["libs/utils/src/index.ts"],
       "@fdk-frontend/utils/server": ["libs/utils/src/server.ts"],
+      "@fdk-frontend/dictionaries": ["libs/dictionaries/src/index.ts"],
+      "@fdk-frontend/dictionaries/server": ["libs/dictionaries/src/server.ts"],
       "react": ["./node_modules/@types/react"]
     }
   },
