@@ -42,11 +42,11 @@ Targets can be defined in the `package.json` or `projects.json`. Learn more [in 
 ### Examples
 #### create a new component
 ```bash
-yarn nx g component my-component --project=ui --export
+yarn nx g @nx/next:component my-component --project=ui --export
 ```
 #### create a new library
 ```bash
-yarn nx g lib my-lib --project=ui --export
+yarn nx g @nx/next:lib my-lib --project=ui --export
 ```
 
 ## Integrate with editors

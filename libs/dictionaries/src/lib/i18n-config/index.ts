@@ -4,10 +4,20 @@ import { NextRequest } from 'next/server';
 
 export const i18n = {
   defaultLocale: 'nb',
-  locales: ['en', 'no', 'nb', 'nn'],
+  locales: [
+    { code: 'en',
+      name: 'English',
+    },
+    { code: 'nb',
+      name: 'Bokmål',
+    },
+    { code: 'nn',
+      name: 'Nynorsk',
+    },
+  ],
 } as const;
 
-export type Locale = (typeof i18n)['locales'][number];
+export type Locale = typeof i18n['locales'][number];
 
 const dictionaries = {
   en: () => import('../dictionaries/en.json').then((module) => module.default),
@@ -16,20 +26,16 @@ const dictionaries = {
   no: () => import('../dictionaries/nb.json').then((module) => module.default),
 };
 
-export const getDictionary = async (locale: Locale) => dictionaries[locale]?.() ?? dictionaries.nb();
+export const getDictionary = async (locale: Locale['code']) => dictionaries[locale]?.() ?? dictionaries.nb();
 
-export const getLocale = (request: NextRequest): string | undefined => {
+export const getLocale = (request: NextRequest): Locale | undefined => {
   // Negotiator expects plain object so we need to transform headers
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-
-  const locales: string[] = i18n.locales.slice();
-
+  const localeCodes: string[] = i18n.locales.map((locale) => locale.code);
   // Use negotiator and intl-localematcher to get best locale
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(locales);
-
-  const locale = matchLocale(languages, locales, i18n.defaultLocale);
-
-  return locale;
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(localeCodes);
+  const locale = matchLocale(languages, localeCodes, i18n.defaultLocale);
+  return i18n.locales.find((l) => l.code === locale);
 }
 
