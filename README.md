@@ -39,6 +39,16 @@ npx nx run-many -t <target1> <target2> -p <proj1> <proj2>
 
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/features/run-tasks).
 
+### Examples
+#### create a new component
+```bash
+yarn nx g component my-component --project=ui --export
+```
+#### create a new library
+```bash
+yarn nx g lib my-lib --project=ui --export
+```
+
 ## Integrate with editors
 
 Enhance your Nx experience by installing [Nx Console](https://nx.dev/nx-console) for your favorite editor. Nx Console

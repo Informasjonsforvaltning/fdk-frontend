@@ -21,8 +21,8 @@
     "e2e": "nx run-many --target=e2e --all",
     "affected:build": "nx affected:build",
     "affected:dev": "nx affected:dev",
-    "affected:lint": "nx affected:lint --base=develop",
-    "affected:test": "nx affected:test --base=develop",
+    "affected:lint": "nx affected:lint --base=develop --exclude=libs/dictionaries",
+    "affected:test": "nx affected:test --base=develop --exclude=libs/dictionaries",
     "affected:e2e": "nx affected:e2e --base=develop",
     "affected:dep-graph": "nx affected:dep-graph --base=develop",
     "affected:apps": "nx affected:apps --base=develop",
@@ -39,6 +39,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.4",
     "next": "14.1.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -62,6 +63,7 @@
     "@swc/helpers": "~0.5.8",
     "@testing-library/react": "^15.0.1",
     "@types/jest": "^29.5.12",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "20.12.7",
     "@types/react": "18.2.76",
     "@types/react-dom": "18.2.25",
