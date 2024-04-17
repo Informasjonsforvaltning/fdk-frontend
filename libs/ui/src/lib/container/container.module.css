@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem 1rem;
+  margin: 1rem auto;
   width: 100%;
   min-width: var(--breakpoint-large);
   max-width: var(--breakpoint-xxx-large);

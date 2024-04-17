@@ -26,6 +26,8 @@ const dictionaries = {
   no: () => import('../dictionaries/nb.json').then((module) => module.default),
 };
 
+export type Dictionary = typeof getDictionary extends (...args: any) => Promise<infer T> ? T : never;
+
 export const getDictionary = async (locale: Locale['code']) => dictionaries[locale]?.() ?? dictionaries.nb();
 
 export const getLocale = (request: NextRequest): Locale | undefined => {
