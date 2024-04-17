@@ -2,31 +2,21 @@
 
 import { revalidatePath } from 'next/cache';
 import { schema } from './schema';
-import { InitialState } from './contact-form';
+import { FormState, fromErrorToFormState, toFormState } from './utils';
 
-export const sendEmailAction = async (prevState: InitialState, formData: FormData) => {
-  'use server';
-  
-  const parse = schema.safeParse({
-    parsedFormData: formData.entries(),
-  });
-
-  if (!parse.success) {
-    return { ...parse.error };
-  }
-
-  // const data = parse.data;
-  // eslint-disable-next-line no-console
-  console.log('sendEmailAction: parse: ', parse);
-
+export const sendEmailAction = async (formState: FormState, formData: FormData) => {
   try {
-    // await 'Do your ting with data here';
+    const data = schema.parse(formData.entries());
+    // eslint-disable-next-line no-console
+    console.log('Data:', data);
 
+    // await 'Do your ting with data here';
+    // eslint-disable-next-line no-console
     revalidatePath('/');
+    return toFormState('SUCCESS', 'Mail send');
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error('Sending email for Contact Form failed');
+    return fromErrorToFormState(e);
   }
-
-  return {  };
 };

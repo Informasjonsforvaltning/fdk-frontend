@@ -6,7 +6,7 @@ import { z } from 'zod';
  * Form more information on the schema library, see https://zod.dev/?id=table-of-contents
  */
 export const schema = z.object({
-  dataset: z.string(),
+  dataset: z.string().min(3),
   location: z.string().optional(),
   efforts: z.string().optional(),
   useCase: z.string().optional(),
@@ -15,3 +15,5 @@ export const schema = z.object({
   name: z.string(),
   organizationNumber: z.string().length(9),
 });
+
+export type Schema = z.infer<typeof schema>;
