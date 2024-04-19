@@ -1,0 +1,39 @@
+.header {
+  background: #FFFFFF;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  color: #1E2B3C;
+  display: flex;
+  justify-content: center;
+}
+
+.urlList {
+  list-style-type: none;
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.urlList > li {
+  margin-right: 1rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  line-height: 1.3;
+  cursor: pointer;
+  color: #1E2B3C;
+  min-width: max-content;
+}
+
+.urlList :hover {
+  text-decoration: none;
+}
+
+.urlList > li > a {
+  color: #1E2B3C;
+}
+
+.logo * {
+  height: 45px;
+  margin-left: 0.75rem;
+}

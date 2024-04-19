@@ -18,14 +18,14 @@
     "paths": {
       "@fdk-frontend/data-access": ["libs/data-access/src/index.ts"],
       "@fdk-frontend/data-access/server": ["libs/data-access/src/server.ts"],
+      "@fdk-frontend/dictionaries": ["libs/dictionaries/src/index.ts"],
+      "@fdk-frontend/dictionaries/server": ["libs/dictionaries/src/server.ts"],
       "@fdk-frontend/types": ["libs/types/src/index.ts"],
       "@fdk-frontend/types/server": ["libs/types/src/server.ts"],
       "@fdk-frontend/ui": ["libs/ui/src/index.ts"],
       "@fdk-frontend/ui/server": ["libs/ui/src/server.ts"],
       "@fdk-frontend/utils": ["libs/utils/src/index.ts"],
       "@fdk-frontend/utils/server": ["libs/utils/src/server.ts"],
-      "@fdk-frontend/dictionaries": ["libs/dictionaries/src/index.ts"],
-      "@fdk-frontend/dictionaries/server": ["libs/dictionaries/src/server.ts"],
       "react": ["./node_modules/@types/react"]
     }
   },

@@ -1,23 +1,6 @@
-import React, { ReactNode } from 'react';
-import { i18n, type Locale } from '@fdk-frontend/dictionaries';
-import './global.css';
+import { RootLayout, generateStaticParams, getMetadata } from '@fdk-frontend/ui/server';
 
-interface Props {
-  children: ReactNode;
-  params: { lang: Locale };
-}
+const metadata = getMetadata('Contact Form', 'Contact Form');
 
-export const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale }));
-
-const RootLayout = ({ children, params }: Props) => (
-  <html lang={params.lang}>
-    <body>{children}</body>
-  </html>
-);
-
-export const metadata = {
-  title: 'Contact Form',
-  description: 'Contact Form',
-};
-
+export { generateStaticParams, metadata };
 export default RootLayout;

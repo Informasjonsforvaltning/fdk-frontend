@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 1rem 1rem;
+  width: 100%;
+  min-width: var(--breakpoint-large);
+  max-width: var(--breakpoint-xxx-large);
+}
