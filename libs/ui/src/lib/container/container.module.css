@@ -1,8 +1,14 @@
-.container {
+.containerRow {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 1rem 1rem;
   width: 100%;
   min-width: var(--breakpoint-large);
   max-width: var(--breakpoint-xxx-large);
+}
+
+.containerColumn {
+  composes: containerRow;
+  flex-direction: column;
 }

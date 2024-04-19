@@ -1,1 +1,46 @@
-.page {}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 843px;
+  margin-top: 5rem;
+}
+
+.contentContainer :nth-child(7) {
+  margin-bottom: 2rem;
+}
+
+.paragraph {
+  text-align: center;
+}
+
+.alert {
+  margin: 5rem 0 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.textArea {
+  margin-top: 2rem;
+}
+
+.textField {
+  width: 100%;
+  margin-top: 2rem;
+  align-self: flex-start;
+}
+
+.textFieldHalfWith {
+  composes: textField;
+  width: 50%;
+}
+
+.button {
+  margin-top: 3rem;
+  align-self: flex-start;
+}
+
+.button > p {
+  color: #fff;
+}
