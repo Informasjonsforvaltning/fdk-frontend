@@ -6,9 +6,9 @@ import { i18n, Locale } from '@fdk-frontend/dictionaries';
 import styles from './language-menu.module.css';
 import { usePathname, useRouter } from 'next/navigation';
 
-interface Props {
+type Props = {
   triggerText: string;
-}
+};
 
 const LanguageMenu = ({ triggerText }: Props) => {
   const pathName = usePathname();

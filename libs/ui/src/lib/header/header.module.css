@@ -3,7 +3,8 @@
   border-bottom: 1px solid rgb(230, 230, 230);
   color: #1E2B3C;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .urlList {
@@ -36,4 +37,14 @@
 .logo * {
   height: 45px;
   margin-left: 0.75rem;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: var(--breakpoint-xxx-large);
+  margin: 0 auto;
+  padding: 1rem;
 }

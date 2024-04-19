@@ -48,7 +48,7 @@ const Header = async ({ lang }: HeaderProps) => {
 
   return (
     <header className={styles.header}>
-      <Container>
+      <Container extendedClassName={styles.header}>
         <a
           href={homeUrl}
           aria-label={dictionary.goToMainPageAriaLabel}
