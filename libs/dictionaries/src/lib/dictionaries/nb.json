@@ -21,24 +21,24 @@
   "contactForm": {
     "title": "Vi hjelper deg med å finne datasett",
     "description": "Tjenesten er gratis og lanseres nå som testversjon. Ved stor pågang kan vi foreløpig ikke hjelpe og løse alle henvendelser, men må velge forespørsler som er nyttige med tanke på testing og videreutvikling av tjenesten.",
-    "alertDescription": "Så setter vi en av våre datajegere på saken din.",
-    "textArea": [
-      {
-        "label": "Hvilket datasett trenger du?",
-        "description": "Lag en så tydelig beskrivelse som mulig, f.eks. felter, tidsperiode, ønsket oppdateringsfrekvens."
-      },
-      {
-        "label": "Vet du hvor datasettet befinner seg?",
-        "description": "Hvis du har informasjon om hvor du tror vi kan finne datasettet, f.eks. hos hvilken offentlig etat eller kommune, kan dette være til stor hjelp for datajegeren."
-      },
-      {
-        "label": "Har du forsøkt å få tak i dette datasettet selv?",
-        "description": "Hvis du har gjort forsøk på å få tak i datasettet selv, oppgi hvor du søkt og evt. hvem du har snakket med. Ta gjerne med hvorfor du ikke lykkes hvis du har vært i direkte kontakt med noen i offentlig sektor."
-      },
-      {
-        "label": "Hva skal datasettet brukes til?",
-        "description": "Ved stor pågang kan vi bli tvunget til å prioritere forretningskritiske data først. Det kan også være juridiske begrensninger knyttet til bruk som kan påvirke hvilke data som kan tilgjengeliggjøres."
-      }
-    ]
+    "dataset": {
+      "label": "Hvilket datasett trenger du?",
+      "description": "Lag en så tydelig beskrivelse som mulig, f.eks. felter, tidsperiode, ønsket oppdateringsfrekvens."
+    },
+    "location": {
+      "label": "Vet du hvor datasettet befinner seg?",
+      "description": "Hvis du har informasjon om hvor du tror vi kan finne datasettet, f.eks. hos hvilken offentlig etat eller kommune, kan dette være til stor hjelp for datajegeren."
+    },
+    "efforts": {
+      "label": "Har du forsøkt å få tak i dette datasettet selv?",
+      "description": "Hvis du har gjort forsøk på å få tak i datasettet selv, oppgi hvor du søkt og evt. hvem du har snakket med. Ta gjerne med hvorfor du ikke lykkes hvis du har vært i direkte kontakt med noen i offentlig sektor."
+    }
+  },
+  "error": {
+    "default": "Noe gikk galt",
+    "minimumLength": "Må være minst {length} tegn",
+    "required": "Dette feltet er påkrevd",
+    "invalidEmail": "Ugyldig e-postadresse",
+    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer"
   }
 }

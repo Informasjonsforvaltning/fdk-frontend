@@ -6,5 +6,6 @@
   "editor.formatOnSaveMode": "file",
   "editor.inlineSuggest.suppressSuggestions": false,
   "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "css.lint.validProperties": ["composes"]
 }

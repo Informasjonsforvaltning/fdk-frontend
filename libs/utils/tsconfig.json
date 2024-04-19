@@ -6,12 +6,11 @@
     "allowSyntheticDefaultImports": true,
     "strict": true
   },
+  "lib": ["es2020", "dom", "dom.iterable"],
   "files": [],
   "include": [],
   "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    }
+    // Remove the problematic code block
   ],
   "extends": "../../tsconfig.base.json"
 }

@@ -7,10 +7,10 @@ import '@digdir/designsystemet-css';
 import './global.css';
 import { Header } from '../header';
 
-interface Props {
+type Props = {
   children: ReactNode;
   params: { lang: Locale };
-}
+};
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 

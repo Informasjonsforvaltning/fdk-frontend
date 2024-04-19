@@ -26,7 +26,9 @@ const dictionaries = {
   no: () => import('../dictionaries/nb.json').then((module) => module.default),
 };
 
-export const getDictionary = async (locale: Locale['code']) => dictionaries[locale]?.() ?? dictionaries.nb();
+export type Dictionary = typeof getDictionary extends (...args: any) => Promise<infer T> ? T : never;
+
+export const getDictionary = async (locale: Locale['code']) => dictionaries[locale]?.() ?? dictionaries[i18n.defaultLocale]();
 
 export const getLocale = (request: NextRequest): Locale | undefined => {
   // Negotiator expects plain object so we need to transform headers

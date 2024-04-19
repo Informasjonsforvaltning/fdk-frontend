@@ -1,20 +1,16 @@
 import 'server-only';
+import cn from 'classnames';
 
-import { HTMLAttributes, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styles from './container.module.css';
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+type Props = {
   children: ReactNode;
-  flexDirection?: 'row' | 'column';
-}
+  extendedClassName?: string;
+};
 
-const Container = ({ children, flexDirection = 'row', ...rest }: Props) => (
-  <div
-    className={flexDirection === 'row' ? styles.containerRow : styles.containerColumn}
-    {...rest}
-  >
-    {children}
-  </div>
+const Container = ({ children, extendedClassName }: Props) => (
+  <div className={cn(styles.container, extendedClassName)}>{children}</div>
 );
 
 export { Container };
