@@ -1,9 +1,14 @@
 {
-  "organizationName": "Felles datakatalog",
+  "nationalDataCatalog": "Felles datakatalog",
   "aboutNationalDataCatalog": "Om Felles datakatalog",
   "organizations": "Verksemder",
   "tools": "Verktøy",
   "goToDataCommunity": "Gå til Datalandsbyen",
   "publishing": "Publisera",
-  "language": "Språk"
+  "language": "Språk",
+  "goToMainPageAriaLabel": "Gå til hovudsida",
+  "fdkLogoAlt": "Felles datakatalog logo",
+  "english": "English",
+  "norwegianBokmaal": "Norsk bokmål",
+  "norwegianNynorsk": "Norsk nynorsk"
 }
