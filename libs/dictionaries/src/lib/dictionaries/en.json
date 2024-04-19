@@ -10,5 +10,35 @@
   "fdkLogoAlt": "Felles datakatalog logo",
   "english": "English",
   "norwegianBokmaal": "Norwegian bokmål",
-  "norwegianNynorsk": "Norwegian nynorsk"
+  "norwegianNynorsk": "Norwegian nynorsk",
+  "fillTheFormUnder": "Fill out the form below",
+  "shouldBeFilledOut": "Must be filled out",
+  "submitRequest": "Submit request",
+  "email": "Email",
+  "organizationNumber": "Organization number",
+  "phoneNumber": "Phone number",
+  "name": "Name",
+  "contactForm": {
+    "title": "We help you find datasets",
+    "description": "The service is free and is now being launched as a test version. In the event of a large influx, we cannot currently help and solve all inquiries, but must select requests that are useful in terms of testing and further development of the service.",
+    "alertDescription": "Then we put one of our data finders on your case.",
+    "textArea": [
+      {
+        "label": "Which dataset do you need?",
+        "description": "Create as clear a description as possible, e.g. fields, time period, desired update frequency."
+      },
+      {
+        "label": "Do you know where the dataset is located?",
+        "description": "If you have information about where you think we can find the data set, e.g. at which public agency or municipality, this can be of great help to the data hunter."
+      },
+      {
+        "label": "Have you tried to get hold of this data set yourself?",
+        "description": "If you have attempted to obtain the data set yourself, state where you searched and possibly who you have spoken to. Feel free to include why you are not successful if you have been in direct contact with someone in the public sector."
+      },
+      {
+        "label": "What will the dataset be used for?",
+        "description": "In the event of heavy traffic, we may be forced to prioritize business-critical data first. There may also be legal restrictions relating to use which may affect which data can be made available."
+      }
+    ]
+  }
 }
