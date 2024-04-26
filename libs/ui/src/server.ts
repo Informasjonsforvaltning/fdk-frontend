@@ -2,4 +2,5 @@
 export * from './lib/header';
 export * from './lib/layout-root';
 export * from './lib/container';
+export * from './lib/link';
 export * from './lib/footer';
