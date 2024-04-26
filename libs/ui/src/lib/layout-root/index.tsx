@@ -1,27 +1,35 @@
 import 'server-only';
 
 import { ReactNode } from 'react';
-import { i18n, type Locale } from '@fdk-frontend/dictionaries';
+import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
+import { Header } from '../header';
+import { Footer } from '../footer';
+import './reset.css';
 import '@digdir/designsystemet-theme';
 import '@digdir/designsystemet-css';
 import './global.css';
-import { Header } from '../header';
 
 type Props = {
   children: ReactNode;
-  params: { lang: Locale };
+  params: {
+    lang: Locale['code'];
+  };
 };
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
-const RootLayout = ({ children, params }: Props) => (
-  <html lang={params.lang.code}>
-    <body>
-      <Header lang={params.lang.code} />
-      {children}
-    </body>
-  </html>
-);
+const RootLayout = async ({ children, params }: Props) => {
+  const dictionary = await getDictionary(params.lang);
+  return (
+    <html lang={params.lang}>
+      <body>
+        <Header dictionary={dictionary} />
+        {children}
+        <Footer dictionary={dictionary} />
+      </body>
+    </html>
+  );
+};
 
 const getMetadata = (title: string, description: string) => ({
   title: title,

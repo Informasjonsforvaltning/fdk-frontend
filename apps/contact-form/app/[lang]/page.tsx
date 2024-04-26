@@ -17,7 +17,7 @@ const Index = async ({ params: { lang } }: Props) => {
   const dictionary = await getDictionary(lang);
 
   return (
-    <Container extendedClassName={styles.contentContainer}>
+    <Container className={styles.contentContainer}>
       <Heading
         size='xlarge'
         spacing

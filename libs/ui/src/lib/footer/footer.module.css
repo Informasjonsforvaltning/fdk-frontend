@@ -1,0 +1,60 @@
+.footer {
+  display: grid;
+  grid-template-columns: minmax(0, min-content) auto minmax(0, min-content);
+  gap: 0.5rem;
+  background-color: #1e2b3c;
+  width: 100%;
+  grid-template-areas: 'rectangleIcon content ellipseIcon';
+}
+
+.rectangleIcon {
+  grid-area: rectangleIcon;
+  align-self: end;
+  display: flex
+}
+
+.rectangleIcon img {
+  padding-right: 2rem;
+  min-width: 50%;
+  height: auto;
+}
+
+.ellipseIcon {
+  grid-area: ellipseIcon;
+  align-self: end;
+  display: flex;
+}
+
+.ellipseIcon img {
+  min-width: 50%;
+  height: auto;
+}
+
+.content {
+  box-sizing: border-box;
+  grid-area: content;
+  justify-items: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 14rem);
+  padding: 4rem 0;
+  column-gap: 1rem;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 992px) {
+  .content {
+    composes: content;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 14rem);
+    row-gap: 1rem;
+  }
+
+  .ellipseIcon {
+    display: none;
+  }
+
+  .rectangleIcon {
+    display: none;
+  }
+}

@@ -34,3 +34,10 @@
   margin-top: 3rem;
   align-self: flex-start;
 }
+
+@media screen and (max-width: 1200px) {
+  .contentContainer {
+    composes: contentContainer;
+    margin: 5rem 1rem;
+  }
+}
