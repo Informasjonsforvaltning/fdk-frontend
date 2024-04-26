@@ -78,6 +78,7 @@ const ContactForm = ({ dictionary }: Props) => {
       <Textfield
         name='organizationNumber'
         required
+        type='number'
         className={styles.textFieldHalfWith}
         error={extractErrorMessages('organizationNumber', state, dictionary)}
         label={
