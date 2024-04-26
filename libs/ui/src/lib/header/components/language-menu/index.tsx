@@ -3,14 +3,17 @@
 import { DropdownMenu } from '@digdir/designsystemet-react';
 import { GlobeIcon } from '@navikt/aksel-icons';
 import { i18n, Locale } from '@fdk-frontend/dictionaries';
-import styles from './language-menu.module.css';
 import { usePathname, useRouter } from 'next/navigation';
+import React from 'react';
+import cn from 'classnames';
+import styles from './language-menu.module.css';
 
 type Props = {
   triggerText: string;
-};
+  className?: string;
+} & React.HTMLAttributes<HTMLButtonElement>;
 
-const LanguageMenu = ({ triggerText }: Props) => {
+const LanguageMenu = ({ triggerText, className }: Props) => {
   const pathName = usePathname();
   const router = useRouter();
 
@@ -24,7 +27,7 @@ const LanguageMenu = ({ triggerText }: Props) => {
   };
 
   return (
-    <div className={styles.dropdownMenu}>
+    <div className={cn(className, styles.dropdownMenu)}>
       <DropdownMenu>
         <DropdownMenu.Trigger>
           <GlobeIcon />

@@ -18,6 +18,30 @@
   "organizationNumber": "Organisasjonsnummer",
   "phoneNumber": "Telefonnummer",
   "name": "Navn",
+  "publications": "Publikasjoner",
+  "guidance": "Veiledning",
+  "reports": "Rapporter",
+  "relevant": "Aktuelt",
+  "services": "Tjenester",
+  "searchInCatalogs": "Søk i kataloger",
+  "searchInAllCatalogs": "Søk i alle kataloger",
+  "searchInDatasets": "Søk i datasett",
+  "searchInDataServices": "Søk i datatjenester",
+  "aboutDatasetCatalog": "Om datasettkatalogen",
+  "searchInConcepts": "Søk i begrep",
+  "searchInInformationModels": "Søk i informasjonsmodeller",
+  "guidanceAndStandards": "Veiledere og standarder",
+  "registrationHelp": "Hjelp til å registrere",
+  "sparqlQuerry": "SPARQL-spørring",
+  "searchOrganizations": "Søk i virksomheter",
+  "publishingData": "Publisere data",
+  "dataCommunity": "Datalandsbyen",
+  "aboutWebsite": "Om nettstedet",
+  "privacyPolicy": "Personvernerklæring",
+  "cookies": "Informasjonskapsler",
+  "contact": "Kontakt",
+  "nationalDatacatalogEmail": "fellesdatakatalog@digdir.no",
+  "accessibilityStatement": "Tilgjengelighetserklæring",
   "contactForm": {
     "title": "Vi hjelper deg med å finne datasett",
     "description": "Tjenesten er gratis og lanseres nå som testversjon. Ved stor pågang kan vi foreløpig ikke hjelpe og løse alle henvendelser, men må velge forespørsler som er nyttige med tanke på testing og videreutvikling av tjenesten.",
@@ -40,5 +64,10 @@
     "required": "Dette feltet er påkrevd",
     "invalidEmail": "Ugyldig e-postadresse",
     "invalidOrganizationNumber": "Ugyldig organisasjonsnummer"
+  },
+  "footer": {
+    "aboutWebsite": {
+      "nationalDataCatalogManager": "Digitaliseringsdirektoratet forvalter "
+    }
   }
 }

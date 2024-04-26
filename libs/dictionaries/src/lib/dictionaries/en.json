@@ -18,6 +18,30 @@
   "organizationNumber": "Organization number",
   "phoneNumber": "Phone number",
   "name": "Name",
+  "publications": "Publications",
+  "guidance": "Guidance",
+  "guidanceAndStandards": "Guidance and standards",
+  "aboutDatasetCatalog": "About dataset catalog",
+  "reports": "Reports",
+  "relevant": "Relevant",
+  "services": "Services",
+  "searchInCatalogs": "Search in catalogs",
+  "searchInAllCatalogs": "Search in all catalogs",
+  "searchInDatasets": "Search in datasets",
+  "searchInDataServices": "Search in dataservices",
+  "searchInConcepts": "Search in concepts",
+  "searchInInformationModels": "Search in information models",
+  "registrationHelp": "Registration help",
+  "sparqlQuerry": "SPARQL-spørring",
+  "searchOrganizations": "Search organizations",
+  "publishingData": "Publishing data",
+  "dataCommunity": "Data community",
+  "aboutWebsite": "About the website",
+  "privacyPolicy": "Privacy policy",
+  "cookies": "Cookies",
+  "contact": "Contact",
+  "nationalDatacatalogEmail": "fellesdatakatalog@digdir.no",
+  "accessibilityStatement": "Accessibility statement",
   "contactForm": {
     "title": "We help you find datasets",
     "description": "The service is free and is now being launched as a test version. In the event of a large influx, we cannot currently help and solve all inquiries, but must select requests that are useful in terms of testing and further development of the service.",
@@ -40,5 +64,10 @@
     "required": "This field is required",
     "invalidEmail": "Invalid email address",
     "invalidOrganizationNumber": "Invalid organization number"
+  },
+  "footer": {
+    "aboutWebsite": {
+      "nationalDataCatalogManager": "The digitalization agency manages "
+    }
   }
 }

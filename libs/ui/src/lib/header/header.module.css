@@ -2,21 +2,25 @@
   background: #FFFFFF;
   border-bottom: 1px solid rgb(230, 230, 230);
   color: #1E2B3C;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: ". logo . nav nav nav nav nav nav nav language .";
   width: 100%;
+  padding: 1rem 0;
 }
 
-.urlList {
+.nav {
+  grid-area: nav;
   list-style-type: none;
   display: flex;
   padding-left: 1rem;
   padding-right: 2rem;
   flex: 1 1 auto;
   justify-content: flex-end;
+  align-items: center;
 }
 
-.urlList > li {
+.nav > li {
   margin-right: 1rem;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -26,26 +30,23 @@
   min-width: max-content;
 }
 
-.urlList :hover {
+.nav :hover {
   text-decoration: none;
 }
 
-.urlList > li > a {
+.nav > li > a {
   color: #1E2B3C;
+}
+
+.logo {
+  grid-area: logo;
 }
 
 .logo * {
   width: auto;
   height: 45px;
-  margin-left: 0.75rem;
 }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: var(--breakpoint-xxx-large);
-  margin: 0 auto;
-  padding: 1rem;
+.language {
+  grid-area: language;
 }
