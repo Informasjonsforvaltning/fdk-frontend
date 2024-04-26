@@ -4,7 +4,15 @@
 import { revalidatePath } from 'next/cache';
 import { extractFormEntries, FormState, FormStatusEnum, getFormState } from '@fdk-frontend/utils';
 import { schema } from './[lang]/schema';
+import { sendEmail } from './[lang]/utils';
 
+/**
+ * This server action sends an email using the provided form data.
+ *
+ * @param prevState - The previous state of the form.
+ * @param formData - The form data to be sent.
+ * @returns A promise that resolves to the updated form state.
+ */
 export const sendEmailAction = async (prevState: FormState, formData: FormData) => {
   const parse = schema.safeParse(extractFormEntries(formData));
 
@@ -13,16 +21,19 @@ export const sendEmailAction = async (prevState: FormState, formData: FormData) 
   }
 
   try {
-    // TODO: Send email with form data
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const data = parse.data;
-
+    const response = await sendEmail(parse.data);
+    if (response instanceof Error) {
+      throw new Error(response.message);
+    } else if (response instanceof Response && !response.ok) {
+      throw new Error(response.statusText);
+    }
     revalidatePath('/');
     return getFormState(FormStatusEnum.SUCCESS, 'Mail was sent successfully');
   } catch (e) {
     // TODO: Log error to some error tracking service, not logging out to console because of security reasons
     // eslint-disable-next-line no-console
     console.error('Sending email for Contact Form failed');
+    console.error(e);
     return getFormState(FormStatusEnum.ERROR, 'Sending email failed');
   }
 };

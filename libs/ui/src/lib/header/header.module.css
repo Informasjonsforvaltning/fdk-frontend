@@ -35,6 +35,7 @@
 }
 
 .logo * {
+  width: auto;
   height: 45px;
   margin-left: 0.75rem;
 }
