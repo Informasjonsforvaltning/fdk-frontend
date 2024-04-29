@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('has title', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/contact-form');
 
   // Expect h1 to contain a substring.
   expect(await page.title()).toBe('Contact Form');

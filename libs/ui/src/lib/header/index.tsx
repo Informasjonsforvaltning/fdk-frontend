@@ -4,50 +4,27 @@ import Image from 'next/image';
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import FDKLogo from './images/fdk-logo.svg';
 import FDKDemoLogo from './images/fdk-logo-demo.svg';
-import LanguageMenu from './components/language-menu';
+import LanguageMenu from './components/menu-language';
+import { getHeaderData } from './data';
 import styles from './header.module.css';
+import { Link } from '../link';
 import { paths } from '@fdk-frontend/utils';
+import { ListItem, ListUnordered } from '@digdir/designsystemet-react';
+import NavigationMenu from './components/menu-navigation';
 
-interface HeaderProps {
+type HeaderProps = {
   dictionary: Dictionary;
-}
+};
 
 const Header = async ({ dictionary }: HeaderProps) => {
   const homeUrl = process.env.FDK_BASE_URI;
   const useDemoLogo = process.env.REACT_APP_USE_DEMO_LOGO === 'true';
-
-  const urls = [
-    {
-      name: dictionary.aboutNationalDataCatalog,
-      url: process.env.FDK_BASE_URI,
-      external: false,
-    },
-    {
-      name: dictionary.organizations,
-      url: `${process.env.FDK_BASE_URI}${paths.organizations}`,
-      external: false,
-    },
-    {
-      name: dictionary.tools,
-      url: `${process.env.FDK_BASE_URI}${paths.tools}`,
-      external: false,
-    },
-    {
-      name: dictionary.goToDataCommunity,
-      url: process.env.FDK_COMMUNITY_BASE_URI,
-      external: true,
-    },
-    {
-      name: dictionary.publishing,
-      url: process.env.FDK_REGISTRATION_BASE_URI,
-      external: true,
-    },
-  ];
+  const headerData = getHeaderData(dictionary);
 
   return (
     <header className={styles.header}>
-      <a
-        href={homeUrl}
+      <Link
+        href={homeUrl ?? paths.root}
         aria-label={dictionary.goToMainPageAriaLabel}
         className={styles.logo}
       >
@@ -55,24 +32,32 @@ const Header = async ({ dictionary }: HeaderProps) => {
           src={useDemoLogo ? FDKDemoLogo : FDKLogo}
           alt={dictionary.fdkLogoAlt}
         />
-      </a>
-      <ul className={styles.nav}>
-        {urls.map((urlObject) => (
-          <li key={urlObject.name}>
-            <a
-              href={urlObject.url}
-              target={urlObject.external ? '_blank' : ''}
-              rel='noreferrer'
-            >
-              {urlObject.name}
-            </a>
-          </li>
+      </Link>
+      <ListUnordered className={styles.nav}>
+        {headerData.map((urlObject) => (
+          <ListItem key={urlObject.name}>
+            {urlObject.items ? (
+              <NavigationMenu
+                key={urlObject.name}
+                triggerText={urlObject.name}
+                links={urlObject.items}
+              />
+            ) : (
+              urlObject.href && (
+                <Link
+                  href={urlObject.href}
+                  external={urlObject.external}
+                  rel='noreferrer'
+                  className={styles.link}
+                >
+                  {urlObject.text}
+                </Link>
+              )
+            )}
+          </ListItem>
         ))}
-      </ul>
-      <LanguageMenu
-        triggerText={dictionary.language}
-        className={styles.language}
-      />
+      </ListUnordered>
+      <LanguageMenu triggerText={dictionary.language} />
     </header>
   );
 };

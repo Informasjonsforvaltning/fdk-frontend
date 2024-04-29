@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { getFooterData } from './data/footer-data';
+import { getFooterData } from './data';
 import { ColumnData, FooterColumn } from './components/footer-column';
 import styles from './footer.module.css';
 import Image from 'next/image';
