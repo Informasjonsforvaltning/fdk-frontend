@@ -33,7 +33,7 @@ jobs:
         run: |
           corepack enable
           yarn set version stable
-          yarn install
+          yarn install --frozen-lockfile
 
       - name: Caching Nx
         uses: actions/cache@v4
@@ -52,7 +52,7 @@ jobs:
       - run: yarn run affected:build --parallel=2 --configuration=ci
 
       - name: Caching Dist Folder
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./dist
           key: cache-dist-${{ github.sha }}
