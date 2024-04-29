@@ -35,11 +35,18 @@
       "rules": {
         "import/no-unresolved": "off",
         "react/react-in-jsx-scope": "off",
-        "no-console": "error",
+        "no-console": "off",
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(error)$/]",
+            "message": "Unexpected property on console object was called"
+          }
+        ],
         "no-duplicate-imports": "error",
         "arrow-body-style": ["warn", "as-needed"],
         "require-atomic-updates": "error",
-        "no-use-before-define":"error",
+        "no-use-before-define": "error",
         "no-unreachable-loop": "error",
         "no-unmodified-loop-condition": "error",
         "no-promise-executor-return": "error",
@@ -59,7 +66,7 @@
         "no-empty-function": "warn",
         "no-eq-null": "error",
         "no-implicit-coercion": "warn",
-        "no-magic-numbers": ["warn", {"ignoreArrayIndexes": true }],
+        "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true }],
         "no-param-reassign": "error",
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": "error",
