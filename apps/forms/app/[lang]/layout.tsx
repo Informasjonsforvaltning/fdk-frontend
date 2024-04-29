@@ -1,6 +1,6 @@
 import { RootLayout, generateStaticParams, getMetadata } from '@fdk-frontend/ui/server';
 
-const metadata = getMetadata('Contact Form', 'Contact Form');
+const metadata = getMetadata('Forms', 'Forms');
 
 export { generateStaticParams, metadata };
 export default RootLayout;

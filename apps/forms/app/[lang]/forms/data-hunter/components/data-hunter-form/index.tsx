@@ -4,15 +4,15 @@ import { Paragraph, Textarea, Textfield } from '@digdir/designsystemet-react';
 import { LabelWithTag, SubmitButton } from '@fdk-frontend/ui';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { useFormState } from 'react-dom';
-import { sendEmailAction } from '../../../../actions';
+import { sendEmailAction } from '../../../../../actions';
 import { EMPTY_FORM_STATE, extractErrorMessages } from '@fdk-frontend/utils';
-import styles from './contact-form.module.css';
+import styles from './data-hunter-form.module.css';
 
 type Props = {
   dictionary: Dictionary;
 };
 
-const ContactForm = ({ dictionary }: Props) => {
+const DataHunterForm = ({ dictionary }: Props) => {
   const [state, formAction] = useFormState(sendEmailAction, EMPTY_FORM_STATE);
   const textAreaCols = 100;
   const textAreaRows = 5;
@@ -27,11 +27,11 @@ const ContactForm = ({ dictionary }: Props) => {
         rows={textAreaRows}
         label={
           <LabelWithTag
-            labelText={dictionary.contactForm.dataset.label}
+            labelText={dictionary.dataHunterForm.dataset.label}
             tagText={dictionary.shouldBeFilledOut}
           />
         }
-        description={<Paragraph>{dictionary.contactForm.dataset.description}</Paragraph>}
+        description={<Paragraph>{dictionary.dataHunterForm.dataset.description}</Paragraph>}
         error={extractErrorMessages('dataset', state, dictionary)}
       />
       <Textarea
@@ -39,16 +39,16 @@ const ContactForm = ({ dictionary }: Props) => {
         className={styles.textArea}
         cols={textAreaCols}
         rows={textAreaRows}
-        label={<LabelWithTag labelText={dictionary.contactForm.location.label} />}
-        description={<Paragraph>{dictionary.contactForm.location.description}</Paragraph>}
+        label={<LabelWithTag labelText={dictionary.dataHunterForm.location.label} />}
+        description={<Paragraph>{dictionary.dataHunterForm.location.description}</Paragraph>}
       />
       <Textarea
         name='efforts'
         className={styles.textArea}
         cols={textAreaCols}
         rows={textAreaRows}
-        label={<LabelWithTag labelText={dictionary.contactForm.efforts.label} />}
-        description={<Paragraph>{dictionary.contactForm.efforts.description}</Paragraph>}
+        label={<LabelWithTag labelText={dictionary.dataHunterForm.efforts.label} />}
+        description={<Paragraph>{dictionary.dataHunterForm.efforts.description}</Paragraph>}
       />
       <Textfield
         name='name'
@@ -101,4 +101,4 @@ const ContactForm = ({ dictionary }: Props) => {
   );
 };
 
-export default ContactForm;
+export default DataHunterForm;

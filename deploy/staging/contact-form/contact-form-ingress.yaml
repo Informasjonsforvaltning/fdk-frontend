@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: contact-form
+  name: forms
   annotations:
     nginx.ingress.kubernetes.io/proxy-buffering: 'on'
     nginx.ingress.kubernetes.io/proxy-buffers-number: '8'
@@ -15,7 +15,7 @@ spec:
         paths:
           - backend:
               service:
-                name: contact-form
+                name: forms
                 port:
                   number: 8080
             path: /

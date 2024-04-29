@@ -10,34 +10,23 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-    ],
+    "lib": ["dom", "dom.iterable"],
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "types": [
-      "jest",
-      "node"
-    ]
+    "types": ["jest", "node"]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    "../../apps/contact-form/.next/types/**/*.ts",
-    "../../dist/apps/contact-form/.next/types/**/*.ts",
+    ".next/types/**/*.ts",
+    "../../dist/apps/forms/.next/types/**/*.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "jest.config.ts",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "exclude": ["node_modules", "jest.config.ts", "**/*.spec.ts", "**/*.test.ts"]
 }

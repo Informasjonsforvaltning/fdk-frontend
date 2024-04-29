@@ -2,26 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: contact-form
+  name: forms
   labels:
-    app: contact-form
+    app: forms
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: contact-form
+      app: forms
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: contact-form
+        app: forms
       annotations:
         prometheus.io/scrape: 'false'
     spec:
       containers:
-        - name: contact-form
-          image: contact-form
+        - name: forms
+          image: forms
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

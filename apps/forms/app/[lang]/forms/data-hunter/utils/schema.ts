@@ -3,7 +3,7 @@
 import { z } from 'zod';
 
 /**
- * The validation schema for the contact form.
+ * The validation schema for the data hunter form.
  * Form more information on the schema library, see https://zod.dev/?id=table-of-contents
  */
 export const schema = z.object({
