@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: prod
 resources:
   - ../../base/forms
-  - forms-ingress.yaml
 
 patchesStrategicMerge:
   - forms-env.yaml
