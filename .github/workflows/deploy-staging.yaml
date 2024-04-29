@@ -16,16 +16,27 @@ jobs:
       changed: ${{ steps.set-matrix.outputs.changed }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
 
-      - uses: nrwl/nx-set-shas@v3
-      - run: yarn install --frozen-lockfile
+      - name: Set SHAs
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Use Node.js 20.9.0
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.9.0
+
+      - name: Yarn install
+        run: |
+          corepack enable
+          yarn set version stable
+          yarn install
 
       - name: Caching Nx
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: node_modules/.cache
           key: cache-nx-${{ hashFiles('yarn.lock') }}
