@@ -1,4 +1,5 @@
 export const paths = {
+  root: '/',
   organizations: '/organizations',
   tools: '/tools',
   contactForm: '/contact-form',
