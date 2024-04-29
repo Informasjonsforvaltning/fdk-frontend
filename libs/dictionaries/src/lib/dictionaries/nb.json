@@ -50,8 +50,8 @@
   "homePage": "Hjemmeside",
   "contactForm": {
     "applicationName": "Kontaktskjema",
-    "title": "Vi hjelper deg med å finne datasett",
-    "description": "Tjenesten er gratis og lanseres nå som testversjon. Ved stor pågang kan vi foreløpig ikke hjelpe og løse alle henvendelser, men må velge forespørsler som er nyttige med tanke på testing og videreutvikling av tjenesten.",
+    "title": "Datajegeren hjelper deg å finne data",
+    "description": "Finner du ikke datasettet du trenger? Mange datasett fra offentlig sektor er tilgjengelige via vår datakatalog, men denne er ikke komplett. Datajegeren hjelper bedrifter med å finne og få tilgang til datasett fra offentlig sektor.",
     "dataset": {
       "label": "Hvilket datasett trenger du?",
       "description": "Lag en så tydelig beskrivelse som mulig, f.eks. felter, tidsperiode, ønsket oppdateringsfrekvens."
@@ -70,8 +70,7 @@
     "minimumLength": "Må være minst {length} tegn",
     "required": "Dette feltet er påkrevd",
     "invalidEmail": "Ugyldig e-postadresse",
-    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer",
-    "undefinedHRef": "href er ikke definert"
+    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer"
   },
   "footer": {
     "aboutWebsite": {

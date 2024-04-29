@@ -50,19 +50,19 @@
   "homePage": "Hjemmeside",
   "contactForm": {
     "applicationName": "Kontaktskjema",
-    "title": "Vi hjelper deg med å finne datasett",
-    "description": "Tjenesten er gratis og lanseres nå som testversjon. Ved stor pågang kan vi foreløpig ikke hjelpe og løse alle henvendelser, men må velge forespørsler som er nyttige med tanke på testing og videreutvikling av tjenesten.",
+    "title": "Datajegeren hjelper deg å finne data",
+    "description": "Finn du ikkje datasettet du treng? Mange datasett frå offentleg sektor er tilgjengelege via vår datakatalog, men denne er ikkje komplett. Datajegeren hjelper bedrifter med å finne og få tilgang til datasett frå offentleg sektor.",
     "dataset": {
-      "label": "Hvilket datasett trenger du?",
-      "description": "Lag en så tydelig beskrivelse som mulig, f.eks. felter, tidsperiode, ønsket oppdateringsfrekvens."
+      "label": "Kva datasett treng du?",
+      "description": "Lag ei så tydeleg skildring som mogeleg. Til dømes felter, tidsperiode, ønskja oppdateringsfrekvens."
     },
     "location": {
-      "label": "Vet du hvor datasettet befinner seg?",
-      "description": "Hvis du har informasjon om hvor du tror vi kan finne datasettet, f.eks. hos hvilken offentlig etat eller kommune, kan dette være til stor hjelp for datajegeren."
+      "label": "Veit du kvar datasettet er?",
+      "description": "Dersom du har informasjon om kvar du trur vi kan finne datasettet, til dømes hos kva offentleg etat eller kommune, kan dette vere til stor hjelp for Datajegeren."
     },
     "efforts": {
-      "label": "Har du forsøkt å få tak i dette datasettet selv?",
-      "description": "Hvis du har gjort forsøk på å få tak i datasettet selv, oppgi hvor du søkt og evt. hvem du har snakket med. Ta gjerne med hvorfor du ikke lykkes hvis du har vært i direkte kontakt med noen i offentlig sektor."
+      "label": "Har du prøvd å få tak i dette datasettet sjølv?",
+      "description": "Dersom du har prøvd å få tak i datasettet sjølv, fortel kvar du har søkt og evt. kven du har snakka med. Ta gjern med kvifor du ikkje lukkast dersom du har vore i direkte kontakt med nokon i offentleg sektor."
     }
   },
   "error": {
@@ -70,8 +70,7 @@
     "minimumLength": "Må være minst {length} tegn",
     "required": "Dette feltet er påkrevd",
     "invalidEmail": "Ugyldig e-postadresse",
-    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer",
-    "undefinedHRef": "href er ikke definert"
+    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer"
   },
   "footer": {
     "aboutWebsite": {

@@ -50,8 +50,8 @@
   "homePage": "Home page",
   "contactForm": {
     "applicationName": "Contact form",
-    "title": "We help you find datasets",
-    "description": "The service is free and is now being launched as a test version. In the event of a large influx, we cannot currently help and solve all inquiries, but must select requests that are useful in terms of testing and further development of the service.",
+    "title": "The data hunter helps you find data",
+    "description": "Can't find the data set you need? Many data sets from the public sector are available via our data catalogue, but this is not complete. The data hunter helps companies find and access data sets from the public sector.",
     "dataset": {
       "label": "Which dataset do you need?",
       "description": "Create as clear a description as possible, e.g. fields, time period, desired update frequency."
