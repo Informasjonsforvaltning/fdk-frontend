@@ -1,9 +1,14 @@
 {
   "nationalDataCatalog": "Felles datakatalog",
   "aboutNationalDataCatalog": "Om Felles datakatalog",
+  "aboutDataServiceCatalog": "Om API-katalogen",
+  "aboutConceptCatalog": "Om begrepskatalogen",
+  "aboutInformationModelCatalog": "Om informasjonsmodellkatalogen",
+  "artificialIntelligence": "Kunstig intelligens",
+  "sparqlQuery": "SPARQL-spørring",
+  "requests": "Etterspørsler",
   "organizations": "Virksomheter",
   "tools": "Verktøy",
-  "goToDataCommunity": "Gå til Datalandsbyen",
   "publishing": "Publisere",
   "language": "Språk",
   "goToMainPageAriaLabel": "Gå til hovedsiden",
@@ -65,7 +70,8 @@
     "minimumLength": "Må være minst {length} tegn",
     "required": "Dette feltet er påkrevd",
     "invalidEmail": "Ugyldig e-postadresse",
-    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer"
+    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer",
+    "undefinedHRef": "href er ikke definert"
   },
   "footer": {
     "aboutWebsite": {

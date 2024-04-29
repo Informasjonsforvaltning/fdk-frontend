@@ -3,17 +3,11 @@ import 'server-only';
 import { ListHeading, ListItem, ListRoot, ListUnordered } from '@digdir/designsystemet-react';
 import { Link } from '../../../link';
 import styles from './footer-column.module.css';
-
-export type FooterLinkItemType = {
-  text?: string;
-  undecoratedText?: string;
-  href?: string;
-  external?: boolean;
-};
+import { LinkObjectType } from '@fdk-frontend/types';
 
 export type ColumnData = {
   heading: string;
-  links: FooterLinkItemType[];
+  links: LinkObjectType[];
 };
 
 export type FooterColumnProps = {
@@ -29,7 +23,7 @@ export const FooterColumn = ({ columnData }: FooterColumnProps) => (
       {columnData.heading}
     </ListHeading>
     <ListUnordered className={styles.linkContainer}>
-      {columnData.links.map((link: FooterLinkItemType) => (
+      {columnData.links.map((link) => (
         <ListItem key={link.text}>
           {link.undecoratedText}
           {link.href && (
