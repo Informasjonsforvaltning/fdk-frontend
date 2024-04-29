@@ -15,26 +15,6 @@
   text-align: center;
 }
 
-.textArea {
-  margin-top: 2rem;
-}
-
-.textField {
-  width: 100%;
-  margin-top: 2rem;
-  align-self: flex-start;
-}
-
-.textFieldHalfWith {
-  composes: textField;
-  width: 50%;
-}
-
-.button {
-  margin-top: 3rem;
-  align-self: flex-start;
-}
-
 @media screen and (max-width: 1200px) {
   .contentContainer {
     composes: contentContainer;

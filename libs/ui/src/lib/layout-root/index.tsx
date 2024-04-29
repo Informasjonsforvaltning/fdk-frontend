@@ -4,12 +4,13 @@ import { ReactNode } from 'react';
 import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 import { Header } from '../header';
 import { Footer } from '../footer';
+
 import './reset.css';
 import '@digdir/designsystemet-theme';
 import '@digdir/designsystemet-css';
 import './global.css';
 
-type Props = {
+type RootLayoutProps = {
   children: ReactNode;
   params: {
     lang: Locale['code'];
@@ -18,7 +19,7 @@ type Props = {
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
-const RootLayout = async ({ children, params }: Props) => {
+const RootLayout = async ({ children, params }: RootLayoutProps) => {
   const dictionary = await getDictionary(params.lang);
   return (
     <html lang={params.lang}>

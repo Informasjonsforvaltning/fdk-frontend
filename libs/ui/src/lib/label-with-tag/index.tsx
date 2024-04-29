@@ -2,14 +2,14 @@
 
 import { Label, Tag } from '@digdir/designsystemet-react';
 import { HTMLAttributes } from 'react';
-import styles from './text-area-label.module.css';
+import styles from './label-with-tag.module.css';
 
-interface Props extends HTMLAttributes<HTMLSpanElement> {
+interface LabelWithTagProps extends HTMLAttributes<HTMLSpanElement> {
   labelText: string;
   tagText?: string;
 }
 
-const LabelWithTag = ({ labelText, tagText, ...rest }: Props) => (
+const LabelWithTag = ({ labelText, tagText, ...rest }: LabelWithTagProps) => (
   <span
     {...rest}
     className={styles.contentContainer}

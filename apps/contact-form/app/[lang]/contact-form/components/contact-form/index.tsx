@@ -4,9 +4,9 @@ import { Paragraph, Textarea, Textfield } from '@digdir/designsystemet-react';
 import { LabelWithTag, SubmitButton } from '@fdk-frontend/ui';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { useFormState } from 'react-dom';
-import styles from './page.module.css';
-import { sendEmailAction } from '../actions';
+import { sendEmailAction } from '../../../../actions';
 import { EMPTY_FORM_STATE, extractErrorMessages } from '@fdk-frontend/utils';
+import styles from './contact-form.module.css';
 
 type Props = {
   dictionary: Dictionary;
