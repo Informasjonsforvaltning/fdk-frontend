@@ -42,7 +42,9 @@
   "contact": "Kontakt",
   "nationalDatacatalogEmail": "fellesdatakatalog@digdir.no",
   "accessibilityStatement": "Tilgjengelighetserklæring",
+  "homePage": "Hjemmeside",
   "contactForm": {
+    "applicationName": "Kontaktskjema",
     "title": "Vi hjelper deg med å finne datasett",
     "description": "Tjenesten er gratis og lanseres nå som testversjon. Ved stor pågang kan vi foreløpig ikke hjelpe og løse alle henvendelser, men må velge forespørsler som er nyttige med tanke på testing og videreutvikling av tjenesten.",
     "dataset": {
