@@ -5,8 +5,9 @@ import { Breadcrumbs, Container } from '@fdk-frontend/ui/server';
 import DataHunterForm from './components/data-hunter-form';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 import React from 'react';
-import { paths } from '@fdk-frontend/utils';
+import { getPaths } from '@fdk-frontend/utils';
 import styles from './page.module.css';
+import { unstable_noStore as noStore } from 'next/cache';
 
 type Props = {
   params: {
@@ -15,14 +16,18 @@ type Props = {
 };
 
 const DataHunterPage = async ({ params: { lang } }: Props) => {
+  // Opt-in dynamic rendering
+  noStore();
+
   const dictionary = await getDictionary(lang);
+  const baseUri = process.env.FDK_BASE_URI ?? '/';
   const breadcrumbList = [
     {
-      href: paths.forms,
+      href: getPaths(baseUri).forms,
       text: dictionary.forms,
     },
     {
-      href: paths.dataHunter,
+      href: getPaths(baseUri).dataHunter,
       text: dictionary.dataHunter,
     },
   ];

@@ -35,6 +35,7 @@
     "affected:dep-graph:ci": "nx affected:dep-graph --base=origin/main --head=HEAD",
     "affected:apps:ci": "nx affected:apps --base=origin/main --head=HEAD",
     "affected:libs:ci": "nx affected:libs --base=origin/main --head=HEAD",
+    "matrix": "nx print-affected --type=app --select=projects --plain|tr -d '\\n'|jq -cRs 'split(\", \")'",
     "format": "nx format:write",
     "postinstall": "husky install"
   },
@@ -90,6 +91,9 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": ">=10",
     "nx": "18.2.4",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^16.1.0",
+    "postcss-preset-env": "^9.5.9",
     "prettier": "3.2.5",
     "ts-jest": "^29.1.2",
     "ts-node": "10.9.2",

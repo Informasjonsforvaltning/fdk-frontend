@@ -5,9 +5,6 @@ import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 import { Header } from '../header';
 import { Footer } from '../footer';
 
-import './reset.css';
-import '@digdir/designsystemet-theme';
-import '@digdir/designsystemet-css';
 import './global.css';
 
 type RootLayoutProps = {

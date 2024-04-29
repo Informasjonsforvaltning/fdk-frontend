@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { i18n, getLocale, Locale } from '@fdk-frontend/dictionaries';
 
 export const middleware = (request: NextRequest) => {
+  // Get the pathname and remove basePath
+  const basePath = "/forms";
   const pathname = request.nextUrl.pathname;
   if (
     [
@@ -22,7 +24,7 @@ export const middleware = (request: NextRequest) => {
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
     return NextResponse.redirect(
-      new URL(`/${locale?.code}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
+      new URL(basePath + `/${locale?.code}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
     );
   }
   return null;
@@ -30,5 +32,5 @@ export const middleware = (request: NextRequest) => {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)', { source: '/' }],
 };

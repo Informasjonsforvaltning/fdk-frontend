@@ -2,33 +2,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: forms
+  name: forms-frontend
   labels:
-    app: forms
+    app: forms-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: forms
+      app: forms-frontend
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: forms
+        app: forms-frontend
       annotations:
         prometheus.io/scrape: 'false'
     spec:
       containers:
-        - name: forms
-          image: forms
+        - name: forms-frontend
+          image: forms-frontend
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
           livenessProbe:
             failureThreshold: 3
             httpGet:
-              path: /api/ping
+              path: /forms/api/ping
               port: 8080
               scheme: HTTP
             periodSeconds: 30
@@ -38,7 +38,7 @@ spec:
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /api/ping
+              path: /forms/api/ready
               port: 8080
               scheme: HTTP
             periodSeconds: 30
@@ -48,6 +48,6 @@ spec:
           resources:
             requests:
               cpu: 50m
-              memory: 50Mi
+              memory: 500Mi
             limits:
-              memory: 50Mi
+              memory: 500Mi

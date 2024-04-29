@@ -1,69 +1,74 @@
 import { type Dictionary } from '@fdk-frontend/dictionaries';
-import { paths } from '@fdk-frontend/utils';
+import { getPaths } from '@fdk-frontend/utils';
 
-export const getHeaderData = (dictionary: Dictionary) => [
+export const getHeaderData = (
+  dictionary: Dictionary,
+  baseUri: string,
+  FDK_COMMUNITY_BASE_URI: string,
+  FDK_REGISTRATION_BASE_URI: string,
+) => [
   {
     name: dictionary.aboutNationalDataCatalog,
     items: [
       {
         text: dictionary.aboutNationalDataCatalog,
-        href: paths.about,
+        href: getPaths(baseUri).about,
       },
       {
         text: dictionary.aboutDatasetCatalog,
-        href: paths.aboutDatasetCatalog,
+        href: getPaths(baseUri).aboutDatasetCatalog,
       },
       {
         text: dictionary.aboutDataServiceCatalog,
-        href: paths.aboutDataServiceCatalog,
+        href: getPaths(baseUri).aboutDataServiceCatalog,
       },
       {
         text: dictionary.aboutConceptCatalog,
-        href: paths.aboutConceptCatalog,
+        href: getPaths(baseUri).aboutConceptCatalog,
       },
       {
         text: dictionary.aboutInformationModelCatalog,
-        href: paths.aboutInformationModelCatalog,
+        href: getPaths(baseUri).aboutInformationModelCatalog,
       },
       {
         text: dictionary.guidance,
-        href: paths.guidance,
+        href: getPaths(baseUri).guidance,
       },
     ],
   },
   {
     text: dictionary.organizations,
-    href: paths.organizations,
+    href: getPaths(baseUri).organizations,
   },
   {
     name: dictionary.tools,
     items: [
       {
         text: dictionary.artificialIntelligence,
-        href: paths.artificialIntelligence,
+        href: getPaths(baseUri).artificialIntelligence,
       },
       {
         text: dictionary.reports,
-        href: paths.reports,
+        href: getPaths(baseUri).reports,
       },
       {
         text: dictionary.sparqlQuery,
-        href: paths.sparql,
+        href: getPaths(baseUri).sparql,
       },
       {
         text: dictionary.requests,
-        href: paths.requests,
+        href: getPaths(baseUri).requests,
       },
     ],
   },
   {
     text: dictionary.dataCommunity,
-    href: process.env.FDK_COMMUNITY_BASE_URI,
+    href: FDK_COMMUNITY_BASE_URI,
     external: true,
   },
   {
     text: dictionary.publishing,
-    href: process.env.FDK_REGISTRATION_BASE_URI,
+    href: FDK_REGISTRATION_BASE_URI,
     external: true,
   },
 ];

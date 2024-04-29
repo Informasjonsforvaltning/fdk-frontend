@@ -7,24 +7,31 @@ import FDKDemoLogo from './images/fdk-logo-demo.svg';
 import LanguageMenu from './components/menu-language';
 import { getHeaderData } from './data';
 import styles from './header.module.css';
-import { Link } from '../link';
-import { paths } from '@fdk-frontend/utils';
-import { ListItem, ListUnordered } from '@digdir/designsystemet-react';
+import { Link, ListItem, ListUnordered } from '@digdir/designsystemet-react';
 import NavigationMenu from './components/menu-navigation';
+import { unstable_noStore as noStore } from 'next/cache';
 
 type HeaderProps = {
   dictionary: Dictionary;
 };
 
 const Header = async ({ dictionary }: HeaderProps) => {
-  const homeUrl = process.env.FDK_BASE_URI;
-  const useDemoLogo = process.env.REACT_APP_USE_DEMO_LOGO === 'true';
-  const headerData = getHeaderData(dictionary);
+  // Opt-in dynamic rendering
+  noStore();
+
+  const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI, FDK_REGISTRATION_BASE_URI, FDK_USE_DEMO_LOGO } = process.env;
+  const useDemoLogo = FDK_USE_DEMO_LOGO === 'true';
+  const headerData = getHeaderData(
+    dictionary,
+    FDK_BASE_URI ?? '/',
+    FDK_COMMUNITY_BASE_URI ?? '#',
+    FDK_REGISTRATION_BASE_URI ?? '#',
+  );
 
   return (
     <header className={styles.header}>
       <Link
-        href={homeUrl ?? paths.root}
+        href={FDK_BASE_URI}
         aria-label={dictionary.goToMainPageAriaLabel}
         className={styles.logo}
       >
@@ -46,7 +53,7 @@ const Header = async ({ dictionary }: HeaderProps) => {
               urlObject.href && (
                 <Link
                   href={urlObject.href}
-                  external={urlObject.external}
+                  target={urlObject.external ? '_blank' : undefined}
                   rel='noreferrer'
                   className={styles.link}
                 >
