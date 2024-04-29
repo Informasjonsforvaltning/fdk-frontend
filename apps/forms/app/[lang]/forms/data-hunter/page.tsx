@@ -2,7 +2,7 @@ import 'server-only';
 
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs, Container } from '@fdk-frontend/ui/server';
-import ContactForm from './components/contact-form';
+import DataHunterForm from './components/data-hunter-form';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 import React from 'react';
 import { paths } from '@fdk-frontend/utils';
@@ -14,12 +14,16 @@ type Props = {
   };
 };
 
-const Index = async ({ params: { lang } }: Props) => {
+const DataHunterPage = async ({ params: { lang } }: Props) => {
   const dictionary = await getDictionary(lang);
   const breadcrumbList = [
     {
-      href: paths.contactForm,
-      text: dictionary.contactForm.applicationName,
+      href: paths.forms,
+      text: dictionary.forms,
+    },
+    {
+      href: paths.dataHunter,
+      text: dictionary.dataHunter,
     },
   ];
 
@@ -34,18 +38,18 @@ const Index = async ({ params: { lang } }: Props) => {
           size='xlarge'
           spacing
         >
-          {dictionary.contactForm.title}
+          {dictionary.dataHunterForm.title}
         </Heading>
         <Paragraph
           size='large'
           className={styles.paragraph}
         >
-          {dictionary.contactForm.description}
+          {dictionary.dataHunterForm.description}
         </Paragraph>
-        <ContactForm dictionary={dictionary} />
+        <DataHunterForm dictionary={dictionary} />
       </Container>
     </div>
   );
 };
 
-export default Index;
+export default DataHunterPage;

@@ -1,4 +1,5 @@
 {
+  "dataHunter": "Datajegeren",
   "nationalDataCatalog": "Felles datakatalog",
   "aboutNationalDataCatalog": "Om Felles datakatalog",
   "aboutDataServiceCatalog": "Om API-katalogen",
@@ -48,8 +49,8 @@
   "nationalDatacatalogEmail": "fellesdatakatalog@digdir.no",
   "accessibilityStatement": "Tilgjengelighetserklæring",
   "homePage": "Hjemmeside",
-  "contactForm": {
-    "applicationName": "Kontaktskjema",
+  "forms": "Skjemaer",
+  "dataHunterForm": {
     "title": "Datajegeren hjelper deg å finne data",
     "description": "Finn du ikkje datasettet du treng? Mange datasett frå offentleg sektor er tilgjengelege via vår datakatalog, men denne er ikkje komplett. Datajegeren hjelper bedrifter med å finne og få tilgang til datasett frå offentleg sektor.",
     "dataset": {

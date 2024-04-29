@@ -3,8 +3,8 @@
 
 import { revalidatePath } from 'next/cache';
 import { extractFormEntries, FormState, FormStatusEnum, getFormState } from '@fdk-frontend/utils';
-import { schema } from './[lang]/contact-form/utils/schema';
-import { sendEmail } from './[lang]/contact-form/utils/utils';
+import { schema } from './[lang]/forms/data-hunter/utils/schema';
+import { sendEmail } from './[lang]/forms/data-hunter/utils/utils';
 
 /**
  * This server action sends an email using the provided form data.
@@ -31,7 +31,7 @@ export const sendEmailAction = async (prevState: FormState, formData: FormData) 
     return getFormState(FormStatusEnum.SUCCESS, 'Mail was sent successfully');
   } catch (e) {
     // TODO: Log error to some error tracking service, not logging out to console because of security reasons
-    console.error('Sending email for Contact Form failed');
+    console.error('Sending email for Data Hunter Form failed');
     return getFormState(FormStatusEnum.ERROR, 'Sending email failed');
   }
 };

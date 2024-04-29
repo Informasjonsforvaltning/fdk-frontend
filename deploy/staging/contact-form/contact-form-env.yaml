@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: contact-form
+  name: forms
   labels:
-    app: contact-form
+    app: forms
 spec:
   selector:
     matchLabels:
-      app: contact-form
+      app: forms
   template:
     spec:
       containers:
-        - name: contact-form
+        - name: forms

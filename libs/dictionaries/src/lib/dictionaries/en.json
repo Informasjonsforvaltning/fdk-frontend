@@ -1,4 +1,5 @@
 {
+  "dataHunter": "Data hunter",
   "nationalDataCatalog": "Felles datakatalog",
   "aboutNationalDataCatalog": "About Felles datakatalog",
   "aboutDataServiceCatalog": "About API catalog",
@@ -48,8 +49,8 @@
   "nationalDatacatalogEmail": "fellesdatakatalog@digdir.no",
   "accessibilityStatement": "Accessibility statement",
   "homePage": "Home page",
-  "contactForm": {
-    "applicationName": "Contact form",
+  "forms": "Forms",
+  "dataHunterForm": {
     "title": "The data hunter helps you find data",
     "description": "Can't find the data set you need? Many data sets from the public sector are available via our data catalogue, but this is not complete. The data hunter helps companies find and access data sets from the public sector.",
     "dataset": {
