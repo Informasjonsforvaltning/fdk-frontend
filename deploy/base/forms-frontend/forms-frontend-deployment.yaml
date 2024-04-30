@@ -38,7 +38,7 @@ spec:
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /api/ping
+              path: /api/ready
               port: 8080
               scheme: HTTP
             periodSeconds: 30
@@ -48,6 +48,6 @@ spec:
           resources:
             requests:
               cpu: 50m
-              memory: 50Mi
+              memory: 500Mi
             limits:
-              memory: 50Mi
+              memory: 500Mi
