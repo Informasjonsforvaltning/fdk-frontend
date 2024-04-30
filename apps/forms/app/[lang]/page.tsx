@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation';
-import { paths } from '@fdk-frontend/utils';
 
-const Index = async () => redirect(paths.dataHunter);
+const Index = async () => redirect('/forms/data-hunter');
 
 export default Index;
