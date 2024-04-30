@@ -3,8 +3,8 @@
 
 import { revalidatePath } from 'next/cache';
 import { extractFormEntries, FormState, FormStatusEnum, getFormState } from '@fdk-frontend/utils';
-import { schema } from './[lang]/forms/data-hunter/utils/schema';
-import { sendEmail } from './[lang]/forms/data-hunter/utils/utils';
+import { schema } from './[lang]/data-hunter/utils/schema';
+import { sendEmail } from './[lang]/data-hunter/utils/utils';
 
 /**
  * This server action sends an email using the provided form data.
