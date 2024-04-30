@@ -13,6 +13,17 @@ const nextConfig = {
     svgr: false,
   },
   reactStrictMode: true,
+  basePath: '/forms',
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/forms',
+        basePath: false,
+        permanent: false,
+      },
+    ];
+  },
 };
 
 const plugins = [
