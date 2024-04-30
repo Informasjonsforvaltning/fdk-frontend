@@ -36,7 +36,7 @@ jobs:
       - name: Yarn install
         run: |
           yarn set version stable
-          yarn install --immutable
+          yarn install --frozen-lockfile
 
       - name: Caching Nx
         uses: actions/cache@v4
