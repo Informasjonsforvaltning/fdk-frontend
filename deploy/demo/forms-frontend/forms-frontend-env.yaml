@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: forms
+  name: forms-frontend
   labels:
-    app: forms
+    app: forms-frontend
 spec:
   selector:
     matchLabels:
-      app: forms
+      app: forms-frontend
   template:
     spec:
       containers:
-        - name: forms
+        - name: forms-frontend

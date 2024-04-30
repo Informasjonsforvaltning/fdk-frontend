@@ -2,9 +2,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - forms-deployment.yaml
-  - forms-service.yaml
+  - forms-frontend-deployment.yaml
+  - forms-frontend-service.yaml
 images:
-  - name: forms
-    newName: eu.gcr.io/digdir-fdk-infra/forms
+  - name: forms-frontend
+    newName: eu.gcr.io/digdir-fdk-infra/forms-frontend
     newTag: $(GIT_COMMIT_SHA)
