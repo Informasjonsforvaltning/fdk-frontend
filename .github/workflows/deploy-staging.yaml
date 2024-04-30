@@ -24,14 +24,17 @@ jobs:
       - name: Set SHAs
         uses: nrwl/nx-set-shas@v4
 
+      - name: Enable corepack
+        run: corepack enable
+
       - name: Use Node.js 20.9.0
         uses: actions/setup-node@v4
         with:
           node-version: 20.9.0
+          cache: 'yarn'
 
       - name: Yarn install
         run: |
-          corepack enable
           yarn set version stable
           yarn install --frozen-lockfile
 
