@@ -13,3 +13,28 @@ spec:
     spec:
       containers:
         - name: forms-frontend
+          env:
+            - name: DATAJEGER_EMAIL_ADDRESS
+              value: datajegeren@norge.no
+            - name: FDK_MAIL_SERVICE_ENDPOINT
+              value: http://localhost:8081/api/sendmail
+            - name: FDK_MAIL_SERVICE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fdk-smtp-prod
+                  key: API_KEY
+            - name: FDK_REGISTRATION_BASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: commonurl-prod
+                  key: FDK_REGISTRATION_BASE_URI
+            - name: FDK_COMMUNITY_BASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: commonurl-prod
+                  key: FDK_COMMUNITY_BASE_URI
+            - name: FDK_BASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: commonurl-prod
+                  key: FDK_BASE_URI
