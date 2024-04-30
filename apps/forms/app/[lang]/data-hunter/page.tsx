@@ -18,7 +18,7 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
   const dictionary = await getDictionary(lang);
   const breadcrumbList = [
     {
-      href: paths.root,
+      href: paths.forms,
       text: dictionary.forms,
     },
     {
