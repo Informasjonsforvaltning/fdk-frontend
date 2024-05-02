@@ -1,7 +1,12 @@
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { getPaths } from '@fdk-frontend/utils';
 
-export const getHeaderData = (dictionary: Dictionary, basePath: string) => [
+export const getHeaderData = (
+  dictionary: Dictionary,
+  basePath: string,
+  FDK_COMMUNITY_BASE_URI: string,
+  FDK_REGISTRATION_BASE_URI: string,
+) => [
   {
     name: dictionary.aboutNationalDataCatalog,
     items: [
@@ -58,12 +63,12 @@ export const getHeaderData = (dictionary: Dictionary, basePath: string) => [
   },
   {
     text: dictionary.dataCommunity,
-    href: process.env.FDK_COMMUNITY_BASE_URI,
+    href: FDK_COMMUNITY_BASE_URI,
     external: true,
   },
   {
     text: dictionary.publishing,
-    href: process.env.FDK_REGISTRATION_BASE_URI,
+    href: FDK_REGISTRATION_BASE_URI,
     external: true,
   },
 ];

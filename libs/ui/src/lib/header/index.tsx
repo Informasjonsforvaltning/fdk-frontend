@@ -17,8 +17,9 @@ type HeaderProps = {
 
 const Header = async ({ dictionary }: HeaderProps) => {
   const homeUrl = process.env.FDK_BASE_URI ?? getPaths().root;
+  const { FDK_COMMUNITY_BASE_URI, FDK_REGISTRATION_BASE_URI } = process.env;
   const useDemoLogo = process.env.REACT_APP_USE_DEMO_LOGO === 'true';
-  const headerData = getHeaderData(dictionary, homeUrl);
+  const headerData = getHeaderData(dictionary, homeUrl, FDK_COMMUNITY_BASE_URI ?? '', FDK_REGISTRATION_BASE_URI ?? '');
 
   return (
     <header className={styles.header}>
@@ -45,7 +46,7 @@ const Header = async ({ dictionary }: HeaderProps) => {
               urlObject.href && (
                 <Link
                   href={urlObject.href}
-                  external={urlObject.external}
+                  target={urlObject.external ? '_blank' : undefined}
                   rel='noreferrer'
                   className={styles.link}
                 >
