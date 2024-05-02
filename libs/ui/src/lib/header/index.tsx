@@ -8,7 +8,7 @@ import LanguageMenu from './components/menu-language';
 import { getHeaderData } from './data';
 import styles from './header.module.css';
 import { Link } from '../link';
-import { paths } from '@fdk-frontend/utils';
+import { getPaths } from '@fdk-frontend/utils';
 import { ListItem, ListUnordered } from '@digdir/designsystemet-react';
 import NavigationMenu from './components/menu-navigation';
 
@@ -17,14 +17,14 @@ type HeaderProps = {
 };
 
 const Header = async ({ dictionary }: HeaderProps) => {
-  const homeUrl = process.env.FDK_BASE_URI;
+  const homeUrl = process.env.FDK_BASE_URI ?? getPaths().root;
   const useDemoLogo = process.env.REACT_APP_USE_DEMO_LOGO === 'true';
-  const headerData = getHeaderData(dictionary);
+  const headerData = getHeaderData(dictionary, homeUrl);
 
   return (
     <header className={styles.header}>
       <Link
-        href={homeUrl ?? paths.root}
+        href={homeUrl ?? getPaths().root}
         aria-label={dictionary.goToMainPageAriaLabel}
         className={styles.logo}
       >

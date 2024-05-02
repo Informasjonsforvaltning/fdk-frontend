@@ -5,7 +5,7 @@ import { Breadcrumbs, Container } from '@fdk-frontend/ui/server';
 import DataHunterForm from './components/data-hunter-form';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 import React from 'react';
-import { paths } from '@fdk-frontend/utils';
+import { getPaths } from '@fdk-frontend/utils';
 import styles from './page.module.css';
 
 type Props = {
@@ -16,13 +16,14 @@ type Props = {
 
 const DataHunterPage = async ({ params: { lang } }: Props) => {
   const dictionary = await getDictionary(lang);
+  const basePath = process.env.FDK_BASE_URI;
   const breadcrumbList = [
     {
-      href: paths.forms,
+      href: getPaths(basePath).forms,
       text: dictionary.forms,
     },
     {
-      href: paths.dataHunter,
+      href: getPaths(basePath).dataHunter,
       text: dictionary.dataHunter,
     },
   ];

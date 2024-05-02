@@ -3,7 +3,7 @@ import 'server-only';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Link } from '../link';
 import styles from './breadcrumbs.module.css';
-import { paths } from '@fdk-frontend/utils';
+import { getPaths } from '@fdk-frontend/utils';
 
 export type BreadcrumbType = {
   href: string;
@@ -23,7 +23,7 @@ const Breadcrumbs = async ({ baseURI, breadcrumbList, dictionary }: BreadcrumbsP
         <Link
           className={styles.link}
           aria-label={dictionary.homePage}
-          href={baseURI ?? process.env.FDK_BASE_URI ?? paths.root}
+          href={baseURI ?? process.env.FDK_BASE_URI ?? getPaths().root}
         >
           {dictionary.homePage}
         </Link>

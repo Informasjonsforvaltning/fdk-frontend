@@ -1,58 +1,58 @@
 import { type Dictionary } from '@fdk-frontend/dictionaries';
-import { paths } from '@fdk-frontend/utils';
+import { getPaths } from '@fdk-frontend/utils';
 
-export const getHeaderData = (dictionary: Dictionary) => [
+export const getHeaderData = (dictionary: Dictionary, basePath: string) => [
   {
     name: dictionary.aboutNationalDataCatalog,
     items: [
       {
         text: dictionary.aboutNationalDataCatalog,
-        href: paths.about,
+        href: getPaths(basePath).about,
       },
       {
         text: dictionary.aboutDatasetCatalog,
-        href: paths.aboutDatasetCatalog,
+        href: getPaths(basePath).aboutDatasetCatalog,
       },
       {
         text: dictionary.aboutDataServiceCatalog,
-        href: paths.aboutDataServiceCatalog,
+        href: getPaths(basePath).aboutDataServiceCatalog,
       },
       {
         text: dictionary.aboutConceptCatalog,
-        href: paths.aboutConceptCatalog,
+        href: getPaths(basePath).aboutConceptCatalog,
       },
       {
         text: dictionary.aboutInformationModelCatalog,
-        href: paths.aboutInformationModelCatalog,
+        href: getPaths(basePath).aboutInformationModelCatalog,
       },
       {
         text: dictionary.guidance,
-        href: paths.guidance,
+        href: getPaths(basePath).guidance,
       },
     ],
   },
   {
     text: dictionary.organizations,
-    href: paths.organizations,
+    href: getPaths(basePath).organizations,
   },
   {
     name: dictionary.tools,
     items: [
       {
         text: dictionary.artificialIntelligence,
-        href: paths.artificialIntelligence,
+        href: getPaths(basePath).artificialIntelligence,
       },
       {
         text: dictionary.reports,
-        href: paths.reports,
+        href: getPaths(basePath).reports,
       },
       {
         text: dictionary.sparqlQuery,
-        href: paths.sparql,
+        href: getPaths(basePath).sparql,
       },
       {
         text: dictionary.requests,
-        href: paths.requests,
+        href: getPaths(basePath).requests,
       },
     ],
   },
