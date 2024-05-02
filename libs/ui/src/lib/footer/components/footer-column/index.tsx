@@ -1,9 +1,8 @@
 import 'server-only';
 
-import { ListHeading, ListItem, ListRoot, ListUnordered } from '@digdir/designsystemet-react';
-import { Link } from '../../../link';
-import styles from './footer-column.module.css';
+import { Link, ListHeading, ListItem, ListRoot, ListUnordered } from '@digdir/designsystemet-react';
 import { LinkObjectType } from '@fdk-frontend/types';
+import styles from './footer-column.module.css';
 
 export type ColumnData = {
   heading: string;
@@ -30,7 +29,8 @@ export const FooterColumn = ({ columnData }: FooterColumnProps) => (
             <Link
               href={link.href}
               className={styles.link}
-              external={link.external}
+              target={link.external ? '_blank' : undefined}
+              rel='noreferrer'
             >
               {link.text}
             </Link>
