@@ -4,7 +4,6 @@
   */
 
 /* This is file is used to neutrilize default css properties defined by the browsers (or other parties) */
-
 @layer reset {
   html,
   body,
