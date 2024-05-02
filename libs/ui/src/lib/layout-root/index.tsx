@@ -6,9 +6,6 @@ import { Header } from '../header';
 import { Footer } from '../footer';
 
 import './global.css';
-import './reset.css';
-import '@digdir/designsystemet-theme';
-import '@digdir/designsystemet-css';
 
 type RootLayoutProps = {
   children: ReactNode;
