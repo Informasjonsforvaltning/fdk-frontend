@@ -7,9 +7,8 @@ import FDKDemoLogo from './images/fdk-logo-demo.svg';
 import LanguageMenu from './components/menu-language';
 import { getHeaderData } from './data';
 import styles from './header.module.css';
-import { Link } from '../link';
 import { getPaths } from '@fdk-frontend/utils';
-import { ListItem, ListUnordered } from '@digdir/designsystemet-react';
+import { Link, ListItem, ListUnordered } from '@digdir/designsystemet-react';
 import NavigationMenu from './components/menu-navigation';
 
 type HeaderProps = {
