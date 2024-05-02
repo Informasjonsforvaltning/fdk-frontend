@@ -1,0 +1,23 @@
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 843px;
+  margin: 5rem auto;
+}
+
+.contentContainer .paragraph {
+  margin-bottom: 3rem;
+}
+
+.paragraph {
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .contentContainer {
+    composes: contentContainer;
+    margin: 5rem 1rem;
+  }
+}

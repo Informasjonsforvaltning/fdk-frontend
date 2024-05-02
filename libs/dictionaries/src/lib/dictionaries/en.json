@@ -1,0 +1,81 @@
+{
+  "dataHunter": "Data hunter",
+  "nationalDataCatalog": "Felles datakatalog",
+  "aboutNationalDataCatalog": "About Felles datakatalog",
+  "aboutDataServiceCatalog": "About API catalog",
+  "aboutConceptCatalog": "About Concept catalog",
+  "aboutInformationModelCatalog": "About Information model catalog",
+  "artificialIntelligence": "Artificial intelligence",
+  "sparqlQuery": "SPARQL query",
+  "requests": "Requests",
+  "organizations": "Organizations",
+  "tools": "Tools",
+  "publishing": "Publishing",
+  "language": "Language",
+  "goToMainPageAriaLabel": "Go to main page",
+  "fdkLogoAlt": "Felles datakatalog logo",
+  "english": "English",
+  "norwegianBokmaal": "Norwegian bokmål",
+  "norwegianNynorsk": "Norwegian nynorsk",
+  "fillTheFormUnder": "Fill out the form below",
+  "shouldBeFilledOut": "Must be filled out",
+  "submitRequest": "Submit request",
+  "email": "Email",
+  "organizationNumber": "Organization number",
+  "phoneNumber": "Phone number",
+  "name": "Name",
+  "publications": "Publications",
+  "guidance": "Guidance",
+  "guidanceAndStandards": "Guidance and standards",
+  "aboutDatasetCatalog": "About dataset catalog",
+  "reports": "Reports",
+  "relevant": "Relevant",
+  "services": "Services",
+  "searchInCatalogs": "Search in catalogs",
+  "searchInAllCatalogs": "Search in all catalogs",
+  "searchInDatasets": "Search in datasets",
+  "searchInDataServices": "Search in dataservices",
+  "searchInConcepts": "Search in concepts",
+  "searchInInformationModels": "Search in information models",
+  "registrationHelp": "Registration help",
+  "sparqlQuerry": "SPARQL-spørring",
+  "searchOrganizations": "Search organizations",
+  "publishingData": "Publishing data",
+  "dataCommunity": "Data community",
+  "aboutWebsite": "About the website",
+  "privacyPolicy": "Privacy policy",
+  "cookies": "Cookies",
+  "contact": "Contact",
+  "nationalDatacatalogEmail": "fellesdatakatalog@digdir.no",
+  "accessibilityStatement": "Accessibility statement",
+  "homePage": "Home page",
+  "forms": "Forms",
+  "dataHunterForm": {
+    "title": "The data hunter helps you find data",
+    "description": "Can't find the data set you need? Many data sets from the public sector are available via our data catalogue, but this is not complete. The data hunter helps companies find and access data sets from the public sector.",
+    "dataset": {
+      "label": "Which dataset do you need?",
+      "description": "Create as clear a description as possible, e.g. fields, time period, desired update frequency."
+    },
+    "location": {
+      "label": "Do you know where the dataset is located?",
+      "description": "If you have information about where you think we can find the data set, e.g. at which public agency or municipality, this can be of great help to the data hunter."
+    },
+    "efforts": {
+      "label": "Have you tried to get hold of this data set yourself?",
+      "description": "If you have attempted to obtain the data set yourself, state where you searched and possibly who you have spoken to. Feel free to include why you are not successful if you have been in direct contact with someone in the public sector."
+    }
+  },
+  "error": {
+    "default": "An error occurred",
+    "minimumLength": "Minimum length is",
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "invalidOrganizationNumber": "Invalid organization number"
+  },
+  "footer": {
+    "aboutWebsite": {
+      "nationalDataCatalogManager": "The digitalization agency manages "
+    }
+  }
+}

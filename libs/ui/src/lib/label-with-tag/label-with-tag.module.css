@@ -1,0 +1,9 @@
+.contentContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.tag {
+  margin-left: 0.5rem;
+}

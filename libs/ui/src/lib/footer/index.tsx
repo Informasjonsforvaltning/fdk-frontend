@@ -1,0 +1,48 @@
+import 'server-only';
+
+import { getFooterData } from './data';
+import { ColumnData, FooterColumn } from './components/footer-column';
+import styles from './footer.module.css';
+import Image from 'next/image';
+import Ellipse from './images/Ellipse.svg';
+import Rectangle from './images/Rectangle.svg';
+import { Dictionary } from '@fdk-frontend/dictionaries';
+import { unstable_noStore as noStore } from 'next/cache';
+
+type FooterProps = {
+  dictionary: Dictionary;
+};
+
+const Footer = ({ dictionary }: FooterProps) => {
+  // Opt-in dynamic rendering
+  noStore();
+
+  const footerData = getFooterData(dictionary, process.env.FDK_BASE_URI ?? '/');
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.rectangleIcon}>
+        <Image
+          src={Rectangle}
+          alt={'Footer rectangle icon'}
+        />
+      </div>
+      <div className={styles.content}>
+        {footerData.map((column: ColumnData) => (
+          <FooterColumn
+            key={column.heading}
+            columnData={column}
+          />
+        ))}
+      </div>
+      <div className={styles.ellipseIcon}>
+        <Image
+          className={styles.rectangleIcon}
+          src={Ellipse}
+          alt={'Footer ellipse icon'}
+        />
+      </div>
+    </footer>
+  );
+};
+
+export { Footer };

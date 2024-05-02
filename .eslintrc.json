@@ -1,0 +1,121 @@
+{
+  "root": true,
+  "ignorePatterns": ["node_modules", "**/*"],
+  "plugins": ["@nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": [
+        "plugin:import/recommended",
+        "plugin:@nx/typescript",
+        "plugin:@typescript-eslint/eslint-plugin/recommended",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "import/no-unresolved": "off",
+        "react/react-in-jsx-scope": "off",
+        "no-console": "off",
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(error)$/]",
+            "message": "Unexpected property on console object was called"
+          }
+        ],
+        "no-duplicate-imports": "error",
+        "arrow-body-style": ["warn", "as-needed"],
+        "require-atomic-updates": "error",
+        "no-use-before-define": "error",
+        "no-unreachable-loop": "error",
+        "no-unmodified-loop-condition": "error",
+        "no-promise-executor-return": "error",
+        "no-await-in-loop": "error",
+        "camelcase": "error",
+        "complexity": ["warn", 10],
+        "consistent-return": "warn",
+        "curly": "warn",
+        "default-case": "error",
+        "default-case-last": "error",
+        "default-param-last": "error",
+        "eqeqeq": ["error", "smart"],
+        "func-style": ["error", "expression", { "allowArrowFunctions": true }],
+        "max-depth": ["warn", 4],
+        "max-lines": ["warn", 300],
+        "no-alert": "warn",
+        "no-empty-function": "warn",
+        "no-eq-null": "error",
+        "no-implicit-coercion": "warn",
+        "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true }],
+        "no-param-reassign": "error",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
+        "prefer-const": "error",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error"
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": [
+        "plugin:import/recommended",
+        "plugin:@nx/javascript",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "react/react-in-jsx-scope": "off",
+        "no-console": "warn",
+        "no-duplicate-imports": "error",
+        "arrow-body-style": ["warn", "as-needed"],
+        "require-atomic-updates": "error",
+        "no-use-before-define": "error",
+        "no-unreachable-loop": "error",
+        "no-unmodified-loop-condition": "error",
+        "no-promise-executor-return": "error",
+        "no-await-in-loop": "error",
+        "camelcase": "error",
+        "complexity": ["warn", 10],
+        "consistent-return": "warn",
+        "curly": "warn",
+        "default-case": "error",
+        "default-case-last": "error",
+        "default-param-last": "error",
+        "eqeqeq": ["error", "smart"],
+        "func-style": ["error", "expression", { "allowArrowFunctions": true }],
+        "max-depth": ["warn", 4],
+        "max-lines": ["warn", 300],
+        "no-alert": "warn",
+        "no-empty-function": "warn",
+        "no-eq-null": "error",
+        "no-implicit-coercion": "warn",
+        "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true }],
+        "no-param-reassign": "error",
+        "no-shadow": "error",
+        "prefer-const": "error"
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+/* Define layers in specific order */
+@layer reset, fds;
+
+@import url("./reset.css");
+@import url("@digdir/designsystemet-theme");
+@import url("@digdir/designsystemet-css");
+
+/* Small devices such as large phones (640px and up) */
+
+/* breakpoints based on bootstrap's breakpoints */
+:root {
+  --breakpoint-small: 640px;
+  --breakpoint-medium: 768px;
+  --breakpoint-large: 992px;
+  --breakpoint-x-large: 1200px;
+  --breakpoint-xx-large: 1400px;
+  --breakpoint-xxx-large: 1600px;
+}
+
+/* suggestions from designsystem.no */
+body {
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: 'cv05' 1 !important; /* Enable lowercase l with tail */
+}
