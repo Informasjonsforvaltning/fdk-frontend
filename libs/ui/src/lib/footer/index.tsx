@@ -7,13 +7,15 @@ import Image from 'next/image';
 import Ellipse from './images/Ellipse.svg';
 import Rectangle from './images/Rectangle.svg';
 import { Dictionary } from '@fdk-frontend/dictionaries';
+import { getPaths } from '@fdk-frontend/utils';
 
 type FooterProps = {
   dictionary: Dictionary;
 };
 
 const Footer = ({ dictionary }: FooterProps) => {
-  const footerData = getFooterData(dictionary);
+  const basePath = process.env.FDK_BASE_URI ?? getPaths().root;
+  const footerData = getFooterData(dictionary, basePath);
   return (
     <footer className={styles.footer}>
       <div className={styles.rectangleIcon}>

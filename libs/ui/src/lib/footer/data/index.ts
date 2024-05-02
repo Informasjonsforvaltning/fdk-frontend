@@ -1,28 +1,28 @@
 import { Dictionary } from '@fdk-frontend/dictionaries';
-import { paths } from '@fdk-frontend/utils';
+import { getPaths } from '@fdk-frontend/utils';
 
-export const getFooterData = (dictionary: Dictionary) => [
+export const getFooterData = (dictionary: Dictionary, basePath: string) => [
   {
     heading: dictionary.searchInCatalogs,
     links: [
       {
-        href: paths.searchAll,
+        href: getPaths(basePath).searchAll,
         text: dictionary.searchInAllCatalogs,
       },
       {
-        href: paths.datasets,
+        href: getPaths(basePath).datasets,
         text: dictionary.searchInDatasets,
       },
       {
-        href: paths.dataServices,
+        href: getPaths(basePath).dataServices,
         text: dictionary.searchInDataServices,
       },
       {
-        href: paths.concepts,
+        href: getPaths(basePath).concepts,
         text: dictionary.searchInConcepts,
       },
       {
-        href: paths.informationModels,
+        href: getPaths(basePath).informationModels,
         text: dictionary.searchInInformationModels,
       },
     ],
@@ -31,28 +31,28 @@ export const getFooterData = (dictionary: Dictionary) => [
     heading: dictionary.aboutNationalDataCatalog,
     links: [
       {
-        href: paths.guidance,
+        href: getPaths(basePath).guidance,
         text: dictionary.guidanceAndStandards,
       },
       {
-        href: paths.reports,
+        href: getPaths(basePath).reports,
         text: dictionary.reports,
       },
       {
-        href: paths.organizations,
+        href: getPaths(basePath).organizations,
         text: dictionary.organizations,
       },
       {
-        href: paths.about,
+        href: getPaths(basePath).about,
         text: dictionary.aboutNationalDataCatalog,
       },
       {
-        href: paths.accessibilityStatement,
+        href: getPaths(basePath).accessibilityStatement,
         text: dictionary.accessibilityStatement,
         external: true,
       },
       {
-        href: paths.aboutRegistration,
+        href: getPaths(basePath).aboutRegistration,
         text: dictionary.registrationHelp,
       },
     ],
@@ -65,12 +65,12 @@ export const getFooterData = (dictionary: Dictionary) => [
         undecoratedText: `${dictionary.footer.aboutWebsite.nationalDataCatalogManager}${dictionary.nationalDataCatalog}`,
       },
       {
-        href: paths.privacyPolicy,
+        href: getPaths(basePath).privacyPolicy,
         text: dictionary.privacyPolicy,
         external: true,
       },
       {
-        href: paths.cookies,
+        href: getPaths(basePath).cookies,
         text: dictionary.cookies,
       },
     ],
@@ -79,7 +79,7 @@ export const getFooterData = (dictionary: Dictionary) => [
     heading: dictionary.contact,
     links: [
       {
-        href: paths.nationalDatacatalogEmail,
+        href: getPaths(basePath).nationalDatacatalogEmail,
         text: dictionary.nationalDatacatalogEmail,
       },
     ],

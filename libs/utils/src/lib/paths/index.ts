@@ -1,6 +1,4 @@
-const basePath = process.env.FDK_BASE_URI || 'http://localhost:3000';
-
-export const paths = {
+export const getPaths = (basePath = '') => ({
   root: `${basePath}`,
   organizations: `${basePath}/organizations`,
   tools: `${basePath}/tools`,
@@ -26,4 +24,4 @@ export const paths = {
   privacyPolicy: 'https://www.digdir.no/digdir/personvernerklaering/706',
   cookies: 'https://www.digdir.no/digdir/informasjonskapsler/707',
   nationalDatacatalogEmail: 'mailto:fellesdatakatalog@digdir.no',
-};
+});
