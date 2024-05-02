@@ -1,9 +1,9 @@
 import 'server-only';
 
 import { type Dictionary } from '@fdk-frontend/dictionaries';
-import { Link } from '../link';
-import styles from './breadcrumbs.module.css';
 import { getPaths } from '@fdk-frontend/utils';
+import { Link } from '@digdir/designsystemet-react';
+import styles from './breadcrumbs.module.css';
 
 export type BreadcrumbType = {
   href: string;
