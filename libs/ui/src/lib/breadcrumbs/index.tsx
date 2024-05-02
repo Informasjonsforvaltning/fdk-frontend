@@ -33,7 +33,12 @@ const Breadcrumbs = async ({ baseURI, breadcrumbList, dictionary }: BreadcrumbsP
             {i === breadcrumbList.length - 1 ? (
               <span className={styles.deactiveLink}>{breadcrumb.text}</span>
             ) : (
-              <Link href={breadcrumb.href}>{breadcrumb.text}</Link>
+              <Link
+                className={styles.link}
+                href={breadcrumb.href}
+              >
+                {breadcrumb.text}
+              </Link>
             )}
           </span>
         ))}
