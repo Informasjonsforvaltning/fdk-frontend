@@ -1,10 +1,10 @@
 name: Deploy to staging
 
 on:
-  pull_request:
-    types: [ready_for_review, opened, reopened, synchronize]
+  push:
     branches:
-      - main
+      - develop
+  workflow_dispatch:
 
 jobs:
   test:
