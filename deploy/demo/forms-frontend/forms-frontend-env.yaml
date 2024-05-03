@@ -17,9 +17,15 @@ spec:
             - name: FDK_USE_DEMO_LOGO
               value: "true"
             - name: DATAJEGER_EMAIL_ADDRESS
-              value: datajegeren@norge.no
+              valueFrom:
+                secretKeyRef:
+                  name: fdk-smtp-demo
+                  key: DATAJEGER_EMAIL_ADDRESS
             - name: FDK_MAIL_SERVICE_ENDPOINT
-              value: http://localhost:8081/api/sendmail
+              valueFrom:
+                secretKeyRef:
+                  name: fdk-smtp-demo
+                  key: FDK_MAIL_SENDER_SERVICE_ENDPOINT
             - name: FDK_MAIL_SERVICE_API_KEY
               valueFrom:
                 secretKeyRef:
