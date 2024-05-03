@@ -17,3 +17,20 @@
   margin-top: 3rem;
   align-self: flex-start;
 }
+
+.orgNumberField {
+  composes: textFieldHalfWith;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.orgNumberField input::-webkit-outer-spin-button,
+.orgNumberField input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.orgNumberField * input[type=number] {
+  -moz-appearance: textfield;
+}
+
