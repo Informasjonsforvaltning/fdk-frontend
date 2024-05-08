@@ -5,34 +5,34 @@ const getEmailContent = (emailData: SchemaType) => ({
   subject: 'Takk for din forespørsel til Datajegeren',
   body: `Når en av våre datajegere starter søket etter datasettet du ønsker tilgang på, får du en epost fra oss. I perioder med stor pågang kan det ta lenger tid før du hører fra oss igjen.
 
-  Vi gjør vårt ytterste for å hjelpe deg, men vi kan ikke garantere vi finner dataene du ønsker. Vi har heller ikke kontroll på datakvaliteten på det forespurte datasettet.
+Vi gjør vårt ytterste for å hjelpe deg, men vi kan ikke garantere vi finner dataene du ønsker. Vi har heller ikke kontroll på datakvaliteten på det forespurte datasettet.
 
-  Under er kopi av forespørselen din. Dersom du har ytterligere informasjon å legge til, er det bare å svare på denne e-posten.
+Under er kopi av forespørselen din. Dersom du har ytterligere informasjon å legge til, er det bare å svare på denne e-posten.
 
-  Med vennlig hilsen
-  Datafabrikken
+Med vennlig hilsen
+Datafabrikken
 
-  Hvilket datasett trenger du?
-  ${_.escape(emailData.dataset)}
+Hvilket datasett trenger du?
+${_.escape(emailData.dataset)}
 
-  Vet du hvor datasettet befinner seg?
-  ${_.escape(emailData.location)}
+Vet du hvor datasettet befinner seg?
+${_.escape(emailData.location)}
 
-  Har du forsøkt å få tak i dette datasettet selv?
-  ${_.escape(emailData.efforts)}
+Har du forsøkt å få tak i dette datasettet selv?
+${_.escape(emailData.efforts)}
 
-  Ditt navn
-  ${_.escape(emailData.name)}
+Ditt navn
+${_.escape(emailData.name)}
 
-  E-postadresse
-  ${_.escape(emailData.email)}
+E-postadresse
+${_.escape(emailData.email)}
 
-  Telefonnummer
-  ${_.escape(emailData.phoneNumber)}
+Telefonnummer
+${_.escape(emailData.phoneNumber)}
 
-  Organisasjonsnummer
-  ${_.escape(emailData.organizationNumber)}
-  `,
+Organisasjonsnummer
+${_.escape(emailData.organizationNumber)}
+`,
 });
 
 export const sendEmail = async (emailData: SchemaType) => {

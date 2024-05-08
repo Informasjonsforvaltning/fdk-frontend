@@ -63,7 +63,7 @@
     },
     "efforts": {
       "label": "Har du forsøkt å få tak i dette datasettet selv?",
-      "description": "Hvis du har gjort forsøk på å få tak i datasettet selv, oppgi hvor du søkt og evt. hvem du har snakket med. Ta gjerne med hvorfor du ikke lykkes hvis du har vært i direkte kontakt med noen i offentlig sektor."
+      "description": "Hvis du har gjort forsøk på å få tak i datasettet selv, oppgi hvor du søkt og ev. hvem du har snakket med. Ta gjerne med hvorfor du ikke lykkes hvis du har vært i direkte kontakt med noen i offentlig sektor."
     }
   },
   "error": {

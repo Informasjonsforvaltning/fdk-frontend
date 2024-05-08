@@ -79,7 +79,7 @@ const DataHunterForm = ({ dictionary }: Props) => {
         name='organizationNumber'
         required
         type='number'
-        className={styles.textFieldHalfWith}
+        className={styles.orgNumberField}
         error={extractErrorMessages('organizationNumber', state, dictionary)}
         label={
           <LabelWithTag
@@ -90,7 +90,7 @@ const DataHunterForm = ({ dictionary }: Props) => {
       />
       <Textfield
         name='phoneNumber'
-        className={styles.textFieldHalfWith}
+        className={styles.textFieldHalfWidth}
         label={dictionary.phoneNumber}
       />
       <SubmitButton
