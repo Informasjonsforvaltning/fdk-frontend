@@ -8,7 +8,7 @@
   align-self: flex-start;
 }
 
-.textFieldHalfWith {
+.textFieldHalfWidth {
   composes: textField;
   width: 50%;
 }
@@ -19,7 +19,7 @@
 }
 
 .orgNumberField {
-  composes: textFieldHalfWith;
+  composes: textFieldHalfWidth;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -30,7 +30,6 @@
 }
 
 /* Firefox */
-.orgNumberField * input[type=number] {
+.orgNumberField * input[type='number'] {
   -moz-appearance: textfield;
 }
-

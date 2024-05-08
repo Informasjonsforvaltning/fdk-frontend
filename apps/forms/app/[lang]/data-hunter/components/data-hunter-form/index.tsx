@@ -90,7 +90,7 @@ const DataHunterForm = ({ dictionary }: Props) => {
       />
       <Textfield
         name='phoneNumber'
-        className={styles.textFieldHalfWith}
+        className={styles.textFieldHalfWidth}
         label={dictionary.phoneNumber}
       />
       <SubmitButton
