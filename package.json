@@ -6,7 +6,7 @@
   "engines": {
     "node": ">=20.11.1"
   },
-  "packageManager": "yarn@4.1.1",
+  "packageManager": "yarn@4.2.2",
   "lint-staged": {
     "*.tsx": [
       "eslint --cache --fix",
@@ -40,6 +40,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "@axe-core/playwright": "^4.9.0",
     "@digdir/designsystemet-css": "^0.4.0",
     "@digdir/designsystemet-react": "^0.57.0",
     "@digdir/designsystemet-theme": "^0.15.1",
@@ -63,7 +64,7 @@
     "@nx/playwright": "18.2.4",
     "@nx/react": "18.2.4",
     "@nx/workspace": "18.2.4",
-    "@playwright/test": "^1.43.0",
+    "@playwright/test": "^1.44.0",
     "@swc-node/register": "~1.9.0",
     "@swc/cli": "~0.3.12",
     "@swc/core": "~1.4.13",

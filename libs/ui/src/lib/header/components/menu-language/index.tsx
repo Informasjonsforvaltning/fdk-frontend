@@ -27,7 +27,7 @@ const LanguageMenu = ({ triggerText, className }: Props) => {
   return (
     <DropdownMenu size='small'>
       <DropdownMenu.Trigger>
-        <GlobeIcon />
+        <GlobeIcon role={'presentation'} />
         {triggerText}
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>

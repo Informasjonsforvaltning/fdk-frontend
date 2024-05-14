@@ -22,7 +22,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
     <html lang={params.lang}>
       <body>
         <Header dictionary={dictionary} />
-        {children}
+        <main>{children}</main>
         <Footer dictionary={dictionary} />
       </body>
     </html>

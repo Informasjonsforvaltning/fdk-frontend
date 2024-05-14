@@ -22,7 +22,7 @@ const NavigationMenu = ({ triggerText, links }: NavigationMenuProps) => (
   <DropdownMenu size='small'>
     <DropdownMenuTrigger>
       {triggerText}
-      <ChevronDownIcon />
+      <ChevronDownIcon role={'presentation'} />
     </DropdownMenuTrigger>
     <DropdownMenuContent>
       <DropdownMenuGroup>
