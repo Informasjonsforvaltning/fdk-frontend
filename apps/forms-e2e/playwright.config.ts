@@ -2,6 +2,8 @@ import { defineConfig, devices } from '@playwright/test';
 import { nxE2EPreset } from '@nx/playwright/preset';
 
 import { workspaceRoot } from '@nx/devkit';
+import path = require('path');
+import * as dotenv from 'dotenv';
 
 // For CI, you may want to set BASE_URL to the deployed application.
 const baseURL = process.env['BASE_URI'] || 'http://127.0.0.1:3000';
@@ -10,13 +12,14 @@ const baseURL = process.env['BASE_URI'] || 'http://127.0.0.1:3000';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
+dotenv.config({ path: path.resolve(__dirname, '.env.test') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
   ...nxE2EPreset(__filename, { testDir: './src' }),
+  reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL,

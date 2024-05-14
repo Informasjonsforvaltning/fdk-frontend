@@ -16,6 +16,7 @@
 .button {
   margin-top: 3rem;
   align-self: flex-start;
+  background-color: #0057A3;
 }
 
 .orgNumberField {
