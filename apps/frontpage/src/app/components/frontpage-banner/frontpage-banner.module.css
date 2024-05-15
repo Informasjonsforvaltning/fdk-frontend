@@ -1,0 +1,51 @@
+.outer {
+/*	background: var(--fds-semantic-surface-neutral-inverted);*/
+	--background-navy:  var(--fds-semantic-surface-neutral-inverted);
+  	--background-navy-darker: color-mix(in srgb,var(--fds-semantic-surface-neutral-inverted),#000 50%);
+  	background: radial-gradient(circle, var(--background-navy), var(--background-navy-darker));
+  	background: radial-gradient(circle, var(--background-navy), var(--background-navy-darker));
+	color: white;
+	padding-top: 80px;
+	position:relative;
+	min-height:40vh;
+}
+
+.inner {
+	position:relative;
+	z-index:1;
+}
+
+.gradientLayer {
+	position:absolute;
+	inset:0;
+	opacity:0.125;
+	background:url('./images/sat1.png');
+	background-size:cover;
+	background-repeat: no-repeat;
+	filter: grayscale(75%) contrast(150%) brightness(0.25);
+}
+
+.orakelSearchContainer {
+	max-width: var(--breakpoint-small);
+	padding:4rem;
+	margin:auto;
+}
+
+.headline {
+	font-size:5rem;
+	line-height:1em;
+	font-weight:bold;
+	text-align:center;
+	margin:6rem 0 1rem;
+	color: white;
+/*	text-shadow:2px 2px 2px black;*/
+}
+
+.dividerLine {
+	margin:auto;
+	width:3rem;
+	height:4px;
+	background:red;
+	background:var(--fds-brand-alt3-600);
+	border-radius:0.25rem;
+}

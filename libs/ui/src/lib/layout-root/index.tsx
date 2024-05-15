@@ -50,7 +50,7 @@ const getMetadata = (title: string, description: string) => ({
   title: title,
   description: description,
   alternates: {
-    stylesheet: 'https://altinncdn.no/fonts/inter/inter.css',
+    stylesheet: 'https://altinncdn.no/fonts/inter/inter.css'
   },
 });
 

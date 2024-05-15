@@ -1,0 +1,78 @@
+.orakelSearch {
+	margin-bottom:4rem;
+}
+
+.orakelSearchBox {
+	position:relative;
+	margin-bottom:0.5rem;
+}
+
+.orakelSearchBox > div > label {
+	color:red !important;
+}
+
+.orakelSearchButton {
+	position:absolute;
+	right:0.5rem;
+	bottom:0.5rem;
+	font-size: medium;
+}
+
+.orakelSearchButton * svg {
+	width:1rem;
+	height:1rem;
+}
+
+.orakelSearchButton * title + circle {
+	display:none;
+}
+
+.orakelInputTextfield > div > input {
+	background:rgba(0,0,0,0.33333);
+	border-color:rgba(255,255,255,0.75);
+	color:white;
+}
+
+.orakelInputLabel {
+	color: white;
+}
+
+.orakelResults {
+	display:flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-top:1rem;
+}
+
+.llmResponse {
+	margin-top:1rem;
+	color: var(--fds-semantic-border-action-first-subtle);
+}
+
+.orakelResultsList {
+	list-style:disc;
+	margin-left:1.5rem;
+	display:flex;
+	flex-direction:column;
+	gap:1rem;
+}
+
+.orakelResultsList * p {
+	color: var(--fds-semantic-border-action-first-subtle);
+}
+
+.orakelResultsList * h4 {
+	margin-bottom:0.5rem;
+}
+
+.suggestion {
+	color: var(--fds-semantic-border-action-first-subtle);
+	margin-top:0.75rem;
+	text-align:center;
+}
+
+.spinnerContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
