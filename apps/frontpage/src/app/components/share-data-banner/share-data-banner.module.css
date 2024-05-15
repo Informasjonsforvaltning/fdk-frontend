@@ -1,0 +1,17 @@
+.shareDataBanner {
+	margin:4rem 0;
+	text-align: center;
+}
+
+.shareDataBanner > p {
+	margin:1rem 0;
+}
+
+.shareDataBanner > div {
+	display:flex;
+	justify-content: center;
+}
+
+.shareDataHeadline {
+	text-align:center;
+}

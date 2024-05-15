@@ -1,0 +1,19 @@
+{
+    "llm": " **Saksbehandlingssystem for trafikkulykker**\nDette datasettet inneholder informasjon om trafikkulykker i Norge fra 1977. Det inkluderer data om ulykkessted, tidspunkt, type ulykke, kjøretøy involvert, personskader og materielle skader.\n\n**Trafikkmeldinger**\nDette datasettet inneholder informasjon om hendelser på eller langs veier som påvirker trafikkavviklingen. Dette inkluderer veiarbeid, stengninger, trafikkuhell, uvær og andre hendelser som kan medføre forsinkelser eller forhøyet ulykkesrisiko.\n\n**Trafikkulykker**\nDette datasettet inneholder informasjon om alle trafikkulykker de siste 5 kalenderårene med personskader eller større materielle skader.\n\n**Vitenarkivet Brage**\nDette datasettet inneholder ulike typer publikasjoner fra Statens vegvesen, inkludert rapporter, manualer, håndbøker og årsmeldinger. Temaer inkluderer blant annet trafikkulykker, miljø, vegteknologi og mye mer.\n\n**Trine: Publikumsløsning for trafikkulykker**\nDette datasettet inneholder informasjon om politirapporterte vegtrafikkulykker i Norge fra 1990 og fremover.",
+    "links":
+    [
+        "https://data.norge.no/datasets/1cea28db-7c3d-3612-be7b-30b2234f18a2",
+        "https://data.norge.no/datasets/4853ee4a-7b85-40c3-bed3-1dce6ed17caf",
+        "https://data.norge.no/datasets/2f6669c5-ddad-4242-a458-f89bd2bf39df",
+        "https://data.norge.no/datasets/3bfbca67-c03a-346c-910b-74e1fbf2ee62",
+        "https://data.norge.no/datasets/596d8cef-20a6-35f4-a787-62de6246dfe9"
+    ],
+    "titles":
+    [
+        "SAKSBEHANDLINGSSYSTEM FOR TRAFIKKULYKKER",
+        "TRAFIKKMELDINGER",
+        "TRAFIKKULYKKER",
+        "VITENARKIVET BRAGE",
+        "TRINE: PUBLIKUMSLØSNING FOR TRAFIKKULYKKER"
+    ]
+}

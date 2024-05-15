@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: minmax(0, min-content) auto minmax(0, min-content);
   gap: 0.5rem;
-  background-color: #1e2b3c;
+  background-color: var(--color-fdk-navy);;
   width: 100%;
   grid-template-areas: 'rectangleIcon content ellipseIcon';
 }
