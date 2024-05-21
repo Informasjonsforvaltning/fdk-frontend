@@ -1994,12 +1994,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digdir/designsystemet-css@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@digdir/designsystemet-css@npm:0.4.0"
-  dependencies:
-    "@digdir/designsystemet-react": "npm:^0.57.0"
-  checksum: 10c0/2b4600b82d9c940bd95f09d3f705dc1ef21d71fe329fb9a08ae092297f8b2e2164efc6be626c57b388329a3510dc3928202b1077097ab46225ff7af31e875475
+"@digdir/designsystemet-css@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@digdir/designsystemet-css@npm:0.8.0"
+  checksum: 10c0/f8763ce6e2ba95ef550b02a8978f21d8dcf8eb4e29c9e9660206a4c66be43a8f81ef6a703b375d4d071a788b8b190eee0eaab6a16653b052f878b1b860ae828f
   languageName: node
   linkType: hard
 
@@ -7589,7 +7587,7 @@ __metadata:
   resolution: "fdk-frontend@workspace:."
   dependencies:
     "@axe-core/playwright": "npm:^4.9.0"
-    "@digdir/designsystemet-css": "npm:^0.4.0"
+    "@digdir/designsystemet-css": "npm:^0.8.0"
     "@digdir/designsystemet-react": "npm:^0.57.0"
     "@digdir/designsystemet-theme": "npm:^0.15.1"
     "@eslint/js": "npm:^9.0.0"
