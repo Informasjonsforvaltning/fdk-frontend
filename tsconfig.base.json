@@ -26,7 +26,7 @@
       "@fdk-frontend/utils": ["libs/utils/src/index.ts"],
       "@fdk-frontend/utils/server": ["libs/utils/src/server.ts"],
       "react": ["./node_modules/@types/react"],
-      "storybook-host": ["libs/storybook-host/src/index.ts"]
+      "storybook-app": ["libs/storybook-app/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,9 +1,6 @@
-import 'server-only';
-
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Link } from '@digdir/designsystemet-react';
 import styles from './breadcrumbs.module.css';
-import { unstable_noStore as noStore } from 'next/cache';
 
 export type BreadcrumbType = {
   href: string;
@@ -11,14 +8,12 @@ export type BreadcrumbType = {
 };
 
 export type BreadcrumbsProps = {
+  baseUri: string;
   breadcrumbList?: BreadcrumbType[];
   dictionary: Dictionary;
 };
 
-const Breadcrumbs = async ({ breadcrumbList, dictionary }: BreadcrumbsProps) => {
-  // Opt-in dynamic rendering
-  noStore();
-
+const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) => {
   return (
     <div className={styles.container}>
       <nav className={styles.breadcrumbs}>
@@ -26,7 +21,7 @@ const Breadcrumbs = async ({ breadcrumbList, dictionary }: BreadcrumbsProps) => 
           <Link
             className={styles.link}
             aria-label={dictionary.homePage}
-            href={process.env.FDK_BASE_URI ?? '/'}
+            href={baseUri}
           >
             {dictionary.homePage}
           </Link>

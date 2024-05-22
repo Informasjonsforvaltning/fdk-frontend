@@ -1,5 +1,3 @@
-import 'server-only';
-
 import { Link as DSLink } from '@digdir/designsystemet-react';
 import NextLink from 'next/link';
 import React from 'react';

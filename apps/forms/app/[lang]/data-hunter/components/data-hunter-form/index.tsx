@@ -1,9 +1,9 @@
 'use client';
 
-import { Paragraph, Textarea, Textfield } from '@digdir/designsystemet-react';
-import { LabelWithTag, SubmitButton } from '@fdk-frontend/ui';
+import { Paragraph, Textarea, Textfield, Button } from '@digdir/designsystemet-react';
+import { LabelWithTag } from '@fdk-frontend/ui';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
-import { useFormState } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 import { sendEmailAction } from '../../../../actions';
 import { EMPTY_FORM_STATE, extractErrorMessages } from '@fdk-frontend/utils';
 import styles from './data-hunter-form.module.css';
@@ -14,11 +14,12 @@ type Props = {
 
 const DataHunterForm = ({ dictionary }: Props) => {
   const [state, formAction] = useFormState(sendEmailAction, EMPTY_FORM_STATE);
+  const { pending } = useFormStatus();
   const textAreaCols = 100;
   const textAreaRows = 5;
 
   return (
-    <form action={formAction}>
+    <form className={styles.form} action={formAction}>
       <Textarea
         name='dataset'
         className={styles.textArea}
@@ -93,10 +94,13 @@ const DataHunterForm = ({ dictionary }: Props) => {
         className={styles.textFieldHalfWidth}
         label={dictionary.phoneNumber}
       />
-      <SubmitButton
-        buttonText={dictionary.submitRequest}
-        extendedClassName={styles.button}
-      />
+      <Button
+        type="submit"
+        className={styles.submitButton}
+        aria-disabled={pending}
+      >
+        {dictionary.submitRequest}
+      </Button>
     </form>
   );
 };
