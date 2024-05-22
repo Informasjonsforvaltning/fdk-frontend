@@ -2,33 +2,40 @@ import { screen, render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { getDictionary } from '@fdk-frontend/dictionaries';
 
-import { getHeaderData } from './data';
-import { Header } from '.';
+import { getFooterData } from './data';
+import { Footer } from '.';
 import React from 'react';
 
 expect.extend(toHaveNoViolations)
 
-describe('Header', () => {
+function extractLinks(data: any) {
+  let links: any[] = [];
+  data.forEach((section: any) => {
+    if (section.links && Array.isArray(section.links)) {
+      links.push(...section.links.filter((link: any) => link.href));
+    }
+  });
+  return links;
+}
+
+describe('Footer', () => {
   let dictionary: any;
-  let headerData: any;
+  let footerData: any;
 
   beforeEach(async () => {
     dictionary = await getDictionary('nb');
-    headerData = getHeaderData(dictionary, '/', '/', '/');
+    footerData = getFooterData(dictionary, '/');
   });
 
   it('should render successfully', async () => {    
     render(
-      <Header dictionary={dictionary} />
+      <Footer dictionary={dictionary} />
     );
 
-    const logoElement = screen.getByAltText(dictionary.fdkLogoAlt);
-    expect(logoElement).toBeInTheDocument();
+    const links = extractLinks(footerData);
 
-    const topLinks = headerData.filter((item: any) => item.href);
-
-    topLinks.forEach((link: any) => {
-      const linkElement = screen.getByText(link.text);
+    links.forEach((link: any) => {
+      const linkElement = screen.getByText(link.text, { selector: 'a' });
       expect(linkElement).toBeInTheDocument();
     });
   });
@@ -36,7 +43,7 @@ describe('Header', () => {
   it('should have no a11y violations', async () => {
     const { baseElement } = render(
       <main>
-        <Header dictionary={dictionary} />
+        <Footer dictionary={dictionary} />
       </main>
     );
     expect(await axe(baseElement)).toHaveNoViolations()

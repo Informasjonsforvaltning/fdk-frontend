@@ -1,23 +1,24 @@
-import 'server-only';
+import { unstable_noStore as noStore } from 'next/cache';
+import Image from 'next/image';
+import { Dictionary } from '@fdk-frontend/dictionaries';
 
 import { getFooterData } from './data';
 import { ColumnData, FooterColumn } from './components/footer-column';
 import styles from './footer.module.css';
-import Image from 'next/image';
 import Ellipse from './images/Ellipse.svg';
 import Rectangle from './images/Rectangle.svg';
-import { Dictionary } from '@fdk-frontend/dictionaries';
-import { unstable_noStore as noStore } from 'next/cache';
 
 type FooterProps = {
   dictionary: Dictionary;
+  baseUri?: string;
 };
 
-const Footer = ({ dictionary }: FooterProps) => {
+const Footer = ({ dictionary, baseUri = '/' }: FooterProps) => {
   // Opt-in dynamic rendering
   noStore();
 
-  const footerData = getFooterData(dictionary, process.env.FDK_BASE_URI ?? '/');
+  const footerData = getFooterData(dictionary, baseUri);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.rectangleIcon}>

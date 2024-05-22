@@ -40,4 +40,3 @@ export const getLocale = (request: NextRequest): Locale | undefined => {
   const locale = matchLocale(languages, localeCodes, i18n.defaultLocale);
   return i18n.locales.find((l) => l.code === locale);
 }
-

@@ -1,48 +1,55 @@
-import 'server-only';
-
 import Image from 'next/image';
 import { Dictionary } from '@fdk-frontend/dictionaries';
+import { Link, ListItem, ListUnordered } from '@digdir/designsystemet-react';
+
 import FDKLogo from './images/fdk-logo.svg';
 import FDKDemoLogo from './images/fdk-logo-demo.svg';
+
 import LanguageMenu from './components/menu-language';
 import { getHeaderData } from './data';
 import styles from './header.module.css';
-import { Link, ListItem, ListUnordered } from '@digdir/designsystemet-react';
 import NavigationMenu from './components/menu-navigation';
-import { unstable_noStore as noStore } from 'next/cache';
 
 type HeaderProps = {
   dictionary: Dictionary;
+  baseUri?: string;
+  communityBaseUri?: string;
+  registrationBaseUri?: string;
+  useDemoLogo?: boolean;
 };
 
-const Header = async ({ dictionary }: HeaderProps) => {
-  // Opt-in dynamic rendering
-  noStore();
+const Header = ({
+  dictionary,
+  baseUri = '/',
+  communityBaseUri = '#',
+  registrationBaseUri = '#',
+  useDemoLogo
+}: HeaderProps) => {
 
-  const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI, FDK_REGISTRATION_BASE_URI, FDK_USE_DEMO_LOGO } = process.env;
-  const useDemoLogo = FDK_USE_DEMO_LOGO === 'true';
   const headerData = getHeaderData(
     dictionary,
-    FDK_BASE_URI ?? '/',
-    FDK_COMMUNITY_BASE_URI ?? '#',
-    FDK_REGISTRATION_BASE_URI ?? '#',
+    baseUri,
+    communityBaseUri,
+    registrationBaseUri,
   );
 
   return (
     <header className={styles.header}>
       <Link
-        href={FDK_BASE_URI}
+        href={baseUri}
         aria-label={dictionary.goToMainPageAriaLabel}
         className={styles.logo}
       >
         <Image
           src={useDemoLogo ? FDKDemoLogo : FDKLogo}
           alt={dictionary.fdkLogoAlt}
+          width={0}
+          height={0}
         />
       </Link>
       <ListUnordered className={styles.nav}>
-        {headerData.map((urlObject) => (
-          <ListItem key={urlObject.name}>
+        {headerData.map((urlObject, i) => (
+          <ListItem key={`${urlObject.name}-${i}`}>
             {urlObject.items ? (
               <NavigationMenu
                 key={urlObject.name}

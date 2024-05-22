@@ -1,4 +1,3 @@
-import 'server-only';
 import cn from 'classnames';
 
 import styles from './container.module.css';
