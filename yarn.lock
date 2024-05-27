@@ -2099,12 +2099,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digdir/designsystemet-css@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@digdir/designsystemet-css@npm:0.4.0"
-  dependencies:
-    "@digdir/designsystemet-react": "npm:^0.57.0"
-  checksum: 10c0/2b4600b82d9c940bd95f09d3f705dc1ef21d71fe329fb9a08ae092297f8b2e2164efc6be626c57b388329a3510dc3928202b1077097ab46225ff7af31e875475
+"@digdir/designsystemet-css@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@digdir/designsystemet-css@npm:0.9.0"
+  checksum: 10c0/335ea6fddf2a85b123846269cced1caa295d143ee48182aef95f3adf87e10c3ffe189fa2c13578d5a28eb33869cb321a977f066aa4a13cac97ad455bfdc98c47
   languageName: node
   linkType: hard
 
@@ -11194,7 +11192,7 @@ __metadata:
     "@axe-core/playwright": "npm:^4.9.0"
     "@babel/core": "npm:^7.14.5"
     "@babel/preset-react": "npm:^7.14.5"
-    "@digdir/designsystemet-css": "npm:^0.4.0"
+    "@digdir/designsystemet-css": "npm:^0.9.0"
     "@digdir/designsystemet-react": "npm:^0.57.0"
     "@digdir/designsystemet-theme": "npm:^0.15.1"
     "@eslint/js": "npm:^9.0.0"
