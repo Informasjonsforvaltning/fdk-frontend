@@ -1,20 +1,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
+    "baseUrl": ".",
     "declaration": false,
-    "moduleResolution": "node",
-    "strict": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
     "lib": ["es2020", "dom", "dom.iterable"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "node",
     "paths": {
       "@fdk-frontend/data-access": ["libs/data-access/src/index.ts"],
       "@fdk-frontend/data-access/server": ["libs/data-access/src/server.ts"],
@@ -26,8 +20,14 @@
       "@fdk-frontend/utils": ["libs/utils/src/index.ts"],
       "@fdk-frontend/utils/server": ["libs/utils/src/server.ts"],
       "react": ["./node_modules/@types/react"],
-      "storybook-app": ["libs/storybook-app/src/index.ts"]
-    }
+      "storybook-host": ["libs/storybook-host/src/index.ts"]
+    },
+    "rootDir": ".",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2015"
   },
   "exclude": ["node_modules", "tmp"]
 }

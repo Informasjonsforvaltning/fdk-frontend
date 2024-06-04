@@ -1,8 +1,10 @@
 {
+  "plugins": ["prettier-plugin-sort-json"],
   "printWidth": 120,
   "useTabs": false,
   "semi": true,
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "jsonRecursiveSort": true
 }
