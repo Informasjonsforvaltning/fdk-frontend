@@ -1,10 +1,20 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "generators": {
+    "@nx/next": {
+      "application": {
+        "linter": "eslint",
+        "style": "css"
+      }
+    },
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "none"
+      }
+    }
+  },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -22,61 +32,45 @@
   },
   "plugins": [
     {
-      "plugin": "@nx/next/plugin",
       "options": {
         "buildTargetName": "build",
         "devTargetName": "dev",
-        "startTargetName": "start",
-        "serveStaticTargetName": "serve-static"
-      }
+        "serveStaticTargetName": "serve-static",
+        "startTargetName": "start"
+      },
+      "plugin": "@nx/next/plugin"
     },
     {
-      "plugin": "@nx/playwright/plugin",
       "options": {
         "targetName": "e2e"
-      }
+      },
+      "plugin": "@nx/playwright/plugin"
     },
     {
-      "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
-      }
+      },
+      "plugin": "@nx/eslint/plugin"
     },
     {
-      "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      }
+      },
+      "plugin": "@nx/jest/plugin"
     },
     {
-      "plugin": "@nx/storybook/plugin",
       "options": {
         "buildStorybookTargetName": "build-storybook",
         "serveStorybookTargetName": "storybook",
-        "testStorybookTargetName": "test-storybook",
-        "staticStorybookTargetName": "static-storybook"
-      }
+        "staticStorybookTargetName": "static-storybook",
+        "testStorybookTargetName": "test-storybook"
+      },
+      "plugin": "@nx/storybook/plugin"
     }
   ],
-  "generators": {
-    "@nx/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    },
-    "@nx/react": {
-      "library": {
-        "unitTestRunner": "none"
-      }
-    }
-  },
   "targetDefaults": {
     "build": {
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "inputs": ["production", "^production"]
     }
   }
 }

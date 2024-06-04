@@ -11396,6 +11396,7 @@ __metadata:
     postcss-import: "npm:^16.1.0"
     postcss-preset-env: "npm:^9.5.9"
     prettier: "npm:3.2.5"
+    prettier-plugin-sort-json: "npm:^4.0.0"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     storybook: "npm:7.6.19"
@@ -17863,6 +17864,15 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: 10c0/b00d617431e7886c520a6f498a2e14c75ec58f6d93ba48c3b639cf241b54232d90daa05d83a9e9b9fef6baa63cb7e1e4602c2372fea5bc169668401eb127d0cd
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-sort-json@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "prettier-plugin-sort-json@npm:4.0.0"
+  peerDependencies:
+    prettier: ^3.0.0
+  checksum: 10c0/1e1aa9e2d56cbc4644cc5360feac52d95fb8699aaf400e96baa99b0561cf6b6416e3858612548d64614d47f17dd6c0e801e92b102ce3cef84e8e0a638735441a
   languageName: node
   linkType: hard
 

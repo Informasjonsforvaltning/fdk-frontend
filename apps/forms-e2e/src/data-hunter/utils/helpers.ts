@@ -1,5 +1,5 @@
-import AxeBuilder from "@axe-core/playwright";
-import { Page } from "@playwright/test";
+import AxeBuilder from '@axe-core/playwright';
+import { Page } from '@playwright/test';
 
 export const generateAccessibilityBuilder = async (page: Page) =>
   new AxeBuilder({ page }).withTags([

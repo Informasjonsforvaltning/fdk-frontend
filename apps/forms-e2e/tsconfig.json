@@ -1,12 +1,12 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "allowJs": true,
-    "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "sourceMap": false,
-    "resolveJsonModule": true
+    "outDir": "../../dist/out-tsc",
+    "resolveJsonModule": true,
+    "sourceMap": false
   },
+  "extends": "../../tsconfig.base.json",
   "include": [
     "**/*.ts",
     "**/*.js",
