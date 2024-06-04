@@ -71,7 +71,11 @@
     "minimumLength": "Må være minst {length} tegn",
     "required": "Dette feltet er påkrevd",
     "invalidEmail": "Ugyldig e-postadresse",
-    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer"
+    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer",
+    "formSubmit": "Skjemaet kunne ikke sendes. Prøv igjen senere."
+  },
+  "success": {
+    "formSubmit": "Skjema er sendt inn!"
   },
   "footer": {
     "aboutWebsite": {

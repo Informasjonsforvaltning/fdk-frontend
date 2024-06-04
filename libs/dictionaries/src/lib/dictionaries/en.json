@@ -71,7 +71,11 @@
     "minimumLength": "Minimum length is",
     "required": "This field is required",
     "invalidEmail": "Invalid email address",
-    "invalidOrganizationNumber": "Invalid organization number"
+    "invalidOrganizationNumber": "Invalid organization number",
+    "formSubmit": "An error occurred while submitting the form. Please try again later."
+  },
+  "success": {
+    "formSubmit": "The form has been submitted successfully!"
   },
   "footer": {
     "aboutWebsite": {
