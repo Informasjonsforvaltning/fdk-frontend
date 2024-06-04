@@ -4,31 +4,32 @@ import { FormStatusEnum } from '@fdk-frontend/utils';
 import styles from './submit-status-alert.module.css';
 
 type SubmitStatusAlertProps = {
-  formStatus: FormStatusEnum;
+  formStatus?: FormStatusEnum;
   dictionary: Dictionary;
 };
 
-const SubmitStatusAlert = ({ dictionary, formStatus }: SubmitStatusAlertProps) => {
-  if (formStatus === FormStatusEnum.SUCCESS) {
-    return (
-      <Alert
-        severity='success'
-        className={styles.alert}
-      >
-        {dictionary.success.formSubmit}
-      </Alert>
-    );
-  } else if (formStatus === FormStatusEnum.ERROR) {
-    return (
-      <Alert
-        severity='danger'
-        className={styles.alert}
-      >
-        {dictionary.error.formSubmit}
-      </Alert>
-    );
-  } else {
-    return null;
+const SubmitStatusAlert = ({ dictionary, formStatus = FormStatusEnum.UNSET }: SubmitStatusAlertProps) => {
+  switch (formStatus) {
+    case FormStatusEnum.SUCCESS:
+      return (
+        <Alert
+          severity='success'
+          className={styles.alert}
+        >
+          {dictionary.success.formSubmit}
+        </Alert>
+      );
+    case FormStatusEnum.ERROR:
+      return (
+        <Alert
+          severity='danger'
+          className={styles.alert}
+        >
+          {dictionary.error.formSubmit}
+        </Alert>
+      );
+    default:
+      return null;
   }
 };
 

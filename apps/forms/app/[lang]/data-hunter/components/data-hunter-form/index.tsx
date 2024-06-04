@@ -22,9 +22,13 @@ const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
     <>
       <SubmitStatusAlert
         dictionary={dictionary}
-        formStatus={state.status}
+        formStatus={state?.status}
       />
-      <form action={formAction}>
+      <form
+        id='data-hunter-form'
+        name='data-hunter-form'
+        action={formAction}
+      >
         <Textarea
           name='dataset'
           className={styles.textArea}
