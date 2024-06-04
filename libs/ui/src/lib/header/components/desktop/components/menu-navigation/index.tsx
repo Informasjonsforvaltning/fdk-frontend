@@ -6,19 +6,21 @@ import {
   DropdownMenuTrigger,
 } from '@digdir/designsystemet-react';
 import { LinkObjectType } from '@fdk-frontend/types';
-import React from 'react';
+import { HTMLAttributes } from 'react';
 import { ChevronDownIcon } from '@navikt/aksel-icons';
-import { Link } from '../../../link';
+import { Link } from '../../../../../link';
+
+import styles from './menu-navigation.module.css';
 
 type NavigationMenuProps = {
   triggerText: string;
   links: LinkObjectType[];
   className?: string;
-} & React.HTMLAttributes<HTMLButtonElement>;
+} & HTMLAttributes<HTMLButtonElement>;
 
 const NavigationMenu = ({ triggerText, links }: NavigationMenuProps) => (
   <DropdownMenu size='small'>
-    <DropdownMenuTrigger>
+    <DropdownMenuTrigger className={styles.dropDown}>
       {triggerText}
       <ChevronDownIcon role={'presentation'} />
     </DropdownMenuTrigger>
@@ -45,4 +47,4 @@ const NavigationMenu = ({ triggerText, links }: NavigationMenuProps) => (
   </DropdownMenu>
 );
 
-export default NavigationMenu;
+export { NavigationMenu };

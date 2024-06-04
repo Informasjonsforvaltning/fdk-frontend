@@ -28,6 +28,7 @@ const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
         id='data-hunter-form'
         name='data-hunter-form'
         action={formAction}
+        className={styles.form}
       >
         <Textarea
           name='dataset'

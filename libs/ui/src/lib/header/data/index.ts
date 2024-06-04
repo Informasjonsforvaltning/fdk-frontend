@@ -72,3 +72,5 @@ export const getHeaderData = (
     external: true,
   },
 ];
+
+export type HeaderData = ReturnType<typeof getHeaderData>;
