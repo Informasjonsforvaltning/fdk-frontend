@@ -43,3 +43,7 @@ comes with a LSP for Vim users.
 ## Editing text files
 
 You can find the text files used in the project in the `libs/dictionaries/src/lib/dictionaries` folder.
+
+## Notes
+
+`mail-sender-service` in `forms/data-hunter` cannot be tested in staging and demo. It is only available in production.
