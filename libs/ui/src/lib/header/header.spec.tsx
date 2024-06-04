@@ -17,7 +17,7 @@ describe('Header', () => {
     headerData = getHeaderData(dictionary, '/', '/', '/');
   });
 
-  it('should render successfully', async () => {    
+  it('should render successfully', async () => {
     render(
       <Header dictionary={dictionary} />
     );

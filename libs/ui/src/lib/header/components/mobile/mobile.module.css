@@ -1,0 +1,20 @@
+.content * ul > li * {
+  font-size: medium;
+  padding-left: 1rem;
+}
+
+.nav {
+  grid-column: 11/ 12;
+  display: none;
+}
+
+.nav > button {
+  color: white;
+  background-color: #1e2b3c;
+}
+
+@media (max-width: 1400px) {
+  .nav {
+    display: block;
+  }
+}

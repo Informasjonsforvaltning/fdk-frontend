@@ -1,30 +1,32 @@
 import Image from 'next/image';
-import { Dictionary } from '@fdk-frontend/dictionaries';
-import { Link, ListItem, ListUnordered } from '@digdir/designsystemet-react';
-
 import FDKLogo from './images/fdk-logo.svg';
 import FDKDemoLogo from './images/fdk-logo-demo.svg';
-
-import LanguageMenu from './components/menu-language';
 import { getHeaderData } from './data';
+import { Link } from '@digdir/designsystemet-react';
+import { unstable_noStore as noStore } from 'next/cache';
+import { Dictionary } from '@fdk-frontend/dictionaries';
+import { forwardRef, HTMLAttributes } from 'react';
+import { MobileHeader } from './components/mobile';
+import { DesktopHeader } from './components/desktop';
+import cn from 'classnames';
+
 import styles from './header.module.css';
-import NavigationMenu from './components/menu-navigation';
 
 type HeaderProps = {
   dictionary: Dictionary;
-  baseUri?: string;
-  communityBaseUri?: string;
-  registrationBaseUri?: string;
-  useDemoLogo?: boolean;
-};
+      baseUri: string,
+    communityBaseUri: string,
+    registrationBaseUri: string,
+    useDemoLogo?: boolean,
+} & HTMLAttributes<HTMLElement>;
 
-const Header = ({
-  dictionary,
+const Header = forwardRef<HTMLElement, HeaderProps>(({ dictionary,
   baseUri = '/',
   communityBaseUri = '#',
   registrationBaseUri = '#',
-  useDemoLogo
-}: HeaderProps) => {
+  useDemoLogo, ...rest }: HeaderProps, ref) => {
+  // Opt-in dynamic rendering
+  noStore();
 
   const headerData = getHeaderData(
     dictionary,
@@ -34,7 +36,11 @@ const Header = ({
   );
 
   return (
-    <header className={styles.header}>
+    <header
+      ref={ref}
+      {...rest}
+      className={cn(styles.header, rest.className)}
+    >
       <Link
         href={baseUri}
         aria-label={dictionary.goToMainPageAriaLabel}
@@ -47,33 +53,21 @@ const Header = ({
           height={0}
         />
       </Link>
-      <ListUnordered className={styles.nav}>
-        {headerData.map((urlObject, i) => (
-          <ListItem key={`${urlObject.name}-${i}`}>
-            {urlObject.items ? (
-              <NavigationMenu
-                key={urlObject.name}
-                triggerText={urlObject.name}
-                links={urlObject.items}
-              />
-            ) : (
-              urlObject.href && (
-                <Link
-                  href={urlObject.href}
-                  target={urlObject.external ? '_blank' : undefined}
-                  rel='noreferrer'
-                  className={styles.link}
-                >
-                  {urlObject.text}
-                </Link>
-              )
-            )}
-          </ListItem>
-        ))}
-      </ListUnordered>
-      <LanguageMenu triggerText={dictionary.language} />
+      <DesktopHeader
+        dictionary={dictionary}
+        headerData={headerData}
+        className={styles.desktopHeader}
+      />
+      <MobileHeader
+        dictionary={dictionary}
+        headerData={headerData}
+        className={styles.mobileHeader}
+      />
     </header>
   );
-};
+});
+
+Header.displayName = 'Header'; // Add display name to the component
 
 export { Header };
+export type { HeaderProps };
