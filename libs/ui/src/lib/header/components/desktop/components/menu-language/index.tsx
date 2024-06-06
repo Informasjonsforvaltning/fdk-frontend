@@ -1,19 +1,19 @@
+'use client';
+
 import { DropdownMenu, Paragraph } from '@digdir/designsystemet-react';
 import { i18n } from '@fdk-frontend/dictionaries';
 import { onLanguageSelect } from '../../../../utils/common';
 import { GlobeIcon } from '@navikt/aksel-icons';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-
-import styles from './menu-desktop-language.module.css';
+import { usePathname, useRouter } from 'next/navigation';
 
 type DesktopLanguageMenuProps = {
   triggerText: string;
-  router: AppRouterInstance;
-  pathName: string;
 };
 
-const DesktopLanguageMenu = ({ triggerText, router, pathName }: DesktopLanguageMenuProps) => (
-  <div className={styles.desktopLanguageMenu}>
+const DesktopLanguageMenu = ({ triggerText }: DesktopLanguageMenuProps) => {
+  const router = useRouter();
+  const pathName = usePathname();
+  return (
     <DropdownMenu>
       <DropdownMenu.Trigger>
         <GlobeIcon
@@ -36,7 +36,7 @@ const DesktopLanguageMenu = ({ triggerText, router, pathName }: DesktopLanguageM
         </DropdownMenu.Group>
       </DropdownMenu.Content>
     </DropdownMenu>
-  </div>
-);
+  );
+};
 
 export { DesktopLanguageMenu };

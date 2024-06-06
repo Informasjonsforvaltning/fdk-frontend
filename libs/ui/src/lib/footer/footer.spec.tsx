@@ -1,36 +1,35 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getDictionary, type Dictionary } from '@fdk-frontend/dictionaries';
 
-import { getFooterData } from './data';
+import { getFooterData, type FooterData } from './data';
 import { Footer } from '.';
 import React from 'react';
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-function extractLinks(data: any) {
-  let links: any[] = [];
+const extractLinks = (data: any) => {
+  const links: any[] = [];
   data.forEach((section: any) => {
     if (section.links && Array.isArray(section.links)) {
       links.push(...section.links.filter((link: any) => link.href));
     }
   });
   return links;
-}
+};
 
 describe('Footer', () => {
-  let dictionary: any;
-  let footerData: any;
+  let dictionary: Dictionary;
+  let footerData: FooterData;
 
   beforeEach(async () => {
     dictionary = await getDictionary('nb');
     footerData = getFooterData(dictionary, '/');
   });
 
-  it('should render successfully', async () => {    
-    render(
-      <Footer dictionary={dictionary} />
-    );
+  it('should render successfully', async () => {
+    render(<Footer dictionary={dictionary} />);
 
     const links = extractLinks(footerData);
 
@@ -44,9 +43,8 @@ describe('Footer', () => {
     const { baseElement } = render(
       <main>
         <Footer dictionary={dictionary} />
-      </main>
+      </main>,
     );
-    expect(await axe(baseElement)).toHaveNoViolations()
-  })
-
+    expect(await axe(baseElement)).toHaveNoViolations();
+  });
 });

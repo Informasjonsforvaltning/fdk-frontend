@@ -9,11 +9,11 @@ import {
 } from '@digdir/designsystemet-react';
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import { MenuHamburgerIcon } from '@navikt/aksel-icons';
-import { HTMLAttributes, forwardRef } from 'react';
+import { Fragment, HTMLAttributes, forwardRef } from 'react';
 import { HeaderData } from '../../data';
-import { LanguageMenu } from '../menu-language';
 
 import styles from './mobile.module.css';
+import { MobileLanguageMenu } from './components/menu-language';
 
 type MobileHeaderProps = {
   dictionary: Dictionary;
@@ -27,18 +27,19 @@ const MobileHeader = forwardRef<HTMLButtonElement, MobileHeaderProps>(
       ref={ref}
       {...rest}
       className={styles.nav}
+      aria-label='Mobile navigation'
     >
       <DropdownMenu placement='left-start'>
-        <DropdownMenuTrigger>
-          <MenuHamburgerIcon />
+        <DropdownMenuTrigger aria-label={dictionary.menuButton}>
+          <MenuHamburgerIcon aria-label='Menu icon' />
         </DropdownMenuTrigger>
         <DropdownMenuContent className={styles.content}>
           {headerData.map((urlObject, i) => (
-            <>
+            <Fragment key={`${urlObject.name ?? urlObject.text}-${i}`}>
               {i > 0 && <Divider />}
-              {urlObject.items ? (
+              {urlObject.items && (
                 <DropdownMenuGroup
-                  key={urlObject.href}
+                  key={`${urlObject.href}-group`}
                   heading={urlObject.name}
                 >
                   {urlObject.items.map((item) => (
@@ -47,27 +48,27 @@ const MobileHeader = forwardRef<HTMLButtonElement, MobileHeaderProps>(
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuGroup>
-              ) : (
+              )}
+              {urlObject.href && (
                 <DropdownMenuGroup
                   heading={urlObject.name}
-                  key={urlObject.href}
+                  key={`${urlObject.href}-item`}
                 >
-                  {urlObject.href && (
-                    <DropdownMenuItem key={urlObject.name}>
-                      <Link
-                        href={urlObject.href}
-                        target={urlObject.external ? '_blank' : undefined}
-                        rel='noreferrer'
-                      >
-                        {urlObject.text}
-                      </Link>
-                    </DropdownMenuItem>
-                  )}
+                  <DropdownMenuItem>
+                    <Link
+                      href={urlObject.href}
+                      target={urlObject.external ? '_blank' : undefined}
+                      rel='noreferrer'
+                    >
+                      {urlObject.text}
+                    </Link>
+                  </DropdownMenuItem>
                 </DropdownMenuGroup>
               )}
-            </>
+            </Fragment>
           ))}
-          <LanguageMenu text={dictionary.language} />
+          <Divider />
+          <MobileLanguageMenu text={dictionary.language} />
         </DropdownMenuContent>
       </DropdownMenu>
     </nav>

@@ -14,58 +14,54 @@ import styles from './header.module.css';
 
 type HeaderProps = {
   dictionary: Dictionary;
-      baseUri: string,
-    communityBaseUri: string,
-    registrationBaseUri: string,
-    useDemoLogo?: boolean,
+  baseUri?: string;
+  communityBaseUri?: string;
+  registrationBaseUri?: string;
+  useDemoLogo?: boolean;
 } & HTMLAttributes<HTMLElement>;
 
-const Header = forwardRef<HTMLElement, HeaderProps>(({ dictionary,
-  baseUri = '/',
-  communityBaseUri = '#',
-  registrationBaseUri = '#',
-  useDemoLogo, ...rest }: HeaderProps, ref) => {
-  // Opt-in dynamic rendering
-  noStore();
+const Header = forwardRef<HTMLElement, HeaderProps>(
+  (
+    { dictionary, baseUri = '/', communityBaseUri = '#', registrationBaseUri = '#', useDemoLogo, ...rest }: HeaderProps,
+    ref,
+  ) => {
+    // Opt-in dynamic rendering
+    noStore();
 
-  const headerData = getHeaderData(
-    dictionary,
-    baseUri,
-    communityBaseUri,
-    registrationBaseUri,
-  );
+    const headerData = getHeaderData(dictionary, baseUri, communityBaseUri, registrationBaseUri);
 
-  return (
-    <header
-      ref={ref}
-      {...rest}
-      className={cn(styles.header, rest.className)}
-    >
-      <Link
-        href={baseUri}
-        aria-label={dictionary.goToMainPageAriaLabel}
-        className={styles.logo}
+    return (
+      <header
+        ref={ref}
+        {...rest}
+        className={cn(styles.header, rest.className)}
       >
-        <Image
-          src={useDemoLogo ? FDKDemoLogo : FDKLogo}
-          alt={dictionary.fdkLogoAlt}
-          width={0}
-          height={0}
+        <Link
+          href={baseUri}
+          aria-label={dictionary.goToMainPageAriaLabel}
+          className={styles.logo}
+        >
+          <Image
+            src={useDemoLogo ? FDKDemoLogo : FDKLogo}
+            alt={dictionary.fdkLogoAlt}
+            width={0}
+            height={0}
+          />
+        </Link>
+        <DesktopHeader
+          dictionary={dictionary}
+          headerData={headerData}
+          className={styles.desktopHeader}
         />
-      </Link>
-      <DesktopHeader
-        dictionary={dictionary}
-        headerData={headerData}
-        className={styles.desktopHeader}
-      />
-      <MobileHeader
-        dictionary={dictionary}
-        headerData={headerData}
-        className={styles.mobileHeader}
-      />
-    </header>
-  );
-});
+        <MobileHeader
+          dictionary={dictionary}
+          headerData={headerData}
+          className={styles.mobileHeader}
+        />
+      </header>
+    );
+  },
+);
 
 Header.displayName = 'Header'; // Add display name to the component
 
