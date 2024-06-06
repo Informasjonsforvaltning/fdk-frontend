@@ -1,33 +1,26 @@
 'use client';
 
 import { DropdownMenu, Paragraph } from '@digdir/designsystemet-react';
+import { i18n } from '@fdk-frontend/dictionaries';
+import { onLanguageSelect } from '../../../../utils/common';
 import { GlobeIcon } from '@navikt/aksel-icons';
-import { i18n, Locale } from '@fdk-frontend/dictionaries';
 import { usePathname, useRouter } from 'next/navigation';
-import React from 'react';
 
-type Props = {
+type DesktopLanguageMenuProps = {
   triggerText: string;
-  className?: string;
-} & React.HTMLAttributes<HTMLButtonElement>;
+};
 
-const LanguageMenu = ({ triggerText, className }: Props) => {
-  const pathName = usePathname();
+const DesktopLanguageMenu = ({ triggerText }: DesktopLanguageMenuProps) => {
   const router = useRouter();
-
-  const onLanguageSelect = (locale: Locale) => {
-    if (!pathName) {
-      return '/';
-    }
-    const segments = pathName.split('/');
-    segments[1] = locale.code;
-    return router.replace(segments.join('/'));
-  };
-
+  const pathName = usePathname();
   return (
-    <DropdownMenu size='small'>
+    <DropdownMenu>
       <DropdownMenu.Trigger>
-        <GlobeIcon />
+        <GlobeIcon
+          role={'presentation'}
+          width={30}
+          height={30}
+        />
         {triggerText}
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
@@ -35,7 +28,7 @@ const LanguageMenu = ({ triggerText, className }: Props) => {
           {i18n.locales.map((locale) => (
             <DropdownMenu.Item
               key={locale.code}
-              onClick={() => onLanguageSelect(locale)}
+              onClick={() => onLanguageSelect(locale, router, pathName)}
             >
               <Paragraph size='small'>{locale.name}</Paragraph>
             </DropdownMenu.Item>
@@ -46,4 +39,4 @@ const LanguageMenu = ({ triggerText, className }: Props) => {
   );
 };
 
-export default LanguageMenu;
+export { DesktopLanguageMenu };

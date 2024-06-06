@@ -1,5 +1,18 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "generators": {
+    "@nx/next": {
+      "application": {
+        "linter": "eslint",
+        "style": "css"
+      }
+    },
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "none"
+      }
+    }
+  },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -10,48 +23,54 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/test-setup.[jt]s"
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json"
     ],
     "sharedGlobals": []
   },
   "plugins": [
     {
-      "plugin": "@nx/next/plugin",
       "options": {
         "buildTargetName": "build",
         "devTargetName": "dev",
-        "startTargetName": "start",
-        "serveStaticTargetName": "serve-static"
-      }
+        "serveStaticTargetName": "serve-static",
+        "startTargetName": "start"
+      },
+      "plugin": "@nx/next/plugin"
     },
     {
-      "plugin": "@nx/playwright/plugin",
       "options": {
         "targetName": "e2e"
-      }
+      },
+      "plugin": "@nx/playwright/plugin"
     },
     {
-      "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
-      }
+      },
+      "plugin": "@nx/eslint/plugin"
     },
     {
-      "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      }
+      },
+      "plugin": "@nx/jest/plugin"
+    },
+    {
+      "options": {
+        "buildStorybookTargetName": "build-storybook",
+        "serveStorybookTargetName": "storybook",
+        "staticStorybookTargetName": "static-storybook",
+        "testStorybookTargetName": "test-storybook"
+      },
+      "plugin": "@nx/storybook/plugin"
     }
   ],
-  "generators": {
-    "@nx/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    },
-    "@nx/react": {
-      "library": {}
+  "targetDefaults": {
+    "build": {
+      "inputs": ["production", "^production"]
     }
   }
 }

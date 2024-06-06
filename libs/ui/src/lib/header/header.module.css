@@ -1,50 +1,16 @@
 .header {
+  display: grid;
   background: #ffffff;
   border-bottom: 1px solid rgb(230, 230, 230);
   color: #1e2b3c;
-  display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-areas: '. logo . nav nav nav nav nav nav nav language .';
+  grid-template-rows: 1fr;
   width: 100%;
   padding: 1rem 0;
 }
 
-.nav {
-  grid-area: nav;
-  list-style-type: none;
-  display: flex;
-  padding: 0 2rem 0 1rem;
-  flex: 1 1 auto;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.nav * {
-  font-size: medium;
-}
-
-.nav > li {
-  margin-right: 1rem;
-  margin-bottom: 0;
-  color: #1e2b3c;
-  min-width: max-content;
-}
-
-.nav * a {
-  color: #1e2b3c;
-  text-decoration: none;
-}
-
-.nav > li > a {
-  text-decoration: underline;
-}
-
-.nav > li > a:hover {
-  text-decoration: none;
-}
-
 .logo {
-  grid-area: logo;
+  grid-area: 1 / 2;
 }
 
 .logo * {
@@ -52,16 +18,22 @@
   height: 45px;
 }
 
-.nav > li > button {
-  color: #1e2b3c;
-  background-color: transparent;
-  padding: 0;
+.mobileHeader {
+  grid-column: 11/ 12;
+  display: none;
 }
 
-.header > button {
-  grid-area: language;
-  color: #1e2b3c;
-  background-color: transparent;
-  padding: 0;
-  font-size: medium;
+.desktopHeader {
+  grid-row: 1;
+  grid-column: 3 / 12;
+}
+
+@media (max-width: 1400px) {
+  .desktopHeader {
+    display: none;
+  }
+
+  .mobileHeader {
+    display: block;
+  }
 }

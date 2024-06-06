@@ -1,5 +1,3 @@
-'use client';
-
 import { Label, Tag } from '@digdir/designsystemet-react';
 import { HTMLAttributes } from 'react';
 import styles from './label-with-tag.module.css';

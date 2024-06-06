@@ -44,9 +44,14 @@ out
 .env*
 /**/*/.env*
 !**/.env*.example
+!**/*-e2e/.env.test
 
 # yarn
 .yarn
 
 # lint
 .eslintcache
+
+# test
+playwright-report
+storybook-static

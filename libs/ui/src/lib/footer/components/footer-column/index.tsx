@@ -1,5 +1,3 @@
-import 'server-only';
-
 import { Link, ListHeading, ListItem, ListRoot, ListUnordered } from '@digdir/designsystemet-react';
 import { LinkObjectType } from '@fdk-frontend/types';
 import styles from './footer-column.module.css';

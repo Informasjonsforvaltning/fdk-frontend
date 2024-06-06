@@ -1,21 +1,17 @@
-.textArea {
-  margin-top: 2rem;
+.form {
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
 }
 
 .textField {
   width: 100%;
-  margin-top: 2rem;
   align-self: flex-start;
 }
 
 .textFieldHalfWidth {
   composes: textField;
   width: 50%;
-}
-
-.button {
-  margin-top: 3rem;
-  align-self: flex-start;
 }
 
 .orgNumberField {
@@ -32,4 +28,8 @@
 /* Firefox */
 .orgNumberField * input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.submitButton {
+  align-self: flex-start;
 }

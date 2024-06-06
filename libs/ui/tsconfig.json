@@ -2,16 +2,20 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowJs": false,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "strict": true
   },
   "files": [],
-  "include": [],
+  "include": ["additional.d.ts", "jest.setup.tsx"],
   "references": [
     {
       "path": "./tsconfig.lib.json",
       "composite": true
+    },
+    {
+      "path": "./tsconfig.spec.json"
     }
   ],
   "extends": "../../tsconfig.base.json"

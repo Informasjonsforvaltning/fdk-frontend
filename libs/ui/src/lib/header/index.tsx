@@ -1,72 +1,69 @@
-import 'server-only';
-
 import Image from 'next/image';
-import { Dictionary } from '@fdk-frontend/dictionaries';
 import FDKLogo from './images/fdk-logo.svg';
 import FDKDemoLogo from './images/fdk-logo-demo.svg';
-import LanguageMenu from './components/menu-language';
 import { getHeaderData } from './data';
-import styles from './header.module.css';
-import { Link, ListItem, ListUnordered } from '@digdir/designsystemet-react';
-import NavigationMenu from './components/menu-navigation';
+import { Link } from '@digdir/designsystemet-react';
 import { unstable_noStore as noStore } from 'next/cache';
+import { Dictionary } from '@fdk-frontend/dictionaries';
+import { forwardRef, HTMLAttributes } from 'react';
+import { MobileHeader } from './components/mobile';
+import { DesktopHeader } from './components/desktop';
+import cn from 'classnames';
+
+import styles from './header.module.css';
 
 type HeaderProps = {
   dictionary: Dictionary;
-};
+  baseUri?: string;
+  communityBaseUri?: string;
+  registrationBaseUri?: string;
+  useDemoLogo?: boolean;
+} & HTMLAttributes<HTMLElement>;
 
-const Header = async ({ dictionary }: HeaderProps) => {
-  // Opt-in dynamic rendering
-  noStore();
+const Header = forwardRef<HTMLElement, HeaderProps>(
+  (
+    { dictionary, baseUri = '/', communityBaseUri = '#', registrationBaseUri = '#', useDemoLogo, ...rest }: HeaderProps,
+    ref,
+  ) => {
+    // Opt-in dynamic rendering
+    noStore();
 
-  const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI, FDK_REGISTRATION_BASE_URI, FDK_USE_DEMO_LOGO } = process.env;
-  const useDemoLogo = FDK_USE_DEMO_LOGO === 'true';
-  const headerData = getHeaderData(
-    dictionary,
-    FDK_BASE_URI ?? '/',
-    FDK_COMMUNITY_BASE_URI ?? '#',
-    FDK_REGISTRATION_BASE_URI ?? '#',
-  );
+    const headerData = getHeaderData(dictionary, baseUri, communityBaseUri, registrationBaseUri);
 
-  return (
-    <header className={styles.header}>
-      <Link
-        href={FDK_BASE_URI}
-        aria-label={dictionary.goToMainPageAriaLabel}
-        className={styles.logo}
+    return (
+      <header
+        ref={ref}
+        {...rest}
+        className={cn(styles.header, rest.className)}
       >
-        <Image
-          src={useDemoLogo ? FDKDemoLogo : FDKLogo}
-          alt={dictionary.fdkLogoAlt}
+        <Link
+          href={baseUri}
+          aria-label={dictionary.goToMainPageAriaLabel}
+          className={styles.logo}
+        >
+          <Image
+            src={useDemoLogo ? FDKDemoLogo : FDKLogo}
+            alt={dictionary.fdkLogoAlt}
+            width={0}
+            height={0}
+          />
+        </Link>
+        <DesktopHeader
+          dictionary={dictionary}
+          headerData={headerData}
+          className={styles.desktopHeader}
         />
-      </Link>
-      <ListUnordered className={styles.nav}>
-        {headerData.map((urlObject) => (
-          <ListItem key={urlObject.name}>
-            {urlObject.items ? (
-              <NavigationMenu
-                key={urlObject.name}
-                triggerText={urlObject.name}
-                links={urlObject.items}
-              />
-            ) : (
-              urlObject.href && (
-                <Link
-                  href={urlObject.href}
-                  target={urlObject.external ? '_blank' : undefined}
-                  rel='noreferrer'
-                  className={styles.link}
-                >
-                  {urlObject.text}
-                </Link>
-              )
-            )}
-          </ListItem>
-        ))}
-      </ListUnordered>
-      <LanguageMenu triggerText={dictionary.language} />
-    </header>
-  );
-};
+        <MobileHeader
+          dictionary={dictionary}
+          headerData={headerData}
+          className={styles.mobileHeader}
+        />
+      </header>
+    );
+  },
+);
+
+Header.displayName = 'Header'; // Add display name to the component
 
 export { Header };
+export type { HeaderProps };

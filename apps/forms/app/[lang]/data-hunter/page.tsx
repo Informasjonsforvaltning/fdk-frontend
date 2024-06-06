@@ -20,7 +20,13 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
   noStore();
 
   const dictionary = await getDictionary(lang);
-  const baseUri = process.env.FDK_BASE_URI ?? '/';
+
+  const {
+    FDK_BASE_URI
+  } = process.env;
+
+  const baseUri = FDK_BASE_URI ?? '/';
+
   const breadcrumbList = [
     {
       href: getPaths(baseUri).forms,
@@ -35,6 +41,7 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
   return (
     <div>
       <Breadcrumbs
+        baseUri={baseUri}
         breadcrumbList={breadcrumbList}
         dictionary={dictionary}
       />

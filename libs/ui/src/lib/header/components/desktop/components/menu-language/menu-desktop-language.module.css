@@ -1,0 +1,10 @@
+.desktopLanguageMenu > button {
+  color: white;
+  background-color: #1e2b3c;
+}
+
+@media (max-width: 1400px) {
+  .desktopLanguageMenu {
+    display: none;
+  }
+}

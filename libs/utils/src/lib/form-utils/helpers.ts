@@ -1,5 +1,5 @@
-import { Dictionary } from "@fdk-frontend/dictionaries";
-import { FormState } from "../../form-utils/types";
+import { Dictionary } from '@fdk-frontend/dictionaries';
+import { FormState } from './types';
 
 /**
  * This method extracts error messages from the form state and returns them as a string array.
