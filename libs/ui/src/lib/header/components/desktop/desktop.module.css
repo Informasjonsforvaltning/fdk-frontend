@@ -16,6 +16,8 @@
   flex: 1 1 auto;
   justify-content: flex-end;
   align-items: center;
+  grid-row: 1;
+  grid-column: 3 / 12;
 }
 
 .desktopHeader * {
@@ -52,4 +54,10 @@
   text-decoration: none;
   color: #fff;
   background-color: #1e2b3c;
+}
+
+@media (max-width: 1400px) {
+  .desktopHeader {
+    display: none;
+  }
 }
