@@ -51,12 +51,10 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         <DesktopHeader
           dictionary={dictionary}
           headerData={headerData}
-          className={styles.desktopHeader}
         />
         <MobileHeader
           dictionary={dictionary}
           headerData={headerData}
-          className={styles.mobileHeader}
         />
       </header>
     );
