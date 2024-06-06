@@ -7,21 +7,17 @@ const dictionary = await getDictionary('nb');
 
 const meta: Meta<typeof Header> = {
   component: Header,
-  title: 'Header'
+  title: 'Header',
 };
 
 export default meta;
 type Story = StoryObj<typeof Header>;
 
 export const Primary: Story = {
-  render: () => (
-    <Header
-      dictionary={dictionary}
-    />
-  ),
+  render: () => <Header dictionary={dictionary} />,
   parameters: {
     nextjs: {
       appDirectory: true,
     },
-  }
+  },
 };

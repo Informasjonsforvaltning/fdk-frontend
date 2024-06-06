@@ -47,3 +47,9 @@
   background-color: transparent;
   padding: 0;
 }
+
+.desktopHeader > button {
+  text-decoration: none;
+  color: #fff;
+  background-color: #1e2b3c;
+}

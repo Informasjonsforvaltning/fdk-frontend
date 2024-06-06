@@ -1,15 +1,13 @@
-import React from 'react';
 import { screen, render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getDictionary, type Dictionary } from '@fdk-frontend/dictionaries';
 
 import { Breadcrumbs } from '.';
 
 expect.extend(toHaveNoViolations);
 
 describe('Breadcrumbs', () => {
-  let dictionary: any;
-  let BreadcrumbsResolved: any;
+  let dictionary: Dictionary;
 
   beforeEach(async () => {
     dictionary = await getDictionary('en');
@@ -18,17 +16,17 @@ describe('Breadcrumbs', () => {
   it('should render successfully', () => {
     render(
       <Breadcrumbs
-        baseUri="/"
+        baseUri='/'
         dictionary={dictionary}
         breadcrumbList={[
           {
             href: '#',
-            text: 'test'
-          }
+            text: 'test',
+          },
         ]}
-      />
+      />,
     );
-    
+
     const homeLinkElement = screen.getByText(dictionary.homePage, { selector: 'a' });
     expect(homeLinkElement).toBeInTheDocument();
 
@@ -40,17 +38,17 @@ describe('Breadcrumbs', () => {
     const { baseElement } = render(
       <main>
         <Breadcrumbs
-          baseUri="/"
+          baseUri='/'
           dictionary={dictionary}
           breadcrumbList={[
             {
               href: '#',
-              text: 'test'
-            }
+              text: 'test',
+            },
           ]}
         />
-      </main>
-    );;
+      </main>,
+    );
 
     expect(await axe(baseElement)).toHaveNoViolations();
   });

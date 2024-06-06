@@ -3,10 +3,10 @@ import { Dictionary } from '@fdk-frontend/dictionaries';
 import { HTMLAttributes, forwardRef } from 'react';
 import { HeaderData } from '../../data';
 import { NavigationMenu } from './components/menu-navigation';
-import { LanguageMenu } from '../menu-language';
 import cn from 'classnames';
 
 import styles from './desktop.module.css';
+import { DesktopLanguageMenu } from './components/menu-language';
 
 type DesktopHeaderProps = {
   dictionary: Dictionary;
@@ -22,7 +22,7 @@ const DesktopHeader = forwardRef<HTMLButtonElement, DesktopHeaderProps>(
     >
       <ListUnordered className={styles.unorderedList}>
         {headerData.map((urlObject) => (
-          <ListItem key={urlObject.name}>
+          <ListItem key={urlObject.name ?? urlObject.text}>
             {urlObject.items ? (
               <NavigationMenu
                 key={urlObject.name}
@@ -43,7 +43,7 @@ const DesktopHeader = forwardRef<HTMLButtonElement, DesktopHeaderProps>(
           </ListItem>
         ))}
       </ListUnordered>
-      <LanguageMenu text={dictionary.language} />
+      <DesktopLanguageMenu triggerText={dictionary.language} />
     </nav>
   ),
 );

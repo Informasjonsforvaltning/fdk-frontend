@@ -85,3 +85,5 @@ export const getFooterData = (dictionary: Dictionary, baseUri: string) => [
     ],
   },
 ];
+
+export type FooterData = ReturnType<typeof getFooterData>;

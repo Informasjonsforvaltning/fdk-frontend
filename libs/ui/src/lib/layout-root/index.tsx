@@ -17,15 +17,9 @@ type RootLayoutProps = {
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
 const RootLayout = async ({ children, params }: RootLayoutProps) => {
-
   const dictionary = await getDictionary(params.lang);
 
-  const {
-    FDK_BASE_URI,
-    FDK_COMMUNITY_BASE_URI,
-    FDK_REGISTRATION_BASE_URI,
-    FDK_USE_DEMO_LOGO
-  } = process.env;
+  const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI, FDK_REGISTRATION_BASE_URI, FDK_USE_DEMO_LOGO } = process.env;
 
   const baseUri = FDK_BASE_URI ?? '/';
   const communityBaseUri = FDK_COMMUNITY_BASE_URI ?? '/';
@@ -57,7 +51,6 @@ const getMetadata = (title: string, description: string) => ({
   description: description,
   alternates: {
     stylesheet: 'https://altinncdn.no/fonts/inter/inter.css',
-    stylesheet: 'something something'
   },
 });
 

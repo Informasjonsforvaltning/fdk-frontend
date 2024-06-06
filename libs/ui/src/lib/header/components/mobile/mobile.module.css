@@ -10,7 +10,12 @@
 
 .nav > button {
   color: white;
-  background-color: #1e2b3c;
+  background-color: #1e2b3c !important;
+}
+
+.nav * a {
+  color: #1e2b3c;
+  text-decoration: none;
 }
 
 @media (max-width: 1400px) {

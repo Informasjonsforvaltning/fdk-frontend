@@ -1,16 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { getDictionary } from '@fdk-frontend/dictionaries';
 
-import { getHeaderData } from './data';
+import { getHeaderData, type HeaderData } from './data';
 import { Header } from '.';
-import React from 'react';
+import { Dictionary, getDictionary } from '@fdk-frontend/dictionaries';
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
 describe('Header', () => {
-  let dictionary: any;
-  let headerData: any;
+  let dictionary: Dictionary;
+  let headerData: HeaderData;
 
   beforeEach(async () => {
     dictionary = await getDictionary('nb');
@@ -18,11 +18,9 @@ describe('Header', () => {
   });
 
   it('should render successfully', async () => {
-    render(
-      <Header dictionary={dictionary} />
-    );
+    render(<Header dictionary={dictionary} />);
 
-    const logoElement = screen.getByAltText(dictionary.fdkLogoAlt);
+    const logoElement = screen.getAllByAltText(dictionary.fdkLogoAlt)[0];
     expect(logoElement).toBeInTheDocument();
 
     const topLinks = headerData.filter((item: any) => item.href);
@@ -33,13 +31,13 @@ describe('Header', () => {
     });
   });
 
+  // Dette har skap en del problemer med designsystemkomponentene, og er derfor kommentert ut
   it('should have no a11y violations', async () => {
     const { baseElement } = render(
       <main>
         <Header dictionary={dictionary} />
-      </main>
+      </main>,
     );
-    expect(await axe(baseElement)).toHaveNoViolations()
-  })
-
+    expect(await axe(baseElement)).toHaveNoViolations();
+  });
 });

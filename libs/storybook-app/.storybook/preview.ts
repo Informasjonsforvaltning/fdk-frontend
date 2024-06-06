@@ -1,1 +1,1 @@
-import '../../ui/src/lib/layout-root/global.css';
+import '@fdk-frontend/ui/layout-root/global.css';
