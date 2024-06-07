@@ -3,8 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: staging
 resources:
-  - ../../base/frontpage
+  - ../../base/frontpage-frontend
   - ingress.yaml
 
 patchesStrategicMerge:
-  - frontpage-env.yaml
+  - frontpage-frontend-env.yaml
