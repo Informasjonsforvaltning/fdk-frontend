@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: frontpage
+  name: frontpage-frontend
 spec:
   ingressClassName: nginx
   rules:
@@ -11,7 +11,7 @@ spec:
         paths:
           - backend:
               service:
-                name: frontpage
+                name: frontpage-frontend
                 port:
                   number: 8080
             path: /

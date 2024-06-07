@@ -2,17 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontpage
+  name: frontpage-frontend
   labels:
-    app: frontpage
+    app: frontpage-frontend
 spec:
   selector:
     matchLabels:
-      app: frontpage
+      app: frontpage-frontend
   template:
     spec:
       containers:
-        - name: frontpage
+        - name: frontpage-frontend
           env:
             - name: DATAJEGER_EMAIL_ADDRESS
               valueFrom:
