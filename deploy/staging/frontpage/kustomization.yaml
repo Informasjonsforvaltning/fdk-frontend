@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: staging
 resources:
   - ../../base/frontpage
+  - ingress.yaml
 
 patchesStrategicMerge:
   - frontpage-env.yaml
