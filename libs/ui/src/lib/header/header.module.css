@@ -17,23 +17,3 @@
   width: auto;
   height: 45px;
 }
-
-.mobileHeader {
-  grid-column: 11/ 12;
-  display: none;
-}
-
-.desktopHeader {
-  grid-row: 1;
-  grid-column: 3 / 12;
-}
-
-@media (max-width: 1400px) {
-  .desktopHeader {
-    display: none;
-  }
-
-  .mobileHeader {
-    display: block;
-  }
-}
