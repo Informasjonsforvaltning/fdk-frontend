@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@axe-core/playwright": "^4.9.0",
-    "@digdir/designsystemet-css": "^0.4.0",
+    "@digdir/designsystemet-css": "^0.10.0",
     "@digdir/designsystemet-react": "^0.57.0",
     "@digdir/designsystemet-theme": "^0.15.1",
     "@formatjs/intl-localematcher": "^0.5.4",
