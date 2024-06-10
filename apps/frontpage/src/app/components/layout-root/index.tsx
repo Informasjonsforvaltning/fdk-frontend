@@ -1,5 +1,7 @@
 import 'server-only';
 
+import "./global.css"
+
 import { ReactNode } from 'react';
 import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 import cn from 'classnames';
@@ -7,8 +9,6 @@ import cn from 'classnames';
 import { Footer } from '@fdk-frontend/ui/server';
 
 import { Header } from '../header';
-
-import './global.css';
 
 export type RootLayoutProps = {
   children: ReactNode;
