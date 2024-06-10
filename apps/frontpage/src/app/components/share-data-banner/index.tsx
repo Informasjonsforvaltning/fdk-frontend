@@ -15,10 +15,15 @@ const ShareDataBanner = () => {
 	    <Paragraph>
 	    	Gjør som over 250 andre virksomheter og del dine data med resten av landet
 	    </Paragraph>
-	    <div>
+	    <div className={styles.buttons}>
 	    	<Button asChild>
 		    	<Link href="https://data.norge.no/guidance" inverted>
 						Kom i gang
+					</Link>
+				</Button>
+				<Button asChild variant="secondary">
+		    	<Link href="https://informasjonsforvaltning.github.io/">
+						Se dokumentasjon
 					</Link>
 				</Button>
 			</div>

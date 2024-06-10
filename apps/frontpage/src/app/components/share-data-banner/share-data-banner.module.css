@@ -12,6 +12,20 @@
 	justify-content: center;
 }
 
+.buttons {
+	display:flex;
+	gap:1rem;
+}
+
+.buttons a {
+	color: var(--fds-semantic-surface-action-first-default);
+	text-decoration:none;
+}
+
+.buttons a:nth-child(1) {
+	color:white;
+}
+
 .shareDataHeadline {
 	text-align:center;
 }
