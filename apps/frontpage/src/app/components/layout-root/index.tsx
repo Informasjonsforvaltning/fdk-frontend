@@ -1,6 +1,6 @@
 import 'server-only';
 
-import "./global.css"
+import "./global.css";
 
 import { ReactNode } from 'react';
 import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
