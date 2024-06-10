@@ -31,7 +31,8 @@ const RootLayout = async ({ children, params, bodyClassName }: RootLayoutProps) 
     FDK_USE_DEMO_LOGO
   } = process.env;
 
-  const baseUri = FDK_BASE_URI ?? '/';
+  // const baseUri = FDK_BASE_URI ?? '/';
+  const baseUri = '/';
   const communityBaseUri = FDK_COMMUNITY_BASE_URI ?? '/';
   const registrationBaseUri = FDK_REGISTRATION_BASE_URI ?? '/';
   const useDemoLogo = FDK_USE_DEMO_LOGO === 'true';
