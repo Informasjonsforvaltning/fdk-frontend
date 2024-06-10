@@ -75,7 +75,11 @@ const Header = ({
             </ListItem>
           ))}
         </ListUnordered>
-        <Button size="small">Del data</Button>
+        <Button asChild size="small" style={}>
+          <Link href="https://data.norge.no/guidance" inverted>
+            Del data
+          </Link>
+        </Button>
         {/*<LanguageMenu triggerText={dictionary.language} />*/}
       </div>
     </header>

@@ -19,6 +19,10 @@
   font-size: medium;
 }
 
+.headerInner a + ul + a {
+  text-decoration: none;
+}
+
 .headerInner * button,
 .headerInner > button {
   font-size: medium;
