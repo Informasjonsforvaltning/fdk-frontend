@@ -75,7 +75,7 @@ const Header = ({
             </ListItem>
           ))}
         </ListUnordered>
-        <Button asChild size="small" style={}>
+        <Button asChild size="small">
           <Link href="https://data.norge.no/guidance" inverted>
             Del data
           </Link>
