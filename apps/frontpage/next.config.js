@@ -14,35 +14,7 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true
-  },
-  webpack(config, { isServer }) {
-    // Find the existing CSS rule and modify it
-    const cssRule = config.module.rules.find(
-      (rule) => rule.test && rule.test.toString().includes('css')
-    );
-
-    if (cssRule) {
-      // Ensure it only applies to CSS Modules
-      cssRule.oneOf.forEach((r) => {
-        if (r.use) {
-          r.use.forEach((u) => {
-            if (u.loader && u.loader.includes('css-loader')) {
-              u.options = {
-                ...u.options,
-                modules: {
-                  localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                  mode: 'local',
-                },
-              };
-            }
-          });
-        }
-      });
-    }
-
-    // Return the modified config
-    return config;
-  },
+  }
 };
 
 const plugins = [
