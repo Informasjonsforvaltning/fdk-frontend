@@ -1,3 +1,5 @@
+import "./global.css"
+
 import styles from './page.module.css';
 
 import { FrontpageBanner } from './components/frontpage-banner';
