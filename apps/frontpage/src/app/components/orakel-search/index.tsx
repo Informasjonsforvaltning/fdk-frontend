@@ -19,9 +19,10 @@ const parseJsonResults = (json: any) => {
 
 	let match;
 	while ((match = regex.exec(llm)) !== null) {
-	  const title = match[1];
+	  const llmTitle = match[1];
+	  const linkIndex = titles.findIndex(title => title.toLowerCase() === llmTitle.toLowerCase());
 	  const description = match[2].trim();
-	  items.push({ title, description, link: links[items.length] });
+	  items.push({ title: llmTitle, description, link: links[linkIndex] });
 	}
 	return { llm, items };
 }
