@@ -11,14 +11,25 @@ import mockResults from './data/results.json';
 
 import styles from './orakel-search.module.css';
 
-const parseJsonResults = (json: any) => {
+const parseJsonResults = (json: any, query: string) => {
 	const { llm, links, titles } = json;
-	const regex = /\*\*(.*?)\*\*([\s\S]*?)(?=\n\n\*\*|\n*$)/g;
-	
+
+	const noHitsRegex = /Ingen av datasettene/i;
+	if (noHitsRegex.test(json.llm)) {
+		let response;
+		if (query && query.length > 1) {
+			response = `Ingen av datasettene inneholder informasjon om "${query}"`;
+		} else {
+			response = `Fant ikke noe relevant informasjon. Prøv en annen spørring.`;
+		}
+		return { llm: response, items: [] }
+	}
+
+	const titleRegex = /\*\*(.*?)\*\*([\s\S]*?)(?=\n\n\*\*|\n*$)/g;
 	const items = [];
 
 	let match;
-	while ((match = regex.exec(llm)) !== null) {
+	while ((match = titleRegex.exec(llm)) !== null) {
 	  const llmTitle = match[1];
 	  const linkIndex = titles.findIndex(title => title.toLowerCase() === llmTitle.toLowerCase());
 	  const description = match[2].trim();
@@ -32,6 +43,7 @@ const OrakelSearch = () => {
 	const [ loading, setLoading ]  = useState<boolean>(false);
 	const [ query, setQuery ] = useState<string>('');
 	const [ results, setResults ] = useState<any>(undefined);
+	// const [ error, setError ] = useState<string | undefined>('Spørringen må inneholde mer enn ett tegn. Prøv igjen.');
 	// const [ results, setResults ] = useState<any>(parseJsonResults(mockResults));
 
 	const submitQuery = async (e: any, q?: string) => {
@@ -58,7 +70,7 @@ const OrakelSearch = () => {
 	        return undefined;
 	    })
 	    .then(json => {
-	        setResults(parseJsonResults(json));
+	        setResults(parseJsonResults(json, query));
 	    });
 		} catch (err) {
 			setLoading(false);
@@ -83,6 +95,7 @@ const OrakelSearch = () => {
 		        size="large"
 		        value={query}
 		        onChange={(e) => setQuery(e.target.value)}
+		        autocomplete="off"
 		      />
 		      <Button
 		      	className={styles.orakelSearchButton}
