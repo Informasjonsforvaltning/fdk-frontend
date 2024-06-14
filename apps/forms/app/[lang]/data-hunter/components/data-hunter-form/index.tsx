@@ -20,10 +20,6 @@ const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
 
   return (
     <>
-      <SubmitStatusAlert
-        dictionary={dictionary}
-        formStatus={state?.status}
-      />
       <form
         id='data-hunter-form'
         name='data-hunter-form'
@@ -112,6 +108,10 @@ const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
           {dictionary.submitRequest}
         </Button>
       </form>
+      <SubmitStatusAlert
+        dictionary={dictionary}
+        formStatus={state?.status}
+      />
     </>
   );
 };

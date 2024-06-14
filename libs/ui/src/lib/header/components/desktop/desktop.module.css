@@ -56,7 +56,7 @@
   background-color: #1e2b3c;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1440px) {
   .desktopHeader {
     display: none;
   }
