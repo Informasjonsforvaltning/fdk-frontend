@@ -1,7 +1,7 @@
 .form {
-  display:flex;
-  flex-direction:column;
-  gap:2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .textField {
@@ -32,4 +32,10 @@
 
 .submitButton {
   align-self: flex-start;
+}
+
+@media (max-width: 576px) {
+  .textFieldHalfWidth {
+    width: 100%;
+  }
 }

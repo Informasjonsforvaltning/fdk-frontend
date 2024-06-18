@@ -21,9 +21,7 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
 
   const dictionary = await getDictionary(lang);
 
-  const {
-    FDK_BASE_URI
-  } = process.env;
+  const { FDK_BASE_URI } = process.env;
 
   const baseUri = FDK_BASE_URI ?? '/';
 
@@ -54,7 +52,7 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
         </Heading>
         <Paragraph
           size='large'
-          className={styles.paragraph}
+          spacing
         >
           {dictionary.dataHunterForm.description}
         </Paragraph>

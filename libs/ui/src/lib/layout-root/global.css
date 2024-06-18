@@ -1,20 +1,25 @@
 /* Define layers in specific order */
 @layer reset, fds;
 
-@import url("./reset.css");
-@import url("@digdir/designsystemet-theme");
-@import url("@digdir/designsystemet-css");
+@import url('./reset.css');
+@import url('@digdir/designsystemet-theme');
+@import url('@digdir/designsystemet-css');
 
 /* Small devices such as large phones (640px and up) */
 
-/* breakpoints based on bootstrap's breakpoints */
+/*
+ breakpoints based on designsystem.no breakpoints.
+ https://github.com/digdir/designsystemet/tree/main/design-tokens/Viewport
+*/
 :root {
-  --breakpoint-small: 640px;
-  --breakpoint-medium: 768px;
-  --breakpoint-large: 992px;
-  --breakpoint-x-large: 1200px;
-  --breakpoint-xx-large: 1400px;
-  --breakpoint-xxx-large: 1600px;
+  --breakpoint-x-small: 320px;
+  --breakpoint-small: 375px;
+  --breakpoint-medium: 576px;
+  --breakpoint-large: 768px;
+  --breakpoint-x-large: 992px;
+  --breakpoint-xx-large: 1200px;
+  --breakpoint-xxx-large: 1440px;
+  --color-fdk-navy: #1e2b3c;
 }
 
 /* suggestions from designsystem.no */

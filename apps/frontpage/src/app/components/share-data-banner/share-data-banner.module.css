@@ -1,0 +1,31 @@
+.shareDataBanner {
+	margin:4rem 0;
+	text-align: center;
+}
+
+.shareDataBanner > p {
+	margin:1rem 0;
+}
+
+.shareDataBanner > div {
+	display:flex;
+	justify-content: center;
+}
+
+.buttons {
+	display:flex;
+	gap:1rem;
+}
+
+.buttons a {
+	color: var(--fds-semantic-surface-action-first-default);
+	text-decoration:none;
+}
+
+.buttons a:nth-child(1) {
+	color:white;
+}
+
+.shareDataHeadline {
+	text-align:center;
+}
