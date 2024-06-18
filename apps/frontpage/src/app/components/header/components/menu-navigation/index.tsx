@@ -8,7 +8,7 @@ import {
 import { LinkObjectType } from '@fdk-frontend/types';
 import React from 'react';
 import { ChevronDownIcon } from '@navikt/aksel-icons';
-import { Link } from '@fdk-frontend/ui';
+import { Link } from '@fdk-frontend/ui/link';
 
 type NavigationMenuProps = {
   triggerText: string;

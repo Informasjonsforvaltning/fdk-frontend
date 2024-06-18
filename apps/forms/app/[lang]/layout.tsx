@@ -1,4 +1,4 @@
-import { RootLayout, generateStaticParams, getMetadata } from '@fdk-frontend/ui/server';
+import { RootLayout, generateStaticParams, getMetadata } from '@fdk-frontend/ui/layout-root';
 
 const metadata = getMetadata('Forms', 'Forms');
 
