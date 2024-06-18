@@ -3,7 +3,7 @@
 /* Small devices such as large phones (640px and up) */
 
 /* breakpoints based on bootstrap's breakpoints */
-:root {
+/*:root {
   --breakpoint-small: 640px;
   --breakpoint-medium: 768px;
   --breakpoint-large: 992px;
@@ -11,10 +11,10 @@
   --breakpoint-xx-large: 1400px;
   --breakpoint-xxx-large: 1600px;
   --color-fdk-navy: #1e2b3c;
-}
+}*/
 
 /* suggestions from designsystem.no */
-body {
+/*body {
   font-family: 'Inter', sans-serif;
-  font-feature-settings: 'cv05' 1 !important; /* Enable lowercase l with tail */
-}
+  font-feature-settings: 'cv05' 1 !important;
+}*/

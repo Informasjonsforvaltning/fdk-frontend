@@ -26,7 +26,7 @@
 }
 
 .orakelSearchContainer {
-	max-width: var(--breakpoint-small);
+	max-width: 640px;
 	padding:4rem;
 	margin:auto;
 }
