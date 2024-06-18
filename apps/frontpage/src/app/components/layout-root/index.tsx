@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 import cn from 'classnames';
 
-import { Footer } from '@fdk-frontend/ui/server';
+import { Footer } from '@fdk-frontend/ui/footer';
 
 import { Header } from '../header';
 

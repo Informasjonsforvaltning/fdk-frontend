@@ -1,7 +1,10 @@
 'use client';
 
 import { Paragraph, Textarea, Textfield, Button } from '@digdir/designsystemet-react';
-import { LabelWithTag, SubmitStatusAlert } from '@fdk-frontend/ui';
+
+import { LabelWithTag } from '@fdk-frontend/ui/label-with-tag';
+import { SubmitStatusAlert } from '@fdk-frontend/ui/alert-submit-status';
+
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { useFormState, useFormStatus } from 'react-dom';
 import { sendEmailAction } from '../../../../actions';

@@ -1,7 +1,10 @@
 import 'server-only';
 
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
-import { Breadcrumbs, Container } from '@fdk-frontend/ui/server';
+
+import { Breadcrumbs } from '@fdk-frontend/ui/breadcrumbs';
+import { Container } from '@fdk-frontend/ui/container';
+
 import DataHunterForm from './components/data-hunter-form';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 import React from 'react';
