@@ -1,0 +1,14 @@
+.searchAlert {
+	margin-top:1.5rem;
+	font-family: inherit;
+
+	.searchAlertContent {
+		display:flex;
+		align-items:center;
+		justify-content:space-between;
+	}
+
+	.searchAlertButton {
+		margin:-0.5rem;
+	}
+}

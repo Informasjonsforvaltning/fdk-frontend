@@ -7,20 +7,22 @@ import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 import cn from 'classnames';
 
 import { Footer } from '@fdk-frontend/ui/footer';
-
 import { Header } from '../header';
+
+import styles from './layout-root.module.css';
 
 export type RootLayoutProps = {
   children: ReactNode;
   params: {
     lang: Locale['code'];
   },
-  bodyClassName?: string;
+  title?: string;
+  frontpage?: boolean;
 };
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
-const RootLayout = async ({ children, params, bodyClassName }: RootLayoutProps) => {
+const RootLayout = async ({ children, params, title, frontpage }: RootLayoutProps) => {
 
   const dictionary = await getDictionary(params.lang);
 
@@ -39,7 +41,7 @@ const RootLayout = async ({ children, params, bodyClassName }: RootLayoutProps) 
 
   return (
     <html lang={params.lang}>
-      <body className={cn(bodyClassName)}>
+      <body className={cn({ 'frontpage': frontpage, [styles.frontpageBody]: frontpage })}>
         <Header
           dictionary={dictionary}
           baseUri={baseUri}
@@ -57,7 +59,7 @@ const RootLayout = async ({ children, params, bodyClassName }: RootLayoutProps) 
   );
 };
 
-const getMetadata = (title: string, description: string) => ({
+const getMetadata = ({ title, description }: { title: string, description: string }) => ({
   title: title,
   description: description,
   alternates: {

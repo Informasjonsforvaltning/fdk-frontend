@@ -22,7 +22,7 @@ const FrontpageBanner = () => (
       </div>
     </div>
     <div
-      className={styles.gradientLayer}
+      className={styles.backgroundImageLayer}
     />
   </div>
 );

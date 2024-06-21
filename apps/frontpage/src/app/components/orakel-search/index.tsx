@@ -1,15 +1,17 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect } from 'react';
-
-import { Textfield, Button, Link, Heading } from '@digdir/designsystemet-react';
-import { Spinner } from '@digdir/designsystemet-react';
+import { motion } from 'framer-motion';
+import { Textfield, Button, Link, Heading, Spinner } from '@digdir/designsystemet-react';
+import { SparklesIcon, FilesIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 
 import { Markdown } from '../markdown';
+import { CatalogSymbol } from '../catalog-symbol';
+import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
 
 import mockResults from './data/results.json';
 
-import styles from './orakel-search.module.css';
+import styles from './orakel-search.module.scss';
 
 const parseJsonResults = (json: any, query: string) => {
 	const { llm, links, titles } = json;
@@ -36,6 +38,26 @@ const parseJsonResults = (json: any, query: string) => {
 	  items.push({ title: llmTitle, description, link: links[linkIndex] });
 	}
 	return { llm, items };
+}
+
+const framerResultsContainer = {
+	hidden: { height: 0 },
+	show: { height: 'auto', transition: { duration: 0.15 } }
+}
+
+const framerResultsList = {
+	hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const framerResultsItem = {
+  hidden: { opacity: 0, scale: 0.9 },
+  show: { opacity: 1, scale: 1 }
 }
 
 const OrakelSearch = () => {
@@ -89,26 +111,29 @@ const OrakelSearch = () => {
 			<form onSubmit={submitQuery}>
 				<div className={styles.orakelSearchBox}>
 					<Textfield
-		        className={styles.orakelInputTextfield}
-		        label={<span className={styles.orakelInputLabel}>Spør vår AI om data fra over 250 virksomheter og 7000 datasett:</span>}
-		        placeholder="Hva leter du etter?"
-		        size="large"
-		        value={query}
-		        onChange={(e) => setQuery(e.target.value)}
-		        autocomplete="off"
-		      />
-		      <Button
-		      	className={styles.orakelSearchButton}
-		      	type="submit"
-		      	size="sm"
-		      >
-		      	{
-		      		loading ?
-		      		<Spinner size="small" variant="inverted" /> :
-		      		<>Finn data</>
-		      	}
-		      </Button>
-			  </div>
+				        className={styles.orakelInputTextfield}
+				        label={<span className={styles.orakelInputLabel}>Spør vår AI om data fra over 250 virksomheter og 7000 datasett:</span>}
+				        placeholder="Hva leter du etter?"
+				        size="large"
+				        value={query}
+				        onChange={(e) => setQuery(e.target.value)}
+				        autocomplete="off"
+				      />
+				      <Button
+				      	className={styles.orakelSearchButton}
+				      	type="submit"
+				      	size="sm"
+				      >
+				      	{
+				      		loading ?
+				      		<Spinner size="xsmall" variant="inverted" /> :
+				      		<>
+				      			<SparklesIcon className={styles.orakelSearchIcon} aria-hidden />
+				      			<span>Finn data</span>
+				      		</>
+				      	}
+				      </Button>
+				  </div>
 		  </form>
 		  {
 		  	(!results && !loading) &&
@@ -128,28 +153,47 @@ const OrakelSearch = () => {
 		  }
 		  {
 		  	(results && !loading) &&
-		  	<div className={styles.orakelResults}>
-			  	<ul className={styles.orakelResultsList}>
+		  	<motion.div
+		  		className={styles.orakelResults}
+		  		variants={framerResultsContainer}
+		  		initial="hidden"
+				animate="show"
+		  	>
+			  	<motion.ul
+			  		className={styles.orakelResultsList}
+			  		variants={framerResultsList}
+					initial="hidden"
+					animate="show"
+			  	>
 			  		{
 			  			results.items && results.items.map((item, i) => {
 					  		return (
-					  			<li key={`item-${i}`}>
-					  				<Heading level={4} size="xxsmall">
-					  				{
-					  					item.link ?
-					  					<Link inverted href={item.link}>{item.title}</Link> :
-					  					item.title
-					  				}
-					  				</Heading>
-					  				<Markdown>
-					  					{item.description}
-					  				</Markdown>
-					  			</li>
+					  			<motion.li
+					  				key={`item-${i}`}
+					  				variants={framerResultsItem}
+					  			>
+					  				<a href={item.link} className={styles.catalogLink}>
+						  				{/*<div><FilesIcon aria-hidden fontSize="1.5em" /></div>*/}
+						  				<CatalogSymbol className={styles.catalogIcon} catalog="datasets" />
+						  				<div>
+							  				<Heading className={styles.catalogTitle} level={4} size="xxsmall">
+							  					{item.title}
+							  				</Heading>
+							  				<Markdown>
+							  					{item.description}
+							  				</Markdown>
+							  			</div>
+							  		</a>
+					  			</motion.li>
 					  		);
 					  	})
 			  		}
-			  	</ul>
-			  </div>
+			  		<motion.li variants={framerResultsItem}>
+			  			<AdvancedSearchPrompt />
+			  		</motion.li>
+			  	</motion.ul>
+			  </motion.div>
+
 		  }
 		</div>
 	);

@@ -15,14 +15,14 @@
 	z-index:1;
 }
 
-.gradientLayer {
+.backgroundImageLayer {
 	position:absolute;
 	inset:0;
-	opacity:0.125;
+	opacity:0.2;
 	background:url('./images/sat1.png');
-	background-size:cover;
-	background-repeat: no-repeat;
-	filter: grayscale(75%) contrast(150%) brightness(0.25);
+	background-size:100%;
+/*	background-repeat: no-repeat;*/
+	filter: grayscale(25%) contrast(150%) brightness(0.3333);
 }
 
 .orakelSearchContainer {

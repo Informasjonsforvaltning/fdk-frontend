@@ -1,14 +1,18 @@
-import Image from 'next/image';
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import cn from 'classnames';
+
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import { Link, ListItem, ListUnordered, Button } from '@digdir/designsystemet-react';
+import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 
-import FDKLogo from './images/fdk-logo.svg';
-import FDKDemoLogo from './images/fdk-logo-demo.svg';
-import DigdirEmblem from './images/digdir-emblem'
+import { Logo, LogoLink } from '../logo';
+import { MainMenu } from '../main-menu';
+import { HeaderSearch } from '../header-search';
 
-import LanguageMenu from './components/menu-language';
 import { getHeaderData } from './data';
-import styles from './header.module.css';
+import styles from './header.module.scss';
 import NavigationMenu from './components/menu-navigation';
 
 type HeaderProps = {
@@ -16,7 +20,6 @@ type HeaderProps = {
   baseUri?: string;
   communityBaseUri?: string;
   registrationBaseUri?: string;
-  useDemoLogo?: boolean;
 };
 
 const Header = ({
@@ -24,8 +27,12 @@ const Header = ({
   baseUri = '/',
   communityBaseUri = '#',
   registrationBaseUri = '#',
-  useDemoLogo
 }: HeaderProps) => {
+
+  const headerRef = useRef(null);
+  const [ sticky, setSticky ] = useState(false);
+  const [ showMenu, setShowMenu ] = useState(false);
+  const [ showSearch, setShowSearch ] = useState(false);
 
   const headerData = getHeaderData(
     dictionary,
@@ -34,24 +41,79 @@ const Header = ({
     registrationBaseUri,
   );
 
+  useEffect(() => {
+    const toggleSticky = () => {
+      if (window.scrollY > 0) {
+        if (!sticky) setSticky(true);
+      } else {
+        if (sticky) setSticky(false);
+      }
+    };
+
+    const handleClick = (e: any) => {
+      if (!headerRef.current?.contains(e.target)) {
+        setShowMenu(false);
+        setShowSearch(false);
+      }
+    }
+
+    // window.addEventListener('scroll', toggleSticky);
+    window.addEventListener('click', handleClick);
+
+    return () => {
+      window.removeEventListener('scroll', toggleSticky);
+      window.removeEventListener('click', handleClick);
+    }
+  });
+
+  // useEffect(() => {
+  //   if (showSearch && showMenu) setShowMenu(false);
+  // }, [ showSearch ])
+
+  // useEffect(() => {
+  //   if (showSearch && showMenu) setShowSearch(false);
+  // }, [ showMenu ])
+
   return (
-    <header className={styles.headerOuter}>
+    <header
+      ref={headerRef}
+      className={cn(styles.headerOuter, {
+        [styles.headerSticky]: sticky | showMenu,
+        [styles.drawerOpen]: showMenu
+      })}
+    >
       <div className={styles.headerInner}>
-        <Link
-          href={baseUri}
-          aria-label={dictionary.goToMainPageAriaLabel}
-          className={styles.logo}
-        >
-          {/*<Image
-            src={useDemoLogo ? FDKDemoLogo : FDKLogo}
-            alt={dictionary.fdkLogoAlt}
-            width={0}
-            height={0}
-          />*/}
-          <DigdirEmblem />
-          <span>data.norge.no</span>
-        </Link>
-        <ListUnordered className={styles.nav}>
+        <LogoLink
+          baseUri={baseUri}
+          label={dictionary.goToMainPageAriaLabel}
+        />
+        <div className={styles.headerToolbar}>
+          {/*<Button size="small" variant="tertiary">Del data</Button>*/}
+          {
+            showSearch &&
+            <HeaderSearch />
+          }
+          <Button size="small" variant={showSearch ? 'secondary' : 'tertiary' } onClick={() => {/*setShowSearch(!showSearch)*/}}>
+            {
+              showSearch ?
+              <XMarkIcon aria-hidden fontSize='1.5em' /> :
+              <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
+            }
+            <span>Søk</span>
+          </Button>
+          <Button size="small" variant={showMenu ? 'secondary' : 'tertiary' } onClick={() => setShowMenu(!showMenu)}>
+            {
+              showMenu ?
+              <XMarkIcon aria-hidden fontSize='1.5em' /> :
+              <MenuHamburgerIcon aria-hidden fontSize='1.5em' />
+            }
+            <span>Meny</span>
+          </Button>
+          <Button size="small" variant="primary">
+            <span>Del data</span>
+          </Button>
+        </div>
+        {/*<ListUnordered className={styles.nav}>
           {headerData.map((urlObject, i) => (
             <ListItem key={`${urlObject.name}-${i}`}>
               {urlObject.items ? (
@@ -79,9 +141,22 @@ const Header = ({
           <Link href="https://data.norge.no/guidance" inverted>
             Del data
           </Link>
-        </Button>
-        {/*<LanguageMenu triggerText={dictionary.language} />*/}
+        </Button>*/}
       </div>
+      {
+        (showMenu || showSearch) &&
+        <div className={styles.drawer}>
+          <div className={styles.drawerInner}>
+            { showMenu && <MainMenu /> }
+            {/*
+              showSearch &&
+              <div>
+                <HeaderSearch />
+              </div>
+            */}
+          </div>
+        </div>
+      }
     </header>
   );
 };

@@ -1,0 +1,32 @@
+.logo {
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.logo svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right:0.75rem;
+  fill:var(--color-fdk-navy);
+}
+
+.logo span {
+  font-size:1.33333rem;
+  color:var(--fds-semantic-text-neutral-default);
+  color:var(--color-fdk-navy);
+  position:relative;
+  top:1px;
+}
+
+.logoLink {
+  text-decoration:none;
+}
+
+.logoLink:hover span {
+  text-decoration:underline;
+}
+
+.logoLink:active span {
+  opacity:0.75;
+}
