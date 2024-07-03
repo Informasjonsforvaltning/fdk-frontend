@@ -1,18 +1,18 @@
 .outer {
 /*	background: var(--fds-semantic-surface-neutral-inverted);*/
 	--background-navy:  var(--fds-semantic-surface-neutral-inverted);
-  	--background-navy-darker: color-mix(in srgb,var(--fds-semantic-surface-neutral-inverted),#000 50%);
-  	background: radial-gradient(circle, var(--background-navy), var(--background-navy-darker));
-  	background: radial-gradient(circle, var(--background-navy), var(--background-navy-darker));
+  	--background-navy-darker: color-mix(in srgb,var(--fds-semantic-surface-neutral-inverted),#000 75%);
+ 	background: radial-gradient(circle, var(--background-navy), var(--background-navy-darker));
 	color: white;
 	padding-top: 80px;
 	position:relative;
 	min-height:40vh;
+	overflow:hidden;
 }
 
 .inner {
 	position:relative;
-	z-index:1;
+	z-index:2;
 }
 
 .backgroundImageLayer {
@@ -20,6 +20,7 @@
 	inset:0;
 	opacity:0.2;
 	background:url('./images/sat1.png');
+	background:red;
 	background-size:100%;
 /*	background-repeat: no-repeat;*/
 	filter: grayscale(25%) contrast(150%) brightness(0.3333);
@@ -38,6 +39,7 @@
 	text-align:center;
 	margin:6rem 0 1rem;
 	color: white;
+	pointer-events:none;
 /*	text-shadow:2px 2px 2px black;*/
 }
 

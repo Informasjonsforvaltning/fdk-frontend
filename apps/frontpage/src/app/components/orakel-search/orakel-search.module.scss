@@ -54,38 +54,6 @@
 	margin-bottom:1.5rem;
 }
 
-.catalogLink {
-	display:flex;
-	gap:0.75rem;
-	align-items:flex-start;
-	text-decoration:none;
-	color: white;
-	padding:1rem;
-	border-radius:0.25rem;
-
-	.catalogIcon {
-		color: var(--fds-semantic-text-action-hover);
-	}
-
-	.catalogTitle {
-		display:inline-flex;
-		color: white;
-		text-decoration:underline;
-	}
-
-	&:hover {
-		background: rgba(0,0,0,0.3333);
-
-		.catalogTitle {
-			text-decoration:none;
-		}
-	}
-}
-
-.orakelResultsList * p {
-	color: var(--fds-semantic-border-action-first-subtle);
-}
-
 .orakelResultsList * h4 {
 	margin-bottom:0.5rem;
 }

@@ -4,6 +4,8 @@ import { Textfield, Heading } from '@digdir/designsystemet-react';
 
 import { OrakelSearch } from '../orakel-search';
 
+import { Norgeskart } from './components/norgeskart';
+
 import styles from './frontpage-banner.module.css';
 
 const FrontpageBanner = () => (
@@ -21,9 +23,7 @@ const FrontpageBanner = () => (
         <OrakelSearch />
       </div>
     </div>
-    <div
-      className={styles.backgroundImageLayer}
-    />
+    <Norgeskart />
   </div>
 );
 

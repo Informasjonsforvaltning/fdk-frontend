@@ -1,4 +1,5 @@
 import { Button, Heading, Paragraph, Link } from '@digdir/designsystemet-react';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 
 import styles from './share-data-banner.module.css';
 

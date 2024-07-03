@@ -1,0 +1,28 @@
+{
+	"hits": [
+		{
+			"id": "bc3d4ecb-077f-3c92-b69b-b618d5b6374a",
+			"title": "Oversikt over digitaliseringstiltak i staten 2018",
+			"description": "Dette datasettet gir en oversikt over digitaliseringstiltak i staten i 2018. Det inneholder informasjon om 412 digitaliseringstiltak fra 87 statlige virksomheter. Datasettet er utgitt av Karmsund og Kysnesstrand Revisjon og har public tilgang.",
+			"type": "DATASET",
+			"publisher": "Karmsund og kysnesstrand revisjon",
+			"publisherId": "910298062"
+		},
+		{
+			"id": "73b43600-6432-3add-a553-46bbde1a198b",
+			"title": "Norge.no - digitale tjenester fra det offentlige",
+			"description": "Dette datasettet inneholder informasjon om digitale tjenester fra det offentlige som er tilgjengelige på Norge.no. Datasettet oppdateres daglig og inneholder informasjon om tjenestenes tittel, tjenesteeier, beskrivelse, emneord og lenke til tjenesten. Datasettet er utgitt av Karmsund og Kysnesstrand Revisjon og har public tilgang.",
+			"type": "DATASET",
+			"publisher": "Karmsund og kysnesstrand revisjon",
+			"publisherId": "910298062"
+		},
+		{
+			"id": "a3513d9e-143b-3bdd-a706-b8c2ad01cf8f",
+			"title": "Kvalitet på nett - detaljresultat 2016",
+			"description": "Dette datasettet inneholder detaljerte vurderinger fra kvalitetsvurderingen av 64 offentlige digitale tjenester i 2016. Datasettet inneholder tjenestenes poeng og Difis kommentar på hvert kriterium. Vurderingen er utført av Direktoratet for forvaltning og IKT (Difi) og er basert på et eget kriteriesett med 33 kriterier. Datasettet er utgitt av Karmsund og Kysnesstrand Revisjon og har public tilgang.",
+			"type": "DATASET",
+			"publisher": "Karmsund og kysnesstrand revisjon",
+			"publisherId": "910298062"
+		}
+	]
+}

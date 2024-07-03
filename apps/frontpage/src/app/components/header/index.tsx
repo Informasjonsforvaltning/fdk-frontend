@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import { Link, ListItem, ListUnordered, Button } from '@digdir/designsystemet-react';
-import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon, ChevronRightIcon } from '@navikt/aksel-icons';
 
 import { Logo, LogoLink } from '../logo';
 import { MainMenu } from '../main-menu';
@@ -93,14 +93,20 @@ const Header = ({
             showSearch &&
             <HeaderSearch />
           }
-          <Button size="small" variant={showSearch ? 'secondary' : 'tertiary' } onClick={() => {/*setShowSearch(!showSearch)*/}}>
+          <Button asChild size="small" variant="tertiary">
+            <Link href="https://data.norge.no/search-all">
+              <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
+              Finn data
+            </Link>
+          </Button>
+          {/*<Button size="small" variant={showSearch ? 'secondary' : 'tertiary' } onClick={() => setShowSearch(!showSearch)}>
             {
               showSearch ?
               <XMarkIcon aria-hidden fontSize='1.5em' /> :
               <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
             }
-            <span>Søk</span>
-          </Button>
+            <span>Finn data</span>
+          </Button>*/}
           <Button size="small" variant={showMenu ? 'secondary' : 'tertiary' } onClick={() => setShowMenu(!showMenu)}>
             {
               showMenu ?
@@ -109,8 +115,10 @@ const Header = ({
             }
             <span>Meny</span>
           </Button>
-          <Button size="small" variant="primary">
-            <span>Del data</span>
+          <Button asChild size="small" variant="primary">
+            <Link href="https://staging.fellesdatakatalog.digdir.no/publishing">
+              Del data
+            </Link>
           </Button>
         </div>
         {/*<ListUnordered className={styles.nav}>

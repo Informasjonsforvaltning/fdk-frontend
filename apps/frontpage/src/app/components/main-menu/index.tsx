@@ -20,28 +20,28 @@ const catalogItems = [
   	key: 'datasets',
     title: "Datasett",
     description: "Kolleksjoner av strukturert data som kan lastes ned eller aksesseres via APIer",
-    href: "#"
+    href: "https://data.norge.no/om-datasettkatalogen"
   },
   {
   	icon: CodeIcon,
   	key: 'apis',
     title: "API",
     description: "Protokoller for å kommunisere med datasystemer med dynamisk data og data i sanntid",
-    href: "#"
+    href: "https://data.norge.no/om-api-katalogen"
   },
   {
   	icon: ChatElipsisIcon,
   	key: 'terms',
     title: "Begrep",
     description: "Definisjoner og ordbøker på offisielle termer og begreper som virksomheter bruker i sine data",
-    href: "#"
+    href: "https://data.norge.no/om-begrepskatalogen"
   },
   {
   	icon: TenancyIcon,
   	key: 'information-models',
     title: "Informasjonsmodeller",
     description: "Strukturerte representasjoner av informasjon og data for datasett og APIer",
-    href: "#"
+    href: "https://data.norge.no/om-informasjonskatalogen"
   },
   {
   	icon: CompassIcon,
@@ -55,55 +55,55 @@ const catalogItems = [
   	key: 'ai',
     title: "Kunstig intelligens",
     description: "Oversikt over KI-prosjekter i offentlig sektor",
-    href: "#"
+    href: "https://data.norge.no/kunstig-intelligens"
   }
 ];
 
-const framerMenu = {
-	hidden: { height: 0 },
-	show: { height: 'auto', transition: { duration: 0.15 } }
-}
-
-const framerLinks = {
-	hidden: { opacity: 0, scale: 0.9 },
-	show: { opacity: 1, scale: 1, transition: { delay: 0.05 } }
-}
-
-const framerCatalogList = {
-	hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05
-    }
-  }
-}
-
-const framerCatalogItem = {
-  hidden: { opacity: 0, scale: 0.9 },
-  show: { opacity: 1, scale: 1 }
-}
-
 const MainMenu = () => {
+
+	const animations = {
+		menu: {
+			hidden: { height: 0 },
+			show: { height: 'auto', transition: { duration: 0.15 } }
+		},
+		links: {
+			hidden: { opacity: 0, scale: 0.9 },
+			show: { opacity: 1, scale: 1, transition: { delay: 0.05 } }
+		},
+		catalogList: {
+			hidden: { opacity: 0 },
+		  show: {
+		    opacity: 1,
+		    transition: {
+		      staggerChildren: 0.05
+		    }
+		  }
+		},
+		catalogItem: {
+		  hidden: { opacity: 0, scale: 0.9 },
+		  show: { opacity: 1, scale: 1 }
+		}
+	}
+
 	return (
 		<motion.div
 			className={styles.mainMenu}
-			variants={framerMenu}
+			variants={animations.menu}
 			initial="hidden"
 			animate="show"
 		>
 			<div className={styles.catalogsSection}>
 				<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Datakataloger</Heading>
 				<motion.ul
-			    variants={framerCatalogList}
+			    variants={animations.catalogList}
 			    initial="hidden"
 			    animate="show"
 			  >
 					{
 						catalogItems.map((item, i) =>
-							<motion.li variants={framerCatalogItem} key={item.key}>
+							<motion.li variants={animations.catalogItem} key={item.key}>
 									<Card className={styles.card} asChild href={item.href} isLink>
-										<Link href="#">
+										<Link href={item.href}>
 											<Card.Header>
 												<Heading className={styles.catalogTitle} size="xxsmall" level={3}>
 													{/*<item.icon aria-hidden fontSize="1.5rem" />*/}
@@ -125,32 +125,32 @@ const MainMenu = () => {
 			</div>
 			<motion.div
 				className={styles.linkSection}
-				variants={framerLinks}
+				variants={animations.links}
 				initial="hidden"
 				animate="show"
 			>
 				<div className={styles.linkSet}>
 					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Hjelp og veiledning</Heading>
 					<ul>
-						<li><Link href="#">Kom i gang</Link></li>
-						<li><Link href="#">Dokumentasjon</Link></li>
-						<li><Link href="#">Datalandsbyen <ExternalLinkIcon aria-hidden fontSize="1em" /></Link></li>
+						<li><Link href="https://data.norge.no/guidance">Kom i gang</Link></li>
+						<li><Link href="https://informasjonsforvaltning.github.io/">Dokumentasjon</Link></li>
+						<li><Link href="https://datalandsbyen.norge.no/">Datalandsbyen <ExternalLinkIcon aria-hidden fontSize="1em" /></Link></li>
 					</ul>
 				</div>
 				<div className={styles.linkSet}>
 					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Verktøy</Heading>
 					<ul>
-						<li><Link href="#">Virksomhets&shy;register</Link></li>
-						<li><Link href="#">Etterspør data</Link></li>
-						<li><Link href="#">Datajegeren</Link></li>
-						<li><Link href="#">SPARQL sandbox</Link></li>
+						<li><Link href="https://data.norge.no/organizations">Virksomhets&shy;register</Link></li>
+						<li><Link href="https://data.norge.no/requests">Etterspør data</Link></li>
+						<li><Link href="https://data.norge.no/forms/en/data-hunter">Datajegeren</Link></li>
+						<li><Link href="https://data.norge.no/sparql">SPARQL sandbox</Link></li>
 					</ul>
 				</div>
 				<div className={styles.linkSet}>
 					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Om data.norge.no</Heading>
 					<ul>
-						<li><Link href="#">Rapporter og nøkkeltall</Link></li>
-						<li><Link href="#">Om oss</Link></li>
+						<li><Link href="https://data.norge.no/reports">Rapporter og nøkkeltall</Link></li>
+						<li><Link href="https://data.norge.no/about">Om oss</Link></li>
 						<li><Link href="#">Kontakt oss</Link></li>
 					</ul>
 				</div>
