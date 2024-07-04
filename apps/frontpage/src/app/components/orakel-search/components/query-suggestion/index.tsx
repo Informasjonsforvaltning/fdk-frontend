@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 
 import { Link } from '@digdir/designsystemet-react';
@@ -36,4 +38,4 @@ const QuerySuggestion = ({ onClick, ...rest }: QuerySuggestionProps & React.HTML
 	);
 }
 
-export { QuerySuggestion };
+export default QuerySuggestion;

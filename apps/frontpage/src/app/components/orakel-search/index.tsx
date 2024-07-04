@@ -1,12 +1,18 @@
-"use client";
+'use client';
 
 import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion';
 import { Textfield, Button, Link, Heading, Spinner } from '@digdir/designsystemet-react';
 import { SparklesIcon, FilesIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
-import { QuerySuggestion } from './components/query-suggestion';
+
+const DynamicQuerySuggestion = dynamic(() => import('./components/query-suggestion'), {
+    ssr: false
+});
+
+
 import { ResultItem } from './components/result-item';
 
 import mockResults from './data/results3.json';
@@ -113,7 +119,7 @@ const OrakelSearch = () => {
 		  {
 		  	(!results && !loading) &&
 		  	<div className={styles.suggestion}>
-		  		<QuerySuggestion onClick={(query: string) => doSearch(query)} />
+		  		<DynamicQuerySuggestion onClick={(query: string) => doSearch(query)} />
 		  		{/*
 		  		Prøv f.eks. <Link onClick={(e) => { doSearch('Antall Teslaer solgt i Norge i 2022'); return false; }} inverted href="#">Antall Teslaer solgt i Norge i 2022</Link>
 		  		*/}
@@ -134,7 +140,6 @@ const OrakelSearch = () => {
 		  	<motion.div
 		  		className={styles.orakelResults}
 		  		variants={animations.resultsContainer}
-		  		// onAnimationComplete={() => window.setTimeout(() => window.dispatchEvent(new Event('resize')), 500)}
 		  		initial="hidden"
 				animate="show"
 		  	>
