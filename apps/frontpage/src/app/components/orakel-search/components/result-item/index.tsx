@@ -19,7 +19,7 @@ type ResultItemProps = {
 }
 
 const getDatasetLink = (datasetId: string) => {
-	const baseUrl = 'https://data.norge.no/datasets/';
+	const baseUrl = 'https://staging.fellesdatakatalog.digdir.no/datasets/';
 	return `${baseUrl}${datasetId}`;
 }
 

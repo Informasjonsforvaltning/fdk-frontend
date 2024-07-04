@@ -20,28 +20,28 @@ const catalogItems = [
   	key: 'datasets',
     title: "Datasett",
     description: "Kolleksjoner av strukturert data som kan lastes ned eller aksesseres via APIer",
-    href: "https://data.norge.no/om-datasettkatalogen"
+    href: "https://staging.fellesdatakatalog.digdir.no/om-datasettkatalogen"
   },
   {
   	icon: CodeIcon,
   	key: 'apis',
     title: "API",
     description: "Protokoller for å kommunisere med datasystemer med dynamisk data og data i sanntid",
-    href: "https://data.norge.no/om-api-katalogen"
+    href: "https://staging.fellesdatakatalog.digdir.no/om-api-katalogen"
   },
   {
   	icon: ChatElipsisIcon,
   	key: 'terms',
     title: "Begrep",
     description: "Definisjoner og ordbøker på offisielle termer og begreper som virksomheter bruker i sine data",
-    href: "https://data.norge.no/om-begrepskatalogen"
+    href: "https://staging.fellesdatakatalog.digdir.no/om-begrepskatalogen"
   },
   {
   	icon: TenancyIcon,
   	key: 'information-models',
     title: "Informasjonsmodeller",
     description: "Strukturerte representasjoner av informasjon og data for datasett og APIer",
-    href: "https://data.norge.no/om-informasjonskatalogen"
+    href: "https://staging.fellesdatakatalog.digdir.no/om-informasjonskatalogen"
   },
   {
   	icon: CompassIcon,
@@ -55,7 +55,7 @@ const catalogItems = [
   	key: 'ai',
     title: "Kunstig intelligens",
     description: "Oversikt over KI-prosjekter i offentlig sektor",
-    href: "https://data.norge.no/kunstig-intelligens"
+    href: "https://staging.fellesdatakatalog.digdir.no/kunstig-intelligens"
   }
 ];
 
@@ -132,7 +132,7 @@ const MainMenu = () => {
 				<div className={styles.linkSet}>
 					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Hjelp og veiledning</Heading>
 					<ul>
-						<li><Link href="https://data.norge.no/guidance">Kom i gang</Link></li>
+						<li><Link href="https://staging.fellesdatakatalog.digdir.no/guidance">Kom i gang</Link></li>
 						<li><Link href="https://informasjonsforvaltning.github.io/">Dokumentasjon</Link></li>
 						<li><Link href="https://datalandsbyen.norge.no/">Datalandsbyen <ExternalLinkIcon aria-hidden fontSize="1em" /></Link></li>
 					</ul>
@@ -140,17 +140,17 @@ const MainMenu = () => {
 				<div className={styles.linkSet}>
 					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Verktøy</Heading>
 					<ul>
-						<li><Link href="https://data.norge.no/organizations">Virksomhets&shy;register</Link></li>
-						<li><Link href="https://data.norge.no/requests">Etterspør data</Link></li>
-						<li><Link href="https://data.norge.no/forms/en/data-hunter">Datajegeren</Link></li>
-						<li><Link href="https://data.norge.no/sparql">SPARQL sandbox</Link></li>
+						<li><Link href="https://staging.fellesdatakatalog.digdir.no/organizations">Virksomhets&shy;register</Link></li>
+						<li><Link href="https://staging.fellesdatakatalog.digdir.no/requests">Etterspør data</Link></li>
+						<li><Link href="https://staging.fellesdatakatalog.digdir.no/forms/en/data-hunter">Datajegeren</Link></li>
+						<li><Link href="https://staging.fellesdatakatalog.digdir.no/sparql">SPARQL sandbox</Link></li>
 					</ul>
 				</div>
 				<div className={styles.linkSet}>
 					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Om data.norge.no</Heading>
 					<ul>
-						<li><Link href="https://data.norge.no/reports">Rapporter og nøkkeltall</Link></li>
-						<li><Link href="https://data.norge.no/about">Om oss</Link></li>
+						<li><Link href="https://staging.fellesdatakatalog.digdir.no/reports">Rapporter og nøkkeltall</Link></li>
+						<li><Link href="https://staging.fellesdatakatalog.digdir.no/about">Om oss</Link></li>
 						<li><Link href="#">Kontakt oss</Link></li>
 					</ul>
 				</div>

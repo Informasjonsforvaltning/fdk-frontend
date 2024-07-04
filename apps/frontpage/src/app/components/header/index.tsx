@@ -94,7 +94,7 @@ const Header = ({
             <HeaderSearch />
           }
           <Button asChild size="small" variant="tertiary">
-            <Link href="https://data.norge.no/search-all">
+            <Link href="https://staging.fellesdatakatalog.digdir.no/search-all">
               <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
               Finn data
             </Link>

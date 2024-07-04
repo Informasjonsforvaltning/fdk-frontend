@@ -4,11 +4,11 @@ import { useRef, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic'
  
 const MapContainer = dynamic(() => import('react-leaflet').then((module) => module.MapContainer), {
-    ssr: false   // Disable server-side rendering
+    ssr: false
 });
 
 const TileLayer = dynamic(() => import('react-leaflet').then((module) => module.TileLayer), {
-    ssr: false   // Disable server-side rendering
+    ssr: false
 });
 
 import "leaflet/dist/leaflet.css";
