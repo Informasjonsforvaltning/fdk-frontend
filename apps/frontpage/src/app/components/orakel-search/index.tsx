@@ -139,11 +139,11 @@ const OrakelSearch = () => {
 		  	<div className={styles.auxPanel}>
 		  		{ !results && <DynamicQuerySuggestion onClick={(query: string) => doSearch(query)} /> }
 		  		{
-		  			results && results.hits.length &&
+		  			results && results.hits.length > 0 &&
 		  			`Jeg fant ${results.hits.length} datasett som kan være relevante:`
 		  		}
 		  		{
-		  			results && !results.hits.length &&
+		  			results && !results.hits.length > 0 &&
 		  			`Jeg fant dessverre ingen relevante datasett. Prøv gjerne en annen spørring.`
 		  		}
 		  		<HelpText size="sm" title="Om KI-søket" className={styles.helptext}>
