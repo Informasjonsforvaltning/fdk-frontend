@@ -93,7 +93,6 @@ const MainMenu = () => {
 			animate="show"
 		>
 			<div className={styles.catalogsSection}>
-				<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Datakataloger</Heading>
 				<motion.ul
 			    variants={animations.catalogList}
 			    initial="hidden"

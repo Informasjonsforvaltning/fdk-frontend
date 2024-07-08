@@ -1,16 +1,26 @@
 .searchAlert {
 	margin-top:1.5rem;
 	font-family: inherit;
+	container-type:inline-size;
 
 	.searchAlertContent {
 		display:flex;
 		align-items:center;
 		justify-content:space-between;
+		gap:1rem;
 	}
 
 	.searchAlertButton {
+		display:flex;
+		flex-shrink:0;
 		margin:-0.5rem;
 		color:white;
 		text-decoration:none;
+
+		@container (max-width: 275px) {
+			svg {
+				display:none;
+			}
+		}
 	}
 }

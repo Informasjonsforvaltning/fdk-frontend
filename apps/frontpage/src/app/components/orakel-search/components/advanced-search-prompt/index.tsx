@@ -11,7 +11,7 @@ const AdvancedSearchPrompt = () => {
 	  		<Button className={styles.searchAlertButton} asChild size="small" variant="primary">
 					<Link href="https://data.norge.no/search-all">
 						<MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
-						Finn&nbsp;data
+						Finn data
 					</Link>
 	      </Button>
 	  	</div>
