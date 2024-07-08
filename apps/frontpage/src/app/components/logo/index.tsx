@@ -1,4 +1,6 @@
+import cn from 'classnames';
 import { Link } from '@digdir/designsystemet-react';
+
 import DigdirEmblem from './images/digdir-emblem'
 
 import styles from './logo.module.css';
@@ -17,15 +19,16 @@ type LogoLinkProps = {
 	label?: string;
 }
 
-const LogoLink = ({ baseUri, label }) => {
+const LogoLink = ({ className, baseUri, label, ...rest }) => {
 	return (
 		<Link
-          href={baseUri}
-          aria-label={label}
-          className={styles.logoLink}
-        >
-          <Logo />
-        </Link>
+      href={baseUri}
+      aria-label={label}
+      className={cn(styles.logoLink, className)}
+      {...rest}
+    >
+      <Logo />
+    </Link>
 	);
 }
 

@@ -84,6 +84,7 @@ const Header = ({
     >
       <div className={styles.headerInner}>
         <LogoLink
+          className={styles.headerLogo}
           baseUri={baseUri}
           label={dictionary.goToMainPageAriaLabel}
         />
@@ -96,7 +97,7 @@ const Header = ({
           <Button asChild size="small" variant="tertiary">
             <Link href="https://staging.fellesdatakatalog.digdir.no/search-all">
               <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
-              Finn data
+              <span>Finn data</span>
             </Link>
           </Button>
           {/*<Button size="small" variant={showSearch ? 'secondary' : 'tertiary' } onClick={() => setShowSearch(!showSearch)}>

@@ -123,38 +123,40 @@ const MainMenu = () => {
 					}
 				</motion.ul>
 			</div>
-			<motion.div
-				className={styles.linkSection}
-				variants={animations.links}
-				initial="hidden"
-				animate="show"
-			>
-				<div className={styles.linkSet}>
-					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Hjelp og veiledning</Heading>
-					<ul>
-						<li><Link href="https://staging.fellesdatakatalog.digdir.no/guidance">Kom i gang</Link></li>
-						<li><Link href="https://informasjonsforvaltning.github.io/">Dokumentasjon</Link></li>
-						<li><Link href="https://datalandsbyen.norge.no/">Datalandsbyen <ExternalLinkIcon aria-hidden fontSize="1em" /></Link></li>
-					</ul>
-				</div>
-				<div className={styles.linkSet}>
-					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Verktøy</Heading>
-					<ul>
-						<li><Link href="https://staging.fellesdatakatalog.digdir.no/organizations">Virksomhets&shy;register</Link></li>
-						<li><Link href="https://staging.fellesdatakatalog.digdir.no/requests">Etterspør data</Link></li>
-						<li><Link href="https://staging.fellesdatakatalog.digdir.no/forms/en/data-hunter">Datajegeren</Link></li>
-						<li><Link href="https://staging.fellesdatakatalog.digdir.no/sparql">SPARQL sandbox</Link></li>
-					</ul>
-				</div>
-				<div className={styles.linkSet}>
-					<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Om data.norge.no</Heading>
-					<ul>
-						<li><Link href="https://staging.fellesdatakatalog.digdir.no/reports">Rapporter og nøkkeltall</Link></li>
-						<li><Link href="https://staging.fellesdatakatalog.digdir.no/about">Om oss</Link></li>
-						<li><Link href="#">Kontakt oss</Link></li>
-					</ul>
-				</div>
-			</motion.div>
+			<div className={styles.linkSectionContainer}>
+				<motion.div
+					className={styles.linkSection}
+					variants={animations.links}
+					initial="hidden"
+					animate="show"
+				>
+					<div className={styles.linkSet}>
+						<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Hjelp og veiledning</Heading>
+						<ul>
+							<li><Link href="https://staging.fellesdatakatalog.digdir.no/guidance">Kom i gang</Link></li>
+							<li><Link href="https://informasjonsforvaltning.github.io/">Dokumentasjon</Link></li>
+							<li><Link href="https://datalandsbyen.norge.no/">Datalandsbyen <ExternalLinkIcon aria-hidden fontSize="1em" /></Link></li>
+						</ul>
+					</div>
+					<div className={styles.linkSet}>
+						<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Verktøy</Heading>
+						<ul>
+							<li><Link href="https://staging.fellesdatakatalog.digdir.no/organizations">Virksomhets&shy;register</Link></li>
+							<li><Link href="https://staging.fellesdatakatalog.digdir.no/requests">Etterspør data</Link></li>
+							<li><Link href="https://staging.fellesdatakatalog.digdir.no/forms/en/data-hunter">Datajegeren</Link></li>
+							<li><Link href="https://staging.fellesdatakatalog.digdir.no/sparql">SPARQL sandbox</Link></li>
+						</ul>
+					</div>
+					<div className={styles.linkSet}>
+						<Heading className={styles.sectionHeader} size="xxsmall" level={2}>Om data.norge.no</Heading>
+						<ul>
+							<li><Link href="https://staging.fellesdatakatalog.digdir.no/reports">Rapporter og nøkkeltall</Link></li>
+							<li><Link href="https://staging.fellesdatakatalog.digdir.no/about">Om oss</Link></li>
+							<li><Link href="#">Kontakt oss</Link></li>
+						</ul>
+					</div>
+				</motion.div>
+			</div>
 		</motion.div>
 	);
 }

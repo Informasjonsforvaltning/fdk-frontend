@@ -1,5 +1,5 @@
 .orakelSearch {
-	margin-bottom:4rem;
+	// margin-bottom:4rem;
 	max-width: 640px;
 }
 
@@ -17,6 +17,11 @@
 	title + circle {
 		display:none;
 	}
+
+	@media (max-width: 650px) {
+		right:0.44444rem;
+		bottom:0.44444rem;
+	}
 }
 
 .orakelSearchIcon {
@@ -26,6 +31,7 @@
 
 .orakelInputTextfield {
 	position:relative;
+	gap:1rem;
 
 	input {
 		background:rgba(0,0,0,0.33333);
@@ -51,7 +57,50 @@
 }
 
 .orakelInputLabel {
+	display:block;
 	color: white;
+	text-align:center;
+}
+
+.helptext {
+	// display:flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	gap:0.25rem;
+
+	svg {
+		transform:scale(0.75);
+		// color:var(--fds-semantic-border-action-first-subtle);
+		color:white;
+	}
+
+	&:hover {
+		span {
+			text-decoration-thickness: max(2px,.125rem,.12em);
+		}
+	}
+
+	+ div {
+		display:flex;
+		flex-direction: column;
+		gap:0.5rem;
+		padding:1rem;
+		font-size:1rem;
+	}
+
+	@media (min-width: 550px) {
+		span {
+			width:auto;
+			height:auto;
+			clip:auto;
+			overflow:visible;
+			position:static;
+			color:white;
+			text-decoration: underline;
+	    text-decoration-thickness: max(1px,.0625rem);
+	    text-underline-offset: max(4px,.25rem);
+		}
+	}
 }
 
 .orakelResults {
@@ -79,10 +128,19 @@
 	margin-bottom:0.5rem;
 }
 
-.suggestion {
+.auxPanel {
+	display:flex;
+	align-items:flex-start;
+	justify-content: space-between;
+	// padding:0 0.25rem;
 	color: var(--fds-semantic-border-action-first-subtle);
-	margin-top:0.75rem;
-	text-align:center;
+	margin-top:1rem;
+	// text-align:center;
+
+	// @media (max-width: 550px) {
+	// 	flex-direction:column;
+	// 	justify-content: center;
+	// }
 }
 
 .spinnerContainer {

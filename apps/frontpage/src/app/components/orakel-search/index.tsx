@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion';
-import { Textfield, Button, Link, Heading, Spinner, ErrorMessage } from '@digdir/designsystemet-react';
+import { Textfield, Button, Link, Heading, Spinner, ErrorMessage, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { SparklesIcon, FilesIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
@@ -110,7 +110,7 @@ const OrakelSearch = () => {
 				<div className={styles.orakelSearchBox}>
 					<Textfield
 		        className={styles.orakelInputTextfield}
-		        label={<span className={styles.orakelInputLabel}>Spør vår AI om data fra over 250 virksomheter og 7000 datasett:</span>}
+		        label={<span className={styles.orakelInputLabel}>Spør vår KI om data fra over 250 virksomheter og 7000 datasett:</span>}
 		        placeholder="Hva leter du etter?"
 		        size="large"
 		        value={query}
@@ -135,25 +135,28 @@ const OrakelSearch = () => {
 				</div>
 		  </form>
 		  {
-		  	(!error && !results && !loading) &&
-		  	<div className={styles.suggestion}>
-		  		<DynamicQuerySuggestion onClick={(query: string) => doSearch(query)} />
+		  	(!error && !loading) &&
+		  	<div className={styles.auxPanel}>
+		  		{ !results && <DynamicQuerySuggestion onClick={(query: string) => doSearch(query)} /> }
+		  		{
+		  			results && results.hits.length &&
+		  			`Jeg fant ${results.hits.length} datasett som kan være relevante:`
+		  		}
+		  		{
+		  			results && !results.hits.length &&
+		  			`Jeg fant dessverre ingen relevante datasett. Prøv gjerne en annen spørring.`
+		  		}
+		  		<HelpText size="sm" title="Om KI-søket" className={styles.helptext}>
+		  			<Paragraph size="sm">Vårt KI-søk gjør det enkelt å finne datasett ved å bruke naturlig språk uten at du trenger å kjenne til spesifikke datasettnavn, fagtermer eller tekniske formater.</Paragraph>
+		  			<Paragraph size="xs"><b>Vær obs på at KI-søket kan inneholde feil.</b></Paragraph>
+		  			<Paragraph size="sm"><Link href="#">Les mer om KI-søket her</Link></Paragraph>
+		  		</HelpText>
 		  	</div>
 		  }
 		  {
 		  	error && !loading &&
 		  	<div className={styles.status}>
 		  		<ErrorMessage aria-hidden className={styles.errorMessage} size="sm">{error}</ErrorMessage>
-	  		</div>
-		  }
-		  {
-		  	results && !loading &&
-		  	<div className={styles.status}>
-		  		{
-		  			results.hits.length > 0 ?
-		  			`Jeg fant ${results.hits.length} datasett som kan være relevante:` :
-		  			`Jeg fant dessverre ingen relevante datasett. Prøv gjerne en annen spørring.`
-		  		}
 	  		</div>
 		  }
 		  {

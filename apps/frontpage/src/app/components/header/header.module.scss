@@ -6,20 +6,6 @@
   width:100%;
 /*  transition:background linear 300ms;*/
 
-  .headerToolbar {
-    display:flex;
-    gap:1rem;
-
-    a {
-      text-decoration:none;
-      color: var(--fds-semantic-text-action-first-default);
-
-      &:last-child {
-        color: white;
-      }
-    }
-  }
-
   &.headerSticky {
     background: white;
     box-shadow: var(--fds-shadow-medium);
@@ -53,10 +39,49 @@
   justify-content: space-between;
   position:relative;
   z-index:102;
+  container-type:inline-size;
 
   &.full {
     max-width:none;
     padding:2rem 4rem;
+  }
+
+  // @container (max-width: 350px) {
+  //   .headerLogo {
+  //     span {
+  //       font-size:1.1rem;
+  //     }
+  //   }
+  // }
+
+  .headerToolbar {
+    display:flex;
+    gap:1rem;
+
+    a {
+      text-decoration:none;
+      color: var(--fds-semantic-text-action-first-default);
+
+      &:last-child {
+        color: white;
+      }
+    }
+
+    @container (max-width: 500px) {
+      gap: 0.5rem;
+
+      a, button {
+        svg + span {
+          display:none;
+        }
+      }
+    }
+
+    @media (max-width: 400px) {
+      a:last-child {
+        display:none;
+      }
+    }
   }
 }
 
@@ -72,6 +97,7 @@
 
 .drawerInner {
   max-width:1280px;
+  padding:0 2rem;
   margin:auto;
 }
 

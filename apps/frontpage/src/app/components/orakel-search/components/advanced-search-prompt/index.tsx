@@ -6,16 +6,16 @@ import styles from './advanced-search-prompt.module.scss';
 const AdvancedSearchPrompt = () => {
 	return (
 		<Alert className={styles.searchAlert}>
-	  		<div className={styles.searchAlertContent}>
-		  		Finner du ikke det du leter etter?
-		  		<Button className={styles.searchAlertButton} asChild size="small" variant="primary">
+  		<div className={styles.searchAlertContent}>
+	  		Finner du ikke det du leter etter?
+	  		<Button className={styles.searchAlertButton} asChild size="small" variant="primary">
 					<Link href="https://data.norge.no/search-all">
 						<MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
-						Finn data
+						Finn&nbsp;data
 					</Link>
-		        </Button>
-		  	</div>
-	  	</Alert>
+	      </Button>
+	  	</div>
+  	</Alert>
 	);
 }
 

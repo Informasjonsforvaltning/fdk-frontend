@@ -12,6 +12,7 @@
 /*	align-items:center;*/
 	justify-content:center;
 	color: white;
+	container-type:inline-size;
 
 	* {
 /*		color: inherit;*/
@@ -25,16 +26,33 @@
 			margin-top: 10%;
 		}
 	}
+
+	@container (max-width: 960px) {
+		.headline {
+			font-size:4rem;
+		}
+	}
+
+	@container (max-width: 500px) {
+		.headline {
+			font-size:3rem;
+		}
+
+		.inner {
+			margin: 2rem 0 6rem;
+		}
+	}
 }
 
 .inner {
 	position:relative;
 	z-index:2;
-	margin:5rem 0;
+	margin:5rem 0 8rem;
 	display:flex;
 	flex-direction:column;
 	align-items: center;
 	gap:1rem;
+	padding:0 2rem;
 }
 
 .headline {
