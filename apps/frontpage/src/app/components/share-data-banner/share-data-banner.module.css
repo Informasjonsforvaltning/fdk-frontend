@@ -15,6 +15,10 @@
 .buttons {
 	display:flex;
 	gap:1rem;
+
+	@media (max-width: 350px) {
+		flex-direction:column;
+	}
 }
 
 .buttons a {
