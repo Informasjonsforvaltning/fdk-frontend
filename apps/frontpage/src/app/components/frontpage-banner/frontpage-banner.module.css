@@ -4,32 +4,33 @@
   	--background-navy-darker: color-mix(in srgb,var(--fds-semantic-surface-neutral-inverted),#000 75%);
  	background: radial-gradient(circle, var(--background-navy), var(--background-navy-darker));
 	color: white;
-	padding-top: 80px;
+/*	padding-top: 80px;*/
 	position:relative;
-	min-height:40vh;
+/*	min-height:100vh;*/
 	overflow:hidden;
+	display:flex;
+/*	align-items:center;*/
+	justify-content:center;
+
+	&.full {
+		padding-top: 80px;
+		min-height:100vh;
+
+		.inner {
+			margin-top: 10%;
+		}
+	}
 }
 
 .inner {
 	position:relative;
 	z-index:2;
-}
-
-.backgroundImageLayer {
-	position:absolute;
-	inset:0;
-	opacity:0.2;
-	background:url('./images/sat1.png');
-	background:red;
-	background-size:100%;
-/*	background-repeat: no-repeat;*/
-	filter: grayscale(25%) contrast(150%) brightness(0.3333);
+	margin-top:80px;
 }
 
 .orakelSearchContainer {
 	max-width: 640px;
-	padding:4rem;
-	margin:auto;
+	padding:4rem;;
 }
 
 .headline {

@@ -27,10 +27,21 @@
 	margin-right:0.25rem;
 }
 
-.orakelInputTextfield > div > input {
-	background:rgba(0,0,0,0.33333);
-	border-color:rgba(255,255,255,0.75);
-	color:white;
+.orakelInputTextfield {
+	position:relative;
+
+	input {
+		background:rgba(0,0,0,0.33333);
+		border-color:rgba(255,255,255,0.75);
+		color:white;
+	}
+
+	> label + div + div {
+		position:absolute;
+		width:0;
+		height:0;
+		overflow:hidden;
+	}
 }
 
 .orakelInputLabel {
@@ -43,9 +54,13 @@
 	margin-top:1rem;
 }
 
-.llmResponse {
+.status {
 	margin-top:1rem;
 	color: var(--fds-semantic-border-action-first-subtle);
+
+	.errorMessage {
+		color: var(--fds-brand-alt1-600);
+	}
 }
 
 .orakelResultsList {
