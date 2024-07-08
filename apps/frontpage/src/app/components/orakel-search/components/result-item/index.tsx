@@ -30,7 +30,7 @@ const ResultItem = ({ item, ...rest }: ResultItemProps & React.AnchorHTMLAttribu
 			<div>
 				<Heading className={styles.heading} level={4} size="xxsmall">
 					<span className={styles.title}>{item.title}</span>
-					<span className={styles.publisher}>{item.publisher}</span>
+					<span className={styles.publisher}> ({item.publisher})</span>
 				</Heading>
 				<Markdown className={styles.description}>
 					{item.description}

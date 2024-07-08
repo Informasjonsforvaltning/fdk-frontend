@@ -1,0 +1,17 @@
+.headingWithDivider {
+	display:flex;
+	flex-direction:column;
+	gap:1.5rem;
+	gap:1rem;
+
+	&:after {
+		content: '';
+		display:block;
+		margin:auto;
+		width:2.5rem;
+		height:4px;
+		background:red;
+		background:var(--fds-brand-alt3-600);
+		border-radius:0.25rem;
+	}
+}

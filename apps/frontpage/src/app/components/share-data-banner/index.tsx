@@ -1,18 +1,16 @@
 import { Button, Heading, Paragraph, Link } from '@digdir/designsystemet-react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 
+import { HeadingWithDivider } from '../typography';
+
 import styles from './share-data-banner.module.css';
 
 const ShareDataBanner = () => {
 	return (
 		<div className={styles.shareDataBanner}>
-			<Heading
-	      level={2}
-	      size="medium"
-	      className={styles.shareDataHeadline}
-	    >
+			<HeadingWithDivider level={2} className={styles.headline}>
 	      Har du data å dele?
-	    </Heading>
+	    </HeadingWithDivider>
 	    <Paragraph>
 	    	Gjør som over 250 andre virksomheter og del dine data med resten av landet
 	    </Paragraph>

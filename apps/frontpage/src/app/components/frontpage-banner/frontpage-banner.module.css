@@ -11,6 +11,11 @@
 	display:flex;
 /*	align-items:center;*/
 	justify-content:center;
+	color: white;
+
+	* {
+/*		color: inherit;*/
+	}
 
 	&.full {
 		padding-top: 80px;
@@ -25,12 +30,11 @@
 .inner {
 	position:relative;
 	z-index:2;
-	margin-top:80px;
-}
-
-.orakelSearchContainer {
-	max-width: 640px;
-	padding:4rem;;
+	margin:5rem 0;
+	display:flex;
+	flex-direction:column;
+	align-items: center;
+	gap:1rem;
 }
 
 .headline {
@@ -39,7 +43,7 @@
 	font-weight:bold;
 	text-align:center;
 	margin:6rem 0 1rem;
-	color: white;
+	color:white;
 	pointer-events:none;
 /*	text-shadow:2px 2px 2px black;*/
 }

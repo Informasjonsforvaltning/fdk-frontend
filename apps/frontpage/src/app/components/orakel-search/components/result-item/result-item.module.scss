@@ -12,10 +12,7 @@
 	}
 
 	.heading {
-		display:inline-flex;
 		color: white;
-		display:flex;
-		flex-direction:column;
 		gap:0.25rem;
 
 		.title {
@@ -23,7 +20,6 @@
 		}
 
 		.publisher {
-			display:none;
 			font-size:0.9em;
 			color: var(--fds-semantic-border-action-first-subtle);
 		}
