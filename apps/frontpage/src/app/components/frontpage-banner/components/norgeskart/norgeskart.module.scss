@@ -13,4 +13,8 @@
 	// mix-blend-mode: plus-darker;
 	filter: grayscale(100%) contrast(100%) brightness(75%);
 	pointer-events:none;
+
+	@media (max-width: 550px) {
+		display:none;
+	}
 }
