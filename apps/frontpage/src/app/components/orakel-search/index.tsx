@@ -137,15 +137,17 @@ const OrakelSearch = () => {
 		  {
 		  	(!error && !loading) &&
 		  	<div className={styles.auxPanel}>
-		  		{ !results && <DynamicQuerySuggestion onClick={(query: string) => doSearch(query)} /> }
-		  		{
-		  			results && results.hits.length > 0 &&
-		  			`Jeg fant ${results.hits.length} datasett som kan være relevante:`
-		  		}
-		  		{
-		  			results && !results.hits.length > 0 &&
-		  			`Jeg fant dessverre ingen relevante datasett. Prøv gjerne en annen spørring.`
-		  		}
+		  		<div>
+			  		{ !results && <DynamicQuerySuggestion onClick={(query: string) => doSearch(query)} /> }
+			  		{
+			  			results && results.hits.length > 0 &&
+			  			`Jeg fant ${results.hits.length} datasett som kan være relevante:`
+			  		}
+			  		{
+			  			results && !results.hits.length > 0 &&
+			  			`Jeg fant dessverre ingen relevante datasett. Prøv gjerne en annen spørring.`
+			  		}
+		  		</div>
 		  		<HelpText size="sm" title="Om KI-søket" className={styles.helptext}>
 		  			<Paragraph size="sm">Vårt KI-søk gjør det enkelt å finne datasett ved å bruke naturlig språk uten at du trenger å kjenne til spesifikke datasettnavn, fagtermer eller tekniske formater.</Paragraph>
 		  			<Paragraph size="xs"><b>Vær obs på at KI-søket kan inneholde feil.</b></Paragraph>
