@@ -110,7 +110,7 @@ const OrakelSearch = () => {
 				<div className={styles.orakelSearchBox}>
 					<Textfield
 		        className={styles.orakelInputTextfield}
-		        label={<span className={styles.orakelInputLabel}>Spør vår KI om data fra over 250 virksomheter og 7000 datasett:</span>}
+		        label={<span className={styles.orakelInputLabel}>Spør vår KI om data fra over 125 virksomheter og 8000 datasett:</span>}
 		        placeholder="Hva leter du etter?"
 		        size="large"
 		        value={query}
@@ -167,13 +167,13 @@ const OrakelSearch = () => {
 		  		className={styles.orakelResults}
 		  		variants={animations.resultsContainer}
 		  		initial="hidden"
-				animate="show"
+					animate="show"
 		  	>
 			  	<motion.ul
 			  		className={styles.orakelResultsList}
 			  		variants={animations.resultsList}
-					initial="hidden"
-					animate="show"
+						initial="hidden"
+						animate="show"
 			  	>
 			  		{
 			  			results.hits && results.hits.map((item, i) => {

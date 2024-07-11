@@ -12,7 +12,7 @@ const ShareDataBanner = () => {
 	      Har du data å dele?
 	    </HeadingWithDivider>
 	    <Paragraph>
-	    	Gjør som over 250 andre virksomheter og del dine data med resten av landet
+	    	Gjør som over <Link href="https://staging.fellesdatakatalog.digdir.no/organizations">125 andre virksomheter</Link> og del dine data med resten av landet.
 	    </Paragraph>
 	    <div className={styles.buttons}>
 	    	<Button asChild>
