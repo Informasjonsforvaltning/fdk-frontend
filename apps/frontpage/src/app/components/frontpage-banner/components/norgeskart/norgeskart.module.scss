@@ -7,11 +7,11 @@
 	height:100%;
 	min-height:1600px;
 	z-index:1;
-	opacity:0.4;
+	opacity:0.3;
 	mix-blend-mode: overlay;
 	mix-blend-mode: soft-light;
 	mix-blend-mode: plus-darker;
-	filter: grayscale(100%) contrast(100%) brightness(50%) invert(100%);
+	filter: grayscale(100%) contrast(100%) brightness(40%) invert(100%);
 	pointer-events:none;
 
 	@media (max-width: 550px) {
