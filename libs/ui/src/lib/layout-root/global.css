@@ -19,7 +19,10 @@
   --breakpoint-x-large: 992px;
   --breakpoint-xx-large: 1200px;
   --breakpoint-xxx-large: 1440px;
+  --color-text: var(--fds-semantic-text-neutral-default);
+  --color-interactive: var(--fds-semantic-surface-action-first-default);
   --color-fdk-navy: #1e2b3c;
+  --color-fdk-navy-dark: #1e2b3c;
 }
 
 /* suggestions from designsystem.no */

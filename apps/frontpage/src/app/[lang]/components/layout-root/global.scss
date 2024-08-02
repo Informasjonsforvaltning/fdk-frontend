@@ -1,0 +1,32 @@
+/* Define layers in specific order */
+@layer reset, fds;
+
+@import url('reset.css');
+@import url('@digdir/designsystemet-theme');
+@import url('@digdir/designsystemet-css');
+
+/* Small devices such as large phones (640px and up) */
+
+/* breakpoints based on bootstrap's breakpoints */
+:root {
+  --breakpoint-small: 640px;
+  --breakpoint-medium: 768px;
+  --breakpoint-large: 992px;
+  --breakpoint-x-large: 1200px;
+  --breakpoint-xx-large: 1400px;
+  --breakpoint-xxx-large: 1600px;
+  --color-fdk-navy: var(--fds-semantic-surface-neutral-inverted);
+  --color-fdk-navy-dark: color-mix(in srgb,var(--color-fdk-navy),#000 75%);
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  font-size:16px;
+
+  @media (max-width: 650px) {
+    font-size:14px;
+  }
+}
