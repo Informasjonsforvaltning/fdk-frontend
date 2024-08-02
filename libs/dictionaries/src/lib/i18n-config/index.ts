@@ -19,16 +19,20 @@ export const i18n = {
 
 export type Locale = typeof i18n['locales'][number];
 
-const dictionaries = {
-  en: () => import('../dictionaries/en.json').then((module) => module.default),
-  nb: () => import('../dictionaries/nb.json').then((module) => module.default),
-  nn: () => import('../dictionaries/nn.json').then((module) => module.default),
-  no: () => import('../dictionaries/nb.json').then((module) => module.default),
+export type Dictionary = {
+  [key: string]: string | Dictionary;
+}
+
+export const getDictionary = async (locale: string, set: string): Promise<Dictionary> => {
+  try {
+    const module = await import(`../dictionaries/${locale}/${set}.json`);
+    return module.default as Dictionary;
+  } catch (error) {
+    console.warn(`Could not load dictionary for locale: ${locale}, set: ${set}. Falling back to default locale.`);
+    const fallbackModule = await import(`../dictionaries/${i18n.defaultLocale}/${set}.json`);
+    return fallbackModule.default as Dictionary;
+  }
 };
-
-export type Dictionary = typeof getDictionary extends (...args: any) => Promise<infer T> ? T : never;
-
-export const getDictionary = async (locale: Locale['code']) => dictionaries[locale]?.() ?? dictionaries[i18n.defaultLocale]();
 
 export const getLocale = (request: NextRequest): Locale | undefined => {
   // Negotiator expects plain object so we need to transform headers
