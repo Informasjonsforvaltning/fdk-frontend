@@ -1,10 +1,9 @@
 .headerOuter {
-/*  background: #fafafa;*/
   color: #1e2b3c;
-  position:absolute;
+  position:fixed;
   z-index:100;
   width:100%;
-/*  transition:background linear 300ms;*/
+  transition:background linear 200ms;
 
   &.headerSticky {
     background: white;
@@ -23,12 +22,6 @@
     }
   }
 }
-
-/*.drawerOpen {
-  background: #eee;
-  box-shadow: var(--fds-shadow-medium);
-  transition:none;
-}*/
 
 .headerInner {
   display:flex;
@@ -75,16 +68,6 @@
       }
     }
   }
-}
-
-.drawer {
-/*  background:white;*/
-  position:static;
-  top:0;
-  width:100%;
-/*  padding-top:5rem;*/
-  z-index:101;
-/*  background:#fafafa;*/
 }
 
 .drawerInner {

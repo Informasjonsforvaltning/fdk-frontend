@@ -1,8 +1,5 @@
 .outer {
-/*	background: var(--fds-semantic-surface-neutral-inverted);*/
-	--background-navy:  var(--fds-semantic-surface-neutral-inverted);
-  	--background-navy-darker: color-mix(in srgb,var(--fds-semantic-surface-neutral-inverted),#000 75%);
- 	background: radial-gradient(circle, var(--background-navy), var(--background-navy-darker));
+ 	background: radial-gradient(circle, var(--color-fdk-navy), var(--color-fdk-navy-dark));
 	color: white;
 /*	padding-top: 80px;*/
 	position:relative;
