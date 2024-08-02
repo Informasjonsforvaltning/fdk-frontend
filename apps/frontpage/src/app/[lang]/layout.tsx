@@ -1,11 +1,9 @@
-import { RootLayout, RootLayoutProps, generateStaticParams, getMetadata } from './components/layout-root';
+import { RootLayout, RootLayoutProps, generateStaticParams } from './components/layout-root';
 
-const metadata = getMetadata({ 
+const metadata = { 
 	title: 'data.norge.no',
 	description: 'Felles datakatalog'
-});
-
-export { generateStaticParams, metadata };
+};
 
 const modifiedRootLayout = (props: RootLayoutProps) => (
 	<RootLayout
@@ -15,3 +13,4 @@ const modifiedRootLayout = (props: RootLayoutProps) => (
 );
 
 export default modifiedRootLayout;
+export { generateStaticParams, metadata };

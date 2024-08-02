@@ -16,15 +16,14 @@ export type RootLayoutProps = {
   params: {
     lang: Locale['code'];
   },
-  title?: string;
   frontpage?: boolean;
 };
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
-const RootLayout = async ({ children, params, title, frontpage }: RootLayoutProps) => {
+const RootLayout = async ({ children, params, frontpage }: RootLayoutProps) => {
 
-  const dictionary = await getDictionary(params.lang);
+  const dictionary = await getDictionary(params.lang, 'common');
 
   const {
     FDK_BASE_URI,
@@ -33,8 +32,7 @@ const RootLayout = async ({ children, params, title, frontpage }: RootLayoutProp
     FDK_USE_DEMO_LOGO
   } = process.env;
 
-  // const baseUri = FDK_BASE_URI ?? '/';
-  const baseUri = '/';
+  const baseUri = FDK_BASE_URI ?? '/';
   const communityBaseUri = FDK_COMMUNITY_BASE_URI ?? '/';
   const registrationBaseUri = FDK_REGISTRATION_BASE_URI ?? '/';
   const useDemoLogo = FDK_USE_DEMO_LOGO === 'true';
@@ -50,21 +48,13 @@ const RootLayout = async ({ children, params, title, frontpage }: RootLayoutProp
           useDemoLogo={useDemoLogo}
         />
         <main>{children}</main>
-        <Footer
+        {/*<Footer
           dictionary={dictionary}
           baseUri={baseUri}
-        />
+        />*/}
       </body>
     </html>
   );
 };
 
-const getMetadata = ({ title, description }: { title: string, description: string }) => ({
-  title: title,
-  description: description,
-  alternates: {
-    stylesheet: 'https://altinncdn.no/fonts/inter/inter.css'
-  },
-});
-
-export { RootLayout, generateStaticParams, getMetadata };
+export { RootLayout, generateStaticParams };
