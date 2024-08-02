@@ -1,0 +1,52 @@
+{
+	"aiBanner": {
+		"title": "Der Norge deler data",
+		"prompt": {
+			"label": "Spør vår KI om data fra over 125 virksomheter og 8000 datasett:",
+			"placeholder": "Hva leter du etter?",
+			"button": "Spør",
+			"responses": {
+				"resultsFound": "Jeg fant {{num}} datasett som kan være relevante:",
+				"noResults": "Jeg fant dessverre ingen relevante datasett. Prøv gjerne en annen spørring."
+			},
+			"errors": {
+				"queryTooShort": "Spørringen må inneholde mer enn to tegn. Prøv igjen.",
+				"generic": "En feil oppstod. Vennligst prøv igjen."
+			}
+		},
+		"suggestions": {
+			"prefix": "Prøv f.eks.",
+			"list": [
+				"Antall Teslaer solgt i Norge i 2022",
+				"Hvilke områder i Norge er vernet?",
+				"Hvilke varer eksporterer Norge mest?",
+				"Hvordan ser trafikkmønstrene ut i Oslo?",
+				"Hvordan presterer norske skoler?",
+				"Hvilke forskningsprosjekter får støtte i Norge?",
+				"Hvor mye skog har Norge?",
+				"Hvordan går det med digitalisering i Norge?",
+				"Hvilke teknologier er mest brukt i Norge?"
+			]
+		},
+		"tooltip": {
+			"label": "Om KI-søket",
+			"text": "Vårt KI-søk gjør det enkelt å finne datasett ved å bruke naturlig språk uten at du trenger å kjenne til spesifikke datasettnavn, fagtermer eller tekniske formater.",
+			"disclaimer": "Vær obs på at KI-søket kan inneholde feil.",
+			"readMoreLinkText": "Les mer om KI-søket her"
+		},
+		"advancedSearchPrompt": {
+    		"text": "Finner du ikke det du leter etter?",
+	    	"link": "Finn data"
+	    }
+	},
+	"shareDataBanner": {
+	  	"title": "Har du data å dele?",
+	  	"content": "Gjør som over {{link}} og del dine data med resten av landet.",
+	  	"organizationsLinkText": "125 andre virksomheter",
+	  	"getStartedLinkText": "Kom i gang",
+	  	"documentationLinkText": "Se dokumentasjon"
+	},
+	"catalogsBanner": {
+		"title": "Våre datakataloger"
+	}
+}

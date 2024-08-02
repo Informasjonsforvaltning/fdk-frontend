@@ -1,0 +1,88 @@
+.frontpageWrapper {
+  .headerOuter {
+    &:not(.headerSticky) {
+      .headerLogo {
+        color:white;
+      }
+
+      .headerToolbar {
+        a, button {&:not(:hover) {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.headerOuter {
+  position:fixed;
+  z-index:100;
+  width:100%;
+  transition:background linear 200ms;
+
+  &.headerSticky {
+    background: white;
+    box-shadow: var(--fds-shadow-medium);
+  }
+
+  .headerInner {
+    display:flex;
+    align-items:center;
+    max-width:1280px;
+    margin:auto;
+    padding:1rem 2rem;
+    justify-content: space-between;
+    position:relative;
+    z-index:102;
+    container-type:inline-size;
+
+    &.full {
+      max-width:none;
+      padding:2rem 4rem;
+    }
+
+    .headerLogo {
+      color: var(--color-fdk-navy);
+    }
+
+    .headerToolbar {
+      display:flex;
+      gap:1rem;
+
+      a, button {
+        text-decoration: none;
+
+        &:not(:hover) {
+          color: var(--fds-semantic-surface-action-first-default);
+        }
+
+        &:last-child {
+          color: white;
+        }
+      }
+
+      @container (max-width: 500px) {
+        gap: 0.5rem;
+
+        a, button {
+          svg + span {
+            display:none;
+          }
+        }
+      }
+
+      @media (max-width: 400px) {
+        a:last-child {
+          display:none;
+        }
+      }
+    }
+  }
+
+  .drawerInner {
+    max-width:1280px;
+    padding:0 2rem;
+    margin:auto;
+  }
+}

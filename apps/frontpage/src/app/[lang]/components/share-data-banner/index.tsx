@@ -1,8 +1,8 @@
 import { Button, Heading, Paragraph, Link } from '@digdir/designsystemet-react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { Dictionary, interpolate } from '@fdk-frontend/i18n';
+import { Dictionary, interpolate } from '@fdk-frontend/dictionaries';
 
-import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
+import { HeadingWithDivider } from '../typography';
 
 import styles from './share-data-banner.module.scss';
 

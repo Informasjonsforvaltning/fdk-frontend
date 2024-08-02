@@ -1,4 +1,4 @@
-import { getDictionary, Locale } from '@fdk-frontend/i18n';
+import { getDictionary, Locale } from '@fdk-frontend/dictionaries';
 
 import { FrontpageBanner } from './components/frontpage-banner';
 import { ShareDataBanner } from './components/share-data-banner';

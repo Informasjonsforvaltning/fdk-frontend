@@ -1,8 +1,8 @@
 import cn from 'classnames';
-import { RootLayout, RootLayoutProps, generateStaticParams } from '@fdk-frontend/ui/layout-root';
+import { RootLayout, RootLayoutProps, generateStaticParams } from './components/layout-root';
 
-import headerStyles from '@fdk-frontend/ui/header/header.module.scss';
 import pageStyles from './page.module.scss';
+import headerStyles from './components/header/header.module.scss';
 
 const metadata = { 
 	title: 'data.norge.no',
