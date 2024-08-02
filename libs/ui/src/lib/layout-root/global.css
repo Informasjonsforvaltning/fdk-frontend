@@ -1,0 +1,32 @@
+/* Define layers in specific order */
+@layer reset, fds;
+
+@import url('./reset.css');
+@import url('@digdir/designsystemet-theme');
+@import url('@digdir/designsystemet-css');
+
+/* Small devices such as large phones (640px and up) */
+
+/*
+ breakpoints based on designsystem.no breakpoints.
+ https://github.com/digdir/designsystemet/tree/main/design-tokens/Viewport
+*/
+:root {
+  --breakpoint-x-small: 320px;
+  --breakpoint-small: 375px;
+  --breakpoint-medium: 576px;
+  --breakpoint-large: 768px;
+  --breakpoint-x-large: 992px;
+  --breakpoint-xx-large: 1200px;
+  --breakpoint-xxx-large: 1440px;
+  --color-text: var(--fds-semantic-text-neutral-default);
+  --color-interactive: var(--fds-semantic-surface-action-first-default);
+  --color-fdk-navy: #1e2b3c;
+  --color-fdk-navy-dark: #1e2b3c;
+}
+
+/* suggestions from designsystem.no */
+body {
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: 'cv05' 1 !important;
+}

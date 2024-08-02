@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { i18n, getLocale, Locale } from '@fdk-frontend/i18n';
+import { i18n, getLocale, Locale } from '@fdk-frontend/dictionaries';
 
 export const middleware = (request: NextRequest) => {
   // Get the pathname and remove basePath

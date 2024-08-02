@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion';
 import { Textfield, Button, Link, Heading, Spinner, ErrorMessage, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { SparklesIcon, FilesIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import { Dictionary, interpolate } from '@fdk-frontend/i18n';
+import { Dictionary, interpolate } from '@fdk-frontend/dictionaries';
 
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
 
@@ -83,7 +83,7 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 		        body: JSON.stringify({ query: q ?? query })
 		    })
 		    .then(res => {
-		    	setLoading(false);
+		    		setLoading(false);
 
 		        if (res.status === 200) {
 		          return res.json();
