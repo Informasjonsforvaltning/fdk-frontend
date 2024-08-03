@@ -20,7 +20,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 
 	return (
 		<footer className={styles.footer}>
-			<div className={styles.footerLinks}>
+			<div className={styles.links}>
 				<div className={styles.linkSection}>
 					<Heading className={styles.linkSectionHeader} level={3} size="sm">
 						{dictionary.mainMenu.catalogs.heading}
@@ -78,13 +78,15 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 					</ul>
 				</div>
 			</div>
-			<div className={styles.footerBottom}>
-				<LogoLink baseUri={baseUri} />
-				<div className={styles.footerDigdirLink}>
-					<span>en tjeneste fra</span>
-					<Link href="https://www.digdir.no">
-						<DigdirLogo />
-					</Link>
+			<div className={styles.bottom}>
+				<div className={styles.bottomInner}>
+					<LogoLink baseUri={baseUri} />
+					<div className={styles.digdirCredit}>
+						<span>en tjeneste fra</span>
+						<Link href="https://www.digdir.no">
+							<DigdirLogo />
+						</Link>
+					</div>
 				</div>
 			</div>
 		</footer>

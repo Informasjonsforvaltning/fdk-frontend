@@ -1,7 +1,7 @@
 .footer {
 	background: var(--color-fdk-navy-dark);
 
-	.footerLinks {
+	.links {
 		display:flex;
 		gap:1rem;
 		justify-content: space-between;
@@ -37,23 +37,43 @@
 		}
 	}
 
-	.footerBottom {
-		display:flex;
-		justify-content: space-between;
-		padding:2rem;
+	.bottom {
 		border-top:1px solid var(--color-fdk-navy);
 		color:white;
+
+		.bottomInner {
+			display:flex;
+			justify-content: space-between;
+			padding:2rem;
+			max-width: 1280px;
+			margin:auto;
+		}
 
 		svg {
 			max-height:2rem;
 			fill: white;
 		}
 
-		.footerDigdirLink {
-			display:block;
-			svg {
-				display:block;
-				height:1.75rem;
+		a {
+			color: white;
+		}
+
+		.digdirCredit {
+			display:flex;
+			gap:1rem;
+			align-items:center;
+
+			a {
+				svg {
+					display:block;
+					height:1.75rem;
+				}
+
+				&:hover {
+					svg {
+						fill: var(--fds-semantic-border-action-first-subtle);
+					}
+				}
 			}
 		}
 	}
