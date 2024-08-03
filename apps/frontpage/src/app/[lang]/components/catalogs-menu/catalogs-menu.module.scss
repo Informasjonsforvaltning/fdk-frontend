@@ -4,6 +4,9 @@
 		grid-template-columns: 1fr 1fr;
 		grid-auto-rows: auto;
 		gap: 1rem;
+		list-style:none;
+		padding:0;
+		margin:0;
 	}
 
 	@container (max-width: 500px) {
