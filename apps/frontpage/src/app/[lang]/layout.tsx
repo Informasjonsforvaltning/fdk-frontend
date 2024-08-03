@@ -1,16 +1,23 @@
+import cn from 'classnames';
 import { RootLayout, RootLayoutProps, generateStaticParams } from './components/layout-root';
+
+import pageStyles from './page.module.scss';
+import headerStyles from './components/header/header.module.scss';
 
 const metadata = { 
 	title: 'data.norge.no',
 	description: 'Felles datakatalog'
 };
 
-const modifiedRootLayout = (props: RootLayoutProps) => (
+const FrontpageLayout = (props: RootLayoutProps) => (
 	<RootLayout
-		frontpage={true}
+		className={cn(
+			pageStyles.frontpageBody,
+			headerStyles.frontpageWrapper
+		)}
 		{ ...props }
 	/>
 );
 
-export default modifiedRootLayout;
+export default FrontpageLayout;
 export { generateStaticParams, metadata };

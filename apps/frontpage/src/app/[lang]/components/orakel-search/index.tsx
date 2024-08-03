@@ -116,7 +116,7 @@ const OrakelSearch = () => {
 		        value={query}
 		        error={error}
 		        onChange={(e) => setQuery(e.target.value)}
-		        autocomplete="off"
+		        autoComplete="off"
 		      />
 		      <Button
 		      	className={styles.orakelSearchButton}

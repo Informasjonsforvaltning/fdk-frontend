@@ -3,7 +3,7 @@ import { ChevronRightIcon } from '@navikt/aksel-icons';
 
 import { HeadingWithDivider } from '../typography';
 
-import styles from './share-data-banner.module.css';
+import styles from './share-data-banner.module.scss';
 
 const ShareDataBanner = () => {
 	return (

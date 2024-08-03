@@ -15,30 +15,30 @@ export type CatalogSymbolProps = {
 	catalog: 'datasets' | 'apis' | 'terms' | 'information-models' | 'services-events' | 'ai';
 }
 
-const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps) => {
-
-	const Icon = (props) => {
-		switch (catalog) {
-			case 'datasets':
-				return <FilesIcon {...props} />;
-			case 'apis':
-				return <CodeIcon {...props} />;
-			case 'terms':
-				return <ChatElipsisIcon {...props} />;
-			case 'information-models':
-				return <TenancyIcon {...props} />;
-			case 'services-events':
-				return <CompassIcon {...props} />;
-			case 'ai':
-				return <SparklesIcon {...props} />;
-		}
+const CatalogIcon = ({ catalog, ...rest }: CatalogSymbolProps & React.SVGProps<SVGSVGElement>) => {
+	switch (catalog) {
+		case 'datasets':
+			return <FilesIcon {...rest} />;
+		case 'apis':
+			return <CodeIcon {...rest} />;
+		case 'terms':
+			return <ChatElipsisIcon {...rest} />;
+		case 'information-models':
+			return <TenancyIcon {...rest} />;
+		case 'services-events':
+			return <CompassIcon {...rest} />;
+		case 'ai':
+			return <SparklesIcon {...rest} />;
 	}
+}
 
+const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps & React.HTMLAttributes<HTMLDivElement>) => {
 	return (
 		<div className={cn(styles.catalogSymbol, className)}>
-			<Icon aria-hidden {...rest} />
+			<CatalogIcon catalog={catalog} aria-hidden {...rest} />
 		</div>
 	);
 }
 
-export { CatalogSymbol };
+export default CatalogSymbol;
+export { CatalogIcon };
