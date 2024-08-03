@@ -1,34 +1,60 @@
 {
 	"header": {
 		"findDataButton": "Find data",
-		"menuMenuButton": "Main menu",
+		"menuButton": "Menu",
 		"shareDataButton": "Share data"
 	},
 	"mainMenu": {
 		"catalogs": {
+			"heading": "Data catalogs",
 			"datasets": {
-				"heading": "Datasets",
-				"description": "Collections of structured data that can be downloaded or accessed via APIs"
+				"title": "Datasets",
+				"description": "Collections of structured data that can be downloaded or accessed through APIs"
 			},
 			"apis": {
-				"heading": "APIs",
-				"description": "Communication protocols for data systems with dynamic data and real-time data"
+				"title": "APIs",
+				"description": "Communication protocols for data systems with dynamic and realtime data"
 			},
 			"terms": {
-				"heading": "Terms",
-				"description": "Definitions and dictionaries of official terms and concepts used by organizations in their data"
+				"title": "Terms",
+				"description": "Definitions and glossaries of official terms and concepts used by organizations in their data"
 			},
-			"information-models": {
-				"heading": "Information Models",
+			"informationModels": {
+				"title": "Information Models",
 				"description": "Structured representations of information and data for datasets and APIs"
 			},
-			"services-events": {
-				"heading": "Services and Events",
-				"description": "Overview of services, procedures, and events used by organizations when processing data"
+			"servicesEvents": {
+				"title": "Services and events",
+				"description": "Overview of services, procedures, and events used when organizations process data"
 			},
 			"ai": {
-				"heading": "Artificial Intelligence",
+				"title": "Artificial Intelligence",
 				"description": "Overview of AI projects in the public sector"
+			}
+		},
+		"help": {
+			"header": "Help and guidance",
+			"links": {
+				"getStarted": "Get started",
+				"documentation": "Documentation",
+				"community": "Community"
+			}
+		},
+		"tools": {
+			"header": "Tools",
+			"links": {
+				"organizations": "Organizations",
+				"requestData": "Request data",
+				"dataHunter": "Data Hunter",
+				"sparqlSandbox": "SPARQL sandbox"
+			}
+		},
+		"about": {
+			"header": "About data.norge.no",
+			"links": {
+				"reports": "Reports & key figures",
+				"aboutUs": "About us",
+				"contactUs": "Contact us"
 			}
 		}
 	}

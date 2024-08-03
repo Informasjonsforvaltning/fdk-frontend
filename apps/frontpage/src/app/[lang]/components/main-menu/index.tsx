@@ -10,11 +10,21 @@ import {
 	ExternalLinkIcon
 } from '@navikt/aksel-icons';
 
+import { Dictionary } from '@fdk-frontend/dictionaries';
+
 import styles from './main-menu.module.scss';
 
 import CatalogsMenu from '../catalogs-menu';
+import getMainMenuData from './data'
 
-const MainMenu = () => {
+type MainMenuProps = {
+	dictionary: Dictionary;
+	baseUri: string;
+}
+
+const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
+
+	const data = getMainMenuData(dictionary, baseUri);
 
 	const animations = {
 		menu: {
@@ -34,7 +44,10 @@ const MainMenu = () => {
 			initial="hidden"
 			animate="show"
 		>
-			<CatalogsMenu />
+			<CatalogsMenu
+				dictionary={dictionary}
+				baseUri={baseUri}
+			/>
 			<div className={styles.linkSectionContainer}>
 				<motion.div
 					className={styles.linkSection}

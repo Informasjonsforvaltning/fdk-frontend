@@ -11,7 +11,6 @@ import { Logo, LogoLink } from '../logo';
 import { MainMenu } from '../main-menu';
 import { HeaderSearch } from '../header-search';
 
-import { getHeaderData } from './data';
 import styles from './header.module.scss';
 import NavigationMenu from './components/menu-navigation';
 
@@ -32,13 +31,6 @@ const Header = ({
   const headerRef = useRef(null);
   const [ sticky, setSticky ] = useState(false);
   const [ showMenu, setShowMenu ] = useState(false);
-
-  const headerData = getHeaderData(
-    dictionary,
-    baseUri,
-    communityBaseUri,
-    registrationBaseUri,
-  );
 
   useEffect(() => {
     const toggleSticky = () => {
@@ -76,13 +68,12 @@ const Header = ({
         <LogoLink
           className={styles.headerLogo}
           baseUri={baseUri}
-          label={dictionary.goToMainPageAriaLabel}
         />
         <div className={styles.headerToolbar}>
           <Button asChild size="small" variant="tertiary">
-            <Link href="https://staging.fellesdatakatalog.digdir.no/search-all">
+            <Link href={`${baseUri}/search-all`}>
               <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
-              <span>Finn data</span>
+              <span>{dictionary.header.findDataButton}</span>
             </Link>
           </Button>
           <Button size="small" variant={showMenu ? 'secondary' : 'tertiary' } onClick={() => setShowMenu(!showMenu)}>
@@ -91,11 +82,11 @@ const Header = ({
               <XMarkIcon aria-hidden fontSize='1.5em' /> :
               <MenuHamburgerIcon aria-hidden fontSize='1.5em' />
             }
-            <span>Meny</span>
+            <span>{dictionary.header.menuButton}</span>
           </Button>
           <Button asChild size="small" variant="primary">
-            <Link href="https://staging.fellesdatakatalog.digdir.no/publishing">
-              Del data
+            <Link href={`${baseUri}/publishing`}>
+              <span>{dictionary.header.shareDataButton}</span>
             </Link>
           </Button>
         </div>
@@ -104,7 +95,13 @@ const Header = ({
         showMenu &&
         <div className={styles.drawer}>
           <div className={styles.drawerInner}>
-            { showMenu && <MainMenu /> }
+            {
+              showMenu &&
+              <MainMenu
+                dictionary={dictionary}
+                baseUri={baseUri}
+              />
+            }
           </div>
         </div>
       }

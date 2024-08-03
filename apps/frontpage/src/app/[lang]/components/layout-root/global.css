@@ -19,12 +19,7 @@
   --color-fdk-navy-dark: color-mix(in srgb,var(--color-fdk-navy),#000 50%);
 }
 
-/* suggestions from designsystem.no */
 body {
-  /*
-  font-family: 'Inter', sans-serif;
-  font-feature-settings: 'cv05' 1 !important;
-  */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 

@@ -16,6 +16,8 @@ import styles from './catalogs-menu.module.scss';
 
 import { CatalogSymbol } from '../catalog-symbol/';
 
+import getMainMenuData from '../main-menu/data';
+
 const catalogItems = [
   {
   	icon: FilesIcon,
@@ -61,7 +63,18 @@ const catalogItems = [
   }
 ];
 
-const CatalogsMenu = () => {
+// const getCatalogIcon = (catalog) => {
+
+// }
+
+type CatalogsMenuProps = {
+	dictionary: Dictionary;
+	baseUri: string;
+}
+
+const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
+
+	const data = getMainMenuData(dictionary, baseUri);
 
 	const animations = {
 		catalogList: {
@@ -87,7 +100,7 @@ const CatalogsMenu = () => {
 		    animate="show"
 		  >
 				{
-					catalogItems.map((item, i) =>
+					data.catalogs.items.map((item, i) =>
 						<motion.li variants={animations.catalogItem} key={item.key}>
 								<Card className={styles.card} asChild href={item.href} isLink>
 									<Link href={item.href}>
