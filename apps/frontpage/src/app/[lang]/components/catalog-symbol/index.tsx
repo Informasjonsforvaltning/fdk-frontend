@@ -41,4 +41,4 @@ const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps) => {
 	);
 }
 
-export { CatalogSymbol };
+export default CatalogSymbol;

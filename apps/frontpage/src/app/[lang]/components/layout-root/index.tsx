@@ -6,8 +6,9 @@ import { PropsWithChildren } from 'react';
 import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 import cn from 'classnames';
 
-import { Footer } from '@fdk-frontend/ui/footer';
-import { Header } from '../header';
+// import { Footer } from '@fdk-frontend/ui/footer';
+import Footer from '../footer';
+import Header from '../header';
 
 import styles from './layout-root.module.css';
 
@@ -44,10 +45,10 @@ const RootLayout = async ({ children, className, params }: RootLayoutProps & Pro
           communityBaseUri={communityBaseUri}
         />
         <main>{children}</main>
-        {/*<Footer
+        <Footer
           dictionary={dictionary}
           baseUri={baseUri}
-        />*/}
+        />
       </body>
     </html>
   );

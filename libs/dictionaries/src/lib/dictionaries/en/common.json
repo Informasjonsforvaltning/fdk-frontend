@@ -33,7 +33,7 @@
 			}
 		},
 		"help": {
-			"header": "Help and guidance",
+			"heading": "Help and guidance",
 			"links": {
 				"getStarted": "Get started",
 				"documentation": "Documentation",
@@ -41,7 +41,7 @@
 			}
 		},
 		"tools": {
-			"header": "Tools",
+			"heading": "Tools",
 			"links": {
 				"organizations": "Organizations",
 				"requestData": "Request data",
@@ -50,7 +50,7 @@
 			}
 		},
 		"about": {
-			"header": "About data.norge.no",
+			"heading": "About data.norge.no",
 			"links": {
 				"reports": "Reports & key figures",
 				"aboutUs": "About us",
