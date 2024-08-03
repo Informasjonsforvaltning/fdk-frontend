@@ -33,6 +33,7 @@
 
 			.footerCatalogSymbol {
 				background:transparent;
+				padding:0;
 			}
 		}
 	}
@@ -76,5 +77,11 @@
 				}
 			}
 		}
+	}
+}
+
+.iconLink {
+	svg {
+		fill: var(--fds-semantic-border-action-first-subtle);
 	}
 }

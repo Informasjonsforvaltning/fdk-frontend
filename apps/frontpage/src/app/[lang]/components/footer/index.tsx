@@ -1,11 +1,13 @@
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import { Link, Heading } from '@digdir/designsystemet-react';
 
-import CatalogSymbol from '../catalog-symbol';
+import { CatalogIcon } from '../catalog-symbol';
 import { LogoLink } from '../logo';
 import DigdirLogo from './images/digdir-logo';
+import GithubLogo from './images/github-logo';
 
 import getMainMenuData from '../main-menu/data'
+import getFooterData from './data'
 
 import styles from './footer.module.scss';
 
@@ -16,7 +18,8 @@ type FooterProps = {
 
 const Footer = ({ dictionary, baseUri }: FooterProps) => {
 
-	const data = getMainMenuData(dictionary, baseUri);
+	const mainMenuData = getMainMenuData(dictionary, baseUri);
+	const footerData = getFooterData(dictionary);
 
 	return (
 		<footer className={styles.footer}>
@@ -27,13 +30,10 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 					</Heading>
 					<ul>
 						{
-							data.catalogs.map(item => (
+							mainMenuData.catalogs.map(item => (
 								<li>
-									<Link href={item.href}>
-										<CatalogSymbol
-											className={styles.footerCatalogSymbol}
-											catalog={item.key}
-										/>
+									<Link className={styles.iconLink} href={item.href}>
+										<CatalogIcon catalog={item.key} fontSize='1.5em' />
 										{item.title}
 									</Link>
 								</li>
@@ -47,7 +47,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 					</Heading>
 					<ul>
 						{
-							data.help.map(item => (
+							mainMenuData.help.map(item => (
 								<li><Link href={item.href}>{item.title}</Link></li>
 							))
 						}
@@ -59,7 +59,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 					</Heading>
 					<ul>
 						{
-							data.tools.map(item => (
+							mainMenuData.tools.map(item => (
 								<li><Link href={item.href}>{item.title}</Link></li>
 							))
 						}
@@ -71,10 +71,21 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 					</Heading>
 					<ul>
 						{
-							data.about.map(item => (
+							mainMenuData.about.map(item => (
 								<li><Link href={item.href}>{item.title}</Link></li>
 							))
 						}
+						{
+							footerData.policies.map(item => (
+								<li><Link href={item.href}>{item.title}</Link></li>
+							))
+						}
+						<li>
+							<Link className={styles.iconLink} href={footerData.githubUri}>
+								<GithubLogo fontSize='1.25em' />
+								{dictionary.footer.githubFollow}
+							</Link>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -83,7 +94,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 					<LogoLink baseUri={baseUri} />
 					<div className={styles.digdirCredit}>
 						<span>en tjeneste fra</span>
-						<Link href="https://www.digdir.no">
+						<Link href={footerData.digdirUri}>
 							<DigdirLogo />
 						</Link>
 					</div>

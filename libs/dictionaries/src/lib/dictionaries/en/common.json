@@ -57,5 +57,14 @@
 				"contactUs": "Contact us"
 			}
 		}
+	},
+	"footer": {
+		"policies": {
+			"a11yStatement": "Accesibility statement",
+			"privacyPolicy": "Privacy policy",
+			"cookiePolicy": "Cookie policy"
+		},
+		"githubFollow": "Follow us on Github",
+		"digdirCredit": "a service from"
 	}
 }
