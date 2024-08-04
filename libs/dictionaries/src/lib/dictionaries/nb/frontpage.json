@@ -35,15 +35,18 @@
 			"readMoreLinkText": "Les mer om KI-søket her"
 		},
 		"advancedSearchPrompt": {
-    	"text": "Finner du ikke det du leter etter?",
-    	"link": "Finn data"
-    }
+    		"text": "Finner du ikke det du leter etter?",
+	    	"link": "Finn data"
+	    }
 	},
 	"shareDataBanner": {
-  	"title": "Har du data å dele?",
-  	"content": "Gjør som over {{link}} og del dine data med resten av landet.",
-  	"organizationsLinkText": "125 andre virksomheter",
-  	"getStartedLinkText": "Kom i gang",
-  	"documentationLinkText": "Se dokumentasjon"
-  }
+	  	"title": "Har du data å dele?",
+	  	"content": "Gjør som over {{link}} og del dine data med resten av landet.",
+	  	"organizationsLinkText": "125 andre virksomheter",
+	  	"getStartedLinkText": "Kom i gang",
+	  	"documentationLinkText": "Se dokumentasjon"
+	},
+	"catalogsBanner": {
+		"title": "Våre datakataloger"
+	}
 }

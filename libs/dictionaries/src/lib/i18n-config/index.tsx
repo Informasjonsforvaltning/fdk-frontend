@@ -1,3 +1,4 @@
+import React from 'react';
 import Negotiator from 'negotiator';
 import { match as matchLocale } from '@formatjs/intl-localematcher';
 import { NextRequest } from 'next/server';
@@ -5,14 +6,20 @@ import { NextRequest } from 'next/server';
 export const i18n = {
   defaultLocale: 'nb',
   locales: [
-    { code: 'en',
-      name: 'English',
-    },
-    { code: 'nb',
+    {
+      code: 'nb',
       name: 'Bokmål',
+      flag: '🇳🇴'
     },
-    { code: 'nn',
+    {
+      code: 'nn',
       name: 'Nynorsk',
+      flag: '🇳🇴'
+    },
+    {
+      code: 'en',
+      name: 'English',
+      flag: '🇬🇧'
     },
   ],
 } as const;
@@ -44,3 +51,26 @@ export const getLocale = (request: NextRequest): Locale | undefined => {
   const locale = matchLocale(languages, localeCodes, i18n.defaultLocale);
   return i18n.locales.find((l) => l.code === locale);
 }
+
+/**
+ * Interpolates values into a string containing HTML.
+ * @param {string} str - The string containing placeholders and HTML.
+ * @param {Object} params - The object containing key-value pairs for interpolation.
+ * @returns {React.Element} - The interpolated string as a React element.
+ */
+export const interpolate = (str, params) => {
+  const regex = /{{\s*([^{}\s]+)\s*}}/g;
+  let match;
+  const parts = [];
+  let lastIndex = 0;
+
+  while ((match = regex.exec(str)) !== null) {
+    const key = match[1];
+    parts.push(str.slice(lastIndex, match.index));
+    parts.push(<React.Fragment key={key}>{params[key]}</React.Fragment>);
+    lastIndex = regex.lastIndex;
+  }
+
+  parts.push(str.slice(lastIndex));
+  return <>{parts}</>;
+};
