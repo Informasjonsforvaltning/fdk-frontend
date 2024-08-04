@@ -3,7 +3,6 @@ import 'server-only';
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
 
 import { Breadcrumbs } from '@fdk-frontend/ui/breadcrumbs';
-import { Container } from '@fdk-frontend/ui/container';
 
 import DataHunterForm from './components/data-hunter-form';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
@@ -22,7 +21,7 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
   // Opt-in dynamic rendering
   noStore();
 
-  const dictionary = await getDictionary(lang);
+  const dictionary = await getDictionary(lang, 'data-hunter-page');
 
   const { FDK_BASE_URI } = process.env;
 
@@ -46,7 +45,7 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
         breadcrumbList={breadcrumbList}
         dictionary={dictionary}
       />
-      <Container className={styles.contentContainer}>
+      <div className={styles.contentContainer}>
         <Heading
           size='xlarge'
           spacing
@@ -60,7 +59,7 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
           {dictionary.dataHunterForm.description}
         </Paragraph>
         <DataHunterForm dictionary={dictionary} />
-      </Container>
+      </div>
     </div>
   );
 };

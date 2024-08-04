@@ -1,5 +1,5 @@
-import CatalogsMenu from '../catalogs-menu';
-import { HeadingWithDivider } from '../typography';
+import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
+import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 
 import styles from './catalogs-banner.module.scss';
 

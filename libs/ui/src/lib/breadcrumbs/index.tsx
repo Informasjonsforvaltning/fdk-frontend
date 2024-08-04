@@ -1,3 +1,4 @@
+import { ChevronRightIcon, HouseIcon } from '@navikt/aksel-icons';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Link } from '@digdir/designsystemet-react';
 import styles from './breadcrumbs.module.css';
@@ -19,30 +20,28 @@ const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) 
       className={styles.breadcrumbs}
       aria-label={dictionary.breadcrumbs}
     >
-      <span>
-        <Link
-          className={styles.link}
-          aria-label={dictionary.homePage}
-          href={baseUri}
-        >
-          {dictionary.homePage}
-        </Link>
-        {breadcrumbList?.map((breadcrumb, i) => (
-          <span key={breadcrumb.href}>
-            <span className={styles.separator}>{'>'}</span>
-            {i === breadcrumbList.length - 1 ? (
-              <span className={styles.deactiveLink}>{breadcrumb.text}</span>
-            ) : (
-              <Link
-                className={styles.link}
-                href={breadcrumb.href}
-              >
-                {breadcrumb.text}
-              </Link>
-            )}
-          </span>
-        ))}
-      </span>
+      <Link
+        className={styles.link}
+        aria-label={dictionary.homePage}
+        href={baseUri}
+      >
+        {dictionary.homePage}
+      </Link>
+      {breadcrumbList?.map((breadcrumb, i) => (
+        <div key={breadcrumb.href}>
+          <ChevronRightIcon className={styles.separator} fontSize="1.5rem" />
+          {i === breadcrumbList.length - 1 ? (
+            <span className={styles.deactiveLink}>{breadcrumb.text}</span>
+          ) : (
+            <Link
+              className={styles.link}
+              href={breadcrumb.href}
+            >
+              {breadcrumb.text}
+            </Link>
+          )}
+        </div>
+      ))}
     </nav>
   </div>
 );

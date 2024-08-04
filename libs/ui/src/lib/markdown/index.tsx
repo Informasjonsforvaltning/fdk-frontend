@@ -6,4 +6,4 @@ const Markdown = (props: any) => {
 	);
 }
 
-export { Markdown };
+export default Markdown;
