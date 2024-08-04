@@ -1,7 +1,0 @@
-.container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 10fr 1fr;
-  grid-template-areas: ". content .";
-  max-width: var(--breakpoint-xxx-large);
-}

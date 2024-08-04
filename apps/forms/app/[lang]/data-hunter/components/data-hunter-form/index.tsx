@@ -5,7 +5,7 @@ import { Paragraph, Textarea, Textfield, Button } from '@digdir/designsystemet-r
 import { LabelWithTag } from '@fdk-frontend/ui/label-with-tag';
 import { SubmitStatusAlert } from '@fdk-frontend/ui/alert-submit-status';
 
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Dictionary } from '@fdk-frontend/i18n';
 import { useFormState, useFormStatus } from 'react-dom';
 import { sendEmailAction } from '../../../../actions';
 import { EMPTY_FORM_STATE, extractErrorMessages } from '@fdk-frontend/utils';
