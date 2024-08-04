@@ -1,67 +1,112 @@
-import Image from 'next/image';
-import FDKLogo from './images/fdk-logo.svg';
-import FDKDemoLogo from './images/fdk-logo-demo.svg';
-import { getHeaderData } from './data';
-import { Link } from '@digdir/designsystemet-react';
-import { unstable_noStore as noStore } from 'next/cache';
-import { Dictionary } from '@fdk-frontend/dictionaries';
-import { forwardRef, HTMLAttributes } from 'react';
-import { MobileHeader } from './components/mobile';
-import { DesktopHeader } from './components/desktop';
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
 
-import styles from './header.module.css';
+import { Link, Button } from '@digdir/designsystemet-react';
+import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
+
+import { Dictionary } from '@fdk-frontend/i18n';
+import { LogoLink } from '../logo';
+import MainMenu from '../main-menu';
+
+import styles from './header.module.scss';
 
 type HeaderProps = {
   dictionary: Dictionary;
   baseUri?: string;
   communityBaseUri?: string;
   registrationBaseUri?: string;
-  useDemoLogo?: boolean;
-} & HTMLAttributes<HTMLElement>;
+};
 
-const Header = forwardRef<HTMLElement, HeaderProps>(
-  (
-    { dictionary, baseUri = '/', communityBaseUri = '#', registrationBaseUri = '#', useDemoLogo, ...rest }: HeaderProps,
-    ref,
-  ) => {
-    // Opt-in dynamic rendering
-    noStore();
+const Header = ({
+  dictionary,
+  baseUri = '/',
+  communityBaseUri = '#',
+  registrationBaseUri = '#',
+}: HeaderProps) => {
 
-    const headerData = getHeaderData(dictionary, baseUri, communityBaseUri, registrationBaseUri);
+  const headerRef = useRef(null);
+  const [ sticky, setSticky ] = useState(false);
+  const [ showMenu, setShowMenu ] = useState(false);
 
-    return (
-      <header
-        ref={ref}
-        {...rest}
-        className={cn(styles.header, rest.className)}
-      >
-        <Link
-          href={baseUri}
-          aria-label={dictionary.goToMainPageAriaLabel}
-          className={styles.logo}
-        >
-          <Image
-            src={useDemoLogo ? FDKDemoLogo : FDKLogo}
-            alt={dictionary.fdkLogoAlt}
-            width={0}
-            height={0}
+  useEffect(() => {
+    const toggleSticky = () => {
+      if (window.scrollY > 0) {
+        if (!sticky) setSticky(true);
+      } else {
+        if (sticky) setSticky(false);
+      }
+    };
+
+    const handleClick = (e: any) => {
+      if (!headerRef.current?.contains(e.target)) {
+        setShowMenu(false);
+      }
+    }
+
+    window.addEventListener('scroll', toggleSticky);
+    window.addEventListener('click', handleClick);
+
+    return () => {
+      window.removeEventListener('scroll', toggleSticky);
+      window.removeEventListener('click', handleClick);
+    }
+  });
+
+  return (
+    <header
+      className={styles.header}
+      ref={headerRef}
+    >
+      <div className={cn(styles.headerOuter, {
+        [styles.headerSticky]: sticky | showMenu,
+        [styles.drawerOpen]: showMenu
+      })}>
+        <div className={styles.headerInner}>
+          <LogoLink
+            className={styles.headerLogo}
+            href={baseUri}
           />
-        </Link>
-        <DesktopHeader
-          dictionary={dictionary}
-          headerData={headerData}
-        />
-        <MobileHeader
-          dictionary={dictionary}
-          headerData={headerData}
-        />
-      </header>
-    );
-  },
-);
+          <div className={styles.headerToolbar}>
+            <Button asChild size="small" variant="tertiary">
+              <Link href={`${baseUri}/search-all`}>
+                <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
+                <span>{dictionary.header.findDataButton}</span>
+              </Link>
+            </Button>
+            <Button size="small" variant={showMenu ? 'secondary' : 'tertiary' } onClick={() => setShowMenu(!showMenu)}>
+              {
+                showMenu ?
+                <XMarkIcon aria-hidden fontSize='1.5em' /> :
+                <MenuHamburgerIcon aria-hidden fontSize='1.5em' />
+              }
+              <span>{dictionary.header.menuButton}</span>
+            </Button>
+            <Button asChild size="small" variant="primary">
+              <Link href={`${baseUri}/publishing`}>
+                <span>{dictionary.header.shareDataButton}</span>
+              </Link>
+            </Button>
+          </div>
+        </div>
+        {
+          showMenu &&
+          <div className={styles.drawer}>
+            <div className={styles.drawerInner}>
+              {
+                showMenu &&
+                <MainMenu
+                  dictionary={dictionary}
+                  baseUri={baseUri}
+                />
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </header>
+  );
+};
 
-Header.displayName = 'Header'; // Add display name to the component
-
-export { Header };
-export type { HeaderProps };
+export default Header;

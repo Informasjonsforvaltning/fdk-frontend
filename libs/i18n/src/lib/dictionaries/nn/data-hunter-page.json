@@ -1,0 +1,87 @@
+{
+  "aboutConceptCatalog": "Om begrepskatalogen",
+  "aboutDataServiceCatalog": "Om API-katalogen",
+  "aboutDatasetCatalog": "Om datasettkatalogen",
+  "aboutInformationModelCatalog": "Om informasjonsmodellkatalogen",
+  "aboutNationalDataCatalog": "Om Felles datakatalog",
+  "aboutWebsite": "Om nettstedet",
+  "accessibilityStatement": "Tilgjengelighetserklæring",
+  "artificialIntelligence": "Kunstig intelligens",
+  "breadcrumbs": "Brødsmuler",
+  "contact": "Kontakt",
+  "cookies": "Informasjonskapsler",
+  "dataCommunity": "Datalandsbyen",
+  "dataHunter": "Datajegeren",
+  "dataHunterForm": {
+    "dataset": {
+      "description": "Lag ei så tydeleg skildring som mogeleg. Til dømes felter, tidsperiode, ønskja oppdateringsfrekvens.",
+      "label": "Kva datasett treng du?"
+    },
+    "description": "Finn du ikkje datasettet du treng? Mange datasett frå offentleg sektor er tilgjengelege via vår datakatalog, men denne er ikkje komplett. Datajegeren hjelper bedrifter med å finne og få tilgang til datasett frå offentleg sektor.",
+    "efforts": {
+      "description": "Dersom du har prøvd å få tak i datasettet sjølv, fortel kvar du har søkt og ev. kven du har snakka med. Ta gjern med kvifor du ikkje lukkast dersom du har vore i direkte kontakt med nokon i offentleg sektor.",
+      "label": "Har du prøvd å få tak i dette datasettet sjølv?"
+    },
+    "location": {
+      "description": "Dersom du har informasjon om kvar du trur vi kan finne datasettet, til dømes hos kva offentleg etat eller kommune, kan dette vere til stor hjelp for Datajegeren.",
+      "label": "Veit du kvar datasettet er?"
+    },
+    "title": "Datajegeren hjelper deg å finne data"
+  },
+  "email": "E-post",
+  "english": "English",
+  "error": {
+    "default": "Noe gikk galt",
+    "formSubmit": "Skjemaet kunne ikke sendes. Prøv igjen senere.",
+    "invalidEmail": "Ugyldig e-postadresse",
+    "invalidOrganizationNumber": "Ugyldig organisasjonsnummer",
+    "minimumLength": "Må være minst {length} tegn",
+    "required": "Dette feltet er påkrevd"
+  },
+  "fdkLogoAlt": "Felles datakatalog logo",
+  "fillTheFormUnder": "Fyll ut skjemaet under",
+  "footer": {
+    "aboutWebsite": {
+      "nationalDataCatalogManager": "Digitaliseringsdirektoratet forvalter "
+    }
+  },
+  "forms": "Skjemaer",
+  "goToMainPageAriaLabel": "Gå til hovudsida",
+  "guidance": "Veiledning",
+  "guidanceAndStandards": "Veiledere og standarder",
+  "homePage": "Hjem",
+  "language": "Språk",
+  "menuButton": "Meny",
+  "name": "Navn",
+  "nationalDataCatalog": "Felles datakatalog",
+  "nationalDatacatalogEmail": "fellesdatakatalog@digdir.no",
+  "norwegianBokmaal": "Norsk bokmål",
+  "norwegianNynorsk": "Norsk nynorsk",
+  "organizationNumber": "Organisasjonsnummer",
+  "organizations": "Verksemder",
+  "phoneNumber": "Telefonnummer",
+  "privacyPolicy": "Personvernerklæring",
+  "publications": "Publikasjoner",
+  "publishing": "Publisera",
+  "publishingData": "Publisere data",
+  "registrationHelp": "Hjelp til å registrere",
+  "relevant": "Aktuelt",
+  "reports": "Rapporter",
+  "requests": "Etterspørsler",
+  "searchInAllCatalogs": "Søk i alle kataloger",
+  "searchInCatalogs": "Søk i kataloger",
+  "searchInConcepts": "Søk i begrep",
+  "searchInDataServices": "Søk i datatjenester",
+  "searchInDatasets": "Søk i datasett",
+  "searchInInformationModels": "Søk i informasjonsmodeller",
+  "searchOrganizations": "Søk i verksemder",
+  "services": "Tjenester",
+  "shouldBeFilledOut": "Må fylles ut",
+  "sparqlQuerry": "SPARQL-querry",
+  "sparqlQuery": "SPARQL-spørring",
+  "submitRequest": "Send forespørsel",
+  "success": {
+    "formSubmit": "Skjema er sendt inn!"
+  },
+  "tools": "Verktøy"
+}

@@ -1,9 +1,8 @@
 import { Heading } from '@digdir/designsystemet-react';
+import Markdown from '@fdk-frontend/ui/markdown';
+import CatalogSymbol from '@fdk-frontend/ui/catalog-symbol';
 
 import styles from './result-item.module.scss';
-
-import { Markdown } from '../../../markdown';
-import CatalogSymbol from '../../../catalog-symbol';
 
 type ItemObject = {
 	id: string;
