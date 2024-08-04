@@ -1,40 +1,43 @@
 import 'server-only';
 
-import { ReactNode } from 'react';
+import "./global.scss";
+
+import { PropsWithChildren } from 'react';
 import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
-import { Header } from '../header';
-import { Footer } from '../footer';
+import cn from 'classnames';
 
-import './global.css';
+import Footer from '@fdk-frontend/ui/footer';
+import Header from '@fdk-frontend/ui/header';
 
-type RootLayoutProps = {
-  children: ReactNode;
+import styles from './layout-root.module.css';
+
+export type RootLayoutProps = {
   params: {
     lang: Locale['code'];
-  };
+  },
+  className?: string;
 };
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
-const RootLayout = async ({ children, params }: RootLayoutProps) => {
-  const dictionary = await getDictionary(params.lang);
+const RootLayout = async ({ children, className, params }: RootLayoutProps & PropsWithChildren) => {
 
-  const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI, FDK_REGISTRATION_BASE_URI, FDK_USE_DEMO_LOGO } = process.env;
+  const dictionary = await getDictionary(params.lang, 'common');
 
-  const baseUri = FDK_BASE_URI ?? '/';
-  const communityBaseUri = FDK_COMMUNITY_BASE_URI ?? '/';
-  const registrationBaseUri = FDK_REGISTRATION_BASE_URI ?? '/';
-  const useDemoLogo = FDK_USE_DEMO_LOGO === 'true';
+  const {
+    FDK_BASE_URI: baseUri = '/',
+    FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
+    FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
+  } = process.env;
 
   return (
     <html lang={params.lang}>
-      <body>
+      <body className={cn(className)}>
         <Header
           dictionary={dictionary}
           baseUri={baseUri}
           registrationBaseUri={registrationBaseUri}
           communityBaseUri={communityBaseUri}
-          useDemoLogo={useDemoLogo}
         />
         <main>{children}</main>
         <Footer
@@ -46,12 +49,4 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
   );
 };
 
-const getMetadata = (title: string, description: string) => ({
-  title: title,
-  description: description,
-  alternates: {
-    stylesheet: 'https://altinncdn.no/fonts/inter/inter.css'
-  },
-});
-
-export { RootLayout, generateStaticParams, getMetadata };
+export { RootLayout, generateStaticParams };

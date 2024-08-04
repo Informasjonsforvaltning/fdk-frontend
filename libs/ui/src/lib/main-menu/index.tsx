@@ -93,4 +93,4 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
 	);
 }
 
-export { MainMenu };
+export default MainMenu;

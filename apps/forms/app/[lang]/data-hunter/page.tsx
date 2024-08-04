@@ -22,7 +22,7 @@ const DataHunterPage = async ({ params: { lang } }: Props) => {
   // Opt-in dynamic rendering
   noStore();
 
-  const dictionary = await getDictionary(lang);
+  const dictionary = await getDictionary(lang, 'data-hunter-page');
 
   const { FDK_BASE_URI } = process.env;
 
