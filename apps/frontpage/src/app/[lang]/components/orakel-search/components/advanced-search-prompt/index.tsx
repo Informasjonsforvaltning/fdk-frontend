@@ -1,21 +1,26 @@
 import { Button, Alert, Link } from '@digdir/designsystemet-react';
 import { ChevronRightIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
+import { Dictionary } from '@fdk-frontend/dictionaries';
 
 import styles from './advanced-search-prompt.module.scss';
 
-const AdvancedSearchPrompt = () => {
+type AdvancedSearchPromptProps = {
+	dictionary: Dictionary;
+}
+
+const AdvancedSearchPrompt = ({ dictionary }: AdvancedSearchPromptProps) => {
 	return (
 		<Alert className={styles.searchAlert}>
-  		<div className={styles.searchAlertContent}>
-	  		Finner du ikke det du leter etter?
-	  		<Button className={styles.searchAlertButton} asChild size="small" variant="primary">
+	  		<div className={styles.searchAlertContent}>
+		  		{dictionary.aiBanner.advancedSearchPrompt.text}
+		  		<Button className={styles.searchAlertButton} asChild size="small" variant="primary">
 					<Link href="https://data.norge.no/search-all">
 						<MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
-						Finn data
+						{dictionary.aiBanner.advancedSearchPrompt.link}
 					</Link>
-	      </Button>
-	  	</div>
-  	</Alert>
+		      </Button>
+		  	</div>
+	  	</Alert>
 	);
 }
 

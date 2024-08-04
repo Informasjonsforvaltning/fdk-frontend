@@ -1,6 +1,6 @@
 {
 	"aiBanner": {
-		"headline": "Where Norway shares data",
+		"title": "Where Norway shares data",
 		"prompt": {
 			"label": "Ask our AI about data from over 125 organizations and 8000 datasets:",
 			"placeholder": "What are you looking for?",
@@ -29,9 +29,24 @@
 			]
 		},
 		"tooltip": {
-			"text": "Our AI search makes it easy to find datasets using natural language without needing to know specific dataset names, technical terms, or formats.",
-			"disclaimer": "Please note that the AI search may contain errors.",
-			"readMoreLinkText": "Read more about the AI search here"
-		}
+			"label": "About AI Search",
+			"text": "Our AI Search makes it easy to find datasets using natural language without needing to know specific dataset names, technical terms, or formats.",
+			"disclaimer": "Please note that the AI Search may contain errors.",
+			"readMoreLinkText": "Read more about the AI Search here"
+		},
+		"advancedSearchPrompt": {
+    		"text": "Not finding what you're looking for?",
+	    	"link": "Find data"
+	    }
+	},
+	"shareDataBanner": {
+	  	"title": "Share your data",
+	  	"content": "Follow {{link}} and share your data with the rest of the country.",
+	  	"organizationsLinkText": "125 other organizations",
+	  	"getStartedLinkText": "Get started",
+	  	"documentationLinkText": "View documentation"
+	},
+	"catalogsBanner": {
+		"title": "Our data catalogs"
 	}
 }

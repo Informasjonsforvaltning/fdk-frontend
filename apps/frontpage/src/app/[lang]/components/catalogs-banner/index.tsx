@@ -4,11 +4,12 @@ import { HeadingWithDivider } from '../typography';
 import styles from './catalogs-banner.module.scss';
 
 type CatalogsBannerProps = {
-	dictionary: Dictionary;
+	commonDictionary: Dictionary;
+	frontpageDictionary: Dictionary;
 	baseUri: string;
 }
 
-const CatalogsBanner = ({ dictionary, baseUri }: CatalogsBannerProps) => {
+const CatalogsBanner = ({ commonDictionary, frontpageDictionary, baseUri }: CatalogsBannerProps) => {
 	return (
 		<div className={styles.catalogsBanner}>
 			<div className={styles.inner}>
@@ -17,10 +18,10 @@ const CatalogsBanner = ({ dictionary, baseUri }: CatalogsBannerProps) => {
 					level={2}
 					size="md"
 				>
-					Våre datakataloger
+					{frontpageDictionary.catalogsBanner.title}
 				</HeadingWithDivider>
 				<CatalogsMenu
-					dictionary={dictionary}
+					dictionary={commonDictionary}
 					baseUri={baseUri}
 				/>
 			</div>

@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion';
 import { Textfield, Button, Link, Heading, Spinner, ErrorMessage, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { SparklesIcon, FilesIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
+import { Dictionary, interpolate } from '@fdk-frontend/dictionaries';
 
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
 
@@ -18,7 +19,12 @@ import mockResults from './data/results3.json';
 
 import styles from './orakel-search.module.scss';
 
-const OrakelSearch = () => {
+type OrakelSearchProps = {
+	endpoint: string;
+	dictionary: Dictionary;
+}
+
+const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 
 	const [ loading, setLoading ]  = useState<boolean>(false);
 	const [ query, setQuery ] = useState<string>('');
@@ -48,7 +54,7 @@ const OrakelSearch = () => {
 
 	const validate = (q) => {
 		if (!q || q.length < 3) {
-			setError('Spørringen må inneholde mer enn to tegn. Prøv igjen.');
+			setError(dictionary.aiBanner.prompt.errors.queryTooShort);
 			return false;
 		}
 
@@ -68,8 +74,7 @@ const OrakelSearch = () => {
 		setLoading(true);
 
 		try {
-			await fetch(`https://aisearch.api.staging.fellesdatakatalog.digdir.no/llm`, {
-			// await fetch(`https://fdk-llm.dev.entur.io/llm/v3`, {
+			await fetch(endpoint, {
 		        method: 'POST',
 		        headers: {
 		            'Accept': 'application/json',
@@ -84,16 +89,15 @@ const OrakelSearch = () => {
 		          return res.json();
 		        }
 
-		        setError('En feil oppstod. Vennligst prøv igjen.');
+		        setError(dictionary.aiBanner.prompt.errors.generic);
 		        return undefined;
 		    })
 		    .then(json => {
-		        // setResults(parseJsonResults(json, query));
 		        setResults(json);
 		    });
 		} catch (err) {
 			setLoading(false);
-			setError('En feil oppstod. Vennligst prøv igjen.');
+			setError(dictionary.aiBanner.prompt.errors.generic);
 			console.log(err);
 		}
 
@@ -110,8 +114,12 @@ const OrakelSearch = () => {
 				<div className={styles.orakelSearchBox}>
 					<Textfield
 		        className={styles.orakelInputTextfield}
-		        label={<span className={styles.orakelInputLabel}>Spør vår KI om data fra over 125 virksomheter og 8000 datasett:</span>}
-		        placeholder="Hva leter du etter?"
+		        label={
+		        	<span className={styles.orakelInputLabel}>
+		        		{dictionary.aiBanner.prompt.label}
+		        	</span>
+		        }
+		        placeholder={dictionary.aiBanner.prompt.placeholder}
 		        size="large"
 		        value={query}
 		        error={error}
@@ -128,7 +136,7 @@ const OrakelSearch = () => {
 		      		<Spinner size="xsmall" variant="inverted" /> :
 		      		<>
 		      			<SparklesIcon className={styles.orakelSearchIcon} aria-hidden />
-		      			<span>Spør</span>
+		      			<span>{dictionary.aiBanner.prompt.button}</span>
 		      		</>
 		      	}
 		      </Button>
@@ -138,20 +146,26 @@ const OrakelSearch = () => {
 		  	(!error && !loading) &&
 		  	<div className={styles.auxPanel}>
 		  		<div>
-			  		{ !results && <DynamicQuerySuggestion onClick={(query: string) => doSearch(query)} /> }
+			  		{
+			  			!results &&
+			  			<DynamicQuerySuggestion
+			  				dictionary={dictionary}
+			  				onClick={(query: string) => doSearch(query)}
+			  			/>
+			  		}
 			  		{
 			  			results && results.hits.length > 0 &&
-			  			`Jeg fant ${results.hits.length} datasett som kan være relevante:`
+			  			interpolate(dictionary.aiBanner.prompt.responses.resultsFound, { num: results.hits.length })
 			  		}
 			  		{
 			  			results && !results.hits.length > 0 &&
-			  			`Jeg fant dessverre ingen relevante datasett. Prøv gjerne en annen spørring.`
+			  			dictionary.aiBanner.prompt.responses.noResults
 			  		}
 		  		</div>
-		  		<HelpText size="sm" title="Om KI-søket" className={styles.helptext}>
-		  			<Paragraph size="sm">Vårt KI-søk gjør det enkelt å finne datasett ved å bruke naturlig språk uten at du trenger å kjenne til spesifikke datasettnavn, fagtermer eller tekniske formater.</Paragraph>
-		  			<Paragraph size="xs"><b>Vær obs på at KI-søket kan inneholde feil.</b></Paragraph>
-		  			<Paragraph size="sm"><Link href="#">Les mer om KI-søket her</Link></Paragraph>
+		  		<HelpText size="sm" title={dictionary.aiBanner.tooltip.label} className={styles.helptext}>
+		  			<Paragraph size="sm">{dictionary.aiBanner.tooltip.text}</Paragraph>
+		  			<Paragraph size="xs"><b>{dictionary.aiBanner.tooltip.disclaimer}</b></Paragraph>
+		  			<Paragraph size="sm"><Link href="#">{dictionary.aiBanner.tooltip.readMoreLinkText}</Link></Paragraph>
 		  		</HelpText>
 		  	</div>
 		  }
@@ -188,7 +202,9 @@ const OrakelSearch = () => {
 					  	})
 			  		}
 			  		<motion.li variants={animations.resultsItem}>
-			  			<AdvancedSearchPrompt />
+			  			<AdvancedSearchPrompt
+			  				dictionary={dictionary}
+			  			/>
 			  		</motion.li>
 			  	</motion.ul>
 			  </motion.div>

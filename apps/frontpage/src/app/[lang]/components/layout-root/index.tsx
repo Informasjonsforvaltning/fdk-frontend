@@ -6,7 +6,6 @@ import { PropsWithChildren } from 'react';
 import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 import cn from 'classnames';
 
-// import { Footer } from '@fdk-frontend/ui/footer';
 import Footer from '../footer';
 import Header from '../header';
 
@@ -26,14 +25,10 @@ const RootLayout = async ({ children, className, params }: RootLayoutProps & Pro
   const dictionary = await getDictionary(params.lang, 'common');
 
   const {
-    FDK_BASE_URI,
-    FDK_COMMUNITY_BASE_URI,
-    FDK_REGISTRATION_BASE_URI,
+    FDK_BASE_URI: baseUri = '/',
+    FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
+    FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
   } = process.env;
-
-  const baseUri = FDK_BASE_URI ?? '/';
-  const communityBaseUri = FDK_COMMUNITY_BASE_URI ?? '/';
-  const registrationBaseUri = FDK_REGISTRATION_BASE_URI ?? '/';
 
   return (
     <html lang={params.lang}>

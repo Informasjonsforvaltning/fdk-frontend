@@ -3,7 +3,7 @@ import { Heading } from '@digdir/designsystemet-react';
 import styles from './result-item.module.scss';
 
 import { Markdown } from '../../../markdown';
-import { CatalogSymbol } from '../../../catalog-symbol';
+import CatalogSymbol from '../../../catalog-symbol';
 
 type ItemObject = {
 	id: string;
