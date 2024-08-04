@@ -1,13 +1,16 @@
 .footer {
 	background: var(--color-fdk-navy-dark);
 
+	.inner {
+		max-width:1000px;
+		margin:auto;
+		padding:4rem 2rem;
+	}
+
 	.links {
 		display:flex;
 		gap:1rem;
 		justify-content: space-between;
-		max-width:1000px;
-		margin:auto;
-		padding:4rem 2rem;
 
 		.linkSection {
 			.linkSectionHeader {

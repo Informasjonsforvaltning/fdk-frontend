@@ -8,13 +8,21 @@ import { Norgeskart } from './components/norgeskart';
 
 import styles from './frontpage-banner.module.css';
 
-const FrontpageBanner = () => (
+type FrontpageBannerProps = {
+  endpoint: string;
+  dictionary: Dictionary;
+}
+
+const FrontpageBanner = ({ endpoint, dictionary }: FrontpageBannerProps) => (
   <div className={styles.outer}>
     <div className={styles.inner}>
       <HeadingWithDivider level={1} className={styles.headline}>
-        Der Norge deler data
+        {dictionary.aiBanner.title}
       </HeadingWithDivider>
-      <OrakelSearch />
+      <OrakelSearch
+        endpoint={endpoint}
+        dictionary={dictionary}
+      />
     </div>
     <Norgeskart />
   </div>
