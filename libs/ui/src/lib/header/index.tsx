@@ -56,53 +56,55 @@ const Header = ({
 
   return (
     <header
+      className={styles.header}
       ref={headerRef}
-      className={cn(styles.headerOuter, {
+    >
+      <div className={cn(styles.headerOuter, {
         [styles.headerSticky]: sticky | showMenu,
         [styles.drawerOpen]: showMenu
-      })}
-    >
-      <div className={styles.headerInner}>
-        <LogoLink
-          className={styles.headerLogo}
-          baseUri={baseUri}
-        />
-        <div className={styles.headerToolbar}>
-          <Button asChild size="small" variant="tertiary">
-            <Link href={`${baseUri}/search-all`}>
-              <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
-              <span>{dictionary.header.findDataButton}</span>
-            </Link>
-          </Button>
-          <Button size="small" variant={showMenu ? 'secondary' : 'tertiary' } onClick={() => setShowMenu(!showMenu)}>
-            {
-              showMenu ?
-              <XMarkIcon aria-hidden fontSize='1.5em' /> :
-              <MenuHamburgerIcon aria-hidden fontSize='1.5em' />
-            }
-            <span>{dictionary.header.menuButton}</span>
-          </Button>
-          <Button asChild size="small" variant="primary">
-            <Link href={`${baseUri}/publishing`}>
-              <span>{dictionary.header.shareDataButton}</span>
-            </Link>
-          </Button>
-        </div>
-      </div>
-      {
-        showMenu &&
-        <div className={styles.drawer}>
-          <div className={styles.drawerInner}>
-            {
-              showMenu &&
-              <MainMenu
-                dictionary={dictionary}
-                baseUri={baseUri}
-              />
-            }
+      })}>
+        <div className={styles.headerInner}>
+          <LogoLink
+            className={styles.headerLogo}
+            baseUri={baseUri}
+          />
+          <div className={styles.headerToolbar}>
+            <Button asChild size="small" variant="tertiary">
+              <Link href={`${baseUri}/search-all`}>
+                <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
+                <span>{dictionary.header.findDataButton}</span>
+              </Link>
+            </Button>
+            <Button size="small" variant={showMenu ? 'secondary' : 'tertiary' } onClick={() => setShowMenu(!showMenu)}>
+              {
+                showMenu ?
+                <XMarkIcon aria-hidden fontSize='1.5em' /> :
+                <MenuHamburgerIcon aria-hidden fontSize='1.5em' />
+              }
+              <span>{dictionary.header.menuButton}</span>
+            </Button>
+            <Button asChild size="small" variant="primary">
+              <Link href={`${baseUri}/publishing`}>
+                <span>{dictionary.header.shareDataButton}</span>
+              </Link>
+            </Button>
           </div>
         </div>
-      }
+        {
+          showMenu &&
+          <div className={styles.drawer}>
+            <div className={styles.drawerInner}>
+              {
+                showMenu &&
+                <MainMenu
+                  dictionary={dictionary}
+                  baseUri={baseUri}
+                />
+              }
+            </div>
+          </div>
+        }
+      </div>
     </header>
   );
 };

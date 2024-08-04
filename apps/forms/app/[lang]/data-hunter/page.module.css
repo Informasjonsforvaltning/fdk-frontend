@@ -1,11 +1,7 @@
 .contentContainer {
-  display: flex;
-  flex-direction: column;
-  max-width: var(--breakpoint-x-large);
-  margin: 5rem auto;
-  padding: 1rem;
-  box-sizing: border-box;
-  min-width: var(--breakpoint-x-small);
+  max-width:1000px;
+  padding:0 2rem;
+  margin:auto;
 }
 
 .contentContainer {

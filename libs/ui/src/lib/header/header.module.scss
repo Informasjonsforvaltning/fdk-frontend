@@ -1,4 +1,7 @@
 .frontpageWrapper {
+  .header {
+    padding-bottom:0;
+  }
   .headerOuter {
     &:not(.headerSticky) {
       .headerLogo {
@@ -15,6 +18,10 @@
   }
 }
 
+.header {
+  padding-bottom:74px;
+}
+
 .headerOuter {
   position:fixed;
   z-index:100;
@@ -22,6 +29,7 @@
   transition:background linear 200ms;
 
   &.headerSticky {
+    position:fixed;
     background: white;
     box-shadow: var(--fds-shadow-medium);
   }
