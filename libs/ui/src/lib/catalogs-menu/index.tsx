@@ -2,11 +2,18 @@
 
 import { motion } from 'framer-motion';
 import { Link, Heading, Card, Paragraph } from '@digdir/designsystemet-react';
+import {
+	FilesIcon,
+	CodeIcon,
+	ChatElipsisIcon,
+	TenancyIcon,
+	CompassIcon,
+	SparklesIcon,
+	ExternalLinkIcon
+} from '@navikt/aksel-icons';
 
-import { Dictionary } from '@fdk-frontend/i18n';
-
-import CatalogSymbol from '../catalog-symbol/';
-import getMainMenuData from '../main-menu/data';
+import CatalogSymbol from '@fdk-frontend/ui/catalog-symbol/';
+import getMainMenuData from '@fdk-frontend/ui/main-menu/data';
 
 import styles from './catalogs-menu.module.scss';
 

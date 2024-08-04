@@ -3,11 +3,13 @@ import 'server-only';
 import "./global.scss";
 
 import { PropsWithChildren } from 'react';
-import { getDictionary, i18n, type Locale } from '@fdk-frontend/i18n';
+import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 import cn from 'classnames';
 
-import Footer from '../footer';
-import Header from '../header';
+import Footer from '@fdk-frontend/ui/footer';
+import Header from '@fdk-frontend/ui/header';
+
+import styles from './layout-root.module.css';
 
 export type RootLayoutProps = {
   params: {
