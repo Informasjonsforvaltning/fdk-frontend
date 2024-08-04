@@ -1,10 +1,10 @@
-import { Dictionary } from '@fdk-frontend/i18n';
+import { Dictionary } from '@fdk-frontend/dictionaries';
 import { Link, Heading } from '@digdir/designsystemet-react';
 
-import { CatalogIcon } from '../catalog-symbol';
-import { LogoLink } from '../logo';
-import getMainMenuData from '../main-menu/data'
-import LanguageSwitcher from '../language-switcher'
+import { CatalogIcon } from '@fdk-frontend/ui/catalog-symbol';
+import { LogoLink } from '@fdk-frontend/ui/logo';
+import getMainMenuData from '@fdk-frontend/ui/main-menu/data'
+import LanguageSwitcher from '@fdk-frontend/ui/language-switcher'
 
 import DigdirLogo from './images/digdir-logo';
 import GithubLogo from './images/github-logo';
@@ -33,7 +33,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.catalogs.map(item => (
-									<li key={item.key}>
+									<li>
 										<Link className={styles.iconLink} href={item.href}>
 											<CatalogIcon catalog={item.key} fontSize='1.5em' />
 											{item.title}
@@ -50,7 +50,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.help.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li><Link href={item.href}>{item.title}</Link></li>
 								))
 							}
 						</ul>
@@ -62,7 +62,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.tools.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li><Link href={item.href}>{item.title}</Link></li>
 								))
 							}
 						</ul>
@@ -74,12 +74,12 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.about.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li><Link href={item.href}>{item.title}</Link></li>
 								))
 							}
 							{
 								footerData.policies.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li><Link href={item.href}>{item.title}</Link></li>
 								))
 							}
 							<li>
@@ -95,7 +95,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 			</div>
 			<div className={styles.bottom}>
 				<div className={styles.bottomInner}>
-					<LogoLink href={baseUri} />
+					<LogoLink baseUri={baseUri} />
 					<div className={styles.digdirCredit}>
 						<span>{dictionary.footer.digdirCredit}</span>
 						<Link href={footerData.digdirUri}>

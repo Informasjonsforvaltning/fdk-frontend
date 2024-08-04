@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Textfield, Heading } from '@digdir/designsystemet-react';
 import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
-import { Dictionary } from '@fdk-frontend/i18n';
 
 import { OrakelSearch } from '../orakel-search';
 import { Norgeskart } from './components/norgeskart';

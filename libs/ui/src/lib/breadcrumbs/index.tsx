@@ -1,5 +1,5 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { type Dictionary } from '@fdk-frontend/i18n';
+import { ChevronRightIcon, HouseIcon } from '@navikt/aksel-icons';
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Link } from '@digdir/designsystemet-react';
 import styles from './breadcrumbs.module.css';
 
