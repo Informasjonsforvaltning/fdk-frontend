@@ -1,9 +1,10 @@
 'use client';
 
+import { useRouter, usePathname } from 'next/navigation';
 import cn from 'classnames';
 import { ToggleGroup } from '@digdir/designsystemet-react';
 
-import { i18n } from '@fdk-frontend/dictionaries';
+import { i18n, Locale } from '@fdk-frontend/dictionaries';
 
 import styles from './language-switcher.module.scss';
 
@@ -12,12 +13,25 @@ type LanguageSwitcher = {
 };
 
 const LanguageSwitcher = ({ inverted }: LanguageSwitcher) => {
+
+	const router = useRouter();
+  	const pathName = usePathname();
+
+  	const segments = pathName.split('/');
+  	const defaultCode = segments[1];
+
+	const onLanguageSelect = (code) => {
+	  const segments = pathName.split('/');
+	  segments[1] = code;
+	  return router.replace(segments.join('/'));
+	};
+
 	return (
 		<ToggleGroup
 			className={cn(styles.languageSwitcher, { [styles.inverted]: inverted })}
-			defaultValue="Peanut"
-			name="toggle-group-nuts"
+			defaultValue={defaultCode}
 			size="sm"
+			onChange={(code) => onLanguageSelect(code)}
 		>
 			{
 				i18n.locales.map(locale => (

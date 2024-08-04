@@ -6,6 +6,7 @@
   },
   "mainMenu": {
     "catalogs": {
+      "heading": "Datakatalogar",
       "datasets": {
         "title": "Datasett",
         "description": "Samlingar av strukturert data som kan lastast ned eller aksesserast via APIar"
@@ -32,7 +33,7 @@
       }
     },
     "help": {
-      "header": "Hjelp og rettleiing",
+      "heading": "Hjelp og rettleiing",
       "links": {
         "getStarted": "Kom i gang",
         "documentation": "Dokumentasjon",
@@ -40,7 +41,7 @@
       }
     },
     "tools": {
-      "header": "Verktøy",
+      "heading": "Verktøy",
       "links": {
         "organizations": "Verksemdsoversikt",
         "requestData": "Etterspør data",
@@ -49,12 +50,21 @@
       }
     },
     "about": {
-      "header": "Om data.norge.no",
+      "heading": "Om data.norge.no",
       "links": {
         "reports": "Rapportar og nøkkeltal",
         "aboutUs": "Om oss",
         "contactUs": "Kontakt oss"
       }
     }
+  },
+  "footer": {
+    "policies": {
+      "a11yStatement": "Tilgjengeerklæring",
+      "privacyPolicy": "Personvernerklæring",
+      "cookiePolicy": "Informasjonskapslar"
+    },
+    "githubFollow": "Følg oss på Github",
+    "digdirCredit": "ei teneste frå"
   }
 }
