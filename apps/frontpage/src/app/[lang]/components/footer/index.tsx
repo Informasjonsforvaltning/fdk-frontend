@@ -1,10 +1,10 @@
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import { Link, Heading } from '@digdir/designsystemet-react';
 
-import { CatalogIcon } from '../catalog-symbol';
-import { LogoLink } from '../logo';
-import LanguageSwitcher from '../language-switcher'
-import getMainMenuData from '../main-menu/data'
+import { CatalogIcon } from '@fdk-frontend/ui/catalog-symbol';
+import { LogoLink } from '@fdk-frontend/ui/logo';
+import getMainMenuData from '@fdk-frontend/ui/main-menu/data'
+import LanguageSwitcher from '@fdk-frontend/ui/language-switcher'
 
 import DigdirLogo from './images/digdir-logo';
 import GithubLogo from './images/github-logo';

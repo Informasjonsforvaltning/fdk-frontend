@@ -12,11 +12,10 @@ import {
 	ExternalLinkIcon
 } from '@navikt/aksel-icons';
 
+import CatalogSymbol from '@fdk-frontend/ui/catalog-symbol/';
+import getMainMenuData from '@fdk-frontend/ui/main-menu/data';
+
 import styles from './catalogs-menu.module.scss';
-
-import CatalogSymbol from '../catalog-symbol/';
-
-import getMainMenuData from '../main-menu/data';
 
 type CatalogsMenuProps = {
 	dictionary: Dictionary;
