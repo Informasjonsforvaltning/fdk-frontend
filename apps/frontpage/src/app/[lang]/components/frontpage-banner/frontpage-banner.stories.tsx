@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getDictionary } from '@fdk-frontend/i18n';
 
 import { FrontpageBanner } from '.';
 
-const dictionary = await getDictionary('nb');
+const dictionary = await getDictionary('nb', 'frontpage');
 
 const meta: Meta<typeof FrontpageBanner> = {
   component: FrontpageBanner,
@@ -15,7 +15,7 @@ type Story = StoryObj<typeof FrontpageBanner>;
 
 export const Primary: Story = {
   render: () => (
-    <FrontpageBanner />
+    <FrontpageBanner dictionary={dictionary} />
   ),
   parameters: {
     nextjs: {

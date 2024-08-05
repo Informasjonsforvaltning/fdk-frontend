@@ -26,7 +26,8 @@ const Header = ({
   registrationBaseUri = '#',
 }: HeaderProps) => {
 
-  const headerRef = useRef(null);
+  // const headerRef = useRef(null);
+  const headerRef = undefined;
   const [ sticky, setSticky ] = useState(false);
   const [ showMenu, setShowMenu ] = useState(false);
 

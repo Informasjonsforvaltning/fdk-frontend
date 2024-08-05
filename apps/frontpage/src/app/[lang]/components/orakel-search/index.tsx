@@ -52,7 +52,7 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 		}
 	};
 
-	const validate = (q) => {
+	const validate = (q?: string) => {
 		if (!q || q.length < 3) {
 			setError(dictionary.aiBanner.prompt.errors.queryTooShort);
 			return false;
@@ -133,7 +133,7 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 		      >
 		      	{
 		      		loading ?
-		      		<Spinner size="xsmall" variant="inverted" /> :
+		      		<Spinner title="loading" size="xsmall" variant="inverted" /> :
 		      		<>
 		      			<SparklesIcon className={styles.orakelSearchIcon} aria-hidden />
 		      			<span>{dictionary.aiBanner.prompt.button}</span>
@@ -154,11 +154,9 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 			  			/>
 			  		}
 			  		{
-			  			results && results.hits.length > 0 &&
-			  			interpolate(dictionary.aiBanner.prompt.responses.resultsFound, { num: results.hits.length })
-			  		}
-			  		{
-			  			results && !results.hits.length > 0 &&
+			  			results &&
+			  			results.hits.length > 0 ?
+			  			interpolate(dictionary.aiBanner.prompt.responses.resultsFound, { num: results.hits.length }) :
 			  			dictionary.aiBanner.prompt.responses.noResults
 			  		}
 		  		</div>
@@ -190,7 +188,7 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 						animate="show"
 			  	>
 			  		{
-			  			results.hits && results.hits.map((item, i) => {
+			  			results.hits && results.hits.map((item: any, i: number) => {
 					  		return (
 					  			<motion.li
 					  				key={`item-${i}`}

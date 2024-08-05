@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { Link } from '@digdir/designsystemet-react';
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { Dictionary } from '@fdk-frontend/i18n';
 
 import styles from './query-suggestion.module.scss';
 
@@ -12,7 +12,7 @@ type QuerySuggestionProps = {
 	onClick: (query: string) => void;
 }
 
-const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps & React.HTMLAttributes<HTMLDivElement>) => {
+const QuerySuggestion = ({ dictionary, onClick }: QuerySuggestionProps) => {
 
 	const suggestions = dictionary.aiBanner.suggestions.list;
 	const randomIndex = Math.floor(Math.random() * suggestions.length);
@@ -21,7 +21,7 @@ const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps 
 	return (
 		<div className={styles.querySuggestion}>
 			<span>{dictionary.aiBanner.suggestions.prefix}</span>&nbsp;
-			<Link onClick={(e) => { onClick(suggestion); return false; }} inverted href="#">
+			<Link onClick={(e: any) => { onClick(suggestion); return false; }} inverted href="#">
 				{suggestion}
 			</Link>
 		</div>

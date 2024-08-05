@@ -33,8 +33,10 @@
     "node_modules",
     "jest.config.ts",
     "**/*.spec.ts",
+    "**/*.spec.tsx",
     "**/*.test.ts",
     "**/*.jsx",
-    "**/*.js"
+    "**/*.js",
+    "**/*.stories.tsx"
   ]
 }

@@ -12,8 +12,7 @@ import Header from '../header';
 export type RootLayoutProps = {
   params: {
     lang: Locale['code'];
-  },
-  className?: string;
+  }
 };
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));

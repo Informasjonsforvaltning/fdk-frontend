@@ -9,6 +9,7 @@
   },
   "files": [],
   "include": ["additional.d.ts", "jest.setup.tsx"],
+  "exclude": ["**/*.stories.tsx"],
   "references": [
     {
       "path": "./tsconfig.lib.json",

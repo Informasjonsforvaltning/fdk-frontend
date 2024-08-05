@@ -27,7 +27,7 @@ export const i18n = {
 export type Locale = typeof i18n['locales'][number];
 
 export type Dictionary = {
-  [key: string]: string | Dictionary;
+  [key: string]: any;
 }
 
 export const getDictionary = async (locale: string, set: string): Promise<Dictionary> => {

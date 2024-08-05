@@ -1,6 +1,6 @@
 import { Button, Alert, Link } from '@digdir/designsystemet-react';
 import { ChevronRightIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { Dictionary } from '@fdk-frontend/i18n';
 
 import styles from './advanced-search-prompt.module.scss';
 
