@@ -1,9 +1,10 @@
 name: Deploy to staging
 
 on:
-  push:
+  pull_request:
+    types: [ready_for_review, opened, reopened, synchronize]
     branches:
-      - develop
+      - main
   workflow_dispatch:
 
 jobs:
@@ -83,7 +84,7 @@ jobs:
   deploy:
     name: Deploy affected apps to staging environment with reusable workflow
     needs: [test, build]
-    if: ${{ needs.test.outputs.changed != '[]' }}
+    if: ${{ needs.test.outputs.changed != '[]' && github.actor != 'dependabot[bot]'}}
     strategy:
       matrix: ${{fromJSON(needs.test.outputs.matrix)}}
       fail-fast: false
