@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Textfield, Heading } from '@digdir/designsystemet-react';
+import { Dictionary } from '@fdk-frontend/dictionaries';
 import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 
 import { OrakelSearch } from '../orakel-search';

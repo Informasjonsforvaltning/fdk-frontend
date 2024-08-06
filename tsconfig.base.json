@@ -28,5 +28,9 @@
     "strict": true,
     "target": "es2015"
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp",
+    "**/*.stories.tsx"
+  ]
 }

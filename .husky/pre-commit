@@ -1,7 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-npx lint-staged
-yarn run affected:lint
-yarn run affected:test
-yarn run affected:e2e

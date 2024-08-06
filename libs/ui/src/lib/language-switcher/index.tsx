@@ -17,7 +17,7 @@ const LanguageSwitcher = ({ inverted }: LanguageSwitcher) => {
 	const router = useRouter();
   	const pathName = usePathname();
 
-  	const defaultCode = pathName.split('/');
+  	const defaultCode = pathName.split('/')[1];
 
 	const onLanguageSelect = (code) => {
 	  const segments = pathName.split('/');
