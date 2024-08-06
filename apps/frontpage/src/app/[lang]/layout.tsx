@@ -1,8 +1,5 @@
 import cn from 'classnames';
-import { RootLayout, RootLayoutProps, generateStaticParams } from '@fdk-frontend/ui/layout-root';
-import headerStyles from '@fdk-frontend/ui/header/header.module.scss';
-
-import pageStyles from './page.module.scss';
+import RootLayout, { RootLayoutProps, generateStaticParams } from '@fdk-frontend/ui/layout-root';
 
 const metadata = { 
 	title: 'data.norge.no',
@@ -10,13 +7,7 @@ const metadata = {
 };
 
 const FrontpageLayout = (props: RootLayoutProps) => (
-	<RootLayout
-		className={cn(
-			pageStyles.frontpageBody,
-			headerStyles.frontpageWrapper
-		)}
-		{ ...props }
-	/>
+	<RootLayout { ...props } />
 );
 
 export default FrontpageLayout;

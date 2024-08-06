@@ -13,8 +13,8 @@ export type FrontpageProps = {
 const Frontpage = async ({ params }: FrontpageProps) => {
 
   const {
-    FDK_BASE_URI: baseUri = '/',
-    FDK_LLM_SEARCH_ENDPOINT: endpoint
+    FDK_BASE_URI: baseUri = '',
+    FDK_LLM_SEARCH_ENDPOINT: endpoint = '/'
   } = process.env;
   
   const commonDictionary = await getDictionary(params.lang, 'common');

@@ -1,10 +1,11 @@
-import { Dictionary } from '@fdk-frontend/dictionaries';
 import { Link, Heading } from '@digdir/designsystemet-react';
+import { Dictionary } from '@fdk-frontend/dictionaries';
+import { CatalogTypes } from '@fdk-frontend/types';
 
-import { CatalogIcon } from '@fdk-frontend/ui/catalog-symbol';
-import { LogoLink } from '@fdk-frontend/ui/logo';
-import getMainMenuData from '@fdk-frontend/ui/main-menu/data'
-import LanguageSwitcher from '@fdk-frontend/ui/language-switcher'
+import { CatalogIcon } from '../catalog-symbol';
+import { LogoLink } from '../logo';
+import getMainMenuData from '../main-menu/data'
+import LanguageSwitcher from '../language-switcher'
 
 import DigdirLogo from './images/digdir-logo';
 import GithubLogo from './images/github-logo';
@@ -35,7 +36,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 								mainMenuData.catalogs.map(item => (
 									<li key={item.key}>
 										<Link className={styles.iconLink} href={item.href}>
-											<CatalogIcon catalog={item.key} fontSize='1.5em' />
+											<CatalogIcon catalog={item.key as CatalogTypes} fontSize='1.5em' />
 											{item.title}
 										</Link>
 									</li>

@@ -3,7 +3,7 @@ import { getDictionary } from '@fdk-frontend/dictionaries';
 
 import { FrontpageBanner } from '.';
 
-const dictionary = await getDictionary('nb');
+const dictionary = await getDictionary('nb', 'frontpage');
 
 const meta: Meta<typeof FrontpageBanner> = {
   component: FrontpageBanner,

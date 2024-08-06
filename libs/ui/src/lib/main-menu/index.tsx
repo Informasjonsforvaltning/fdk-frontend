@@ -1,14 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link, Heading, Card, Paragraph } from '@digdir/designsystemet-react';
-import {
-	FilesIcon,
-	CodeIcon,
-	ChatElipsisIcon,
-	TenancyIcon,
-	CompassIcon,
-	SparklesIcon,
-	ExternalLinkIcon
-} from '@navikt/aksel-icons';
+import { Link, Heading } from '@digdir/designsystemet-react';
 
 import { Dictionary } from '@fdk-frontend/dictionaries';
 
@@ -62,7 +53,7 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
 						<ul>
 							{
 								data.help.map(item => (
-									<li><Link href={item.href}>{item.title}</Link></li>		
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>		
 								))
 							}
 						</ul>
@@ -72,7 +63,7 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
 						<ul>
 							{
 								data.tools.map(item => (
-									<li><Link href={item.href}>{item.title}</Link></li>		
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>		
 								))
 							}
 						</ul>
@@ -82,7 +73,7 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
 						<ul>
 							{
 								data.about.map(item => (
-									<li><Link href={item.href}>{item.title}</Link></li>		
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>		
 								))
 							}
 						</ul>
