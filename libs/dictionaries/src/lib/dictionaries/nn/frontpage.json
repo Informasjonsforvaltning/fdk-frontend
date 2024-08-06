@@ -5,6 +5,7 @@
 			"label": "Spør vår KI om data frå over 125 verksemder og 8000 datasett:",
 			"placeholder": "Kva leitar du etter?",
 			"button": "Spør",
+			"loading": "Lastar",
 			"responses": {
 				"resultsFound": "Eg fann {{num}} datasett som kan vere relevante:",
 				"noResults": "Eg fann dessverre ingen relevante datasett. Prøv gjerne ei anna spurnad."

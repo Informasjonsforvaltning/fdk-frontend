@@ -10,7 +10,7 @@ describe('Breadcrumbs', () => {
   let dictionary: Dictionary;
 
   beforeEach(async () => {
-    dictionary = await getDictionary('en');
+    dictionary = await getDictionary('en', 'data-hunter-page');
   });
 
   it('should render successfully', () => {

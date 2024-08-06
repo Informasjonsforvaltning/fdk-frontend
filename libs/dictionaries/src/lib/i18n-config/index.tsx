@@ -3,6 +3,8 @@ import Negotiator from 'negotiator';
 import { match as matchLocale } from '@formatjs/intl-localematcher';
 import { NextRequest } from 'next/server';
 
+export type LocaleCodes = 'nb' | 'nn' | 'en';
+
 export const i18n = {
   defaultLocale: 'nb',
   locales: [
@@ -27,15 +29,15 @@ export const i18n = {
 export type Locale = typeof i18n['locales'][number];
 
 export type Dictionary = {
-  [key: string]: string | Dictionary;
+  [key: string]: any;
 }
 
-export const getDictionary = async (locale: string, set: string): Promise<Dictionary> => {
+export const getDictionary = async (localeCode: LocaleCodes, set: string): Promise<Dictionary> => {
   try {
-    const module = await import(`../dictionaries/${locale}/${set}.json`);
+    const module = await import(`../dictionaries/${localeCode}/${set}.json`);
     return module.default as Dictionary;
   } catch (error) {
-    console.warn(`Could not load dictionary for locale: ${locale}, set: ${set}. Falling back to default locale.`);
+    console.warn(`Could not load dictionary for locale: ${localeCode}, set: ${set}. Falling back to default locale.`);
     const fallbackModule = await import(`../dictionaries/${i18n.defaultLocale}/${set}.json`);
     return fallbackModule.default as Dictionary;
   }
@@ -58,7 +60,7 @@ export const getLocale = (request: NextRequest): Locale | undefined => {
  * @param {Object} params - The object containing key-value pairs for interpolation.
  * @returns {React.Element} - The interpolated string as a React element.
  */
-export const interpolate = (str, params) => {
+export const interpolate = (str: string, params: any) => {
   const regex = /{{\s*([^{}\s]+)\s*}}/g;
   let match;
   const parts = [];

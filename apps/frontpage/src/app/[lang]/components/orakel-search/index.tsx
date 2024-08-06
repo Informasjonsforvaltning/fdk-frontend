@@ -13,7 +13,7 @@ const DynamicQuerySuggestion = dynamic(() => import('./components/query-suggesti
     ssr: false
 });
 
-import { ResultItem } from './components/result-item';
+import { ResultItem, ItemObjectType } from './components/result-item';
 
 import mockResults from './data/results3.json';
 
@@ -22,9 +22,10 @@ import styles from './orakel-search.module.scss';
 type OrakelSearchProps = {
 	endpoint: string;
 	dictionary: Dictionary;
+	baseUri: string;
 }
 
-const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
+const OrakelSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
 
 	const [ loading, setLoading ]  = useState<boolean>(false);
 	const [ query, setQuery ] = useState<string>('');
@@ -52,7 +53,7 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 		}
 	};
 
-	const validate = (q) => {
+	const validate = (q: string) => {
 		if (!q || q.length < 3) {
 			setError(dictionary.aiBanner.prompt.errors.queryTooShort);
 			return false;
@@ -133,7 +134,7 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 		      >
 		      	{
 		      		loading ?
-		      		<Spinner size="xsmall" variant="inverted" /> :
+		      		<Spinner title={dictionary.aiBanner.prompt.loading} size="xsmall" variant="inverted" /> :
 		      		<>
 		      			<SparklesIcon className={styles.orakelSearchIcon} aria-hidden />
 		      			<span>{dictionary.aiBanner.prompt.button}</span>
@@ -154,18 +155,20 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 			  			/>
 			  		}
 			  		{
-			  			results && results.hits.length > 0 &&
-			  			interpolate(dictionary.aiBanner.prompt.responses.resultsFound, { num: results.hits.length })
-			  		}
-			  		{
-			  			results && !results.hits.length > 0 &&
-			  			dictionary.aiBanner.prompt.responses.noResults
+			  			results &&
+			  			<>
+			  				{
+			  					results.hits.length > 0
+					  			? interpolate(dictionary.aiBanner.prompt.responses.resultsFound, { num: results.hits.length })
+					  			: dictionary.aiBanner.prompt.responses.noResults
+			  				}
+			  			</>
 			  		}
 		  		</div>
 		  		<HelpText size="sm" title={dictionary.aiBanner.tooltip.label} className={styles.helptext}>
 		  			<Paragraph size="sm">{dictionary.aiBanner.tooltip.text}</Paragraph>
 		  			<Paragraph size="xs"><b>{dictionary.aiBanner.tooltip.disclaimer}</b></Paragraph>
-		  			<Paragraph size="sm"><Link href="#">{dictionary.aiBanner.tooltip.readMoreLinkText}</Link></Paragraph>
+		  			<Paragraph size="sm"><Link href={`${baseUri}/getting-started/finding-data`}>{dictionary.aiBanner.tooltip.readMoreLinkText}</Link></Paragraph>
 		  		</HelpText>
 		  	</div>
 		  }
@@ -190,7 +193,7 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 						animate="show"
 			  	>
 			  		{
-			  			results.hits && results.hits.map((item, i) => {
+			  			results.hits && results.hits.map((item: ItemObjectType, i: number) => {
 					  		return (
 					  			<motion.li
 					  				key={`item-${i}`}
@@ -204,6 +207,7 @@ const OrakelSearch = ({ endpoint, dictionary }: OrakelSearchProps) => {
 			  		<motion.li variants={animations.resultsItem}>
 			  			<AdvancedSearchPrompt
 			  				dictionary={dictionary}
+			  				baseUri={baseUri}
 			  			/>
 			  		</motion.li>
 			  	</motion.ul>

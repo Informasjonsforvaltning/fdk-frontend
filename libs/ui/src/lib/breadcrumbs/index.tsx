@@ -1,4 +1,4 @@
-import { ChevronRightIcon, HouseIcon } from '@navikt/aksel-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Link } from '@digdir/designsystemet-react';
 import styles from './breadcrumbs.module.css';
@@ -29,7 +29,7 @@ const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) 
       </Link>
       {breadcrumbList?.map((breadcrumb, i) => (
         <div key={breadcrumb.href}>
-          <ChevronRightIcon className={styles.separator} fontSize="1.5rem" />
+          <ChevronRightIcon className={styles.separator} fontSize="1.5rem" role="presentation" />
           {i === breadcrumbList.length - 1 ? (
             <span className={styles.deactiveLink}>{breadcrumb.text}</span>
           ) : (

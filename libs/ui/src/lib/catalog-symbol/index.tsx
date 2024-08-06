@@ -10,10 +10,12 @@ import {
 	SparklesIcon
 } from '@navikt/aksel-icons';
 
+import { CatalogTypes } from '@fdk-frontend/types';
+
 import styles from './catalog-symbol.module.scss';
 
 export type CatalogSymbolProps = {
-	catalog: 'datasets' | 'apis' | 'terms' | 'information-models' | 'services-events' | 'ai';
+	catalog: CatalogTypes;
 }
 
 const CatalogIcon = ({ catalog, ...rest }: CatalogSymbolProps & React.SVGProps<SVGSVGElement>) => {
@@ -33,7 +35,7 @@ const CatalogIcon = ({ catalog, ...rest }: CatalogSymbolProps & React.SVGProps<S
 	}
 }
 
-const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps & React.HTMLAttributes<HTMLDivElement>) => {
+const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps & React.SVGProps<SVGSVGElement>) => {
 	return (
 		<div className={cn(styles.catalogSymbol, className)}>
 			<CatalogIcon catalog={catalog} aria-hidden {...rest} />

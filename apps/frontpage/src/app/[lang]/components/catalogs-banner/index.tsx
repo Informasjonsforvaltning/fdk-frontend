@@ -1,3 +1,4 @@
+import { Dictionary } from '@fdk-frontend/dictionaries';
 import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
 import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 

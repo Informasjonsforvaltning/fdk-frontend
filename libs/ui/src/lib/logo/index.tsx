@@ -1,3 +1,4 @@
+import React from 'react';
 import cn from 'classnames';
 import { Link } from '@digdir/designsystemet-react';
 
@@ -14,21 +15,14 @@ const Logo = () => {
 	);
 }
 
-type LogoLinkProps = {
+export type LogoLinkProps = {
 	baseUri?: string;
 }
 
-<<<<<<<< HEAD:libs/ui/src/lib/logo/index.tsx
-const LogoLink = ({ className, href, ...rest }) => {
-	return (
-		<Link
-      href={href}
-========
-const LogoLink = ({ className, baseUri, ...rest }) => {
+const LogoLink = ({ className, baseUri, ...rest }: LogoLinkProps & React.HTMLAttributes<HTMLAnchorElement>) => {
 	return (
 		<Link
       href={baseUri}
->>>>>>>> 500950c (feat: i18n: all translations done, language-switcher working, footer design done):apps/frontpage/src/app/[lang]/components/logo/index.tsx
       className={cn(styles.logoLink, className)}
       {...rest}
     >
@@ -37,4 +31,4 @@ const LogoLink = ({ className, baseUri, ...rest }) => {
 	);
 }
 
-export { Logo, LogoLink, LogoLinkProps };
+export { Logo, LogoLink };

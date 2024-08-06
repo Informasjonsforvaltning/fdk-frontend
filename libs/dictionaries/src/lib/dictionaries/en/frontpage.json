@@ -5,6 +5,7 @@
 			"label": "Ask our AI about data from over 125 organizations and 8000 datasets:",
 			"placeholder": "What are you looking for?",
 			"button": "Ask",
+			"loading": "Loading",
 			"responses": {
 				"resultsFound": "I found {{num}} datasets that might be relevant:",
 				"noResults": "Unfortunately, I didn't find any relevant datasets. Please try another query."
