@@ -17,8 +17,7 @@ const LanguageSwitcher = ({ inverted }: LanguageSwitcher) => {
 	const router = useRouter();
   	const pathName = usePathname();
 
-  	const segments = pathName.split('/');
-  	const defaultCode = segments[1];
+  	const defaultCode = pathName.split('/');
 
 	const onLanguageSelect = (code) => {
 	  const segments = pathName.split('/');
@@ -35,7 +34,7 @@ const LanguageSwitcher = ({ inverted }: LanguageSwitcher) => {
 		>
 			{
 				i18n.locales.map(locale => (
-					<ToggleGroup.Item value={locale.code}>
+					<ToggleGroup.Item value={locale.code} key={locale.code}>
 						{locale.flag} {locale.name}
 					</ToggleGroup.Item>
 				))
