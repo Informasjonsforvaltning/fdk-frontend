@@ -33,7 +33,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.catalogs.map(item => (
-									<li>
+									<li key={item.key}>
 										<Link className={styles.iconLink} href={item.href}>
 											<CatalogIcon catalog={item.key} fontSize='1.5em' />
 											{item.title}
@@ -50,7 +50,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.help.map(item => (
-									<li><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
 								))
 							}
 						</ul>
@@ -62,7 +62,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.tools.map(item => (
-									<li><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
 								))
 							}
 						</ul>
@@ -74,12 +74,12 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.about.map(item => (
-									<li><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
 								))
 							}
 							{
 								footerData.policies.map(item => (
-									<li><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
 								))
 							}
 							<li>
