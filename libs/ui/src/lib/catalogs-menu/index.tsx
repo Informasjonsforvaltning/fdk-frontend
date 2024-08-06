@@ -2,18 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { Link, Heading, Card, Paragraph } from '@digdir/designsystemet-react';
-import {
-	FilesIcon,
-	CodeIcon,
-	ChatElipsisIcon,
-	TenancyIcon,
-	CompassIcon,
-	SparklesIcon,
-	ExternalLinkIcon
-} from '@navikt/aksel-icons';
 
-import CatalogSymbol from '@fdk-frontend/ui/catalog-symbol/';
-import getMainMenuData from '@fdk-frontend/ui/main-menu/data';
+import { Dictionary } from '@fdk-frontend/dictionaries';
+import { CatalogTypes } from '@fdk-frontend/types';
+import CatalogSymbol from '../catalog-symbol/';
+import getMainMenuData from '../main-menu/data';
 
 import styles from './catalogs-menu.module.scss';
 
@@ -50,13 +43,16 @@ const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
 		    animate="show"
 		  >
 				{
-					data.catalogs.map((item, i) =>
+					data.catalogs.map((item: any, i: number) =>
 						<motion.li variants={animations.catalogItem} key={item.key}>
-								<Card className={styles.card} asChild href={item.href} isLink>
+								<Card className={styles.card} asChild isLink>
 									<Link href={item.href}>
 										<Card.Header>
 											<Heading className={styles.catalogTitle} size="xxsmall" level={3}>
-												<CatalogSymbol className={styles.catalogIcon} catalog={item.key} />
+												<CatalogSymbol
+													className={styles.catalogIcon}
+													catalog={item.key as CatalogTypes}
+												/>
 												<span>{item.title}</span>
 											</Heading>
 										</Card.Header>

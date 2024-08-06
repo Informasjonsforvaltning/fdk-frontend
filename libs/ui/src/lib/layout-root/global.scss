@@ -21,6 +21,11 @@
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:var(--color-fdk-navy-dark);
+
+  main {
+    background:white;
+  }
 }
 
 html {
