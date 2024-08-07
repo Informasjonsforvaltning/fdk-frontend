@@ -5,3 +5,5 @@ export type LinkObjectType = {
   text?: string;
   undecoratedText?: string;
 };
+
+export type CatalogTypes = 'datasets' | 'apis' | 'terms' | 'information-models' | 'services-events' | 'ai';

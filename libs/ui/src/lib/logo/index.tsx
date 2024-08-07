@@ -18,7 +18,7 @@ type LogoLinkProps = {
 	baseUri?: string;
 }
 
-const LogoLink = ({ className, baseUri, ...rest }) => {
+const LogoLink = ({ className, baseUri, ...rest }: LogoLinkProps & React.HTMLAttributes<HTMLAnchorElement>) => {
 	return (
 		<Link
       href={baseUri}

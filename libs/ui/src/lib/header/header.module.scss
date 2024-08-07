@@ -1,25 +1,25 @@
-.frontpageWrapper {
-  .header {
-    padding-bottom:0;
-  }
-  .headerOuter {
-    &:not(.headerSticky) {
-      .headerLogo {
-        color:white;
-      }
+.header {
+  padding-bottom:74px;
 
-      .headerToolbar {
-        a, button {&:not(:hover) {
-            color: white;
+  &.frontpageHeader {
+    padding-bottom:0;
+
+    .headerOuter {
+      &:not(.headerSticky) {
+        .headerLogo {
+          color:white;
+        }
+
+        .headerToolbar {
+          a, button {
+            &:not(:hover) {
+              color: white;
+            }
           }
         }
       }
     }
   }
-}
-
-.header {
-  padding-bottom:74px;
 }
 
 .headerOuter {

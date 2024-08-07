@@ -58,7 +58,7 @@ export const getLocale = (request: NextRequest): Locale | undefined => {
  * @param {Object} params - The object containing key-value pairs for interpolation.
  * @returns {React.Element} - The interpolated string as a React element.
  */
-export const interpolate = (str, params) => {
+export const interpolate = (str: string, params: any) => {
   const regex = /{{\s*([^{}\s]+)\s*}}/g;
   let match;
   const parts = [];
