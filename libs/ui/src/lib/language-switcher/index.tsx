@@ -8,11 +8,11 @@ import { i18n, LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import styles from './language-switcher.module.scss';
 
-type LanguageSwitcher = {
+type LanguageSwitcherProps = {
 	inverted?: boolean;
 };
 
-const LanguageSwitcher = ({ inverted }: LanguageSwitcher) => {
+const LanguageSwitcher = ({ inverted }: LanguageSwitcherProps) => {
 
 	const router = useRouter();
   	const pathName = usePathname();

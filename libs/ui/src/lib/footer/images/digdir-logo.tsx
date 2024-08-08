@@ -1,3 +1,5 @@
+import React from 'react';
+
 const DigdirLogo = (props: React.SVGProps<SVGSVGElement>) => {
     return (
         <svg id="logoer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101.61 26.5" {...props}>

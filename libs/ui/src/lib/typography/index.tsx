@@ -1,4 +1,3 @@
-import { PropsWithChildren } from 'react';
 import cn from 'classnames';
 import { Heading, HeadingProps } from '@digdir/designsystemet-react';
 
