@@ -29,7 +29,7 @@ const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) 
       </Link>
       {breadcrumbList?.map((breadcrumb, i) => (
         <div key={breadcrumb.href}>
-          <ChevronRightIcon className={styles.separator} fontSize="1.5rem" />
+          <ChevronRightIcon className={styles.separator} fontSize="1.5rem" role="presentation" />
           {i === breadcrumbList.length - 1 ? (
             <span className={styles.deactiveLink}>{breadcrumb.text}</span>
           ) : (
