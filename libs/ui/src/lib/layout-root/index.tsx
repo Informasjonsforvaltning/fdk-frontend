@@ -28,7 +28,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
 
   return (
     <html lang={params.lang}>
-      <body>
+      <body className={cn(className)}>
         <Header
           dictionary={dictionary}
           baseUri={baseUri}

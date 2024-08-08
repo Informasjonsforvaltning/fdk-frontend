@@ -84,7 +84,7 @@ const OrakelSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
 		        body: JSON.stringify({ query: q ?? query })
 		    })
 		    .then(res => {
-		    		setLoading(false);
+		    	setLoading(false);
 
 		        if (res.status === 200) {
 		          return res.json();

@@ -1,4 +1,4 @@
-import { Dictionary, getDictionary } from '@fdk-frontend/dictionaries';
+import { Dictionary, getDictionary } from '@fdk-frontend/i18n';
 import { expect, Page, BrowserContext } from '@playwright/test';
 import * as mockData from '../data/inputData.json';
 import type AxeBuilder from '@axe-core/playwright';
@@ -12,7 +12,7 @@ export default class FormPage {
   formData = {};
 
   constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
-    getDictionary('en').then((dict) => (this.dictionary = dict));
+    getDictionary('en', 'data-hunter-page').then((dict) => (this.dictionary = dict));
     this.page = page;
     this.context = context;
     this.accessibilityBuilder = accessibilityBuilder;
@@ -20,7 +20,7 @@ export default class FormPage {
   }
 
   async init() {
-    getDictionary('en').then((dict) => (this.dictionary = dict));
+    getDictionary('en', 'data-hunter-page').then((dict) => (this.dictionary = dict));
     await this.addSubmitListener();
   }
 

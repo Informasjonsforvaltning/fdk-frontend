@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getDictionary, type Locale } from '@fdk-frontend/i18n';
 
 import { Breadcrumbs } from '@fdk-frontend/ui/breadcrumbs';
 

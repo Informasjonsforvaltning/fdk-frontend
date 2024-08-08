@@ -12,13 +12,15 @@
     "paths": {
       "@fdk-frontend/data-access": ["libs/data-access/src/index.ts"],
       "@fdk-frontend/data-access/server": ["libs/data-access/src/server.ts"],
-      "@fdk-frontend/dictionaries": ["libs/dictionaries/src/index.ts"],
       "@fdk-frontend/types": ["libs/types/src/index.ts"],
       "@fdk-frontend/types/server": ["libs/types/src/server.ts"],
       "@fdk-frontend/ui/*": ["libs/ui/src/lib/*"],
       "@fdk-frontend/utils": ["libs/utils/src/index.ts"],
       "@fdk-frontend/utils/server": ["libs/utils/src/server.ts"],
-      "react": ["./node_modules/@types/react"],
+      "react": ["./node_modules/react"],
+      "react-dom": ["node_modules/react-dom"],
+      "@types/react": ["node_modules/@types/react"],
+      "@types/react-dom": ["node_modules/@types/react-dom"],
       "storybook-host": ["libs/storybook-host/src/index.ts"]
     },
     "rootDir": ".",
