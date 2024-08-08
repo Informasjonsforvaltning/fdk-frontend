@@ -37,7 +37,6 @@
     "affected:libs:ci": "nx affected:libs --base=origin/main --head=HEAD",
     "matrix": "nx print-affected --type=app --select=projects --plain|tr -d '\\n'|jq -cRs 'split(\", \")'",
     "format": "nx format:write",
-    "postinstall": "husky install",
     "storybook": "nx storybook storybook-host"
   },
   "dependencies": {
