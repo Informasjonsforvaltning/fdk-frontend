@@ -14,7 +14,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
 
   const {
     FDK_BASE_URI: baseUri = '',
-    FDK_LLM_SEARCH_ENDPOINT: endpoint = '/'
+    FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '/'
   } = process.env;
   
   const commonDictionary = await getDictionary(params.lang, 'common');
@@ -25,7 +25,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
       <FrontpageBanner
         dictionary={frontpageDictionary}
         baseUri={baseUri}
-        endpoint={endpoint}
+        endpoint={`${llmSearchBaseUri}/llm`}
       />
       <main className='main-content'>
         <ShareDataBanner
