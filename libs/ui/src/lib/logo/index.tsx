@@ -14,7 +14,7 @@ const Logo = () => {
 	);
 }
 
-type LogoLinkProps = {
+export type LogoLinkProps = {
 	baseUri?: string;
 }
 
@@ -30,4 +30,4 @@ const LogoLink = ({ className, baseUri, ...rest }: LogoLinkProps & React.HTMLAtt
 	);
 }
 
-export { Logo, LogoLink, LogoLinkProps };
+export { Logo, LogoLink };

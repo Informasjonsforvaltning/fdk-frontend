@@ -28,7 +28,7 @@ const Header = ({
 }: HeaderProps) => {
 
   const pathname = usePathname();
-  const headerRef = useRef(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const [ sticky, setSticky ] = useState(false);
   const [ showMenu, setShowMenu ] = useState(false);
   const [ frontpage, setFrontpage ] = useState(true);
@@ -66,7 +66,7 @@ const Header = ({
       ref={headerRef}
     >
       <div className={cn(styles.headerOuter, {
-        [styles.headerSticky]: sticky | showMenu,
+        [styles.headerSticky]: sticky || showMenu,
         [styles.drawerOpen]: showMenu
       })}>
         <div className={styles.headerInner}>

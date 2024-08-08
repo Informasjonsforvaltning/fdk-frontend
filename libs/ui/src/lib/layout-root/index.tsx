@@ -13,7 +13,7 @@ import headerStyles from '@fdk-frontend/ui/header/header.module.scss';
 
 import styles from './layout-root.module.css';
 
-type RootLayoutProps = {
+export type RootLayoutProps = {
   params: {
     lang: Locale['code'];
   }
@@ -51,4 +51,4 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
 };
 
 export default RootLayout
-export { RootLayoutProps, generateStaticParams };
+export { generateStaticParams };

@@ -1,9 +1,10 @@
+import { PropsWithChildren } from 'react';
 import cn from 'classnames';
-import { Heading } from '@digdir/designsystemet-react';
+import { Heading, HeadingProps } from '@digdir/designsystemet-react';
 
 import styles from './typography.module.scss';
 
-const HeadingWithDivider = ({ children, className, ...rest }) => {
+const HeadingWithDivider = ({ children, className, ...rest }: HeadingProps) => {
 	return (
 		<Heading
 			className={cn(styles.headingWithDivider, className)}

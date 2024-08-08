@@ -3,6 +3,8 @@ import Negotiator from 'negotiator';
 import { match as matchLocale } from '@formatjs/intl-localematcher';
 import { NextRequest } from 'next/server';
 
+export type LocaleCodes = 'nb' | 'nn' | 'en';
+
 export const i18n = {
   defaultLocale: 'nb',
   locales: [
@@ -30,12 +32,12 @@ export type Dictionary = {
   [key: string]: any;
 }
 
-export const getDictionary = async (locale: string, set: string): Promise<Dictionary> => {
+export const getDictionary = async (localeCode: LocaleCodes, set: string): Promise<Dictionary> => {
   try {
-    const module = await import(`../dictionaries/${locale}/${set}.json`);
+    const module = await import(`../dictionaries/${localeCode}/${set}.json`);
     return module.default as Dictionary;
   } catch (error) {
-    console.warn(`Could not load dictionary for locale: ${locale}, set: ${set}. Falling back to default locale.`);
+    console.warn(`Could not load dictionary for locale: ${localeCode}, set: ${set}. Falling back to default locale.`);
     const fallbackModule = await import(`../dictionaries/${i18n.defaultLocale}/${set}.json`);
     return fallbackModule.default as Dictionary;
   }
