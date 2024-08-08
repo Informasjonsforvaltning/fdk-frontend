@@ -1,8 +1,10 @@
 .header {
-  padding-bottom:74px;
-
   &.frontpageHeader {
     padding-bottom:0;
+
+    + main {
+      padding-top:0;
+    }
 
     .headerOuter {
       &:not(.headerSticky) {
@@ -19,6 +21,10 @@
         }
       }
     }
+  }
+
+  + main {
+    padding-top:74px;
   }
 }
 
