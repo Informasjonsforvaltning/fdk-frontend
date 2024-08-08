@@ -14,7 +14,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
 
   const {
     FDK_BASE_URI: baseUri = '',
-    FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '/'
+    FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = ''
   } = process.env;
   
   const commonDictionary = await getDictionary(params.lang, 'common');
