@@ -37,7 +37,7 @@ jobs:
         run: |
           corepack enable
           yarn set version stable
-          yarn install --immutable
+          yarn install --frozen-lockfile
 
       - name: Caching Nx
         uses: actions/cache@v4
