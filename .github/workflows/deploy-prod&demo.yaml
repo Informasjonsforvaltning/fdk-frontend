@@ -82,7 +82,7 @@ jobs:
       GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
 
   deploy-prod:
-    name: Deploy affected apps to production environment with reusable workflow
+    name: Deploy affected apps to production environment
     needs: [test, build]
     strategy:
       matrix: ${{fromJSON(needs.test.outputs.matrix)}}
@@ -100,7 +100,7 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   deploy-demo:
-    name: Deploy affected apps to demo environment with reusable workflow
+    name: Deploy affected apps to demo environment
     needs: [test, deploy-prod]
     strategy:
       matrix: ${{fromJSON(needs.test.outputs.matrix)}}
