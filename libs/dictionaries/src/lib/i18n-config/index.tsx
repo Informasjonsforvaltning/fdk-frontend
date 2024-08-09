@@ -1,7 +1,4 @@
 import React from 'react';
-import Negotiator from 'negotiator';
-import { match as matchLocale } from '@formatjs/intl-localematcher';
-import { NextRequest } from 'next/server';
 
 export type LocaleCodes = 'nb' | 'nn' | 'en';
 
@@ -42,17 +39,6 @@ export const getDictionary = async (localeCode: LocaleCodes, set: string): Promi
     return fallbackModule.default as Dictionary;
   }
 };
-
-export const getLocale = (request: NextRequest): Locale | undefined => {
-  // Negotiator expects plain object so we need to transform headers
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-  const localeCodes: string[] = i18n.locales.map((locale) => locale.code);
-  // Use negotiator and intl-localematcher to get best locale
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(localeCodes);
-  const locale = matchLocale(languages, localeCodes, i18n.defaultLocale);
-  return i18n.locales.find((l) => l.code === locale);
-}
 
 /**
  * Interpolates values into a string containing HTML.
