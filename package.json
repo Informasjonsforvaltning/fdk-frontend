@@ -44,7 +44,6 @@
     "@digdir/designsystemet-css": "^0.10.0",
     "@digdir/designsystemet-react": "^0.63.0",
     "@digdir/designsystemet-theme": "^0.15.3",
-    "@formatjs/intl-localematcher": "^0.5.4",
     "@navikt/aksel-icons": "^6.5.0",
     "classnames": "^2.5.1",
     "framer-motion": "^11.2.11",
