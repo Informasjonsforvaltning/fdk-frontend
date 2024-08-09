@@ -40,7 +40,14 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
           dictionary={dictionary}
           baseUri={baseUri}
         />
-        <code>debug: {process.env.FDK_LLM_SEARCH_BASE_URI}</code>
+        <code>
+          debug:<br/>
+          FDK_LLM_SEARCH_BASE_URI: {process.env.FDK_LLM_SEARCH_BASE_URI}<br/>
+          BASE_URI: {process.env.BASE_URI}<br/>
+          FDK_COMMUNITY_BASE_URI: {process.env.FDK_COMMUNITY_BASE_URI}<br/>
+          FDK_REGISTRATION_BASE_URI: {process.env.FDK_REGISTRATION_BASE_URI}<br/>
+          DATAJEGER_EMAIL_ADDRESS: {process.env.DATAJEGER_EMAIL_ADDRESS}
+        </code>
       </body>
     </html>
   );
