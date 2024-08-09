@@ -90,7 +90,6 @@
     "@types/jest-axe": "^3.5.9",
     "@types/leaflet": "^1.9.12",
     "@types/lodash": "^4.17.0",
-    "@types/negotiator": "^0.6.3",
     "@types/node": "20.12.7",
     "@types/react": "18.2.76",
     "@types/react-dom": "18.2.25",

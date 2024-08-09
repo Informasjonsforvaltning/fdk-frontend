@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { i18n, getLocale, Locale } from '@fdk-frontend/i18n';
+import { i18n, Locale } from '@fdk-frontend/dictionaries';
 
 export const middleware = (request: NextRequest) => {
   // Get the pathname and remove basePath
@@ -22,9 +22,8 @@ export const middleware = (request: NextRequest) => {
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
     return NextResponse.redirect(
-      new URL(basePath + `/${locale?.code}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
+      new URL(basePath + `/${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
     );
   }
   return null;
