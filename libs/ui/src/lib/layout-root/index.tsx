@@ -40,6 +40,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
           dictionary={dictionary}
           baseUri={baseUri}
         />
+        <code>debug: {process.env.FDK_LLM_SEARCH_BASE_URI}</code>
       </body>
     </html>
   );
