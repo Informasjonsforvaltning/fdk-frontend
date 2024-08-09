@@ -1,7 +1,6 @@
 import React from 'react';
-import Negotiator from 'negotiator';
-import { match as matchLocale } from '@formatjs/intl-localematcher';
-import { NextRequest } from 'next/server';
+
+export type LocaleCodes = 'nb' | 'nn' | 'en';
 
 export const i18n = {
   defaultLocale: 'nb',
@@ -27,29 +26,19 @@ export const i18n = {
 export type Locale = typeof i18n['locales'][number];
 
 export type Dictionary = {
-  [key: string]: string | Dictionary;
+  [key: string]: any;
 }
 
-export const getDictionary = async (locale: string, set: string): Promise<Dictionary> => {
+export const getDictionary = async (localeCode: LocaleCodes, set: string): Promise<Dictionary> => {
   try {
-    const module = await import(`../dictionaries/${locale}/${set}.json`);
+    const module = await import(`../dictionaries/${localeCode}/${set}.json`);
     return module.default as Dictionary;
   } catch (error) {
+    console.warn(`Could not load dictionary for locale: ${localeCode}, set: ${set}. Falling back to default locale.`);
     const fallbackModule = await import(`../dictionaries/${i18n.defaultLocale}/${set}.json`);
     return fallbackModule.default as Dictionary;
   }
 };
-
-export const getLocale = (request: NextRequest): Locale | undefined => {
-  // Negotiator expects plain object so we need to transform headers
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-  const localeCodes: string[] = i18n.locales.map((locale) => locale.code);
-  // Use negotiator and intl-localematcher to get best locale
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(localeCodes);
-  const locale = matchLocale(languages, localeCodes, i18n.defaultLocale);
-  return i18n.locales.find((l) => l.code === locale);
-}
 
 /**
  * Interpolates values into a string containing HTML.
@@ -57,7 +46,7 @@ export const getLocale = (request: NextRequest): Locale | undefined => {
  * @param {Object} params - The object containing key-value pairs for interpolation.
  * @returns {React.Element} - The interpolated string as a React element.
  */
-export const interpolate = (str, params) => {
+export const interpolate = (str: string, params: any) => {
   const regex = /{{\s*([^{}\s]+)\s*}}/g;
   let match;
   const parts = [];

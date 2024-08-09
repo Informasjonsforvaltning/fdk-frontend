@@ -3,8 +3,7 @@ import 'server-only';
 import "./global.scss";
 
 import { PropsWithChildren } from 'react';
-import { getDictionary, i18n, type Locale } from '@fdk-frontend/i18n';
-import cn from 'classnames';
+import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 
 import Footer from '../footer';
 import Header from '../header';
@@ -12,25 +11,24 @@ import Header from '../header';
 export type RootLayoutProps = {
   params: {
     lang: Locale['code'];
-  },
-  className?: string;
+  }
 };
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
-const RootLayout = async ({ children, className, params }: RootLayoutProps & PropsWithChildren) => {
+const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChildren) => {
 
   const dictionary = await getDictionary(params.lang, 'common');
 
   const {
-    FDK_BASE_URI: baseUri = '/',
+    FDK_BASE_URI: baseUri = '',
     FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
     FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
   } = process.env;
 
   return (
     <html lang={params.lang}>
-      <body className={cn(className)}>
+      <body>
         <Header
           dictionary={dictionary}
           baseUri={baseUri}
@@ -42,9 +40,18 @@ const RootLayout = async ({ children, className, params }: RootLayoutProps & Pro
           dictionary={dictionary}
           baseUri={baseUri}
         />
+        <code>
+          debug:<br/>
+          FDK_LLM_SEARCH_BASE_URI: {process.env.FDK_LLM_SEARCH_BASE_URI}<br/>
+          BASE_URI: {process.env.BASE_URI}<br/>
+          FDK_COMMUNITY_BASE_URI: {process.env.FDK_COMMUNITY_BASE_URI}<br/>
+          FDK_REGISTRATION_BASE_URI: {process.env.FDK_REGISTRATION_BASE_URI}<br/>
+          DATAJEGER_EMAIL_ADDRESS: {process.env.DATAJEGER_EMAIL_ADDRESS}
+        </code>
       </body>
     </html>
   );
 };
 
-export { RootLayout, generateStaticParams };
+export default RootLayout
+export { generateStaticParams };

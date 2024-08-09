@@ -1,12 +1,14 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import cn from 'classnames';
 
 import { Link, Button } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 
-import { Dictionary } from '@fdk-frontend/i18n';
+import { Dictionary } from '@fdk-frontend/dictionaries';
+
 import { LogoLink } from '../logo';
 import MainMenu from '../main-menu';
 
@@ -26,11 +28,16 @@ const Header = ({
   registrationBaseUri = '#',
 }: HeaderProps) => {
 
-  const headerRef = useRef(null);
+  const pathname = usePathname();
+  const headerRef = useRef<HTMLDivElement>(null);
   const [ sticky, setSticky ] = useState(false);
   const [ showMenu, setShowMenu ] = useState(false);
+  const [ frontpage, setFrontpage ] = useState(true);
 
   useEffect(() => {
+    const pathSegments = pathname.split('/')
+    if (pathSegments.length !== 2) setFrontpage(false);
+
     const toggleSticky = () => {
       if (window.scrollY > 0) {
         if (!sticky) setSticky(true);
@@ -56,17 +63,17 @@ const Header = ({
 
   return (
     <header
-      className={styles.header}
+      className={cn(styles.header, { [styles.frontpageHeader]: frontpage })}
       ref={headerRef}
     >
       <div className={cn(styles.headerOuter, {
-        [styles.headerSticky]: sticky | showMenu,
+        [styles.headerSticky]: sticky || showMenu,
         [styles.drawerOpen]: showMenu
       })}>
         <div className={styles.headerInner}>
           <LogoLink
             className={styles.headerLogo}
-            href={baseUri}
+            baseUri={baseUri}
           />
           <div className={styles.headerToolbar}>
             <Button asChild size="small" variant="tertiary">

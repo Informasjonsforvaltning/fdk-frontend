@@ -1,32 +1,40 @@
-.frontpageWrapper {
-  .header {
+.header {
+  &.frontpageHeader {
     padding-bottom:0;
-  }
-  .headerOuter {
-    &:not(.headerSticky) {
-      .headerLogo {
-        color:white;
-      }
 
-      .headerToolbar {
-        a, button {&:not(:hover) {
-            color: white;
+    + main {
+      padding-top:0;
+    }
+
+    .headerOuter {
+      &:not(.headerSticky) {
+        .headerLogo {
+          color:white;
+        }
+
+        .headerToolbar {
+          a, button {
+            &:not(:hover) {
+              color: white;
+            }
           }
         }
       }
     }
   }
-}
 
-.header {
-  padding-bottom:74px;
+  + main {
+    padding-top:74px;
+  }
 }
 
 .headerOuter {
   position:fixed;
   z-index:100;
   width:100%;
-  transition:background linear 200ms;
+  transition:all linear 200ms;
+  max-height:100vh;
+  overflow:auto;
 
   &.headerSticky {
     position:fixed;
@@ -38,7 +46,7 @@
     display:flex;
     align-items:center;
     // max-width:1280px;
-    // margin:auto;
+    margin:auto;
     padding:1rem 2rem;
     justify-content: space-between;
     position:relative;

@@ -44,3 +44,9 @@ spec:
                 secretKeyRef:
                   name: commonurl-staging
                   key: FDK_BASE_URI
+            - name: FDK_LLM_SEARCH_BASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: commonurl-staging
+                  key: FDK_LLM_SEARCH_BASE_URI
+

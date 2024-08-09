@@ -35,7 +35,6 @@
       "rules": {
         "import/no-unresolved": "off",
         "react/react-in-jsx-scope": "off",
-        "react/prop-types": "off",
         "no-console": "off",
         "no-restricted-syntax": [
           "error",
@@ -74,7 +73,10 @@
         "prefer-const": "error",
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-explicit-any": "warn"
+        "@typescript-eslint/no-explicit-any": "warn",
+        "react/prop-types": "off",
+        "default-case": "warn",
+        "import/named": "warn"
       }
     },
     {

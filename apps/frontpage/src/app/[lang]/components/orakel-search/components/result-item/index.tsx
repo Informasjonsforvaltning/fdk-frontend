@@ -4,7 +4,7 @@ import CatalogSymbol from '@fdk-frontend/ui/catalog-symbol';
 
 import styles from './result-item.module.scss';
 
-type ItemObject = {
+export type ItemObjectType = {
 	id: string;
 	title: string;
 	description: string;
@@ -14,7 +14,7 @@ type ItemObject = {
 }
 
 type ResultItemProps = {
-	item: ItemObject;
+	item: ItemObjectType;
 }
 
 const getDatasetLink = (datasetId: string) => {

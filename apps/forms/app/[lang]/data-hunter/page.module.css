@@ -1,9 +1,5 @@
 .contentContainer {
   max-width:1000px;
-  padding:0 2rem;
+  padding:0 2rem 3rem;
   margin:auto;
-}
-
-.contentContainer {
-  margin-bottom: 3rem;
 }

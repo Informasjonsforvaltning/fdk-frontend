@@ -5,13 +5,14 @@
 			"label": "Ask our AI about data from over 125 organizations and 8000 datasets:",
 			"placeholder": "What are you looking for?",
 			"button": "Ask",
+			"loading": "Loading",
 			"responses": {
 				"resultsFound": "I found {{num}} datasets that might be relevant:",
 				"noResults": "Unfortunately, I didn't find any relevant datasets. Please try another query."
 			},
 			"errors": {
 				"queryTooShort": "The query must contain more than two characters. Please try again.",
-				"generic": "An error occurred. Please try again later."
+				"generic": "An error occurred. Please try again."
 			}
 		},
 		"suggestions": {

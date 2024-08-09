@@ -1,5 +1,6 @@
-import { Dictionary } from '@fdk-frontend/i18n';
 import { Link, Heading } from '@digdir/designsystemet-react';
+import { Dictionary } from '@fdk-frontend/dictionaries';
+import { CatalogTypes } from '@fdk-frontend/types';
 
 import { CatalogIcon } from '../catalog-symbol';
 import { LogoLink } from '../logo';
@@ -35,7 +36,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 								mainMenuData.catalogs.map(item => (
 									<li key={item.key}>
 										<Link className={styles.iconLink} href={item.href}>
-											<CatalogIcon catalog={item.key} fontSize='1.5em' />
+											<CatalogIcon catalog={item.key as CatalogTypes} fontSize='1.5em' />
 											{item.title}
 										</Link>
 									</li>
@@ -95,7 +96,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 			</div>
 			<div className={styles.bottom}>
 				<div className={styles.bottomInner}>
-					<LogoLink href={baseUri} />
+					<LogoLink baseUri={baseUri} />
 					<div className={styles.digdirCredit}>
 						<span>{dictionary.footer.digdirCredit}</span>
 						<Link href={footerData.digdirUri}>

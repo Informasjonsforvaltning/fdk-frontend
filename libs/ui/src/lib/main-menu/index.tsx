@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link, Heading } from '@digdir/designsystemet-react';
 
-import { Dictionary } from '@fdk-frontend/i18n';
+import { Dictionary } from '@fdk-frontend/dictionaries';
 
 import styles from './main-menu.module.scss';
 

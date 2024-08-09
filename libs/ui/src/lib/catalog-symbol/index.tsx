@@ -10,14 +10,18 @@ import {
 	SparklesIcon
 } from '@navikt/aksel-icons';
 
+import { CatalogTypes } from '@fdk-frontend/types';
+
 import styles from './catalog-symbol.module.scss';
 
 export type CatalogSymbolProps = {
-	catalog: 'datasets' | 'apis' | 'terms' | 'information-models' | 'services-events' | 'ai';
+	catalog: CatalogTypes;
 }
 
 const CatalogIcon = ({ catalog, ...rest }: CatalogSymbolProps & React.SVGProps<SVGSVGElement>) => {
 	switch (catalog) {
+		case 'datasets':
+			return <FilesIcon {...rest} />;
 		case 'apis':
 			return <CodeIcon {...rest} />;
 		case 'terms':
@@ -28,13 +32,10 @@ const CatalogIcon = ({ catalog, ...rest }: CatalogSymbolProps & React.SVGProps<S
 			return <CompassIcon {...rest} />;
 		case 'ai':
 			return <SparklesIcon {...rest} />;
-		case 'datasets':
-		default:
-			return <FilesIcon {...rest} />;
 	}
 }
 
-const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps & React.HTMLAttributes<HTMLDivElement>) => {
+const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps & React.SVGProps<SVGSVGElement>) => {
 	return (
 		<div className={cn(styles.catalogSymbol, className)}>
 			<CatalogIcon catalog={catalog} aria-hidden {...rest} />

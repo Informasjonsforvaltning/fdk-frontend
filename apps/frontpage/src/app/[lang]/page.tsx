@@ -1,4 +1,4 @@
-import { getDictionary, Locale } from '@fdk-frontend/i18n';
+import { getDictionary, Locale } from '@fdk-frontend/dictionaries';
 
 import { FrontpageBanner } from './components/frontpage-banner';
 import { ShareDataBanner } from './components/share-data-banner';
@@ -13,8 +13,8 @@ export type FrontpageProps = {
 const Frontpage = async ({ params }: FrontpageProps) => {
 
   const {
-    FDK_BASE_URI: baseUri = '/',
-    FDK_LLM_SEARCH_ENDPOINT: endpoint
+    FDK_BASE_URI: baseUri = '',
+    FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = ''
   } = process.env;
   
   const commonDictionary = await getDictionary(params.lang, 'common');
@@ -25,7 +25,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
       <FrontpageBanner
         dictionary={frontpageDictionary}
         baseUri={baseUri}
-        endpoint={endpoint}
+        endpoint={`${llmSearchBaseUri}/llm`}
       />
       <main className='main-content'>
         <ShareDataBanner

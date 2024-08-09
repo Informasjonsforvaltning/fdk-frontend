@@ -5,13 +5,14 @@
 			"label": "Spør vår KI om data frå over 125 verksemder og 8000 datasett:",
 			"placeholder": "Kva leitar du etter?",
 			"button": "Spør",
+			"loading": "Lastar",
 			"responses": {
 				"resultsFound": "Eg fann {{num}} datasett som kan vere relevante:",
 				"noResults": "Eg fann dessverre ingen relevante datasett. Prøv gjerne ei anna spurnad."
 			},
 			"errors": {
 				"queryTooShort": "Spurnaden må innehalde meir enn to teikn. Prøv igjen.",
-				"generic": "Ein feil oppstod. Ver venleg å prøv igjen seinare."
+				"generic": "Ein feil oppstod. Ver venleg å prøv igjen."
 			}
 		},
 		"suggestions": {

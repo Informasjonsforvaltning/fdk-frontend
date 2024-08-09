@@ -1,3 +1,4 @@
+import React from 'react';
 import cn from 'classnames';
 import { Link } from '@digdir/designsystemet-react';
 
@@ -14,14 +15,14 @@ const Logo = () => {
 	);
 }
 
-type LogoLinkProps = {
+export type LogoLinkProps = {
 	baseUri?: string;
 }
 
-const LogoLink = ({ className, href, ...rest }) => {
+const LogoLink = ({ className, baseUri, ...rest }: LogoLinkProps & React.HTMLAttributes<HTMLAnchorElement>) => {
 	return (
 		<Link
-      href={href}
+      href={baseUri}
       className={cn(styles.logoLink, className)}
       {...rest}
     >
@@ -30,4 +31,4 @@ const LogoLink = ({ className, href, ...rest }) => {
 	);
 }
 
-export { Logo, LogoLink, LogoLinkProps };
+export { Logo, LogoLink };
