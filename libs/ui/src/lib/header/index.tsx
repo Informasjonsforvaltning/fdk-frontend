@@ -34,23 +34,24 @@ const Header = ({
   const [ showMenu, setShowMenu ] = useState(false);
   const [ frontpage, setFrontpage ] = useState(true);
 
+  const toggleSticky = () => {
+    if (frontpage) return false;
+    if (window.scrollY > 0) {
+      if (!sticky) setSticky(true);
+    } else {
+      if (sticky) setSticky(false);
+    }
+  };
+
+  const handleClick = (e: any) => {
+    if (!headerRef.current?.contains(e.target)) {
+      setShowMenu(false);
+    }
+  }
+
   useEffect(() => {
     const pathSegments = pathname.split('/')
     if (pathSegments.length !== 2) setFrontpage(false);
-
-    const toggleSticky = () => {
-      if (window.scrollY > 0) {
-        if (!sticky) setSticky(true);
-      } else {
-        if (sticky) setSticky(false);
-      }
-    };
-
-    const handleClick = (e: any) => {
-      if (!headerRef.current?.contains(e.target)) {
-        setShowMenu(false);
-      }
-    }
 
     window.addEventListener('scroll', toggleSticky);
     window.addEventListener('click', handleClick);

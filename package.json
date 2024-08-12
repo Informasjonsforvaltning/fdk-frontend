@@ -37,7 +37,7 @@
     "affected:libs:ci": "nx affected:libs --base=origin/main --head=HEAD",
     "matrix": "nx print-affected --type=app --select=projects --plain|tr -d '\\n'|jq -cRs 'split(\", \")'",
     "format": "nx format:write",
-    "storybook": "nx storybook storybook-host"
+    "storybook": "nx storybook storybook-app"
   },
   "dependencies": {
     "@axe-core/playwright": "^4.9.0",

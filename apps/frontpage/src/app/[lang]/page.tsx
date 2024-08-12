@@ -1,3 +1,7 @@
+import 'server-only';
+
+import { unstable_noStore as noStore } from 'next/cache';
+
 import { getDictionary, Locale } from '@fdk-frontend/dictionaries';
 
 import { FrontpageBanner } from './components/frontpage-banner';
@@ -11,6 +15,8 @@ export type FrontpageProps = {
 };
 
 const Frontpage = async ({ params }: FrontpageProps) => {
+  // Opt-in dynamic rendering
+  noStore();
 
   const {
     FDK_BASE_URI: baseUri = '',
