@@ -3,7 +3,7 @@ import { getDictionary } from '@fdk-frontend/dictionaries';
 
 import { Breadcrumbs } from '.';
 
-const dictionary = await getDictionary('en');
+const dictionary = await getDictionary('en', 'data-hunter-page');
 
 const meta: Meta<typeof Breadcrumbs> = {
   component: Breadcrumbs,
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof Breadcrumbs>;
 const breadcrumbList = [
   {
     href: '#',
-    text: 'test'
+    text: 'This page'
   }
 ];
 
