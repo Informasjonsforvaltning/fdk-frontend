@@ -1,15 +1,17 @@
 import 'server-only';
 
-import { getDictionary, type Locale } from '@fdk-frontend/i18n';
+import React from 'react';
+import { unstable_noStore as noStore } from 'next/cache';
 
+import { Heading, Paragraph } from '@digdir/designsystemet-react';
+
+import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs } from '@fdk-frontend/ui/breadcrumbs';
+import { getPaths } from '@fdk-frontend/utils';
 
 import DataHunterForm from './components/data-hunter-form';
-import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import React from 'react';
-import { getPaths } from '@fdk-frontend/utils';
+
 import styles from './page.module.css';
-import { unstable_noStore as noStore } from 'next/cache';
 
 type Props = {
   params: {
