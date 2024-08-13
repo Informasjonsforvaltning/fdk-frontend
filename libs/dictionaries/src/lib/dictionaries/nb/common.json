@@ -35,7 +35,8 @@
 		"help": {
 			"heading": "Hjelp og veiledning",
 			"links": {
-				"getStarted": "Kom i gang",
+				"findingData": "Hvordan finne data",
+				"sharingData": "Hvordan dele data",
 				"documentation": "Dokumentasjon",
 				"community": "Datalandsbyen"
 			}

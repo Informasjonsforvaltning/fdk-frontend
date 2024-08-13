@@ -1,4 +1,5 @@
 import { Link, Heading } from '@digdir/designsystemet-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import { CatalogTypes } from '@fdk-frontend/types';
 
@@ -51,7 +52,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 						<ul>
 							{
 								mainMenuData.help.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}{item.external && <ExternalLinkIcon fontSize="1em" />}</Link></li>
 								))
 							}
 						</ul>
@@ -80,13 +81,14 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
 							}
 							{
 								footerData.policies.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}{item.external && <ExternalLinkIcon fontSize="1em" />}</Link></li>
 								))
 							}
 							<li>
 								<Link className={styles.iconLink} href={footerData.githubUri}>
 									<GithubLogo fontSize='1.25em' />
 									{dictionary.footer.githubFollow}
+									<ExternalLinkIcon fontSize="1em" />
 								</Link>
 							</li>
 						</ul>
