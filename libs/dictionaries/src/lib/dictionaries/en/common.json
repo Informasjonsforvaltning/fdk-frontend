@@ -35,7 +35,8 @@
 		"help": {
 			"heading": "Help and guidance",
 			"links": {
-				"getStarted": "Get started",
+				"findingData": "How to find data",
+				"sharingData": "How to share data",
 				"documentation": "Documentation",
 				"community": "Community"
 			}

@@ -35,7 +35,8 @@
     "help": {
       "heading": "Hjelp og rettleiing",
       "links": {
-        "getStarted": "Kom i gang",
+        "findingData": "Korleis finne data",
+        "sharingData": "Korleis dele data",
         "documentation": "Dokumentasjon",
         "community": "Datafellesskapet"
       }
