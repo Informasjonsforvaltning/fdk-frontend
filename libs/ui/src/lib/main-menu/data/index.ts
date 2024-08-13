@@ -6,25 +6,25 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
 			key: 'datasets',
 			title: dictionary.mainMenu.catalogs.datasets.title,
 			description: dictionary.mainMenu.catalogs.datasets.description,
-			href: `${baseUri}/om-datasettkatalogen`
+			href: `${baseUri}/datasets`
 		},
 		{
 			key: 'apis',
 			title: dictionary.mainMenu.catalogs.apis.title,
 			description: dictionary.mainMenu.catalogs.apis.description,
-			href: `${baseUri}/om-api-katalogen`
+			href: `${baseUri}/data-services`
 		},
 		{
 			key: 'terms',
 			title: dictionary.mainMenu.catalogs.terms.title,
 			description: dictionary.mainMenu.catalogs.terms.description,
-			href: `${baseUri}/om-begrepskatalogen`
+			href: `${baseUri}/concepts`
 		},
 		{
 			key: 'information-models',
 			title: dictionary.mainMenu.catalogs.informationModels.title,
 			description: dictionary.mainMenu.catalogs.informationModels.description,
-			href: `${baseUri}/om-informasjonskatalogen`
+			href: `${baseUri}/information-models`
 		},
 		{
 			key: 'services-events',
@@ -41,16 +41,22 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
 	],
 	help: [
 		{
-			title: dictionary.mainMenu.help.links.getStarted,
-			href: `${baseUri}/veiledning`
+			title: dictionary.mainMenu.help.links.findingData,
+			href: `${baseUri}/getting-started/finding-data`
+		},
+		{
+			title: dictionary.mainMenu.help.links.sharingData,
+			href: `${baseUri}/getting-started/publishing-intro`
 		},
 		{
 			title: dictionary.mainMenu.help.links.documentation,
-			href: `https://informasjonsforvaltning.github.io/`
+			href: `https://informasjonsforvaltning.github.io/`,
+			external: true
 		},
 		{
 			title: dictionary.mainMenu.help.links.community,
-			href: `https://datalandsbyen.norge.no/`
+			href: `https://datalandsbyen.norge.no/`,
+			external: true
 		}
 	],
 	tools: [

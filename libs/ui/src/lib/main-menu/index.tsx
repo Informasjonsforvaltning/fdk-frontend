@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link, Heading } from '@digdir/designsystemet-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import { Dictionary } from '@fdk-frontend/dictionaries';
 
@@ -53,7 +54,7 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
 						<ul>
 							{
 								data.help.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}{item.external && <>&nbsp;<ExternalLinkIcon fontSize="1em" /></>}</Link></li>
 								))
 							}
 						</ul>
@@ -63,7 +64,7 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
 						<ul>
 							{
 								data.tools.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>		
 								))
 							}
 						</ul>
@@ -73,7 +74,7 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
 						<ul>
 							{
 								data.about.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
+									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>		
 								))
 							}
 						</ul>
