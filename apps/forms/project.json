@@ -1,17 +1,17 @@
 {
-  "name": "forms",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/forms",
-  "projectType": "application",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/next:build",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/forms"
-      }
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "name": "forms",
+    "projectType": "application",
+    "sourceRoot": "apps/forms",
+    "tags": [],
+    "targets": {
+        "build": {
+            "defaultConfiguration": "production",
+            "executor": "@nx/next:build",
+            "options": {
+                "outputPath": "dist/apps/forms"
+            },
+            "outputs": ["{options.outputPath}"]
+        }
     }
-  }
 }

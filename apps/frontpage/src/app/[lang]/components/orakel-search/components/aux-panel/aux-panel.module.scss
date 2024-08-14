@@ -1,0 +1,46 @@
+.auxPanel {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    color: var(--fds-semantic-border-action-first-subtle);
+    margin-top: 1rem;
+}
+
+.helptext {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.25rem;
+
+    svg {
+        transform: scale(0.75);
+        color: white;
+    }
+
+    &:hover {
+        span {
+            text-decoration-thickness: max(2px, 0.125rem, 0.12em);
+        }
+    }
+
+    + div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    @media (min-width: 550px) {
+        span {
+            width: auto;
+            height: auto;
+            clip: auto;
+            overflow: visible;
+            position: static;
+            color: white;
+            text-decoration: underline;
+            text-decoration-thickness: max(1px, 0.0625rem);
+            text-underline-offset: max(4px, 0.25rem);
+        }
+    }
+}

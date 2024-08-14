@@ -1,123 +1,123 @@
 .footer {
-	background: var(--color-fdk-navy-dark);
+    background: var(--color-fdk-navy-dark);
 
-	.inner {
-		max-width:1000px;
-		margin:auto;
-		padding:4rem 2rem;
-		container-type: inline-size;
+    .inner {
+        max-width: 1000px;
+        margin: auto;
+        padding: 4rem 2rem;
+        container-type: inline-size;
 
-		@media (max-width: 800px) {
-			padding-bottom:2rem;
-		}
-	}
+        @media (max-width: 800px) {
+            padding-bottom: 2rem;
+        }
+    }
 
-	.links {
-		display:grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap:1rem;
-		margin-bottom:1rem;
+    .links {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
 
-		.linkSection {
-			margin-bottom:1rem;
+        .linkSection {
+            margin-bottom: 1rem;
 
-			.linkSectionHeader {
-				color:white;
-				margin-bottom:1rem;
-			}
+            .linkSectionHeader {
+                color: white;
+                margin-bottom: 1rem;
+            }
 
-			a {
-				display:flex;
-				gap:0.5rem;
-				color: var(--fds-semantic-border-action-first-subtle);
-				padding: 0.5rem 1rem;
-				text-decoration: none;
-				margin: 0 0 0 -1rem;
-				border-radius:0.25rem;
+            a {
+                display: flex;
+                gap: 0.5rem;
+                color: var(--fds-semantic-border-action-first-subtle);
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                margin: 0 0 0 -1rem;
+                border-radius: 0.25rem;
 
-				&:hover {
-					background:rgba(0,0,0,0.33);
-					background: var(--color-fdk-navy);
-					color: white;
-				}
-			}
+                &:hover {
+                    background: rgba(0, 0, 0, 0.33);
+                    background: var(--color-fdk-navy);
+                    color: white;
+                }
+            }
 
-			.footerCatalogSymbol {
-				background:transparent;
-				padding:0;
-			}
-		}
+            .footerCatalogSymbol {
+                background: transparent;
+                padding: 0;
+            }
+        }
 
-		@container (max-width: 810px) {
-			grid-template-columns: repeat(2, 1fr);
-		}
+        @container (max-width: 810px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
-		@container (max-width: 400px) {
-			grid-template-columns: 1fr;
+        @container (max-width: 400px) {
+            grid-template-columns: 1fr;
 
-			.linkSection {
-				a {
-					margin: 0 -1rem;
-				}
-			}
-		}
-	}
+            .linkSection {
+                a {
+                    margin: 0 -1rem;
+                }
+            }
+        }
+    }
 
-	.bottom {
-		border-top:1px solid var(--color-fdk-navy);
-		color:white;
-		container-type: inline-size;
+    .bottom {
+        border-top: 1px solid var(--color-fdk-navy);
+        color: white;
+        container-type: inline-size;
 
-		.bottomInner {
-			display:flex;
-			justify-content: space-between;
-			padding:2rem;
-			// max-width: 1280px;
-			margin:auto;
+        .bottomInner {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem;
+            // max-width: 1280px;
+            margin: auto;
 
-			@container (max-width: 400px) {
-				flex-direction: column;
-				gap:1.5rem;
+            @container (max-width: 400px) {
+                flex-direction: column;
+                gap: 1.5rem;
 
-				.digdirCredit {
-					justify-content: flex-end;
-				}
-			}
-		}
+                .digdirCredit {
+                    justify-content: flex-end;
+                }
+            }
+        }
 
-		svg {
-			max-height:2rem;
-			fill: white;
-		}
+        svg {
+            max-height: 2rem;
+            fill: white;
+        }
 
-		a {
-			color: white;
-		}
+        a {
+            color: white;
+        }
 
-		.digdirCredit {
-			display:flex;
-			gap:1rem;
-			align-items:center;
-			text-align:right;
+        .digdirCredit {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            text-align: right;
 
-			a {
-				svg {
-					display:block;
-					height:1.75rem;
-				}
+            a {
+                svg {
+                    display: block;
+                    height: 1.75rem;
+                }
 
-				&:hover {
-					svg {
-						fill: var(--fds-semantic-border-action-first-subtle);
-					}
-				}
-			}
-		}
-	}
+                &:hover {
+                    svg {
+                        fill: var(--fds-semantic-border-action-first-subtle);
+                    }
+                }
+            }
+        }
+    }
 }
 
 .iconLink {
-	svg {
-		fill: var(--fds-semantic-border-action-first-subtle);
-	}
+    svg {
+        fill: var(--fds-semantic-border-action-first-subtle);
+    }
 }

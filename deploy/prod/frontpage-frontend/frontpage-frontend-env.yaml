@@ -2,51 +2,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontpage-frontend
-  labels:
-    app: frontpage-frontend
+    name: frontpage-frontend
+    labels:
+        app: frontpage-frontend
 spec:
-  selector:
-    matchLabels:
-      app: frontpage-frontend
-  template:
-    spec:
-      containers:
-        - name: frontpage-frontend
-          env:
-            - name: DATAJEGER_EMAIL_ADDRESS
-              valueFrom:
-                secretKeyRef:
-                  name: fdk-smtp-prod
-                  key: DATAJEGER_EMAIL_ADDRESS
-            - name: FDK_MAIL_SERVICE_ENDPOINT
-              valueFrom:
-                secretKeyRef:
-                  name: fdk-smtp-prod
-                  key: FDK_MAIL_SENDER_SERVICE_ENDPOINT
-            - name: FDK_MAIL_SERVICE_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: fdk-smtp-prod
-                  key: API_KEY
-            - name: FDK_REGISTRATION_BASE_URI
-              valueFrom:
-                secretKeyRef:
-                  name: commonurl-prod
-                  key: FDK_REGISTRATION_BASE_URI
-            - name: FDK_COMMUNITY_BASE_URI
-              valueFrom:
-                secretKeyRef:
-                  name: commonurl-prod
-                  key: FDK_COMMUNITY_BASE_URI
-            - name: FDK_BASE_URI
-              valueFrom:
-                secretKeyRef:
-                  name: commonurl-prod
-                  key: FDK_BASE_URI
-            - name: FDK_LLM_SEARCH_BASE_URI
-              valueFrom:
-                secretKeyRef:
-                  name: commonurl-prod
-                  key: FDK_LLM_SEARCH_BASE_URI
-
+    selector:
+        matchLabels:
+            app: frontpage-frontend
+    template:
+        spec:
+            containers:
+                - name: frontpage-frontend
+                  env:
+                      - name: DATAJEGER_EMAIL_ADDRESS
+                        valueFrom:
+                            secretKeyRef:
+                                name: fdk-smtp-prod
+                                key: DATAJEGER_EMAIL_ADDRESS
+                      - name: FDK_MAIL_SERVICE_ENDPOINT
+                        valueFrom:
+                            secretKeyRef:
+                                name: fdk-smtp-prod
+                                key: FDK_MAIL_SENDER_SERVICE_ENDPOINT
+                      - name: FDK_MAIL_SERVICE_API_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: fdk-smtp-prod
+                                key: API_KEY
+                      - name: FDK_REGISTRATION_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: FDK_REGISTRATION_BASE_URI
+                      - name: FDK_COMMUNITY_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: FDK_COMMUNITY_BASE_URI
+                      - name: FDK_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: FDK_BASE_URI
+                      - name: FDK_LLM_SEARCH_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: FDK_LLM_SEARCH_BASE_URI

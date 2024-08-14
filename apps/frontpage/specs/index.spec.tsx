@@ -4,8 +4,8 @@ import { render } from '@testing-library/react';
 import Page from '../src/app/[lang]/page';
 
 describe('Page', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<Page params={{lang: 'en'}} />);
-    expect(baseElement).toBeTruthy();
-  });
+    it('should render successfully', () => {
+        const { baseElement } = render(<Page params={{ lang: 'en' }} />);
+        expect(baseElement).toBeTruthy();
+    });
 });
