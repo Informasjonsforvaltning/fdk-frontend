@@ -12,7 +12,7 @@
 				"description": "Kolleksjoner av strukturert data som kan lastes ned eller aksesseres via APIer"
 			},
 			"apis": {
-				"title": "APIer",
+				"title": "API-er",
 				"description": "Protokoller for å kommunisere med datasystemer med dynamisk data og data i sanntid"
 			},
 			"terms": {
