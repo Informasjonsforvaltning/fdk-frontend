@@ -1,9 +1,9 @@
 {
-  "name": "data-access",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/data-access/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project data-access --web",
-  "targets": {}
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "// targets": "to see all targets run: nx show project data-access --web",
+    "name": "data-access",
+    "projectType": "library",
+    "sourceRoot": "libs/data-access/src",
+    "tags": [],
+    "targets": {}
 }

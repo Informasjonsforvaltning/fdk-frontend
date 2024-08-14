@@ -1,39 +1,39 @@
 .link {
-	display:flex;
-	gap:0.75rem;
-	align-items:flex-start;
-	text-decoration:none;
-	color: white;
-	padding:1rem;
-	border-radius:0.25rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.25rem;
 
-	.icon {
-		color: var(--fds-semantic-text-action-hover);
-	}
+    .icon {
+        color: var(--fds-semantic-text-action-hover);
+    }
 
-	.heading {
-		color: white;
-		gap:0.25rem;
+    .heading {
+        color: white;
+        gap: 0.25rem;
 
-		.title {
-			text-decoration: underline;
-		}
+        .title {
+            text-decoration: underline;
+        }
 
-		.publisher {
-			font-size:0.9em;
-			color: var(--fds-semantic-border-action-first-subtle);
-		}
-	}
+        .publisher {
+            font-size: 0.9em;
+            color: var(--fds-semantic-border-action-first-subtle);
+        }
+    }
 
-	&:hover {
-		background: rgba(0,0,0,0.3333);
+    &:hover {
+        background: rgba(0, 0, 0, 0.3333);
 
-		.title {
-			text-decoration:none;
-		}
-	}
+        .title {
+            text-decoration: none;
+        }
+    }
 
-	.description {
-		color: var(--fds-semantic-border-action-first-subtle);	
-	}
+    .description {
+        color: var(--fds-semantic-border-action-first-subtle);
+    }
 }

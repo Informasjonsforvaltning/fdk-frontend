@@ -1,22 +1,22 @@
 import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
-  stories: ['../../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
-  framework: {
-    name: '@storybook/nextjs',
-    options: {},
-  },
-  webpack(baseConfig) {
-    baseConfig.resolve = {
-      ...(baseConfig.resolve ?? {}),
-      alias: {
-        ...(baseConfig.resolve?.alias ?? {}),
-        '@opentelemetry/api': 'next/dist/compiled/@opentelemetry/api'
-      }
-    };
-    return baseConfig;
-  }
+    stories: ['../../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+    addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
+    framework: {
+        name: '@storybook/nextjs',
+        options: {},
+    },
+    webpack(baseConfig) {
+        baseConfig.resolve = {
+            ...(baseConfig.resolve ?? {}),
+            alias: {
+                ...(baseConfig.resolve?.alias ?? {}),
+                '@opentelemetry/api': 'next/dist/compiled/@opentelemetry/api',
+            },
+        };
+        return baseConfig;
+    },
 };
 
 export default config;

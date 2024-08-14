@@ -1,71 +1,71 @@
 {
-  "header": {
-    "findDataButton": "Finn data",
-    "menuButton": "Meny",
-    "shareDataButton": "Del data"
-  },
-  "mainMenu": {
-    "catalogs": {
-      "heading": "Datakatalogar",
-      "datasets": {
-        "title": "Datasett",
-        "description": "Samlingar av strukturert data som kan lastast ned eller aksesserast via APIar"
-      },
-      "apis": {
-        "title": "API",
-        "description": "Protokollar for å kommunisere med datasystem med dynamiske data og data i sanntid"
-      },
-      "terms": {
-        "title": "Omgrep",
-        "description": "Definisjonar og ordbøker på offisielle omgrep og termar som verksemder brukar i sine data"
-      },
-      "informationModels": {
-        "title": "Informasjonsmodellar",
-        "description": "Strukturerte representasjonar av informasjon og data for datasett og APIar"
-      },
-      "servicesEvents": {
-        "title": "Tenester og hendingar",
-        "description": "Oversikt over tenester, prosessar og hendingar som verksemder brukar når dei behandlar data"
-      },
-      "ai": {
-        "title": "Kunstig intelligens",
-        "description": "Oversikt over KI-prosjekt i offentleg sektor"
-      }
+    "footer": {
+        "digdirCredit": "ei teneste frå",
+        "githubFollow": "Følg oss på Github",
+        "policies": {
+            "a11yStatement": "Tilgjengeerklæring",
+            "cookiePolicy": "Informasjonskapslar",
+            "privacyPolicy": "Personvernerklæring"
+        }
     },
-    "help": {
-      "heading": "Hjelp og rettleiing",
-      "links": {
-        "findingData": "Korleis finne data",
-        "sharingData": "Korleis dele data",
-        "documentation": "Dokumentasjon",
-        "community": "Datafellesskapet"
-      }
+    "header": {
+        "findDataButton": "Finn data",
+        "menuButton": "Meny",
+        "shareDataButton": "Del data"
     },
-    "tools": {
-      "heading": "Verktøy",
-      "links": {
-        "organizations": "Verksemdsoversikt",
-        "requestData": "Etterspør data",
-        "dataHunter": "Datajegeren",
-        "sparqlSandbox": "SPARQL-sandkasse"
-      }
-    },
-    "about": {
-      "heading": "Om data.norge.no",
-      "links": {
-        "reports": "Rapportar og nøkkeltal",
-        "aboutUs": "Om oss",
-        "contactUs": "Kontakt oss"
-      }
+    "mainMenu": {
+        "about": {
+            "heading": "Om data.norge.no",
+            "links": {
+                "aboutUs": "Om oss",
+                "contactUs": "Kontakt oss",
+                "reports": "Rapportar og nøkkeltal"
+            }
+        },
+        "catalogs": {
+            "ai": {
+                "description": "Oversikt over KI-prosjekt i offentleg sektor",
+                "title": "Kunstig intelligens"
+            },
+            "apis": {
+                "description": "Protokollar for å kommunisere med datasystem med dynamiske data og data i sanntid",
+                "title": "API"
+            },
+            "datasets": {
+                "description": "Samlingar av strukturert data som kan lastast ned eller aksesserast via APIar",
+                "title": "Datasett"
+            },
+            "heading": "Datakatalogar",
+            "informationModels": {
+                "description": "Strukturerte representasjonar av informasjon og data for datasett og APIar",
+                "title": "Informasjonsmodellar"
+            },
+            "servicesEvents": {
+                "description": "Oversikt over tenester, prosessar og hendingar som verksemder brukar når dei behandlar data",
+                "title": "Tenester og hendingar"
+            },
+            "terms": {
+                "description": "Definisjonar og ordbøker på offisielle omgrep og termar som verksemder brukar i sine data",
+                "title": "Omgrep"
+            }
+        },
+        "help": {
+            "heading": "Hjelp og rettleiing",
+            "links": {
+                "community": "Datafellesskapet",
+                "documentation": "Dokumentasjon",
+                "findingData": "Korleis finne data",
+                "sharingData": "Korleis dele data"
+            }
+        },
+        "tools": {
+            "heading": "Verktøy",
+            "links": {
+                "dataHunter": "Datajegeren",
+                "organizations": "Verksemdsoversikt",
+                "requestData": "Etterspør data",
+                "sparqlSandbox": "SPARQL-sandkasse"
+            }
+        }
     }
-  },
-  "footer": {
-    "policies": {
-      "a11yStatement": "Tilgjengeerklæring",
-      "privacyPolicy": "Personvernerklæring",
-      "cookiePolicy": "Informasjonskapslar"
-    },
-    "githubFollow": "Følg oss på Github",
-    "digdirCredit": "ei teneste frå"
-  }
 }

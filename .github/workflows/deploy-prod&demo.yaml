@@ -1,118 +1,118 @@
 name: Deploy to production and demo
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
 
 jobs:
-  test:
-    name: Test and build
-    if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-      changed: ${{ steps.set-matrix.outputs.changed }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    test:
+        name: Test and build
+        if: github.event.pull_request.draft == false
+        runs-on: ubuntu-latest
+        outputs:
+            matrix: ${{ steps.set-matrix.outputs.matrix }}
+            changed: ${{ steps.set-matrix.outputs.changed }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+                  fetch-depth: 0
+
+            - name: Set SHAs
+              uses: nrwl/nx-set-shas@v4
+
+            - name: Enable corepack
+              run: corepack enable
+
+            - name: Use Node.js 20.9.0
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20.9.0
+                  cache: 'yarn'
+
+            - name: Yarn install
+              run: |
+                  corepack enable
+                  yarn set version stable
+                  yarn install --frozen-lockfile
+
+            - name: Caching Nx
+              uses: actions/cache@v4
+              with:
+                  path: node_modules/.cache
+                  key: cache-nx-${{ hashFiles('yarn.lock') }}
+
+            - id: set-matrix
+              run: |
+                  echo "matrix={\"appname\":$(yarn --silent run matrix)}" >> $GITHUB_OUTPUT
+                  echo "changed=$(yarn --silent run matrix)" >> $GITHUB_OUTPUT
+
+            - run: yarn run affected:lint  --parallel=2
+            - run: yarn run affected:test  --parallel=2 --configuration=ci
+            - run: yarn run affected:e2e   --parallel=2 --configuration=ci
+            - run: yarn run affected:build --parallel=2 --configuration=ci
+
+            - name: Caching Dist Folder
+              uses: actions/cache@v4
+              with:
+                  path: ./dist
+                  key: cache-dist-${{ github.sha }}
+
+    build:
+        name: Build affected apps when pull request is created
+        needs: [test]
+        if: ${{ needs.test.outputs.changed != '[]' }}
+        strategy:
+            matrix: ${{fromJSON(needs.test.outputs.matrix)}}
+        uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
         with:
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
+            app_name: ${{ matrix.appname }}-frontend
+            environment: prod
+            build_env: true
+            build_env_name: BINARY
+            build_env_value: ${{ matrix.appname }}-frontend
+            cache_path: ./dist
+            cache_key: cache-dist-${{ github.sha }}
+            dockerfile: apps/${{ matrix.appname }}/Dockerfile
+        secrets:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
 
-      - name: Set SHAs
-        uses: nrwl/nx-set-shas@v4
-
-      - name: Enable corepack
-        run: corepack enable
-
-      - name: Use Node.js 20.9.0
-        uses: actions/setup-node@v4
+    deploy-prod:
+        name: Deploy affected apps to production environment
+        needs: [test, build]
+        strategy:
+            matrix: ${{fromJSON(needs.test.outputs.matrix)}}
+            fail-fast: false
+        if: ${{ needs.test.outputs.changed != '[]' }}
+        uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
         with:
-          node-version: 20.9.0
-          cache: 'yarn'
+            app_name: ${{ matrix.appname }}-frontend
+            environment: prod
+            monorepo_app: true
+            cluster: digdir-fdk-prod
+        secrets:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            DIGDIR_FDK_AUTODEPLOY: ${{ secrets.DIGDIR_FDK_PROD_AUTODEPLOY }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      - name: Yarn install
-        run: |
-          corepack enable
-          yarn set version stable
-          yarn install --frozen-lockfile
-
-      - name: Caching Nx
-        uses: actions/cache@v4
+    deploy-demo:
+        name: Deploy affected apps to demo environment
+        needs: [test, deploy-prod]
+        strategy:
+            matrix: ${{fromJSON(needs.test.outputs.matrix)}}
+            fail-fast: false
+        if: ${{ needs.test.outputs.changed != '[]' }}
+        uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
         with:
-          path: node_modules/.cache
-          key: cache-nx-${{ hashFiles('yarn.lock') }}
-
-      - id: set-matrix
-        run: |
-          echo "matrix={\"appname\":$(yarn --silent run matrix)}" >> $GITHUB_OUTPUT
-          echo "changed=$(yarn --silent run matrix)" >> $GITHUB_OUTPUT
-
-      - run: yarn run affected:lint  --parallel=2
-      - run: yarn run affected:test  --parallel=2 --configuration=ci
-      - run: yarn run affected:e2e   --parallel=2 --configuration=ci
-      - run: yarn run affected:build --parallel=2 --configuration=ci
-
-      - name: Caching Dist Folder
-        uses: actions/cache@v4
-        with:
-          path: ./dist
-          key: cache-dist-${{ github.sha }}
-
-  build:
-    name: Build affected apps when pull request is created
-    needs: [test]
-    if: ${{ needs.test.outputs.changed != '[]' }}
-    strategy:
-      matrix: ${{fromJSON(needs.test.outputs.matrix)}}
-    uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
-    with:
-      app_name: ${{ matrix.appname }}-frontend
-      environment: prod
-      build_env: true
-      build_env_name: BINARY
-      build_env_value: ${{ matrix.appname }}-frontend
-      cache_path: ./dist
-      cache_key: cache-dist-${{ github.sha }}
-      dockerfile: apps/${{ matrix.appname }}/Dockerfile
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
-
-  deploy-prod:
-    name: Deploy affected apps to production environment
-    needs: [test, build]
-    strategy:
-      matrix: ${{fromJSON(needs.test.outputs.matrix)}}
-      fail-fast: false
-    if: ${{ needs.test.outputs.changed != '[]' }}
-    uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
-    with:
-      app_name: ${{ matrix.appname }}-frontend
-      environment: prod
-      monorepo_app: true
-      cluster: digdir-fdk-prod
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      DIGDIR_FDK_AUTODEPLOY: ${{ secrets.DIGDIR_FDK_PROD_AUTODEPLOY }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  deploy-demo:
-    name: Deploy affected apps to demo environment
-    needs: [test, deploy-prod]
-    strategy:
-      matrix: ${{fromJSON(needs.test.outputs.matrix)}}
-      fail-fast: false
-    if: ${{ needs.test.outputs.changed != '[]' }}
-    uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
-    with:
-      app_name: ${{ matrix.appname }}-frontend
-      environment: demo
-      monorepo_app: true
-      cluster: digdir-fdk-dev
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      DIGDIR_FDK_AUTODEPLOY: ${{ secrets.DIGDIR_FDK_DEV_AUTODEPLOY }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+            app_name: ${{ matrix.appname }}-frontend
+            environment: demo
+            monorepo_app: true
+            cluster: digdir-fdk-dev
+        secrets:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            DIGDIR_FDK_AUTODEPLOY: ${{ secrets.DIGDIR_FDK_DEV_AUTODEPLOY }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

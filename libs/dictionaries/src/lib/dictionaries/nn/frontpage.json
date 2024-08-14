@@ -1,53 +1,53 @@
 {
-	"aiBanner": {
-		"title": "Der Noreg deler data",
-		"prompt": {
-			"label": "Spør vår KI om data frå over 125 verksemder og 8000 datasett:",
-			"placeholder": "Kva leitar du etter?",
-			"button": "Spør",
-			"loading": "Lastar",
-			"responses": {
-				"resultsFound": "Eg fann {{num}} datasett som kan vere relevante:",
-				"noResults": "Eg fann dessverre ingen relevante datasett. Prøv gjerne ei anna spurnad."
-			},
-			"errors": {
-				"queryTooShort": "Spurnaden må innehalde meir enn to teikn. Prøv igjen.",
-				"generic": "Ein feil oppstod. Ver venleg å prøv igjen."
-			}
-		},
-		"suggestions": {
-			"prefix": "Prøv t.d.",
-			"list": [
-				"Kor mange Teslaer vart seld i Noreg i 2022",
-				"Kva for område i Noreg er verna?",
-				"Kva for varer eksporterer Noreg mest?",
-				"Korleis ser trafikkmønstra ut i Oslo?",
-				"Korleis presterer norske skular?",
-				"Kva for forskingsprosjekt får støtte i Noreg?",
-				"Kor mykje skog har Noreg?",
-				"Korleis går det med digitalisering i Noreg?",
-				"Kva for teknologiar er mest brukte i Noreg?"
-			]
-		},
-		"tooltip": {
-			"label": "Om KI-søket",
-			"text": "Vårt KI-søk gjer det enkelt å finne datasett ved å bruke naturleg språk utan at du treng å kjenne til spesifikke datasettnamn, fagomgrep eller tekniske format.",
-			"disclaimer": "Ver obs på at KI-søket kan innehalde feil.",
-			"readMoreLinkText": "Les meir om KI-søket her"
-		},
-		"advancedSearchPrompt": {
-	    	"text": "Finn du ikkje det du leitar etter?",
-	    	"link": "Finn data"
-	    }
-	},
-	"shareDataBanner": {
-	  	"title": "Har du data å dele?",
-	  	"content": "Gjer som over {{link}} og del dine data med resten av landet.",
-	  	"organizationsLinkText": "125 andre verksemder",
-	  	"getStartedLinkText": "Kom i gang",
-	  	"documentationLinkText": "Sjå dokumentasjon"
-	},
-	"catalogsBanner": {
-		"title": "Våre datakatalogar"
-	}
+    "aiBanner": {
+        "advancedSearchPrompt": {
+            "link": "Finn data",
+            "text": "Finn du ikkje det du leitar etter?"
+        },
+        "prompt": {
+            "button": "Spør",
+            "errors": {
+                "generic": "Ein feil oppstod. Ver venleg å prøv igjen.",
+                "queryTooShort": "Spurnaden må innehalde meir enn to teikn. Prøv igjen."
+            },
+            "label": "Spør vår KI om data frå over 125 verksemder og 8000 datasett:",
+            "loading": "Lastar",
+            "placeholder": "Kva leitar du etter?",
+            "responses": {
+                "noResults": "Eg fann dessverre ingen relevante datasett. Prøv gjerne ei anna spurnad.",
+                "resultsFound": "Eg fann {{num}} datasett som kan vere relevante:"
+            }
+        },
+        "suggestions": {
+            "list": [
+                "Kor mange Teslaer vart seld i Noreg i 2022",
+                "Kva for område i Noreg er verna?",
+                "Kva for varer eksporterer Noreg mest?",
+                "Korleis ser trafikkmønstra ut i Oslo?",
+                "Korleis presterer norske skular?",
+                "Kva for forskingsprosjekt får støtte i Noreg?",
+                "Kor mykje skog har Noreg?",
+                "Korleis går det med digitalisering i Noreg?",
+                "Kva for teknologiar er mest brukte i Noreg?"
+            ],
+            "prefix": "Prøv t.d."
+        },
+        "title": "Der Noreg deler data",
+        "tooltip": {
+            "disclaimer": "Ver obs på at KI-søket kan innehalde feil.",
+            "label": "Om KI-søket",
+            "readMoreLinkText": "Les meir om KI-søket her",
+            "text": "Vårt KI-søk gjer det enkelt å finne datasett ved å bruke naturleg språk utan at du treng å kjenne til spesifikke datasettnamn, fagomgrep eller tekniske format."
+        }
+    },
+    "catalogsBanner": {
+        "title": "Våre datakatalogar"
+    },
+    "shareDataBanner": {
+        "content": "Gjer som over {{link}} og del dine data med resten av landet.",
+        "documentationLinkText": "Sjå dokumentasjon",
+        "getStartedLinkText": "Kom i gang",
+        "organizationsLinkText": "125 andre verksemder",
+        "title": "Har du data å dele?"
+    }
 }

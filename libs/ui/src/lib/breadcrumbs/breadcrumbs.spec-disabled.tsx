@@ -7,49 +7,49 @@ import { Breadcrumbs } from '.';
 expect.extend(toHaveNoViolations);
 
 describe('Breadcrumbs', () => {
-  let dictionary: Dictionary;
+    let dictionary: Dictionary;
 
-  beforeEach(async () => {
-    dictionary = await getDictionary('en', 'data-hunter-page');
-  });
+    beforeEach(async () => {
+        dictionary = await getDictionary('en', 'data-hunter-page');
+    });
 
-  it('should render successfully', () => {
-    render(
-      <Breadcrumbs
-        baseUri='/'
-        dictionary={dictionary}
-        breadcrumbList={[
-          {
-            href: '#',
-            text: 'test',
-          },
-        ]}
-      />,
-    );
+    it('should render successfully', () => {
+        render(
+            <Breadcrumbs
+                baseUri='/'
+                dictionary={dictionary}
+                breadcrumbList={[
+                    {
+                        href: '#',
+                        text: 'test',
+                    },
+                ]}
+            />,
+        );
 
-    const homeLinkElement = screen.getByText(dictionary.homePage, { selector: 'a' });
-    expect(homeLinkElement).toBeInTheDocument();
+        const homeLinkElement = screen.getByText(dictionary.homePage, { selector: 'a' });
+        expect(homeLinkElement).toBeInTheDocument();
 
-    const currentPageELement = screen.getByText('test', { selector: 'span' });
-    expect(currentPageELement).toBeInTheDocument();
-  });
+        const currentPageELement = screen.getByText('test', { selector: 'span' });
+        expect(currentPageELement).toBeInTheDocument();
+    });
 
-  it('should have no a11y violations', async () => {
-    const { baseElement } = render(
-      <main>
-        <Breadcrumbs
-          baseUri='/'
-          dictionary={dictionary}
-          breadcrumbList={[
-            {
-              href: '#',
-              text: 'test',
-            },
-          ]}
-        />
-      </main>,
-    );
+    it('should have no a11y violations', async () => {
+        const { baseElement } = render(
+            <main>
+                <Breadcrumbs
+                    baseUri='/'
+                    dictionary={dictionary}
+                    breadcrumbList={[
+                        {
+                            href: '#',
+                            text: 'test',
+                        },
+                    ]}
+                />
+            </main>,
+        );
 
-    expect(await axe(baseElement)).toHaveNoViolations();
-  });
+        expect(await axe(baseElement)).toHaveNoViolations();
+    });
 });

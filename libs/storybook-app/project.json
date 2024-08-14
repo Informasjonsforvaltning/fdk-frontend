@@ -1,9 +1,9 @@
 {
-  "name": "storybook-app",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/storybook-app/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project storybook-app --web",
-  "targets": {}
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "// targets": "to see all targets run: nx show project storybook-app --web",
+    "name": "storybook-app",
+    "projectType": "library",
+    "sourceRoot": "libs/storybook-app/src",
+    "tags": [],
+    "targets": {}
 }

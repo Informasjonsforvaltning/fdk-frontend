@@ -1,30 +1,30 @@
 .shareDataBanner {
-	padding:4rem 2rem;
-	text-align: center;
+    padding: 4rem 2rem;
+    text-align: center;
 
-	.headline {
-		font-size:2rem;
-	}
+    .headline {
+        font-size: 2rem;
+    }
 
-	p {
-		margin:1rem 0;
-	}
+    p {
+        margin: 1rem 0;
+    }
 
-	div {
-		display:flex;
-		justify-content: center;
-	}
+    div {
+        display: flex;
+        justify-content: center;
+    }
 
-	.buttons {
-		display:flex;
-		gap:1rem;
+    .buttons {
+        display: flex;
+        gap: 1rem;
 
-		@media (max-width: 350px) {
-			flex-direction:column;
-		}
+        @media (max-width: 350px) {
+            flex-direction: column;
+        }
 
-		a {
-			text-decoration:none;
-		}
-	}
+        a {
+            text-decoration: none;
+        }
+    }
 }

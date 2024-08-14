@@ -5,110 +5,138 @@ import { CatalogTypes } from '@fdk-frontend/types';
 
 import { CatalogIcon } from '../catalog-symbol';
 import { LogoLink } from '../logo';
-import getMainMenuData from '../main-menu/data'
-import LanguageSwitcher from '../language-switcher'
+import getMainMenuData from '../main-menu/data';
+import LanguageSwitcher from '../language-switcher';
 
 import DigdirLogo from './images/digdir-logo';
 import GithubLogo from './images/github-logo';
-import getFooterData from './data'
+import getFooterData from './data';
 
 import styles from './footer.module.scss';
 
 type FooterProps = {
-	dictionary: Dictionary;
-	baseUri: string;
-}
+    dictionary: Dictionary;
+    baseUri: string;
+};
 
 const Footer = ({ dictionary, baseUri }: FooterProps) => {
+    const mainMenuData = getMainMenuData(dictionary, baseUri);
+    const footerData = getFooterData(dictionary);
 
-	const mainMenuData = getMainMenuData(dictionary, baseUri);
-	const footerData = getFooterData(dictionary);
-
-	return (
-		<footer className={styles.footer}>
-			<div className={styles.inner}>
-				<div className={styles.links}>
-					<div className={styles.linkSection}>
-						<Heading className={styles.linkSectionHeader} level={3} size="sm">
-							{dictionary.mainMenu.catalogs.heading}
-						</Heading>
-						<ul>
-							{
-								mainMenuData.catalogs.map(item => (
-									<li key={item.key}>
-										<Link className={styles.iconLink} href={item.href}>
-											<CatalogIcon catalog={item.key as CatalogTypes} fontSize='1.5em' />
-											{item.title}
-										</Link>
-									</li>
-								))
-							}
-						</ul>
-					</div>
-					<div className={styles.linkSection}>
-						<Heading className={styles.linkSectionHeader} level={3} size="sm">
-							{dictionary.mainMenu.help.heading}
-						</Heading>
-						<ul>
-							{
-								mainMenuData.help.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}{item.external && <ExternalLinkIcon fontSize="1em" />}</Link></li>
-								))
-							}
-						</ul>
-					</div>
-					<div className={styles.linkSection}>
-						<Heading className={styles.linkSectionHeader} level={3} size="sm">
-							{dictionary.mainMenu.tools.heading}
-						</Heading>
-						<ul>
-							{
-								mainMenuData.tools.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
-								))
-							}
-						</ul>
-					</div>
-					<div className={styles.linkSection}>
-						<Heading className={styles.linkSectionHeader} level={3} size="sm">
-							{dictionary.mainMenu.about.heading}
-						</Heading>
-						<ul>
-							{
-								mainMenuData.about.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}</Link></li>
-								))
-							}
-							{
-								footerData.policies.map(item => (
-									<li key={item.href}><Link href={item.href}>{item.title}{item.external && <ExternalLinkIcon fontSize="1em" />}</Link></li>
-								))
-							}
-							<li>
-								<Link className={styles.iconLink} href={footerData.githubUri}>
-									<GithubLogo fontSize='1.25em' />
-									{dictionary.footer.githubFollow}
-									<ExternalLinkIcon fontSize="1em" />
-								</Link>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<LanguageSwitcher inverted />
-			</div>
-			<div className={styles.bottom}>
-				<div className={styles.bottomInner}>
-					<LogoLink baseUri={baseUri} />
-					<div className={styles.digdirCredit}>
-						<span>{dictionary.footer.digdirCredit}</span>
-						<Link href={footerData.digdirUri}>
-							<DigdirLogo />
-						</Link>
-					</div>
-				</div>
-			</div>
-		</footer>
-	);
-}
+    return (
+        <footer className={styles.footer}>
+            <div className={styles.inner}>
+                <div className={styles.links}>
+                    <div className={styles.linkSection}>
+                        <Heading
+                            className={styles.linkSectionHeader}
+                            level={3}
+                            size='sm'
+                        >
+                            {dictionary.mainMenu.catalogs.heading}
+                        </Heading>
+                        <ul>
+                            {mainMenuData.catalogs.map((item) => (
+                                <li key={item.key}>
+                                    <Link
+                                        className={styles.iconLink}
+                                        href={item.href}
+                                    >
+                                        <CatalogIcon
+                                            catalog={item.key as CatalogTypes}
+                                            fontSize='1.5em'
+                                        />
+                                        {item.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className={styles.linkSection}>
+                        <Heading
+                            className={styles.linkSectionHeader}
+                            level={3}
+                            size='sm'
+                        >
+                            {dictionary.mainMenu.help.heading}
+                        </Heading>
+                        <ul>
+                            {mainMenuData.help.map((item) => (
+                                <li key={item.href}>
+                                    <Link href={item.href}>
+                                        {item.title}
+                                        {item.external && <ExternalLinkIcon fontSize='1em' />}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className={styles.linkSection}>
+                        <Heading
+                            className={styles.linkSectionHeader}
+                            level={3}
+                            size='sm'
+                        >
+                            {dictionary.mainMenu.tools.heading}
+                        </Heading>
+                        <ul>
+                            {mainMenuData.tools.map((item) => (
+                                <li key={item.href}>
+                                    <Link href={item.href}>{item.title}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className={styles.linkSection}>
+                        <Heading
+                            className={styles.linkSectionHeader}
+                            level={3}
+                            size='sm'
+                        >
+                            {dictionary.mainMenu.about.heading}
+                        </Heading>
+                        <ul>
+                            {mainMenuData.about.map((item) => (
+                                <li key={item.href}>
+                                    <Link href={item.href}>{item.title}</Link>
+                                </li>
+                            ))}
+                            {footerData.policies.map((item) => (
+                                <li key={item.href}>
+                                    <Link href={item.href}>
+                                        {item.title}
+                                        {item.external && <ExternalLinkIcon fontSize='1em' />}
+                                    </Link>
+                                </li>
+                            ))}
+                            <li>
+                                <Link
+                                    className={styles.iconLink}
+                                    href={footerData.githubUri}
+                                >
+                                    <GithubLogo fontSize='1.25em' />
+                                    {dictionary.footer.githubFollow}
+                                    <ExternalLinkIcon fontSize='1em' />
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <LanguageSwitcher inverted />
+            </div>
+            <div className={styles.bottom}>
+                <div className={styles.bottomInner}>
+                    <LogoLink baseUri={baseUri} />
+                    <div className={styles.digdirCredit}>
+                        <span>{dictionary.footer.digdirCredit}</span>
+                        <Link href={footerData.digdirUri}>
+                            <DigdirLogo />
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+};
 
 export default Footer;
