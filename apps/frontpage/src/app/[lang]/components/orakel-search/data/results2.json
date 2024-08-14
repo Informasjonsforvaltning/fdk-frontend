@@ -1,15 +1,13 @@
 {
-    "llm": " **Opptjeningsgrunnlag for tjenestepensjon i SPK**\n\nDette datasettet inneholder lønns- og stillingsdata i offentlig stilling for alle medlemmer av Statens pensjonskasse. Datasettet omfatter pensjonsgivende lønn, stillingsprosent, stillingskode eller – betegnelse og arbeidsgiver (organisasjonsnummer) for alle perioder som ansatt i medlemspliktig stilling.\n\n**Arbeidsgiver- og arbeidstakerregisteret**\n\nDette datasettet gir oversikt over hvilke arbeidstakere som er ansatt hos den enkelte arbeidsgiver og inneholder blant annet opplysninger om arbeidsforholdenes type og omfang.\n\n**Statistikk - antall arbeidssøkere etter yrke og år**\n\nDette datasettet inneholder statistikk om arbeidssøkere fordelt på yrkesbakgrunn, med mer detaljerte yrkesopplysninger enn det som er publisert på nav.no.\n\n**Levekår Stavanger: Unge uførepensjonister**\n\nDette datasettet inneholder informasjon om unge uførepensjonister i alderen 18-44 år i Stavanger.\n\n**Statistikk - utbetalinger av ytelser kommune år**\n\nDette datasettet inneholder data om de faktiske utbetalingene fra NAV fordelt på de ulike hovedytelsene, og deretter fordelt per fylke og kommune.",
-    "links":
-    [
+    "links": [
         "https://data.norge.no/datasets/7f818842-a410-435b-8331-9179896ddffd",
         "https://data.norge.no/datasets/e4c67aa2-af5a-36c2-b5c2-96b571ddd850",
         "https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664",
         "https://data.norge.no/datasets/4e3fb275-ce28-4396-b9ef-b40fa4f1dda4",
         "https://data.norge.no/datasets/8649603d-3ad9-32ea-8b13-fe7d2db5594d"
     ],
-    "titles":
-    [
+    "llm": " **Opptjeningsgrunnlag for tjenestepensjon i SPK**\n\nDette datasettet inneholder lønns- og stillingsdata i offentlig stilling for alle medlemmer av Statens pensjonskasse. Datasettet omfatter pensjonsgivende lønn, stillingsprosent, stillingskode eller – betegnelse og arbeidsgiver (organisasjonsnummer) for alle perioder som ansatt i medlemspliktig stilling.\n\n**Arbeidsgiver- og arbeidstakerregisteret**\n\nDette datasettet gir oversikt over hvilke arbeidstakere som er ansatt hos den enkelte arbeidsgiver og inneholder blant annet opplysninger om arbeidsforholdenes type og omfang.\n\n**Statistikk - antall arbeidssøkere etter yrke og år**\n\nDette datasettet inneholder statistikk om arbeidssøkere fordelt på yrkesbakgrunn, med mer detaljerte yrkesopplysninger enn det som er publisert på nav.no.\n\n**Levekår Stavanger: Unge uførepensjonister**\n\nDette datasettet inneholder informasjon om unge uførepensjonister i alderen 18-44 år i Stavanger.\n\n**Statistikk - utbetalinger av ytelser kommune år**\n\nDette datasettet inneholder data om de faktiske utbetalingene fra NAV fordelt på de ulike hovedytelsene, og deretter fordelt per fylke og kommune.",
+    "titles": [
         "OPPTJENINGSGRUNNLAG FOR TJENESTEPENSJON I SPK",
         "ARBEIDSGIVER- OG ARBEIDSTAKERREGISTERET",
         "STATISTIKK - ANTALL ARBEIDSSØKERE ETTER YRKE OG ÅR",

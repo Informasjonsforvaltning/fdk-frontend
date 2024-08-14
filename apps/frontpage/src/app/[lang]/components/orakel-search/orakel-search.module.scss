@@ -1,150 +1,94 @@
 .orakelSearch {
-	// margin-bottom:4rem;
-	max-width: 640px;
+    // margin-bottom:4rem;
+    max-width: 640px;
 }
 
 .orakelSearchBox {
-	position:relative;
-	margin-bottom:0.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
 }
 
 .orakelSearchButton {
-	position:absolute;
-	right:0.5rem;
-	bottom:0.5rem;
-	font-size: medium;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    font-size: medium;
 
-	title + circle {
-		display:none;
-	}
+    title + circle {
+        display: none;
+    }
 
-	@media (max-width: 650px) {
-		right:0.44444rem;
-		bottom:0.44444rem;
-	}
+    @media (max-width: 650px) {
+        right: 0.44444rem;
+        bottom: 0.44444rem;
+    }
 }
 
 .orakelSearchIcon {
-	transform:scale(1.25);
-	margin-right:0.25rem;
+    transform: scale(1.25);
+    margin-right: 0.25rem;
 }
 
 .orakelInputTextfield {
-	position:relative;
-	gap:1rem;
+    position: relative;
+    gap: 1rem;
 
-	input {
-		background:rgba(0,0,0,0.33333);
-		color:white;
-		
-		&:not([aria-invalid]){
-			border-color:rgba(255,255,255,0.75);
-		}
+    input {
+        background: rgba(0, 0, 0, 0.33333);
+        color: white;
 
-		&:focus,
-		&:hover {
-			border-color:rgba(255,255,255,0.75);
-			box-shadow: inset 0 0 0 1px rgba(255,255,255,0.75);
-		}
-	}
+        &:not([aria-invalid]) {
+            border-color: rgba(255, 255, 255, 0.75);
+        }
 
-	> label + div + div {
-		position:absolute;
-		width:0;
-		height:0;
-		overflow:hidden;
-	}
+        &:focus,
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.75);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+        }
+    }
+
+    > label + div + div {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
 }
 
 .orakelInputLabel {
-	display:block;
-	color: white;
-	text-align:center;
-}
-
-.helptext {
-	// display:flex;
-	flex-direction: row-reverse;
-	align-items: center;
-	gap:0.25rem;
-
-	svg {
-		transform:scale(0.75);
-		// color:var(--fds-semantic-border-action-first-subtle);
-		color:white;
-	}
-
-	&:hover {
-		span {
-			text-decoration-thickness: max(2px,.125rem,.12em);
-		}
-	}
-
-	+ div {
-		display:flex;
-		flex-direction: column;
-		gap:0.5rem;
-		padding:1rem;
-		font-size:1rem;
-	}
-
-	@media (min-width: 550px) {
-		span {
-			width:auto;
-			height:auto;
-			clip:auto;
-			overflow:visible;
-			position:static;
-			color:white;
-			text-decoration: underline;
-	    text-decoration-thickness: max(1px,.0625rem);
-	    text-underline-offset: max(4px,.25rem);
-		}
-	}
+    display: block;
+    color: white;
+    text-align: center;
 }
 
 .orakelResults {
-	display:flex;
-	flex-direction: column;
-	margin-top:1rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
 }
 
 .status {
-	margin-top:1rem;
-	color: var(--fds-semantic-border-action-first-subtle);
+    margin-top: 1rem;
+    color: var(--fds-semantic-border-action-first-subtle);
 
-	.errorMessage {
-		color: var(--fds-brand-alt1-600);
-	}
+    .errorMessage {
+        color: var(--fds-brand-alt1-600);
+    }
 }
 
 .orakelResultsList {
-	display:flex;
-	flex-direction:column;
-	margin-bottom:1.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
 }
 
 .orakelResultsList * h4 {
-	margin-bottom:0.5rem;
-}
-
-.auxPanel {
-	display:flex;
-	align-items:flex-start;
-	justify-content: space-between;
-	// padding:0 0.25rem;
-	color: var(--fds-semantic-border-action-first-subtle);
-	margin-top:1rem;
-	// text-align:center;
-
-	// @media (max-width: 550px) {
-	// 	flex-direction:column;
-	// 	justify-content: center;
-	// }
+    margin-bottom: 0.5rem;
 }
 
 .spinnerContainer {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

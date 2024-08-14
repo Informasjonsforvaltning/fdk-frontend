@@ -1,71 +1,71 @@
 {
-	"header": {
-		"findDataButton": "Find data",
-		"menuButton": "Menu",
-		"shareDataButton": "Share data"
-	},
-	"mainMenu": {
-		"catalogs": {
-			"heading": "Data catalogs",
-			"datasets": {
-				"title": "Datasets",
-				"description": "Collections of structured data that can be downloaded or accessed through APIs"
-			},
-			"apis": {
-				"title": "APIs",
-				"description": "Communication protocols for data systems with dynamic and realtime data"
-			},
-			"terms": {
-				"title": "Terms",
-				"description": "Definitions and glossaries of official terms and concepts used by organizations in their data"
-			},
-			"informationModels": {
-				"title": "Information Models",
-				"description": "Structured representations of information and data for datasets and APIs"
-			},
-			"servicesEvents": {
-				"title": "Services and events",
-				"description": "Overview of services, procedures, and events used when organizations process data"
-			},
-			"ai": {
-				"title": "Artificial Intelligence",
-				"description": "Overview of AI projects in the public sector"
-			}
-		},
-		"help": {
-			"heading": "Help and guidance",
-			"links": {
-				"findingData": "How to find data",
-				"sharingData": "How to share data",
-				"documentation": "Documentation",
-				"community": "Community"
-			}
-		},
-		"tools": {
-			"heading": "Tools",
-			"links": {
-				"organizations": "Organizations",
-				"requestData": "Request data",
-				"dataHunter": "Data Hunter",
-				"sparqlSandbox": "SPARQL sandbox"
-			}
-		},
-		"about": {
-			"heading": "About data.norge.no",
-			"links": {
-				"reports": "Reports & key figures",
-				"aboutUs": "About us",
-				"contactUs": "Contact us"
-			}
-		}
-	},
-	"footer": {
-		"policies": {
-			"a11yStatement": "Accesibility statement",
-			"privacyPolicy": "Privacy policy",
-			"cookiePolicy": "Cookie policy"
-		},
-		"githubFollow": "Follow us on Github",
-		"digdirCredit": "a service from"
-	}
+    "footer": {
+        "digdirCredit": "a service from",
+        "githubFollow": "Follow us on Github",
+        "policies": {
+            "a11yStatement": "Accesibility statement",
+            "cookiePolicy": "Cookie policy",
+            "privacyPolicy": "Privacy policy"
+        }
+    },
+    "header": {
+        "findDataButton": "Find data",
+        "menuButton": "Menu",
+        "shareDataButton": "Share data"
+    },
+    "mainMenu": {
+        "about": {
+            "heading": "About data.norge.no",
+            "links": {
+                "aboutUs": "About us",
+                "contactUs": "Contact us",
+                "reports": "Reports & key figures"
+            }
+        },
+        "catalogs": {
+            "ai": {
+                "description": "Overview of AI projects in the public sector",
+                "title": "Artificial Intelligence"
+            },
+            "apis": {
+                "description": "Communication protocols for data systems with dynamic and realtime data",
+                "title": "APIs"
+            },
+            "datasets": {
+                "description": "Collections of structured data that can be downloaded or accessed through APIs",
+                "title": "Datasets"
+            },
+            "heading": "Data catalogs",
+            "informationModels": {
+                "description": "Structured representations of information and data for datasets and APIs",
+                "title": "Information Models"
+            },
+            "servicesEvents": {
+                "description": "Overview of services, procedures, and events used when organizations process data",
+                "title": "Services and events"
+            },
+            "terms": {
+                "description": "Definitions and glossaries of official terms and concepts used by organizations in their data",
+                "title": "Terms"
+            }
+        },
+        "help": {
+            "heading": "Help and guidance",
+            "links": {
+                "community": "Community",
+                "documentation": "Documentation",
+                "findingData": "How to find data",
+                "sharingData": "How to share data"
+            }
+        },
+        "tools": {
+            "heading": "Tools",
+            "links": {
+                "dataHunter": "Data Hunter",
+                "organizations": "Organizations",
+                "requestData": "Request data",
+                "sparqlSandbox": "SPARQL sandbox"
+            }
+        }
+    }
 }

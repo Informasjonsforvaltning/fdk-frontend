@@ -1,71 +1,71 @@
 {
-	"header": {
-		"findDataButton": "Finn data",
-		"menuButton": "Meny",
-		"shareDataButton": "Del data"
-	},
-	"mainMenu": {
-		"catalogs": {
-			"heading": "Datakataloger",
-			"datasets": {
-				"title": "Datasett",
-				"description": "Kolleksjoner av strukturert data som kan lastes ned eller aksesseres via APIer"
-			},
-			"apis": {
-				"title": "API-er",
-				"description": "Protokoller for å kommunisere med datasystemer med dynamisk data og data i sanntid"
-			},
-			"terms": {
-				"title": "Begreper",
-				"description": "Definisjoner og ordbøker på offisielle termer og begreper som virksomheter bruker i sine data"
-			},
-			"informationModels": {
-				"title": "Informasjonsmodeller",
-				"description": "Strukturerte representasjoner av informasjon og data for datasett og APIer"
-			},
-			"servicesEvents": {
-				"title": "Tjenester og hendelser",
-				"description": "Oversikt over tjenester, prosesser og hendelser som virksomheter bruker når de behandler data"
-			},
-			"ai": {
-				"title": "Kunstig intelligens",
-				"description": "Oversikt over KI-prosjekter i offentlig sektor"
-			}
-		},
-		"help": {
-			"heading": "Hjelp og veiledning",
-			"links": {
-				"findingData": "Hvordan finne data",
-				"sharingData": "Hvordan dele data",
-				"documentation": "Dokumentasjon",
-				"community": "Datalandsbyen"
-			}
-		},
-		"tools": {
-			"heading": "Verktøy",
-			"links": {
-				"organizations": "Virksomhetsoversikt",
-				"requestData": "Etterspør data",
-				"dataHunter": "Datajegeren",
-				"sparqlSandbox": "SPARQL-sandkasse"
-			}
-		},
-		"about": {
-			"heading": "Om data.norge.no",
-			"links": {
-				"reports": "Rapporter og nøkkeltall",
-				"aboutUs": "Om oss",
-				"contactUs": "Kontakt oss"
-			}
-		}
-	},
-	"footer": {
-		"policies": {
-			"a11yStatement": "Tilgjengelighetserklæring",
-			"privacyPolicy": "Personvernerklæring",
-			"cookiePolicy": "Informasjonskapsler"
-		},
-		"githubFollow": "Følg oss på Github",
-		"digdirCredit": "en tjeneste fra"
-	}
+    "footer": {
+        "digdirCredit": "en tjeneste fra",
+        "githubFollow": "Følg oss på Github",
+        "policies": {
+            "a11yStatement": "Tilgjengelighetserklæring",
+            "cookiePolicy": "Informasjonskapsler",
+            "privacyPolicy": "Personvernerklæring"
+        }
+    },
+    "header": {
+        "findDataButton": "Finn data",
+        "menuButton": "Meny",
+        "shareDataButton": "Del data"
+    },
+    "mainMenu": {
+        "about": {
+            "heading": "Om data.norge.no",
+            "links": {
+                "aboutUs": "Om oss",
+                "contactUs": "Kontakt oss",
+                "reports": "Rapporter og nøkkeltall"
+            }
+        },
+        "catalogs": {
+            "ai": {
+                "description": "Oversikt over KI-prosjekter i offentlig sektor",
+                "title": "Kunstig intelligens"
+            },
+            "apis": {
+                "description": "Protokoller for å kommunisere med datasystemer med dynamisk data og data i sanntid",
+                "title": "API-er"
+            },
+            "datasets": {
+                "description": "Kolleksjoner av strukturert data som kan lastes ned eller aksesseres via APIer",
+                "title": "Datasett"
+            },
+            "heading": "Datakataloger",
+            "informationModels": {
+                "description": "Strukturerte representasjoner av informasjon og data for datasett og APIer",
+                "title": "Informasjonsmodeller"
+            },
+            "servicesEvents": {
+                "description": "Oversikt over tjenester, prosesser og hendelser som virksomheter bruker når de behandler data",
+                "title": "Tjenester og hendelser"
+            },
+            "terms": {
+                "description": "Definisjoner og ordbøker på offisielle termer og begreper som virksomheter bruker i sine data",
+                "title": "Begreper"
+            }
+        },
+        "help": {
+            "heading": "Hjelp og veiledning",
+            "links": {
+                "community": "Datalandsbyen",
+                "documentation": "Dokumentasjon",
+                "findingData": "Hvordan finne data",
+                "sharingData": "Hvordan dele data"
+            }
+        },
+        "tools": {
+            "heading": "Verktøy",
+            "links": {
+                "dataHunter": "Datajegeren",
+                "organizations": "Virksomhetsoversikt",
+                "requestData": "Etterspør data",
+                "sparqlSandbox": "SPARQL-sandkasse"
+            }
+        }
+    }
 }

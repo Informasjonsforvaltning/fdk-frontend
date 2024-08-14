@@ -15,106 +15,121 @@ import MainMenu from '../main-menu';
 import styles from './header.module.scss';
 
 type HeaderProps = {
-  dictionary: Dictionary;
-  baseUri?: string;
-  communityBaseUri?: string;
-  registrationBaseUri?: string;
+    dictionary: Dictionary;
+    baseUri?: string;
+    communityBaseUri?: string;
+    registrationBaseUri?: string;
 };
 
-const Header = ({
-  dictionary,
-  baseUri = '/',
-  communityBaseUri = '#',
-  registrationBaseUri = '#',
-}: HeaderProps) => {
+const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registrationBaseUri = '#' }: HeaderProps) => {
+    const pathname = usePathname();
+    const headerRef = useRef<HTMLDivElement>(null);
+    const [sticky, setSticky] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
+    const [frontpage, setFrontpage] = useState(true);
 
-  const pathname = usePathname();
-  const headerRef = useRef<HTMLDivElement>(null);
-  const [ sticky, setSticky ] = useState(false);
-  const [ showMenu, setShowMenu ] = useState(false);
-  const [ frontpage, setFrontpage ] = useState(true);
-
-  const toggleSticky = () => {
-    if (frontpage) return false;
-    if (window.scrollY > 0) {
-      if (!sticky) setSticky(true);
-    } else {
-      if (sticky) setSticky(false);
-    }
-  };
-
-  const handleClick = (e: any) => {
-    if (!headerRef.current?.contains(e.target)) {
-      setShowMenu(false);
-    }
-  }
-
-  useEffect(() => {
-    const pathSegments = pathname.split('/')
-    if (pathSegments.length !== 2) setFrontpage(false);
-
-    window.addEventListener('scroll', toggleSticky);
-    window.addEventListener('click', handleClick);
-
-    return () => {
-      window.removeEventListener('scroll', toggleSticky);
-      window.removeEventListener('click', handleClick);
-    }
-  });
-
-  return (
-    <header
-      className={cn(styles.header, { [styles.frontpageHeader]: frontpage })}
-      ref={headerRef}
-    >
-      <div className={cn(styles.headerOuter, {
-        [styles.headerSticky]: sticky || showMenu,
-        [styles.drawerOpen]: showMenu
-      })}>
-        <div className={styles.headerInner}>
-          <LogoLink
-            className={styles.headerLogo}
-            baseUri={baseUri}
-          />
-          <div className={styles.headerToolbar}>
-            <Button asChild size="small" variant="tertiary">
-              <Link href={`${baseUri}/search-all`}>
-                <MagnifyingGlassIcon aria-hidden fontSize='1.5em' />
-                <span>{dictionary.header.findDataButton}</span>
-              </Link>
-            </Button>
-            <Button size="small" variant={showMenu ? 'secondary' : 'tertiary' } onClick={() => setShowMenu(!showMenu)}>
-              {
-                showMenu ?
-                <XMarkIcon aria-hidden fontSize='1.5em' /> :
-                <MenuHamburgerIcon aria-hidden fontSize='1.5em' />
-              }
-              <span>{dictionary.header.menuButton}</span>
-            </Button>
-            <Button asChild size="small" variant="primary">
-              <Link href={`${baseUri}/publishing`}>
-                <span>{dictionary.header.shareDataButton}</span>
-              </Link>
-            </Button>
-          </div>
-        </div>
-        {
-          showMenu &&
-          <div className={styles.drawer}>
-            <div className={styles.drawerInner}>
-              {
-                showMenu &&
-                <MainMenu
-                  dictionary={dictionary}
-                  baseUri={baseUri}
-                />
-              }
-            </div>
-          </div>
+    const toggleSticky = () => {
+        if (frontpage) return false;
+        if (window.scrollY > 0) {
+            if (!sticky) setSticky(true);
+        } else {
+            if (sticky) setSticky(false);
         }
-      </div>
-    </header>
-  );
+    };
+
+    const handleClick = (e: any) => {
+        if (!headerRef.current?.contains(e.target)) {
+            setShowMenu(false);
+        }
+    };
+
+    useEffect(() => {
+        const pathSegments = pathname.split('/');
+        if (pathSegments.length !== 2) setFrontpage(false);
+
+        window.addEventListener('scroll', toggleSticky);
+        window.addEventListener('click', handleClick);
+
+        return () => {
+            window.removeEventListener('scroll', toggleSticky);
+            window.removeEventListener('click', handleClick);
+        };
+    });
+
+    return (
+        <header
+            className={cn(styles.header, { [styles.frontpageHeader]: frontpage })}
+            ref={headerRef}
+        >
+            <div
+                className={cn(styles.headerOuter, {
+                    [styles.headerSticky]: sticky || showMenu,
+                    [styles.drawerOpen]: showMenu,
+                })}
+            >
+                <div className={styles.headerInner}>
+                    <LogoLink
+                        className={styles.headerLogo}
+                        baseUri={baseUri}
+                    />
+                    <div className={styles.headerToolbar}>
+                        <Button
+                            asChild
+                            size='small'
+                            variant='tertiary'
+                        >
+                            <Link href={`${baseUri}/search-all`}>
+                                <MagnifyingGlassIcon
+                                    aria-hidden
+                                    fontSize='1.5em'
+                                />
+                                <span>{dictionary.header.findDataButton}</span>
+                            </Link>
+                        </Button>
+                        <Button
+                            size='small'
+                            variant={showMenu ? 'secondary' : 'tertiary'}
+                            onClick={() => setShowMenu(!showMenu)}
+                        >
+                            {showMenu ? (
+                                <XMarkIcon
+                                    aria-hidden
+                                    fontSize='1.5em'
+                                />
+                            ) : (
+                                <MenuHamburgerIcon
+                                    aria-hidden
+                                    fontSize='1.5em'
+                                />
+                            )}
+                            <span>{dictionary.header.menuButton}</span>
+                        </Button>
+                        <Button
+                            asChild
+                            size='small'
+                            variant='primary'
+                        >
+                            <Link href={`${baseUri}/publishing`}>
+                                <span>{dictionary.header.shareDataButton}</span>
+                            </Link>
+                        </Button>
+                    </div>
+                </div>
+                {showMenu && (
+                    <div className={styles.drawer}>
+                        <div className={styles.drawerInner}>
+                            {showMenu && (
+                                <MainMenu
+                                    dictionary={dictionary}
+                                    baseUri={baseUri}
+                                />
+                            )}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </header>
+    );
 };
 
 export default Header;

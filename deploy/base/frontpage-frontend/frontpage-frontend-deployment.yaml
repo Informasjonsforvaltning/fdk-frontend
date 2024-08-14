@@ -2,52 +2,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontpage-frontend
-  labels:
-    app: frontpage-frontend
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: frontpage-frontend
-  strategy:
-    type: RollingUpdate
-  template:
-    metadata:
-      labels:
+    name: frontpage-frontend
+    labels:
         app: frontpage-frontend
-      annotations:
-        prometheus.io/scrape: 'false'
-    spec:
-      containers:
-        - name: frontpage-frontend
-          image: frontpage-frontend
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /api/ping
-              port: 8080
-              scheme: HTTP
-            periodSeconds: 30
-            successThreshold: 1
-            timeoutSeconds: 1
-            initialDelaySeconds: 20
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /api/ready
-              port: 8080
-              scheme: HTTP
-            periodSeconds: 30
-            successThreshold: 1
-            timeoutSeconds: 1
-            initialDelaySeconds: 20
-          resources:
-            requests:
-              cpu: 50m
-              memory: 500Mi
-            limits:
-              memory: 500Mi
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: frontpage-frontend
+    strategy:
+        type: RollingUpdate
+    template:
+        metadata:
+            labels:
+                app: frontpage-frontend
+            annotations:
+                prometheus.io/scrape: 'false'
+        spec:
+            containers:
+                - name: frontpage-frontend
+                  image: frontpage-frontend
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 8080
+                  livenessProbe:
+                      failureThreshold: 3
+                      httpGet:
+                          path: /api/ping
+                          port: 8080
+                          scheme: HTTP
+                      periodSeconds: 30
+                      successThreshold: 1
+                      timeoutSeconds: 1
+                      initialDelaySeconds: 20
+                  readinessProbe:
+                      failureThreshold: 3
+                      httpGet:
+                          path: /api/ready
+                          port: 8080
+                          scheme: HTTP
+                      periodSeconds: 30
+                      successThreshold: 1
+                      timeoutSeconds: 1
+                      initialDelaySeconds: 20
+                  resources:
+                      requests:
+                          cpu: 50m
+                          memory: 500Mi
+                      limits:
+                          memory: 500Mi

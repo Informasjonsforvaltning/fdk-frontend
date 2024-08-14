@@ -9,20 +9,20 @@ import { FormState } from './types';
  * @returns the error messages as a string array
  */
 export const extractErrorMessages = (
-  fieldName: string,
-  state: FormState | undefined,
-  dictionary: Dictionary,
+    fieldName: string,
+    state: FormState | undefined,
+    dictionary: Dictionary,
 ): string[] | string => {
-  if (!state?.fieldErrors) {
-    return '';
-  }
-  const errors = state.fieldErrors[fieldName] || [];
-  const errorMessages = errors.map((error) => {
-    const [message, length] = error.split(',');
-    const errorMessage = dictionary.error[message as keyof typeof dictionary.error];
-    return errorMessage ? `${errorMessage}${length ? ' ' + length : ''}` : dictionary.error.default;
-  });
-  return errorMessages.length ? errorMessages : '';
+    if (!state?.fieldErrors) {
+        return '';
+    }
+    const errors = state.fieldErrors[fieldName] || [];
+    const errorMessages = errors.map((error) => {
+        const [message, length] = error.split(',');
+        const errorMessage = dictionary.error[message as keyof typeof dictionary.error];
+        return errorMessage ? `${errorMessage}${length ? ' ' + length : ''}` : dictionary.error.default;
+    });
+    return errorMessages.length ? errorMessages : '';
 };
 
 /**
@@ -31,13 +31,13 @@ export const extractErrorMessages = (
  * @returns the form entries
  */
 export const extractFormEntries = (formData: FormData) => ({
-  ...(Array.from(formData.entries())
-    .filter(([key]) => !key.startsWith('$'))
-    .reduce(
-      (acc, [key, value]) => {
-        acc[key] = value;
-        return acc;
-      },
-      {} as Record<string, unknown>,
-    ) as Record<string, unknown>),
+    ...(Array.from(formData.entries())
+        .filter(([key]) => !key.startsWith('$'))
+        .reduce(
+            (acc, [key, value]) => {
+                acc[key] = value;
+                return acc;
+            },
+            {} as Record<string, unknown>,
+        ) as Record<string, unknown>),
 });

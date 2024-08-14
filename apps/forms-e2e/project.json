@@ -1,7 +1,7 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "// targets": "to see all targets run: nx show project forms-e2e --web",
-  "name": "forms-e2e",
-  "sourceRoot": "apps/forms-e2e/src",
-  "targets": {}
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "// targets": "to see all targets run: nx show project forms-e2e --web",
+    "name": "forms-e2e",
+    "sourceRoot": "apps/forms-e2e/src",
+    "targets": {}
 }

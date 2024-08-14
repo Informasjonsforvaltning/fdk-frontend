@@ -3,15 +3,13 @@ import { Heading, HeadingProps } from '@digdir/designsystemet-react';
 
 import styles from './typography.module.scss';
 
-const HeadingWithDivider = ({ children, className, ...rest }: HeadingProps) => {
-	return (
-		<Heading
-			className={cn(styles.headingWithDivider, className)}
-			{...rest}
-		>
-			{children}
-		</Heading>
-	);
-}
+const HeadingWithDivider = ({ children, className, ...rest }: HeadingProps) => (
+    <Heading
+        className={cn(styles.headingWithDivider, className)}
+        {...rest}
+    >
+        {children}
+    </Heading>
+);
 
 export { HeadingWithDivider };

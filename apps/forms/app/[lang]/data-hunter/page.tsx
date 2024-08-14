@@ -14,56 +14,56 @@ import DataHunterForm from './components/data-hunter-form';
 import styles from './page.module.css';
 
 type Props = {
-  params: {
-    lang: Locale['code'];
-  };
+    params: {
+        lang: Locale['code'];
+    };
 };
 
 const DataHunterPage = async ({ params: { lang } }: Props) => {
-  // Opt-in dynamic rendering
-  noStore();
+    // Opt-in dynamic rendering
+    noStore();
 
-  const dictionary = await getDictionary(lang, 'data-hunter-page');
+    const dictionary = await getDictionary(lang, 'data-hunter-page');
 
-  const { FDK_BASE_URI } = process.env;
+    const { FDK_BASE_URI } = process.env;
 
-  const baseUri = FDK_BASE_URI ?? '/';
+    const baseUri = FDK_BASE_URI ?? '/';
 
-  const breadcrumbList = [
-    {
-      href: getPaths(baseUri).forms,
-      text: dictionary.forms,
-    },
-    {
-      href: getPaths(baseUri).dataHunter,
-      text: dictionary.dataHunter,
-    },
-  ];
+    const breadcrumbList = [
+        {
+            href: getPaths(baseUri).forms,
+            text: dictionary.forms,
+        },
+        {
+            href: getPaths(baseUri).dataHunter,
+            text: dictionary.dataHunter,
+        },
+    ];
 
-  return (
-    <div>
-      <Breadcrumbs
-        baseUri={baseUri}
-        breadcrumbList={breadcrumbList}
-        dictionary={dictionary}
-      />
-      <div className={styles.contentContainer}>
-        <Heading
-          size='xlarge'
-          spacing
-        >
-          {dictionary.dataHunterForm.title}
-        </Heading>
-        <Paragraph
-          size='large'
-          spacing
-        >
-          {dictionary.dataHunterForm.description}
-        </Paragraph>
-        <DataHunterForm dictionary={dictionary} />
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <Breadcrumbs
+                baseUri={baseUri}
+                breadcrumbList={breadcrumbList}
+                dictionary={dictionary}
+            />
+            <div className={styles.contentContainer}>
+                <Heading
+                    size='xlarge'
+                    spacing
+                >
+                    {dictionary.dataHunterForm.title}
+                </Heading>
+                <Paragraph
+                    size='large'
+                    spacing
+                >
+                    {dictionary.dataHunterForm.description}
+                </Paragraph>
+                <DataHunterForm dictionary={dictionary} />
+            </div>
+        </div>
+    );
 };
 
 export default DataHunterPage;

@@ -1,15 +1,15 @@
 .languageSwitcher {
-	&.inverted {
-		background:transparent;
+    &.inverted {
+        background: transparent;
 
-		button {
-			&:not([aria-checked="true"]) {
-				color: var(--fds-semantic-border-action-first-subtle);
-			}
-			&:not([aria-checked="true"]):hover {
-				background: var(--color-fdk-navy);
-				color:white;
-			}
-		}
-	}
+        button {
+            &:not([aria-checked='true']) {
+                color: var(--fds-semantic-border-action-first-subtle);
+            }
+            &:not([aria-checked='true']):hover {
+                background: var(--color-fdk-navy);
+                color: white;
+            }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 describe('Page', () => {
-  it('should render', () => {
-    expect(true).toBe(true);
-  });
+    it('should render', () => {
+        expect(true).toBe(true);
+    });
 });

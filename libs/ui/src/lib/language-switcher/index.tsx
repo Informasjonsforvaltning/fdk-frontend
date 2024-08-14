@@ -9,38 +9,38 @@ import { i18n, LocaleCodes } from '@fdk-frontend/dictionaries';
 import styles from './language-switcher.module.scss';
 
 type LanguageSwitcherProps = {
-	inverted?: boolean;
+    inverted?: boolean;
 };
 
 const LanguageSwitcher = ({ inverted }: LanguageSwitcherProps) => {
+    const router = useRouter();
+    const pathName = usePathname();
 
-	const router = useRouter();
-  	const pathName = usePathname();
+    const defaultCode = pathName.split('/')[1];
 
-  	const defaultCode = pathName.split('/')[1];
+    const onLanguageSelect = (code: LocaleCodes) => {
+        const segments = pathName.split('/');
+        segments[1] = code;
+        return router.replace(segments.join('/'));
+    };
 
-	const onLanguageSelect = (code: LocaleCodes) => {
-	  const segments = pathName.split('/');
-	  segments[1] = code;
-	  return router.replace(segments.join('/'));
-	};
-
-	return (
-		<ToggleGroup
-			className={cn(styles.languageSwitcher, { [styles.inverted]: inverted })}
-			defaultValue={defaultCode}
-			size="sm"
-			onChange={(code) => onLanguageSelect(code as LocaleCodes)}
-		>
-			{
-				i18n.locales.map(locale => (
-					<ToggleGroup.Item value={locale.code} key={locale.code}>
-						{locale.flag} {locale.name}
-					</ToggleGroup.Item>
-				))
-			}
-		</ToggleGroup>
-	);
-}
+    return (
+        <ToggleGroup
+            className={cn(styles.languageSwitcher, { [styles.inverted]: inverted })}
+            defaultValue={defaultCode}
+            size='sm'
+            onChange={(code) => onLanguageSelect(code as LocaleCodes)}
+        >
+            {i18n.locales.map((locale) => (
+                <ToggleGroup.Item
+                    value={locale.code}
+                    key={locale.code}
+                >
+                    {locale.flag} {locale.name}
+                </ToggleGroup.Item>
+            ))}
+        </ToggleGroup>
+    );
+};
 
 export default LanguageSwitcher;

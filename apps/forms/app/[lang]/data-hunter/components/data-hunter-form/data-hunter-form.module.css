@@ -1,41 +1,41 @@
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .textField {
-  width: 100%;
-  align-self: flex-start;
+    width: 100%;
+    align-self: flex-start;
 }
 
 .textFieldHalfWidth {
-  composes: textField;
-  width: 50%;
+    composes: textField;
+    width: 50%;
 }
 
 .orgNumberField {
-  composes: textFieldHalfWidth;
+    composes: textFieldHalfWidth;
 }
 
 /* Chrome, Safari, Edge, Opera */
 .orgNumberField input::-webkit-outer-spin-button,
 .orgNumberField input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 .orgNumberField * input[type='number'] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 .submitButton {
-  align-self: flex-start;
+    align-self: flex-start;
 }
 
 @media (max-width: 576px) {
-  .textFieldHalfWidth {
-    width: 100%;
-  }
+    .textFieldHalfWidth {
+        width: 100%;
+    }
 }
