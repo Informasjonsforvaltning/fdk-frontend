@@ -16,6 +16,10 @@ type Story = StoryObj<typeof Breadcrumbs>;
 const breadcrumbList = [
     {
         href: '#',
+        text: 'Parent page',
+    },
+    {
+        href: '#',
         text: 'This page',
     },
 ];

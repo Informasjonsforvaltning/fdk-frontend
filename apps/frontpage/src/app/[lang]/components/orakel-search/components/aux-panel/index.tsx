@@ -17,9 +17,9 @@ export type AuxPanelProps = {
     numResults?: number;
 };
 
-const AuxPanel = ({ dictionary, numResults, onRequestSearch, baseUri }) => {
+const AuxPanel = ({ dictionary, onRequestSearch, baseUri, numResults }: AuxPanelProps) => {
     const getResultsText = () =>
-        numResults > 0
+        numResults !== undefined && numResults > 0
             ? interpolate(dictionary.aiBanner.prompt.responses.resultsFound, { num: numResults })
             : dictionary.aiBanner.prompt.responses.noResults;
 
