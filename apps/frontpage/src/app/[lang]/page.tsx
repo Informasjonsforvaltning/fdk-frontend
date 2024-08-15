@@ -1,8 +1,9 @@
 import 'server-only';
 
+import type { Metadata, ResolvingMetadata } from 'next'
 import { unstable_noStore as noStore } from 'next/cache';
 
-import { getDictionary, Locale } from '@fdk-frontend/dictionaries';
+import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
 
 import { FrontpageBanner } from './components/frontpage-banner';
 import { ShareDataBanner } from './components/share-data-banner';
@@ -44,5 +45,15 @@ const Frontpage = async ({ params }: FrontpageProps) => {
         </div>
     );
 };
+
+export async function generateMetadata({ params }: FrontpageProps): Promise<Metadata> {
+    
+    const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
+
+    return {
+        title: frontpageDictionary.metadata.title,
+        description: frontpageDictionary.metadata.description
+    }
+}
 
 export default Frontpage;

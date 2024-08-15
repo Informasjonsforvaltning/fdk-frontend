@@ -1,4 +1,8 @@
 {
+    "metadata": {
+        "title": "data.norge.no - Frontpage",
+        "description": "data.norge.no is Norway's official portal for sharing data from Norwegian organizations that you can use for innovation and research."
+    },
     "aiBanner": {
         "advancedSearchPrompt": {
             "link": "Find data",

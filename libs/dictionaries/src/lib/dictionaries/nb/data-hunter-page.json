@@ -1,4 +1,8 @@
 {
+    "metadata": {
+        "title": "data.norge.no - Datajegeren",
+        "description": "Datajegeren er en gratis tjeneste hvor du kan få hjelp til å finne den dataen du trenger. Fyll ut skjemaet så tar vi kontakt."
+    },
     "aboutConceptCatalog": "Om begrepskatalogen",
     "aboutDataServiceCatalog": "Om API-katalogen",
     "aboutDatasetCatalog": "Om datasettkatalogen",
