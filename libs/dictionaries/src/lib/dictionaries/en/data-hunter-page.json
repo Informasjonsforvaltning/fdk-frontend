@@ -1,4 +1,8 @@
 {
+    "metadata": {
+        "title": "data.norge.no - Data Hunter",
+        "description": "Data Hunter is a free service where you can get help finding the data you need. Fill out the form, and we will get in touch."
+    },
     "aboutConceptCatalog": "About Concept catalog",
     "aboutDataServiceCatalog": "About API catalog",
     "aboutDatasetCatalog": "About dataset catalog",
