@@ -28,7 +28,10 @@ const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) 
                 {dictionary.homePage}
             </Link>
             {breadcrumbList?.map((breadcrumb, i) => (
-                <div key={breadcrumb.href}>
+                <div
+                    className={styles.crumb}
+                    key={breadcrumb.href}
+                >
                     <ChevronRightIcon
                         className={styles.separator}
                         fontSize='1.5rem'
