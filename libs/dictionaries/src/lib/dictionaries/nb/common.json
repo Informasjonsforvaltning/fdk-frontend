@@ -32,7 +32,7 @@
                 "title": "API-er"
             },
             "datasets": {
-                "description": "Kolleksjoner av strukturert data som kan lastes ned eller aksesseres via APIer",
+                "description": "Samlinger av strukturert data som kan lastes ned eller aksesseres via APIer",
                 "title": "Datasett"
             },
             "heading": "Datakataloger",
