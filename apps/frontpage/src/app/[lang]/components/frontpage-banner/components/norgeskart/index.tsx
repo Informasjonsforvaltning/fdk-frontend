@@ -16,9 +16,13 @@ import styles from './norgeskart.module.scss';
 
 const Norgeskart = () => {
     const urls = {
-        kartverket:
+        kartverketOld:
             'https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart_graatone&zoom={z}&x={x}&y={y}',
-        kartverketNew: 'https://cache.kartverket.no/v1/wmts/1.0.0/topo/default/webmercator/{z}/{y}/{x}.png',
+        kartverket: {
+            topo: 'https://cache.kartverket.no/v1/wmts/1.0.0/topo/default/webmercator/{z}/{y}/{x}.png',
+            topograatone: 'https://cache.kartverket.no/v1/wmts/1.0.0/topograatone/default/webmercator/{z}/{y}/{x}.png',
+            toporaster: 'https://cache.kartverket.no/v1/wmts/1.0.0/toporaster/default/webmercator/{z}/{y}/{x}.png'
+        },
         osm: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         otm: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
         cycle: 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png',
@@ -44,7 +48,7 @@ const Norgeskart = () => {
             zoom={initCoords.zoom}
             zoomControl={false}
         >
-            <TileLayer url={urls.kartverketNew} />
+            <TileLayer url={urls.kartverket.topo} />
         </MapContainer>
     );
 };
