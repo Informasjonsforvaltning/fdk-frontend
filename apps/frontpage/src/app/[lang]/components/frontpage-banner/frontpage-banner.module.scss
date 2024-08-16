@@ -1,0 +1,81 @@
+.outer {
+    color: white;
+    position: relative;
+    min-height:100vh;
+    overflow: hidden;
+    display: flex;
+    // align-items:center;
+    justify-content: center;
+    color: white;
+    container-type: inline-size;
+    background: var(--color-fdk-navy-dark);
+
+    /*&:after {
+        content:'';
+        display:none;
+        position:absolute;
+        inset:0;
+        background: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Hans_Gude-H%C3%B8yfjell_i_soloppgang.jpg');
+        background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Aasgaardreien_peter_nicolai_arbo_mindre.jpg/1200px-Aasgaardreien_peter_nicolai_arbo_mindre.jpg');
+        background-size:100%;
+        background-position: 50% 0%;
+        background-repeat:no-repeat;
+        mix-blend-mode: screen;
+        opacity:0.25;
+    }*/
+
+    .gradient {
+        content:'';
+        display:block;
+        position:absolute;
+        inset:0;
+        background:red;
+        z-index:1;
+        background: radial-gradient(circle, var(--color-fdk-navy), var(--color-fdk-navy-dark));
+        mix-blend-mode: hard-light;
+    }
+
+    @container (max-width: 960px) {
+        .headline {
+            font-size: 4rem;
+        }
+    }
+
+    @container (max-width: 500px) {
+        .headline {
+            font-size: 3rem;
+        }
+    }
+}
+
+.inner {
+    position: relative;
+    z-index: 2;
+    margin-top:15vh;
+    margin-bottom:4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
+.headline {
+    font-size: 5rem;
+    line-height: 1em;
+    font-weight: bold;
+    text-align: center;
+    margin: 6rem 0 1rem;
+    color: white;
+    pointer-events: none;
+    /*	text-shadow:2px 2px 2px black;*/
+}
+
+.dividerLine {
+    margin: auto;
+    width: 3rem;
+    height: 4px;
+    background: red;
+    background: var(--fds-brand-alt3-600);
+    border-radius: 0.25rem;
+}

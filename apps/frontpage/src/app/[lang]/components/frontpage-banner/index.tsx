@@ -6,7 +6,7 @@ import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 import OrakelSearch from '../orakel-search';
 import Norgeskart from './components/norgeskart';
 
-import styles from './frontpage-banner.module.css';
+import styles from './frontpage-banner.module.scss';
 
 type FrontpageBannerProps = {
     dictionary: Dictionary;
@@ -29,6 +29,7 @@ const FrontpageBanner = ({ dictionary, baseUri, endpoint }: FrontpageBannerProps
                 endpoint={endpoint}
             />
         </div>
+        <div className={styles.gradient} />
         <Norgeskart />
     </div>
 );
