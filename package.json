@@ -68,7 +68,7 @@
     "@nx/jest": "18.2.4",
     "@nx/js": "18.2.4",
     "@nx/next": "18.2.4",
-    "@nx/playwright": "18.2.4",
+    "@nx/playwright": "19.6.0",
     "@nx/react": "18.2.4",
     "@nx/storybook": "18.2.4",
     "@nx/web": "18.2.4",
