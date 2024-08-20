@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from '@digdir/designsystemet-react';
 import { Dictionary } from '@fdk-frontend/dictionaries';
@@ -15,7 +15,7 @@ type QuerySuggestionProps = {
 const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps) => {
     const suggestions = dictionary.aiBanner.suggestions.list;
     const randomIndex = Math.floor(Math.random() * suggestions.length);
-    const suggestion = suggestions[randomIndex];
+    const [ suggestion, setSuggestion ] = useState(suggestions[randomIndex]);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
