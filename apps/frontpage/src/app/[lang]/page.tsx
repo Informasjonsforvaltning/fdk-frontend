@@ -1,6 +1,6 @@
 import 'server-only';
 
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import { unstable_noStore as noStore } from 'next/cache';
 
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
@@ -46,7 +46,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
     );
 };
 
-export async function generateMetadata({ params }: FrontpageProps): Promise<Metadata> {
+export const generateMetadata = async ({ params }: FrontpageProps): Promise<Metadata> => {
     
     const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
 
