@@ -50,10 +50,11 @@ jobs:
                   echo "matrix={\"appname\":$(yarn --silent run matrix)}" >> $GITHUB_OUTPUT
                   echo "changed=$(yarn --silent run matrix)" >> $GITHUB_OUTPUT
 
-            - run: yarn run affected:lint  --parallel=2
-            - run: yarn run affected:test  --parallel=2 --configuration=ci
-            - run: yarn run affected:e2e   --parallel=2 --configuration=ci
-            - run: yarn run affected:build --parallel=2 --configuration=ci
+            - run: yarn playwright install
+            - run: yarn run affected:lint  
+            - run: yarn run affected:test   --configuration=ci
+            - run: yarn run affected:e2e    --configuration=ci
+            - run: yarn run affected:build  --configuration=ci
 
             - name: Caching Dist Folder
               uses: actions/cache@v4
