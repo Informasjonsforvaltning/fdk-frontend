@@ -15,7 +15,7 @@ type QuerySuggestionProps = {
 const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps) => {
     const suggestions = dictionary.aiBanner.suggestions.list;
     const randomIndex = Math.floor(Math.random() * suggestions.length);
-    const [ suggestion, setSuggestion ] = useState(suggestions[randomIndex]);
+    const [ suggestion ] = useState(suggestions[randomIndex]);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();

@@ -1,7 +1,7 @@
 import 'server-only';
 
 import React from 'react';
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import { unstable_noStore as noStore } from 'next/cache';
 
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
@@ -67,7 +67,7 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     );
 };
 
-export async function generateMetadata({ params }: DataHunterPageProps): Promise<Metadata> {
+export const generateMetadata = async ({ params }: DataHunterPageProps): Promise<Metadata> => {
     
     const dictionary = await getDictionary(params.lang, 'data-hunter-page');
 
