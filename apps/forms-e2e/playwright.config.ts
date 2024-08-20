@@ -44,10 +44,10 @@ export default defineConfig({
             use: { ...devices['Desktop Firefox'] },
         },
 
-        {
+        /*{
             name: 'webkit',
             use: { ...devices['Desktop Safari'] },
-        },
+        },*/
 
         // Uncomment for mobile browsers support
         /* {
