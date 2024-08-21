@@ -3,7 +3,7 @@ import React from 'react';
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 
-import OrakelSearch from '../orakel-search';
+import LlmSearch from '../llm-search';
 import Norgeskart from './components/norgeskart';
 
 import styles from './frontpage-banner.module.scss';
@@ -23,7 +23,7 @@ const FrontpageBanner = ({ dictionary, baseUri, endpoint }: FrontpageBannerProps
             >
                 {dictionary.aiBanner.title}
             </HeadingWithDivider>
-            <OrakelSearch
+            <LlmSearch
                 dictionary={dictionary}
                 baseUri={baseUri}
                 endpoint={endpoint}

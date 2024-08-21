@@ -11,7 +11,7 @@
         "prompt": {
             "button": "Ask",
             "errors": {
-                "generic": "An error occurred. Please try again.",
+                "generic": "An error occurred. Please try again later.",
                 "queryTooShort": "The query must contain more than two characters. Please try again."
             },
             "label": "Ask our AI about data from over 125 organizations and 8000 datasets:",

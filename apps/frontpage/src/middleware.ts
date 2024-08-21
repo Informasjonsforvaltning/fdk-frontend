@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { i18n, Locale } from '@fdk-frontend/dictionaries';
 
 export const middleware = (request: NextRequest) => {
+    const devMode = process.env.NODE_ENV === 'development';
+
     // Get the pathname and remove basePath
     const basePath = '';
     const pathname = request.nextUrl.pathname;
@@ -26,10 +28,57 @@ export const middleware = (request: NextRequest) => {
             new URL(basePath + `/${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
         );
     }
-    return null;
+
+
+    // eslint-disable-next-line no-restricted-syntax
+    console.log("node env", process.env.NODE_ENV);
+
+    // Content Security Policy
+    const nonce = Buffer.from(crypto.randomUUID()).toString('base64')    
+    const cspHeader = `
+        default-src 'self';
+        script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval';
+        style-src 'self' 'nonce-${nonce}';
+        img-src 'self' blob: data: https://cache.kartverket.no;
+        font-src 'self';
+        connect-src 'self' ${process.env.FDK_LLM_SEARCH_BASE_URI || ''};
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'none';
+        ${devMode ? '' : 'upgrade-insecure-requests'};
+    `
+    // Replace newline characters and spaces
+    const contentSecurityPolicyHeaderValue = cspHeader
+        .replace(/\s{2,}/g, ' ')
+        .trim()
+    
+    const requestHeaders = new Headers(request.headers)
+    requestHeaders.set('x-nonce', nonce)
+    requestHeaders.set(
+        'Content-Security-Policy',
+        contentSecurityPolicyHeaderValue
+    )
+
+    const response = NextResponse.next({
+        request: {
+            headers: requestHeaders,
+        },
+    })
+    response.headers.set(
+        'Content-Security-Policy',
+        contentSecurityPolicyHeaderValue
+    )
+    response.cookies.set('nonce', nonce, { httpOnly: false, secure: !devMode, sameSite: 'strict' });
+    
+    return response
 };
 
 export const config = {
     // Matcher ignoring `/_next/` and `/api/`
     matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)', { source: '/' }],
+    missing: [
+        { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' },
+    ],
 };

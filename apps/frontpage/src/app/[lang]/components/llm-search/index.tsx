@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { Textfield, Button, Spinner, ErrorMessage } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { Dictionary } from '@fdk-frontend/dictionaries';
+import { useNonce } from '@fdk-frontend/ui/csp';
 
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
 
@@ -13,7 +14,7 @@ import AuxPanel from './components/aux-panel';
 
 // import mockResults from './data/results3.json';
 
-import styles from './orakel-search.module.scss';
+import styles from './llm-search.module.scss';
 
 type OrakelSearchProps = {
     endpoint: string;
@@ -21,12 +22,13 @@ type OrakelSearchProps = {
     baseUri: string;
 };
 
-const OrakelSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
+const LlmSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [query, setQuery] = useState<string>('');
     const [results, setResults] = useState<any>(undefined);
     const [error, setError] = useState<string | undefined>(undefined);
     // const [ results, setResults ] = useState<any>(mockResults);
+    const nonce = useNonce();
 
     const animations = {
         resultsContainer: {
@@ -97,7 +99,7 @@ const OrakelSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
     };
 
     return (
-        <div className={styles.orakelSearch}>
+        <div className={styles.llmSearch}>
             <form onSubmit={submitQuery}>
                 <div className={styles.orakelSearchBox}>
                     <Textfield
@@ -153,38 +155,40 @@ const OrakelSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
                 </div>
             )}
             {results && !loading && (
-                <motion.div
-                    className={styles.orakelResults}
-                    variants={animations.resultsContainer}
-                    initial='hidden'
-                    animate='show'
-                >
-                    <motion.ul
-                        className={styles.orakelResultsList}
-                        variants={animations.resultsList}
+                <MotionConfig nonce={nonce}>
+                    <motion.div
+                        className={styles.orakelResults}
+                        variants={animations.resultsContainer}
                         initial='hidden'
                         animate='show'
                     >
-                        {results.hits &&
-                            results.hits.map((item: ItemObjectType, i: number) => (
-                                <motion.li
-                                    key={`item-${i}`}
-                                    variants={animations.resultsItem}
-                                >
-                                    <ResultItem item={item} />
-                                </motion.li>
-                            ))}
-                        <motion.li variants={animations.resultsItem}>
-                            <AdvancedSearchPrompt
-                                dictionary={dictionary}
-                                baseUri={baseUri}
-                            />
-                        </motion.li>
-                    </motion.ul>
-                </motion.div>
+                        <motion.ul
+                            className={styles.orakelResultsList}
+                            variants={animations.resultsList}
+                            initial='hidden'
+                            animate='show'
+                        >
+                            {results.hits &&
+                                results.hits.map((item: ItemObjectType, i: number) => (
+                                    <motion.li
+                                        key={`item-${i}`}
+                                        variants={animations.resultsItem}
+                                    >
+                                        <ResultItem item={item} />
+                                    </motion.li>
+                                ))}
+                            <motion.li variants={animations.resultsItem}>
+                                <AdvancedSearchPrompt
+                                    dictionary={dictionary}
+                                    baseUri={baseUri}
+                                />
+                            </motion.li>
+                        </motion.ul>
+                    </motion.div>
+                </MotionConfig>
             )}
         </div>
     );
 };
 
-export default OrakelSearch;
+export default LlmSearch;

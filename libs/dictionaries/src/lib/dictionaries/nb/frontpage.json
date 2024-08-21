@@ -11,7 +11,7 @@
         "prompt": {
             "button": "Spør",
             "errors": {
-                "generic": "En feil oppstod. Vennligst prøv igjen.",
+                "generic": "En feil oppstod. Vennligst prøv igjen senere.",
                 "queryTooShort": "Spørringen må inneholde mer enn to tegn. Prøv igjen."
             },
             "label": "Spør vår KI om data fra over 125 virksomheter og 8000 datasett:",

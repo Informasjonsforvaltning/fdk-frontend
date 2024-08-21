@@ -11,7 +11,7 @@
         "prompt": {
             "button": "Spør",
             "errors": {
-                "generic": "Ein feil oppstod. Ver venleg å prøv igjen.",
+                "generic": "Ein feil oppstod. Ver venleg å prøv igjen seinare.",
                 "queryTooShort": "Spurnaden må innehalde meir enn to teikn. Prøv igjen."
             },
             "label": "Spør vår KI om data frå over 125 verksemder og 8000 datasett:",
