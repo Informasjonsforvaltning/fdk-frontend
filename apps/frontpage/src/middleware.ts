@@ -29,10 +29,6 @@ export const middleware = (request: NextRequest) => {
         );
     }
 
-
-    // eslint-disable-next-line no-restricted-syntax
-    console.log("node env", process.env.NODE_ENV);
-
     // Content Security Policy
     const nonce = Buffer.from(crypto.randomUUID()).toString('base64')    
     const cspHeader = `
