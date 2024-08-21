@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { Link, Heading } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
@@ -6,6 +6,7 @@ import { Dictionary } from '@fdk-frontend/dictionaries';
 
 import styles from './main-menu.module.scss';
 
+import { useNonce } from '../csp';
 import CatalogsMenu from '../catalogs-menu';
 import getMainMenuData from './data';
 
@@ -15,6 +16,7 @@ type MainMenuProps = {
 };
 
 const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
+    const nonce = useNonce();
     const data = getMainMenuData(dictionary, baseUri);
 
     const animations = {
@@ -29,82 +31,84 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
     };
 
     return (
-        <motion.div
-            className={styles.mainMenu}
-            variants={animations.menu}
-            initial='hidden'
-            animate='show'
-        >
-            <CatalogsMenu
-                dictionary={dictionary}
-                baseUri={baseUri}
-            />
-            <div className={styles.linkSectionContainer}>
-                <motion.div
-                    className={styles.linkSection}
-                    variants={animations.links}
-                    initial='hidden'
-                    animate='show'
-                >
-                    <div className={styles.linkSet}>
-                        <Heading
-                            className={styles.sectionHeader}
-                            size='xxsmall'
-                            level={2}
-                        >
-                            {dictionary.mainMenu.help.heading}
-                        </Heading>
-                        <ul>
-                            {data.help.map((item) => (
-                                <li key={item.href}>
-                                    <Link href={item.href}>
-                                        {item.title}
-                                        {item.external && (
-                                            <>
-                                                &nbsp;
-                                                <ExternalLinkIcon fontSize='1em' />
-                                            </>
-                                        )}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className={styles.linkSet}>
-                        <Heading
-                            className={styles.sectionHeader}
-                            size='xxsmall'
-                            level={2}
-                        >
-                            Verktøy
-                        </Heading>
-                        <ul>
-                            {data.tools.map((item) => (
-                                <li key={item.href}>
-                                    <Link href={item.href}>{item.title}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className={styles.linkSet}>
-                        <Heading
-                            className={styles.sectionHeader}
-                            size='xxsmall'
-                            level={2}
-                        >
-                            Om data.norge.no
-                        </Heading>
-                        <ul>
-                            {data.about.map((item) => (
-                                <li key={item.href}>
-                                    <Link href={item.href}>{item.title}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </motion.div>
-            </div>
-        </motion.div>
+        <MotionConfig nonce={nonce}>
+            <motion.div
+                className={styles.mainMenu}
+                variants={animations.menu}
+                initial='hidden'
+                animate='show'
+            >
+                <CatalogsMenu
+                    dictionary={dictionary}
+                    baseUri={baseUri}
+                />
+                <div className={styles.linkSectionContainer}>
+                    <motion.div
+                        className={styles.linkSection}
+                        variants={animations.links}
+                        initial='hidden'
+                        animate='show'
+                    >
+                        <div className={styles.linkSet}>
+                            <Heading
+                                className={styles.sectionHeader}
+                                size='xxsmall'
+                                level={2}
+                            >
+                                {dictionary.mainMenu.help.heading}
+                            </Heading>
+                            <ul>
+                                {data.help.map((item) => (
+                                    <li key={item.href}>
+                                        <Link href={item.href}>
+                                            {item.title}
+                                            {item.external && (
+                                                <>
+                                                    &nbsp;
+                                                    <ExternalLinkIcon fontSize='1em' />
+                                                </>
+                                            )}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={styles.linkSet}>
+                            <Heading
+                                className={styles.sectionHeader}
+                                size='xxsmall'
+                                level={2}
+                            >
+                                Verktøy
+                            </Heading>
+                            <ul>
+                                {data.tools.map((item) => (
+                                    <li key={item.href}>
+                                        <Link href={item.href}>{item.title}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className={styles.linkSet}>
+                            <Heading
+                                className={styles.sectionHeader}
+                                size='xxsmall'
+                                level={2}
+                            >
+                                Om data.norge.no
+                            </Heading>
+                            <ul>
+                                {data.about.map((item) => (
+                                    <li key={item.href}>
+                                        <Link href={item.href}>{item.title}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </motion.div>
+                </div>
+            </motion.div>
+        </MotionConfig>
     );
 };
 
