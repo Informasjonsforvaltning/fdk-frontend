@@ -3,12 +3,12 @@
     max-width: 640px;
 }
 
-.orakelSearchBox {
+.llmSearchBox {
     position: relative;
     margin-bottom: 0.5rem;
 }
 
-.orakelSearchButton {
+.llmSearchButton {
     position: absolute;
     right: 0.5rem;
     bottom: 0.5rem;
@@ -24,18 +24,19 @@
     }
 }
 
-.orakelSearchIcon {
+.llmSearchIcon {
     transform: scale(1.25);
     margin-right: 0.25rem;
 }
 
-.orakelInputTextfield {
+.llmInputTextfield {
     position: relative;
     gap: 1rem;
 
     input {
         background: rgba(0, 0, 0, 0.33333);
         color: white;
+        padding-right: 7rem;
 
         &:not([aria-invalid]) {
             border-color: rgba(255, 255, 255, 0.75);
@@ -56,13 +57,13 @@
     }
 }
 
-.orakelInputLabel {
+.llmInputLabel {
     display: block;
     color: white;
     text-align: center;
 }
 
-.orakelResults {
+.llmResults {
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
@@ -77,13 +78,13 @@
     }
 }
 
-.orakelResultsList {
+.llmResultsList {
     display: flex;
     flex-direction: column;
     margin-bottom: 1.5rem;
 }
 
-.orakelResultsList * h4 {
+.llmResultsList * h4 {
     margin-bottom: 0.5rem;
 }
 
