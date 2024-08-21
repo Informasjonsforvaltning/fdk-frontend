@@ -16,13 +16,13 @@ import AuxPanel from './components/aux-panel';
 
 import styles from './llm-search.module.scss';
 
-type OrakelSearchProps = {
+type LlmSearchProps = {
     endpoint: string;
     dictionary: Dictionary;
     baseUri: string;
 };
 
-const LlmSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
+const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [query, setQuery] = useState<string>('');
     const [results, setResults] = useState<any>(undefined);
@@ -101,10 +101,10 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
     return (
         <div className={styles.llmSearch}>
             <form onSubmit={submitQuery}>
-                <div className={styles.orakelSearchBox}>
+                <div className={styles.llmSearchBox}>
                     <Textfield
-                        className={styles.orakelInputTextfield}
-                        label={<span className={styles.orakelInputLabel}>{dictionary.aiBanner.prompt.label}</span>}
+                        className={styles.llmInputTextfield}
+                        label={<span className={styles.llmInputLabel}>{dictionary.aiBanner.prompt.label}</span>}
                         placeholder={dictionary.aiBanner.prompt.placeholder}
                         size='large'
                         value={query}
@@ -113,7 +113,7 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
                         autoComplete='off'
                     />
                     <Button
-                        className={styles.orakelSearchButton}
+                        className={styles.llmSearchButton}
                         type='submit'
                         size='sm'
                     >
@@ -126,7 +126,7 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
                         ) : (
                             <>
                                 <SparklesIcon
-                                    className={styles.orakelSearchIcon}
+                                    className={styles.llmSearchIcon}
                                     aria-hidden
                                 />
                                 <span>{dictionary.aiBanner.prompt.button}</span>
@@ -157,13 +157,13 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: OrakelSearchProps) => {
             {results && !loading && (
                 <MotionConfig nonce={nonce}>
                     <motion.div
-                        className={styles.orakelResults}
+                        className={styles.llmResults}
                         variants={animations.resultsContainer}
                         initial='hidden'
                         animate='show'
                     >
                         <motion.ul
-                            className={styles.orakelResultsList}
+                            className={styles.llmResultsList}
                             variants={animations.resultsList}
                             initial='hidden'
                             animate='show'
