@@ -38,7 +38,7 @@
         },
         "title": "Der Noreg deler data",
         "tooltip": {
-            "disclaimer": "Ver obs på at KI-søket kan innehalde feil.",
+            "disclaimer": "Ver obs på at KI-søket kan innehalde feil. Ikkje skriv inn personopplysningar i søkjefeltet.",
             "label": "Om KI-søket",
             "readMoreLinkText": "Les meir om KI-søket her",
             "text": "Vårt KI-søk gjer det enkelt å finne datasett ved å bruke naturleg språk utan at du treng å kjenne til spesifikke datasettnamn, fagomgrep eller tekniske format."
