@@ -5,7 +5,7 @@ export const middleware = (request: NextRequest) => {
     const devMode = process.env.NODE_ENV === 'development';
 
     // Get the pathname and remove basePath
-    const basePath = '';
+    const basePath = '/next/home';
     const pathname = request.nextUrl.pathname;
     if (
         [
