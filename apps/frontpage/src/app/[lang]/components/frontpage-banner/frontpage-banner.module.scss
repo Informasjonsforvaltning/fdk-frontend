@@ -1,7 +1,7 @@
 .outer {
     color: white;
     position: relative;
-    min-height:100vh;
+    min-height: 100vh;
     overflow: hidden;
     display: flex;
     // align-items:center;
@@ -25,12 +25,12 @@
     }*/
 
     .gradient {
-        content:'';
-        display:block;
-        position:absolute;
-        inset:0;
-        background:red;
-        z-index:1;
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0;
+        background: red;
+        z-index: 1;
         background: radial-gradient(circle, var(--color-fdk-navy), var(--color-fdk-navy-dark));
         mix-blend-mode: hard-light;
     }
@@ -51,8 +51,8 @@
 .inner {
     position: relative;
     z-index: 2;
-    margin-top:15vh;
-    margin-bottom:4rem;
+    margin-top: 15vh;
+    margin-bottom: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;

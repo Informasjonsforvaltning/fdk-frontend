@@ -45,7 +45,10 @@ const AuxPanel = ({ dictionary, onRequestSearch, baseUri, numResults }: AuxPanel
                     <b>{dictionary.aiBanner.tooltip.disclaimer}</b>
                 </Paragraph>
                 <Paragraph size='sm'>
-                    <Button size="sm" asChild>
+                    <Button
+                        size='sm'
+                        asChild
+                    >
                         <Link href={`${baseUri}/getting-started/finding-data`}>
                             {dictionary.aiBanner.tooltip.readMoreLinkText}
                         </Link>
