@@ -1,0 +1,63 @@
+.scrollButton {
+    content:'';
+    display:block;
+    position:absolute;
+    width:1.6rem;
+    height:2.25rem;
+    background:transparent;
+    bottom:1rem;
+    z-index:999;
+    border:none;
+    border-radius:1rem;
+    border:1px solid white;
+    color:white;
+    padding:0;
+    overflow:hidden;
+    opacity:0.75;
+
+    &:hover {
+        cursor:pointer;
+        opacity:1;
+        border:2px solid white;
+    }
+
+    &:focus {
+        outline:4px solid var(--fds-semantic-surface-focus-default);
+        opacity:1;
+        border:2px solid transparent;
+    }
+
+    .arrow {
+        display:flex;
+        position:absolute;
+        left:calc(50% - 0.7rem);
+        top:0.33rem;
+        font-size:1.4rem;
+        animation: hint 2s ease-in-out 4;
+    }
+
+    span {
+        font-size:0;
+    }
+}
+
+@keyframes hint {
+    0% {
+        top:0.33rem;
+    }
+    25% {
+        top:0.66rem;
+    }
+    25.1% {
+        top:0.33rem;
+    }
+    50% {
+        top:0.66rem;
+    }
+    50.1% {
+        top:0.33rem;
+    }
+    100% {
+        top:0.33rem;
+    }
+}

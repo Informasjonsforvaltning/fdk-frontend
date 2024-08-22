@@ -5,6 +5,7 @@ import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 
 import LlmSearch from '../llm-search';
 import Norgeskart from './components/norgeskart';
+import ScrollButton from './components/scroll-button';
 
 import styles from './frontpage-banner.module.scss';
 
@@ -31,6 +32,7 @@ const FrontpageBanner = ({ dictionary, baseUri, endpoint }: FrontpageBannerProps
         </div>
         <div className={styles.gradient} />
         <Norgeskart />
+        <ScrollButton />
     </div>
 );
 
