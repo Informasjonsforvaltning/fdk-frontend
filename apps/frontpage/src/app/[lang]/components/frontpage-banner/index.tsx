@@ -16,7 +16,10 @@ type FrontpageBannerProps = {
 };
 
 const FrontpageBanner = ({ dictionary, baseUri, endpoint }: FrontpageBannerProps) => (
-    <div className={styles.outer} id="frontpage-banner">
+    <div
+        className={styles.outer}
+        id='frontpage-banner'
+    >
         <div className={styles.inner}>
             <HeadingWithDivider
                 level={1}

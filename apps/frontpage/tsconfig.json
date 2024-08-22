@@ -33,6 +33,7 @@
         "../../apps/frontpage/.next/types/**/*.ts",
         "../../dist/apps/frontpage/.next/types/**/*.ts",
         "next-env.d.ts",
-        ".next/types/**/*.ts"
-, "src/_document.js"    ]
+        ".next/types/**/*.ts",
+        "src/_document.js"
+    ]
 }

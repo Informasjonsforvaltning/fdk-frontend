@@ -36,50 +36,50 @@ const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
         },
     };
 
-
-    return nonce && (
-        <div className={styles.catalogsMenu}>
-            <MotionConfig nonce={nonce}>
-                <motion.ul
-                    variants={animations.catalogList}
-                    initial='hidden'
-                    animate='show'
-                    
-                >
-                    {data.catalogs.map((item: any, i: number) => (
-                        <motion.li
-                            variants={animations.catalogItem}
-                            key={item.key}
-                        >
-                            <Card
-                                className={styles.card}
-                                asChild
-                                isLink
+    return (
+        nonce && (
+            <div className={styles.catalogsMenu}>
+                <MotionConfig nonce={nonce}>
+                    <motion.ul
+                        variants={animations.catalogList}
+                        initial='hidden'
+                        animate='show'
+                    >
+                        {data.catalogs.map((item: any, i: number) => (
+                            <motion.li
+                                variants={animations.catalogItem}
+                                key={item.key}
                             >
-                                <Link href={item.href}>
-                                    <Card.Header>
-                                        <Heading
-                                            className={styles.catalogTitle}
-                                            size='xxsmall'
-                                            level={3}
-                                        >
-                                            <CatalogSymbol
-                                                className={styles.catalogIcon}
-                                                catalog={item.key as CatalogTypes}
-                                            />
-                                            <span>{item.title}</span>
-                                        </Heading>
-                                    </Card.Header>
-                                    <Card.Content>
-                                        <Paragraph size='small'>{item.description}</Paragraph>
-                                    </Card.Content>
-                                </Link>
-                            </Card>
-                        </motion.li>
-                    ))}
-                </motion.ul>
-            </MotionConfig>
-        </div>
+                                <Card
+                                    className={styles.card}
+                                    asChild
+                                    isLink
+                                >
+                                    <Link href={item.href}>
+                                        <Card.Header>
+                                            <Heading
+                                                className={styles.catalogTitle}
+                                                size='xxsmall'
+                                                level={3}
+                                            >
+                                                <CatalogSymbol
+                                                    className={styles.catalogIcon}
+                                                    catalog={item.key as CatalogTypes}
+                                                />
+                                                <span>{item.title}</span>
+                                            </Heading>
+                                        </Card.Header>
+                                        <Card.Content>
+                                            <Paragraph size='small'>{item.description}</Paragraph>
+                                        </Card.Content>
+                                    </Link>
+                                </Card>
+                            </motion.li>
+                        ))}
+                    </motion.ul>
+                </MotionConfig>
+            </div>
+        )
     );
 };
 
