@@ -6,7 +6,7 @@ export const useNonce = () => {
     useEffect(() => {
         const fetchedNonce = Cookies.get('nonce');
         setNonce(fetchedNonce || undefined);
-      }, []);
+    }, []);
 
     return nonce;
-}
+};

@@ -21,7 +21,7 @@ const Norgeskart = () => {
         kartverket: {
             topo: 'https://cache.kartverket.no/v1/wmts/1.0.0/topo/default/webmercator/{z}/{y}/{x}.png',
             topograatone: 'https://cache.kartverket.no/v1/wmts/1.0.0/topograatone/default/webmercator/{z}/{y}/{x}.png',
-            toporaster: 'https://cache.kartverket.no/v1/wmts/1.0.0/toporaster/default/webmercator/{z}/{y}/{x}.png'
+            toporaster: 'https://cache.kartverket.no/v1/wmts/1.0.0/toporaster/default/webmercator/{z}/{y}/{x}.png',
         },
         osm: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         otm: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
