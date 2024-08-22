@@ -13,22 +13,7 @@ spec:
         spec:
             containers:
                 - name: frontpage-frontend
-                  env:
-                      - name: DATAJEGER_EMAIL_ADDRESS
-                        valueFrom:
-                            secretKeyRef:
-                                name: fdk-smtp-demo
-                                key: DATAJEGER_EMAIL_ADDRESS
-                      - name: FDK_MAIL_SERVICE_ENDPOINT
-                        valueFrom:
-                            secretKeyRef:
-                                name: fdk-smtp-demo
-                                key: FDK_MAIL_SENDER_SERVICE_ENDPOINT
-                      - name: FDK_MAIL_SERVICE_API_KEY
-                        valueFrom:
-                            secretKeyRef:
-                                name: fdk-smtp-demo
-                                key: API_KEY
+                  env:                    
                       - name: FDK_REGISTRATION_BASE_URI
                         valueFrom:
                             secretKeyRef:
