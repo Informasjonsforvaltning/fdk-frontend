@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-import { Link, Paragraph, HelpText } from '@digdir/designsystemet-react';
+import { Link, Paragraph, HelpText, Button } from '@digdir/designsystemet-react';
 
 import { Dictionary, interpolate } from '@fdk-frontend/dictionaries';
 
@@ -45,9 +45,11 @@ const AuxPanel = ({ dictionary, onRequestSearch, baseUri, numResults }: AuxPanel
                     <b>{dictionary.aiBanner.tooltip.disclaimer}</b>
                 </Paragraph>
                 <Paragraph size='sm'>
-                    <Link href={`${baseUri}/getting-started/finding-data`}>
-                        {dictionary.aiBanner.tooltip.readMoreLinkText}
-                    </Link>
+                    <Button size="sm" asChild>
+                        <Link href={`${baseUri}/getting-started/finding-data`}>
+                            {dictionary.aiBanner.tooltip.readMoreLinkText}
+                        </Link>
+                    </Button>
                 </Paragraph>
             </HelpText>
         </div>

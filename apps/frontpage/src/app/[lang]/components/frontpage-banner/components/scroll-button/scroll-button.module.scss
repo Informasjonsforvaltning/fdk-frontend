@@ -39,6 +39,12 @@
     span {
         font-size:0;
     }
+
+
+    &.hidden {
+        opacity:0;
+        transition:opacity 1s linear;
+    }
 }
 
 @keyframes hint {
