@@ -29,34 +29,14 @@ export const middleware = (request: NextRequest) => {
         );
     }
 
-    // Content Security Policy
-    const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-    const cspHeader = `
-        default-src 'self';
-        script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval';
-        style-src 'self' 'nonce-${nonce}';
-        img-src 'self' blob: data: https://cache.kartverket.no;
-        font-src 'self';
-        connect-src 'self' ${process.env.FDK_LLM_SEARCH_BASE_URI || ''};
-        object-src 'none';
-        base-uri 'self';
-        form-action 'self';
-        frame-ancestors 'none';
-        ${devMode ? '' : 'upgrade-insecure-requests'};
-    `;
-    // Replace newline characters and spaces
-    const contentSecurityPolicyHeaderValue = cspHeader.replace(/\s{2,}/g, ' ').trim();
-
+    // Content Security Policy    
     const requestHeaders = new Headers(request.headers);
-    requestHeaders.set('x-nonce', nonce);
-    requestHeaders.set('Content-Security-Policy', contentSecurityPolicyHeaderValue);
-
     const response = NextResponse.next({
         request: {
             headers: requestHeaders,
         },
     });
-    response.headers.set('Content-Security-Policy', contentSecurityPolicyHeaderValue);
+    const nonce = request.headers.get('x-nonce') ?? ''
     response.cookies.set('nonce', nonce, { httpOnly: false, secure: !devMode, sameSite: 'strict' });
 
     return response;
