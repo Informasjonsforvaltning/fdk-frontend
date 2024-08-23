@@ -1,5 +1,12 @@
-import { redirect } from 'next/navigation';
+'use client'
 
-const Index = async () => redirect('/data-hunter');
+import { redirect } from 'next/navigation';
+import { useEffect } from 'react';
+
+const Index = () => {
+    useEffect(() => { 
+        redirect('/data-hunter');
+    }, []);
+};
 
 export default Index;
