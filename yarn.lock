@@ -3578,10 +3578,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^6.16.0":
-  version: 6.16.0
-  resolution: "@navikt/aksel-icons@npm:6.16.0"
-  checksum: 10c0/6cbe40fcbf060336b0dc2b30ec91527e3355bd5e1aeca3d5d1c5379a29bd5492ad1113191f793a09793a193fb637d660857ef082805c55771f90c3fa724927a3
+"@navikt/aksel-icons@npm:^6.16.1":
+  version: 6.16.1
+  resolution: "@navikt/aksel-icons@npm:6.16.1"
+  checksum: 10c0/37118e3f314c230cce31edf2326832a8e461b53f6840689745ab5e3f6ff06fa6fa863058482b9b7663b06262e56261c707ed1bdd7117dc95210779021cd1a914
   languageName: node
   linkType: hard
 
@@ -12654,7 +12654,7 @@ __metadata:
     "@digdir/designsystemet-react": "npm:^0.63.0"
     "@digdir/designsystemet-theme": "npm:^0.15.3"
     "@eslint/js": "npm:^9.9.0"
-    "@navikt/aksel-icons": "npm:^6.16.0"
+    "@navikt/aksel-icons": "npm:^6.16.1"
     "@nx/devkit": "npm:19.6.1"
     "@nx/eslint": "npm:19.6.1"
     "@nx/eslint-plugin": "npm:19.6.1"
