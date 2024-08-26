@@ -126,5 +126,9 @@
         "ts-node": "10.9.2",
         "typescript": "^5.5.4",
         "typescript-eslint": "^8.2.0"
+    },
+    "resolutions": {
+        "axios": "^1.7.5",
+        "ws": "^8.17.1"
     }
 }
