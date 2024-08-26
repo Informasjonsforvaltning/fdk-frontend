@@ -1,18 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, MotionConfig } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Textfield, Button, Spinner, ErrorMessage } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { Dictionary } from '@fdk-frontend/dictionaries';
-import { useNonce } from '@fdk-frontend/ui/csp';
-
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
 
 import { ResultItem, ItemObjectType } from './components/result-item';
 import AuxPanel from './components/aux-panel';
-
-// import mockResults from './data/results3.json';
 
 import styles from './llm-search.module.scss';
 
@@ -27,8 +23,6 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
     const [query, setQuery] = useState<string>('');
     const [results, setResults] = useState<any>(undefined);
     const [error, setError] = useState<string | undefined>(undefined);
-    // const [ results, setResults ] = useState<any>(mockResults);
-    const nonce = useNonce();
 
     const animations = {
         resultsContainer: {
@@ -155,37 +149,35 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
                 </div>
             )}
             {results && !loading && (
-                <MotionConfig nonce={nonce}>
-                    <motion.div
-                        className={styles.llmResults}
-                        variants={animations.resultsContainer}
+                <motion.div
+                    className={styles.llmResults}
+                    variants={animations.resultsContainer}
+                    initial='hidden'
+                    animate='show'
+                >
+                    <motion.ul
+                        className={styles.llmResultsList}
+                        variants={animations.resultsList}
                         initial='hidden'
                         animate='show'
                     >
-                        <motion.ul
-                            className={styles.llmResultsList}
-                            variants={animations.resultsList}
-                            initial='hidden'
-                            animate='show'
-                        >
-                            {results.hits &&
-                                results.hits.map((item: ItemObjectType, i: number) => (
-                                    <motion.li
-                                        key={`item-${i}`}
-                                        variants={animations.resultsItem}
-                                    >
-                                        <ResultItem item={item} />
-                                    </motion.li>
-                                ))}
-                            <motion.li variants={animations.resultsItem}>
-                                <AdvancedSearchPrompt
-                                    dictionary={dictionary}
-                                    baseUri={baseUri}
-                                />
-                            </motion.li>
-                        </motion.ul>
-                    </motion.div>
-                </MotionConfig>
+                        {results.hits &&
+                            results.hits.map((item: ItemObjectType, i: number) => (
+                                <motion.li
+                                    key={`item-${i}`}
+                                    variants={animations.resultsItem}
+                                >
+                                    <ResultItem item={item} />
+                                </motion.li>
+                            ))}
+                        <motion.li variants={animations.resultsItem}>
+                            <AdvancedSearchPrompt
+                                dictionary={dictionary}
+                                baseUri={baseUri}
+                            />
+                        </motion.li>
+                    </motion.ul>
+                </motion.div>
             )}
         </div>
     );
