@@ -16,17 +16,19 @@ export type ItemObjectType = {
 
 type ResultItemProps = {
     item: ItemObjectType;
+    baseUri: string;
 };
 
-const getDatasetLink = (datasetId: string) => {
-    const baseUrl = 'https://staging.fellesdatakatalog.digdir.no/datasets/';
-    return `${baseUrl}${datasetId}`;
+const getDatasetLink = (datasetId: string, baseUri: string) => {
+    const datasetsUrl = `${baseUri}/datasets/`;
+    return `${datasetsUrl}${datasetId}`;
 };
 
-const ResultItem = ({ item, ...rest }: ResultItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+const ResultItem = ({ item, baseUri, ...rest }: ResultItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a
-        href={getDatasetLink(item.id)}
+        href={getDatasetLink(item.id, baseUri)}
         className={styles.link}
+        {...rest}
     >
         <CatalogSymbol
             className={styles.icon}
