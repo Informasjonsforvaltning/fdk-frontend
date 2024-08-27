@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { i18n, Locale } from '@fdk-frontend/dictionaries';
 
 export const middleware = (request: NextRequest) => {
-    const devMode = process.env.NODE_ENV === 'development';
-
     // Get the pathname and remove basePath
     const basePath = '/next/home';
     const pathname = request.nextUrl.pathname;
@@ -36,8 +34,6 @@ export const middleware = (request: NextRequest) => {
             headers: requestHeaders,
         },
     });
-    const nonce = request.headers.get('x-nonce') ?? ''
-    response.cookies.set('nonce', nonce, { httpOnly: false, secure: !devMode, sameSite: 'strict' });
 
     return response;
 };
