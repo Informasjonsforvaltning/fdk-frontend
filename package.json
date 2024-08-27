@@ -129,6 +129,8 @@
     },
     "resolutions": {
         "axios": "^1.7.5",
+        "elliptic": "^6.5.7",
+        "micromatch": "^4.0.8",
         "ws": "^8.17.1"
     }
 }
