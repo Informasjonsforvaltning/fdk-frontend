@@ -23,7 +23,7 @@ const nextConfig = {
                 permanent: false,
             },
         ];
-    }
+    },
 };
 
 const plugins = [

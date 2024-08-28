@@ -13,7 +13,7 @@ spec:
         spec:
             containers:
                 - name: frontpage-frontend
-                  env:                    
+                  env:
                       - name: FDK_REGISTRATION_BASE_URI
                         valueFrom:
                             secretKeyRef:

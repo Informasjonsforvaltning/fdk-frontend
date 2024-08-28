@@ -1,4 +1,8 @@
 {
+    "breadcrumbs": {
+        "label": "Breadcrumbs",
+        "home": "Home"
+    },
     "footer": {
         "digdirCredit": "a service from",
         "githubFollow": "Follow us on Github",

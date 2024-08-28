@@ -167,7 +167,10 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
                                     key={`item-${i}`}
                                     variants={animations.resultsItem}
                                 >
-                                    <ResultItem item={item} baseUri={baseUri} />
+                                    <ResultItem
+                                        item={item}
+                                        baseUri={baseUri}
+                                    />
                                 </motion.li>
                             ))}
                         <motion.li variants={animations.resultsItem}>

@@ -26,7 +26,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const [frontpage, setFrontpage] = useState(true);
+    const [frontpage, setFrontpage] = useState(false);
 
     const toggleSticky = () => {
         if (frontpage) return false;
@@ -45,7 +45,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
 
     useEffect(() => {
         const pathSegments = pathname.split('/');
-        if (pathSegments.length !== 2) setFrontpage(false);
+        if (pathSegments.length === 2) setFrontpage(true);
 
         window.addEventListener('scroll', toggleSticky);
         window.addEventListener('click', handleClick);
