@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "title": "data.norge.no - Framside",
+        "title": "Framside",
         "description": "data.norge.no er Noregs offisielle portal for deling av data frå offentlege og private verksemder som du kan bruke til å lage tenester eller drive forsking."
     },
     "aiBanner": {
@@ -49,8 +49,8 @@
     },
     "shareDataBanner": {
         "content": "Gjer som over {{link}} og del dine data med resten av landet.",
-        "documentationLinkText": "Sjå dokumentasjon",
-        "getStartedLinkText": "Kom i gang",
+        "shareDataLinkText": "Del data",
+        "documentationLinkText": "Hjelp og rettleiing",
         "organizationsLinkText": "125 andre verksemder",
         "title": "Har du data å dele?"
     }

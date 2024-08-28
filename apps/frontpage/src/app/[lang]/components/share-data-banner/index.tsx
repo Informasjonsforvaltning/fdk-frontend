@@ -26,17 +26,17 @@ const ShareDataBanner = ({ dictionary, baseUri }: ShareDataBannerProps) => (
         <div className={styles.buttons}>
             <Button asChild>
                 <Link
-                    href='https://data.norge.no/guidance'
+                    href={`${baseUri}/publishing`}
                     inverted
                 >
-                    {dictionary.shareDataBanner.getStartedLinkText}
+                    {dictionary.shareDataBanner.shareDataLinkText}
                 </Link>
             </Button>
             <Button
                 asChild
                 variant='secondary'
             >
-                <Link href='https://informasjonsforvaltning.github.io/'>
+                <Link href={`${baseUri}/docs`}>
                     {dictionary.shareDataBanner.documentationLinkText}
                 </Link>
             </Button>

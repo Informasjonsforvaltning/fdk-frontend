@@ -1,0 +1,37 @@
+# SPARQL
+
+The SPARQL service is the most powerful and flexible tool for searching the catalog. This tool allows you to execute your own SPARQL queries on the RDF graphs of data.norge.no. You can query datasets, concepts, APIs, and information models. You can also make queries directly to the SPARQL endpoint for data.norge.no.
+
+## What is SPARQL?
+
+SPARQL is a query language used to retrieve data stored in RDF format. RDF (Resource Description Framework) is a standard model for describing data and resources on the semantic web. You can read more about RDF here.
+
+## Example of Using SPARQL
+
+Get an overview of the available properties:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT *
+WHERE {
+	?dataset a dcat:Dataset.
+    ?dataset ?prop ?value.
+}
+```
+
+Then pick and choose properties:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT *
+WHERE {
+ ?dataset a dcat:Dataset .
+ ?dataset dct:title ?title.
+ ?dataset rdf:type ?type.
+# Velg nye egenskaper ved: ?dataset <ønsket egenskap> ?egenskapsverdi
+}
+```
+
+Here you can find more examples and information on how to write SPARQL queries.

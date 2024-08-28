@@ -1,4 +1,8 @@
 {
+    "breadcrumbs": {
+        "label": "Brødsmulesti",
+        "home": "Heim"
+    },
     "footer": {
         "digdirCredit": "ei teneste frå",
         "githubFollow": "Følg oss på Github",

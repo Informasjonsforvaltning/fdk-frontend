@@ -50,7 +50,7 @@ export const generateMetadata = async ({ params }: FrontpageProps): Promise<Meta
     const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
 
     return {
-        title: frontpageDictionary.metadata.title,
+        title: `${frontpageDictionary.metadata.title} - data.norge.no`,
         description: frontpageDictionary.metadata.description,
     };
 };
