@@ -40,7 +40,7 @@ const Norgeskart = () => {
 
     const randomIndex = Math.floor(Math.random() * locations.length);
     const initCoords = locations[randomIndex];
-  
+
     return (
         <MapContainer
             className={styles.norgeskart}

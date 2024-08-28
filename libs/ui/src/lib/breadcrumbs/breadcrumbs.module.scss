@@ -1,13 +1,15 @@
 .container {
-    max-width: 1000px;
     padding: 0 2rem;
-    margin: auto;
 }
 
 .breadcrumbs {
     display: flex;
     align-items: center;
     margin: 1rem 0 2rem;
+
+    a {
+        color: var(--color-link);
+    }
 }
 
 .crumb {

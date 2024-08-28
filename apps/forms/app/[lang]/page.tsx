@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import { redirect } from 'next/navigation';
 import { useEffect } from 'react';
 
 const Index = () => {
-    useEffect(() => { 
+    useEffect(() => {
         redirect('/data-hunter');
     }, []);
 };

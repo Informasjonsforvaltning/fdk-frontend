@@ -92,7 +92,7 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
                             size='xxsmall'
                             level={2}
                         >
-                           {dictionary.mainMenu.about.heading} 
+                            {dictionary.mainMenu.about.heading}
                         </Heading>
                         <ul>
                             {data.about.map((item) => (

@@ -7,7 +7,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
-import { Breadcrumbs } from '@fdk-frontend/ui/breadcrumbs';
+import Breadcrumbs, { BreadcrumbsContainer } from '@fdk-frontend/ui/breadcrumbs';
 import { getPaths } from '@fdk-frontend/utils';
 
 import DataHunterForm from './components/data-hunter-form';
@@ -25,6 +25,7 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     noStore();
 
     const dictionary = await getDictionary(lang, 'data-hunter-page');
+    const commonDictionary = await getDictionary(lang, 'common');
 
     const { FDK_BASE_URI } = process.env;
 
@@ -42,12 +43,14 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     ];
 
     return (
-        <div>
-            <Breadcrumbs
-                baseUri={baseUri}
-                breadcrumbList={breadcrumbList}
-                dictionary={dictionary}
-            />
+        <>
+            <BreadcrumbsContainer>
+                <Breadcrumbs
+                    baseUri={baseUri}
+                    breadcrumbList={breadcrumbList}
+                    dictionary={commonDictionary}
+                />
+            </BreadcrumbsContainer>
             <div className={styles.contentContainer}>
                 <Heading
                     size='xlarge'
@@ -63,7 +66,7 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
                 </Paragraph>
                 <DataHunterForm dictionary={dictionary} />
             </div>
-        </div>
+        </>
     );
 };
 
