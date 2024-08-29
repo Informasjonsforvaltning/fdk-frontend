@@ -15,42 +15,40 @@ export type BreadcrumbsProps = {
 };
 
 const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) => (
-    <div className={styles.container}>
-        <nav
-            className={styles.breadcrumbs}
-            aria-label={dictionary.breadcrumbs}
+    <nav
+        className={styles.breadcrumbs}
+        aria-label={dictionary.breadcrumbs}
+    >
+        <Link
+            className={styles.link}
+            aria-label={dictionary.homePage}
+            href={baseUri}
         >
-            <Link
-                className={styles.link}
-                aria-label={dictionary.homePage}
-                href={baseUri}
+            {dictionary.homePage}
+        </Link>
+        {breadcrumbList?.map((breadcrumb, i) => (
+            <div
+                className={styles.crumb}
+                key={breadcrumb.href}
             >
-                {dictionary.homePage}
-            </Link>
-            {breadcrumbList?.map((breadcrumb, i) => (
-                <div
-                    className={styles.crumb}
-                    key={breadcrumb.href}
-                >
-                    <ChevronRightIcon
-                        className={styles.separator}
-                        fontSize='1.5rem'
-                        role='presentation'
-                    />
-                    {i === breadcrumbList.length - 1 ? (
-                        <span className={styles.deactiveLink}>{breadcrumb.text}</span>
-                    ) : (
-                        <Link
-                            className={styles.link}
-                            href={breadcrumb.href}
-                        >
-                            {breadcrumb.text}
-                        </Link>
-                    )}
-                </div>
-            ))}
-        </nav>
-    </div>
+                <ChevronRightIcon
+                    className={styles.separator}
+                    fontSize='1.5rem'
+                    role='presentation'
+                />
+                {i === breadcrumbList.length - 1 ? (
+                    <span className={styles.deactiveLink}>{breadcrumb.text}</span>
+                ) : (
+                    <Link
+                        className={styles.link}
+                        href={breadcrumb.href}
+                    >
+                        {breadcrumb.text}
+                    </Link>
+                )}
+            </div>
+        ))}
+    </nav>
 );
 
 export { Breadcrumbs };

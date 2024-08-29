@@ -8,6 +8,7 @@
 
         .headerOuter {
             position: absolute;
+            background: transparent;
 
             &:not(.headerSticky) {
                 .headerLogo {
@@ -38,6 +39,7 @@
     transition: all linear 200ms;
     max-height: 100vh;
     overflow: auto;
+    background: white;
 
     &.headerSticky {
         position: fixed;

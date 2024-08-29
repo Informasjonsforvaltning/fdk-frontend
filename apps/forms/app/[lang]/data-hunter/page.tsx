@@ -42,27 +42,25 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     ];
 
     return (
-        <div>
+        <div className={styles.contentContainer}>
             <Breadcrumbs
                 baseUri={baseUri}
                 breadcrumbList={breadcrumbList}
                 dictionary={dictionary}
             />
-            <div className={styles.contentContainer}>
-                <Heading
-                    size='xlarge'
-                    spacing
-                >
-                    {dictionary.dataHunterForm.title}
-                </Heading>
-                <Paragraph
-                    size='large'
-                    spacing
-                >
-                    {dictionary.dataHunterForm.description}
-                </Paragraph>
-                <DataHunterForm dictionary={dictionary} />
-            </div>
+            <Heading
+                size='xlarge'
+                spacing
+            >
+                {dictionary.dataHunterForm.title}
+            </Heading>
+            <Paragraph
+                size='large'
+                spacing
+            >
+                {dictionary.dataHunterForm.description}
+            </Paragraph>
+            <DataHunterForm dictionary={dictionary} />
         </div>
     );
 };
