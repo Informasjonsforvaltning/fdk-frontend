@@ -6,4 +6,11 @@ const Page = async (props) => {
   return <MDX />;
 }
 
+export const generateMetadata = async (props): Promise<Metadata> => {
+    return {
+        title: "data.norge.no - About us",
+        description: "Description for about us page",
+    };
+};
+
 export default Page;

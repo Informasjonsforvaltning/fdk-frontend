@@ -1,6 +1,8 @@
+import React from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Link } from '@digdir/designsystemet-react';
+
 import styles from './breadcrumbs.module.css';
 
 export type BreadcrumbType = {
@@ -14,18 +16,24 @@ export type BreadcrumbsProps = {
     dictionary: Dictionary;
 };
 
+const BreadcrumbsContainer = ({ children }: React.PropsWithChildren) => (
+    <div className={styles.container}>
+        {children}
+    </div>
+);
+
 const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) => (
     <nav
         className={styles.breadcrumbs}
-        aria-label={dictionary.breadcrumbs}
+        // aria-label={dictionary.breadcrumbs}
     >
-        <Link
+        {/*<Link
             className={styles.link}
             aria-label={dictionary.homePage}
             href={baseUri}
         >
             {dictionary.homePage}
-        </Link>
+        </Link>*/}
         {breadcrumbList?.map((breadcrumb, i) => (
             <div
                 className={styles.crumb}
@@ -51,4 +59,5 @@ const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) 
     </nav>
 );
 
-export { Breadcrumbs };
+export default Breadcrumbs;
+export { BreadcrumbsContainer };

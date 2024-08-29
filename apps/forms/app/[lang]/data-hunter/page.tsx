@@ -7,7 +7,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
-import { Breadcrumbs } from '@fdk-frontend/ui/breadcrumbs';
+import Breadcrumbs, { BreadcrumbsContainer } from '@fdk-frontend/ui/breadcrumbs';
 import { getPaths } from '@fdk-frontend/utils';
 
 import DataHunterForm from './components/data-hunter-form';
@@ -42,26 +42,30 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     ];
 
     return (
-        <div className={styles.contentContainer}>
-            <Breadcrumbs
-                baseUri={baseUri}
-                breadcrumbList={breadcrumbList}
-                dictionary={dictionary}
-            />
-            <Heading
-                size='xlarge'
-                spacing
-            >
-                {dictionary.dataHunterForm.title}
-            </Heading>
-            <Paragraph
-                size='large'
-                spacing
-            >
-                {dictionary.dataHunterForm.description}
-            </Paragraph>
-            <DataHunterForm dictionary={dictionary} />
-        </div>
+        <>
+            <BreadcrumbsContainer>
+                <Breadcrumbs
+                    baseUri={baseUri}
+                    breadcrumbList={breadcrumbList}
+                    dictionary={dictionary}
+                />
+            </BreadcrumbsContainer>
+            <div className={styles.contentContainer}>
+                <Heading
+                    size='xlarge'
+                    spacing
+                >
+                    {dictionary.dataHunterForm.title}
+                </Heading>
+                <Paragraph
+                    size='large'
+                    spacing
+                >
+                    {dictionary.dataHunterForm.description}
+                </Paragraph>
+                <DataHunterForm dictionary={dictionary} />
+            </div>
+        </>
     );
 };
 

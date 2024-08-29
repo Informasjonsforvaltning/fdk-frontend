@@ -8,9 +8,10 @@
 
         .headerOuter {
             position: absolute;
-            background: transparent;
 
             &:not(.headerSticky) {
+                background: transparent;
+
                 .headerLogo {
                     color: white;
                 }
