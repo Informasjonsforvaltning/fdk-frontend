@@ -1,9 +1,16 @@
 import { i18n } from '@fdk-frontend/dictionaries';
 
 const Page = async (props) => {
+  
   const locale = props.params.lang ?? i18n.defaultLocale ;
   let MDX = (await import(`./about.${locale}.mdx`)).default;
-  return <MDX />;
+
+  return (
+    <>
+      
+      <MDX />
+    </>
+  );
 }
 
 export const generateMetadata = async (props): Promise<Metadata> => {

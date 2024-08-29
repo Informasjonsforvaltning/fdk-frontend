@@ -19,14 +19,13 @@ export const middleware = (request: NextRequest) => {
 
     // Check if there is any supported locale in the pathname
     const pathnameIsMissingLocale = i18n.locales.every(
-        // (locale: Locale) => !pathname.startsWith(`/${locale.code}/`) && pathname !== `/${locale.code}`,
-        (locale: Locale) => !pathname.includes(locale.code)
+        (locale: Locale) => !pathname.startsWith(`/${locale.code}/`) && pathname !== `/${locale.code}`,
     );
 
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
         return NextResponse.redirect(
-            new URL(`${pathname}/${i18n.defaultLocale}`, request.url),
+            new URL(basePath + `/${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
         );
     }
 
