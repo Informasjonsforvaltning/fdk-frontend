@@ -6,7 +6,7 @@ import Breadcrumbs from '../breadcrumbs';
 
 const DynamicBreadcrumbs = () => {
 
-    const pathname = usePathname()
+    const pathname = usePathname();
 
     return pathname;
 

@@ -1,22 +1,10 @@
-import path from 'path';
-
-import { getMdxFiles, getNestedMapFromPathnames } from '../../../../../../libs/utils/src/lib/file-tree';
+import Sidebar from '../../components/sidebar';
 
 const DocsLayout = (props) => {
 
-	const files = getMdxFiles(path.join(process.cwd(), 'src/app/[lang]/docs'));
-
-	const map = getNestedMapFromPathnames(files);
-
-	console.log(map);
-
 	return (
 		<div>
-			<ul>
-      {
-        files.map(file => (<li>{file}</li>))
-      }
-      </ul>
+			<Sidebar locale={props.params.lang} />
 			Hello
 			{props.children}
 		</div>

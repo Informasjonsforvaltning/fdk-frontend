@@ -16,7 +16,8 @@
             "@fdk-frontend/types": ["libs/types/src/index.ts"],
             "@fdk-frontend/types/server": ["libs/types/src/server.ts"],
             "@fdk-frontend/ui/*": ["libs/ui/src/lib/*"],
-            "@fdk-frontend/utils": ["libs/utils/src/index.ts"],
+            "@fdk-frontend/utils/*": ["libs/utils/src/lib/*"],
+            // "@fdk-frontend/utils": ["libs/utils/src/index.ts"],
             "@fdk-frontend/utils/server": ["libs/utils/src/server.ts"],
             "react": ["./node_modules/@types/react"],
             "storybook-host": ["libs/storybook-host/src/index.ts"]

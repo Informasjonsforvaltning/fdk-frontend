@@ -25,15 +25,15 @@ const BreadcrumbsContainer = ({ children }: React.PropsWithChildren) => (
 const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) => (
     <nav
         className={styles.breadcrumbs}
-        // aria-label={dictionary.breadcrumbs}
+        aria-label={dictionary.breadcrumbs.label}
     >
-        {/*<Link
+        <Link
             className={styles.link}
-            aria-label={dictionary.homePage}
+            aria-label={dictionary.breadcrumbs.home}
             href={baseUri}
         >
-            {dictionary.homePage}
-        </Link>*/}
+            {dictionary.breadcrumbs.home}
+        </Link>
         {breadcrumbList?.map((breadcrumb, i) => (
             <div
                 className={styles.crumb}

@@ -25,6 +25,7 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     noStore();
 
     const dictionary = await getDictionary(lang, 'data-hunter-page');
+    const commonDictionary = await getDictionary(lang, 'common');
 
     const { FDK_BASE_URI } = process.env;
 
@@ -47,7 +48,7 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
                 <Breadcrumbs
                     baseUri={baseUri}
                     breadcrumbList={breadcrumbList}
-                    dictionary={dictionary}
+                    dictionary={commonDictionary}
                 />
             </BreadcrumbsContainer>
             <div className={styles.contentContainer}>
