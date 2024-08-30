@@ -7,8 +7,11 @@ export const middleware = (request: NextRequest) => {
     // Get the pathname and remove basePath
     const basePath = '';
     const pathname = request.nextUrl.pathname;
+
+    console.log(pathname, request.url, request.nextUrl);
+
     if (
-        [
+        [   
             '/manifest.json',
             '/favicon.ico',
             // Your other files in `public`
@@ -25,7 +28,7 @@ export const middleware = (request: NextRequest) => {
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
         return NextResponse.redirect(
-            new URL(basePath + `/${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
+            new URL(`${basePath}${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
         );
     }
 
