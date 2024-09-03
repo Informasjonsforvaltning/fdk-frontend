@@ -49,8 +49,8 @@
     },
     "shareDataBanner": {
         "content": "Follow {{link}} and share your data with the rest of the country.",
-        "documentationLinkText": "View documentation",
-        "getStartedLinkText": "Get started",
+        "shareDataLinkText": "Share data",
+        "documentationLinkText": "Help and guidance",
         "organizationsLinkText": "125 other organizations",
         "title": "Share your data"
     }

@@ -1,0 +1,14 @@
+.container {
+	// display:flex;
+	// gap:1rem;
+	display: grid;
+  grid-template-columns: 1fr 700px 1fr; /* Side columns are flexible, center column is fixed */
+  gap: 2rem; /* Gap between columns */
+  
+	padding: 0 2rem;
+	margin-bottom:4rem;
+}
+
+.mainContent {
+	flex-grow:1;
+}

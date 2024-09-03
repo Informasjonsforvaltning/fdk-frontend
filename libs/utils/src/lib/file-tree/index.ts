@@ -1,9 +1,15 @@
-// lib/getMdxFiles.js
+// lib/recursivelyGetMdxFiles.js
 import fs from 'fs';
 import path from 'path';
 
+export function getMDXFilesMap(dir) {
+  const files = recursivelyGetMdxFiles(dir);
+  let filesPrefixed = files.map(file => path.join(path.basename(dir), file));
+  return getNestedMapFromPathnames(filesPrefixed);
+}
+
 // Recursive function to get all MDX files from the specified directory
-export function getMdxFiles(dirPath, basePath = '') {
+export function recursivelyGetMdxFiles(dirPath, basePath = '') {
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
   let mdxFiles = [];
 
@@ -12,12 +18,8 @@ export function getMdxFiles(dirPath, basePath = '') {
     const relativePath = path.join(basePath, entry.name);
 
     if (entry.isDirectory()) {
-      // Recursively get MDX files from subdirectories
-      mdxFiles = [...mdxFiles, ...getMdxFiles(fullPath, relativePath)];
+      mdxFiles = [...mdxFiles, ...recursivelyGetMdxFiles(fullPath, relativePath)];
     } else if (entry.isFile() && entry.name.endsWith('.mdx')) {
-      // If it's an MDX file, add it to the list
-      // const routePath = relativePath.replace(/\.mdx$/, '');
-      // mdxFiles.push(routePath);
       mdxFiles.push(relativePath);
     }
   });
@@ -30,6 +32,9 @@ export function getNestedMapFromPathnames(paths) {
 
   paths.forEach(path => {
       const parts = path.split('/').slice(0, -1); // Remove the filename
+
+      // console.log(parts);
+
       let currentLevel = pathMap;
 
       parts.forEach(part => {
@@ -41,9 +46,4 @@ export function getNestedMapFromPathnames(paths) {
   });
 
   return pathMap;
-}
-
-export function fetchMdxPaths() {
-  const mdxDirectory = path.join(process.cwd(), 'pages'); // Adjust to your MDX base directory
-  return getMdxFiles(mdxDirectory);
 }

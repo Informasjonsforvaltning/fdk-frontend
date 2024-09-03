@@ -1,8 +1,11 @@
 {
 	"titles": {
 		"/about": "Om oss",
-		"/docs": "Kom i gang",
-		"/docs/find-data": "Finne data",
-		"/docs/share-data": "Dele data"
+		"/docs": "Hjelp og veiledning",
+		"/docs/finding-data": "Finne data",
+		"/docs/finding-data/ai-search": "AI-søk",
+		"/docs/finding-data/assisted-search": "Hjelp til å finne data",
+		"/docs/finding-data/sparql": "SPARQL",
+		"/docs/sharing-data": "Dele data"
 	}
 }

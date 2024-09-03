@@ -1,13 +1,12 @@
-import Sidebar from '../../components/sidebar';
+import SidebarLayout from '../../components/layouts/sidebar-layout';
+import MdxLayout from '../../components/layouts/mdx-layout';
 
-const DocsLayout = (props) => {
+const DocsLayout = async ({ children, ...rest }) => {
 
 	return (
-		<div>
-			<Sidebar locale={props.params.lang} />
-			Hello
-			{props.children}
-		</div>
+		<SidebarLayout {...rest}>
+			<MdxLayout>{children}</MdxLayout>
+		</SidebarLayout>
 	);
 }
 

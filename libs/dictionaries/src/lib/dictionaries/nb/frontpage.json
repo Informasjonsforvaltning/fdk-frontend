@@ -49,8 +49,8 @@
     },
     "shareDataBanner": {
         "content": "Gjør som over {{link}} og del dine data med resten av landet.",
-        "documentationLinkText": "Se dokumentasjon",
-        "getStartedLinkText": "Kom i gang",
+        "shareDataLinkText": "Del data",
+        "documentationLinkText": "Hjelp og veiledning",
         "organizationsLinkText": "125 andre virksomheter",
         "title": "Har du data å dele?"
     }

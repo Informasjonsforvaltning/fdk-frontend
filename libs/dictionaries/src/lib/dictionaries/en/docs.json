@@ -1,8 +1,11 @@
 {
 	"titles": {
 		"/about": "About us",
-		"/docs": "Get started",
-		"/docs/find-data": "Find data",
-		"/docs/share-data": "Share data"
+		"/docs": "Help and guidance",
+		"/docs/finding-data": "Finding data",
+		"/docs/finding-data/ai-search": "AI Search",
+		"/docs/finding-data/assisted-search": "Help to find data",
+		"/docs/finding-data/sparql": "SPARQL",
+		"/docs/sharing-data": "Sharing data"
 	}
 }

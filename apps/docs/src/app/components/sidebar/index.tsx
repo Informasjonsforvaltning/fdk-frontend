@@ -1,34 +1,49 @@
-import path from 'path';
+'use client';
+import { useEffect, useMemo } from 'react';
+import { usePathname } from 'next/navigation';
+import cn from 'classnames';
 
-import { getMdxFiles, getNestedMapFromPathnames } from '../../../../../../libs/utils/src/lib/file-tree';
+import styles from './sidebar.module.scss';
 
-const Sidebar = ({ locale }) => {
+const Sidebar = ({ files, locale, dictionary }) => {
+  const pathname = usePathname();
 
-	const files = getMdxFiles(path.join(process.cwd(), 'src/app/[lang]/docs'));
+  const getPageUrlWithoutLocale = (pageUrlWithLocale) => {
+    const parts = pageUrlWithLocale.split('/');
+    parts.splice(0, 2);
+    return `/${parts.join('/')}`;
+  };
 
-	const map = getNestedMapFromPathnames(files);
-
-	console.log(map);
-
-	const renderNestedList = (data, basePath = '') => {
-    return (
-        <ul>
-            {Object.keys(data).map(key => (
-                <li key={key}>
-                    <a href={`${basePath}${key}`}>{key}</a>
-                    {Object.keys(data[key]).length > 0 && renderNestedList(data[key], `${basePath}${key}/`)}
-                </li>
-            ))}
-        </ul>
+  const renderLinkOrText = (pageUrlWithLocale, pageUrlWithoutLocale) => {
+    const title = dictionary.titles[pageUrlWithoutLocale] || 'title missing';
+    return pageUrlWithLocale !== pathname ? (
+      <a href={pageUrlWithLocale}>{title}</a>
+    ) : (
+      <strong>{title}</strong>
     );
-	};
+  };
 
-	return (
-		<div>
-			Sidebar
-			{renderNestedList(map, `/${locale}/docs/`)}
-		</div>
-	);
-}
+  const renderNestedList = (data, basePath = '') => {
+    return (
+      <ul>
+        {Object.entries(data).map(([key, value]) => {
+          const pageUrlWithLocale = `${basePath}${key}`;
+          const pageUrlWithoutLocale = getPageUrlWithoutLocale(pageUrlWithLocale);
+
+          return (
+            <li key={key}>
+              {renderLinkOrText(pageUrlWithLocale, pageUrlWithoutLocale)}
+              {Object.keys(value).length > 0 && renderNestedList(value, `${basePath}${key}/`)}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
+  const sidebarContent = useMemo(() => renderNestedList(files, `/${locale}/`), [files, locale]);
+
+  return <div className={styles.sidebar}>{sidebarContent}</div>;
+};
 
 export default Sidebar;
