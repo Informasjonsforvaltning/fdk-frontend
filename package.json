@@ -57,6 +57,7 @@
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "react-leaflet": "^4.2.1",
+        "react-syntax-highlighter": "^15.5.0",
         "tslib": "^2.6.3",
         "zod": "^3.23.8"
     },

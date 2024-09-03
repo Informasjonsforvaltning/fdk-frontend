@@ -1,3 +1,5 @@
+'use client';
+
 import { i18n } from '@fdk-frontend/dictionaries';
 
 const Page = async (props) => {

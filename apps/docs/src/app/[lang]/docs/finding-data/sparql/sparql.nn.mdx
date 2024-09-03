@@ -1,3 +1,37 @@
-# AI-søk
+# SPARQL
 
-Tekst her...
+SPARQL-tjenesten er det kraftigste og mest fleksible verktøyet for å søke i katalogen. Dette er et verktøy hvor du kan utføre egne spørringer i SPARQL på RDF-grafene til data.norge.no. Her kan du spørre etter datasett, begreper, API-er og informasjonsmodeller. Du kan også gjøre spørringer direkte til SPARQL-endepunktet for data.norge.no.
+
+## Hva er SPARQL?
+
+SPARQL er et spørrespråk som brukes til å hente data lagret i RDF-format. RDF Resource Description Framework) er en standardmodell for å beskrive data og ressurser på semantisk web. Du kan lese mer om RDF her.
+
+## Eksempel på bruk av SPARQL
+
+Få oversikt over hvilke egenskaper som finnes:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT *
+WHERE {
+	?dataset a dcat:Dataset.
+    ?dataset ?prop ?value.
+}
+```
+
+Deretter plukke og velge egenskaper:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT *
+WHERE {
+ ?dataset a dcat:Dataset .
+ ?dataset dct:title ?title.
+ ?dataset rdf:type ?type.
+# Velg nye egenskaper ved: ?dataset <ønsket egenskap> ?egenskapsverdi
+}
+```
+
+Her finner du flere eksempler og informasjon om hvordan du skriver SPARQL-spørringer.
