@@ -7,6 +7,13 @@
         "/docs/finding-data/ai-search": "KI-søk",
         "/docs/finding-data/assisted-search": "Hjelp til å finne data",
         "/docs/finding-data/sparql": "SPARQL",
-        "/docs/sharing-data": "Dele data"
+        "/docs/sharing-data": "Dele data",
+        "/catalogs": "Våre datakataloger",
+        "/catalogs/datasets": "Datasett",
+        "/catalogs/data-services": "API-er",
+        "/catalogs/information-models": "Informasjonsmodeller",
+        "/catalogs/concepts": "Begreper",
+        "/catalogs/public-services-and-events": "Tjenester og hendelser",
+        "/catalogs/ai": "Kunstig intelligens"
     }
 }
