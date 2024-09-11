@@ -1,44 +1,63 @@
-On this page, you will learn how to create descriptions you manage yourself, so they can be published to Data.norge.no. You will need to set up harvesting in Data.norge.no's harvesting solution to publish the descriptions.
+---
+title: Creating descriptions yourself
+description: Information on how to create dataset descriptions in RDF.
+---
 
-> **__Info:__**
-On this page, you will learn how to create descriptions you manage yourself, so they can be published to Data.norge.no. You will need to [set up harvesting](/getting-started/publishing-descriptions) in Data.norge.no's harvesting solution to publish the descriptions.
+# Getting started: Creating descriptions self
+
+<Ingress>
+    On this page, you will learn how to create descriptions you manage yourself, so they can be published to
+    Data.norge.no. In the next step you will need to [set up harvesting](/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions) in
+    Data.norge.no's harvesting solution to publish the descriptions.
+</Ingress>
 
 ## How to create RDF graphs
 
-Use these guides to learn more about how to create dataset descriptions:
+We recommend using our guide, which shows through examples [how to create a dataset description from A to Z](/docs/how-to-guides/how-to-dataset).
 
-- [Guide for describing datasets, data services, and data catalogs](https://informasjonsforvaltning.github.io/veileder-beskrivelse-av-datasett/#beskrivelse-av-datasett)
-- [Guide for "Getting your own house in order" - Step 5: Describe](https://www.digdir.no/informasjonsforvaltning/steg-5-beskrive/2724)
-- [Workshop materials on RDF and dataset descriptions](https://github.com/fellesdatakatalog/sikt-workshop/blob/main/ressurshefte/ressurshefte.md)
+In addition you can use these guides to learn more about RDF and how to create dataset descriptions:
+
+-   [Tutorial on RDF and Turtle](https://github.com/fellesdatakatalog/sikt-workshop/blob/main/ressurshefte/ressurshefte.md)
+-   [Guide for describing datasets, data services, and data catalogs](https://informasjonsforvaltning.github.io/veileder-beskrivelse-av-datasett/#beskrivelse-av-datasett)
+-   [Guide for "Getting your own house in order" - Step 5: Describe](https://www.digdir.no/informasjonsforvaltning/steg-5-beskrive/2724)
 
 The descriptions you create must be in an RDF format and conform to the specification for the resource being described.
 
-See [About the specifications](/getting-started/resources) for more information on the various specifications Data.norge.no is based on.
+<Alert
+  color="info"
+  size="sm"
+>
+
+The descriptions you create must be in an RDF format supported by Data.norge.no:
+
+-   [Turtle](https://www.w3.org/TR/turtle/)
+-   [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/)
+-   [RDF/JSON](https://www.w3.org/TR/rdf-json/)
+-   [JSON-LD](https://www.w3.org/TR/json-ld11/)
+-   [N-Triples](https://www.w3.org/TR/n-triples/)
+-   ([Notation3/N3](https://www.w3.org/TeamSubmission/n3/) as a synonym for Turtle)
+
+</Alert>
 
 For other types of resources (concepts, information models, services, and events), there are examples of descriptions available on [Data.norge.no's "Showroom"](https://data.norge.no/showroom/overview). You can also refer to the relevant specification and its examples. Most of the examples are written in the RDF format called Turtle, and they can be applied to other resource types.
 
-If you manage the description yourself and set up harvesting, the harvesting solution will collect and retain all the data in the description. Fields that are not yet supported will be displayed as Data.norge.no adds support for viewing those fields.
+<Alert
+    color='info'
+    size='sm'
+>
+    See [Additional relevant resources](/docs/additional-resources) for more information on the various specifications
+    Data.norge.no is based on.
+</Alert>
 
-[More relevant resources](/getting-started/resources)
+If you manage the description yourself and set up harvesting, the harvesting solution will collect and retain all the data in the description. Fields that are not yet supported will be displayed as Data.norge.no adds support for viewing those fields.
 
 ### Important considerations for URIs and resource naming
 
 Resources described in RDF are named using a unique, global identifier, known as a URI ("Uniform Resource Identifier"). URIs should be unique and persistent, ideally pointing to resources that are actually available on the web. More information on how to design URIs can be found here:
 
-- [Pointers to public resources on the web (Digdir)](https://www.digdir.no/standarder/peikarar-til-offentlege-ressursar-pa-nett/1492)
-- [10 Rules for Persistent URIs (Interoperable Europe)](https://joinup.ec.europa.eu/collection/semic-support-centre/document/10-rules-persistent-uris)
-- [Cool URIs for the Semantic Web (W3C)](https://www.w3.org/TR/cooluris/#semweb)
-
-## Supported RDF formats
-
-The descriptions you create must be in an RDF format supported by Data.norge.no:
-
-- [Turtle](https://www.w3.org/TR/turtle/)
-- [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/)
-- [RDF/JSON](https://www.w3.org/TR/rdf-json/)
-- [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [N-Triples](https://www.w3.org/TR/n-triples/)
-- ([Notation3/N3](https://www.w3.org/TeamSubmission/n3/) as a synonym for Turtle)
+-   [Pointers to public resources on the web (Digdir)](https://www.digdir.no/standarder/peikarar-til-offentlege-ressursar-pa-nett/1492)
+-   [10 Rules for Persistent URIs (Interoperable Europe)](https://joinup.ec.europa.eu/collection/semic-support-centre/document/10-rules-persistent-uris)
+-   [Cool URIs for the Semantic Web (W3C)](https://www.w3.org/TR/cooluris/#semweb)
 
 ## Validation of descriptions
 
@@ -86,7 +105,6 @@ In the end, you should have a description that looks something like this:
     .
 ```
 
-
 ## Next step: Publish the description
 
-Once you have created a description, you can [set up harvesting](/getting-started/publishing-descriptions) so that it is published to Data.norge.no.
+Once you have created a description, you can [set up harvesting](/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions) so that it is published to Data.norge.no.

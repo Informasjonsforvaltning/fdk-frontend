@@ -18,6 +18,16 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
+    images: {
+        remotePatterns: [
+            {
+              protocol: 'https',
+              hostname: 'cms.fellesdatakatalog.digdir.no',
+              port: '',
+              pathname: '/uploads/**',
+            },
+          ],
+    }
 };
 
 // Create the MDX configuration

@@ -10,9 +10,10 @@ import { marked } from 'marked';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import { Ingress, Alert, Button, Link, Heading, Paragraph } from '@digdir/designsystemet-react';
+import { Ingress, Alert, Button, Link, Divider, Heading, Paragraph } from '@digdir/designsystemet-react';
 import { i18n, type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
+import Image from '../../components/image';
 import MdxPage from '../../components/mdx-page';
 import MdxHeading from '../../components/mdx-heading';
 import CatalogPromo from '../../components/catalog-promo';
@@ -77,7 +78,9 @@ export default async function Page({ params }: DocsPageType) {
             ),
             Alert,
             Button,
+            Divider,
             Link,
+            Image,
             CatalogPromo,
             Ingress: ({ size = 'xs', ...rest }) => (
                 <Ingress

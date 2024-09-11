@@ -1,45 +1,63 @@
-På denne siden lærer du hvordan lage beskrivelser du forvalter selv, slik at de kan publiseres til Data.norge.no. Du må da sette opp høsting i høsteløsningen til Data.norge.no for å publisere beskrivelsene.
+---
+title: Lage beskrivelser selv
+description: Informasjon om hvordan lage datasettbeskrivelser i RDF.
+---
 
+# Kom i gang: Lage beskrivelser selv
 
-> **__Info:__**
-På denne siden lærer du hvordan lage beskrivelser du forvalter selv, slik at de kan publiseres til Data.norge.no. Du må da [sette opp høsting](/getting-started/publishing-descriptions) i høsteløsningen til Data.norge.no for å publisere beskrivelsene.
+<Ingress>
+    På denne siden lærer du hvordan lage beskrivelser du forvalter selv, slik at de kan publiseres til Data.norge.no. I
+    neste steg må du [sette opp høsting](/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions) i høsteløsningen til Data.norge.no
+    for å publisere beskrivelsene.
+</Ingress>
 
 ## Hvordan lage RDF-grafer
 
-Bruk disse guidene for å lære mer om hvordan lage datasettbeskrivelser:
+Vi anbefaler at du bruker veiledningen vår som gjennom eksempler viser [hvordan du lager en datasettbeskrivelse fra A-Å](/docs/how-to-guides/how-to-dataset).
 
-- [Veileder for beskrivelse av datasett, datatjenester og datakataloger](https://informasjonsforvaltning.github.io/veileder-beskrivelse-av-datasett/#beskrivelse-av-datasett)
-- [Veileder for orden i eget hus - Steg 5: Beskrive](https://www.digdir.no/informasjonsforvaltning/steg-5-beskrive/2724)
-- [Kursmateriell til workshop i RDF og datasettbeskrivelser](https://github.com/fellesdatakatalog/sikt-workshop/blob/main/ressurshefte/ressurshefte.md)
+Du kan i tillegg bruke disse ressursene for å lære mer om RDF og hvordan lage datasettbeskrivelser:
+
+-   [Kræsjkurs i RDF og Turtle](/docs/tutorials/rdf-crash-course)
+-   [Veileder for beskrivelse av datasett, datatjenester og datakataloger](https://informasjonsforvaltning.github.io/veileder-beskrivelse-av-datasett/#beskrivelse-av-datasett)
+-   [Veileder for orden i eget hus - Steg 5: Beskrive](https://www.digdir.no/informasjonsforvaltning/steg-5-beskrive/2724)
 
 Beskrivelsene som lages må være i et RDF-format og i henhold til spesifikasjonen for ressurstypen som beskrives.
 
-Se [Om spesifikasjonene](/getting-started/resources) for mer informasjon om de ulike spesifikasjonene Data.norge.no baserer seg på.
+<Alert
+  color="info"
+  size="sm"
+>
+
+Beskrivelsene du lager må være i et RDF-format som støttes av Data.norge.no:
+
+-   [Turtle](https://www.w3.org/TR/turtle/)
+-   [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/)
+-   [RDF/JSON](https://www.w3.org/TR/rdf-json/)
+-   [JSON-LD](https://www.w3.org/TR/json-ld11/)
+-   [N-Triples](https://www.w3.org/TR/n-triples/)
+-   ([Notation3/N3](https://www.w3.org/TeamSubmission/n3/) som synonym for Turtle)
+
+</Alert>
 
 For de andre type ressursene (begrep, informasjonsmodeller, tjenester og hendelser) fins det eksempler på beskrivelser på [Data.norge.no sitt "Showroom"](https://data.norge.no/showroom/overview). Man kan også støtte seg på den aktuelle spesifikasjonen og eksemplene i den. De fleste av eksemplene er skrevet i RDF-formatet kalt Turtle og har overføringsverdi til de andre ressurstypene.
 
-Forvalter du beskrivelsen selv og setter opp høsting, vil høsteløsningen høste og ta vare på alle data i beskrivelsen. Felt som foreløpig ikke er støttet vil dermed bli vist etter hvert som Data.norge.no legger til støtte for visning av feltene.
+<Alert
+    color='info'
+    size='sm'
+>
+    Se [Flere relevante ressurser](/docs/additional-resources) for mer informasjon om de ulike spesifikasjonene
+    Data.norge.no baserer seg på.
+</Alert>
 
-[Flere relevante ressurser](/getting-started/resources)
+Forvalter du beskrivelsen selv og setter opp høsting, vil høsteløsningen høste og ta vare på alle data i beskrivelsen. Felt som foreløpig ikke er støttet vil dermed bli vist etter hvert som Data.norge.no legger til støtte for visning av feltene.
 
 ### Viktig å tenke på med URI-er og ved navngivning av ressurser
 
 Ressurser som beskrives i RDF navngis ved hjelp av en unik, global identifikator, en såkalt URI ("Uniform Resource Identifier"). URI-er skal være unike og varige, og ideelt sett peke til ressurser som faktisk er tilgjengelig på nettet. Mer informasjon om utforming av URI-er finner du her:
 
-- [Peikarar til offentlege ressursar på nett (Digdir)](https://www.digdir.no/standarder/peikarar-til-offentlege-ressursar-pa-nett/1492)
-- [10 Rules for Persistent URIs (Interoperable Europe)](https://joinup.ec.europa.eu/collection/semic-support-centre/document/10-rules-persistent-uris)
-- [Cool URIs for the Semantic Web (W3C)](https://www.w3.org/TR/cooluris/#semweb)
-
-## Støttede RDF-formater
-
-Beskrivelsene du lager må være i et RDF-format som støttes av Data.norge.no:
-
-- [Turtle](https://www.w3.org/TR/turtle/)
-- [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/)
-- [RDF/JSON](https://www.w3.org/TR/rdf-json/)
-- [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [N-Triples](https://www.w3.org/TR/n-triples/)
-- ([Notation3/N3](https://www.w3.org/TeamSubmission/n3/) som synonym for Turtle)
+-   [Peikarar til offentlege ressursar på nett (Digdir)](https://www.digdir.no/standarder/peikarar-til-offentlege-ressursar-pa-nett/1492)
+-   [10 Rules for Persistent URIs (Interoperable Europe)](https://joinup.ec.europa.eu/collection/semic-support-centre/document/10-rules-persistent-uris)
+-   [Cool URIs for the Semantic Web (W3C)](https://www.w3.org/TR/cooluris/#semweb)
 
 ## Validering av beskrivelser
 
@@ -89,4 +107,4 @@ Til slutt skal du ha en beskrivelse som ser ut som noe som ligner dette:
 
 ## Neste steg: Publisere beskrivelsen
 
-Når du har laget en beskrivelse kan du [sette opp høsting](/getting-started/publishing-descriptions) slik at den publiseres til Data.norge.no.
+Når du har laget en beskrivelse kan du [sette opp høsting](/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions) slik at den publiseres til Data.norge.no.
