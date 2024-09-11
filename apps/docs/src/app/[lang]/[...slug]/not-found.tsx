@@ -1,12 +1,27 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+
+import { Link, Button, Heading } from '@digdir/designsystemet-react';
+
+import styles from './not-found.module.scss';
 
 export default function NotFound() {
     return (
-        <div>
-            <h1>Not Found</h1>
+        <div className={styles.notFoundPage}>
+            <img src='' />
+            <Heading
+                level={1}
+                size='medium'
+            >
+                Page not found :(
+            </Heading>
             <p>Could not find requested resource</p>
-            <Link href='/'>Return Home</Link>
+            <Button
+                asChild
+                variant='secondary'
+                size='small'
+            >
+                <Link href='/'>Return Home</Link>
+            </Button>
         </div>
     );
 }

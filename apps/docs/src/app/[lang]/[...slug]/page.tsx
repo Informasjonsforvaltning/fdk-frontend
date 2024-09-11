@@ -10,17 +10,19 @@ import { marked } from 'marked';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import { Ingress, Alert, Link, Heading, Paragraph } from '@digdir/designsystemet-react';
-import { i18n, type Locale, getDictionary } from '@fdk-frontend/dictionaries';
+import { Ingress, type IngressProps, Alert, Button, Link, Heading, Paragraph } from '@digdir/designsystemet-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { i18n, type LocaleCodes, getDictionary } from '@fdk-frontend/dictionaries';
 
 import MdxPage from '../../components/mdx-page';
 import MdxHeading from '../../components/mdx-heading';
+import CatalogPromo from '../../components/catalog-promo';
 
 const contentSource = 'src/app/content';
 
 export type DocsPageType = {
     params: {
-        lang: Locale;
+        lang: LocaleCodes;
         slug: string[];
     };
 };
@@ -38,63 +40,78 @@ export default async function Page({ params }: DocsPageType) {
 
         // Prepare client component map for MDX compilation
         const components = {
-            h1: (props) => (
+            h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
                 <MdxHeading
                     level={1}
                     {...props}
                 />
             ),
-            h2: (props) => (
+            h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
                 <MdxHeading
                     level={2}
                     {...props}
                 />
             ),
-            h3: (props) => (
+            h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
                 <MdxHeading
                     level={3}
                     {...props}
                 />
             ),
-            h4: (props) => (
+            h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
                 <MdxHeading
                     level={4}
                     {...props}
                 />
             ),
-            h5: (props) => (
+            h5: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
                 <MdxHeading
                     level={5}
                     {...props}
                 />
             ),
-            h6: (props) => (
+            h6: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
                 <MdxHeading
                     level={6}
                     {...props}
                 />
             ),
             Alert,
-            Ingress: ({ size = 'xs', ...rest }) => (
+            Button,
+            Link,
+            CatalogPromo,
+            Ingress: ({ size = 'xs', ...rest }: IngressProps) => (
                 <Ingress
                     asChild
                     size={size}
                     {...rest}
                 />
             ),
-            a: (props) => (
-                <Link
-                    {...props}
-                    href={`/${locale}${props.href}`}
-                />
-            ),
-            code: ({ children }) => (
+            a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+                if (rest.href?.startsWith('http')) {
+                    return (
+                        <Link {...rest}>
+                            {children}
+                            <ExternalLinkIcon fontSize='1em' />
+                        </Link>
+                    );
+                } else {
+                    return (
+                        <Link
+                            {...rest}
+                            href={`/${locale}${rest.href}`}
+                        >
+                            {children}
+                        </Link>
+                    );
+                }
+            },
+            code: ({ children }: React.HTMLAttributes<HTMLElement>) => (
                 <SyntaxHighlighter
                     language='sparql'
                     style={vscDarkPlus}
-                >
-                    {children}
-                </SyntaxHighlighter>
+                    children={children as any}
+                />
             ),
         };
 
@@ -110,7 +127,7 @@ export default async function Page({ params }: DocsPageType) {
         // Render page
         return (
             <MdxPage
-                sidebars={frontmatter.sidebars}
+                sidebars={frontmatter.sidebars as boolean | undefined}
                 slug={params.slug}
                 locale={locale}
                 baseUri={baseUri}
@@ -141,9 +158,12 @@ export async function generateMetadata({ params }: DocsPageType, parent: Resolvi
             options: { parseFrontmatter: true },
         });
 
+        const title = frontmatter.title ? `${frontmatter.title} - data.norge.no` : `data.norge.no`;
+        const description = frontmatter.description as string | undefined;
+
         return {
-            title: `${frontmatter.title} - data.norge.no`,
-            description: frontmatter.description,
+            title,
+            description,
         };
     } catch (err) {
         notFound();

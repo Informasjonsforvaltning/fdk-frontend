@@ -1,9 +1,11 @@
+import { PropsWithChildren } from 'react';
+
 import styles from './feedback-layout.module.scss';
 
-const FeedbackLayout = async (props) => {
+const FeedbackLayout = async ({ children }: PropsWithChildren) => {
     return (
         <div className={styles.feedbackLayout}>
-            {props.children}
+            {children}
             <div className={styles.feedbackBanner}>
                 <div className={styles.feedbackBannerInner}>Feedback banner here</div>
             </div>

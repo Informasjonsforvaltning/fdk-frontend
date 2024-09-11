@@ -5,14 +5,28 @@ import { usePathname } from 'next/navigation';
 
 import { Link, Heading } from '@digdir/designsystemet-react';
 
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+
 import styles from './sidebar.module.scss';
 
-const Sidebar = ({ dictionary, slug, locale }) => {
+export type SidebarProps = {
+    dictionary: Dictionary;
+    slug: string[];
+    locale: LocaleCodes;
+};
+
+type SidebarItemObject = {
+    path: string;
+    title: string;
+    level: number;
+};
+
+const Sidebar = ({ dictionary, slug, locale }: SidebarProps) => {
     const pathname = usePathname();
     const basePath = `/${slug.at(0)}`;
     const basePathWithLocale = `/${locale}${basePath}`;
 
-    const items = Object.entries(dictionary.titles)
+    const items: SidebarItemObject[] = Object.entries(dictionary.titles as Record<string, string>)
         .filter(([path, title]) => path.startsWith(basePath))
         .map(([path, title]) => ({
             path,
@@ -20,7 +34,7 @@ const Sidebar = ({ dictionary, slug, locale }) => {
             level: path.replace(basePath, '').split('/').length - 1,
         }));
 
-    const renderList = (items, level = 1) => {
+    const renderList = (items: SidebarItemObject[], level = 1) => {
         return (
             <ul className={styles.sidebarList}>
                 {items
@@ -55,7 +69,7 @@ const Sidebar = ({ dictionary, slug, locale }) => {
                 level={2}
                 size='xs'
             >
-                <Link href={`/${locale}${items.at(0).path}`}>{items.at(0).title}</Link>
+                <Link href={`/${locale}${items?.at(0)?.path}`}>{items?.at(0)?.title}</Link>
             </Heading>
             {sidebarContent}
         </div>

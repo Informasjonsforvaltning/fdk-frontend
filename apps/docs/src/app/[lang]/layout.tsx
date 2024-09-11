@@ -1,11 +1,12 @@
-import RootLayout, { generateStaticParams } from '@fdk-frontend/ui/layout-root';
+import { PropsWithChildren } from 'react';
+import RootLayout, { RootLayoutProps, generateStaticParams } from '@fdk-frontend/ui/layout-root';
 
 import FeedbackLayout from '../components/layouts/feedback-layout';
 
-const Layout = async (props: RootLayoutProps) => {
+const Layout = async ({ children, ...rest }: PropsWithChildren & RootLayoutProps) => {
     return (
-        <RootLayout {...props}>
-            <FeedbackLayout>{props.children}</FeedbackLayout>
+        <RootLayout {...rest}>
+            <FeedbackLayout>{children}</FeedbackLayout>
         </RootLayout>
     );
 };

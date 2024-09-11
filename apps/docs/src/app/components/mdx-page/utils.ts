@@ -1,16 +1,25 @@
 import { marked } from 'marked';
 
-const stripFrontmatter = (str) => str.replace(/^---[\s\S]*?---\s*/, '');
+const stripFrontmatter = (str: string) => str.replace(/^---[\s\S]*?---\s*/, '');
+
+export type MdxHeadlineObject = {
+    level: number;
+    text: string;
+};
+
+export type MdxHeadlineObjectNode = MdxHeadlineObject & {
+    children?: MdxHeadlineObjectNode[];
+};
 
 /**
  * Extracts headlines from markdown and returns a nested structure.
  * @param {string} markdown - The raw markdown source.
  * @returns {Array} - A nested array of headlines with their levels.
  */
-function extractHeadlines(markdown) {
+function extractHeadlines(markdown: string) {
     const markdownWithoutFrontmatter = stripFrontmatter(markdown);
     const tokens = marked.lexer(markdownWithoutFrontmatter);
-    const headlines = [];
+    const headlines: { level: number; text: string }[] = [];
 
     tokens.forEach((token) => {
         if (token.type === 'heading') {
@@ -27,10 +36,10 @@ function extractHeadlines(markdown) {
  * @param {Object} token - The heading token.
  * @returns {string} - The extracted text.
  */
-function extractHeadingText(token) {
+function extractHeadingText(token: any) {
     // Check if the heading token has nested tokens and if it's a link
     if (token.tokens && token.tokens.length > 0) {
-        const linkToken = token.tokens.find((t) => t.type === 'link');
+        const linkToken = token.tokens.find((t: any) => t.type === 'link');
         if (linkToken) {
             return linkToken.text; // Return the text of the nested link token
         }
@@ -44,9 +53,9 @@ function extractHeadingText(token) {
  * @param {Array} headlines - The flat array of headlines.
  * @returns {Array} - A nested array of headlines.
  */
-function buildNestedHeadlines(headlines) {
-    const stack = [];
-    const nestedHeadlines = [];
+function buildNestedHeadlines(headlines: MdxHeadlineObject[]) {
+    const stack: any[] = [];
+    const nestedHeadlines: any[] = [];
 
     headlines.forEach((headline) => {
         const { level, text } = headline;

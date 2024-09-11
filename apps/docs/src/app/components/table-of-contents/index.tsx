@@ -3,9 +3,11 @@ import cn from 'classnames';
 
 import { Heading } from '@digdir/designsystemet-react';
 
+import { type MdxHeadlineObjectNode } from '../mdx-page/utils';
+
 import styles from '../sidebar/sidebar.module.scss';
 
-const TocList = ({ headlines }) => {
+const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
     if (!headlines || headlines.length === 0) return null;
     return (
         <ul className={cn(styles.sidebarList, styles.sidebarListFlat)}>
@@ -22,7 +24,7 @@ const TocList = ({ headlines }) => {
     );
 };
 
-const TableOfContents = ({ headlines }) => {
+const TableOfContents = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
     return (
         <nav className={styles.sidebar}>
             <Heading

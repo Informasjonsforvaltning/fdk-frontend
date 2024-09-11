@@ -13,6 +13,13 @@
             width: 100%;
             max-width: 700px;
             margin: 0 auto;
+
+            img {
+                max-width: 100%;
+                padding: 0.5rem;
+                // background:#f8f8f8;
+                border: 1px solid #eee;
+            }
         }
     }
 }
