@@ -1,12 +1,15 @@
 import { marked } from 'marked';
 
+const stripFrontmatter = (str) => str.replace(/^---[\s\S]*?---\s*/, '');
+
 /**
  * Extracts headlines from markdown and returns a nested structure.
  * @param {string} markdown - The raw markdown source.
  * @returns {Array} - A nested array of headlines with their levels.
  */
 function extractHeadlines(markdown) {
-    const tokens = marked.lexer(markdown);
+    const markdownWithoutFrontmatter = stripFrontmatter(markdown);
+    const tokens = marked.lexer(markdownWithoutFrontmatter);
     const headlines = [];
 
     tokens.forEach((token) => {
