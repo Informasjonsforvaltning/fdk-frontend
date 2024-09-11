@@ -77,11 +77,11 @@ export default async function Page({ params }: DocsPageType) {
             Alert,
             Ingress: ({ size = 'xs', ...rest }) => (
                 <Ingress
+                    asChild
                     size={size}
                     {...rest}
                 />
             ),
-            // h1: (props) => (<Heading {...props} />),
             a: (props) => (
                 <Link
                     {...props}
