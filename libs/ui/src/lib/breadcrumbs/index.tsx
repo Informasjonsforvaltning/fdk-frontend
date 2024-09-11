@@ -17,9 +17,7 @@ export type BreadcrumbsProps = {
 };
 
 const BreadcrumbsContainer = ({ children }: React.PropsWithChildren) => (
-    <div className={styles.container}>
-        {children}
-    </div>
+    <div className={styles.container}>{children}</div>
 );
 
 const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) => (

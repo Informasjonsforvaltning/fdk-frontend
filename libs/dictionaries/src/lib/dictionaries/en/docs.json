@@ -1,12 +1,12 @@
 {
-	"titles": {
-		"/about": "About us",
-		"/contact": "Contact us",
-		"/docs": "Help and guidance",
-		"/docs/finding-data": "Finding data",
-		"/docs/finding-data/ai-search": "AI Search",
-		"/docs/finding-data/assisted-search": "Help to find data",
-		"/docs/finding-data/sparql": "SPARQL",
-		"/docs/sharing-data": "Sharing data"
-	}
+    "titles": {
+        "/about": "About us",
+        "/contact": "Contact us",
+        "/docs": "Help and guidance",
+        "/docs/finding-data": "Finding data",
+        "/docs/finding-data/ai-search": "AI Search",
+        "/docs/finding-data/assisted-search": "Help to find data",
+        "/docs/finding-data/sparql": "SPARQL",
+        "/docs/sharing-data": "Sharing data"
+    }
 }

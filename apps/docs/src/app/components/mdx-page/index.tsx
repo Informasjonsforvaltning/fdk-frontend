@@ -13,43 +13,38 @@ import typography from './typography.module.scss';
 import { extractHeadlines } from './utils';
 
 const MdxPage = async ({ children, sidebars = true, slug, locale, baseUri, source }) => {
+    const docsDictionary = await getDictionary(locale, 'docs');
+    const commonDictionary = await getDictionary(locale, 'common');
 
-	const docsDictionary = await getDictionary(locale, 'docs');
-  const commonDictionary = await getDictionary(locale, 'common');
+    const headlines = extractHeadlines(source);
 
-  const headlines = extractHeadlines(source);
-
-	return (
-		<div className={pageStyles.mdxPage}>
-			<DynamicBreadcrumbs
-				docsDictionary={docsDictionary}
-				commonDictionary={commonDictionary}
-				baseUri={baseUri}
-				locale={locale}
-			/>
-			<div className={pageStyles.content}>
-				{
-					sidebars &&
-					<aside>
-						<Sidebar
-							dictionary={docsDictionary}
-							slug={slug}
-							locale={locale}
-						/>
-					</aside>
-				}
-				<article className={cn(pageStyles.article, typography.article)}>
-					{children}
-				</article>
-				{
-					sidebars &&
-					<aside>
-						<TableOfContents headlines={headlines} />
-					</aside>
-				}
-			</div>
-		</div>
-	);
-}
+    return (
+        <div className={pageStyles.mdxPage}>
+            <DynamicBreadcrumbs
+                docsDictionary={docsDictionary}
+                commonDictionary={commonDictionary}
+                baseUri={baseUri}
+                locale={locale}
+            />
+            <div className={pageStyles.content}>
+                {sidebars && (
+                    <aside>
+                        <Sidebar
+                            dictionary={docsDictionary}
+                            slug={slug}
+                            locale={locale}
+                        />
+                    </aside>
+                )}
+                <article className={cn(pageStyles.article, typography.article)}>{children}</article>
+                {sidebars && (
+                    <aside>
+                        <TableOfContents headlines={headlines} />
+                    </aside>
+                )}
+            </div>
+        </div>
+    );
+};
 
 export default MdxPage;

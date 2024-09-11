@@ -56,4 +56,3 @@ export const generateMetadata = async ({ params }: FrontpageProps): Promise<Meta
 };
 
 export default Frontpage;
-

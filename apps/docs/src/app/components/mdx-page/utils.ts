@@ -6,17 +6,17 @@ import { marked } from 'marked';
  * @returns {Array} - A nested array of headlines with their levels.
  */
 function extractHeadlines(markdown) {
-  const tokens = marked.lexer(markdown);
-  const headlines = [];
+    const tokens = marked.lexer(markdown);
+    const headlines = [];
 
-  tokens.forEach((token) => {
-    if (token.type === 'heading') {
-      const text = extractHeadingText(token);
-      headlines.push({ level: token.depth, text });
-    }
-  });
+    tokens.forEach((token) => {
+        if (token.type === 'heading') {
+            const text = extractHeadingText(token);
+            headlines.push({ level: token.depth, text });
+        }
+    });
 
-  return buildNestedHeadlines(headlines);
+    return buildNestedHeadlines(headlines);
 }
 
 /**
@@ -25,15 +25,15 @@ function extractHeadlines(markdown) {
  * @returns {string} - The extracted text.
  */
 function extractHeadingText(token) {
-  // Check if the heading token has nested tokens and if it's a link
-  if (token.tokens && token.tokens.length > 0) {
-    const linkToken = token.tokens.find((t) => t.type === 'link');
-    if (linkToken) {
-      return linkToken.text; // Return the text of the nested link token
+    // Check if the heading token has nested tokens and if it's a link
+    if (token.tokens && token.tokens.length > 0) {
+        const linkToken = token.tokens.find((t) => t.type === 'link');
+        if (linkToken) {
+            return linkToken.text; // Return the text of the nested link token
+        }
     }
-  }
-  // Fallback to the heading's text if no nested link is found
-  return token.text;
+    // Fallback to the heading's text if no nested link is found
+    return token.text;
 }
 
 /**
@@ -42,28 +42,28 @@ function extractHeadingText(token) {
  * @returns {Array} - A nested array of headlines.
  */
 function buildNestedHeadlines(headlines) {
-  const stack = [];
-  const nestedHeadlines = [];
+    const stack = [];
+    const nestedHeadlines = [];
 
-  headlines.forEach((headline) => {
-    const { level, text } = headline;
-    const node = { level, text, children: [] };
+    headlines.forEach((headline) => {
+        const { level, text } = headline;
+        const node = { level, text, children: [] };
 
-    // Maintain the stack to build a nested structure
-    while (stack.length && stack[stack.length - 1].level >= level) {
-      stack.pop();
-    }
+        // Maintain the stack to build a nested structure
+        while (stack.length && stack[stack.length - 1].level >= level) {
+            stack.pop();
+        }
 
-    if (stack.length === 0) {
-      nestedHeadlines.push(node);
-    } else {
-      stack[stack.length - 1].children.push(node);
-    }
+        if (stack.length === 0) {
+            nestedHeadlines.push(node);
+        } else {
+            stack[stack.length - 1].children.push(node);
+        }
 
-    stack.push(node);
-  });
+        stack.push(node);
+    });
 
-  return nestedHeadlines;
+    return nestedHeadlines;
 }
 
 export { extractHeadlines };

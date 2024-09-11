@@ -1,12 +1,12 @@
 {
-	"titles": {
-		"/about": "Om oss",
-		"/contact": "Kontakt oss",
-		"/docs": "Hjelp og veiledning",
-		"/docs/finding-data": "Finne data",
-		"/docs/finding-data/ai-search": "KI-søk",
-		"/docs/finding-data/assisted-search": "Hjelp til å finne data",
-		"/docs/finding-data/sparql": "SPARQL",
-		"/docs/sharing-data": "Dele data"
-	}
+    "titles": {
+        "/about": "Om oss",
+        "/contact": "Kontakt oss",
+        "/docs": "Hjelp og veiledning",
+        "/docs/finding-data": "Finne data",
+        "/docs/finding-data/ai-search": "KI-søk",
+        "/docs/finding-data/assisted-search": "Hjelp til å finne data",
+        "/docs/finding-data/sparql": "SPARQL",
+        "/docs/sharing-data": "Dele data"
+    }
 }

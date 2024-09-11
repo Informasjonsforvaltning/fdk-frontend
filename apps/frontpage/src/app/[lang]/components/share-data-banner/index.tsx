@@ -36,9 +36,7 @@ const ShareDataBanner = ({ dictionary, baseUri }: ShareDataBannerProps) => (
                 asChild
                 variant='secondary'
             >
-                <Link href={`${baseUri}/docs`}>
-                    {dictionary.shareDataBanner.documentationLinkText}
-                </Link>
+                <Link href={`${baseUri}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
             </Button>
         </div>
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 
 import { i18n, Dictionary, type Locale } from '@fdk-frontend/dictionaries';
 
@@ -14,7 +14,6 @@ type DynamicBreadcrumbsProps = {
 };
 
 const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, baseUri, locale }: DynamicBreadcrumbsProps) => {
-
     const pathname = usePathname();
 
     function createBreadcrumbPaths(pathname) {
@@ -22,7 +21,7 @@ const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, baseUri, locale 
         parts.splice(0, 2);
 
         let paths = [];
-        let currentPath = "";
+        let currentPath = '';
 
         for (let i = 0; i < parts.length; i++) {
             currentPath += `/${parts[i]}`;
@@ -34,9 +33,9 @@ const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, baseUri, locale 
 
     const items = createBreadcrumbPaths(pathname);
 
-    const textedItems = items.map(item => ({
+    const textedItems = items.map((item) => ({
         href: `/${locale}${item.path}`,
-        text: docsDictionary.titles[item.path]
+        text: docsDictionary.titles[item.path],
     }));
 
     return (
@@ -46,6 +45,6 @@ const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, baseUri, locale 
             baseUri={baseUri}
         />
     );
-}
+};
 
 export default DynamicBreadcrumbs;

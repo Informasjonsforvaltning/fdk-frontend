@@ -9,7 +9,7 @@ export const middleware = (request: NextRequest) => {
     const pathname = request.nextUrl.pathname;
 
     if (
-        [   
+        [
             '/manifest.json',
             '/favicon.ico',
             // Your other files in `public`
@@ -30,14 +30,14 @@ export const middleware = (request: NextRequest) => {
         );
     }
 
-    // Content Security Policy    
+    // Content Security Policy
     const requestHeaders = new Headers(request.headers);
     const response = NextResponse.next({
         request: {
             headers: requestHeaders,
         },
     });
-    const nonce = request.headers.get('x-nonce') ?? ''
+    const nonce = request.headers.get('x-nonce') ?? '';
     response.cookies.set('nonce', nonce, { httpOnly: false, secure: !devMode, sameSite: 'strict' });
 
     return response;

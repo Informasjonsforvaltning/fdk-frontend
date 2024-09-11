@@ -1,13 +1,13 @@
 .mdxHeading {
-	position:relative;
+    position: relative;
 
-	&:before {
-		display:block;
-		content:'';
-		background:red;
-		height: 5rem;
-		margin-top: -5rem;
-		visibility: hidden;
-		display:none;
-	}
+    &:before {
+        display: block;
+        content: '';
+        background: red;
+        height: 5rem;
+        margin-top: -5rem;
+        visibility: hidden;
+        display: none;
+    }
 }
