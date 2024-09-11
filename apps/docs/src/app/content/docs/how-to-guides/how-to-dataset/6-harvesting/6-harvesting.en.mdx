@@ -1,0 +1,83 @@
+# Setting up the data source that data.norge.no retrieves the description from
+
+Now that we have the complete description, we need to make it available from a data source. The data source (or endpoint) must provide (English: _serve_) the file in a valid RDF format, such as Turtle. This allows data.norge.no to _harvest_, or "retrieve," the catalog and display its content on data.norge.no.
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Note**: If your organization already has a data catalog that data.norge.no harvests from, you do not need to register a separate endpoint for your dataset description. Just make sure that your dataset description is included in the organization's data catalog.
+</Alert>
+
+We upload the example file with the description of the AI overview to [Github](https://github.com/Informasjonsforvaltning/ai-project-service) with the filename `ai_projects_norwegian_state_dataset_description.ttl`. The file can then be accessed online at the URL https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state_dataset_description.ttl.
+We will use this URL when registering the data source.
+
+## Registering the data source in the administration portal
+
+The next step is to register the data source in the data.norge.no administration portal. You log in via the page https://data.norge.no/publishing where you click "Log in to manage harvesting."
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Note**: You must have the correct permissions and rights to register the data source on behalf of your organization. Learn more about how to get access on the [Collaboration Portal](https://samarbeid.digdir.no/felles-datakatalog/ta-i-bruk-felles-datakatalog/1619).
+</Alert>
+
+Once you are in the administration portal, click the "Add data source" button.
+
+### Add data source
+
+Check that the publisher is correct; this should be the organization publishing the dataset.
+
+![The Norwegian Digitalisation Agency is selected as Publisher](https://cms.fellesdatakatalog.digdir.no/uploads/publisher_436431d9fc.png)
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Note**: If you do not see your organization here, check that you have the correct permissions and rights on behalf of your organization.
+</Alert>
+
+The Catalog should be "Dataset" and Data Source Type should be "DCAT-AP-NO."
+
+![Dataset is selected under Catalog](https://cms.fellesdatakatalog.digdir.no/uploads/catalog_5b32c1d760.png)
+
+![DCAT-AP-NO is selected for Data Source Type](https://cms.fellesdatakatalog.digdir.no/uploads/data_source_type_7945b706f1.png)
+
+The format (in our case) is Turtle, but here you select the RDF format you provide the description in.
+
+![Turtle is selected for Format](https://cms.fellesdatakatalog.digdir.no/uploads/format_a178ba8a09.png)
+
+The name of the data source is used only in the administration portal's display of all data sources. It is only meant for the organization to keep track of its data sources and is not displayed publicly.
+
+![Name of data source is filled out with "Data Catalog for the Norwegian Digitalisation Agency"](https://cms.fellesdatakatalog.digdir.no/uploads/name_995474230a.png)
+
+The URL to the data source should be the URL where you provide the data description from. In our case, it is the URL `https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state_dataset_description.ttl`.
+
+![URL to the data source is filled out with the link to the file on Github](https://cms.fellesdatakatalog.digdir.no/uploads/url_20dd8399c0.png)
+
+We have no authentication for this data source, so we leave those fields empty:
+![The two fields under Authentication - HTTP Header are left empty](https://cms.fellesdatakatalog.digdir.no/uploads/authentication_c4674b80ce.png)
+
+Then click "Save."
+
+The data source should now appear in the list of data sources. Ours looks like this:
+![The entry "Data Catalog for the Norwegian Digitalisation Agency" is displayed, with information about publisher, URI to the data source, format, and with the buttons Harvest, Harvest Status, Edit, Validate, and Delete](https://cms.fellesdatakatalog.digdir.no/uploads/data_source_entry_d25303217f.png)
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Note**: You can validate the description by clicking "Validate." You will be taken to data.norge.no's [validation tool](https://data.norge.no/validator) for descriptions.
+</Alert>
+
+## Start harvesting
+
+You can start a harvest by clicking "Harvest"; this will prompt data.norge.no to retrieve and process the description before displaying it on data.norge.no. This process may take a few minutes.
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Tip**: The description of the AI overview dataset is located here: [TODO:add-link](https://data.norge.no/datasets/)
+</Alert>

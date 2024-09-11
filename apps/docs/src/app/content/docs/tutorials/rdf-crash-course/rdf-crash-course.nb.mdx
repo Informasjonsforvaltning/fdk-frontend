@@ -1,0 +1,299 @@
+# Kræsjkurs i Resource Description Framework (RDF)
+
+Hvis du ikke allerede har lest den, ta gjerne en kikk på artikkelen om [hvorfor data.norge.no bruker RDF](/docs/rdf), der får du en overordnet forklaring på hva RDF er.
+
+
+## Byggeklossene i RDF
+
+### Trippelet
+
+I RDF kan vi komme med _utsagn_, eller _fakta_ om ressurser, og disse utsagnene er alltid på samme form:
+
+`<subjekt> <predikat> <objekt>`
+
+Subjektet og objektet er ressursene vi sier noe om, mens predikatet sier noe om relasjonen mellom subjektet og predikatet. Noen eksempler på tripler (i pseudokode) er:
+
+- `<Leonardo da Vinci> <ble født> <15. april 1452>`
+- `<Leonardo da Vinci> <var> <en maler>`
+- `<Mona Lisa> <er malt av> <Leonardo da Vinci>`
+
+Sånn sett er datamodellen i RDF veldig enkel: all data består bare av en samling av slike tripler.
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Merk**: Siden et trippel definerer en relasjon mellom subjektet og objektet, utgjør en samling av tripler en _graf_, som illustrert i figuren under. Vi kan bruke uttrykket _RDF-graf_ som synonym for "en samling med tripler".
+</Alert>
+
+<Image src="https://cms.fellesdatakatalog.digdir.no/uploads/da_vinci_graph_ex_5095760b07.png" width={360} height={360} alt="En RDF-graf, som viser noen utsagn om Leonardo da Vinci" />
+
+### Ressurser trenger et navn: URI
+
+Når vi skal beskrive _en ressurs_ i RDF er vi nødt til å vite hvilken ressurs det er snakk om, og derfor gir vi ressurser navn i form av en URI.
+`http://dbpedia.org/resource/Leonardo_da_Vinci` er et eksempel på en slik URI, som peker til ressursen "Leonardo da Vinci" hos DBpedia.
+
+En URI, eller _Unique Resource Identifier_, er en global og unik identifikator, og dette er grunnen til at man bruker URI-er for å navngi ressurser i RDF: da kan hvem som helst, hvor som helst bruke URI-en og vite at de snakker om samme ting.
+Dette skiller seg for eksempel fra typiske ID-er i databasesystemer, eller gateadresser som er unik kun innenfor en kommune.
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Merk**: Det kan i blant være tvetydig om en URI peker til _beskrivelsen av tingen_ eller _tingen i seg selv_. For eksempel ville det vært rart å si at DBpedia-siden om Leonardo da Vinci _er_ Leonardo da Vinci selv.
+    Allikevel er dette et vanlig mønster å følge i RDF, særlig når det er snakk om beskrivelser av personer. Når det gjelder datasettbeskrivelser er praksis derimot at URI-en til en instans av `dcat:Dataset` peker til _datasettbeskrivelsen_ og _ikke_ den fysiske forekomsten av datasettet.
+</Alert>
+
+
+### Verdier ("literals")
+
+I tillegg til URI-er kan en beskrivelse i RDF bestå av verdier som blant annet tekst, tall eller datoer. Disse kalles "_literals_" i RDF.
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Tips**: Du kan også angi hvilket språk en tekst er på, for eksempel slik `"tekst på bokmål"@nb`.
+</Alert>
+
+## Modellere Ada Lovelace
+
+La oss vise med et litt større eksempel hvor vi har noen påstander, eller utsagn, om personen Ada Lovelace:
+
+```
+<AdaLovelace> <er av type> <Person>
+
+<AdaLovelace> <har navn> <Ada Lovelace>
+
+<AdaLovelace> <født> <10.12.1815>
+
+<AdaLovelace> <kjenner> <CharlesBabbage>
+
+<AdaLovelace> <har interesse> <Programmering>
+```
+
+Det kan vi også tegne opp som denne grafen:
+
+<Image src="https://cms.fellesdatakatalog.digdir.no/uploads/ada_lovelace_graph_3c97a51392.png" width={360} height={360} alt="Graf som inneholder utsagn om Ada Lovelace" />
+
+Dette vil vi nå skrive i et gyldig RDF-format kalt Turtle (eller "serialiseringsformat" for å være helt presis).
+
+### Turtle - et RDF-format
+
+Turtle er et konkret språk for å lage RDF-grafer. Kort oppsummert:
+
+- Du skriver en URI med "\<" og "\>", slik: `<https://example.org>`
+- Du skriver tekstverdier med anførselstegn: `"en tekst"`
+- Du kan angi typen til en verdi, for eksempel heltall: `"1"^^<http://www.w3.org/2001/XMLSchema#integer>`, eller dato: `"2024-06-05"^^<http://www.w3.org/2001/XMLSchema#date>`
+- Du kan angi språket til teksten: `"An english text"@en` eller `"Ei tekst på nynorsk"@nn`.
+
+#### Eksempel
+
+Vi bruker ressurser som allerede er definert av andre, som RDF-navnerommet, Schema.org eller _Friend of a friend_ (FOAF). Dette er kjente vokabularer, så alle systemer som baserer seg på disse vokabularene, vil da være bedre i stand til å forstå beskrivelsen vår av Ada Lovelace.
+
+Beskrivelsen ser slik ut i Turtle:
+
+```turtle
+<https://example.org/people/adaLovelace>   <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>   <http://xmlns.com/foaf/0.1/Person> .
+<https://example.org/people/adaLovelace>   <http://xmlns.com/foaf/0.1/name>                    "Ada Lovelace" .
+<https://example.org/people/adaLovelace>   <https://schema.org/birthDate>                      "1815-12-10"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://example.org/people/adaLovelace>   <https://schema.org/knows>                          <https://example.org/people/charlesBabbage> .
+<https://example.org/people/adaLovelace>   <https://schema.org/knowsAbout>                     "programmering"@nb .
+```
+
+### Prefikser/navnerom
+
+Med prefikser (forkortelser) kan vi erstatte URL-ene med prefiksen vi har definert.
+F.eks. kan vi skrive `foaf` i stedet for `<http://xmlns.com/foaf/0.1/>`.
+
+Og om vi vil bruke egenskapen "navn", `<http://xmlns.com/foaf/0.1/name>` trenger vi kun skrive `foaf:name`.
+
+Her er noen kjente og ofte brukte navnerom (i tillegg til et egendefinert, ment for eksemplene på denne siden):
+
+```turtle
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+
+# Egendefinert prefiks for eksemplene her:
+@prefix people: <https://example.org/people/> .
+```
+
+### ...forenklet beskrivelse
+
+Med prefiksene kan vi forenkle beskrivelsen av Ada Lovelace
+
+```turtle
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <https://schema.org/> .
+
+@prefix people: <https://example.org/people/> .
+
+
+people:adaLovelace rdf:type               foaf:Person .
+people:adaLovelace foaf:name              "Ada Lovelace" .
+people:adaLovelace schema:birthDate       "1815-12-10"^^xsd:date .
+people:adaLovelace schema:knows           people:charlesBabbage .
+people:adaLovelace schema:knowsAbout      "Programmering"@nb .
+```
+
+I stedet for å skrive hele URI-en `<https://example.org/people/adaLovelace>` kan vi nå skrive kun `people:adaLovelace`.
+
+Men dette er bare en syntaktisk snarvei for å skrive URI-en, og det er fortsatt på formen subjekt, predikat, objekt.
+
+### ... enda mer forenklet
+
+Når vi gjentar subjektet kan det skrives om til
+
+```turtle
+people:adaLovelace    rdf:type               foaf:Person ;
+                      foaf:name              "Ada Lovelace" ;
+                      schema:birthDate       "1815-12-10"^^xsd:date ;
+                      schema:knows           people:charlesBabbage ;
+                      schema:knowsAbout      "Programmering"@nb .
+```
+
+Hvert utsagn som gjenbruker subjektet avsluttes med `;`. Vi avslutter hele bolken med `.` som vanlig.
+
+### Med flere verdier på samme predikat
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Tips**: Du kan legge inn kommentarer i Turtle med tegnet '#'. da ignoreres det som er bak '#'-tegnet.
+</Alert>
+
+```turtle
+people:adaLovelace  rdf:type  foaf:Person ;
+          # ... kommentert vekk
+          schema:knowsAbout   "litteratur"@nb ;
+          schema:knowsAbout   "matematikk"@nb ;
+          schema:knowsAbout   "programmering"@nb .
+```
+
+Når vi gjentar [ subjekt predikat ] kan vi skrive det om til
+
+```turtle
+people:adaLovelace   rdf:type        foaf:Person ;
+          # ... kommentert vekk
+          schema:knowsAbout "musikk"@nb , "matematikk"@nb , "programmering"@nb .
+```
+
+Hvert utsagn som gjenbruker [ subjekt predikat ] avsluttes med et komma `,` .
+
+### Resultat
+
+I Turtle kan vi da gå fra den første beskrivelsen som består av eksplisitte tripler, til en mer forkortet og menneskelesbar versjon.
+
+**Utgangspunkt**
+
+```turtle
+<https://example.org/people/adaLovelace>   <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>   <http://xmlns.com/foaf/0.1/Person> .
+<https://example.org/people/adaLovelace>   <http://xmlns.com/foaf/0.1/name>                    "Ada Lovelace" .
+<https://example.org/people/adaLovelace>   <https://schema.org/birthDate>                      "1815-12-10"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://example.org/people/adaLovelace>   <https://schema.org/knows>                          <https://example.org/people/charlesBabbage> .
+<https://example.org/people/adaLovelace>   <https://schema.org/knowsAbout>                     "musikk"@nb .
+<https://example.org/people/adaLovelace>   <https://schema.org/knowsAbout>                     "matematikk"@nb .
+<https://example.org/people/adaLovelace>   <https://schema.org/knowsAbout>                     "programmering"@nb .
+```
+
+**Forkortert**
+
+```turtle
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <https://schema.org/> .
+
+@prefix people: <https://example.org/people/> .
+
+people:adaLovelace rdf:type foaf:Person ;
+    foaf:name         "Ada Lovelace" ;
+    schema:birthDate  "1815-12-10"^^xsd:date ;
+    schema:knows      people:charlesBabbage ;
+    schema:knowsAbout "musikk"@nb , "matematikk"@nb , "programmering"@nb .
+```
+
+Begge varianter er gyldig Turtle, og begge to representerer akkurat den samme informasjonen.
+I bånn er det tripler bestående av URI-er og verdier.
+
+### a = rdf:type
+Siden vi ofte bruker predikatet `rdf:type` tilbyr Turtle forkortelsen `a`. Så dette trippelet:
+
+```turtle
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix people: <https://example.org/people/> .
+
+people:adaLovelace rdf:type foaf:Person .
+```
+er det samme som:
+
+```turtle
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix people: <https://example.org/people/> .
+
+people:adaLovelace a foaf:Person .
+```
+
+Legg merke til at vi da ikke trenger å definere `rdf`-prefikset.
+
+### Blanke noder (ressurser uten URI)
+
+I noen tilfeller har vi ressurser som vi ikke ønsker eller å trenger å gi en eksplisitt URI, fordi vi har vurdert at ressursen ikke trenger å pekes til andre steder.
+Da kan vi uttrykke dem som såkalte _blanke noder_, eller ressurser uten identifikator.
+
+I Ada Lovelace-eksemplet ønsker vi å oppgi navnene til Lovelace sine barn, Byron, Anna Isabella og Ralph Gordon, men vi vil ikke å lage nye URI-er for dem.
+Da kan vi lage blanke noder ved hjelp av hakeparenteser `[` og `]`, og oppgi navnene innenfor hakeparentesene.
+
+```turtle
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+
+@prefix people: <https://example.org/people/> .
+
+people:adaLovelace a foaf:Person ;
+    # ...kommentert vekk
+    schema:children [
+      a foaf:Person ;
+      foaf:name "Byron" ;
+    ] ,
+    [
+      a foaf:Person ;
+      foaf:name "Anna Isabella" ;
+    ] ,
+    [
+      a foaf:Person ;
+      foaf:name "Ralph Gordon" ;
+    ] .
+```
+
+Dette er fortsatt tripler som før, men ressursen har ingen URI.
+
+## RDF-serialiseringer/syntakser
+
+Det fins flere ulike måter å uttrykke RDF-grafer. I tabellen under har vi listet noen av de vanligste syntaksene for å serialisere RDF.
+
+RDF-verktøy og biblioteker kan lese til og skrive fra en eller flere av disse syntaksene. De facto standard er RDF/XML, men Turtle støttes også av de aller fleste verktøy.
+
+| Navn      | Mediatype               | File extension |
+| --------- | ----------------------- | -------------- |
+| Turtle    | `text/turtle`           | `.ttl`         |
+| RDF/XML   | `application/rdf+xml`   | `.rdf`         |
+| JSON-LD   | `application/ld+json`   | `.jsonld`      |
+| N-Triples | `application/n-triples` | `.nt`          |
+| N-Quads   | `application/n-quads`   | `.nq`          |
+| TriG      | `application/trig`      | `.trig`        |
+| Notation3 | `text/n3;charset=utf-8` | `.n3`          |
+
+## Eksterne ressurser
+
+Deler av denne teksten er basert på W3C sin [RDF 1.1 Primer](https://www.w3.org/TR/rdf11-primer/), en ypperlig ressurs som er verdt å lese.

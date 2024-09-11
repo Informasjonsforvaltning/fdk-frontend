@@ -3,6 +3,7 @@
         "/about": "Om oss",
         "/contact": "Kontakt oss",
         "/docs": "Hjelp og veiledning",
+		"/docs/additional-resources": "Flere ressurser",
         "/docs/finding-data": "Finne data",
         "/docs/finding-data/ai-search": "KI-søk",
         "/docs/finding-data/assisted-search": "Hjelp til å finne data",
@@ -14,6 +15,23 @@
         "/catalogs/information-models": "Informasjonsmodeller",
         "/catalogs/concepts": "Begreper",
         "/catalogs/public-services-and-events": "Tjenester og hendelser",
-        "/catalogs/ai": "Kunstig intelligens"
+        "/catalogs/ai": "Kunstig intelligens",
+		"/docs/how-to-guides": "Veiledning: steg-for-steg", 
+		"/docs/how-to-guides/how-to-dataset": "Datasettbeskrivelse fra A-Å",
+		"/docs/how-to-guides/how-to-dataset/1-preparations": "1. Forberedelser",
+		"/docs/how-to-guides/how-to-dataset/2-dataset-description": "2. Beskrive datasett",
+		"/docs/how-to-guides/how-to-dataset/3-distribution": "3. Legge til distribusjon",
+		"/docs/how-to-guides/how-to-dataset/4-data-service": "4. Legge til datatjeneste",
+		"/docs/how-to-guides/how-to-dataset/5-catalog-and-complete-description": "5. Katalog og komplett beskrivelse",
+		"/docs/how-to-guides/how-to-dataset/6-harvesting": "6. Publisere beskrivelsen",
+		"/docs/login-and-access": "Få tilgang og logge inn",
+		"/docs/tutorials": "Kurs",
+		"/docs/tutorials/publishing-data-descriptions": "Kurs: publisere datasettbeskrivelser",
+		"/docs/tutorials/publishing-data-descriptions/1-creating-descriptions-self": "Lage datasettbeskrivelse selv",
+		"/docs/tutorials/publishing-data-descriptions/2-creating-descriptions-registration": "Lage datasettbeskrivelse i registreringsløsningen",
+		"/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions": "Publisere beskrivelsen",
+		"/docs/tutorials/publishing-data-descriptions/4-triggering-harvest": "Starte høsting",
+		"/docs/tutorials/rdf-crash-course": "Kræsjkurs i RDF",
+		"/docs/rdf": "RDF: hva og hvorfor"
     }
 }

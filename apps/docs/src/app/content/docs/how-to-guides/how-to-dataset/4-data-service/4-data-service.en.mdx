@@ -1,0 +1,100 @@
+# Describing Dataset Availability via API
+
+<Alert
+    severity='warning'
+    size='sm'
+>
+    **Note**: The dataset _AI Projects in Public Sector_ is not made available via API, so the links and endpoints provided for the API in the example below are not real and will not work.
+    The examples here are only meant to illustrate how an API description looks.
+</Alert>
+
+To describe that the dataset is made available via an API, we use the `dcat:DataService` class.
+Much of the information is similar to that for Distribution, but DataService also has a few more mandatory fields.
+
+## Linking the API to the Dataset
+To indicate that the data service provides data for the dataset we described, we use the `dcat:servesDataset` property. Note that this points _from_ the DataService _to_ the Dataset:
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_api> rdf:type dcat:DataService ;
+  dcat:servesDataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
+  .
+```
+
+## Endpoint URL, Contact Point, Title, and Publisher
+
+The `dcat:endpointURL` property specifies the endpoint at which the API is available; it is mandatory. Additionally, the properties `dcat:contactPoint`, `dct:title`, and `dct:publisher` are mandatory.
+Here we can reuse some of the information from the Dataset, as in this case, the publisher and contact point are the same for both the dataset and the API.
+You need to verify if this is the case for the dataset you are describing.
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_api> rdf:type dcat:DataService ;
+  dcat:servesDataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
+  dcat:endpointURL <https://data.digdir.no/api/ai_projects_norwegian_state> ; # fiktiv URL, fungerer ikke
+  dct:title "API for oversikt over KI-prosjekter i offentlig sektor"@nb ;
+  dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
+  dcat:contactPoint [
+    rdf:type vcard:Organization ;
+    vcard:hasEmail "kunstigintelligens@digdir.no" ;
+    vcard:fn "Kunstig Intelligens Digdir" ;
+  ] ;
+  .
+```
+
+## License and Format
+
+We will again state here that the dataset is available under an Apache-2.0 license. Additionally, our fictional API provides the data in XML and JSON formats.
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_api> rdf:type dcat:DataService ;
+  dcat:servesDataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
+  # ...
+  dct:license <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> ;
+  dct:format <http://publications.europa.eu/resource/authority/file-type/XML> ,
+             <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+  .
+```
+
+## Complete Description of Data Service
+
+The complete description of the Data Service/API will look like this:
+
+
+```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_api> rdf:type dcat:DataService ;
+  dcat:servesDataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
+  dcat:endpointURL <https://data.digdir.no/api/ai_projects_norwegian_state> ; # fiktiv URL, fungerer ikke
+  dct:title "API for oversikt over KI-prosjekter i offentlig sektor"@nb ;
+  dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
+  dcat:contactPoint [
+    rdf:type vcard:Organization ;
+    vcard:hasEmail "kunstigintelligens@digdir.no" ;
+    vcard:fn "Kunstig Intelligens Digdir" ;
+  ] ;
+  dct:license <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> ;
+  dct:format <http://publications.europa.eu/resource/authority/file-type/XML> ,
+             <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+  .
+```

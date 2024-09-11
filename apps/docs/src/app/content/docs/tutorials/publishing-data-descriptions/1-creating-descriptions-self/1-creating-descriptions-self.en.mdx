@@ -1,0 +1,92 @@
+On this page, you will learn how to create descriptions you manage yourself, so they can be published to Data.norge.no. You will need to set up harvesting in Data.norge.no's harvesting solution to publish the descriptions.
+
+> **__Info:__**
+On this page, you will learn how to create descriptions you manage yourself, so they can be published to Data.norge.no. You will need to [set up harvesting](/getting-started/publishing-descriptions) in Data.norge.no's harvesting solution to publish the descriptions.
+
+## How to create RDF graphs
+
+Use these guides to learn more about how to create dataset descriptions:
+
+- [Guide for describing datasets, data services, and data catalogs](https://informasjonsforvaltning.github.io/veileder-beskrivelse-av-datasett/#beskrivelse-av-datasett)
+- [Guide for "Getting your own house in order" - Step 5: Describe](https://www.digdir.no/informasjonsforvaltning/steg-5-beskrive/2724)
+- [Workshop materials on RDF and dataset descriptions](https://github.com/fellesdatakatalog/sikt-workshop/blob/main/ressurshefte/ressurshefte.md)
+
+The descriptions you create must be in an RDF format and conform to the specification for the resource being described.
+
+See [About the specifications](/getting-started/resources) for more information on the various specifications Data.norge.no is based on.
+
+For other types of resources (concepts, information models, services, and events), there are examples of descriptions available on [Data.norge.no's "Showroom"](https://data.norge.no/showroom/overview). You can also refer to the relevant specification and its examples. Most of the examples are written in the RDF format called Turtle, and they can be applied to other resource types.
+
+If you manage the description yourself and set up harvesting, the harvesting solution will collect and retain all the data in the description. Fields that are not yet supported will be displayed as Data.norge.no adds support for viewing those fields.
+
+[More relevant resources](/getting-started/resources)
+
+### Important considerations for URIs and resource naming
+
+Resources described in RDF are named using a unique, global identifier, known as a URI ("Uniform Resource Identifier"). URIs should be unique and persistent, ideally pointing to resources that are actually available on the web. More information on how to design URIs can be found here:
+
+- [Pointers to public resources on the web (Digdir)](https://www.digdir.no/standarder/peikarar-til-offentlege-ressursar-pa-nett/1492)
+- [10 Rules for Persistent URIs (Interoperable Europe)](https://joinup.ec.europa.eu/collection/semic-support-centre/document/10-rules-persistent-uris)
+- [Cool URIs for the Semantic Web (W3C)](https://www.w3.org/TR/cooluris/#semweb)
+
+## Supported RDF formats
+
+The descriptions you create must be in an RDF format supported by Data.norge.no:
+
+- [Turtle](https://www.w3.org/TR/turtle/)
+- [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/)
+- [RDF/JSON](https://www.w3.org/TR/rdf-json/)
+- [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [N-Triples](https://www.w3.org/TR/n-triples/)
+- ([Notation3/N3](https://www.w3.org/TeamSubmission/n3/) as a synonym for Turtle)
+
+## Validation of descriptions
+
+When you have created a description, you can validate it using Data.norge.no's [validator](https://data.norge.no/validator), which will notify you of any errors or missing information.
+
+You can publish a description with correct syntax but content deficiencies according to the specification. It will simply be displayed as incomplete on the Data.norge.no website. However, if the description/RDF graph contains syntactic errors, harvesting will fail, and the description will not be displayed on Data.norge.no.
+
+## Result
+
+In the end, you should have a description that looks something like this:
+
+```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+<https://data.digdir.no/catalog/1> a dcat:Catalog ;
+  dcat:dataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
+  .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> a dcat:Dataset ;
+    dct:title "Kunstig intelligens - oversikt over prosjekter i offentlig sektor"@nb ,
+            "Kunstig intelligens - oversikt over prosjekt i offentleg sektor"@nn ,
+            "Artificial intelligence - overview of projects in the public sector"@en ;
+    dct:description "En oversikt over kunstig intelligens-prosjekter i offentlig sektor. Oversikten er ikke komplett."@nb ;
+                    "Ei oversikt over kunstig intelligens-prosjekt i offentleg sektor. Oversikta er ikkje komplett"@nn ;
+                    "An overview of artificial intelligence projects in the public sector. The overview is not complete."@en ;
+    dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
+    dcat:contactPoint [
+      rdf:type vcard:Organization ;
+      vcard:hasEmail "postmottak@digdir.no" ;
+      vcard:fn "Postmottak Digdir" ;
+    ] ;
+    dct:keyword "kunstig intelligens"@nb , "kunstig intelligens"@nn , "artificial intelligence"@en,
+                "offentlig sektor"@nb , "offentleg sektor"@nn , "public sector"@en ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE>,
+               <http://eurovoc.europa.eu/3030> ;
+    dct:spatial <http://publications.europa.eu/resource/authority/country/NOR> ;
+    prov:wasGeneratedBy provno:collectingFromThirdparty ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+    foaf:page <https://data.norge.no/kunstig-intelligens> ;
+    .
+```
+
+
+## Next step: Publish the description
+
+Once you have created a description, you can [set up harvesting](/getting-started/publishing-descriptions) so that it is published to Data.norge.no.

@@ -1,0 +1,83 @@
+# Setje opp datakjelde som data.norge.no hentar beskrivinga frå
+
+Når vi no har den fullstendige beskrivinga, må vi tilby den frå ein datakjelde som er tilgjengeleg. Datakjelda (eller endepunktet) må tilby (engelsk: _serve_) fila i eit gyldig RDF-format, til dømes Turtle. Då kan data.norge.no _høste_, eller "hente" katalogen frå og vise innhaldet på data.norge.no.
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Merk**: Hvis verksemda di allereie har ein datakatalog som høstes av data.norge.no, treng du ikkje å registrere eit eige endepunkt for din eine datasettbeskriving. Du må berre sørge for at datasettbeskrivinga di er inkludert i datakatalogen til verksemda.
+</Alert>
+
+Vi lastar opp eksempel-fila med beskriving av KI-oversikten til [Github](https://github.com/Informasjonsforvaltning/ai-project-service) med filnamn `ai_projects_norwegian_state_dataset_description.ttl`. Sjå den over nettet på URL-en https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state_dataset_description.ttl.
+Denne URL-en skal vi bruke når vi registrerer datakjelda.
+
+## Registrere datakjelde i administrasjonsportalen
+
+Det neste vi må gjere er å registrere datakjelda i administrasjonsportalen til data.norge.no. Du loggar inn via sida https://data.norge.no/publishing der du trykkjer på "Logg inn for å administrere høsting".
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Merk**: Du må ha dei riktige tilgangane og rettane for å kunne registrere datakjelde på vegne av verksemda. Les meir om korleis få tilgang på [Samarbeidsportalen](https://samarbeid.digdir.no/felles-datakatalog/ta-i-bruk-felles-datakatalog/1619).
+</Alert>
+
+Når du er inne i administrasjonsportalen, trykkjer du på knappen "Legg til datakjelde".
+
+### Legg til datakjelde
+
+Sjekk at utgjevaren er riktig, dette skal vere verksemda som gir ut datasettet.
+
+![Digitaliseringsdirektoratet er valt som Utgjevar](https://cms.fellesdatakatalog.digdir.no/uploads/publisher_436431d9fc.png)
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Merk**: Om du ikkje ser verksemda di her må du sjekke at du har dei riktige tilgangane og rettane på vegne av verksemda.
+</Alert>
+
+Katalog skal vere "Datasett" og Datakjeldetype skal vere "DCAT-AP-NO".
+
+![Datasett er valt under Katalog](https://cms.fellesdatakatalog.digdir.no/uploads/catalog_5b32c1d760.png)
+
+![DCAT-AP-NO er valt for Datakjeldetype](https://cms.fellesdatakatalog.digdir.no/uploads/data_source_type_7945b706f1.png)
+
+Formatet (i vårt tilfelle) er Turtle, men her vel du RDF-formatet du tilbyr beskrivinga i di.
+
+![Turtle er valt for Format](https://cms.fellesdatakatalog.digdir.no/uploads/format_a178ba8a09.png)
+
+Namnet på datakjelde blir berre brukt i administrasjonsportalen sin visning av alle datakjeldene. Det er berre meint for at verksemda skal halde oversikt over datakjeldene sine og blir ikkje vist utad.
+
+![Namnet på datakjelde er fylt ut med "Datakatalog for Digitaliseringsdirektoratet"](https://cms.fellesdatakatalog.digdir.no/uploads/name_995474230a.png)
+
+URL til datakjelde skal vere URL-en til der du tilbyr databeskrivinga frå. I vårt tilfelle er det URL-en `https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state_dataset_description.ttl`.
+
+![URL til datakjelde er fylt ut med lenke til fila på Github](https://cms.fellesdatakatalog.digdir.no/uploads/url_20dd8399c0.png)
+
+Vi har ingen autentisering på denne datakjelda, så vi lar dei felta stå tomme:
+![Dei to felta under Autentisering - HTTP Header står tomme](https://cms.fellesdatakatalog.digdir.no/uploads/authentication_c4674b80ce.png)
+
+Deretter trykker du "Lagre".
+
+Datakjelda skal no visast i lista over datakjelder. Vår ser slik ut:
+![Oppføringa "Datakatalog for Digitaliseringsdirektoratet" visast, med informasjon om utgjevar, URI til datakjelde, format, og med knappane Høst, Høstestatus, Rediger, Valider og Slett](https://cms.fellesdatakatalog.digdir.no/uploads/data_source_entry_d25303217f.png)
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Merk**: Du kan validere beskrivinga ved å trykke "Valider". Du blir då tatt til data.norge.no sitt [valideringsverktøy](https://data.norge.no/validator) for beskrivingar.
+</Alert>
+
+## Starte høsting
+
+Du kan starte ein høsting ved å trykke på "Høst", då hentar data.norge.no beskrivinga og prosesserer den før den blir vist på data.norge.no. Denne prosessen kan ta nokre minutt.
+
+<Alert
+    severity='info'
+    size='sm'
+>
+    **Tips**: Beskrivinga av KI-oversiktsdatasettet ligg her: [TODO:legg-til-lenke](https://data.norge.no/datasets/)
+</Alert>
