@@ -46,6 +46,20 @@ html {
     }
 }
 
-.fds-alert {
-    font-family: inherit;
+.fds-btn {
+    &.fds-link {
+        color: var(--color-link);
+        text-decoration: none;
+    }
+    &.fds-btn--primary {
+        &.fds-link {
+            color: white;
+        }
+    }
+}
+
+.fds-alert,
+.fds-card__content,
+.fds-paragraph {
+    font: inherit;
 }

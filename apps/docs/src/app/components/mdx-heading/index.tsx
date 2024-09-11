@@ -22,6 +22,10 @@ const extractText = (children: React.ReactNode): string => {
         .join('');
 };
 
+export type MdxHeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
+    level: number;
+};
+
 const MdxHeading = ({ level, children }: MdxHeadingProps) => {
     const textContent = extractText(children);
     const slug = slugify(textContent, { lower: true, strict: true });

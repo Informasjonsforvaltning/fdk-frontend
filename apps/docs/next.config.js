@@ -15,9 +15,6 @@ const nextConfig = {
     },
     // Configure `pageExtensions` to include markdown and MDX files
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-    typescript: {
-        ignoreBuildErrors: true,
-    },
 };
 
 // Create the MDX configuration

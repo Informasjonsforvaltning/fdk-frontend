@@ -1,8 +1,10 @@
 import cn from 'classnames';
 
+import { PropsWithChildren } from 'react';
+
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import DynamicBreadcrumbs from '@fdk-frontend/ui/dynamic-breadcrumbs';
-import { i18n, type Locale, getDictionary } from '@fdk-frontend/dictionaries';
+import { i18n, type LocaleCodes, getDictionary } from '@fdk-frontend/dictionaries';
 
 import Sidebar from '../../components/sidebar';
 import TableOfContents from '../../components/table-of-contents';
@@ -10,13 +12,21 @@ import TableOfContents from '../../components/table-of-contents';
 import pageStyles from './mdx-page.module.scss';
 import typography from './typography.module.scss';
 
-import { extractHeadlines } from './utils';
+import { extractHeadlines, type MdxHeadlineObjectNode } from './utils';
 
-const MdxPage = async ({ children, sidebars = true, slug, locale, baseUri, source }) => {
+export type MdxPageProps = PropsWithChildren & {
+    slug: string[];
+    locale: LocaleCodes;
+    baseUri: string;
+    source: string;
+    sidebars?: boolean;
+};
+
+const MdxPage = async ({ children, sidebars = true, slug, locale, baseUri, source }: MdxPageProps) => {
     const docsDictionary = await getDictionary(locale, 'docs');
     const commonDictionary = await getDictionary(locale, 'common');
 
-    const headlines = extractHeadlines(source);
+    const headlines: MdxHeadlineObjectNode[] = extractHeadlines(source);
 
     return (
         <div className={pageStyles.mdxPage}>

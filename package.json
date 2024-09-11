@@ -48,6 +48,7 @@
         "@navikt/aksel-icons": "^6.16.0",
         "@next/mdx": "^14.2.6",
         "@types/mdx": "^2.0.13",
+        "@types/react-syntax-highlighter": "^15.5.13",
         "classnames": "^2.5.1",
         "framer-motion": "^11.3.28",
         "js-cookie": "^3.0.5",
