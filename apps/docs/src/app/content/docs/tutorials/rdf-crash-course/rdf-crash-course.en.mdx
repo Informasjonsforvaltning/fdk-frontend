@@ -24,7 +24,6 @@ The subject and object are the resources we are talking about, while the predica
 In this sense, the data model in RDF is very simple: all data consists only of a collection of such triples.
 
 <Alert
-    severity='info'
     size='sm'
 >
     **Note**: Since a triple defines a relationship between the subject and the object, a collection of triples constitutes a _graph_, as illustrated in the figure below. We can use the term _RDF graph_ synonymously with "a collection of triples."
@@ -41,7 +40,6 @@ A URI, or _Unique Resource Identifier_, is a global and unique identifier, and t
 This differs, for example, from typical IDs in database systems, or street addresses that are unique only within a municipality.
 
 <Alert
-    severity='info'
     size='sm'
 >
     **Note**: It can sometimes be ambiguous whether a URI refers to _the description of the thing_ or _the thing itself_. For instance, it would be odd to say that the DBpedia page about Leonardo da Vinci _is_ Leonardo da Vinci himself.
@@ -53,7 +51,6 @@ This differs, for example, from typical IDs in database systems, or street addre
 In addition to URIs, an RDF description can consist of values such as text, numbers, or dates. These are called "_literals_" in RDF.
 
 <Alert
-    severity='info'
     size='sm'
 >
     **Tip**: You can also specify the language of a text, for example, `"text in Bokmål"@nb`.
@@ -168,7 +165,6 @@ Each statement that reuses the subject ends with `;`. We conclude the entire blo
 ### With Multiple Values for the Same Predicate
 
 <Alert
-    severity='info'
     size='sm'
 >
     **Tip**: You can add comments in Turtle with the `#` symbol. Everything after the `#` symbol is ignored.
