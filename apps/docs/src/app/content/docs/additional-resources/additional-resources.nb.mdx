@@ -1,0 +1,41 @@
+---
+title: Flere ressurser
+description: Her finner du flere ressurser som kan hjelpe deg med å lage beskrivelser til data.norge.no.
+---
+
+# Spesifikasjoner, ressurser og verktøy
+
+## Spesifikasjoner
+
+Data.norge.no baserer seg på flere spesifikasjoner. Hvilken spesifikasjon du skal bruke kommer an på hvilken typen ressurs (datasett, begrep, tjeneste, osv.) du skal beskrive.
+
+- Datasett, datatjenester og datakataloger: [DCAT-AP-NO](https://data.norge.no/specification/dcat-ap-no)
+- Begrep: [SKOS-AP-NO](https://data.norge.no/specification/skos-ap-no-begrep)
+- Informasjonsmodeller: [ModellDCAT-AP-NO](https://data.norge.no/specification/modelldcat-ap-no)
+- Tjenester og hendelser: [CPSV-AP-NO](https://data.norge.no/specification/cpsv-ap-no)
+
+## Ressurser
+
+- [Showroom på data.norge.no](https://data.norge.no/showroom/overview) med eksempler på beskrivelser og sammenhengene mellom dem.
+- [Mal for en datasettbeskrivelse i Turtle-format (Data.norge.no på Github)](https://github.com/fellesdatakatalog/sikt-workshop/blob/main/example-template.ttl).
+- [Materiell til workshop om RDF og datasettbeskrivelser](https://github.com/fellesdatakatalog/sikt-workshop/blob/860e9b5b3d1596c2e97496d535056fc61115a4e5/ressurshefte/ressurshefte.md)
+- [Eksempel på datasettbeskrivelse i Turtle (Data.norge.no på Github)](https://github.com/Informasjonsforvaltning/dcat-ap-no/blob/4d09617568f0f353b336ddd966b2228dc35f084e/examples/test.ttl)
+- [Veileder for Orden i eget hus](https://www.digdir.no/informasjonsforvaltning/veileder-orden-i-eget-hus/2716)
+- [DCAT-AP 3](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DataService) fra EU som DCAT-AP-NO er basert på.
+- [DCAT 3](https://www.w3.org/TR/vocab-dcat-3/) fra W3C som DCAT-AP er basert på.
+- [Online trainings (SEMIC Support Centre)](https://joinup.ec.europa.eu/collection/semic-support-centre/online-trainings), kurs i vokabularene og spesifikasjonene fra EU.
+
+## Verktøy Data.norge.no tilbyr
+
+Data.norge.no har flere åpne biblioteker og verktøy som kan hjelpe i arbeidet med å lage beskrivelser.
+
+- [datacatalogtordf](https://github.com/Informasjonsforvaltning/datacatalogtordf): Python-bibliotek som mapper datakataloger til en RDF-graf i henhold til DCAT-AP-NO.
+- [concepttordf](https://github.com/Informasjonsforvaltning/concepttordf): Python-bibliotek som mapper begrepskataloger til en RDF-graf i henhold til SKOS-AP-NO.
+- [modelldcatnotordf](https://github.com/Informasjonsforvaltning/modelldcatnotordf): Python-bibliotek som mapper informasjonsmodellkataloger til RDF-graf i henhold til ModellDCAT-AP-NO.
+- [servicecatalogtordf](https://github.com/Informasjonsforvaltning/servicecatalogtordf): Python-bibliotek som mapper tjeneste- og/eller hendelseskataloger til en RDF-graf i henhold til CPSV-AP-NO.
+- [oastodcat](https://github.com/Informasjonsforvaltning/oastodcat): Python-bibliotek som transformerer en OpenAPI-spesifikasjon til instans(er) av dcat:DataService (DCAT-AP-NO).
+- [jsonschematordf](https://github.com/Informasjonsforvaltning/jsonschematordf): Python-bibliotek som mapper fra JSON Schema til en RDF-graf i henhold til ModellDCAT-AP-NO.
+- [Valideringsverktøy](https://data.norge.no/validator): Validerer datasettbeskrivelser (DCAT-AP-NO), begrepsbeskrivelser (SKOS-AP-NO) og tjeneste- og hendelsesbeskrivelser (CPSV-AP-NO) i RDF-format.
+- [SPARQL-brukergrensesnitt](https://data.norge.no/sparql): Verktøy som lar deg gjøre SPARQL-spørringer på innholdet i Data.norge.no.
+
+Kommer du over feil eller mangler i disse, opprett gjerne et issue i repoet eller send oss en e-post på mailto:fellesdatakatalog@digdir.no.

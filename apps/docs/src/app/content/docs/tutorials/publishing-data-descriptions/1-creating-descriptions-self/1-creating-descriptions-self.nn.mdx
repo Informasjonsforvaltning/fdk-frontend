@@ -1,0 +1,109 @@
+---
+title: Lage beskrivingar sjøl
+description: Informasjon om korleis lage datasettbeskrivingar i RDF.
+---
+
+# Kom i gang: Lage beskrivingar sjølv
+
+<Ingress>
+    På denne sida lærer du korleis lage beskrivingar du forvaltar sjølv, slik at dei kan publiserast til Data.norge.no.
+    I neste steg må du [setje opp hausting](/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions) i hausteløysinga til Data.norge.no
+    for å publisere beskrivingane.
+</Ingress>
+
+## Korleis lage RDF-grafar
+
+Vi anbefaler at du brukar veiledinga vår som gjennom eksempel viser [korleis du lagar ei datasettbeskriving frå A-Å](/docs/how-to-guides/how-to-dataset).
+
+I tillegg kan du bruke desse rettleiingane for å lære meir om RDF og korleis lage datasettbeskrivingar:
+
+-   [Kræsjkurs i RDF og Turtle](https://github.com/fellesdatakatalog/sikt-workshop/blob/main/ressurshefte/ressurshefte.md)
+-   [Rettleiing for beskriving av datasett, datatenester og datakatalogar](https://informasjonsforvaltning.github.io/veileder-beskrivelse-av-datasett/#beskrivelse-av-datasett)
+-   [Rettleiing for orden i eige hus - Steg 5: Beskrive](https://www.digdir.no/informasjonsforvaltning/steg-5-beskrive/2724)
+
+Beskrivingane som blir laga, må vere i eit RDF-format og i tråd med spesifikasjonen for ressursen som blir beskriven.
+
+<Alert
+  
+  size="sm"
+>
+
+Beskrivingane du lagar, må vere i eit RDF-format som blir støtta av Data.norge.no:
+
+-   [Turtle](https://www.w3.org/TR/turtle/)
+-   [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/)
+-   [RDF/JSON](https://www.w3.org/TR/rdf-json/)
+-   [JSON-LD](https://www.w3.org/TR/json-ld11/)
+-   [N-Triples](https://www.w3.org/TR/n-triples/)
+-   ([Notation3/N3](https://www.w3.org/TeamSubmission/n3/) som synonym for Turtle)
+
+</Alert>
+
+For dei andre ressursane (omgrep, informasjonsmodellar, tenester og hendingar) finst det døme på beskrivingar på [Data.norge.no sitt "Showroom"](https://data.norge.no/showroom/overview). Ein kan òg støtte seg på den aktuelle spesifikasjonen og døma i den. Dei fleste av døma er skrivne i RDF-formatet kalla Turtle, og har overføringsverdi til dei andre ressurstypane.
+
+<Alert
+size='sm'
+>
+    Sjå [Fleire relevante ressursar](/docs/additional-resources) for meir informasjon om dei ulike spesifikasjonane
+    Data.norge.no baserer seg på.
+</Alert>
+
+Forvaltar du beskrivinga sjølv og set opp hausting, vil hausteløysinga hauste og ta vare på alle data i beskrivinga. Felt som førebels ikkje er støtta vil bli vist etter kvart som Data.norge.no legg til støtte for visning av felta.
+
+### Viktig å tenkje på med URI-ar og ved namngjeving av ressursar
+
+Ressursar som blir beskrive i RDF blir namngjevne ved hjelp av ein unik, global identifikator, ein såkalla URI ("Uniform Resource Identifier"). URI-ar skal vere unike og varige, og ideelt sett peike til ressursar som faktisk er tilgjengelege på nettet. Meir informasjon om utforming av URI-ar finn du her:
+
+-   [Peikarar til offentlege ressursar på nett (Digdir)](https://www.digdir.no/standarder/peikarar-til-offentlege-ressursar-pa-nett/1492)
+-   [10 Rules for Persistent URIs (Interoperable Europe)](https://joinup.ec.europa.eu/collection/semic-support-centre/document/10-rules-persistent-uris)
+-   [Cool URIs for the Semantic Web (W3C)](https://www.w3.org/TR/cooluris/#semweb)
+
+## Validering av beskrivingar
+
+Når du har laga ei beskriving, kan du validere ho med Data.norge.no sin [validator](https://data.norge.no/validator), som gir beskjed om eventuelle feil og manglar.
+
+Du kan publisere ei beskriving som har korrekt syntaks men innhaldsmessige manglar i tråd med spesifikasjonen. Ho vil berre bli vist som mangelfull på nettsidene til Data.norge.no. Inneheld derimot beskrivinga/RDF-grafen syntaktiske feil, vil haustinga mislykkast og beskrivinga vil ikkje bli vist på Data.norge.no.
+
+## Resultat
+
+Til slutt skal du ha ei beskriving som ser ut som noko som liknar dette:
+
+```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+<https://data.digdir.no/catalog/1> a dcat:Catalog ;
+  dcat:dataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
+  .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> a dcat:Dataset ;
+    dct:title "Kunstig intelligens - oversikt over prosjekter i offentlig sektor"@nb ,
+            "Kunstig intelligens - oversikt over prosjekt i offentleg sektor"@nn ,
+            "Artificial intelligence - overview of projects in the public sector"@en ;
+    dct:description "En oversikt over kunstig intelligens-prosjekter i offentlig sektor. Oversikten er ikke komplett."@nb ;
+                    "Ei oversikt over kunstig intelligens-prosjekt i offentleg sektor. Oversikta er ikkje komplett"@nn ;
+                    "An overview of artificial intelligence projects in the public sector. The overview is not complete."@en ;
+    dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
+    dcat:contactPoint [
+      rdf:type vcard:Organization ;
+      vcard:hasEmail "postmottak@digdir.no" ;
+      vcard:fn "Postmottak Digdir" ;
+    ] ;
+    dct:keyword "kunstig intelligens"@nb , "kunstig intelligens"@nn , "artificial intelligence"@en,
+                "offentlig sektor"@nb , "offentleg sektor"@nn , "public sector"@en ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE>,
+               <http://eurovoc.europa.eu/3030> ;
+    dct:spatial <http://publications.europa.eu/resource/authority/country/NOR> ;
+    prov:wasGeneratedBy provno:collectingFromThirdparty ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+    foaf:page <https://data.norge.no/kunstig-intelligens> ;
+    .
+```
+
+## Neste steg: Publisere beskrivinga
+
+Når du har laga ei beskriving, kan du [setje opp hausting](/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions) slik at ho blir publisert til Data.norge.no.
