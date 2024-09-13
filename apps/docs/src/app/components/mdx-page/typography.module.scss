@@ -1,4 +1,10 @@
 .article {
+    line-height: 1.5em;
+
+    > * + * {
+        margin-bottom: 1rem;
+    }
+
     > h1,
     > h2,
     > h3,
@@ -36,21 +42,17 @@
         margin: 2rem 0;
     }
 
-    > * + * {
-        margin-bottom: 1rem;
-    }
-
     ul,
     ol {
         list-style: none;
         padding: 0 0 0 1.25rem;
-        margin: 0;
+        margin: 0 0 1rem 0;
     }
 
     ul,
     ol {
-        > * + * {
-            margin-top: 0.75rem;
+        li {
+            margin-bottom: 0.5rem;
         }
     }
 

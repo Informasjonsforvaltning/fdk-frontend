@@ -7,7 +7,6 @@ description: En kort innføring i Resource Description Framework (RDF) og Turtle
 
 Hvis du ikke allerede har lest den, ta gjerne en kikk på artikkelen om [hvorfor data.norge.no bruker RDF](/docs/rdf), der får du en overordnet forklaring på hva RDF er.
 
-
 ## Byggeklossene i RDF
 
 ### Trippelet
@@ -18,19 +17,23 @@ I RDF kan vi komme med _utsagn_, eller _fakta_ om ressurser, og disse utsagnene 
 
 Subjektet og objektet er ressursene vi sier noe om, mens predikatet sier noe om relasjonen mellom subjektet og predikatet. Noen eksempler på tripler (i pseudokode) er:
 
-- `<Leonardo da Vinci> <ble født> <15. april 1452>`
-- `<Leonardo da Vinci> <var> <en maler>`
-- `<Mona Lisa> <er malt av> <Leonardo da Vinci>`
+-   `<Leonardo da Vinci> <ble født> <15. april 1452>`
+-   `<Leonardo da Vinci> <var> <en maler>`
+-   `<Mona Lisa> <er malt av> <Leonardo da Vinci>`
 
 Sånn sett er datamodellen i RDF veldig enkel: all data består bare av en samling av slike tripler.
 
-<Alert
-    size='sm'
->
-    **Merk**: Siden et trippel definerer en relasjon mellom subjektet og objektet, utgjør en samling av tripler en _graf_, som illustrert i figuren under. Vi kan bruke uttrykket _RDF-graf_ som synonym for "en samling med tripler".
+<Alert size='sm'>
+    **Merk**: Siden et trippel definerer en relasjon mellom subjektet og objektet, utgjør en samling av tripler en
+    _graf_, som illustrert i figuren under. Vi kan bruke uttrykket _RDF-graf_ som synonym for "en samling med tripler".
 </Alert>
 
-<Image src="https://cms.fellesdatakatalog.digdir.no/uploads/da_vinci_graph_ex_5095760b07.png" width={360} height={360} alt="En RDF-graf, som viser noen utsagn om Leonardo da Vinci" />
+<Image
+    src='https://cms.fellesdatakatalog.digdir.no/uploads/da_vinci_graph_ex_5095760b07.png'
+    width={360}
+    height={360}
+    alt='En RDF-graf, som viser noen utsagn om Leonardo da Vinci'
+/>
 
 ### Ressurser trenger et navn: URI
 
@@ -40,21 +43,19 @@ Når vi skal beskrive _en ressurs_ i RDF er vi nødt til å vite hvilken ressurs
 En URI, eller _Unique Resource Identifier_, er en global og unik identifikator, og dette er grunnen til at man bruker URI-er for å navngi ressurser i RDF: da kan hvem som helst, hvor som helst bruke URI-en og vite at de snakker om samme ting.
 Dette skiller seg for eksempel fra typiske ID-er i databasesystemer, eller gateadresser som er unik kun innenfor en kommune.
 
-<Alert
-    size='sm'
->
-    **Merk**: Det kan i blant være tvetydig om en URI peker til _beskrivelsen av tingen_ eller _tingen i seg selv_. For eksempel ville det vært rart å si at DBpedia-siden om Leonardo da Vinci _er_ Leonardo da Vinci selv.
-    Allikevel er dette et vanlig mønster å følge i RDF, særlig når det er snakk om beskrivelser av personer. Når det gjelder datasettbeskrivelser er praksis derimot at URI-en til en instans av `dcat:Dataset` peker til _datasettbeskrivelsen_ og _ikke_ den fysiske forekomsten av datasettet.
+<Alert size='sm'>
+    **Merk**: Det kan i blant være tvetydig om en URI peker til _beskrivelsen av tingen_ eller _tingen i seg selv_. For
+    eksempel ville det vært rart å si at DBpedia-siden om Leonardo da Vinci _er_ Leonardo da Vinci selv. Allikevel er
+    dette et vanlig mønster å følge i RDF, særlig når det er snakk om beskrivelser av personer. Når det gjelder
+    datasettbeskrivelser er praksis derimot at URI-en til en instans av `dcat:Dataset` peker til _datasettbeskrivelsen_
+    og _ikke_ den fysiske forekomsten av datasettet.
 </Alert>
-
 
 ### Verdier ("literals")
 
 I tillegg til URI-er kan en beskrivelse i RDF bestå av verdier som blant annet tekst, tall eller datoer. Disse kalles "_literals_" i RDF.
 
-<Alert
-    size='sm'
->
+<Alert size='sm'>
     **Tips**: Du kan også angi hvilket språk en tekst er på, for eksempel slik `"tekst på bokmål"@nb`.
 </Alert>
 
@@ -76,7 +77,12 @@ La oss vise med et litt større eksempel hvor vi har noen påstander, eller utsa
 
 Det kan vi også tegne opp som denne grafen:
 
-<Image src="https://cms.fellesdatakatalog.digdir.no/uploads/ada_lovelace_graph_3c97a51392.png" width={360} height={360} alt="Graf som inneholder utsagn om Ada Lovelace" />
+<Image
+    src='https://cms.fellesdatakatalog.digdir.no/uploads/ada_lovelace_graph_3c97a51392.png'
+    width={360}
+    height={360}
+    alt='Graf som inneholder utsagn om Ada Lovelace'
+/>
 
 Dette vil vi nå skrive i et gyldig RDF-format kalt Turtle (eller "serialiseringsformat" for å være helt presis).
 
@@ -84,10 +90,10 @@ Dette vil vi nå skrive i et gyldig RDF-format kalt Turtle (eller "serialisering
 
 Turtle er et konkret språk for å lage RDF-grafer. Kort oppsummert:
 
-- Du skriver en URI med "\<" og "\>", slik: `<https://example.org>`
-- Du skriver tekstverdier med anførselstegn: `"en tekst"`
-- Du kan angi typen til en verdi, for eksempel heltall: `"1"^^<http://www.w3.org/2001/XMLSchema#integer>`, eller dato: `"2024-06-05"^^<http://www.w3.org/2001/XMLSchema#date>`
-- Du kan angi språket til teksten: `"An english text"@en` eller `"Ei tekst på nynorsk"@nn`.
+-   Du skriver en URI med "\<" og "\>", slik: `<https://example.org>`
+-   Du skriver tekstverdier med anførselstegn: `"en tekst"`
+-   Du kan angi typen til en verdi, for eksempel heltall: `"1"^^<http://www.w3.org/2001/XMLSchema#integer>`, eller dato: `"2024-06-05"^^<http://www.w3.org/2001/XMLSchema#date>`
+-   Du kan angi språket til teksten: `"An english text"@en` eller `"Ei tekst på nynorsk"@nn`.
 
 #### Eksempel
 
@@ -165,9 +171,7 @@ Hvert utsagn som gjenbruker subjektet avsluttes med `;`. Vi avslutter hele bolke
 
 ### Med flere verdier på samme predikat
 
-<Alert
-    size='sm'
->
+<Alert size='sm'>
     **Tips**: Du kan legge inn kommentarer i Turtle med tegnet '#'. da ignoreres det som er bak '#'-tegnet.
 </Alert>
 
@@ -226,6 +230,7 @@ Begge varianter er gyldig Turtle, og begge to representerer akkurat den samme in
 I bånn er det tripler bestående av URI-er og verdier.
 
 ### a = rdf:type
+
 Siden vi ofte bruker predikatet `rdf:type` tilbyr Turtle forkortelsen `a`. Så dette trippelet:
 
 ```turtle
@@ -235,6 +240,7 @@ Siden vi ofte bruker predikatet `rdf:type` tilbyr Turtle forkortelsen `a`. Så d
 
 people:adaLovelace rdf:type foaf:Person .
 ```
+
 er det samme som:
 
 ```turtle
