@@ -1,0 +1,239 @@
+---
+title: Beskriving av datasett
+description: Lær korleis du lagar ei beskriving av datasettet ditt.
+---
+
+# Lage beskrivinga
+
+No er du klar til å lage beskrivinga i rett format, slik at ho kan publiserast til data.norge.no. Det er her moroa byrjar!
+
+<Alert
+    size='sm'
+>
+    **Nyttig å vite**: Vi må lage beskrivinga i eit strukturert dataformat som data.norge.no sitt system kan forstå. Dette formatet heiter RDF (Resource Description Framework) og er i bruk òg blant andre europeiske dataportalar og i fleire private verksemder sine datakatalogar.
+    RDF kan skrivast på fleire ulike måtar – i døma under bruker vi RDF-formatet som heiter Turtle – men du vel sjølv kva for eitt du vil bruke. Du kan [lese meir om RDF her](/rdf)
+</Alert>
+
+<Alert
+    color='warning'
+    size='sm'
+>
+    **Viktig**: Du bør bruke eit tekstredigeringsprogram som ikkje formaterer teksten. Microsoft Word eignar seg dårleg, medan Windows Notepad, VS Code eller liknande fungerer bra.
+</Alert>
+
+## Identifikator for beskrivinga (URI)
+
+Fyrst må vi angi ein unik identifikator for datasettbeskrivinga, i form av ein URI (Uniform Resource Identifier). Han bør vere persistent og unik. URI-en kan peike til ein faktisk nettressurs som er tilgjengeleg på nett, men det er ikkje naudsynt.
+
+For beskrivinga av KI-prosjekt brukar vi URI-en `https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset`
+
+Denne identifikatoren kan no brukast av alle system overalt for å peike til nøyaktig den same tingen.
+
+## Tittel og beskriving
+
+Vi vil no leggje til tittelen vi har førebudd, både på bokmål, nynorsk og engelsk. Då bruker vi eigenskapen `dct:title`, og kan angi språket for teksten med `@nb` for bokmål, `@nn` for nynorsk og `@en` for engelsk. Resultatet blir slik:
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  dct:title "Kunstig intelligens - oversikt over prosjekter i offentlig sektor"@nb ,
+            "Kunstig intelligens - oversikt over prosjekt i offentleg sektor"@nn ,
+            "Artificial intelligence - overview of projects in the public sector"@en ;
+  .
+```
+
+Og tilsvarande vil vi leggje til ei tekstleg beskriving på bokmål, nynorsk og engelsk. Til det bruker vi eigenskapen `dct:description`
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  dct:title "Kunstig intelligens - oversikt over prosjekter i offentlig sektor"@nb ,
+            "Kunstig intelligens - oversikt over prosjekt i offentleg sektor"@nn ,
+            "Artificial intelligence - overview of projects in the Norwegian public sector"@en ;
+  dct:description "En oversikt over kunstig intelligens-prosjekter i offentlig sektor. Oversikten er ikke komplett."@nb ,
+                  "Ei oversikt over kunstig intelligens-prosjekt i offentleg sektor. Oversikta er ikkje komplett"@nn ,
+                  "An overview of artificial intelligence projects in the public sector. The overview is not complete."@en ;
+  .
+```
+
+<Alert
+    size='sm'
+>
+    **Merk**: For å spare plass i døma har vi utelatt dei såkalla prefiksa.
+    Men alle døma treng at prefiksa lista opp rett under er definerte for å vere gyldig Turtle og RDF.
+    Så berre førestill deg at desse linjene står før kvart døme. Til slutt kjem eit komplett døme der vi også inkluderer prefiksa.
+
+    ```turtle
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix dcat: <http://www.w3.org/ns/dcat#> .
+    @prefix dct: <http://purl.org/dc/terms/> .
+    @prefix prov: <http://www.w3.org/ns/prov#> .
+    @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+    @prefix provno: <https://data.norge.no/vocabulary/provno#> .
+    ```
+</Alert>
+
+## Utgjevar og kontaktpunkt for datasett
+
+Vi vil no seie at Digitaliseringsdirektoratet, med organisasjonsnummer 991825827 er utgjevar av datasettet. Vi bruker då eigenskapen `dct:publisher` og peiker til ein URI som representerer Digdir: https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827.
+Denne URI-utforminga følgjer konvensjonen blant datasettbeskrivingar i Noreg. Publiserer du for ei anna verksemd kan du berre byte ut dei siste ni siffera i URI-en med organisasjonsnummeret til verksemda som er ansvarleg for datasettet du skildrar.
+
+I tillegg vil vi leggje til informasjon om kven i Digdir som kan kontaktast angåande dette spesifikke datasettet. Det gjer vi ved hjelp av eit kontaktkort `vcard:Organization`, og der vil vi oppgi namn og e-post med eigenskapane `vcard:fn` og `vcard:hasEmail`.
+
+Beskrivinga vil då sjå slik ut:
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...tittel og beskrivelse utelatt
+  dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
+  dcat:contactPoint <https://data.digdir.no/contact/aiContactPoint> ;
+  .
+
+<https://data.digdir.no/contact/aiContactPoint> rdf:type vcard:Organization ;
+  vcard:hasEmail "postmottak@digdir.no" ;
+  vcard:fn "Kunstig Intelligens Digdir" ;
+  .
+```
+
+<Alert
+    size='sm'
+>
+    **Tips**: Du kan leggje inn kommentarar i Turtle med teiknet `#`, då blir det som kjem etter ignorert.
+</Alert>
+
+
+### Ressurser uten namn: Blanke noder
+
+I skildringa over har kontaktinfoen fått ein eigen identifikator, `<https://data.digdir.no/contact/aiContactPoint>`, noko som eigentleg ikkje er naudsynt.
+Det einaste vi treng er nemleg e-posten og namnet på gruppa eller teamet i Digdir som kan kontaktast, kontaktpunktet treng ikkje ein eigen identifikator.
+For å unngå dette kan vi opprette ein såkalla blank node, eller namnløs ressurs, ved hjelp av hakeparentesar [...]. Det vil då sjå slik ut:
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...tittel og beskrivelse utelatt
+  dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
+  dcat:contactPoint [
+    rdf:type vcard:Organization ;
+    vcard:hasEmail "postmottak@digdir.no" ;
+    vcard:fn "Postmottak Digdir" ;
+  ] ;
+  .
+```
+
+Dette seier nøyaktig det same som skildringa over, men her slepp vi å lage ein unødvendig URI for kontaktpunktet.
+
+## Nøkkelord og tema
+
+Datasettet kan knytast til nokre nøkkelord, for eksempel "kunstig intelligens" og "offentleg sektor". Vi bruker eigenskapen `dct:keyword` og lagar tekstar både på bokmål, nynorsk og engelsk.
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  dct:keyword "kunstig intelligens"@nb , "kunstig intelligens"@nn , "artificial intelligence"@en,
+              "offentlig sektor"@nb , "offentleg sektor"@nn , "public sector"@en ;
+  .
+```
+
+I tillegg vil vi bruke eigenskapen `dcat:theme` for å knyte datasettet til kodar frå offentlege kodelister som EU forvaltar. Vi vil bruke to kodar her: den fyrste er frå kodelista Data Theme, http://publications.europa.eu/resource/authority/data-theme/GOVE, og den andre er frå kodelista EuroVoc, http://eurovoc.europa.eu/3030.
+Den fyrste seier at datasettet kan tematiserast under offentleg sektor ("Government and public sector"), og den andre peikar til omgrepet "Artificial Intelligence". Det sjår slik ut i Turtle:
+
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE>,
+             <http://eurovoc.europa.eu/3030> ;
+  .
+```
+
+Alle datasettbeskrivingar må ha minst eitt tema angitt med dcat:theme, og temaet må anten peike til kodelista Data Theme eller kodelista EuroVoc. I tillegg kan du peike til tema frå kodelista LOS som Digdir forvaltar.
+
+For å finne aktuelle kodar til di beskriving kan du sjå gjennom innhaldet i kodelistene på:
+
+-   [Oversikt over kodar i Data Theme (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme)
+-   [Oversikt over kodar i EuroVoc (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141)
+
+I tillegg har vi skrive ei eiga [side om korleis bruke kodar](/docs/tutorials/code-lists) for å merke datasett tematisk. Ta gjerne ein kikk der om du lurer på noko.
+
+
+## Geografisk avgrensing
+
+Ved hjelp av eigenskapen `dct:spatial` og ein eksisterande kode som representerer det geografiske området Noreg kan vi uttrykke at datasettet er avgrensa til Noreg:
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  dct:spatial <http://publications.europa.eu/resource/authority/country/NOR> ;
+  .
+```
+
+## Dataopphav og tilgang
+
+Vi vil seie at datasettet er basert på innsamling frå tredjepartar, og at datasettet har open tilgang. For å beskrive datasettet sitt opphav bruker vi eigenskapen `prov:wasGeneratedBy` og peiker til ein kode som representerer "Innsamla frå tredjepartar". For å uttrykke at datasettet er ope bruker vi eigenskapen `dct:accessRights` og peiker til eksisterande koder som representerer "Open data".
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  prov:wasGeneratedBy <https://data.norge.no/vocabulary/provno#collectingFromThirdparty> ;
+  dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+  .
+```
+
+## Nettsida
+
+Datasettet har ei eiga nettside som kan besøkast på https://data.norge.no/kunstig-intelligens. Det kan vi leggje til i beskrivinga med eigenskapen `foaf:page`.
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  foaf:page <https://data.norge.no/kunstig-intelligens> ;
+  .
+```
+
+## Komplett beskrivelse av datasettet:
+
+Heile beskrivinga av datasettet vil så langt sjå slik ut:
+
+```
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix provno: <https://data.norge.no/vocabulary/provno#> .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> a dcat:Dataset ;
+    dct:title "Kunstig intelligens - oversikt over prosjekter i offentlig sektor"@nb ,
+            "Kunstig intelligens - oversikt over prosjekt i offentleg sektor"@nn ,
+            "Artificial intelligence - overview of projects in the public sector"@en ;
+    dct:description "En oversikt over kunstig intelligens-prosjekter i offentlig sektor. Oversikten er ikke komplett."@nb ,
+                    "Ei oversikt over kunstig intelligens-prosjekt i offentleg sektor. Oversikta er ikkje komplett"@nn ,
+                    "An overview of artificial intelligence projects in the public sector. The overview is not complete."@en ;
+    dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
+    dcat:contactPoint [
+      rdf:type vcard:Organization ;
+      vcard:hasEmail "postmottak@digdir.no" ;
+      vcard:fn "Kunstig Intelligens Digdir" ;
+    ] ;
+    dct:keyword "kunstig intelligens"@nb , "kunstig intelligens"@nn , "artificial intelligence"@en,
+                "offentlig sektor"@nb , "offentleg sektor"@nn , "public sector"@en ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE>,
+               <http://eurovoc.europa.eu/3030> ;
+    dct:spatial <http://publications.europa.eu/resource/authority/country/NOR> ;
+    prov:wasGeneratedBy provno:collectingFromThirdparty ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+    foaf:page <https://data.norge.no/kunstig-intelligens> ;
+    .
+```
+
+## Validering
+
+Du kan no validere beskrivinga i [DCAT-AP-NO-validatoren](https://data.norge.no/validator) for å sjekke at ho samsvarar med standarden/spesifikasjonen for datasettbeskrivingar.
+Validatoren sjekkar at du har fylt ut alle obligatoriske felt, og at felta har riktig type innhald.
+
+<Alert
+    size='sm'
+>
+    **Tips**: For å finne ut kvar det eventuelt er syntaksfeil kan du sjekke beskrivinga di på [https://www.easyrdf.org/converter](https://www.easyrdf.org/converter).
+    Den gir tilbakemelding om kva linje som inneheld feil, men den veit ingenting om beskrivinga di er i samsvar med DCAT-AP-NO. 
+</Alert>

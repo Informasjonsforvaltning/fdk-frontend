@@ -1,0 +1,109 @@
+---
+title: Making Available through Distribution
+description: Describe making available via distribution/file download
+---
+
+# Describe dataset availability via distribution/file download
+
+We have provided quite a bit of information _about_ the dataset, but we have not yet described how others can access and download the data. Since we offer the data as a file from GitHub, we can describe this as a Distribution and add information about it.
+
+<Alert
+    size='sm'
+>
+    **Note**: We distinguish between Dataset, Distribution, and Data Service/API to clarify that a dataset can be made available in multiple ways. In this context, dataset is a fairly abstract concept, while the concrete files and endpoints from which you can retrieve the data are called distribution and data service.
+</Alert>
+
+
+We first need to state that the dataset **has** a distribution. For this, we use `dcat:distribution`, which should point to a Distribution Resource described below.
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  dcat:distribution <https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> ;
+  .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> rdf:type dcat:Distribution .
+```
+
+Here we have defined a new resource with URI `https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution` and state that it is of type `dcat:Distribution`.
+
+## Access URL and Download URL
+
+The dataset is available as a file download from Digdir's GitHub page, `https://github.com/Informasjonsforvaltning/ai-project-service/blob/main/ai_projects_norwegian_state%20-%20Oversatt_v1.csv`, and we can point to this with the property `dcat:accessURL`. This is the only mandatory property for a distribution description.
+
+However, we also want to add more information, for example, the direct link to the file: `https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state%20-%20Oversatt_v1.csv`, which we can point to with `dcat:downloadURL`. The distribution description will then look like this:
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> rdf:type dcat:Distribution ;
+  dcat:accessURL <https://github.com/Informasjonsforvaltning/ai-project-service/blob/main/ai_projects_norwegian_state%20-%20Oversatt_v1.csv> ;
+  dcat:downloadURL <https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state%20-%20Oversatt_v1.csv> ;
+  .
+```
+
+## Textual Description and Publication Date
+
+We add a textual description of the distribution and when it was published, using the fields `dct:description` and `dct:issued` for this:
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> rdf:type dcat:Distribution ;
+  dct:description "CSV-fil med oversikt over kunstig intelligens-prosjekter i offentlig sektor"@nb ;
+  dct:issued "2023-02-23"^^xsd:date ;
+  .
+```
+
+## License
+
+The distribution has an Apache 2.0 license, which we specify with the property `dct:license`. This property _must_ point to a controlled vocabulary/code list from the EU.
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> rdf:type dcat:Distribution ;
+  dct:license <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> ;
+  .
+```
+
+Examples of some other licenses from the EU code list are:
+
+- `http://publications.europa.eu/resource/authority/licence/APACHE_2_0`
+- `http://publications.europa.eu/resource/authority/licence/CC0`
+- `http://publications.europa.eu/resource/authority/licence/CC_BY_4_0`
+
+
+## Format and Language
+
+We will specify the format of the file, which in our case is a CSV file; for this, we use the property `dct:format` and point to a code in the EU vocabulary "File Type" that represents CSV.
+Additionally, the content of the dataset is in Norwegian - Bokmål. We specify this with the property `dct:language` and point to the code from the EU vocabulary that indicates Norwegian - Bokmål:
+
+```turtle
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> rdf:type dcat:Distribution ;
+  dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+  dct:language <http://publications.europa.eu/resource/authority/language/NOB> ;
+  .
+```
+
+## Complete Distribution Description
+
+The complete distribution description will then look like this:
+
+```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
+  # ...
+  dcat:distribution <https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> ;
+  .
+
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> rdf:type dcat:Distribution ;
+  dcat:accessURL <https://github.com/Informasjonsforvaltning/ai-project-service/blob/main/ai_projects_norwegian_state%20-%20Oversatt_v1.csv> ;
+  dcat:downloadURL <https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state%20-%20Oversatt_v1.csv> ;
+  dct:description "CSV-fil med oversikt over kunstig intelligens-prosjekter i offentlig sektor"@nb ;
+  dct:issued "2023-02-23"^^xsd:date ;
+  dct:license <http://publications.europa.eu/resource/authority/licence/APACHE_2_0> ;
+  dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+  dct:language <http://publications.europa.eu/resource/authority/language/NOB> ;
+  .
+```

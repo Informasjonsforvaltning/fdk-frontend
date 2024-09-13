@@ -1,0 +1,47 @@
+---
+title: Creating descriptions in data.norge.no's Registration Portal
+description: Information on how to use data.norge.no's Registration Solution to create descriptions.
+---
+
+# Creating descriptions in the Registration Portal
+
+Data.norge.no's [registration solution](https://registrering.fellesdatakatalog.digdir.no) is a form-based solution that allows you to fill in relevant fields and generates descriptions in the correct format. When you publish the descriptions from the solution, harvesting is automatically set up so that they are displayed on Data.norge.no.
+
+The registration solution can be used to create descriptions of datasets, data services, concepts, and services. It cannot yet be used to describe information models and events.
+
+<Alert
+    size="small"
+>
+**Before you begin:**
+
+You must
+
+- be logged in to the [registration solution](https://registrering.fellesdatakatalog.digdir.no) via ID-porten, and
+- have the correct access rights (at least "Common Data Catalog - all catalogs - write access").
+
+More informastion about [access and how to login](/docs/login-and-access)
+
+</Alert>
+
+## 1. Describe
+
+Go to the catalog for the type of resource you wish to describe. Each organization has one catalog per type, and a catalog contains multiple descriptions.
+
+Create a new description and fill in the fields you want. Some fields are mandatory and must be filled out.
+
+The registration solution on Data.norge.no generates RDF graphs/descriptions according to the specification, but the solution does not support all the fields in the specifications. If there are fields you need to use that are not supported, you may want to manage the description yourself and [set up harvesting](/getting-started/publishing-descriptions) to Data.norge.no.
+
+<Alert
+    size="small"
+>
+Go to [the guide on how to create descriptions yourself](/docs/tutorials/publishing-data-descriptions/1-creating-descriptions-self) if you want to create and administer the description yourself.
+</Alert>
+
+## 2. Publish
+
+You can choose whether to publish the description to Data.norge.no or keep it as a draft for further work. Published changes are harvested approximately once an hour to Data.norge.no.
+
+## Optional next step: manually trigger a harvest
+
+When you have used the registration solution, your description is automatically added as a source that data.norge.no regularly harvests from.
+If you want to start a harvest yourself, you can read more about it on the page [How to manually start a harvest](/docs/tutorials/publishing-data-descriptions/4-triggering-harvest).
