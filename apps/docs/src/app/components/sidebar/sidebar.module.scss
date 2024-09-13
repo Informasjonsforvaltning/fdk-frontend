@@ -20,12 +20,35 @@
     list-style: none;
 
     li {
+        &.itemOpen {
+            background: #f8f8f8;
+            border-radius: 0.25rem;
+        }
+
+        > div {
+            position: relative;
+
+            > button {
+                padding: 0.25rem;
+                position: absolute;
+                top: 0.25rem;
+                right: 0.25rem;
+                top: 0;
+                right: 0;
+                min-height: 0;
+                min-width: 0;
+            }
+        }
+
         a,
         strong {
+            flex-grow: 1;
             display: block;
-            padding: 0.5rem 1rem;
+            // padding: 0.5rem 1rem;
+            padding: 0.25rem 0.5rem;
             text-decoration: none;
             border-radius: 0.25rem;
+            padding-right: 2rem;
         }
         strong {
             background: #f8f8f8;

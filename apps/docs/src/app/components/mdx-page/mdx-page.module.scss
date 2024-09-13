@@ -1,12 +1,18 @@
 .mdxPage {
     margin: 0 2rem 3rem;
+    container-type: inline-size;
 
     .content {
         display: grid;
-        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-columns: 2fr 5fr 2fr;
         grid-template-areas: '. article .';
-        gap: 3rem;
-        align-items: start; /* Align items at the top */
+        gap: 1rem;
+        align-items: start;
+
+        @container (max-width: 1100px) {
+            grid-template-columns: 2fr 5fr;
+            grid-template-areas: '. article';
+        }
 
         .article {
             grid-area: article;
@@ -17,8 +23,18 @@
             img {
                 max-width: 100%;
                 padding: 0.5rem;
-                // background:#f8f8f8;
                 border: 1px solid #eee;
+            }
+
+            code {
+                &:not([class]) {
+                    background: rgba(0, 0, 0, 0.05);
+                    font-size: 0.85em;
+                    padding: 0.2em 0.4em;
+                    white-space: break-spaces;
+                    border-radius: 6px;
+                    color: #444;
+                }
             }
         }
     }

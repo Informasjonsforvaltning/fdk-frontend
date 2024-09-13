@@ -7,9 +7,7 @@ description: Lær hvordan du lager en beskrivelse av datasettet ditt.
 
 Da er du klar til å lage beskrivelsen i riktig format, sånn at det kan publiseres til data.norge.no. Det er her moroa begynner!
 
-<Alert
-    size='sm'
->
+<Alert size='sm'>
     **Nyttig å vite**: Vi må lage beskrivelsen i et strukturert dataformat som data.norge.no sitt system kan forstå.
     Dette formatet heter RDF (Resource Description Framework) og er i bruk også blant andre europeiske dataportaler og i
     flere private virksomheter sine datakataloger. RDF kan skrives på flere ulike måter – i eksemplene under bruker vi
@@ -97,9 +95,7 @@ Beskrivelsen vil da se slik ut:
   .
 ```
 
-<Alert
-    size='sm'
->
+<Alert size='sm'>
     **Tips**: Du kan legge inn kommentarer i Turtle med tegnet `#`, da ignoreres det som kommer etter.
 </Alert>
 
@@ -190,7 +186,7 @@ Datasettet har en egen nettside som kan besøkes på https://data.norge.no/kunst
 
 Hele beskrivelsen av datasettet i Turtle-format vil så langt se slik ut:
 
-```
+```turtle
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
@@ -228,9 +224,7 @@ Hele beskrivelsen av datasettet i Turtle-format vil så langt se slik ut:
 Du kan nå validere beskrivelsen i [DCAT-AP-NO-validatoren](https://data.norge.no/validator) for å sjekke at den samsvarer med standarden/spesifikasjonen for datasettbeskrivelser.
 Validatoren sjekker at du har fylt ut alle obligatoriske felt, og at feltene har riktig type innhold.
 
-<Alert
-    size='sm'
->
+<Alert size='sm'>
     **Tips**: For å finne ut hvor det eventuelt er syntaksfeil kan du sjekke beskrivelsen din på
     [https://www.easyrdf.org/converter](https://www.easyrdf.org/converter). Den gir tilbakemelding om hvilken linje som
     inneholder feil, men den vet ingenting om beskrivelsen din er i henhold til DCAT-AP-NO.

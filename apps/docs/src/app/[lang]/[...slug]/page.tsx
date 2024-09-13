@@ -6,11 +6,22 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote, compileMDX } from 'next-mdx-remote/rsc';
 import { marked } from 'marked';
+import remarkGfm from 'remark-gfm';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import { Ingress, type IngressProps, Alert, Button, Link, Heading, Paragraph } from '@digdir/designsystemet-react';
+import {
+    Ingress,
+    type IngressProps,
+    Alert,
+    Button,
+    Link,
+    Heading,
+    Paragraph,
+    Divider,
+    Table,
+} from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { i18n, type LocaleCodes, getDictionary } from '@fdk-frontend/dictionaries';
 
@@ -79,7 +90,10 @@ export default async function Page({ params }: DocsPageType) {
             Alert,
             Button,
             Link,
+            Divider,
             CatalogPromo,
+            Image: (props: React.ImgHTMLAttributes<HTMLImageElement>) => <img {...props} />,
+            table: ({ children }: React.TableHTMLAttributes<HTMLTableElement>) => <Table>{children}</Table>,
             Ingress: ({ size = 'xs', ...rest }: IngressProps) => (
                 <Ingress
                     asChild
@@ -95,6 +109,8 @@ export default async function Page({ params }: DocsPageType) {
                             <ExternalLinkIcon fontSize='1em' />
                         </Link>
                     );
+                } else if (rest.href?.startsWith('mailto')) {
+                    return <Link {...rest}>{children}</Link>;
                 } else {
                     return (
                         <Link
@@ -106,19 +122,34 @@ export default async function Page({ params }: DocsPageType) {
                     );
                 }
             },
-            code: ({ children }: React.HTMLAttributes<HTMLElement>) => (
-                <SyntaxHighlighter
-                    language='sparql'
-                    style={vscDarkPlus}
-                    children={children as any}
-                />
-            ),
+            code: ({ className, ...rest }: React.HTMLAttributes<HTMLElement>) => {
+                const match = /language-(\w+)/.exec(className || '');
+                return match ? (
+                    // @ts-ignore
+                    <SyntaxHighlighter
+                        style={vscDarkPlus as CSSProperties}
+                        language={match[1]}
+                        PreTag='div'
+                        {...rest}
+                    />
+                ) : (
+                    <code
+                        className={className}
+                        {...rest}
+                    />
+                );
+            },
         };
 
         // Compile MDX and extract content
         const { content, frontmatter } = await compileMDX({
             source,
-            options: { parseFrontmatter: true },
+            options: {
+                mdxOptions: {
+                    remarkPlugins: [remarkGfm],
+                },
+                parseFrontmatter: true,
+            },
             components,
         });
 
