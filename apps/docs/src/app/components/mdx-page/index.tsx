@@ -38,18 +38,24 @@ const MdxPage = async ({ children, sidebars = true, slug, locale, baseUri, sourc
             />
             <div className={pageStyles.content}>
                 {sidebars && (
-                    <aside>
-                        <Sidebar
-                            dictionary={docsDictionary}
-                            slug={slug}
-                            locale={locale}
-                        />
+                    <aside className={pageStyles.leftColumn}>
+                        <div className={pageStyles.asideContent}>
+                            <Sidebar
+                                dictionary={docsDictionary}
+                                slug={slug}
+                                locale={locale}
+                            />
+                        </div>
                     </aside>
                 )}
-                <article className={cn(pageStyles.article, typography.article)}>{children}</article>
+                <div className={pageStyles.mainColumn}>
+                    <article className={cn(pageStyles.article, typography.article)}>{children}</article>
+                </div>
                 {sidebars && (
-                    <aside>
-                        <TableOfContents headlines={headlines} />
+                    <aside className={pageStyles.rightColumn}>
+                        <div className={pageStyles.asideContent}>
+                            <TableOfContents headlines={headlines} />
+                        </div>
                     </aside>
                 )}
             </div>

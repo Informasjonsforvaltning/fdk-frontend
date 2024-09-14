@@ -1,6 +1,8 @@
+
+
 .sidebar {
-    padding-right: 1rem;
-    max-width: 300px;
+    // padding-right: 1rem;
+    // max-width: 300px;
 
     h2 {
         margin-bottom: 1rem;
@@ -22,7 +24,16 @@
     li {
         &.itemOpen {
             background: #f8f8f8;
+            background: rgba(0,0,0,0.04);
             border-radius: 0.25rem;
+
+            li {
+                background:transparent;
+
+                strong {
+                    background:transparent;
+                }
+            }
         }
 
         > div {
