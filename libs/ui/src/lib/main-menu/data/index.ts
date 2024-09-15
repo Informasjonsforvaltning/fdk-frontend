@@ -79,12 +79,12 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
     ],
     about: [
         {
-            title: dictionary.mainMenu.about.links.reports,
-            href: `${baseUri}/reports`,
-        },
-        {
             title: dictionary.mainMenu.about.links.aboutUs,
             href: `${baseUri}/about`,
+        },
+        {
+            title: dictionary.mainMenu.about.links.reports,
+            href: `${baseUri}/reports`,
         },
         {
             title: dictionary.mainMenu.about.links.contactUs,
