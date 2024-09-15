@@ -71,7 +71,7 @@
         "@nx/react": "19.6.1",
         "@nx/storybook": "19.6.1",
         "@nx/web": "19.6.1",
-        "@nx/workspace": "19.6.1",
+        "@nx/workspace": "19.7.3",
         "@playwright/test": "^1.46.1",
         "@storybook/addon-essentials": "7.6.19",
         "@storybook/addon-interactions": "^7.5.3",
