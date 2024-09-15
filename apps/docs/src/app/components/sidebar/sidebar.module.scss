@@ -1,9 +1,4 @@
-
-
 .sidebar {
-    // padding-right: 1rem;
-    // max-width: 300px;
-
     h2 {
         margin-bottom: 1rem;
 
@@ -24,14 +19,14 @@
     li {
         &.itemOpen {
             background: #f8f8f8;
-            background: rgba(0,0,0,0.04);
+            background: rgba(0, 0, 0, 0.04);
             border-radius: 0.25rem;
 
             li {
-                background:transparent;
+                background: transparent;
 
                 strong {
-                    background:transparent;
+                    background: transparent;
                 }
             }
         }
@@ -40,7 +35,7 @@
             position: relative;
 
             > button {
-                padding: 0.25rem;
+                padding: 0.2rem 0.25rem;
                 position: absolute;
                 top: 0.25rem;
                 right: 0.25rem;
@@ -55,7 +50,6 @@
         strong {
             flex-grow: 1;
             display: block;
-            // padding: 0.5rem 1rem;
             padding: 0.25rem 0.5rem;
             text-decoration: none;
             border-radius: 0.25rem;

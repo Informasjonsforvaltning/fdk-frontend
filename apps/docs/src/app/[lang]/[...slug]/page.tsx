@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import slugify from 'slugify';
 
+import { CSSProperties } from 'react';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote, compileMDX } from 'next-mdx-remote/rsc';
@@ -21,6 +22,11 @@ import {
     Paragraph,
     Divider,
     Table,
+    TableHead,
+    TableBody,
+    TableRow,
+    TableHeaderCell,
+    TableCell,
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { i18n, type LocaleCodes, getDictionary } from '@fdk-frontend/dictionaries';
@@ -93,7 +99,24 @@ export default async function Page({ params }: DocsPageType) {
             Divider,
             CatalogPromo,
             Image: (props: React.ImgHTMLAttributes<HTMLImageElement>) => <img {...props} />,
-            table: ({ children }: React.TableHTMLAttributes<HTMLTableElement>) => <Table>{children}</Table>,
+            table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
+                <Table {...props as any}>{children}</Table>
+            ),
+            thead: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+                <TableHead {...props}>{children}</TableHead>
+            ),
+            tbody: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+                <TableBody {...props}>{children}</TableBody>
+            ),
+            tr: ({ children, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
+                <TableRow {...props}>{children}</TableRow>
+            ),
+            th: ({ children, ...props }: React.ThHTMLAttributes<HTMLTableHeaderCellElement>) => (
+                <TableHeaderCell {...props}>{children}</TableHeaderCell>
+            ),
+            td: ({ children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>) => (
+                <TableCell {...props}>{children}</TableCell>
+            ),
             Ingress: ({ size = 'xs', ...rest }: IngressProps) => (
                 <Ingress
                     asChild
@@ -127,7 +150,7 @@ export default async function Page({ params }: DocsPageType) {
                 return match ? (
                     // @ts-ignore
                     <SyntaxHighlighter
-                        style={vscDarkPlus as CSSProperties}
+                        style={vscDarkPlus as any}
                         language={match[1]}
                         PreTag='div'
                         {...rest}

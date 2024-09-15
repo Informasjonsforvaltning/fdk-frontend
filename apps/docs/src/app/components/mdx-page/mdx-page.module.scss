@@ -14,12 +14,18 @@
         }
 
         .rightColumn {
-            display:flex;
+            display: flex;
             justify-content: flex-end;
+
+            .asideContent {
+                width: 350px;
+                min-width: 0;
+                max-width: 350px;
+            }
         }
 
         .asideContent {
-            max-width:350px;
+            max-width: 350px;
         }
 
         .article {
@@ -49,32 +55,32 @@
             grid-template-areas: '. article';
 
             .rightColumn {
-                display:none;
+                display: none;
             }
         }
 
         @container (max-width: 800px) {
-            display:block;
+            display: block;
 
             .mainColumn {
-                margin-top:2rem;
+                margin-top: 2rem;
             }
 
             .rightColumn {
-                display:none;
+                display: none;
             }
 
             aside {
-                max-width:inherit;
+                max-width: inherit;
                 margin: 0 -2rem;
                 padding: 1rem 2rem;
-                border-radius:0.25rem;
+                border-radius: 0.25rem;
                 background: var(--fds-brand-alt2-200);
                 background: #f8f8f8;
-                
+
                 .asideContent {
-                    max-width:700px;
-                    margin:0 auto;
+                    max-width: 700px;
+                    margin: 0 auto;
                 }
             }
         }
