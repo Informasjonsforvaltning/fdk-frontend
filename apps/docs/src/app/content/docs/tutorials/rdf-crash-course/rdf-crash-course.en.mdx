@@ -17,24 +17,19 @@ In RDF, we can make _statements_, or _facts_, about resources, and these stateme
 
 The subject and object are the resources we are talking about, while the predicate describes the relationship between the subject and the object. Some examples of triples (in pseudocode) are:
 
--   `<Leonardo da Vinci> <was born> <April 15, 1452>`
--   `<Leonardo da Vinci> <was> <a painter>`
--   `<Mona Lisa> <was painted by> <Leonardo da Vinci>`
+- `<Leonardo da Vinci> <was born> <April 15, 1452>`
+- `<Leonardo da Vinci> <was> <a painter>`
+- `<Mona Lisa> <was painted by> <Leonardo da Vinci>`
 
 In this sense, the data model in RDF is very simple: all data consists only of a collection of such triples.
 
-<Alert size='sm'>
-    **Note**: Since a triple defines a relationship between the subject and the object, a collection of triples
-    constitutes a _graph_, as illustrated in the figure below. We can use the term _RDF graph_ synonymously with "a
-    collection of triples."
+<Alert
+    size='sm'
+>
+    **Note**: Since a triple defines a relationship between the subject and the object, a collection of triples constitutes a _graph_, as illustrated in the figure below. We can use the term _RDF graph_ synonymously with "a collection of triples."
 </Alert>
 
-<Image
-    src='https://cms.fellesdatakatalog.digdir.no/uploads/da_vinci_graph_ex_5095760b07.png'
-    width={360}
-    height={360}
-    alt='An RDF graph, showing some statements about Leonardo da Vinci'
-/>
+<Image src="https://cms.fellesdatakatalog.digdir.no/uploads/da_vinci_graph_ex_5095760b07.png" width={360} height={360} alt="An RDF graph, showing some statements about Leonardo da Vinci" />
 
 ### Resources Need a Name: URI
 
@@ -44,19 +39,22 @@ When describing _a resource_ in RDF, we need to know which resource we are talki
 A URI, or _Unique Resource Identifier_, is a global and unique identifier, and this is why URIs are used to name resources in RDF: anyone, anywhere can use the URI and know that they are talking about the same thing.
 This differs, for example, from typical IDs in database systems, or street addresses that are unique only within a municipality.
 
-<Alert size='sm'>
-    **Note**: It can sometimes be ambiguous whether a URI refers to _the description of the thing_ or _the thing
-    itself_. For instance, it would be odd to say that the DBpedia page about Leonardo da Vinci _is_ Leonardo da Vinci
-    himself. However, this is a common pattern in RDF, especially when it comes to descriptions of people. In the case
-    of dataset descriptions, the practice is that the URI for an instance of `dcat:Dataset` refers to _the dataset
-    description_ and _not_ the physical instance of the dataset.
+<Alert
+    size='sm'
+>
+    **Note**: It can sometimes be ambiguous whether a URI refers to _the description of the thing_ or _the thing itself_. For instance, it would be odd to say that the DBpedia page about Leonardo da Vinci _is_ Leonardo da Vinci himself.
+    However, this is a common pattern in RDF, especially when it comes to descriptions of people. In the case of dataset descriptions, the practice is that the URI for an instance of `dcat:Dataset` refers to _the dataset description_ and _not_ the physical instance of the dataset.
 </Alert>
 
 ### Values ("literals")
 
 In addition to URIs, an RDF description can consist of values such as text, numbers, or dates. These are called "_literals_" in RDF.
 
-<Alert size='sm'>**Tip**: You can also specify the language of a text, for example, `"text in Bokmål"@nb`.</Alert>
+<Alert
+    size='sm'
+>
+    **Tip**: You can also specify the language of a text, for example, `"text in Bokmål"@nb`.
+</Alert>
 
 ## Modeling Ada Lovelace
 
@@ -76,12 +74,7 @@ Let's demonstrate with a slightly larger example where we have some statements, 
 
 We can also represent it as this graph:
 
-<Image
-    src='https://cms.fellesdatakatalog.digdir.no/uploads/ada_lovelace_graph_3c97a51392.png'
-    width={360}
-    height={360}
-    alt='Graph containing statements about Ada Lovelace'
-/>
+<Image src="https://cms.fellesdatakatalog.digdir.no/uploads/ada_lovelace_graph_3c97a51392.png" width={360} height={360} alt="Graph containing statements about Ada Lovelace" />
 
 ### Turtle - an RDF format
 
@@ -90,10 +83,10 @@ Turtle - an RDF Format
 
 Turtle is a concrete language for creating RDF graphs. In summary:
 
--   You write a URI with "\<" and "\>", like this: `<https://example.org>`
--   You write text values with quotation marks: `"a text"`
--   You can specify the type of a value, such as an integer: `"1"^^<http://www.w3.org/2001/XMLSchema#integer>`, or a date: `"2024-06-05"^^<http://www.w3.org/2001/XMLSchema#date>`
--   You can specify the language of the text: `"An English text"@en` or `"Ei tekst på nynorsk"@nn`.
+- You write a URI with "\<" and "\>", like this: `<https://example.org>`
+- You write text values with quotation marks: `"a text"`
+- You can specify the type of a value, such as an integer: `"1"^^<http://www.w3.org/2001/XMLSchema#integer>`, or a date: `"2024-06-05"^^<http://www.w3.org/2001/XMLSchema#date>`
+- You can specify the language of the text: `"An English text"@en` or `"Ei tekst på nynorsk"@nn`.
 
 #### Example
 
@@ -134,6 +127,7 @@ Here are some well-known and commonly used namespaces (in addition to a custom o
 
 With prefixes, we can simplify the description of Ada Lovelace.
 
+
 ```turtle
 @prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix foaf:   <http://xmlns.com/foaf/0.1/> .
@@ -170,7 +164,9 @@ Each statement that reuses the subject ends with `;`. We conclude the entire blo
 
 ### With Multiple Values for the Same Predicate
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+>
     **Tip**: You can add comments in Turtle with the `#` symbol. Everything after the `#` symbol is ignored.
 </Alert>
 
@@ -229,7 +225,6 @@ Both variants are valid Turtle, and both represent exactly the same information.
 At the core, there are triples consisting of URIs and values.
 
 ### a = rdf:type
-
 Since we often use the predicate `rdf:type`, Turtle offers the abbreviation `a`. So this triple:
 
 ```turtle
@@ -250,6 +245,7 @@ people:adaLovelace a foaf:Person .
 ```
 
 Notice that we then do not need to define the `rdf` prefix.
+
 
 ### Blank nodes (resources without URI)
 
@@ -285,11 +281,13 @@ people:adaLovelace a foaf:Person ;
 
 These blank nodes are still triples, but the resource in the object position of `schema:children` has no URI.
 
+
 ## RDF Serializations/Syntaxes
 
 There are several ways to express RDF graphs. In the table below, we have listed some of the most common syntaxes for serializing RDF.
 
 RDF tools and libraries can read from and write to one or more of these syntaxes. The de facto standard is RDF/XML, but Turtle is also supported by most tools.
+
 
 | Name      | Media type              | File extension |
 | --------- | ----------------------- | -------------- |
@@ -300,6 +298,7 @@ RDF tools and libraries can read from and write to one or more of these syntaxes
 | N-Quads   | `application/n-quads`   | `.nq`          |
 | TriG      | `application/trig`      | `.trig`        |
 | Notation3 | `text/n3;charset=utf-8` | `.n3`          |
+
 
 ## External Resources
 

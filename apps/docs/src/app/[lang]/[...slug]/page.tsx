@@ -1,12 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import slugify from 'slugify';
 
-import { CSSProperties } from 'react';
+import React from 'react';
 import type { Metadata, ResolvingMetadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { MDXRemote, compileMDX } from 'next-mdx-remote/rsc';
-import { marked } from 'marked';
+import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -18,7 +17,6 @@ import {
     Alert,
     Button,
     Link,
-    Heading,
     Paragraph,
     Divider,
     Table,
@@ -29,7 +27,7 @@ import {
     TableCell,
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { i18n, type LocaleCodes, getDictionary } from '@fdk-frontend/dictionaries';
+import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import MdxPage from '../../components/mdx-page';
 import MdxHeading from '../../components/mdx-heading';
@@ -93,12 +91,15 @@ export default async function Page({ params }: DocsPageType) {
                     {...props}
                 />
             ),
+            p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
+                <Paragraph {...props} />
+            ),
             Alert,
             Button,
             Link,
             Divider,
             CatalogPromo,
-            Image: (props: React.ImgHTMLAttributes<HTMLImageElement>) => <img {...props} />,
+            Image,
             table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
                 <Table {...props as any}>{children}</Table>
             ),
@@ -111,10 +112,10 @@ export default async function Page({ params }: DocsPageType) {
             tr: ({ children, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
                 <TableRow {...props}>{children}</TableRow>
             ),
-            th: ({ children, ...props }: React.ThHTMLAttributes<HTMLTableHeaderCellElement>) => (
+            th: ({ children, ...props }: React.ThHTMLAttributes<HTMLTableHeaderCellElement>) => ( // eslint-disable-line
                 <TableHeaderCell {...props}>{children}</TableHeaderCell>
             ),
-            td: ({ children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>) => (
+            td: ({ children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>) => (  // eslint-disable-line
                 <TableCell {...props}>{children}</TableCell>
             ),
             Ingress: ({ size = 'xs', ...rest }: IngressProps) => (
@@ -148,7 +149,7 @@ export default async function Page({ params }: DocsPageType) {
             code: ({ className, ...rest }: React.HTMLAttributes<HTMLElement>) => {
                 const match = /language-(\w+)/.exec(className || '');
                 return match ? (
-                    // @ts-ignore
+                    // @ts-expect-error: ignore complaint that vscDarkPlus does not conform to CSSProperties
                     <SyntaxHighlighter
                         style={vscDarkPlus as any}
                         language={match[1]}
@@ -199,7 +200,7 @@ export default async function Page({ params }: DocsPageType) {
  * In generateMetadata we do exactly the same as in the Page component,
  * except we extract frontmatter instead of content from MDX compilation
  */
-export async function generateMetadata({ params }: DocsPageType, parent: ResolvingMetadata): Promise<Metadata> {
+export const generateMetadata = async function ({ params }: DocsPageType, parent: ResolvingMetadata): Promise<Metadata> {
     const locale = params.lang ?? i18n.defaultLocale;
     const pageName = params.slug.at(-1);
     const filePath = path.resolve(process.cwd(), contentSource, ...params.slug, `${pageName}.${locale}.mdx`);

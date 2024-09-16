@@ -11,6 +11,25 @@ import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 
 import styles from './sidebar.module.scss';
 
+export type SidebarProps = {
+    dictionary: Dictionary;
+    slug: string[];
+    locale: LocaleCodes;
+};
+
+type SidebarItemObject = {
+    path: string;
+    title: string;
+    level: number;
+    children?: SidebarItemObject[];
+};
+
+type NestedListProps = {
+    items: SidebarItemObject[];
+    locale: LocaleCodes;
+    pathname: string;
+};
+
 const buildNestedStructure = (data: Dictionary, basePath: string, locale: LocaleCodes): SidebarItemObject[] => {
     const items: SidebarItemObject[] = Object.entries(data)
         .filter(([path]) => path.startsWith(basePath))
@@ -34,12 +53,6 @@ const buildNestedStructure = (data: Dictionary, basePath: string, locale: Locale
     });
 
     return nested;
-};
-
-type NestedListProps = {
-    items: SidebarItemObject[];
-    locale: LocaleCodes;
-    pathname: string;
 };
 
 const NestedList = ({ items, locale, pathname }: NestedListProps) => {
@@ -110,19 +123,6 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
             })}
         </ul>
     );
-};
-
-export type SidebarProps = {
-    dictionary: Dictionary;
-    slug: string[];
-    locale: LocaleCodes;
-};
-
-type SidebarItemObject = {
-    path: string;
-    title: string;
-    level: number;
-    children?: SidebarItemObject[];
 };
 
 const Sidebar = ({ dictionary, slug, locale }: SidebarProps) => {
