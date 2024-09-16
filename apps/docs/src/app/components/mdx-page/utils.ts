@@ -12,31 +12,11 @@ export type MdxHeadlineObjectNode = MdxHeadlineObject & {
 };
 
 /**
- * Extracts headlines from markdown and returns a nested structure.
- * @param {string} markdown - The raw markdown source.
- * @returns {Array} - A nested array of headlines with their levels.
- */
-function extractHeadlines(markdown: string) {
-    const markdownWithoutFrontmatter = stripFrontmatter(markdown);
-    const tokens = marked.lexer(markdownWithoutFrontmatter);
-    const headlines: { level: number; text: string }[] = [];
-
-    tokens.forEach((token) => {
-        if (token.type === 'heading') {
-            const text = extractHeadingText(token);
-            headlines.push({ level: token.depth, text });
-        }
-    });
-
-    return buildNestedHeadlines(headlines);
-}
-
-/**
  * Extracts the text from a heading token, handling nested link tokens.
  * @param {Object} token - The heading token.
  * @returns {string} - The extracted text.
  */
-function extractHeadingText(token: any) {
+const extractHeadingText = function (token: any) {
     // Check if the heading token has nested tokens and if it's a link
     if (token.tokens && token.tokens.length > 0) {
         const linkToken = token.tokens.find((t: any) => t.type === 'link');
@@ -53,7 +33,7 @@ function extractHeadingText(token: any) {
  * @param {Array} headlines - The flat array of headlines.
  * @returns {Array} - A nested array of headlines.
  */
-function buildNestedHeadlines(headlines: MdxHeadlineObject[]) {
+const buildNestedHeadlines = function (headlines: MdxHeadlineObject[]) {
     const stack: any[] = [];
     const nestedHeadlines: any[] = [];
 
@@ -76,6 +56,26 @@ function buildNestedHeadlines(headlines: MdxHeadlineObject[]) {
     });
 
     return nestedHeadlines;
+}
+
+/**
+ * Extracts headlines from markdown and returns a nested structure.
+ * @param {string} markdown - The raw markdown source.
+ * @returns {Array} - A nested array of headlines with their levels.
+ */
+const extractHeadlines = function (markdown: string) {
+    const markdownWithoutFrontmatter = stripFrontmatter(markdown);
+    const tokens = marked.lexer(markdownWithoutFrontmatter);
+    const headlines: { level: number; text: string }[] = [];
+
+    tokens.forEach((token) => {
+        if (token.type === 'heading') {
+            const text = extractHeadingText(token);
+            headlines.push({ level: token.depth, text });
+        }
+    });
+
+    return buildNestedHeadlines(headlines);
 }
 
 export { extractHeadlines };

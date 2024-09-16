@@ -7,20 +7,21 @@ description: Learn how to create a description of your dataset.
 
 Now you are ready to create the description in the correct format so that it can be published to data.norge.no. This is where the fun begins!
 
-<Alert size='sm'>
-    **Good to know**: We need to create the description in a structured data format that the data.norge.no system can
-    understand. This format is called RDF (Resource Description Framework) and is also used by other European data
-    portals and several private companies' data catalogs. RDF can be written in various ways – in the examples below, we
-    use the RDF format called Turtle – but you can choose which format to use. You can [read more about RDF here](/rdf).
+<Alert
+    size='sm'
+>
+    **Good to know**: We need to create the description in a structured data format that the data.norge.no system can understand. This format is called RDF (Resource Description Framework) and is also used by other European data portals and several private companies' data catalogs.
+    RDF can be written in various ways – in the examples below, we use the RDF format called Turtle – but you can choose which format to use. You can [read more about RDF here](/rdf).
 </Alert>
+
 
 <Alert
     color='warning'
     size='sm'
 >
-    **Important**: You should use a text editor that does not format the text. Microsoft Word is not suitable, while
-    Windows Notepad, VS Code, or similar programs work well.
+    **Important**: You should use a text editor that does not format the text. Microsoft Word is not suitable, while Windows Notepad, VS Code, or similar programs work well.
 </Alert>
+
 
 ## Identifier for the Description (URI)
 
@@ -71,7 +72,6 @@ Similarly, we will add a textual description in Bokmål, Nynorsk, and English us
     @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
     @prefix provno: <https://data.norge.no/vocabulary/provno#> .
     ```
-
 </Alert>
 
 ## Publisher and Contact Point for the Dataset
@@ -96,9 +96,12 @@ The description will then look like this:
   .
 ```
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+>
     **Tip**: You can add comments in Turtle with the `#` symbol; anything following it will be ignored.
 </Alert>
+
 
 ### Resources Without Names: Blank Nodes
 
@@ -119,6 +122,7 @@ To avoid this, we can create what is called a blank node, or unnamed resource, u
 ```
 
 This says exactly the same as the previous description but avoids creating an unnecessary URI for the contact point.
+
 
 ## Keywords and themes
 
@@ -148,8 +152,8 @@ All dataset descriptions must have at least one theme indicated with `dcat:theme
 
 To find relevant codes for your description, you can browse the content of the code lists at:
 
--   [Overview of codes in Data Theme (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme)
--   [Overview of codes in EuroVoc (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141)
+- [Overview of codes in Data Theme (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme)
+- [Overview of codes in EuroVoc (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141)
 
 We also have a page on [how to use codes](/docs/tutorials/code-lists) to tag datasets thematically. Feel free to check it out if you have any questions.
 
@@ -231,8 +235,9 @@ The full description of the dataset in Turtle format so far looks like this:
 You can now validate the description in the [DCAT-AP-NO Validator](https://data.norge.no/validator) to ensure that it complies with the standard/specification for dataset descriptions.
 The validator checks that you have filled in all the required fields and that the fields contain the correct type of content.
 
-<Alert size='sm'>
-    **Tip**: To find out where there might be syntax errors, you can check your description on
-    [https://www.easyrdf.org/converter](https://www.easyrdf.org/converter). It provides feedback on which line contains
-    an error, but it doesn't know whether your description complies with DCAT-AP-NO.
+<Alert
+    size='sm'
+>
+    **Tip**: To find out where there might be syntax errors, you can check your description on [https://www.easyrdf.org/converter](https://www.easyrdf.org/converter).
+    It provides feedback on which line contains an error, but it doesn't know whether your description complies with DCAT-AP-NO.
 </Alert>

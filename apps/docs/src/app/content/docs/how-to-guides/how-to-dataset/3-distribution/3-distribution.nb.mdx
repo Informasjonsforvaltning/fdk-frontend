@@ -7,11 +7,13 @@ description: Beskrive tilgjengeliggjøring via distribusjon/filnedlasting
 
 Nå har vi oppgitt ganske mye informasjon _om_ datasettet, men vi har fortsatt ikke beskrevet hvordan andre kan få tak i dataen og laste den ned. Siden vi tilbyr dataen som en fil fra Github kan vi beskrive det som en Distribusjon og legge til informasjon om den.
 
-<Alert size='sm'>
-    **Merk**: Vi skiller mellom Datasett, Distribusjon og Datatjeneste/API for å tydeliggjøre at et datasett kan
-    tilgjengeliggjøres på flere måter. I denne sammenhengen er datasett en ganske abstrakt ting, mens de konkrete filene
-    og endepunktene du kan hente dataen fra kalles for distribusjon og datatjeneste.
+<Alert
+    size='sm'
+>
+    **Merk**: Vi skiller mellom Datasett, Distribusjon og Datatjeneste/API for å tydeliggjøre at et datasett kan tilgjengeliggjøres på flere måter. I denne sammenhengen er datasett en ganske abstrakt ting, mens de konkrete filene og endepunktene du kan hente dataen fra kalles for distribusjon og datatjeneste.
 </Alert>
+
+
 
 Vi må først si at datasettet **har** en distribusjon, til det bruker vi `dcat:distribution` som skal peke til en Distribusjonsressurs vi beskriver under.
 
@@ -62,9 +64,9 @@ Distribusjonen har en Apache 2.0-lisens, som vi angir med egenskapen `dct:licens
 
 Eksempler på noen andre lisenser fra EUs kodeliste er:
 
--   `http://publications.europa.eu/resource/authority/licence/APACHE_2_0`
--   `http://publications.europa.eu/resource/authority/licence/CC0`
--   `http://publications.europa.eu/resource/authority/licence/CC_BY_4_0`
+- `http://publications.europa.eu/resource/authority/licence/APACHE_2_0`
+- `http://publications.europa.eu/resource/authority/licence/CC0`
+- `http://publications.europa.eu/resource/authority/licence/CC_BY_4_0`
 
 ## Format og språk
 

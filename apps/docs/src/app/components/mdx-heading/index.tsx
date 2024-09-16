@@ -3,11 +3,6 @@ import slugify from 'slugify';
 
 import styles from './mdx-heading.module.scss';
 
-interface HeadingProps {
-    level: number;
-    children: React.ReactNode;
-}
-
 const extractText = (children: React.ReactNode): string => {
     return React.Children.toArray(children)
         .map((child) => {
@@ -29,7 +24,7 @@ export type MdxHeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
 const MdxHeading = ({ level, children }: MdxHeadingProps) => {
     const textContent = extractText(children);
     const slug = slugify(textContent, { lower: true, strict: true });
-    const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
+    const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements; // eslint-disable-line
 
     return (
         <HeadingTag

@@ -7,7 +7,6 @@ import styles from './not-found.module.scss';
 export default function NotFound() {
     return (
         <div className={styles.notFoundPage}>
-            <img src='' />
             <Heading
                 level={1}
                 size='medium'

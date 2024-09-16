@@ -9,16 +9,14 @@ description: Describe making available via data service/API
     color='warning'
     size='sm'
 >
-    **Note**: The dataset _AI Projects in Public Sector_ is not made available via API, so the links and endpoints
-    provided for the API in the example below are not real and will not work. The examples here are only meant to
-    illustrate how an API description looks.
+    **Note**: The dataset _AI Projects in Public Sector_ is not made available via API, so the links and endpoints provided for the API in the example below are not real and will not work.
+    The examples here are only meant to illustrate how an API description looks.
 </Alert>
 
 To describe that the dataset is made available via an API, we use the `dcat:DataService` class.
 Much of the information is similar to that for Distribution, but DataService also has a few more mandatory fields.
 
 ## Linking the API to the Dataset
-
 To indicate that the data service provides data for the dataset we described, we use the `dcat:servesDataset` property. Note that this points _from_ the DataService _to_ the Dataset:
 
 ```turtle
@@ -76,6 +74,7 @@ We will again state here that the dataset is available under an Apache-2.0 licen
 ## Complete Description of Data Service
 
 The complete description of the Data Service/API will look like this:
+
 
 ```turtle
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
