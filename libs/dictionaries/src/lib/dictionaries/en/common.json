@@ -58,8 +58,7 @@
             "links": {
                 "community": "Community",
                 "documentation": "Documentation",
-                "findingData": "How to find data",
-                "sharingData": "How to share data"
+                "getStarted": "Get started"
             }
         },
         "tools": {

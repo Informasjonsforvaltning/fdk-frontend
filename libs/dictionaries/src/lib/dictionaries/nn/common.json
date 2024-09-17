@@ -58,8 +58,7 @@
             "links": {
                 "community": "Datafellesskapet",
                 "documentation": "Dokumentasjon",
-                "findingData": "Korleis finne data",
-                "sharingData": "Korleis dele data"
+                "getStarted": "Kom i gang"
             }
         },
         "tools": {
