@@ -33,7 +33,7 @@ import MdxPage from '../../components/mdx-page';
 import MdxHeading from '../../components/mdx-heading';
 import CatalogPromo from '../../components/catalog-promo';
 
-const contentSource = 'src/app/content';
+const contentDirectory = path.join(process.cwd(), 'public', 'content');
 
 export type DocsPageType = {
     params: {
@@ -45,14 +45,10 @@ export type DocsPageType = {
 export default async function Page({ params }: DocsPageType) {
     const locale = params.lang ?? i18n.defaultLocale;
     const pageName = params.slug.at(-1);
-    // eslint-disable-next-line no-restricted-syntax
-    console.log('Page name: ', pageName);
-
+    
     // Construct .mdx filepath based on URL slug and locale
-    const filePath = path.resolve(process.cwd(), contentSource, ...params.slug, `${pageName}.${locale}.mdx`);
-    // eslint-disable-next-line no-restricted-syntax
-    console.log('Filepath: ', filePath);
-
+    const filePath = path.resolve(process.cwd(), contentDirectory, ...params.slug, `${pageName}.${locale}.mdx`);
+   
     try {
         // Get raw MDX source
         const source = await fs.readFile(filePath, 'utf8');
@@ -208,7 +204,7 @@ export const generateMetadata = async function (
 ): Promise<Metadata> {
     const locale = params.lang ?? i18n.defaultLocale;
     const pageName = params.slug.at(-1);
-    const filePath = path.resolve(process.cwd(), contentSource, ...params.slug, `${pageName}.${locale}.mdx`);
+    const filePath = path.resolve(process.cwd(), contentDirectory, ...params.slug, `${pageName}.${locale}.mdx`);
 
     try {
         const source = await fs.readFile(filePath, 'utf8');
@@ -226,6 +222,6 @@ export const generateMetadata = async function (
             description,
         };
     } catch (err) {
-        notFound();
+        return notFound();
     }
 };
