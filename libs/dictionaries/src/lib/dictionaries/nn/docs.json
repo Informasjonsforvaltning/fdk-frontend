@@ -31,5 +31,11 @@
         "/docs/tutorials/publishing-data-descriptions/4-triggering-harvest": "Starte hausting",
         "/docs/tutorials/rdf-crash-course": "Kræsjkurs i RDF",
         "/docs/rdf": "RDF: kva og kvifor"
+    },
+    "feedbackBanner": {
+        "heading": "Finn du det du leitar etter?",
+        "text": "{{contactLink}} med oss her, eller spør om hjelp i {{communityLink}}.",
+        "contactLinkText": "Ta kontakt",
+        "communityLinkText": "Datalandsbyen"
     }
 }
