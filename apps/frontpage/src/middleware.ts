@@ -3,7 +3,7 @@ import { i18n, Locale } from '@fdk-frontend/dictionaries';
 
 export const middleware = (request: NextRequest) => {
     // Get the pathname and remove basePath
-    const basePath = '/next/home';
+    const basePath = '';
     const pathname = request.nextUrl.pathname;
     if (
         [
