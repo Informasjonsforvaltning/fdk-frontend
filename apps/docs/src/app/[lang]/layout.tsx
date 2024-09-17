@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
-import RootLayout, { RootLayoutProps, generateStaticParams } from '@fdk-frontend/ui/layout-root';
+import RootLayout, { generateStaticParams } from '@fdk-frontend/ui/layout-root';
 
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
 import FeedbackLayout from '../components/layouts/feedback-layout';
 
@@ -12,15 +12,10 @@ export type DocsLayoutProps = {
 };
 
 const DocsLayout = async ({ children, ...props }: PropsWithChildren & DocsLayoutProps) => {
-
     const { lang } = props.params;
     const dictionary = await getDictionary(lang, 'docs');
 
-    const {
-        FDK_BASE_URI: baseUri = '',
-        FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
-        FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
-    } = process.env;
+    const { FDK_BASE_URI: baseUri = '', FDK_COMMUNITY_BASE_URI: communityBaseUri = '/' } = process.env;
 
     return (
         <RootLayout {...props}>

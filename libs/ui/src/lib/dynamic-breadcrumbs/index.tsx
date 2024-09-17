@@ -16,7 +16,7 @@ type DynamicBreadcrumbsProps = {
 const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, baseUri, locale }: DynamicBreadcrumbsProps) => {
     const pathname = usePathname();
 
-    const createBreadcrumbPaths = function(pname: string) {
+    const createBreadcrumbPaths = function (pname: string) {
         const parts = pname.split('/');
         parts.splice(0, 2);
 
@@ -29,7 +29,7 @@ const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, baseUri, locale 
         }
 
         return paths;
-    }
+    };
 
     const items = createBreadcrumbPaths(pathname);
 

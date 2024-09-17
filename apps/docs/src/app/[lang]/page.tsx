@@ -1,5 +1,5 @@
-import { LocaleCodes } from "@fdk-frontend/dictionaries";
-import { redirect } from "next/navigation";
+import { LocaleCodes } from '@fdk-frontend/dictionaries';
+import { redirect } from 'next/navigation';
 
 export type DocsPageType = {
     params: {
