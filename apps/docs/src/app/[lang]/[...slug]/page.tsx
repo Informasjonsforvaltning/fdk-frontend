@@ -45,10 +45,10 @@ export type DocsPageType = {
 export default async function Page({ params }: DocsPageType) {
     const locale = params.lang ?? i18n.defaultLocale;
     const pageName = params.slug.at(-1);
-    
+
     // Construct .mdx filepath based on URL slug and locale
     const filePath = path.resolve(process.cwd(), contentDirectory, ...params.slug, `${pageName}.${locale}.mdx`);
-   
+
     try {
         // Get raw MDX source
         const source = await fs.readFile(filePath, 'utf8');

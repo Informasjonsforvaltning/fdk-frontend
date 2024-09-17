@@ -9,4 +9,4 @@ export type DocsPageType = {
 
 export default async function Page({ params }: DocsPageType) {
     return redirect(`/${params.lang}/docs`);
-};
+}

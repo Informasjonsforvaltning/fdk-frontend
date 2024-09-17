@@ -8,12 +8,7 @@ import { type MdxHeadlineObjectNode } from '../mdx-page/utils';
 
 import styles from '../sidebar/sidebar.module.scss';
 
-type TableOfContentsProps = {
-    dictionary: Dictionary;
-    headlines?: MdxHeadlineObjectNode[];
-}
-
-const TocList = ({ headlines, dictionary }: { headlines?: MdxHeadlineObjectNode[] }) => {
+const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
     if (!headlines || headlines.length === 0) return null;
     return (
         <ul className={cn(styles.sidebarList, styles.sidebarListFlat)}>
@@ -28,6 +23,11 @@ const TocList = ({ headlines, dictionary }: { headlines?: MdxHeadlineObjectNode[
             })}
         </ul>
     );
+};
+
+type TableOfContentsProps = {
+    dictionary: Dictionary;
+    headlines?: MdxHeadlineObjectNode[];
 };
 
 const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => {
