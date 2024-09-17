@@ -35,7 +35,7 @@ const MdxPage = async ({ children, sidebars = true, slug, locale, baseUri, sourc
                 baseUri={baseUri}
                 locale={locale}
             />
-            <div className={pageStyles.content}>
+            <div className={cn(pageStyles.content, { [pageStyles.noSidebars]: !sidebars })}>
                 {sidebars && (
                     <aside className={pageStyles.leftColumn}>
                         <div className={pageStyles.asideContent}>
