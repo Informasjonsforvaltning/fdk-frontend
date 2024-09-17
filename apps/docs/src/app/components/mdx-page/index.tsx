@@ -53,7 +53,10 @@ const MdxPage = async ({ children, sidebars = true, slug, locale, baseUri, sourc
                 {sidebars && (
                     <aside className={pageStyles.rightColumn}>
                         <div className={pageStyles.asideContent}>
-                            <TableOfContents headlines={headlines} />
+                            <TableOfContents
+                                dictionary={docsDictionary}
+                                headlines={headlines}
+                            />
                         </div>
                     </aside>
                 )}

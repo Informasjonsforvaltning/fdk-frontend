@@ -37,5 +37,8 @@
         "text": "{{contactLink}} med oss her, eller spør om hjelp i {{communityLink}}.",
         "contactLinkText": "Ta kontakt",
         "communityLinkText": "Datalandsbyen"
+    },
+    "tableOfContents": {
+        "onThisPage": "På denne sida:"
     }
 }

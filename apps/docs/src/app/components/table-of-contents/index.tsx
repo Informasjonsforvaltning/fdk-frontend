@@ -2,12 +2,18 @@ import slugify from 'slugify';
 import cn from 'classnames';
 
 import { Heading } from '@digdir/designsystemet-react';
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 import { type MdxHeadlineObjectNode } from '../mdx-page/utils';
 
 import styles from '../sidebar/sidebar.module.scss';
 
-const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
+type TableOfContentsProps = {
+    dictionary: Dictionary;
+    headlines?: MdxHeadlineObjectNode[];
+}
+
+const TocList = ({ headlines, dictionary }: { headlines?: MdxHeadlineObjectNode[] }) => {
     if (!headlines || headlines.length === 0) return null;
     return (
         <ul className={cn(styles.sidebarList, styles.sidebarListFlat)}>
@@ -24,14 +30,14 @@ const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
     );
 };
 
-const TableOfContents = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
+const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => {
     return (
         <nav className={styles.sidebar}>
             <Heading
                 level={2}
                 size='xs'
             >
-                På denne siden:
+                {dictionary.tableOfContents.onThisPage}
             </Heading>
             <TocList headlines={headlines} />
         </nav>

@@ -37,5 +37,8 @@
         "text": "You can {{contactLink}} here, or ask for help in our {{communityLink}}.",
         "contactLinkText": "contact us",
         "communityLinkText": "Community"
+    },
+    "tableOfContents": {
+        "onThisPage": "On this page:"
     }
 }
