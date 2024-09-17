@@ -26,7 +26,7 @@ const extractHeadingText = function (token: any) {
     }
     // Fallback to the heading's text if no nested link is found
     return token.text;
-}
+};
 
 /**
  * Converts a flat array of headlines into a nested structure.
@@ -56,7 +56,7 @@ const buildNestedHeadlines = function (headlines: MdxHeadlineObject[]) {
     });
 
     return nestedHeadlines;
-}
+};
 
 /**
  * Extracts headlines from markdown and returns a nested structure.
@@ -76,6 +76,6 @@ const extractHeadlines = function (markdown: string) {
     });
 
     return buildNestedHeadlines(headlines);
-}
+};
 
 export { extractHeadlines };

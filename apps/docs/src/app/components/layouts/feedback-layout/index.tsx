@@ -11,9 +11,14 @@ type FeedbackLayoutProps = {
     dictionary: Dictionary;
     baseUri: string;
     communityBaseUri: string;
-}
+};
 
-const FeedbackLayout = async ({ children, dictionary, baseUri, communityBaseUri }: PropsWithChildren & FeedbackLayoutProps) => {
+const FeedbackLayout = async ({
+    children,
+    dictionary,
+    baseUri,
+    communityBaseUri,
+}: PropsWithChildren & FeedbackLayoutProps) => {
     return (
         <div className={styles.feedbackLayout}>
             {children}
@@ -21,17 +26,22 @@ const FeedbackLayout = async ({ children, dictionary, baseUri, communityBaseUri 
                 <div className={styles.feedbackBannerInner}>
                     <Heading
                         className={styles.heading}
-                        size="xs"
+                        size='xs'
                     >
                         {dictionary.feedbackBanner.heading}
                     </Heading>
                     <Paragraph>
-                        {
-                            interpolate(dictionary.feedbackBanner.text, {
-                                contactLink: <Link href={`${baseUri}/contact`}>{dictionary.feedbackBanner.contactLinkText}</Link>,
-                                communityLink: <Link href={communityBaseUri}>{dictionary.feedbackBanner.communityLinkText}&nbsp;<ExternalLinkIcon fontSize="1em" /></Link>
-                            })
-                        }
+                        {interpolate(dictionary.feedbackBanner.text, {
+                            contactLink: (
+                                <Link href={`${baseUri}/contact`}>{dictionary.feedbackBanner.contactLinkText}</Link>
+                            ),
+                            communityLink: (
+                                <Link href={communityBaseUri}>
+                                    {dictionary.feedbackBanner.communityLinkText}&nbsp;
+                                    <ExternalLinkIcon fontSize='1em' />
+                                </Link>
+                            ),
+                        })}
                     </Paragraph>
                 </div>
             </div>

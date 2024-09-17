@@ -46,12 +46,12 @@ export default async function Page({ params }: DocsPageType) {
     const locale = params.lang ?? i18n.defaultLocale;
     const pageName = params.slug.at(-1);
     // eslint-disable-next-line no-restricted-syntax
-    console.log("Page name: ", pageName);
-    
+    console.log('Page name: ', pageName);
+
     // Construct .mdx filepath based on URL slug and locale
     const filePath = path.resolve(process.cwd(), contentSource, ...params.slug, `${pageName}.${locale}.mdx`);
     // eslint-disable-next-line no-restricted-syntax
-    console.log("Filepath: ", filePath);
+    console.log('Filepath: ', filePath);
 
     try {
         // Get raw MDX source
@@ -95,9 +95,7 @@ export default async function Page({ params }: DocsPageType) {
                     {...props}
                 />
             ),
-            p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-                <Paragraph {...props} />
-            ),
+            p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
             Alert,
             Button,
             Link,
@@ -105,7 +103,7 @@ export default async function Page({ params }: DocsPageType) {
             CatalogPromo,
             Image,
             table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
-                <Table {...props as any}>{children}</Table>
+                <Table {...(props as any)}>{children}</Table>
             ),
             thead: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
                 <TableHead {...props}>{children}</TableHead>
@@ -116,12 +114,12 @@ export default async function Page({ params }: DocsPageType) {
             tr: ({ children, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
                 <TableRow {...props}>{children}</TableRow>
             ),
-            th: ({ children, ...props }: React.ThHTMLAttributes<HTMLTableHeaderCellElement>) => ( // eslint-disable-line
-                <TableHeaderCell {...props}>{children}</TableHeaderCell>
-            ),
-            td: ({ children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>) => (  // eslint-disable-line
-                <TableCell {...props}>{children}</TableCell>
-            ),
+            th: (
+                { children, ...props }: React.ThHTMLAttributes<HTMLTableHeaderCellElement>, // eslint-disable-line
+            ) => <TableHeaderCell {...props}>{children}</TableHeaderCell>,
+            td: (
+                { children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>, // eslint-disable-line
+            ) => <TableCell {...props}>{children}</TableCell>,
             Ingress: ({ size = 'xs', ...rest }: IngressProps) => (
                 <Ingress
                     asChild
@@ -204,7 +202,10 @@ export default async function Page({ params }: DocsPageType) {
  * In generateMetadata we do exactly the same as in the Page component,
  * except we extract frontmatter instead of content from MDX compilation
  */
-export const generateMetadata = async function ({ params }: DocsPageType, parent: ResolvingMetadata): Promise<Metadata> {
+export const generateMetadata = async function (
+    { params }: DocsPageType,
+    parent: ResolvingMetadata,
+): Promise<Metadata> {
     const locale = params.lang ?? i18n.defaultLocale;
     const pageName = params.slug.at(-1);
     const filePath = path.resolve(process.cwd(), contentSource, ...params.slug, `${pageName}.${locale}.mdx`);
@@ -227,4 +228,4 @@ export const generateMetadata = async function ({ params }: DocsPageType, parent
     } catch (err) {
         notFound();
     }
-}
+};
