@@ -31,5 +31,11 @@
         "/docs/tutorials/publishing-data-descriptions/4-triggering-harvest": "Start harvesting",
         "/docs/tutorials/rdf-crash-course": "RDF crash course",
         "/docs/rdf": "RDF: what and why"
+    },
+    "feedbackBanner": {
+        "heading": "Did you find what you were looking for?",
+        "text": "You can {{contactLink}} here, or ask for help in our {{communityLink}}.",
+        "contactLinkText": "contact us",
+        "communityLinkText": "Community"
     }
 }

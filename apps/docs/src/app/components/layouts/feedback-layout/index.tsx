@@ -1,13 +1,39 @@
 import { PropsWithChildren } from 'react';
 
+import { Heading, Paragraph, Link } from '@digdir/designsystemet-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
+
+import { type Dictionary, interpolate } from '@fdk-frontend/dictionaries';
+
 import styles from './feedback-layout.module.scss';
 
-const FeedbackLayout = async ({ children }: PropsWithChildren) => {
+type FeedbackLayoutProps = {
+    dictionary: Dictionary;
+    baseUri: string;
+    communityBaseUri: string;
+}
+
+const FeedbackLayout = async ({ children, dictionary, baseUri, communityBaseUri }: PropsWithChildren & FeedbackLayoutProps) => {
     return (
         <div className={styles.feedbackLayout}>
             {children}
             <div className={styles.feedbackBanner}>
-                <div className={styles.feedbackBannerInner}>Feedback banner here</div>
+                <div className={styles.feedbackBannerInner}>
+                    <Heading
+                        className={styles.heading}
+                        size="xs"
+                    >
+                        {dictionary.feedbackBanner.heading}
+                    </Heading>
+                    <Paragraph>
+                        {
+                            interpolate(dictionary.feedbackBanner.text, {
+                                contactLink: <Link href={`${baseUri}/contact`}>{dictionary.feedbackBanner.contactLinkText}</Link>,
+                                communityLink: <Link href={communityBaseUri}>{dictionary.feedbackBanner.communityLinkText}&nbsp;<ExternalLinkIcon fontSize="1em" /></Link>
+                            })
+                        }
+                    </Paragraph>
+                </div>
             </div>
         </div>
     );
