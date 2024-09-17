@@ -66,7 +66,7 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
         },
         {
             title: dictionary.mainMenu.tools.links.dataHunter,
-            href: `${baseUri}/forms`,
+            href: `${baseUri}/data-hunter`,
         },
         {
             title: dictionary.mainMenu.tools.links.sparqlSandbox,

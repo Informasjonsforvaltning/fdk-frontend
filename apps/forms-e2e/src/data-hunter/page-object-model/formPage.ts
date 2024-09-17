@@ -4,7 +4,7 @@ import * as mockData from '../data/inputData.json';
 import type AxeBuilder from '@axe-core/playwright';
 
 export default class FormPage {
-    dataHunterPageUrl = '/forms/en/data-hunter';
+    dataHunterPageUrl = '/en/data-hunter';
     page: Page;
     context: BrowserContext;
     dictionary: Dictionary;

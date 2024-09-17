@@ -3,6 +3,7 @@ import 'server-only';
 import React from 'react';
 import type { Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
+import { headers } from 'next/headers'
 
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 
@@ -32,10 +33,6 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     const baseUri = FDK_BASE_URI ?? '/';
 
     const breadcrumbList = [
-        {
-            href: getPaths(baseUri).forms,
-            text: dictionary.forms,
-        },
         {
             href: getPaths(baseUri).dataHunter,
             text: dictionary.dataHunter,

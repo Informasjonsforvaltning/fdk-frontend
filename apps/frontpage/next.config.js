@@ -12,17 +12,7 @@ const nextConfig = {
         // See: https://github.com/gregberge/svgr
         svgr: false,
     },
-    basePath: '/next/home',
-    async redirects() {
-        return [
-            {
-                source: '/',
-                destination: '/next/home',
-                basePath: false,
-                permanent: false,
-            },
-        ];
-    },
+    assetPrefix: '/nb'    
 };
 
 const plugins = [
