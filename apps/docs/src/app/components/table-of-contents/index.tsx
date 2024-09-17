@@ -30,8 +30,7 @@ type TableOfContentsProps = {
     headlines?: MdxHeadlineObjectNode[];
 };
 
-const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => {
-    return (
+const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
         <nav className={styles.sidebar}>
             <Heading
                 level={2}
@@ -42,6 +41,5 @@ const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => {
             <TocList headlines={headlines} />
         </nav>
     );
-};
 
 export default TableOfContents;
