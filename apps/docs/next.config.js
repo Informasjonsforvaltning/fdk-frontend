@@ -1,7 +1,5 @@
 //@ts-check
 
-const devMode = process.env.NODE_ENV === 'development';
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
 const createMDX = require('@next/mdx');
@@ -17,17 +15,7 @@ const nextConfig = {
     },
     // Configure `pageExtensions` to include markdown and MDX files
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-    basePath: devMode ? '' : '/docz',
-    async redirects() {
-        return devMode ? [] : [
-            {
-                source: '/',
-                destination: '/docz',
-                basePath: false,
-                permanent: false,
-            },
-        ];
-    }    
+    assetPrefix: '/nb/docs',
 };
 
 // Create the MDX configuration
