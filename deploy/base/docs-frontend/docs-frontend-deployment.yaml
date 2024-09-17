@@ -28,7 +28,7 @@ spec:
                   livenessProbe:
                       failureThreshold: 3
                       httpGet:
-                          path: /next/home/api/ping
+                          path: /docz/api/ping
                           port: 8080
                           scheme: HTTP
                       periodSeconds: 30
@@ -38,7 +38,7 @@ spec:
                   readinessProbe:
                       failureThreshold: 3
                       httpGet:
-                          path: /next/home/api/ready
+                          path: /docz/api/ready
                           port: 8080
                           scheme: HTTP
                       periodSeconds: 30
