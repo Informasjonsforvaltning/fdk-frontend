@@ -3,11 +3,16 @@
     container-type: inline-size;
 
     .content {
+        align-items: start;
         display: grid;
         grid-template-columns: calc(25% - 0.5rem) calc(50% - 2rem) calc(25% - 0.5rem);
         grid-template-areas: '. article .';
         gap: 2rem;
-        align-items: start;
+
+        &.noSidebars {
+            grid-template-columns: 100%;
+            grid-template-areas: 'article';
+        }
 
         .mainColumn {
             grid-area: article;
