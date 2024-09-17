@@ -45,9 +45,13 @@ export type DocsPageType = {
 export default async function Page({ params }: DocsPageType) {
     const locale = params.lang ?? i18n.defaultLocale;
     const pageName = params.slug.at(-1);
-
+    // eslint-disable-next-line no-restricted-syntax
+    console.log("Page name: ", pageName);
+    
     // Construct .mdx filepath based on URL slug and locale
     const filePath = path.resolve(process.cwd(), contentSource, ...params.slug, `${pageName}.${locale}.mdx`);
+    // eslint-disable-next-line no-restricted-syntax
+    console.log("Filepath: ", filePath);
 
     try {
         // Get raw MDX source
