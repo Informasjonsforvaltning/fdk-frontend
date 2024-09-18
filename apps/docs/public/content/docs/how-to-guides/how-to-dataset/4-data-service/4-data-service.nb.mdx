@@ -6,19 +6,17 @@ description: Beskrive tilgjengeliggjøring via datatjeneste/API
 # Beskrive tilgjengeliggjøring via API
 
 <Alert
-    color='warning'
+    severity='warning'
     size='sm'
 >
-    **Merk**: Datasettet _KI-prosjekter i offentlig sektor_ er ikke tilgjengeliggjort via API, så lenkene og
-    endepunktene oppgitt for API-et i eksempelet under er ikke virkelige og vil ikke fungere. Eksemplene her er kun ment
-    å illustrere hvordan en API-beskrivelse ser ut.
+    **Merk**: Datasettet _KI-prosjekter i offentlig sektor_ er ikke tilgjengeliggjort via API, så lenkene og endepunktene oppgitt for API-et i eksempelet under er ikke virkelige og vil ikke fungere.
+    Eksemplene her er kun ment å illustrere hvordan en API-beskrivelse ser ut.
 </Alert>
 
 For å beskrive at datasettet er tilgjengeliggjort over et API bruker vi Datatjeneste-klassen `dcat:DataService`.
 Mye av informasjonen er tilsvarende som for Distribusjonen, men Datatjeneste har i tillegg noen flere obligatoriske felter.
 
 ## Knytte API-et til datasettet
-
 For å si at datatjenesten tilbyr dataen for datasettet vi har beskrevet bruker vi egenskapen `dcat:servesDataset`. Merk at denne peker _fra_ Datatjenesten _til_ Datasettet:
 
 ```turtle
