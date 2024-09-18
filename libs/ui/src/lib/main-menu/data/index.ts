@@ -36,7 +36,7 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
             key: 'ai',
             title: dictionary.mainMenu.catalogs.ai.title,
             description: dictionary.mainMenu.catalogs.ai.description,
-            href: `${baseUri}/catalogs/kunstig-intelligens`,
+            href: `${baseUri}/catalogs/ai`,
         },
     ],
     help: [
