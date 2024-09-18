@@ -3,7 +3,6 @@ import 'server-only';
 import React from 'react';
 import type { Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
-import { headers } from 'next/headers'
 
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 
