@@ -34,8 +34,8 @@ spec:
                             secretKeyRef:
                                 name: commonurl-prod
                                 key: FDK_LLM_SEARCH_BASE_URI
-                      - name: DATA_NORGE_BASE_URI
+                      - name: FDK_DATA_NORGE_BASE_URI
                         valueFrom:
                             secretKeyRef:
                                 name: commonurl-prod
-                                key: DATA_NORGE_BASE_URI
+                                key: FDK_DATA_NORGE_BASE_URI

@@ -28,11 +28,11 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     const commonDictionary = await getDictionary(lang, 'common');
 
     const {
-        DATA_NORGE_BASE_URI,
+        FDK_DATA_NORGE_BASE_URI,
         FDK_BASE_URI = '/'
     } = process.env;
 
-    const baseUri = DATA_NORGE_BASE_URI || FDK_BASE_URI;
+    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
     const breadcrumbList = [
         {

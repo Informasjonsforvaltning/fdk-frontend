@@ -20,12 +20,12 @@ const Frontpage = async ({ params }: FrontpageProps) => {
     noStore();
 
     const {
-        DATA_NORGE_BASE_URI,
+        FDK_DATA_NORGE_BASE_URI,
         FDK_BASE_URI = '',
         FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = ''
     } = process.env;
 
-    const baseUri = DATA_NORGE_BASE_URI || FDK_BASE_URI;
+    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
     const commonDictionary = await getDictionary(params.lang, 'common');
     const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
