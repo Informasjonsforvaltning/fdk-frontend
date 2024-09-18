@@ -176,11 +176,11 @@ export default async function Page({ params }: DocsPageType) {
         });
 
         const {
-            DATA_NORGE_BASE_URI,
+            FDK_DATA_NORGE_BASE_URI,
             FDK_BASE_URI = ''
         } = process.env;
 
-        const baseUri = DATA_NORGE_BASE_URI || FDK_BASE_URI;
+        const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
         // Render page
         return (

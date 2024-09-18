@@ -20,13 +20,13 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
     const dictionary = await getDictionary(params.lang, 'common');
 
     const {
-        DATA_NORGE_BASE_URI,
+        FDK_DATA_NORGE_BASE_URI,
         FDK_BASE_URI = '',
         FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
         FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
     } = process.env;
 
-    const baseUri = DATA_NORGE_BASE_URI || FDK_BASE_URI;
+    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
     return (
         <html lang={params.lang}>
