@@ -7,15 +7,16 @@ description: How to state that a dataset belongs to a catalog, and a complete de
 
 Finally, we need to link the dataset we have described to a catalog; the catalog is mandatory. Some organizations have a single shared data catalog for all the descriptions they manage, while other organizations may have multiple catalogs.
 
-<Alert size='sm'>
-    **Note**: If your organization already has a data catalog that your dataset description should be part of, you just
-    need to ensure that your description is included in this catalog. Talk to those responsible for the catalog in your
-    organization to find out how to do this.
+<Alert
+    size='sm'
+>
+    **Note**: If your organization already has a data catalog that your dataset description should be part of, you just need to ensure that your description is included in this catalog. Talk to those responsible for the catalog in your organization to find out how to do this.
 </Alert>
 
 In this example, we assume that Digdir has one data catalog (`dcat:Catalog`) that contains all the datasets Digdir has published information about, and that the URI of the catalog is `https://data.digdir.no/catalog/1`.
 
 The complete description with information on dataset, distribution, and data service/API would then look like this:
+
 
 ```turtle
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
