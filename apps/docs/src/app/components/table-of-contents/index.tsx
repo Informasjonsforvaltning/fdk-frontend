@@ -31,15 +31,15 @@ type TableOfContentsProps = {
 };
 
 const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
-        <nav className={styles.sidebar}>
-            <Heading
-                level={2}
-                size='xs'
-            >
-                {dictionary.tableOfContents.onThisPage}
-            </Heading>
-            <TocList headlines={headlines} />
-        </nav>
-    );
+    <nav className={styles.sidebar}>
+        <Heading
+            level={2}
+            size='xs'
+        >
+            {dictionary.tableOfContents.onThisPage}
+        </Heading>
+        <TocList headlines={headlines} />
+    </nav>
+);
 
 export default TableOfContents;

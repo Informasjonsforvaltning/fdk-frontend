@@ -13,7 +13,7 @@ const nextConfig = {
         svgr: false,
     },
     reactStrictMode: true,
-    assetPrefix: '/nb/data-hunter'
+    assetPrefix: '/nb/data-hunter',
 };
 
 const plugins = [

@@ -12,7 +12,7 @@ const nextConfig = {
         // See: https://github.com/gregberge/svgr
         svgr: false,
     },
-    assetPrefix: '/nb'    
+    assetPrefix: '/nb',
 };
 
 const plugins = [
