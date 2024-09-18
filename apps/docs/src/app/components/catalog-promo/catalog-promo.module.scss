@@ -1,0 +1,19 @@
+.catalogPromo {
+    container-type: inline-size;
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @container (max-width:500px) {
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-start;
+
+            a {
+                width: 100%;
+            }
+        }
+    }
+}

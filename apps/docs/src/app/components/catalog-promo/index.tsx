@@ -1,5 +1,7 @@
 import { Alert, Button, Link } from '@digdir/designsystemet-react';
 
+import styles from './catalog-promo.module.scss';
+
 export type CatalogPromoProps = {
     text: string;
     button: string;
@@ -11,8 +13,9 @@ const CatalogPromo = ({ text, button, link }: CatalogPromoProps) => {
         <Alert
             severity='info'
             size='sm'
+            className={styles.catalogPromo}
         >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className={styles.content}>
                 {text}
                 <Button
                     asChild
