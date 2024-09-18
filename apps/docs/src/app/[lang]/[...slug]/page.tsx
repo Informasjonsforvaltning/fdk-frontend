@@ -175,7 +175,12 @@ export default async function Page({ params }: DocsPageType) {
             components,
         });
 
-        const { FDK_BASE_URI: baseUri = '' } = process.env;
+        const {
+            DATA_NORGE_BASE_URI,
+            FDK_BASE_URI = ''
+        } = process.env;
+
+        const baseUri = DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
         // Render page
         return (

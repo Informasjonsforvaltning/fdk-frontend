@@ -15,7 +15,13 @@ const DocsLayout = async ({ children, ...props }: PropsWithChildren & DocsLayout
     const { lang } = props.params;
     const dictionary = await getDictionary(lang, 'docs');
 
-    const { FDK_BASE_URI: baseUri = '', FDK_COMMUNITY_BASE_URI: communityBaseUri = '/' } = process.env;
+    const {
+        DATA_NORGE_BASE_URI,
+        FDK_BASE_URI = '',
+        FDK_COMMUNITY_BASE_URI: communityBaseUri = '/'
+    } = process.env;
+
+    const baseUri = DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
     return (
         <RootLayout {...props}>
