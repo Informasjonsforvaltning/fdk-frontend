@@ -47,6 +47,8 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
         const pathSegments = pathname.split('/');
         if (pathSegments.length === 2) setFrontpage(true);
 
+        toggleSticky();
+
         window.addEventListener('scroll', toggleSticky);
         window.addEventListener('click', handleClick);
 
