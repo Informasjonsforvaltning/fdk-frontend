@@ -3,6 +3,7 @@
         "/about": "About us",
         "/contact": "Contact us",
         "/docs": "Help and guidance",
+        "/docs/additional-resources": "Additional resources",
         "/docs/finding-data": "Finding data",
         "/docs/finding-data/ai-search": "AI search",
         "/docs/finding-data/assisted-search": "Assisted data search",
@@ -23,6 +24,7 @@
         "/docs/how-to-guides/how-to-dataset/5-catalog-and-complete-description": "5. Catalog and complete description",
         "/docs/how-to-guides/how-to-dataset/6-harvesting": "6. Publish the description",
         "/docs/login-and-access": "Access and login",
+        "/docs/metadata-quality": "Metadata quality",
         "/docs/tutorials": "Tutorials",
         "/docs/tutorials/publishing-data-descriptions": "Course: publishing dataset descriptions",
         "/docs/tutorials/publishing-data-descriptions/1-creating-descriptions-self": "Create dataset description yourself",
@@ -30,7 +32,8 @@
         "/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions": "Publish the description",
         "/docs/tutorials/publishing-data-descriptions/4-triggering-harvest": "Start harvesting",
         "/docs/tutorials/rdf-crash-course": "RDF crash course",
-        "/docs/rdf": "RDF: what and why"
+        "/docs/rdf": "RDF: what and why",
+        "/docs/sharing-data": "Sharing data"
     },
     "feedbackBanner": {
         "heading": "Did you find what you were looking for?",

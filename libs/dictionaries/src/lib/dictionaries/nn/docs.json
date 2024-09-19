@@ -3,6 +3,7 @@
         "/about": "Om oss",
         "/contact": "Kontakt oss",
         "/docs": "Hjelp og rettleiing",
+        "/docs/additional-resources": "Fleire ressursar",
         "/docs/finding-data": "Finne data",
         "/docs/finding-data/ai-search": "KI-søk",
         "/docs/finding-data/assisted-search": "Hjelp til å finne data",
@@ -23,6 +24,7 @@
         "/docs/how-to-guides/how-to-dataset/5-catalog-and-complete-description": "5. Katalog og fullstendig skildring",
         "/docs/how-to-guides/how-to-dataset/6-harvesting": "6. Publisere skildringa",
         "/docs/login-and-access": "Tilgang og innlogging",
+        "/docs/metadata-quality": "Metadatakvalitet",
         "/docs/tutorials": "Kurs",
         "/docs/tutorials/publishing-data-descriptions": "Kurs: publisere datasettbeskrivingar",
         "/docs/tutorials/publishing-data-descriptions/1-creating-descriptions-self": "Lage datasettbeskriving sjølv",
@@ -30,7 +32,8 @@
         "/docs/tutorials/publishing-data-descriptions/3-publishing-descriptions": "Publisere skildringa",
         "/docs/tutorials/publishing-data-descriptions/4-triggering-harvest": "Starte hausting",
         "/docs/tutorials/rdf-crash-course": "Kræsjkurs i RDF",
-        "/docs/rdf": "RDF: kva og kvifor"
+        "/docs/rdf": "RDF: kva og kvifor",
+        "/docs/sharing-data": "Dele data"
     },
     "feedbackBanner": {
         "heading": "Finn du det du leitar etter?",

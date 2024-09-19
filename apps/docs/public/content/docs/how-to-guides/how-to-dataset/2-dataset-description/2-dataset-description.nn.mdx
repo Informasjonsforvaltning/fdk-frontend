@@ -13,7 +13,7 @@ No er du klar til å lage beskrivinga i rett format, slik at ho kan publiserast 
     **Nyttig å vite**: Vi må lage beskrivinga i eit strukturert dataformat som data.norge.no sitt system kan forstå.
     Dette formatet heiter RDF (Resource Description Framework) og er i bruk òg blant andre europeiske dataportalar og i
     fleire private verksemder sine datakatalogar. RDF kan skrivast på fleire ulike måtar – i døma under bruker vi
-    RDF-formatet som heiter Turtle – men du vel sjølv kva for eitt du vil bruke. Du kan [lese meir om RDF her](/rdf)
+    RDF-formatet som heiter Turtle – men du vel sjølv kva for eitt du vil bruke. Du kan [lese meir om RDF her](/docs/rdf)
 </Alert>
 
 <Alert
@@ -154,9 +154,6 @@ For å finne aktuelle kodar til di beskriving kan du sjå gjennom innhaldet i ko
 -   [Oversikt over kodar i Data Theme (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme)
 -   [Oversikt over kodar i EuroVoc (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141)
 
-I tillegg har vi skrive ei eiga [side om korleis bruke kodar](/docs/tutorials/code-lists) for å merke datasett tematisk. Ta gjerne ein kikk der om du lurer på noko.
-
-
 ## Geografisk avgrensing
 
 Ved hjelp av eigenskapen `dct:spatial` og ein eksisterande kode som representerer det geografiske området Noreg kan vi uttrykke at datasettet er avgrensa til Noreg:
@@ -195,7 +192,7 @@ Datasettet har ei eiga nettside som kan besøkast på https://data.norge.no/kuns
 
 Heile beskrivinga av datasettet vil så langt sjå slik ut:
 
-```
+```turtle
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
