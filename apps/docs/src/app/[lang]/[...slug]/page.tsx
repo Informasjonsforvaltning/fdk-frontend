@@ -131,9 +131,7 @@ export default async function Page({ params }: DocsPageType) {
                             <ExternalLinkIcon fontSize='1em' />
                         </Link>
                     );
-                } else if (rest.href?.startsWith('mailto')) {
-                    return <Link {...rest}>{children}</Link>;
-                } else {
+                } else if (rest.href?.startsWith('/docs')) {
                     return (
                         <Link
                             {...rest}
@@ -142,6 +140,8 @@ export default async function Page({ params }: DocsPageType) {
                             {children}
                         </Link>
                     );
+                } else {
+                    return <Link {...rest}>{children}</Link>;
                 }
             },
             code: ({ className, ...rest }: React.HTMLAttributes<HTMLElement>) => {
