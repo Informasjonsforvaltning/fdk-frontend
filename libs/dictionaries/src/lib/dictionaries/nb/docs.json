@@ -36,8 +36,8 @@
     },
     "feedbackBanner": {
         "heading": "Finner du det du leter etter?",
-        "text": "Du kan {{contactLink}} her, eller spør om hjelp i vår {{communityLink}}.",
-        "contactLinkText": "ta kontakt",
+        "text": "{{contactLink}} med oss her, eller spør om hjelp i {{communityLink}}.",
+        "contactLinkText": "Ta kontakt",
         "communityLinkText": "Datalandsbyen"
     },
     "tableOfContents": {
