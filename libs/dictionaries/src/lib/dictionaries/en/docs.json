@@ -28,8 +28,8 @@
         "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration": "Create dataset description in the registration solution",
         "/docs/sharing-data/publishing-data-descriptions/3-publishing-descriptions": "Publish the description",
         "/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest": "Start harvesting",
-        "/docs/sharing-data/rdf-crash-course": "RDF crash course",
         "/docs/sharing-data/rdf": "RDF: what and why",
+        "/docs/sharing-data/rdf/rdf-crash-course": "RDF crash course",
         "/docs/community": "Community",
         "/docs/metadata-quality": "Metadata quality",
         "/docs/resources": "Resources"

@@ -33,6 +33,16 @@ const nextConfig = {
             destination: '/:lang/docs/resources',
             permanent: true,
           },
+          {
+            source: '/:lang/docs/rdf',
+            destination: '/:lang/docs/sharing-data/rdf',
+            permanent: true,
+          },
+          {
+            source: '/:lang/docs/rdf-crash-course',
+            destination: '/:lang/docs/sharing-data/rdf/rdf-crash-course',
+            permanent: true,
+          },
         ]
     },
 };
