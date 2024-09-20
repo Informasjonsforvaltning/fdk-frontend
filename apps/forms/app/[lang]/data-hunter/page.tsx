@@ -27,10 +27,7 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     const dictionary = await getDictionary(lang, 'data-hunter-page');
     const commonDictionary = await getDictionary(lang, 'common');
 
-    const {
-        FDK_DATA_NORGE_BASE_URI,
-        FDK_BASE_URI = '/'
-    } = process.env;
+    const { FDK_DATA_NORGE_BASE_URI, FDK_BASE_URI = '/' } = process.env;
 
     const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 

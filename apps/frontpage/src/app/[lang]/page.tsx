@@ -19,11 +19,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
     // Opt-in dynamic rendering
     noStore();
 
-    const {
-        FDK_DATA_NORGE_BASE_URI,
-        FDK_BASE_URI = '',
-        FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = ''
-    } = process.env;
+    const { FDK_DATA_NORGE_BASE_URI, FDK_BASE_URI = '', FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
 
     const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 

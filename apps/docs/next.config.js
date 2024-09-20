@@ -18,32 +18,32 @@ const nextConfig = {
     assetPrefix: '/nb/docs',
     async redirects() {
         return [
-          {
-            source: '/:lang/docs/tutorials/:slug',
-            destination: '/:lang/docs/sharing-data/:slug',
-            permanent: true,
-          },
-          {
-            source: '/:lang/docs/how-to-guides/:slug',
-            destination: '/:lang/docs/sharing-data/:slug',
-            permanent: true,
-          },
-          {
-            source: '/:lang/docs/additional-resources',
-            destination: '/:lang/docs/resources',
-            permanent: true,
-          },
-          {
-            source: '/:lang/docs/rdf',
-            destination: '/:lang/docs/sharing-data/rdf',
-            permanent: true,
-          },
-          {
-            source: '/:lang/docs/rdf-crash-course',
-            destination: '/:lang/docs/sharing-data/rdf/rdf-crash-course',
-            permanent: true,
-          },
-        ]
+            {
+                source: '/:lang/docs/tutorials/:slug',
+                destination: '/:lang/docs/sharing-data/:slug',
+                permanent: true,
+            },
+            {
+                source: '/:lang/docs/how-to-guides/:slug',
+                destination: '/:lang/docs/sharing-data/:slug',
+                permanent: true,
+            },
+            {
+                source: '/:lang/docs/additional-resources',
+                destination: '/:lang/docs/resources',
+                permanent: true,
+            },
+            {
+                source: '/:lang/docs/rdf',
+                destination: '/:lang/docs/sharing-data/rdf',
+                permanent: true,
+            },
+            {
+                source: '/:lang/docs/rdf-crash-course',
+                destination: '/:lang/docs/sharing-data/rdf/rdf-crash-course',
+                permanent: true,
+            },
+        ];
     },
 };
 

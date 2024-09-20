@@ -17,16 +17,15 @@ I RDF kan vi koma med _utsegner_, eller _fakta_ om ressursar, og desse utsagnene
 
 Subjektet og objektet er ressursane vi seier noko om, medan predikatet seier noko om relasjonen mellom subjektet og objektet. Nokre døme på tripler (i pseudokode) er:
 
-- `<Leonardo da Vinci> <ble født> <15. april 1452>`
-- `<Leonardo da Vinci> <var> <en malar>`
-- `<Mona Lisa> <er malt av> <Leonardo da Vinci>`
+-   `<Leonardo da Vinci> <ble født> <15. april 1452>`
+-   `<Leonardo da Vinci> <var> <en malar>`
+-   `<Mona Lisa> <er malt av> <Leonardo da Vinci>`
 
 Slik sett er datamodellen i RDF veldig enkel: all data består berre av ein samling av slike tripler.
 
-<Alert
-    size='sm'
->
-    **Merk**: Sidan eit trippel definerer ein relasjon mellom subjektet og objektet, utgjer ein samling av tripler ein _graf_, som illustrert i figuren under. Vi kan bruke uttrykket _RDF-graf_ som synonym for "ein samling med tripler".
+<Alert size='sm'>
+    **Merk**: Sidan eit trippel definerer ein relasjon mellom subjektet og objektet, utgjer ein samling av tripler ein
+    _graf_, som illustrert i figuren under. Vi kan bruke uttrykket _RDF-graf_ som synonym for "ein samling med tripler".
 </Alert>
 
 ![Ein RDF-graf, som viser nokre utsegner om Leonardo da Vinci](https://cms.fellesdatakatalog.digdir.no/uploads/da_vinci_graph_ex_5095760b07.png)
@@ -39,22 +38,19 @@ Når vi skal beskrive _ein ressurs_ i RDF er vi nøydde til å vita kva ressurs 
 Ein URI, eller _Unique Resource Identifier_, er ein global og unik identifikator, og dette er grunnen til at ein bruker URI-ar for å namnsetja ressursar i RDF: då kan kven som helst, kvar som helst bruke URI-en og vita at dei snakkar om same ting.
 Dette skil seg for eksempel frå typiske ID-ar i databasesystem, eller gateadresser som er unike berre innanfor ein kommune.
 
-<Alert
-    size='sm'
->
-    **Merk**: Det kan iblant vere tvitydig om ein URI peikar til _beskrivinga av tingen_ eller _tingen i seg sjølv_. For eksempel ville det vore rart å seie at DBpedia-sida om Leonardo da Vinci _er_ Leonardo da Vinci sjølv.
-    Likevel er dette eit vanleg mønster å følgje i RDF, særleg når det gjeld beskrivingar av personar. Når det gjeld datasettbeskrivingar er praksis derimot at URI-en til ein instans av `dcat:Dataset` peikar til _datasettbeskrivinga_ og _ikkje_ den fysiske førekoma av datasettet.
+<Alert size='sm'>
+    **Merk**: Det kan iblant vere tvitydig om ein URI peikar til _beskrivinga av tingen_ eller _tingen i seg sjølv_. For
+    eksempel ville det vore rart å seie at DBpedia-sida om Leonardo da Vinci _er_ Leonardo da Vinci sjølv. Likevel er
+    dette eit vanleg mønster å følgje i RDF, særleg når det gjeld beskrivingar av personar. Når det gjeld
+    datasettbeskrivingar er praksis derimot at URI-en til ein instans av `dcat:Dataset` peikar til _datasettbeskrivinga_
+    og _ikkje_ den fysiske førekoma av datasettet.
 </Alert>
 
 ### Verdier ("literals")
 
 I tillegg til URI-ar kan ei beskriving i RDF bestå av verdiar som mellom anna tekst, tal eller datoar. Desse kallast "_literals_" i RDF.
 
-<Alert
-    size='sm'
->
-    **Tips**: Du kan òg angi kva språk ein tekst er på, for eksempel slik `"tekst på bokmål"@nb`.
-</Alert>
+<Alert size='sm'>**Tips**: Du kan òg angi kva språk ein tekst er på, for eksempel slik `"tekst på bokmål"@nb`.</Alert>
 
 ## Modellere Ada Lovelace
 
@@ -82,11 +78,10 @@ Dette vil vi no verta skrive i eit gyldig RDF-format kalla Turtle (eller "serial
 
 Turtle er eit konkret språk for å lage RDF-grafer. Kort oppsummert:
 
-- Du skriv ein URI med "\<" og "\>", slik: `<https://example.org>`
-- Du skriv tekstverdier med anførselstegn: `"en tekst"`
-- Du kan angi typen til ein verdi, for eksempel heiltal: `"1"^^<http://www.w3.org/2001/XMLSchema#integer>`, eller dato: `"2024-06-05"^^<http://www.w3.org/2001/XMLSchema#date>`
-- Du kan angi språket til teksten: `"An english text"@en` eller `"Ei tekst på nynorsk"@nn`.
-
+-   Du skriv ein URI med "\<" og "\>", slik: `<https://example.org>`
+-   Du skriv tekstverdier med anførselstegn: `"en tekst"`
+-   Du kan angi typen til ein verdi, for eksempel heiltal: `"1"^^<http://www.w3.org/2001/XMLSchema#integer>`, eller dato: `"2024-06-05"^^<http://www.w3.org/2001/XMLSchema#date>`
+-   Du kan angi språket til teksten: `"An english text"@en` eller `"Ei tekst på nynorsk"@nn`.
 
 #### Døme
 
@@ -164,9 +159,7 @@ Kvart utsagn som gjenbrukar subjektet avsluttes med `;`. Vi avslutter heile blok
 
 ### Med fleire verdiar på same predikat
 
-<Alert
-    size='sm'
->
+<Alert size='sm'>
     **Tips**: Du kan legge inn kommentarar i Turtle med teiknet '#'. Då vert det som er bak '#'-teiknet ignorert.
 </Alert>
 
@@ -225,6 +218,7 @@ Begge variantar er gyldig Turtle, og begge to representerer akkurat den same inf
 I botn er det tripplar beståande av URI-ar og verdiar.
 
 ### a = rdf:type
+
 Sidan vi ofte bruker predikatet `rdf:type` tilbyr Turtle forkortelsen `a`. Så dette tripplet:
 
 ```turtle
@@ -234,6 +228,7 @@ Sidan vi ofte bruker predikatet `rdf:type` tilbyr Turtle forkortelsen `a`. Så d
 
 people:adaLovelace rdf:type foaf:Person .
 ```
+
 er det same som:
 
 ```turtle
@@ -293,7 +288,6 @@ RDF-verktøy og bibliotek kan lese frå og skrive til ein eller fleire av desse 
 | N-Quads   | `application/n-quads`   | `.nq`          |
 | TriG      | `application/trig`      | `.trig`        |
 | Notation3 | `text/n3;charset=utf-8` | `.n3`          |
-
 
 ## Eksterne ressursar
 
