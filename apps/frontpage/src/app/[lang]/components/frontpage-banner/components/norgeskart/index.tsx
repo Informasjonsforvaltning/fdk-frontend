@@ -36,7 +36,7 @@ const Norgeskart = () => {
         { name: 'bergen', lat: 60.39323, lng: 5.3245, zoom: 14, offset: 0.02 },
         { name: 'geiranger', lat: 62.10186, lng: 7.2, zoom: 13, offset: 0.03 },
         { name: 'leikanger', lat: 61.18556, lng: 6.80454, zoom: 13, offset: 0.02 },
-        { name: 'bronnoysund', lat: 65.4764088, lng: 12.2125588, zoom: 12, offset: 0.02 },
+        { name: 'bronnoysund', lat: 65.4764088, lng: 12.2125588, zoom: 13, offset: 0.02 },
     ];
 
     const randomIndex = Math.floor(Math.random() * locations.length);
