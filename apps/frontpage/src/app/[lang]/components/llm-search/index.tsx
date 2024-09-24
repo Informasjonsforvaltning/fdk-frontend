@@ -50,6 +50,11 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
             return false;
         }
 
+        if (q && q.length > 255) {
+            setError(dictionary.aiBanner.prompt.errors.queryTooLong);
+            return false;
+        }
+
         setError(undefined);
         return true;
     };
@@ -57,8 +62,11 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
     const submitQuery = async (e: any, overrideStateQuery?: string) => {
         if (e) e.preventDefault();
 
-        const queryToSubmit = overrideStateQuery || query;
+        let queryToSubmit = overrideStateQuery || query;
 
+        // temp bugfix: strip "?" from query
+        queryToSubmit = queryToSubmit.replace(/\?/g, "");
+        
         if (!validate(queryToSubmit)) return;
 
         setLoading(true);

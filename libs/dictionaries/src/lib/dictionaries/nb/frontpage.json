@@ -12,7 +12,8 @@
             "button": "Spør",
             "errors": {
                 "generic": "En feil oppstod. Vennligst prøv igjen senere.",
-                "queryTooShort": "Spørringen må inneholde mer enn to tegn. Prøv igjen."
+                "queryTooShort": "Spørringen må inneholde minst tre tegn. Prøv igjen.",
+                "queryTooLong": "Spørringen kan ikke inneholde mer enn 255 tegn. Prøv igjen."
             },
             "label": "Spør vår KI om data fra over 125 virksomheter og 8000 datasett:",
             "loading": "Laster",
