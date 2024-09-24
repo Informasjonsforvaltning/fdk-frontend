@@ -28,7 +28,7 @@
         },
         "catalogs": {
             "ai": {
-                "description": "Overview of AI projects in the public sector",
+                "description": "AI projects in the public sector",
                 "title": "Artificial Intelligence"
             },
             "apis": {
@@ -45,11 +45,11 @@
                 "title": "Information Models"
             },
             "servicesEvents": {
-                "description": "Overview of services, procedures, and events used when organizations process data",
+                "description": "Services provided on behalf of the public sector and events that may trigger such services",
                 "title": "Services and events"
             },
             "terms": {
-                "description": "Definitions and glossaries of official terms and concepts used by organizations in their data",
+                "description": "Definitions of terms that the organization uses in its data",
                 "title": "Terms"
             }
         },

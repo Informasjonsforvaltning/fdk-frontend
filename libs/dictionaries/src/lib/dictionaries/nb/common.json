@@ -28,7 +28,7 @@
         },
         "catalogs": {
             "ai": {
-                "description": "Oversikt over KI-prosjekter i offentlig sektor",
+                "description": "KI-prosjekter i offentlig sektor",
                 "title": "Kunstig intelligens"
             },
             "apis": {
@@ -45,11 +45,11 @@
                 "title": "Informasjonsmodeller"
             },
             "servicesEvents": {
-                "description": "Oversikt over tjenester, prosesser og hendelser som virksomheter bruker når de behandler data",
+                "description": "Tjenester som tilbys på vegne av offentlig sektor, og hendelser som kan utløse slike tjenester",
                 "title": "Tjenester og hendelser"
             },
             "terms": {
-                "description": "Definisjoner og ordbøker på offisielle termer og begreper som virksomheter bruker i sine data",
+                "description": "Definisjoner av begreper som virksomheten bruker i sine data",
                 "title": "Begreper"
             }
         },

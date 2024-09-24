@@ -28,7 +28,7 @@
         },
         "catalogs": {
             "ai": {
-                "description": "Oversikt over KI-prosjekt i offentleg sektor",
+                "description": "KI-prosjekt i offentleg sektor",
                 "title": "Kunstig intelligens"
             },
             "apis": {
@@ -45,11 +45,11 @@
                 "title": "Informasjonsmodellar"
             },
             "servicesEvents": {
-                "description": "Oversikt over tenester, prosessar og hendingar som verksemder brukar når dei behandlar data",
+                "description": "Tenester som blir tilbydde på vegner av offentleg sektor, og hendingar som kan utløyse slike tenester",
                 "title": "Tenester og hendingar"
             },
             "terms": {
-                "description": "Definisjonar og ordbøker på offisielle omgrep og termar som verksemder brukar i sine data",
+                "description": "Definisjonar av omgrep som verksemda brukar i sine data",
                 "title": "Omgrep"
             }
         },
