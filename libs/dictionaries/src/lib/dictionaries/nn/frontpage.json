@@ -12,7 +12,8 @@
             "button": "Spør",
             "errors": {
                 "generic": "Ein feil oppstod. Ver venleg å prøv igjen seinare.",
-                "queryTooShort": "Spurnaden må innehalde meir enn to teikn. Prøv igjen."
+                "queryTooShort": "Spurnaden må innehalde minst tre teikn. Prøv igjen.",
+                "queryTooLong": "Spurnaden kan ikkje innehalde meir enn 255 teikn. Prøv igjen."
             },
             "label": "Spør vår KI om data frå over 125 verksemder og 8000 datasett:",
             "loading": "Lastar",
