@@ -34,14 +34,13 @@
     },
     "email": "Email",
     "english": "English",
-    "error": {        
+    "error": {
         "default": "An error occurred",
         "formSubmit": "An error occurred while submitting the form. Please try again later.",
         "invalidEmail": "Invalid email address",
         "invalidOrganizationNumber": "Invalid organization number",
         "minimumLength": "Minimum length is",
-        "required": "This field is required",
-        "title": "Error"
+        "required": "This field is required"
     },
     "fdkLogoAlt": "Felles datakatalog logo",
     "fillTheFormUnder": "Fill out the form below",
@@ -85,9 +84,8 @@
     "sparqlQuerry": "SPARQL-spørring",
     "sparqlQuery": "SPARQL query",
     "submitRequest": "Submit request",
-    "success": {        
-        "formSubmit": "The form has been submitted successfully!",
-        "title": "Success"
+    "success": {
+        "formSubmit": "The form has been submitted successfully!"
     },
     "tools": "Tools"
 }

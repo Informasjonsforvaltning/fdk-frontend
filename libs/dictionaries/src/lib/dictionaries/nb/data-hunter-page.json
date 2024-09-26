@@ -40,8 +40,7 @@
         "invalidEmail": "Ugyldig e-postadresse",
         "invalidOrganizationNumber": "Ugyldig organisasjonsnummer",
         "minimumLength": "Må være minst {length} tegn",
-        "required": "Dette feltet er påkrevd",
-        "title": "Feil"
+        "required": "Dette feltet er påkrevd"
     },
     "fdkLogoAlt": "Felles datakatalog logo",
     "fillTheFormUnder": "Fyll ut skjemaet under",
@@ -86,8 +85,7 @@
     "sparqlQuery": "SPARQL-spørring",
     "submitRequest": "Send forespørsel",
     "success": {
-        "formSubmit": "Skjemaet er sendt inn!",
-        "title": "Vellykket"
+        "formSubmit": "Skjemaet er sendt inn!"
     },
     "tools": "Verktøy"
 }
