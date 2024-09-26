@@ -15,6 +15,7 @@ import {
     Ingress,
     type IngressProps,
     Alert,
+    type AlertProps,
     Button,
     Link,
     Paragraph,
@@ -92,7 +93,7 @@ export default async function Page({ params }: DocsPageType) {
                 />
             ),
             p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
-            Alert,
+            Alert: ({ size = 'sm', iconTitle, ...props }: AlertProps) => <Alert size={size} iconTitle={' '} {...props} />,
             Button,
             Link,
             Divider,
