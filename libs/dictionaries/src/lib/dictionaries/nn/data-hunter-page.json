@@ -40,7 +40,8 @@
         "invalidEmail": "Ugyldig e-postadresse",
         "invalidOrganizationNumber": "Ugyldig organisasjonsnummer",
         "minimumLength": "Må være minst {length} tegn",
-        "required": "Dette feltet er påkrevd"
+        "required": "Dette feltet er påkrevd",
+        "title": "Feil"
     },
     "fdkLogoAlt": "Felles datakatalog logo",
     "fillTheFormUnder": "Fyll ut skjemaet under",
@@ -85,7 +86,8 @@
     "sparqlQuery": "SPARQL-spørring",
     "submitRequest": "Send forespørsel",
     "success": {
-        "formSubmit": "Skjema er sendt inn!"
+        "formSubmit": "Skjema er sendt inn!",
+        "title": "Velukka"
     },
     "tools": "Verktøy"
 }

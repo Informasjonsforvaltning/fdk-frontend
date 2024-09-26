@@ -7,7 +7,10 @@ description: Lær korleis du lagar ei beskriving av datasettet ditt.
 
 No er du klar til å lage beskrivinga i rett format, slik at ho kan publiserast til data.norge.no. Det er her moroa byrjar!
 
-<Alert size='sm'>
+<Alert 
+    size='sm'
+    iconTitle='Info'
+>
     **Nyttig å vite**: Vi må lage beskrivinga i eit strukturert dataformat som data.norge.no sitt system kan forstå.
     Dette formatet heiter RDF (Resource Description Framework) og er i bruk òg blant andre europeiske dataportalar og i
     fleire private verksemder sine datakatalogar. RDF kan skrivast på fleire ulike måtar – i døma under bruker vi
@@ -18,6 +21,7 @@ No er du klar til å lage beskrivinga i rett format, slik at ho kan publiserast 
 <Alert
     severity='warning'
     size='sm'
+    iconTitle='Åtvaring'
 >
     **Viktig**: Du bør bruke eit tekstredigeringsprogram som ikkje formaterer teksten. Microsoft Word eignar seg dårleg,
     medan Windows Notepad, VS Code eller liknande fungerer bra.
@@ -58,6 +62,7 @@ Og tilsvarande vil vi leggje til ei tekstleg beskriving på bokmål, nynorsk og 
 
 <Alert
     size='sm'
+    iconTitle='Info'
 >
     **Merk**: For å spare plass i døma har vi utelatt dei såkalla prefiksa.
     Men alle døma treng at prefiksa lista opp rett under er definerte for å vere gyldig Turtle og RDF.
@@ -97,7 +102,10 @@ Beskrivinga vil då sjå slik ut:
   .
 ```
 
-<Alert size='sm'>
+<Alert 
+    size='sm'
+    iconTitle='Info'
+>
     **Tips**: Du kan leggje inn kommentarar i Turtle med teiknet `#`, då blir det som kjem etter ignorert.
 </Alert>
 
@@ -227,7 +235,10 @@ Heile beskrivinga av datasettet vil så langt sjå slik ut:
 Du kan no validere beskrivinga i [DCAT-AP-NO-validatoren](https://data.norge.no/validator) for å sjekke at ho samsvarar med standarden/spesifikasjonen for datasettbeskrivingar.
 Validatoren sjekkar at du har fylt ut alle obligatoriske felt, og at felta har riktig type innhald.
 
-<Alert size='sm'>
+<Alert 
+    size='sm'
+    iconTitle='Info'
+>
     **Tips**: For å finne ut kvar det eventuelt er syntaksfeil kan du sjekke beskrivinga di på
     [https://www.easyrdf.org/converter](https://www.easyrdf.org/converter). Den gir tilbakemelding om kva linje som
     inneheld feil, men den veit ingenting om beskrivinga di er i samsvar med DCAT-AP-NO.
