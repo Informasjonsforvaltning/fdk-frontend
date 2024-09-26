@@ -77,6 +77,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
                             asChild
                             size='small'
                             variant='tertiary'
+                            aria-label={dictionary.header.findDataButton}
                         >
                             <Link href={`${baseUri}/search-all`}>
                                 <MagnifyingGlassIcon
@@ -90,6 +91,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
                             size='small'
                             variant={showMenu ? 'secondary' : 'tertiary'}
                             onClick={() => setShowMenu(!showMenu)}
+                            aria-label={dictionary.header.menuButton}
                         >
                             {showMenu ? (
                                 <XMarkIcon
