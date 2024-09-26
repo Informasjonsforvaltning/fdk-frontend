@@ -7,7 +7,10 @@ description: Lær hvordan du lager en beskrivelse av datasettet ditt.
 
 Da er du klar til å lage beskrivelsen i riktig format, sånn at det kan publiseres til data.norge.no. Det er her moroa begynner!
 
-<Alert size='sm'>
+<Alert 
+    size='sm'
+    iconTitle='Info'
+>
     **Nyttig å vite**: Vi må lage beskrivelsen i et strukturert dataformat som data.norge.no sitt system kan forstå.
     Dette formatet heter RDF (Resource Description Framework) og er i bruk også blant andre europeiske dataportaler og i
     flere private virksomheter sine datakataloger. RDF kan skrives på flere ulike måter – i eksemplene under bruker vi
@@ -18,6 +21,7 @@ Da er du klar til å lage beskrivelsen i riktig format, sånn at det kan publise
 <Alert
     severity='warning'
     size='sm'
+    iconTitle='Advarsel'
 >
     **Viktig**: Du bør bruke et tekstredigeringsprogram som ikke formaterer teksten. Microsoft Word egner seg dårlig,
     mens Windows Notepad, VS Code eller lignende fungerer bra.
@@ -58,6 +62,7 @@ Og tilsvarende vil vi legge til en tekstlig beskrivelse på bokmål, nynorsk og 
 
 <Alert
     size='sm'
+    iconTitle='Info'
 >
     **Merk**: For å spare plass i eksemplene har vi utelatt de såkalte prefiksene.
     Men alle eksemplene trenger at prefiksene listet opp rett under er definert for å være gyldig Turtle og RDF.
@@ -96,7 +101,10 @@ Beskrivelsen vil da se slik ut:
   .
 ```
 
-<Alert size='sm'>
+<Alert 
+    size='sm'
+    iconTitle='Info'
+>
     **Tips**: Du kan legge inn kommentarer i Turtle med tegnet `#`, da ignoreres det som kommer etter.
 </Alert>
 
@@ -223,7 +231,10 @@ Hele beskrivelsen av datasettet i Turtle-format vil så langt se slik ut:
 Du kan nå validere beskrivelsen i [DCAT-AP-NO-validatoren](https://data.norge.no/validator) for å sjekke at den samsvarer med standarden/spesifikasjonen for datasettbeskrivelser.
 Validatoren sjekker at du har fylt ut alle obligatoriske felt, og at feltene har riktig type innhold.
 
-<Alert size='sm'>
+<Alert 
+    size='sm'
+    iconTitle='Info'
+>
     **Tips**: For å finne ut hvor det eventuelt er syntaksfeil kan du sjekke beskrivelsen din på
     [https://www.easyrdf.org/converter](https://www.easyrdf.org/converter). Den gir tilbakemelding om hvilken linje som
     inneholder feil, men den vet ingenting om beskrivelsen din er i henhold til DCAT-AP-NO.

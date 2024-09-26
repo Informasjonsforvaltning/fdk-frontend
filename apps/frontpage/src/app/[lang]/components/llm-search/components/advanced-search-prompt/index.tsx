@@ -10,7 +10,7 @@ type AdvancedSearchPromptProps = {
 };
 
 const AdvancedSearchPrompt = ({ dictionary, baseUri }: AdvancedSearchPromptProps) => (
-    <Alert className={styles.searchAlert}>
+    <Alert className={styles.searchAlert} iconTitle='Info'>
         <div className={styles.searchAlertContent}>
             {dictionary.aiBanner.advancedSearchPrompt.text}
             <Button

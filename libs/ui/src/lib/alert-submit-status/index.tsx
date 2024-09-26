@@ -15,6 +15,7 @@ const SubmitStatusAlert = ({ dictionary, formStatus = FormStatusEnum.UNSET }: Su
                 <Alert
                     severity='success'
                     className={styles.alert}
+                    iconTitle={dictionary.success.title}
                 >
                     {dictionary.success.formSubmit}
                 </Alert>
@@ -24,6 +25,7 @@ const SubmitStatusAlert = ({ dictionary, formStatus = FormStatusEnum.UNSET }: Su
                 <Alert
                     severity='danger'
                     className={styles.alert}
+                    iconTitle={dictionary.error.title}
                 >
                     {dictionary.error.formSubmit}
                 </Alert>

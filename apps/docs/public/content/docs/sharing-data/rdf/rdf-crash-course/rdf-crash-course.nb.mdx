@@ -23,7 +23,10 @@ Subjektet og objektet er ressursene vi sier noe om, mens predikatet sier noe om 
 
 Sånn sett er datamodellen i RDF veldig enkel: all data består bare av en samling av slike tripler.
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+    iconTitle='Info'
+>
     **Merk**: Siden et trippel definerer en relasjon mellom subjektet og objektet, utgjør en samling av tripler en
     _graf_, som illustrert i figuren under. Vi kan bruke uttrykket _RDF-graf_ som synonym for "en samling med tripler".
 </Alert>
@@ -38,7 +41,10 @@ Når vi skal beskrive _en ressurs_ i RDF er vi nødt til å vite hvilken ressurs
 En URI, eller _Unique Resource Identifier_, er en global og unik identifikator, og dette er grunnen til at man bruker URI-er for å navngi ressurser i RDF: da kan hvem som helst, hvor som helst bruke URI-en og vite at de snakker om samme ting.
 Dette skiller seg for eksempel fra typiske ID-er i databasesystemer, eller gateadresser som er unik kun innenfor en kommune.
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+    iconTitle='Info'
+>
     **Merk**: Det kan i blant være tvetydig om en URI peker til _beskrivelsen av tingen_ eller _tingen i seg selv_. For
     eksempel ville det vært rart å si at DBpedia-siden om Leonardo da Vinci _er_ Leonardo da Vinci selv. Allikevel er
     dette et vanlig mønster å følge i RDF, særlig når det er snakk om beskrivelser av personer. Når det gjelder
@@ -50,7 +56,10 @@ Dette skiller seg for eksempel fra typiske ID-er i databasesystemer, eller gatea
 
 I tillegg til URI-er kan en beskrivelse i RDF bestå av verdier som blant annet tekst, tall eller datoer. Disse kalles "_literals_" i RDF.
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+    iconTitle='Info'
+>
     **Tips**: Du kan også angi hvilket språk en tekst er på, for eksempel slik `"tekst på bokmål"@nb`.
 </Alert>
 
@@ -161,7 +170,10 @@ Hvert utsagn som gjenbruker subjektet avsluttes med `;`. Vi avslutter hele bolke
 
 ### Med flere verdier på samme predikat
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+    iconTitle='Info'
+>
     **Tips**: Du kan legge inn kommentarer i Turtle med tegnet '#'. da ignoreres det som er bak '#'-tegnet.
 </Alert>
 

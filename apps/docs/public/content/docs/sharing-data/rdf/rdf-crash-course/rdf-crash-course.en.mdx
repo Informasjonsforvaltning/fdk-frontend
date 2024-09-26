@@ -23,7 +23,10 @@ The subject and object are the resources we are talking about, while the predica
 
 In this sense, the data model in RDF is very simple: all data consists only of a collection of such triples.
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+    iconTitle='Info'
+>
     **Note**: Since a triple defines a relationship between the subject and the object, a collection of triples
     constitutes a _graph_, as illustrated in the figure below. We can use the term _RDF graph_ synonymously with "a
     collection of triples."
@@ -39,7 +42,10 @@ When describing _a resource_ in RDF, we need to know which resource we are talki
 A URI, or _Unique Resource Identifier_, is a global and unique identifier, and this is why URIs are used to name resources in RDF: anyone, anywhere can use the URI and know that they are talking about the same thing.
 This differs, for example, from typical IDs in database systems, or street addresses that are unique only within a municipality.
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+    iconTitle='Info'
+>
     **Note**: It can sometimes be ambiguous whether a URI refers to _the description of the thing_ or _the thing
     itself_. For instance, it would be odd to say that the DBpedia page about Leonardo da Vinci _is_ Leonardo da Vinci
     himself. However, this is a common pattern in RDF, especially when it comes to descriptions of people. In the case
@@ -51,7 +57,12 @@ This differs, for example, from typical IDs in database systems, or street addre
 
 In addition to URIs, an RDF description can consist of values such as text, numbers, or dates. These are called "_literals_" in RDF.
 
-<Alert size='sm'>**Tip**: You can also specify the language of a text, for example, `"text in Bokmål"@nb`.</Alert>
+<Alert
+    size='sm'
+    iconTitle='Info'
+>
+    **Tip**: You can also specify the language of a text, for example, `"text in Bokmål"@nb`.
+</Alert>
 
 ## Modeling Ada Lovelace
 
@@ -160,7 +171,10 @@ Each statement that reuses the subject ends with `;`. We conclude the entire blo
 
 ### With Multiple Values for the Same Predicate
 
-<Alert size='sm'>
+<Alert
+    size='sm'
+    iconTitle='Info'
+>
     **Tip**: You can add comments in Turtle with the `#` symbol. Everything after the `#` symbol is ignored.
 </Alert>
 
