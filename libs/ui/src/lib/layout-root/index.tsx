@@ -7,6 +7,7 @@ import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
 
 import Footer from '../footer';
 import Header from '../header';
+import Script from 'next/script';
 
 export type RootLayoutProps = {
     params: {
@@ -27,7 +28,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
     } = process.env;
 
     const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
-
+  
     return (
         <html lang={params.lang}>
             <body>
@@ -43,6 +44,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
                     baseUri={baseUri}
                 />
             </body>
+            <Script src="https://siteimproveanalytics.com/js/siteanalyze_6255470.js" />
         </html>
     );
 };
