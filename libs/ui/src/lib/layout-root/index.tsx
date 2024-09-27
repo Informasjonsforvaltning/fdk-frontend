@@ -38,7 +38,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
                     registrationBaseUri={registrationBaseUri}
                     communityBaseUri={communityBaseUri}
                 />
-                <main>{children}</main>
+                <main id="main">{children}</main>
                 <Footer
                     dictionary={dictionary}
                     baseUri={baseUri}

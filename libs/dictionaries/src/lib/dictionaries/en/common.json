@@ -15,7 +15,8 @@
     "header": {
         "findDataButton": "Find data",
         "menuButton": "Menu",
-        "shareDataButton": "Share data"
+        "shareDataButton": "Share data",
+        "skipToMain": "Skip to main content"
     },
     "mainMenu": {
         "about": {

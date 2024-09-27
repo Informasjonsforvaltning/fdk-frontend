@@ -90,7 +90,7 @@
             fill: white;
         }
 
-        a {
+        a:not(:focus-visible) {
             color: white;
         }
 

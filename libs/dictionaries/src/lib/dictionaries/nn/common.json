@@ -15,7 +15,8 @@
     "header": {
         "findDataButton": "Finn data",
         "menuButton": "Meny",
-        "shareDataButton": "Del data"
+        "shareDataButton": "Del data",
+        "skipToMain": "Hopp til hovedinnhold"
     },
     "mainMenu": {
         "about": {
