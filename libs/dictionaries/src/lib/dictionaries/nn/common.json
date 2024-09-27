@@ -19,6 +19,7 @@
         "skipToMain": "Hopp til hovedinnhold"
     },
     "mainMenu": {
+        "label": "Hovedmeny",
         "about": {
             "heading": "Om data.norge.no",
             "links": {

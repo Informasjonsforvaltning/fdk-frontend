@@ -27,6 +27,7 @@ const FeedbackLayout = async ({
                     <Heading
                         className={styles.heading}
                         size='xs'
+                        level={2}
                     >
                         {dictionary.feedbackBanner.heading}
                     </Heading>

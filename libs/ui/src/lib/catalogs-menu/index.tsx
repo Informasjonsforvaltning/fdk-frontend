@@ -35,7 +35,7 @@ const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
     };
 
     return (
-        <div className={styles.catalogsMenu}>
+        <nav className={styles.catalogsMenu} aria-label={dictionary.mainMenu.catalogs.label}>
             <motion.ul
                 variants={animations.catalogList}
                 initial='hidden'
@@ -73,7 +73,7 @@ const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
                     </motion.li>
                 ))}
             </motion.ul>
-        </div>
+        </nav>
     );
 };
 

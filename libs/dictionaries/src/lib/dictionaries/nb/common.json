@@ -19,6 +19,7 @@
         "skipToMain": "Hopp til hovedinnhold"
     },
     "mainMenu": {
+        "label": "Hovedmeny",
         "about": {
             "heading": "Om data.norge.no",
             "links": {
@@ -28,6 +29,7 @@
             }
         },
         "catalogs": {
+            "label": "Kataloger",
             "ai": {
                 "description": "Oversikt over KI-prosjekter i offentlig sektor",
                 "title": "Kunstig intelligens"

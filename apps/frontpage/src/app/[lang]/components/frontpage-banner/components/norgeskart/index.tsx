@@ -48,6 +48,7 @@ const Norgeskart = () => {
             center={[initCoords.lat - initCoords.offset, initCoords.lng]}
             zoom={initCoords.zoom}
             zoomControl={false}
+            aria-hidden={true}
         >
             <TileLayer url={urls.kartverket.topo} />
         </MapContainer>

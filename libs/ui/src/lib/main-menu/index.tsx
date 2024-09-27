@@ -29,11 +29,12 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
     };
 
     return (
-        <motion.div
+        <motion.nav
             className={styles.mainMenu}
             variants={animations.menu}
             initial='hidden'
             animate='show'
+            aria-label={dictionary.mainMenu.label}
         >
             <CatalogsMenu
                 dictionary={dictionary}
@@ -46,11 +47,12 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
                     initial='hidden'
                     animate='show'
                 >
-                    <div className={styles.linkSet}>
+                    <nav className={styles.linkSet} aria-labelledby="mainMenu.help.heading">
                         <Heading
                             className={styles.sectionHeader}
                             size='xxsmall'
                             level={2}
+                            id="mainMenu.help.heading"
                         >
                             {dictionary.mainMenu.help.heading}
                         </Heading>
@@ -69,12 +71,13 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
-                    <div className={styles.linkSet}>
+                    </nav>
+                    <nav className={styles.linkSet} aria-labelledby="mainMenu.tools.heading">
                         <Heading
                             className={styles.sectionHeader}
                             size='xxsmall'
                             level={2}
+                            id="mainMenu.tools.heading"
                         >
                             {dictionary.mainMenu.tools.heading}
                         </Heading>
@@ -85,12 +88,13 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
-                    <div className={styles.linkSet}>
+                    </nav>
+                    <nav className={styles.linkSet} aria-labelledby="mainMenu.about.heading">
                         <Heading
                             className={styles.sectionHeader}
                             size='xxsmall'
                             level={2}
+                            id="mainMenu.about.heading"
                         >
                             {dictionary.mainMenu.about.heading}
                         </Heading>
@@ -101,10 +105,10 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </nav>
                 </motion.div>
             </div>
-        </motion.div>
+        </motion.nav>
     );
 };
 

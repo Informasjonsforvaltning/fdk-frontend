@@ -19,6 +19,7 @@
         "skipToMain": "Skip to main content"
     },
     "mainMenu": {
+        "label": "Main menu",
         "about": {
             "heading": "About data.norge.no",
             "links": {
@@ -28,6 +29,7 @@
             }
         },
         "catalogs": {
+            "label": "Catalogs menu",
             "ai": {
                 "description": "Overview of AI projects in the public sector",
                 "title": "Artificial Intelligence"
