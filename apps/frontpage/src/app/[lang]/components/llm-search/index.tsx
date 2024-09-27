@@ -65,8 +65,8 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
         let queryToSubmit = overrideStateQuery || query;
 
         // temp bugfix: strip "?" from query
-        queryToSubmit = queryToSubmit.replace(/\?/g, "");
-        
+        queryToSubmit = queryToSubmit.replace(/\?/g, '');
+
         if (!validate(queryToSubmit)) return;
 
         setLoading(true);
