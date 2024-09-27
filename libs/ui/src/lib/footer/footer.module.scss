@@ -56,13 +56,18 @@
             }
         }
 
-        svg {
-            max-height: 2rem;
-            fill: white;
-        }
+        a {
+            svg {
+                max-height: 2rem;
+            }
 
-        a:not(:focus-visible) {
-            color: white;
+            &:not(:focus-visible) {
+                color: white;
+
+                svg {
+                    fill: white;
+                }
+            }
         }
 
         .digdirCredit {
