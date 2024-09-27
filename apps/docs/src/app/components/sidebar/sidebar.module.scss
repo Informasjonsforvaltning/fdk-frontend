@@ -1,3 +1,5 @@
+@import '@fdk-frontend/ui/core/mixins';
+
 .sidebar {
     h2 {
         margin-bottom: 1rem;
@@ -64,6 +66,10 @@
             &:hover {
                 background: #f4f4f4;
                 background: var(--fds-semantic-surface-action-first-no_fill-hover);
+            }
+
+            &:focus-visible {
+                @include fds-focus-visible-block();
             }
         }
     }
