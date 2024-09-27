@@ -35,7 +35,10 @@ const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
     };
 
     return (
-        <nav className={styles.catalogsMenu} aria-label={dictionary.mainMenu.catalogs.label}>
+        <nav
+            className={styles.catalogsMenu}
+            aria-label={dictionary.mainMenu.catalogs.label}
+        >
             <motion.ul
                 variants={animations.catalogList}
                 initial='hidden'

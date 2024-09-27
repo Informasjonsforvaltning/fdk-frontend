@@ -47,12 +47,15 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
                     initial='hidden'
                     animate='show'
                 >
-                    <nav className={styles.linkSet} aria-labelledby="mainMenu.help.heading">
+                    <nav
+                        className={styles.linkSet}
+                        aria-labelledby='mainMenu.help.heading'
+                    >
                         <Heading
                             className={styles.sectionHeader}
                             size='xxsmall'
                             level={2}
-                            id="mainMenu.help.heading"
+                            id='mainMenu.help.heading'
                         >
                             {dictionary.mainMenu.help.heading}
                         </Heading>
@@ -72,12 +75,15 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
                             ))}
                         </ul>
                     </nav>
-                    <nav className={styles.linkSet} aria-labelledby="mainMenu.tools.heading">
+                    <nav
+                        className={styles.linkSet}
+                        aria-labelledby='mainMenu.tools.heading'
+                    >
                         <Heading
                             className={styles.sectionHeader}
                             size='xxsmall'
                             level={2}
-                            id="mainMenu.tools.heading"
+                            id='mainMenu.tools.heading'
                         >
                             {dictionary.mainMenu.tools.heading}
                         </Heading>
@@ -89,12 +95,15 @@ const MainMenu = ({ dictionary, baseUri }: MainMenuProps) => {
                             ))}
                         </ul>
                     </nav>
-                    <nav className={styles.linkSet} aria-labelledby="mainMenu.about.heading">
+                    <nav
+                        className={styles.linkSet}
+                        aria-labelledby='mainMenu.about.heading'
+                    >
                         <Heading
                             className={styles.sectionHeader}
                             size='xxsmall'
                             level={2}
-                            id="mainMenu.about.heading"
+                            id='mainMenu.about.heading'
                         >
                             {dictionary.mainMenu.about.heading}
                         </Heading>

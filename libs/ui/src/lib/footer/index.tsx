@@ -24,7 +24,10 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
     const footerData = getFooterData(dictionary);
 
     return (
-        <footer className={styles.footer} aria-label="Footer">
+        <footer
+            className={styles.footer}
+            aria-label='Footer'
+        >
             <div className={styles.inner}>
                 <div className={styles.links}>
                     <div className={styles.linkSection}>

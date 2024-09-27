@@ -45,7 +45,7 @@
 
                 &:focus-visible {
                     @include fds-focus-visible-block();
-                    color:black;
+                    color: black;
 
                     svg {
                         fill: black;
