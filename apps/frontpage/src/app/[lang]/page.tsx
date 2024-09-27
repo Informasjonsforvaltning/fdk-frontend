@@ -33,7 +33,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
                 baseUri={baseUri}
                 endpoint={`${llmSearchBaseUri}/llm`}
             />
-            <main className='main-content'>
+            <div className='main-content'>
                 <ShareDataBanner
                     dictionary={frontpageDictionary}
                     baseUri={baseUri}
@@ -45,7 +45,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
                     baseUri={baseUri}
                     locale={params.lang}
                 />
-            </main>
+            </div>
         </div>
     );
 };

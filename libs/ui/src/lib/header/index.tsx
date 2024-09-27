@@ -69,6 +69,7 @@ const Header = ({
 
     return (
         <header
+            aria-label="Header"
             className={cn(styles.header, { [styles.frontpageHeader]: frontpage })}
             ref={headerRef}
         >
@@ -109,6 +110,8 @@ const Header = ({
                             variant={showMenu ? 'secondary' : 'tertiary'}
                             onClick={() => setShowMenu(!showMenu)}
                             aria-label={dictionary.header.menuButton}
+                            aria-pressed={showMenu}
+                            role="switch"
                         >
                             {showMenu ? (
                                 <XMarkIcon

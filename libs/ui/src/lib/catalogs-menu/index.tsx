@@ -16,7 +16,7 @@ const CatalogsMenu = ({ dictionary, baseUri, locale }: CatalogsMenuProps) => {
     const data = getMainMenuData(dictionary, `${baseUri}/${locale}`);
 
     return (
-        <div className={styles.catalogsMenu}>
+        <nav className={styles.catalogsMenu} aria-label={dictionary.mainMenu.catalogs.label}>
             <ul>
                 {data.catalogs.map((item: any, i: number) => (
                     <li key={item.key}>
@@ -43,7 +43,7 @@ const CatalogsMenu = ({ dictionary, baseUri, locale }: CatalogsMenuProps) => {
                     </li>
                 ))}
             </ul>
-        </div>
+        </nav>
     );
 };
 
