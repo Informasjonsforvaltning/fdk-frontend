@@ -38,19 +38,24 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
     };
 
     return (
-        <div className={cn(styles.mainMenu, className)}>
-            <motion.div
-                className={styles.links}
-                variants={animations.links}
-            >
-                <motion.div
+        <motion.nav
+            className={styles.mainMenu}
+            variants={animations.links}
+            initial='hidden'
+            animate='show'
+            aria-label={dictionary.mainMenu.label}
+        >
+            <div className={styles.links}>
+                <motion.nav
                     className={styles.linkSection}
                     variants={animations.section}
+                    aria-labelledby="mainMenu.catalogs.heading"
                 >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={3}
                         size='sm'
+                        id="mainMenu.catalogs.heading"
                     >
                         {dictionary.mainMenu.catalogs.heading}
                     </Heading>
@@ -66,15 +71,17 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             </li>
                         ))}
                     </ul>
-                </motion.div>
-                <motion.div
+                </motion.nav>
+                <motion.nav
                     className={styles.linkSection}
                     variants={animations.section}
+                    aria-labelledby="mainMenu.help.heading"
                 >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={3}
                         size='sm'
+                        id="mainMenu.help.heading"
                     >
                         {dictionary.mainMenu.help.heading}
                     </Heading>
@@ -88,15 +95,17 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             </li>
                         ))}
                     </ul>
-                </motion.div>
-                <motion.div
+                </motion.nav>
+                <motion.nav
                     className={styles.linkSection}
                     variants={animations.section}
+                    aria-labelledby="mainMenu.tools.heading"
                 >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={3}
                         size='sm'
+                        id="mainMenu.tools.heading"
                     >
                         {dictionary.mainMenu.tools.heading}
                     </Heading>
@@ -107,15 +116,17 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             </li>
                         ))}
                     </ul>
-                </motion.div>
-                <motion.div
+                </motion.nav>
+                <motion.nav
                     className={styles.linkSection}
                     variants={animations.section}
+                    aria-labelledby="mainMenu.about.heading"
                 >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={3}
                         size='sm'
+                        id="mainMenu.about.heading"
                     >
                         {dictionary.mainMenu.about.heading}
                     </Heading>
@@ -130,9 +141,9 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             </li>
                         ))}
                     </ul>
-                </motion.div>
-            </motion.div>
-        </div>
+                </motion.nav>
+            </div>
+        </motion.nav>
     );
 };
 
