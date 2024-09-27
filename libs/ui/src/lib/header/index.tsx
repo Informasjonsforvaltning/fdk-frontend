@@ -101,7 +101,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
                             variant={showMenu ? 'secondary' : 'tertiary'}
                             onClick={() => setShowMenu(!showMenu)}
                             aria-label={dictionary.header.menuButton}
-                            aria-pressed={showMenu}
+                            aria-checked={showMenu}
                             role="switch"
                         >
                             {showMenu ? (

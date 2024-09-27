@@ -8,7 +8,6 @@ import { LogoLink, DigdirLogoLink } from '../logo';
 import getMainMenuData from '../main-menu/data';
 import LanguageSwitcher from '../language-switcher';
 
-import DigdirLogo from '../core/svg/digdir-logo';
 import GithubLogo from '../core/svg/github-logo';
 
 import getFooterData from './data';

@@ -50,12 +50,23 @@ html {
 
 .fds-btn {
     &.fds-link {
-        color: var(--color-link);
+        &:not(:focus-visible) {
+            color: var(--color-link);
+        }
+        
         text-decoration: none;
     }
     &.fds-btn--primary {
         &.fds-link {
             color: white;
+        }
+    }
+
+    &:focus-visible {
+        @include fds-focus-visible-block();
+
+        &.fds-link {
+            color:black;
         }
     }
 }
