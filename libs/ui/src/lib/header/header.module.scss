@@ -90,6 +90,7 @@
             &:focus-visible {
                 @include fds-focus-visible-block();
                 background: var(--fds-semantic-border-focus-outline);
+                color:black !important;
             }
         }
 

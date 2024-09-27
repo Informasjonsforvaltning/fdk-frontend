@@ -1,3 +1,5 @@
+@import '@fdk-frontend/ui/core/mixins';
+
 .auxPanel {
     display: flex;
     align-items: flex-start;
@@ -31,8 +33,24 @@
 
         a {
             width: 100%;
-            color: white;
             text-decoration: none;
+
+            // &:focus-visible {
+            //     @include fds-focus-visible-block();
+            //     color:inherit !important;
+            // }
+        }
+    }
+
+    &:focus-visible {
+        @include fds-focus-visible-block();
+
+        svg {
+            color: var(--fds-semantic-border-focus-outline);
+        }
+
+        span {
+            text-decoration:none;
         }
     }
 
