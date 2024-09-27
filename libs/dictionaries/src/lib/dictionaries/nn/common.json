@@ -45,7 +45,7 @@
                 "title": "Informasjonsmodellar"
             },
             "servicesEvents": {
-                "description": "Tenester som blir tilbydde på vegner av offentleg sektor, og hendingar som kan utløyse slike tenester",
+                "description": "Tenester som blir tilbodne av eller på vegne av offentleg sektor, og hendingar som kan utløyse slike tenester",
                 "title": "Tenester og hendingar"
             },
             "terms": {

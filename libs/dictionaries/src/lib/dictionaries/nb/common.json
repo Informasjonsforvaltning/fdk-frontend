@@ -45,7 +45,7 @@
                 "title": "Informasjonsmodeller"
             },
             "servicesEvents": {
-                "description": "Tjenester som tilbys på vegne av offentlig sektor, og hendelser som kan utløse slike tjenester",
+                "description": "Tjenester som tilbys av eller på vegne av offentlig sektor, og hendelser som kan utløse slike tjenester",
                 "title": "Tjenester og hendelser"
             },
             "terms": {
