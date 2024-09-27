@@ -93,7 +93,13 @@ export default async function Page({ params }: DocsPageType) {
                 />
             ),
             p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
-            Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => <Alert size={size} iconTitle={iconTitle} {...props} />,
+            Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => (
+                <Alert
+                    size={size}
+                    iconTitle={iconTitle}
+                    {...props}
+                />
+            ),
             Button,
             Link,
             Divider,
