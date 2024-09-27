@@ -60,7 +60,11 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
 
     return (
         <header
+<<<<<<< HEAD
             aria-label='Header'
+=======
+            aria-label="Header"
+>>>>>>> 0ac5483 (fix(project): landmark labels, main menu button switch role, norgeskart aria-hidden)
             className={cn(styles.header, { [styles.frontpageHeader]: frontpage })}
             ref={headerRef}
         >
