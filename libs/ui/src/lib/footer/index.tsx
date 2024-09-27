@@ -4,12 +4,13 @@ import { Dictionary } from '@fdk-frontend/dictionaries';
 import { CatalogTypes } from '@fdk-frontend/types';
 
 import { CatalogIcon } from '../catalog-symbol';
-import { LogoLink } from '../logo';
+import { LogoLink, DigdirLogoLink } from '../logo';
 import getMainMenuData from '../main-menu/data';
 import LanguageSwitcher from '../language-switcher';
 
-import DigdirLogo from './images/digdir-logo';
-import GithubLogo from './images/github-logo';
+import DigdirLogo from '../core/svg/digdir-logo';
+import GithubLogo from '../core/svg/github-logo';
+
 import getFooterData from './data';
 
 import styles from './footer.module.scss';
@@ -129,9 +130,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
                     <LogoLink baseUri={baseUri} />
                     <div className={styles.digdirCredit}>
                         <span>{dictionary.footer.digdirCredit}</span>
-                        <Link href={footerData.digdirUri}>
-                            <DigdirLogo />
-                        </Link>
+                        <DigdirLogoLink href={footerData.digdirUri} />
                     </div>
                 </div>
             </div>
