@@ -1,3 +1,5 @@
+@import '@fdk-frontend/ui/core/mixins';
+
 .footer {
     background: var(--color-fdk-navy-dark);
 
@@ -29,16 +31,25 @@
             a {
                 display: flex;
                 gap: 0.5rem;
-                color: var(--fds-semantic-border-action-first-subtle);
                 padding: 0.5rem 1rem;
                 text-decoration: none;
                 margin: 0 0 0 -1rem;
                 border-radius: 0.25rem;
+                color: var(--fds-semantic-border-action-first-subtle);
 
                 &:hover {
                     background: rgba(0, 0, 0, 0.33);
                     background: var(--color-fdk-navy);
                     color: white;
+                }
+
+                &:focus-visible {
+                    @include fds-focus-visible-block();
+                    color:black;
+
+                    svg {
+                        fill: black;
+                    }
                 }
             }
 
