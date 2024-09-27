@@ -131,8 +131,9 @@ const Sidebar = ({ dictionary, slug, locale }: SidebarProps) => {
     const nestedData = buildNestedStructure(dictionary.titles, basePath, locale);
 
     return (
-        <div className={styles.sidebar}>
+        <nav className={styles.sidebar} aria-labelledby="sidebar-heading">
             <Heading
+                id="sidebar-heading"
                 level={2}
                 size='xs'
             >
@@ -143,7 +144,7 @@ const Sidebar = ({ dictionary, slug, locale }: SidebarProps) => {
                 locale={locale}
                 pathname={pathname}
             />
-        </div>
+        </nav>
     );
 };
 

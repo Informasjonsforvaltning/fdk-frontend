@@ -31,8 +31,9 @@ type TableOfContentsProps = {
 };
 
 const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
-    <nav className={styles.sidebar}>
+    <nav className={styles.sidebar} aria-labelledby="tableOfContents.onThisPage">
         <Heading
+            id="tableOfContents.onThisPage"
             level={2}
             size='xs'
         >
