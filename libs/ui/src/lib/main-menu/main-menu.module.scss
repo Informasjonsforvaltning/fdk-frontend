@@ -1,3 +1,5 @@
+@import '@fdk-frontend/ui/core/mixins';
+
 .mainMenu {
     display: grid;
     grid-template-columns: 2.5fr 1fr;
@@ -44,6 +46,10 @@
                 &:hover {
                     color: var(--fds-semantic-text-action-first-hover);
                     background: var(--fds-semantic-surface-action-first-no_fill-hover);
+                }
+
+                &:focus-visible {
+                    @include fds-focus-visible-block();
                 }
             }
         }

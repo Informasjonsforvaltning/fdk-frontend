@@ -1,3 +1,5 @@
+@import '@fdk-frontend/ui/core/mixins';
+
 .header {
     &.frontpageHeader {
         padding-bottom: 0;
@@ -12,14 +14,14 @@
             &:not(.headerSticky) {
                 background: transparent;
 
-                .headerLogo {
+                .headerLogo:not(:focus-visible) {
                     color: white;
                 }
 
                 .headerToolbar {
                     a,
                     button {
-                        &:not(:hover) {
+                        &:not(:hover):not(:focus-visible) {
                             color: white;
                         }
                     }
@@ -30,6 +32,23 @@
 
     + main {
         padding-top: 74px;
+    }
+}
+
+.skipToMain {
+    position:fixed;
+    z-index:200;
+    display:block;
+    width:100%;
+    padding:1rem;
+    border:0;
+    border-bottom:2px solid black;
+    text-align:center;
+    text-decoration: none;
+    box-shadow: none;
+
+    &:not(:focus) {
+        @include sr-only();
     }
 }
 
@@ -68,6 +87,14 @@
             color: var(--color-fdk-navy);
         }
 
+        a,
+        button {
+            &:focus-visible {
+                @include fds-focus-visible-block();
+                background: var(--fds-semantic-border-focus-outline);
+            }
+        }
+
         .headerToolbar {
             display: flex;
             gap: 1rem;
@@ -80,7 +107,7 @@
                     color: var(--fds-semantic-surface-action-first-default);
                 }
 
-                &:last-child {
+                &:last-child:not(:focus-visible) {
                     color: white;
                 }
             }

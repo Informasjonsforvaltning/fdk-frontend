@@ -69,6 +69,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
                     [styles.drawerOpen]: showMenu,
                 })}
             >
+                <Link className={styles.skipToMain} href="#main">{dictionary.header.skipToMain}</Link>
                 <div className={styles.headerInner}>
                     <LogoLink
                         className={styles.headerLogo}
