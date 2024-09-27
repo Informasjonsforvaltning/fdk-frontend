@@ -131,9 +131,12 @@ const Sidebar = ({ dictionary, slug, locale }: SidebarProps) => {
     const nestedData = buildNestedStructure(dictionary.titles, basePath, locale);
 
     return (
-        <nav className={styles.sidebar} aria-labelledby="sidebar-heading">
+        <nav
+            className={styles.sidebar}
+            aria-labelledby='sidebar-heading'
+        >
             <Heading
-                id="sidebar-heading"
+                id='sidebar-heading'
                 level={2}
                 size='xs'
             >
