@@ -1,11 +1,9 @@
 import { Link } from '@digdir/designsystemet-react';
 import { Dictionary } from '@fdk-frontend/dictionaries';
 
-import { LogoLink } from '../logo';
+import { LogoLink, DigdirLogoLink } from '../logo';
 import LanguageSwitcher from '../language-switcher';
 import MainMenu from '../main-menu';
-
-import DigdirLogo from './images/digdir-logo';
 
 import styles from './footer.module.scss';
 
@@ -30,9 +28,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
                     <LogoLink baseUri={baseUri} />
                     <div className={styles.digdirCredit}>
                         <span>{dictionary.footer.digdirCredit}</span>
-                        <Link href={`https://www.digdir.no/`}>
-                            <DigdirLogo />
-                        </Link>
+                        <DigdirLogoLink href={`https://www.digdir.no/`} />
                     </div>
                 </div>
             </div>
