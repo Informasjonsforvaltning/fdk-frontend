@@ -53,7 +53,7 @@
             },
             "terms": {
                 "description": "Definitions of concepts that the organization uses in its data",
-                "title": "Terms"
+                "title": "Concepts"
             }
         },
         "help": {
