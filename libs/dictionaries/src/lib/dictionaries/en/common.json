@@ -48,11 +48,11 @@
                 "title": "Information Models"
             },
             "servicesEvents": {
-                "description": "Services provided on behalf of the public sector and events that may trigger such services",
+                "description": "Services provided by or on behalf of the public sector and events that may trigger such services",
                 "title": "Services and events"
             },
             "terms": {
-                "description": "Definitions of terms that the organization uses in its data",
+                "description": "Definitions of concepts that the organization uses in its data",
                 "title": "Terms"
             }
         },
