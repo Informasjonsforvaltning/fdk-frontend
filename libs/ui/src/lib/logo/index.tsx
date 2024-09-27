@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { Link } from '@digdir/designsystemet-react';
+import { Link, type LinkProps } from '@digdir/designsystemet-react';
 
 import DigdirEmblem from '../core/svg/digdir-emblem';
 import DigdirLogo from '../core/svg/digdir-logo';
@@ -18,7 +18,7 @@ export type LogoLinkProps = {
     baseUri?: string;
 };
 
-const LogoLink = ({ className, baseUri, ...rest }: LogoLinkProps & React.HTMLAttributes<HTMLAnchorElement>) => (
+const LogoLink = ({ className, baseUri, ...rest }: LogoLinkProps & Omit<LinkProps, 'children'>) => (
     <Link
         href={baseUri}
         className={cn(styles.logoLink, className)}
@@ -28,7 +28,7 @@ const LogoLink = ({ className, baseUri, ...rest }: LogoLinkProps & React.HTMLAtt
     </Link>
 );
 
-const DigdirLogoLink = ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
+const DigdirLogoLink = ({ className, ...props }: Omit<LinkProps, 'children'>) => (
     <Link
         className={cn(styles.digdirLogoLink, className)}
         {...props}

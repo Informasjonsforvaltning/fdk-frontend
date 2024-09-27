@@ -14,7 +14,10 @@ type FooterProps = {
 
 const Footer = ({ dictionary, baseUri }: FooterProps) => {
     return (
-        <footer className={styles.footer} aria-label="Footer">
+        <footer
+            className={styles.footer}
+            aria-label='Footer'
+        >
             <div className={styles.inner}>
                 <MainMenu
                     className={styles.footerNav}
