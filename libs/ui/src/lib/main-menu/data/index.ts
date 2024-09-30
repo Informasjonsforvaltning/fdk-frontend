@@ -31,13 +31,7 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
             title: dictionary.mainMenu.catalogs.servicesEvents.title,
             description: dictionary.mainMenu.catalogs.servicesEvents.description,
             href: `${baseUri}/catalogs/public-services-and-events`,
-        },
-        {
-            key: 'ai',
-            title: dictionary.mainMenu.catalogs.ai.title,
-            description: dictionary.mainMenu.catalogs.ai.description,
-            href: `${baseUri}/catalogs/ai`,
-        },
+        }
     ],
     help: [
         {
@@ -71,6 +65,10 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
         {
             title: dictionary.mainMenu.tools.links.sparqlSandbox,
             href: `${baseUri}/sparql`,
+        },
+        {
+            title: dictionary.mainMenu.catalogs.ai.title,
+            href: `${baseUri}/kunstig-intelligens`,
         },
     ],
     about: [
