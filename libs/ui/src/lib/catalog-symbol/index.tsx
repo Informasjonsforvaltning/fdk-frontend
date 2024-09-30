@@ -12,6 +12,7 @@ export type CatalogSymbolProps = {
 };
 
 const CatalogIcon = ({ catalog, ...rest }: CatalogSymbolProps & React.SVGProps<SVGSVGElement>) => {
+    return null;
     switch (catalog) {
         case 'datasets':
             return <FilesIcon {...rest} />;
@@ -28,15 +29,18 @@ const CatalogIcon = ({ catalog, ...rest }: CatalogSymbolProps & React.SVGProps<S
     }
 };
 
-const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps & React.SVGProps<SVGSVGElement>) => (
-    <div className={cn(styles.catalogSymbol, className)}>
-        <CatalogIcon
-            catalog={catalog}
-            aria-hidden
-            {...rest}
-        />
-    </div>
-);
+const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps & React.SVGProps<SVGSVGElement>) => {
+    return null;
+    return (
+        <div className={cn(styles.catalogSymbol, className)}>
+            <CatalogIcon
+                catalog={catalog}
+                aria-hidden
+                {...rest}
+            />
+        </div>
+    );
+}
 
 export default CatalogSymbol;
 export { CatalogIcon };
