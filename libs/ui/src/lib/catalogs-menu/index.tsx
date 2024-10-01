@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Link, Heading, Card, Paragraph } from '@digdir/designsystemet-react';
 
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import getMainMenuData from '../main-menu/data';
 
 import styles from './catalogs-menu.module.scss';
@@ -11,45 +11,23 @@ import styles from './catalogs-menu.module.scss';
 type CatalogsMenuProps = {
     dictionary: Dictionary;
     baseUri: string;
+    locale: LocaleCodes,
 };
 
-const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
-    const data = getMainMenuData(dictionary, baseUri);
-
-    const animations = {
-        catalogList: {
-            hidden: { opacity: 0 },
-            show: {
-                opacity: 1,
-                transition: {
-                    staggerChildren: 0.05,
-                },
-            },
-        },
-        catalogItem: {
-            hidden: { opacity: 0, scale: 0.9 },
-            show: { opacity: 1, scale: 1 },
-        },
-    };
+const CatalogsMenu = ({ dictionary, baseUri, locale }: CatalogsMenuProps) => {
+    const data = getMainMenuData(dictionary, `${baseUri}/${locale}`);
 
     return (
         <div className={styles.catalogsMenu}>
-            <motion.ul
-                variants={animations.catalogList}
-                initial='hidden'
-                animate='show'
-            >
+            <ul>
                 {data.catalogs.map((item: any, i: number) => (
-                    <motion.li
-                        variants={animations.catalogItem}
-                        key={item.key}
-                    >
+                    <li key={item.key}>
                         <Card
                             className={styles.card}
                             asChild
                             isLink
                         >
-                            <Link href={item.href}>
+                            <Link href={`${item.href}`}>
                                 <Card.Header>
                                     <Heading
                                         className={styles.catalogTitle}
@@ -64,9 +42,9 @@ const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
                                 </Card.Content>
                             </Link>
                         </Card>
-                    </motion.li>
+                    </li>
                 ))}
-            </motion.ul>
+            </ul>
         </div>
     );
 };

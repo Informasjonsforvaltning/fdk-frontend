@@ -37,11 +37,13 @@ const Frontpage = async ({ params }: FrontpageProps) => {
                 <ShareDataBanner
                     dictionary={frontpageDictionary}
                     baseUri={baseUri}
+                    locale={params.lang}
                 />
                 <CatalogsBanner
                     frontpageDictionary={frontpageDictionary}
                     commonDictionary={commonDictionary}
                     baseUri={baseUri}
+                    locale={params.lang}
                 />
             </main>
         </div>

@@ -4,13 +4,7 @@
         "home": "Home"
     },
     "footer": {
-        "digdirCredit": "a service from",
-        "githubFollow": "Follow us on Github",
-        "policies": {
-            "a11yStatement": "Accesibility statement",
-            "cookiePolicy": "Cookie policy",
-            "privacyPolicy": "Privacy policy"
-        }
+        "digdirCredit": "a service from"
     },
     "header": {
         "findDataButton": "Find data",
@@ -24,7 +18,11 @@
             "links": {
                 "aboutUs": "About us",
                 "contactUs": "Contact us",
-                "reports": "Reports & key figures"
+                "reports": "Reports & key figures",
+                "a11yStatement": "Accesibility statement",
+                "cookiePolicy": "Cookie policy",
+                "privacyPolicy": "Privacy policy",
+                "githubFollow": "Follow us on Github"
             }
         },
         "catalogs": {

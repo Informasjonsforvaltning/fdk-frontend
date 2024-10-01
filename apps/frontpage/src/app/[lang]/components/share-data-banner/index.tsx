@@ -1,5 +1,5 @@
 import { Button, Paragraph, Link } from '@digdir/designsystemet-react';
-import { Dictionary, interpolate } from '@fdk-frontend/dictionaries';
+import { Dictionary, interpolate, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 
@@ -8,9 +8,10 @@ import styles from './share-data-banner.module.scss';
 type ShareDataBannerProps = {
     dictionary: Dictionary;
     baseUri: string;
+    locale: LocaleCodes;
 };
 
-const ShareDataBanner = ({ dictionary, baseUri }: ShareDataBannerProps) => (
+const ShareDataBanner = ({ dictionary, baseUri, locale }: ShareDataBannerProps) => (
     <div className={styles.shareDataBanner}>
         <HeadingWithDivider
             level={2}
@@ -36,7 +37,7 @@ const ShareDataBanner = ({ dictionary, baseUri }: ShareDataBannerProps) => (
                 asChild
                 variant='secondary'
             >
-                <Link href={`${baseUri}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
+                <Link href={`${baseUri}/${locale}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
             </Button>
         </div>
     </div>

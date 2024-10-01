@@ -1,56 +1,66 @@
 @import '@fdk-frontend/ui/core/mixins';
 
 .mainMenu {
+    padding: 0 1rem;
+    container-type: inline-size;
+
+    @media (max-width: 800px) {
+        padding-bottom: 2rem;
+    }
+}
+
+.links {
     display: grid;
-    grid-template-columns: 2.5fr 1fr;
-    gap: 2rem;
-    padding: 2rem 0 3rem;
-    container-type: inline-size;
-
-    @media (max-width: 1000px) {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-.sectionHeader {
-    margin-bottom: 1rem;
-}
-
-.linkSectionContainer {
-    container-type: inline-size;
-}
-
-.linkSection {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    background: #f8f8f8;
-    border-radius: 0.5rem;
-    padding: 2rem 2rem 1rem;
+    margin-bottom: 1rem;
 
-    @container (min-width: 500px) {
-        flex-direction: row;
-        justify-content: space-between;
+    .linkSection {
+        margin-bottom: 1rem;
+
+        .linkSectionHeader {
+            // color: white;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            display: flex;
+            gap: 0.5rem;
+            // color: var(--fds-semantic-border-action-first-subtle);
+            color: var(--color-link);
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            margin: 0 0 0 -1rem;
+            border-radius: 0.25rem;
+
+            &:hover {
+                // background: rgba(0, 0, 0, 0.33);
+                // background: var(--color-fdk-navy);
+                background: var(--fds-semantic-surface-action-first-no_fill-hover);
+                // color: white;
+            }
+
+            svg {
+                fill: var(--color-link);
+            }
+        }
+
+        .footerCatalogSymbol {
+            background: transparent;
+            padding: 0;
+        }
     }
 
-    ul {
-        li {
+    @container (max-width: 810px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @container (max-width: 400px) {
+        grid-template-columns: 1fr;
+
+        .linkSection {
             a {
-                display: block;
-                color: var(--fds-semantic-text-action-hover);
-                padding: 0.5rem 1rem;
                 margin: 0 -1rem;
-                text-decoration: none;
-
-                &:hover {
-                    color: var(--fds-semantic-text-action-first-hover);
-                    background: var(--fds-semantic-surface-action-first-no_fill-hover);
-                }
-
-                &:focus-visible {
-                    @include fds-focus-visible-block();
-                }
             }
         }
     }
