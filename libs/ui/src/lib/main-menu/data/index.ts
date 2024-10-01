@@ -84,6 +84,26 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
             title: dictionary.mainMenu.about.links.contactUs,
             href: `${baseUri}/contact`,
         },
+        {
+            title: dictionary.mainMenu.about.links.a11yStatement,
+            href: `https://uustatus.no/nb/erklaringer/publisert/8020b962-b706-4cdf-ab8b-cdb5f480a696`,
+            external: true,
+        },
+        {
+            title: dictionary.mainMenu.about.links.privacyPolicy,
+            href: `https://www.digdir.no/digdir/personvernerklaering/706`,
+            external: true,
+        },
+        {
+            title: dictionary.mainMenu.about.links.cookiePolicy,
+            href: `https://www.digdir.no/digdir/informasjonskapsler/707`,
+            external: true,
+        },
+        {
+            title: dictionary.mainMenu.about.links.githubFollow,
+            href: `https://github.com/Informasjonsforvaltning`,
+            external: true,
+        },
     ],
 });
 

@@ -28,7 +28,8 @@ import {
     TableCell,
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
+import { i18n, getDictionary, type LocaleCodes, type Locale } from '@fdk-frontend/dictionaries';
 
 import MdxPage from '../../components/mdx-page';
 import MdxHeading from '../../components/mdx-heading';
@@ -49,6 +50,11 @@ export default async function Page({ params }: DocsPageType) {
 
     // Construct .mdx filepath based on URL slug and locale
     const filePath = path.resolve(process.cwd(), contentDirectory, ...params.slug, `${pageName}.${locale}.mdx`);
+
+    const commonDictionary = await getDictionary(locale, 'common');
+
+    const { FDK_DATA_NORGE_BASE_URI, FDK_BASE_URI = '' } = process.env;
+    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
     try {
         // Get raw MDX source
@@ -104,6 +110,14 @@ export default async function Page({ params }: DocsPageType) {
             Link,
             Divider,
             CatalogPromo,
+            CatalogsMenu: (props) => (
+                <CatalogsMenu
+                    dictionary={commonDictionary}
+                    baseUri={baseUri}
+                    locale={locale}
+                />
+            ),
+            NegativeMagin: (props) => <div style={{marginLeft:'-1rem', marginRight:'-1rem'}} {...props} />,
             Image,
             table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
                 <Table {...(props as any)}>{children}</Table>
@@ -181,10 +195,6 @@ export default async function Page({ params }: DocsPageType) {
             },
             components,
         });
-
-        const { FDK_DATA_NORGE_BASE_URI, FDK_BASE_URI = '' } = process.env;
-
-        const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
         // Render page
         return (

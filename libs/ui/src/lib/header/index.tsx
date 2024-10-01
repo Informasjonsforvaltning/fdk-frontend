@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 
 import { Link, Button } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
@@ -26,9 +27,17 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const [frontpage, setFrontpage] = useState(false);
+    const [frontpage, setFrontpage] = useState(true);
+
+    const animations = {
+        drawerInner: {
+            hidden: { height: 0 },
+            show: { height: 'auto', transition: { duration: 0.15 } },
+        }
+    };
 
     const toggleSticky = () => {
+        console.log('toggleSticky', window.scrollY, frontpage, sticky);
         if (frontpage) return false;
         if (window.scrollY > 0) {
             if (!sticky) setSticky(true);
@@ -45,9 +54,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
 
     useEffect(() => {
         const pathSegments = pathname.split('/');
-        if (pathSegments.length === 2) setFrontpage(true);
-
-        toggleSticky();
+        if (pathSegments.length !== 2) setFrontpage(false);
 
         window.addEventListener('scroll', toggleSticky);
         window.addEventListener('click', handleClick);
@@ -127,14 +134,17 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
                 </div>
                 {showMenu && (
                     <div className={styles.drawer}>
-                        <div className={styles.drawerInner}>
-                            {showMenu && (
-                                <MainMenu
-                                    dictionary={dictionary}
-                                    baseUri={baseUri}
-                                />
-                            )}
-                        </div>
+                        <motion.div
+                            className={styles.drawerInner}
+                            variants={animations.drawerInner}
+                            initial='hidden'
+                            animate='show'
+                        >
+                            <MainMenu
+                                dictionary={dictionary}
+                                baseUri={baseUri}
+                            />
+                        </motion.div>
                     </div>
                 )}
             </div>

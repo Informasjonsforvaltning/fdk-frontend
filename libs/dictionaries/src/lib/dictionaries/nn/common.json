@@ -4,13 +4,7 @@
         "home": "Heim"
     },
     "footer": {
-        "digdirCredit": "ei teneste frå",
-        "githubFollow": "Følg oss på Github",
-        "policies": {
-            "a11yStatement": "Tilgjengeerklæring",
-            "cookiePolicy": "Informasjonskapslar",
-            "privacyPolicy": "Personvernerklæring"
-        }
+        "digdirCredit": "ei teneste frå"
     },
     "header": {
         "findDataButton": "Finn data",
@@ -24,7 +18,11 @@
             "links": {
                 "aboutUs": "Om oss",
                 "contactUs": "Kontakt oss",
-                "reports": "Rapportar og nøkkeltal"
+                "reports": "Rapportar og nøkkeltal",
+                "a11yStatement": "Tilgjengeerklæring",
+                "cookiePolicy": "Informasjonskapslar",
+                "privacyPolicy": "Personvernerklæring",
+                "githubFollow": "Følg oss på Github"
             }
         },
         "catalogs": {
