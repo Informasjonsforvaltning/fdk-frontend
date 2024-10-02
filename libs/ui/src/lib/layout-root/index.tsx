@@ -13,11 +13,12 @@ export type RootLayoutProps = {
     params: {
         lang: Locale['code'];
     };
+    frontpage?: boolean;
 };
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
-const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChildren) => {
+const RootLayout = async ({ children, params, frontpage }: RootLayoutProps & PropsWithChildren) => {
     const dictionary = await getDictionary(params.lang, 'common');
 
     const {
@@ -37,6 +38,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
                     baseUri={baseUri}
                     registrationBaseUri={registrationBaseUri}
                     communityBaseUri={communityBaseUri}
+                    frontpage={frontpage}
                 />
                 <main id='main'>{children}</main>
                 <Footer
