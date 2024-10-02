@@ -117,7 +117,7 @@ export default async function Page({ params }: DocsPageType) {
                     locale={locale}
                 />
             ),
-            NegativeMagin: (props: React.HTMLAttributes<HTMLDivElement>) => (
+            NegativeMargin: (props: React.HTMLAttributes<HTMLDivElement>) => (
                 <div
                     style={{ marginLeft: '-1rem', marginRight: '-1rem' }}
                     {...props}
