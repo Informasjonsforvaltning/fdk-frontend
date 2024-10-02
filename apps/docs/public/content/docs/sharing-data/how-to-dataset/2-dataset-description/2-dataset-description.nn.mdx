@@ -144,14 +144,21 @@ Den fyrste seier at datasettet kan tematiserast under offentleg sektor ("Governm
   .
 ```
 
-Alle datasettbeskrivingar må ha minst eitt tema angitt med dcat:theme, og temaet må anten peike til kodelista Data Theme eller kodelista EuroVoc. I tillegg kan du peike til tema frå kodelista LOS som Digdir forvaltar.
+Alle datasettbeskrivingar må ha minst eitt tema angitt med dcat:theme, og du må bruke minst ei kode frå Data Theme. I tillegg bør du bruke kodar frå kodelista Los dersom ei relevant kode fins der.
 
 For å finne aktuelle kodar til di beskriving kan du sjå gjennom innhaldet i kodelistene på:
 
 -   [Oversikt over kodar i Data Theme (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme)
+-   [Informasjon om Los (psi.norge.no)](https://psi.norge.no/los/)
 -   [Oversikt over kodar i EuroVoc (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141)
 
-## Geografisk avgrensing
+<Alert size='sm'>
+    **Tips**: Vi har ei eiga side som går i detalj om [korleis bruke
+    kodar](/docs/sharing-data/how-to-dataset/7-extras-code-lists) for å merke datasett tematisk, angi dekningsområde,
+    lisenser mm. Ta gjerne ein kikk der om du lurar på noko.
+</Alert>
+
+## Geografisk dekningsområde
 
 Ved hjelp av eigenskapen `dct:spatial` og ein eksisterande kode som representerer det geografiske området Noreg kan vi uttrykke at datasettet er avgrensa til Noreg:
 
