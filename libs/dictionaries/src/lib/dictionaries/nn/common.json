@@ -13,7 +13,7 @@
         "skipToMain": "Hopp til hovudinnhald"
     },
     "mainMenu": {
-        "label": "Hovedmeny",
+        "label": "Hovudmeny",
         "about": {
             "heading": "Om data.norge.no",
             "links": {
@@ -27,6 +27,7 @@
             }
         },
         "catalogs": {
+            "label": "Katalogar",
             "ai": {
                 "description": "KI-prosjekt i offentleg sektor",
                 "title": "Kunstig intelligens"
