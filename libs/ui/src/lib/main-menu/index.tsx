@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { Link, Heading } from '@digdir/designsystemet-react';
@@ -9,7 +10,6 @@ import { Dictionary } from '@fdk-frontend/dictionaries';
 
 import styles from './main-menu.module.scss';
 
-import CatalogsMenu from '../catalogs-menu';
 import GithubLogo from './images/github-logo';
 import getMainMenuData from './data';
 
@@ -39,8 +39,14 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
 
     return (
         <div className={cn(styles.mainMenu, className)}>
-            <motion.div className={styles.links} variants={animations.links}>
-                <motion.div className={styles.linkSection} variants={animations.section}>
+            <motion.div
+                className={styles.links}
+                variants={animations.links}
+            >
+                <motion.div
+                    className={styles.linkSection}
+                    variants={animations.section}
+                >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={3}
@@ -61,7 +67,10 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                         ))}
                     </ul>
                 </motion.div>
-                <motion.div className={styles.linkSection} variants={animations.section}>
+                <motion.div
+                    className={styles.linkSection}
+                    variants={animations.section}
+                >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={3}
@@ -80,7 +89,10 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                         ))}
                     </ul>
                 </motion.div>
-                <motion.div className={styles.linkSection} variants={animations.section}>
+                <motion.div
+                    className={styles.linkSection}
+                    variants={animations.section}
+                >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={3}
@@ -96,7 +108,10 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                         ))}
                     </ul>
                 </motion.div>
-                <motion.div className={styles.linkSection} variants={animations.section}>
+                <motion.div
+                    className={styles.linkSection}
+                    variants={animations.section}
+                >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={3}

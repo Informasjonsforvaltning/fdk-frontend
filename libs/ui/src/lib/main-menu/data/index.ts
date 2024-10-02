@@ -31,7 +31,7 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
             title: dictionary.mainMenu.catalogs.servicesEvents.title,
             description: dictionary.mainMenu.catalogs.servicesEvents.description,
             href: `${baseUri}/catalogs/public-services-and-events`,
-        }
+        },
     ],
     help: [
         {

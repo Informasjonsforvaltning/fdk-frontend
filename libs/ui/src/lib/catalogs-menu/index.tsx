@@ -1,8 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Link, Heading, Card, Paragraph } from '@digdir/designsystemet-react';
-
 import { Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import getMainMenuData from '../main-menu/data';
 
@@ -11,7 +9,7 @@ import styles from './catalogs-menu.module.scss';
 type CatalogsMenuProps = {
     dictionary: Dictionary;
     baseUri: string;
-    locale: LocaleCodes,
+    locale: LocaleCodes;
 };
 
 const CatalogsMenu = ({ dictionary, baseUri, locale }: CatalogsMenuProps) => {
