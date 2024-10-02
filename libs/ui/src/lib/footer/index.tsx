@@ -1,9 +1,7 @@
 import { Link, Heading } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Dictionary } from '@fdk-frontend/dictionaries';
-import { CatalogTypes } from '@fdk-frontend/types';
 
-import { CatalogIcon } from '../catalog-symbol';
 import { LogoLink } from '../logo';
 import getMainMenuData from '../main-menu/data';
 import LanguageSwitcher from '../language-switcher';
@@ -42,10 +40,6 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
                                         className={styles.iconLink}
                                         href={item.href}
                                     >
-                                        <CatalogIcon
-                                            catalog={item.key as CatalogTypes}
-                                            fontSize='1.5em'
-                                        />
                                         {item.title}
                                     </Link>
                                 </li>
