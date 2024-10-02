@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 
@@ -23,8 +22,13 @@ type HeaderProps = {
     frontpage?: boolean;
 };
 
-const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registrationBaseUri = '#', frontpage }: HeaderProps) => {
-    const pathname = usePathname();
+const Header = ({
+    dictionary,
+    baseUri = '/',
+    communityBaseUri = '#',
+    registrationBaseUri = '#',
+    frontpage,
+}: HeaderProps) => {
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -33,7 +37,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
         drawerInner: {
             hidden: { height: 0 },
             show: { height: 'auto', transition: { duration: 0.15 } },
-        }
+        },
     };
 
     const toggleSticky = () => {

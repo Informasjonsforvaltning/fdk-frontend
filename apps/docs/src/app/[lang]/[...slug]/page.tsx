@@ -29,7 +29,7 @@ import {
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
-import { i18n, getDictionary, type LocaleCodes, type Locale } from '@fdk-frontend/dictionaries';
+import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import MdxPage from '../../components/mdx-page';
 import MdxHeading from '../../components/mdx-heading';
@@ -110,14 +110,19 @@ export default async function Page({ params }: DocsPageType) {
             Link,
             Divider,
             CatalogPromo,
-            CatalogsMenu: (props) => (
+            CatalogsMenu: () => (
                 <CatalogsMenu
                     dictionary={commonDictionary}
                     baseUri={baseUri}
                     locale={locale}
                 />
             ),
-            NegativeMagin: (props) => <div style={{marginLeft:'-1rem', marginRight:'-1rem'}} {...props} />,
+            NegativeMagin: (props: React.HTMLAttributes<HTMLDivElement>) => (
+                <div
+                    style={{ marginLeft: '-1rem', marginRight: '-1rem' }}
+                    {...props}
+                />
+            ),
             Image,
             table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
                 <Table {...(props as any)}>{children}</Table>

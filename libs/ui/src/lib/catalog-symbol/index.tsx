@@ -38,7 +38,7 @@ const CatalogSymbol = ({ catalog, className, ...rest }: CatalogSymbolProps & Rea
             />
         </div>
     );
-}
+};
 
 export default CatalogSymbol;
 export { CatalogIcon };

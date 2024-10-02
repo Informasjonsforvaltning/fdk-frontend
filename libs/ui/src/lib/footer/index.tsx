@@ -18,7 +18,11 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
     return (
         <footer className={styles.footer}>
             <div className={styles.inner}>
-                <MainMenu className={styles.footerNav} dictionary={dictionary} baseUri={baseUri} />
+                <MainMenu
+                    className={styles.footerNav}
+                    dictionary={dictionary}
+                    baseUri={baseUri}
+                />
                 <LanguageSwitcher inverted />
             </div>
             <div className={styles.bottom}>
