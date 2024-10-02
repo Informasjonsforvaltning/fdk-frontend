@@ -1,7 +1,6 @@
 import React from 'react';
 import { Heading } from '@digdir/designsystemet-react';
 import Markdown from '@fdk-frontend/ui/markdown';
-import CatalogSymbol from '@fdk-frontend/ui/catalog-symbol';
 
 import styles from './result-item.module.scss';
 
@@ -30,10 +29,6 @@ const ResultItem = ({ item, baseUri, ...rest }: ResultItemProps & React.AnchorHT
         className={styles.link}
         {...rest}
     >
-        <CatalogSymbol
-            className={styles.icon}
-            catalog='datasets'
-        />
         <div>
             <Heading
                 className={styles.heading}

@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import { Link, Heading, Card, Paragraph } from '@digdir/designsystemet-react';
 
 import { Dictionary } from '@fdk-frontend/dictionaries';
-import { CatalogTypes } from '@fdk-frontend/types';
-import CatalogSymbol from '../catalog-symbol/';
 import getMainMenuData from '../main-menu/data';
 
 import styles from './catalogs-menu.module.scss';
@@ -58,10 +56,6 @@ const CatalogsMenu = ({ dictionary, baseUri }: CatalogsMenuProps) => {
                                         size='xxsmall'
                                         level={3}
                                     >
-                                        <CatalogSymbol
-                                            className={styles.catalogIcon}
-                                            catalog={item.key as CatalogTypes}
-                                        />
                                         <span>{item.title}</span>
                                     </Heading>
                                 </Card.Header>
