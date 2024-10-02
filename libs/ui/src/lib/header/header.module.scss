@@ -1,9 +1,11 @@
 @import '@fdk-frontend/ui/core/mixins';
 
 .header {
-    &.frontpageHeader {
-        padding-bottom: 0;
+    + main {
+        padding-top: 74px;
+    }
 
+    &.frontpageHeader {
         + main {
             padding-top: 0;
         }
@@ -29,10 +31,6 @@
             }
         }
     }
-
-    + main {
-        padding-top: 74px;
-    }
 }
 
 .skipToMain {
@@ -53,7 +51,7 @@
 }
 
 .headerOuter {
-    position: fixed;
+    position: absolute;
     z-index: 100;
     width: 100%;
     transition: all linear 200ms;

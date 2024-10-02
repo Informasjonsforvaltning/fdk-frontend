@@ -20,14 +20,14 @@ type HeaderProps = {
     baseUri?: string;
     communityBaseUri?: string;
     registrationBaseUri?: string;
+    frontpage?: boolean;
 };
 
-const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registrationBaseUri = '#' }: HeaderProps) => {
+const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registrationBaseUri = '#', frontpage }: HeaderProps) => {
     const pathname = usePathname();
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const [frontpage, setFrontpage] = useState(true);
 
     const animations = {
         drawerInner: {
@@ -37,7 +37,6 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
     };
 
     const toggleSticky = () => {
-        console.log('toggleSticky', window.scrollY, frontpage, sticky);
         if (frontpage) return false;
         if (window.scrollY > 0) {
             if (!sticky) setSticky(true);
@@ -53,8 +52,7 @@ const Header = ({ dictionary, baseUri = '/', communityBaseUri = '#', registratio
     };
 
     useEffect(() => {
-        const pathSegments = pathname.split('/');
-        if (pathSegments.length !== 2) setFrontpage(false);
+        toggleSticky();
 
         window.addEventListener('scroll', toggleSticky);
         window.addEventListener('click', handleClick);
