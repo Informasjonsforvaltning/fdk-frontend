@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "../../dist/out-tsc",
+        "target": "es2017",
         "types": [
             "node",
             "@nx/react/typings/cssmodule.d.ts",

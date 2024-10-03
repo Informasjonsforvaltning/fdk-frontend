@@ -5,5 +5,11 @@
         "types": ["jest", "node"]
     },
     "extends": "./tsconfig.json",
-    "include": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts", "src/**/*.d.ts"]
+    "include": [
+        "jest.config.ts",
+        "src/**/*.test.ts",
+        "src/**/*.spec.ts",
+        "src/**/*.d.ts",
+        "src/lib/concept-preview-utils/concept-preview-utils.spec.tsx"
+    ]
 }

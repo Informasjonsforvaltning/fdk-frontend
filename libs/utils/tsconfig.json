@@ -3,14 +3,19 @@
         "allowJs": false,
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": false,
-        "jsx": "react-jsx",
         "strict": true
     },
     "extends": "../../tsconfig.base.json",
     "files": [],
     "include": [],
-    "lib": ["es2020", "dom", "dom.iterable"],
+    "lib": [],
     "references": [
-        // Remove the problematic code block
+        {
+            "composite": true,
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
     ]
 }

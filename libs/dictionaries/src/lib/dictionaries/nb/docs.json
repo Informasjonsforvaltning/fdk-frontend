@@ -42,5 +42,10 @@
     },
     "tableOfContents": {
         "onThisPage": "På denne siden:"
+    },
+    "conceptPreview": {
+        "labelMissing": "Mangler term",
+        "descriptionMissing": "Beskrivelse mangler",
+        "goToDatanorge": "Gå til beskrivelsen på data.norge.no"
     }
 }
