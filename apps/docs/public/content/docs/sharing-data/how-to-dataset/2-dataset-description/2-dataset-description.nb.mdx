@@ -140,14 +140,21 @@ I tillegg vil vi bruke egenskapen `dcat:theme` for å knytte datasettet til kode
   .
 ```
 
-Alle datasettbeskrivelser må ha minst ett tema angitt med `dcat:theme`, og temaet må enten peke til kodelisten Data Theme eller kodelisten EuroVoc. I tillegg kan du peke til temaer fra kodelisten LOS som Digdir forvalter.
+Alle datasettbeskrivelser må ha minst ett tema angitt med `dcat:theme`, og du må bruke minst en kode fra Data Theme. I tillegg bør du bruke koder fra kodelisten Los dersom en relevant kode fins der.
 
 For å finne aktuelle koder til din beskrivelse kan du se gjennom innholdet i kodelistene på:
 
 -   [Oversikt over koder i Data Theme (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme)
+-   [Informasjon om Los (psi.norge.no)](https://psi.norge.no/los/)
 -   [Oversikt over koder i EuroVoc (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141)
 
-## Geografisk avgrensing
+<Alert size='sm'>
+    **Tips**: Vi har en egen side som går i detalj om [hvordan bruke
+    koder](/docs/sharing-data/how-to-dataset/7-extras-code-lists) for å merke datasett tematisk, angi dekningsområde og
+    lisens, med mer. Ta gjerne en kikk der om du lurer på noe.
+</Alert>
+
+## Geografisk dekningsområde
 
 Ved hjelp av egenskapen `dct:spatial` og en eksisterende kode som representerer det geografiske området Norge kan vi uttrykket at datasettet er begrenset til Norge:
 

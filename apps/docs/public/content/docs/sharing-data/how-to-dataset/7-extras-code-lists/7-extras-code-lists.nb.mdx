@@ -1,0 +1,288 @@
+---
+title: Kodelister og hvordan bruke dem
+description: Hvilke kodelister du kan bruke i datasettbeskrivelser og hvordan du bruker dem.
+---
+
+# Kodelister og hvordan bruke dem
+
+For flere av egenskapene i standarden [DCAT-AP-NO](https://data.norge.no/specification/dcat-ap-no) må du peke til en kode fra et kontrollert vokabular. For eksempel må du velge en kode fra EU sitt vokabular _Data Theme_ når du skal angi tema for et datasett med egenskapen `dcat:theme`. Kodene er organisert i lister eller hierarkiske strukturer, og er navngitt med en URI som en hvilken som helst annen RDF-ressurs.
+
+<Alert>
+    **Tips:** For hver egenskap oppgir [standarden](https://data.norge.no/specification/dcat-ap-no) hvilke kontrollerte
+    vokabularer som **skal**, **bør** og **kan** brukes.
+</Alert>
+
+## Hvordan angi tema
+
+Datasett og Datatjeneste bruker egenskapen `dcat:theme` for å angi et eller flere tema som er relevant for datasettet.
+
+For datasett **skal** man angi en kode fra et av EU sine vokabularer _Data Theme_.
+Man **bør** også angi kode fra _Los_. I tillegg kan du bruke koder fra andre vokabularer, slik som _EuroVoc_ fra EU, men dette er valgfritt.
+
+<Alert>
+    **Merk**: I eksemplene under viser vi kun bruk av koder fra et vokabular om gangen, men du kan naturligvis bruke
+    koder fra flere vokabularer samtidig.
+</Alert>
+
+### Data Theme
+
+| Informasjon om DataTheme                                                                                                                            | Oversikt over alle kodene                                                                                                                                    | URI du skal bruke i beskrivelsen din                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/data-theme) | [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme) | `http://publications.europa.eu/resource/authority/data-theme/XXXX` |
+
+Dette er en relativt liten kodeliste som inneholder noen svært generelle temaer.
+
+**Eksempler på koder fra Data Theme**
+
+| Kode | Forklaring                     | URI til bruk i beskrivelse                                         |
+| ---- | ------------------------------ | ------------------------------------------------------------------ |
+| ECON | _Economy and finance_          | `http://publications.europa.eu/resource/authority/data-theme/ECON` |
+| EDUC | _Education, culture and sport_ | `http://publications.europa.eu/resource/authority/data-theme/EDUC` |
+| TECH | _Science and technology_       | `http://publications.europa.eu/resource/authority/data-theme/TECH` |
+
+#### Eksempler på bruk
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+
+# Et datasett som handler om økonomi og finans
+<https://example.org/datasett1> a dcat:Dataset ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/ECON> .
+
+# Et datasett som handler om utdanning
+<https://example.org/datasett2> a dcat:Dataset ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/EDUC> .
+
+# Et datasett som handler om utdanning i tillegg til teknologi
+<https://example.org/datasett3> a dcat:Dataset ;
+    dcat:theme  <http://publications.europa.eu/resource/authority/data-theme/EDUC> ,
+                <http://publications.europa.eu/resource/authority/data-theme/TECH> .
+```
+
+### Los
+
+Los er et felles vokabular som er temainndelt for å kategorisere og beskrive offentlige tjenester og ressurser.
+
+| Informasjon om Los                                             | Oversikt over alle kodene                                     | URI du skal bruke i beskrivelsen din |
+| -------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------ |
+| [Dokumentasjon](https://data.norge.no/guide/los-dokumentasjon) | [Gå til psi.norge.no](https://psi.norge.no/losview/table-nb/) | `https://psi.norge.no/los/tema/XXXX` |
+|                                                                |                                                               | `https://psi.norge.no/los/ord/XXXX`  |
+
+**Eksempler på koder fra Los**
+
+| Kode                    | Forklaring | URI til bruk i beskrivelse                             |
+| ----------------------- | ---------- | ------------------------------------------------------ |
+| Naturforvaltning        | -          | `https://psi.norge.no/los/tema/naturforvaltning`       |
+| Inkluderende arbeidsliv | -          | `https://psi.norge.no/los/ord/inkluderende-arbeidsliv` |
+| Skatt                   | -          | `https://psi.norge.no/los/tema/skatt`                  |
+| Veg og vegregulering    | -          | `https://psi.norge.no/los/tema/veg-og-vegregulering`   |
+
+#### Eksempler på bruk
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+
+# Et datasett som har med skatt å gjøre
+<https://example.org/datasett1> a dcat:Dataset ;
+    dcat:theme <https://psi.norge.no/los/tema/skatt> .
+```
+
+### EuroVoc
+
+EuroVoc er en stor Thesauri (hierarki) med svært mange koder organisert i en hierarkisk struktur.
+
+| Informasjon om EuroVoc                                                                                                                           | Oversikt over alle kodene                                                                                                        | URI du skal bruke i beskrivelsen din |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/eurovoc) | [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141) | `http://eurovoc.europa.eu/XXXX`      |
+
+**Eksempler på koder fra EuroVoc**
+
+| Kode       | Forklaring                | URI til bruk i beskrivelse            |
+| ---------- | ------------------------- | ------------------------------------- |
+| 4522       | _Maritime transport_      | `http://eurovoc.europa.eu/4522`       |
+| 2312       | _Energy supply_           | `http://eurovoc.europa.eu/2312`       |
+| 854        | _Equivalence of diplomas_ | `http://eurovoc.europa.eu/854`        |
+| c_61b6fae1 | _urban statistics_        | `http://eurovoc.europa.eu/c_61b6fae1` |
+
+#### Eksempler på bruk
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+
+# Datasett som handler om dypvannsfiske
+<https://example.org/datasett1> a dcat:Dataset ;
+    dcat:theme <http://eurovoc.europa.eu/2306> .
+```
+
+<Alert>
+    For informasjon om koden "deep-sea fishing" se [denne siden
+    (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://eurovoc.europa.eu/2306&lang=en).
+</Alert>
+
+## Hvordan angi dekningsområde
+
+Vi bruker egenskapen `dct:spatial` for å angi et dekningsområde, altså et geografisk område datasettet dekker. Hvis verdien fins i et av EU sine vokabularer skal disse brukes, hvis ikke skal man bruke verdier fra _GeoNames_.
+
+### EUs vokabularer
+
+| Informasjon om vokabularet                                                                                                                                   | Oversikt over alle kodene                                                                                                                                                | URI du skal bruke i beskrivelsen din                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| [Kontinenter (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/continent)    | [Kontinenter (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://publications.europa.eu/resource/authority/continent)              | `http://publications.europa.eu/resource/authority/continent/XXXX` |
+| [Land og territorier (op.europa.eu)](https://op.europa.eu/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/country) | [Land og territorier (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/country) | `http://publications.europa.eu/resource/authority/country/XXX`    |
+| [Steder (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/place)             | [Steder (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/place)                | `http://publications.europa.eu/resource/authority/place/XXXX`     |
+
+#### Eksempler på bruk
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# Et datasett som har Europa som dekningsområde
+<https://example.org/datasett1> a dcat:Dataset ;
+    dct:spatial <http://publications.europa.eu/resource/authority/continent/EUROPE> .
+
+# Et datasett som har Norge som dekningsområde
+<https://example.org/datasett2> a dcat:Dataset ;
+    dct:spatial <http://publications.europa.eu/resource/authority/country/NOR> .
+
+# Et datasett som har stedet Tromsø som dekningsområde
+<https://example.org/datasett3> a dcat:Dataset ;
+    dct:spatial <http://publications.europa.eu/resource/authority/place/NOR_TOS> .
+```
+
+### GeoNames
+
+| Informasjon om GeoNames   | URI du skal bruke i beskrivelsen din |
+| ------------------------- | ------------------------------------ |
+| https://www.geonames.org/ | `https://www.geonames.org/XXXX`      |
+
+#### Eksempler på bruk
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# Et datasett som har Brønnøysund som dekningsområde
+<https://example.org/datasett1> a dcat:Dataset ;
+    dct:spatial <https://www.geonames.org/3159954> .
+
+# Et datasett som har Jotunheimen og Rondane nasjonalpark som dekningsområde
+<https://example.org/datasett2> a dcat:Dataset ;
+    dct:spatial <https://www.geonames.org/3150707> ,
+                <https://www.geonames.org/3141389> .
+```
+
+## Hvordan angi lisens
+
+Vi bruker egenskapen `dct:license` for å angi hvilken lisens som gjelder for et en katalog, et datasett, en datatjeneste eller en distribusjon. Verdien skal velges fra EUs kontrollerte vokabular _License_.
+
+| Informasjon om License                                                                                                                           | Oversikt over alle kodene                                                                                                                                 | URI du skal bruke i beskrivelsen din                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/licence) | [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/licence) | `http://publications.europa.eu/resource/authority/licence/XXXX` |
+
+**Eksempler på koder fra License**
+
+| Kode        | Forklaring                                                | URI til bruk i beskrivelse                                             |
+| ----------- | --------------------------------------------------------- | ---------------------------------------------------------------------- |
+| CC0         | _Creative Commons CC0 1.0 Universal_                      | `http://publications.europa.eu/resource/authority/licence/CC0`         |
+| CC_BY_4_0   | _Creative Commons Attribution 4.0 International_          | `http://publications.europa.eu/resource/authority/licence/CC_BY_4_0`   |
+| CC_BYND_4_0 | _Creative Commons Attribution–NoDerivs 4.0 International_ | `http://publications.europa.eu/resource/authority/licence/CC_BYND_4_0` |
+
+#### Eksempler på bruk
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# Et datasett med CC0-lisens
+<https://example.org/datasett1> a dcat:Dataset ;
+    dct:license <http://publications.europa.eu/resource/authority/licence/CC0> .
+```
+
+## Hvordan angi format
+
+Vi bruker egenskapen `dct:format` for å angi hvilket format en datatjeneste eller distribusjon tilbyr. Verdien skal velges fra av EUs kontrollerte vokabularer _File Type_.
+
+| Informasjon om File type                                                                                                                           | Oversikt over alle kodene                                                                                                                                   | URI du skal bruke i beskrivelsen din                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/file-type) | [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/file-type) | `http://publications.europa.eu/resource/authority/file-type/XXXX` |
+
+**Eksempler på koder fra File type**
+
+| Kode | URI til bruk i beskrivelse                                        |
+| ---- | ----------------------------------------------------------------- |
+| JSON | `http://publications.europa.eu/resource/authority/file-type/JSON` |
+| XML  | `http://publications.europa.eu/resource/authority/file-type/XML`  |
+| CSV  | `http://publications.europa.eu/resource/authority/file-type/CSV`  |
+| YAML | `http://publications.europa.eu/resource/authority/file-type/YAML` |
+| TXT  | `http://publications.europa.eu/resource/authority/file-type/TXT`  |
+| PDF  | `http://publications.europa.eu/resource/authority/file-type/PDF`  |
+
+#### Eksempler på bruk
+
+Med distribusjon:
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# Et datasett som distribueres i et CSV-format
+<https://example.org/datasett1> a dcat:Dataset ;
+    dcat:distribution <https://example.org/distribution1> .
+
+<https://example.org/distribution1> a dcat:Distribution ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> .
+```
+
+Med datatjeneste:
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# Et datasett tilgjengeliggjort med et API som tilbyr JSON
+<https://example.org/datasett1> a dcat:Dataset .
+
+<https://example.org/dataservice1> a dcat:DataService ;
+    dcat:servesDataset <https://example.org/datasett1> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> .
+```
+
+## Hvordan angi språk
+
+Vi bruker egenskapen `dct:language` for å angi hvilket språk datasettet er på. Verdien skal velges fra EUs kontrollerte vokabularer _Language_.
+
+| Informasjon om Language                                                                                                                           | Oversikt over alle kodene                                                                                                                                  | URI du skal bruke i beskrivelsen din                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/language) | [Gå til op.europa.eu](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/language) | `http://publications.europa.eu/resource/authority/language/XXXX` |
+
+**Eksempler på koder fra File type**
+
+| Kode | Forklaring | URI til bruk i beskrivelse                                      |
+| ---- | ---------- | --------------------------------------------------------------- |
+| NNO  | Nynorsk    | `http://publications.europa.eu/resource/authority/language/NNO` |
+| NBO  | Bokmål     | `http://publications.europa.eu/resource/authority/language/NOB` |
+| NOR  | Norsk      | `http://publications.europa.eu/resource/authority/language/NOR` |
+| SMI  | Samisk     | `http://publications.europa.eu/resource/authority/language/SMI` |
+| SME  | Nordsamisk | `http://publications.europa.eu/resource/authority/language/SME` |
+| SMJ  | Lulesamisk | `http://publications.europa.eu/resource/authority/language/SMJ` |
+| SMA  | Sørsamisk  | `http://publications.europa.eu/resource/authority/language/SMA` |
+| FKV  | Kvensk     | `http://publications.europa.eu/resource/authority/language/FKV` |
+| ENG  | Engelsk    | `http://publications.europa.eu/resource/authority/language/ENG` |
+
+#### Eksempler på bruk
+
+```turtle
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# Et datasett som er tilgjengelig på bokmål, nynorsk og nordsamisk
+<https://example.org/datasett1> a dcat:Dataset ;
+    dct:language <http://publications.europa.eu/resource/authority/language/NOB> ,
+                 <http://publications.europa.eu/resource/authority/language/NNO> ,
+                 <http://publications.europa.eu/resource/authority/language/SME> .
+
+# Et datasett som er tilgjengelig på engelsk
+<https://example.org/datasett2> a dcat:Dataset ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> .
+```
