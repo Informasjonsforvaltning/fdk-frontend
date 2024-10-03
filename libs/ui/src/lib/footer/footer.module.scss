@@ -34,15 +34,6 @@
                     fill: white;
                 }
             }
-
-            &:focus-visible {
-                @include fds-focus-visible-block();
-                color:black;
-
-                svg {
-                    fill: black;
-                }
-            }
         }
     }
 

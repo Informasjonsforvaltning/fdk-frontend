@@ -19,14 +19,12 @@
         margin-bottom: 1rem;
 
         .linkSectionHeader {
-            // color: white;
             margin-bottom: 1rem;
         }
 
         a {
             display: flex;
             gap: 0.5rem;
-            // color: var(--fds-semantic-border-action-first-subtle);
             color: var(--color-link);
             padding: 0.5rem 1rem;
             text-decoration: none;
@@ -34,14 +32,20 @@
             border-radius: 0.25rem;
 
             &:hover {
-                // background: rgba(0, 0, 0, 0.33);
-                // background: var(--color-fdk-navy);
                 background: var(--fds-semantic-surface-action-first-no_fill-hover);
-                // color: white;
             }
 
             svg {
                 fill: var(--color-link);
+            }
+
+            &:focus-visible {
+                @include fds-focus-visible-block();
+                color:black;
+
+                svg {
+                    fill: black;
+                }
             }
         }
 
