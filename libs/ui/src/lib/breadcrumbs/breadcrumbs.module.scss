@@ -12,6 +12,10 @@
     a {
         color: var(--color-link);
     }
+
+    @media (max-width: 865px) {
+        margin: 0 0 1rem 0;
+    }
 }
 
 .crumb {

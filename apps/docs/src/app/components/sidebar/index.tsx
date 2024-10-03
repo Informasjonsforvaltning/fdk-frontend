@@ -77,6 +77,8 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
         <Button
             variant='tertiary'
             onClick={() => toggleOpen(itemPath)}
+            aria-labelledby={itemPath}
+            aria-pressed={isOpen}
         >
             {isOpen ? (
                 <ChevronUpIcon
@@ -97,6 +99,7 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
             {items.map((item) => {
                 const itemPathWithLocale = `/${locale}${item.path}`;
                 const isOpen = openItems[item.path] || false;
+                const hasChildren = item.children && item.children?.length > 0;
 
                 return (
                     <li
@@ -107,11 +110,17 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
                             {itemPathWithLocale === pathname ? (
                                 <strong>{item.title}</strong>
                             ) : (
-                                <a href={itemPathWithLocale}>{item.title}</a>
+                                <a
+                                    href={itemPathWithLocale}
+                                    aria-expanded={hasChildren ? isOpen : undefined }
+                                    id={item.path}
+                                >
+                                    {item.title}
+                                </a>
                             )}
-                            {item.children && item.children.length > 0 && getToggleButton(isOpen, item.path)}
+                            {hasChildren && getToggleButton(isOpen, item.path)}
                         </div>
-                        {isOpen && item.children && item.children?.length > 0 && (
+                        {isOpen && hasChildren && (
                             <NestedList
                                 items={item.children}
                                 locale={locale}

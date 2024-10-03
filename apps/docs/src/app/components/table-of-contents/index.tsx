@@ -31,7 +31,7 @@ type TableOfContentsProps = {
 };
 
 const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
-    <nav
+    <aside
         className={styles.sidebar}
         aria-labelledby='tableOfContents.onThisPage'
     >
@@ -43,7 +43,7 @@ const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
             {dictionary.tableOfContents.onThisPage}
         </Heading>
         <TocList headlines={headlines} />
-    </nav>
+    </aside>
 );
 
 export default TableOfContents;
