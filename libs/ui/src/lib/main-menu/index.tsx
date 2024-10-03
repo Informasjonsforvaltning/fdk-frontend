@@ -39,7 +39,7 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
 
     return (
         <motion.nav
-            className={styles.mainMenu}
+            className={cn(styles.mainMenum, className)}
             variants={animations.links}
             initial='hidden'
             animate='show'
