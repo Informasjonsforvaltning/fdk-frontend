@@ -5,13 +5,11 @@ description: Kva kodelister du kan bruke i datasettbeskrivingar og korleis du br
 
 # Kodelister og korleis bruke dei
 
-For fleire av felta i [DCAT-AP-NO](https://data.norge.no/specification/dcat-ap-no) må du peike til ein kode frå eit kontrollert vokabular. For eksempel må du velje ein kode frå EU sitt vokabular _Data Theme_ når du skal angi tema for eit datasett med eigenskapen `dcat:theme`. Kodane er organiserte i lister eller hierarkiske strukturar, og er namngitte med ein URI som ein kvar annan RDF-ressurs.
+For fleire av eigenskapane i standarden [DCAT-AP-NO](https://data.norge.no/specification/dcat-ap-no) må du peike til ein kode frå eit kontrollert vokabular. For eksempel må du velje ein kode frå EU sitt vokabular _Data Theme_ når du skal angi tema for eit datasett med eigenskapen `dcat:theme`. Kodane er organiserte i lister eller hierarkiske strukturar, og er namngitte med ein URI som ein kvar annan RDF-ressurs.
 
-<Alert size='sm'>
-    **Tips:** Standarden gir ei fullstendig oversikt over kva for kontrollerte vokabular som [**skal**
-    brukast](https://data.norge.no/specification/dcat-ap-no#Kontrollerte-vokabularer-som-skal-brukes), og kva for nokre
-    som [**bør** og **kan**
-    brukast](https://data.norge.no/specification/dcat-ap-no#Kontrollerte-vokabularer-som-b%C3%B8r-og-kan-brukes).
+<Alert>
+    **Tips:** For hver egenskap oppgir [standarden](https://data.norge.no/specification/dcat-ap-no) kva kontrollerte
+    vokabular som **skal**, **bør** og **kan** brukes.
 </Alert>
 
 ## Korleis angi tema
@@ -21,7 +19,7 @@ Datasett og Datateneste bruker eigenskapen `dcat:theme` for å angi eitt eller f
 For datasett **skal** ein angi ein kode frå eit av EU sine vokabular _Data Theme_.
 Ein **bør** også angi kode frå _Los_. I tillegg kan du bruke kodar frå andre vokabularer som _EuroVoc_ frå EU, men dette er valfritt.
 
-<Alert size='sm'>
+<Alert>
     **Merk**: I eksempla under viser vi berre bruk av kodar frå eitt vokabular om gongen, men du kan sjølvsagt bruke
     kodar frå fleire vokabular samtidig.
 </Alert>
@@ -116,7 +114,7 @@ EuroVoc er ein stor tesaurus (hierarki) med svært mange kodar organisert i ein 
     dcat:theme <http://eurovoc.europa.eu/2306> .
 ```
 
-<Alert size='sm'>
+<Alert>
     For informasjon om koden "deep-sea fishing" sjå [denne sida
     (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://eurovoc.europa.eu/2306&lang=en).
 </Alert>
@@ -242,7 +240,7 @@ Med datateneste:
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 
-# Datasett tilgjengeliggjort med et API som tilbyr JSON
+# Eit datasett gjort tilgjengeleg med et API som tilbyr JSON
 <https://example.org/datasett1> a dcat:Dataset .
 
 <https://example.org/dataservice1> a dcat:DataService ;
@@ -278,13 +276,13 @@ Vi bruker eigenskapen `dct:language` for å angi kva språk datasettet er på. V
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 
-# Eit datasett som er tilgjengelig på bokmål, nynorsk og nordsamisk
+# Eit datasett som er tilgjengeleg på bokmål, nynorsk og nordsamisk
 <https://example.org/datasett1> a dcat:Dataset ;
     dct:language <http://publications.europa.eu/resource/authority/language/NOB> ,
                  <http://publications.europa.eu/resource/authority/language/NNO> ,
                  <http://publications.europa.eu/resource/authority/language/SME> .
 
-# Eit datasett som er tilgjengelig på engelsk
+# Eit datasett som er tilgjengeleg på engelsk
 <https://example.org/datasett2> a dcat:Dataset ;
     dct:language <http://publications.europa.eu/resource/authority/language/ENG> .
 ```

@@ -5,13 +5,11 @@ description: Which code lists you can use in dataset descriptions and how to use
 
 # Code Lists and How to Use Them
 
-For several fields in [DCAT-AP-NO](https://data.norge.no/specification/dcat-ap-no), you must refer to a code from a controlled vocabulary. For example, you must select a code from the EU's vocabulary _Data Theme_ when specifying the theme for a dataset using the property `dcat:theme`. The codes are organized in lists or hierarchical structures and are named with a URI like any other RDF resource.
+For several properties in [DCAT-AP-NO](https://data.norge.no/specification/dcat-ap-no) standard, you must refer to a code from a controlled vocabulary. For example, you must select a code from the EU's vocabulary _Data Theme_ when specifying the theme for a dataset using the property `dcat:theme`. The codes are organized in lists or hierarchical structures and are named with a URI like any other RDF resource.
 
-<Alert size='sm'>
-    **Tip:** The standard provides a complete overview of which controlled vocabularies [**must** be
-    used](https://data.norge.no/specification/dcat-ap-no#Kontrollerte-vokabularer-som-skal-brukes) and which [**should**
-    and **can** be
-    used](https://data.norge.no/specification/dcat-ap-no#Kontrollerte-vokabularer-som-b%C3%B8r-og-kan-brukes).
+<Alert>
+    **Tip:** The [standard](https://data.norge.no/specification/dcat-ap-no) provides for each property an overview of
+    which controlled vocabularies **must**, **should** and **may** be used.
 </Alert>
 
 ## How to Specify Theme
@@ -20,7 +18,7 @@ Datasets and Data Services use the property `dcat:theme` to specify one or more 
 
 For datasets, you **must** specify a code from one of the EU's vocabularies _Data Theme_. You **should** also specify a code from _Los_. Additionally, you can use codes from other vocabularies, such as _EuroVoc_ from the EU, but this is optional.
 
-<Alert size='sm'>
+<Alert>
     **Note**: In the examples below, we only show the use of codes from one vocabulary at a time, but you can naturally
     use codes from several vocabularies simultaneously.
 </Alert>
@@ -115,7 +113,7 @@ EuroVoc is a large thesaurus (hierarchy) with many codes organized in a hierarch
     dcat:theme <http://eurovoc.europa.eu/2306> .
 ```
 
-<Alert size='sm'>
+<Alert>
     For information about the code "deep-sea fishing," see [this page
     (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://eurovoc.europa.eu/2306&lang=en).
 </Alert>
