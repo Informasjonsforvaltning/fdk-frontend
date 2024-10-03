@@ -110,8 +110,7 @@ const Header = ({
                             variant={showMenu ? 'secondary' : 'tertiary'}
                             onClick={() => setShowMenu(!showMenu)}
                             aria-label={dictionary.header.menuButton}
-                            aria-checked={showMenu}
-                            role='switch'
+                            aria-pressed={showMenu}
                         >
                             {showMenu ? (
                                 <XMarkIcon
