@@ -112,7 +112,7 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
                             ) : (
                                 <a
                                     href={itemPathWithLocale}
-                                    aria-expanded={hasChildren ? isOpen : undefined }
+                                    aria-expanded={hasChildren ? isOpen : undefined}
                                     id={item.path}
                                 >
                                     {item.title}
@@ -122,7 +122,7 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
                         </div>
                         {isOpen && hasChildren && (
                             <NestedList
-                                items={item.children}
+                                items={item.children as SidebarItemObject[]}
                                 locale={locale}
                                 pathname={pathname}
                             />

@@ -1,4 +1,3 @@
-import { Link } from '@digdir/designsystemet-react';
 import { Dictionary } from '@fdk-frontend/dictionaries';
 
 import { LogoLink, DigdirLogoLink } from '../logo';
