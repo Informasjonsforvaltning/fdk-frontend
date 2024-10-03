@@ -34,6 +34,7 @@ import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionarie
 import MdxPage from '../../components/mdx-page';
 import MdxHeading from '../../components/mdx-heading';
 import CatalogPromo from '../../components/catalog-promo';
+import ConceptPreview from '../../components/concept-preview';
 
 const contentDirectory = path.join(process.cwd(), 'public', 'content');
 
@@ -107,6 +108,7 @@ export default async function Page({ params }: DocsPageType) {
                 />
             ),
             Button,
+            ConceptPreview,
             Link,
             Divider,
             CatalogPromo,
