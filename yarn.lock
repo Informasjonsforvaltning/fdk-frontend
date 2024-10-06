@@ -5626,6 +5626,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/core-server@npm:8.3.5":
+  version: 8.3.5
+  resolution: "@storybook/core-server@npm:8.3.5"
+  peerDependencies:
+    storybook: ^8.3.5
+  checksum: 10c0/7da95a735b20d76636d071a3b0ffc8f11ce78d62c7cbf4d47599dddce45cb713934d99bb9745ae1cbcb7bd169ad4d63c75976437f8b99604cf5cff4acff112e4
+  languageName: node
+  linkType: hard
+
 "@storybook/core-webpack@npm:7.6.19":
   version: 7.6.19
   resolution: "@storybook/core-webpack@npm:7.6.19"
@@ -12867,7 +12876,7 @@ __metadata:
     "@playwright/test": "npm:^1.46.1"
     "@storybook/addon-essentials": "npm:7.6.19"
     "@storybook/addon-interactions": "npm:^7.5.3"
-    "@storybook/core-server": "npm:7.6.19"
+    "@storybook/core-server": "npm:8.3.5"
     "@storybook/jest": "npm:^0.2.3"
     "@storybook/nextjs": "npm:7.6.19"
     "@storybook/test-runner": "npm:^0.13.0"
