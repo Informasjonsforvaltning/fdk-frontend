@@ -3,7 +3,7 @@ import RootLayout, { generateStaticParams } from '@fdk-frontend/ui/layout-root';
 
 import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
-import FeedbackLayout from '../components/layouts/feedback-layout';
+import FeedbackLayout from '@fdk-frontend/ui/layouts/feedback-layout';
 
 export type DocsLayoutProps = {
     params: {

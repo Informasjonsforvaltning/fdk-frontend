@@ -1,7 +1,6 @@
 @import '@fdk-frontend/ui/core/mixins';
 
 .mainMenu {
-    padding: 0 1rem;
     container-type: inline-size;
 
     @media (max-width: 800px) {
