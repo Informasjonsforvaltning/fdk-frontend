@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import ConceptPreviewModal from '.';
+import ConceptPreviewBase from '.';
 
 describe('ConceptPreview', () => {
     it('should render successfully', () => {
-        const { baseElement } = render(<ConceptPreviewModal label='test' uri='test' definition='test' />);
+        const { baseElement } = render(<ConceptPreviewBase label='test' uri='test' definition='test' />);
         expect(baseElement).toBeTruthy();
     });
 });
