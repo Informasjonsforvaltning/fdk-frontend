@@ -1,9 +1,172 @@
-.detailsPage {
-	margin: 0 2rem 3rem;
-  container-type: inline-size;
+@import '@fdk-frontend/ui/core/mixins';
 
-  .mainContent {
-  	max-width:1000px;
-  	margin:auto;
-  }
+.detailsPage {
+    margin: 0 2rem 3rem;
+    container-type: inline-size;
+
+    a {
+        &:visited {
+            color: var(--color-link);
+        }
+    }
+
+    .mainContent {
+        max-width: 1000px;
+        margin: 2rem auto 0;
+
+        .header {
+            margin-bottom: 1.5rem;
+
+            .titleContainer {
+                display: flex;
+                justify-content: space-between;
+                margin: 0.5rem 0 1rem 0;
+
+                .titleToolbar {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 1rem;
+                    margin-left: 1rem;
+                }
+
+                .title {
+                    font-size:2.25rem;
+                }
+
+                button {
+                    white-space: nowrap;
+                }
+            }
+
+            .headerTags {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                a:not(:hover) {
+                    text-decoration: none;
+                }
+
+                .lastUpdated {
+                    font-size: 0.9em;
+                    opacity: 0.6;
+                    margin-left: 0.25rem;
+                }
+            }
+        }
+
+        :global(.fds-tabs__tab) {
+            // font-size:1.1em;
+            // font-weight:500;
+            padding: 0.75rem 1rem;
+        }
+
+        :global(.fds-tabs__content) {
+            padding: 1.5rem 0;
+
+            > * + * {
+                margin-top: 1.5rem;
+            }
+        }
+
+        .article {
+            @include article();
+        }
+
+        .section {
+            > :global(.fds-heading) {
+                margin-bottom: 1em;
+            }
+
+            // h2 {
+            //     font-size:1.5rem;
+            // }
+
+            dl {
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+                border: 1px solid #ddd;
+                border-radius:0.25rem;
+
+                dt,
+                dd {
+                    padding: 0.75rem 0.75rem;
+                    border-top: 1px solid #ddd;
+                    background:#f8f8f8;
+                    background:#fafafa;
+                }
+
+                dt:first-child,
+                dt:first-child + dd {
+                  border-top:0;
+                }
+
+                // dt:hover,
+                // dt:hover + dd {
+                //   background:#f8f8f8;
+                // }
+            }
+        }
+    }
 }
+
+/*
+  .columns {
+    display:flex;
+    gap:3rem;
+    margin-top:2rem;
+
+    .mainColumn {
+      > * + * {
+        margin-top: 1.5rem;
+      }
+
+      .section {
+        > * + * {
+          margin-top: 1.5rem;
+        }
+      }
+    }
+
+    .asideColumn {
+      display:none;
+      min-width:350px;
+      // font-size:0.9em;
+
+      :global(.fds-helptext--sm) {
+        display:inline-flex;
+      }
+
+      > * + * {
+        margin-top:1.5rem;
+      }
+
+      .section {
+        > * + * {
+          margin-top:0.5rem;
+        }
+        img {
+          // float:right;
+        }
+      }
+
+      // :global(.fds-heading) {
+      //   margin-bottom:0.25rem;
+      // }
+
+      dl {
+        display:grid;
+        grid-template-columns: 1fr 2fr;
+
+        dt {
+          // color:#777;
+        }
+      }
+
+      // .chipList {
+      //   display:flex;
+      //   gap:0.5rem;
+      // }
+    }
+  }
+  */

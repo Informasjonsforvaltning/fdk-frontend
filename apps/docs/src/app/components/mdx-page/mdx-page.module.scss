@@ -1,3 +1,5 @@
+@import '@fdk-frontend/ui/core/mixins';
+
 .mdxPage {
     margin: 0 2rem 3rem;
     container-type: inline-size;
@@ -34,6 +36,7 @@
         }
 
         .article {
+            @include article();
             max-width: 700px;
             margin: 0 auto;
 

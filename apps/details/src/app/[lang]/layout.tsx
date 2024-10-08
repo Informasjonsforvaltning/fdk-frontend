@@ -3,7 +3,7 @@ import RootLayout, { generateStaticParams } from '@fdk-frontend/ui/layout-root';
 
 import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
-// import FeedbackLayout from '../components/layouts/feedback-layout';
+import FeedbackLayout from '@fdk-frontend/ui/layouts/feedback-layout';
 
 export type DetailsLayoutProps = {
     params: {
@@ -21,7 +21,7 @@ const DetailsLayout = async ({ children, ...props }: PropsWithChildren & Details
 
     return (
         <RootLayout {...props}>
-            {children}
+            <FeedbackLayout dictionary={dictionary}>{children}</FeedbackLayout>
         </RootLayout>
     );
 };

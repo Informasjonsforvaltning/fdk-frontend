@@ -21,12 +21,12 @@ import {
     ChipGroup,
     ChipToggle,
 } from '@digdir/designsystemet-react';
-import { StarIcon, ChevronLeftIcon, DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { StarIcon, ChevronLeftIcon, CodeIcon, TerminalIcon, CloudDownIcon, CogIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
-import Distributions from '../../components/distributions';
-import Badge from '../../components/badge';
+import Distributions from '../../../components/distributions';
+import Badge from '../../../components/badge';
 
-import styles from './page.module.scss';
+import styles from '../page.module.scss';
 
 export type DetailsViewPageType = {
     params: {
@@ -42,34 +42,11 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
     const breadcrumbList = [
         {
             href: '#',
-            text: 'Datasett',
+            text: 'API',
         },
         {
             href: '#',
-            text: 'Energimålinger kommunale bygg',
-        },
-    ];
-
-    const distributions = [
-        {
-            title: 'Location measurement points',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-        },
-        {
-            title: 'Locations',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-        },
-        {
-            title: 'Measurement points',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-        },
-        {
-            title: 'Measurements',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
+            text: 'Inntektsmottakere API',
         },
     ];
 
@@ -81,14 +58,14 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    <Link href='#'>Arbeids- og velferdsetaten</Link>
+                    <Link href='#'>Skatteetaten</Link>
                     <div className={styles.titleContainer}>
                         <Heading
                             level={1}
                             size='lg'
                             className={styles.title}
                         >
-                            Energimålinger kommunale bygg
+                            Inntektsmottakere API
                         </Heading>
                         <div className={styles.titleToolbar}>
                             <Button
@@ -98,29 +75,14 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 <StarIcon />
                             </Button>
                             <Button size='sm'>
-                                <DownloadIcon fontSize='1.2em' /> Last ned
+                                Ta i bruk
                             </Button>
                         </div>
                     </div>
                     <div className={styles.headerTags}>
                         <Tag color='subtle' size="sm">
-                            <Link href='#'>Datasett</Link>
+                            <Link href='#'>API</Link>
                         </Tag>
-                        <Tag color="success" size="sm">
-                        	Åpne data&nbsp;
-                        	<HelpText size="sm" style={{transform:'scale(0.75)'}}>
-                        		<Paragraph size="sm">Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
-                        		<Paragraph size="sm"><Link href="#">Les mer om tilgangsnivåer her</Link></Paragraph>
-                        	</HelpText>
-                        </Tag>
-                        {/*<Tag color='warning' size="sm">Begrenset tilgang</Tag>*/}
-                        {/*<Tag color='subtle' size="sm">
-                        	<span style={{fontWeight:600}}>88%</span>&nbsp;Metadatakvalitet&nbsp;
-                        	<HelpText size="sm" style={{transform:'scale(0.75)'}}>
-                        		<Paragraph size="sm">Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av metadata.</Paragraph>
-                        		<Paragraph size="sm"><Link href="#">Les mer om metadatakvalitet her</Link></Paragraph>
-                        	</HelpText>
-                        </Tag>*/}
                         <span className={styles.lastUpdated}>Sist oppdatert 2. januar 2023</span>
                         <div style={{flexGrow:1}} />
                     </div>
@@ -131,8 +93,8 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                 >
                     <TabList>
                         <Tab value='oversikt'>Oversikt</Tab>
-                        <Tab value='distribusjoner'>
-                            Distribusjoner&nbsp;<Badge>4</Badge>
+                        <Tab value='endepunkt'>
+                            Endepunkter&nbsp;<Badge>2</Badge>
                         </Tab>
                         <Tab value='detaljer'>Detaljer</Tab>
                         <Tab value='kommentarer'>
@@ -142,24 +104,66 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                     <TabContent value='oversikt'>
                         <article className={styles.article}>
                             <p>
-                                Statistikk over helt arbeidsledige ved utgangen av måneden fordelt på bostedskommune og
-                                fylke Helt ledige arbeidssøkere omfatter alle arbeidssøkere som de to siste ukene har
-                                meldt til NAV at de er helt uten arbeid, søker nytt arbeid og er tilgjengelig for det
-                                arbeid som søkes. Se om statistikken på www.nav.no for ytterligere forklaringer.
+                                Tjenesten leverer en liste over inntektsmottakere der arbeidsgiver (opplysningspliktig), via a-ordningen, har rapportert pensjonsavtale med pensjonsinnretningen som utfører kallet.
                             </p>
                         </article>
                         <section className={styles.section}>
                             <Heading
-                                level={2}
+                                level={4}
                                 size='xs'
                             >
-                                Distribusjoner
+                                Endepunkter
                             </Heading>
-                            <Distributions distributions={distributions} />
+                            <dl>
+                                <dt>Endepunkt:</dt>
+                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten-test.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dt>Endepunkt:</dt>
+                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dt>Endepunktbeskrivelse:</dt>
+                                <dd><Link href="https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0">Gå til spesifikasjon<ExternalLinkIcon /></Link></dd>
+                                <dt>Formater:</dt>
+                                <dd>
+                                    <ChipGroup size="sm">
+                                        {['json', 'xml'].map((tema) => (
+                                            <ChipToggle>{tema}</ChipToggle>
+                                        ))}
+                                    </ChipGroup>
+                                </dd>
+                            </dl>
                         </section>
                     </TabContent>
-                    <TabContent value='distribusjoner'>
-                        <Distributions distributions={distributions} />
+                    <TabContent value='endepunkt'>
+                        <section className={styles.section}>
+                            <dl>
+                                <dt>Endepunkt:</dt>
+                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten-test.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dt>Endepunkt:</dt>
+                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dt>Endepunktbeskrivelse:</dt>
+                                <dd><Link href="https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0">Gå til spesifikasjon<ExternalLinkIcon /></Link></dd>
+                                <dt>Formater:</dt>
+                                <dd>
+                                    <ChipGroup size="sm">
+                                        {['json', 'xml'].map((tema) => (
+                                            <ChipToggle>{tema}</ChipToggle>
+                                        ))}
+                                    </ChipGroup>
+                                </dd>
+                            </dl>
+                        </section>
+                        {/*<section className={styles.section}>
+                            <Heading
+                                level={2}
+                                size='xxs'
+                            >
+                                Formater
+                            </Heading>
+                            <ChipGroup size="sm">
+                                {['json', 'xml'].map((tema) => (
+                                    <ChipToggle>{tema}</ChipToggle>
+                                ))}
+                            </ChipGroup>
+                        </section>*/}
                     </TabContent>
                     <TabContent value='detaljer'>
                 		<section className={styles.section}>
@@ -177,15 +181,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 <dt>Språk:</dt>
 								<dd>Engelsk</dd>
 								<dt>Dokumentasjon:</dt>
-								<dd><Link href="#">https://github.com/opendatalab-no/open-municipal-data<ExternalLinkIcon /></Link></dd>
-								<dt>Metadatakvalitet:</dt>
-								<dd style={{display:'flex'}}>
-									<span><Tag size="sm" color="warning">Tilstrekkelig (42%)</Tag></span>&nbsp;
-		                        	<HelpText size="sm" style={{transform:'scale(0.75)'}}>
-		                        		<Paragraph size="sm">Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av metadata.</Paragraph>
-		                        		<Paragraph size="sm"><Link href="/nb/docs/metadata-quality">Les mer om metadatakvalitet her</Link></Paragraph>
-		                        	</HelpText>
-								</dd>
+								<dd><Link href="#">https://github.com/opendatalab-no/open-municipal-data</Link></dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -197,7 +193,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             </Heading>
                             <dl>
                             	<dt>Kontaktpunkt:</dt>
-								<dd><Link href="#">https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/<ExternalLinkIcon /></Link></dd>
+								<dd><Link href="#">https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/</Link></dd>
 								<dt>E-post:</dt>
 								<dd><Link href="#">erlend.stav@sintef.no</Link></dd>
                             </dl>
@@ -207,23 +203,10 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 level={2}
                                 size='xxs'
                             >
-                                Tema
+                                Formater
                             </Heading>
                             <ChipGroup size="sm">
-                                {['Energi', 'Forvaltning og offentlig sektor'].map((tema) => (
-                                    <ChipToggle>{tema}</ChipToggle>
-                                ))}
-                            </ChipGroup>
-                        </section>
-                        <section className={styles.section}>
-                            <Heading
-                                level={2}
-                                size='xxs'
-                            >
-                                Søkeord
-                            </Heading>
-                            <ChipGroup size="sm">
-                                {['arbeidsledige', 'statistikk', 'arbeidsmarked', 'nav'].map((tema) => (
+                                {['json', 'xml'].map((tema) => (
                                     <ChipToggle>{tema}</ChipToggle>
                                 ))}
                             </ChipGroup>
@@ -237,6 +220,6 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
 }
 
 export const metadata = {
-    title: 'Datasett: Energimålinger kommunale bygg - data.norge.no',
+    title: 'API: Inntektsmottakere API - data.norge.no',
     description: 'POC for detaljvisning',
 };
