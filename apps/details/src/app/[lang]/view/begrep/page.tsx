@@ -47,6 +47,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
             <Breadcrumbs
                 dictionary={commonDictionary}
                 breadcrumbList={breadcrumbList}
+                baseUri=''
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
@@ -72,7 +73,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         </div>
                     </div>
                     <div className={styles.headerTags}>
-                        <Tag color='subtle' size="sm">
+                        <Tag color='info' size="sm">
                             <Link href='#'>Begrep</Link>
                         </Tag>
                         <span className={styles.lastUpdated}>Sist oppdatert 2. januar 2023</span>
@@ -169,7 +170,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <section className={styles.section}>
                             <Heading
                                 level={4}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Endepunkter
                             </Heading>
@@ -185,7 +186,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <section className={styles.section}>
                             <Heading
                                 level={2}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Formater
                             </Heading>
@@ -200,7 +201,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                 		<section className={styles.section}>
                             <Heading
                                 level={4}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Bruk av datasettet
                             </Heading>
@@ -218,7 +219,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <section className={styles.section}>
                             <Heading
                                 level={4}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Kontaktinformasjon
                             </Heading>
@@ -232,7 +233,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <section className={styles.section}>
                             <Heading
                                 level={2}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Formater
                             </Heading>

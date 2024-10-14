@@ -17,7 +17,13 @@ const DetailsLayout = async ({ children, ...props }: PropsWithChildren & Details
 
     return (
         <RootLayout {...props}>
-            <FeedbackLayout dictionary={dictionary}>{children}</FeedbackLayout>
+            <FeedbackLayout
+                dictionary={dictionary}
+                baseUri={''}
+                communityBaseUri={''}
+            >
+                {children}
+            </FeedbackLayout>
         </RootLayout>
     );
 };

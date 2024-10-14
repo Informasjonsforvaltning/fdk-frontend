@@ -8,7 +8,7 @@ import styles from './distributions.module.scss';
 export type Distribution = {
     title: string;
     tags: string[];
-    beskrivelse: string;
+    description: string;
 };
 
 export type DistributionsProps = {
@@ -33,7 +33,7 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                             <Tag
                                                 className={styles.tag}
                                                 color='info'
-                                                size="xs"
+                                                size="sm"
                                                 key={tag}
                                             >
                                                 {tag}

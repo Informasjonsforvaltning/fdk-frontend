@@ -17,7 +17,7 @@ import {
 } from '@digdir/designsystemet-react';
 import { StarIcon, DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
-import Distributions from '../../components/distributions';
+import Distributions, { type Distribution } from '../../components/distributions';
 import Badge from '../../components/badge';
 
 import styles from './page.module.scss';
@@ -44,7 +44,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
         },
     ];
 
-    const distributions = [
+    const distributions: Distribution[] = [
         {
             title: 'Location measurement points',
             tags: ['csv', 'json', 'xml', 'yaml'],
@@ -72,6 +72,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
             <Breadcrumbs
                 dictionary={commonDictionary}
                 breadcrumbList={breadcrumbList}
+                baseUri=''
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
@@ -97,12 +98,12 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         </div>
                     </div>
                     <div className={styles.headerTags}>
-                        <Tag color='subtle' size="sm">
+                        <Tag color='info' size="sm">
                             <Link href='#'>Datasett</Link>
                         </Tag>
                         <Tag color="success" size="sm">
                         	Åpne data&nbsp;
-                        	<HelpText size="sm" style={{transform:'scale(0.75)'}}>
+                        	<HelpText title="Begrepsforklaring" size="sm" style={{transform:'scale(0.75)'}}>
                         		<Paragraph size="sm">Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
                         		<Paragraph size="sm"><Link href="#">Les mer om tilgangsnivåer her</Link></Paragraph>
                         	</HelpText>
@@ -159,7 +160,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                 		<section className={styles.section}>
                             <Heading
                                 level={4}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Bruk av datasettet
                             </Heading>
@@ -175,7 +176,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
 								<dt>Metadatakvalitet:</dt>
 								<dd style={{display:'flex'}}>
 									<span><Tag size="sm" color="warning">Tilstrekkelig (42%)</Tag></span>&nbsp;
-		                        	<HelpText size="sm" style={{transform:'scale(0.75)'}}>
+		                        	<HelpText title="Begrepsforklaring" size="sm" style={{transform:'scale(0.75)'}}>
 		                        		<Paragraph size="sm">Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av metadata.</Paragraph>
 		                        		<Paragraph size="sm"><Link href="/nb/docs/metadata-quality">Les mer om metadatakvalitet her</Link></Paragraph>
 		                        	</HelpText>
@@ -185,7 +186,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <section className={styles.section}>
                             <Heading
                                 level={4}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Kontaktinformasjon
                             </Heading>
@@ -199,7 +200,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <section className={styles.section}>
                             <Heading
                                 level={2}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Tema
                             </Heading>
@@ -212,7 +213,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <section className={styles.section}>
                             <Heading
                                 level={2}
-                                size='xxs'
+                                size='xxsmall'
                             >
                                 Søkeord
                             </Heading>
