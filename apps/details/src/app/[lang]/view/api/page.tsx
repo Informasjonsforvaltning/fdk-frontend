@@ -6,24 +6,15 @@ import {
     Button,
     Link,
     Tag,
-    Chip,
-    HelpText,
     Tabs,
     TabList,
     Tab,
     TabContent,
-    Table,
-    TableBody,
-    TableHeaderCell,
-    TableRow,
-    TableCell,
-    Paragraph,
     ChipGroup,
     ChipToggle,
 } from '@digdir/designsystemet-react';
-import { StarIcon, ChevronLeftIcon, CodeIcon, TerminalIcon, CloudDownIcon, CogIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { StarIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
-import Distributions from '../../../components/distributions';
 import Badge from '../../../components/badge';
 
 import styles from '../page.module.scss';
@@ -124,8 +115,8 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 <dt>Formater:</dt>
                                 <dd>
                                     <ChipGroup size="sm">
-                                        {['json', 'xml'].map((tema) => (
-                                            <ChipToggle>{tema}</ChipToggle>
+                                        {['json', 'xml'].map((format) => (
+                                            <ChipToggle key={format}>{format}</ChipToggle>
                                         ))}
                                     </ChipGroup>
                                 </dd>
@@ -144,8 +135,8 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 <dt>Formater:</dt>
                                 <dd>
                                     <ChipGroup size="sm">
-                                        {['json', 'xml'].map((tema) => (
-                                            <ChipToggle>{tema}</ChipToggle>
+                                        {['json', 'xml'].map((format) => (
+                                            <ChipToggle key={format}>{format}</ChipToggle>
                                         ))}
                                     </ChipGroup>
                                 </dd>
@@ -206,8 +197,8 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Formater
                             </Heading>
                             <ChipGroup size="sm">
-                                {['json', 'xml'].map((tema) => (
-                                    <ChipToggle>{tema}</ChipToggle>
+                                {['json', 'xml'].map((format) => (
+                                    <ChipToggle key={format}>{format}</ChipToggle>
                                 ))}
                             </ChipGroup>
                         </section>

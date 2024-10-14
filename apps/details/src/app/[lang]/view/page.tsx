@@ -6,22 +6,16 @@ import {
     Button,
     Link,
     Tag,
-    Chip,
     HelpText,
     Tabs,
     TabList,
     Tab,
     TabContent,
-    Table,
-    TableBody,
-    TableHeaderCell,
-    TableRow,
-    TableCell,
     Paragraph,
     ChipGroup,
     ChipToggle,
 } from '@digdir/designsystemet-react';
-import { StarIcon, ChevronLeftIcon, DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { StarIcon, DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import Distributions from '../../components/distributions';
 import Badge from '../../components/badge';
@@ -210,8 +204,8 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Tema
                             </Heading>
                             <ChipGroup size="sm">
-                                {['Energi', 'Forvaltning og offentlig sektor'].map((tema) => (
-                                    <ChipToggle>{tema}</ChipToggle>
+                                {['Energi', 'Forvaltning og offentlig sektor'].map((theme) => (
+                                    <ChipToggle key={theme}>{theme}</ChipToggle>
                                 ))}
                             </ChipGroup>
                         </section>
@@ -223,8 +217,8 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Søkeord
                             </Heading>
                             <ChipGroup size="sm">
-                                {['arbeidsledige', 'statistikk', 'arbeidsmarked', 'nav'].map((tema) => (
-                                    <ChipToggle>{tema}</ChipToggle>
+                                {['arbeidsledige', 'statistikk', 'arbeidsmarked', 'nav'].map((term) => (
+                                    <ChipToggle key={term}>{term}</ChipToggle>
                                 ))}
                             </ChipGroup>
                         </section>

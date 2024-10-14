@@ -6,24 +6,16 @@ import {
     Button,
     Link,
     Tag,
-    Chip,
-    HelpText,
     Tabs,
     TabList,
     Tab,
     TabContent,
-    Table,
-    TableBody,
-    TableHeaderCell,
-    TableRow,
-    TableCell,
     Paragraph,
     ChipGroup,
     ChipToggle,
 } from '@digdir/designsystemet-react';
-import { StarIcon, ChevronLeftIcon, CodeIcon, TerminalIcon, CloudDownIcon, CogIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { StarIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
-import Distributions from '../../../components/distributions';
 import Badge from '../../../components/badge';
 
 import styles from '../page.module.scss';
@@ -110,7 +102,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 <dt>Begrep:</dt>
                                 <dd>egenandel på dagpenger</dd>
                                 <dt>Definisjon:</dt>
-                                <dd><em>"beregnet beløp som trekkes fra de første utbetalingene av dagpenger"</em></dd>
+                                <dd><em>&quot;beregnet beløp som trekkes fra de første utbetalingene av dagpenger&quot;</em></dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -124,7 +116,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 <dt>Begrep:</dt>
                                 <dd>eigenandel på dagpengar</dd>
                                 <dt>Definisjon:</dt>
-                                <dd><em>"berekna beløp som blir trekt frå dei første utbetalingane av dagpengar"</em></dd>
+                                <dd><em>&quot;berekna beløp som blir trekt frå dei første utbetalingane av dagpengar&quot;</em></dd>
                             </dl>
                         </section>
                         {/*<section className={styles.section}>
@@ -198,8 +190,8 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Formater
                             </Heading>
                             <ChipGroup size="sm">
-                                {['json', 'xml'].map((tema) => (
-                                    <ChipToggle>{tema}</ChipToggle>
+                                {['json', 'xml'].map((format) => (
+                                    <ChipToggle key={format}>{format}</ChipToggle>
                                 ))}
                             </ChipGroup>
                         </section>
@@ -245,8 +237,8 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Formater
                             </Heading>
                             <ChipGroup size="sm">
-                                {['json', 'xml'].map((tema) => (
-                                    <ChipToggle>{tema}</ChipToggle>
+                                {['json', 'xml'].map((format) => (
+                                    <ChipToggle key={format}>{format}</ChipToggle>
                                 ))}
                             </ChipGroup>
                         </section>

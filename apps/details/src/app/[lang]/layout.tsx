@@ -15,10 +15,6 @@ const DetailsLayout = async ({ children, ...props }: PropsWithChildren & Details
     const { lang } = props.params;
     const dictionary = await getDictionary(lang, 'docs');
 
-    const { FDK_DATA_NORGE_BASE_URI, FDK_BASE_URI = '', FDK_COMMUNITY_BASE_URI: communityBaseUri = '/' } = process.env;
-
-    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
-
     return (
         <RootLayout {...props}>
             <FeedbackLayout dictionary={dictionary}>{children}</FeedbackLayout>

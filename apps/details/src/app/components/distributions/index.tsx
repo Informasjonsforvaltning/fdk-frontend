@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading, Button, Link, Tag, Accordion, Table } from '@digdir/designsystemet-react';
+import { Button, Link, Tag, Accordion } from '@digdir/designsystemet-react';
 import { DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import styles from './distributions.module.scss';
@@ -20,7 +20,7 @@ const Distributions = ({ distributions }: DistributionsProps) => {
         <div className={styles.distributions}>
             <Accordion border>
                 {distributions.map((distribution) => (
-                    <Accordion.Item>
+                    <Accordion.Item key={distribution.title}>
                         <Accordion.Header
                             level={3}
                             className={styles.header}
@@ -34,6 +34,7 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                                 className={styles.tag}
                                                 color='info'
                                                 size="xs"
+                                                key={tag}
                                             >
                                                 {tag}
                                             </Tag>
