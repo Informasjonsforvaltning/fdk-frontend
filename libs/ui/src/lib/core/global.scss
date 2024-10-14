@@ -1,12 +1,14 @@
 /* Define layers in specific order */
 @layer reset, fds;
 
-@import url('reset.css');
-@import url('@digdir/designsystemet-theme');
-@import url('@digdir/designsystemet-css');
+// This must be imported before designsystem styles below
+@import './reset.css';
 
-@import '@fdk-frontend/ui/core/mixins';
-@import '@fdk-frontend/ui/core/fds-overrides';
+@import '@digdir/designsystemet-theme';
+@import '@digdir/designsystemet-css';
+
+@import './mixins';
+@import './fds-overrides';
 
 /* Small devices such as large phones (640px and up) */
 

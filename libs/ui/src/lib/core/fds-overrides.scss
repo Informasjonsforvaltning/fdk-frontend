@@ -1,25 +1,8 @@
 * {
     font-family: inherit;
-    // font-size: inherit;
 }
 
 .fds-heading {
-	// &--lg {
-	// 	font-size:2.25rem;
-	// 	line-height:1.3em;
-	// }
-	// &--md {
-	// 	font-size:1.875rem;
-	// 	line-height:1.3em;
-	// }
-	// &--sm {
-	// 	font-size: 1.5rem;
-	// 	line-height: 1.3em;
-	// }
-	// &--xs {
-	// 	font-size: 1.3125rem;
-	// 	line-height: 1.3em;
-	// }
     &--xxs {
         font-size: 1.1rem;
         font-weight: 600;
@@ -27,10 +10,18 @@
     }
 }
 
-// .fds-ingress {
-//     font-size: 1.1em;
-//     line-height: 1.5em;
-// }
+.fds-ingress {
+    font-size: 1.1rem;
+    line-height: 1.5em;
+}
+
+.fds-link {
+    &:visited {
+        &:not(:focus-visible) {
+            color: var(--color-link);
+        }
+    }
+}
 
 .fds-btn {
     &.fds-link {
@@ -58,6 +49,6 @@
 .fds-link,
 .fds-btn {
     svg {
-        font-size:1.3rem;
+        font-size: 1.3rem;
     }
 }

@@ -1,6 +1,6 @@
 import 'server-only';
 
-import './global.scss';
+import '../core/global.scss';
 
 import { PropsWithChildren } from 'react';
 import { getDictionary, i18n, type Locale } from '@fdk-frontend/dictionaries';
