@@ -1,0 +1,63 @@
+* {
+    font-family: inherit;
+    // font-size: inherit;
+}
+
+.fds-heading {
+	// &--lg {
+	// 	font-size:2.25rem;
+	// 	line-height:1.3em;
+	// }
+	// &--md {
+	// 	font-size:1.875rem;
+	// 	line-height:1.3em;
+	// }
+	// &--sm {
+	// 	font-size: 1.5rem;
+	// 	line-height: 1.3em;
+	// }
+	// &--xs {
+	// 	font-size: 1.3125rem;
+	// 	line-height: 1.3em;
+	// }
+    &--xxs {
+        font-size: 1.1rem;
+        font-weight: 600;
+        line-height: 1.3em;
+    }
+}
+
+// .fds-ingress {
+//     font-size: 1.1em;
+//     line-height: 1.5em;
+// }
+
+.fds-btn {
+    &.fds-link {
+        &:not(:focus-visible) {
+            color: var(--color-link);
+        }
+
+        text-decoration: none;
+    }
+    &.fds-btn--primary {
+        &.fds-link {
+            color: white;
+        }
+    }
+
+    &:focus-visible {
+        @include fds-focus-visible-block();
+
+        &.fds-link {
+            color: black;
+        }
+    }
+}
+
+.fds-link,
+.fds-btn {
+    svg {
+        font-size:1.3rem;
+    }
+}
