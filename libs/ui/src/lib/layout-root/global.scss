@@ -6,6 +6,7 @@
 @import url('@digdir/designsystemet-css');
 
 @import '@fdk-frontend/ui/core/mixins';
+@import '@fdk-frontend/ui/core/fds-overrides';
 
 /* Small devices such as large phones (640px and up) */
 
@@ -39,6 +40,10 @@ body {
     }
 }
 
+code {
+    font-family: monospace;
+}
+
 html {
     font-size: 16px;
     scroll-padding-top: 5rem;
@@ -46,37 +51,4 @@ html {
     @media (max-width: 650px) {
         font-size: 14px;
     }
-}
-
-.fds-btn {
-    &.fds-link {
-        &:not(:focus-visible) {
-            color: var(--color-link);
-        }
-
-        text-decoration: none;
-    }
-    &.fds-btn--primary {
-        &.fds-link {
-            color: white;
-        }
-    }
-
-    &:focus-visible {
-        @include fds-focus-visible-block();
-
-        &.fds-link {
-            color: black;
-        }
-    }
-}
-
-.fds-alert,
-.fds-card__content,
-.fds-paragraph {
-    font: inherit;
-}
-.fds-ingress {
-    font-size: 1.1em;
-    line-height: 1.5em;
 }
