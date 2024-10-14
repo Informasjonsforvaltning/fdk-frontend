@@ -98,7 +98,7 @@ export default async function Page({ params }: DocsPageType) {
                     {...props}
                 />
             ),
-            p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
+            p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph size="sm" {...props} />,
             Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => (
                 <Alert
                     size={size}
@@ -125,7 +125,7 @@ export default async function Page({ params }: DocsPageType) {
             ),
             Image,
             table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
-                <Table {...(props as any)}>{children}</Table>
+                <Table {...(props as any)} size="sm">{children}</Table>
             ),
             thead: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
                 <TableHead {...props}>{children}</TableHead>
@@ -142,11 +142,11 @@ export default async function Page({ params }: DocsPageType) {
             td: (
                 { children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>, // eslint-disable-line
             ) => <TableCell {...props}>{children}</TableCell>,
-            Ingress: ({ size = 'xs', ...rest }: IngressProps) => (
+            Ingress: (props: IngressProps) => (
                 <Ingress
                     asChild
-                    size={size}
-                    {...rest}
+                    {...props}
+                    size={'md'}
                 />
             ),
             a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
