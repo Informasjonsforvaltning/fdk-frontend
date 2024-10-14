@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import cn from 'classnames';
 
-import { Link, Heading, Button } from '@digdir/designsystemet-react';
+import { Heading, Button } from '@digdir/designsystemet-react';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
@@ -149,7 +149,7 @@ const Sidebar = ({ dictionary, slug, locale }: SidebarProps) => {
                 level={2}
                 size='xs'
             >
-                <Link href={`/${locale}${nestedData?.[0]?.path}`}>{nestedData?.[0]?.title}</Link>
+                <a href={`/${locale}${nestedData?.[0]?.path}`}>{nestedData?.[0]?.title}</a>
             </Heading>
             <NestedList
                 items={nestedData[0]?.children || []}

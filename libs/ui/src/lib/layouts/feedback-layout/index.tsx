@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { Heading, Paragraph, Link } from '@digdir/designsystemet-react';
+import { Heading, Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import { type Dictionary, interpolate } from '@fdk-frontend/dictionaries';
@@ -31,7 +31,7 @@ const FeedbackLayout = async ({
                     >
                         {dictionary.feedbackBanner.heading}
                     </Heading>
-                    <Paragraph>
+                    <div>
                         {interpolate(dictionary.feedbackBanner.text, {
                             contactLink: (
                                 <Link href={`${baseUri}/contact`}>{dictionary.feedbackBanner.contactLinkText}</Link>
@@ -43,7 +43,7 @@ const FeedbackLayout = async ({
                                 </Link>
                             ),
                         })}
-                    </Paragraph>
+                    </div>
                 </div>
             </div>
         </div>

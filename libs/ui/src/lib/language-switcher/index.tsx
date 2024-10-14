@@ -25,20 +25,20 @@ const LanguageSwitcher = ({ inverted }: LanguageSwitcherProps) => {
     };
 
     return (
-        <nav aria-label="Select language">
+        <nav aria-label='Select language'>
             <ToggleGroup
                 className={cn(styles.languageSwitcher, { [styles.inverted]: inverted })}
                 defaultValue={defaultCode}
                 size='sm'
                 onChange={(code) => onLanguageSelect(code as LocaleCodes)}
-                name="Select language"
+                name='Select language'
             >
                 {i18n.locales.map((locale) => (
                     <ToggleGroup.Item
                         value={locale.code}
                         key={locale.code}
                     >
-                        <span aria-hidden="true">{locale.flag}</span> {locale.name}
+                        <span aria-hidden='true'>{locale.flag}</span> {locale.name}
                     </ToggleGroup.Item>
                 ))}
             </ToggleGroup>

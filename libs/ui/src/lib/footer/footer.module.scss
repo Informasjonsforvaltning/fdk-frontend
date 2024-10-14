@@ -19,7 +19,7 @@
             color: white;
         }
 
-        a {
+        :global(.fds-link) {
             color: var(--fds-semantic-border-action-first-subtle);
 
             svg {

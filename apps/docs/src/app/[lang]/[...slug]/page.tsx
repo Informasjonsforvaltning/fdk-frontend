@@ -98,7 +98,12 @@ export default async function Page({ params }: DocsPageType) {
                     {...props}
                 />
             ),
-            p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph size="sm" {...props} />,
+            p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
+                <Paragraph
+                    size='sm'
+                    {...props}
+                />
+            ),
             Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => (
                 <Alert
                     size={size}
@@ -125,7 +130,12 @@ export default async function Page({ params }: DocsPageType) {
             ),
             Image,
             table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
-                <Table {...(props as any)} size="sm">{children}</Table>
+                <Table
+                    {...(props as any)}
+                    size='sm'
+                >
+                    {children}
+                </Table>
             ),
             thead: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
                 <TableHead {...props}>{children}</TableHead>
