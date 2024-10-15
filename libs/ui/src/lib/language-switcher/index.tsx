@@ -38,7 +38,7 @@ const LanguageSwitcher = ({ inverted }: LanguageSwitcherProps) => {
                         value={locale.code}
                         key={locale.code}
                     >
-                        <span aria-hidden='true'>{locale.flag}</span> {locale.name}
+                        {locale.name}
                     </ToggleGroup.Item>
                 ))}
             </ToggleGroup>

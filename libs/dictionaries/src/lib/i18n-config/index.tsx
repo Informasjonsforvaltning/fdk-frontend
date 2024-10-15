@@ -7,18 +7,15 @@ export const i18n = {
     locales: [
         {
             code: 'nb',
-            name: 'Bokmål',
-            flag: '🇳🇴',
+            name: 'Bokmål'
         },
         {
             code: 'nn',
-            name: 'Nynorsk',
-            flag: '🇳🇴',
+            name: 'Nynorsk'
         },
         {
             code: 'en',
-            name: 'English',
-            flag: '🇬🇧',
+            name: 'English'
         },
     ],
 } as const;
