@@ -21,6 +21,7 @@
     --breakpoint-xx-large: 1400px;
     --breakpoint-xxx-large: 1600px;
     --color-link: var(--fds-semantic-surface-action-first-default);
+    --color-link-negative: var(--fds-semantic-border-action-first-subtle);
     --color-fdk-navy: var(--fds-semantic-surface-neutral-inverted);
     --color-fdk-navy-dark: color-mix(in srgb, var(--color-fdk-navy), #000 60%);
 }
