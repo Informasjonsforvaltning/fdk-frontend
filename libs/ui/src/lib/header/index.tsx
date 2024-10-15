@@ -14,7 +14,7 @@ import MainMenu from '../main-menu';
 
 import styles from './header.module.scss';
 
-type HeaderProps = {
+export type HeaderProps = {
     dictionary: Dictionary;
     baseUri?: string;
     communityBaseUri?: string;
@@ -88,7 +88,7 @@ const Header = ({
                 <div className={styles.headerInner}>
                     <LogoLink
                         className={styles.headerLogo}
-                        baseUri={baseUri}
+                        baseUri={'/'}
                     />
                     <div className={styles.headerToolbar}>
                         <Button

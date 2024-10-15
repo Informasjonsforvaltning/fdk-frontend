@@ -20,10 +20,10 @@
         }
 
         :global(.fds-link) {
-            color: var(--fds-semantic-border-action-first-subtle);
+            color: var(--color-link-negative);
 
             svg {
-                fill: var(--fds-semantic-border-action-first-subtle);
+                fill: var(--color-link-negative);
             }
 
             &:hover {

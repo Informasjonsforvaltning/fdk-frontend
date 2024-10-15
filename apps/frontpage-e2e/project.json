@@ -1,8 +1,0 @@
-{
-    "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "// targets": "to see all targets run: nx show project frontpage-e2e --web",
-    "implicitDependencies": ["frontpage"],
-    "name": "frontpage-e2e",
-    "sourceRoot": "apps/frontpage-e2e/src",
-    "targets": {}
-}

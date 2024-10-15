@@ -28,7 +28,7 @@ const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) 
         <Link
             className={styles.link}
             aria-label={dictionary.breadcrumbs.home}
-            href={baseUri}
+            href={'/'}
         >
             {dictionary.breadcrumbs.home}
         </Link>
