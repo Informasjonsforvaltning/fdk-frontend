@@ -9,7 +9,7 @@ import Sidebar from '../../components/sidebar';
 import TableOfContents from '../../components/table-of-contents';
 
 import pageStyles from './mdx-page.module.scss';
-import typography from './typography.module.scss';
+// import typography from './typography.module.scss';
 
 import { extractHeadlines, type MdxHeadlineObjectNode } from './utils';
 
@@ -48,7 +48,7 @@ const MdxPage = async ({ children, sidebars = true, slug, locale, baseUri, sourc
                     </div>
                 )}
                 <div className={pageStyles.mainColumn}>
-                    <article className={cn(pageStyles.article, typography.article)}>{children}</article>
+                    <article className={cn(pageStyles.article)}>{children}</article>
                 </div>
                 {sidebars && (
                     <div className={pageStyles.rightColumn}>

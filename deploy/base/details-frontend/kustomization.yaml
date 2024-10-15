@@ -1,0 +1,10 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+    - details-frontend-deployment.yaml
+    - details-frontend-service.yaml
+images:
+    - name: details-frontend
+      newName: eu.gcr.io/digdir-fdk-infra/details-frontend
+      newTag: $(GIT_COMMIT_SHA)

@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: details-frontend
+    labels:
+        app: details-frontend
+spec:
+    selector:
+        matchLabels:
+            app: details-frontend
+    template:
+        spec:
+            containers:
+                - name: details-frontend
+                  env:
+                      - name: FDK_REGISTRATION_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-staging
+                                key: FDK_REGISTRATION_BASE_URI
+                      - name: FDK_COMMUNITY_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-staging
+                                key: FDK_COMMUNITY_BASE_URI
+                      - name: FDK_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-staging
+                                key: FDK_BASE_URI
