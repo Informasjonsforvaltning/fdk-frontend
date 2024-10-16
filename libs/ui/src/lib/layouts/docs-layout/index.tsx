@@ -1,11 +1,10 @@
 import { PropsWithChildren } from 'react';
 
-import { generateStaticParams } from '@fdk-frontend/ui/layouts/root-layout';
-
 import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
-import HeaderLayout from '@fdk-frontend/ui/layouts/header-layout';
-import FeedbackLayout from '@fdk-frontend/ui/layouts/feedback-layout';
+import { generateStaticParams } from '../root-layout';
+import HeaderLayout from '../header-layout';
+import FeedbackLayout from '../feedback-layout';
 
 export type DocsLayoutProps = {
     params: {
@@ -22,7 +21,6 @@ const DocsLayout = async ({ children, ...props }: PropsWithChildren & DocsLayout
     const {
         FDK_DATA_NORGE_BASE_URI,
         FDK_BASE_URI = '',
-        FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '',
         FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
         FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/'
     } = process.env;

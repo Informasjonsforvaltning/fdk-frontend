@@ -229,7 +229,6 @@ export default async function DocsPage({ params, rootContentDirectory }: DocsPag
             </MdxPage>
         );
     } catch (err) {
-        console.log(err);
         notFound();
     }
 }

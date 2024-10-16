@@ -20,14 +20,6 @@ const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({
 
 const RootLayout = async ({ children, params, frontpage }: RootLayoutProps & PropsWithChildren) => {
     const dictionary = await getDictionary(params.lang, 'common');
-
-    const {
-        FDK_DATA_NORGE_BASE_URI,
-        FDK_BASE_URI = ''
-    } = process.env;
-
-    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
-
     return (
         <html lang={params.lang}>
             <body>

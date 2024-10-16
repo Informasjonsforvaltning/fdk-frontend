@@ -2,29 +2,25 @@ import type { Metadata } from 'next';
 
 import { Link, Button, Heading } from '@digdir/designsystemet-react';
 
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getDictionary } from '@fdk-frontend/dictionaries';
 import Header from '@fdk-frontend/ui/header';
 
 import styles from './not-found.module.scss';
 
-export default async function NotFound({ params }) {
-
+export default async function NotFound() {
+    const lang = 'nb';
     const {
-        FDK_DATA_NORGE_BASE_URI,
-        FDK_BASE_URI = '',
-        FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '',
         FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
         FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/'
     } = process.env;
 
-    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
-    const commonDictionary = await getDictionary('nb', 'common');
+    const commonDictionary = await getDictionary(lang, 'common');
 
     return (
         <>
             <Header
                 dictionary={commonDictionary}
-                baseUri={baseUri}
+                baseUri={`/${lang}`}
                 registrationBaseUri={registrationBaseUri}
                 communityBaseUri={communityBaseUri}
                 frontpage
@@ -52,6 +48,6 @@ export default async function NotFound({ params }) {
 }
 
 export const metadata: Metadata = {
-    title: 'Not found - data.norge.no',
-    description: "The page you're looking for doesnt exist",
+    title: '404 - data.norge.no',
+    description: "Siden ble ikke funnet",
 };
