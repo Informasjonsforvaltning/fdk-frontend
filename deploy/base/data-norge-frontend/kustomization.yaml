@@ -1,0 +1,10 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+    - data-norge-frontend-deployment.yaml
+    - data-norge-frontend-service.yaml
+images:
+    - name: data-norge-frontend
+      newName: eu.gcr.io/digdir-fdk-infra/data-norge-frontend
+      newTag: $(GIT_COMMIT_SHA)

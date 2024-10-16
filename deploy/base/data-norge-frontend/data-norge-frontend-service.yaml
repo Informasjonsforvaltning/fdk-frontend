@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: frontpage-frontend
+    name: data-norge-frontend
 spec:
     selector:
-        app: frontpage-frontend
+        app: data-norge-frontend
     ports:
         - name: http
           protocol: TCP

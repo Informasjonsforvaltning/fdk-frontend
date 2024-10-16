@@ -2,26 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: forms-frontend
+    name: data-norge-frontend
     labels:
-        app: forms-frontend
+        app: data-norge-frontend
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: forms-frontend
+            app: data-norge-frontend
     strategy:
         type: RollingUpdate
     template:
         metadata:
             labels:
-                app: forms-frontend
+                app: data-norge-frontend
             annotations:
                 prometheus.io/scrape: 'false'
         spec:
             containers:
-                - name: forms-frontend
-                  image: forms-frontend
+                - name: data-norge-frontend
+                  image: data-norge-frontend
                   imagePullPolicy: Always
                   ports:
                       - containerPort: 8080
@@ -38,7 +38,7 @@ spec:
                   readinessProbe:
                       failureThreshold: 3
                       httpGet:
-                          path: /api/ready
+                          path: /api/ping
                           port: 8080
                           scheme: HTTP
                       periodSeconds: 30

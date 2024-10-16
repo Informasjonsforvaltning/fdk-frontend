@@ -1,18 +1,17 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: frontpage-frontend
+    name: data-norge-frontend
     labels:
-        app: frontpage-frontend
+        app: data-norge-frontend
 spec:
     selector:
         matchLabels:
-            app: frontpage-frontend
+            app: data-norge-frontend
     template:
         spec:
             containers:
-                - name: frontpage-frontend
+                - name: data-norge-frontend
                   env:
                       - name: FDK_REGISTRATION_BASE_URI
                         valueFrom:
@@ -29,6 +28,21 @@ spec:
                             secretKeyRef:
                                 name: commonurl-staging
                                 key: FDK_BASE_URI
+                      - name: DATAJEGER_EMAIL_ADDRESS
+                        valueFrom:
+                            secretKeyRef:
+                                name: fdk-smtp-staging
+                                key: DATAJEGER_EMAIL_ADDRESS
+                      - name: FDK_MAIL_SERVICE_ENDPOINT
+                        valueFrom:
+                            secretKeyRef:
+                                name: fdk-smtp-staging
+                                key: FDK_MAIL_SENDER_SERVICE_ENDPOINT
+                      - name: FDK_MAIL_SERVICE_API_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: fdk-smtp-staging
+                                key: API_KEY
                       - name: FDK_LLM_SEARCH_BASE_URI
                         valueFrom:
                             secretKeyRef:
