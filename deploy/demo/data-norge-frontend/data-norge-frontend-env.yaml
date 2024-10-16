@@ -1,19 +1,33 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: forms-frontend
+    name: data-norge-frontend
     labels:
-        app: forms-frontend
+        app: data-norge-frontend
 spec:
     selector:
         matchLabels:
-            app: forms-frontend
+            app: data-norge-frontend
     template:
         spec:
             containers:
-                - name: forms-frontend
+                - name: data-norge-frontend
                   env:
+                      - name: FDK_REGISTRATION_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_REGISTRATION_BASE_URI
+                      - name: FDK_COMMUNITY_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_COMMUNITY_BASE_URI
+                      - name: FDK_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_BASE_URI
                       - name: FDK_USE_DEMO_LOGO
                         value: 'true'
                       - name: DATAJEGER_EMAIL_ADDRESS
@@ -31,18 +45,8 @@ spec:
                             secretKeyRef:
                                 name: fdk-smtp-demo
                                 key: API_KEY
-                      - name: FDK_REGISTRATION_BASE_URI
+                      - name: FDK_LLM_SEARCH_BASE_URI
                         valueFrom:
                             secretKeyRef:
                                 name: commonurl-demo
-                                key: FDK_REGISTRATION_BASE_URI
-                      - name: FDK_COMMUNITY_BASE_URI
-                        valueFrom:
-                            secretKeyRef:
-                                name: commonurl-demo
-                                key: FDK_COMMUNITY_BASE_URI
-                      - name: FDK_BASE_URI
-                        valueFrom:
-                            secretKeyRef:
-                                name: commonurl-demo
-                                key: FDK_BASE_URI
+                                key: FDK_LLM_SEARCH_BASE_URI

@@ -1,7 +1,7 @@
 FROM node:20-alpine3.18
 ARG NODE_ENV
 WORKDIR /app
-COPY yarn.lock dist/apps/docs ./
+COPY yarn.lock dist/apps/data.norge.no ./
 ENV NODE_ENV=$NODE_ENV
 RUN corepack enable
 RUN yarn set version stable
