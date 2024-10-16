@@ -88,7 +88,7 @@ const Header = ({
                 <div className={styles.headerInner}>
                     <LogoLink
                         className={styles.headerLogo}
-                        baseUri={'/'}
+                        baseUri={baseUri}
                     />
                     <div className={styles.headerToolbar}>
                         <Button
@@ -97,7 +97,7 @@ const Header = ({
                             variant='tertiary'
                             aria-label={dictionary.header.findDataButton}
                         >
-                            <Link href={`${baseUri}/search-all`}>
+                            <Link href={`/search-all`}>
                                 <MagnifyingGlassIcon
                                     aria-hidden
                                     fontSize='1.5em'
@@ -130,7 +130,7 @@ const Header = ({
                             size='small'
                             variant='primary'
                         >
-                            <Link href={`${baseUri}/publishing`}>
+                            <Link href={`/publishing`}>
                                 <span>{dictionary.header.shareDataButton}</span>
                             </Link>
                         </Button>

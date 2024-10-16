@@ -32,7 +32,7 @@ const DocsLayout = async ({ children, ...props }: PropsWithChildren & DocsLayout
     return (
         <HeaderLayout
             dictionary={commonDictionary}
-            baseUri={baseUri}
+            baseUri={`/${lang}`}
             registrationBaseUri={registrationBaseUri}
             communityBaseUri={communityBaseUri}
         >

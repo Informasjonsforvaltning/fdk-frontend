@@ -52,11 +52,11 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
     tools: [
         {
             title: dictionary.mainMenu.tools.links.organizations,
-            href: `${baseUri}/organizations`,
+            href: `/organizations`,
         },
         {
             title: dictionary.mainMenu.tools.links.requestData,
-            href: `${baseUri}/requests`,
+            href: `/requests`,
         },
         {
             title: dictionary.mainMenu.tools.links.dataHunter,
@@ -64,11 +64,11 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
         },
         {
             title: dictionary.mainMenu.tools.links.sparqlSandbox,
-            href: `${baseUri}/sparql`,
+            href: `/sparql`,
         },
         {
             title: dictionary.mainMenu.catalogs.ai.title,
-            href: `${baseUri}/kunstig-intelligens`,
+            href: `/kunstig-intelligens`,
         },
     ],
     about: [
@@ -78,7 +78,7 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
         },
         {
             title: dictionary.mainMenu.about.links.reports,
-            href: `${baseUri}/reports`,
+            href: `/reports`,
         },
         {
             title: dictionary.mainMenu.about.links.contactUs,

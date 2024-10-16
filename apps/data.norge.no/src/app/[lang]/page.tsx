@@ -37,7 +37,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
         <>
             <Header
                 dictionary={commonDictionary}
-                baseUri={baseUri}
+                baseUri={`/${params.lang}`}
                 registrationBaseUri={registrationBaseUri}
                 communityBaseUri={communityBaseUri}
                 frontpage
