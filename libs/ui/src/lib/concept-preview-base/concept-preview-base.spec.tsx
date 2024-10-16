@@ -4,7 +4,13 @@ import ConceptPreviewBase from '.';
 
 describe('ConceptPreview', () => {
     it('should render successfully', () => {
-        const { baseElement } = render(<ConceptPreviewBase label='test' uri='test' definition='test' />);
+        const { baseElement } = render(
+            <ConceptPreviewBase
+                label='test'
+                uri='test'
+                definition='test'
+            />,
+        );
         expect(baseElement).toBeTruthy();
     });
 });

@@ -12945,6 +12945,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-axe: "npm:^9.0.0"
     jest-environment-jsdom: "npm:^29.7.0"
+    jest-environment-node: "npm:^29.7.0"
     js-cookie: "npm:^3.0.5"
     jsonld: "npm:^8.3.2"
     leaflet: "npm:^1.9.4"
