@@ -11,7 +11,7 @@ type ConceptPreviewProps = PropsWithChildren & {
     goToDataNorgeText: string;
 };
 
-const ConceptPreviewBase = async ({ label, definition, uri, goToDataNorgeText, children }: ConceptPreviewProps) => {
+const ConceptPreviewBase = ({ label, definition, uri, goToDataNorgeText, children }: ConceptPreviewProps) => {
     return (
         <>
             <Popover

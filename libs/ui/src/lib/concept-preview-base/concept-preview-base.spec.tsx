@@ -9,6 +9,7 @@ describe('ConceptPreview', () => {
                 label='test'
                 uri='test'
                 definition='test'
+                goToDataNorgeText='test'
             />,
         );
         expect(baseElement).toBeTruthy();
