@@ -15,7 +15,7 @@ const nextConfig = {
     },
     // Configure `pageExtensions` to include markdown and MDX files
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-    assetPrefix: '/nb/docs',
+    assetPrefix: '/nb',
     async redirects() {
         return [
             {
