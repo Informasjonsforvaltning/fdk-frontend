@@ -23,9 +23,7 @@ const RootLayout = async ({ children, params, frontpage }: RootLayoutProps & Pro
 
     const {
         FDK_DATA_NORGE_BASE_URI,
-        FDK_BASE_URI = '',
-        FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
-        FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
+        FDK_BASE_URI = ''
     } = process.env;
 
     const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
@@ -33,18 +31,10 @@ const RootLayout = async ({ children, params, frontpage }: RootLayoutProps & Pro
     return (
         <html lang={params.lang}>
             <body>
-                {/*<Header
-                    dictionary={dictionary}
-                    baseUri={baseUri}
-                    registrationBaseUri={registrationBaseUri}
-                    communityBaseUri={communityBaseUri}
-                    frontpage={frontpage}
-                />*/}
-                {/*<main id='main'>{children}</main>*/}
                 {children}
                 <Footer
                     dictionary={dictionary}
-                    baseUri={baseUri}
+                    baseUri={`/${params.lang}`}
                 />
             </body>
             <Script src='https://siteimproveanalytics.com/js/siteanalyze_6255470.js' />
