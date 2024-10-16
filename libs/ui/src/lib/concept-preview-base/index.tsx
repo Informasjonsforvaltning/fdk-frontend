@@ -3,7 +3,6 @@
 import { PropsWithChildren } from 'react';
 import { Divider, Popover } from '@digdir/designsystemet-react';
 import { Link } from '../link';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
 
 type ConceptPreviewProps = PropsWithChildren & {
     label: string;
