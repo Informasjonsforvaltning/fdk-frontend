@@ -7,7 +7,7 @@ import { SubmitStatusAlert } from '@fdk-frontend/ui/alert-submit-status';
 
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { useFormState, useFormStatus } from 'react-dom';
-import { sendEmailAction } from '../../../../actions';
+import { sendEmailAction } from '../../utils/actions';
 import { EMPTY_FORM_STATE, extractErrorMessages } from '@fdk-frontend/utils';
 import styles from './data-hunter-form.module.css';
 
