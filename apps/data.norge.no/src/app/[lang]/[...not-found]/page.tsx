@@ -1,7 +1,8 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export default function NotFoundDummy() {
-  notFound();
+  notFound({ test: 'hello' });
 }
 
 export const metadata: Metadata = {
