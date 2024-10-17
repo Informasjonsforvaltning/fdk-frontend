@@ -1,7 +1,7 @@
 {
-    "name": "data.norge.no",
+    "name": "data-norge",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "apps/data.norge.no",
+    "sourceRoot": "apps/data-norge",
     "projectType": "application",
     "tags": [],
     "targets": {
@@ -9,7 +9,7 @@
             "defaultConfiguration": "production",
             "executor": "@nx/next:build",
             "options": {
-                "outputPath": "dist/apps/data.norge.no"
+                "outputPath": "dist/apps/data-norge"
             },
             "outputs": ["{options.outputPath}"]
         }
