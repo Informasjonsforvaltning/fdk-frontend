@@ -1,10 +1,10 @@
-import DocsPage, { DocsPageProps, generateMetadata as docsPageMetadata } from '../../components/docs/docs-page';
+import DocsPage, { generateMetadata as docsPageMetadata } from '../../components/docs/docs-page';
 
-export const generateMetadata = async (props: DocsPageProps) => {
+export const generateMetadata = async (props: any) => {
     return await docsPageMetadata({ rootContentDirectory: 'contact', ...props });
 }
 
-export default async function Page(props: DocsPageProps) {
+export default async function Page(props: any) {
     return (
         <DocsPage rootContentDirectory="contact" { ...props } />
     );

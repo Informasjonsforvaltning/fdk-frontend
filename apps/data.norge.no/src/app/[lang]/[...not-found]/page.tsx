@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export default function NotFoundDummy() {
-  notFound({ test: 'hello' });
+  notFound();
 }
 
 export const metadata: Metadata = {

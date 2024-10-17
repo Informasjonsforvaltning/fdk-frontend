@@ -13,12 +13,11 @@ export type RootLayoutProps = {
     params: {
         lang: Locale['code'];
     };
-    frontpage?: boolean;
 };
 
 const generateStaticParams = async () => i18n.locales.map((locale: Locale) => ({ lang: locale.code }));
 
-const RootLayout = async ({ children, params, frontpage }: RootLayoutProps & PropsWithChildren) => {
+const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChildren) => {
     const dictionary = await getDictionary(params.lang, 'common');
     return (
         <html lang={params.lang}>

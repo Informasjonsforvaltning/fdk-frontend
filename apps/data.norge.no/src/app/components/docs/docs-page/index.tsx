@@ -238,8 +238,7 @@ export default async function DocsPage({ params, rootContentDirectory }: DocsPag
  * except we extract frontmatter instead of content from MDX compilation
  */
 export const generateMetadata = async function (
-    { params, rootContentDirectory }: DocsPageProps,
-    parent: ResolvingMetadata,
+    { params, rootContentDirectory }: DocsPageProps
 ): Promise<Metadata> {
     const locale = params.lang ?? i18n.defaultLocale;
     const slug = params.slug ?? [];
