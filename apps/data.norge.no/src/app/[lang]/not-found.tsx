@@ -9,10 +9,8 @@ import styles from './not-found.module.scss';
 
 export default async function NotFound() {
     const lang = 'nb';
-    const {
-        FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
-        FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/'
-    } = process.env;
+    const { FDK_COMMUNITY_BASE_URI: communityBaseUri = '/', FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/' } =
+        process.env;
 
     const commonDictionary = await getDictionary(lang, 'common');
 
@@ -25,7 +23,10 @@ export default async function NotFound() {
                 communityBaseUri={communityBaseUri}
                 frontpage
             />
-            <main id='main' className={styles.notFoundPage}>
+            <main
+                id='main'
+                className={styles.notFoundPage}
+            >
                 <div className={styles.inner}>
                     <Heading
                         level={1}
@@ -49,5 +50,5 @@ export default async function NotFound() {
 
 export const metadata: Metadata = {
     title: '404 - data.norge.no',
-    description: "Siden ble ikke funnet",
+    description: 'Siden ble ikke funnet',
 };

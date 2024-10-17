@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export default function NotFoundDummy() {
-  notFound();
+    notFound();
 }
 
 export const metadata: Metadata = {
     title: '404 - data.norge.no',
-    description: "Siden ble ikke funnet",
+    description: 'Siden ble ikke funnet',
 };

@@ -22,7 +22,7 @@ const DocsLayout = async ({ children, ...props }: PropsWithChildren & DocsLayout
         FDK_DATA_NORGE_BASE_URI,
         FDK_BASE_URI = '',
         FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
-        FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/'
+        FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
     } = process.env;
 
     const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
@@ -34,7 +34,7 @@ const DocsLayout = async ({ children, ...props }: PropsWithChildren & DocsLayout
             registrationBaseUri={registrationBaseUri}
             communityBaseUri={communityBaseUri}
         >
-            <main id="main">
+            <main id='main'>
                 <FeedbackLayout
                     dictionary={docsDictionary}
                     baseUri={baseUri}

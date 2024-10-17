@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import React from 'react';
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
@@ -37,7 +37,7 @@ import CatalogPromo from '../catalog-promo';
 
 const getContentDirectory = (rootContentDirectory: string) => {
     return path.join(process.cwd(), 'public', 'content', rootContentDirectory);
-}
+};
 
 export type DocsPageProps = {
     rootContentDirectory: string;
@@ -237,9 +237,7 @@ export default async function DocsPage({ params, rootContentDirectory }: DocsPag
  * In generateMetadata we do exactly the same as in the Page component,
  * except we extract frontmatter instead of content from MDX compilation
  */
-export const generateMetadata = async function (
-    { params, rootContentDirectory }: DocsPageProps
-): Promise<Metadata> {
+export const generateMetadata = async function ({ params, rootContentDirectory }: DocsPageProps): Promise<Metadata> {
     const locale = params.lang ?? i18n.defaultLocale;
     const slug = params.slug ?? [];
     const pageName = slug.length ? slug.at(-1) : rootContentDirectory;
