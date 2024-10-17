@@ -1,0 +1,7 @@
+{
+    "name": "data-norge-e2e",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/data-norge-e2e/src",
+    "// targets": "to see all targets run: nx show project data-norge-e2e --web",
+    "targets": {}
+}
