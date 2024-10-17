@@ -1,7 +1,7 @@
 FROM node:20-alpine3.18
 ARG NODE_ENV
 WORKDIR /app
-COPY yarn.lock dist/apps/forms ./
+COPY .yarnrc.yml yarn.lock dist/apps/forms ./
 ENV NODE_ENV=production
 RUN corepack enable
 RUN yarn set version stable
