@@ -2,8 +2,13 @@ import DocsPage, { generateMetadata as docsPageMetadata } from '../../../compone
 
 export const generateMetadata = async (props: any) => {
     return await docsPageMetadata({ rootContentDirectory: 'docs', ...props });
-}
+};
 
 export default async function Page(props: any) {
-    return <DocsPage rootContentDirectory="docs" { ...props } />;
+    return (
+        <DocsPage
+            rootContentDirectory='docs'
+            {...props}
+        />
+    );
 }

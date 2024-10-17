@@ -25,7 +25,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
         FDK_BASE_URI = '',
         FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '',
         FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
-        FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/'
+        FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
     } = process.env;
 
     const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
@@ -42,7 +42,7 @@ const Frontpage = async ({ params }: FrontpageProps) => {
                 communityBaseUri={communityBaseUri}
                 frontpage
             />
-            <main id="main">
+            <main id='main'>
                 <FrontpageBanner
                     dictionary={frontpageDictionary}
                     baseUri={baseUri}
