@@ -1,0 +1,92 @@
+.distributions {
+    :global(.fds-accordion__item) {
+        > div,
+        > h3 button {
+            background: white;
+            // background: #fafafa;
+        }
+        > h3 button:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+    }
+    :global(.fds-accordion__item--open) {
+        > div,
+        > h3 button {
+            background: white;
+            // background: #f8f8f8;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.025);
+            }
+        }
+    }
+}
+
+.header {
+    > button {
+        &[aria-expanded='true'] {
+            &:not(:hover) {
+                // background:white;
+                // background:#f8f8f8;
+            }
+            .tag {
+                // background:white;
+            }
+        }
+        > span {
+            display: flex;
+            // font-size: 2rem;
+            flex-grow: 1;
+        }
+        .tag {
+            font-size:0.9rem;
+        }
+    }
+
+    .headerContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+        gap: 1rem;
+
+        .title {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex-grow: 1;
+
+            .tags {
+                display: flex;
+                gap: 0.5rem;
+                font-weight: normal;
+                font-size: 0.8em;
+                align-items: center;
+                margin-top: 0.5rem;
+
+                .tag {
+                    min-height: 1.5rem;
+                    // background:white;
+                }
+            }
+        }
+
+        button {
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+    }
+}
+
+.content {
+    table {
+        margin: -0.25rem;
+        th,
+        td {
+            padding: 0.25rem;
+        }
+        th {
+            text-align: left;
+        }
+    }
+}
