@@ -42,5 +42,10 @@
     },
     "tableOfContents": {
         "onThisPage": "On this page:"
+    },
+    "conceptPreview": {
+        "labelMissing": "Label is missing",
+        "descriptionMissing": "Description is missing",
+        "goToDatanorge": "Go to description at data.norge.no"
     }
 }
