@@ -50,28 +50,28 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
             accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download'
+            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
         },
         {
             title: 'Locations',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
             accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download'
+            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
         },
         {
             title: 'Measurement points',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
             accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download'
+            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
         },
         {
             title: 'Measurements',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
             accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download'
+            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
         },
     ];
 
@@ -106,15 +106,29 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         </div>
                     </div>
                     <div className={styles.headerTags}>
-                        <Tag color='info' size="sm">
+                        <Tag
+                            color='info'
+                            size='sm'
+                        >
                             <Link href='#'>Datasett</Link>
                         </Tag>
-                        <Tag color="success" size="sm">
-                        	Åpne data&nbsp;
-                        	<HelpText title="Begrepsforklaring" size="sm" style={{transform:'scale(0.75)'}}>
-                        		<Paragraph size="sm">Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
-                        		<Paragraph size="sm"><Link href="https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5">Les mer om tilgangsnivåer her</Link></Paragraph>
-                        	</HelpText>
+                        <Tag
+                            color='success'
+                            size='sm'
+                        >
+                            Åpne data&nbsp;
+                            <HelpText
+                                title='Begrepsforklaring'
+                                size='sm'
+                                style={{ transform: 'scale(0.75)' }}
+                            >
+                                <Paragraph size='sm'>Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
+                                <Paragraph size='sm'>
+                                    <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5'>
+                                        Les mer om tilgangsnivåer her
+                                    </Link>
+                                </Paragraph>
+                            </HelpText>
                         </Tag>
                         {/*<Tag color='warning' size="sm">Begrenset tilgang</Tag>*/}
                         {/*<Tag color='subtle' size="sm">
@@ -125,7 +139,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         	</HelpText>
                         </Tag>*/}
                         <span className={styles.lastUpdated}>Sist oppdatert 2. januar 2023</span>
-                        <div style={{flexGrow:1}} />
+                        <div style={{ flexGrow: 1 }} />
                     </div>
                 </div>
                 <Tabs
@@ -166,7 +180,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <Distributions distributions={distributions} />
                     </TabContent>
                     <TabContent value='detaljer'>
-                		<section className={styles.section}>
+                        <section className={styles.section}>
                             <Heading
                                 level={4}
                                 size='xxsmall'
@@ -174,22 +188,48 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Bruk av datasettet
                             </Heading>
                             <dl>
-                            	<dt>Utgiver:</dt>
-								<dd><Link href="#">Arbeids- og velferdsetaten</Link></dd>
-								<dt>Publisert:</dt>
-								<dd>9. mars 2022</dd>
+                                <dt>Utgiver:</dt>
+                                <dd>
+                                    <Link href='#'>Arbeids- og velferdsetaten</Link>
+                                </dd>
+                                <dt>Publisert:</dt>
+                                <dd>9. mars 2022</dd>
                                 <dt>Språk:</dt>
-								<dd>Engelsk</dd>
-								<dt>Dokumentasjon:</dt>
-								<dd><Link href="#">https://github.com/opendatalab-no/open-municipal-data<ExternalLinkIcon /></Link></dd>
-								<dt>Metadatakvalitet:</dt>
-								<dd style={{display:'flex'}}>
-									<span><Tag size="sm" color="warning">Tilstrekkelig (42%)</Tag></span>&nbsp;
-		                        	<HelpText title="Begrepsforklaring" size="sm" style={{transform:'scale(0.75)'}}>
-		                        		<Paragraph size="sm">Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av metadata.</Paragraph>
-		                        		<Paragraph size="sm"><Link href="/nb/docs/metadata-quality">Les mer om metadatakvalitet her</Link></Paragraph>
-		                        	</HelpText>
-								</dd>
+                                <dd>Engelsk</dd>
+                                <dt>Dokumentasjon:</dt>
+                                <dd>
+                                    <Link href='#'>
+                                        https://github.com/opendatalab-no/open-municipal-data
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
+                                <dt>Metadatakvalitet:</dt>
+                                <dd style={{ display: 'flex' }}>
+                                    <span>
+                                        <Tag
+                                            size='sm'
+                                            color='warning'
+                                        >
+                                            Tilstrekkelig (42%)
+                                        </Tag>
+                                    </span>
+                                    &nbsp;
+                                    <HelpText
+                                        title='Begrepsforklaring'
+                                        size='sm'
+                                        style={{ transform: 'scale(0.75)' }}
+                                    >
+                                        <Paragraph size='sm'>
+                                            Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved
+                                            hjelp av metadata.
+                                        </Paragraph>
+                                        <Paragraph size='sm'>
+                                            <Link href='/nb/docs/metadata-quality'>
+                                                Les mer om metadatakvalitet her
+                                            </Link>
+                                        </Paragraph>
+                                    </HelpText>
+                                </dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -200,10 +240,17 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Kontaktinformasjon
                             </Heading>
                             <dl>
-                            	<dt>Kontaktpunkt:</dt>
-								<dd><Link href="#">https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/<ExternalLinkIcon /></Link></dd>
-								<dt>E-post:</dt>
-								<dd><Link href="#">erlend.stav@sintef.no</Link></dd>
+                                <dt>Kontaktpunkt:</dt>
+                                <dd>
+                                    <Link href='#'>
+                                        https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
+                                <dt>E-post:</dt>
+                                <dd>
+                                    <Link href='#'>erlend.stav@sintef.no</Link>
+                                </dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -213,7 +260,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             >
                                 Tema
                             </Heading>
-                            <ChipGroup size="sm">
+                            <ChipGroup size='sm'>
                                 {['Energi', 'Forvaltning og offentlig sektor'].map((theme) => (
                                     <ChipToggle key={theme}>{theme}</ChipToggle>
                                 ))}
@@ -226,7 +273,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             >
                                 Søkeord
                             </Heading>
-                            <ChipGroup size="sm">
+                            <ChipGroup size='sm'>
                                 {['arbeidsledige', 'statistikk', 'arbeidsmarked', 'nav'].map((term) => (
                                     <ChipToggle key={term}>{term}</ChipToggle>
                                 ))}
