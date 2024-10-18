@@ -10,6 +10,8 @@ export type Distribution = {
     title: string;
     tags: string[];
     description: string;
+    accessUrl?: string;
+    downloadUrl?: string;
 };
 
 export type DistributionsProps = {
@@ -34,7 +36,7 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                             <Tag
                                                 className={styles.tag}
                                                 color='info'
-                                                size="sm"
+                                                size='sm'
                                                 key={tag}
                                             >
                                                 {tag}
@@ -59,7 +61,9 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                         size='sm'
                                         variant='secondary'
                                         color='first'
-                                        onClick={(e) => { e.stopPropagation() }}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                        }}
                                     >
                                         <Link href='#'>
                                             <DownloadIcon fontSize='1.2em' />
@@ -88,7 +92,8 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                 <dt>Lisens</dt>
                                 <dd>
                                     <Link href='http://publications.europa.eu/resource/authority/licence/NLOD_2_0'>
-                                        Norsk lisens for offentlige data<ExternalLinkIcon />
+                                        Norsk lisens for offentlige data
+                                        <ExternalLinkIcon />
                                     </Link>
                                 </dd>
                             </dl>

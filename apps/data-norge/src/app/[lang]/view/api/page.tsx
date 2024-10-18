@@ -66,17 +66,18 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             >
                                 <StarIcon />
                             </Button>
-                            <Button size='sm'>
-                                Ta i bruk
-                            </Button>
+                            <Button size='sm'>Ta i bruk</Button>
                         </div>
                     </div>
                     <div className={styles.headerTags}>
-                        <Tag color='info' size="sm">
+                        <Tag
+                            color='info'
+                            size='sm'
+                        >
                             <Link href='#'>API</Link>
                         </Tag>
                         <span className={styles.lastUpdated}>Sist oppdatert 2. januar 2023</span>
-                        <div style={{flexGrow:1}} />
+                        <div style={{ flexGrow: 1 }} />
                     </div>
                 </div>
                 <Tabs
@@ -96,7 +97,9 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                     <TabContent value='oversikt'>
                         <article className={styles.article}>
                             <p>
-                                Tjenesten leverer en liste over inntektsmottakere der arbeidsgiver (opplysningspliktig), via a-ordningen, har rapportert pensjonsavtale med pensjonsinnretningen som utfører kallet.
+                                Tjenesten leverer en liste over inntektsmottakere der arbeidsgiver (opplysningspliktig),
+                                via a-ordningen, har rapportert pensjonsavtale med pensjonsinnretningen som utfører
+                                kallet.
                             </p>
                         </article>
                         <section className={styles.section}>
@@ -108,14 +111,29 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             </Heading>
                             <dl>
                                 <dt>Endepunkt:</dt>
-                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten-test.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='#'>
+                                        https://inntektsmottakere.api.skatteetaten-test.no/v1
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                                 <dt>Endepunkt:</dt>
-                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='#'>
+                                        https://inntektsmottakere.api.skatteetaten.no/v1
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                                 <dt>Endepunktbeskrivelse:</dt>
-                                <dd><Link href="https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0">Gå til spesifikasjon<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0'>
+                                        Gå til spesifikasjon
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                                 <dt>Formater:</dt>
                                 <dd>
-                                    <ChipGroup size="sm">
+                                    <ChipGroup size='sm'>
                                         {['json', 'xml'].map((format) => (
                                             <ChipToggle key={format}>{format}</ChipToggle>
                                         ))}
@@ -128,14 +146,29 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         <section className={styles.section}>
                             <dl>
                                 <dt>Endepunkt:</dt>
-                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten-test.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='#'>
+                                        https://inntektsmottakere.api.skatteetaten-test.no/v1
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                                 <dt>Endepunkt:</dt>
-                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='#'>
+                                        https://inntektsmottakere.api.skatteetaten.no/v1
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                                 <dt>Endepunktbeskrivelse:</dt>
-                                <dd><Link href="https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0">Gå til spesifikasjon<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0'>
+                                        Gå til spesifikasjon
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                                 <dt>Formater:</dt>
                                 <dd>
-                                    <ChipGroup size="sm">
+                                    <ChipGroup size='sm'>
                                         {['json', 'xml'].map((format) => (
                                             <ChipToggle key={format}>{format}</ChipToggle>
                                         ))}
@@ -158,7 +191,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         </section>*/}
                     </TabContent>
                     <TabContent value='detaljer'>
-                		<section className={styles.section}>
+                        <section className={styles.section}>
                             <Heading
                                 level={4}
                                 size='xxsmall'
@@ -166,14 +199,18 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Bruk av datasettet
                             </Heading>
                             <dl>
-                            	<dt>Utgiver:</dt>
-								<dd><Link href="#">Arbeids- og velferdsetaten</Link></dd>
-								<dt>Publisert:</dt>
-								<dd>9. mars 2022</dd>
+                                <dt>Utgiver:</dt>
+                                <dd>
+                                    <Link href='#'>Arbeids- og velferdsetaten</Link>
+                                </dd>
+                                <dt>Publisert:</dt>
+                                <dd>9. mars 2022</dd>
                                 <dt>Språk:</dt>
-								<dd>Engelsk</dd>
-								<dt>Dokumentasjon:</dt>
-								<dd><Link href="#">https://github.com/opendatalab-no/open-municipal-data</Link></dd>
+                                <dd>Engelsk</dd>
+                                <dt>Dokumentasjon:</dt>
+                                <dd>
+                                    <Link href='#'>https://github.com/opendatalab-no/open-municipal-data</Link>
+                                </dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -184,10 +221,14 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Kontaktinformasjon
                             </Heading>
                             <dl>
-                            	<dt>Kontaktpunkt:</dt>
-								<dd><Link href="#">https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/</Link></dd>
-								<dt>E-post:</dt>
-								<dd><Link href="#">erlend.stav@sintef.no</Link></dd>
+                                <dt>Kontaktpunkt:</dt>
+                                <dd>
+                                    <Link href='#'>https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/</Link>
+                                </dd>
+                                <dt>E-post:</dt>
+                                <dd>
+                                    <Link href='#'>erlend.stav@sintef.no</Link>
+                                </dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -197,7 +238,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             >
                                 Formater
                             </Heading>
-                            <ChipGroup size="sm">
+                            <ChipGroup size='sm'>
                                 {['json', 'xml'].map((format) => (
                                     <ChipToggle key={format}>{format}</ChipToggle>
                                 ))}

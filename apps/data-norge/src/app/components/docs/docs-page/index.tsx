@@ -162,7 +162,7 @@ export default async function DocsPage({ params, rootContentDirectory }: DocsPag
             Tag: (props: TagProps) => (
                 <Tag
                     {...props}
-                    size="sm"
+                    size='sm'
                 />
             ),
             Ingress: (props: IngressProps) => (

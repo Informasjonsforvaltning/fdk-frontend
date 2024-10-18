@@ -58,7 +58,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             size='lg'
                             className={styles.title}
                         >
-                             egenandel på dagpenger
+                            egenandel på dagpenger
                         </Heading>
                         <div className={styles.titleToolbar}>
                             <Button
@@ -73,11 +73,14 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         </div>
                     </div>
                     <div className={styles.headerTags}>
-                        <Tag color='info' size="sm">
+                        <Tag
+                            color='info'
+                            size='sm'
+                        >
                             <Link href='#'>Begrep</Link>
                         </Tag>
                         <span className={styles.lastUpdated}>Sist oppdatert 2. januar 2023</span>
-                        <div style={{flexGrow:1}} />
+                        <div style={{ flexGrow: 1 }} />
                     </div>
                 </div>
                 <Tabs
@@ -103,7 +106,11 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 <dt>Begrep:</dt>
                                 <dd>egenandel på dagpenger</dd>
                                 <dt>Definisjon:</dt>
-                                <dd><em>&quot;beregnet beløp som trekkes fra de første utbetalingene av dagpenger&quot;</em></dd>
+                                <dd>
+                                    <em>
+                                        &quot;beregnet beløp som trekkes fra de første utbetalingene av dagpenger&quot;
+                                    </em>
+                                </dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -117,7 +124,12 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 <dt>Begrep:</dt>
                                 <dd>eigenandel på dagpengar</dd>
                                 <dt>Definisjon:</dt>
-                                <dd><em>&quot;berekna beløp som blir trekt frå dei første utbetalingane av dagpengar&quot;</em></dd>
+                                <dd>
+                                    <em>
+                                        &quot;berekna beløp som blir trekt frå dei første utbetalingane av
+                                        dagpengar&quot;
+                                    </em>
+                                </dd>
                             </dl>
                         </section>
                         {/*<section className={styles.section}>
@@ -161,8 +173,13 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             >
                                 Merknad
                             </Heading>
-                            <Paragraph size="sm">
-                                Når dagpenger er innvilget, beregnes en egenandel. Regelen gjelder i saker der ny dagpengeperiode er innvilget fra og med 1. januar 2024, og erstatter den tidligere regelen om ventetid. Egenandelen tilsvarer tre dagsatser medregnet eventuelt barnetillegg og etter eventuell samordning. Egenandelen reduserer brutto utbetaling av dagpenger. Det beregnes ikke egenandel ved permittering i fiskeindustrien eller ved forskuttering av lønnsgarantimidler i form av dagpenger.
+                            <Paragraph size='sm'>
+                                Når dagpenger er innvilget, beregnes en egenandel. Regelen gjelder i saker der ny
+                                dagpengeperiode er innvilget fra og med 1. januar 2024, og erstatter den tidligere
+                                regelen om ventetid. Egenandelen tilsvarer tre dagsatser medregnet eventuelt
+                                barnetillegg og etter eventuell samordning. Egenandelen reduserer brutto utbetaling av
+                                dagpenger. Det beregnes ikke egenandel ved permittering i fiskeindustrien eller ved
+                                forskuttering av lønnsgarantimidler i form av dagpenger.
                             </Paragraph>
                         </section>
                     </TabContent>
@@ -176,11 +193,26 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             </Heading>
                             <dl>
                                 <dt>Endepunkt:</dt>
-                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten-test.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='#'>
+                                        https://inntektsmottakere.api.skatteetaten-test.no/v1
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                                 <dt>Endepunkt:</dt>
-                                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten.no/v1<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='#'>
+                                        https://inntektsmottakere.api.skatteetaten.no/v1
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                                 <dt>Endepunktbeskrivelse:</dt>
-                                <dd><Link href="https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0">Gå til spesifikasjon<ExternalLinkIcon /></Link></dd>
+                                <dd>
+                                    <Link href='https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0'>
+                                        Gå til spesifikasjon
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -190,7 +222,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             >
                                 Formater
                             </Heading>
-                            <ChipGroup size="sm">
+                            <ChipGroup size='sm'>
                                 {['json', 'xml'].map((format) => (
                                     <ChipToggle key={format}>{format}</ChipToggle>
                                 ))}
@@ -198,7 +230,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         </section>
                     </TabContent>
                     <TabContent value='detaljer'>
-                		<section className={styles.section}>
+                        <section className={styles.section}>
                             <Heading
                                 level={4}
                                 size='xxsmall'
@@ -206,14 +238,18 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Bruk av datasettet
                             </Heading>
                             <dl>
-                            	<dt>Utgiver:</dt>
-								<dd><Link href="#">Arbeids- og velferdsetaten</Link></dd>
-								<dt>Publisert:</dt>
-								<dd>9. mars 2022</dd>
+                                <dt>Utgiver:</dt>
+                                <dd>
+                                    <Link href='#'>Arbeids- og velferdsetaten</Link>
+                                </dd>
+                                <dt>Publisert:</dt>
+                                <dd>9. mars 2022</dd>
                                 <dt>Språk:</dt>
-								<dd>Engelsk</dd>
-								<dt>Dokumentasjon:</dt>
-								<dd><Link href="#">https://github.com/opendatalab-no/open-municipal-data</Link></dd>
+                                <dd>Engelsk</dd>
+                                <dt>Dokumentasjon:</dt>
+                                <dd>
+                                    <Link href='#'>https://github.com/opendatalab-no/open-municipal-data</Link>
+                                </dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -224,10 +260,14 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                                 Kontaktinformasjon
                             </Heading>
                             <dl>
-                            	<dt>Kontaktpunkt:</dt>
-								<dd><Link href="#">https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/</Link></dd>
-								<dt>E-post:</dt>
-								<dd><Link href="#">erlend.stav@sintef.no</Link></dd>
+                                <dt>Kontaktpunkt:</dt>
+                                <dd>
+                                    <Link href='#'>https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/</Link>
+                                </dd>
+                                <dt>E-post:</dt>
+                                <dd>
+                                    <Link href='#'>erlend.stav@sintef.no</Link>
+                                </dd>
                             </dl>
                         </section>
                         <section className={styles.section}>
@@ -237,7 +277,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                             >
                                 Formater
                             </Heading>
-                            <ChipGroup size="sm">
+                            <ChipGroup size='sm'>
                                 {['json', 'xml'].map((format) => (
                                     <ChipToggle key={format}>{format}</ChipToggle>
                                 ))}
