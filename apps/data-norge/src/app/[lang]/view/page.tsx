@@ -49,21 +49,29 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
             title: 'Location measurement points',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
+            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
+            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download'
         },
         {
             title: 'Locations',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
+            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
+            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download'
         },
         {
             title: 'Measurement points',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
+            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
+            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download'
         },
         {
             title: 'Measurements',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
+            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
+            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download'
         },
     ];
 
@@ -105,7 +113,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                         	Åpne data&nbsp;
                         	<HelpText title="Begrepsforklaring" size="sm" style={{transform:'scale(0.75)'}}>
                         		<Paragraph size="sm">Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
-                        		<Paragraph size="sm"><Link href="#">Les mer om tilgangsnivåer her</Link></Paragraph>
+                        		<Paragraph size="sm"><Link href="https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5">Les mer om tilgangsnivåer her</Link></Paragraph>
                         	</HelpText>
                         </Tag>
                         {/*<Tag color='warning' size="sm">Begrenset tilgang</Tag>*/}
@@ -123,6 +131,7 @@ export default async function DetailsViewPage({ params }: DetailsViewPageType) {
                 <Tabs
                     defaultValue='oversikt'
                     size='sm'
+                    // value={value}
                 >
                     <TabList>
                         <Tab value='oversikt'>Oversikt</Tab>

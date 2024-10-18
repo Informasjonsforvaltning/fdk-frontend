@@ -1,5 +1,6 @@
 'use client';
 
+import cn from 'classnames';
 import { Button, Link, Tag, Accordion } from '@digdir/designsystemet-react';
 import { DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
@@ -17,7 +18,7 @@ export type DistributionsProps = {
 
 const Distributions = ({ distributions }: DistributionsProps) => {
     return (
-        <div className={styles.distributions}>
+        <div className={cn(styles.distributions, styles.highlight)}>
             <Accordion border>
                 {distributions.map((distribution) => (
                     <Accordion.Item key={distribution.title}>
@@ -41,21 +42,57 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                         ))}
                                     </div>
                                 </span>
-                                <Button
-                                    asChild
-                                    size='sm'
-                                    variant='secondary'
-                                    color='first'
-                                >
-                                    <Link href='#'>
-                                        <DownloadIcon fontSize='1.2em' />
-                                        Last ned
-                                    </Link>
-                                </Button>
+                                <div>
+                                    {/*<Button
+                                        asChild
+                                        size='sm'
+                                        variant='secondary'
+                                        color='first'
+                                        onClick={(e) => { e.stopPropagation() }}
+                                    >
+                                        <Link href='#'>
+                                            Forhåndsvisning
+                                        </Link>
+                                    </Button>*/}
+                                    <Button
+                                        asChild
+                                        size='sm'
+                                        variant='secondary'
+                                        color='first'
+                                        onClick={(e) => { e.stopPropagation() }}
+                                    >
+                                        <Link href='#'>
+                                            <DownloadIcon fontSize='1.2em' />
+                                            Last ned
+                                        </Link>
+                                    </Button>
+                                </div>
                             </div>
                         </Accordion.Header>
                         <Accordion.Content className={styles.content}>
-                            <table>
+                            <dl>
+                                <dt>Beskrivelse</dt>
+                                <dd>{distribution.description}</dd>
+                                {/*<dt>Få tilgang til datasettet:</dt>
+                                <dd>
+                                    <Link href={distribution.accessUrl}>
+                                        {distribution.accessUrl}
+                                    </Link>
+                                </dd>
+                                <dt>Direkte nedlastingslenke:</dt>
+                                <dd>
+                                    <Link href={distribution.downloadUrl}>
+                                        {distribution.downloadUrl}
+                                    </Link>
+                                </dd>*/}
+                                <dt>Lisens</dt>
+                                <dd>
+                                    <Link href='http://publications.europa.eu/resource/authority/licence/NLOD_2_0'>
+                                        Norsk lisens for offentlige data<ExternalLinkIcon />
+                                    </Link>
+                                </dd>
+                            </dl>
+                            {/*<table>
                                 <tbody>
                                     <tr>
                                         <th>Beskrivelse:</th>
@@ -70,7 +107,7 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table>*/}
                         </Accordion.Content>
                     </Accordion.Item>
                 ))}
