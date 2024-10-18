@@ -26,6 +26,8 @@ import {
     TableRow,
     TableHeaderCell,
     TableCell,
+    Tag,
+    type TagProps,
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
@@ -161,6 +163,12 @@ export default async function DocsPage(pageProps: DocsPageProps) {
             td: (
                 { children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>, // eslint-disable-line
             ) => <TableCell {...props}>{children}</TableCell>,
+            Tag: (props: TagProps) => (
+                <Tag
+                    {...props}
+                    size="sm"
+                />
+            ),
             Ingress: (props: IngressProps) => (
                 <Ingress
                     asChild
