@@ -166,7 +166,7 @@ export default async function DocsPage(pageProps: DocsPageProps) {
             Tag: (props: TagProps) => (
                 <Tag
                     {...props}
-                    size="sm"
+                    size='sm'
                 />
             ),
             Ingress: (props: IngressProps) => (
