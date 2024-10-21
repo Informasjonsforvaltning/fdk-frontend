@@ -16,11 +16,12 @@ export type Distribution = {
 
 export type DistributionsProps = {
     distributions: Distribution[];
+    className?: string;
 };
 
-const Distributions = ({ distributions }: DistributionsProps) => {
+const Distributions = ({ distributions, className }: DistributionsProps) => {
     return (
-        <div className={cn(styles.distributions, styles.highlight)}>
+        <div className={cn(styles.distributions, className)}>
             <Accordion border>
                 {distributions.map((distribution) => (
                     <Accordion.Item key={distribution.title}>
@@ -44,8 +45,8 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                         ))}
                                     </div>
                                 </span>
-                                <div>
-                                    {/*<Button
+                                <div style={{display:'flex', alignItems: 'center', gap: '0.5rem'}}>
+                                    <Button
                                         asChild
                                         size='sm'
                                         variant='secondary'
@@ -53,9 +54,9 @@ const Distributions = ({ distributions }: DistributionsProps) => {
                                         onClick={(e) => { e.stopPropagation() }}
                                     >
                                         <Link href='#'>
-                                            Forhåndsvisning
+                                            Vis data
                                         </Link>
-                                    </Button>*/}
+                                    </Button>
                                     <Button
                                         asChild
                                         size='sm'
