@@ -2,7 +2,25 @@
     border-radius: 3px;
 
     &.highlight {
-        // box-shadow:0px 0px 0px 10px var(--fds-semantic-surface-focus-default);
+        animation: blink-border 1s ease-in-out 2;
+    }
+
+    @keyframes blink-border {
+        0% {
+            box-shadow:0px 0px 0px 10px transparent
+        }
+        25% {
+            box-shadow:0px 0px 0px 10px var(--fds-semantic-surface-focus-default);;
+        }
+        50% {
+            box-shadow:0px 0px 0px 10px transparent
+        }
+        75% {
+            box-shadow:0px 0px 0px 10px var(--fds-semantic-surface-focus-default);;
+        }
+        100% {
+            box-shadow:0px 0px 0px 10px transparent
+        }
     }
 
     :global(.fds-accordion__item) {
