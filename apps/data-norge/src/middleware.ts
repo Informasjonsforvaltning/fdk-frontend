@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { i18n, Locale } from '@fdk-frontend/dictionaries';
 
-export const middleware = (request: NextRequest) => {
-    const devMode = process.env.NODE_ENV === 'development';
-
+export const middleware = (request: NextRequest, ) => {
     // Get the pathname and remove basePath
     const basePath = '/';
     const pathname = request.nextUrl.pathname;
@@ -29,18 +27,6 @@ export const middleware = (request: NextRequest) => {
             new URL(`${basePath}${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
         );
     }
-
-    // Content Security Policy
-    const requestHeaders = new Headers(request.headers);
-    const response = NextResponse.next({
-        request: {
-            headers: requestHeaders,
-        },
-    });
-    const nonce = request.headers.get('x-nonce') ?? '';
-    response.cookies.set('nonce', nonce, { httpOnly: false, secure: !devMode, sameSite: 'strict' });
-
-    return response;
 };
 
 export const config = {
