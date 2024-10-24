@@ -10,8 +10,7 @@
     "extends": "../../tsconfig.base.json",
     "files": [],
     "include": ["additional.d.ts", "jest.setup.tsx"],
-    "references": [
-        {
+    "references": [{
             "composite": true,
             "path": "./tsconfig.lib.json"
         },

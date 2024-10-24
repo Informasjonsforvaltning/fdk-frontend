@@ -1,7 +1,8 @@
 //@ts-check
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
 const { composePlugins, withNx } = require('@nx/next');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const createMDX = require('@next/mdx');
 
 /**

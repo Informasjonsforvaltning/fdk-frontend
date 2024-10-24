@@ -89,7 +89,7 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
             } else {
                 setError(dictionary.aiBanner.prompt.errors.generic);
             }
-        } catch (err) {
+        } catch {
             setLoading(false);
             setError(dictionary.aiBanner.prompt.errors.generic);
         }
