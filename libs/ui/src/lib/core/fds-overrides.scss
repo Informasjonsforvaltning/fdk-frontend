@@ -29,7 +29,9 @@
             color: var(--color-link);
         }
 
-        text-decoration: none;
+        & {
+            text-decoration: none;
+        }
     }
     &.fds-btn--primary {
         &.fds-link {

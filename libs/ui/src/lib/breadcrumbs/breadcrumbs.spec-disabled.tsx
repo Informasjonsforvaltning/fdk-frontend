@@ -2,7 +2,7 @@ import { screen, render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { getDictionary, type Dictionary } from '@fdk-frontend/dictionaries';
 
-import { Breadcrumbs } from '.';
+import Breadcrumbs from '.';
 
 expect.extend(toHaveNoViolations);
 

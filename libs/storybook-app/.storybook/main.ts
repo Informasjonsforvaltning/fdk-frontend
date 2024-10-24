@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+import * as path from 'path';
 
 const config: StorybookConfig = {
     stories: ['../../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
@@ -13,6 +14,7 @@ const config: StorybookConfig = {
             alias: {
                 ...(baseConfig.resolve?.alias ?? {}),
                 '@opentelemetry/api': 'next/dist/compiled/@opentelemetry/api',
+                '@fdk-frontend/ui/core': path.resolve(__dirname, '../../ui/src/lib/core')
             },
         };
         return baseConfig;
