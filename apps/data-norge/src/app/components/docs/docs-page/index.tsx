@@ -228,7 +228,7 @@ export default async function DocsPage({ params, rootContentDirectory }: DocsPag
                 {content}
             </MdxPage>
         );
-    } catch (err) {
+    } catch {
         notFound();
     }
 }
@@ -262,7 +262,7 @@ export const generateMetadata = async function ({ params, rootContentDirectory }
             title,
             description,
         };
-    } catch (err) {
+    } catch {
         return notFound();
     }
 };

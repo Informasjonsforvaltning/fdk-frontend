@@ -29,7 +29,7 @@ export const sendEmailAction = async (prevState: FormState, formData: FormData) 
         }
         revalidatePath('/');
         return getFormState(FormStatusEnum.SUCCESS, 'Mail was sent successfully');
-    } catch (e) {
+    } catch {
         // TODO: Log error to some error tracking service, not logging out to console because of security reasons
         console.error('Sending email for Data Hunter Form failed');
         return getFormState(FormStatusEnum.ERROR, 'Sending email failed');

@@ -1,5 +1,6 @@
-/* eslint-disable */
-module.exports = {
+import type { Config } from 'jest';
+
+const config: Config = {
     displayName: 'ui',
     preset: './jest.preset.js',
     coverageDirectory: '../../coverage/libs/ui',
@@ -10,3 +11,5 @@ module.exports = {
     },
     setupFilesAfterEnv: ['./jest.setup.tsx'],
 };
+
+export default config;
