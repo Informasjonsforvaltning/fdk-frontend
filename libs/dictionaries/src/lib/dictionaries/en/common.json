@@ -65,9 +65,9 @@
         "tools": {
             "heading": "Tools",
             "links": {
-                "dataHunter": "Data Hunter",
+                "dataHunter": "Request data with Data Hunter",
                 "organizations": "Organizations",
-                "requestData": "Request data",
+                "requestData": "See ongoing requests for data",
                 "sparqlSandbox": "SPARQL sandbox"
             }
         }
