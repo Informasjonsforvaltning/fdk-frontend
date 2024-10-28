@@ -65,9 +65,9 @@
         "tools": {
             "heading": "Verktøy",
             "links": {
-                "dataHunter": "Datajegeren",
+                "dataHunter": "Etterspør data med datajegeren",
                 "organizations": "Virksomhetsoversikt",
-                "requestData": "Etterspør data",
+                "requestData": "Se pågående etterspørsler for data",
                 "sparqlSandbox": "SPARQL-sandkasse"
             }
         }
