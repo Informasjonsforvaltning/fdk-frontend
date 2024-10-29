@@ -12,21 +12,13 @@ import {
     Link,
     Tag,
     HelpText,
-    Table,
-    TableHead,
-    TableBody,
-    TableHeaderCell,
-    TableCell,
-    TableRow,
     Tabs,
     TabList,
     Tab,
     TabContent,
     Paragraph,
-    ChipGroup,
-    ChipToggle,
 } from '@digdir/designsystemet-react';
-import { DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { DownloadIcon } from '@navikt/aksel-icons';
 
 import Distributions, { type Distribution } from '../distributions';
 import Badge from '../badge';

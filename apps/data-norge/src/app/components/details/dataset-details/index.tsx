@@ -1,24 +1,13 @@
 import {
     Heading,
-    Button,
     Link,
     Tag,
     HelpText,
-    Table,
-    TableHead,
-    TableBody,
-    TableHeaderCell,
-    TableCell,
-    TableRow,
-    Tabs,
-    TabList,
-    Tab,
-    TabContent,
     Paragraph,
     ChipGroup,
     ChipToggle
 } from '@digdir/designsystemet-react';
-import { StarIcon, DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import Article from '@fdk-frontend/ui/article';
 
