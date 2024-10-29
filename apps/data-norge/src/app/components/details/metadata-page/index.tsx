@@ -6,12 +6,11 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import {
     ToggleGroup,
     Heading,
-    Alert,
     Spinner,
     Textfield,
     Button
 } from '@digdir/designsystemet-react';
-import { StarIcon, DownloadIcon, ExternalLinkIcon, FilesIcon } from '@navikt/aksel-icons';
+import { FilesIcon } from '@navikt/aksel-icons';
 
 import styles from './metadata-page.module.scss';
 
@@ -27,10 +26,6 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
 		'application/json': 'json'
 	}
 
-	useEffect(() => {
-		getMetadata();
-	}, [ contentType ]);
-
 	const getMetadata = async () => {
 		setLoading(true);
 		try {
@@ -38,10 +33,10 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
 				headers: { 'Accept': contentType }
 			})
 			.then(async response => {
-				const contentType = response.headers.get("Content-Type");
+				const responseContentType = response.headers.get("Content-Type");
 				let data = await response.text();
 
-				if (contentType && contentType.includes("application/json")) {
+				if (responseContentType && responseContentType.includes("application/json")) {
 					const jsonData = JSON.parse(data);
 					data = JSON.stringify(jsonData, null, 2); // Format JSON with 2 spaces for indentation
 				}
@@ -55,6 +50,10 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
 			console.error("Error parsing JSON:", error);
 		}
 	}
+
+	useEffect(() => {
+		getMetadata();
+	}, [ contentType ]);
 
 	return (
 		<div className={styles.wrapper}>
