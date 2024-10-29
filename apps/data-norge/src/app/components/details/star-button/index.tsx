@@ -17,11 +17,13 @@ const StarButton = ({ defaultNumber = 0, defaultStarred = false }) => {
             aria-pressed={starred}
             color={starred ? 'success' : undefined}
         >
+            <div className={styles.content}>
             {
             	starred ?
             	<><StarFillIcon /> {defaultNumber + 1}</> :
             	<><StarIcon /> {defaultNumber}</>
            	}
+            </div>
         </Button>
 	);
 }

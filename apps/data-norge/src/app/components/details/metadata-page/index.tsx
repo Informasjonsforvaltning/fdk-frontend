@@ -64,7 +64,7 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
 	            >
 	                Metadata
 	            </Heading>
-	            {loading && <div>Laster... <Spinner size='sm' variant='interaction' /></div>}
+	            {loading && <div style={{display:'flex',alignItems:'center',gap:'0.5rem'}}>Laster...<Spinner size='xs' variant='interaction' /></div>}
 	        </div>
 			<div className={styles.header}>
 				<div className={styles.urlbar}>
