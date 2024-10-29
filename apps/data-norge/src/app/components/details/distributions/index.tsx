@@ -91,7 +91,7 @@ const Distributions = ({ distributions, className }: DistributionsProps) => {
                                         }}
                                     >
                                         {
-                                            index === 1 ?
+                                            index === 999 ?
                                             <Link href='#'>
                                                 Gå til API
                                                 <ArrowRightIcon fontSize='1.2em' />
