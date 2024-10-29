@@ -4,7 +4,7 @@ import styles from './article.module.scss';
 
 const Article = ({ children }: PropsWithChildren) => {
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.article}>
 			{children}
 		</div>
 	);

@@ -20,6 +20,8 @@ import {
 } from '@digdir/designsystemet-react';
 import { StarIcon, DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
+import Article from '@fdk-frontend/ui/article';
+
 import styles from './dataset-details.module.scss';
 
 import HelptextWrapper from '../helptext-wrapper/';
@@ -209,13 +211,17 @@ const DatasetDetails = (props) => {
                         <Link href="#">felles omsorg</Link>
                     </dt>
                     <dd>
-                        omsorgssituasjon der begge foreldre til et gitt barn bor sammen og har omsorgen for barnet i skattleggingsperioden
+                        <Article>
+                            omsorgssituasjon der begge foreldre til et gitt barn bor sammen og har omsorgen for barnet i skattleggingsperioden
+                        </Article>
                     </dd>
                     <dt>
                         <Link href="#">samlet uføreytelse fra andre enn folketrygden</Link>
                     </dt>
                     <dd>
-                        samlet brutto uføreytelser (uføreytelser før skatt) som du får fra andre enn folketrygden ( herunder uføreytelser fra SPK, uføreytelser fra andre pensjonsordninger herunder uføreytelser fra IPA/IPS og uføreytelser fra utlandet) . Uføreytelser regnes som en del av inntektene dine og skattlegges som vanlig lønnsinntekt.
+                        <Article>
+                            samlet brutto uføreytelser (uføreytelser før skatt) som du får fra andre enn folketrygden ( herunder uføreytelser fra SPK, uføreytelser fra andre pensjonsordninger herunder uføreytelser fra IPA/IPS og uføreytelser fra utlandet) . Uføreytelser regnes som en del av inntektene dine og skattlegges som vanlig lønnsinntekt.
+                        </Article>
                     </dd>
                 </dl>
             </section>
