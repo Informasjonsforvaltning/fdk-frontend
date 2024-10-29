@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
-import { motion } from 'framer-motion';
+import { ForwardRefComponent, motion } from 'framer-motion';
 
 import { Link, Button } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
@@ -21,6 +21,8 @@ export type HeaderProps = {
     registrationBaseUri?: string;
     frontpage?: boolean;
 };
+
+const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
 const Header = ({
     dictionary,
@@ -138,7 +140,7 @@ const Header = ({
                 </div>
                 {showMenu && (
                     <div className={styles.drawer}>
-                        <motion.div
+                        <MotionDiv
                             className={styles.drawerInner}
                             variants={animations.drawerInner}
                             initial='hidden'
@@ -148,7 +150,7 @@ const Header = ({
                                 dictionary={dictionary}
                                 baseUri={baseUri}
                             />
-                        </motion.div>
+                        </MotionDiv>
                     </div>
                 )}
             </div>

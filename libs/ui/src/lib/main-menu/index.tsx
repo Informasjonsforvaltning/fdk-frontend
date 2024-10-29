@@ -2,7 +2,7 @@
 
 import React from 'react';
 import cn from 'classnames';
-import { motion } from 'framer-motion';
+import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Heading } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
@@ -17,6 +17,8 @@ type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
     dictionary: Dictionary;
     baseUri: string;
 };
+
+const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
 const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
     const data = getMainMenuData(dictionary, baseUri);
@@ -38,7 +40,7 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
     };
 
     return (
-        <motion.nav
+        <MotionNav
             className={cn(styles.mainMenu, className)}
             variants={animations.links}
             initial='hidden'
@@ -46,7 +48,7 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
             aria-label={dictionary.mainMenu.label}
         >
             <div className={styles.links}>
-                <motion.nav
+                <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}
                     aria-labelledby='mainMenu.catalogs.heading'
@@ -71,8 +73,8 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             </li>
                         ))}
                     </ul>
-                </motion.nav>
-                <motion.nav
+                </MotionNav>
+                <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}
                     aria-labelledby='mainMenu.help.heading'
@@ -95,8 +97,8 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             </li>
                         ))}
                     </ul>
-                </motion.nav>
-                <motion.nav
+                </MotionNav>
+                <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}
                     aria-labelledby='mainMenu.tools.heading'
@@ -116,8 +118,8 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             </li>
                         ))}
                     </ul>
-                </motion.nav>
-                <motion.nav
+                </MotionNav>
+                <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}
                     aria-labelledby='mainMenu.about.heading'
@@ -141,9 +143,9 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             </li>
                         ))}
                     </ul>
-                </motion.nav>
+                </MotionNav>
             </div>
-        </motion.nav>
+        </MotionNav>
     );
 };
 

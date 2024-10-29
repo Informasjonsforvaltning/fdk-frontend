@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { ForwardRefComponent, motion } from 'framer-motion';
 import { Textfield, Button, Spinner, ErrorMessage } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { Dictionary } from '@fdk-frontend/dictionaries';
@@ -17,6 +17,9 @@ type LlmSearchProps = {
     dictionary: Dictionary;
     baseUri: string;
 };
+
+const MotionDiv: ForwardRefComponent<any, any> = motion.div;
+const MotionUl: ForwardRefComponent<any, any> = motion.ul;
 
 const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -157,13 +160,13 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
                 </div>
             )}
             {results && !loading && (
-                <motion.div
-                    className={styles.llmResults}
+                <MotionDiv
+                    className={styles.llmResults as string}
                     variants={animations.resultsContainer}
                     initial='hidden'
                     animate='show'
                 >
-                    <motion.ul
+                    <MotionUl
                         className={styles.llmResultsList}
                         variants={animations.resultsList}
                         initial='hidden'
@@ -187,8 +190,8 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
                                 baseUri={baseUri}
                             />
                         </motion.li>
-                    </motion.ul>
-                </motion.div>
+                    </MotionUl>
+                </MotionDiv>
             )}
         </div>
     );

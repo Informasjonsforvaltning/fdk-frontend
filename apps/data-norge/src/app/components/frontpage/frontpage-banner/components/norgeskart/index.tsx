@@ -1,20 +1,14 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-
-// import { MapContainer, TileLayer } from 'react-leaflet';
-const MapContainer = dynamic(() => import('react-leaflet').then((module) => module.MapContainer), {
-    ssr: false,
-});
-const TileLayer = dynamic(() => import('react-leaflet').then((module) => module.TileLayer), {
-    ssr: false,
-});
-
 import 'leaflet/dist/leaflet.css';
 
 import styles from './norgeskart.module.scss';
+import React, { useEffect, useRef } from 'react';
 
 const Norgeskart = () => {
+    const mapRef = useRef<HTMLDivElement>(null); // Reference to the map container
+    const mapInstanceRef = useRef<any>(null); // Reference to the Leaflet map instance
+
     const urls = {
         kartverketOld:
             'https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart_graatone&zoom={z}&x={x}&y={y}',
@@ -39,20 +33,37 @@ const Norgeskart = () => {
         { name: 'bronnoysund', lat: 65.4764088, lng: 12.2125588, zoom: 13, offset: 0.02 },
     ];
 
-    const randomIndex = Math.floor(Math.random() * locations.length);
-    const initCoords = locations[randomIndex];
+    useEffect(() => {
 
-    return (
-        <MapContainer
-            className={styles.norgeskart}
-            center={[initCoords.lat - initCoords.offset, initCoords.lng]}
-            zoom={initCoords.zoom}
-            zoomControl={false}
-            aria-hidden={true}
-        >
-            <TileLayer url={urls.kartverket.topo} />
-        </MapContainer>
-    );
+        const initializeMap = async () => {
+            // Dynamically import Leaflet only when needed
+            const L = await import('leaflet');
+            if (mapInstanceRef.current) return; // Prevent multiple initializations
+
+            const randomIndex = Math.floor(Math.random() * locations.length);
+            const initCoords = locations[randomIndex];
+
+            // Initialize Leaflet map
+            if(mapRef.current !== null) {
+                mapInstanceRef.current = L.map(mapRef.current, {
+                    center: [initCoords.lat - initCoords.offset, initCoords.lng],
+                    zoom: initCoords.zoom,
+                    zoomControl: false
+                });
+
+                // Add tile layer
+                L.tileLayer(urls.kartverket.topo, {}).addTo(mapInstanceRef.current);
+            }            
+        };
+
+        initializeMap();
+        
+        return () => {
+            mapInstanceRef?.current?.remove(); // Clean up on unmount
+        };
+    }, []);
+
+    return <div ref={mapRef} className={styles.norgeskart} aria-hidden={true} />;
 };
 
 export default Norgeskart;

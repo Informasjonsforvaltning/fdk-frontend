@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren, type JSX } from 'react';
 import slugify from 'slugify';
 
 import styles from './mdx-heading.module.scss';
@@ -10,7 +10,7 @@ const extractText = (children: React.ReactNode): string => {
                 return child;
             }
             if (React.isValidElement(child)) {
-                return extractText(child.props.children);
+                return extractText((child.props as PropsWithChildren).children);
             }
             return '';
         })

@@ -15,14 +15,20 @@ import DataHunterForm from './components/data-hunter-form';
 import styles from './page.module.css';
 
 type DataHunterPageProps = {
-    params: {
+    params: Promise<{
         lang: Locale['code'];
-    };
+    }>;
 };
 
-const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
+const DataHunterPage = async (props: DataHunterPageProps) => {
+    const params = await props.params;
+
+    const {
+        lang
+    } = params;
+
     // Opt-in dynamic rendering
-    noStore();
+    await noStore();
 
     const dictionary = await getDictionary(lang, 'data-hunter-page');
     const commonDictionary = await getDictionary(lang, 'common');
@@ -66,7 +72,8 @@ const DataHunterPage = async ({ params: { lang } }: DataHunterPageProps) => {
     );
 };
 
-export const generateMetadata = async ({ params }: DataHunterPageProps): Promise<Metadata> => {
+export const generateMetadata = async (props: DataHunterPageProps): Promise<Metadata> => {
+    const params = await props.params;
     const dictionary = await getDictionary(params.lang, 'data-hunter-page');
 
     return {

@@ -39,7 +39,6 @@
                 "complexity": ["warn", 10],
                 "consistent-return": "warn",
                 "curly": "off",
-                "default-case": "error",
                 "default-case": "warn",
                 "default-case-last": "error",
                 "default-param-last": "error",
