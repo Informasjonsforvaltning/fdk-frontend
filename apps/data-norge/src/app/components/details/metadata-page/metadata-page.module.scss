@@ -1,0 +1,15 @@
+@import '@fdk-frontend/ui/core/mixins';
+
+.article {
+	@include article();
+}
+
+.wrapper {
+	margin-top:-0.5rem;
+	.header {
+		display:flex;
+		align-items:center;
+		justify-content: space-between;
+		margin-bottom:1rem;
+	}
+}

@@ -84,4 +84,22 @@
     ol {
         list-style: decimal;
     }
+
+    hr {
+        height:1px;
+        border:0;
+        background:var(--fds-semantic-border-neutral-subtle);
+    }
+
+    code {
+        &:not([class]) {
+            display:inline-flex;
+            background: rgba(0, 0, 0, 0.05);
+            font-size: 0.85em;
+            padding: 0.2em 0.4em;
+            white-space: break-spaces;
+            border-radius: 6px;
+            color: #444;
+        }
+    }
 }
