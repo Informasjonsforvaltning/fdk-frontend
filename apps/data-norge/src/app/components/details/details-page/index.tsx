@@ -26,13 +26,14 @@ import {
     ChipGroup,
     ChipToggle,
 } from '@digdir/designsystemet-react';
-import { StarIcon, DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import Distributions, { type Distribution } from '../distributions';
 import Badge from '../badge';
 import DatasetDescription from '../dataset-description';
 import DatasetDetails from '../dataset-details';
 import MetadataPage from '../metadata-page';
+import StarButton from '../star-button';
 
 import styles from './details-page.module.scss';
 
@@ -112,12 +113,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             Energimålinger kommunale bygg
                         </Heading>
                         <div className={styles.titleToolbar}>
-                            <Button
-                                variant='secondary'
-                                size='sm'
-                            >
-                                <StarIcon /> 12
-                            </Button>
+                            <StarButton defaultNumber={13} defaultStarred={false} />
                             <Button size='sm' onClick={() => { setActiveTab('distribusjoner'); blink(); }}>
                                 <DownloadIcon fontSize='1.2em' /> Last ned
                             </Button>

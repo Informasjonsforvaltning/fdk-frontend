@@ -1,0 +1,6 @@
+.button {
+	&[aria-pressed="true"]{
+		font-weight:500;
+		background: var(--fds-semantic-surface-success-no_fill-hover);
+	}
+}
