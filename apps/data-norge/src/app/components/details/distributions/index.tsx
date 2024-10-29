@@ -10,20 +10,12 @@ import {
     Button,
     Link,
     Tag,
-    HelpText,
     Table,
     TableHead,
     TableBody,
     TableHeaderCell,
     TableCell,
     TableRow,
-    Tabs,
-    TabList,
-    Tab,
-    TabContent,
-    Paragraph,
-    ChipGroup,
-    ChipToggle,
 } from '@digdir/designsystemet-react';
 import { DownloadIcon, ExternalLinkIcon, ArrowRightIcon } from '@navikt/aksel-icons';
 

@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
-import { DropdownMenu, Divider } from '@digdir/designsystemet-react';
+import { DropdownMenu } from '@digdir/designsystemet-react';
 import { ChevronDownIcon } from '@navikt/aksel-icons';
 
 import styles from './metadata-menu.module.scss';
