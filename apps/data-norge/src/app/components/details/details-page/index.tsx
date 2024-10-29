@@ -12,6 +12,12 @@ import {
     Link,
     Tag,
     HelpText,
+    Table,
+    TableHead,
+    TableBody,
+    TableHeaderCell,
+    TableCell,
+    TableRow,
     Tabs,
     TabList,
     Tab,
@@ -24,6 +30,9 @@ import { StarIcon, DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import Distributions, { type Distribution } from '../distributions';
 import Badge from '../badge';
+import DatasetDescription from '../dataset-description';
+import DatasetDetails from '../dataset-details';
+import MetadataPage from '../metadata-page';
 
 import styles from './details-page.module.scss';
 
@@ -107,7 +116,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                 variant='secondary'
                                 size='sm'
                             >
-                                <StarIcon />
+                                <StarIcon /> 12
                             </Button>
                             <Button size='sm' onClick={() => { setActiveTab('distribusjoner'); blink(); }}>
                                 <DownloadIcon fontSize='1.2em' /> Last ned
@@ -147,7 +156,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         		<Paragraph size="sm"><Link href="#">Les mer om metadatakvalitet her</Link></Paragraph>
                         	</HelpText>
                         </Tag>*/}
-                        <span className={styles.lastUpdated}>Sist oppdatert 2. januar 2023</span>
+                        <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
                         <div style={{ flexGrow: 1 }} />
                     </div>
                 </div>
@@ -166,131 +175,212 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         <Tab value='kommentarer'>
                             Kommentarer&nbsp;<Badge>2</Badge>
                         </Tab>
+                        <Tab value='metadata'>
+                            Metadata
+                        </Tab>
                     </TabList>
                     <TabContent value='oversikt'>
-                        <article className={styles.article}>
+                        {/*<article className={styles.article}>
                             <p>
                                 Statistikk over helt arbeidsledige ved utgangen av måneden fordelt på bostedskommune og
                                 fylke Helt ledige arbeidssøkere omfatter alle arbeidssøkere som de to siste ukene har
                                 meldt til NAV at de er helt uten arbeid, søker nytt arbeid og er tilgjengelig for det
                                 arbeid som søkes. Se om statistikken på www.nav.no for ytterligere forklaringer.
                             </p>
-                        </article>
+                        </article>*/}
                         <section className={styles.section}>
                             <Heading
-                                level={2}
-                                size='xs'
+                                level={4}
+                                size='xxsmall'
+                            >
+                                Beskrivelse
+                            </Heading>
+                            <div className={styles.box}>
+                                <DatasetDescription className={styles.article}>
+{`
+**Datasettet Tilsyn** [https://data.mattilsynet.no/smilefjes-tilsyn.csv](https://data.mattilsynet.no/smilefjes-tilsyn.csv) inneholder den tilsvarende informasjonen som plakaten som henges opp hos spisestedene etter at de har hatt tilsyn. Datasettet er visualisert med et søk på [https://smilefjes.mattilsynet.no/](https://smilefjes.mattilsynet.no/)
+
+**Datasettet Kravpunkter** [https://data.mattilsynet.no/smilefjes-kravpunkter.csv](https://data.mattilsynet.no/smilefjes-kravpunkter.csv) inneholder hvert enkelt kravpunkt som inngår i ett tilsyn, sammen med karakteren kravpunktet er gitt. Hvert tilsyn vil ha et sett med rader i dette tilsynet, knyttet sammen av tilsynid.
+
+**Beskrivelse av elementene i datasett for smilefjes**
+
+**Tilsynsobjekt:**  
+Et tilsynsobjekt er et sted hvor det foregår aktivitet som Mattilsynet skal føre tilsyn med (for smilefjesordningen er dette serveringssteder som er tilrettelagt og beregnet for at maten skal spises på stedet). Et tilsynsobjekt identifiseres entydig ved en intern id, kalt tilsynsobjektid. I tillegg angis hvilken bedrift i Brønnøysundregisteret som eier tilsynsobjektet. Ansvarlig foretak kan da finnes ved å slå opp på <[www.brreg.no](http://www.brreg.no)> (eller ved bruk av en nettjeneste). Adressene som angis for tilsynsobjektet er interne data med variabel kvalitet, men dette vil bli utbedret etterhvert som tilsynet blir utført. Tilsynsobjekter skifter normalt ikke adresse. Dersom en bedrift flytter en aktivitet fra ett sted til ett annet, vil det oppstå ett nytt tilsynsobjekt.
+
+**Kravpunkt:**  
+Krav i regelverket satt opp som punkter. Kravene retter seg mot tilsynsobjektene og Mattilsynet fører tilsyn med kravene. Kravpunktene er ett spesifikt element i ett tilsyn. Disse kan være obligatoriske ved ordinært tilsyn (se tilsyn).
+
+**Avvik:**  
+Ett kravpunkt som har blitt undersøkt, og hvor Mattilsynet har funnet brudd på regelverket som fører til at det varsles eller fattes vedtak overfor tilsynsobjektet.
+
+**Tema:**  
+Organisering av kravpunkter som benyttes på smilefjesplakaten for å gruppere kravpunkter.
+
+**Tilsyn:**  
+Mattilsynets tilsynsprosess består av et ordinært tilsyn, med påfølgende oppfølgingstilsyn til alle avvik er lukket/utbedret eller tilsynsobjektet legger ned aktiviteten. Når vi utfører et ordinært tilsyn vil alle kravpunkter være mulig å vurdere, men det legges ikke opp til at alle kravpunkter vil bli vurdert ved hvert ordinære tilsyn. På oppfølgingstilsyn vurderes normalt bare de kravpunkt som det ble funnet avvik på, med mindre det har oppstått helt åpenbare avvik (eller det er mistanke om avvik) ved øvrige kravpunkter siden forrige tilsyn.
+
+**Karakterskala:**  
+0 = Ingen brudd på regelverket funnet. Stort smil.  
+1 = Mindre brudd på regelverket som ikke krever oppfølging. Stort smil.  
+2 = Brudd på regelverket som krever oppfølging. Strekmunn.  
+3 = Alvorlig brudd på regelverket. Sur munn.  
+4 = Ikke aktuelt - Virksomheten har ikke denne aktiviteten ved tilsynsobjektet. Påvirker ikke smilefjeskarakter.  
+5 = Ikke vurdert - Mattilsynet har ikke vurdert kravpunktet ved dette tilsynet. Påvirker ikke smilefjeskarakter. Dersom det hadde blitt avdekket mistanke om vesentlige eller åpenbare avvik i forbindelse med inspeksjonen, ville kravpunktet blitt vurdert.
+
+**Karaktersetting:**  
+Det totale smilefjesymbolet etter et tilsyn tilsvarer den dårligste karakteren som blir gitt på tilsynet. Karakter for hvert tema er den dårligste karakteren gitt til kravpunkter under tema. Hvert enkelt kravpunkt gis karakterer på skalaen.
+
+**Invalidering av tilsyn:**  
+Dersom Mattilsynet ikke overholder sine forpliktelser i smilefjesforskriften, eller et påklaget vedtak gis medhold, vil tilsynet og tilsynsresultatet bli trukket tilbake fra åpne data. Informasjonen om dette tilsynet vil ikke lenger være ansett som korrekt. Det er derfor viktig at brukere av datasettet er klar over dette slik at de kan holde sine data oppdatert (1 gang pr. døgn) for å unngå publisering av feilaktig informasjon om et tilsynsobjekt.
+
+**Deklarasjon av innholdet i datasettene**
+
+**Tilsyn:**  
+[https://data.mattilsynet.no/smilefjes-tilsyn.csv](https://data.mattilsynet.no/smilefjes-tilsyn.csv) - Dette datasettet inneholder den tilsvarende informasjonen som plakaten som henges opp hos spisestedene etter at de har hatt tilsyn.
+
+- tilsynsobjektid; - Nøkkel for å identifisere tilsynsobjektet  
+- orgnummer; - Nøkkel for å koble tilsynsobjektet til eier (i [www.brreg.no](http://www.brreg.no))  
+- navn; - Navnet på tilsynsobjektet  
+- adrlinje1; - Adresse  
+- adrlinje2; - Adresse  
+- postnr; - Postnr  
+- poststed; - Poststed  
+- tilsynid; - Nøkkel for å identifisere tilsynet  
+- sakref; - Referansenummer for arkivinformasjon  
+- status; - Gjennomføres = utestående avvik finnes. Gjennomført = alle avvik lukket.  
+- dato; - Dato tilsynet er utført (ddmmyyyy)  
+- karakter; - Smilefjeskarakter for hele tilsynet  
+- tilsynsbesoektype; - Ordinært eller oppfølgings-tilsyn  
+- tema_karakter1; - Temanavn:karakter (e.g. Ledelse og rutiner:1)  
+- tema_karakter2; - Temanavn:karakter (e.g. Lokaler og utstyr:0)  
+- tema_karakter3; - Temanavn:karakter (e.g. Mattilberedning og håndtering:0)  
+- tema_karakter4; - Temanavn:karakter (e.g. Sporbarhet og Merking:2)  
+- kravpunkter_href; - Lenke til datasett som gir kravpunktene som inngikk i tilsynet.
+
+**Kravpunkter:**  
+[https://data.mattilsynet.no/smilefjes-kravpunkter.csv](https://data.mattilsynet.no/smilefjes-kravpunkter.csv) - Dette datasettet inneholder hvert enkelt kravpunkt som inngår i ett tilsyn, sammen med karakteren kravpunktet er gitt. Hvert tilsyn vil ha ett sett med rader i dette tilsynet, knyttet sammen av tilsynid.
+
+- "tilsynid"; - Nøkkel for identifisere ett tilsyn  
+- "dato"; - Dato tilsynet er utført  
+- "tema.kravpunkt"; - Nøkkel for å identifisere ett kravpunkt (ikke unik over tid)  
+- "kravpunktnavn"; - Navn på kravpunktet  
+- "karakter"; - Karakter (utifra skala)  
+- "tekst_no"; - Tekstlig beskrivelse av karakter, bokmål  
+- "tekst_nn"; - Tekstlig beskrivelse av karakter, nynorsk  
+- "tilsyn_href"; - Lenke til tilsynet, slik at kravpunkter kan kobles sammen med tilsynsobjektet
+
+---
+
+Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringssteder som er omfattet av smilefjesordningen (smilefjesforskriften) og tilsynsresultatene fra Mattilsynets tilsyn fra 1.1. 2016 fram til dags dato.
+
+`}
+                                </DatasetDescription>
+                            </div>
+                        </section>
+                        <section className={styles.section}>
+                            <Heading
+                                level={4}
+                                size='xxsmall'
                             >
                                 Distribusjoner
                             </Heading>
                             <Distributions distributions={distributions} />
+                        </section>
+                        <hr className={styles.divider} />
+                        <section className={styles.section}>
+                            <Heading
+                                level={4}
+                                size='xxsmall'
+                            >
+                                Andre så også på
+                            </Heading>
+                            <table className='table'>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <Link href="#">Hydrologiske data</Link>
+                                        </td>
+                                        <td>
+                                            <span className={styles.relatedPublisher}>Norges vassdrags- og energidirektorat (nve)</span>
+                                        </td>
+                                        <td align="right">
+                                            <Tag
+                                                color='success'
+                                                size='sm'
+                                            >
+                                                Åpne data
+                                            </Tag>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <Link href="#">Standard for yrkesklassifisering (STYRK08)</Link>
+                                        </td>
+                                        <td>
+                                            <span className={styles.relatedPublisher}>Statistisk sentralbyrå</span>
+                                        </td>
+                                        <td align="right">
+                                            <Tag
+                                                color='success'
+                                                size='sm'
+                                            >
+                                                Åpne data
+                                            </Tag>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <Link href="#">Folketeljinga 1910</Link>
+                                        </td>
+                                        <td>
+                                            <span className={styles.relatedPublisher}>Arkivverket</span>
+                                        </td>
+                                        <td align="right">
+                                            <Tag
+                                                color='warning'
+                                                size='sm'
+                                            >
+                                                Begrenset tilgang
+                                            </Tag>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {/*<ul className={cn(styles.related)}>
+                                <li>
+                                    <Link href="#">
+                                        <span>Hydrologiske data</span>
+                                        <span>Norges vassdrags- og energidirektorat (nve)</span>
+                                        <Tag color='success' size='sm'>Åpne data</Tag>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="#">
+                                        <span>Standard for yrkesklassifisering (STYRK08)</span>
+                                        <span>Statistisk sentralbyrå</span>
+                                        <Tag color='success' size='sm'>Åpne data</Tag>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="#">
+                                        <span>Folketeljinga 1910</span>
+                                        <span>Arkivverket</span>
+                                        <Tag color='warning' size='sm'>Begrenset tilgang</Tag>
+                                    </Link>
+                                </li>
+                            </ul>*/}
                         </section>
                     </TabContent>
                     <TabContent value='distribusjoner'>
                         <Distributions distributions={distributions} className={cn({ [styles.highlight]: highlight })} />
                     </TabContent>
                     <TabContent value='detaljer'>
-                        <section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                Bruk av datasettet
-                            </Heading>
-                            <dl>
-                                <dt>Utgiver:</dt>
-                                <dd>
-                                    <Link href='#'>Arbeids- og velferdsetaten</Link>
-                                </dd>
-                                <dt>Publisert:</dt>
-                                <dd>9. mars 2022</dd>
-                                <dt>Språk:</dt>
-                                <dd>Engelsk</dd>
-                                <dt>Dokumentasjon:</dt>
-                                <dd>
-                                    <Link href='#'>
-                                        https://github.com/opendatalab-no/open-municipal-data
-                                        <ExternalLinkIcon />
-                                    </Link>
-                                </dd>
-                                <dt>Metadatakvalitet:</dt>
-                                <dd style={{ display: 'flex' }}>
-                                    <span>
-                                        <Tag
-                                            size='sm'
-                                            color='warning'
-                                        >
-                                            Tilstrekkelig (42%)
-                                        </Tag>
-                                    </span>
-                                    &nbsp;
-                                    <HelpText
-                                        title='Begrepsforklaring'
-                                        size='sm'
-                                        style={{ transform: 'scale(0.75)' }}
-                                    >
-                                        <Paragraph size='sm'>
-                                            Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved
-                                            hjelp av metadata.
-                                        </Paragraph>
-                                        <Paragraph size='sm'>
-                                            <Link href='/nb/docs/metadata-quality'>
-                                                Les mer om metadatakvalitet her
-                                            </Link>
-                                        </Paragraph>
-                                    </HelpText>
-                                </dd>
-                            </dl>
-                        </section>
-                        <section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                Kontaktinformasjon
-                            </Heading>
-                            <dl>
-                                <dt>Kontaktpunkt:</dt>
-                                <dd>
-                                    <Link href='#'>
-                                        https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/
-                                        <ExternalLinkIcon />
-                                    </Link>
-                                </dd>
-                                <dt>E-post:</dt>
-                                <dd>
-                                    <Link href='#'>erlend.stav@sintef.no</Link>
-                                </dd>
-                            </dl>
-                        </section>
-                        <section className={styles.section}>
-                            <Heading
-                                level={2}
-                                size='xxsmall'
-                            >
-                                Tema
-                            </Heading>
-                            <ChipGroup size='sm'>
-                                {['Energi', 'Forvaltning og offentlig sektor'].map((theme) => (
-                                    <ChipToggle key={theme}>{theme}</ChipToggle>
-                                ))}
-                            </ChipGroup>
-                        </section>
-                        <section className={styles.section}>
-                            <Heading
-                                level={2}
-                                size='xxsmall'
-                            >
-                                Søkeord
-                            </Heading>
-                            <ChipGroup size='sm'>
-                                {['arbeidsledige', 'statistikk', 'arbeidsmarked', 'nav'].map((term) => (
-                                    <ChipToggle key={term}>{term}</ChipToggle>
-                                ))}
-                            </ChipGroup>
-                        </section>
+                        <DatasetDetails />
                     </TabContent>
                     <TabContent value='kommentarer'>Kommentarer her</TabContent>
+                    <TabContent value='metadata'>
+                        <MetadataPage />
+                    </TabContent>
                 </Tabs>
             </div>
         </div>
