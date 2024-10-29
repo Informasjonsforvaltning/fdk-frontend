@@ -1,12 +1,13 @@
 'use client';
 
+import { useActionState } from "react";
 import { Paragraph, Textarea, Textfield, Button } from '@digdir/designsystemet-react';
 
 import { LabelWithTag } from '@fdk-frontend/ui/label-with-tag';
 import { SubmitStatusAlert } from '@fdk-frontend/ui/alert-submit-status';
 
 import { type Dictionary } from '@fdk-frontend/dictionaries';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { sendEmailAction } from '../../utils/actions';
 import { EMPTY_FORM_STATE, extractErrorMessages } from '@fdk-frontend/utils';
 import styles from './data-hunter-form.module.css';
@@ -16,7 +17,7 @@ type DataHunterFormProps = {
 };
 
 const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
-    const [state, formAction] = useFormState(sendEmailAction, EMPTY_FORM_STATE);
+    const [state, formAction] = useActionState(sendEmailAction, EMPTY_FORM_STATE);
     const { pending } = useFormStatus();
     const textAreaCols = 100;
     const textAreaRows = 5;

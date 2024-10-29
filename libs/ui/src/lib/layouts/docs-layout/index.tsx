@@ -2,18 +2,20 @@ import { PropsWithChildren } from 'react';
 
 import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
-import { generateStaticParams } from '../root-layout';
 import HeaderLayout from '../header-layout';
 import FeedbackLayout from '../feedback-layout';
 
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
 export type DocsLayoutProps = {
-    params: {
+    params: Promise<{
         lang: Locale['code'];
-    };
+    }>;
 };
 
-const DocsLayout = async ({ children, ...props }: PropsWithChildren & DocsLayoutProps) => {
-    const { lang } = props.params;
+const DocsLayout = async ({ children, params }: PropsWithChildren & DocsLayoutProps) => {
+    const { lang } = await params;
 
     const commonDictionary = await getDictionary(lang, 'common');
     const docsDictionary = await getDictionary(lang, 'docs');
@@ -47,5 +49,4 @@ const DocsLayout = async ({ children, ...props }: PropsWithChildren & DocsLayout
     );
 };
 
-export { generateStaticParams };
 export default DocsLayout;

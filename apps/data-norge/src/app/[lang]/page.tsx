@@ -11,14 +11,15 @@ import { ShareDataBanner } from '../components/frontpage/share-data-banner';
 import CatalogsBanner from '../components/frontpage/catalogs-banner';
 
 export type FrontpageProps = {
-    params: {
+    params: Promise<{
         lang: Locale['code'];
-    };
+    }>;
 };
 
-const Frontpage = async ({ params }: FrontpageProps) => {
+const Frontpage = async (props: FrontpageProps) => {
+    const params = await props.params;
     // Opt-in dynamic rendering
-    noStore();
+    await noStore();
 
     const {
         FDK_DATA_NORGE_BASE_URI,
@@ -66,7 +67,8 @@ const Frontpage = async ({ params }: FrontpageProps) => {
     );
 };
 
-export const generateMetadata = async ({ params }: FrontpageProps): Promise<Metadata> => {
+export const generateMetadata = async (props: FrontpageProps): Promise<Metadata> => {
+    const params = await props.params;
     const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
 
     return {

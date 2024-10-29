@@ -27,17 +27,17 @@ jobs:
             - name: Enable corepack
               run: corepack enable
 
-            - name: Use Node.js 20.9.0
+            - name: Use Node.js 20.16.0
               uses: actions/setup-node@v4
               with:
-                  node-version: 20.9.0
+                  node-version: 20.16.0
                   cache: 'yarn'
 
             - name: Yarn install
               run: |
                   corepack enable
                   yarn set version stable
-                  yarn install --frozen-lockfile
+                  yarn install --immutable
 
             - name: Caching Nx
               uses: actions/cache@v4
