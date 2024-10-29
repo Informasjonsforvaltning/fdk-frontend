@@ -104,13 +104,10 @@
 
 .content {
     table {
-        margin: -0.25rem;
-        th,
-        td {
-            padding: 0.25rem;
-        }
-        th {
-            text-align: left;
+        width:100%;
+
+        td, th {
+            background:transparent;
         }
     }
 }

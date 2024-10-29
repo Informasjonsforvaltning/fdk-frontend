@@ -1,0 +1,11 @@
+@import '@fdk-frontend/ui/core/mixins';
+
+.section {
+    > :global(.fds-heading) {
+        margin-bottom: 1em;
+    }
+}
+
+.article {
+    @include article();
+}

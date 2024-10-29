@@ -118,5 +118,38 @@
                 margin-bottom: 1em;
             }
         }
+
+        .box {
+            padding:1rem 1.5rem;
+            border-radius: 0.25rem;
+            border:1px solid var(--fds-semantic-border-neutral-subtle);
+        }
+
+        .related {
+            :global(.fds-link) {
+                display:flex;
+                justify-content: space-between;
+                text-decoration:none;
+            }
+        }
+
+        .relatedPublisher {
+            font-size: 1rem;
+            color: #444;
+            font-weight:normal;
+        }
+
+        .divider {
+            border:none;
+            background:var(--fds-brand-alt3-600);
+            height:4px;
+            border-radius:3px;
+            width:2.5rem;
+            margin:3rem auto 2rem !important;
+        }
+
+        .helpTextWrapper {
+            
+        }
     }
 }
