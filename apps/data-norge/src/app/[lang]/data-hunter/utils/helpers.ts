@@ -10,7 +10,7 @@ Vi gjør vårt ytterste for å hjelpe deg, men vi kan ikke garantere vi finner d
 Under er kopi av forespørselen din. Dersom du har ytterligere informasjon å legge til, er det bare å svare på denne e-posten.
 
 Med vennlig hilsen
-Datafabrikken
+Data.norge.no
 
 Hvilket datasett trenger du?
 ${_.escape(emailData.dataset)}
