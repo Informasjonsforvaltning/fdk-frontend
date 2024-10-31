@@ -56,8 +56,11 @@
     width: 100%;
     transition: all linear 200ms;
     max-height: 100vh;
-    overflow: auto;
     background: white;
+
+    @media (max-width: 460px) {
+        overflow: auto;
+    }
 
     &.headerSticky {
         position: fixed;
