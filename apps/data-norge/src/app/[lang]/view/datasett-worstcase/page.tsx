@@ -1,6 +1,6 @@
 import { i18n, getDictionary } from '@fdk-frontend/dictionaries';
 
-import DetailsPage from '../../../components/details/details-page';
+import DetailsPage from '../../../components/details/details-page/datasett-worstcase';
 import { DetailsPageWrapperProps } from '../page';
 
 const DatasettRichPageWrapper = async ({ params }: DetailsPageWrapperProps) => {

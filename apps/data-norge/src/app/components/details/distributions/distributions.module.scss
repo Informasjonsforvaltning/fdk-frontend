@@ -22,28 +22,6 @@
             box-shadow:0px 0px 0px 10px transparent
         }
     }
-
-    :global(.fds-accordion__item) {
-        > div,
-        > h3 button {
-            background: white;
-            // background: #fafafa;
-        }
-        > h3 button:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-    }
-    :global(.fds-accordion__item--open) {
-        > div,
-        > h3 button {
-            background: white;
-            // background: #f8f8f8;
-
-            &:hover {
-                background: rgba(0, 0, 0, 0.025);
-            }
-        }
-    }
 }
 
 .header {

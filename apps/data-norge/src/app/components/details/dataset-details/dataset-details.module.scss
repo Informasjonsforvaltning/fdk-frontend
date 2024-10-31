@@ -9,3 +9,15 @@
 .article {
     @include article();
 }
+
+.placeholderText {
+    opacity:0.5;
+    font-style:italic;
+}
+
+.greyBox {
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    padding: 0.75rem 0.75rem;
+    background: #fafafa;
+}

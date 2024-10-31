@@ -45,7 +45,16 @@ body {
 }
 
 code {
-    font-family: monospace;
+    &:not([class]) {
+        display:inline-flex;
+        background: rgba(0, 0, 0, 0.05);
+        font-family: monospace;
+        font-size: 0.85em;
+        padding: 0.2em 0.4em;
+        white-space: break-spaces;
+        border-radius: 6px;
+        color: #444;
+    }
 }
 
 html {
