@@ -104,9 +104,7 @@ const DatasetDetails = ({ worst }) => {
                         <Link href='#'>erlend.stav@sintef.no</Link>
                     </dd>
                     <dt>Telefon:</dt>
-                    <dd>
-                        22 00 22 00
-                    </dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                 </dl>
             </section>
             <section className={styles.section}>
@@ -120,37 +118,33 @@ const DatasetDetails = ({ worst }) => {
                     <dt>Språk:</dt>
                     <dd>Engelsk</dd>
                     <dt>Innholdsleverandører:</dt>
-                    <dd>Kunstklubben 9</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Opphav:</dt>
-                    <dd>Autoritativ kilde</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Oppdateringsfrekvens:</dt>
-                    <dd>daglig</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Utgitt:</dt>
-                    <dd>09.03.2016</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Sist oppdatert:</dt>
-                    <dd>22.03.2021</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Aktualitet:</dt>
-                    <dd>Høyaktuelt</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Kompletthet:</dt>
-                    <dd>Helt komplett</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Nøyaktighet:</dt>
-                    <dd>Ekstremt nøyaktig</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Relevans:</dt>
-                    <dd>Relevant for testing</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>Tilgjengelighet:</dt>
-                    <dd>Kun til intern bruk</dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>
                         Geografisk avgrenset til:
                     </dt>
-                    <dd>
-                        <Link href="#">https://example.com/norge</Link>
-                    </dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>
                         Tidsmessig avgrenset til:
                     </dt>
-                    <dd>
-                        07.12.2020 - 08.12.2020
-                    </dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                     <dt>
                         <HStack>
                             <span>I samsvar med:</span>
@@ -166,24 +160,7 @@ const DatasetDetails = ({ worst }) => {
                             </HelpText>
                         </HStack>
                     </dt>
-                    <dd>
-                        <Article>
-                            <ol>
-                                <li>
-                                    <Link href="#">
-                                        Standard for rapportering av data
-                                        <ExternalLinkIcon />
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#">
-                                        Konsolidering i samarbeidende grupper (KRT-1130)
-                                        <ExternalLinkIcon />
-                                    </Link>
-                                </li>
-                            </ol>
-                        </Article>
-                    </dd>
+                    <dd><span className={styles.placeholderText}>-</span></dd>
                 </dl>
             </section>
             <section className={styles.section}>
@@ -193,34 +170,9 @@ const DatasetDetails = ({ worst }) => {
                 >
                     Lovhjemler
                 </Heading>
-                <dl>
-                    <dt>Skjermingshjemmel</dt>
-                    <dd>
-                        <Article>
-                            <ol>
-                                <li><Link href="#">Lov om Enhetsregisteret §22 <ExternalLinkIcon /></Link></li>
-                            </ol>
-                        </Article>
-                    </dd>
-                    <dt>Behandlingsgrunnlag</dt>
-                    <dd>
-                        <Article>
-                            <ol>
-                                <li><Link href="#">Lov om Enhetsregisteret §6 <ExternalLinkIcon /></Link></li>
-                                <li><Link href="#">Lov om Enhetsregisteret §5 <ExternalLinkIcon /></Link></li>
-                            </ol>
-                        </Article>
-                    </dd>
-                    <dt>Utleveringshjemmel</dt>
-                    <dd>
-                        <Article>
-                            <ol>
-                                <li><Link href="#">Forskrift om gebyr til Brønnøysundregistrene §6 <ExternalLinkIcon /></Link></li>
-                                <li><Link href="#">Lov om Enhetsregisteret §22 <ExternalLinkIcon /></Link></li>
-                            </ol>
-                        </Article>
-                    </dd>
-                </dl>
+                <div className={styles.greyBox}>
+                    <span className={styles.placeholderText}>Ingen lovhjemler oppgitt</span>
+                </div>
             </section>
             <section className={styles.section}>
                 <Heading
@@ -229,24 +181,9 @@ const DatasetDetails = ({ worst }) => {
                 >
                     Begreper brukt i datasett
                 </Heading>
-                <dl>
-                    <dt>
-                        <Link href="#">felles omsorg</Link>
-                    </dt>
-                    <dd>
-                        <Article>
-                            omsorgssituasjon der begge foreldre til et gitt barn bor sammen og har omsorgen for barnet i skattleggingsperioden
-                        </Article>
-                    </dd>
-                    <dt>
-                        <Link href="#">samlet uføreytelse fra andre enn folketrygden</Link>
-                    </dt>
-                    <dd>
-                        <Article>
-                            samlet brutto uføreytelser (uføreytelser før skatt) som du får fra andre enn folketrygden ( herunder uføreytelser fra SPK, uføreytelser fra andre pensjonsordninger herunder uføreytelser fra IPA/IPS og uføreytelser fra utlandet) . Uføreytelser regnes som en del av inntektene dine og skattlegges som vanlig lønnsinntekt.
-                        </Article>
-                    </dd>
-                </dl>
+                <div className={styles.greyBox}>
+                    <span className={styles.placeholderText}>Ingen begreper oppgitt</span>
+                </div>
             </section>
             <section className={styles.section}>
                 <Heading
@@ -255,22 +192,9 @@ const DatasetDetails = ({ worst }) => {
                 >
                     Relasjoner til datasett
                 </Heading>
-                <dl>
-                    <dt>
-                        <Link href="#">Hydrologiske data</Link>
-                    </dt>
-                    <dd>
-                        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                            <span>Ramsund og rognan revisjon</span>
-                            <Tag
-                                color='success'
-                                size='sm'
-                            >
-                                Åpne data
-                            </Tag>
-                        </div>
-                    </dd>
-                </dl>
+                <div className={styles.greyBox}>
+                    <span className={styles.placeholderText}>Ingen relasjoner til datasett oppgitt</span>
+                </div>
             </section>
             <section className={styles.section}>
                 <Heading

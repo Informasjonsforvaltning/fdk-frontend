@@ -3,11 +3,12 @@
 }
 
 .fds-heading {
-    &--xxs {
-        font-size: 1.1rem;
-        font-weight: 600;
-        line-height: 1.3em;
-    }
+    font-weight: 500;
+    // &--xxs {
+    //     font-size: 1.1rem;
+        
+    //     line-height: 1.3em;
+    // }
 }
 
 .fds-ingress {
@@ -80,6 +81,21 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.fds-accordion__item {
+    > h3 button:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+.fds-accordion__item--open {
+    > h3 button {
+        background: white;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.025);
         }
     }
 }

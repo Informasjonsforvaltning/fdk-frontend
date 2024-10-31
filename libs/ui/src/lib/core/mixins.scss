@@ -27,7 +27,8 @@
     > h2,
     > h3,
     > h4,
-    > h5 {
+    > h5,
+    > h6 {
         font-weight: 500;
         margin-bottom: 1em;
         line-height: 1.25em;
@@ -89,17 +90,5 @@
         height:1px;
         border:0;
         background:var(--fds-semantic-border-neutral-subtle);
-    }
-
-    code {
-        &:not([class]) {
-            display:inline-flex;
-            background: rgba(0, 0, 0, 0.05);
-            font-size: 0.85em;
-            padding: 0.2em 0.4em;
-            white-space: break-spaces;
-            border-radius: 6px;
-            color: #444;
-        }
     }
 }

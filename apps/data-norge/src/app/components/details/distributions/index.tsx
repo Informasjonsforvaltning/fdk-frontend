@@ -38,6 +38,63 @@ export type DistributionsProps = {
 const Distributions = ({ distributions, className }: DistributionsProps) => {
     return (
         <div className={cn(styles.distributions, className)}>
+            <Heading
+                level={4}
+                size='xxsmall'
+            >
+                Eksempeldata
+            </Heading>
+            <Accordion border>
+                <Accordion.Item key={distributions.at(0).title}>
+                    <Accordion.Header
+                        level={3}
+                        className={styles.header}
+                    >
+                        <div className={styles.headerContent}>
+                            <span className={styles.title}>
+                                Eksempel på lokasjon
+                                <div className={styles.tags}>
+                                    {distributions.at(0).tags.map((tag) => (
+                                        <Tag
+                                            className={styles.tag}
+                                            color='info'
+                                            size='sm'
+                                            key={tag}
+                                        >
+                                            {tag}
+                                        </Tag>
+                                    ))}
+                                </div>
+                            </span>
+                            <div style={{display:'flex', alignItems: 'center', gap: '0.5rem'}}>
+                                <Button
+                                    asChild
+                                    size='sm'
+                                    variant='secondary'
+                                    color='first'
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                    }}
+                                >
+                                    <Link href='#'>
+                                        <DownloadIcon fontSize='1.2em' />
+                                        Last ned (250 kB)
+                                    </Link>
+                                </Button>
+                            </div>
+                        </div>
+                    </Accordion.Header>
+                    <Accordion.Content className={styles.content}>
+                        Something header
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
+            <Heading
+                level={4}
+                size='xxsmall'
+            >
+                Datasett
+            </Heading>
             <Accordion border>
                 {distributions.map((distribution, index) => (
                     <Accordion.Item key={distribution.title}>
@@ -82,17 +139,10 @@ const Distributions = ({ distributions, className }: DistributionsProps) => {
                                             e.stopPropagation();
                                         }}
                                     >
-                                        {
-                                            index === 999 ?
-                                            <Link href='#'>
-                                                Gå til API
-                                                <ArrowRightIcon fontSize='1.2em' />
-                                            </Link> :
-                                            <Link href='#'>
-                                                <DownloadIcon fontSize='1.2em' />
-                                                Last ned
-                                            </Link>
-                                        }
+                                        <Link href='#'>
+                                            <DownloadIcon fontSize='1.2em' />
+                                            Last ned (5 MB)
+                                        </Link>
                                     </Button>
                                 </div>
                             </div>
@@ -245,6 +295,57 @@ const Distributions = ({ distributions, className }: DistributionsProps) => {
                         </Accordion.Content>
                     </Accordion.Item>
                 ))}
+            </Accordion>
+            <Heading
+                level={4}
+                size='xxsmall'
+            >
+                API
+            </Heading>
+            <Accordion border>
+                <Accordion.Item key={distributions.at(0).title}>
+                    <Accordion.Header
+                        level={3}
+                        className={styles.header}
+                    >
+                        <div className={styles.headerContent}>
+                            <span className={styles.title}>
+                                Eksempel på lokasjon
+                                <div className={styles.tags}>
+                                    {distributions.at(0).tags.map((tag) => (
+                                        <Tag
+                                            className={styles.tag}
+                                            color='info'
+                                            size='sm'
+                                            key={tag}
+                                        >
+                                            {tag}
+                                        </Tag>
+                                    ))}
+                                </div>
+                            </span>
+                            <div style={{display:'flex', alignItems: 'center', gap: '0.5rem'}}>
+                                <Button
+                                    asChild
+                                    size='sm'
+                                    variant='secondary'
+                                    color='first'
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                    }}
+                                >
+                                    <Link href='#'>
+                                        Gå til API
+                                        <ArrowRightIcon fontSize='1.2em' />
+                                    </Link>
+                                </Button>
+                            </div>
+                        </div>
+                    </Accordion.Header>
+                    <Accordion.Content className={styles.content}>
+                        Something header
+                    </Accordion.Content>
+                </Accordion.Item>
             </Accordion>
         </div>
     );

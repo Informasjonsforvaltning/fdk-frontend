@@ -1,4 +1,4 @@
-import { Alert, Button, Link } from '@digdir/designsystemet-react';
+import { Alert, Button, Link, Paragraph } from '@digdir/designsystemet-react';
 
 import styles from './catalog-promo.module.scss';
 
@@ -16,7 +16,7 @@ const CatalogPromo = ({ text, button, link }: CatalogPromoProps) => {
             className={styles.catalogPromo}
         >
             <div className={styles.content}>
-                {text}
+                <Paragraph size='md'>{text}</Paragraph>
                 <Button
                     asChild
                     size='small'

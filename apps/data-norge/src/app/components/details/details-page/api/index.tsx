@@ -21,6 +21,7 @@ import {
 import { StarIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import Badge from '../../badge';
+import StarButton from '../../star-button';
 
 import styles from '../details-page.module.scss';
 
@@ -69,12 +70,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             Inntektsmottakere API
                         </Heading>
                         <div className={styles.titleToolbar}>
-                            <Button
-                                variant='secondary'
-                                size='sm'
-                            >
-                                <StarIcon />
-                            </Button>
+                            <StarButton defaultNumber={7} defaultStarred={false} />
                             <Button size='sm' onClick={() => { setActiveTab('endepunkt'); blink(); }}>
                                 Ta i bruk
                             </Button>

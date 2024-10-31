@@ -19,6 +19,7 @@ import {
 import { StarIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import Badge from '../../badge';
+import StarButton from '../../star-button';
 
 import styles from '../details-page.module.scss';
 
@@ -58,15 +59,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             egenandel på dagpenger
                         </Heading>
                         <div className={styles.titleToolbar}>
-                            <Button
-                                variant='secondary'
-                                size='sm'
-                            >
-                                <StarIcon />
-                            </Button>
-                            {/*<Button size='sm'>
-                                Ta i bruk
-                            </Button>*/}
+                            <StarButton defaultNumber={0} defaultStarred={false} />
                         </div>
                     </div>
                     <div className={styles.headerTags}>

@@ -20,14 +20,14 @@ import {
 } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
 
-import Distributions, { type Distribution } from '../distributions';
-import Badge from '../badge';
-import DatasetDescription from '../dataset-description';
-import DatasetDetails from '../dataset-details';
-import MetadataPage from '../metadata-page';
-import StarButton from '../star-button';
+import Distributions, { type Distribution } from '../../distributions';
+import Badge from '../../badge';
+import DatasetDescription from '../../dataset-description';
+import DatasetDetailsEmpty from '../../dataset-details/empty';
+import MetadataPage from '../../metadata-page';
+import StarButton from '../../star-button';
 
-import styles from './details-page.module.scss';
+import styles from '../details-page.module.scss';
 
 export type DetailsPageType = {
     locale: LocaleCodes;
@@ -139,11 +139,11 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         </Tag>
                         {/*<Tag color='warning' size="sm">Begrenset tilgang</Tag>*/}
                         {/*<Tag color='subtle' size="sm">
-                        	<span style={{fontWeight:600}}>88%</span>&nbsp;Metadatakvalitet&nbsp;
-                        	<HelpText size="sm" style={{transform:'scale(0.75)'}}>
-                        		<Paragraph size="sm">Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av metadata.</Paragraph>
-                        		<Paragraph size="sm"><Link href="#">Les mer om metadatakvalitet her</Link></Paragraph>
-                        	</HelpText>
+                            <span style={{fontWeight:600}}>88%</span>&nbsp;Metadatakvalitet&nbsp;
+                            <HelpText size="sm" style={{transform:'scale(0.75)'}}>
+                                <Paragraph size="sm">Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av metadata.</Paragraph>
+                                <Paragraph size="sm"><Link href="#">Les mer om metadatakvalitet her</Link></Paragraph>
+                            </HelpText>
                         </Tag>*/}
                         <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
                         <div style={{ flexGrow: 1 }} />
@@ -364,7 +364,7 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                         <Distributions distributions={distributions} className={cn({ [styles.highlight]: highlight })} />
                     </TabContent>
                     <TabContent value='detaljer'>
-                        <DatasetDetails />
+                        <DatasetDetailsEmpty />
                     </TabContent>
                     <TabContent value='kommentarer'>
                         <section className={styles.section}>
