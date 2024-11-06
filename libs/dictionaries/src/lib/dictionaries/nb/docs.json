@@ -32,7 +32,9 @@
         "/docs/sharing-data/rdf/rdf-crash-course": "Kræsjkurs i RDF",
         "/docs/community": "Datalandsbyen",
         "/docs/metadata-quality": "Metadatakvalitet",
-        "/docs/resources": "Ressurser"
+        "/docs/resources": "Ressurser",
+        "/docs/records-of-processing-activities": "Behandlingsoversikt",
+        "/docs/records-of-processing-activities/how-to-export-data": "Ta ut data"
     },
     "feedbackBanner": {
         "heading": "Finner du det du leter etter?",
