@@ -1,50 +1,50 @@
 @import '@fdk-frontend/ui/core/mixins';
 
 .article {
-	@include article();
+    @include article();
 }
 
 .wrapper {
-	.header {
-		display:flex;
-		align-items:center;
-		justify-content: space-between;
-		margin:0 0 1rem 0;
-		gap:1rem;
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 1rem 0;
+        gap: 1rem;
 
-		.urlbar {
-			position:relative;
-			flex-grow:1;
+        .urlbar {
+            position: relative;
+            flex-grow: 1;
 
-			:global(.fds-textfield) {
-				input[readOnly] {
-					color:#888;
-				}
-			}
+            :global(.fds-textfield) {
+                input[readOnly] {
+                    color: #888;
+                }
+            }
 
-			:global(.fds-btn) {
-				position:absolute;
-				top:0.25rem;
-				right:0.25rem;
-				z-index:1;
-			}
-		}
-	}
+            :global(.fds-btn) {
+                position: absolute;
+                top: 0.25rem;
+                right: 0.25rem;
+                z-index: 1;
+            }
+        }
+    }
 
-	.toolbar {
-		display:flex;
-		gap:0.5rem;
-		align-items: center;
-	}
+    .toolbar {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
 
-	.content {
-		position:relative;
+    .content {
+        position: relative;
 
-		:global(.fds-btn) {
-			position:absolute;
-			top:0.25rem;
-			right:0.25rem;
-			z-index:1;
-		}
-	}
+        :global(.fds-btn) {
+            position: absolute;
+            top: 0.25rem;
+            right: 0.25rem;
+            z-index: 1;
+        }
+    }
 }

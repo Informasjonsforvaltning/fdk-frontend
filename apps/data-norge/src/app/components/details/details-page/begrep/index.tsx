@@ -3,9 +3,10 @@
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
+import Badge from '@fdk-frontend/ui/badge';
+import StarButton from '@fdk-frontend/ui/star-button';
 import {
     Heading,
-    Button,
     Link,
     Tag,
     Tabs,
@@ -16,10 +17,7 @@ import {
     ChipGroup,
     ChipToggle,
 } from '@digdir/designsystemet-react';
-import { StarIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
-
-import Badge from '../../badge';
-import StarButton from '../../star-button';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import styles from '../details-page.module.scss';
 
@@ -59,7 +57,10 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             egenandel på dagpenger
                         </Heading>
                         <div className={styles.titleToolbar}>
-                            <StarButton defaultNumber={0} defaultStarred={false} />
+                            <StarButton
+                                defaultNumber={0}
+                                defaultStarred={false}
+                            />
                         </div>
                     </div>
                     <div className={styles.headerTags}>

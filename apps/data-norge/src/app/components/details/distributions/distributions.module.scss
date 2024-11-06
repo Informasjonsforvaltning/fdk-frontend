@@ -1,25 +1,11 @@
 .distributions {
     border-radius: 3px;
 
-    &.highlight {
-        animation: blink-border 1s ease-in-out 2;
-    }
+    > :global(.fds-heading) {
+        margin: 2rem 0 1rem;
 
-    @keyframes blink-border {
-        0% {
-            box-shadow:0px 0px 0px 10px transparent
-        }
-        25% {
-            box-shadow:0px 0px 0px 10px var(--fds-semantic-surface-focus-default);;
-        }
-        50% {
-            box-shadow:0px 0px 0px 10px transparent
-        }
-        75% {
-            box-shadow:0px 0px 0px 10px var(--fds-semantic-surface-focus-default);;
-        }
-        100% {
-            box-shadow:0px 0px 0px 10px transparent
+        &:first-child {
+            margin-top: 0;
         }
     }
 }
@@ -82,10 +68,11 @@
 
 .content {
     table {
-        width:100%;
+        width: 100%;
 
-        td, th {
-            background:transparent;
+        td,
+        th {
+            background: transparent;
         }
     }
 }
