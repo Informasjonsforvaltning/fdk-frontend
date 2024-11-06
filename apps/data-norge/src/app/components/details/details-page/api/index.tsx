@@ -6,6 +6,8 @@ import cn from 'classnames';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
+import Badge from '@fdk-frontend/ui/badge';
+import StarButton from '@fdk-frontend/ui/star-button';
 import {
     Heading,
     Button,
@@ -18,10 +20,7 @@ import {
     ChipGroup,
     ChipToggle,
 } from '@digdir/designsystemet-react';
-import { StarIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
-
-import Badge from '../../badge';
-import StarButton from '../../star-button';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import styles from '../details-page.module.scss';
 
@@ -31,14 +30,13 @@ export type DetailsPageType = {
 };
 
 export default function DetailsPage({ locale, commonDictionary }: DetailsPageType) {
-
-    const [ activeTab, setActiveTab ] = useState('oversikt');
-    const [ highlight, setHighlight ] = useState(false);
+    const [activeTab, setActiveTab] = useState('oversikt');
+    const [highlight, setHighlight] = useState(false);
 
     const blink = () => {
         setHighlight(true);
         setTimeout(() => setHighlight(false), 1000);
-    }
+    };
 
     const breadcrumbList = [
         {
@@ -70,8 +68,17 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             Inntektsmottakere API
                         </Heading>
                         <div className={styles.titleToolbar}>
-                            <StarButton defaultNumber={7} defaultStarred={false} />
-                            <Button size='sm' onClick={() => { setActiveTab('endepunkt'); blink(); }}>
+                            <StarButton
+                                defaultNumber={7}
+                                defaultStarred={false}
+                            />
+                            <Button
+                                size='sm'
+                                onClick={() => {
+                                    setActiveTab('endepunkt');
+                                    blink();
+                                }}
+                            >
                                 Ta i bruk
                             </Button>
                         </div>

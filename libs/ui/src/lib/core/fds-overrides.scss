@@ -6,7 +6,7 @@
     font-weight: 500;
     // &--xxs {
     //     font-size: 1.1rem;
-        
+
     //     line-height: 1.3em;
     // }
 }
@@ -57,17 +57,19 @@
 }
 
 .fds-table {
-    width:100%;
+    width: 100%;
 
-    td, th {
-        padding:0.5rem 0.75rem;
+    td,
+    th {
+        padding: 0.5rem 0.75rem;
         border-color: var(--fds-semantic-border-neutral-subtle);
     }
 
     tr {
         &:hover {
-            td, th {
-                background:#fafafa;
+            td,
+            th {
+                background: #fafafa;
             }
         }
     }

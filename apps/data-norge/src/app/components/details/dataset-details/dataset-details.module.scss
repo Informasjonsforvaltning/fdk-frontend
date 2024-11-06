@@ -1,8 +1,14 @@
 @import '@fdk-frontend/ui/core/mixins';
 
-.section {
-    > :global(.fds-heading) {
-        margin-bottom: 1em;
+.details {
+    > section {
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+
+        > :global(.fds-heading) {
+            margin-bottom: 1em;
+        }
     }
 }
 
@@ -11,8 +17,8 @@
 }
 
 .placeholderText {
-    opacity:0.5;
-    font-style:italic;
+    opacity: 0.5;
+    font-style: italic;
 }
 
 .greyBox {

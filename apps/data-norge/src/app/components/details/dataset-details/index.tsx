@@ -1,277 +1,32 @@
-import {
-    Heading,
-    Link,
-    Tag,
-    HelpText,
-    Paragraph,
-    ChipGroup,
-    ChipToggle
-} from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { Heading, ChipGroup, ChipToggle } from '@digdir/designsystemet-react';
 
-import Article from '@fdk-frontend/ui/article';
+import GeneralDetails from './components/general-details';
+import ContactDetails from './components/contact-details';
+import ContentDetails from './components/content-details';
+import LegalDetails from './components/legal-details';
+import ConceptDetails from './components/concept-details';
+import RelationDetails from './components/relation-details';
 
 import styles from './dataset-details.module.scss';
 
-import HStack from '../hstack';
+const DatasetDetails = ({ details }: any) => {
+    const { sections } = details;
 
-const DatasetDetails = ({ worst }) => {
-	return (
-		<>
-			<section className={styles.section}>
-                <Heading
-                    level={4}
-                    size='xxsmall'
-                >
-                    Generelt
-                </Heading>
-                <dl>
-                    <dt>Ansvarlig virksomhet:</dt>
-                    <dd>
-                        <Link href='#'>Arbeids- og velferdsetaten</Link>
-                    </dd>
-                    <dt>
-                        <HStack>
-                            <span>Publisert:</span>
-                            <HelpText
-                                title='Begrepsforklaring'
-                                size='sm'
-                                style={{ transform: 'scale(0.75)' }}
-                            >
-                                <Paragraph size='sm'>
-                                    Denne datoen sier når datasettet ble publisert på data.norge.no. Det kan ha vært tilgjengelig tidligere andre steder.
-                                </Paragraph>
-                            </HelpText>
-                        </HStack>
-                    </dt>
-                    <dd>
-                        9. mars 2022
-                    </dd>
-                    <dt>Dokumentasjon:</dt>
-                    <dd>
-                        <Link href='#'>
-                            https://github.com/opendatalab-no/open-municipal-data
-                            <ExternalLinkIcon />
-                        </Link>
-                    </dd>
-                    <dt>
-                        <HStack>
-                            Metadatakvalitet:
-                            <HelpText
-                                title='Begrepsforklaring'
-                                size='sm'
-                                style={{ transform: 'scale(0.75)' }}
-                            >
-                                <Paragraph size='sm'>
-                                    Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved
-                                    hjelp av metadata.
-                                </Paragraph>
-                                <Paragraph size='sm'>
-                                    <Link href='/nb/docs/metadata-quality'>
-                                        Les mer om metadatakvalitet her
-                                    </Link>
-                                </Paragraph>
-                            </HelpText>
-                        </HStack>
-                    </dt>
-                    <dd>
-                        <Tag
-                            size='sm'
-                            color='warning'
-                        >
-                            Tilstrekkelig (42%)
-                        </Tag>
-                    </dd>
-                </dl>
-            </section>
-            <section className={styles.section}>
-                <Heading
-                    level={4}
-                    size='xxsmall'
-                >
-                    Kontaktinformasjon
-                </Heading>
-                <dl>
-                    <dt>Kontaktpunkt:</dt>
-                    <dd>
-                        <Link href='#'>
-                            https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/
-                            <ExternalLinkIcon />
-                        </Link>
-                    </dd>
-                    <dt>E-post:</dt>
-                    <dd>
-                        <Link href='#'>erlend.stav@sintef.no</Link>
-                    </dd>
-                    <dt>Telefon:</dt>
-                    <dd>
-                        22 00 22 00
-                    </dd>
-                </dl>
-            </section>
-            <section className={styles.section}>
-                <Heading
-                    level={4}
-                    size='xxsmall'
-                >
-                    Innhold
-                </Heading>
-                <dl>
-                    <dt>Språk:</dt>
-                    <dd>Engelsk</dd>
-                    <dt>Innholdsleverandører:</dt>
-                    <dd>Kunstklubben 9</dd>
-                    <dt>Opphav:</dt>
-                    <dd>Autoritativ kilde</dd>
-                    <dt>Oppdateringsfrekvens:</dt>
-                    <dd>daglig</dd>
-                    <dt>Utgitt:</dt>
-                    <dd>09.03.2016</dd>
-                    <dt>Sist oppdatert:</dt>
-                    <dd>22.03.2021</dd>
-                    <dt>Aktualitet:</dt>
-                    <dd>Høyaktuelt</dd>
-                    <dt>Kompletthet:</dt>
-                    <dd>Helt komplett</dd>
-                    <dt>Nøyaktighet:</dt>
-                    <dd>Ekstremt nøyaktig</dd>
-                    <dt>Relevans:</dt>
-                    <dd>Relevant for testing</dd>
-                    <dt>Tilgjengelighet:</dt>
-                    <dd>Kun til intern bruk</dd>
-                    <dt>
-                        Geografisk avgrenset til:
-                    </dt>
-                    <dd>
-                        <Link href="#">https://example.com/norge</Link>
-                    </dd>
-                    <dt>
-                        Tidsmessig avgrenset til:
-                    </dt>
-                    <dd>
-                        07.12.2020 - 08.12.2020
-                    </dd>
-                    <dt>
-                        <HStack>
-                            <span>I samsvar med:</span>
-                            <HelpText
-                                title='Begrepsforklaring'
-                                size='sm'
-                                style={{ transform: 'scale(0.75)' }}
-                            >
-                                <Paragraph size='sm'>
-                                    Referanse til en implementasjonsregel eller annen spesifikasjon, som ligger til grunn for opprettelsen av datasettet.
-                                    <Link href="https://data.norge.no/specification/dcat-ap-no#Datasett-iSamsvarMed">Les mer her</Link>
-                                </Paragraph>
-                            </HelpText>
-                        </HStack>
-                    </dt>
-                    <dd>
-                        <Article>
-                            <ol>
-                                <li>
-                                    <Link href="#">
-                                        Standard for rapportering av data
-                                        <ExternalLinkIcon />
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#">
-                                        Konsolidering i samarbeidende grupper (KRT-1130)
-                                        <ExternalLinkIcon />
-                                    </Link>
-                                </li>
-                            </ol>
-                        </Article>
-                    </dd>
-                </dl>
-            </section>
-            <section className={styles.section}>
-                <Heading
-                    level={4}
-                    size='xxsmall'
-                >
-                    Lovhjemler
-                </Heading>
-                <dl>
-                    <dt>Skjermingshjemmel</dt>
-                    <dd>
-                        <Article>
-                            <ol>
-                                <li><Link href="#">Lov om Enhetsregisteret §22 <ExternalLinkIcon /></Link></li>
-                            </ol>
-                        </Article>
-                    </dd>
-                    <dt>Behandlingsgrunnlag</dt>
-                    <dd>
-                        <Article>
-                            <ol>
-                                <li><Link href="#">Lov om Enhetsregisteret §6 <ExternalLinkIcon /></Link></li>
-                                <li><Link href="#">Lov om Enhetsregisteret §5 <ExternalLinkIcon /></Link></li>
-                            </ol>
-                        </Article>
-                    </dd>
-                    <dt>Utleveringshjemmel</dt>
-                    <dd>
-                        <Article>
-                            <ol>
-                                <li><Link href="#">Forskrift om gebyr til Brønnøysundregistrene §6 <ExternalLinkIcon /></Link></li>
-                                <li><Link href="#">Lov om Enhetsregisteret §22 <ExternalLinkIcon /></Link></li>
-                            </ol>
-                        </Article>
-                    </dd>
-                </dl>
-            </section>
-            <section className={styles.section}>
-                <Heading
-                    level={4}
-                    size='xxsmall'
-                >
-                    Begreper brukt i datasett
-                </Heading>
-                <dl>
-                    <dt>
-                        <Link href="#">felles omsorg</Link>
-                    </dt>
-                    <dd>
-                        <Article>
-                            omsorgssituasjon der begge foreldre til et gitt barn bor sammen og har omsorgen for barnet i skattleggingsperioden
-                        </Article>
-                    </dd>
-                    <dt>
-                        <Link href="#">samlet uføreytelse fra andre enn folketrygden</Link>
-                    </dt>
-                    <dd>
-                        <Article>
-                            samlet brutto uføreytelser (uføreytelser før skatt) som du får fra andre enn folketrygden ( herunder uføreytelser fra SPK, uføreytelser fra andre pensjonsordninger herunder uføreytelser fra IPA/IPS og uføreytelser fra utlandet) . Uføreytelser regnes som en del av inntektene dine og skattlegges som vanlig lønnsinntekt.
-                        </Article>
-                    </dd>
-                </dl>
-            </section>
-            <section className={styles.section}>
-                <Heading
-                    level={4}
-                    size='xxsmall'
-                >
-                    Relasjoner til datasett
-                </Heading>
-                <dl>
-                    <dt>
-                        <Link href="#">Hydrologiske data</Link>
-                    </dt>
-                    <dd>
-                        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                            <span>Ramsund og rognan revisjon</span>
-                            <Tag
-                                color='success'
-                                size='sm'
-                            >
-                                Åpne data
-                            </Tag>
-                        </div>
-                    </dd>
-                </dl>
-            </section>
+    const general = sections.find((s: any) => s.sectionTitle === 'Generelt');
+    const contact = sections.find((s: any) => s.sectionTitle === 'Kontaktinformasjon');
+    const content = sections.find((s: any) => s.sectionTitle === 'Innhold');
+    const legal = sections.find((s: any) => s.sectionTitle === 'Lovhjemler');
+    const concept = sections.find((s: any) => s.sectionTitle === 'Begreper brukt i datasett');
+    const relation = sections.find((s: any) => s.sectionTitle === 'Relasjoner til datasett');
+
+    return (
+        <div className={styles.details}>
+            <GeneralDetails fields={general.fields} />
+            <ContactDetails fields={contact.fields} />
+            <ContentDetails fields={content.fields} />
+            <LegalDetails fields={legal.fields} />
+            <ConceptDetails fields={concept.fields} />
+            <RelationDetails fields={relation.fields} />
             <section className={styles.section}>
                 <Heading
                     level={2}
@@ -298,8 +53,8 @@ const DatasetDetails = ({ worst }) => {
                     ))}
                 </ChipGroup>
             </section>
-		</>
-	);
-}
+        </div>
+    );
+};
 
 export default DatasetDetails;

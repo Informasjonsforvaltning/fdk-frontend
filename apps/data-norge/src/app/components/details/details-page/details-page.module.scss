@@ -1,24 +1,26 @@
 @import '@fdk-frontend/ui/core/mixins';
 
 .highlight {
-    animation: blink-border 1s ease-in-out 2;
+    :global(.fds-accordion) {
+        animation: blink-border 1s ease-in-out 2;
+    }
 }
 
 @keyframes blink-border {
     0% {
-        box-shadow:0px 0px 0px 10px transparent
+        box-shadow: 0px 0px 0px 10px transparent;
     }
     25% {
-        box-shadow:0px 0px 0px 10px var(--fds-semantic-surface-focus-default);;
+        box-shadow: 0px 0px 0px 10px var(--fds-semantic-surface-focus-default);
     }
     50% {
-        box-shadow:0px 0px 0px 10px transparent
+        box-shadow: 0px 0px 0px 10px transparent;
     }
     75% {
-        box-shadow:0px 0px 0px 10px var(--fds-semantic-surface-focus-default);;
+        box-shadow: 0px 0px 0px 10px var(--fds-semantic-surface-focus-default);
     }
     100% {
-        box-shadow:0px 0px 0px 10px transparent
+        box-shadow: 0px 0px 0px 10px transparent;
     }
 }
 
@@ -120,36 +122,35 @@
         }
 
         .box {
-            padding:1rem 1.5rem;
+            padding: 1rem 1.5rem;
             border-radius: 0.25rem;
-            border:1px solid var(--fds-semantic-border-neutral-subtle);
+            border: 1px solid var(--fds-semantic-border-neutral-subtle);
         }
 
         .related {
             :global(.fds-link) {
-                display:flex;
+                display: flex;
                 justify-content: space-between;
-                text-decoration:none;
+                text-decoration: none;
             }
         }
 
         .relatedPublisher {
             font-size: 1rem;
             color: #444;
-            font-weight:normal;
+            font-weight: normal;
         }
 
         .divider {
-            border:none;
-            background:var(--fds-brand-alt3-600);
-            height:4px;
-            border-radius:3px;
-            width:2.5rem;
-            margin:3rem auto 2rem !important;
+            border: none;
+            background: var(--fds-brand-alt3-600);
+            height: 4px;
+            border-radius: 3px;
+            width: 2.5rem;
+            margin: 3rem auto 2rem !important;
         }
 
         .helpTextWrapper {
-            
         }
     }
 }
