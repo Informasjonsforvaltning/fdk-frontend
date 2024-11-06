@@ -6,6 +6,8 @@ import cn from 'classnames';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
+import Badge from '@fdk-frontend/ui/badge';
+import StarButton from '@fdk-frontend/ui/star-button';
 import {
     Heading,
     Button,
@@ -21,11 +23,12 @@ import {
 import { DownloadIcon } from '@navikt/aksel-icons';
 
 import Distributions, { type Distribution } from '../../distributions';
-import Badge from '../../badge';
+
 import DatasetDescription from '../../dataset-description';
-import DatasetDetailsEmpty from '../../dataset-details/empty';
+import DatasetDetails from '../../dataset-details';
 import MetadataPage from '../../metadata-page';
-import StarButton from '../../star-button';
+
+import worstDetails from '../../dataset-details/data/worst.json';
 
 import styles from '../details-page.module.scss';
 
@@ -35,14 +38,13 @@ export type DetailsPageType = {
 };
 
 export default function DetailsPage({ locale, commonDictionary }: DetailsPageType) {
-
-    const [ activeTab, setActiveTab ] = useState('oversikt');
-    const [ highlight, setHighlight ] = useState(false);
+    const [activeTab, setActiveTab] = useState('oversikt');
+    const [highlight, setHighlight] = useState(false);
 
     const blink = () => {
         setHighlight(true);
         setTimeout(() => setHighlight(false), 1000);
-    }
+    };
 
     const breadcrumbList = [
         {
@@ -55,30 +57,9 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
         },
     ];
 
-    const distributions: Distribution[] = [
+    const datasets: Distribution[] = [
         {
             title: 'Location measurement points',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
-        },
-        {
-            title: 'Locations',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
-        },
-        {
-            title: 'Measurement points',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
-        },
-        {
-            title: 'Measurements',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
             accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
@@ -105,8 +86,17 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             Energimålinger kommunale bygg
                         </Heading>
                         <div className={styles.titleToolbar}>
-                            <StarButton defaultNumber={13} defaultStarred={false} />
-                            <Button size='sm' onClick={() => { setActiveTab('distribusjoner'); blink(); }}>
+                            <StarButton
+                                defaultNumber={13}
+                                defaultStarred={false}
+                            />
+                            <Button
+                                size='sm'
+                                onClick={() => {
+                                    setActiveTab('distribusjoner');
+                                    blink();
+                                }}
+                            >
                                 <DownloadIcon fontSize='1.2em' /> Last ned
                                 {/*Be om tilgang*/}
                             </Button>
@@ -158,15 +148,13 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                     <TabList>
                         <Tab value='oversikt'>Oversikt</Tab>
                         <Tab value='distribusjoner'>
-                            Distribusjoner&nbsp;<Badge>4</Badge>
+                            Distribusjoner&nbsp;<Badge>1</Badge>
                         </Tab>
                         <Tab value='detaljer'>Detaljer</Tab>
                         <Tab value='kommentarer'>
                             Kommentarer&nbsp;<Badge>2</Badge>
                         </Tab>
-                        <Tab value='metadata'>
-                            RDF
-                        </Tab>
+                        <Tab value='metadata'>RDF</Tab>
                     </TabList>
                     <TabContent value='oversikt'>
                         {/*<article className={styles.article}>
@@ -186,7 +174,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             </Heading>
                             <div className={styles.box}>
                                 <DatasetDescription className={styles.article}>
-{`
+                                    {`
 **Datasettet Tilsyn** [https://data.mattilsynet.no/smilefjes-tilsyn.csv](https://data.mattilsynet.no/smilefjes-tilsyn.csv) inneholder den tilsvarende informasjonen som plakaten som henges opp hos spisestedene etter at de har hatt tilsyn. Datasettet er visualisert med et søk på [https://smilefjes.mattilsynet.no/](https://smilefjes.mattilsynet.no/)
 
 **Datasettet Kravpunkter** [https://data.mattilsynet.no/smilefjes-kravpunkter.csv](https://data.mattilsynet.no/smilefjes-kravpunkter.csv) inneholder hvert enkelt kravpunkt som inngår i ett tilsyn, sammen med karakteren kravpunktet er gitt. Hvert tilsyn vil ha et sett med rader i dette tilsynet, knyttet sammen av tilsynid.
@@ -267,13 +255,7 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                             </div>
                         </section>
                         <section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                Distribusjoner
-                            </Heading>
-                            <Distributions distributions={distributions} />
+                            <Distributions datasets={datasets} />
                         </section>
                         <hr className={styles.divider} />
                         <section className={styles.section}>
@@ -287,12 +269,14 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <Link href="#">Hydrologiske data</Link>
+                                            <Link href='#'>Hydrologiske data</Link>
                                         </td>
                                         <td>
-                                            <span className={styles.relatedPublisher}>Norges vassdrags- og energidirektorat (nve)</span>
+                                            <span className={styles.relatedPublisher}>
+                                                Norges vassdrags- og energidirektorat (nve)
+                                            </span>
                                         </td>
-                                        <td align="right">
+                                        <td align='right'>
                                             <Tag
                                                 color='success'
                                                 size='sm'
@@ -303,12 +287,12 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                                     </tr>
                                     <tr>
                                         <td>
-                                            <Link href="#">Standard for yrkesklassifisering (STYRK08)</Link>
+                                            <Link href='#'>Standard for yrkesklassifisering (STYRK08)</Link>
                                         </td>
                                         <td>
                                             <span className={styles.relatedPublisher}>Statistisk sentralbyrå</span>
                                         </td>
-                                        <td align="right">
+                                        <td align='right'>
                                             <Tag
                                                 color='success'
                                                 size='sm'
@@ -319,12 +303,12 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                                     </tr>
                                     <tr>
                                         <td>
-                                            <Link href="#">Folketeljinga 1910</Link>
+                                            <Link href='#'>Folketeljinga 1910</Link>
                                         </td>
                                         <td>
                                             <span className={styles.relatedPublisher}>Arkivverket</span>
                                         </td>
-                                        <td align="right">
+                                        <td align='right'>
                                             <Tag
                                                 color='warning'
                                                 size='sm'
@@ -361,10 +345,13 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                         </section>
                     </TabContent>
                     <TabContent value='distribusjoner'>
-                        <Distributions distributions={distributions} className={cn({ [styles.highlight]: highlight })} />
+                        <Distributions
+                            datasets={datasets}
+                            className={cn({ [styles.highlight]: highlight })}
+                        />
                     </TabContent>
                     <TabContent value='detaljer'>
-                        <DatasetDetailsEmpty />
+                        <DatasetDetails details={worstDetails} />
                     </TabContent>
                     <TabContent value='kommentarer'>
                         <section className={styles.section}>

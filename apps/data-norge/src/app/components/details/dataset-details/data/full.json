@@ -1,76 +1,68 @@
 {
-  "content": [
-    {
-      "section": "Generelt",
-      "fields": {
-        "Ansvarlig virksomhet": "Arbeids- og velferdsetaten",
-        "Publisert": "9. mars 2022",
-        "Dokumentasjon": "https://github.com/opendatalab-no/open-municipal-data",
-        "Metadatakvalitet": 42
-      }
-    },
-    {
-      "section": "Kontaktinformasjon",
-      "fields": {
-        "Kontaktpunkt": "https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/",
-        "E-post": "erlend.stav@sintef.no",
-        "Telefon": "22 00 22 00"
-      }
-    },
-    {
-      "section": "Innhold",
-      "fields": {
-        "Språk": "Engelsk",
-        "Innholdsleverandører": "Kunstklubben 9",
-        "Opphav": "Autoritativ kilde",
-        "Oppdateringsfrekvens": "daglig",
-        "Utgitt": "09.03.2016",
-        "Sist oppdatert": "22.03.2021",
-        "Aktualitet": "Høyaktuelt",
-        "Kompletthet": "Helt komplett",
-        "Nøyaktighet": "Ekstremt nøyaktig",
-        "Relevans": "Relevant for testing",
-        "Tilgjengelighet": "Kun til intern bruk",
-        "Geografisk avgrenset til": "https://example.com/norge",
-        "Tidsmessig avgrenset til": "07.12.2020 - 08.12.2020",
-        "I samsvar med": [
-          "Standard for rapportering av data",
-          "Konsolidering i samarbeidende grupper (KRT-1130)"
-        ]
-      }
-    },
-    {
-      "section": "Lovhjemler",
-      "fields": {
-        "Skjermingshjemmel": [
-          "Lov om Enhetsregisteret §22"
-        ],
-        "Behandlingsgrunnlag": [
-          "Lov om Enhetsregisteret §5",
-          "Lov om Enhetsregisteret §6"
-        ],
-        "Utleveringshjemmel": [
-          "Forskrift om gebyr til Brønnøysundregistrene §6",
-          "Lov om Enhetsregisteret §22"
-        ],
-      }
-    },
-    {
-      "section": "Begreper brukt i datasett",
-      "fields": {
-        "felles omsorg": "omsorgssituasjon der begge foreldre til et gitt barn bor sammen og har omsorgen for barnet i skattleggingsperioden",
-        "samlet uføreytelse fra andre enn folketrygden": "samlet brutto uføreytelser (uføreytelser før skatt) som du får fra andre enn folketrygden ( herunder uføreytelser fra SPK, uføreytelser fra andre pensjonsordninger herunder uføreytelser fra IPA/IPS og uføreytelser fra utlandet) . Uføreytelser regnes som en del av inntektene dine og skattlegges som vanlig lønnsinntekt."
-      }
-    },
-    {
-      "section": "Relasjoner til datasett",
-      "fields": [
+    "sections": [
         {
-          "title": "Hydrologiske data",
-          "publisher": "Ramsund of rognan revisjon",
-          "access": "Åpne data"
+            "sectionTitle": "Generelt",
+            "fields": {
+                "Ansvarlig virksomhet": "Arbeids- og velferdsetaten",
+                "Publisert": "9. mars 2022",
+                "Dokumentasjon": "https://github.com/opendatalab-no/open-municipal-data",
+                "Metadatakvalitet": 75
+            }
+        },
+        {
+            "sectionTitle": "Kontaktinformasjon",
+            "fields": {
+                "Kontaktpunkt": "https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/",
+                "E-post": "erlend.stav@sintef.no",
+                "Telefon": "22 00 22 00"
+            }
+        },
+        {
+            "sectionTitle": "Innhold",
+            "fields": {
+                "Språk": "Engelsk",
+                "Innholdsleverandører": "Kunstklubben 9",
+                "Opphav": "Autoritativ kilde",
+                "Oppdateringsfrekvens": "daglig",
+                "Utgitt": "09.03.2016",
+                "Sist oppdatert": "22.03.2021",
+                "Aktualitet": "Høyaktuelt",
+                "Kompletthet": "Helt komplett",
+                "Nøyaktighet": "Ekstremt nøyaktig",
+                "Relevans": "Relevant for testing",
+                "Tilgjengelighet": "Kun til intern bruk",
+                "Geografisk avgrenset til": "https://example.com/norge",
+                "Tidsmessig avgrenset til": "07.12.2020 - 08.12.2020",
+                "I samsvar med": [
+                    "Standard for rapportering av data",
+                    "Konsolidering i samarbeidende grupper (KRT-1130)"
+                ]
+            }
+        },
+        {
+            "sectionTitle": "Lovhjemler",
+            "fields": {
+                "Skjermingshjemmel": ["Lov om Enhetsregisteret §22"],
+                "Behandlingsgrunnlag": ["Lov om Enhetsregisteret §5", "Lov om Enhetsregisteret §6"],
+                "Utleveringshjemmel": ["Forskrift om gebyr til Brønnøysundregistrene §6", "Lov om Enhetsregisteret §22"]
+            }
+        },
+        {
+            "sectionTitle": "Begreper brukt i datasett",
+            "fields": {
+                "felles omsorg": "omsorgssituasjon der begge foreldre til et gitt barn bor sammen og har omsorgen for barnet i skattleggingsperioden",
+                "samlet uføreytelse fra andre enn folketrygden": "samlet brutto uføreytelser (uføreytelser før skatt) som du får fra andre enn folketrygden ( herunder uføreytelser fra SPK, uføreytelser fra andre pensjonsordninger herunder uføreytelser fra IPA/IPS og uføreytelser fra utlandet). Uføreytelser regnes som en del av inntektene dine og skattlegges som vanlig lønnsinntekt."
+            }
+        },
+        {
+            "sectionTitle": "Relasjoner til datasett",
+            "fields": [
+                {
+                    "title": "Hydrologiske data",
+                    "publisher": "Ramsund of rognan revisjon",
+                    "access": "Åpne data"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

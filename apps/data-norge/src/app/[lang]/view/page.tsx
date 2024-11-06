@@ -10,14 +10,16 @@ export type DetailsPageWrapperProps = {
 };
 
 const DetailsPageWrapper = async ({ params }: DetailsPageWrapperProps) => {
-
     const locale = params.lang ?? i18n.defaultLocale;
     const commonDictionary = await getDictionary(locale, 'common');
 
     return (
-        <DetailsPage locale={locale} commonDictionary={commonDictionary} />
+        <DetailsPage
+            locale={locale}
+            commonDictionary={commonDictionary}
+        />
     );
-}
+};
 
 export const metadata = {
     title: 'Datasett: Energimålinger kommunale bygg - data.norge.no',

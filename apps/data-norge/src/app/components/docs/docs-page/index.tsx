@@ -18,6 +18,7 @@ import {
     type AlertProps,
     Button,
     Heading,
+    type HeadingProps,
     Link,
     Paragraph,
     Divider,
@@ -32,7 +33,6 @@ import {
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
-import LinkPanel from '@fdk-frontend/ui/link-panel';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import MdxPage from '../mdx-page';
@@ -116,12 +116,8 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                     {...props}
                 />
             ),
-            Paragraph: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-                <Paragraph
-                    {...props}
-                />
-            ),
-            Heading: (props) => <Heading { ...props } />,
+            Paragraph: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
+            Heading: (props: HeadingProps) => <Heading {...props} />,
             Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => (
                 <Alert
                     size={size}
@@ -222,7 +218,6 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                     />
                 );
             },
-            LinkPanel: (props) => <LinkPanel {...props} />
         };
 
         // Compile MDX and extract content
