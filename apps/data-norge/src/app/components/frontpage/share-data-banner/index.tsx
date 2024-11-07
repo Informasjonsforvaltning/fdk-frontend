@@ -4,6 +4,7 @@ import { Dictionary, interpolate, type LocaleCodes } from '@fdk-frontend/diction
 import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 
 import styles from './share-data-banner.module.scss';
+import OrganizationCarousel from '../organization-carousel';
 
 type ShareDataBannerProps = {
     dictionary: Dictionary;
@@ -17,7 +18,7 @@ const ShareDataBanner = ({ dictionary, baseUri, locale }: ShareDataBannerProps) 
             level={2}
             className={styles.headline}
         >
-            {dictionary.shareDataBanner.title}
+            <OrganizationCarousel dictionary={dictionary} />
         </HeadingWithDivider>
         <Paragraph>
             {interpolate(dictionary.shareDataBanner.content, {

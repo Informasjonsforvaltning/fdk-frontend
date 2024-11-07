@@ -48,10 +48,14 @@
         "title": "Våre datakatalogar"
     },
     "shareDataBanner": {
-        "content": "Gjer som over {{link}} og del dine data med resten av landet.",
+        "content": "...og over {{link}} - del dine data med resten av landet.",
         "shareDataLinkText": "Del data",
         "documentationLinkText": "Hjelp og rettleiing",
         "organizationsLinkText": "125 andre verksemder",
-        "title": "Har du data å dele?"
+        "doLike": "Gjer som",
+        "popover": {
+            "start": "Klikk for å starte animasjonen",
+            "pause": "Klikk for å pause animasjonen"
+        }
     }
 }
