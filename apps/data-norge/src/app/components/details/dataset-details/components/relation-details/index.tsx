@@ -1,10 +1,15 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useContext } from 'react';
 
 import { Heading, Link, Tag } from '@digdir/designsystemet-react';
 
 import PlaceholderBox from '../../../placeholder-box';
+import { DatasetDetailsContext } from '../..';
 
 const RelationDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren) => {
+    const { showEmptyRows } = useContext(DatasetDetailsContext);
+
+    if (!showEmptyRows && fields === null) return false;
+
     return (
         <section>
             <Heading
