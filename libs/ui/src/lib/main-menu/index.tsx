@@ -5,11 +5,9 @@ import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Heading } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-
 import { Dictionary } from '@fdk-frontend/dictionaries';
 
 import styles from './main-menu.module.scss';
-
 import GithubLogo from './images/github-logo';
 import getMainMenuData from './data';
 

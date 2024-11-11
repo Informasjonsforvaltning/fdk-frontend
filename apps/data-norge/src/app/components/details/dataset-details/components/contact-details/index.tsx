@@ -1,11 +1,14 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useContext } from 'react';
 
 import { Heading, Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import PlaceholderText from '../../../placeholder-text';
+import { DatasetDetailsContext } from '../../';
 
 const ContactDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren) => {
+    const { showEmptyRows } = useContext(DatasetDetailsContext);
+
     return (
         <section>
             <Heading
@@ -26,14 +29,19 @@ const ContactDetails = ({ fields, ...props }: { fields: any } & PropsWithChildre
                 <dd>
                     <Link href='#'>{fields['E-post']}</Link>
                 </dd>
-                <dt>Telefon:</dt>
-                <dd>
-                    {fields['Telefon'] ? (
-                        <Link href='#'>{fields['Telefon']}</Link>
-                    ) : (
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
-                    )}
-                </dd>
+                {fields['Telefon'] !== null ||
+                    (showEmptyRows && (
+                        <>
+                            <dt>Telefon:</dt>
+                            <dd>
+                                {fields['Telefon'] ? (
+                                    <Link href='#'>{fields['Telefon']}</Link>
+                                ) : (
+                                    <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                )}
+                            </dd>
+                        </>
+                    ))}
             </dl>
         </section>
     );
