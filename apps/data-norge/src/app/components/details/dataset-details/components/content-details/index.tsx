@@ -1,13 +1,14 @@
-import React, { PropsWithChildren } from 'react';
-
+import React, { PropsWithChildren, useContext } from 'react';
 import { Heading, Link, HelpText, Paragraph } from '@digdir/designsystemet-react';
-
 import Article from '@fdk-frontend/ui/article';
 import HStack from '@fdk-frontend/ui/hstack';
 
 import PlaceholderText from '../../../placeholder-text';
+import { DatasetDetailsContext } from '../../';
 
 const ContentDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren) => {
+    const { showEmptyRows } = useContext(DatasetDetailsContext);
+
     const renderContentValue = (value: any) => {
         if (!value) return <PlaceholderText>Ikke oppgitt</PlaceholderText>;
         if (Array.isArray(value)) {
@@ -37,6 +38,8 @@ const ContentDetails = ({ fields, ...props }: { fields: any } & PropsWithChildre
             </Heading>
             <dl>
                 {Object.entries(fields).map(([key, value]) => {
+                    if (!showEmptyRows && fields[key] === null) return false;
+
                     return (
                         <React.Fragment key={key}>
                             <dt>

@@ -1,12 +1,17 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useContext } from 'react';
 
 import { Heading, Link } from '@digdir/designsystemet-react';
 
 import Article from '@fdk-frontend/ui/article';
 
 import PlaceholderBox from '../../../placeholder-box';
+import { DatasetDetailsContext } from '../..';
 
 const LegalDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren) => {
+    const { showEmptyRows } = useContext(DatasetDetailsContext);
+
+    if (!showEmptyRows && fields === null) return false;
+
     return (
         <section>
             <Heading
