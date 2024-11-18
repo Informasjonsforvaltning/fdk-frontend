@@ -24,6 +24,14 @@
     }
 }
 
+.forumStats {
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    // background:#f4f4f4;
+    padding:0.5rem;
+}
+
 .detailsPage {
     margin: 0 2rem 3rem;
     container-type: inline-size;
