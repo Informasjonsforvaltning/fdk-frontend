@@ -4,6 +4,8 @@ import cn from 'classnames';
 
 import { Accordion, Heading, Button, Link, Tag } from '@digdir/designsystemet-react';
 import { DownloadIcon, ArrowRightIcon } from '@navikt/aksel-icons';
+import Badge from '@fdk-frontend/ui/badge';
+import HStack from '@fdk-frontend/ui/hstack';
 
 import styles from './distributions.module.scss';
 import DistributionContent from './distribution-content';
@@ -30,7 +32,10 @@ const Distributions = ({ exampleData, datasets, apis, className }: Distributions
                 level={4}
                 size='xxsmall'
             >
-                Datasett
+                <HStack>
+                    <div>Datasett</div>
+                    <Badge>{datasets.length}</Badge>
+                </HStack>
             </Heading>
             <Accordion border>
                 {datasets.map((distribution, index) => (
@@ -85,7 +90,10 @@ const Distributions = ({ exampleData, datasets, apis, className }: Distributions
                         level={4}
                         size='xxsmall'
                     >
-                        Eksempeldata
+                        <HStack>
+                            <div>Eksempeldata</div>
+                            <Badge>{exampleData.length}</Badge>
+                        </HStack>
                     </Heading>
                     <Accordion border>
                         {exampleData.map((distribution, index) => (
@@ -140,7 +148,10 @@ const Distributions = ({ exampleData, datasets, apis, className }: Distributions
                         level={4}
                         size='xxsmall'
                     >
-                        API-er
+                        <HStack>
+                            <div>API-er</div>
+                            <Badge>{apis.length}</Badge>
+                        </HStack>
                     </Heading>
                     <Accordion border>
                         {apis.map((distribution, index) => (
