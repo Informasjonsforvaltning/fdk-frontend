@@ -68,7 +68,7 @@ jobs:
         if: ${{ needs.test.outputs.changed != '[]' }}
         strategy:
             matrix: ${{fromJSON(needs.test.outputs.matrix)}}
-        uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
+        uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@feat/hos/github-packages
         with:
             app_name: ${{ matrix.appname }}-frontend
             environment: staging
@@ -78,6 +78,7 @@ jobs:
             cache_path: ./dist
             cache_key: cache-dist-${{ github.sha }}
             dockerfile: apps/${{ matrix.appname }}/Dockerfile
+            monorepo_app: true
         secrets:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
@@ -89,7 +90,7 @@ jobs:
         strategy:
             matrix: ${{fromJSON(needs.test.outputs.matrix)}}
             fail-fast: false
-        uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
+        uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@feat/hos/github-packages
         with:
             app_name: ${{ matrix.appname }}-frontend
             environment: staging
