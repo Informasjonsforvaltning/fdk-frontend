@@ -7,14 +7,11 @@ import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
-import HStack from '@fdk-frontend/ui/hstack';
-import VStack from '@fdk-frontend/ui/vstack';
-import { Subtext } from '@fdk-frontend/ui/typography';
 import StarButton from '@fdk-frontend/ui/star-button';
+import { BrandDivider } from '@fdk-frontend/ui/divider';
 import {
-    Alert,
-    Heading,
     Button,
+    Heading,
     Link,
     Tag,
     HelpText,
@@ -24,14 +21,13 @@ import {
     TabContent,
     Paragraph,
 } from '@digdir/designsystemet-react';
-import { DownloadIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
+import { DownloadIcon } from '@navikt/aksel-icons';
 
 import Distributions, { type Distribution } from '../distributions';
 import DatasetDescription from '../dataset-description';
 import DatasetDetails from '../dataset-details';
 import MetadataPage from '../metadata-page';
-
-import PlaceholderBox from '../placeholder-box';
+import CommunityTab from '../community-tab';
 
 import fullDetails from '../dataset-details/data/full.json';
 
@@ -91,7 +87,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
 
     const apis: Distribution[] = [
         {
-            title: 'Endepunkt for webtjeneste',
+            title: 'Transportsystem API',
             tags: ['csv', 'json', 'xml', 'yaml'],
             description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
             accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
@@ -130,7 +126,6 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                 }}
                             >
                                 <DownloadIcon fontSize='1.2em' /> Last ned
-                                {/*Be om tilgang*/}
                             </Button>
                         </div>
                     </div>
@@ -230,7 +225,7 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                                 className={cn({ [styles.highlight]: highlight })}
                             />
                         </section>
-                        <hr className={styles.divider} />
+                        <BrandDivider className={styles.divider} />
                         <section className={styles.section}>
                             <Heading
                                 level={4}
@@ -324,115 +319,61 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                             apis={apis}
                             className={cn({ [styles.highlight]: highlight })}
                         />
+                        <BrandDivider className={styles.divider} />
+                        <section className={styles.section}>
+                            <Heading
+                                level={4}
+                                size='xxsmall'
+                            >
+                                Relaterte APIer
+                            </Heading>
+                            <table className='table'>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <Link href='#'>Transportsystem API</Link>
+                                        </td>
+                                        <td>
+                                            <span className={styles.relatedPublisher}>
+                                                Mattilsynet
+                                            </span>
+                                        </td>
+                                        <td align='right'>
+                                            <Tag
+                                                color='success'
+                                                size='sm'
+                                            >
+                                                Åpne data
+                                            </Tag>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <Link href='#'>Trafikkdata 2024</Link>
+                                        </td>
+                                        <td>
+                                            <span className={styles.relatedPublisher}>
+                                                Vegvesenet
+                                            </span>
+                                        </td>
+                                        <td align='right'>
+                                            <Tag
+                                                color='success'
+                                                size='sm'
+                                            >
+                                                Åpne data
+                                            </Tag>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
                     </TabContent>
                     <TabContent value='detaljer'>
                         <DatasetDetails details={fullDetails} />
                     </TabContent>
                     <TabContent value='kommentarer'>
-                        {/*<section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                Kommentarer <Badge>2</Badge>
-                            </Heading>
-                            <PlaceholderBox>
-                                Hello
-                            </PlaceholderBox>
-                        </section>
-                        <hr className={styles.divider} />
-                        <section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                Diskusjonstråder på Datalandsbyen hvor dette datasettet er nevnt
-                            </Heading>
-                            <table className='table'>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Datasett Stort testdatasett 1, RAMSUND OG ROGNAN REVISJON</Link>
-                                            <div style={{marginTop:'0.25rem'}}><Subtext>posted by fdk-community-admin</Subtext></div>
-                                        </td>
-                                        <td align='right'>
-                                            <HStack>
-                                                <HStack>0 Stemmer</HStack>
-                                                <HStack>0 Stemmer</HStack>
-                                            </HStack>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </section>*/}
-                        <section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                <Button
-                                    variant='tertiary'
-                                    size='sm'
-                                    style={{float:'right',position:'relative',top:'-0.75rem'}}
-                                >
-                                    Gå til Datalandsbyen
-                                    <ExternalLinkIcon />
-                                </Button>
-                                Diskusjoner på Datalandsbyen <Badge>2</Badge>
-                            </Heading>
-                            <table className='table'>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Datasett Stort testdatasett 1, RAMSUND OG ROGNAN REVISJON <ExternalLinkIcon /></Link>
-                                            <div style={{marginTop:'0.25rem'}}><Subtext>posted by fdk-community-admin</Subtext></div>
-                                        </td>
-                                        <td align='right'>
-                                            <HStack style={{justifyContent:'flex-end'}}>
-                                                <div className={styles.forumStats}><span>7</span>Stemmer</div>
-                                                <div className={styles.forumStats}><span>12</span>Innlegg</div>
-                                                <div className={styles.forumStats}><span>16k</span>Visninger</div>
-                                            </HStack>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Datasett Stort testdatasett 1, RAMSUND OG ROGNAN REVISJON <ExternalLinkIcon /></Link>
-                                            <div style={{marginTop:'0.25rem'}}><Subtext>posted by fdk-community-admin</Subtext></div>
-                                        </td>
-                                        <td align='right'>
-                                            <HStack style={{justifyContent:'flex-end'}}>
-                                                <div className={styles.forumStats}><span>7</span>Stemmer</div>
-                                                <div className={styles.forumStats}><span>12</span>Innlegg</div>
-                                                <div className={styles.forumStats}><span>16k</span>Visninger</div>
-                                            </HStack>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <hr className={styles.divider} />
-                            <Alert>
-                                <VStack>
-                                    <Heading
-                                        level={4}
-                                        size='xxsmall'
-                                    >
-                                        Hva er Datalandsbyen?
-                                    </Heading>
-                                    <Paragraph size='sm'>
-                                        Datalandsbyen er et nettforum hvor man kan etterspørre data, dele erfaringer og spørre om råd som gjelder datadeling og informasjonsforvaltning.
-                                    </Paragraph>
-                                    <HStack>
-                                        <Button variant='secondary' size='sm' asChild>
-                                            <a href="https://datalandsbyen.norge.no/">Gå til Datalandsbyen <ExternalLinkIcon /></a>
-                                        </Button>
-                                        <Button variant='secondary' size='sm' asChild>
-                                            <a href="/docs/community">Mer informasjon</a>
-                                        </Button>
-                                    </HStack>
-                                </VStack>
-                            </Alert>
-                        </section>
+                        <CommunityTab />
                     </TabContent>
                     <TabContent value='metadata'>
                         <MetadataPage />
