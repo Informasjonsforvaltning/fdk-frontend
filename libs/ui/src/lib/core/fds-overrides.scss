@@ -17,6 +17,8 @@
 }
 
 .fds-link {
+    // display:inline;
+
     &:visited {
         &:not(:focus-visible) {
             color: var(--color-link);

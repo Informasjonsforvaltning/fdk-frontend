@@ -2,6 +2,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import {
+    Button,
     Heading,
     Link,
     Table,
@@ -13,9 +14,90 @@ import {
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
+import HStack from '@fdk-frontend/ui/hstack';
+
 import detailsPageStyles from '../details-page/details-page.module.scss';
 
-const DistributionContent = () => {
+const SimpleContent = () => {
+    return (
+        <>
+            <dl>
+                <dt>Beskrivelse:</dt>
+                <dd>
+                    <article className={detailsPageStyles.article}>
+                        <p>
+                            Statistikk over helt arbeidsledige ved utgangen av måneden fordelt på bostedskommune og
+                            fylke Helt ledige arbeidssøkere omfatter alle arbeidssøkere som de to siste ukene har meldt
+                            til NAV at de er helt uten arbeid, søker nytt arbeid og er tilgjengelig for det arbeid som
+                            søkes. Se om statistikken på www.nav.no for ytterligere forklaringer.
+                        </p>
+                    </article>
+                </dd>
+                {/*<dt>TilgangsURL:</dt>
+                <dd><Link href="#">https://www.brreg.no/produkter-og-tjenester/bestille-produkter/maskinlesbare-data-enhetsregisteret/full-tilgang-enhetsregisteret/</Link></dd>
+                <dt>Direkte nedlasting:</dt>
+                <dd><Link href="#">https://www.brreg.no/produkter-og-tjenester/bestille-produkter/maskinlesbare-data-enhetsregisteret/full-tilgang-enhetsregisteret/data.csv</Link></dd>*/}
+                <dt>API:</dt>
+                <dd>
+                    <HStack>
+                        <Link href="#">Transportsystem API</Link>
+                        {/*<div style={{'flexGrow':1}} />
+                        <Button size='sm' variant='secondary'>Mer informasjon</Button>*/}
+                    </HStack>
+                </dd>
+                <dt>Lisens:</dt>
+                <dd><Link href="#">Creative Commons Navngivelse 4.0 Internasjonal <ExternalLinkIcon /></Link></dd>
+            </dl>
+        </>
+    );
+}
+
+const ExampleContent = () => {
+    return (
+        <>
+            <dl>
+                <dt>Beskrivelse</dt>
+                <dd>
+                    <article className={detailsPageStyles.article}>
+                        <p>
+                            Utdrag av datasett
+                        </p>
+                    </article>
+                </dd>
+                {/*<dt>TilgangsURL</dt>
+                <dd><Link href="#">https://www.brreg.no/produkter-og-tjenester/bestille-produkter/maskinlesbare-data-enhetsregisteret/full-tilgang-enhetsregisteret/</Link></dd>
+                <dt>Direkte nedlasting</dt>
+                <dd><Link href="#">https://www.brreg.no/produkter-og-tjenester/bestille-produkter/maskinlesbare-data-enhetsregisteret/full-tilgang-enhetsregisteret/sample.csv</Link></dd>*/}
+                <dt>Lisens</dt>
+                <dd><Link href="#">Creative Commons Navngivelse 4.0 Internasjonal <ExternalLinkIcon /></Link></dd>
+            </dl>
+        </>
+    );
+}
+
+const APIContent = () => {
+    return (
+        <>
+            <dl>
+                <dt>Beskrivelse</dt>
+                <dd>
+                    <article className={detailsPageStyles.article}>
+                        <p>
+                            Tjenesten leverer en liste over inntektsmottakere der arbeidsgiver (opplysningspliktig), via a-ordningen, har rapportert pensjonsavtale med pensjonsinnretningen som utfører kallet.
+                        </p>
+                    </article>
+                </dd>
+                <dt>Endepunkt:</dt>
+                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten-test.no/v1 <ExternalLinkIcon /></Link></dd>
+                <dt>Endepunktbeskrivelse:</dt>
+                <dd><Link href="#">Gå til spesifikasjon <ExternalLinkIcon /></Link></dd>
+            </dl>
+        </>
+    );
+}
+
+
+const RichContent = () => {
     return (
         <>
             <dl>
@@ -28,6 +110,7 @@ const DistributionContent = () => {
                             til NAV at de er helt uten arbeid, søker nytt arbeid og er tilgjengelig for det arbeid som
                             søkes. Se om statistikken på www.nav.no for ytterligere forklaringer.
                         </p>
+
                         <Heading level={4}>Datastruktur</Heading>
                         <Table size='sm'>
                             <TableHead>
@@ -128,4 +211,4 @@ const DistributionContent = () => {
     );
 };
 
-export default DistributionContent;
+export { RichContent, SimpleContent, ExampleContent, APIContent };
