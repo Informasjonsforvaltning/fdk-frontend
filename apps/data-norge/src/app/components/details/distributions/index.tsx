@@ -8,7 +8,7 @@ import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 
 import styles from './distributions.module.scss';
-import DistributionContent from './distribution-content';
+import { RichContent, SimpleContent, ExampleContent, APIContent } from './distribution-content';
 
 export type Distribution = {
     title: string;
@@ -72,14 +72,14 @@ const Distributions = ({ exampleData, datasets, apis, className }: Distributions
                                     >
                                         <Link href='#'>
                                             <DownloadIcon fontSize='1.2em' />
-                                            Last ned (5 MB)
+                                            Last ned
                                         </Link>
                                     </Button>
                                 </div>
                             </div>
                         </Accordion.Header>
                         <Accordion.Content className={styles.content}>
-                            <DistributionContent />
+                            <SimpleContent />
                         </Accordion.Content>
                     </Accordion.Item>
                 ))}
@@ -136,7 +136,9 @@ const Distributions = ({ exampleData, datasets, apis, className }: Distributions
                                         </div>
                                     </div>
                                 </Accordion.Header>
-                                <Accordion.Content className={styles.content}>Beskrivelse her</Accordion.Content>
+                                <Accordion.Content className={styles.content}>
+                                    <ExampleContent />
+                                </Accordion.Content>
                             </Accordion.Item>
                         ))}
                     </Accordion>
@@ -194,7 +196,9 @@ const Distributions = ({ exampleData, datasets, apis, className }: Distributions
                                         </div>
                                     </div>
                                 </Accordion.Header>
-                                <Accordion.Content className={styles.content}>Beskrivelse her</Accordion.Content>
+                                <Accordion.Content className={styles.content}>
+                                    <APIContent />
+                                </Accordion.Content>
                             </Accordion.Item>
                         ))}
                     </Accordion>
