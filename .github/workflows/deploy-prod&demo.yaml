@@ -78,9 +78,9 @@ jobs:
             cache_path: ./dist
             cache_key: cache-dist-${{ github.sha }}
             dockerfile: apps/${{ matrix.appname }}/Dockerfile
+            monorepo_app: true
         secrets:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
 
     deploy-prod:
         name: Deploy affected apps to production environment

@@ -6,5 +6,5 @@ resources:
     - data-norge-frontend-service.yaml
 images:
     - name: data-norge-frontend
-      newName: eu.gcr.io/digdir-fdk-infra/data-norge-frontend
+      newName: ghcr.io/informasjonsforvaltning/fdk-frontend/data-norge-frontend
       newTag: $(GIT_COMMIT_SHA)
