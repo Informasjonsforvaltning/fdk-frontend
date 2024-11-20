@@ -7,6 +7,7 @@ import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
+import { BrandDivider } from '@fdk-frontend/ui/divider';
 import StarButton from '@fdk-frontend/ui/star-button';
 import {
     Heading,
@@ -97,8 +98,8 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                     blink();
                                 }}
                             >
-                                <DownloadIcon fontSize='1.2em' /> Last ned
-                                {/*Be om tilgang*/}
+                                {/*<DownloadIcon fontSize='1.2em' /> Last ned*/}
+                                Bruk datasett
                             </Button>
                         </div>
                     </div>
@@ -148,7 +149,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                     <TabList>
                         <Tab value='oversikt'>Oversikt</Tab>
                         <Tab value='distribusjoner'>
-                            Distribusjoner&nbsp;<Badge>1</Badge>
+                            Distribusjoner og API&nbsp;<Badge>1</Badge>
                         </Tab>
                         <Tab value='detaljer'>Detaljer</Tab>
                         <Tab value='kommentarer'>
@@ -257,13 +258,13 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                         <section className={styles.section}>
                             <Distributions datasets={datasets} />
                         </section>
-                        <hr className={styles.divider} />
+                        <BrandDivider className={styles.divider} />
                         <section className={styles.section}>
                             <Heading
                                 level={4}
                                 size='xxsmall'
                             >
-                                Andre så også på
+                                Relaterte datasett
                             </Heading>
                             <table className='table'>
                                 <tbody>

@@ -2,7 +2,6 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import {
-    Button,
     Heading,
     Link,
     Table,
@@ -40,7 +39,8 @@ const SimpleContent = () => {
                 <dt>API:</dt>
                 <dd>
                     <HStack>
-                        <Link href="#">Transportsystem API</Link>
+                        <Link href="#">https://api.data.altinn.no/v1
+</Link>
                         {/*<div style={{'flexGrow':1}} />
                         <Button size='sm' variant='secondary'>Mer informasjon</Button>*/}
                     </HStack>
@@ -75,7 +75,7 @@ const ExampleContent = () => {
     );
 }
 
-const APIContent = () => {
+const APIContent = ({ api }: any) => {
     return (
         <>
             <dl>
@@ -83,14 +83,16 @@ const APIContent = () => {
                 <dd>
                     <article className={detailsPageStyles.article}>
                         <p>
-                            Tjenesten leverer en liste over inntektsmottakere der arbeidsgiver (opplysningspliktig), via a-ordningen, har rapportert pensjonsavtale med pensjonsinnretningen som utfører kallet.
+                            {api.description}
                         </p>
                     </article>
                 </dd>
                 <dt>Endepunkt:</dt>
-                <dd><Link href="#">https://inntektsmottakere.api.skatteetaten-test.no/v1 <ExternalLinkIcon /></Link></dd>
+                <dd><Link href="#">{api.endpoint} <ExternalLinkIcon /></Link></dd>
                 <dt>Endepunktbeskrivelse:</dt>
-                <dd><Link href="#">Gå til spesifikasjon <ExternalLinkIcon /></Link></dd>
+                <dd><Link href="#">{api.endpointSpec} <ExternalLinkIcon /></Link></dd>
+                <dt>Dokumentasjon:</dt>
+                <dd><Link href="#">{api.documentation} <ExternalLinkIcon /></Link></dd>
             </dl>
         </>
     );

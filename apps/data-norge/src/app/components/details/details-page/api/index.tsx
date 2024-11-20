@@ -8,6 +8,7 @@ import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import StarButton from '@fdk-frontend/ui/star-button';
+import { BrandDivider } from '@fdk-frontend/ui/divider';
 import {
     Heading,
     Button,
@@ -49,6 +50,42 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
         },
     ];
 
+    const relatedDatasets = [
+        { name: "Vannverk - transportsystem", publisher: "Mattilsynet", accessLevel: "open" },
+        { name: "Grunnboken", publisher: "Kartverket", accessLevel: "open" },
+        { name: "Kjøretøyopplysninger", publisher: "Statens vegvesen", accessLevel: "limited" },
+        // { name: "Merverdiavgiftsregisteret", publisher: "Skatteetaten", accessLevel: "open" },
+        // { name: "Bemanningsforetak som er godkjent av Arbeidstilsynet", publisher: "Arbeidstilsynet", accessLevel: "open" },
+        // { name: "Tilda tilsynsrapport", publisher: "Arbeidstilsynet", accessLevel: "open" },
+        // { name: "Tilda tilsynskoordinering", publisher: "Arbeidstilsynet", accessLevel: "limited" },
+        // { name: "Tilda trender", publisher: "Arbeidstilsynet", accessLevel: "limited" },
+        // { name: "Foretaksregisteret", publisher: "Brønnøysundregistrene", accessLevel: "restricted" },
+        // { name: "Tilda melding til annen myndighet", publisher: "Arbeidstilsynet", accessLevel: "open" },
+        // { name: "Enhetsregisteret", publisher: "Brønnøysundregistrene", accessLevel: "open" },
+        // { name: "Folkeregisteret", publisher: "Skatteetaten", accessLevel: "restricted" },
+        // { name: "Renholdsvirksomheter godkjent av Arbeidstilsynet", publisher: "Arbeidstilsynet", accessLevel: "restricted" },
+        // { name: "Oppgaveregisteret", publisher: "Brønnøysundregistrene", accessLevel: "open" },
+        // { name: "Matrikkelen - Adresse", publisher: "Kartverket", accessLevel: "open" },
+    ];
+
+    const getColorFromAccessLevel = (accessLevel: any) => {
+        switch (accessLevel) {
+            case 'open': return 'success';
+            case 'limited': return 'warning';
+            case 'restricted': return 'danger';
+            default: return 'success';
+        }
+    }
+
+    const getLabelFromAccessLevel = (accessLevel: any) => {
+        switch (accessLevel) {
+            case 'open': return 'Åpne data';
+            case 'limited': return 'Begrenset tilgang';
+            case 'restricted': return 'Ikke-allmenn tilgang';
+            default: return 'Åpne data';
+        }
+    }
+
     return (
         <div className={styles.detailsPage}>
             <Breadcrumbs
@@ -58,14 +95,14 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    <Link href='#'>Skatteetaten</Link>
+                    <Link href='#'>Digdir</Link>
                     <div className={styles.titleContainer}>
                         <Heading
                             level={1}
                             size='lg'
                             className={styles.title}
                         >
-                            Inntektsmottakere API
+                            data.altinn.no
                         </Heading>
                         <div className={styles.titleToolbar}>
                             <StarButton
@@ -79,7 +116,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                     blink();
                                 }}
                             >
-                                Ta i bruk
+                                Bruk API
                             </Button>
                         </div>
                     </div>
@@ -111,39 +148,43 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         </Tab>
                     </TabList>
                     <TabContent value='oversikt'>
-                        <article className={styles.article}>
-                            <p>
-                                Tjenesten leverer en liste over inntektsmottakere der arbeidsgiver (opplysningspliktig),
-                                via a-ordningen, har rapportert pensjonsavtale med pensjonsinnretningen som utfører
-                                kallet.
-                            </p>
-                        </article>
+                        <Heading
+                            level={4}
+                            size='xxsmall'
+                        >
+                            Beskrivelse
+                        </Heading>
+                        <div className={styles.box}>
+                            Tjenesten leverer en liste over inntektsmottakere der arbeidsgiver (opplysningspliktig),
+                            via a-ordningen, har rapportert pensjonsavtale med pensjonsinnretningen som utfører
+                            kallet.
+                        </div>
                         <section className={styles.section}>
                             <Heading
                                 level={4}
-                                size='xs'
+                                size='xxsmall'
                             >
-                                Endepunkter
+                                Endepunkter&nbsp;<Badge>2</Badge>
                             </Heading>
                             <dl>
                                 <dt>Endepunkt:</dt>
                                 <dd>
-                                    <Link href='#'>
-                                        https://inntektsmottakere.api.skatteetaten-test.no/v1
-                                        <ExternalLinkIcon />
-                                    </Link>
-                                </dd>
-                                <dt>Endepunkt:</dt>
-                                <dd>
-                                    <Link href='#'>
-                                        https://inntektsmottakere.api.skatteetaten.no/v1
+                                    <Link href='https://api.data.altinn.no/v1'>
+                                        https://api.data.altinn.no/v1
                                         <ExternalLinkIcon />
                                     </Link>
                                 </dd>
                                 <dt>Endepunktbeskrivelse:</dt>
                                 <dd>
-                                    <Link href='https://api.swaggerhub.com/apis/skatteetaten/inntektsmottakere-api/1.1.0'>
-                                        Gå til spesifikasjon
+                                    <Link href='https://api.data.altinn.no/v1/public/metadata/oas/json'>
+                                        https://api.data.altinn.no/v1/public/metadata/oas/json
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dd>
+                                <dt>Dokumentasjon:</dt>
+                                <dd>
+                                    <Link href='https://docs.data.altinn.no/'>
+                                        https://docs.data.altinn.no/
                                         <ExternalLinkIcon />
                                     </Link>
                                 </dd>
@@ -157,9 +198,49 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                 </dd>
                             </dl>
                         </section>
+                        <BrandDivider className={styles.divider} />
+                        <section className={styles.section}>
+                            <Heading
+                                level={4}
+                                size='xxsmall'
+                            >
+                                {/*Relaterte datasett&nbsp;<Badge>{relatedDatasets.length}</Badge>*/}
+                                Tilgjengeliggjør datasett
+                            </Heading>
+                            <table className='table'>
+                                <tbody>
+                                    {relatedDatasets.map(dataset => (
+                                        <tr key={dataset.name}>
+                                            <td>
+                                                <Link href='/view'>{dataset.name}</Link>
+                                            </td>
+                                            <td>
+                                                <span className={styles.relatedPublisher}>
+                                                    {dataset.publisher}
+                                                </span>
+                                            </td>
+                                            <td align='right'>
+                                                <Tag
+                                                    color={getColorFromAccessLevel(dataset.accessLevel)}
+                                                    size='sm'
+                                                >
+                                                    {getLabelFromAccessLevel(dataset.accessLevel)}
+                                                </Tag>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </section>
                     </TabContent>
                     <TabContent value='endepunkt'>
                         <section className={styles.section}>
+                            <Heading
+                                level={4}
+                                size='xxsmall'
+                            >
+                                Endepunkter
+                            </Heading>
                             <dl className={cn({ [styles.highlight]: highlight })}>
                                 <dt>Endepunkt:</dt>
                                 <dd>
@@ -212,7 +293,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                 level={4}
                                 size='xxsmall'
                             >
-                                Bruk av datasettet
+                                Generelt
                             </Heading>
                             <dl>
                                 <dt>Utgiver:</dt>
