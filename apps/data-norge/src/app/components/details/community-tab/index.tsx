@@ -6,7 +6,6 @@ import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 import VStack from '@fdk-frontend/ui/vstack';
-import { BrandDivider } from '@fdk-frontend/ui/divider';
 import { Subtext } from '@fdk-frontend/ui/typography';
 
 import styles from './community-tab.module.scss';

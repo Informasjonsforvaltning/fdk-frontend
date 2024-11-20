@@ -7,7 +7,7 @@ import ContactDetails from './components/contact-details';
 import ContentDetails from './components/content-details';
 import LegalDetails from './components/legal-details';
 import ConceptDetails from './components/concept-details';
-import RelationDetails from './components/relation-details';
+// import RelationDetails from './components/relation-details';
 
 import styles from './dataset-details.module.scss';
 
@@ -23,7 +23,7 @@ const DatasetDetails = ({ details }: any) => {
     const content = sections.find((s: any) => s.sectionTitle === 'Innhold');
     const legal = sections.find((s: any) => s.sectionTitle === 'Lovhjemler');
     const concept = sections.find((s: any) => s.sectionTitle === 'Begreper brukt i datasett');
-    const relation = sections.find((s: any) => s.sectionTitle === 'Relasjoner til datasett');
+    // const relation = sections.find((s: any) => s.sectionTitle === 'Relasjoner til datasett');
 
     return (
         <DatasetDetailsContext.Provider value={{ showEmptyRows }}>
@@ -51,7 +51,7 @@ const DatasetDetails = ({ details }: any) => {
                 <ContentDetails fields={content.fields} />
                 <LegalDetails fields={legal.fields} />
                 <ConceptDetails fields={concept.fields} />
-                <RelationDetails fields={relation.fields} />
+                {/*<RelationDetails fields={relation.fields} />*/}
                 <section className={styles.section}>
                     <Heading
                         level={2}

@@ -21,7 +21,7 @@ import {
     TabContent,
     Paragraph,
 } from '@digdir/designsystemet-react';
-import { DownloadIcon } from '@navikt/aksel-icons';
+// import { DownloadIcon } from '@navikt/aksel-icons';
 
 import Distributions, { type Distribution } from '../distributions';
 import DatasetDescription from '../dataset-description';
@@ -85,14 +85,15 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
         },
     ];
 
-    const apis: Distribution[] = [
+    const apis: any[] = [
         {
-            title: 'Transportsystem API',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
-        },
+            title: 'data.altinn.no',
+            tags: ['json'],
+            description: 'Api for å benytte tjenester på data.altinn.no. Tilgang krever både autentisert virksomhet (maskinporten) og api-nøkkel som kan fås på data.altinn.no',
+            endpoint: 'https://api.data.altinn.no/v1',
+            endpointSpec: 'https://api.data.altinn.no/v1/public/metadata/oas/json',
+            documentation: 'https://docs.data.altinn.no/'
+        }
     ];
 
     return (
@@ -125,7 +126,8 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                     blink();
                                 }}
                             >
-                                <DownloadIcon fontSize='1.2em' /> Last ned
+                                {/*<DownloadIcon fontSize='1.2em' /> Last ned*/}
+                                Bruk datasett
                             </Button>
                         </div>
                     </div>
@@ -175,7 +177,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                     <TabList>
                         <Tab value='oversikt'>Oversikt</Tab>
                         <Tab value='distribusjoner'>
-                            Distribusjoner&nbsp;<Badge>4</Badge>
+                            Distribusjoner og API&nbsp;<Badge>{[...datasets, ...exampleData, ...apis].length}</Badge>
                         </Tab>
                         <Tab value='detaljer'>Detaljer</Tab>
                         <Tab value='kommentarer'>
@@ -222,6 +224,8 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                         <section className={styles.section}>
                             <Distributions
                                 datasets={datasets}
+                                exampleData={exampleData}
+                                apis={apis}
                                 className={cn({ [styles.highlight]: highlight })}
                             />
                         </section>
@@ -231,7 +235,7 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                                 level={4}
                                 size='xxsmall'
                             >
-                                Andre så også på
+                                Relaterte datasett
                             </Heading>
                             <table className='table'>
                                 <tbody>
@@ -319,7 +323,7 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                             apis={apis}
                             className={cn({ [styles.highlight]: highlight })}
                         />
-                        <BrandDivider className={styles.divider} />
+                        {/*<BrandDivider className={styles.divider} />
                         <section className={styles.section}>
                             <Heading
                                 level={4}
@@ -339,12 +343,7 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                                             </span>
                                         </td>
                                         <td align='right'>
-                                            <Tag
-                                                color='success'
-                                                size='sm'
-                                            >
-                                                Åpne data
-                                            </Tag>
+                                            <Button variant='secondary' size='sm'>Gå til API</Button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -357,17 +356,12 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                                             </span>
                                         </td>
                                         <td align='right'>
-                                            <Tag
-                                                color='success'
-                                                size='sm'
-                                            >
-                                                Åpne data
-                                            </Tag>
+                                            <Button variant='secondary' size='sm'>Gå til API</Button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </section>
+                        </section>*/}
                     </TabContent>
                     <TabContent value='detaljer'>
                         <DatasetDetails details={fullDetails} />
