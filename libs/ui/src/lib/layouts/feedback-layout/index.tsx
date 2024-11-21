@@ -6,6 +6,7 @@ import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { type Dictionary, interpolate } from '@fdk-frontend/dictionaries';
 
 import styles from './feedback-layout.module.scss';
+import { cookies } from 'next/headers';
 
 type FeedbackLayoutProps = {
     dictionary: Dictionary;
@@ -19,6 +20,9 @@ const FeedbackLayout = async ({
     baseUri,
     communityBaseUri,
 }: PropsWithChildren & FeedbackLayoutProps) => {
+    // Opt-in SSR
+    cookies();
+    
     return (
         <div className={styles.feedbackLayout}>
             {children}
