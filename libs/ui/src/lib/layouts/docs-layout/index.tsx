@@ -5,9 +5,6 @@ import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 import HeaderLayout from '../header-layout';
 import FeedbackLayout from '../feedback-layout';
 
-export const revalidate = 0;
-export const dynamic = 'force-dynamic';
-
 export type DocsLayoutProps = {
     params: Promise<{
         lang: Locale['code'];
