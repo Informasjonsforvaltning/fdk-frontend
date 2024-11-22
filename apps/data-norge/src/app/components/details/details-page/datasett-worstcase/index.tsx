@@ -21,7 +21,6 @@ import {
     TabContent,
     Paragraph,
 } from '@digdir/designsystemet-react';
-import { DownloadIcon } from '@navikt/aksel-icons';
 
 import Distributions, { type Distribution } from '../../distributions';
 
