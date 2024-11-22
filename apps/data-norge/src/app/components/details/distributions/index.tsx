@@ -245,7 +245,7 @@ const Distributions = ({ exampleData = [], datasets, apis = [], className }: Dis
                                                 e.stopPropagation();
                                             }}
                                         >
-                                            <Link href='/view/api'>
+                                            <Link href='/nb/view/api'>
                                                 Gå til API
                                                 <ArrowRightIcon fontSize='1.2em' />
                                             </Link>
