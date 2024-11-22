@@ -48,7 +48,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
 
     const breadcrumbList = [
         {
-            href: '#',
+            href: '/datasets',
             text: 'Datasett',
         },
         {

@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import NextLink from 'next/link';
 
 import { Heading, Button, Link, Paragraph, Alert } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
@@ -104,10 +105,10 @@ const CommunityTab = ({ children }: PropsWithChildren) => {
 					</Paragraph>
 					<HStack>
 						<Button variant='secondary' size='sm' asChild>
-							<a href="https://datalandsbyen.norge.no/">Gå til Datalandsbyen <ExternalLinkIcon /></a>
+							<NextLink href="https://datalandsbyen.norge.no/">Gå til Datalandsbyen <ExternalLinkIcon /></NextLink>
 						</Button>
 						<Button variant='secondary' size='sm' asChild>
-							<a href="/docs/community">Mer informasjon</a>
+							<NextLink href="/docs/community">Mer informasjon</NextLink>
 						</Button>
 					</HStack>
 				</VStack>

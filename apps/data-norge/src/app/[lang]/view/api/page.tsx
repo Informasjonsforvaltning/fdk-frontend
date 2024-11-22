@@ -3,7 +3,8 @@ import { i18n, getDictionary } from '@fdk-frontend/dictionaries';
 import DetailsPage from '../../../components/details/details-page/api';
 import { DetailsPageWrapperProps } from '../page';
 
-const APIPageWrapper = async ({ params }: DetailsPageWrapperProps) => {
+const APIPageWrapper = async (props: DetailsPageWrapperProps) => {
+    const params = await props.params;
     const locale = params.lang ?? i18n.defaultLocale;
     const commonDictionary = await getDictionary(locale, 'common');
 

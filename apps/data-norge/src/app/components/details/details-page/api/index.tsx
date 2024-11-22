@@ -41,8 +41,8 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
 
     const breadcrumbList = [
         {
-            href: '#',
-            text: 'Datasett',
+            href: '/data-services',
+            text: 'API-er',
         },
         {
             href: '#',

@@ -3,7 +3,8 @@ import { i18n, getDictionary } from '@fdk-frontend/dictionaries';
 import DetailsPage from '../../../components/details/details-page/datasett-worstcase';
 import { DetailsPageWrapperProps } from '../page';
 
-const DatasettRichPageWrapper = async ({ params }: DetailsPageWrapperProps) => {
+const DatasettRichPageWrapper = async (props: DetailsPageWrapperProps) => {
+    const params = await props.params;
     const locale = params.lang ?? i18n.defaultLocale;
     const commonDictionary = await getDictionary(locale, 'common');
 
