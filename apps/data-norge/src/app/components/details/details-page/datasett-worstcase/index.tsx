@@ -27,6 +27,7 @@ import Distributions, { type Distribution } from '../../distributions';
 import DatasetDescription from '../../dataset-description';
 import DatasetDetails from '../../dataset-details';
 import MetadataPage from '../../metadata-page';
+import CommunityTab from '../../community-tab';
 
 import worstDetails from '../../dataset-details/data/worst.json';
 
@@ -354,14 +355,7 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                         <DatasetDetails details={worstDetails} />
                     </TabContent>
                     <TabContent value='kommentarer'>
-                        <section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                Kommentarer
-                            </Heading>
-                        </section>
+                        <CommunityTab />
                     </TabContent>
                     <TabContent value='metadata'>
                         <MetadataPage />
