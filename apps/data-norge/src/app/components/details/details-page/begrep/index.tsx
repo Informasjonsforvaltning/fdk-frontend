@@ -29,8 +29,8 @@ export type DetailsPageType = {
 export default function DetailsPage({ locale, commonDictionary }: DetailsPageType) {
     const breadcrumbList = [
         {
-            href: '#',
-            text: 'Datasett',
+            href: '/concepts',
+            text: 'Begreper',
         },
         {
             href: '#',
