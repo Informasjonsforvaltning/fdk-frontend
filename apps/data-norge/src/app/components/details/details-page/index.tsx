@@ -49,7 +49,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
 
     const breadcrumbList = [
         {
-            href: '#',
+            href: '/datasets',
             text: 'Datasett',
         },
         {
@@ -291,29 +291,6 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                                     </tr>
                                 </tbody>
                             </table>
-                            {/*<ul className={cn(styles.related)}>
-                                <li>
-                                    <Link href="#">
-                                        <span>Hydrologiske data</span>
-                                        <span>Norges vassdrags- og energidirektorat (nve)</span>
-                                        <Tag color='success' size='sm'>Åpne data</Tag>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#">
-                                        <span>Standard for yrkesklassifisering (STYRK08)</span>
-                                        <span>Statistisk sentralbyrå</span>
-                                        <Tag color='success' size='sm'>Åpne data</Tag>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#">
-                                        <span>Folketeljinga 1910</span>
-                                        <span>Arkivverket</span>
-                                        <Tag color='warning' size='sm'>Begrenset tilgang</Tag>
-                                    </Link>
-                                </li>
-                            </ul>*/}
                         </section>
                     </TabContent>
                     <TabContent value='distribusjoner'>
@@ -323,45 +300,6 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                             apis={apis}
                             className={cn({ [styles.highlight]: highlight })}
                         />
-                        {/*<BrandDivider className={styles.divider} />
-                        <section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                Relaterte APIer
-                            </Heading>
-                            <table className='table'>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Transportsystem API</Link>
-                                        </td>
-                                        <td>
-                                            <span className={styles.relatedPublisher}>
-                                                Mattilsynet
-                                            </span>
-                                        </td>
-                                        <td align='right'>
-                                            <Button variant='secondary' size='sm'>Gå til API</Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Trafikkdata 2024</Link>
-                                        </td>
-                                        <td>
-                                            <span className={styles.relatedPublisher}>
-                                                Vegvesenet
-                                            </span>
-                                        </td>
-                                        <td align='right'>
-                                            <Button variant='secondary' size='sm'>Gå til API</Button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </section>*/}
                     </TabContent>
                     <TabContent value='detaljer'>
                         <DatasetDetails details={fullDetails} />
