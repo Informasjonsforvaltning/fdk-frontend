@@ -106,7 +106,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
             <div className={styles.mainContent}>
                 <div className={styles.header}>
                     <Link href='#'>Mattilsynet</Link>
-                    <div className={styles.titleContainer}>
+                    <div className={styles.headerGrid}>
                         <Heading
                             level={1}
                             size='lg'
@@ -114,7 +114,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         >
                             Vannverk - transportsystem
                         </Heading>
-                        <div className={styles.titleToolbar}>
+                        <div className={styles.headerToolbar}>
                             <StarButton
                                 defaultNumber={13}
                                 defaultStarred={false}
@@ -130,42 +130,33 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                 Bruk datasett
                             </Button>
                         </div>
-                    </div>
-                    <div className={styles.headerTags}>
-                        <Tag
-                            color='info'
-                            size='sm'
-                        >
-                            <Link href='#'>Datasett</Link>
-                        </Tag>
-                        <Tag
-                            color='success'
-                            size='sm'
-                        >
-                            Åpne data&nbsp;
-                            <HelpText
-                                title='Begrepsforklaring'
+                        <div className={styles.headerTags}>
+                            <Tag
+                                color='info'
                                 size='sm'
-                                style={{ transform: 'scale(0.75)' }}
                             >
-                                <Paragraph size='sm'>Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
-                                <Paragraph size='sm'>
-                                    <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5'>
-                                        Les mer om tilgangsnivåer her
-                                    </Link>
-                                </Paragraph>
-                            </HelpText>
-                        </Tag>
-                        {/*<Tag color='warning' size="sm">Begrenset tilgang</Tag>*/}
-                        {/*<Tag color='subtle' size="sm">
-                        	<span style={{fontWeight:600}}>88%</span>&nbsp;Metadatakvalitet&nbsp;
-                        	<HelpText size="sm" style={{transform:'scale(0.75)'}}>
-                        		<Paragraph size="sm">Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av metadata.</Paragraph>
-                        		<Paragraph size="sm"><Link href="#">Les mer om metadatakvalitet her</Link></Paragraph>
-                        	</HelpText>
-                        </Tag>*/}
-                        <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
-                        <div style={{ flexGrow: 1 }} />
+                                <Link href='#'>Datasett</Link>
+                            </Tag>
+                            <Tag
+                                color='success'
+                                size='sm'
+                            >
+                                Åpne data&nbsp;
+                                <HelpText
+                                    title='Begrepsforklaring'
+                                    size='sm'
+                                    style={{ transform: 'scale(0.75)' }}
+                                >
+                                    <Paragraph size='sm'>Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
+                                    <Paragraph size='sm'>
+                                        <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5'>
+                                            Les mer om tilgangsnivåer her
+                                        </Link>
+                                    </Paragraph>
+                                </HelpText>
+                            </Tag>
+                            <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
+                        </div>
                     </div>
                 </div>
                 <Tabs
