@@ -23,6 +23,8 @@ import {
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
+import CommunityTab from '../../community-tab';
+
 import styles from '../details-page.module.scss';
 
 export type DetailsPageType = {
@@ -155,9 +157,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             Beskrivelse
                         </Heading>
                         <div className={styles.box}>
-                            Tjenesten leverer en liste over inntektsmottakere der arbeidsgiver (opplysningspliktig),
-                            via a-ordningen, har rapportert pensjonsavtale med pensjonsinnretningen som utfører
-                            kallet.
+                            Api for å benytte tjenester på data.altinn.no. Tilgang krever både autentisert virksomhet (maskinporten) og api-nøkkel som kan fås på data.altinn.no
                         </div>
                         <section className={styles.section}>
                             <Heading
@@ -342,7 +342,9 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             </ChipGroup>
                         </section>
                     </TabContent>
-                    <TabContent value='kommentarer'>Kommentarer her</TabContent>
+                    <TabContent value='kommentarer'>
+                        <CommunityTab />
+                    </TabContent>
                 </Tabs>
             </div>
         </div>
