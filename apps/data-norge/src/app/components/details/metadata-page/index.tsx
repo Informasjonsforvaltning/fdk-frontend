@@ -99,7 +99,6 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
                 <div className={styles.toolbar}>
                     <ToggleGroup
                         defaultValue={contentType}
-                        name='toggle-format'
                         size='sm'
                         onChange={(value) => setContentType(value)}
                     >

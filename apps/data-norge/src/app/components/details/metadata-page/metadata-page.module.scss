@@ -12,6 +12,14 @@
         margin: 0 0 1rem 0;
         gap: 1rem;
 
+        @media (max-width: 500px) {
+            display:block;
+
+            .urlbar {
+                margin-bottom:1rem;
+            }
+        }
+
         .urlbar {
             position: relative;
             flex-grow: 1;
