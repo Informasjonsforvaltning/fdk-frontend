@@ -9,6 +9,7 @@ import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import StarButton from '@fdk-frontend/ui/star-button';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
+import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import {
     Button,
     Heading,
@@ -165,17 +166,19 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                     value={activeTab}
                     onChange={setActiveTab}
                 >
-                    <TabList>
-                        <Tab value='oversikt'>Oversikt</Tab>
-                        <Tab value='distribusjoner'>
-                            Distribusjoner og API&nbsp;<Badge>{[...datasets, ...exampleData, ...apis].length}</Badge>
-                        </Tab>
-                        <Tab value='detaljer'>Detaljer</Tab>
-                        <Tab value='kommentarer'>
-                            Diskusjoner&nbsp;<Badge>2</Badge>
-                        </Tab>
-                        <Tab value='metadata'>RDF</Tab>
-                    </TabList>
+                    <ScrollShadows>
+                        <TabList>
+                            <Tab value='oversikt'>Oversikt</Tab>
+                            <Tab value='distribusjoner'>
+                                Distribusjoner og API&nbsp;<Badge>{[...datasets, ...exampleData, ...apis].length}</Badge>
+                            </Tab>
+                            <Tab value='detaljer'>Detaljer</Tab>
+                            <Tab value='kommentarer'>
+                                Diskusjoner&nbsp;<Badge>2</Badge>
+                            </Tab>
+                            <Tab value='metadata'>RDF</Tab>
+                        </TabList>
+                    </ScrollShadows>
                     <TabContent value='oversikt'>
                         {/*<article className={styles.article}>
                             <p>
@@ -228,60 +231,62 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                             >
                                 Relaterte datasett
                             </Heading>
-                            <table className='table'>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Hydrologiske data</Link>
-                                        </td>
-                                        <td>
-                                            <span className={styles.relatedPublisher}>
-                                                Norges vassdrags- og energidirektorat (nve)
-                                            </span>
-                                        </td>
-                                        <td align='right'>
-                                            <Tag
-                                                color='success'
-                                                size='sm'
-                                            >
-                                                Åpne data
-                                            </Tag>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Standard for yrkesklassifisering (STYRK08)</Link>
-                                        </td>
-                                        <td>
-                                            <span className={styles.relatedPublisher}>Statistisk sentralbyrå</span>
-                                        </td>
-                                        <td align='right'>
-                                            <Tag
-                                                color='success'
-                                                size='sm'
-                                            >
-                                                Åpne data
-                                            </Tag>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Folketeljinga 1910</Link>
-                                        </td>
-                                        <td>
-                                            <span className={styles.relatedPublisher}>Arkivverket</span>
-                                        </td>
-                                        <td align='right'>
-                                            <Tag
-                                                color='warning'
-                                                size='sm'
-                                            >
-                                                Begrenset tilgang
-                                            </Tag>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <ScrollShadows>
+                                <table className='table' style={{minWidth:475}}>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <Link href='#'>Hydrologiske data</Link>
+                                            </td>
+                                            <td>
+                                                <span className={styles.relatedPublisher}>
+                                                    Norges vassdrags- og energidirektorat (nve)
+                                                </span>
+                                            </td>
+                                            <td align='right'>
+                                                <Tag
+                                                    color='success'
+                                                    size='sm'
+                                                >
+                                                    Åpne data
+                                                </Tag>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <Link href='#'>Standard for yrkesklassifisering (STYRK08)</Link>
+                                            </td>
+                                            <td>
+                                                <span className={styles.relatedPublisher}>Statistisk sentralbyrå</span>
+                                            </td>
+                                            <td align='right'>
+                                                <Tag
+                                                    color='success'
+                                                    size='sm'
+                                                >
+                                                    Åpne data
+                                                </Tag>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <Link href='#'>Folketeljinga 1910</Link>
+                                            </td>
+                                            <td>
+                                                <span className={styles.relatedPublisher}>Arkivverket</span>
+                                            </td>
+                                            <td align='right'>
+                                                <Tag
+                                                    color='warning'
+                                                    size='sm'
+                                                >
+                                                    Begrenset tilgang
+                                                </Tag>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ScrollShadows>
                         </section>
                     </TabContent>
                     <TabContent value='distribusjoner'>
