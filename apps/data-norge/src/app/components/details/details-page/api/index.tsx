@@ -9,6 +9,7 @@ import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import StarButton from '@fdk-frontend/ui/star-button';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
+import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import {
     Heading,
     Button,
@@ -98,7 +99,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
             <div className={styles.mainContent}>
                 <div className={styles.header}>
                     <Link href='#'>Digdir</Link>
-                    <div className={styles.titleContainer}>
+                    <div className={styles.headerGrid}>
                         <Heading
                             level={1}
                             size='lg'
@@ -106,31 +107,31 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         >
                             data.altinn.no
                         </Heading>
-                        <div className={styles.titleToolbar}>
+                        <div className={styles.headerToolbar}>
                             <StarButton
-                                defaultNumber={7}
+                                defaultNumber={13}
                                 defaultStarred={false}
                             />
                             <Button
                                 size='sm'
                                 onClick={() => {
-                                    setActiveTab('endepunkt');
+                                    setActiveTab('distribusjoner');
                                     blink();
                                 }}
                             >
+                                {/*<DownloadIcon fontSize='1.2em' /> Last ned*/}
                                 Bruk API
                             </Button>
                         </div>
-                    </div>
-                    <div className={styles.headerTags}>
-                        <Tag
-                            color='info'
-                            size='sm'
-                        >
-                            <Link href='#'>API</Link>
-                        </Tag>
-                        <span className={styles.lastUpdated}>Sist oppdatert 2. januar 2023</span>
-                        <div style={{ flexGrow: 1 }} />
+                        <div className={styles.headerTags}>
+                            <Tag
+                                color='info'
+                                size='sm'
+                            >
+                                <Link href='#'>API</Link>
+                            </Tag>
+                            <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
+                        </div>
                     </div>
                 </div>
                 <Tabs
@@ -139,16 +140,18 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                     value={activeTab}
                     onChange={setActiveTab}
                 >
-                    <TabList>
-                        <Tab value='oversikt'>Oversikt</Tab>
-                        <Tab value='endepunkt'>
-                            Endepunkter&nbsp;<Badge>2</Badge>
-                        </Tab>
-                        <Tab value='detaljer'>Detaljer</Tab>
-                        <Tab value='kommentarer'>
-                            Kommentarer&nbsp;<Badge>2</Badge>
-                        </Tab>
-                    </TabList>
+                    <ScrollShadows>
+                        <TabList>
+                            <Tab value='oversikt'>Oversikt</Tab>
+                            <Tab value='endepunkt'>
+                                Endepunkter&nbsp;<Badge>2</Badge>
+                            </Tab>
+                            <Tab value='detaljer'>Detaljer</Tab>
+                            <Tab value='kommentarer'>
+                                Kommentarer&nbsp;<Badge>2</Badge>
+                            </Tab>
+                        </TabList>
+                    </ScrollShadows>
                     <TabContent value='oversikt'>
                         <Heading
                             level={4}
@@ -207,30 +210,32 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                 {/*Relaterte datasett&nbsp;<Badge>{relatedDatasets.length}</Badge>*/}
                                 Tilgjengeliggjør datasett
                             </Heading>
-                            <table className='table'>
-                                <tbody>
-                                    {relatedDatasets.map(dataset => (
-                                        <tr key={dataset.name}>
-                                            <td>
-                                                <Link href='/view'>{dataset.name}</Link>
-                                            </td>
-                                            <td>
-                                                <span className={styles.relatedPublisher}>
-                                                    {dataset.publisher}
-                                                </span>
-                                            </td>
-                                            <td align='right'>
-                                                <Tag
-                                                    color={getColorFromAccessLevel(dataset.accessLevel)}
-                                                    size='sm'
-                                                >
-                                                    {getLabelFromAccessLevel(dataset.accessLevel)}
-                                                </Tag>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                            <ScrollShadows>
+                                <table className='table' style={{minWidth:475}}>
+                                    <tbody>
+                                        {relatedDatasets.map(dataset => (
+                                            <tr key={dataset.name}>
+                                                <td>
+                                                    <Link href='/view'>{dataset.name}</Link>
+                                                </td>
+                                                <td>
+                                                    <span className={styles.relatedPublisher}>
+                                                        {dataset.publisher}
+                                                    </span>
+                                                </td>
+                                                <td align='right'>
+                                                    <Tag
+                                                        color={getColorFromAccessLevel(dataset.accessLevel)}
+                                                        size='sm'
+                                                    >
+                                                        {getLabelFromAccessLevel(dataset.accessLevel)}
+                                                    </Tag>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </ScrollShadows>
                         </section>
                     </TabContent>
                     <TabContent value='endepunkt'>
