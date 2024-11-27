@@ -9,6 +9,7 @@ import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
 import StarButton from '@fdk-frontend/ui/star-button';
+import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import {
     Heading,
     Button,
@@ -78,7 +79,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
             <div className={styles.mainContent}>
                 <div className={styles.header}>
                     <Link href='#'>Arbeids- og velferdsetaten</Link>
-                    <div className={styles.titleContainer}>
+                    <div className={styles.headerGrid}>
                         <Heading
                             level={1}
                             size='lg'
@@ -86,7 +87,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         >
                             Energimålinger kommunale bygg
                         </Heading>
-                        <div className={styles.titleToolbar}>
+                        <div className={styles.headerToolbar}>
                             <StarButton
                                 defaultNumber={13}
                                 defaultStarred={false}
@@ -102,42 +103,33 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                 Bruk datasett
                             </Button>
                         </div>
-                    </div>
-                    <div className={styles.headerTags}>
-                        <Tag
-                            color='info'
-                            size='sm'
-                        >
-                            <Link href='#'>Datasett</Link>
-                        </Tag>
-                        <Tag
-                            color='success'
-                            size='sm'
-                        >
-                            Åpne data&nbsp;
-                            <HelpText
-                                title='Begrepsforklaring'
+                        <div className={styles.headerTags}>
+                            <Tag
+                                color='info'
                                 size='sm'
-                                style={{ transform: 'scale(0.75)' }}
                             >
-                                <Paragraph size='sm'>Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
-                                <Paragraph size='sm'>
-                                    <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5'>
-                                        Les mer om tilgangsnivåer her
-                                    </Link>
-                                </Paragraph>
-                            </HelpText>
-                        </Tag>
-                        {/*<Tag color='warning' size="sm">Begrenset tilgang</Tag>*/}
-                        {/*<Tag color='subtle' size="sm">
-                            <span style={{fontWeight:600}}>88%</span>&nbsp;Metadatakvalitet&nbsp;
-                            <HelpText size="sm" style={{transform:'scale(0.75)'}}>
-                                <Paragraph size="sm">Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av metadata.</Paragraph>
-                                <Paragraph size="sm"><Link href="#">Les mer om metadatakvalitet her</Link></Paragraph>
-                            </HelpText>
-                        </Tag>*/}
-                        <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
-                        <div style={{ flexGrow: 1 }} />
+                                <Link href='#'>Datasett</Link>
+                            </Tag>
+                            <Tag
+                                color='success'
+                                size='sm'
+                            >
+                                Åpne data&nbsp;
+                                <HelpText
+                                    title='Begrepsforklaring'
+                                    size='sm'
+                                    style={{ transform: 'scale(0.75)' }}
+                                >
+                                    <Paragraph size='sm'>Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
+                                    <Paragraph size='sm'>
+                                        <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5'>
+                                            Les mer om tilgangsnivåer her
+                                        </Link>
+                                    </Paragraph>
+                                </HelpText>
+                            </Tag>
+                            <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
+                        </div>
                     </div>
                 </div>
                 <Tabs
@@ -146,17 +138,19 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                     value={activeTab}
                     onChange={setActiveTab}
                 >
-                    <TabList>
-                        <Tab value='oversikt'>Oversikt</Tab>
-                        <Tab value='distribusjoner'>
-                            Distribusjoner og API&nbsp;<Badge>1</Badge>
-                        </Tab>
-                        <Tab value='detaljer'>Detaljer</Tab>
-                        <Tab value='kommentarer'>
-                            Kommentarer&nbsp;<Badge>2</Badge>
-                        </Tab>
-                        <Tab value='metadata'>RDF</Tab>
-                    </TabList>
+                    <ScrollShadows>
+                        <TabList>
+                            <Tab value='oversikt'>Oversikt</Tab>
+                            <Tab value='distribusjoner'>
+                                Distribusjoner og API&nbsp;<Badge>1</Badge>
+                            </Tab>
+                            <Tab value='detaljer'>Detaljer</Tab>
+                            <Tab value='kommentarer'>
+                                Kommentarer&nbsp;<Badge>2</Badge>
+                            </Tab>
+                            <Tab value='metadata'>RDF</Tab>
+                        </TabList>
+                    </ScrollShadows>
                     <TabContent value='oversikt'>
                         {/*<article className={styles.article}>
                             <p>
@@ -266,60 +260,62 @@ Formål: Data fra smilefjestilsyn gir en samlet oversikt over alle serveringsste
                             >
                                 Relaterte datasett
                             </Heading>
-                            <table className='table'>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Hydrologiske data</Link>
-                                        </td>
-                                        <td>
-                                            <span className={styles.relatedPublisher}>
-                                                Norges vassdrags- og energidirektorat (nve)
-                                            </span>
-                                        </td>
-                                        <td align='right'>
-                                            <Tag
-                                                color='success'
-                                                size='sm'
-                                            >
-                                                Åpne data
-                                            </Tag>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Standard for yrkesklassifisering (STYRK08)</Link>
-                                        </td>
-                                        <td>
-                                            <span className={styles.relatedPublisher}>Statistisk sentralbyrå</span>
-                                        </td>
-                                        <td align='right'>
-                                            <Tag
-                                                color='success'
-                                                size='sm'
-                                            >
-                                                Åpne data
-                                            </Tag>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <Link href='#'>Folketeljinga 1910</Link>
-                                        </td>
-                                        <td>
-                                            <span className={styles.relatedPublisher}>Arkivverket</span>
-                                        </td>
-                                        <td align='right'>
-                                            <Tag
-                                                color='warning'
-                                                size='sm'
-                                            >
-                                                Begrenset tilgang
-                                            </Tag>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <ScrollShadows>
+                                <table className='table' style={{minWidth:475}}>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <Link href='#'>Hydrologiske data</Link>
+                                            </td>
+                                            <td>
+                                                <span className={styles.relatedPublisher}>
+                                                    Norges vassdrags- og energidirektorat (nve)
+                                                </span>
+                                            </td>
+                                            <td align='right'>
+                                                <Tag
+                                                    color='success'
+                                                    size='sm'
+                                                >
+                                                    Åpne data
+                                                </Tag>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <Link href='#'>Standard for yrkesklassifisering (STYRK08)</Link>
+                                            </td>
+                                            <td>
+                                                <span className={styles.relatedPublisher}>Statistisk sentralbyrå</span>
+                                            </td>
+                                            <td align='right'>
+                                                <Tag
+                                                    color='success'
+                                                    size='sm'
+                                                >
+                                                    Åpne data
+                                                </Tag>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <Link href='#'>Folketeljinga 1910</Link>
+                                            </td>
+                                            <td>
+                                                <span className={styles.relatedPublisher}>Arkivverket</span>
+                                            </td>
+                                            <td align='right'>
+                                                <Tag
+                                                    color='warning'
+                                                    size='sm'
+                                                >
+                                                    Begrenset tilgang
+                                                </Tag>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ScrollShadows>
                             {/*<ul className={cn(styles.related)}>
                                 <li>
                                     <Link href="#">
