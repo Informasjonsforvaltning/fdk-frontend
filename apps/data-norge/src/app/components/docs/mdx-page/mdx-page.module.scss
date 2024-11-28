@@ -8,6 +8,7 @@
         grid-template-columns: calc(25% - 0.5rem) calc(50% - 2rem) calc(25% - 0.5rem);
         grid-template-areas: '. article .';
         gap: 2rem;
+        margin-top:2rem;
 
         &.noSidebars {
             grid-template-columns: 100%;
@@ -66,6 +67,7 @@
 
         @container (max-width: 800px) {
             display: block;
+            margin-top:0;
 
             .mainColumn {
                 margin-top: 2rem;
