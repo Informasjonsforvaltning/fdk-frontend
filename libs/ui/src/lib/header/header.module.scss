@@ -3,6 +3,10 @@
 .header {
     + main {
         padding-top: 74px;
+
+        @media (max-width: 650px) {
+            padding-top: 63px;
+        }
     }
 
     &.frontpageHeader {
