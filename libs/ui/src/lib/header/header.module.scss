@@ -3,6 +3,10 @@
 .header {
     + main {
         padding-top: 74px;
+
+        @media (max-width: 650px) {
+            padding-top: 63px;
+        }
     }
 
     &.frontpageHeader {
@@ -56,8 +60,11 @@
     width: 100%;
     transition: all linear 200ms;
     max-height: 100vh;
-    overflow: auto;
     background: white;
+
+    @media (max-width: 460px) {
+        overflow: auto;
+    }
 
     &.headerSticky {
         position: fixed;

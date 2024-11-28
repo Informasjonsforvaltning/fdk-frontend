@@ -7,15 +7,15 @@ export const i18n = {
     locales: [
         {
             code: 'nb',
-            name: 'Bokmål'
+            name: 'Bokmål',
         },
         {
             code: 'nn',
-            name: 'Nynorsk'
+            name: 'Nynorsk',
         },
         {
             code: 'en',
-            name: 'English'
+            name: 'English',
         },
     ],
 } as const;
