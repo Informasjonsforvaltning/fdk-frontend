@@ -1,9 +1,11 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from "react";
 import cn from 'classnames';
 
 import styles from "./scroll-shadows.module.scss";
 
-const ScrollShadows = ({ children, className, ...props }) => {
+const ScrollShadows = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   const scrollerRef = useRef(null);
   const [overflow, setOverflow] = useState({
     overflowLeft: false,
@@ -31,13 +33,13 @@ const ScrollShadows = ({ children, className, ...props }) => {
     if (!container) return;
 
     updateOverflow(); // Initial check
-    container.addEventListener("scroll", updateOverflow);
+    (container as HTMLElement).addEventListener("scroll", updateOverflow);
     
     const resizeObserver = new ResizeObserver(updateOverflow);
     resizeObserver.observe(container);
 
     return () => {
-    	container.removeEventListener("scroll", updateOverflow)
+    	(container as HTMLElement).removeEventListener("scroll", updateOverflow)
     	resizeObserver.disconnect();
     };
   }, []);
