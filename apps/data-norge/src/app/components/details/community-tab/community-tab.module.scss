@@ -10,7 +10,7 @@
 }
 
 .forumStats {
-    display:flex;
+    display:inline-flex;
     flex-direction:column;
     text-align:center;
     padding:0.25rem;
@@ -18,10 +18,10 @@
 
 .section {
     :global(.table) {
-        margin-top:1rem;
 
         .threadLink {
-            margin-bottom:0.75rem;
+            margin-bottom:0.5rem;
+            line-height:1.5rem;
         }
 
         :global(.fds-tag) {
@@ -43,6 +43,22 @@
             :global(.fds-tag) {
                 // background:white;
             }
+        }
+    }
+}
+
+.tableScroller {
+    margin:1rem -2rem;
+
+    > div {
+        padding:0 2rem;
+    }
+
+    @media (max-width: 400px) {
+        margin:1rem -1.5rem;
+
+        > div {
+            padding:0 1.5rem;
         }
     }
 }

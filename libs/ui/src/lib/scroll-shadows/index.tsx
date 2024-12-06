@@ -46,12 +46,13 @@ const ScrollShadows = ({ children, className, ...props }: React.HTMLAttributes<H
 
   return (
     <div
-      className={cn(styles.container, {
+      className={cn(styles.container, className, {
       	[styles.shadowTop]: overflow.overflowTop,
       	[styles.shadowRight]: overflow.overflowRight,
       	[styles.shadowBottom]: overflow.overflowBottom,
       	[styles.shadowLeft]: overflow.overflowLeft
       })}
+      data-overflows={Object.values(overflow).some(p => p === true)}
       {...props}
     >
     	<div

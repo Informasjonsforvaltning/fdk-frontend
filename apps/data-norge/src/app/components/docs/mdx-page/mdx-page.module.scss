@@ -92,4 +92,15 @@
             }
         }
     }
+
+    @media (max-width: 400px) {
+        margin: 0 1.5rem 3rem;
+
+        .content {
+            .asideContent {
+                margin:0 -1.5rem;
+                padding:1rem 1.5rem;
+            }
+        }
+    }
 }

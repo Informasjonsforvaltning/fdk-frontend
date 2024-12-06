@@ -28,6 +28,10 @@
     margin: 0 2rem 3rem;
     container-type: inline-size;
 
+    @media (max-width: 400px) {
+        margin: 0 1.5rem 3rem;
+    }
+
     a {
         &:visited {
             color: var(--color-link);
@@ -152,9 +156,28 @@
             }
         }
 
-        // :global(.fds-tabs__tablist) {
-        //     overflow-x: auto;
-        // }
+        .tabsScrollShadows {
+            margin:0 -2rem;
+            padding:0 2rem;
+
+            @media (max-width: 1000px) {
+                padding:0;
+                border-bottom:1px solid #ddd;
+
+                :global(.fds-tabs__tablist) {
+                    margin:0 2rem;
+                    border-bottom:0;
+                }
+            }
+
+            @media (max-width: 400px) {
+                margin:0 -1.5rem;
+
+                :global(.fds-tabs__tablist) {
+                    margin:0 1.5rem;
+                }
+            }
+        }
 
         :global(.fds-tabs__tab) {
             padding: 0.75rem 1rem;
@@ -205,6 +228,22 @@
 
         .scrollContainer {
             overflow-x:auto;
+        }
+    }
+
+    .tableScroller {
+        margin:1rem -2rem;
+
+        > div {
+            padding:0 2rem;
+        }
+
+        @media (max-width: 400px) {
+            margin:1rem -1.5rem;
+
+            > div {
+                padding:0 1.5rem;
+            }
         }
     }
 }
