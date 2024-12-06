@@ -156,6 +156,12 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                     </Paragraph>
                                 </HelpText>
                             </Tag>
+                            {/*<Tag
+                                color='success'
+                                size='sm'
+                            >
+                                ⚖ Har lisens
+                            </Tag>*/}
                             <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
                         </div>
                     </div>
@@ -166,7 +172,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                     value={activeTab}
                     onChange={setActiveTab}
                 >
-                    <ScrollShadows>
+                    <ScrollShadows className={styles.tabsScrollShadows}>
                         <TabList>
                             <Tab value='oversikt'>Oversikt</Tab>
                             <Tab value='distribusjoner'>
@@ -231,7 +237,7 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                             >
                                 Relaterte datasett
                             </Heading>
-                            <ScrollShadows>
+                            <ScrollShadows className={styles.tableScroller}>
                                 <table className='table' style={{minWidth:475}}>
                                     <tbody>
                                         <tr>

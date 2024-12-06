@@ -4,11 +4,6 @@
 
 .fds-heading {
     font-weight: 500;
-    // &--xxs {
-    //     font-size: 1.1rem;
-
-    //     line-height: 1.3em;
-    // }
 }
 
 .fds-ingress {
@@ -17,8 +12,6 @@
 }
 
 .fds-link {
-    // display:inline;
-
     &:visited {
         &:not(:focus-visible) {
             color: var(--color-link);
@@ -106,4 +99,19 @@
 
 .fds-accordion__expand-icon {
     flex-shrink:0;
+}
+
+/*
+Fix for weird code block inside Alert overflow bug.
+https://data.norge.no/nb/docs/sharing-data/how-to-dataset/2-dataset-description
+*/
+.fds-alert__content {
+    overflow:auto;
+}
+
+/*
+Fix for bug where items doesnt wrap
+*/
+.fds-chip--group-container {
+    flex-wrap:wrap;
 }
