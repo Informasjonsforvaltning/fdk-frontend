@@ -3,6 +3,10 @@
 .container {
     margin: 0 -2rem;
     background:#f8f8f8;
+
+    @media (max-width: 400px) {
+        margin:0 -1.5rem;
+    }
 }
 
 .breadcrumbs {
@@ -26,6 +30,10 @@
     @media (max-width: 865px) {
         margin-top:0;
         margin-bottom:0;
+    }
+
+    @media (max-width: 400px) {
+        padding: 0.75rem 1.5rem;
     }
 }
 

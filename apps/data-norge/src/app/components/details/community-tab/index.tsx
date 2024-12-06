@@ -2,13 +2,14 @@ import { PropsWithChildren } from 'react';
 import NextLink from 'next/link';
 
 import { Heading, Button, Link, Paragraph, Alert, Tag } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { ExternalLinkIcon, Chat2Icon } from '@navikt/aksel-icons';
 
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 import VStack from '@fdk-frontend/ui/vstack';
 import { Subtext } from '@fdk-frontend/ui/typography';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
+import IconBadge from '@fdk-frontend/ui/icon-badge';
 
 import styles from './community-tab.module.scss';
 
@@ -29,28 +30,19 @@ const CommunityTab = ({ children }: PropsWithChildren) => {
 				</Button>*/}
 				<HStack>
 					Diskusjoner på Datalandsbyen <Badge>2</Badge>
-					{/*<HelpText
-						title='Begrepsforklaring'
-						size='sm'
-						style={{ transform: 'scale(0.75)' }}
-					>
-						<Paragraph size='sm'>
-							Viser alle diskusjoner på Datalandsbyen hvor denne siden er tagget.
-							<Paragraph size='sm'>
-								<Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5'>
-									Les mer om Datalandsbyen her
-								</Link>
-							</Paragraph>
-						</Paragraph>
-					</HelpText>*/}
 				</HStack>
 			</Heading>
-			<ScrollShadows>
+			<ScrollShadows className={styles.tableScroller}>
 				<table className='table' style={{minWidth:600}}>
 					<tbody>
 						<tr>
+							<td width='1'>
+								<IconBadge fontSize='1.5rem'>
+									<Chat2Icon />
+								</IconBadge>
+							</td>
 							<td>
-								<Link href='#' className={styles.threadLink}>Datasett Stort testdatasett 1, RAMSUND OG ROGNAN REVISJON <ExternalLinkIcon /></Link>
+								<Link href='#' className={styles.threadLink}>Vannverk - transportsystem <ExternalLinkIcon /></Link>
 								<HStack style={{gap:'0.5rem'}}>
 									<Tag size='sm' color='neutral'><Link href='#'>Kommentartråder</Link></Tag>
 									<Subtext>Postet av fdk-community-admin</Subtext>
@@ -74,8 +66,13 @@ const CommunityTab = ({ children }: PropsWithChildren) => {
 							</td>
 						</tr>
 						<tr>
+							<td width='1'>
+								<IconBadge fontSize='1.5rem'>
+									<Chat2Icon />
+								</IconBadge>
+							</td>
 							<td>
-								<Link href='#' className={styles.threadLink}>Datasett Stort testdatasett 1, RAMSUND OG ROGNAN REVISJON <ExternalLinkIcon /></Link>
+								<Link href='#' className={styles.threadLink}> Strømstøtten minutt for minutt - beregnet med åpne data  <ExternalLinkIcon /></Link>
 								<HStack style={{gap:'0.5rem'}}>
 									<Tag size='sm' color='neutral'><Link href='#'>Gode eksempler på bruk</Link></Tag>
 									<Subtext>Postet av fdk-community-admin</Subtext>
