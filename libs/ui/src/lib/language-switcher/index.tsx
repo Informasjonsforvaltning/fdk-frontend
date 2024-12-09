@@ -31,7 +31,6 @@ const LanguageSwitcher = ({ inverted }: LanguageSwitcherProps) => {
                 defaultValue={defaultCode}
                 size='sm'
                 onChange={(code) => onLanguageSelect(code as LocaleCodes)}
-                name='Select language'
             >
                 {i18n.locales.map((locale) => (
                     <ToggleGroup.Item

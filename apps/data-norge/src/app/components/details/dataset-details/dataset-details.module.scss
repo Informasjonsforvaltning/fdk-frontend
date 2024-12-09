@@ -1,0 +1,35 @@
+@import '@fdk-frontend/ui/core/mixins';
+
+.details {
+    > section {
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+
+        > :global(.fds-heading) {
+            margin-bottom: 1em;
+        }
+    }
+
+    .toggleButton {
+        float: right;
+        position: relative;
+        top: -0.75rem;
+    }
+}
+
+.article {
+    @include article();
+}
+
+.placeholderText {
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.greyBox {
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    padding: 0.75rem 0.75rem;
+    background: #fafafa;
+}
