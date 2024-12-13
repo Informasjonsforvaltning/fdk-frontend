@@ -55,6 +55,7 @@
     "jsonld": "^8.3.3",
     "leaflet": "^1.9.4",
     "marked": "^15.0.7",
+    "mime-types": "^2.1.35",
     "next": "^15.1.6",
     "next-mdx-remote": "^5.0.0",
     "normalize.css": "^8.0.1",
