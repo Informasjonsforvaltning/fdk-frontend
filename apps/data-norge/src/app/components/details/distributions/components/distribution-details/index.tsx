@@ -1,6 +1,5 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-
 import {
     Heading,
     Link,
@@ -12,10 +11,94 @@ import {
     TableRow,
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-
+import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type JSONValue } from '@fdk-frontend/types';
 import HStack from '@fdk-frontend/ui/hstack';
+import detailsPageStyles from '../../../details-page/details-page.module.scss';
+import PlaceholderText from '../../../placeholder-text';
 
-import detailsPageStyles from '../details-page/details-page.module.scss';
+type DistributionDetailsProps = {
+    distribution: JSONValue;
+    locale: LocaleCodes;
+}
+
+const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps) => {
+    return (
+        <>
+            <dl>
+                <dt>Beskrivelse:</dt>
+                <dd>
+                    <article className={detailsPageStyles.article}>
+                        {distribution.description?.[locale] || distribution.description?.[i18n.defaultLocale]}
+                    </article>
+                </dd>
+                <dt>TilgangsURL:</dt>
+                <dd>
+                    {
+                        distribution.accessURL ?
+                        <Link href="#">{distribution.accessURL}</Link> :
+                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                    }
+                </dd>
+                <dt>Direkte nedlasting:</dt>
+                <dd>
+                    {
+                        distribution.downloadURL ?
+                        <Link href="#">{distribution.downloadURL}</Link> :
+                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                    }
+                </dd>
+                <dt>API:</dt>
+                <dd>
+                    {
+                        distribution.accessService ? 
+                        distribution.accessService.map(api => (<Link href="#">{api.uri}</Link>)) :
+                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                    }
+                </dd>
+                <dt>Dokumentasjon:</dt>
+                <dd>
+                    {
+                        distribution.page ? 
+                        distribution.page.map(page => (<Link href={page.uri}>{page.uri}</Link>)) :
+                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                    }
+                </dd>
+                <dt>Lisens:</dt>
+                <dd>
+                    {
+                        distribution.license ? 
+                        distribution.license.map(license => (
+                            <Link href={license.uri}>
+                                {
+                                    license.prefLabel?.[locale] ||
+                                    license.prefLabel?.['no'] ||
+                                    license.prefLabel?.[i18n.defaultLocale]
+                                }
+                            </Link>
+                        )) :
+                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                    }
+                </dd>
+                <dt>I samsvar med:</dt>
+                <dd>
+                    {
+                        distribution.conformsTo ? 
+                        distribution.conformsTo.map(standard => (
+                            <Link href={standard.uri}>
+                                {
+                                    standard.prefLabel ||
+                                    standard.uri
+                                }
+                            </Link>
+                        )) :
+                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                    }
+                </dd>
+            </dl>
+        </>
+    );
+}
 
 const SimpleContent = () => {
     return (
@@ -214,3 +297,4 @@ const RichContent = () => {
 };
 
 export { RichContent, SimpleContent, ExampleContent, APIContent };
+export default DistributionDetails;
