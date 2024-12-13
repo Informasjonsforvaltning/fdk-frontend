@@ -1,0 +1,17 @@
+.errorPage {
+    background: transparent;
+
+    .inner {
+        text-align: center;
+        padding: 10rem 2rem;
+        color: white;
+
+        :global(.fds-heading) {
+            color: white;
+        }
+
+        > * + * {
+            margin-top: 1rem;
+        }
+    }
+}

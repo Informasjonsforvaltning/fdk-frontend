@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import cn from 'classnames';
 
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { type JSONValue } from '@fdk-frontend/types';
+import { sumArrayLengths } from '@fdk-frontend/utils';
 
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
@@ -29,17 +31,23 @@ import DatasetDescription from '../dataset-description';
 import DatasetDetails from '../dataset-details';
 import MetadataPage from '../metadata-page';
 import CommunityTab from '../community-tab';
+import AccessLevelTag from '../access-level-tag';
 
 import fullDetails from '../dataset-details/data/full.json';
 
 import styles from './details-page.module.scss';
 
+export type DetailsPageVariants = 'dataset' | 'api' | 'concept';
+
 export type DetailsPageType = {
+    variant: DetailsPageVariants;
+    resource: JSONValue;
+    search: JSONValue;
     locale: LocaleCodes;
     commonDictionary: Dictionary;
 };
 
-export default function DetailsPage({ locale, commonDictionary }: DetailsPageType) {
+export default function DetailsPage({ variant, resource, search, locale, commonDictionary }: DetailsPageType) {
     const [activeTab, setActiveTab] = useState('oversikt');
     const [highlight, setHighlight] = useState(false);
 
@@ -55,34 +63,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
         },
         {
             href: '#',
-            text: 'Energimålinger kommunale bygg',
-        },
-    ];
-
-    const exampleData: Distribution[] = [
-        {
-            title: 'Eksempel på tabelloppføring',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
-        },
-    ];
-
-    const datasets: Distribution[] = [
-        {
-            title: 'Oversikt over transportsystemet (ledningsnettet) i de enkelte vannforsyningssystemene',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
-        },
-        {
-            title: 'Historiske data om endringer i transportsystemet',
-            tags: ['csv', 'json', 'xml', 'yaml'],
-            description: 'API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV',
-            accessUrl: 'https://hotell.difi.no/?dataset=npd/survey/last-updates',
-            downloadUrl: 'https://hotell.difi.no/download/npd/survey/last-updates?download',
+            text: resource.title?.[locale] || resource.title?.[i18n.defaultLocale],
         },
     ];
 
@@ -106,14 +87,14 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    <Link href='#'>Mattilsynet</Link>
+                    <Link href='#'>{resource.publisher?.prefLabel?.[locale] || resource.publisher?.prefLabel?.[i18n.defaultLocale]}</Link>
                     <div className={styles.headerGrid}>
                         <Heading
                             level={1}
                             size='lg'
                             className={styles.title}
                         >
-                            Vannverk - transportsystem
+                            {resource.title?.[locale] || resource.title?.[i18n.defaultLocale]}
                         </Heading>
                         <div className={styles.headerToolbar}>
                             <StarButton
@@ -127,7 +108,6 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                     blink();
                                 }}
                             >
-                                {/*<DownloadIcon fontSize='1.2em' /> Last ned*/}
                                 Bruk datasett
                             </Button>
                         </div>
@@ -136,32 +116,9 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                                 color='info'
                                 size='sm'
                             >
-                                <Link href='#'>Datasett</Link>
+                                <Link href='/datasets'>Datasett</Link>
                             </Tag>
-                            <Tag
-                                color='success'
-                                size='sm'
-                            >
-                                Åpne data&nbsp;
-                                <HelpText
-                                    title='Begrepsforklaring'
-                                    size='sm'
-                                    style={{ transform: 'scale(0.75)' }}
-                                >
-                                    <Paragraph size='sm'>Åpne data er data som er fritt tilgjengelig for alle.</Paragraph>
-                                    <Paragraph size='sm'>
-                                        <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsniv%C3%A5'>
-                                            Les mer om tilgangsnivåer her
-                                        </Link>
-                                    </Paragraph>
-                                </HelpText>
-                            </Tag>
-                            {/*<Tag
-                                color='success'
-                                size='sm'
-                            >
-                                ⚖ Har lisens
-                            </Tag>*/}
+                            <AccessLevelTag accessCode={resource.accessRights?.code} />
                             <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
                         </div>
                     </div>
@@ -176,7 +133,10 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         <TabList>
                             <Tab value='oversikt'>Oversikt</Tab>
                             <Tab value='distribusjoner'>
-                                Distribusjoner og API&nbsp;<Badge>{[...datasets, ...exampleData, ...apis].length}</Badge>
+                                Distribusjoner og API&nbsp;
+                                <Badge>
+                                    {sumArrayLengths(resource.distribution, resource.sample)}
+                                </Badge>
                             </Tab>
                             <Tab value='detaljer'>Detaljer</Tab>
                             <Tab value='kommentarer'>
@@ -186,14 +146,6 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         </TabList>
                     </ScrollShadows>
                     <TabContent value='oversikt'>
-                        {/*<article className={styles.article}>
-                            <p>
-                                Statistikk over helt arbeidsledige ved utgangen av måneden fordelt på bostedskommune og
-                                fylke Helt ledige arbeidssøkere omfatter alle arbeidssøkere som de to siste ukene har
-                                meldt til NAV at de er helt uten arbeid, søker nytt arbeid og er tilgjengelig for det
-                                arbeid som søkes. Se om statistikken på www.nav.no for ytterligere forklaringer.
-                            </p>
-                        </article>*/}
                         <section className={styles.section}>
                             <Heading
                                 level={4}
@@ -203,7 +155,9 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                             </Heading>
                             <div className={styles.box}>
                                 <DatasetDescription className={styles.article}>
-                                    {`
+                                    {resource.description?.[locale] || resource.description?.[i18n.defaultLocale]}
+                                    {/*`
+                                    }
 Datasettene omfatter offentlige eller private vannverk som forsyner **50 personer eller mer**. I tillegg inkluderer de alle kommunalt eide virksomheter med egen vannforsyning, uavhengig av størrelse. Datasettene inneholder også data om nedlagte anlegg, for de som ønsker å se historiske data.
 
 #### Tilsynsobjekter i Datasettene
@@ -217,16 +171,17 @@ Datasett for **Transportsystem** er tilgjengelig nedenfor. I tillegg finnes det 
 
 #### Historiske Data
 For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er det mulig å se historiske data som en del av den årlige innrapporteringen. For å nyttiggjøre informasjonen må filen kobles til en "moderfil" for å hente navn og annen statisk informasjon. Disse filene har endelsen _innrapportering i filnavnet.
-`}
+`*/}
                                 </DatasetDescription>
                             </div>
                         </section>
                         <section className={styles.section}>
                             <Distributions
-                                datasets={datasets}
-                                exampleData={exampleData}
-                                apis={apis}
+                                datasets={resource.distribution}
+                                exampleData={resource.sample}
+                                apis={search.hits}
                                 className={cn({ [styles.highlight]: highlight })}
+                                locale={locale}
                             />
                         </section>
                         <BrandDivider className={styles.divider} />
@@ -297,10 +252,11 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                     </TabContent>
                     <TabContent value='distribusjoner'>
                         <Distributions
-                            exampleData={exampleData}
-                            datasets={datasets}
-                            apis={apis}
+                            datasets={resource.distribution}
+                            exampleData={resource.sample}
+                            apis={search.hits}
                             className={cn({ [styles.highlight]: highlight })}
+                            locale={locale}
                         />
                     </TabContent>
                     <TabContent value='detaljer'>
