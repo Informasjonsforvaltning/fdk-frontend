@@ -16,6 +16,7 @@ import styles from './distributions.module.scss';
 import DistributionDetails from './components/distribution-details';
 import DistributionHeader from './components/distribution-header';
 import ApiHeader from './components/api-header';
+import ApiDetails from './components/api-details';
 
 export type DistributionsProps = {
     datasets?: JSONValue[];
@@ -37,34 +38,40 @@ const Distributions = ({ exampleData, datasets, apis, className, locale, ...prop
                     <Badge>{sumArrayLengths(datasets, exampleData)}</Badge>
                 </HStack>
             </Heading>
-            <Accordion border>
-                {datasets.map((distribution, index) => (
-                    <Accordion.Item key={distribution.accessURL}>
-                        <Accordion.Header
-                            level={3}
-                            className={styles.header}
-                        >
-                            <DistributionHeader distribution={distribution} />
-                        </Accordion.Header>
-                        <Accordion.Content className={styles.content}>
-                            <DistributionDetails distribution={distribution} locale={locale} />
-                        </Accordion.Content>
-                    </Accordion.Item>
-                ))}
-                {exampleData.map((example, index) => (
-                    <Accordion.Item key={example.accessURL}>
-                        <Accordion.Header
-                            level={3}
-                            className={styles.header}
-                        >
-                            <DistributionHeader distribution={example} exampleData={true} />
-                        </Accordion.Header>
-                        <Accordion.Content className={styles.content}>
-                            <DistributionDetails distribution={example} locale={locale} />
-                        </Accordion.Content>
-                    </Accordion.Item>
-                ))}
-            </Accordion>
+            {
+                datasets && datasets.length ?
+                <Accordion border>
+                    {datasets.map((distribution, index) => (
+                        <Accordion.Item key={distribution.accessURL}>
+                            <Accordion.Header
+                                level={3}
+                                className={styles.header}
+                            >
+                                <DistributionHeader distribution={distribution} />
+                            </Accordion.Header>
+                            <Accordion.Content className={styles.content}>
+                                <DistributionDetails distribution={distribution} locale={locale} />
+                            </Accordion.Content>
+                        </Accordion.Item>
+                    ))}
+                    {exampleData && exampleData.map((example, index) => (
+                        <Accordion.Item key={example.accessURL}>
+                            <Accordion.Header
+                                level={3}
+                                className={styles.header}
+                            >
+                                <DistributionHeader distribution={example} exampleData={true} />
+                            </Accordion.Header>
+                            <Accordion.Content className={styles.content}>
+                                <DistributionDetails distribution={example} locale={locale} />
+                            </Accordion.Content>
+                        </Accordion.Item>
+                    ))}
+                </Accordion> :
+                <PlaceholderBox>
+                    Dette datasettet har ingen distribusjoner.
+                </PlaceholderBox>
+            }
             <Heading
                 level={4}
                 size='xxsmall'
@@ -86,7 +93,7 @@ const Distributions = ({ exampleData, datasets, apis, className, locale, ...prop
                                 <ApiHeader api={api} />
                             </Accordion.Header>
                             <Accordion.Content className={styles.content}>
-                                
+                                <ApiDetails api={api} />
                             </Accordion.Content>
                         </Accordion.Item>
                     ))}

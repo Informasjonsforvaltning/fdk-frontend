@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import cn from 'classnames';
 
 import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
@@ -26,30 +27,41 @@ import {
 } from '@digdir/designsystemet-react';
 // import { DownloadIcon } from '@navikt/aksel-icons';
 
-import Distributions, { type Distribution } from '../distributions';
-import DatasetDescription from '../dataset-description';
-import DatasetDetails from '../dataset-details';
-import MetadataPage from '../metadata-page';
-import CommunityTab from '../community-tab';
-import AccessLevelTag from '../access-level-tag';
+import Distributions, { type Distribution } from '../../distributions';
+import DatasetDescription from '../../dataset-description';
+import DatasetDetails from '../../dataset-details';
+import MetadataPage from '../../metadata-page';
+import CommunityTab from '../../community-tab';
+import AccessLevelTag from '../../access-level-tag';
 
-import fullDetails from '../dataset-details/data/full.json';
+import fullDetails from '../../dataset-details/data/full.json';
 
-import styles from './details-page.module.scss';
+import styles from '../details-page.module.scss';
 
 export type DetailsPageVariants = 'dataset' | 'api' | 'concept';
 
 export type DetailsPageType = {
     variant: DetailsPageVariants;
     resource: JSONValue;
-    search: JSONValue;
+    apis: JSONValue;
     locale: LocaleCodes;
     commonDictionary: Dictionary;
+    defaultActiveTab?: string;
 };
 
-export default function DetailsPage({ variant, resource, search, locale, commonDictionary }: DetailsPageType) {
-    const [activeTab, setActiveTab] = useState('oversikt');
+export default function DetailsPage({ variant, resource, apis, locale, commonDictionary, defaultActiveTab = 'overview' }: DetailsPageType) {
+    const router = useRouter();
+
+    const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
+
+    const tabs = [
+        'overview',
+        'distributions',
+        'details',
+        'community',
+        'rdf'
+    ];
 
     const blink = () => {
         setHighlight(true);
@@ -67,16 +79,9 @@ export default function DetailsPage({ variant, resource, search, locale, commonD
         },
     ];
 
-    const apis: any[] = [
-        {
-            title: 'data.altinn.no',
-            tags: ['json'],
-            description: 'Api for å benytte tjenester på data.altinn.no. Tilgang krever både autentisert virksomhet (maskinporten) og api-nøkkel som kan fås på data.altinn.no',
-            endpoint: 'https://api.data.altinn.no/v1',
-            endpointSpec: 'https://api.data.altinn.no/v1/public/metadata/oas/json',
-            documentation: 'https://docs.data.altinn.no/'
-        }
-    ];
+    const updateUri = (tab) => {
+        router.push(`?tab=${tab}`, undefined, { shallow: true });
+    }
 
     return (
         <div className={styles.detailsPage}>
@@ -104,7 +109,7 @@ export default function DetailsPage({ variant, resource, search, locale, commonD
                             <Button
                                 size='sm'
                                 onClick={() => {
-                                    setActiveTab('distribusjoner');
+                                    setActiveTab('distributions');
                                     blink();
                                 }}
                             >
@@ -124,28 +129,51 @@ export default function DetailsPage({ variant, resource, search, locale, commonD
                     </div>
                 </div>
                 <Tabs
-                    defaultValue='oversikt'
+                    defaultValue='overview'
                     size='sm'
                     value={activeTab}
-                    onChange={setActiveTab}
+                    onChange={(value) => {
+                        setActiveTab(value);
+                    }}
                 >
                     <ScrollShadows className={styles.tabsScrollShadows}>
                         <TabList>
-                            <Tab value='oversikt'>Oversikt</Tab>
-                            <Tab value='distribusjoner'>
+                            <Tab
+                                value='overview'
+                                onClick={() => updateUri('overview')}
+                            >
+                                Oversikt
+                            </Tab>
+                            <Tab
+                                value='distributions'
+                                onClick={() => updateUri('distributions')}
+                            >
                                 Distribusjoner og API&nbsp;
                                 <Badge>
-                                    {sumArrayLengths(resource.distribution, resource.sample)}
+                                    {sumArrayLengths(resource.distribution, resource.sample, apis)}
                                 </Badge>
                             </Tab>
-                            <Tab value='detaljer'>Detaljer</Tab>
-                            <Tab value='kommentarer'>
+                            <Tab
+                                value='details'
+                                onClick={() => updateUri('details')}
+                            >
+                                Detaljer
+                            </Tab>
+                            <Tab
+                                value='community'
+                                onClick={() => updateUri('community')}
+                            >
                                 Diskusjoner&nbsp;<Badge>2</Badge>
                             </Tab>
-                            <Tab value='metadata'>RDF</Tab>
+                            <Tab
+                                value='rdf'
+                                onClick={() => updateUri('rdf')}
+                            >
+                                RDF
+                            </Tab>
                         </TabList>
                     </ScrollShadows>
-                    <TabContent value='oversikt'>
+                    <TabContent value='overview'>
                         <section className={styles.section}>
                             <Heading
                                 level={4}
@@ -156,22 +184,6 @@ export default function DetailsPage({ variant, resource, search, locale, commonD
                             <div className={styles.box}>
                                 <DatasetDescription className={styles.article}>
                                     {resource.description?.[locale] || resource.description?.[i18n.defaultLocale]}
-                                    {/*`
-                                    }
-Datasettene omfatter offentlige eller private vannverk som forsyner **50 personer eller mer**. I tillegg inkluderer de alle kommunalt eide virksomheter med egen vannforsyning, uavhengig av størrelse. Datasettene inneholder også data om nedlagte anlegg, for de som ønsker å se historiske data.
-
-#### Tilsynsobjekter i Datasettene
-Datasettene dekker følgende tilsynsobjekter:
-1. **Vannforsyningssystem** – inkludert analyser av drikkevannet.
-2. **Transportsystem**
-3. **Behandlingsanlegg**
-4. **Inntakspunkt** – inkludert analyser av vannkilden.
-
-Datasett for **Transportsystem** er tilgjengelig nedenfor. I tillegg finnes det en fil (_informasjon.txt_) som gir en oversikt over produksjonstidspunktet for uttrekkene og antall linjer i hver fil. Uttrekkene oppdateres ukentlig.
-
-#### Historiske Data
-For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er det mulig å se historiske data som en del av den årlige innrapporteringen. For å nyttiggjøre informasjonen må filen kobles til en "moderfil" for å hente navn og annen statisk informasjon. Disse filene har endelsen _innrapportering i filnavnet.
-`*/}
                                 </DatasetDescription>
                             </div>
                         </section>
@@ -179,7 +191,7 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                             <Distributions
                                 datasets={resource.distribution}
                                 exampleData={resource.sample}
-                                apis={search.hits}
+                                apis={apis}
                                 className={cn({ [styles.highlight]: highlight })}
                                 locale={locale}
                             />
@@ -250,22 +262,25 @@ For datasettene *Vannforsyningssystem*, *Transportsystem*, og *Inntakspunkt* er 
                             </ScrollShadows>
                         </section>
                     </TabContent>
-                    <TabContent value='distribusjoner'>
+                    <TabContent value='distributions'>
                         <Distributions
                             datasets={resource.distribution}
                             exampleData={resource.sample}
-                            apis={search.hits}
+                            apis={apis}
                             className={cn({ [styles.highlight]: highlight })}
                             locale={locale}
                         />
                     </TabContent>
-                    <TabContent value='detaljer'>
-                        <DatasetDetails details={fullDetails} />
+                    <TabContent value='details'>
+                        <DatasetDetails
+                            dataset={resource}
+                            locale={locale}
+                        />
                     </TabContent>
-                    <TabContent value='kommentarer'>
+                    <TabContent value='community'>
                         <CommunityTab />
                     </TabContent>
-                    <TabContent value='metadata'>
+                    <TabContent value='rdf'>
                         <MetadataPage />
                     </TabContent>
                 </Tabs>

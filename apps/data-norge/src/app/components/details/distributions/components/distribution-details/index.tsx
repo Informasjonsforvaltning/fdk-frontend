@@ -52,7 +52,7 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                 <dd>
                     {
                         distribution.accessService ? 
-                        distribution.accessService.map(api => (<Link href="#">{api.uri}</Link>)) :
+                        distribution.accessService.map(api => (<Link key={api.uri} href="#">{api.uri}</Link>)) :
                         <PlaceholderText>Ikke oppgitt</PlaceholderText>
                     }
                 </dd>
@@ -60,7 +60,7 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                 <dd>
                     {
                         distribution.page ? 
-                        distribution.page.map(page => (<Link href={page.uri}>{page.uri}</Link>)) :
+                        distribution.page.map(page => (<Link key={page.uri} href={page.uri}>{page.uri}</Link>)) :
                         <PlaceholderText>Ikke oppgitt</PlaceholderText>
                     }
                 </dd>
@@ -69,7 +69,7 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                     {
                         distribution.license ? 
                         distribution.license.map(license => (
-                            <Link href={license.uri}>
+                            <Link href={license.uri} key={license.uri}>
                                 {
                                     license.prefLabel?.[locale] ||
                                     license.prefLabel?.['no'] ||
@@ -85,7 +85,7 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                     {
                         distribution.conformsTo ? 
                         distribution.conformsTo.map(standard => (
-                            <Link href={standard.uri}>
+                            <Link href={standard.uri} key={standard.uri}>
                                 {
                                     standard.prefLabel ||
                                     standard.uri

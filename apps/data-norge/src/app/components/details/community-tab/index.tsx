@@ -42,11 +42,13 @@ const CommunityTab = ({ children }: PropsWithChildren) => {
 								</IconBadge>
 							</td>
 							<td>
-								<Link href='#' className={styles.threadLink}>Vannverk - transportsystem <ExternalLinkIcon /></Link>
-								<HStack style={{gap:'0.5rem'}}>
-									<Tag size='sm' color='neutral'><Link href='#'>Kommentartråder</Link></Tag>
-									<Subtext>Postet av fdk-community-admin</Subtext>
-								</HStack>
+								<div className={styles.threadTeaser}>
+									<Link href='#' className={styles.threadLink}>Vannverk - transportsystem <ExternalLinkIcon /></Link>
+									<HStack style={{gap:'0.5rem'}}>
+										<Tag size='sm' color='neutral'><Link href='#'>Kommentartråder</Link></Tag>
+										<Subtext>Postet av fdk-community-admin</Subtext>
+									</HStack>
+								</div>
 							</td>
 							<td align='right'>
 								<HStack style={{justifyContent:'flex-end'}}>
@@ -72,11 +74,13 @@ const CommunityTab = ({ children }: PropsWithChildren) => {
 								</IconBadge>
 							</td>
 							<td>
-								<Link href='#' className={styles.threadLink}> Strømstøtten minutt for minutt - beregnet med åpne data  <ExternalLinkIcon /></Link>
-								<HStack style={{gap:'0.5rem'}}>
-									<Tag size='sm' color='neutral'><Link href='#'>Gode eksempler på bruk</Link></Tag>
-									<Subtext>Postet av fdk-community-admin</Subtext>
-								</HStack>
+								<div className={styles.threadTeaser}>
+									<Link href='#' className={styles.threadLink}> Strømstøtten minutt for minutt - beregnet med åpne data  <ExternalLinkIcon /></Link>
+									<HStack style={{gap:'0.5rem'}}>
+										<Tag size='sm' color='neutral'><Link href='#'>Gode eksempler på bruk</Link></Tag>
+										<Subtext>Postet av fdk-community-admin</Subtext>
+									</HStack>
+								</div>
 							</td>
 							<td align='right'>
 								<HStack style={{justifyContent:'flex-end'}}>

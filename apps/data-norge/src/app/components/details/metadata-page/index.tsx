@@ -25,7 +25,7 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
     const getMetadata = async () => {
         setLoading(true);
         try {
-            await fetch(`https://data.norge.no/datasets/e4c67aa2-af5a-36c2-b5c2-96b571ddd850`, {
+            await fetch(`https://staging.fellesdatakatalog.digdir.no/datasets/73b43600-6432-3add-a553-46bbde1a198b`, {
                 headers: { Accept: contentType },
             })
                 .then(async (response) => {

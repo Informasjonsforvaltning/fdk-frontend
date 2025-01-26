@@ -1,16 +1,41 @@
 import React, { PropsWithChildren, useContext } from 'react';
-
-import { Heading, Link } from '@digdir/designsystemet-react';
-
+import { Heading, Link, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import Article from '@fdk-frontend/ui/article';
+import HStack from '@fdk-frontend/ui/hstack';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
+import PlaceholderText from '../../../placeholder-text';
 import PlaceholderBox from '../../../placeholder-box';
-import { DatasetDetailsContext } from '../..';
+import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
+import { printLocaleValue } from '../../utils';
+import { type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 
-const LegalDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren) => {
+export const hasLegalBasis = (dataset) =>  
+    dataset.legalBasisForAccess || 
+    dataset.legalBasisForProcessing ||
+    dataset.legalBasisForRestriction;
+
+const LegalDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+
     const { showEmptyRows } = useContext(DatasetDetailsContext);
 
-    if (!showEmptyRows && fields === null) return false;
+    const printLegalBasis = (legalBasis, locale) => {
+        if (!legalBasis) return <PlaceholderText>Ikke oppgitt</PlaceholderText>;
+        return (
+            <ol>
+                {
+                    legalBasis.map(legal => (
+                        <li>
+                            <Link href={legal.uri}>
+                                {printLocaleValue(legal.prefLabel, locale)}
+                                <ExternalLinkIcon />
+                            </Link>
+                        </li>
+                    ))
+                }
+            </ol>
+        );
+    };
 
     return (
         <section>
@@ -20,30 +45,33 @@ const LegalDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren)
             >
                 Lovhjemler
             </Heading>
-            {fields !== null ? (
+            {
+                hasLegalBasis(dataset) ?
                 <dl>
-                    {Object.entries(fields).map(([key, value]) => {
-                        return (
-                            <React.Fragment key={key}>
-                                <dt>{key}:</dt>
-                                <dd>
-                                    <Article>
-                                        <ol>
-                                            {(value as string[]).map((v) => (
-                                                <li key={v}>
-                                                    <Link href='#'>{v}</Link>
-                                                </li>
-                                            ))}
-                                        </ol>
-                                    </Article>
-                                </dd>
-                            </React.Fragment>
-                        );
-                    })}
-                </dl>
-            ) : (
-                <PlaceholderBox>Ingen lovhjemler oppgitt</PlaceholderBox>
-            )}
+                    {
+                        (!dataset.legalBasisForAccess && !showEmptyRows) ? null :
+                        <>
+                            <dt>Utleveringshjemmel:</dt>
+                            <dd>{printLegalBasis(dataset.legalBasisForAccess, locale)}</dd>
+                        </>
+                    }
+                    {
+                        (!dataset.legalBasisForProcessing && !showEmptyRows) ? null :
+                        <>
+                            <dt>Behandlingshjemmel:</dt>
+                            <dd>{printLegalBasis(dataset.legalBasisForProcessing, locale)}</dd>
+                        </>
+                    }
+                    {
+                        (!dataset.legalBasisForRestriction && !showEmptyRows) ? null :
+                        <>
+                            <dt>Utleveringshjemmel:</dt>
+                            <dd>{printLegalBasis(dataset.legalBasisForRestriction, locale)}</dd>
+                        </>
+                    }
+                </dl> :
+                <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
+            }
         </section>
     );
 };
