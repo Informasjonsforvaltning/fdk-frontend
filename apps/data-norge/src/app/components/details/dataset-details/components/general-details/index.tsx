@@ -1,12 +1,17 @@
-import { PropsWithChildren } from 'react';
-
+import { PropsWithChildren, useContext } from 'react';
 import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { type JSONValue } from '@fdk-frontend/types';
+import { formatDate } from '@fdk-frontend/utils';
 import HStack from '@fdk-frontend/ui/hstack';
-
 import PlaceholderText from '../../../placeholder-text';
+import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
+import { type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 
-const GeneralDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren) => {
+const GeneralDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+
+    const { showEmptyRows } = useContext(DatasetDetailsContext);
+    
     const getMetadataQuality = (value: number) => {
         if (value < 25) return { color: 'danger', label: `Dårlig (${value}%)` };
         if (value < 50) return { color: 'warning', label: `Tilstrekkelig (${value}%)` };
@@ -14,7 +19,7 @@ const GeneralDetails = ({ fields, ...props }: { fields: any } & PropsWithChildre
         return { color: 'success', label: `Utmerket (${value}%)` };
     };
 
-    const metadataQuality = getMetadataQuality(fields['Metadatakvalitet']);
+    const metadataQuality = getMetadataQuality(75);
 
     return (
         <section>
@@ -27,12 +32,11 @@ const GeneralDetails = ({ fields, ...props }: { fields: any } & PropsWithChildre
             <dl>
                 <dt>Ansvarlig virksomhet:</dt>
                 <dd>
-                    {fields['Ansvarlig virksomhet'] ? (
-                        <Link href='#'>{fields['Ansvarlig virksomhet']}</Link>
-                    ) : (
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
-                    )}
+                    <Link href='#'>
+                        {dataset.publisher.prefLabel?.[locale] || dataset.publisher.prefLabel?.[i18n.defaultLocale]}
+                    </Link>
                 </dd>
+                
                 <dt>
                     <HStack>
                         <span>Publisert:</span>
@@ -42,20 +46,31 @@ const GeneralDetails = ({ fields, ...props }: { fields: any } & PropsWithChildre
                             style={{ transform: 'scale(0.75)' }}
                         >
                             <Paragraph size='sm'>
-                                Denne datoen sier når datasettet ble publisert på data.norge.no. Det kan ha vært
+                                Denne datoen sier når datasettet ble <Link href="/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest">høstet</Link> av data.norge.no. Det kan ha vært
                                 tilgjengelig tidligere andre steder.
                             </Paragraph>
                         </HelpText>
                     </HStack>
                 </dt>
-                <dd>9. mars 2022</dd>
-                <dt>Dokumentasjon:</dt>
                 <dd>
-                    <Link href='#'>
-                        https://github.com/opendatalab-no/open-municipal-data
-                        <ExternalLinkIcon />
-                    </Link>
+                    {new Date(dataset.harvest.firstHarvested).toLocaleString(locale, { dateStyle: 'long' })}
                 </dd>
+                {
+                    (!dataset.page && !showEmptyRows) ? null :
+                    <>
+                        <dt>Dokumentasjon:</dt>
+                        <dd>
+                            {
+                                dataset.page ?
+                                <Link href={dataset.page}>
+                                    {dataset.page}
+                                    <ExternalLinkIcon />
+                                </Link> :
+                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                            }
+                        </dd>
+                    </>
+                }
                 <dt>
                     <HStack>
                         Metadatakvalitet:

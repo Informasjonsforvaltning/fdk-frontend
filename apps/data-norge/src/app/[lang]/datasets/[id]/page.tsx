@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation'
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
-import DetailsPage from '../../../components/details/details-page';
+import DetailsPage from '../../../components/details/details-page/dataset';
 
 import mockResource from '../mock/resource-api/sort-test-datasett.json';
+// import mockResource from '../mock/resource-api/lovhjemler.json';
 import mockSearch from '../mock/search/search.json';
 
 export type DetailsPageWrapperProps = {
@@ -18,11 +19,12 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
     
     const params = await props.params;
+    const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
 
     const commonDictionary = await getDictionary(locale, 'common');
 
-    let json;
+    let dataset, relatedResources, relatedApis;
 
     try {
         const response = await fetch(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`, {
@@ -30,19 +32,25 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             headers: { 'Accept': 'application/json' }
         });
         if (!response.ok) throw new Error('Bad response');
-        json = await response.json();
+        dataset = await response.json();
     } catch (err) {
         notFound();
     }
 
+    const activeTab = searchParams.tab ?? 'overview';
+
     return (
-        <DetailsPage
-            variant='dataset'
-            resource={json}
-            search={mockSearch}
-            locale={locale}
-            commonDictionary={commonDictionary}
-        />
+        <>
+            <DetailsPage
+                variant='dataset'
+                resource={dataset}
+                // resource={mockResource}
+                apis={mockSearch.hits}
+                locale={locale}
+                commonDictionary={commonDictionary}
+                defaultActiveTab={activeTab}
+            />
+        </>
     );
 };
 

@@ -19,9 +19,16 @@
 .section {
     :global(.table) {
 
+        .threadTeaser {
+            // display:flex;
+            // flex-direction:column;
+            // gap:0.5rem;
+        }
+
         .threadLink {
+            display: inline-block;
             margin-bottom:0.5rem;
-            line-height:1.5rem;
+            // line-height:2rem;
         }
 
         :global(.fds-tag) {

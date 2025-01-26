@@ -51,6 +51,8 @@
             grid-template-columns: 1fr 3fr;
             border: 1px solid #ddd;
             border-radius: 0.25rem;
+            background: #fafafa;
+            // background: rgba(0,0,0,0.025);
 
             dt {
                 font-weight:500;
@@ -60,8 +62,9 @@
             dd {
                 padding: 0.75rem 0.75rem;
                 border-top: 1px solid #ddd;
-                background: #f8f8f8;
-                background: #fafafa;
+                // background: #f8f8f8;
+                // background: #fafafa;
+                // background: rgba(0,0,0,0.025)
             }
 
             dt:first-child,

@@ -1,15 +1,18 @@
-import { PropsWithChildren, useContext } from 'react';
-
-import { Heading, Link } from '@digdir/designsystemet-react';
+import React, { PropsWithChildren, useContext } from 'react';
+import { Heading, Link, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import Article from '@fdk-frontend/ui/article';
+import HStack from '@fdk-frontend/ui/hstack';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
+import PlaceholderText from '../../../placeholder-text';
 import PlaceholderBox from '../../../placeholder-box';
-import { DatasetDetailsContext } from '../..';
+import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
+import { printLocaleValue } from '../../utils';
+import { type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 
-const ConceptDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren) => {
+const ConceptDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+
     const { showEmptyRows } = useContext(DatasetDetailsContext);
-
-    if (!showEmptyRows && fields === null) return false;
 
     return (
         <section>
@@ -19,32 +22,27 @@ const ConceptDetails = ({ fields, ...props }: { fields: any } & PropsWithChildre
             >
                 Begreper brukt i datasett
             </Heading>
-            {fields !== null ? (
+            {
+                dataset.subject ?
                 <dl>
-                    <dt>
-                        <Link href='#'>felles omsorg</Link>
-                    </dt>
-                    <dd>
-                        <Article>
-                            omsorgssituasjon der begge foreldre til et gitt barn bor sammen og har omsorgen for barnet i
-                            skattleggingsperioden
-                        </Article>
-                    </dd>
-                    <dt>
-                        <Link href='#'>samlet uføreytelse fra andre enn folketrygden</Link>
-                    </dt>
-                    <dd>
-                        <Article>
-                            samlet brutto uføreytelser (uføreytelser før skatt) som du får fra andre enn folketrygden (
-                            herunder uføreytelser fra SPK, uføreytelser fra andre pensjonsordninger herunder
-                            uføreytelser fra IPA/IPS og uføreytelser fra utlandet) . Uføreytelser regnes som en del av
-                            inntektene dine og skattlegges som vanlig lønnsinntekt.
-                        </Article>
-                    </dd>
-                </dl>
-            ) : (
-                <PlaceholderBox>Ingen begreper oppgitt</PlaceholderBox>
-            )}
+                    {
+                        dataset.subject.map(subject => {
+                            return (
+                                <React.Fragment key={subject.uri}>
+                                    <dt>
+                                        <Link href={subject.uri}>
+                                            {printLocaleValue(subject.prefLabel, locale)}
+                                            <ExternalLinkIcon />
+                                        </Link>
+                                    </dt>
+                                    <dd>{printLocaleValue(subject.definition, locale)}</dd>
+                                </React.Fragment>
+                            );
+                        })
+                    }
+                </dl> :
+                <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
+            }
         </section>
     );
 };
