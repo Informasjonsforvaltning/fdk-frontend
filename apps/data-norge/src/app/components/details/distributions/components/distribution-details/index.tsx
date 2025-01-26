@@ -11,7 +11,7 @@ import {
     TableRow,
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import HStack from '@fdk-frontend/ui/hstack';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';

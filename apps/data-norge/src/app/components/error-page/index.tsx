@@ -1,9 +1,5 @@
-import type { Metadata } from 'next';
-
 import Header from '@fdk-frontend/ui/header';
-
 import { getDictionary } from '@fdk-frontend/dictionaries';
-
 import styles from './error-page.module.scss';
 
 export default async function ErrorPage({ children }) {
