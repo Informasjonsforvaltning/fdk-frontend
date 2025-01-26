@@ -12,6 +12,19 @@
 }
 
 .fds-link {
+    &:not(.fds-btn) {
+        display:inline;
+
+        svg {
+            // margin-top:-1em;
+            vertical-align: middle;
+
+            &:last-child {
+                margin-left:0.125rem;
+            }
+        }
+    }
+
     &:visited {
         &:not(:focus-visible) {
             color: var(--color-link);

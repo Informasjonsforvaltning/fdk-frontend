@@ -1,0 +1,213 @@
+{
+    "accessRights":
+    {
+        "code": "NON_PUBLIC",
+        "prefLabel":
+        {
+            "en": "non-public"
+        },
+        "uri": "http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC"
+    },
+    "accessRightsComment": null,
+    "accrualPeriodicity": null,
+    "admsIdentifier": null,
+    "catalog":
+    {
+        "description": null,
+        "id": "821c273e-c4b0-3807-8d54-f54998747507",
+        "publisher":
+        {
+            "id": "910244132",
+            "name": "RAMSUND OG ROGNAN REVISJON",
+            "orgPath": "/ANNET/910244132",
+            "organisasjonsform": null,
+            "prefLabel":
+            {
+                "nb": "Ramsund og rognan revisjon"
+            },
+            "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/910244132"
+        },
+        "title":
+        {
+            "nb": "Datakatalog for RAMSUND OG ROGNAN REVISJON"
+        },
+        "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132"
+    },
+    "conformsTo": null,
+    "contactPoint": null,
+    "dctType": null,
+    "description":
+    {
+        "nb": "Kun test 2\n\n---\nFormål: Test"
+    },
+    "descriptionFormatted":
+    {
+        "nb": "Kun test 2\n\n---\nFormål: Test"
+    },
+    "distribution":
+    [
+        {
+            "accessService": null,
+            "accessURL": null,
+            "compressFormat": null,
+            "conformsTo": null,
+            "description": null,
+            "downloadURL": null,
+            "fdkFormat":
+            [
+                {
+                    "code": "application/EDIFACT",
+                    "name": "EDIFACT",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/EDIFACT"
+                }
+            ],
+            "license": null,
+            "packageFormat": null,
+            "page": null,
+            "title": null,
+            "type": null,
+            "uri": null
+        }
+    ],
+    "eurovocThemes": null,
+    "harvest":
+    {
+        "firstHarvested": "2021-12-14T08:26:20Z",
+        "modified": "2024-01-12T10:06:06Z"
+    },
+    "hasAccuracyAnnotation": null,
+    "hasAvailabilityAnnotation": null,
+    "hasCompletenessAnnotation": null,
+    "hasCurrentnessAnnotation": null,
+    "hasRelevanceAnnotation": null,
+    "id": "c85c58ac-81f3-3303-a5d1-65dd4bdfaf6b",
+    "identifier":
+    [
+        "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/550f2c0c-454c-4482-9c60-83bd20b0dd88"
+    ],
+    "inSeries": null,
+    "informationModel": null,
+    "isAuthoritative": false,
+    "isOpenData": false,
+    "isRelatedToTransportportal": false,
+    "issued": null,
+    "keyword": null,
+    "landingPage": null,
+    "language": null,
+    "legalBasisForAccess": null,
+    "legalBasisForProcessing":
+    [
+        {
+            "broader": null,
+            "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForDataProcessing",
+            "narrower": null,
+            "prefLabel":
+            {
+                "nb": "Behandling"
+            },
+            "uri": "https://behandling.no"
+        }
+    ],
+    "legalBasisForRestriction":
+    [
+        {
+            "broader": null,
+            "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForNonDisclosure",
+            "narrower": null,
+            "prefLabel":
+            {
+                "nb": "Skjerming"
+            },
+            "uri": "https://skjerming.no"
+        }
+    ],
+    "losTheme":
+    [
+        {
+            "code": "doping",
+            "isTema": false,
+            "losPaths":
+            [
+                "helse-og-omsorg/rus-og-avhengighet/doping",
+                "kultur-idrett-og-fritid/idrett/doping"
+            ],
+            "name":
+            {
+                "en": "Doping",
+                "nb": "Doping",
+                "nn": "Doping"
+            },
+            "uri": "https://psi.norge.no/los/ord/doping"
+        },
+        {
+            "code": "idrett",
+            "isTema": true,
+            "losPaths":
+            [
+                "kultur-idrett-og-fritid/idrett"
+            ],
+            "name":
+            {
+                "en": "Sport",
+                "nb": "Idrett",
+                "nn": "Idrett"
+            },
+            "uri": "https://psi.norge.no/los/tema/idrett"
+        }
+    ],
+    "modified": null,
+    "objective": null,
+    "page": null,
+    "prev": null,
+    "provenance": null,
+    "publisher":
+    {
+        "id": "910244132",
+        "name": "RAMSUND OG ROGNAN REVISJON",
+        "orgPath": "/ANNET/910244132",
+        "organisasjonsform": null,
+        "prefLabel":
+        {
+            "nb": "Ramsund og rognan revisjon"
+        },
+        "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/910244132"
+    },
+    "qualifiedAttributions": null,
+    "references":
+    [
+        {
+            "referenceType":
+            {
+                "code": null,
+                "prefLabel": null,
+                "uri": "http://purl.org/dc/terms/isPartOf"
+            },
+            "source":
+            {
+                "broader": null,
+                "extraType": null,
+                "narrower": null,
+                "prefLabel": null,
+                "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/75f223ce-7214-4baf-84cf-4db01ce1f10e"
+            }
+        }
+    ],
+    "sample": null,
+    "source": null,
+    "spatial": null,
+    "subject": null,
+    "temporal": null,
+    "theme": null,
+    "themeUris":
+    [
+        "https://psi.norge.no/los/ord/doping",
+        "https://psi.norge.no/los/tema/idrett"
+    ],
+    "title":
+    {
+        "nb": "Derby"
+    },
+    "type": "datasets",
+    "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/550f2c0c-454c-4482-9c60-83bd20b0dd88"
+}

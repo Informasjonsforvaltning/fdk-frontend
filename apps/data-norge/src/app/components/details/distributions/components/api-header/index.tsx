@@ -11,10 +11,9 @@ import styles from '../distribution-header/distribution-header.module.scss';
 type ApiHeaderProps = {
     api: JSONValue;
     locale: LocaleCodes;
-    exampleData: boolean;
 }
 
-const ApiHeader = ({ api, locale, exampleData, ...props }: ApiHeaderProps & PropsWithChildren) => {
+const ApiHeader = ({ api, locale, ...props }: ApiHeaderProps & PropsWithChildren) => {
 	return (
 		<div className={styles.headerContent}>
             <span className={styles.title}>

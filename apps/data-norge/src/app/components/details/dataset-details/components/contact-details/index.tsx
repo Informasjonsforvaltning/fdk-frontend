@@ -4,10 +4,22 @@ import { Heading, Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 import PlaceholderText from '../../../placeholder-text';
-import { DatasetDetailsContext } from '../../';
+import PlaceholderBox from '../../../placeholder-box';
+import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
+import { type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 
-const ContactDetails = ({ fields, ...props }: { fields: any } & PropsWithChildren) => {
+const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+
     const { showEmptyRows } = useContext(DatasetDetailsContext);
+
+    const printContactPointOrgUnit = (contactPoint) => {
+        return contactPoint.hasURL ?
+            <Link href={contactPoint.hasURL}>
+                {contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]}
+                <ExternalLinkIcon />
+            </Link> :
+            contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale];
+    }
 
     return (
         <section>
@@ -17,32 +29,62 @@ const ContactDetails = ({ fields, ...props }: { fields: any } & PropsWithChildre
             >
                 Kontaktinformasjon
             </Heading>
-            <dl>
-                <dt>Kontaktpunkt:</dt>
-                <dd>
-                    <Link href='#'>
-                        {fields['Kontaktpunkt']}
-                        <ExternalLinkIcon />
-                    </Link>
-                </dd>
-                <dt>E-post:</dt>
-                <dd>
-                    <Link href='#'>{fields['E-post']}</Link>
-                </dd>
-                {fields['Telefon'] !== null ||
-                    (showEmptyRows && (
-                        <>
-                            <dt>Telefon:</dt>
-                            <dd>
-                                {fields['Telefon'] ? (
-                                    <Link href='#'>{fields['Telefon']}</Link>
-                                ) : (
-                                    <PlaceholderText>Ikke oppgitt</PlaceholderText>
-                                )}
-                            </dd>
-                        </>
-                    ))}
-            </dl>
+            {
+                dataset.contactPoint && dataset.contactPoint.length > 0 ?
+                dataset.contactPoint.map((contactPoint, i) => (
+                    <dl key={`contactPoint-${i}`}>
+                        {
+                            (!contactPoint.fullname && !showEmptyRows) ? null :
+                            <>
+                                <dt>Kontaktperson:</dt>
+                                <dd>
+                                    {
+                                        contactPoint.fullname || <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                    }
+                                </dd>
+                            </>
+                        }
+                        {
+                            (!contactPoint.organizationUnit && !showEmptyRows) ? null :
+                            <>
+                                <dt>Enhet:</dt>
+                                <dd>
+                                    {
+                                        contactPoint.organizationUnit ?
+                                        printContactPointOrgUnit(contactPoint) :
+                                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                    }
+                                </dd>
+                            </>
+                        }
+                        {
+                            (!contactPoint.email && !showEmptyRows) ? null :
+                            <>
+                                <dt>E-post:</dt>
+                                <dd>
+                                    {
+                                        contactPoint.email ?
+                                        <Link href={`mailto:${contactPoint.email}`}>{contactPoint.email}</Link> :
+                                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                    }
+                                </dd>
+                            </>
+                        }
+                        {
+                            (!contactPoint.hasTelephone && !showEmptyRows) ? null :
+                            <>
+                                <dt>Telefon:</dt>
+                                <dd>
+                                    {
+                                        contactPoint.hasTelephone || <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                    }
+                                </dd>
+                            </>
+                        }
+                    </dl>
+                )) :
+                <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
+            }
         </section>
     );
 };

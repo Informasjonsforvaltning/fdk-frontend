@@ -19,9 +19,11 @@ const LanguageSwitcher = ({ inverted }: LanguageSwitcherProps) => {
     const defaultCode = pathName.split('/')[1];
 
     const onLanguageSelect = (code: LocaleCodes) => {
-        const segments = pathName.split('/');
+        const url = new URL(window.location.href);
+        const segments = url.pathname.split('/');
         segments[1] = code;
-        return router.replace(segments.join('/'));
+        url.pathname = segments.join('/');
+        router.replace(url.toString());
     };
 
     return (

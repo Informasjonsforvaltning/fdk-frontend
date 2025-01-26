@@ -76,7 +76,18 @@
     [
         {
             "email": "test@digdir.no",
-            "fullname": null,
+            "fullname": "Eirik Lillebo",
+            "hasTelephone": null,
+            "hasURL": "https://testavdelingen.no",
+            "organizationName": null,
+            "organizationUnit": {
+                "nb": "Testavdelingen"
+            },
+            "uri": "http://www.nrk.no"
+        },
+        {
+            "email": null,
+            "fullname": "Eirik Lillebo",
             "hasTelephone": "12345678",
             "hasURL": "https://testavdelingen.no",
             "organizationName": null,
@@ -293,8 +304,32 @@
         }
     ],
     "legalBasisForAccess": null,
-    "legalBasisForProcessing": null,
-    "legalBasisForRestriction": null,
+    "legalBasisForProcessing":
+    [
+        {
+            "broader": null,
+            "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForDataProcessing",
+            "narrower": null,
+            "prefLabel":
+            {
+                "nb": "Behandling"
+            },
+            "uri": "https://behandling.no"
+        }
+    ],
+    "legalBasisForRestriction":
+    [
+        {
+            "broader": null,
+            "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForNonDisclosure",
+            "narrower": null,
+            "prefLabel":
+            {
+                "nb": "Skjerming"
+            },
+            "uri": "https://skjerming.no"
+        }
+    ],
     "losTheme":
     [
         {
@@ -387,6 +422,21 @@
     },
     "qualifiedAttributions":
     [
+        {
+            "agent":
+            {
+                "id": "919968230",
+                "name": "KUNSTKLUBBEN 9",
+                "orgPath": "/PRIVAT/919968230",
+                "organisasjonsform": "FLI",
+                "prefLabel":
+                {
+                    "nb": "Kunstklubben 9"
+                },
+                "uri": "https://data.brreg.no/enhetsregisteret/api/enheter/919968230"
+            },
+            "role": "http://registry.it.csiro.au/def/isotc211/CI_RoleCode/contributor"
+        },
         {
             "agent":
             {
@@ -507,6 +557,11 @@
     ],
     "temporal":
     [
+        {
+            "endDate": "2020-12-08",
+            "startDate": "2020-12-07",
+            "uri": null
+        },
         {
             "endDate": "2020-12-08",
             "startDate": "2020-12-07",
