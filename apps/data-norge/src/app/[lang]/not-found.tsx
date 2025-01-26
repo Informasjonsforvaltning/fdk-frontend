@@ -1,3 +1,4 @@
+import { type Metadata } from 'next';
 import { Link, Button, Heading } from '@digdir/designsystemet-react';
 
 import ErrorPage from '../components/error-page';

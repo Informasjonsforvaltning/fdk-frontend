@@ -1,19 +1,7 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import {
-    Heading,
-    Link,
-    Table,
-    TableHead,
-    TableBody,
-    TableHeaderCell,
-    TableCell,
-    TableRow,
-} from '@digdir/designsystemet-react';
+import { Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
-import HStack from '@fdk-frontend/ui/hstack';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';
 import PlaceholderText from '../../../placeholder-text';
 

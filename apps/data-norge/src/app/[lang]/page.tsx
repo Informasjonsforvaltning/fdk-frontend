@@ -1,6 +1,6 @@
 import 'server-only';
 
-import type { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
 
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';

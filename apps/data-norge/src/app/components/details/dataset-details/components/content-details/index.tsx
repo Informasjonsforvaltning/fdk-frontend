@@ -1,13 +1,10 @@
-import React, { PropsWithChildren, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Heading, Link, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import Article from '@fdk-frontend/ui/article';
 import HStack from '@fdk-frontend/ui/hstack';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-
 import PlaceholderText from '../../../placeholder-text';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
 import { printLocaleValue } from '../../utils';
-import { type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 
 const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
 

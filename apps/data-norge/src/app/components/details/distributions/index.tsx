@@ -1,18 +1,14 @@
 'use client';
 
 import cn from 'classnames';
-
-import { Accordion, Heading, Button, Link, Tag } from '@digdir/designsystemet-react';
-import { DownloadIcon, ArrowRightIcon } from '@navikt/aksel-icons';
-import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { Accordion, Heading } from '@digdir/designsystemet-react';
+import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths } from '@fdk-frontend/utils';
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 import PlaceholderBox from '../placeholder-box';
-
 import styles from './distributions.module.scss';
-
 import DistributionDetails from './components/distribution-details';
 import DistributionHeader from './components/distribution-header';
 import ApiHeader from './components/api-header';
