@@ -1,5 +1,3 @@
-import { PropsWithChildren } from 'react';
-
 import {
     Link,
     Tag,

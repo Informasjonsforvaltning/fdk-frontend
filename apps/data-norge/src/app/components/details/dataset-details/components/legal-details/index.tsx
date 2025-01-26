@@ -1,14 +1,10 @@
-import React, { PropsWithChildren, useContext } from 'react';
-import { Heading, Link, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import Article from '@fdk-frontend/ui/article';
-import HStack from '@fdk-frontend/ui/hstack';
+import React, { useContext } from 'react';
+import { Heading, Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-
 import PlaceholderText from '../../../placeholder-text';
 import PlaceholderBox from '../../../placeholder-box';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
 import { printLocaleValue } from '../../utils';
-import { type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 
 export const hasLegalBasis = (dataset) =>  
     dataset.legalBasisForAccess || 
@@ -19,13 +15,13 @@ const LegalDetails = ({ dataset, locale }: DatasetDetailsProps) => {
 
     const { showEmptyRows } = useContext(DatasetDetailsContext);
 
-    const printLegalBasis = (legalBasis, locale) => {
+    const printLegalBasis = (legalBasis) => {
         if (!legalBasis) return <PlaceholderText>Ikke oppgitt</PlaceholderText>;
         return (
             <ol>
                 {
                     legalBasis.map(legal => (
-                        <li>
+                        <li key={legal.uri}>
                             <Link href={legal.uri}>
                                 {printLocaleValue(legal.prefLabel, locale)}
                                 <ExternalLinkIcon />
@@ -52,21 +48,21 @@ const LegalDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                         (!dataset.legalBasisForAccess && !showEmptyRows) ? null :
                         <>
                             <dt>Utleveringshjemmel:</dt>
-                            <dd>{printLegalBasis(dataset.legalBasisForAccess, locale)}</dd>
+                            <dd>{printLegalBasis(dataset.legalBasisForAccess)}</dd>
                         </>
                     }
                     {
                         (!dataset.legalBasisForProcessing && !showEmptyRows) ? null :
                         <>
                             <dt>Behandlingshjemmel:</dt>
-                            <dd>{printLegalBasis(dataset.legalBasisForProcessing, locale)}</dd>
+                            <dd>{printLegalBasis(dataset.legalBasisForProcessing)}</dd>
                         </>
                     }
                     {
                         (!dataset.legalBasisForRestriction && !showEmptyRows) ? null :
                         <>
                             <dt>Utleveringshjemmel:</dt>
-                            <dd>{printLegalBasis(dataset.legalBasisForRestriction, locale)}</dd>
+                            <dd>{printLegalBasis(dataset.legalBasisForRestriction)}</dd>
                         </>
                     }
                 </dl> :

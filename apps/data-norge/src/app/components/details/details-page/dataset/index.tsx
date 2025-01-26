@@ -1,13 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import cn from 'classnames';
-
 import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths } from '@fdk-frontend/utils';
-
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import StarButton from '@fdk-frontend/ui/star-button';
@@ -18,24 +16,17 @@ import {
     Heading,
     Link,
     Tag,
-    HelpText,
     Tabs,
     TabList,
     Tab,
-    TabContent,
-    Paragraph,
+    TabContent
 } from '@digdir/designsystemet-react';
-// import { DownloadIcon } from '@navikt/aksel-icons';
-
-import Distributions, { type Distribution } from '../../distributions';
+import Distributions from '../../distributions';
 import DatasetDescription from '../../dataset-description';
 import DatasetDetails from '../../dataset-details';
 import MetadataPage from '../../metadata-page';
 import CommunityTab from '../../community-tab';
 import AccessLevelTag from '../../access-level-tag';
-
-import fullDetails from '../../dataset-details/data/full.json';
-
 import styles from '../details-page.module.scss';
 
 export type DetailsPageVariants = 'dataset' | 'api' | 'concept';
@@ -54,14 +45,6 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
 
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
-
-    const tabs = [
-        'overview',
-        'distributions',
-        'details',
-        'community',
-        'rdf'
-    ];
 
     const blink = () => {
         setHighlight(true);

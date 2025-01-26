@@ -1,11 +1,9 @@
 import { PropsWithChildren } from 'react';
 import mime from 'mime-types';
-
 import { Button, Link, Tag } from '@digdir/designsystemet-react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
-import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
-
+import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import styles from '../distribution-header/distribution-header.module.scss';
 
 type ApiHeaderProps = {

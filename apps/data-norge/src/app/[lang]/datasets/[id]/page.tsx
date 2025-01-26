@@ -3,7 +3,7 @@ import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionarie
 
 import DetailsPage from '../../../components/details/details-page/dataset';
 
-import mockResource from '../mock/resource-api/sort-test-datasett.json';
+// import mockResource from '../mock/resource-api/sort-test-datasett.json';
 // import mockResource from '../mock/resource-api/lovhjemler.json';
 import mockSearch from '../mock/search/search.json';
 
@@ -24,7 +24,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     const commonDictionary = await getDictionary(locale, 'common');
 
-    let dataset, relatedResources, relatedApis;
+    let dataset; //, relatedResources, relatedApis;
 
     try {
         const response = await fetch(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`, {
@@ -34,6 +34,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         if (!response.ok) throw new Error('Bad response');
         dataset = await response.json();
     } catch (err) {
+        console.error(err);
         notFound();
     }
 

@@ -1,12 +1,10 @@
-import { PropsWithChildren, useContext } from 'react';
-
+import { useContext } from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-
 import PlaceholderText from '../../../placeholder-text';
 import PlaceholderBox from '../../../placeholder-box';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
-import { type Dictionary, i18n } from '@fdk-frontend/dictionaries';
+import { i18n } from '@fdk-frontend/dictionaries';
 
 const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
 

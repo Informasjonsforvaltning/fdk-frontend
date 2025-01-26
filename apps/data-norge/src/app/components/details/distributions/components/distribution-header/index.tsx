@@ -1,10 +1,8 @@
 import { PropsWithChildren } from 'react';
-
 import { Button, Link, Tag } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
-import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
-
+import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import styles from './distribution-header.module.scss';
 
 type DistributionHeaderProps = {
