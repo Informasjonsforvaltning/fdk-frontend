@@ -63,7 +63,7 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
     ];
 
     const updateUri = (tab: string) => {
-        // @ts-ignore
+        // @ts-expect-error arg numbers
         router.replace(`?tab=${tab}`, undefined, { shallow: true });
     }
 
