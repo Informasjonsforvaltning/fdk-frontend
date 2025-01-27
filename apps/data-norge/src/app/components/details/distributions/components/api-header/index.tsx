@@ -20,7 +20,7 @@ const ApiHeader = ({ api, locale, ...props }: ApiHeaderProps & PropsWithChildren
                     api.title?.[i18n.defaultLocale]
                 }
                 <div className={styles.tags}>
-                    {api.fdkFormatPrefixed?.map((format, i) => (
+                    {api.fdkFormatPrefixed?.map((format: any, i: number) => (
                         <Tag
                             className={styles.tag}
                             color='info'

@@ -15,10 +15,10 @@ const ConceptDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 Begreper brukt i datasett
             </Heading>
             {
-                dataset.subject ?
+                dataset?.subject ?
                 <dl>
                     {
-                        dataset.subject.map(subject => {
+                        dataset.subject.map((subject: any) => {
                             return (
                                 <React.Fragment key={subject.uri}>
                                     <dt>
