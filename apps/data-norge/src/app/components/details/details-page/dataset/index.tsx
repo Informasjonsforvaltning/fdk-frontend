@@ -34,7 +34,7 @@ export type DetailsPageVariants = 'dataset' | 'api' | 'concept';
 export type DetailsPageType = {
     variant: DetailsPageVariants;
     resource: JSONValue;
-    apis: JSONValue;
+    apis?: JSONValue;
     locale: LocaleCodes;
     commonDictionary: Dictionary;
     defaultActiveTab?: string;
@@ -62,8 +62,9 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
         },
     ];
 
-    const updateUri = (tab) => {
-        router.push(`?tab=${tab}`, undefined, { shallow: true });
+    const updateUri = (tab: string) => {
+        // @ts-ignore
+        router.replace(`?tab=${tab}`, undefined, { shallow: true });
     }
 
     return (

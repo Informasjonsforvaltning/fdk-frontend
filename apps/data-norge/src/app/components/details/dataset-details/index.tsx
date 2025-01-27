@@ -88,7 +88,7 @@ const DatasetDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                         dataset.theme ? 
                         <ChipGroup size='sm'>
                             {
-                                dataset.theme.map(theme => 
+                                dataset.theme.map((theme: any) => 
                                     <Link key={theme.code} href={`/datasets&theme=${theme.code}`}>
                                         <ChipToggle>
                                             {printLocaleValue(theme.title, locale)}
@@ -108,10 +108,10 @@ const DatasetDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                         Søkeord
                     </Heading>
                     {
-                        dataset.keyword && dataset.keyword.filter(keyword => keyword[locale]).length ? 
+                        dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? 
                         <ChipGroup size='sm'>
                             {
-                                dataset.keyword.filter(keyword => keyword[locale]).map((keyword, i) => 
+                                dataset.keyword.filter((keyword: any) => keyword[locale]).map((keyword: any, i: number) => 
                                     <Link key={`keyword-${i}`} href={`/datasets&q=${keyword[locale]}`}>
                                         <ChipToggle>
                                             {keyword[locale]}

@@ -22,7 +22,7 @@ export type DistributionsProps = {
     locale: LocaleCodes;
 };
 
-const Distributions = ({ exampleData, datasets, apis, className, locale, ...props }: DistributionsProps) => {
+const Distributions = ({ exampleData = [], datasets = [], apis = [], className, locale, ...props }: DistributionsProps) => {
     return (
         <div className={cn(styles.distributions, className)}>
             <Heading
@@ -43,7 +43,7 @@ const Distributions = ({ exampleData, datasets, apis, className, locale, ...prop
                                 level={3}
                                 className={styles.header}
                             >
-                                <DistributionHeader distribution={distribution} />
+                                <DistributionHeader distribution={distribution} locale={locale} />
                             </Accordion.Header>
                             <Accordion.Content className={styles.content}>
                                 <DistributionDetails distribution={distribution} locale={locale} />
@@ -56,7 +56,7 @@ const Distributions = ({ exampleData, datasets, apis, className, locale, ...prop
                                 level={3}
                                 className={styles.header}
                             >
-                                <DistributionHeader distribution={example} exampleData={true} />
+                                <DistributionHeader distribution={example} locale={locale} exampleData={true} />
                             </Accordion.Header>
                             <Accordion.Content className={styles.content}>
                                 <DistributionDetails distribution={example} locale={locale} />
@@ -86,10 +86,10 @@ const Distributions = ({ exampleData, datasets, apis, className, locale, ...prop
                                 level={3}
                                 className={styles.header}
                             >
-                                <ApiHeader api={api} />
+                                <ApiHeader api={api} locale={locale} />
                             </Accordion.Header>
                             <Accordion.Content className={styles.content}>
-                                <ApiDetails api={api} />
+                                <ApiDetails api={api} locale={locale} />
                             </Accordion.Content>
                         </Accordion.Item>
                     ))}

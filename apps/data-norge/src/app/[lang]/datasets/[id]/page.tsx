@@ -12,12 +12,12 @@ export type DetailsPageWrapperProps = {
         lang: LocaleCodes;
         id: string[];
     }>;
+    searchParams: Promise<any>;
 };
 
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
-    
     const params = await props.params;
     const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
@@ -38,7 +38,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         notFound();
     }
 
-    const activeTab = searchParams.tab ?? 'overview';
+    const activeTab = searchParams?.tab ?? 'overview';
 
     return (
         <>

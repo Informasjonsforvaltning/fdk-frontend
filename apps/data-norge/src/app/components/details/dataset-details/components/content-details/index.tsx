@@ -26,7 +26,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                         <dd>
                             {
                                 dataset.language ?
-                                dataset.language.map(language => 
+                                dataset.language.map((language: any) => 
                                     printLocaleValue(language.prefLabel, locale)).join(', ') :
                                 <PlaceholderText>Ikke oppgitt</PlaceholderText>
                             }
@@ -41,7 +41,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                             {
                                 dataset.qualifiedAttributions ?
                                 <ol>
-                                    {dataset.qualifiedAttributions.map((attribution, i) => (
+                                    {dataset.qualifiedAttributions.map((attribution: any, i: number) => (
                                         <li key={`attribution-${i}`}>
                                             {
                                                 attribution.agent.uri ?
@@ -187,7 +187,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                 dataset?.spatial ?
                                 <ol>
                                     {
-                                        dataset?.spatial?.map((spatial, i) => {
+                                        dataset?.spatial?.map((spatial: any, i: number) => {
                                             if (spatial.prefLabel && spatial.uri) {
                                                 return (
                                                     <li key={`spatial-${i}`}>
@@ -229,7 +229,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                             {
                                 dataset?.temporal ?
                                 <ol className="no-style">
-                                    {dataset?.temporal?.map((temporal, i) => (
+                                    {dataset?.temporal?.map((temporal: any, i: number) => (
                                         <li key={`temporal-${i}`}>
                                             <dl>
                                                 {
@@ -280,7 +280,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                             {
                                 dataset?.conformsTo ?
                                 <ol>
-                                    {dataset?.conformsTo?.map((item, i) => (
+                                    {dataset?.conformsTo?.map((item: any, i: number) => (
                                         <li key={item.uri}>
                                             <Link href={item.uri}>
                                                 {printLocaleValue(item?.prefLabel, locale)}

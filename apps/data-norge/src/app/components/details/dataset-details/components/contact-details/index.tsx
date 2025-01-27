@@ -10,7 +10,7 @@ const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
 
     const { showEmptyRows } = useContext(DatasetDetailsContext);
 
-    const printContactPointOrgUnit = (contactPoint) => {
+    const printContactPointOrgUnit = (contactPoint: any) => {
         return contactPoint.hasURL ?
             <Link href={contactPoint.hasURL}>
                 {contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]}
@@ -29,7 +29,7 @@ const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
             </Heading>
             {
                 dataset.contactPoint && dataset.contactPoint.length > 0 ?
-                dataset.contactPoint.map((contactPoint, i) => (
+                dataset.contactPoint.map((contactPoint: any, i: number) => (
                     <dl key={`contactPoint-${i}`}>
                         {
                             (!contactPoint.fullname && !showEmptyRows) ? null :

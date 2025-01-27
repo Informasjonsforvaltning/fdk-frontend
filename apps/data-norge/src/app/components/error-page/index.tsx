@@ -1,8 +1,9 @@
+import { PropsWithChildren } from 'react';
 import Header from '@fdk-frontend/ui/header';
 import { getDictionary } from '@fdk-frontend/dictionaries';
 import styles from './error-page.module.scss';
 
-export default async function ErrorPage({ children }) {
+export default async function ErrorPage({ children }: PropsWithChildren) {
 
     const lang = 'nb';
     const { FDK_COMMUNITY_BASE_URI: communityBaseUri = '/', FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/' } =
