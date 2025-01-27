@@ -53,3 +53,8 @@ spec:
                             secretKeyRef:
                                 name: commonurl-staging
                                 key: FDK_SEARCH_SERVICE_BASE_URI
+                      - name: FDK_RESOURCE_SERVICE_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-staging
+                                key: FDK_RESOURCE_SERVICE_BASE_URI
