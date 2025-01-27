@@ -8,7 +8,7 @@ import styles from './distribution-header.module.scss';
 type DistributionHeaderProps = {
     distribution: JSONValue;
     locale: LocaleCodes;
-    exampleData: boolean;
+    exampleData?: boolean;
 }
 
 const DistributionHeader = ({ distribution, locale, exampleData, ...props }: DistributionHeaderProps & PropsWithChildren) => {
@@ -31,7 +31,7 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                         Eksempeldata
                     </Tag>
                 }
-                {distribution.fdkFormat?.map((format) => (
+                {distribution.fdkFormat?.map((format: any) => (
                     <Tag
                         className={styles.tag}
                         color='info'

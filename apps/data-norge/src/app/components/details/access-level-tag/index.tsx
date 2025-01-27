@@ -1,6 +1,7 @@
 import {
     Link,
     Tag,
+    TagProps,
     HelpText,
     Paragraph,
 } from '@digdir/designsystemet-react';
@@ -35,7 +36,7 @@ const AccessLevelTag = ({ accessCode, ...props }: AccessLevelTagProps) => {
 
 	return (
 		<Tag
-        color={color}
+        color={color as TagProps["color"]}
         size='sm'
     >
         {label}&nbsp;

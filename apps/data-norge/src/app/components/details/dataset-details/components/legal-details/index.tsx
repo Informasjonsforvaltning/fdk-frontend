@@ -6,7 +6,7 @@ import PlaceholderBox from '../../../placeholder-box';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
 import { printLocaleValue } from '../../utils';
 
-export const hasLegalBasis = (dataset) =>  
+export const hasLegalBasis = (dataset: any) =>  
     dataset.legalBasisForAccess || 
     dataset.legalBasisForProcessing ||
     dataset.legalBasisForRestriction;
@@ -15,12 +15,12 @@ const LegalDetails = ({ dataset, locale }: DatasetDetailsProps) => {
 
     const { showEmptyRows } = useContext(DatasetDetailsContext);
 
-    const printLegalBasis = (legalBasis) => {
+    const printLegalBasis = (legalBasis: any) => {
         if (!legalBasis) return <PlaceholderText>Ikke oppgitt</PlaceholderText>;
         return (
             <ol>
                 {
-                    legalBasis.map(legal => (
+                    legalBasis.map((legal: any) => (
                         <li key={legal.uri}>
                             <Link href={legal.uri}>
                                 {printLocaleValue(legal.prefLabel, locale)}
