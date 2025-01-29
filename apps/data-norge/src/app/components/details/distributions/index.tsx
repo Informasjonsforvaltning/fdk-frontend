@@ -1,5 +1,5 @@
 'use client';
-
+import { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { Accordion, Heading } from '@digdir/designsystemet-react';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';

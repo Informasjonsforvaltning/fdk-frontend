@@ -10,24 +10,7 @@
             margin-bottom: 1em;
         }
 
-        dl + dl {
-            margin-top:1rem;
-        }
-
-        dl {
-            ol {
-                list-style:numeric;
-                margin-left:1rem;
-                display:flex;
-                flex-direction:column;
-                gap:0.5rem;
-
-                &:global(.no-style) {
-                    list-style:none;
-                    margin:0;
-                }
-            }
-        }
+        
     }
 
     .toggleButton {

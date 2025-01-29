@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import mime from 'mime-types';
 import { Button, Link, Tag } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
@@ -22,23 +23,33 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
             }
             <div className={styles.tags}>
                 {
-                    exampleData &&
+                    distribution.license &&
                     <Tag
                         className={styles.tag}
                         color='success'
                         size='sm'
                     >
+                        Åpne data
+                    </Tag>
+                }
+                {
+                    exampleData &&
+                    <Tag
+                        className={styles.tag}
+                        color='neutral'
+                        size='sm'
+                    >
                         Eksempeldata
                     </Tag>
                 }
-                {distribution.fdkFormat?.map((format: any) => (
+                {distribution.fdkFormat?.filter(format => format?.code).map((format: any) => (
                     <Tag
                         className={styles.tag}
                         color='info'
                         size='sm'
-                        key={format.name}
+                        key={format.code}
                     >
-                        {format.name}
+                        {mime.extension(format.code) || format.code}
                     </Tag>
                 ))}
             </div>
