@@ -12,31 +12,31 @@ const ExpandableContent = ({ children, maxHeight }: PropsWithChildren) => {
 
 	let observer;
 
-	// useEffect(() => {
-	// 	const container = containerRef.current;
-	// 	if (container) {
-	// 		observer = new ResizeObserver(() => {
-	// 			if (overflow === undefined && container.offsetHeight > maxHeight) {
-	// 				setOverflow((prev) => {
-	// 					if (prev === undefined && container.offsetHeight > maxHeight) {
-	// 	          return true;
-	// 	        }
-	// 	        return prev;
-	// 				});
-	// 				setCollapsed((prev) => {
-	// 	        if (prev === undefined && container.offsetHeight > maxHeight) {
-	// 	          return true;
-	// 	        }
-	// 	        return prev;
-	// 	      });
-	// 			}
-  //     });
+	useEffect(() => {
+		const container = containerRef.current;
+		if (container) {
+			observer = new ResizeObserver(() => {
+				if (overflow === undefined && container.offsetHeight > maxHeight) {
+					setOverflow((prev) => {
+						if (prev === undefined && container.offsetHeight > maxHeight) {
+		          return true;
+		        }
+		        return prev;
+					});
+					setCollapsed((prev) => {
+		        if (prev === undefined && container.offsetHeight > maxHeight) {
+		          return true;
+		        }
+		        return prev;
+		      });
+				}
+      });
 
-  //     observer.observe(container);
+      observer.observe(container);
 
-  //     return () => observer.disconnect();
-	// 	}
-	// }, []);
+      return () => observer.disconnect();
+		}
+	}, []);
 
 	return (
 		<div
