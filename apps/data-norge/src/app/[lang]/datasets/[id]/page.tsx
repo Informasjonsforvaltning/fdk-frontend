@@ -5,7 +5,7 @@ import DetailsPage from '../../../components/details/details-page/dataset';
 
 // import mockResource from '../mock/resource-api/sort-test-datasett.json';
 // import mockResource from '../mock/resource-api/lovhjemler.json';
-import mockSearch from '../mock/search/search.json';
+// import mockSearch from '../mock/search/search.json';
 
 export type DetailsPageWrapperProps = {
     params: Promise<{
@@ -81,7 +81,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
                     cache: 'force-cache'
                 });
                 if (!apiResponse.ok) {
-                    console.warn(`Failed to fetch details for API ${api.id}`);
+                    console.error(`Failed to fetch details for API ${api.id}`);
                     return null;
                 }
                 return await apiResponse.json();
@@ -93,7 +93,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         detailedApis = detailedApiResponses.filter(api => api !== null);
 
     } catch (err) {
-        console.warn(err);
+        console.error(err);
     }
 
     const activeTab = searchParams?.tab ?? 'overview';
