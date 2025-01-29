@@ -1,8 +1,9 @@
 @import '@fdk-frontend/ui/core/mixins';
 
 .highlight {
-    :global(.fds-accordion) {
-        // animation: blink-border 1s ease-in-out 2;
+    // 
+    > :global(.fds-accordion) {
+        animation: blink-border 1s ease-in-out 2;
     }
 }
 
@@ -44,6 +45,25 @@
 
         @media (max-width: 650px) {
             margin-top:1rem;
+        }
+
+        dl + dl {
+            margin-top:1rem;
+        }
+
+        dl {
+            ol {
+                list-style:numeric;
+                margin-left:1rem;
+                display:flex;
+                flex-direction:column;
+                gap:0.5rem;
+
+                &:global(.no-style) {
+                    list-style:none;
+                    margin:0;
+                }
+            }
         }
 
         dl {
@@ -93,11 +113,16 @@
 
         .header {
             margin-bottom: 1.5rem;
-            display:flex;
-            flex-direction:column;
-            gap:0.5rem;
+            // display:flex;
+            // flex-direction:column;
+            // gap:0.5rem;
+
+            .publisher {
+                // flex-grow:1;
+            }
 
             .headerGrid {
+                margin-top:0.5rem;
                 display:grid;
                 grid-template-areas: "a b" "c c";
                 grid-template-columns: auto auto;

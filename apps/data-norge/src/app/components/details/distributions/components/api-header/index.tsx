@@ -20,29 +20,14 @@ const ApiHeader = ({ api, locale, ...props }: ApiHeaderProps & PropsWithChildren
                     api.title?.[i18n.defaultLocale]
                 }
                 <div className={styles.tags}>
-                    {api.fdkFormatPrefixed?.map((format: any, i: number) => (
+                    {api.fdkFormat?.filter(format => format?.name).map((format: any, i: number) => (
                         <Tag
                             className={styles.tag}
                             color='info'
                             size='sm'
-                            key={format}
+                            key={format.code}
                         >
-                            {
-                                /*
-                                    Here we strip the value of 'MEDIA_TYPE ' string because
-                                    values are given like this:
-
-                                    "fdkFormatPrefixed":
-                                    [
-                                        "MEDIA_TYPE application/gml+xml",
-                                        "MEDIA_TYPE text/csv",
-                                        "MEDIA_TYPE application/json"
-                                    ]
-
-                                    And then use mime-types library to get extension.
-                                */
-                                mime.extension(format.replace('MEDIA_TYPE ', ''))
-                            }
+                            {format.name}
                         </Tag>
                     ))}
                 </div>
@@ -57,7 +42,7 @@ const ApiHeader = ({ api, locale, ...props }: ApiHeaderProps & PropsWithChildren
                         e.stopPropagation();
                     }}
                 >
-                    <Link href={api.uri}>
+                    <Link href={`/data-services/${api.id}`}>
                         Gå til API
                         <ArrowRightIcon fontSize='1.2em' />
                     </Link>

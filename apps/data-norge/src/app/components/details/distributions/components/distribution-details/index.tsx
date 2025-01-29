@@ -9,11 +9,13 @@ import {
     TableHeaderCell,
     TableCell,
     TableRow,
+    Tag
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import HStack from '@fdk-frontend/ui/hstack';
+import Markdown from '@fdk-frontend/ui/markdown';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';
 import PlaceholderText from '../../../placeholder-text';
 
@@ -28,9 +30,15 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
             <dl>
                 <dt>Beskrivelse:</dt>
                 <dd>
-                    <article className={detailsPageStyles.article}>
-                        {distribution.description?.[locale] || distribution.description?.[i18n.defaultLocale]}
-                    </article>
+                    {
+                        distribution.description ?
+                        <article className={detailsPageStyles.article}>
+                            <Markdown>
+                                {distribution.description?.[locale] || distribution.description?.[i18n.defaultLocale]}
+                            </Markdown>
+                        </article> :
+                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                    }
                 </dd>
                 <dt>TilgangsURL:</dt>
                 <dd>
@@ -69,13 +77,25 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                     {
                         distribution.license ? 
                         distribution.license.map((license: any) => (
-                            <Link href={license.uri} key={license.uri}>
-                                {
-                                    license.prefLabel?.[locale] ||
-                                    license.prefLabel?.['no'] ||
-                                    license.prefLabel?.[i18n.defaultLocale]
-                                }
-                            </Link>
+                            <HStack key={license.uri}>
+                                <Link href={license.uri}>
+                                    {
+                                        license.prefLabel?.[locale] ||
+                                        license.prefLabel?.['no'] ||
+                                        license.prefLabel?.[i18n.defaultLocale]
+                                    }
+                                </Link>
+                                {/*{
+                                    distribution.license &&
+                                    <Tag
+                                        color='success'
+                                        size='sm'
+                                        style={{transform:'scale(0.9)'}}
+                                    >
+                                        Åpen lisens
+                                    </Tag>
+                                }*/}
+                            </HStack>
                         )) :
                         <PlaceholderText>Ikke oppgitt</PlaceholderText>
                     }

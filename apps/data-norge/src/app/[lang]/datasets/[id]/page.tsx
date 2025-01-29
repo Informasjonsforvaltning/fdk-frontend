@@ -17,7 +17,10 @@ export type DetailsPageWrapperProps = {
 
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
-    const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
+    const {
+        FDK_RESOURCE_SERVICE_BASE_URI,
+        FDK_SEARCH_SERVICE_BASE_URI
+    } = process.env;
     const params = await props.params;
     const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
@@ -25,17 +28,72 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const commonDictionary = await getDictionary(locale, 'common');
 
     let dataset; //, relatedResources, relatedApis;
+    let relatedApis;
+    let detailedApis;
+
+    // Fetch details about dataset
 
     try {
         const response = await fetch(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`, {
             method: 'GET',
-            headers: { 'Accept': 'application/json' }
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         });
         if (!response.ok) throw new Error('Bad response');
         dataset = await response.json();
     } catch (err) {
         console.error(err);
         notFound();
+    }
+
+    // Fetch related APIs
+
+    try {
+        const response = await fetch(`${FDK_SEARCH_SERVICE_BASE_URI}/search`, {
+            method: 'POST',
+            headers: {
+                'Accept': '*/*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                pagination: { size: 100 },
+                filters: {
+                    relations: {
+                        value: dataset.identifier[0]
+                    }
+                }
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Bad response: ${response.status}`);
+        }
+
+        relatedApis = await response.json();
+
+        // Fetch additional details for each related API
+
+        const detailedApiResponses = await Promise.all(
+            relatedApis?.hits.map(async (api: any) => {
+                const apiResponse = await fetch(`${FDK_RESOURCE_SERVICE_BASE_URI}/data-services/${api.id}`, {
+                    cache: 'force-cache'
+                });
+                if (!apiResponse.ok) {
+                    console.warn(`Failed to fetch details for API ${api.id}`);
+                    return null;
+                }
+                return await apiResponse.json();
+            })
+        );
+
+        // Filter out failed requests (null values)
+
+        detailedApis = detailedApiResponses.filter(api => api !== null);
+
+    } catch (err) {
+        console.warn(err);
     }
 
     const activeTab = searchParams?.tab ?? 'overview';
@@ -46,7 +104,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
                 variant='dataset'
                 resource={dataset}
                 // resource={mockResource}
-                apis={mockSearch.hits}
+                apis={detailedApis}
                 locale={locale}
                 commonDictionary={commonDictionary}
                 defaultActiveTab={activeTab}
