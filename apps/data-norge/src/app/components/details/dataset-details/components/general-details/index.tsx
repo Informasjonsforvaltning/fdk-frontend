@@ -30,7 +30,7 @@ const GeneralDetails = ({ dataset, locale }: DatasetDetailsProps) => {
             <dl>
                 <dt>Ansvarlig virksomhet:</dt>
                 <dd>
-                    <Link href='#'>
+                    <Link href={`/organizations/${dataset.publisher?.id}`}>
                         {dataset.publisher.prefLabel?.[locale] || dataset.publisher.prefLabel?.[i18n.defaultLocale]}
                     </Link>
                 </dd>

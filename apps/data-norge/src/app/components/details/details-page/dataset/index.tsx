@@ -10,7 +10,10 @@ import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import StarButton from '@fdk-frontend/ui/star-button';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
+import Markdown from '@fdk-frontend/ui/markdown';
+import Article from '@fdk-frontend/ui/article';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
+import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import {
     Button,
     Heading,
@@ -19,7 +22,9 @@ import {
     Tabs,
     TabList,
     Tab,
-    TabContent
+    TabContent,
+    HelpText,
+    Paragraph
 } from '@digdir/designsystemet-react';
 import Distributions from '../../distributions';
 import DatasetDescription from '../../dataset-description';
@@ -64,7 +69,7 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
 
     const updateUri = (tab: string) => {
         // @ts-expect-error arg numbers
-        router.replace(`?tab=${tab}`, undefined, { shallow: true });
+        router.push(`?tab=${tab}`, { scroll: false });
     }
 
     return (
@@ -76,14 +81,19 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    <Link href='#'>{resource.publisher?.prefLabel?.[locale] || resource.publisher?.prefLabel?.[i18n.defaultLocale]}</Link>
+                    <Link href={`/organizations/${resource.publisher?.id}`} className={styles.publisher}>
+                        {
+                            resource.publisher?.prefLabel?.[locale] ||
+                            resource.publisher?.prefLabel?.[i18n.defaultLocale]
+                        }
+                    </Link>
                     <div className={styles.headerGrid}>
                         <Heading
                             level={1}
                             size='lg'
                             className={styles.title}
                         >
-                            {resource.title?.[locale] || resource.title?.[i18n.defaultLocale]}
+                            {resource.title?.[locale] || resource.title?.[i18n.defaultLocale] || resource.title?.['no']}
                         </Heading>
                         <div className={styles.headerToolbar}>
                             <StarButton
@@ -94,6 +104,7 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                 size='sm'
                                 onClick={() => {
                                     setActiveTab('distributions');
+                                    updateUri('distributions')
                                     blink();
                                 }}
                             >
@@ -108,6 +119,28 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                 <Link href='/datasets'>Datasett</Link>
                             </Tag>
                             <AccessLevelTag accessCode={resource.accessRights?.code} />
+                            <Tag
+                                color='success'
+                                size='sm'
+                            >
+                                <Link href={`/datasets?opendata=true`}>Åpne data</Link>
+                                &nbsp;
+                                <HelpText
+                                    title='Begrepsforklaring'
+                                    size='sm'
+                                    style={{ transform: 'scale(0.75)' }}
+                                >
+                                    <Paragraph size='sm'>
+                                        Datasettet har minst 1 distribusjon med godkjent åpen lisens.
+                                    </Paragraph>
+                                    <Paragraph size='sm'>
+                                        <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
+                                            Les mer om lisenser her
+                                        </Link>
+                                    </Paragraph>
+                                </HelpText>
+                                {/*<Link href='/datasets'>Lisens: {resource.distribution[0].license[0].prefLabel['en']}</Link>*/}
+                            </Tag>
                             <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
                         </div>
                     </div>
@@ -166,9 +199,16 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                 Beskrivelse
                             </Heading>
                             <div className={styles.box}>
-                                <DatasetDescription className={styles.article}>
+                                <ExpandableContent>
+                                    <Article>
+                                        <Markdown>
+                                            {resource.description?.[locale] || resource.description?.[i18n.defaultLocale]}
+                                        </Markdown>
+                                    </Article>
+                                </ExpandableContent>
+                                {/*<DatasetDescription className={styles.article}>
                                     {resource.description?.[locale] || resource.description?.[i18n.defaultLocale]}
-                                </DatasetDescription>
+                                </DatasetDescription>*/}
                             </div>
                         </section>
                         <section className={styles.section}>

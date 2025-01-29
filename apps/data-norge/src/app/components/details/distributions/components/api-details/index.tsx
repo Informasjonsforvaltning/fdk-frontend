@@ -2,6 +2,8 @@ import { Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
+import Markdown from '@fdk-frontend/ui/markdown';
+import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';
 import PlaceholderText from '../../../placeholder-text';
 
@@ -18,20 +20,51 @@ const ApiDetails = ({ api, locale }: ApiDetailsProps) => {
                 <dd>
                 	{
                 		api.description ?
-	                    <article className={detailsPageStyles.article}>
-	                        {api.description?.[locale] || api.description?.[i18n.defaultLocale]}
-	                    </article> :
+                        <ExpandableContent maxHeight={100}>
+    	                    <article className={detailsPageStyles.article}>
+                                <Markdown>
+    	                           {api.description?.[locale] || api.description?.[i18n.defaultLocale]}
+                                </Markdown>
+    	                    </article>
+                        </ExpandableContent> :
 	                    <PlaceholderText>Ikke oppgitt</PlaceholderText>
 	                }
                 </dd>
                 <dt>Endepunkt:</dt>
                 <dd>
-                	<Link href="#">{api.endpoint} <ExternalLinkIcon /></Link>
+                    {
+                        api.endpointURL.map((endpointURL: string, i: number) => {
+                            return (
+                                <dl key={endpointURL}>
+                                    <dt>URL:</dt>
+                                    <dd><Link href={endpointURL}>{endpointURL} <ExternalLinkIcon /></Link></dd>
+                                    <dt>Beskrivelse:</dt>
+                                    <dd>
+                                        {
+                                            api.endpointDescription && api.endpointDescription[i] ?
+                                            <ExpandableContent maxHeight={100}>
+                                                <article className={detailsPageStyles.article}>
+                                                    <Markdown>
+                                                        {api.endpointDescription[i]}
+                                                    </Markdown>
+                                                </article>
+                                            </ExpandableContent> :
+                                            <PlaceholderText>Ikke oppgitt</PlaceholderText>    
+                                        }
+                                    </dd>
+                                </dl>
+                            );
+                        })
+                    }
                 </dd>
-                <dt>Endepunktbeskrivelse:</dt>
-                <dd><Link href="#">{api.endpointSpec} <ExternalLinkIcon /></Link></dd>
                 <dt>Dokumentasjon:</dt>
-                <dd><Link href="#">{api.documentation} <ExternalLinkIcon /></Link></dd>
+                <dd>
+                    {
+                        api.page ?
+                        <Link href={api.page}>{api.page} <ExternalLinkIcon /></Link> :
+                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                    }
+                </dd>
             </dl>
         </>
     );
