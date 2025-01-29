@@ -20,14 +20,14 @@ const ApiHeader = ({ api, locale, ...props }: ApiHeaderProps & PropsWithChildren
                     api.title?.[i18n.defaultLocale]
                 }
                 <div className={styles.tags}>
-                    {api.fdkFormat?.filter(format => format?.name).map((format: any, i: number) => (
+                    {api.fdkFormat?.filter(format => format?.code).map((format: any, i: number) => (
                         <Tag
                             className={styles.tag}
                             color='info'
                             size='sm'
                             key={format.code}
                         >
-                            {format.name}
+                            {mime.extension(format.code) || format.code}
                         </Tag>
                     ))}
                 </div>

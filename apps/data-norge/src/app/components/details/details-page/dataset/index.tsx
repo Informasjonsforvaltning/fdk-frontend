@@ -27,7 +27,6 @@ import {
     Paragraph
 } from '@digdir/designsystemet-react';
 import Distributions from '../../distributions';
-import DatasetDescription from '../../dataset-description';
 import DatasetDetails from '../../dataset-details';
 import MetadataPage from '../../metadata-page';
 import CommunityTab from '../../community-tab';
@@ -119,28 +118,31 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                 <Link href='/datasets'>Datasett</Link>
                             </Tag>
                             <AccessLevelTag accessCode={resource.accessRights?.code} />
-                            <Tag
-                                color='success'
-                                size='sm'
-                            >
-                                <Link href={`/datasets?opendata=true`}>Åpne data</Link>
-                                &nbsp;
-                                <HelpText
-                                    title='Begrepsforklaring'
+                            {
+                                resource.isOpenData &&
+                                <Tag
+                                    color='success'
                                     size='sm'
-                                    style={{ transform: 'scale(0.75)' }}
                                 >
-                                    <Paragraph size='sm'>
-                                        Datasettet har minst 1 distribusjon med godkjent åpen lisens.
-                                    </Paragraph>
-                                    <Paragraph size='sm'>
-                                        <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
-                                            Les mer om lisenser her
-                                        </Link>
-                                    </Paragraph>
-                                </HelpText>
-                                {/*<Link href='/datasets'>Lisens: {resource.distribution[0].license[0].prefLabel['en']}</Link>*/}
-                            </Tag>
+                                    <Link href={`/datasets?opendata=true`}>Åpne data</Link>
+                                    &nbsp;
+                                    <HelpText
+                                        title='Begrepsforklaring'
+                                        size='sm'
+                                        style={{ transform: 'scale(0.75)' }}
+                                    >
+                                        <Paragraph size='sm'>
+                                            Datasettet har minst 1 distribusjon med godkjent åpen lisens.
+                                        </Paragraph>
+                                        <Paragraph size='sm'>
+                                            <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
+                                                Les mer om lisenser her
+                                            </Link>
+                                        </Paragraph>
+                                    </HelpText>
+                                    {/*<Link href='/datasets'>Lisens: {resource.distribution[0].license[0].prefLabel['en']}</Link>*/}
+                                </Tag>
+                            }
                             <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
                         </div>
                     </div>
@@ -206,9 +208,6 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                         </Markdown>
                                     </Article>
                                 </ExpandableContent>
-                                {/*<DatasetDescription className={styles.article}>
-                                    {resource.description?.[locale] || resource.description?.[i18n.defaultLocale]}
-                                </DatasetDescription>*/}
                             </div>
                         </section>
                         <section className={styles.section}>
