@@ -119,7 +119,7 @@ Fix for weird code block inside Alert overflow bug.
 https://data.norge.no/nb/docs/sharing-data/how-to-dataset/2-dataset-description
 */
 .fds-alert__content {
-    overflow:auto;
+    overflow:hidden;
 }
 
 /*
