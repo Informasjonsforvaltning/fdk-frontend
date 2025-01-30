@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import cn from 'classnames';
 import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
-import { sumArrayLengths } from '@fdk-frontend/utils';
+import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import StarButton from '@fdk-frontend/ui/star-button';
@@ -31,6 +31,7 @@ import DatasetDetails from '../../dataset-details';
 import MetadataPage from '../../metadata-page';
 import CommunityTab from '../../community-tab';
 import AccessLevelTag from '../../access-level-tag';
+import PlaceholderBox from '../../placeholder-box';
 import styles from '../details-page.module.scss';
 
 export type DetailsPageVariants = 'dataset' | 'api' | 'concept';
@@ -91,7 +92,10 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                             size='lg'
                             className={styles.title}
                         >
-                            {resource.title?.[locale] || resource.title?.[i18n.defaultLocale] || resource.title?.['no']}
+                            {
+                                printLocaleValue(locale, resource.title) ||
+                                'Navnløst datasett'
+                            }
                         </Heading>
                         <div className={styles.headerToolbar}>
                             <StarButton
@@ -199,15 +203,25 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                             >
                                 Beskrivelse
                             </Heading>
-                            <div className={styles.box}>
-                                <ExpandableContent>
-                                    <Article>
-                                        <Markdown>
-                                            {resource.description?.[locale] || resource.description?.[i18n.defaultLocale]}
-                                        </Markdown>
-                                    </Article>
-                                </ExpandableContent>
-                            </div>
+                            {/*{resource.description?.['no']}*/}
+                            {/*{printLocaleValue(locale, resource.description)}*/}
+                            {
+                                resource.description ?
+                                <div className={styles.box}>
+                                    <ExpandableContent>
+                                        <Article>
+                                            <Markdown>
+                                                {
+                                                    printLocaleValue(locale, resource.description)
+                                                }
+                                            </Markdown>
+                                        </Article>
+                                    </ExpandableContent> 
+                                </div> :
+                                <PlaceholderBox>
+                                    Dette datasettet har ingen beskrivelse.
+                                </PlaceholderBox>
+                            }
                         </section>
                         <section className={styles.section}>
                             <Distributions

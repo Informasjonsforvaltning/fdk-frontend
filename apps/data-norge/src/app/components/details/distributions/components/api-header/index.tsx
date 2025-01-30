@@ -17,7 +17,8 @@ const ApiHeader = ({ api, locale, ...props }: ApiHeaderProps & PropsWithChildren
             <span className={styles.title}>
                 {
                     api.title?.[locale] ||
-                    api.title?.[i18n.defaultLocale]
+                    api.title?.[i18n.defaultLocale] ||
+                    'Navnløst API'
                 }
                 <div className={styles.tags}>
                     {api.fdkFormat?.filter((format: any) => format?.code).map((format: any, i: number) => (
