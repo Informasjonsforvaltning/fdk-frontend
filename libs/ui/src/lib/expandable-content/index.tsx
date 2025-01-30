@@ -4,17 +4,17 @@ import { Button } from '@digdir/designsystemet-react';
 import { PlusIcon, MinusIcon } from '@navikt/aksel-icons';
 import styles from './expandable-content.module.scss';
 
-const ExpandableContent = ({ children, maxHeight }: PropsWithChildren) => {
+const ExpandableContent = ({ children, maxHeight, ...props }: { maxHeight?: number } & PropsWithChildren) => {
 	
-	const containerRef = useRef(null);
-	const [ overflow, setOverflow ] = useState(undefined);
-	const [ collapsed, setCollapsed ] = useState(undefined);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const [ overflow, setOverflow ] = useState<boolean | undefined>(undefined);
+	const [ collapsed, setCollapsed ] = useState<boolean | undefined>(undefined);
 
-	let observer;
+	let observer: any;
 
 	useEffect(() => {
 		const container = containerRef.current;
-		if (container) {
+		if (container && maxHeight) {
 			observer = new ResizeObserver(() => {
 				if (overflow === undefined && container.offsetHeight > maxHeight) {
 					setOverflow((prev) => {
@@ -45,6 +45,7 @@ const ExpandableContent = ({ children, maxHeight }: PropsWithChildren) => {
 				[styles.collapsed]: collapsed
 			})}
 			ref={containerRef}
+			{...props}
 		>
 			<div
 				className={styles.content}
