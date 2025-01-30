@@ -21,7 +21,8 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
             {
                 distribution.title?.[locale] ||
                 distribution.title?.[i18n.defaultLocale] ||
-                distribution.accessURL
+                distribution.accessURL ||
+                'Navnløs distribusjon'
             }
             <div className={styles.tags}>
                 {/*{distribution.license && distribution.license.map(l => l.uri)}*/}
