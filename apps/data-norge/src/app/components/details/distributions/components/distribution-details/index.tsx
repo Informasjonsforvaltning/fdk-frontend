@@ -1,8 +1,9 @@
-import { Link } from '@digdir/designsystemet-react';
+import { Link, Tag, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import HStack from '@fdk-frontend/ui/hstack';
 import Markdown from '@fdk-frontend/ui/markdown';
+import { isOpenLicense } from '@fdk-frontend/utils';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';
 import PlaceholderText from '../../../placeholder-text';
 
@@ -72,16 +73,31 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                                         license.prefLabel?.[i18n.defaultLocale]
                                     }
                                 </Link>
-                                {/*{
-                                    distribution.license &&
+                                {
+                                    isOpenLicense(license.uri) &&
                                     <Tag
                                         color='success'
                                         size='sm'
-                                        style={{transform:'scale(0.9)'}}
+                                        style={{marginLeft:'0.5rem'}}
                                     >
-                                        Åpen lisens
+                                        Godkjent åpen lisens
+                                        &nbsp;
+                                        <HelpText
+                                            title='Begrepsforklaring'
+                                            size='sm'
+                                            style={{ transform: 'scale(0.75)' }}
+                                        >
+                                            <Paragraph size='sm'>
+                                                Dette er en godkjent åpen lisens som tillater fri bruk, deling og gjenbruk av data i samsvar med åpne data-prinsipper. Disse lisensene er anerkjent for bruk i offentlige og private datasett, både nasjonalt og internasjonalt.
+                                            </Paragraph>
+                                            <Paragraph size='sm'>
+                                                <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
+                                                    Les mer om lisenser her
+                                                </Link>
+                                            </Paragraph>
+                                        </HelpText>
                                     </Tag>
-                                }*/}
+                                }
                             </HStack>
                         )) :
                         <PlaceholderText>Ikke oppgitt</PlaceholderText>

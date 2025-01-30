@@ -3,6 +3,7 @@ import mime from 'mime-types';
 import { Button, Link, Tag } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
+import { isOpenLicense } from '@fdk-frontend/utils';
 import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import styles from './distribution-header.module.scss';
 
@@ -13,6 +14,7 @@ type DistributionHeaderProps = {
 }
 
 const DistributionHeader = ({ distribution, locale, exampleData, ...props }: DistributionHeaderProps & PropsWithChildren) => {
+
 	return (
 		<div className={styles.headerContent}>
         <span className={styles.title}>
@@ -22,8 +24,10 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                 distribution.accessURL
             }
             <div className={styles.tags}>
+                {/*{distribution.license && distribution.license.map(l => l.uri)}*/}
                 {
                     distribution.license &&
+                    distribution.license.some((l: any) => isOpenLicense(l.uri)) &&
                     <Tag
                         className={styles.tag}
                         color='success'
