@@ -1,5 +1,4 @@
 import React from 'react';
-import cn from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import { Link, LinkProps } from '@digdir/designsystemet-react';
 import { Prism as SyntaxHighlighter, SyntaxHighlighterProps } from 'react-syntax-highlighter';
