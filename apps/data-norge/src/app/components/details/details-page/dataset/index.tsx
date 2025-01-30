@@ -67,7 +67,6 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
     ];
 
     const updateUri = (tab: string) => {
-        // @ts-expect-error arg numbers
         router.push(`?tab=${tab}`, { scroll: false });
     }
 
