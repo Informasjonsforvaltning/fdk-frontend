@@ -42,7 +42,7 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                         Eksempeldata
                     </Tag>
                 }
-                {distribution.fdkFormat?.filter(format => format?.code).map((format: any) => (
+                {distribution.fdkFormat?.filter((format: any) => format?.code).map((format: any) => (
                     <Tag
                         className={styles.tag}
                         color='info'

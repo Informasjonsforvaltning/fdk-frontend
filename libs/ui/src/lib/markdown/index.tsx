@@ -1,7 +1,8 @@
 import React from 'react';
+import cn from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import { Link, LinkProps } from '@digdir/designsystemet-react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { Prism as SyntaxHighlighter, SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export const defaultAllowedElements = [
@@ -35,6 +36,8 @@ export const defaultAllowedElements = [
 ];
 
 export type MarkdownProps = {
+  className?: string;
+  children?: string;
 	allowedElements?: string[];
 	components?: any;
 }
@@ -45,10 +48,9 @@ const Markdown = ({ allowedElements = defaultAllowedElements, components, ...res
 			allowedElements={allowedElements}
 			components={{
           a: (props: LinkProps) => <Link {...props} />,
-          code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
+          code: ({ className, ...props }: SyntaxHighlighterProps) => {
               const match = /language-(\w+)/.exec(className || '');
               return match ? (
-                  // @ts-expect-error: ignore complaint that vscDarkPlus does not conform to CSSProperties
                   (<SyntaxHighlighter
                       style={vscDarkPlus as any}
                       language={match[1]}
