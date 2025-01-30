@@ -1,5 +1,13 @@
+import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+
 export const print = (str?: string) => {
 	return str || '[undefined]';
+}
+
+export const printLocaleValue = (locale: LocaleCodes, value: any) => {
+	if (!value) return;
+	if (typeof value === 'string') return value;
+	return value[locale] || value[i18n.defaultLocale] || value['no'];
 }
 
 export const sumArrayLengths = (...arrays: any[][]) => {

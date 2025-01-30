@@ -36,10 +36,7 @@
     "conformsTo": null,
     "contactPoint": null,
     "dctType": null,
-    "description":
-    {
-        "nb": "Kun test 2\n\n---\nFormål: Test"
-    },
+    "description": null,
     "descriptionFormatted":
     {
         "nb": "Kun test 2\n\n---\nFormål: Test"
@@ -204,10 +201,7 @@
         "https://psi.norge.no/los/ord/doping",
         "https://psi.norge.no/los/tema/idrett"
     ],
-    "title":
-    {
-        "nb": "Derby"
-    },
+    "title": null,
     "type": "datasets",
     "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/550f2c0c-454c-4482-9c60-83bd20b0dd88"
 }
