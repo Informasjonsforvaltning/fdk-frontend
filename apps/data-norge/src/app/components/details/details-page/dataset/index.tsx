@@ -255,7 +255,7 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                                     color='success'
                                                     size='sm'
                                                 >
-                                                    Åpne data
+                                                    Allmenn tilgang
                                                 </Tag>
                                             </td>
                                         </tr>
@@ -271,7 +271,7 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                                     color='success'
                                                     size='sm'
                                                 >
-                                                    Åpne data
+                                                    Allmenn tilgang
                                                 </Tag>
                                             </td>
                                         </tr>
