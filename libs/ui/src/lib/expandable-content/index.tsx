@@ -45,6 +45,8 @@ const ExpandableContent = ({ children, maxHeight, ...props }: { maxHeight?: numb
 				[styles.collapsed]: collapsed
 			})}
 			ref={containerRef}
+			data-overflow={overflow}
+			aria-expanded={!collapsed}
 			{...props}
 		>
 			<div

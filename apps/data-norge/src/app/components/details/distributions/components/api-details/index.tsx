@@ -3,6 +3,7 @@ import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import Markdown from '@fdk-frontend/ui/markdown';
+import Box from '@fdk-frontend/ui/box';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';
 import PlaceholderText from '../../../placeholder-text';
@@ -20,13 +21,15 @@ const ApiDetails = ({ api, locale }: ApiDetailsProps) => {
                 <dd>
                 	{
                 		api.description ?
-                        <ExpandableContent maxHeight={100}>
-    	                    <article className={detailsPageStyles.article}>
-                                <Markdown>
-    	                           {api.description?.[locale] || api.description?.[i18n.defaultLocale]}
-                                </Markdown>
-    	                    </article>
-                        </ExpandableContent> :
+                        <Box className={detailsPageStyles.descBox}>
+                            <ExpandableContent maxHeight={100}>
+        	                    <article className={detailsPageStyles.article}>
+                                    <Markdown>
+        	                           {api.description?.[locale] || api.description?.[i18n.defaultLocale]}
+                                    </Markdown>
+        	                    </article>
+                            </ExpandableContent>
+                        </Box> :
 	                    <PlaceholderText>Ikke oppgitt</PlaceholderText>
 	                }
                 </dd>
