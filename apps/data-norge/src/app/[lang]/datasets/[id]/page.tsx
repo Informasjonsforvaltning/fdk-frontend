@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { printLocaleValue } from '@fdk-frontend/utils';
 
 import DetailsPage from '../../../components/details/details-page/dataset';
 
@@ -113,9 +114,34 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     );
 };
 
-export const metadata = {
-    title: 'Datasett: Energimålinger kommunale bygg - data.norge.no',
-    description: 'POC for detaljvisning',
-};
+export const generateMetadata = async (props: DetailsPageWrapperProps) => {
 
+    const params = await props.params;
+    const locale = params.lang ?? i18n.defaultLocale;
+    const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
+
+    try {
+        const response = await fetch(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) throw new Error('Bad response');
+        const dataset = await response.json();
+
+        return {
+            title: `${printLocaleValue(locale, dataset.title)} - Datasett - data.norge.no`,
+            description: dataset.description ?? 'POC for detaljvisning'
+        };
+    } catch (err) {
+        console.error(err);
+        return {
+            title: 'Datasett ikke funnet - data.norge.no',
+            description: 'Datasettet kunne ikke hentes.'
+        };
+    }
+};
 export default DetailsPageWrapper;
