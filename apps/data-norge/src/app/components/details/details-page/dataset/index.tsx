@@ -133,7 +133,7 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                         style={{ transform: 'scale(0.75)' }}
                                     >
                                         <Paragraph size='sm'>
-                                            Datasettet er klassifisert som "Allmenn tilgang" og har minst 1 distribusjon med godkjent åpen lisens.
+                                            Datasettet er klassifisert som <em>Allmenn tilgang</em> og har minst 1 distribusjon med godkjent åpen lisens.
                                         </Paragraph>
                                         <Paragraph size='sm'>
                                             <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
