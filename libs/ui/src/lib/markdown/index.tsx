@@ -48,6 +48,7 @@ const Markdown = ({ allowedElements = defaultAllowedElements, components, ...res
 			components={{
           a: (props: LinkProps) => <Link {...props} />,
           code: ({ className, ...props }: SyntaxHighlighterProps) => {
+              // return <code {...props} />;
               const match = /language-(\w+)/.exec(className || '');
               return match ? (
                   (<SyntaxHighlighter

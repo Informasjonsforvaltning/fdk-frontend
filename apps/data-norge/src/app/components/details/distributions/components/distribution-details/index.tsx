@@ -3,6 +3,8 @@ import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import HStack from '@fdk-frontend/ui/hstack';
 import Markdown from '@fdk-frontend/ui/markdown';
+import Box from '@fdk-frontend/ui/box';
+import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import { isOpenLicense } from '@fdk-frontend/utils';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';
 import PlaceholderText from '../../../placeholder-text';
@@ -20,11 +22,15 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                 <dd>
                     {
                         distribution.description ?
-                        <article className={detailsPageStyles.article}>
-                            <Markdown>
-                                {distribution.description?.[locale] || distribution.description?.[i18n.defaultLocale]}
-                            </Markdown>
-                        </article> :
+                        <Box className={detailsPageStyles.descBox}>
+                            <ExpandableContent maxHeight={100}>
+                                <article className={detailsPageStyles.article}>
+                                    <Markdown>
+                                       {distribution.description?.[locale] || distribution.description?.[i18n.defaultLocale]}
+                                    </Markdown>
+                                </article>
+                            </ExpandableContent>
+                        </Box> :
                         <PlaceholderText>Ikke oppgitt</PlaceholderText>
                     }
                 </dd>
