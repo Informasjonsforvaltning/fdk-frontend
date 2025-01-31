@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import cn from 'classnames';
 import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
@@ -46,8 +45,6 @@ export type DetailsPageType = {
 };
 
 export default function DetailsPage({ variant, resource, apis, locale, commonDictionary, defaultActiveTab = 'overview' }: DetailsPageType) {
-    const router = useRouter();
-
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
 
@@ -68,7 +65,8 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
     ];
 
     const updateUri = (tab: string) => {
-        router.push(`?tab=${tab}`, { scroll: false });
+        window.history.pushState(null, "", `?tab=${tab}`);
+
     }
 
     return (
