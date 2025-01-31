@@ -34,7 +34,7 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                         color='success'
                         size='sm'
                     >
-                        Åpne data
+                        Åpen lisens
                     </Tag>
                 }
                 {
