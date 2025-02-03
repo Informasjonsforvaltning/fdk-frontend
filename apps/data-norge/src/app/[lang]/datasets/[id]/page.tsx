@@ -55,8 +55,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
         // APIs
 
-        apiRelations = relations.hits.filter(r => r.searchType === 'DATA_SERVICE');
-        relatedDatasets = relations.hits.filter(r => r.searchType === 'DATASET');
+        apiRelations = relations.hits.filter((r: any) => r.searchType === 'DATA_SERVICE');
+        relatedDatasets = relations.hits.filter((r: any) => r.searchType === 'DATASET');
 
         // Fetch additional details for each related API
 
@@ -67,7 +67,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         );
         // Filter out failed requests (null values)
 
-        detailedApis = detailedApiResponses.filter(api => api !== null);
+        detailedApis = detailedApiResponses.filter((api: any) => api !== null);
 
     } catch (err) {
         console.log(err);
@@ -77,10 +77,10 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     if (relatedDatasets.length < relatedItemsLimit) {
         try {
-            themeDatasets = await fetchThemeDatasets(`${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`, dataset?.losTheme?.map(t => t.losPaths[0]));
+            themeDatasets = await fetchThemeDatasets(`${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`, dataset?.losTheme?.map((t: any) => t.losPaths[0]));
 
             // Filter self
-            themeDatasets = themeDatasets.hits.filter(d => d.id !== dataset.id);
+            themeDatasets = themeDatasets.hits.filter((d: any) => d.id !== dataset.id);
 
             // Combine and limit to 5
             relatedDatasets = [ ...relatedDatasets, ...themeDatasets ].slice(0, relatedItemsLimit);
@@ -96,7 +96,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             orgDatasets = await fetchOrgDatasets(`${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`, dataset.publisher?.orgPath);
             
             // Filter self
-            orgDatasets = orgDatasets.hits.filter(d => d.id !== dataset.id);
+            orgDatasets = orgDatasets.hits.filter((d: any) => d.id !== dataset.id);
 
             // Combine and limit to 5
             relatedDatasets = [ ...relatedDatasets, ...orgDatasets ].slice(0, relatedItemsLimit);
@@ -133,7 +133,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             description: dataset.description ?? 'POC for detaljvisning'
         };
     } catch (err) {
-        console.error(err);
+        console.log(err);
         notFound();
     }
 };
