@@ -4,7 +4,7 @@ import { Button, Link, Tag } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
 import { isOpenLicense, printLocaleValue } from '@fdk-frontend/utils';
-import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import styles from './distribution-header.module.scss';
 
 type DistributionHeaderProps = {

@@ -24,8 +24,7 @@ import {
     Tab,
     TabContent,
     HelpText,
-    Paragraph,
-    Tooltip
+    Paragraph
 } from '@digdir/designsystemet-react';
 import Distributions from '../../distributions';
 import DatasetDetails from '../../dataset-details';
@@ -250,7 +249,7 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
                                         <table className={cn('table', styles.relatedTable)} style={{minWidth:475}}>
                                             <tbody>
                                                 {
-                                                    relatedDatasets && relatedDatasets.map(dataset => (
+                                                    relatedDatasets && relatedDatasets.map((dataset: any) => (
                                                         <tr key={dataset.id}>
                                                             <td>
                                                                 <Link href={`${dataset.id}`}>
