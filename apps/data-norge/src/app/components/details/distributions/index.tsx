@@ -37,7 +37,7 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                 datasets && datasets.length ?
                 <Accordion border>
                     {datasets.map((distribution, index) => (
-                        <Accordion.Item key={distribution.accessURL}>
+                        <Accordion.Item key={`${distribution.accessURL}-${index}`}>
                             <Accordion.Header
                                 level={3}
                                 className={styles.header}

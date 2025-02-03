@@ -3,6 +3,7 @@ import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionarie
 import { printLocaleValue } from '@fdk-frontend/utils';
 
 import DetailsPage from '../../../components/details/details-page/dataset';
+import { fetchResource, fetchRelations, fetchOrgDatasets, fetchThemeDatasets } from '../data';
 
 // import mockResource from '../mock/resource-api/sort-test-datasett.json';
 // import mockResource from '../mock/resource-api/lovhjemler.json';
@@ -22,90 +23,95 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         FDK_RESOURCE_SERVICE_BASE_URI,
         FDK_SEARCH_SERVICE_BASE_URI
     } = process.env;
+
     const params = await props.params;
     const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
-
     const commonDictionary = await getDictionary(locale, 'common');
+    const activeTab = searchParams?.tab ?? 'overview';
+    const relatedItemsLimit = 5;
 
-    let dataset; //, relatedResources, relatedApis;
-    let relatedApis;
-    let detailedApis;
+    let dataset;
+    let apiRelations = [];
+    let detailedApis = [];
+    let relatedDatasets = [];
+    let orgDatasets = [];
+    let themeDatasets = [];
 
     // Fetch details about dataset
 
     try {
-        const response = await fetch(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-        if (!response.ok) throw new Error('Bad response');
-        dataset = await response.json();
+        dataset = await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`);
     } catch (err) {
-        console.error(err);
+        console.log(err);
         notFound();
     }
 
-    // Fetch related APIs
+    // Fetch related
 
     try {
-        const response = await fetch(`${FDK_SEARCH_SERVICE_BASE_URI}/search`, {
-            method: 'POST',
-            headers: {
-                'Accept': '*/*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                pagination: { size: 100 },
-                filters: {
-                    relations: {
-                        value: dataset.identifier[0]
-                    }
-                }
-            })
-        });
-        
-        if (!response.ok) {
-            throw new Error(`Bad response: ${response.status}`);
-        }
+        const relations = await fetchRelations(`${FDK_SEARCH_SERVICE_BASE_URI}/search`, dataset.identifier[0]);
+        if (!relations.hits) throw new Error();
 
-        relatedApis = await response.json();
+        // APIs
+
+        apiRelations = relations.hits.filter(r => r.searchType === 'DATA_SERVICE');
+        relatedDatasets = relations.hits.filter(r => r.searchType === 'DATASET');
 
         // Fetch additional details for each related API
 
         const detailedApiResponses = await Promise.all(
-            relatedApis?.hits.map(async (api: any) => {
-                const apiResponse = await fetch(`${FDK_RESOURCE_SERVICE_BASE_URI}/data-services/${api.id}`, {
-                    cache: 'force-cache'
-                });
-                if (!apiResponse.ok) {
-                    console.error(`Failed to fetch details for API ${api.id}`);
-                    return null;
-                }
-                return await apiResponse.json();
+            apiRelations?.map(async (api: any) => {
+                return await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/data-services/${api.id}`);
             })
         );
-
         // Filter out failed requests (null values)
 
         detailedApis = detailedApiResponses.filter(api => api !== null);
 
     } catch (err) {
-        console.error(err);
+        console.log(err);
     }
 
-    const activeTab = searchParams?.tab ?? 'overview';
+    // If room for more, fetch additional datasets from themes
+
+    if (relatedDatasets.length < relatedItemsLimit) {
+        try {
+            themeDatasets = await fetchThemeDatasets(`${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`, dataset?.losTheme?.map(t => t.losPaths[0]));
+
+            // Filter self
+            themeDatasets = themeDatasets.hits.filter(d => d.id !== dataset.id);
+
+            // Combine and limit to 5
+            relatedDatasets = [ ...relatedDatasets, ...themeDatasets ].slice(0, relatedItemsLimit);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    // If room for more, fetch additional datasets based on org
+
+    if (relatedDatasets.length < relatedItemsLimit) {
+        try {
+            orgDatasets = await fetchOrgDatasets(`${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`, dataset.publisher?.orgPath);
+            
+            // Filter self
+            orgDatasets = orgDatasets.hits.filter(d => d.id !== dataset.id);
+
+            // Combine and limit to 5
+            relatedDatasets = [ ...relatedDatasets, ...orgDatasets ].slice(0, relatedItemsLimit);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <>
             <DetailsPage
                 variant='dataset'
                 resource={dataset}
-                // resource={mockResource}
                 apis={detailedApis}
+                relatedDatasets={relatedDatasets}
                 locale={locale}
                 commonDictionary={commonDictionary}
                 defaultActiveTab={activeTab}
@@ -121,27 +127,15 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
 
     try {
-        const response = await fetch(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!response.ok) throw new Error('Bad response');
-        const dataset = await response.json();
-
+        const dataset = await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`);
         return {
             title: `${printLocaleValue(locale, dataset.title)} - Datasett - data.norge.no`,
             description: dataset.description ?? 'POC for detaljvisning'
         };
     } catch (err) {
         console.error(err);
-        return {
-            title: 'Datasett ikke funnet - data.norge.no',
-            description: 'Datasettet kunne ikke hentes.'
-        };
+        notFound();
     }
 };
+
 export default DetailsPageWrapper;

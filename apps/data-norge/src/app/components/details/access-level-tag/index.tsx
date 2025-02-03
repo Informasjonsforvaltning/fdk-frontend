@@ -10,9 +10,10 @@ import { DatasetAccessRightsCodes } from '@fdk-frontend/types';
 
 type AccessLevelTagProps = {
 	accessCode: DatasetAccessRightsCodes;
+	nonInteractive?: boolean;
 }
 
-const AccessLevelTag = ({ accessCode, ...props }: AccessLevelTagProps) => {
+const AccessLevelTag = ({ accessCode, nonInteractive, ...props }: AccessLevelTagProps) => {
 
 	let color = 'neutral', label = 'Ukjent tilgangsnivå', helpText = '';
 
@@ -36,23 +37,29 @@ const AccessLevelTag = ({ accessCode, ...props }: AccessLevelTagProps) => {
 
 	return (
 		<Tag
-        color={color as TagProps["color"]}
-        size='sm'
-    >
-        <Link href={`/datasets?accessrights=${accessCode}`}>{label}</Link>&nbsp;
-        <HelpText
-            title='Begrepsforklaring'
-            size='sm'
-            style={{ transform: 'scale(0.75)' }}
-        >
-            <Paragraph size='sm'>{helpText}</Paragraph>
-            <Paragraph size='sm'>
-                <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
-                    Les mer om tilgangsnivåer her
-                </Link>
-            </Paragraph>
-        </HelpText>
-    </Tag>
+	        color={color as TagProps["color"]}
+	        size='sm'
+	    >
+	    	{
+	    		nonInteractive ?
+	    		label :
+	    		<>
+	    			<Link href={`/datasets?accessrights=${accessCode}`}>{label}</Link>&nbsp;
+			        <HelpText
+			            title='Begrepsforklaring'
+			            size='sm'
+			            style={{ transform: 'scale(0.75)' }}
+			        >
+			            <Paragraph size='sm'>{helpText}</Paragraph>
+			            <Paragraph size='sm'>
+			                <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
+			                    Les mer om tilgangsnivåer her
+			                </Link>
+			            </Paragraph>
+			        </HelpText>
+	    		</>
+	    	}
+	    </Tag>
 	);
 }
 

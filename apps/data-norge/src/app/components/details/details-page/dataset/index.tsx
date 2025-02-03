@@ -11,6 +11,7 @@ import StarButton from '@fdk-frontend/ui/star-button';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Article from '@fdk-frontend/ui/article';
+import HStack from '@fdk-frontend/ui/hstack';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import {
@@ -23,7 +24,8 @@ import {
     Tab,
     TabContent,
     HelpText,
-    Paragraph
+    Paragraph,
+    Tooltip
 } from '@digdir/designsystemet-react';
 import Distributions from '../../distributions';
 import DatasetDetails from '../../dataset-details';
@@ -39,12 +41,14 @@ export type DetailsPageType = {
     variant: DetailsPageVariants;
     resource: JSONValue;
     apis?: JSONValue;
+    relatedDatasets?: JSONValue;
+    orgDatasets?: JSONValue;
     locale: LocaleCodes;
     commonDictionary: Dictionary;
     defaultActiveTab?: string;
 };
 
-export default function DetailsPage({ variant, resource, apis, locale, commonDictionary, defaultActiveTab = 'overview' }: DetailsPageType) {
+export default function DetailsPage({ variant, resource, apis, relatedDatasets, orgDatasets, locale, commonDictionary, defaultActiveTab = 'overview' }: DetailsPageType) {
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
 
@@ -80,8 +84,9 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                 <div className={styles.header}>
                     <Link href={`/organizations/${resource.publisher?.id}`} className={styles.publisher}>
                         {
-                            resource.publisher?.prefLabel?.[locale] ||
-                            resource.publisher?.prefLabel?.[i18n.defaultLocale]
+                            resource.publisher ?
+                            printLocaleValue(locale, resource.publisher?.prefLabel) :
+                            'Navnløs virksomhet'
                         }
                     </Link>
                     <div className={styles.headerGrid}>
@@ -230,71 +235,53 @@ export default function DetailsPage({ variant, resource, apis, locale, commonDic
                                 locale={locale}
                             />
                         </section>
-                        <BrandDivider className={styles.divider} />
-                        <section className={styles.section}>
-                            <Heading
-                                level={4}
-                                size='xxsmall'
-                            >
-                                Relaterte datasett
-                            </Heading>
-                            <ScrollShadows className={styles.tableScroller}>
-                                <table className='table' style={{minWidth:475}}>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <Link href='#'>Hydrologiske data</Link>
-                                            </td>
-                                            <td>
-                                                <span className={styles.relatedPublisher}>
-                                                    Norges vassdrags- og energidirektorat (nve)
-                                                </span>
-                                            </td>
-                                            <td align='right'>
-                                                <Tag
-                                                    color='success'
-                                                    size='sm'
-                                                >
-                                                    Allmenn tilgang
-                                                </Tag>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <Link href='#'>Standard for yrkesklassifisering (STYRK08)</Link>
-                                            </td>
-                                            <td>
-                                                <span className={styles.relatedPublisher}>Statistisk sentralbyrå</span>
-                                            </td>
-                                            <td align='right'>
-                                                <Tag
-                                                    color='success'
-                                                    size='sm'
-                                                >
-                                                    Allmenn tilgang
-                                                </Tag>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <Link href='#'>Folketeljinga 1910</Link>
-                                            </td>
-                                            <td>
-                                                <span className={styles.relatedPublisher}>Arkivverket</span>
-                                            </td>
-                                            <td align='right'>
-                                                <Tag
-                                                    color='warning'
-                                                    size='sm'
-                                                >
-                                                    Begrenset tilgang
-                                                </Tag>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </ScrollShadows>
-                        </section>
+                        {
+                            relatedDatasets && relatedDatasets.length > 0 &&
+                            <>
+                                <BrandDivider className={styles.divider} />
+                                <section className={styles.section}>
+                                    <Heading
+                                        level={4}
+                                        size='xxsmall'
+                                    >
+                                        Relaterte datasett
+                                    </Heading>
+                                    <ScrollShadows className={styles.tableScroller}>
+                                        <table className={cn('table', styles.relatedTable)} style={{minWidth:475}}>
+                                            <tbody>
+                                                {
+                                                    relatedDatasets && relatedDatasets.map(dataset => (
+                                                        <tr key={dataset.id}>
+                                                            <td>
+                                                                <Link href={`${dataset.id}`}>
+                                                                    {printLocaleValue(locale, dataset.title)}
+                                                                </Link>
+                                                            </td>
+                                                            <td>
+                                                                <span className={styles.relatedPublisher}>
+                                                                    {
+                                                                        dataset.publisher ?
+                                                                        printLocaleValue(locale, dataset.publisher?.prefLabel) :
+                                                                        dataset.organization ?
+                                                                        printLocaleValue(locale, dataset.organization?.prefLabel) :
+                                                                        `Ukjent virksomhet`
+                                                                    }
+                                                                </span>
+                                                            </td>
+                                                            <td align='right'>
+                                                                <HStack style={{justifyContent: 'flex-end', gap: '0.5rem'}}>
+                                                                    <AccessLevelTag accessCode={dataset.accessRights?.code} nonInteractive />
+                                                                </HStack>
+                                                            </td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </ScrollShadows>
+                                </section>
+                            </>
+                        }
                     </TabContent>
                     <TabContent value='distributions'>
                         <Distributions
