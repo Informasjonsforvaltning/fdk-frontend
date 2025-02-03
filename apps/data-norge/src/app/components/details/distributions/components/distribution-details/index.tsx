@@ -1,7 +1,6 @@
 import { Link, Tag, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
-import HStack from '@fdk-frontend/ui/hstack';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
