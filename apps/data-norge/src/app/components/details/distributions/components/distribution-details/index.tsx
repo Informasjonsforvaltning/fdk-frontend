@@ -5,7 +5,7 @@ import HStack from '@fdk-frontend/ui/hstack';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
-import { isOpenLicense } from '@fdk-frontend/utils';
+import { printLocaleValue, isOpenLicense } from '@fdk-frontend/utils';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';
 import PlaceholderText from '../../../placeholder-text';
 
@@ -26,7 +26,7 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                             <ExpandableContent maxHeight={100}>
                                 <article className={detailsPageStyles.article}>
                                     <Markdown>
-                                       {distribution.description?.[locale] || distribution.description?.[i18n.defaultLocale]}
+                                        {printLocaleValue(locale, distribution.description)}
                                     </Markdown>
                                 </article>
                             </ExpandableContent>
@@ -71,12 +71,12 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                     {
                         distribution.license ? 
                         distribution.license.map((license: any) => (
-                            <HStack key={license.uri}>
+                            <div key={license.uri}>
                                 <Link href={license.uri}>
                                     {
-                                        license.prefLabel?.[locale] ||
-                                        license.prefLabel?.['no'] ||
-                                        license.prefLabel?.[i18n.defaultLocale]
+                                        license.prefLabel ?
+                                        printLocaleValue(locale, license.prefLabel) :
+                                        license.uri
                                     }
                                 </Link>
                                 {
@@ -84,7 +84,7 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                                     <Tag
                                         color='success'
                                         size='sm'
-                                        style={{marginLeft:'0.5rem'}}
+                                        style={{display: 'inline-flex', marginLeft:'0.5rem'}}
                                     >
                                         Godkjent åpen lisens
                                         &nbsp;
@@ -104,7 +104,7 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                                         </HelpText>
                                     </Tag>
                                 }
-                            </HStack>
+                            </div>
                         )) :
                         <PlaceholderText>Ikke oppgitt</PlaceholderText>
                     }
@@ -116,7 +116,8 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                         distribution.conformsTo.map((standard: any) => (
                             <Link href={standard.uri} key={standard.uri}>
                                 {
-                                    standard.prefLabel ||
+                                    standard.prefLabel ?
+                                    printLocaleValue(locale, standard.prefLabel) :
                                     standard.uri
                                 }
                             </Link>

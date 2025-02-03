@@ -293,3 +293,14 @@
         }
     }
 }
+
+.relatedTable {
+    // border-collapse: collapse;
+
+    td, th {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 400px; /* Adjust as needed */
+    }
+}

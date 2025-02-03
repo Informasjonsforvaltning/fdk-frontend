@@ -27,7 +27,8 @@ export const openLicenses = [
 	'publications.europa.eu/resource/authority/licence/CC_BY_4_0'
 ];
 
-export const isOpenLicense = (uri: string) => {
+export const isOpenLicense = (uri?: string) => {
+	if (!uri) return false;
 	const normalizedStr = new URL(uri).hostname + new URL(uri).pathname;
 	return openLicenses.includes(normalizedStr);
 }
