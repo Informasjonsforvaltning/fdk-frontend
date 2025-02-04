@@ -3,7 +3,7 @@ import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionarie
 import { printLocaleValue } from '@fdk-frontend/utils';
 
 import DetailsPage from '../../../components/details/details-page/dataset';
-import { fetchResource, fetchRelations, fetchOrgDatasets, fetchThemeDatasets } from '../data';
+import { fetchResource, fetchRelations, fetchOrgDatasets, fetchThemeDatasets, fetchMetadataScores, fetchOrglogo } from '../data';
 
 // import mockResource from '../mock/resource-api/sort-test-datasett.json';
 // import mockResource from '../mock/resource-api/lovhjemler.json';
@@ -21,7 +21,9 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     const {
         FDK_RESOURCE_SERVICE_BASE_URI,
-        FDK_SEARCH_SERVICE_BASE_URI
+        FDK_SEARCH_SERVICE_BASE_URI,
+        FDK_MQA_API_BASE_URI,
+        DIGDIR_ORGLOGO_API_BASE_URI
     } = process.env;
 
     const params = await props.params;
@@ -32,6 +34,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const relatedItemsLimit = 5;
 
     let dataset;
+    let metadataScore;
+    let orgLogo;
     let apiRelations = [];
     let detailedApis = [];
     let relatedDatasets = [];
@@ -45,6 +49,25 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     } catch (err) {
         console.log(err);
         notFound();
+    }
+
+    // Fetch publisher logo
+
+    try {
+        orgLogo = await fetchOrglogo(`${DIGDIR_ORGLOGO_API_BASE_URI}/api/logo/org/${dataset.publisher?.id}`);
+    } catch (err) {
+        console.log(err);
+    }
+
+    // Fetch metadata scores
+
+    try {
+        metadataScore = await fetchMetadataScores(`${FDK_MQA_API_BASE_URI}/api/scores`, [dataset.uri]);
+        // console.log(`${FDK_MQA_API_BASE_URI}/api/scores`, dataset.identifier[0]);
+        // console.log(metadataScore.scores[dataset.uri]);
+        metadataScore = metadataScore.scores[dataset.uri];
+    } catch (err) {
+        console.log(err);
     }
 
     // Fetch related
@@ -106,17 +129,17 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     }
 
     return (
-        <>
-            <DetailsPage
-                variant='dataset'
-                resource={dataset}
-                apis={detailedApis}
-                relatedDatasets={relatedDatasets}
-                locale={locale}
-                commonDictionary={commonDictionary}
-                defaultActiveTab={activeTab}
-            />
-        </>
+        <DetailsPage
+            variant='dataset'
+            resource={dataset}
+            orgLogo={orgLogo}
+            apis={detailedApis}
+            metadataScore={metadataScore}
+            relatedDatasets={relatedDatasets}
+            locale={locale}
+            commonDictionary={commonDictionary}
+            defaultActiveTab={activeTab}
+        />
     );
 };
 

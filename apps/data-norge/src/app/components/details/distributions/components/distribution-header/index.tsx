@@ -15,9 +15,14 @@ type DistributionHeaderProps = {
 
 const DistributionHeader = ({ distribution, locale, exampleData, ...props }: DistributionHeaderProps & PropsWithChildren) => {
 
+    const hasOpenLicense =
+        distribution.license &&
+        distribution.license.some((l: any) => isOpenLicense(l.uri));
+
     const hasTags = isOpenLicense(distribution.license?.uri) ||
         exampleData ||
-        distribution.fdkFormat?.length;
+        distribution.fdkFormat?.length ||
+        hasOpenLicense;
 
 	return (
 		<div className={styles.headerContent}>
@@ -34,8 +39,7 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                 hasTags &&
                 <div className={styles.tags}>
                     {
-                        distribution.license &&
-                        distribution.license.some((l: any) => isOpenLicense(l.uri)) &&
+                        hasOpenLicense &&
                         <Tag
                             className={styles.tag}
                             color='success'

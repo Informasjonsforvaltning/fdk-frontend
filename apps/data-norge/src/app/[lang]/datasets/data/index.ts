@@ -2,7 +2,7 @@ export const fetchResource = async (uri: string) => {
     const response = await fetch(uri, {
         method: 'GET',
         headers: {
-            'Accept': 'application/json',
+            'Accept': '*/*',
             'Content-Type': 'application/json'
         },
         // cache: 'force-cache'
@@ -10,6 +10,27 @@ export const fetchResource = async (uri: string) => {
     if (!response.ok) throw new Error('Bad response');
     return await response.json();
 };
+
+export const fetchOrglogo = async (uri: string) => {
+    const response = await fetch(uri, { method: 'GET' });
+    if (!response.ok) throw new Error('Bad response');
+    return uri;
+};
+
+export const fetchMetadataScores = async (uri: string, ids: string[]) => {
+    const response = await fetch(uri, {
+        method: 'POST',
+        headers: {
+            'Accept': '*/*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            datasets: ids
+        })
+    });
+    if (!response.ok) throw new Error(`Bad response: ${response.status}`);
+    return await response.json();
+}
 
 export const fetchRelations = async (uri: string, id: string) => {
     const response = await fetch(uri, {
