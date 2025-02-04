@@ -21,9 +21,10 @@ const DatasetDetailsContext = createContext<{ showEmptyRows: boolean }>({ showEm
 export type DatasetDetailsProps = {
     dataset: JSONValue;
     locale: LocaleCodes;
+    metadataScore?: JSONValue;
 }
 
-const DatasetDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps) => {
 
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
@@ -51,6 +52,7 @@ const DatasetDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 <GeneralDetails
                     dataset={dataset}
                     locale={locale}
+                    metadataScore={metadataScore}
                 />
                 {
                     (!dataset.contactPoint && !showEmptyRows) ? null :

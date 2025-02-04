@@ -32,3 +32,9 @@ export const isOpenLicense = (uri?: string) => {
 	const normalizedStr = new URL(uri).hostname + new URL(uri).pathname;
 	return openLicenses.includes(normalizedStr);
 }
+
+export const calculateMetadataScore = (score: any) => {
+  const calcScore = score?.score ?? 0;
+  const calcMaxScore = score?.max_score ?? 0;
+  return calcMaxScore === 0 ? 0 : Math.round((calcScore / calcMaxScore) * 100);
+}
