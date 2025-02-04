@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import cn from 'classnames';
-import { type Dictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
@@ -12,6 +12,7 @@ import { BrandDivider } from '@fdk-frontend/ui/divider';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Article from '@fdk-frontend/ui/article';
 import HStack from '@fdk-frontend/ui/hstack';
+import OrgButton from '@fdk-frontend/ui/org-button';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import {
@@ -42,12 +43,14 @@ export type DetailsPageType = {
     apis?: JSONValue;
     relatedDatasets?: JSONValue;
     orgDatasets?: JSONValue;
+    metadataScore?: JSONValue;
     locale: LocaleCodes;
     commonDictionary: Dictionary;
     defaultActiveTab?: string;
+    orgLogo?: string;
 };
 
-export default function DetailsPage({ variant, resource, apis, relatedDatasets, orgDatasets, locale, commonDictionary, defaultActiveTab = 'overview' }: DetailsPageType) {
+export default function DetailsPage({ variant, resource, apis, relatedDatasets, orgDatasets, metadataScore, orgLogo, locale, commonDictionary, defaultActiveTab = 'overview' }: DetailsPageType) {
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
 
@@ -63,7 +66,7 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
         },
         {
             href: '#',
-            text: resource.title?.[locale] || resource.title?.[i18n.defaultLocale],
+            text: printLocaleValue(locale, resource.title)
         },
     ];
 
@@ -81,13 +84,32 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    <Link href={`/organizations/${resource.publisher?.id}`} className={styles.publisher}>
+                    {/*<Tag
+                        color='neutral'
+                        size='sm'
+                    >
+                        <Link href={`/organizations/${resource.publisher?.id}`} style={{textDecoration:'none'}}>
+                            {
+                                resource.publisher ?
+                                printLocaleValue(locale, resource.publisher?.prefLabel) :
+                                'Navnløs virksomhet'
+                            }
+                        </Link>
+                    </Tag>*/}
+                    {/*<Link href={`/organizations/${resource.publisher?.id}`} className={styles.publisher}>
                         {
                             resource.publisher ?
                             printLocaleValue(locale, resource.publisher?.prefLabel) :
                             'Navnløs virksomhet'
                         }
-                    </Link>
+                    </Link>*/}
+                    <OrgButton orgLogo={orgLogo}>
+                        {
+                            resource.publisher ?
+                            printLocaleValue(locale, resource.publisher?.prefLabel) :
+                            'Navnløs virksomhet'
+                        }
+                    </OrgButton>
                     <div className={styles.headerGrid}>
                         <Heading
                             level={1}
@@ -122,6 +144,12 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
                             >
                                 <Link href='/datasets'>Datasett</Link>
                             </Tag>
+                            {/*<Tag
+                                color='neutral'
+                                size='sm'
+                            >
+                                <Link href='/datasets'>Autoritativ kilde</Link>
+                            </Tag>*/}
                             <AccessLevelTag accessCode={resource.accessRights?.code} />
                             {
                                 resource.isOpenData &&
@@ -243,7 +271,7 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
                                         level={4}
                                         size='xxsmall'
                                     >
-                                        Relaterte datasett
+                                        Lignende datasett
                                     </Heading>
                                     <ScrollShadows className={styles.tableScroller}>
                                         <table className={cn('table', styles.relatedTable)} style={{minWidth:475}}>
@@ -295,6 +323,7 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
                         <DatasetDetails
                             dataset={resource}
                             locale={locale}
+                            metadataScore={metadataScore}
                         />
                     </TabContent>
                     <TabContent value='community'>

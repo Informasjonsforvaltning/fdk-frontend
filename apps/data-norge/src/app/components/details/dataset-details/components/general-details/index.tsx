@@ -2,14 +2,15 @@ import { useContext } from 'react';
 import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import HStack from '@fdk-frontend/ui/hstack';
+import { calculateMetadataScore } from '@fdk-frontend/utils';
 import PlaceholderText from '../../../placeholder-text';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
-const GeneralDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+const GeneralDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps) => {
 
     const { showEmptyRows } = useContext(DatasetDetailsContext);
-    
+
     const getMetadataQuality = (value: number) => {
         if (value < 25) return { color: 'danger', label: `Dårlig (${value}%)` };
         if (value < 50) return { color: 'warning', label: `Tilstrekkelig (${value}%)` };
@@ -17,7 +18,8 @@ const GeneralDetails = ({ dataset, locale }: DatasetDetailsProps) => {
         return { color: 'success', label: `Utmerket (${value}%)` };
     };
 
-    const metadataQuality = getMetadataQuality(75);
+    const metadataQualityScore = calculateMetadataScore(metadataScore?.dataset);
+    const metadataQuality = getMetadataQuality(metadataQualityScore);
 
     return (
         <section>
