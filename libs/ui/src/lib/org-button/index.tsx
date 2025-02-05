@@ -4,10 +4,11 @@ import { Button, type ButtonProps, Link } from '@digdir/designsystemet-react';
 import styles from './org-button.module.scss';
 
 export type OrgButtonProps = {
-	orgLogo?: string;
+	orgLogoSrc?: string;
+	href?: string;
 }
 
-const OrgButton = ({ children, orgLogo, ...props }: OrgButtonProps & ButtonProps) => {
+const OrgButton = ({ children, href, orgLogoSrc, ...props }: OrgButtonProps & ButtonProps) => {
 	return (
 		<Button
 			asChild
@@ -16,11 +17,11 @@ const OrgButton = ({ children, orgLogo, ...props }: OrgButtonProps & ButtonProps
 			className={styles.wrapper}
 			{...props}
 		>
-			<Link href="#">
+			<Link href={href}>
 				<div className={styles.avatar}>
 					{
-						orgLogo ?
-						<img src={orgLogo} alt="" /> :
+						orgLogoSrc ?
+						<img src={orgLogoSrc} alt="" /> :
 						<Buildings3Icon />
 					}
 				</div>
