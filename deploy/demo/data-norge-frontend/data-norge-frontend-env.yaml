@@ -28,25 +28,38 @@ spec:
                             secretKeyRef:
                                 name: commonurl-demo
                                 key: FDK_BASE_URI
-                      - name: FDK_USE_DEMO_LOGO
-                        value: 'true'
                       - name: DATAJEGER_EMAIL_ADDRESS
                         valueFrom:
                             secretKeyRef:
-                                name: fdk-smtp-demo
+                                name: fdk-smtp-staging
                                 key: DATAJEGER_EMAIL_ADDRESS
                       - name: FDK_MAIL_SERVICE_ENDPOINT
                         valueFrom:
                             secretKeyRef:
-                                name: fdk-smtp-demo
+                                name: fdk-smtp-staging
                                 key: FDK_MAIL_SENDER_SERVICE_ENDPOINT
                       - name: FDK_MAIL_SERVICE_API_KEY
                         valueFrom:
                             secretKeyRef:
-                                name: fdk-smtp-demo
+                                name: fdk-smtp-staging
                                 key: API_KEY
                       - name: FDK_LLM_SEARCH_BASE_URI
                         valueFrom:
                             secretKeyRef:
                                 name: commonurl-demo
                                 key: FDK_LLM_SEARCH_BASE_URI
+                      - name: FDK_SEARCH_SERVICE_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_SEARCH_SERVICE_BASE_URI
+                      - name: FDK_RESOURCE_SERVICE_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_RESOURCE_SERVICE_BASE_URI
+                      - name: DIGDIR_ORGLOGO_API_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: DIGDIR_ORGLOGO_API_BASE_URI
