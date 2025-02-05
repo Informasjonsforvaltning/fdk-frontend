@@ -23,7 +23,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         FDK_RESOURCE_SERVICE_BASE_URI,
         FDK_SEARCH_SERVICE_BASE_URI,
         FDK_MQA_API_BASE_URI,
-        DIGDIR_ORGLOGO_API_BASE_URI
+        DIGDIR_ORGLOGO_API_BASE_URI,
     } = process.env;
 
     const params = await props.params;
