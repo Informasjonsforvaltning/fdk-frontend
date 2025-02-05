@@ -51,12 +51,28 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         notFound();
     }
 
-    // Fetch publisher logo
+    // Fetch publisher logos
 
     try {
-        orgLogo = await fetchOrglogo(`${DIGDIR_ORGLOGO_API_BASE_URI}/api/logo/org/${dataset.publisher?.id}`);
+        orgLogo = await fetchOrglogo(`${DIGDIR_ORGLOGO_API_BASE_URI}/api/emblem/svg/${dataset.publisher?.id}`);
     } catch (err) {
         console.log(err);
+    }
+
+    if (!orgLogo) {
+        try {
+            orgLogo = await fetchOrglogo(`${DIGDIR_ORGLOGO_API_BASE_URI}/api/logo/svg/${dataset.publisher?.id}`);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    if (!orgLogo) {
+        try {
+            orgLogo = await fetchOrglogo(`${DIGDIR_ORGLOGO_API_BASE_URI}/api/logo/org/${dataset.publisher?.id}`);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     // Fetch metadata scores
