@@ -103,7 +103,7 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
                             'Navnløs virksomhet'
                         }
                     </Link>*/}
-                    <OrgButton orgLogo={orgLogo}>
+                    <OrgButton href={`/organizations/${resource.publisher?.id}`} orgLogoSrc={orgLogo}>
                         {
                             resource.publisher ?
                             printLocaleValue(locale, resource.publisher?.prefLabel) :
@@ -281,7 +281,10 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
                                                         <tr key={dataset.id}>
                                                             <td>
                                                                 <Link href={`${dataset.id}`}>
-                                                                    {printLocaleValue(locale, dataset.title)}
+                                                                    {
+                                                                        printLocaleValue(locale, dataset.title) ||
+                                                                        `Navnløst datasett`
+                                                                    }
                                                                 </Link>
                                                             </td>
                                                             <td>
