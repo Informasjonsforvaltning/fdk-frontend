@@ -58,3 +58,8 @@ spec:
                             secretKeyRef:
                                 name: commonurl-staging
                                 key: FDK_RESOURCE_SERVICE_BASE_URI
+                      - name: DIGDIR_ORGLOGO_API_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-staging
+                                key: DIGDIR_ORGLOGO_API_BASE_URI
