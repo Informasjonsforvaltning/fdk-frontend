@@ -168,7 +168,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     try {
         const dataset = await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`);
         return {
-            title: `${printLocaleValue(locale, dataset.title)} - Datasett - data.norge.no`,
+            title: `${printLocaleValue(locale, dataset.title) || 'Navnløst datasett'} - Datasett - data.norge.no`,
             description: dataset.description ?? 'POC for detaljvisning'
         };
     } catch (err) {
