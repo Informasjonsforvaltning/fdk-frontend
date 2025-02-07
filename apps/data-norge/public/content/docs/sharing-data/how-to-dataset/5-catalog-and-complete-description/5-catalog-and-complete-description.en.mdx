@@ -23,36 +23,39 @@ The complete description with information on dataset, distribution, and data ser
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix provno: <https://data.norge.no/vocabulary/provenance-activity-type#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.digdir.no/catalog/1> a dcat:Catalog ;
   dcat:dataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
   .
 
+_:contactPoint a vcard:Organization ;
+  vcard:hasEmail "kunstigintelligens@digdir.no" ;
+  vcard:fn "Kunstig Intelligens Digdir" ;
+  .
+
 <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> a dcat:Dataset ;
-    dct:title "Kunstig intelligens - oversikt over prosjekter i offentlig sektor"@nb ,
+  dct:title "Kunstig intelligens - oversikt over prosjekter i offentlig sektor"@nb ,
             "Kunstig intelligens - oversikt over prosjekt i offentleg sektor"@nn ,
             "Artificial intelligence - overview of projects in the public sector"@en ;
-    dct:description "En oversikt over kunstig intelligens-prosjekter i offentlig sektor. Oversikten er ikke komplett."@nb ;
+  dct:description "En oversikt over kunstig intelligens-prosjekter i offentlig sektor. Oversikten er ikke komplett."@nb ;
                     "Ei oversikt over kunstig intelligens-prosjekt i offentleg sektor. Oversikta er ikkje komplett"@nn ;
                     "An overview of artificial intelligence projects in the public sector. The overview is not complete."@en ;
-    dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
-    dcat:contactPoint [
-      rdf:type vcard:Organization ;
-      vcard:hasEmail "kunstigintelligens@digdir.no" ;
-      vcard:fn "Kunstig Intelligens Digdir" ;
-    ] ;
-    dct:keyword "kunstig intelligens"@nb , "kunstig intelligens"@nn , "artificial intelligence"@en,
+  dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
+  dcat:contactPoint _:contactPoint ;
+  dct:keyword "kunstig intelligens"@nb , "kunstig intelligens"@nn , "artificial intelligence"@en,
                 "offentlig sektor"@nb , "offentleg sektor"@nn , "public sector"@en ;
-    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE>,
+  dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE>,
                <http://eurovoc.europa.eu/3030> ;
-    dct:spatial <http://publications.europa.eu/resource/authority/country/NOR> ;
-    prov:wasGeneratedBy provno:collectingFromThirdparty ;
-    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
-    foaf:page <https://data.norge.no/kunstig-intelligens> ;
-    .
+  dct:spatial <http://publications.europa.eu/resource/authority/country/NOR> ;
+  prov:wasGeneratedBy provno:collectingFromThirdparty ;
+  dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+  foaf:page <https://data.norge.no/kunstig-intelligens> ;
+  .
 
-<https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> rdf:type dcat:Distribution ;
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> a dcat:Distribution ;
   dcat:accessURL <https://github.com/Informasjonsforvaltning/ai-project-service/blob/main/ai_projects_norwegian_state%20-%20Oversatt_v1.csv> ;
   dcat:downloadURL <https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state%20-%20Oversatt_v1.csv> ;
   dct:description "CSV-fil med oversikt over kunstig intelligens-prosjekter i offentlig sektor"@nb ;
@@ -62,15 +65,11 @@ The complete description with information on dataset, distribution, and data ser
   dct:language <http://publications.europa.eu/resource/authority/language/NOB> ;
   .
 
-<https://data.digdir.no/datasets/ai_projects_norwegian_state_api> rdf:type dcat:DataService ;
+<https://data.digdir.no/datasets/ai_projects_norwegian_state_api> a dcat:DataService ;
   dcat:servesDataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
   dcat:endpointURL <https://data.digdir.no/api/ai_projects_norwegian_state> ; # fictious URL, does not work!
   dct:title "API for oversikt over KI-prosjekter i offentlig sektor"@nb ;
   dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827> ;
-  dcat:contactPoint [
-    rdf:type vcard:Organization ;
-    vcard:hasEmail "kunstigintelligens@digdir.no" ;
-    vcard:fn "Kunstig Intelligens Digdir" ;
-  ] ;
+  dcat:contactPoint _:contactPoint ;
   .
 ```
