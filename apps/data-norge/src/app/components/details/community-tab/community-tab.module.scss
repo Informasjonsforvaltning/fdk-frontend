@@ -1,5 +1,5 @@
 .notice {
-	margin-top:2rem;
+	// margin-top:2rem;
 
     .toolbar {
         @media (max-width: 500px) {
@@ -16,7 +16,18 @@
     padding:0.25rem;
 }
 
+.heading {
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    // margin:-0.5rem 0 -0.75rem;
+}
+
 .section {
+    display:flex;
+    flex-direction:column;
+    gap:1.5rem;
+
     :global(.table) {
 
         .threadTeaser {
@@ -55,7 +66,7 @@
 }
 
 .tableScroller {
-    margin:1rem -2rem;
+    margin:0 -2rem;
 
     > div {
         padding:0 2rem;

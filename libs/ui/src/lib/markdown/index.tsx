@@ -65,6 +65,26 @@ const Markdown = ({ allowedElements = defaultAllowedElements, components, ...res
                   />)
               );
           },
+          p: ({ children }: { children: React.ReactNode }) => {
+              return (
+                  <p>
+                      {React.Children.map(children, (child) => {
+                          if (typeof child === 'string') {
+                              return child.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+                                  /^https?:\/\//.test(part) ? (
+                                      <Link key={i} href={part} target="_blank" rel="noopener noreferrer">
+                                          {part}
+                                      </Link>
+                                  ) : (
+                                      part
+                                  )
+                              );
+                          }
+                          return child;
+                      })}
+                  </p>
+              );
+          },
           ...components
       }}
 			{...rest}

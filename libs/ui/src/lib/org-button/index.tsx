@@ -4,7 +4,7 @@ import { Button, type ButtonProps, Link } from '@digdir/designsystemet-react';
 import styles from './org-button.module.scss';
 
 export type OrgButtonProps = {
-	orgLogoSrc?: string;
+	orgLogoSrc?: string | null;
 	href?: string;
 }
 

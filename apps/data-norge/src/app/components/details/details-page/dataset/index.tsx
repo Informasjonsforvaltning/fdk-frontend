@@ -44,13 +44,29 @@ export type DetailsPageType = {
     relatedDatasets?: JSONValue;
     orgDatasets?: JSONValue;
     metadataScore?: JSONValue;
+    communityTopics?: JSONValue;
+    communityBaseUri: string;
     locale: LocaleCodes;
     commonDictionary: Dictionary;
     defaultActiveTab?: string;
-    orgLogo?: string;
+    orgLogo?: string | null;
 };
 
-export default function DetailsPage({ variant, resource, apis, relatedDatasets, orgDatasets, metadataScore, orgLogo, locale, commonDictionary, defaultActiveTab = 'overview' }: DetailsPageType) {
+export default function DetailsPage({
+    variant,
+    resource,
+    apis,
+    relatedDatasets,
+    orgDatasets,
+    metadataScore,
+    communityTopics,
+    communityBaseUri,
+    orgLogo,
+    locale,
+    commonDictionary,
+    defaultActiveTab = 'overview'
+}: DetailsPageType) {
+
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
 
@@ -215,7 +231,7 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
                                 value='community'
                                 onClick={() => updateUri('community')}
                             >
-                                Diskusjoner&nbsp;<Badge>2</Badge>
+                                Diskusjoner&nbsp;<Badge>{communityTopics.length}</Badge>
                             </Tab>
                             <Tab
                                 value='rdf'
@@ -330,7 +346,10 @@ export default function DetailsPage({ variant, resource, apis, relatedDatasets, 
                         />
                     </TabContent>
                     <TabContent value='community'>
-                        <CommunityTab />
+                        <CommunityTab
+                            topics={communityTopics}
+                            communityBaseUri={communityBaseUri}
+                        />
                     </TabContent>
                     <TabContent value='rdf'>
                         <MetadataPage />

@@ -10,10 +10,7 @@ import ContactDetails from './components/contact-details';
 import ContentDetails from './components/content-details';
 import LegalDetails, { hasLegalBasis } from './components/legal-details';
 import ConceptDetails from './components/concept-details';
-// import RelationDetails from './components/relation-details';
-
 import { printLocaleValue } from './utils';
-
 import styles from './dataset-details.module.scss';
 
 const DatasetDetailsContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
