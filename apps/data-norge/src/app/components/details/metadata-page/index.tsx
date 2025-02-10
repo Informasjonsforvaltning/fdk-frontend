@@ -1,16 +1,19 @@
-import { PropsWithChildren, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-
 import CopyButton from '@fdk-frontend/ui/copy-button';
 import { ToggleGroup, Heading, Spinner, Textfield, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
-
 import HStack from '@fdk-frontend/ui/hstack';
 
 import styles from './metadata-page.module.scss';
 
-const MetadataPage = ({ children }: PropsWithChildren) => {
+export type MetadataPageProps = {
+    uri?: string;
+}
+
+const MetadataPage = ({ children, uri, ...props }: MetadataPageProps & React.HTMLAttributes<HTMLDivElement>) => {
+
     const [contentType, setContentType] = useState<string>('text/turtle');
     const [source, setSource] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
@@ -25,7 +28,7 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
     const getMetadata = async () => {
         setLoading(true);
         try {
-            await fetch(`https://staging.fellesdatakatalog.digdir.no/datasets/73b43600-6432-3add-a553-46bbde1a198b`, {
+            await fetch(uri, {
                 headers: { Accept: contentType },
             })
                 .then(async (response) => {
@@ -52,7 +55,7 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
     }, [contentType]);
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} {...props}>
             <div className={styles.header}>
                 <Heading
                     level={4}
@@ -89,11 +92,11 @@ const MetadataPage = ({ children }: PropsWithChildren) => {
             </div>
             <div className={styles.header}>
                 <div className={styles.urlbar}>
-                    <CopyButton copyOnClick='https://data.norge.no/datasets/85dba4d8-9d40-4c3e-9d8f-9e0544bd390f' />
+                    <CopyButton copyOnClick={uri} />
                     <Textfield
                         size='md'
                         readOnly
-                        value='https://data.norge.no/datasets/85dba4d8-9d40-4c3e-9d8f-9e0544bd390f'
+                        value={uri}
                     />
                 </div>
                 <div className={styles.toolbar}>
