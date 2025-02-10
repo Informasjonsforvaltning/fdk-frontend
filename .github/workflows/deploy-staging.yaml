@@ -34,9 +34,8 @@ jobs:
                   node-version: 20.16.0
                   cache: 'yarn'
 
-            - name: Disable hardened mode and Yarn install
+            - name: Yarn install
               run: |
-                  export YARN_ENABLE_HARDENED_MODE=false
                   yarn set version stable
                   yarn install --no-immutable
 
