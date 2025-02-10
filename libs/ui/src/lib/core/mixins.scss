@@ -20,11 +20,11 @@
     line-height: 1.5em;
 
     > * + * {
-        margin-bottom: 1rem;
+        margin-top: 1rem;
 
-        &:last-child {
-            margin-bottom: 0;
-        }
+        // &:last-child {
+        //     margin-top: 0;
+        // }
     }
 
     > h1,

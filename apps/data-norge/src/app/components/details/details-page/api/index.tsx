@@ -348,7 +348,7 @@ export default function DetailsPage({ locale, commonDictionary }: DetailsPageTyp
                         </section>
                     </TabContent>
                     <TabContent value='kommentarer'>
-                        <CommunityTab />
+                        <CommunityTab communityBaseUri={''} />
                     </TabContent>
                 </Tabs>
             </div>
