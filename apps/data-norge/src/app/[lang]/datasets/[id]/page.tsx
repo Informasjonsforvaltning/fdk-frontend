@@ -29,6 +29,7 @@ export type DetailsPageWrapperProps = {
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     const {
+        FDK_BASE_URI = '',
         FDK_RESOURCE_SERVICE_BASE_URI = '',
         FDK_SEARCH_SERVICE_BASE_URI = '',
         FDK_MQA_API_BASE_URI = '',
@@ -163,6 +164,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     return (
         <DetailsPage
             variant='dataset'
+            baseUri={FDK_BASE_URI}
             resource={dataset}
             orgLogo={orgLogo}
             apis={detailedApis}

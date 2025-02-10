@@ -39,6 +39,7 @@ export type DetailsPageVariants = 'dataset' | 'api' | 'concept';
 
 export type DetailsPageType = {
     variant: DetailsPageVariants;
+    baseUri: string;
     resource: JSONValue;
     apis?: JSONValue;
     relatedDatasets?: JSONValue;
@@ -54,6 +55,7 @@ export type DetailsPageType = {
 
 export default function DetailsPage({
     variant,
+    baseUri,
     resource,
     apis,
     relatedDatasets,
@@ -100,25 +102,6 @@ export default function DetailsPage({
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    {/*<Tag
-                        color='neutral'
-                        size='sm'
-                    >
-                        <Link href={`/organizations/${resource.publisher?.id}`} style={{textDecoration:'none'}}>
-                            {
-                                resource.publisher ?
-                                printLocaleValue(locale, resource.publisher?.prefLabel) :
-                                'Navnløs virksomhet'
-                            }
-                        </Link>
-                    </Tag>*/}
-                    {/*<Link href={`/organizations/${resource.publisher?.id}`} className={styles.publisher}>
-                        {
-                            resource.publisher ?
-                            printLocaleValue(locale, resource.publisher?.prefLabel) :
-                            'Navnløs virksomhet'
-                        }
-                    </Link>*/}
                     <OrgButton href={`/organizations/${resource.publisher?.id}`} orgLogoSrc={orgLogo}>
                         {
                             resource.publisher ?
@@ -231,7 +214,13 @@ export default function DetailsPage({
                                 value='community'
                                 onClick={() => updateUri('community')}
                             >
-                                Diskusjoner&nbsp;<Badge>{communityTopics.length}</Badge>
+                                Diskusjoner
+                                {
+                                    communityTopics.length > 0 &&
+                                    <>
+                                        &nbsp;<Badge>{communityTopics.length}</Badge>
+                                    </>
+                                }
                             </Tab>
                             <Tab
                                 value='rdf'
@@ -352,7 +341,7 @@ export default function DetailsPage({
                         />
                     </TabContent>
                     <TabContent value='rdf'>
-                        <MetadataPage />
+                        <MetadataPage uri={`${baseUri}/datasets/${resource.id}`} />
                     </TabContent>
                 </Tabs>
             </div>
