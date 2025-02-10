@@ -7,3 +7,5 @@ export type LinkObjectType = {
 };
 
 export type CatalogTypes = 'datasets' | 'apis' | 'terms' | 'information-models' | 'services-events' | 'ai';
+
+export type JSONValue = any;
