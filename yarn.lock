@@ -3708,9 +3708,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/mdx@npm:^15.1.6":
-  version: 15.1.6
-  resolution: "@next/mdx@npm:15.1.6"
+"@next/mdx@npm:^15.1.7":
+  version: 15.1.7
+  resolution: "@next/mdx@npm:15.1.7"
   dependencies:
     source-map: "npm:^0.7.0"
   peerDependencies:
@@ -3721,7 +3721,7 @@ __metadata:
       optional: true
     "@mdx-js/react":
       optional: true
-  checksum: 10c0/36bb06b4e6402034d3dd32a97edeb23adf8f554c56b2ebba59fa86f3bd4d063ee21ef93e25daf572a0e9321a8c7b7b6218023dd61e6732f8237159af01f129d2
+  checksum: 10c0/15cbc59090944cad956b44b30ab457bf1c971306e697177b276c37638b158d5f9ae67c94b9ebf1f63a0fce3d3f9d65a64e3b3c89047148213b6c9946943b9fc8
   languageName: node
   linkType: hard
 
@@ -11742,7 +11742,7 @@ __metadata:
     "@mdx-js/loader": "npm:^3.1.0"
     "@mdx-js/react": "npm:^3.1.0"
     "@navikt/aksel-icons": "npm:^7.12.2"
-    "@next/mdx": "npm:^15.1.6"
+    "@next/mdx": "npm:^15.1.7"
     "@nx/devkit": "npm:^20.4.2"
     "@nx/eslint": "npm:^20.4.2"
     "@nx/eslint-plugin": "npm:^20.4.2"
