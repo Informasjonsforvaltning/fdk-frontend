@@ -1,6 +1,7 @@
 import { Heading, Button, Link, Paragraph, Alert } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 import VStack from '@fdk-frontend/ui/vstack';
@@ -12,9 +13,10 @@ import TopicRow from './components/topic-row';
 export type CommunityTabProps = {
 	communityBaseUri: string;
 	topics?: JSONValue;
+	dictionary: Dictionary;
 }
 
-const CommunityTab = ({ communityBaseUri, topics }: CommunityTabProps) => {
+const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProps) => {
 	return (
 		<section className={styles.section}>
 			<Heading
@@ -23,29 +25,27 @@ const CommunityTab = ({ communityBaseUri, topics }: CommunityTabProps) => {
 				className={styles.heading}
 			>
 				<HStack>
-					Diskusjoner på Datalandsbyen <Badge>{topics.length}</Badge>
+					{dictionary.community.title}
+					<Badge>{topics.length}</Badge>
 				</HStack>
-				{/*<Button
-					variant='tertiary'
-					size='sm'
-					asChild
-				>
-					<Link href={communityBaseUri}>
-						Gå til Datalandsbyen
-						<ExternalLinkIcon />
-					</Link>
-				</Button>*/}
 			</Heading>
 			{
 				topics.length ?
 				<ScrollShadows className={styles.tableScroller}>
 					<table className='table' style={{minWidth:600}}>
 						<tbody>
-							{topics.map((topic: any) => <TopicRow key={topic.tid} topic={topic} communityBaseUri={communityBaseUri} />)}
+							{topics.map((topic: any) => (
+								<TopicRow
+									key={topic.tid}
+									topic={topic}
+									communityBaseUri={communityBaseUri}
+									dictionary={dictionary}
+								/>
+							))}
 						</tbody>
 					</table>
 				</ScrollShadows> :
-				<PlaceholderBox>Ingen diskusjoner funnet</PlaceholderBox>
+				<PlaceholderBox>{dictionary.community.noData}</PlaceholderBox>
 			}
 			<Alert className={styles.notice}>
 				<VStack>
@@ -53,17 +53,17 @@ const CommunityTab = ({ communityBaseUri, topics }: CommunityTabProps) => {
 						level={4}
 						size='xxsmall'
 					>
-						Hva er Datalandsbyen?
+						{dictionary.community.notice.title}
 					</Heading>
 					<Paragraph size='sm'>
-						Datalandsbyen er vårt nettforum hvor du kan etterspørre data, dele erfaringer og spørre om råd som gjelder datadeling og informasjonsforvaltning.
+						{dictionary.community.notice.body}
 					</Paragraph>
 					<HStack className={styles.toolbar}>
 						<Button variant='secondary' size='sm' asChild>
-							<Link href={communityBaseUri}>Gå til Datalandsbyen <ExternalLinkIcon /></Link>
+							<Link href={communityBaseUri}>{dictionary.community.notice.gotoLink}&nbsp;<ExternalLinkIcon /></Link>
 						</Button>
 						<Button variant='secondary' size='sm' asChild>
-							<Link href="/docs/community">Mer informasjon</Link>
+							<Link href="/docs/community">{dictionary.community.notice.moreInfo}</Link>
 						</Button>
 					</HStack>
 				</VStack>

@@ -4,9 +4,9 @@ import HStack from '@fdk-frontend/ui/hstack';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import PlaceholderText from '../../../placeholder-text';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
-import { printLocaleValue } from '../../utils';
+import { printLocaleValue } from '@fdk-frontend/utils';
 
-const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
 
     const { showEmptyRows } = useContext(DatasetDetailsContext);
 
@@ -16,19 +16,19 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 level={4}
                 size='xxsmall'
             >
-                Innhold
+                {dictionary.details.content.title}
             </Heading>
             <dl>
                 {
                     (!dataset.language && !showEmptyRows) ? null :
                     <>
-                        <dt>Språk:</dt>
+                        <dt>{dictionary.details.content.language}:</dt>
                         <dd>
                             {
                                 dataset.language ?
                                 dataset.language.map((language: any) => 
-                                    printLocaleValue(language.prefLabel, locale)).join(', ') :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                    printLocaleValue(locale, language.prefLabel)).join(', ') :
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -36,7 +36,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset.qualifiedAttributions && !showEmptyRows) ? null :
                     <>
-                        <dt>Innholdsleverandører:</dt>
+                        <dt>{dictionary.details.content.qualifiedAttributions}:</dt>
                         <dd>
                             {
                                 dataset.qualifiedAttributions ?
@@ -46,15 +46,15 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                             {
                                                 attribution.agent.uri ?
                                                 <Link href={attribution.agent.uri}>
-                                                    {printLocaleValue(attribution.agent.prefLabel, locale)}
+                                                    {printLocaleValue(locale, attribution.agent.prefLabel)}
                                                     <ExternalLinkIcon />
                                                 </Link> :
-                                                printLocaleValue(attribution.agent.prefLabel, locale)
+                                                printLocaleValue(locale, attribution.agent.prefLabel)
                                             }
                                         </li>
                                     ))}
                                 </ol> :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -62,12 +62,12 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset.provenance && !showEmptyRows) ? null :
                     <>
-                        <dt>Opphav:</dt>
+                        <dt>{dictionary.details.content.provenance}:</dt>
                         <dd>
                             {
                                 dataset.provenance ?
-                                printLocaleValue(dataset.provenance.prefLabel, locale) :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                printLocaleValue(locale, dataset.provenance.prefLabel) :
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -75,14 +75,14 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.accrualPeriodicity && !showEmptyRows) ? null :
                     <>
-                        <dt>Oppdateringsfrekvens:</dt>
+                        <dt>{dictionary.details.content.accrualPeriodicity}:</dt>
                         <dd>
                             {
                                 dataset.accrualPeriodicity ?
                                 <span style={{textTransform:'capitalize'}}>
-                                    {printLocaleValue(dataset.accrualPeriodicity.prefLabel, locale)}
+                                    {printLocaleValue(locale, dataset.accrualPeriodicity.prefLabel)}
                                 </span> :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -90,12 +90,12 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.issued && !showEmptyRows) ? null :
                     <>
-                        <dt>Utgitt:</dt>
+                        <dt>{dictionary.details.content.issued}:</dt>
                         <dd>
                             {
                                 dataset.issued ?
                                 new Date(dataset.issued).toLocaleString(locale, { dateStyle: 'long' }) :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -103,12 +103,12 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.harvest?.modified && !showEmptyRows) ? null :
                     <>
-                        <dt>Sist oppdatert:</dt>
+                        <dt>{dictionary.details.content.modified}:</dt>
                         <dd>
                             {
                                 dataset?.harvest?.modified ?
                                 new Date(dataset.harvest.modified).toLocaleString(locale, { dateStyle: 'long' }) :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -116,12 +116,12 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.hasAccuracyAnnotation?.hasBody && !showEmptyRows) ? null :
                     <>
-                        <dt>Nøyaktighet:</dt>
+                        <dt>{dictionary.details.content.accuracyAnnotation}:</dt>
                         <dd>
                             {
                                 dataset?.hasAccuracyAnnotation?.hasBody ?
-                                printLocaleValue(dataset?.hasAccuracyAnnotation?.hasBody, locale) :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                printLocaleValue(locale, dataset?.hasAccuracyAnnotation?.hasBody) :
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -129,12 +129,12 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.hasAvailabilityAnnotation?.hasBody && !showEmptyRows) ? null :
                     <>
-                        <dt>Tilgjengelighet:</dt>
+                        <dt>{dictionary.details.content.availabilityAnnotation}:</dt>
                         <dd>
                             {
                                 dataset?.hasAvailabilityAnnotation?.hasBody ?
-                                printLocaleValue(dataset?.hasAvailabilityAnnotation?.hasBody, locale) :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                printLocaleValue(locale, dataset?.hasAvailabilityAnnotation?.hasBody) :
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -142,12 +142,12 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.hasCompletenessAnnotation?.hasBody && !showEmptyRows) ? null :
                     <>
-                        <dt>Kompletthet:</dt>
+                        <dt>{dictionary.details.content.completenessAnnotation}:</dt>
                         <dd>
                             {
                                 dataset?.hasCompletenessAnnotation?.hasBody ?
-                                printLocaleValue(dataset?.hasCompletenessAnnotation?.hasBody, locale) :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                printLocaleValue(locale, dataset?.hasCompletenessAnnotation?.hasBody) :
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -155,12 +155,12 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.hasCurrentnessAnnotation?.hasBody && !showEmptyRows) ? null :
                     <>
-                        <dt>Aktualitet:</dt>
+                        <dt>{dictionary.details.content.currentnessAnnotation}:</dt>
                         <dd>
                             {
                                 dataset?.hasCurrentnessAnnotation?.hasBody ?
-                                printLocaleValue(dataset?.hasCurrentnessAnnotation?.hasBody, locale) :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                printLocaleValue(locale, dataset?.hasCurrentnessAnnotation?.hasBody) :
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -168,12 +168,12 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.hasRelevanceAnnotation?.hasBody && !showEmptyRows) ? null :
                     <>
-                        <dt>Relevans:</dt>
+                        <dt>{dictionary.details.content.relevanceAnnotation}:</dt>
                         <dd>
                             {
                                 dataset?.hasRelevanceAnnotation?.hasBody ?
-                                printLocaleValue(dataset?.hasRelevanceAnnotation?.hasBody, locale) :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                printLocaleValue(locale, dataset?.hasRelevanceAnnotation?.hasBody) :
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -181,7 +181,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.spatial && !showEmptyRows) ? null :
                     <>
-                        <dt>Geografisk avgrensning:</dt>
+                        <dt>{dictionary.details.content.spatial}:</dt>
                         <dd>
                             {
                                 dataset?.spatial ?
@@ -192,7 +192,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                                 return (
                                                     <li key={`spatial-${i}`}>
                                                         <Link href={spatial.uri}>
-                                                            {printLocaleValue(spatial?.prefLabel, locale)}
+                                                            {printLocaleValue(locale, spatial?.prefLabel)}
                                                             <ExternalLinkIcon />
                                                         </Link>
                                                     </li>
@@ -200,7 +200,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                             } else if (spatial.prefLabel) {
                                                 return (
                                                     <li key={`spatial-${i}`}>
-                                                        {printLocaleValue(spatial?.prefLabel, locale)}
+                                                        {printLocaleValue(locale, spatial?.prefLabel)}
                                                     </li>
                                                 );
                                             } else if (spatial.uri) {
@@ -216,7 +216,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                         })
                                     }
                                 </ol> :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -224,7 +224,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 {
                     (!dataset?.temporal && !showEmptyRows) ? null :
                     <>
-                        <dt>Tidsmessig avgrensning:</dt>
+                        <dt>{dictionary.details.content.temporal}:</dt>
                         <dd>
                             {
                                 dataset?.temporal ?
@@ -235,14 +235,14 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                                 {
                                                     temporal.startDate && 
                                                     <>
-                                                        <dt>Fra:</dt>
+                                                        <dt>{dictionary.details.content.temporalFrom}:</dt>
                                                         <dd>{new Date(temporal.startDate).toLocaleString(locale, { dateStyle: 'long' })}</dd>
                                                     </>
                                                 }
                                                 {
                                                     temporal.endDate && 
                                                     <>
-                                                        <dt>Til:</dt>
+                                                        <dt>{dictionary.details.content.temporalTo}:</dt>
                                                         <dd>{new Date(temporal.endDate).toLocaleString(locale, { dateStyle: 'long' })}</dd>
                                                     </>
                                                 }
@@ -250,7 +250,7 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                         </li>
                                     ))}
                                 </ol> :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
@@ -260,18 +260,14 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                     <>
                         <dt>
                             <HStack>
-                                I samsvar med:
+                                {dictionary.details.content.conformsTo}:
                                 <HelpText
-                                    title='Begrepsforklaring'
+                                    title={dictionary.details.content.conformsToHelpText}
                                     size='sm'
                                     style={{ transform: 'scale(0.75)' }}
                                 >
                                     <Paragraph size='sm'>
-                                        Referanse til en implementasjonsregel eller annen spesifikasjon, som
-                                        ligger til grunn for opprettelsen av datasettet.
-                                        <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-iSamsvarMed'>
-                                            Les mer her
-                                        </Link>
+                                        {dictionary.details.content.conformsToHelpText}
                                     </Paragraph>
                                 </HelpText>
                             </HStack>
@@ -283,13 +279,13 @@ const ContentDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                     {dataset?.conformsTo?.map((item: any, i: number) => (
                                         <li key={item.uri}>
                                             <Link href={item.uri}>
-                                                {printLocaleValue(item?.prefLabel, locale)}
+                                                {printLocaleValue(locale, item?.prefLabel)}
                                                 <ExternalLinkIcon />
                                             </Link>
                                         </li>
                                     ))}
                                 </ol> :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>

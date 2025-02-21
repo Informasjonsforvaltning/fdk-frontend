@@ -1,0 +1,184 @@
+{
+	"breadcrumbs": {
+		"datasets": "Datasett"
+	},
+	"header": {
+		"namelessOrganization": "Namnlaus verksemd",
+		"namelessDataset": "Namnlaust datasett",
+		"useDatasetButton": "Bruk datasett",
+		"datasetsTagLink": "Datasett",
+		"published": "Publisert"
+	},
+	"accessRights": {
+		"helpTextTitle": "Omgrep",
+		"unknownLabel": "Ukjend tilgangsnivå",
+		"readMoreLinkText": "Les meir om tilgangsnivå her",
+		"codes": {
+			"NON_PUBLIC": {
+				"label": "Ikkje-allmenn tilgang",
+				"helpText": "Ikkje offentleg tilgjengeleg grunna personvern, tryggleik eller andre årsaker. Denne kategorien kan omfatte ressursar som inneheld sensitiv eller personleg informasjon."
+			},
+			"RESTRICTED": {
+				"label": "Avgrensa tilgang",
+				"helpText": "Berre tilgjengeleg under visse vilkår. Kan inkludere ressursar som krev betaling, ressursar delt under teiepliktsavtalar, eller ressursar der utgjevar eller eigar ikkje har avgjort om dei kan offentleggjerast."
+			},
+			"PUBLIC": {
+				"label": "Allmenn tilgang",
+				"helpText": "Tilgjengeleg for alle. Tilgang kan likevel krevje registrering og førespurnad om API-nøklar, så lenge kven som helst kan be om slik registrering og/eller API-nøklar."
+			}
+		}
+	},
+	"openData": {
+		"label": "Opne data",
+		"helpTextTitle": "Omgrep",
+		"helpText": "Datasettet er klassifisert som allmenn tilgang og har minst éi distribuering med godkjend open lisens.",
+		"readMoreLinkText": "Les meir om lisensar her"
+	},
+	"tabs": {
+		"overview": "Oversikt",
+		"distributions": "Distribusjonar og API",
+		"details": "Detaljar",
+		"community": "Diskusjonar",
+		"rdf": "RDF"
+	},
+	"overview": {
+		"description": {
+			"title": "Skildring",
+			"placeholder": "Dette datasettet har inga skildring"
+		}
+	},
+	"distributions": {
+		"title": "Distribusjonar",
+		"placeholder": "Dette datasettet har ingen distribusjonar.",
+		"header": {
+			"nameless": "Namnlaus distribusjon",
+			"openLicense": "Open lisens",
+			"exampleData": "Døme på data",
+			"downloadBtnLabel": "Last ned"
+		},
+		"details": {
+			"description": "Skildring",
+			"accessURL": "Tilgjengeleg URL",
+			"downloadURL": "Direkte nedlasting",
+			"accessService": "API",
+			"page": "Dokumentasjon",
+			"license": "Lisens",
+			"conformsTo": "I samsvar med",
+			"noData": "Ikkje oppgitt"
+		}
+	},
+	"apis": {
+		"title": "API-ar som tilbyr dette datasettet",
+		"placeholder": "Ingen registrerte API-ar tilbyr dette datasettet.",
+		"header": {
+			"nameless": "Namnlaust API",
+			"gotoBtn": "Gå til API"
+		},
+		"details": {
+			"noData": "Ikkje oppgitt",
+			"description": "Skildring",
+			"endpoint": "Endepunkt",
+			"url": "URL",
+			"page": "Dokumentasjon"
+		}
+	},
+	"openLicenseTag": {
+		"label": "Godkjend open lisens",
+		"helpTextTitle": "Omgrep",
+		"helpText": "Dette er ein godkjend open lisens som tillèt fri bruk, deling og gjenbruk av data i samsvar med prinsippa for opne data. Desse lisensane er anerkjende for bruk i offentlege og private datasett, både nasjonalt og internasjonalt.",
+		"linkText": "Les meir om lisensar her"
+	},
+	"similarDatasets": "Liknande datasett",
+	"details": {
+		"showEmptyRows": "Vis tomme rader",
+		"hideEmptyRows": "Gøym tomme rader",
+		"noData": "Ikkje oppgitt",
+		"general": {
+			"title": "Generelt",
+			"publisher": "Ansvarleg verksemd",
+			"firstHarvested": "Publisert",
+			"firstHarvestedHelpText": "Denne datoen viser når datasettet vart henta inn av data.norge.no. Det kan ha vore tilgjengeleg tidlegare andre stader.",
+			"firstHarvestedHelpTextTitle": "Omgrep",
+			"firstHarvestedHelpTextLink": "Les meir om innhenting her",
+			"page": "Dokumentasjon",
+			"metadataQuality": {
+				"title": "Metadatakvalitet",
+				"helpText": "Metadatakvalitet er ein indikator på kor godt datasettene er beskrive ved hjelp av metadata.",
+				"helpTextTitle": "Omgrep",
+				"helpTextLink": "Les meir om metadatakvalitet her",
+				"labels": {
+					"excellent": "Utmerket",
+					"good": "God",
+					"sufficient": "Tilstrekkeleg",
+					"poor": "Dårleg"
+				}
+			}
+		},
+		"contactPoint": {
+			"title": "Kontaktinformasjon",
+			"fullname": "Kontaktperson",
+			"organizationUnit": "Eining",
+			"email": "E-post",
+			"telephone": "Telefon"
+		},
+		"content": {
+			"title": "Innhald",
+			"language": "Språk",
+			"qualifiedAttributions": "Innhaldsleverandørar",
+			"provenance": "Opphav",
+			"accrualPeriodicity": "Oppdateringsfrekvens",
+			"issued": "Utgjeve",
+			"modified": "Sist oppdatert",
+			"accuracyAnnotation": "Nøyaktigheit",
+			"availabilityAnnotation": "Tilgjenge",
+			"completenessAnnotation": "Fullstendigheit",
+			"currentnessAnnotation": "Aktualitet",
+			"relevanceAnnotation": "Relevans",
+			"spatial": "Geografisk område",
+			"temporal": "Tidsrom",
+			"temporalFrom": "Frå",
+			"temporalTo": "Til",
+			"conformsTo": "I samsvar med",
+			"conformsToHelpText": "Referanse til ei implementeringsregel eller anna spesifikasjon som ligg til grunn for datasettet."
+		},
+		"legal": {
+			"title": "Juridisk grunnlag",
+			"legalBasisForAccess": "Juridisk grunnlag for tilgang",
+			"legalBasisForProcessing": "Juridisk grunnlag for handsaming",
+			"legalBasisForRestriction": "Juridisk grunnlag for avgrensing"
+		},
+		"concepts": {
+			"title": "Omgrep brukte i datasettet"
+		},
+		"related": {
+			"title": "Relasjonar til andre datasett",
+			"namelessDataset": "Namnlaust datasett",
+			"namelessOrganization": "Namnlaus verksemd"
+		},
+		"themes": "Tema",
+		"keywords": "Nøkkelord"
+	},
+	"community": {
+		"title": "Diskusjonar på Datalandsbyen",
+		"noData": "Ingen diskusjonar funne",
+		"notice": {
+			"title": "Kva er Datalandsbyen?",
+			"body": "Datalandsbyen er vårt nettforum der du kan be om data, dele erfaringar og spørje om råd som gjeld deling av data og informasjonsforvalting.",
+			"gotoLink": "Gå til Datalandsbyen",
+			"moreInfo": "Meir informasjon"
+		},
+		"topicRow": {
+			"postedBy": "Posta av",
+			"votes": "Stemmer",
+			"posts": "Innlegg",
+			"views": "Visingar"
+		}
+	},
+	"rdf": {
+		"titleHelpText": "Alle URL-ar til ressursar på data.norge.no kan levere RDF-metadata i fleire ulike format, avhengig av kva for ein Accept-header som blir sendt med.",
+		"titleHelpTextLink": "Les meir om RDF og kva format vi støttar her",
+		"titleHelpTextTitle": "Omgrep",
+		"copyButton": ["Kopier", "Kopiert!"],
+		"loading": "Lastar"
+	}
+}

@@ -4,26 +4,26 @@ import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import PlaceholderText from '../../../placeholder-text';
 import PlaceholderBox from '../../../placeholder-box';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
-import { printLocaleValue } from '../../utils';
+import { printLocaleValue } from '@fdk-frontend/utils';
 
 export const hasLegalBasis = (dataset: any) =>  
     dataset.legalBasisForAccess || 
     dataset.legalBasisForProcessing ||
     dataset.legalBasisForRestriction;
 
-const LegalDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
 
     const { showEmptyRows } = useContext(DatasetDetailsContext);
 
     const printLegalBasis = (legalBasis: any) => {
-        if (!legalBasis) return <PlaceholderText>Ikke oppgitt</PlaceholderText>;
+        if (!legalBasis) return <PlaceholderText>{dictionary.details.legal.title}</PlaceholderText>;
         return (
             <ol>
                 {
                     legalBasis.map((legal: any) => (
                         <li key={legal.uri}>
                             <Link href={legal.uri}>
-                                {printLocaleValue(legal.prefLabel, locale)}
+                                {printLocaleValue(locale, legal.prefLabel)}
                                 <ExternalLinkIcon />
                             </Link>
                         </li>
@@ -39,7 +39,7 @@ const LegalDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 level={4}
                 size='xxsmall'
             >
-                Lovhjemler
+                {dictionary.details.legal.title}
             </Heading>
             {
                 hasLegalBasis(dataset) ?
@@ -47,26 +47,26 @@ const LegalDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                     {
                         (!dataset.legalBasisForAccess && !showEmptyRows) ? null :
                         <>
-                            <dt>Utleveringshjemmel:</dt>
+                            <dt>{dictionary.details.legal.legalBasisForAccess}:</dt>
                             <dd>{printLegalBasis(dataset.legalBasisForAccess)}</dd>
                         </>
                     }
                     {
                         (!dataset.legalBasisForProcessing && !showEmptyRows) ? null :
                         <>
-                            <dt>Behandlingshjemmel:</dt>
+                            <dt>{dictionary.details.legal.legalBasisForProcessing}:</dt>
                             <dd>{printLegalBasis(dataset.legalBasisForProcessing)}</dd>
                         </>
                     }
                     {
                         (!dataset.legalBasisForRestriction && !showEmptyRows) ? null :
                         <>
-                            <dt>Utleveringshjemmel:</dt>
+                            <dt>{dictionary.details.legal.legalBasisForRestriction}:</dt>
                             <dd>{printLegalBasis(dataset.legalBasisForRestriction)}</dd>
                         </>
                     }
                 </dl> :
-                <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
+                <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
             }
         </section>
     );

@@ -2,7 +2,7 @@ import { useState, createContext } from 'react';
 import { Heading, Link, ChipGroup, ChipToggle, Button } from '@digdir/designsystemet-react';
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import PlaceholderBox from '../placeholder-box/';
 import PlaceholderText from '../placeholder-text/';
 import GeneralDetails from './components/general-details';
@@ -10,18 +10,21 @@ import ContactDetails from './components/contact-details';
 import ContentDetails from './components/content-details';
 import LegalDetails, { hasLegalBasis } from './components/legal-details';
 import ConceptDetails from './components/concept-details';
-import { printLocaleValue } from './utils';
+import RelatedDetails from './components/related-details';
+import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './dataset-details.module.scss';
 
 const DatasetDetailsContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
 
 export type DatasetDetailsProps = {
     dataset: JSONValue;
+    related: JSONValue;
     locale: LocaleCodes;
     metadataScore?: JSONValue;
+    dictionary: Dictionary;
 }
 
-const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps) => {
+const DatasetDetails = ({ dataset, related, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
 
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
@@ -37,18 +40,19 @@ const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                     {showEmptyRows ? (
                         <>
                             <EyeSlashIcon />
-                            Skjul tomme rader
+                            {dictionary.details.hideEmptyRows}
                         </>
                     ) : (
                         <>
                             <EyeIcon />
-                            Vis tomme rader
+                            {dictionary.details.showEmptyRows}
                         </>
                     )}
                 </Button>
                 <GeneralDetails
                     dataset={dataset}
                     locale={locale}
+                    dictionary={dictionary}
                     metadataScore={metadataScore}
                 />
                 {
@@ -56,17 +60,20 @@ const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                     <ContactDetails
                         dataset={dataset}
                         locale={locale}
+                        dictionary={dictionary}
                     />
                 }
                 <ContentDetails
                     dataset={dataset}
                     locale={locale}
+                    dictionary={dictionary}
                 />
                 {
                     (!hasLegalBasis(dataset) && !showEmptyRows) ? null :
                     <LegalDetails
                         dataset={dataset}
                         locale={locale}
+                        dictionary={dictionary}
                     />
                 }
                 {
@@ -74,6 +81,15 @@ const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                     <ConceptDetails
                         dataset={dataset}
                         locale={locale}
+                        dictionary={dictionary}
+                    />
+                }
+                {
+                    (!related?.length && !showEmptyRows) ? null :
+                    <RelatedDetails
+                        related={related}
+                        locale={locale}
+                        dictionary={dictionary}
                     />
                 }
                 <section>
@@ -81,7 +97,7 @@ const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                         level={4}
                         size='xxsmall'
                     >
-                        Tema
+                        {dictionary.details.themes}
                     </Heading>
                     {
                         dataset.theme ? 
@@ -90,13 +106,13 @@ const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                                 dataset.theme.map((theme: any) => 
                                     <Link key={theme.code} href={`/datasets&theme=${theme.code}`}>
                                         <ChipToggle>
-                                            {printLocaleValue(theme.title, locale)}
+                                            {printLocaleValue(locale, theme.title)}
                                         </ChipToggle>
                                     </Link>
                                 )
                             }
                         </ChipGroup>:
-                        <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
+                        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
                     }
                 </section>
                 <section>
@@ -104,7 +120,7 @@ const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                         level={4}
                         size='xxsmall'
                     >
-                        Søkeord
+                        {dictionary.details.keywords}
                     </Heading>
                     {
                         dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? 
@@ -119,7 +135,7 @@ const DatasetDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                                 )
                             }
                         </ChipGroup>:
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                     }
                 </section>
             </div>

@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import CopyButton from '@fdk-frontend/ui/copy-button';
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { ToggleGroup, Heading, Spinner, Textfield, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
 import HStack from '@fdk-frontend/ui/hstack';
 
@@ -10,9 +11,10 @@ import styles from './metadata-page.module.scss';
 
 export type MetadataPageProps = {
     uri?: string;
+    dictionary: Dictionary;
 }
 
-const MetadataPage = ({ children, uri, ...props }: MetadataPageProps & React.HTMLAttributes<HTMLDivElement>) => {
+const MetadataPage = ({ children, uri, dictionary, ...props }: MetadataPageProps & React.HTMLAttributes<HTMLDivElement>) => {
 
     const [contentType, setContentType] = useState<string>('text/turtle');
     const [source, setSource] = useState<string>('');
@@ -64,15 +66,16 @@ const MetadataPage = ({ children, uri, ...props }: MetadataPageProps & React.HTM
                     <HStack>
                         Resource Description Framework (RDF)
                         <HelpText
-                            title='Begrepsforklaring'
+                            title={dictionary.rdf.titleHelpTextTitle}
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
                         >
                             <Paragraph size='sm'>
-                                Alle URL-er til ressurser på data.norge.no kan levere RDF-metadata i flere ulike
-                                formater, avhengig av hvilken <code>Accept</code> header man sender med.
+                                {dictionary.rdf.titleHelpText}
+                            </Paragraph>
+                            <Paragraph size='sm'>
                                 <Link href='/docs/sharing-data/rdf'>
-                                    Les mer om RDF og hvilke formater vi støtter her
+                                    {dictionary.rdf.titleHelpTextLink}
                                 </Link>
                             </Paragraph>
                         </HelpText>
@@ -80,9 +83,9 @@ const MetadataPage = ({ children, uri, ...props }: MetadataPageProps & React.HTM
                 </Heading>
                 {loading && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        Laster...
+                        {`${dictionary.rdf.loading}...`}
                         <Spinner
-                            title='Loading'
+                            title={dictionary.rdf.loading}
                             size='xs'
                             variant='interaction'
                             aria-hidden={true}
@@ -92,7 +95,13 @@ const MetadataPage = ({ children, uri, ...props }: MetadataPageProps & React.HTM
             </div>
             <div className={styles.header}>
                 <div className={styles.urlbar}>
-                    <CopyButton copyOnClick={uri} />
+                    <CopyButton
+                        labels={[
+                            dictionary.rdf.copyButton.at(0),
+                            dictionary.rdf.copyButton.at(1)
+                        ]}
+                        copyOnClick={uri}
+                    />
                     <Textfield
                         size='md'
                         readOnly
@@ -112,13 +121,19 @@ const MetadataPage = ({ children, uri, ...props }: MetadataPageProps & React.HTM
                 </div>
             </div>
             <div className={cn(styles.content, styles.article)}>
-                <CopyButton copyOnClick={source} />
+                <CopyButton
+                    labels={[
+                        dictionary.rdf.copyButton.at(0),
+                        dictionary.rdf.copyButton.at(1)
+                    ]}
+                    copyOnClick={source}
+                />
                 <SyntaxHighlighter
                     language={syntax[contentType as keyof typeof syntax]}
                     style={vscDarkPlus}
                     showLineNumbers
                 >
-                    {loading && !source.length ? 'Laster...' : source}
+                    {loading && !source.length ? `${dictionary.rdf.loading}...` : source}
                 </SyntaxHighlighter>
             </div>
         </div>

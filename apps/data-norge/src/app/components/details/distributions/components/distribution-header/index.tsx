@@ -4,16 +4,17 @@ import { Button, Link, Tag } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
 import { isOpenLicense, printLocaleValue } from '@fdk-frontend/utils';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import styles from './distribution-header.module.scss';
 
 type DistributionHeaderProps = {
     distribution: JSONValue;
     locale: LocaleCodes;
+    dictionary: Dictionary;
     exampleData?: boolean;
 }
 
-const DistributionHeader = ({ distribution, locale, exampleData, ...props }: DistributionHeaderProps & PropsWithChildren) => {
+const DistributionHeader = ({ distribution, locale, exampleData, dictionary, ...props }: DistributionHeaderProps & PropsWithChildren) => {
 
     const hasOpenLicense =
         distribution.license &&
@@ -32,7 +33,7 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                 printLocaleValue(locale, distribution.title) :
                 distribution.accessURL ?
                 distribution.accessURL :
-                'Navnløs distribusjon'
+                dictionary.distributions.header.nameless
                 
             }
             {
@@ -45,7 +46,7 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                             color='success'
                             size='sm'
                         >
-                            Åpen lisens
+                            {dictionary.distributions.header.openLicense}
                         </Tag>
                     }
                     {
@@ -55,7 +56,7 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                             color='neutral'
                             size='sm'
                         >
-                            Eksempeldata
+                            {dictionary.distributions.header.exampleData}
                         </Tag>
                     }
                     {distribution.fdkFormat?.filter((format: any) => format?.code).map((format: any) => (
@@ -85,9 +86,7 @@ const DistributionHeader = ({ distribution, locale, exampleData, ...props }: Dis
                 >
                     <Link href={distribution.accessURL}>
                         <DownloadIcon fontSize='1.2em' />
-                        Last ned
-                        {/*Gå til datasett*/}
-                        {/*<ExternalLinkIcon />*/}
+                        {dictionary.distributions.header.downloadBtnLabel}
                     </Link>
                 </Button>
             </div>

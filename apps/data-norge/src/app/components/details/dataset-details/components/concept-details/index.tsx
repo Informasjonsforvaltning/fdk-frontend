@@ -3,16 +3,16 @@ import { Heading, Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import PlaceholderBox from '../../../placeholder-box';
 import { DatasetDetailsProps } from '../../';
-import { printLocaleValue } from '../../utils';
+import { printLocaleValue } from '@fdk-frontend/utils';
 
-const ConceptDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     return (
         <section>
             <Heading
                 level={4}
                 size='xxsmall'
             >
-                Begreper brukt i datasett
+                {dictionary.details.concepts.title}
             </Heading>
             {
                 dataset?.subject ?
@@ -23,17 +23,17 @@ const ConceptDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                                 <React.Fragment key={subject.uri}>
                                     <dt>
                                         <Link href={subject.uri}>
-                                            {printLocaleValue(subject.prefLabel, locale)}
+                                            {printLocaleValue(locale, subject.prefLabel)}
                                             <ExternalLinkIcon />
                                         </Link>
                                     </dt>
-                                    <dd>{printLocaleValue(subject.definition, locale)}</dd>
+                                    <dd>{printLocaleValue(locale, subject.definition)}</dd>
                                 </React.Fragment>
                             );
                         })
                     }
                 </dl> :
-                <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
+                <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
             }
         </section>
     );

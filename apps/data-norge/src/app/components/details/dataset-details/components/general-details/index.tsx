@@ -7,15 +7,15 @@ import PlaceholderText from '../../../placeholder-text';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
-const GeneralDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps) => {
+const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
 
     const { showEmptyRows } = useContext(DatasetDetailsContext);
 
     const getMetadataQuality = (value: number) => {
-        if (value < 25) return { color: 'danger', label: `Dårlig (${value}%)` };
-        if (value < 50) return { color: 'warning', label: `Tilstrekkelig (${value}%)` };
-        if (value < 75) return { color: 'success', label: `God (${value}%)` };
-        return { color: 'success', label: `Utmerket (${value}%)` };
+        if (value < 25) return { color: 'danger', label: `${dictionary.details.general.metadataQuality.labels.poor} (${value}%)` };
+        if (value < 50) return { color: 'warning', label: `${dictionary.details.general.metadataQuality.labels.sufficient} (${value}%)` };
+        if (value < 75) return { color: 'success', label: `${dictionary.details.general.metadataQuality.labels.good} (${value}%)` };
+        return { color: 'success', label: `${dictionary.details.general.metadataQuality.labels.excellent} (${value}%)` };
     };
 
     const metadataQualityScore = calculateMetadataScore(metadataScore?.dataset);
@@ -27,27 +27,30 @@ const GeneralDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                 level={4}
                 size='xxsmall'
             >
-                Generelt
+                {dictionary.details.general.title}
             </Heading>
             <dl>
-                <dt>Ansvarlig virksomhet:</dt>
+                <dt>{dictionary.details.general.publisher}:</dt>
                 <dd>
                     <Link href={`/organizations/${dataset.publisher?.id}`}>
                         {dataset.publisher.prefLabel?.[locale] || dataset.publisher.prefLabel?.[i18n.defaultLocale]}
                     </Link>
                 </dd>
-                
                 <dt>
                     <HStack>
-                        <span>Publisert:</span>
+                        <span>{dictionary.details.general.firstHarvested}:</span>
                         <HelpText
-                            title='Begrepsforklaring'
+                            title={dictionary.details.general.firstHarvesteHelpTextTitle}
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
                         >
                             <Paragraph size='sm'>
-                                Denne datoen sier når datasettet ble <Link href="/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest">høstet</Link> av data.norge.no. Det kan ha vært
-                                tilgjengelig tidligere andre steder.
+                                {dictionary.details.general.firstHarvestedHelpText}
+                            </Paragraph>
+                            <Paragraph size='sm'>
+                                <Link href='/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest'>
+                                    {dictionary.details.general.firstHarvestedHelpTextLink}
+                                </Link>
                             </Paragraph>
                         </HelpText>
                     </HStack>
@@ -58,7 +61,7 @@ const GeneralDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                 {
                     (!dataset.page && !showEmptyRows) ? null :
                     <>
-                        <dt>Dokumentasjon:</dt>
+                        <dt>{dictionary.details.general.page}:</dt>
                         <dd>
                             {
                                 dataset.page ?
@@ -66,25 +69,26 @@ const GeneralDetails = ({ dataset, locale, metadataScore }: DatasetDetailsProps)
                                     {dataset.page}
                                     <ExternalLinkIcon />
                                 </Link> :
-                                <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             }
                         </dd>
                     </>
                 }
                 <dt>
                     <HStack>
-                        Metadatakvalitet:
+                        {dictionary.details.general.metadataQuality.title}:
                         <HelpText
-                            title='Begrepsforklaring'
+                            title={dictionary.details.general.metadataQuality.helpTextTitle}
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
                         >
                             <Paragraph size='sm'>
-                                Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp av
-                                metadata.
+                                {dictionary.details.general.metadataQuality.helpText}
                             </Paragraph>
                             <Paragraph size='sm'>
-                                <Link href='/nb/docs/metadata-quality'>Les mer om metadatakvalitet her</Link>
+                                <Link href='/nb/docs/metadata-quality'>
+                                    {dictionary.details.general.metadataQuality.helpTextLink}
+                                </Link>
                             </Paragraph>
                         </HelpText>
                     </HStack>
