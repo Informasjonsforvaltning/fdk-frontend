@@ -7,7 +7,7 @@ import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
-import StarButton from '@fdk-frontend/ui/star-button';
+// import StarButton from '@fdk-frontend/ui/star-button';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Article from '@fdk-frontend/ui/article';
@@ -43,14 +43,18 @@ export type DetailsPageType = {
     resource: JSONValue;
     apis?: JSONValue;
     relatedDatasets?: JSONValue;
+    similarDatasets?: JSONValue;
     orgDatasets?: JSONValue;
     metadataScore?: JSONValue;
     communityTopics?: JSONValue;
     communityBaseUri: string;
-    locale: LocaleCodes;
-    commonDictionary: Dictionary;
     defaultActiveTab?: string;
     orgLogo?: string | null;
+    locale: LocaleCodes;
+    dictionaries: {
+        common: Dictionary;
+        detailsPage: Dictionary;
+    };
 };
 
 export default function DetailsPage({
@@ -59,14 +63,15 @@ export default function DetailsPage({
     resource,
     apis,
     relatedDatasets,
+    similarDatasets,
     orgDatasets,
     metadataScore,
     communityTopics,
     communityBaseUri,
     orgLogo,
+    defaultActiveTab = 'overview',
     locale,
-    commonDictionary,
-    defaultActiveTab = 'overview'
+    dictionaries
 }: DetailsPageType) {
 
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
@@ -80,7 +85,7 @@ export default function DetailsPage({
     const breadcrumbList = [
         {
             href: '/datasets',
-            text: 'Datasett',
+            text: dictionaries.detailsPage.breadcrumbs.datasets,
         },
         {
             href: '#',
@@ -96,7 +101,7 @@ export default function DetailsPage({
     return (
         <div className={styles.detailsPage}>
             <Breadcrumbs
-                dictionary={commonDictionary}
+                dictionary={dictionaries.common}
                 breadcrumbList={breadcrumbList}
                 baseUri=''
             />
@@ -106,7 +111,7 @@ export default function DetailsPage({
                         {
                             resource.publisher ?
                             printLocaleValue(locale, resource.publisher?.prefLabel) :
-                            'Navnløs virksomhet'
+                            dictionaries.detailsPage.header.namelessOrganization
                         }
                     </OrgButton>
                     <div className={styles.headerGrid}>
@@ -117,14 +122,14 @@ export default function DetailsPage({
                         >
                             {
                                 printLocaleValue(locale, resource.title) ||
-                                'Navnløst datasett'
+                                dictionaries.detailsPage.header.namelessDataset
                             }
                         </Heading>
                         <div className={styles.headerToolbar}>
-                            <StarButton
+                            {/*<StarButton
                                 defaultNumber={13}
                                 defaultStarred={false}
-                            />
+                            />*/}
                             <Button
                                 size='sm'
                                 onClick={() => {
@@ -133,7 +138,7 @@ export default function DetailsPage({
                                     blink();
                                 }}
                             >
-                                Bruk datasett
+                                {dictionaries.detailsPage.header.useDatasetButton}
                             </Button>
                         </div>
                         <div className={styles.headerTags}>
@@ -141,7 +146,7 @@ export default function DetailsPage({
                                 color='info'
                                 size='sm'
                             >
-                                <Link href='/datasets'>Datasett</Link>
+                                <Link href='/datasets'>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
                             </Tag>
                             {/*<Tag
                                 color='neutral'
@@ -149,33 +154,41 @@ export default function DetailsPage({
                             >
                                 <Link href='/datasets'>Autoritativ kilde</Link>
                             </Tag>*/}
-                            <AccessLevelTag accessCode={resource.accessRights?.code} />
+                            <AccessLevelTag
+                                accessCode={resource.accessRights?.code}
+                                dictionary={dictionaries.detailsPage}
+                            />
                             {
                                 resource.isOpenData &&
                                 <Tag
                                     color='success'
                                     size='sm'
                                 >
-                                    <Link href={`/datasets?opendata=true`}>Åpne data</Link>
+                                    <Link href={`/datasets?opendata=true`}>
+                                        {dictionaries.detailsPage.openData.label}
+                                    </Link>
                                     &nbsp;
                                     <HelpText
-                                        title='Begrepsforklaring'
+                                        title={dictionaries.detailsPage.openData.helpTextTitle}
                                         size='sm'
                                         style={{ transform: 'scale(0.75)' }}
                                     >
                                         <Paragraph size='sm'>
-                                            Datasettet er klassifisert som <em>Allmenn tilgang</em> og har minst 1 distribusjon med godkjent åpen lisens.
+                                            {dictionaries.detailsPage.openData.helpText}
                                         </Paragraph>
                                         <Paragraph size='sm'>
                                             <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
-                                                Les mer om lisenser her
+                                                {dictionaries.detailsPage.openData.readMoreLinkText}
                                             </Link>
                                         </Paragraph>
                                     </HelpText>
                                     {/*<Link href='/datasets'>Lisens: {resource.distribution[0].license[0].prefLabel['en']}</Link>*/}
                                 </Tag>
                             }
-                            <span className={styles.lastUpdated}>Publisert 9. mars 2022</span>
+                            <span className={styles.lastUpdated}>
+                                {dictionaries.detailsPage.header.published}&nbsp;
+                                {new Date(resource.harvest.firstHarvested).toLocaleString(locale, { dateStyle: 'long' })}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -193,13 +206,13 @@ export default function DetailsPage({
                                 value='overview'
                                 onClick={() => updateUri('overview')}
                             >
-                                Oversikt
+                                {dictionaries.detailsPage.tabs.overview}
                             </Tab>
                             <Tab
                                 value='distributions'
                                 onClick={() => updateUri('distributions')}
                             >
-                                Distribusjoner og API&nbsp;
+                                {dictionaries.detailsPage.tabs.distributions}&nbsp;
                                 <Badge>
                                     {sumArrayLengths(resource.distribution, resource.sample, apis)}
                                 </Badge>
@@ -208,13 +221,13 @@ export default function DetailsPage({
                                 value='details'
                                 onClick={() => updateUri('details')}
                             >
-                                Detaljer
+                                {dictionaries.detailsPage.tabs.details}
                             </Tab>
                             <Tab
                                 value='community'
                                 onClick={() => updateUri('community')}
                             >
-                                Diskusjoner
+                                {dictionaries.detailsPage.tabs.community}
                                 {
                                     communityTopics.length > 0 &&
                                     <>
@@ -226,7 +239,7 @@ export default function DetailsPage({
                                 value='rdf'
                                 onClick={() => updateUri('rdf')}
                             >
-                                RDF
+                                {dictionaries.detailsPage.tabs.rdf}
                             </Tab>
                         </TabList>
                     </ScrollShadows>
@@ -236,7 +249,7 @@ export default function DetailsPage({
                                 level={4}
                                 size='xxsmall'
                             >
-                                Beskrivelse
+                                {dictionaries.detailsPage.overview.description.title}
                             </Heading>
                             {/*{resource.description?.['no']}*/}
                             {/*{printLocaleValue(locale, resource.description)}*/}
@@ -254,7 +267,7 @@ export default function DetailsPage({
                                     </ExpandableContent> 
                                 </div> :
                                 <PlaceholderBox>
-                                    Dette datasettet har ingen beskrivelse.
+                                    {dictionaries.detailsPage.overview.description.placeholder}
                                 </PlaceholderBox>
                             }
                         </section>
@@ -265,10 +278,11 @@ export default function DetailsPage({
                                 apis={apis}
                                 className={cn({ [styles.highlight]: highlight })}
                                 locale={locale}
+                                dictionary={dictionaries.detailsPage}
                             />
                         </section>
                         {
-                            relatedDatasets && relatedDatasets.length > 0 &&
+                            similarDatasets && similarDatasets.length > 0 &&
                             <>
                                 <BrandDivider className={styles.divider} />
                                 <section className={styles.section}>
@@ -276,13 +290,13 @@ export default function DetailsPage({
                                         level={4}
                                         size='xxsmall'
                                     >
-                                        Lignende datasett
+                                        {dictionaries.detailsPage.similarDatasets}
                                     </Heading>
                                     <ScrollShadows className={styles.tableScroller}>
                                         <table className={cn('table', styles.relatedTable)} style={{minWidth:475}}>
                                             <tbody>
                                                 {
-                                                    relatedDatasets && relatedDatasets.map((dataset: any) => (
+                                                    similarDatasets && similarDatasets.map((dataset: any) => (
                                                         <tr key={dataset.id}>
                                                             <td>
                                                                 <Link href={`${dataset.id}`}>
@@ -305,7 +319,11 @@ export default function DetailsPage({
                                                             </td>
                                                             <td align='right'>
                                                                 <HStack style={{justifyContent: 'flex-end', gap: '0.5rem'}}>
-                                                                    <AccessLevelTag accessCode={dataset.accessRights?.code} nonInteractive />
+                                                                    <AccessLevelTag
+                                                                        accessCode={dataset.accessRights?.code}
+                                                                        dictionary={dictionaries.detailsPage}
+                                                                        nonInteractive
+                                                                    />
                                                                 </HStack>
                                                             </td>
                                                         </tr>
@@ -325,23 +343,32 @@ export default function DetailsPage({
                             apis={apis}
                             className={cn({ [styles.highlight]: highlight })}
                             locale={locale}
+                            dictionary={dictionaries.detailsPage}
                         />
                     </TabContent>
                     <TabContent value='details'>
                         <DatasetDetails
                             dataset={resource}
+                            related={relatedDatasets}
                             locale={locale}
                             metadataScore={metadataScore}
+                            dictionary={dictionaries.detailsPage}
                         />
                     </TabContent>
                     <TabContent value='community'>
                         <CommunityTab
                             topics={communityTopics}
                             communityBaseUri={communityBaseUri}
+                            locale={locale}
+                            dictionary={dictionaries.detailsPage}
                         />
                     </TabContent>
                     <TabContent value='rdf'>
-                        <MetadataPage uri={`${baseUri}/datasets/${resource.id}`} />
+                        <MetadataPage
+                            uri={`${baseUri}/datasets/${resource.id}`}
+                            locale={locale}
+                            dictionary={dictionaries.detailsPage}
+                        />
                     </TabContent>
                 </Tabs>
             </div>

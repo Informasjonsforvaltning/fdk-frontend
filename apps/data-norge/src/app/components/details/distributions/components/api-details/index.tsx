@@ -1,6 +1,6 @@
 import { Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { i18n, type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
@@ -11,13 +11,14 @@ import PlaceholderText from '../../../placeholder-text';
 type ApiDetailsProps = {
     api: JSONValue;
     locale: LocaleCodes;
+    dictionary: Dictionary;
 }
 
-const ApiDetails = ({ api, locale }: ApiDetailsProps) => {
+const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
     return (
         <>
             <dl>
-            	<dt>Beskrivelse:</dt>
+            	<dt>{dictionary.apis.details.description}:</dt>
                 <dd>
                 	{
                 		api.description ?
@@ -30,18 +31,18 @@ const ApiDetails = ({ api, locale }: ApiDetailsProps) => {
         	                    </article>
                             </ExpandableContent>
                         </Box> :
-	                    <PlaceholderText>Ikke oppgitt</PlaceholderText>
+	                    <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
 	                }
                 </dd>
-                <dt>Endepunkt:</dt>
+                <dt>{dictionary.apis.details.endpoint}:</dt>
                 <dd>
                     {
                         api.endpointURL.map((endpointURL: string, i: number) => {
                             return (
                                 <dl key={endpointURL}>
-                                    <dt>URL:</dt>
+                                    <dt>{dictionary.apis.details.url}:</dt>
                                     <dd><Link href={endpointURL}>{endpointURL} <ExternalLinkIcon /></Link></dd>
-                                    <dt>Beskrivelse:</dt>
+                                    <dt>{dictionary.apis.details.description}:</dt>
                                     <dd>
                                         {
                                             api.endpointDescription && api.endpointDescription[i] ?
@@ -52,7 +53,7 @@ const ApiDetails = ({ api, locale }: ApiDetailsProps) => {
                                                     </Markdown>
                                                 </article>
                                             </ExpandableContent> :
-                                            <PlaceholderText>Ikke oppgitt</PlaceholderText>    
+                                            <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                                         }
                                     </dd>
                                 </dl>
@@ -60,12 +61,12 @@ const ApiDetails = ({ api, locale }: ApiDetailsProps) => {
                         })
                     }
                 </dd>
-                <dt>Dokumentasjon:</dt>
+                <dt>{dictionary.apis.details.page}:</dt>
                 <dd>
                     {
                         api.page ?
                         <Link href={api.page}>{api.page} <ExternalLinkIcon /></Link> :
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                     }
                 </dd>
             </dl>

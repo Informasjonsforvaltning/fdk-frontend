@@ -5,35 +5,25 @@ import {
     HelpText,
     Paragraph,
 } from '@digdir/designsystemet-react';
-
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { DatasetAccessRightsCodes } from '@fdk-frontend/types';
 
 type AccessLevelTagProps = {
 	accessCode: DatasetAccessRightsCodes;
+	dictionary: Dictionary;
 	nonInteractive?: boolean;
 }
 
-const AccessLevelTag = ({ accessCode, nonInteractive, ...props }: AccessLevelTagProps) => {
+const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, ...props }: AccessLevelTagProps) => {
 
-	let color = 'neutral', label = 'Ukjent tilgangsnivå', helpText = '';
+	let color = 'neutral';
 
-	if (accessCode === 'NON_PUBLIC') {
-		color = 'danger';
-		label = 'Ikke-allmenn tilgang';
-		helpText = 'Ikke offentlig tilgjengelig av personvern-, sikkerhets- eller andre årsaker. Denne kategorien kan inkludere ressurser som inneholder sensitiv eller personlig informasjon.';
-	}
+	const label = dictionary.accessRights.codes[accessCode].label || dictionary.accessRights.unknownLabel;
+	const helpText = dictionary.accessRights.codes[accessCode].helpText || '';
 
-	if (accessCode === 'RESTRICTED') {
-		color = 'warning';
-		label = 'Begrenset tilgang';
-	  	helpText = 'Kun tilgjengelig under visse betingelser. Denne kategorien kan inkludere ressurser som krever betaling, ressurser delt under taushetsavtaler, eller ressurser der utgiver eller eier ennå ikke har bestemt om de kan offentliggjøres.';
-	}
-
-	if (accessCode === 'PUBLIC') {
-		color = 'success';
-		label = 'Allmenn tilgang';
-	  	helpText = 'Offentlig tilgjengelig for alle. Tilgang kan likevel kreve registrering og forespørsel om API-nøkler, så lenge hvem som helst kan be om slik registrering og/eller API-nøkler.';
-	}
+	if (accessCode === 'NON_PUBLIC') color = 'danger';
+	if (accessCode === 'RESTRICTED') color = 'warning';
+	if (accessCode === 'PUBLIC') color = 'success';
 
 	return (
 		<Tag
@@ -46,14 +36,14 @@ const AccessLevelTag = ({ accessCode, nonInteractive, ...props }: AccessLevelTag
 	    		<>
 	    			<Link href={`/datasets?accessrights=${accessCode}`}>{label}</Link>&nbsp;
 			        <HelpText
-			            title='Begrepsforklaring'
+			            title={dictionary.accessRights.helpTextTitle}
 			            size='sm'
 			            style={{ transform: 'scale(0.75)' }}
 			        >
 			            <Paragraph size='sm'>{helpText}</Paragraph>
 			            <Paragraph size='sm'>
 			                <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
-			                    Les mer om tilgangsnivåer her
+			                    {dictionary.accessRights.readMoreLinkText}
 			                </Link>
 			            </Paragraph>
 			        </HelpText>

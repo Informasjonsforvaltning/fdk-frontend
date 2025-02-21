@@ -1,5 +1,5 @@
-import { Link, Tag, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { Link } from '@digdir/designsystemet-react';
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
@@ -7,17 +7,19 @@ import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import { printLocaleValue, isOpenLicense } from '@fdk-frontend/utils';
 import detailsPageStyles from '../../../details-page/details-page.module.scss';
 import PlaceholderText from '../../../placeholder-text';
+import OpenLicenseTag from '../../../open-license-tag';
 
 type DistributionDetailsProps = {
     distribution: JSONValue;
     locale: LocaleCodes;
+    dictionary: Dictionary;
 }
 
-const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps) => {
+const DistributionDetails = ({ distribution, locale, dictionary }: DistributionDetailsProps) => {
     return (
         <>
             <dl>
-                <dt>Beskrivelse:</dt>
+                <dt>{dictionary.distributions.details.description}:</dt>
                 <dd>
                     {
                         distribution.description ?
@@ -30,42 +32,42 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                                 </article>
                             </ExpandableContent>
                         </Box> :
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
                     }
                 </dd>
-                <dt>TilgangsURL:</dt>
+                <dt>{dictionary.distributions.details.accessURL}:</dt>
                 <dd>
                     {
                         distribution.accessURL ?
                         <Link href="#">{distribution.accessURL}</Link> :
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
                     }
                 </dd>
-                <dt>Direkte nedlasting:</dt>
+                <dt>{dictionary.distributions.details.downloadURL}:</dt>
                 <dd>
                     {
                         distribution.downloadURL ?
                         <Link href="#">{distribution.downloadURL}</Link> :
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
                     }
                 </dd>
-                <dt>API:</dt>
+                <dt>{dictionary.distributions.details.accessService}:</dt>
                 <dd>
                     {
                         distribution.accessService ? 
                         distribution.accessService.map((api: any) => (<Link key={api.uri} href="#">{api.uri}</Link>)) :
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
                     }
                 </dd>
-                <dt>Dokumentasjon:</dt>
+                <dt>{dictionary.distributions.details.page}:</dt>
                 <dd>
                     {
                         distribution.page ? 
                         distribution.page.map((page: any) => (<Link key={page.uri} href={page.uri}>{page.uri}</Link>)) :
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
                     }
                 </dd>
-                <dt>Lisens:</dt>
+                <dt>{dictionary.distributions.details.license}:</dt>
                 <dd>
                     {
                         distribution.license ? 
@@ -80,35 +82,14 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                                 </Link>
                                 {
                                     isOpenLicense(license.uri) &&
-                                    <Tag
-                                        color='success'
-                                        size='sm'
-                                        style={{display: 'inline-flex', marginLeft:'0.5rem'}}
-                                    >
-                                        Godkjent åpen lisens
-                                        &nbsp;
-                                        <HelpText
-                                            title='Begrepsforklaring'
-                                            size='sm'
-                                            style={{ transform: 'scale(0.75)' }}
-                                        >
-                                            <Paragraph size='sm'>
-                                                Dette er en godkjent åpen lisens som tillater fri bruk, deling og gjenbruk av data i samsvar med åpne data-prinsipper. Disse lisensene er anerkjent for bruk i offentlige og private datasett, både nasjonalt og internasjonalt.
-                                            </Paragraph>
-                                            <Paragraph size='sm'>
-                                                <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
-                                                    Les mer om lisenser her
-                                                </Link>
-                                            </Paragraph>
-                                        </HelpText>
-                                    </Tag>
+                                    <OpenLicenseTag dictionary={dictionary} />
                                 }
                             </div>
                         )) :
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
                     }
                 </dd>
-                <dt>I samsvar med:</dt>
+                <dt>{dictionary.distributions.details.conformsTo}:</dt>
                 <dd>
                     {
                         distribution.conformsTo ? 
@@ -121,7 +102,7 @@ const DistributionDetails = ({ distribution, locale }: DistributionDetailsProps)
                                 }
                             </Link>
                         )) :
-                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
                     }
                 </dd>
             </dl>

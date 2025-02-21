@@ -1,7 +1,7 @@
 'use client';
 import cn from 'classnames';
 import { Accordion, Heading } from '@digdir/designsystemet-react';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths } from '@fdk-frontend/utils';
 import Badge from '@fdk-frontend/ui/badge';
@@ -19,9 +19,10 @@ export type DistributionsProps = {
     apis?: JSONValue[];
     className?: string;
     locale: LocaleCodes;
+    dictionary: Dictionary;
 };
 
-const Distributions = ({ exampleData = [], datasets = [], apis = [], className, locale, ...props }: DistributionsProps) => {
+const Distributions = ({ exampleData = [], datasets = [], apis = [], className, locale, dictionary, ...props }: DistributionsProps) => {
     return (
         <div className={cn(styles.distributions, className)}>
             <Heading
@@ -29,7 +30,7 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                 size='xxsmall'
             >
                 <HStack>
-                    <div>Distribusjoner</div>
+                    <div>{dictionary.distributions.title}</div>
                     <Badge>{sumArrayLengths(datasets, exampleData)}</Badge>
                 </HStack>
             </Heading>
@@ -42,10 +43,18 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                                 level={3}
                                 className={styles.header}
                             >
-                                <DistributionHeader distribution={distribution} locale={locale} />
+                                <DistributionHeader
+                                    distribution={distribution}
+                                    locale={locale}
+                                    dictionary={dictionary}
+                                />
                             </Accordion.Header>
                             <Accordion.Content className={styles.content}>
-                                <DistributionDetails distribution={distribution} locale={locale} />
+                                <DistributionDetails
+                                    distribution={distribution}
+                                    locale={locale}
+                                    dictionary={dictionary}
+                                />
                             </Accordion.Content>
                         </Accordion.Item>
                     ))}
@@ -55,16 +64,25 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                                 level={3}
                                 className={styles.header}
                             >
-                                <DistributionHeader distribution={example} locale={locale} exampleData={true} />
+                                <DistributionHeader
+                                    distribution={example}
+                                    locale={locale}
+                                    dictionary={dictionary}
+                                    exampleData={true}
+                                />
                             </Accordion.Header>
                             <Accordion.Content className={styles.content}>
-                                <DistributionDetails distribution={example} locale={locale} />
+                                <DistributionDetails
+                                    distribution={example}
+                                    locale={locale}
+                                    dictionary={dictionary}
+                                />
                             </Accordion.Content>
                         </Accordion.Item>
                     ))}
                 </Accordion> :
                 <PlaceholderBox>
-                    Dette datasettet har ingen distribusjoner.
+                    {dictionary.distributions.placeholder}
                 </PlaceholderBox>
             }
             <Heading
@@ -72,7 +90,7 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                 size='xxsmall'
             >
                 <HStack>
-                    <div>API-er som tilgjengeliggjør dette datasettet</div>
+                    <div>{dictionary.apis.title}</div>
                     <Badge>{apis.length}</Badge>
                 </HStack>
             </Heading>
@@ -85,16 +103,24 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                                 level={3}
                                 className={styles.header}
                             >
-                                <ApiHeader api={api} locale={locale} />
+                                <ApiHeader
+                                    api={api}
+                                    locale={locale}
+                                    dictionary={dictionary}
+                                />
                             </Accordion.Header>
                             <Accordion.Content className={styles.content}>
-                                <ApiDetails api={api} locale={locale} />
+                                <ApiDetails
+                                    api={api}
+                                    locale={locale}
+                                    dictionary={dictionary}
+                                />
                             </Accordion.Content>
                         </Accordion.Item>
                     ))}
                 </Accordion> :
                 <PlaceholderBox>
-                    Ingen registrerte API-er tilgjengeliggjør dette datasettet.
+                    {dictionary.apis.placeholder}
                 </PlaceholderBox>
             }
         </div>
