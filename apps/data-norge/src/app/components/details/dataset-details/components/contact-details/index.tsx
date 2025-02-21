@@ -6,7 +6,7 @@ import PlaceholderBox from '../../../placeholder-box';
 import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
-const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
+const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
 
     const { showEmptyRows } = useContext(DatasetDetailsContext);
 
@@ -25,7 +25,7 @@ const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                 level={4}
                 size='xxsmall'
             >
-                Kontaktinformasjon
+                {dictionary.details.contactPoint.title}
             </Heading>
             {
                 dataset.contactPoint && dataset.contactPoint.length > 0 ?
@@ -34,10 +34,10 @@ const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                         {
                             (!contactPoint.fullname && !showEmptyRows) ? null :
                             <>
-                                <dt>Kontaktperson:</dt>
+                                <dt>{dictionary.details.contactPoint.fullname}:</dt>
                                 <dd>
                                     {
-                                        contactPoint.fullname || <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                        contactPoint.fullname || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                     }
                                 </dd>
                             </>
@@ -45,12 +45,12 @@ const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                         {
                             (!contactPoint.organizationUnit && !showEmptyRows) ? null :
                             <>
-                                <dt>Enhet:</dt>
+                                <dt>{dictionary.details.contactPoint.organizationUnit}:</dt>
                                 <dd>
                                     {
                                         contactPoint.organizationUnit ?
                                         printContactPointOrgUnit(contactPoint) :
-                                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                     }
                                 </dd>
                             </>
@@ -58,12 +58,12 @@ const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                         {
                             (!contactPoint.email && !showEmptyRows) ? null :
                             <>
-                                <dt>E-post:</dt>
+                                <dt>{dictionary.details.contactPoint.email}:</dt>
                                 <dd>
                                     {
                                         contactPoint.email ?
                                         <Link href={`mailto:${contactPoint.email}`}>{contactPoint.email}</Link> :
-                                        <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                     }
                                 </dd>
                             </>
@@ -71,17 +71,17 @@ const ContactDetails = ({ dataset, locale }: DatasetDetailsProps) => {
                         {
                             (!contactPoint.hasTelephone && !showEmptyRows) ? null :
                             <>
-                                <dt>Telefon:</dt>
+                                <dt>{dictionary.details.contactPoint.telephone}:</dt>
                                 <dd>
                                     {
-                                        contactPoint.hasTelephone || <PlaceholderText>Ikke oppgitt</PlaceholderText>
+                                        contactPoint.hasTelephone || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                     }
                                 </dd>
                             </>
                         }
                     </dl>
                 )) :
-                <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
+                <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
             }
         </section>
     );

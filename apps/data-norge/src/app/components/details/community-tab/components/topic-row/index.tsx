@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Tag } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon, Chat2Icon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 import HStack from '@fdk-frontend/ui/hstack';
 import { Subtext } from '@fdk-frontend/ui/typography';
 import IconBadge from '@fdk-frontend/ui/icon-badge';
@@ -10,9 +11,10 @@ import styles from '../../community-tab.module.scss';
 export type TopicRowProps = {
 	communityBaseUri: string;
 	topic: JSONValue;
+	dictionary: Dictionary;
 }
 
-const TopicRow = ({ topic, communityBaseUri, ...props }: TopicRowProps & React.HTMLAttributes<HTMLTableRowElement>) => {
+const TopicRow = ({ topic, communityBaseUri, dictionary, ...props }: TopicRowProps & React.HTMLAttributes<HTMLTableRowElement>) => {
 	return (
 		<tr {...props}>
 			<td width='1'>
@@ -34,7 +36,7 @@ const TopicRow = ({ topic, communityBaseUri, ...props }: TopicRowProps & React.H
 								{topic.category.name}
 							</Link>
 						</Tag>
-						<Subtext>{`Postet av ${topic.author.username}`}</Subtext>
+						<Subtext>{`${dictionary.community.topicRow.postedBy} ${topic.author.username}`}</Subtext>
 					</HStack>
 				</div>
 			</td>
@@ -42,15 +44,15 @@ const TopicRow = ({ topic, communityBaseUri, ...props }: TopicRowProps & React.H
 				<HStack style={{justifyContent:'flex-end'}}>
 					<div className={styles.forumStats}>
 						<span>{topic.votes}</span>
-						<Subtext>Stemmer</Subtext>
+						<Subtext>{dictionary.community.topicRow.votes}</Subtext>
 					</div>
 					<div className={styles.forumStats}>
 						<span>{topic.posts.length}</span>
-						<Subtext>Innlegg</Subtext>
+						<Subtext>{dictionary.community.topicRow.posts}</Subtext>
 					</div>
 					<div className={styles.forumStats}>
 						<span>{topic.viewcount}</span>
-						<Subtext>Visninger</Subtext>
+						<Subtext>{dictionary.community.topicRow.views}</Subtext>
 					</div>
 				</HStack>
 			</td>

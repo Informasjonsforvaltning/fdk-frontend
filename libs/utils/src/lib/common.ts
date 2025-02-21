@@ -5,9 +5,9 @@ export const print = (str?: string) => {
 }
 
 export const printLocaleValue = (locale: LocaleCodes, value: any) => {
-	if (!value) return;
-	if (typeof value === 'string') return value;
-	return value[locale] || value[i18n.defaultLocale] || value['no'];
+    if (!value) return;
+    if (typeof value === 'string') return value;
+    return value[locale] || value[i18n.defaultLocale] || value['no'];
 }
 
 export const sumArrayLengths = (...arrays: any[][]) => {

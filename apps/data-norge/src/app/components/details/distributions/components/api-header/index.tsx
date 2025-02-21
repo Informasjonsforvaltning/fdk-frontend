@@ -3,22 +3,23 @@ import mime from 'mime-types';
 import { Button, Link, Tag } from '@digdir/designsystemet-react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
-import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 import styles from '../distribution-header/distribution-header.module.scss';
 
 type ApiHeaderProps = {
     api: JSONValue;
     locale: LocaleCodes;
+    dictionary: Dictionary;
 }
 
-const ApiHeader = ({ api, locale, ...props }: ApiHeaderProps & PropsWithChildren) => {
+const ApiHeader = ({ api, locale, dictionary, ...props }: ApiHeaderProps & PropsWithChildren) => {
 	return (
 		<div className={styles.headerContent}>
             <span className={styles.title}>
                 {
                     api.title?.[locale] ||
                     api.title?.[i18n.defaultLocale] ||
-                    'Navnløst API'
+                    dictionary.apis.header.nameless
                 }
                 <div className={styles.tags}>
                     {api.fdkFormat?.filter((format: any) => format?.code).map((format: any, i: number) => (
@@ -44,7 +45,7 @@ const ApiHeader = ({ api, locale, ...props }: ApiHeaderProps & PropsWithChildren
                     }}
                 >
                     <Link href={`/data-services/${api.id}`}>
-                        Gå til API
+                        {dictionary.apis.header.gotoBtn}
                         <ArrowRightIcon fontSize='1.2em' />
                     </Link>
                 </Button>
