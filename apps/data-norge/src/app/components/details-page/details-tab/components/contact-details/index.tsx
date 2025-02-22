@@ -7,17 +7,18 @@ import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
 const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
-
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     const printContactPointOrgUnit = (contactPoint: any) => {
-        return contactPoint.hasURL ?
+        return contactPoint.hasURL ? (
             <Link href={contactPoint.hasURL}>
                 {contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]}
                 <ExternalLinkIcon />
-            </Link> :
-            contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale];
-    }
+            </Link>
+        ) : (
+            contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]
+        );
+    };
 
     return (
         <section>
@@ -27,62 +28,58 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
             >
                 {dictionary.details.contactPoint.title}
             </Heading>
-            {
-                dataset.contactPoint && dataset.contactPoint.length > 0 ?
+            {dataset.contactPoint && dataset.contactPoint.length > 0 ? (
                 dataset.contactPoint.map((contactPoint: any, i: number) => (
                     <dl key={`contactPoint-${i}`}>
-                        {
-                            (!contactPoint.fullname && !showEmptyRows) ? null :
+                        {!contactPoint.fullname && !showEmptyRows ? null : (
                             <>
                                 <dt>{dictionary.details.contactPoint.fullname}:</dt>
                                 <dd>
-                                    {
-                                        contactPoint.fullname || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                    }
+                                    {contactPoint.fullname || (
+                                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                    )}
                                 </dd>
                             </>
-                        }
-                        {
-                            (!contactPoint.organizationUnit && !showEmptyRows) ? null :
+                        )}
+                        {!contactPoint.organizationUnit && !showEmptyRows ? null : (
                             <>
                                 <dt>{dictionary.details.contactPoint.organizationUnit}:</dt>
                                 <dd>
-                                    {
-                                        contactPoint.organizationUnit ?
-                                        printContactPointOrgUnit(contactPoint) :
+                                    {contactPoint.organizationUnit ? (
+                                        printContactPointOrgUnit(contactPoint)
+                                    ) : (
                                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                    }
+                                    )}
                                 </dd>
                             </>
-                        }
-                        {
-                            (!contactPoint.email && !showEmptyRows) ? null :
+                        )}
+                        {!contactPoint.email && !showEmptyRows ? null : (
                             <>
                                 <dt>{dictionary.details.contactPoint.email}:</dt>
                                 <dd>
-                                    {
-                                        contactPoint.email ?
-                                        <Link href={`mailto:${contactPoint.email}`}>{contactPoint.email}</Link> :
+                                    {contactPoint.email ? (
+                                        <Link href={`mailto:${contactPoint.email}`}>{contactPoint.email}</Link>
+                                    ) : (
                                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                    }
+                                    )}
                                 </dd>
                             </>
-                        }
-                        {
-                            (!contactPoint.hasTelephone && !showEmptyRows) ? null :
+                        )}
+                        {!contactPoint.hasTelephone && !showEmptyRows ? null : (
                             <>
                                 <dt>{dictionary.details.contactPoint.telephone}:</dt>
                                 <dd>
-                                    {
-                                        contactPoint.hasTelephone || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                    }
+                                    {contactPoint.hasTelephone || (
+                                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                    )}
                                 </dd>
                             </>
-                        }
+                        )}
                     </dl>
-                )) :
+                ))
+            ) : (
                 <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-            }
+            )}
         </section>
     );
 };

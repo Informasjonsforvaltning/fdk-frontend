@@ -1,9 +1,7 @@
 {
-    "accessRights":
-    {
+    "accessRights": {
         "code": "PUBLIC",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "public"
         },
         "uri": "http://publications.europa.eu/resource/authority/access-right/PUBLIC"
@@ -11,29 +9,24 @@
     "accessRightsComment": null,
     "accrualPeriodicity": null,
     "admsIdentifier": null,
-    "catalog":
-    {
-        "description":
-        {
+    "catalog": {
+        "description": {
             "en": "Datasets from municipalities in the same format. From the SamÅpne-project. Launched for Open data challenge 2022.",
             "nb": "Datasett frå kommunar, på samme format. Frå SamÅpne-prosjektet. Lansert til Open data challenge 2022."
         },
         "id": "eee8721b-1b40-3768-9127-fabd64fbd7d7",
-        "publisher":
-        {
+        "publisher": {
             "id": "991825827",
             "name": "DIGITALISERINGSDIREKTORATET",
             "orgPath": "/STAT/932384469/991825827",
             "organisasjonsform": "ORGL",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "The Norwegian Digitalisation Agency",
                 "nb": "Digitaliseringsdirektoratet"
             },
             "uri": "https://data.brreg.no/enhetsregisteret/enhet/991825827"
         },
-        "title":
-        {
+        "title": {
             "en": "Energy usage datasets from municipality buildings",
             "nb": "Energimålingar i kommunale bygg"
         },
@@ -41,249 +34,247 @@
     },
     "conformsTo": null,
     "contactPoint": [
-    {
-        "email": "erlend.stav@sintef.no",
-        "fullname": null,
-        "hasTelephone": null,
-        "hasURL": "https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/",
-        "organizationName":
         {
-            "nb": "Erlend Stav"
-        },
-        "organizationUnit": null,
-        "uri": null
-    }],
+            "email": "erlend.stav@sintef.no",
+            "fullname": null,
+            "hasTelephone": null,
+            "hasURL": "https://www.sintef.no/alle-ansatte/ansatt/erlend.stav/",
+            "organizationName": {
+                "nb": "Erlend Stav"
+            },
+            "organizationUnit": null,
+            "uri": null
+        }
+    ],
     "dctType": null,
-    "description":
-    {
+    "description": {
         "en": "\nThe datasets in this directory are coordinated based on data sources from the municipalities.\n\nThere are four types of data sets that belong together.\n\n- Location: Describes a location (usually a building) that has energy data.\n- MeasurementPoint: Describes a measurement point with a unique id, what it is and the unit measurements are performed in.\n- LocationMeasurementPoint: Connects a measurement point with a location and assigns a local namee for the measurement point. Some measurement points are used by multiple locations, e.g. for temperature measurements from official measurement stations from met.no.\n- Measurements: Timestamped measurements from measurement points.\n\nFollow this link for a description of each dataset with their attributes:\n\nhttps://github.com/opendatalab-no/open-municipal-data/blob/main/coordinated-data/README_en.md        \n        ",
         "nb": "\nDatasettene i denne katalogen er samordnet basert på kiledata fra kommunene.\n\nDet er fire typer datasett som hører sammen.\n- Location: Beskriver en lokasjon (vanligvis et bygg) som det finnes energidata for.\n- MeasurementPoint: Beskriver et målepunkt med en unik id, hva målepunktet er og enhet det måles i.\n- LocationMeasurementPoint: Knytter et målepunkt til en lokasjon og gir et lokalt navn for målepunktet. Enkelte målepunkt brukes av mange lokasjoner, f.eks. temperaturmålere fra offisielle målestasjoner fra meteorilogisk institutt (met.no)\n- Measurements: Tidsstemplede målinger fra målepunkt\n\nBeskrivelse av hvert av datasettene med deres felter følger under.\nFor nærmere beskrivelse av hvert datasett, se dokumentasjon på GitHub:\n\nhttps://github.com/opendatalab-no/open-municipal-data/blob/main/coordinated-data/README.md\n\n        "
     },
-    "descriptionFormatted":
-    {
+    "descriptionFormatted": {
         "en": "\nThe datasets in this directory are coordinated based on data sources from the municipalities.\n\nThere are four types of data sets that belong together.\n\n- Location: Describes a location (usually a building) that has energy data.\n- MeasurementPoint: Describes a measurement point with a unique id, what it is and the unit measurements are performed in.\n- LocationMeasurementPoint: Connects a measurement point with a location and assigns a local namee for the measurement point. Some measurement points are used by multiple locations, e.g. for temperature measurements from official measurement stations from met.no.\n- Measurements: Timestamped measurements from measurement points.\n\nFollow this link for a description of each dataset with their attributes:\n\nhttps://github.com/opendatalab-no/open-municipal-data/blob/main/coordinated-data/README_en.md        \n        ",
         "nb": "\nDatasettene i denne katalogen er samordnet basert på kiledata fra kommunene.\n\nDet er fire typer datasett som hører sammen.\n- Location: Beskriver en lokasjon (vanligvis et bygg) som det finnes energidata for.\n- MeasurementPoint: Beskriver et målepunkt med en unik id, hva målepunktet er og enhet det måles i.\n- LocationMeasurementPoint: Knytter et målepunkt til en lokasjon og gir et lokalt navn for målepunktet. Enkelte målepunkt brukes av mange lokasjoner, f.eks. temperaturmålere fra offisielle målestasjoner fra meteorilogisk institutt (met.no)\n- Measurements: Tidsstemplede målinger fra målepunkt\n\nBeskrivelse av hvert av datasettene med deres felter følger under.\nFor nærmere beskrivelse av hvert datasett, se dokumentasjon på GitHub:\n\nhttps://github.com/opendatalab-no/open-municipal-data/blob/main/coordinated-data/README.md\n\n        "
     },
     "distribution": [
-    {
-        "accessService": null,
-        "accessURL": ["https://hotell.difi.no/?dataset=drammen/energy/location-measurement-points"],
-        "compressFormat": null,
-        "conformsTo": null,
-        "description":
         {
-            "en": "API supporting JSON, XML, CSV and YAML. Complete download as CSV",
-            "nb": "API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV"
-        },
-        "downloadURL": ["https://hotell.difi.no/download/drammen/energy/location-measurement-points"],
-        "fdkFormat": [
-        {
-            "code": "application/yaml",
-            "name": "yaml",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/yaml"
-        },
-        {
-            "code": "application/json",
-            "name": "json",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/json"
-        },
-        {
-            "code": "application/xml",
-            "name": "xml",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/xml"
-        },
-        {
-            "code": "text/csv",
-            "name": "csv",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/text/csv"
-        }],
-        "license": [
-        {
-            "broader": null,
-            "extraType": null,
-            "narrower": null,
-            "prefLabel": null,
-            "uri": "https://data.norge.no/nlod/no/2.0"
-        }],
-        "packageFormat": null,
-        "page": null,
-        "title":
-        {
-            "en": "Location measurement points",
-            "nb": "Location measurement points"
-        },
-        "type": null,
-        "uri": "https://hotell.difi.no/?dataset=drammen/energy/location-measurement-points"
-    },
-    {
-        "accessService": null,
-        "accessURL": ["https://hotell.difi.no/?dataset=drammen/energy/locations"],
-        "compressFormat": null,
-        "conformsTo": null,
-        "description":
-        {
-            "en": "API supporting JSON, XML, CSV and YAML. Complete download as CSV",
-            "nb": "API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV"
-        },
-        "downloadURL": ["https://hotell.difi.no/download/drammen/energy/locations"],
-        "fdkFormat": [
-        {
-            "code": "application/xml",
-            "name": "xml",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/xml"
+            "accessService": null,
+            "accessURL": ["https://hotell.difi.no/?dataset=drammen/energy/location-measurement-points"],
+            "compressFormat": null,
+            "conformsTo": null,
+            "description": {
+                "en": "API supporting JSON, XML, CSV and YAML. Complete download as CSV",
+                "nb": "API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV"
+            },
+            "downloadURL": ["https://hotell.difi.no/download/drammen/energy/location-measurement-points"],
+            "fdkFormat": [
+                {
+                    "code": "application/yaml",
+                    "name": "yaml",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/yaml"
+                },
+                {
+                    "code": "application/json",
+                    "name": "json",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/json"
+                },
+                {
+                    "code": "application/xml",
+                    "name": "xml",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/xml"
+                },
+                {
+                    "code": "text/csv",
+                    "name": "csv",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/text/csv"
+                }
+            ],
+            "license": [
+                {
+                    "broader": null,
+                    "extraType": null,
+                    "narrower": null,
+                    "prefLabel": null,
+                    "uri": "https://data.norge.no/nlod/no/2.0"
+                }
+            ],
+            "packageFormat": null,
+            "page": null,
+            "title": {
+                "en": "Location measurement points",
+                "nb": "Location measurement points"
+            },
+            "type": null,
+            "uri": "https://hotell.difi.no/?dataset=drammen/energy/location-measurement-points"
         },
         {
-            "code": "text/csv",
-            "name": "csv",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/text/csv"
+            "accessService": null,
+            "accessURL": ["https://hotell.difi.no/?dataset=drammen/energy/locations"],
+            "compressFormat": null,
+            "conformsTo": null,
+            "description": {
+                "en": "API supporting JSON, XML, CSV and YAML. Complete download as CSV",
+                "nb": "API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV"
+            },
+            "downloadURL": ["https://hotell.difi.no/download/drammen/energy/locations"],
+            "fdkFormat": [
+                {
+                    "code": "application/xml",
+                    "name": "xml",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/xml"
+                },
+                {
+                    "code": "text/csv",
+                    "name": "csv",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/text/csv"
+                },
+                {
+                    "code": "application/yaml",
+                    "name": "yaml",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/yaml"
+                },
+                {
+                    "code": "application/json",
+                    "name": "json",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/json"
+                }
+            ],
+            "license": [
+                {
+                    "broader": null,
+                    "extraType": null,
+                    "narrower": null,
+                    "prefLabel": null,
+                    "uri": "https://data.norge.no/nlod/no/2.0"
+                }
+            ],
+            "packageFormat": null,
+            "page": null,
+            "title": {
+                "en": "Locations",
+                "nb": "Locations"
+            },
+            "type": null,
+            "uri": "https://hotell.difi.no/?dataset=drammen/energy/locations"
         },
         {
-            "code": "application/yaml",
-            "name": "yaml",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/yaml"
+            "accessService": null,
+            "accessURL": ["https://hotell.difi.no/?dataset=drammen/energy/measurement-points"],
+            "compressFormat": null,
+            "conformsTo": null,
+            "description": {
+                "en": "API supporting JSON, XML, CSV and YAML. Complete download as CSV",
+                "nb": "API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV"
+            },
+            "downloadURL": ["https://hotell.difi.no/download/drammen/energy/measurement-points"],
+            "fdkFormat": [
+                {
+                    "code": "application/xml",
+                    "name": "xml",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/xml"
+                },
+                {
+                    "code": "text/csv",
+                    "name": "csv",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/text/csv"
+                },
+                {
+                    "code": "application/yaml",
+                    "name": "yaml",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/yaml"
+                },
+                {
+                    "code": "application/json",
+                    "name": "json",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/json"
+                }
+            ],
+            "license": [
+                {
+                    "broader": null,
+                    "extraType": null,
+                    "narrower": null,
+                    "prefLabel": null,
+                    "uri": "https://data.norge.no/nlod/no/2.0"
+                }
+            ],
+            "packageFormat": null,
+            "page": null,
+            "title": {
+                "en": "Measurement points",
+                "nb": "Measurement points"
+            },
+            "type": null,
+            "uri": "https://hotell.difi.no/?dataset=drammen/energy/measurement-points"
         },
         {
-            "code": "application/json",
-            "name": "json",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/json"
-        }],
-        "license": [
-        {
-            "broader": null,
-            "extraType": null,
-            "narrower": null,
-            "prefLabel": null,
-            "uri": "https://data.norge.no/nlod/no/2.0"
-        }],
-        "packageFormat": null,
-        "page": null,
-        "title":
-        {
-            "en": "Locations",
-            "nb": "Locations"
-        },
-        "type": null,
-        "uri": "https://hotell.difi.no/?dataset=drammen/energy/locations"
-    },
-    {
-        "accessService": null,
-        "accessURL": ["https://hotell.difi.no/?dataset=drammen/energy/measurement-points"],
-        "compressFormat": null,
-        "conformsTo": null,
-        "description":
-        {
-            "en": "API supporting JSON, XML, CSV and YAML. Complete download as CSV",
-            "nb": "API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV"
-        },
-        "downloadURL": ["https://hotell.difi.no/download/drammen/energy/measurement-points"],
-        "fdkFormat": [
-        {
-            "code": "application/xml",
-            "name": "xml",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/xml"
-        },
-        {
-            "code": "text/csv",
-            "name": "csv",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/text/csv"
-        },
-        {
-            "code": "application/yaml",
-            "name": "yaml",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/yaml"
-        },
-        {
-            "code": "application/json",
-            "name": "json",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/json"
-        }],
-        "license": [
-        {
-            "broader": null,
-            "extraType": null,
-            "narrower": null,
-            "prefLabel": null,
-            "uri": "https://data.norge.no/nlod/no/2.0"
-        }],
-        "packageFormat": null,
-        "page": null,
-        "title":
-        {
-            "en": "Measurement points",
-            "nb": "Measurement points"
-        },
-        "type": null,
-        "uri": "https://hotell.difi.no/?dataset=drammen/energy/measurement-points"
-    },
-    {
-        "accessService": null,
-        "accessURL": ["https://hotell.difi.no/?dataset=drammen/energy/measurements"],
-        "compressFormat": null,
-        "conformsTo": null,
-        "description":
-        {
-            "en": "API supporting JSON, XML, CSV and YAML. Complete download as CSV",
-            "nb": "API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV"
-        },
-        "downloadURL": ["https://hotell.difi.no/download/drammen/energy/measurements"],
-        "fdkFormat": [
-        {
-            "code": "text/csv",
-            "name": "csv",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/text/csv"
-        },
-        {
-            "code": "application/json",
-            "name": "json",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/json"
-        },
-        {
-            "code": "application/xml",
-            "name": "xml",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/xml"
-        },
-        {
-            "code": "application/yaml",
-            "name": "yaml",
-            "type": "MEDIA_TYPE",
-            "uri": "https://www.iana.org/assignments/media-types/application/yaml"
-        }],
-        "license": [
-        {
-            "broader": null,
-            "extraType": null,
-            "narrower": null,
-            "prefLabel": null,
-            "uri": "https://data.norge.no/nlod/no/2.0"
-        }],
-        "packageFormat": null,
-        "page": null,
-        "title":
-        {
-            "en": "Measurements",
-            "nb": "Measurements"
-        },
-        "type": null,
-        "uri": "https://hotell.difi.no/?dataset=drammen/energy/measurements"
-    }],
+            "accessService": null,
+            "accessURL": ["https://hotell.difi.no/?dataset=drammen/energy/measurements"],
+            "compressFormat": null,
+            "conformsTo": null,
+            "description": {
+                "en": "API supporting JSON, XML, CSV and YAML. Complete download as CSV",
+                "nb": "API i formatene JSON, XML, CSV og YAML. Komplett nedlasting som CSV"
+            },
+            "downloadURL": ["https://hotell.difi.no/download/drammen/energy/measurements"],
+            "fdkFormat": [
+                {
+                    "code": "text/csv",
+                    "name": "csv",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/text/csv"
+                },
+                {
+                    "code": "application/json",
+                    "name": "json",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/json"
+                },
+                {
+                    "code": "application/xml",
+                    "name": "xml",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/xml"
+                },
+                {
+                    "code": "application/yaml",
+                    "name": "yaml",
+                    "type": "MEDIA_TYPE",
+                    "uri": "https://www.iana.org/assignments/media-types/application/yaml"
+                }
+            ],
+            "license": [
+                {
+                    "broader": null,
+                    "extraType": null,
+                    "narrower": null,
+                    "prefLabel": null,
+                    "uri": "https://data.norge.no/nlod/no/2.0"
+                }
+            ],
+            "packageFormat": null,
+            "page": null,
+            "title": {
+                "en": "Measurements",
+                "nb": "Measurements"
+            },
+            "type": null,
+            "uri": "https://hotell.difi.no/?dataset=drammen/energy/measurements"
+        }
+    ],
     "eurovocThemes": null,
-    "harvest":
-    {
+    "harvest": {
         "firstHarvested": "2022-03-09T12:13:52Z",
         "modified": "2023-05-08T12:51:57Z"
     },
@@ -301,9 +292,10 @@
     "isRelatedToTransportportal": false,
     "issued": null,
     "keyword": [
-    {
-        "nb": "energimåling"
-    }],
+        {
+            "nb": "energimåling"
+        }
+    ],
     "landingPage": ["https://github.com/opendatalab-no/open-municipal-data"],
     "language": null,
     "legalBasisForAccess": null,
@@ -315,14 +307,12 @@
     "page": null,
     "prev": null,
     "provenance": null,
-    "publisher":
-    {
+    "publisher": {
         "id": "921234554",
         "name": "DRAMMEN KOMMUNE",
         "orgPath": "/KOMMUNE/921234554",
         "organisasjonsform": "KOMM",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "Drammen municipality",
             "nb": "Drammen kommune"
         },
@@ -336,31 +326,32 @@
     "subject": null,
     "temporal": null,
     "theme": [
-    {
-        "code": "ENER",
-        "title":
         {
-            "en": "Energy",
-            "nb": "Energi",
-            "nn": "Energi",
-            "no": "Energi"
+            "code": "ENER",
+            "title": {
+                "en": "Energy",
+                "nb": "Energi",
+                "nn": "Energi",
+                "no": "Energi"
+            },
+            "uri": "http://publications.europa.eu/resource/authority/data-theme/ENER"
         },
-        "uri": "http://publications.europa.eu/resource/authority/data-theme/ENER"
-    },
-    {
-        "code": "GOVE",
-        "title":
         {
-            "en": "Government and public sector",
-            "nb": "Forvaltning og offentlig sektor",
-            "nn": "Forvaltning og offentleg sektor",
-            "no": "Forvaltning og offentlig sektor"
-        },
-        "uri": "http://publications.europa.eu/resource/authority/data-theme/GOVE"
-    }],
-    "themeUris": ["http://publications.europa.eu/resource/authority/data-theme/ENER", "http://publications.europa.eu/resource/authority/data-theme/GOVE"],
-    "title":
-    {
+            "code": "GOVE",
+            "title": {
+                "en": "Government and public sector",
+                "nb": "Forvaltning og offentlig sektor",
+                "nn": "Forvaltning og offentleg sektor",
+                "no": "Forvaltning og offentlig sektor"
+            },
+            "uri": "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+        }
+    ],
+    "themeUris": [
+        "http://publications.europa.eu/resource/authority/data-theme/ENER",
+        "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+    ],
+    "title": {
         "en": "Energy usage in municipal buildings",
         "nb": "Energimålinger kommunale bygg"
     },

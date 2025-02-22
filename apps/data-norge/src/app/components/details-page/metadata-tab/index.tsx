@@ -12,10 +12,14 @@ import styles from './metadata-tab.module.scss';
 export type MetadataTabProps = {
     uri: string;
     dictionary: Dictionary;
-}
+};
 
-const MetadataTab = ({ children, uri, dictionary, ...props }: MetadataTabProps & React.HTMLAttributes<HTMLDivElement>) => {
-
+const MetadataTab = ({
+    children,
+    uri,
+    dictionary,
+    ...props
+}: MetadataTabProps & React.HTMLAttributes<HTMLDivElement>) => {
     const [contentType, setContentType] = useState<string>('text/turtle');
     const [source, setSource] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
@@ -57,7 +61,10 @@ const MetadataTab = ({ children, uri, dictionary, ...props }: MetadataTabProps &
     }, [contentType]);
 
     return (
-        <div className={styles.wrapper} {...props}>
+        <div
+            className={styles.wrapper}
+            {...props}
+        >
             <div className={styles.header}>
                 <Heading
                     level={4}
@@ -70,13 +77,9 @@ const MetadataTab = ({ children, uri, dictionary, ...props }: MetadataTabProps &
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
                         >
+                            <Paragraph size='sm'>{dictionary.rdf.titleHelpText}</Paragraph>
                             <Paragraph size='sm'>
-                                {dictionary.rdf.titleHelpText}
-                            </Paragraph>
-                            <Paragraph size='sm'>
-                                <Link href='/docs/sharing-data/rdf'>
-                                    {dictionary.rdf.titleHelpTextLink}
-                                </Link>
+                                <Link href='/docs/sharing-data/rdf'>{dictionary.rdf.titleHelpTextLink}</Link>
                             </Paragraph>
                         </HelpText>
                     </HStack>
@@ -96,10 +99,7 @@ const MetadataTab = ({ children, uri, dictionary, ...props }: MetadataTabProps &
             <div className={styles.header}>
                 <div className={styles.urlbar}>
                     <CopyButton
-                        labels={[
-                            dictionary.rdf.copyButton.at(0),
-                            dictionary.rdf.copyButton.at(1)
-                        ]}
+                        labels={[dictionary.rdf.copyButton.at(0), dictionary.rdf.copyButton.at(1)]}
                         copyOnClick={uri}
                     />
                     <Textfield
@@ -122,10 +122,7 @@ const MetadataTab = ({ children, uri, dictionary, ...props }: MetadataTabProps &
             </div>
             <div className={cn(styles.content, styles.article)}>
                 <CopyButton
-                    labels={[
-                        dictionary.rdf.copyButton.at(0),
-                        dictionary.rdf.copyButton.at(1)
-                    ]}
+                    labels={[dictionary.rdf.copyButton.at(0), dictionary.rdf.copyButton.at(1)]}
                     copyOnClick={source}
                 />
                 <SyntaxHighlighter

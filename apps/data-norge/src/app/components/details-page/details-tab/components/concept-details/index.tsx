@@ -14,27 +14,25 @@ const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
             >
                 {dictionary.details.concepts.title}
             </Heading>
-            {
-                dataset?.subject ?
+            {dataset?.subject ? (
                 <dl>
-                    {
-                        dataset.subject.map((subject: any) => {
-                            return (
-                                <React.Fragment key={subject.uri}>
-                                    <dt>
-                                        <Link href={subject.uri}>
-                                            {printLocaleValue(locale, subject.prefLabel)}
-                                            <ExternalLinkIcon />
-                                        </Link>
-                                    </dt>
-                                    <dd>{printLocaleValue(locale, subject.definition)}</dd>
-                                </React.Fragment>
-                            );
-                        })
-                    }
-                </dl> :
+                    {dataset.subject.map((subject: any) => {
+                        return (
+                            <React.Fragment key={subject.uri}>
+                                <dt>
+                                    <Link href={subject.uri}>
+                                        {printLocaleValue(locale, subject.prefLabel)}
+                                        <ExternalLinkIcon />
+                                    </Link>
+                                </dt>
+                                <dd>{printLocaleValue(locale, subject.definition)}</dd>
+                            </React.Fragment>
+                        );
+                    })}
+                </dl>
+            ) : (
                 <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-            }
+            )}
         </section>
     );
 };

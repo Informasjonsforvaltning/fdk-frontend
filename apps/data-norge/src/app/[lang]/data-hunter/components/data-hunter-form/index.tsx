@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from "react";
+import { useActionState } from 'react';
 import { Paragraph, Textarea, Textfield, Button } from '@digdir/designsystemet-react';
 
 import { LabelWithTag } from '@fdk-frontend/ui/label-with-tag';
