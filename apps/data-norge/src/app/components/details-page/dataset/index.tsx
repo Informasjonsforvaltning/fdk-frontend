@@ -36,10 +36,7 @@ import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
 import styles from '../details-page.module.scss';
 
-export type DetailsPageVariants = 'dataset' | 'api' | 'concept';
-
 export type DatasetDetailsPageType = {
-    variant: DetailsPageVariants;
     baseUri: string;
     resource: JSONValue;
     apis?: JSONValue;
@@ -59,7 +56,6 @@ export type DatasetDetailsPageType = {
 };
 
 export default function DatasetDetailsPage({
-    variant,
     baseUri,
     resource,
     apis,
@@ -146,12 +142,6 @@ export default function DatasetDetailsPage({
                             >
                                 <Link href='/datasets'>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
                             </Tag>
-                            {/*<Tag
-                                color='neutral'
-                                size='sm'
-                            >
-                                <Link href='/datasets'>Autoritativ kilde</Link>
-                            </Tag>*/}
                             <AccessLevelTag
                                 accessCode={resource.accessRights?.code}
                                 dictionary={dictionaries.detailsPage}
@@ -177,7 +167,6 @@ export default function DatasetDetailsPage({
                                             </Link>
                                         </Paragraph>
                                     </HelpText>
-                                    {/*<Link href='/datasets'>Lisens: {resource.distribution[0].license[0].prefLabel['en']}</Link>*/}
                                 </Tag>
                             )}
                             <span className={styles.lastUpdated}>
@@ -245,8 +234,6 @@ export default function DatasetDetailsPage({
                             >
                                 {dictionaries.detailsPage.overview.description.title}
                             </Heading>
-                            {/*{resource.description?.['no']}*/}
-                            {/*{printLocaleValue(locale, resource.description)}*/}
                             {resource.description ? (
                                 <div className={styles.box}>
                                     <ExpandableContent>
