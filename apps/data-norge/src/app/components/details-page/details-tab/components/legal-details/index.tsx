@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import PlaceholderText from '../../../placeholder-text';
-import PlaceholderBox from '../../../placeholder-box';
-import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
+import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
+import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
+import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
 export const hasLegalBasis = (dataset: any) =>  
@@ -13,7 +13,7 @@ export const hasLegalBasis = (dataset: any) =>
 
 const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
 
-    const { showEmptyRows } = useContext(DatasetDetailsContext);
+    const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     const printLegalBasis = (legalBasis: any) => {
         if (!legalBasis) return <PlaceholderText>{dictionary.details.legal.title}</PlaceholderText>;

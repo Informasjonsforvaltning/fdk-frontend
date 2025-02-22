@@ -3,13 +3,13 @@ import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import HStack from '@fdk-frontend/ui/hstack';
 import { calculateMetadataScore } from '@fdk-frontend/utils';
-import PlaceholderText from '../../../placeholder-text';
-import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
+import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
+import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
 const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
 
-    const { showEmptyRows } = useContext(DatasetDetailsContext);
+    const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     const getMetadataQuality = (value: number) => {
         if (value < 25) return { color: 'danger', label: `${dictionary.details.general.metadataQuality.labels.poor} (${value}%)` };

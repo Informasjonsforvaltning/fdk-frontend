@@ -15,6 +15,8 @@ import HStack from '@fdk-frontend/ui/hstack';
 import OrgButton from '@fdk-frontend/ui/org-button';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
+import AccessLevelTag from '@fdk-frontend/ui/access-level-tag';
+import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import {
     Button,
     Heading,
@@ -27,17 +29,16 @@ import {
     HelpText,
     Paragraph
 } from '@digdir/designsystemet-react';
-import Distributions from '../../distributions';
-import DatasetDetails from '../../dataset-details';
-import MetadataPage from '../../metadata-page';
-import CommunityTab from '../../community-tab';
-import AccessLevelTag from '../../access-level-tag';
-import PlaceholderBox from '../../placeholder-box';
+
+import Distributions from '../distributions';
+import DatasetDetailsTab from '../details-tab';
+import MetadataTab from '../metadata-tab';
+import CommunityTab from '../community-tab';
 import styles from '../details-page.module.scss';
 
 export type DetailsPageVariants = 'dataset' | 'api' | 'concept';
 
-export type DetailsPageType = {
+export type DatasetDetailsPageType = {
     variant: DetailsPageVariants;
     baseUri: string;
     resource: JSONValue;
@@ -57,7 +58,7 @@ export type DetailsPageType = {
     };
 };
 
-export default function DetailsPage({
+export default function DatasetDetailsPage({
     variant,
     baseUri,
     resource,
@@ -72,7 +73,7 @@ export default function DetailsPage({
     defaultActiveTab = 'overview',
     locale,
     dictionaries
-}: DetailsPageType) {
+}: DatasetDetailsPageType) {
 
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
@@ -347,7 +348,7 @@ export default function DetailsPage({
                         />
                     </TabContent>
                     <TabContent value='details'>
-                        <DatasetDetails
+                        <DatasetDetailsTab
                             dataset={resource}
                             related={relatedDatasets}
                             locale={locale}
@@ -359,14 +360,12 @@ export default function DetailsPage({
                         <CommunityTab
                             topics={communityTopics}
                             communityBaseUri={communityBaseUri}
-                            locale={locale}
                             dictionary={dictionaries.detailsPage}
                         />
                     </TabContent>
                     <TabContent value='rdf'>
-                        <MetadataPage
+                        <MetadataTab
                             uri={`${baseUri}/datasets/${resource.id}`}
-                            locale={locale}
                             dictionary={dictionaries.detailsPage}
                         />
                     </TabContent>

@@ -5,9 +5,9 @@ import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import { printLocaleValue, isOpenLicense } from '@fdk-frontend/utils';
-import detailsPageStyles from '../../../details-page/details-page.module.scss';
-import PlaceholderText from '../../../placeholder-text';
-import OpenLicenseTag from '../../../open-license-tag';
+import detailsPageStyles from '../../../details-page.module.scss';
+import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
+import OpenLicenseTag from '@fdk-frontend/ui/open-license-tag';
 
 type DistributionDetailsProps = {
     distribution: JSONValue;
