@@ -87,52 +87,56 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                         dictionary={dictionary}
                     />
                 )}
-                <section>
-                    <Heading
-                        level={4}
-                        size='xxsmall'
-                    >
-                        {dictionary.details.themes}
-                    </Heading>
-                    {dataset.theme ? (
-                        <ChipGroup size='sm'>
-                            {dataset.theme.map((theme: any) => (
-                                <Link
-                                    key={theme.code}
-                                    href={`/datasets&theme=${theme.code}`}
-                                >
-                                    <ChipToggle>{printLocaleValue(locale, theme.title)}</ChipToggle>
-                                </Link>
-                            ))}
-                        </ChipGroup>
-                    ) : (
-                        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-                    )}
-                </section>
-                <section>
-                    <Heading
-                        level={4}
-                        size='xxsmall'
-                    >
-                        {dictionary.details.keywords}
-                    </Heading>
-                    {dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? (
-                        <ChipGroup size='sm'>
-                            {dataset.keyword
-                                .filter((keyword: any) => keyword[locale])
-                                .map((keyword: any, i: number) => (
+                {!dataset.theme?.length && !showEmptyRows ? null : (
+                    <section>
+                        <Heading
+                            level={4}
+                            size='xxsmall'
+                        >
+                            {dictionary.details.themes}
+                        </Heading>
+                        {dataset.theme ? (
+                            <ChipGroup size='sm'>
+                                {dataset.theme.map((theme: any) => (
                                     <Link
-                                        key={`keyword-${i}`}
-                                        href={`/datasets&q=${keyword[locale]}`}
+                                        key={theme.code}
+                                        href={`/datasets&theme=${theme.code}`}
                                     >
-                                        <ChipToggle>{keyword[locale]}</ChipToggle>
+                                        <ChipToggle>{printLocaleValue(locale, theme.title)}</ChipToggle>
                                     </Link>
                                 ))}
-                        </ChipGroup>
-                    ) : (
-                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                    )}
-                </section>
+                            </ChipGroup>
+                        ) : (
+                            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                        )}
+                    </section>
+                )}
+                {!dataset.keyword?.length && !showEmptyRows ? null : (
+                    <section>
+                        <Heading
+                            level={4}
+                            size='xxsmall'
+                        >
+                            {dictionary.details.keywords}
+                        </Heading>
+                        {dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? (
+                            <ChipGroup size='sm'>
+                                {dataset.keyword
+                                    .filter((keyword: any) => keyword[locale])
+                                    .map((keyword: any, i: number) => (
+                                        <Link
+                                            key={`keyword-${i}`}
+                                            href={`/datasets&q=${keyword[locale]}`}
+                                        >
+                                            <ChipToggle>{keyword[locale]}</ChipToggle>
+                                        </Link>
+                                    ))}
+                            </ChipGroup>
+                        ) : (
+                            <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                        )}
+                    </section>
+                )}
             </div>
         </DatasetDetailsTabContext.Provider>
     );

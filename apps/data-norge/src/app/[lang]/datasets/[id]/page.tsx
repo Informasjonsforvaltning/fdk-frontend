@@ -3,24 +3,25 @@ import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionarie
 import { printLocaleValue } from '@fdk-frontend/utils';
 import DatasetDetailsPage from '../../../components/details-page/dataset';
 import {
-    fetchResource,
-    fetchRelations,
-    fetchOrgDatasets,
-    fetchThemeDatasets,
-    fetchMetadataScores,
-    fetchOrgLogo,
-    fetchCommunityPosts,
-    fetchCommunityTopic,
-} from '../data';
+    getOrgLogo,
+    getDataset,
+    getApi,
+    getCommunityPosts,
+    getCommunityTopic,
+    getRelations,
+    getOrgDatasets,
+    getThemeDatasets,
+    getMetadataScores
+} from '@fdk-frontend/data-access/server';
 
-// import mockResource from '../mock/resource-api/sort-test-datasett.json';
-// import mockResource from '../mock/resource-api/lovhjemler.json';
-// import mockSearch from '../mock/search/search.json';
+// import mockResource from '../mock/resource-service/sort-test-datasett.json';
+// import mockResource from '../mock/resource-service/lovhjemler.json';
+// import mockSearch from '../mock/search-service/search.json';
 
 export type DetailsPageWrapperProps = {
     params: Promise<{
         lang: LocaleCodes;
-        id: string[];
+        id: string;
     }>;
     searchParams: Promise<any>;
 };
@@ -28,10 +29,6 @@ export type DetailsPageWrapperProps = {
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const {
         FDK_BASE_URI = '',
-        FDK_RESOURCE_SERVICE_BASE_URI = '',
-        FDK_SEARCH_SERVICE_BASE_URI = '',
-        FDK_MQA_API_BASE_URI = '',
-        DIGDIR_ORGLOGO_API_BASE_URI = '',
         FDK_COMMUNITY_BASE_URI = '',
     } = process.env;
 
@@ -49,18 +46,18 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     let dataset;
     let metadataScore;
     let orgLogo;
-    let apiRelations = [];
-    let detailedApis = [];
-    let relatedDatasets = [];
-    let similarDatasets = [];
-    let orgDatasets = [];
-    let themeDatasets = [];
-    let communityTopics = [];
+    let apiRelations;
+    let detailedApis;
+    let relatedDatasets;
+    let similarDatasets;
+    let orgDatasets;
+    let themeDatasets;
+    let communityTopics;
 
     // Fetch details about dataset
 
     try {
-        dataset = await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`);
+        dataset = await getDataset(params.id);
     } catch (err) {
         console.log(err);
         notFound();
@@ -69,7 +66,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch publisher logo
 
     try {
-        orgLogo = await fetchOrgLogo(DIGDIR_ORGLOGO_API_BASE_URI, dataset.publisher?.id);
+        orgLogo = await getOrgLogo(dataset.publisher?.id);
     } catch (err) {
         console.log(err);
     }
@@ -77,8 +74,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch metadata scores
 
     try {
-        metadataScore = await fetchMetadataScores(`${FDK_MQA_API_BASE_URI}/api/scores`, [dataset.uri]);
-        metadataScore = metadataScore.scores[dataset.uri];
+        metadataScore = await getMetadataScores([dataset.uri]);
+        metadataScore = metadataScore?.scores[dataset.uri];
     } catch (err) {
         console.log(err);
     }
@@ -92,19 +89,16 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         communitySearchParams.set('sortBy', 'topic.lastposttime');
         communitySearchParams.set('sortDirection', 'desc');
 
-        const communitySearch = await fetchCommunityPosts(
-            `${FDK_COMMUNITY_BASE_URI}/api/search?${communitySearchParams.toString()}`,
-        );
+        const communitySearch = await getCommunityPosts(communitySearchParams.toString());
 
-        const uniqueTopics = new Set();
+        const uniqueTopics = new Set<string>();
         communitySearch.posts.forEach((post: any) => uniqueTopics.add(post.topic.tid));
 
         communityTopics = await Promise.all(
-            Array.from(uniqueTopics).map(async (topic: any) => {
-                return await fetchCommunityTopic(`${FDK_COMMUNITY_BASE_URI}/api/topic/${topic}`);
+            Array.from(uniqueTopics).map(async (topicId: string) => {
+                return await getCommunityTopic(topicId);
             }),
         );
-        // console.log(communityTopics);
     } catch (err) {
         console.log(err);
     }
@@ -112,59 +106,48 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch related resources
 
     try {
-        const relations = await fetchRelations(`${FDK_SEARCH_SERVICE_BASE_URI}/search`, dataset.identifier[0]);
-        if (!relations.hits) throw new Error();
+        const relations = await getRelations(dataset.identifier[0]);
 
-        apiRelations = relations.hits.filter((r: any) => r.searchType === 'DATA_SERVICE');
-        relatedDatasets = relations.hits.filter((r: any) => r.searchType === 'DATASET');
-
-        console.log('relatedDatasets', relatedDatasets);
+        apiRelations = relations.hits?.filter((r: any) => r.searchType === 'DATA_SERVICE') || [];
+        relatedDatasets = relations.hits?.filter((r: any) => r.searchType === 'DATASET') || [];
 
         // Fetch additional details for each related API
 
         const detailedApiResponses = await Promise.all(
             apiRelations?.map(async (api: any) => {
-                return await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/data-services/${api.id}`);
+                return await getApi(api.id);
             }),
         );
 
         // Filter out failed requests (null values)
 
-        detailedApis = detailedApiResponses.filter((api: any) => api !== null);
+        detailedApis = detailedApiResponses?.filter((api: any) => api !== null) || [];
     } catch (err) {
         console.log(err);
     }
 
     // If room for more, fetch additional datasets from themes
 
-    // if (relatedDatasets.length < similarItemsLimit) {
     try {
-        themeDatasets = await fetchThemeDatasets(
-            `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`,
-            dataset?.losTheme?.map((t: any) => t.losPaths[0]),
-        );
+        themeDatasets = await getThemeDatasets(dataset?.losTheme?.map((t: any) => t.losPaths[0]),);
 
         // Filter self
-        themeDatasets = themeDatasets.hits.filter((d: any) => d.id !== dataset.id);
+        themeDatasets = themeDatasets.hits?.filter((d: any) => d.id !== dataset.id) || [];
 
         // Combine and limit to 5
         similarDatasets = [...relatedDatasets, ...themeDatasets].slice(0, similarItemsLimit);
     } catch (err) {
         console.log(err);
     }
-    // }
 
     // If room for more, fetch additional datasets based on org
 
-    if (similarDatasets.length < similarItemsLimit) {
+    if (similarDatasets && similarDatasets?.length < similarItemsLimit) {
         try {
-            orgDatasets = await fetchOrgDatasets(
-                `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`,
-                dataset.publisher?.orgPath,
-            );
+            orgDatasets = await getOrgDatasets(dataset.publisher?.orgPath);
 
             // Filter self
-            orgDatasets = orgDatasets.hits.filter((d: any) => d.id !== dataset.id);
+            orgDatasets = orgDatasets.hits.filter((d: any) => d.id !== dataset.id) || [];
 
             // Combine and limit to 5
             similarDatasets = [...similarDatasets, ...orgDatasets].slice(0, similarItemsLimit);
@@ -175,7 +158,6 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     return (
         <DatasetDetailsPage
-            variant='dataset'
             baseUri={FDK_BASE_URI}
             resource={dataset}
             orgLogo={orgLogo}
@@ -195,13 +177,14 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     const params = await props.params;
     const locale = params.lang ?? i18n.defaultLocale;
-    const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
+    const dictionary = await getDictionary(locale, 'details-page');
 
     try {
-        const dataset = await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`);
+        const dataset = await getDataset(params.id);
+        const title = printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset;
         return {
-            title: `${printLocaleValue(locale, dataset.title) || 'Navnløst datasett'} - Datasett - data.norge.no`,
-            description: dataset.description ?? 'POC for detaljvisning',
+            title: `${title} - ${dictionary.breadcrumbs.datasets} - data.norge.no`,
+            description: dataset.description ?? dictionary.breadcrumbs.datasets,
         };
     } catch (err) {
         console.log(err);

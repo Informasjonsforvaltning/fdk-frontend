@@ -12,7 +12,7 @@
 }
 
 .fds-link {
-    &:not(.fds-btn) {
+    &:not(.fds-btn,.fds-card) {
         display: inline;
 
         svg {
