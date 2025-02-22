@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { Heading, Link, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import HStack from '@fdk-frontend/ui/hstack';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import PlaceholderText from '../../../placeholder-text';
-import { DatasetDetailsProps, DatasetDetailsContext } from '../../';
+import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
+import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
 const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
 
-    const { showEmptyRows } = useContext(DatasetDetailsContext);
+    const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     return (
         <section>

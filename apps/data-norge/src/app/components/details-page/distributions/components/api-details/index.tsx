@@ -5,8 +5,8 @@ import { type JSONValue } from '@fdk-frontend/types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
-import detailsPageStyles from '../../../details-page/details-page.module.scss';
-import PlaceholderText from '../../../placeholder-text';
+import detailsPageStyles from '../../../details-page.module.scss';
+import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 
 type ApiDetailsProps = {
     api: JSONValue;

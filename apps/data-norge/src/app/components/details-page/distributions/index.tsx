@@ -6,7 +6,7 @@ import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths } from '@fdk-frontend/utils';
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
-import PlaceholderBox from '../placeholder-box';
+import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import styles from './distributions.module.scss';
 import DistributionDetails from './components/distribution-details';
 import DistributionHeader from './components/distribution-header';

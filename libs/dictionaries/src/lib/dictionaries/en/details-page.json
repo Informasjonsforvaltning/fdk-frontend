@@ -83,9 +83,9 @@
 		}
 	},
 	"openLicenseTag": {
-		"label": "Recognized open license",
+		"label": "Valid open license",
 		"helpTextTitle": "Glossary",
-		"helpText": "This is a recognized open license that allows free use, sharing, and reuse of data in compliance with open data principles. These licenses are recognized for use in public and private datasets, both nationally and internationally.",
+		"helpText": "This is a valid open license that allows free use, sharing, and reuse of data in compliance with open data principles. These licenses are recognized for use in public and private datasets, both nationally and internationally.",
 		"linkText": "Read more about licenses here"
 	},
 	"similarDatasets": "Similar datasets",

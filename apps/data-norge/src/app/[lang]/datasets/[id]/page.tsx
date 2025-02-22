@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { printLocaleValue } from '@fdk-frontend/utils';
-
-import DetailsPage from '../../../components/details/details-page/dataset';
+import DatasetDetailsPage from '../../../components/details-page/dataset';
 import {
     fetchResource,
     fetchRelations,
@@ -169,7 +168,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     }
 
     return (
-        <DetailsPage
+        <DatasetDetailsPage
             variant='dataset'
             baseUri={FDK_BASE_URI}
             resource={dataset}
