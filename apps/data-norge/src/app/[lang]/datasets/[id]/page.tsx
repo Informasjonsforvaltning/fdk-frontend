@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+import { notFound } from 'next/navigation';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import DatasetDetailsPage from '../../../components/details-page/dataset';
@@ -10,7 +10,7 @@ import {
     fetchMetadataScores,
     fetchOrgLogo,
     fetchCommunityPosts,
-    fetchCommunityTopic
+    fetchCommunityTopic,
 } from '../data';
 
 // import mockResource from '../mock/resource-api/sort-test-datasett.json';
@@ -26,14 +26,13 @@ export type DetailsPageWrapperProps = {
 };
 
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
-
     const {
         FDK_BASE_URI = '',
         FDK_RESOURCE_SERVICE_BASE_URI = '',
         FDK_SEARCH_SERVICE_BASE_URI = '',
         FDK_MQA_API_BASE_URI = '',
         DIGDIR_ORGLOGO_API_BASE_URI = '',
-        FDK_COMMUNITY_BASE_URI = ''
+        FDK_COMMUNITY_BASE_URI = '',
     } = process.env;
 
     const params = await props.params;
@@ -44,7 +43,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     const dictionaries = {
         common: await getDictionary(locale, 'common'),
-        detailsPage: await getDictionary(locale, 'details-page')
+        detailsPage: await getDictionary(locale, 'details-page'),
     };
 
     let dataset;
@@ -88,20 +87,22 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     try {
         const communitySearchParams = new URLSearchParams();
-        
+
         communitySearchParams.set('term', dataset.id);
         communitySearchParams.set('sortBy', 'topic.lastposttime');
         communitySearchParams.set('sortDirection', 'desc');
 
-        const communitySearch = await fetchCommunityPosts(`${FDK_COMMUNITY_BASE_URI}/api/search?${communitySearchParams.toString()}`);
-        
+        const communitySearch = await fetchCommunityPosts(
+            `${FDK_COMMUNITY_BASE_URI}/api/search?${communitySearchParams.toString()}`,
+        );
+
         const uniqueTopics = new Set();
         communitySearch.posts.forEach((post: any) => uniqueTopics.add(post.topic.tid));
 
         communityTopics = await Promise.all(
             Array.from(uniqueTopics).map(async (topic: any) => {
                 return await fetchCommunityTopic(`${FDK_COMMUNITY_BASE_URI}/api/topic/${topic}`);
-            })
+            }),
         );
         // console.log(communityTopics);
     } catch (err) {
@@ -124,13 +125,12 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         const detailedApiResponses = await Promise.all(
             apiRelations?.map(async (api: any) => {
                 return await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/data-services/${api.id}`);
-            })
+            }),
         );
 
         // Filter out failed requests (null values)
 
         detailedApis = detailedApiResponses.filter((api: any) => api !== null);
-
     } catch (err) {
         console.log(err);
     }
@@ -138,30 +138,36 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // If room for more, fetch additional datasets from themes
 
     // if (relatedDatasets.length < similarItemsLimit) {
-        try {
-            themeDatasets = await fetchThemeDatasets(`${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`, dataset?.losTheme?.map((t: any) => t.losPaths[0]));
+    try {
+        themeDatasets = await fetchThemeDatasets(
+            `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`,
+            dataset?.losTheme?.map((t: any) => t.losPaths[0]),
+        );
 
-            // Filter self
-            themeDatasets = themeDatasets.hits.filter((d: any) => d.id !== dataset.id);
+        // Filter self
+        themeDatasets = themeDatasets.hits.filter((d: any) => d.id !== dataset.id);
 
-            // Combine and limit to 5
-            similarDatasets = [ ...relatedDatasets, ...themeDatasets ].slice(0, similarItemsLimit);
-        } catch (err) {
-            console.log(err);
-        }
+        // Combine and limit to 5
+        similarDatasets = [...relatedDatasets, ...themeDatasets].slice(0, similarItemsLimit);
+    } catch (err) {
+        console.log(err);
+    }
     // }
 
     // If room for more, fetch additional datasets based on org
 
     if (similarDatasets.length < similarItemsLimit) {
         try {
-            orgDatasets = await fetchOrgDatasets(`${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`, dataset.publisher?.orgPath);
-            
+            orgDatasets = await fetchOrgDatasets(
+                `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`,
+                dataset.publisher?.orgPath,
+            );
+
             // Filter self
             orgDatasets = orgDatasets.hits.filter((d: any) => d.id !== dataset.id);
 
             // Combine and limit to 5
-            similarDatasets = [ ...similarDatasets, ...orgDatasets ].slice(0, similarItemsLimit);
+            similarDatasets = [...similarDatasets, ...orgDatasets].slice(0, similarItemsLimit);
         } catch (err) {
             console.log(err);
         }
@@ -187,7 +193,6 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 };
 
 export const generateMetadata = async (props: DetailsPageWrapperProps) => {
-
     const params = await props.params;
     const locale = params.lang ?? i18n.defaultLocale;
     const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
@@ -196,7 +201,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         const dataset = await fetchResource(`${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${params.id}`);
         return {
             title: `${printLocaleValue(locale, dataset.title) || 'Navnløst datasett'} - Datasett - data.norge.no`,
-            description: dataset.description ?? 'POC for detaljvisning'
+            description: dataset.description ?? 'POC for detaljvisning',
         };
     } catch (err) {
         console.log(err);

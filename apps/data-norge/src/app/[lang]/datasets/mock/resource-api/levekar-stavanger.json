@@ -1,19 +1,15 @@
 {
-    "accessRights":
-    {
+    "accessRights": {
         "code": "PUBLIC",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "public"
         },
         "uri": "http://publications.europa.eu/resource/authority/access-right/PUBLIC"
     },
     "accessRightsComment": null,
-    "accrualPeriodicity":
-    {
+    "accrualPeriodicity": {
         "code": "BIENNIAL",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "biennial",
             "nb": "annethvert år",
             "nn": "annakvart år",
@@ -22,24 +18,20 @@
         "uri": "http://publications.europa.eu/resource/authority/frequency/BIENNIAL"
     },
     "admsIdentifier": null,
-    "catalog":
-    {
+    "catalog": {
         "description": null,
         "id": "a4153a19-50f9-332b-b7ae-fe3273cbada7",
-        "publisher":
-        {
+        "publisher": {
             "id": "910298062",
             "name": "KARMSUND OG KYSNESSTRAND REVISJON",
             "orgPath": "/ANNET/910298062",
             "organisasjonsform": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Karmsund og kysnesstrand revisjon"
             },
             "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/910298062"
         },
-        "title":
-        {
+        "title": {
             "nb": "Datakatalog for KARMSUND OG KYSNESSTRAND REVISJON"
         },
         "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910298062"
@@ -47,28 +39,21 @@
     "conformsTo": null,
     "contactPoint": null,
     "dctType": null,
-    "description":
-    {
+    "description": {
         "nb": "Alle datasett som danner grunnlaget for levekårsundersøkelsen, har en tittel som begynner med Levekår Stavanger:"
     },
-    "descriptionFormatted":
-    {
+    "descriptionFormatted": {
         "nb": "Alle datasett som danner grunnlaget for levekårsundersøkelsen, har en tittel som begynner med Levekår Stavanger:"
     },
-    "distribution":
-    [
+    "distribution": [
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://opencom.no/dataset/levekar-stavanger-barn-med-enslige-foreldre"
-            ],
+            "accessURL": ["https://opencom.no/dataset/levekar-stavanger-barn-med-enslige-foreldre"],
             "compressFormat": null,
             "conformsTo": null,
             "description": null,
             "downloadURL": null,
-            "fdkFormat":
-            [
+            "fdkFormat": [
                 {
                     "code": "application/json",
                     "name": "json",
@@ -82,14 +67,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/text/csv"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -104,8 +87,7 @@
         }
     ],
     "eurovocThemes": null,
-    "harvest":
-    {
+    "harvest": {
         "firstHarvested": "2021-03-17T10:00:23Z",
         "modified": "2022-11-25T08:30:59Z"
     },
@@ -115,18 +97,14 @@
     "hasCurrentnessAnnotation": null,
     "hasRelevanceAnnotation": null,
     "id": "49bdc2da-7a52-3ca9-8eed-3c8173210e2a",
-    "identifier":
-    [
-        "https://data.norge.no/node/3163"
-    ],
+    "identifier": ["https://data.norge.no/node/3163"],
     "inSeries": null,
     "informationModel": null,
     "isAuthoritative": false,
     "isOpenData": true,
     "isRelatedToTransportportal": false,
     "issued": "2019-11-21",
-    "keyword":
-    [
+    "keyword": [
         {
             "nb": "Barn"
         },
@@ -135,12 +113,10 @@
         }
     ],
     "landingPage": null,
-    "language":
-    [
+    "language": [
         {
             "code": "NOR",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Norwegian",
                 "nb": "Norsk",
                 "nn": "Norsk",
@@ -152,17 +128,12 @@
     "legalBasisForAccess": null,
     "legalBasisForProcessing": null,
     "legalBasisForRestriction": null,
-    "losTheme":
-    [
+    "losTheme": [
         {
             "code": "helse-og-omsorg",
             "isTema": true,
-            "losPaths":
-            [
-                "helse-og-omsorg"
-            ],
-            "name":
-            {
+            "losPaths": ["helse-og-omsorg"],
+            "name": {
                 "en": "Health and care",
                 "nb": "Helse og omsorg",
                 "nn": "Helse og omsorg"
@@ -175,14 +146,12 @@
     "page": null,
     "prev": null,
     "provenance": null,
-    "publisher":
-    {
+    "publisher": {
         "id": "910298062",
         "name": "KARMSUND OG KYSNESSTRAND REVISJON",
         "orgPath": "/ANNET/910298062",
         "organisasjonsform": null,
-        "prefLabel":
-        {
+        "prefLabel": {
             "nb": "Karmsund og kysnesstrand revisjon"
         },
         "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/910298062"
@@ -194,12 +163,10 @@
     "spatial": null,
     "subject": null,
     "temporal": null,
-    "theme":
-    [
+    "theme": [
         {
             "code": "GOVE",
-            "title":
-            {
+            "title": {
                 "en": "Government and public sector",
                 "nb": "Forvaltning og offentlig sektor",
                 "nn": "Forvaltning og offentleg sektor",
@@ -209,8 +176,7 @@
         },
         {
             "code": "HEAL",
-            "title":
-            {
+            "title": {
                 "en": "Health",
                 "nb": "Helse",
                 "nn": "Helse",
@@ -219,14 +185,12 @@
             "uri": "http://publications.europa.eu/resource/authority/data-theme/HEAL"
         }
     ],
-    "themeUris":
-    [
+    "themeUris": [
         "http://publications.europa.eu/resource/authority/data-theme/GOVE",
         "http://publications.europa.eu/resource/authority/data-theme/HEAL",
         "https://psi.norge.no/los/tema/helse-og-omsorg"
     ],
-    "title":
-    {
+    "title": {
         "nb": "Levekår Stavanger: Barn med enslige foreldre"
     },
     "type": "datasets",

@@ -4,7 +4,6 @@ import { getDictionary } from '@fdk-frontend/dictionaries';
 import styles from './error-page.module.scss';
 
 export default async function ErrorPage({ children }: PropsWithChildren) {
-
     const lang = 'nb';
     const { FDK_COMMUNITY_BASE_URI: communityBaseUri = '/', FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/' } =
         process.env;
@@ -24,9 +23,7 @@ export default async function ErrorPage({ children }: PropsWithChildren) {
                 id='main'
                 className={styles.errorPage}
             >
-                <div className={styles.inner}>
-                    {children}
-                </div>
+                <div className={styles.inner}>{children}</div>
             </main>
         </>
     );

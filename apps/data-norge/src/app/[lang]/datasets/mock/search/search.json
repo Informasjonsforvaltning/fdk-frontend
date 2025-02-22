@@ -1,64 +1,52 @@
 {
-    "hits":
-    [
+    "hits": [
         {
             "id": "c1de5e22-0541-3791-ac21-f93e594a7c53",
             "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/data-services/5ebce71dc4081a592e10fd2c",
-            "catalog":
-            {
+            "catalog": {
                 "id": "eb3013f6-6542-36ec-bb25-5c544136f7df",
-                "publisher":
-                {
+                "publisher": {
                     "id": "910244132",
                     "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/910244132",
                     "orgPath": "/ANNET/910244132",
                     "name": "Ramsund og rognan revisjon",
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "nb": "Ramsund og rognan revisjon"
                     }
                 },
-                "title":
-                {
+                "title": {
                     "en": "Data service catalog (910244132)"
                 },
                 "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/catalogs/910244132"
             },
-            "description":
-            {
+            "description": {
                 "nb": "Som en twistpose"
             },
-            "fdkFormatPrefixed":
-            [
+            "fdkFormatPrefixed": [
                 "MEDIA_TYPE application/gml+xml",
                 "MEDIA_TYPE text/csv",
                 "MEDIA_TYPE application/json"
             ],
-            "metadata":
-            {
+            "metadata": {
                 "firstHarvested": "2021-03-17T10:00:04Z",
                 "modified": "2023-02-02T14:09:30Z",
                 "deleted": false,
                 "timestamp": 1726138002000
             },
-            "organization":
-            {
+            "organization": {
                 "id": "910244132",
                 "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/910244132",
                 "orgPath": "/ANNET/910244132",
                 "name": "Ramsund og rognan revisjon",
-                "prefLabel":
-                {
+                "prefLabel": {
                     "nb": "Ramsund og rognan revisjon"
                 }
             },
             "searchType": "DATA_SERVICE",
-            "title":
-            {
+            "title": {
                 "nb": "API over godteri"
             },
-            "relations":
-            [
+            "relations": [
                 {
                     "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/9e2851df-df3d-4b54-ba94-789b957f8c1d",
                     "type": "servesDataset"
@@ -69,53 +57,43 @@
         {
             "id": "13bdb342-b64f-3e9b-84e0-9d52526f3669",
             "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/data-services/5f48fb6393384f19e959e347",
-            "catalog":
-            {
+            "catalog": {
                 "id": "eb3013f6-6542-36ec-bb25-5c544136f7df",
-                "publisher":
-                {
+                "publisher": {
                     "id": "910244132",
                     "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/910244132",
                     "orgPath": "/ANNET/910244132",
                     "name": "Ramsund og rognan revisjon",
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "nb": "Ramsund og rognan revisjon"
                     }
                 },
-                "title":
-                {
+                "title": {
                     "en": "Data service catalog (910244132)"
                 },
                 "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/catalogs/910244132"
             },
-            "fdkFormatPrefixed":
-            [],
-            "metadata":
-            {
+            "fdkFormatPrefixed": [],
+            "metadata": {
                 "firstHarvested": "2022-02-28T16:21:17Z",
                 "modified": "2023-02-02T14:09:30Z",
                 "deleted": false,
                 "timestamp": 1726138002000
             },
-            "organization":
-            {
+            "organization": {
                 "id": "910244132",
                 "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/910244132",
                 "orgPath": "/ANNET/910244132",
                 "name": "Ramsund og rognan revisjon",
-                "prefLabel":
-                {
+                "prefLabel": {
                     "nb": "Ramsund og rognan revisjon"
                 }
             },
             "searchType": "DATA_SERVICE",
-            "title":
-            {
+            "title": {
                 "nb": "Barnehagefakta"
             },
-            "relations":
-            [
+            "relations": [
                 {
                     "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/9e2851df-df3d-4b54-ba94-789b957f8c1d",
                     "type": "servesDataset"
@@ -126,45 +104,36 @@
         {
             "id": "29481f98-135e-3df2-9047-73148d702de5",
             "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/data-services/667bc2e9302bd123f1a86e04",
-            "accessRights":
-            {
+            "accessRights": {
                 "uri": "http://publications.europa.eu/resource/authority/access-right/PUBLIC"
             },
-            "catalog":
-            {
+            "catalog": {
                 "id": "3e091f91-4fc2-338a-901c-1addaa3dca71",
-                "publisher":
-                {
+                "publisher": {
                     "id": "974760673",
                     "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/974760673",
                     "orgPath": "/STAT/912660680/974760673",
                     "name": "Registerenheten i brønnøysund",
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "nb": "Registerenheten i brønnøysund"
                     }
                 },
-                "title":
-                {
+                "title": {
                     "en": "Data service catalog (974760673)"
                 },
                 "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/catalogs/974760673"
             },
-            "description":
-            {
+            "description": {
                 "nb": "Beskrivelse"
             },
-            "fdkFormatPrefixed":
-            [],
-            "metadata":
-            {
+            "fdkFormatPrefixed": [],
+            "metadata": {
                 "firstHarvested": "2024-06-26T08:00:02Z",
                 "modified": "2024-06-26T08:00:02Z",
                 "deleted": false,
                 "timestamp": 1730117039000
             },
-            "keyword":
-            [
+            "keyword": [
                 {
                     "nb": "søkeord"
                 },
@@ -175,25 +144,21 @@
                     "nb": "123"
                 }
             ],
-            "organization":
-            {
+            "organization": {
                 "id": "974760673",
                 "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/974760673",
                 "orgPath": "/STAT/912660680/974760673",
                 "name": "Registerenheten i brønnøysund",
-                "prefLabel":
-                {
+                "prefLabel": {
                     "nb": "Registerenheten i brønnøysund"
                 }
             },
             "searchType": "DATA_SERVICE",
-            "title":
-            {
+            "title": {
                 "nb": "Alle felter utfylt",
                 "nn": "Nynorsk"
             },
-            "relations":
-            [
+            "relations": [
                 {
                     "uri": "https://data.norge.no/def/serviceType#ACCOUNT_DETAILS",
                     "type": "conformsTo"
@@ -210,14 +175,10 @@
             "isRelatedToTransportportal": false
         }
     ],
-    "aggregations":
-    {
-        "openData":
-        [],
-        "provenance":
-        [],
-        "orgPath":
-        [
+    "aggregations": {
+        "openData": [],
+        "provenance": [],
+        "orgPath": [
             {
                 "key": "/ANNET",
                 "count": 2
@@ -239,8 +200,7 @@
                 "count": 1
             }
         ],
-        "format":
-        [
+        "format": [
             {
                 "key": "MEDIA_TYPE application/gml+xml",
                 "count": 1
@@ -254,22 +214,17 @@
                 "count": 1
             }
         ],
-        "losTheme":
-        [],
-        "dataTheme":
-        [],
-        "accessRights":
-        [
+        "losTheme": [],
+        "dataTheme": [],
+        "accessRights": [
             {
                 "key": "null",
                 "count": 3
             }
         ],
-        "spatial":
-        []
+        "spatial": []
     },
-    "page":
-    {
+    "page": {
         "currentPage": 0,
         "size": 3,
         "totalElements": 3,

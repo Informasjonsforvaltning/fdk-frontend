@@ -9,55 +9,63 @@ import IconBadge from '@fdk-frontend/ui/icon-badge';
 import styles from '../../community-tab.module.scss';
 
 export type TopicRowProps = {
-	communityBaseUri: string;
-	topic: JSONValue;
-	dictionary: Dictionary;
-}
+    communityBaseUri: string;
+    topic: JSONValue;
+    dictionary: Dictionary;
+};
 
-const TopicRow = ({ topic, communityBaseUri, dictionary, ...props }: TopicRowProps & React.HTMLAttributes<HTMLTableRowElement>) => {
-	return (
-		<tr {...props}>
-			<td width='1'>
-				<IconBadge fontSize='1.5rem'>
-					<Chat2Icon />
-				</IconBadge>
-			</td>
-			<td>
-				<div className={styles.threadTeaser}>
-					<Link
-						href={`${communityBaseUri}/topic/${topic.slug}`}
-						className={styles.threadLink}
-					>
-						{topic.title} <ExternalLinkIcon />
-					</Link>
-					<HStack style={{gap:'0.5rem'}}>
-						<Tag size='sm' color='neutral'>
-							<Link href={`${communityBaseUri}/category/${topic.category.slug}`}>
-								{topic.category.name}
-							</Link>
-						</Tag>
-						<Subtext>{`${dictionary.community.topicRow.postedBy} ${topic.author.username}`}</Subtext>
-					</HStack>
-				</div>
-			</td>
-			<td align='right'>
-				<HStack style={{justifyContent:'flex-end'}}>
-					<div className={styles.forumStats}>
-						<span>{topic.votes}</span>
-						<Subtext>{dictionary.community.topicRow.votes}</Subtext>
-					</div>
-					<div className={styles.forumStats}>
-						<span>{topic.posts.length}</span>
-						<Subtext>{dictionary.community.topicRow.posts}</Subtext>
-					</div>
-					<div className={styles.forumStats}>
-						<span>{topic.viewcount}</span>
-						<Subtext>{dictionary.community.topicRow.views}</Subtext>
-					</div>
-				</HStack>
-			</td>
-		</tr>
-	);
-}
+const TopicRow = ({
+    topic,
+    communityBaseUri,
+    dictionary,
+    ...props
+}: TopicRowProps & React.HTMLAttributes<HTMLTableRowElement>) => {
+    return (
+        <tr {...props}>
+            <td width='1'>
+                <IconBadge fontSize='1.5rem'>
+                    <Chat2Icon />
+                </IconBadge>
+            </td>
+            <td>
+                <div className={styles.threadTeaser}>
+                    <Link
+                        href={`${communityBaseUri}/topic/${topic.slug}`}
+                        className={styles.threadLink}
+                    >
+                        {topic.title} <ExternalLinkIcon />
+                    </Link>
+                    <HStack style={{ gap: '0.5rem' }}>
+                        <Tag
+                            size='sm'
+                            color='neutral'
+                        >
+                            <Link href={`${communityBaseUri}/category/${topic.category.slug}`}>
+                                {topic.category.name}
+                            </Link>
+                        </Tag>
+                        <Subtext>{`${dictionary.community.topicRow.postedBy} ${topic.author.username}`}</Subtext>
+                    </HStack>
+                </div>
+            </td>
+            <td align='right'>
+                <HStack style={{ justifyContent: 'flex-end' }}>
+                    <div className={styles.forumStats}>
+                        <span>{topic.votes}</span>
+                        <Subtext>{dictionary.community.topicRow.votes}</Subtext>
+                    </div>
+                    <div className={styles.forumStats}>
+                        <span>{topic.posts.length}</span>
+                        <Subtext>{dictionary.community.topicRow.posts}</Subtext>
+                    </div>
+                    <div className={styles.forumStats}>
+                        <span>{topic.viewcount}</span>
+                        <Subtext>{dictionary.community.topicRow.views}</Subtext>
+                    </div>
+                </HStack>
+            </td>
+        </tr>
+    );
+};
 
 export default TopicRow;

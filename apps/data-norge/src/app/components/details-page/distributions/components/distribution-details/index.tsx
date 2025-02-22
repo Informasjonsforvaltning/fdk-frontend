@@ -13,7 +13,7 @@ type DistributionDetailsProps = {
     distribution: JSONValue;
     locale: LocaleCodes;
     dictionary: Dictionary;
-}
+};
 
 const DistributionDetails = ({ distribution, locale, dictionary }: DistributionDetailsProps) => {
     return (
@@ -21,93 +21,97 @@ const DistributionDetails = ({ distribution, locale, dictionary }: DistributionD
             <dl>
                 <dt>{dictionary.distributions.details.description}:</dt>
                 <dd>
-                    {
-                        distribution.description ?
+                    {distribution.description ? (
                         <Box className={detailsPageStyles.descBox}>
                             <ExpandableContent maxHeight={100}>
                                 <article className={detailsPageStyles.article}>
-                                    <Markdown>
-                                        {printLocaleValue(locale, distribution.description)}
-                                    </Markdown>
+                                    <Markdown>{printLocaleValue(locale, distribution.description)}</Markdown>
                                 </article>
                             </ExpandableContent>
-                        </Box> :
+                        </Box>
+                    ) : (
                         <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
                 <dt>{dictionary.distributions.details.accessURL}:</dt>
                 <dd>
-                    {
-                        distribution.accessURL ?
-                        <Link href="#">{distribution.accessURL}</Link> :
+                    {distribution.accessURL ? (
+                        <Link href='#'>{distribution.accessURL}</Link>
+                    ) : (
                         <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
                 <dt>{dictionary.distributions.details.downloadURL}:</dt>
                 <dd>
-                    {
-                        distribution.downloadURL ?
-                        <Link href="#">{distribution.downloadURL}</Link> :
+                    {distribution.downloadURL ? (
+                        <Link href='#'>{distribution.downloadURL}</Link>
+                    ) : (
                         <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
                 <dt>{dictionary.distributions.details.accessService}:</dt>
                 <dd>
-                    {
-                        distribution.accessService ? 
-                        distribution.accessService.map((api: any) => (<Link key={api.uri} href="#">{api.uri}</Link>)) :
+                    {distribution.accessService ? (
+                        distribution.accessService.map((api: any) => (
+                            <Link
+                                key={api.uri}
+                                href='#'
+                            >
+                                {api.uri}
+                            </Link>
+                        ))
+                    ) : (
                         <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
                 <dt>{dictionary.distributions.details.page}:</dt>
                 <dd>
-                    {
-                        distribution.page ? 
-                        distribution.page.map((page: any) => (<Link key={page.uri} href={page.uri}>{page.uri}</Link>)) :
+                    {distribution.page ? (
+                        distribution.page.map((page: any) => (
+                            <Link
+                                key={page.uri}
+                                href={page.uri}
+                            >
+                                {page.uri}
+                            </Link>
+                        ))
+                    ) : (
                         <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
                 <dt>{dictionary.distributions.details.license}:</dt>
                 <dd>
-                    {
-                        distribution.license ? 
+                    {distribution.license ? (
                         distribution.license.map((license: any) => (
                             <div key={license.uri}>
                                 <Link href={license.uri}>
-                                    {
-                                        license.prefLabel ?
-                                        printLocaleValue(locale, license.prefLabel) :
-                                        license.uri
-                                    }
+                                    {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
                                 </Link>
-                                {
-                                    isOpenLicense(license.uri) &&
-                                    <OpenLicenseTag dictionary={dictionary} />
-                                }
+                                {isOpenLicense(license.uri) && <OpenLicenseTag dictionary={dictionary} />}
                             </div>
-                        )) :
+                        ))
+                    ) : (
                         <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
                 <dt>{dictionary.distributions.details.conformsTo}:</dt>
                 <dd>
-                    {
-                        distribution.conformsTo ? 
+                    {distribution.conformsTo ? (
                         distribution.conformsTo.map((standard: any) => (
-                            <Link href={standard.uri} key={standard.uri}>
-                                {
-                                    standard.prefLabel ?
-                                    printLocaleValue(locale, standard.prefLabel) :
-                                    standard.uri
-                                }
+                            <Link
+                                href={standard.uri}
+                                key={standard.uri}
+                            >
+                                {standard.prefLabel ? printLocaleValue(locale, standard.prefLabel) : standard.uri}
                             </Link>
-                        )) :
+                        ))
+                    ) : (
                         <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
             </dl>
         </>
     );
-}
+};
 
 export default DistributionDetails;

@@ -1,17 +1,12 @@
-import {
-    Link,
-    Tag,
-    HelpText,
-    Paragraph,
-} from '@digdir/designsystemet-react';
+import { Link, Tag, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 const OpenLicenseTag = ({ dictionary }: { dictionary: Dictionary }) => {
-	return (
-		<Tag
+    return (
+        <Tag
             color='success'
             size='sm'
-            style={{display: 'inline-flex', marginLeft:'0.5rem'}}
+            style={{ display: 'inline-flex', marginLeft: '0.5rem' }}
         >
             {dictionary.openLicenseTag.label}
             &nbsp;
@@ -20,9 +15,7 @@ const OpenLicenseTag = ({ dictionary }: { dictionary: Dictionary }) => {
                 size='sm'
                 style={{ transform: 'scale(0.75)' }}
             >
-                <Paragraph size='sm'>
-                    {dictionary.openLicenseTag.helpText}
-                </Paragraph>
+                <Paragraph size='sm'>{dictionary.openLicenseTag.helpText}</Paragraph>
                 <Paragraph size='sm'>
                     <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
                         {dictionary.openLicenseTag.linkText}
@@ -30,7 +23,7 @@ const OpenLicenseTag = ({ dictionary }: { dictionary: Dictionary }) => {
                 </Paragraph>
             </HelpText>
         </Tag>
-	);
-}
+    );
+};
 
 export default OpenLicenseTag;

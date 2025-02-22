@@ -1,9 +1,7 @@
 {
-    "accessRights":
-    {
+    "accessRights": {
         "code": "NON_PUBLIC",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "non-public"
         },
         "uri": "http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC"
@@ -11,24 +9,20 @@
     "accessRightsComment": null,
     "accrualPeriodicity": null,
     "admsIdentifier": null,
-    "catalog":
-    {
+    "catalog": {
         "description": null,
         "id": "821c273e-c4b0-3807-8d54-f54998747507",
-        "publisher":
-        {
+        "publisher": {
             "id": "910244132",
             "name": "RAMSUND OG ROGNAN REVISJON",
             "orgPath": "/ANNET/910244132",
             "organisasjonsform": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Ramsund og rognan revisjon"
             },
             "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/910244132"
         },
-        "title":
-        {
+        "title": {
             "nb": "Datakatalog for RAMSUND OG ROGNAN REVISJON"
         },
         "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132"
@@ -37,12 +31,10 @@
     "contactPoint": null,
     "dctType": null,
     "description": null,
-    "descriptionFormatted":
-    {
+    "descriptionFormatted": {
         "nb": "Kun test 2\n\n---\nFormål: Test"
     },
-    "distribution":
-    [
+    "distribution": [
         {
             "accessService": null,
             "accessURL": null,
@@ -50,8 +42,7 @@
             "conformsTo": null,
             "description": null,
             "downloadURL": null,
-            "fdkFormat":
-            [
+            "fdkFormat": [
                 {
                     "code": "application/EDIFACT",
                     "name": "EDIFACT",
@@ -68,8 +59,7 @@
         }
     ],
     "eurovocThemes": null,
-    "harvest":
-    {
+    "harvest": {
         "firstHarvested": "2021-12-14T08:26:20Z",
         "modified": "2024-01-12T10:06:06Z"
     },
@@ -79,8 +69,7 @@
     "hasCurrentnessAnnotation": null,
     "hasRelevanceAnnotation": null,
     "id": "c85c58ac-81f3-3303-a5d1-65dd4bdfaf6b",
-    "identifier":
-    [
+    "identifier": [
         "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/550f2c0c-454c-4482-9c60-83bd20b0dd88"
     ],
     "inSeries": null,
@@ -93,44 +82,34 @@
     "landingPage": null,
     "language": null,
     "legalBasisForAccess": null,
-    "legalBasisForProcessing":
-    [
+    "legalBasisForProcessing": [
         {
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForDataProcessing",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Behandling"
             },
             "uri": "https://behandling.no"
         }
     ],
-    "legalBasisForRestriction":
-    [
+    "legalBasisForRestriction": [
         {
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForNonDisclosure",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Skjerming"
             },
             "uri": "https://skjerming.no"
         }
     ],
-    "losTheme":
-    [
+    "losTheme": [
         {
             "code": "doping",
             "isTema": false,
-            "losPaths":
-            [
-                "helse-og-omsorg/rus-og-avhengighet/doping",
-                "kultur-idrett-og-fritid/idrett/doping"
-            ],
-            "name":
-            {
+            "losPaths": ["helse-og-omsorg/rus-og-avhengighet/doping", "kultur-idrett-og-fritid/idrett/doping"],
+            "name": {
                 "en": "Doping",
                 "nb": "Doping",
                 "nn": "Doping"
@@ -140,12 +119,8 @@
         {
             "code": "idrett",
             "isTema": true,
-            "losPaths":
-            [
-                "kultur-idrett-og-fritid/idrett"
-            ],
-            "name":
-            {
+            "losPaths": ["kultur-idrett-og-fritid/idrett"],
+            "name": {
                 "en": "Sport",
                 "nb": "Idrett",
                 "nn": "Idrett"
@@ -158,30 +133,25 @@
     "page": null,
     "prev": null,
     "provenance": null,
-    "publisher":
-    {
+    "publisher": {
         "id": "910244132",
         "name": "RAMSUND OG ROGNAN REVISJON",
         "orgPath": "/ANNET/910244132",
         "organisasjonsform": null,
-        "prefLabel":
-        {
+        "prefLabel": {
             "nb": "Ramsund og rognan revisjon"
         },
         "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/910244132"
     },
     "qualifiedAttributions": null,
-    "references":
-    [
+    "references": [
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/isPartOf"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
@@ -196,11 +166,7 @@
     "subject": null,
     "temporal": null,
     "theme": null,
-    "themeUris":
-    [
-        "https://psi.norge.no/los/ord/doping",
-        "https://psi.norge.no/los/tema/idrett"
-    ],
+    "themeUris": ["https://psi.norge.no/los/ord/doping", "https://psi.norge.no/los/tema/idrett"],
     "title": null,
     "type": "datasets",
     "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/550f2c0c-454c-4482-9c60-83bd20b0dd88"

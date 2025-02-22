@@ -13,14 +13,14 @@
 
 .fds-link {
     &:not(.fds-btn) {
-        display:inline;
+        display: inline;
 
         svg {
             // margin-top:-1em;
             vertical-align: middle;
 
             &:last-child {
-                margin-left:0.125rem;
+                margin-left: 0.125rem;
             }
         }
     }
@@ -111,7 +111,7 @@
 }
 
 .fds-accordion__expand-icon {
-    flex-shrink:0;
+    flex-shrink: 0;
 }
 
 /*
@@ -119,12 +119,12 @@ Fix for weird code block inside Alert overflow bug.
 https://data.norge.no/nb/docs/sharing-data/how-to-dataset/2-dataset-description
 */
 .fds-alert__content {
-    overflow:hidden;
+    overflow: hidden;
 }
 
 /*
 Fix for bug where items doesnt wrap
 */
 .fds-chip--group-container {
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }

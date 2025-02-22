@@ -1,19 +1,15 @@
 {
-    "accessRights":
-    {
+    "accessRights": {
         "code": "PUBLIC",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "public"
         },
         "uri": "http://publications.europa.eu/resource/authority/access-right/PUBLIC"
     },
     "accessRightsComment": null,
-    "accrualPeriodicity":
-    {
+    "accrualPeriodicity": {
         "code": "ANNUAL",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "annual",
             "nb": "årlig",
             "nn": "årleg",
@@ -22,33 +18,27 @@
         "uri": "http://publications.europa.eu/resource/authority/frequency/ANNUAL"
     },
     "admsIdentifier": null,
-    "catalog":
-    {
+    "catalog": {
         "description": null,
         "id": "821c273e-c4b0-3807-8d54-f54998747507",
-        "publisher":
-        {
+        "publisher": {
             "id": "910244132",
             "name": "RAMSUND OG ROGNAN REVISJON",
             "orgPath": "/ANNET/910244132",
             "organisasjonsform": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Ramsund og rognan revisjon"
             },
             "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/910244132"
         },
-        "title":
-        {
+        "title": {
             "nb": "Datakatalog for RAMSUND OG ROGNAN REVISJON"
         },
         "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132"
     },
-    "conformsTo":
-    [
+    "conformsTo": [
         {
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Also here",
                 "nb": "Standarden er her",
                 "nn": "Her og"
@@ -56,8 +46,7 @@
             "uri": "https://google.com"
         },
         {
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Other",
                 "nb": "Annen",
                 "nn": "Infomodell"
@@ -65,15 +54,13 @@
             "uri": "https://www.infomodell.com"
         },
         {
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Konsolidering i samarbeidende grupper (KRT-1130)"
             },
             "uri": "https://www.staging.fellesdatakatalog.digdir.no/informationmodels/f8d7a88d-06b6-4ccb-89ad-86d608ec9207"
         }
     ],
-    "contactPoint":
-    [
+    "contactPoint": [
         {
             "email": "test@digdir.no",
             "fullname": "Eirik Lillebo",
@@ -91,31 +78,26 @@
             "hasTelephone": "12345678",
             "hasURL": "https://testavdelingen.no",
             "organizationName": null,
-            "organizationUnit":
-            {
+            "organizationUnit": {
                 "nb": "Testavdelingen"
             },
             "uri": null
         }
     ],
     "dctType": null,
-    "description":
-    {
+    "description": {
         "en": "Testing the dataset-catalog\n\n---\nObjective: Regression testing",
         "nb": "Test av dataset-catalog.\n\n---\nFormål: Verifisere at datasettene blir like mellom ny og gammel",
         "nn": "Test av dataset-catalog\n\n---\nFormål: Verifisere at datasettene blir like mellom ny og gammel"
     },
-    "descriptionFormatted":
-    {
+    "descriptionFormatted": {
         "en": "Testing the dataset-catalog\n\n---\nObjective: Regression testing",
         "nb": "Test av dataset-catalog.\n\n---\nFormål: Verifisere at datasettene blir like mellom ny og gammel",
         "nn": "Test av dataset-catalog\n\n---\nFormål: Verifisere at datasettene blir like mellom ny og gammel"
     },
-    "distribution":
-    [
+    "distribution": [
         {
-            "accessService":
-            [
+            "accessService": [
                 {
                     "description": null,
                     "endpointDescription": null,
@@ -129,30 +111,21 @@
                     "uri": "https://dataservice-publisher.staging.fellesdatakatalog.digdir.no/dataservices/8db9fae19a763e05149bff2ef23c72c539d052db"
                 }
             ],
-            "accessURL":
-            [
-                "https://distro.com"
-            ],
+            "accessURL": ["https://distro.com"],
             "compressFormat": null,
-            "conformsTo":
-            [
+            "conformsTo": [
                 {
                     "prefLabel": null,
                     "uri": "http://standard2.com"
                 }
             ],
-            "description":
-            {
+            "description": {
                 "en": "Good description",
                 "nb": "God fokrlaring",
                 "nn": "God fokrlaring"
             },
-            "downloadURL":
-            [
-                "https://distro.com/dl"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://distro.com/dl"],
+            "fdkFormat": [
                 {
                     "code": "text/csv",
                     "name": "csv",
@@ -160,14 +133,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/text/csv"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Creative Commons Attribution 4.0 International",
                         "no": "Creative Commons Navngivelse 4.0 Internasjonal"
                     },
@@ -175,8 +146,7 @@
                 }
             ],
             "packageFormat": null,
-            "page":
-            [
+            "page": [
                 {
                     "broader": null,
                     "extraType": null,
@@ -185,8 +155,7 @@
                     "uri": "http://docs.com"
                 }
             ],
-            "title":
-            {
+            "title": {
                 "en": "distribusjonen",
                 "nb": "distribusjonen",
                 "nn": "distribusjonen"
@@ -196,55 +165,44 @@
         }
     ],
     "eurovocThemes": null,
-    "harvest":
-    {
+    "harvest": {
         "firstHarvested": "2021-03-17T10:00:44Z",
         "modified": "2024-08-28T09:00:04Z"
     },
-    "hasAccuracyAnnotation":
-    {
-        "hasBody":
-        {
+    "hasAccuracyAnnotation": {
+        "hasBody": {
             "en": "Extremely precise",
             "nb": "Ekstremt nøyaktig",
             "nn": "Ekstremt nøyaktig"
         },
         "inDimension": "http://iso.org/25012/2008/dataquality/Accuracy"
     },
-    "hasAvailabilityAnnotation":
-    {
-        "hasBody":
-        {
+    "hasAvailabilityAnnotation": {
+        "hasBody": {
             "en": "For internal use only",
             "nb": "Kun til intern bruk",
             "nn": "Kun til intern bruk"
         },
         "inDimension": "http://iso.org/25012/2008/dataquality/Availability"
     },
-    "hasCompletenessAnnotation":
-    {
-        "hasBody":
-        {
+    "hasCompletenessAnnotation": {
+        "hasBody": {
             "en": "Totally complete",
             "nb": "Helt komplett",
             "nn": "Helt komplett"
         },
         "inDimension": "http://iso.org/25012/2008/dataquality/Completeness"
     },
-    "hasCurrentnessAnnotation":
-    {
-        "hasBody":
-        {
+    "hasCurrentnessAnnotation": {
+        "hasBody": {
             "en": "Yep",
             "nb": "Høyaktuelt",
             "nn": "Aktuelt"
         },
         "inDimension": "http://iso.org/25012/2008/dataquality/Currentness"
     },
-    "hasRelevanceAnnotation":
-    {
-        "hasBody":
-        {
+    "hasRelevanceAnnotation": {
+        "hasBody": {
             "en": "Relevant for testing",
             "nb": "Relevant for testing",
             "nn": "Relevant for testing"
@@ -252,8 +210,7 @@
         "inDimension": "http://iso.org/25012/2008/dataquality/Relevance"
     },
     "id": "2d1d37c9-6388-3ba7-9a7d-1ae5627a79a8",
-    "identifier":
-    [
+    "identifier": [
         "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/9e2851df-df3d-4b54-ba94-789b957f8c1d"
     ],
     "inSeries": null,
@@ -262,8 +219,7 @@
     "isOpenData": true,
     "isRelatedToTransportportal": false,
     "issued": "2020-12-01",
-    "keyword":
-    [
+    "keyword": [
         {
             "nn": "test"
         },
@@ -274,16 +230,11 @@
             "en": "test"
         }
     ],
-    "landingPage":
-    [
-        "https://www.google.com"
-    ],
-    "language":
-    [
+    "landingPage": ["https://www.google.com"],
+    "language": [
         {
             "code": "ENG",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "English",
                 "nb": "Engelsk",
                 "nn": "Engelsk",
@@ -293,8 +244,7 @@
         },
         {
             "code": "NOR",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Norwegian",
                 "nb": "Norsk",
                 "nn": "Norsk",
@@ -304,43 +254,34 @@
         }
     ],
     "legalBasisForAccess": null,
-    "legalBasisForProcessing":
-    [
+    "legalBasisForProcessing": [
         {
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForDataProcessing",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Behandling"
             },
             "uri": "https://behandling.no"
         }
     ],
-    "legalBasisForRestriction":
-    [
+    "legalBasisForRestriction": [
         {
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForNonDisclosure",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Skjerming"
             },
             "uri": "https://skjerming.no"
         }
     ],
-    "losTheme":
-    [
+    "losTheme": [
         {
             "code": "svommehall",
             "isTema": false,
-            "losPaths":
-            [
-                "kultur-idrett-og-fritid/idrett/svommehall"
-            ],
-            "name":
-            {
+            "losPaths": ["kultur-idrett-og-fritid/idrett/svommehall"],
+            "name": {
                 "en": "Swimming pool",
                 "nb": "Svømmehall",
                 "nn": "Symjehall"
@@ -350,12 +291,8 @@
         {
             "code": "idrett",
             "isTema": true,
-            "losPaths":
-            [
-                "kultur-idrett-og-fritid/idrett"
-            ],
-            "name":
-            {
+            "losPaths": ["kultur-idrett-og-fritid/idrett"],
+            "name": {
                 "en": "Sport",
                 "nb": "Idrett",
                 "nn": "Idrett"
@@ -365,12 +302,8 @@
         {
             "code": "kultur-idrett-og-fritid",
             "isTema": true,
-            "losPaths":
-            [
-                "kultur-idrett-og-fritid"
-            ],
-            "name":
-            {
+            "losPaths": ["kultur-idrett-og-fritid"],
+            "name": {
                 "en": "Culture, sport and recreation",
                 "nb": "Kultur, idrett og fritid",
                 "nn": "Kultur, idrett og fritid"
@@ -380,12 +313,8 @@
         {
             "code": "samfunnssikkerhet-og-beredskap",
             "isTema": true,
-            "losPaths":
-            [
-                "samfunnssikkerhet-og-beredskap"
-            ],
-            "name":
-            {
+            "losPaths": ["samfunnssikkerhet-og-beredskap"],
+            "name": {
                 "en": "Civil protection and emergency planning",
                 "nb": "Samfunnssikkerhet og beredskap",
                 "nn": "Samfunnstryggleik og beredskap"
@@ -397,40 +326,33 @@
     "objective": null,
     "page": null,
     "prev": null,
-    "provenance":
-    {
+    "provenance": {
         "code": "NASJONAL",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "Authoritativ source",
             "nb": "Autoritativ kilde",
             "nn": "Autoritativ kilde"
         },
         "uri": "http://data.brreg.no/datakatalog/provinens/nasjonal"
     },
-    "publisher":
-    {
+    "publisher": {
         "id": "910244132",
         "name": "RAMSUND OG ROGNAN REVISJON",
         "orgPath": "/ANNET/910244132",
         "organisasjonsform": null,
-        "prefLabel":
-        {
+        "prefLabel": {
             "nb": "Ramsund og rognan revisjon"
         },
         "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/910244132"
     },
-    "qualifiedAttributions":
-    [
+    "qualifiedAttributions": [
         {
-            "agent":
-            {
+            "agent": {
                 "id": "919968230",
                 "name": "KUNSTKLUBBEN 9",
                 "orgPath": "/PRIVAT/919968230",
                 "organisasjonsform": "FLI",
-                "prefLabel":
-                {
+                "prefLabel": {
                     "nb": "Kunstklubben 9"
                 },
                 "uri": "https://data.brreg.no/enhetsregisteret/api/enheter/919968230"
@@ -438,14 +360,12 @@
             "role": "http://registry.it.csiro.au/def/isotc211/CI_RoleCode/contributor"
         },
         {
-            "agent":
-            {
+            "agent": {
                 "id": "919968230",
                 "name": "KUNSTKLUBBEN 9",
                 "orgPath": "/PRIVAT/919968230",
                 "organisasjonsform": "FLI",
-                "prefLabel":
-                {
+                "prefLabel": {
                     "nb": "Kunstklubben 9"
                 },
                 "uri": "https://data.brreg.no/enhetsregisteret/api/enheter/919968230"
@@ -453,17 +373,14 @@
             "role": "http://registry.it.csiro.au/def/isotc211/CI_RoleCode/contributor"
         }
     ],
-    "references":
-    [
+    "references": [
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/replaces"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
@@ -472,19 +389,16 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/relation"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
-                "prefLabel":
-                {
+                "prefLabel": {
                     "en": "Other resource",
                     "nb": "Annen resurs",
                     "nn": "Annen resurs"
@@ -493,18 +407,13 @@
             }
         }
     ],
-    "sample":
-    [
+    "sample": [
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://staging.io"
-            ],
+            "accessURL": ["https://staging.io"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "en": "standrd",
                 "nb": "Følger standard",
                 "nn": "staaandard"
@@ -520,43 +429,36 @@
         }
     ],
     "source": null,
-    "spatial":
-    [
+    "spatial": [
         {
             "code": null,
             "prefLabel": null,
             "uri": "http://example.com/norge"
         }
     ],
-    "subject":
-    [
+    "subject": [
         {
-            "definition":
-            {
+            "definition": {
                 "nb": "omsorgssituasjon der begge foreldre til et gitt barn bor sammen og har omsorgen for barnet i skattleggingsperioden"
             },
             "identifier": "http://begrepskatalogen/begrep/46f4d71c-4c6c-11e8-bb3e-005056821322",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "felles omsorg"
             },
             "uri": "http://begrepskatalogen/begrep/46f4d71c-4c6c-11e8-bb3e-005056821322"
         },
         {
-            "definition":
-            {
+            "definition": {
                 "nb": "samlet brutto uføreytelser (uføreytelser før skatt) som du får fra andre enn folketrygden ( herunder uføreytelser fra SPK, uføreytelser fra andre pensjonsordninger herunder uføreytelser fra IPA/IPS og uføreytelser fra utlandet) . Uføreytelser regnes som en del av inntektene dine og skattlegges som vanlig lønnsinntekt."
             },
             "identifier": "http://begrepskatalogen/begrep/6c325d5f-ff95-11e8-a756-005056823b15",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "samlet uføreytelse fra andre enn folketrygden"
             },
             "uri": "http://begrepskatalogen/begrep/6c325d5f-ff95-11e8-a756-005056823b15"
         }
     ],
-    "temporal":
-    [
+    "temporal": [
         {
             "endDate": "2020-12-08",
             "startDate": "2020-12-07",
@@ -568,12 +470,10 @@
             "uri": null
         }
     ],
-    "theme":
-    [
+    "theme": [
         {
             "code": "ECON",
-            "title":
-            {
+            "title": {
                 "en": "Economy and finance",
                 "nb": "Økonomi og finans",
                 "nn": "Økonomi og finans",
@@ -583,8 +483,7 @@
         },
         {
             "code": "EDUC",
-            "title":
-            {
+            "title": {
                 "en": "Education, culture and sport",
                 "nb": "Utdanning, kultur og sport",
                 "nn": "Utdanning, kultur og sport",
@@ -594,8 +493,7 @@
         },
         {
             "code": "JUST",
-            "title":
-            {
+            "title": {
                 "en": "Justice, legal system and public safety",
                 "nb": "Justis, rettssystem og allmenn sikkerhet",
                 "nn": "Justis, rettssystem og allmenn tryggleik",
@@ -604,8 +502,7 @@
             "uri": "http://publications.europa.eu/resource/authority/data-theme/JUST"
         }
     ],
-    "themeUris":
-    [
+    "themeUris": [
         "http://publications.europa.eu/resource/authority/data-theme/ECON",
         "http://publications.europa.eu/resource/authority/data-theme/EDUC",
         "http://publications.europa.eu/resource/authority/data-theme/JUST",
@@ -614,8 +511,7 @@
         "https://psi.norge.no/los/tema/kultur-idrett-og-fritid",
         "https://psi.norge.no/los/tema/samfunnssikkerhet-og-beredskap"
     ],
-    "title":
-    {
+    "title": {
         "en": "Large testdataset",
         "nb": "Stort testdatasett 1",
         "nn": "Omfattande testdatasett"

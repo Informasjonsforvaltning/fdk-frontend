@@ -1,9 +1,7 @@
 {
-    "accessRights":
-    {
+    "accessRights": {
         "code": "PUBLIC",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "public"
         },
         "uri": "http://publications.europa.eu/resource/authority/access-right/PUBLIC"
@@ -11,24 +9,20 @@
     "accessRightsComment": null,
     "accrualPeriodicity": null,
     "admsIdentifier": null,
-    "catalog":
-    {
+    "catalog": {
         "description": null,
         "id": "cc0a95d7-3a15-3555-b5d7-aa50107d6e31",
-        "publisher":
-        {
+        "publisher": {
             "id": "870917732",
             "name": "SOKKELDIREKTORATET",
             "orgPath": "/STAT/977161630/870917732",
             "organisasjonsform": "ORGL",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Sokkeldirektoratet"
             },
             "uri": "https://organization-catalog.fellesdatakatalog.digdir.no/organizations/870917732"
         },
-        "title":
-        {
+        "title": {
             "nb": "Datakatalog for OLJEDIREKTORATET"
         },
         "uri": "https://registrering.fellesdatakatalog.digdir.no/catalogs/870917732"
@@ -36,34 +30,23 @@
     "conformsTo": null,
     "contactPoint": null,
     "dctType": null,
-    "description":
-    {
+    "description": {
         "nb": "Innhold Etter 1.1.2009: Kommersielle undersøkelser samt ODs undersøkelser som er meldt inn til ODs innrapporteringssystem for undersøkelser på norsk sokkel. De geografiske områdene som vises er planlagte områder, som ikke nødvendigvis tilsvarer de faktiske. Dette inkluderer følgende typer undersøkelser: Ordinær seismisk undersøkelse Havbunnseismisk undersøkelse Elektromagnetisk undersøkelse Borestedsundersøkelse /site survey Grunnundersøkelser For en nærmere forklaring se innrapporteringssystemet under Klassifisering . Undersøkelsene kan ha følgende status: Under behandling  innmeldt av ansvarlig selskap og oppdatert i ODs databaser. Avventer saksbehandling i OD, Fiskeridirektoratet, Forsvaret og Havforskningsinstituttet. Planlagt  saksbehandling ferdigstilt i OD, Fiskeridirektoratet, Forsvaret og Havforskningsinstituttet. Oppstart vil skje ihht planlagt start dato. Pågående  undersøkelsen er i gang. Pause  undersøkelsen har av diverse grunner tatt en pause, for eksempel grunnet vær, båt etc. Ferdig  undersøkelsen er ferdig, og sluttmelding sendt til OD. Avlyst  av diverse årsaker ble undersøkelsen aldri startet opp. Før 1.1.2009: Undersøkelser som er gjort før ODs innrapporteringssystem ble startet. Geografiske områder er ikke inkludert og derfor er lenke til kart ikke tilgjengelig."
     },
-    "descriptionFormatted":
-    {
+    "descriptionFormatted": {
         "nb": "Innhold Etter 1.1.2009: Kommersielle undersøkelser samt ODs undersøkelser som er meldt inn til ODs innrapporteringssystem for undersøkelser på norsk sokkel. De geografiske områdene som vises er planlagte områder, som ikke nødvendigvis tilsvarer de faktiske. Dette inkluderer følgende typer undersøkelser: Ordinær seismisk undersøkelse Havbunnseismisk undersøkelse Elektromagnetisk undersøkelse Borestedsundersøkelse /site survey Grunnundersøkelser For en nærmere forklaring se innrapporteringssystemet under Klassifisering . Undersøkelsene kan ha følgende status: Under behandling &ndash; innmeldt av ansvarlig selskap og oppdatert i ODs databaser. Avventer saksbehandling i OD, Fiskeridirektoratet, Forsvaret og Havforskningsinstituttet. Planlagt &ndash; saksbehandling ferdigstilt i OD, Fiskeridirektoratet, Forsvaret og Havforskningsinstituttet. Oppstart vil skje ihht planlagt start dato. Pågående &ndash; undersøkelsen er i gang. Pause &ndash; undersøkelsen har av diverse grunner tatt en pause, for eksempel grunnet vær, båt etc. Ferdig &ndash; undersøkelsen er ferdig, og sluttmelding sendt til OD. Avlyst &ndash; av diverse årsaker ble undersøkelsen aldri startet opp. Før 1.1.2009: Undersøkelser som er gjort før ODs innrapporteringssystem ble startet. Geografiske områder er ikke inkludert og derfor er lenke til kart ikke tilgjengelig."
     },
-    "distribution":
-    [
+    "distribution": [
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://hotell.difi.no/?dataset=npd/survey/pending"
-            ],
+            "accessURL": ["https://hotell.difi.no/?dataset=npd/survey/pending"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "nb": "Pending: REST-API i formatene XML, JSON(P), CSV og YAML, og komplett nedlasting i CSV"
             },
-            "downloadURL":
-            [
-                "https://hotell.difi.no/download/npd/survey/pending?download"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://hotell.difi.no/download/npd/survey/pending?download"],
+            "fdkFormat": [
                 {
                     "code": "text/xml",
                     "name": "xml",
@@ -95,14 +78,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/text/csv"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -117,22 +98,14 @@
         },
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://hotell.difi.no/?dataset=npd/survey/last-updates"
-            ],
+            "accessURL": ["https://hotell.difi.no/?dataset=npd/survey/last-updates"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "nb": "Last updates: REST-API i formatene XML, JSON(P), CSV og YAML, og komplett nedlasting i CSV"
             },
-            "downloadURL":
-            [
-                "https://hotell.difi.no/download/npd/survey/last-updates?download"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://hotell.difi.no/download/npd/survey/last-updates?download"],
+            "fdkFormat": [
                 {
                     "code": "text/xml",
                     "name": "xml",
@@ -164,14 +137,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/application/json"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -186,22 +157,14 @@
         },
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://hotell.difi.no/?dataset=npd/survey/seismic/ongoing"
-            ],
+            "accessURL": ["https://hotell.difi.no/?dataset=npd/survey/seismic/ongoing"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "nb": "Ongoing: REST-API i formatene XML, JSON(P), CSV og YAML, og komplett nedlasting i CSV"
             },
-            "downloadURL":
-            [
-                "https://hotell.difi.no/download/npd/survey/seismic/ongoing?download"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://hotell.difi.no/download/npd/survey/seismic/ongoing?download"],
+            "fdkFormat": [
                 {
                     "code": "application/javascript",
                     "name": "javascript (OBSOLETED in favor of text/javascript)",
@@ -233,14 +196,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/application/x.yaml"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -255,22 +216,14 @@
         },
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://hotell.difi.no/?dataset=npd/survey/seismic/planned"
-            ],
+            "accessURL": ["https://hotell.difi.no/?dataset=npd/survey/seismic/planned"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "nb": "Planned: REST-API i formatene XML, JSON(P), CSV og YAML, og komplett nedlasting i CSV"
             },
-            "downloadURL":
-            [
-                "https://hotell.difi.no/download/npd/survey/seismic/planned?download"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://hotell.difi.no/download/npd/survey/seismic/planned?download"],
+            "fdkFormat": [
                 {
                     "code": "text/csv",
                     "name": "csv",
@@ -302,14 +255,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/application/javascript"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -324,22 +275,14 @@
         },
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://hotell.difi.no/?dataset=npd/survey/overview"
-            ],
+            "accessURL": ["https://hotell.difi.no/?dataset=npd/survey/overview"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "nb": "Overview: REST-API i formatene XML, JSON(P), CSV og YAML, og komplett nedlasting i CSV"
             },
-            "downloadURL":
-            [
-                "https://hotell.difi.no/download/npd/survey/overview?download"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://hotell.difi.no/download/npd/survey/overview?download"],
+            "fdkFormat": [
                 {
                     "code": "text/xml",
                     "name": "xml",
@@ -371,14 +314,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/application/x.yaml"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -393,22 +334,14 @@
         },
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://hotell.difi.no/?dataset=npd/survey/pause"
-            ],
+            "accessURL": ["https://hotell.difi.no/?dataset=npd/survey/pause"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "nb": "Pause: REST-API i formatene XML, JSON(P), CSV og YAML, og komplett nedlasting i CSV"
             },
-            "downloadURL":
-            [
-                "https://hotell.difi.no/download/npd/survey/pause?download"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://hotell.difi.no/download/npd/survey/pause?download"],
+            "fdkFormat": [
                 {
                     "code": "text/csv",
                     "name": "csv",
@@ -440,14 +373,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/application/javascript"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -462,22 +393,14 @@
         },
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://hotell.difi.no/?dataset=npd/survey/cancelled"
-            ],
+            "accessURL": ["https://hotell.difi.no/?dataset=npd/survey/cancelled"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "nb": "Cancelled: REST-API i formatene XML, JSON(P), CSV og YAML, og komplett nedlasting i CSV"
             },
-            "downloadURL":
-            [
-                "https://hotell.difi.no/download/npd/survey/cancelled?download"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://hotell.difi.no/download/npd/survey/cancelled?download"],
+            "fdkFormat": [
                 {
                     "code": "text/csv",
                     "name": "csv",
@@ -509,14 +432,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/application/x.yaml"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -531,22 +452,14 @@
         },
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://hotell.difi.no/?dataset=npd/survey/coordinates"
-            ],
+            "accessURL": ["https://hotell.difi.no/?dataset=npd/survey/coordinates"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "nb": "Coordinates: REST-API i formatene XML, JSON(P), CSV og YAML, og komplett nedlasting i CSV"
             },
-            "downloadURL":
-            [
-                "https://hotell.difi.no/download/npd/survey/coordinates?download"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://hotell.difi.no/download/npd/survey/coordinates?download"],
+            "fdkFormat": [
                 {
                     "code": "application/json",
                     "name": "json",
@@ -578,14 +491,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/application/javascript"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -600,8 +511,7 @@
         }
     ],
     "eurovocThemes": null,
-    "harvest":
-    {
+    "harvest": {
         "firstHarvested": "2018-01-06T01:02:29Z",
         "modified": "2023-05-08T12:51:55Z"
     },
@@ -611,18 +521,14 @@
     "hasCurrentnessAnnotation": null,
     "hasRelevanceAnnotation": null,
     "id": "85dba4d8-9d40-4c3e-9d8f-9e0544bd390f",
-    "identifier":
-    [
-        "https://data.norge.no/node/574"
-    ],
+    "identifier": ["https://data.norge.no/node/574"],
     "inSeries": null,
     "informationModel": null,
     "isAuthoritative": false,
     "isOpenData": true,
     "isRelatedToTransportportal": false,
     "issued": "2014-04-07",
-    "keyword":
-    [
+    "keyword": [
         {
             "nb": "petroleum"
         },
@@ -634,12 +540,10 @@
         }
     ],
     "landingPage": null,
-    "language":
-    [
+    "language": [
         {
             "code": "ENG",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "English",
                 "nb": "Engelsk",
                 "nn": "Engelsk",
@@ -651,17 +555,12 @@
     "legalBasisForAccess": null,
     "legalBasisForProcessing": null,
     "legalBasisForRestriction": null,
-    "losTheme":
-    [
+    "losTheme": [
         {
             "code": "energi",
             "isTema": true,
-            "losPaths":
-            [
-                "natur-klima-og-miljo/energi"
-            ],
-            "name":
-            {
+            "losPaths": ["natur-klima-og-miljo/energi"],
+            "name": {
                 "en": "Energy",
                 "nb": "Energi",
                 "nn": "Energi"
@@ -674,14 +573,12 @@
     "page": null,
     "prev": null,
     "provenance": null,
-    "publisher":
-    {
+    "publisher": {
         "id": "870917732",
         "name": "SOKKELDIREKTORATET",
         "orgPath": "/STAT/977161630/870917732",
         "organisasjonsform": "ORGL",
-        "prefLabel":
-        {
+        "prefLabel": {
             "nb": "Sokkeldirektoratet"
         },
         "uri": "https://organization-catalog.fellesdatakatalog.digdir.no/organizations/870917732"
@@ -693,12 +590,10 @@
     "spatial": null,
     "subject": null,
     "temporal": null,
-    "theme":
-    [
+    "theme": [
         {
             "code": "ENER",
-            "title":
-            {
+            "title": {
                 "en": "Energy",
                 "nb": "Energi",
                 "nn": "Energi",
@@ -707,13 +602,11 @@
             "uri": "http://publications.europa.eu/resource/authority/data-theme/ENER"
         }
     ],
-    "themeUris":
-    [
+    "themeUris": [
         "http://publications.europa.eu/resource/authority/data-theme/ENER",
         "https://psi.norge.no/los/tema/energi"
     ],
-    "title":
-    {
+    "title": {
         "nb": "Undersøkelser (Survey)"
     },
     "type": "datasets",

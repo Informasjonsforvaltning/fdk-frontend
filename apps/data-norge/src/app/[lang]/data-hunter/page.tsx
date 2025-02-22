@@ -23,9 +23,7 @@ type DataHunterPageProps = {
 const DataHunterPage = async (props: DataHunterPageProps) => {
     const params = await props.params;
 
-    const {
-        lang
-    } = params;
+    const { lang } = params;
 
     // Opt-in dynamic rendering
     await noStore();

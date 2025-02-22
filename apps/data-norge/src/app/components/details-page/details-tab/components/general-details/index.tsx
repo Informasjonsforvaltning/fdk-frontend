@@ -8,14 +8,22 @@ import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
 const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
-
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     const getMetadataQuality = (value: number) => {
-        if (value < 25) return { color: 'danger', label: `${dictionary.details.general.metadataQuality.labels.poor} (${value}%)` };
-        if (value < 50) return { color: 'warning', label: `${dictionary.details.general.metadataQuality.labels.sufficient} (${value}%)` };
-        if (value < 75) return { color: 'success', label: `${dictionary.details.general.metadataQuality.labels.good} (${value}%)` };
-        return { color: 'success', label: `${dictionary.details.general.metadataQuality.labels.excellent} (${value}%)` };
+        if (value < 25)
+            return { color: 'danger', label: `${dictionary.details.general.metadataQuality.labels.poor} (${value}%)` };
+        if (value < 50)
+            return {
+                color: 'warning',
+                label: `${dictionary.details.general.metadataQuality.labels.sufficient} (${value}%)`,
+            };
+        if (value < 75)
+            return { color: 'success', label: `${dictionary.details.general.metadataQuality.labels.good} (${value}%)` };
+        return {
+            color: 'success',
+            label: `${dictionary.details.general.metadataQuality.labels.excellent} (${value}%)`,
+        };
     };
 
     const metadataQualityScore = calculateMetadataScore(metadataScore?.dataset);
@@ -44,9 +52,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
                         >
-                            <Paragraph size='sm'>
-                                {dictionary.details.general.firstHarvestedHelpText}
-                            </Paragraph>
+                            <Paragraph size='sm'>{dictionary.details.general.firstHarvestedHelpText}</Paragraph>
                             <Paragraph size='sm'>
                                 <Link href='/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest'>
                                     {dictionary.details.general.firstHarvestedHelpTextLink}
@@ -55,25 +61,22 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         </HelpText>
                     </HStack>
                 </dt>
-                <dd>
-                    {new Date(dataset.harvest.firstHarvested).toLocaleString(locale, { dateStyle: 'long' })}
-                </dd>
-                {
-                    (!dataset.page && !showEmptyRows) ? null :
+                <dd>{new Date(dataset.harvest.firstHarvested).toLocaleString(locale, { dateStyle: 'long' })}</dd>
+                {!dataset.page && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.general.page}:</dt>
                         <dd>
-                            {
-                                dataset.page ?
+                            {dataset.page ? (
                                 <Link href={dataset.page}>
                                     {dataset.page}
                                     <ExternalLinkIcon />
-                                </Link> :
+                                </Link>
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
+                )}
                 <dt>
                     <HStack>
                         {dictionary.details.general.metadataQuality.title}:
@@ -82,9 +85,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
                         >
-                            <Paragraph size='sm'>
-                                {dictionary.details.general.metadataQuality.helpText}
-                            </Paragraph>
+                            <Paragraph size='sm'>{dictionary.details.general.metadataQuality.helpText}</Paragraph>
                             <Paragraph size='sm'>
                                 <Link href='/nb/docs/metadata-quality'>
                                     {dictionary.details.general.metadataQuality.helpTextLink}

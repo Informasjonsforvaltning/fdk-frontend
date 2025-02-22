@@ -4,10 +4,10 @@
 
 Make sure you have the following dependencies installed on your machine:
 
--   [Node.js](https://nodejs.org/en/download/)
-    -   preferred installation method: [nvm](https://github.com/nvm-sh/nvm)
--   [Yarn](https://yarnpkg.com/getting-started/install)
--   Make sure you have an `.env` file at the root of the project like `.env.example` with the correct values
+- [Node.js](https://nodejs.org/en/download/)
+    - preferred installation method: [nvm](https://github.com/nvm-sh/nvm)
+- [Yarn](https://yarnpkg.com/getting-started/install)
+- Make sure you have an `.env` file at the root of the project like `.env.example` with the correct values
 
 ## Start the application
 
