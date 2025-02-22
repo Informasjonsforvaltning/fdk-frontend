@@ -7,14 +7,14 @@ import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { ToggleGroup, Heading, Spinner, Textfield, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
 import HStack from '@fdk-frontend/ui/hstack';
 
-import styles from './metadata-page.module.scss';
+import styles from './metadata-tab.module.scss';
 
-export type MetadataPageProps = {
-    uri?: string;
+export type MetadataTabProps = {
+    uri: string;
     dictionary: Dictionary;
 }
 
-const MetadataPage = ({ children, uri, dictionary, ...props }: MetadataPageProps & React.HTMLAttributes<HTMLDivElement>) => {
+const MetadataTab = ({ children, uri, dictionary, ...props }: MetadataTabProps & React.HTMLAttributes<HTMLDivElement>) => {
 
     const [contentType, setContentType] = useState<string>('text/turtle');
     const [source, setSource] = useState<string>('');
@@ -140,4 +140,4 @@ const MetadataPage = ({ children, uri, dictionary, ...props }: MetadataPageProps
     );
 };
 
-export default MetadataPage;
+export default MetadataTab;

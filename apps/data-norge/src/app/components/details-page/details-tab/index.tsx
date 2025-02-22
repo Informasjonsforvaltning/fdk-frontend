@@ -3,8 +3,8 @@ import { Heading, Link, ChipGroup, ChipToggle, Button } from '@digdir/designsyst
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import PlaceholderBox from '../placeholder-box/';
-import PlaceholderText from '../placeholder-text/';
+import PlaceholderBox from '@fdk-frontend/ui/placeholder-box/';
+import PlaceholderText from '@fdk-frontend/ui/placeholder-text/';
 import GeneralDetails from './components/general-details';
 import ContactDetails from './components/contact-details';
 import ContentDetails from './components/content-details';
@@ -12,24 +12,24 @@ import LegalDetails, { hasLegalBasis } from './components/legal-details';
 import ConceptDetails from './components/concept-details';
 import RelatedDetails from './components/related-details';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import styles from './dataset-details.module.scss';
+import styles from './details-tab.module.scss';
 
-const DatasetDetailsContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
+const DatasetDetailsTabContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
 
 export type DatasetDetailsProps = {
     dataset: JSONValue;
-    related: JSONValue;
     locale: LocaleCodes;
-    metadataScore?: JSONValue;
     dictionary: Dictionary;
+    metadataScore?: JSONValue;
+    related?: JSONValue;
 }
 
-const DatasetDetails = ({ dataset, related, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
+const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
 
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     return (
-        <DatasetDetailsContext.Provider value={{ showEmptyRows }}>
+        <DatasetDetailsTabContext.Provider value={{ showEmptyRows }}>
             <div className={styles.details}>
                 <Button
                     className={styles.toggleButton}
@@ -139,9 +139,9 @@ const DatasetDetails = ({ dataset, related, locale, dictionary, metadataScore }:
                     }
                 </section>
             </div>
-        </DatasetDetailsContext.Provider>
+        </DatasetDetailsTabContext.Provider>
     );
 };
 
-export default DatasetDetails;
-export { DatasetDetailsContext };
+export default DatasetDetailsTab;
+export { DatasetDetailsTabContext };

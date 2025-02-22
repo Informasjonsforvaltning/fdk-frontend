@@ -3,11 +3,11 @@ import cn from 'classnames';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import HStack from '@fdk-frontend/ui/hstack';
-import AccessLevelTag from '../../../access-level-tag';
-import PlaceholderBox from '../../../placeholder-box';
+import AccessLevelTag from '@fdk-frontend/ui/access-level-tag';
+import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import { DatasetDetailsProps } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import styles from '../../dataset-details.module.scss';
+import styles from '../../details-tab.module.scss';
 
 const RelatedDetails = ({ related, locale, dictionary }: { related: any[] } & Omit<DatasetDetailsProps, 'dataset'>) => {
     // console.log(related);

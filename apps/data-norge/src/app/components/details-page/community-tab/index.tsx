@@ -6,7 +6,7 @@ import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 import VStack from '@fdk-frontend/ui/vstack';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
-import PlaceholderBox from '../placeholder-box/';
+import PlaceholderBox from '@fdk-frontend/ui/placeholder-box/';
 import styles from './community-tab.module.scss';
 import TopicRow from './components/topic-row';
 
