@@ -1,75 +1,74 @@
 .container {
-  position: relative;
+    position: relative;
 
-  .scroller {
-    overflow: auto;
+    .scroller {
+        overflow: auto;
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        &:before {
+            left: 0;
+            right: 0;
+            height: 1rem;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
+        }
+
+        &:after {
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+        }
+    }
 
     &:before,
     &:after {
-      content: '';
-      position: absolute;
-      pointer-events: none;
-      z-index: 1;
-      transition: opacity 0.3s;
-      opacity:0;
+        content: '';
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+        transition: opacity 0.3s;
+        opacity: 0;
     }
 
     &:before {
-      left: 0;
-      right: 0;
-      height: 1rem;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 1rem;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
     }
 
     &:after {
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 1rem;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 1rem;
+        background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent);
     }
-  }
 
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    pointer-events: none;
-    z-index: 1;
-    transition: opacity 0.3s;
-    opacity:0;
-  }
+    &.shadowLeft::before {
+        opacity: 0.5;
+    }
 
-  &:before {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 1rem;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
-  }
+    &.shadowRight::after {
+        opacity: 0.5;
+    }
 
-  &:after {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 1rem;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent);
-  }
+    &.shadowTop .inner::before {
+        opacity: 0.5;
+    }
 
-  &.shadowLeft::before {
-    opacity: 0.5;
-  }
-
-  &.shadowRight::after {
-    opacity: 0.5;
-  }
-
-  &.shadowTop .inner::before {
-    opacity: 0.5;
-  }
-
-  &.shadowBottom .inner::after {
-    opacity: 0.5;
-  }
-
+    &.shadowBottom .inner::after {
+        opacity: 0.5;
+    }
 }

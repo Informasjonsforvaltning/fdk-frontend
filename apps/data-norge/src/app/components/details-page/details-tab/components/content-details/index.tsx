@@ -7,7 +7,6 @@ import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
 const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
-
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     return (
@@ -19,244 +18,235 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                 {dictionary.details.content.title}
             </Heading>
             <dl>
-                {
-                    (!dataset.language && !showEmptyRows) ? null :
+                {!dataset.language && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.language}:</dt>
                         <dd>
-                            {
-                                dataset.language ?
-                                dataset.language.map((language: any) => 
-                                    printLocaleValue(locale, language.prefLabel)).join(', ') :
+                            {dataset.language ? (
+                                dataset.language
+                                    .map((language: any) => printLocaleValue(locale, language.prefLabel))
+                                    .join(', ')
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset.qualifiedAttributions && !showEmptyRows) ? null :
+                )}
+                {!dataset.qualifiedAttributions && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.qualifiedAttributions}:</dt>
                         <dd>
-                            {
-                                dataset.qualifiedAttributions ?
+                            {dataset.qualifiedAttributions ? (
                                 <ol>
                                     {dataset.qualifiedAttributions.map((attribution: any, i: number) => (
                                         <li key={`attribution-${i}`}>
-                                            {
-                                                attribution.agent.uri ?
+                                            {attribution.agent.uri ? (
                                                 <Link href={attribution.agent.uri}>
                                                     {printLocaleValue(locale, attribution.agent.prefLabel)}
                                                     <ExternalLinkIcon />
-                                                </Link> :
+                                                </Link>
+                                            ) : (
                                                 printLocaleValue(locale, attribution.agent.prefLabel)
-                                            }
+                                            )}
                                         </li>
                                     ))}
-                                </ol> :
+                                </ol>
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset.provenance && !showEmptyRows) ? null :
+                )}
+                {!dataset.provenance && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.provenance}:</dt>
                         <dd>
-                            {
-                                dataset.provenance ?
-                                printLocaleValue(locale, dataset.provenance.prefLabel) :
+                            {dataset.provenance ? (
+                                printLocaleValue(locale, dataset.provenance.prefLabel)
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.accrualPeriodicity && !showEmptyRows) ? null :
+                )}
+                {!dataset?.accrualPeriodicity && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.accrualPeriodicity}:</dt>
                         <dd>
-                            {
-                                dataset.accrualPeriodicity ?
-                                <span style={{textTransform:'capitalize'}}>
+                            {dataset.accrualPeriodicity ? (
+                                <span style={{ textTransform: 'capitalize' }}>
                                     {printLocaleValue(locale, dataset.accrualPeriodicity.prefLabel)}
-                                </span> :
+                                </span>
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.issued && !showEmptyRows) ? null :
+                )}
+                {!dataset?.issued && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.issued}:</dt>
                         <dd>
-                            {
-                                dataset.issued ?
-                                new Date(dataset.issued).toLocaleString(locale, { dateStyle: 'long' }) :
+                            {dataset.issued ? (
+                                new Date(dataset.issued).toLocaleString(locale, { dateStyle: 'long' })
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.harvest?.modified && !showEmptyRows) ? null :
+                )}
+                {!dataset?.harvest?.modified && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.modified}:</dt>
                         <dd>
-                            {
-                                dataset?.harvest?.modified ?
-                                new Date(dataset.harvest.modified).toLocaleString(locale, { dateStyle: 'long' }) :
+                            {dataset?.harvest?.modified ? (
+                                new Date(dataset.harvest.modified).toLocaleString(locale, { dateStyle: 'long' })
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.hasAccuracyAnnotation?.hasBody && !showEmptyRows) ? null :
+                )}
+                {!dataset?.hasAccuracyAnnotation?.hasBody && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.accuracyAnnotation}:</dt>
                         <dd>
-                            {
-                                dataset?.hasAccuracyAnnotation?.hasBody ?
-                                printLocaleValue(locale, dataset?.hasAccuracyAnnotation?.hasBody) :
+                            {dataset?.hasAccuracyAnnotation?.hasBody ? (
+                                printLocaleValue(locale, dataset?.hasAccuracyAnnotation?.hasBody)
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.hasAvailabilityAnnotation?.hasBody && !showEmptyRows) ? null :
+                )}
+                {!dataset?.hasAvailabilityAnnotation?.hasBody && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.availabilityAnnotation}:</dt>
                         <dd>
-                            {
-                                dataset?.hasAvailabilityAnnotation?.hasBody ?
-                                printLocaleValue(locale, dataset?.hasAvailabilityAnnotation?.hasBody) :
+                            {dataset?.hasAvailabilityAnnotation?.hasBody ? (
+                                printLocaleValue(locale, dataset?.hasAvailabilityAnnotation?.hasBody)
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.hasCompletenessAnnotation?.hasBody && !showEmptyRows) ? null :
+                )}
+                {!dataset?.hasCompletenessAnnotation?.hasBody && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.completenessAnnotation}:</dt>
                         <dd>
-                            {
-                                dataset?.hasCompletenessAnnotation?.hasBody ?
-                                printLocaleValue(locale, dataset?.hasCompletenessAnnotation?.hasBody) :
+                            {dataset?.hasCompletenessAnnotation?.hasBody ? (
+                                printLocaleValue(locale, dataset?.hasCompletenessAnnotation?.hasBody)
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.hasCurrentnessAnnotation?.hasBody && !showEmptyRows) ? null :
+                )}
+                {!dataset?.hasCurrentnessAnnotation?.hasBody && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.currentnessAnnotation}:</dt>
                         <dd>
-                            {
-                                dataset?.hasCurrentnessAnnotation?.hasBody ?
-                                printLocaleValue(locale, dataset?.hasCurrentnessAnnotation?.hasBody) :
+                            {dataset?.hasCurrentnessAnnotation?.hasBody ? (
+                                printLocaleValue(locale, dataset?.hasCurrentnessAnnotation?.hasBody)
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.hasRelevanceAnnotation?.hasBody && !showEmptyRows) ? null :
+                )}
+                {!dataset?.hasRelevanceAnnotation?.hasBody && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.relevanceAnnotation}:</dt>
                         <dd>
-                            {
-                                dataset?.hasRelevanceAnnotation?.hasBody ?
-                                printLocaleValue(locale, dataset?.hasRelevanceAnnotation?.hasBody) :
+                            {dataset?.hasRelevanceAnnotation?.hasBody ? (
+                                printLocaleValue(locale, dataset?.hasRelevanceAnnotation?.hasBody)
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.spatial && !showEmptyRows) ? null :
+                )}
+                {!dataset?.spatial && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.spatial}:</dt>
                         <dd>
-                            {
-                                dataset?.spatial ?
+                            {dataset?.spatial ? (
                                 <ol>
-                                    {
-                                        dataset?.spatial?.map((spatial: any, i: number) => {
-                                            if (spatial.prefLabel && spatial.uri) {
-                                                return (
-                                                    <li key={`spatial-${i}`}>
-                                                        <Link href={spatial.uri}>
-                                                            {printLocaleValue(locale, spatial?.prefLabel)}
-                                                            <ExternalLinkIcon />
-                                                        </Link>
-                                                    </li>
-                                                );
-                                            } else if (spatial.prefLabel) {
-                                                return (
-                                                    <li key={`spatial-${i}`}>
+                                    {dataset?.spatial?.map((spatial: any, i: number) => {
+                                        if (spatial.prefLabel && spatial.uri) {
+                                            return (
+                                                <li key={`spatial-${i}`}>
+                                                    <Link href={spatial.uri}>
                                                         {printLocaleValue(locale, spatial?.prefLabel)}
-                                                    </li>
-                                                );
-                                            } else if (spatial.uri) {
-                                                return (
-                                                    <li key={`spatial-${i}`}>
-                                                        <Link href={spatial.uri}>
-                                                            {spatial.uri}
-                                                            <ExternalLinkIcon />
-                                                        </Link>
-                                                    </li>
-                                                );
-                                            }
-                                        })
-                                    }
-                                </ol> :
+                                                        <ExternalLinkIcon />
+                                                    </Link>
+                                                </li>
+                                            );
+                                        } else if (spatial.prefLabel) {
+                                            return (
+                                                <li key={`spatial-${i}`}>
+                                                    {printLocaleValue(locale, spatial?.prefLabel)}
+                                                </li>
+                                            );
+                                        } else if (spatial.uri) {
+                                            return (
+                                                <li key={`spatial-${i}`}>
+                                                    <Link href={spatial.uri}>
+                                                        {spatial.uri}
+                                                        <ExternalLinkIcon />
+                                                    </Link>
+                                                </li>
+                                            );
+                                        }
+                                    })}
+                                </ol>
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.temporal && !showEmptyRows) ? null :
+                )}
+                {!dataset?.temporal && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.temporal}:</dt>
                         <dd>
-                            {
-                                dataset?.temporal ?
-                                <ol className="no-style">
+                            {dataset?.temporal ? (
+                                <ol className='no-style'>
                                     {dataset?.temporal?.map((temporal: any, i: number) => (
                                         <li key={`temporal-${i}`}>
                                             <dl>
-                                                {
-                                                    temporal.startDate && 
+                                                {temporal.startDate && (
                                                     <>
                                                         <dt>{dictionary.details.content.temporalFrom}:</dt>
-                                                        <dd>{new Date(temporal.startDate).toLocaleString(locale, { dateStyle: 'long' })}</dd>
+                                                        <dd>
+                                                            {new Date(temporal.startDate).toLocaleString(locale, {
+                                                                dateStyle: 'long',
+                                                            })}
+                                                        </dd>
                                                     </>
-                                                }
-                                                {
-                                                    temporal.endDate && 
+                                                )}
+                                                {temporal.endDate && (
                                                     <>
                                                         <dt>{dictionary.details.content.temporalTo}:</dt>
-                                                        <dd>{new Date(temporal.endDate).toLocaleString(locale, { dateStyle: 'long' })}</dd>
+                                                        <dd>
+                                                            {new Date(temporal.endDate).toLocaleString(locale, {
+                                                                dateStyle: 'long',
+                                                            })}
+                                                        </dd>
                                                     </>
-                                                }
+                                                )}
                                             </dl>
                                         </li>
                                     ))}
-                                </ol> :
+                                </ol>
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
-                {
-                    (!dataset?.conformsTo && !showEmptyRows) ? null :
+                )}
+                {!dataset?.conformsTo && !showEmptyRows ? null : (
                     <>
                         <dt>
                             <HStack>
@@ -266,15 +256,12 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                     size='sm'
                                     style={{ transform: 'scale(0.75)' }}
                                 >
-                                    <Paragraph size='sm'>
-                                        {dictionary.details.content.conformsToHelpText}
-                                    </Paragraph>
+                                    <Paragraph size='sm'>{dictionary.details.content.conformsToHelpText}</Paragraph>
                                 </HelpText>
                             </HStack>
                         </dt>
                         <dd>
-                            {
-                                dataset?.conformsTo ?
+                            {dataset?.conformsTo ? (
                                 <ol>
                                     {dataset?.conformsTo?.map((item: any, i: number) => (
                                         <li key={item.uri}>
@@ -284,12 +271,13 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                             </Link>
                                         </li>
                                     ))}
-                                </ol> :
+                                </ol>
+                            ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
-                }
+                )}
             </dl>
         </section>
     );

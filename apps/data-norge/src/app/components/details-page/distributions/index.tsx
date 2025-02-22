@@ -22,7 +22,15 @@ export type DistributionsProps = {
     dictionary: Dictionary;
 };
 
-const Distributions = ({ exampleData = [], datasets = [], apis = [], className, locale, dictionary, ...props }: DistributionsProps) => {
+const Distributions = ({
+    exampleData = [],
+    datasets = [],
+    apis = [],
+    className,
+    locale,
+    dictionary,
+    ...props
+}: DistributionsProps) => {
     return (
         <div className={cn(styles.distributions, className)}>
             <Heading
@@ -34,8 +42,7 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                     <Badge>{sumArrayLengths(datasets, exampleData)}</Badge>
                 </HStack>
             </Heading>
-            {
-                datasets && datasets.length ?
+            {datasets && datasets.length ? (
                 <Accordion border>
                     {datasets.map((distribution, index) => (
                         <Accordion.Item key={`${distribution.accessURL}-${index}`}>
@@ -58,33 +65,33 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                             </Accordion.Content>
                         </Accordion.Item>
                     ))}
-                    {exampleData && exampleData.map((example, index) => (
-                        <Accordion.Item key={example.accessURL}>
-                            <Accordion.Header
-                                level={3}
-                                className={styles.header}
-                            >
-                                <DistributionHeader
-                                    distribution={example}
-                                    locale={locale}
-                                    dictionary={dictionary}
-                                    exampleData={true}
-                                />
-                            </Accordion.Header>
-                            <Accordion.Content className={styles.content}>
-                                <DistributionDetails
-                                    distribution={example}
-                                    locale={locale}
-                                    dictionary={dictionary}
-                                />
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    ))}
-                </Accordion> :
-                <PlaceholderBox>
-                    {dictionary.distributions.placeholder}
-                </PlaceholderBox>
-            }
+                    {exampleData &&
+                        exampleData.map((example, index) => (
+                            <Accordion.Item key={example.accessURL}>
+                                <Accordion.Header
+                                    level={3}
+                                    className={styles.header}
+                                >
+                                    <DistributionHeader
+                                        distribution={example}
+                                        locale={locale}
+                                        dictionary={dictionary}
+                                        exampleData={true}
+                                    />
+                                </Accordion.Header>
+                                <Accordion.Content className={styles.content}>
+                                    <DistributionDetails
+                                        distribution={example}
+                                        locale={locale}
+                                        dictionary={dictionary}
+                                    />
+                                </Accordion.Content>
+                            </Accordion.Item>
+                        ))}
+                </Accordion>
+            ) : (
+                <PlaceholderBox>{dictionary.distributions.placeholder}</PlaceholderBox>
+            )}
             <Heading
                 level={4}
                 size='xxsmall'
@@ -94,8 +101,7 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                     <Badge>{apis.length}</Badge>
                 </HStack>
             </Heading>
-            {
-                apis && apis.length ?
+            {apis && apis.length ? (
                 <Accordion border>
                     {apis.map((api, index) => (
                         <Accordion.Item key={api.id}>
@@ -118,11 +124,10 @@ const Distributions = ({ exampleData = [], datasets = [], apis = [], className, 
                             </Accordion.Content>
                         </Accordion.Item>
                     ))}
-                </Accordion> :
-                <PlaceholderBox>
-                    {dictionary.apis.placeholder}
-                </PlaceholderBox>
-            }
+                </Accordion>
+            ) : (
+                <PlaceholderBox>{dictionary.apis.placeholder}</PlaceholderBox>
+            )}
         </div>
     );
 };

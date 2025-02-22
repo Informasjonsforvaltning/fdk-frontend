@@ -19,35 +19,33 @@ const RelatedDetails = ({ related, locale, dictionary }: { related: any[] } & Om
             >
                 {dictionary.details.related.title}
             </Heading>
-            {
-                related && related.length ?
+            {related && related.length ? (
                 <ScrollShadows className={styles.tableScroller}>
-                    <table className={cn('table', styles.relatedTable)} style={{minWidth:475}}>
+                    <table
+                        className={cn('table', styles.relatedTable)}
+                        style={{ minWidth: 475 }}
+                    >
                         <tbody>
-                            {
-                                related && related.map((dataset: any) => (
+                            {related &&
+                                related.map((dataset: any) => (
                                     <tr key={dataset.id}>
                                         <td>
                                             <Link href={`${dataset.id}`}>
-                                                {
-                                                    printLocaleValue(locale, dataset.title) ||
-                                                    dictionary.realted.namelessDataset
-                                                }
+                                                {printLocaleValue(locale, dataset.title) ||
+                                                    dictionary.realted.namelessDataset}
                                             </Link>
                                         </td>
                                         <td>
                                             <span className={styles.relatedPublisher}>
-                                                {
-                                                    dataset.publisher ?
-                                                    printLocaleValue(locale, dataset.publisher?.prefLabel) :
-                                                    dataset.organization ?
-                                                    printLocaleValue(locale, dataset.organization?.prefLabel) :
-                                                    `Ukjent virksomhet`
-                                                }
+                                                {dataset.publisher
+                                                    ? printLocaleValue(locale, dataset.publisher?.prefLabel)
+                                                    : dataset.organization
+                                                      ? printLocaleValue(locale, dataset.organization?.prefLabel)
+                                                      : `Ukjent virksomhet`}
                                             </span>
                                         </td>
                                         <td align='right'>
-                                            <HStack style={{justifyContent: 'flex-end', gap: '0.5rem'}}>
+                                            <HStack style={{ justifyContent: 'flex-end', gap: '0.5rem' }}>
                                                 <AccessLevelTag
                                                     accessCode={dataset.accessRights?.code}
                                                     dictionary={dictionary}
@@ -56,13 +54,13 @@ const RelatedDetails = ({ related, locale, dictionary }: { related: any[] } & Om
                                             </HStack>
                                         </td>
                                     </tr>
-                                ))
-                            }
+                                ))}
                         </tbody>
                     </table>
-                </ScrollShadows> :
+                </ScrollShadows>
+            ) : (
                 <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
-            }
+            )}
         </section>
     );
 };

@@ -1,184 +1,184 @@
 {
-	"breadcrumbs": {
-		"datasets": "Datasets"
-	},
-	"header": {
-		"namelessOrganization": "Nameless organization",
-		"namelessDataset": "Nameless dataset",
-		"useDatasetButton": "Use dataset",
-		"datasetsTagLink": "Datasets",
-		"published": "Published"
-	},
-	"accessRights": {
-		"helpTextTitle": "Glossary",
-		"unknownLabel": "Unknown access level",
-		"readMoreLinkText": "Read more about access levels here",
-		"codes": {
-			"NON_PUBLIC": {
-				"label": "Non-public access",
-				"helpText": "Not publicly available due to privacy, security, or other reasons. This category may include resources containing sensitive or personal information."
-			},
-			"RESTRICTED": {
-				"label": "Restricted access",
-				"helpText": "Only available under certain conditions. This category may include resources requiring payment, resources shared under confidentiality agreements, or resources where the publisher or owner has not yet decided if they can be made public."
-			},
-			"PUBLIC": {
-				"label": "Public access",
-				"helpText": "Publicly available to everyone. Access may still require registration and an API key request, as long as anyone can request such registration and/or API keys."
-			}
-		}
-	},
-	"openData": {
-		"label": "Open data",
-		"helpTextTitle": "Glossary",
-		"helpText": "The dataset is classified as public access and has at least one distribution with an approved open license.",
-		"readMoreLinkText": "Read more about licenses here"
-	},
-	"tabs": {
-		"overview": "Overview",
-		"distributions": "Distributions & API",
-		"details": "Details",
-		"community": "Discussions",
-		"rdf": "RDF"
-	},
-	"overview": {
-		"description": {
-			"title": "Description",
-			"placeholder": "This dataset has no description"
-		}
-	},
-	"distributions": {
-		"title": "Distributions",
-		"placeholder": "This dataset has no distributions.",
-		"header": {
-			"nameless": "Nameless distribution",
-			"openLicense": "Open license",
-			"exampleData": "Example data",
-			"downloadBtnLabel": "Download"
-		},
-		"details": {
-			"description": "Description",
-			"accessURL": "Access URL",
-			"downloadURL": "Direct download",
-			"accessService": "API",
-			"page": "Documentation",
-			"license": "License",
-			"conformsTo": "Conforms to",
-			"noData": "Not provided"
-		}
-	},
-	"apis": {
-		"title": "APIs providing this dataset",
-		"placeholder": "No registered APIs provide this dataset.",
-		"header": {
-			"nameless": "Nameless API",
-			"gotoBtn": "Go to API"
-		},
-		"details": {
-			"noData": "Not provided",
-			"description": "Description",
-			"endpoint": "Endpoint",
-			"url": "URL",
-			"page": "Documentation"
-		}
-	},
-	"openLicenseTag": {
-		"label": "Valid open license",
-		"helpTextTitle": "Glossary",
-		"helpText": "This is a valid open license that allows free use, sharing, and reuse of data in compliance with open data principles. These licenses are recognized for use in public and private datasets, both nationally and internationally.",
-		"linkText": "Read more about licenses here"
-	},
-	"similarDatasets": "Similar datasets",
-	"details": {
-		"showEmptyRows": "Show empty rows",
-		"hideEmptyRows": "Hide empty rows",
-		"noData": "Not provided",
-		"general": {
-			"title": "General",
-			"publisher": "Publisher",
-			"firstHarvested": "Published",
-			"firstHarvestedHelpText": "This date indicates when the dataset was harvested by data.norge.no. It may have been available earlier elsewhere.",
-			"firstHarvestedHelpTextTitle": "Glossary",
-			"firstHarvestedHelpTextLink": "Read more about harvesting here",
-			"page": "Documentation",
-			"metadataQuality": {
-				"title": "Metadata Quality",
-				"helpText": "Metadata quality is an indicator of how well the datasets are described using metadata.",
-				"helpTextTitle": "Glossary",
-				"helpTextLink": "Read more about metadata quality here",
-				"labels": {
-					"excellent": "Excellent",
-					"good": "Good",
-					"sufficient": "Sufficient",
-					"poor": "Poor"
-				}
-			}
-		},
-		"contactPoint": {
-			"title": "Contact information",
-			"fullname": "Contact person",
-			"organizationUnit": "Unit",
-			"email": "Email",
-			"telephone": "Telephone"
-		},
-		"content": {
-			"title": "Content",
-			"language": "Language",
-			"qualifiedAttributions": "Content providers",
-			"provenance": "Provenance",
-			"accrualPeriodicity": "Update frequency",
-			"issued": "Issued",
-			"modified": "Last updated",
-			"accuracyAnnotation": "Accuracy",
-			"availabilityAnnotation": "Availability",
-			"completenessAnnotation": "Completeness",
-			"currentnessAnnotation": "Currentness",
-			"relevanceAnnotation": "Relevance",
-			"spatial": "Geographical scope",
-			"temporal": "Temporal scope",
-			"temporalFrom": "From",
-			"temporalTo": "To",
-			"conformsTo": "Conforms to",
-			"conformsToHelpText": "Reference to an implementation rule or other specification that forms the basis for the dataset."
-		},
-		"legal": {
-			"title": "Legal basis",
-			"legalBasisForAccess": "Legal basis for access",
-			"legalBasisForProcessing": "Legal basis for processing",
-			"legalBasisForRestriction": "Legal basis for restriction"
-		},
-		"concepts": {
-			"title": "Concepts used in the dataset"
-		},
-		"related": {
-			"title": "Relation to other datasets",
-			"namelessDataset": "Nameless dataset",
-			"namelessOrganization": "Nameless organization"
-		},
-		"themes": "Themes",
-		"keywords": "Keywords"
-	},
-	"community": {
-		"title": "Discussions on Datalandsbyen",
-		"noData": "No discussions found",
-		"notice": {
-			"title": "What is Datalandsbyen?",
-			"body": "Datalandsbyen is our online forum where you can request data, share experiences, and ask for advice related to data sharing and information management.",
-			"gotoLink": "Go to Datalandsbyen",
-			"moreInfo": "More information"
-		},
-		"topicRow": {
-			"postedBy": "Posted by",
-			"votes": "Votes",
-			"posts": "Posts",
-			"views": "Views"
-		}
-	},
-	"rdf": {
-		"titleHelpText": "All URLs to resources on data.norge.no can provide RDF metadata in various formats, depending on the Accept header sent with the request.",
-		"titleHelpTextLink": "Read more about RDF and the formats we support here",
-		"titleHelpTextTitle": "Glossary",
-		"copyButton": ["Copy", "Copied!"],
-		"loading": "Loading"
-	}
+    "breadcrumbs": {
+        "datasets": "Datasets"
+    },
+    "header": {
+        "namelessOrganization": "Nameless organization",
+        "namelessDataset": "Nameless dataset",
+        "useDatasetButton": "Use dataset",
+        "datasetsTagLink": "Datasets",
+        "published": "Published"
+    },
+    "accessRights": {
+        "helpTextTitle": "Glossary",
+        "unknownLabel": "Unknown access level",
+        "readMoreLinkText": "Read more about access levels here",
+        "codes": {
+            "NON_PUBLIC": {
+                "label": "Non-public access",
+                "helpText": "Not publicly available due to privacy, security, or other reasons. This category may include resources containing sensitive or personal information."
+            },
+            "RESTRICTED": {
+                "label": "Restricted access",
+                "helpText": "Only available under certain conditions. This category may include resources requiring payment, resources shared under confidentiality agreements, or resources where the publisher or owner has not yet decided if they can be made public."
+            },
+            "PUBLIC": {
+                "label": "Public access",
+                "helpText": "Publicly available to everyone. Access may still require registration and an API key request, as long as anyone can request such registration and/or API keys."
+            }
+        }
+    },
+    "openData": {
+        "label": "Open data",
+        "helpTextTitle": "Glossary",
+        "helpText": "The dataset is classified as public access and has at least one distribution with an approved open license.",
+        "readMoreLinkText": "Read more about licenses here"
+    },
+    "tabs": {
+        "overview": "Overview",
+        "distributions": "Distributions & API",
+        "details": "Details",
+        "community": "Discussions",
+        "rdf": "RDF"
+    },
+    "overview": {
+        "description": {
+            "title": "Description",
+            "placeholder": "This dataset has no description"
+        }
+    },
+    "distributions": {
+        "title": "Distributions",
+        "placeholder": "This dataset has no distributions.",
+        "header": {
+            "nameless": "Nameless distribution",
+            "openLicense": "Open license",
+            "exampleData": "Example data",
+            "downloadBtnLabel": "Download"
+        },
+        "details": {
+            "description": "Description",
+            "accessURL": "Access URL",
+            "downloadURL": "Direct download",
+            "accessService": "API",
+            "page": "Documentation",
+            "license": "License",
+            "conformsTo": "Conforms to",
+            "noData": "Not provided"
+        }
+    },
+    "apis": {
+        "title": "APIs providing this dataset",
+        "placeholder": "No registered APIs provide this dataset.",
+        "header": {
+            "nameless": "Nameless API",
+            "gotoBtn": "Go to API"
+        },
+        "details": {
+            "noData": "Not provided",
+            "description": "Description",
+            "endpoint": "Endpoint",
+            "url": "URL",
+            "page": "Documentation"
+        }
+    },
+    "openLicenseTag": {
+        "label": "Valid open license",
+        "helpTextTitle": "Glossary",
+        "helpText": "This is a valid open license that allows free use, sharing, and reuse of data in compliance with open data principles. These licenses are recognized for use in public and private datasets, both nationally and internationally.",
+        "linkText": "Read more about licenses here"
+    },
+    "similarDatasets": "Similar datasets",
+    "details": {
+        "showEmptyRows": "Show empty rows",
+        "hideEmptyRows": "Hide empty rows",
+        "noData": "Not provided",
+        "general": {
+            "title": "General",
+            "publisher": "Publisher",
+            "firstHarvested": "Published",
+            "firstHarvestedHelpText": "This date indicates when the dataset was harvested by data.norge.no. It may have been available earlier elsewhere.",
+            "firstHarvestedHelpTextTitle": "Glossary",
+            "firstHarvestedHelpTextLink": "Read more about harvesting here",
+            "page": "Documentation",
+            "metadataQuality": {
+                "title": "Metadata Quality",
+                "helpText": "Metadata quality is an indicator of how well the datasets are described using metadata.",
+                "helpTextTitle": "Glossary",
+                "helpTextLink": "Read more about metadata quality here",
+                "labels": {
+                    "excellent": "Excellent",
+                    "good": "Good",
+                    "sufficient": "Sufficient",
+                    "poor": "Poor"
+                }
+            }
+        },
+        "contactPoint": {
+            "title": "Contact information",
+            "fullname": "Contact person",
+            "organizationUnit": "Unit",
+            "email": "Email",
+            "telephone": "Telephone"
+        },
+        "content": {
+            "title": "Content",
+            "language": "Language",
+            "qualifiedAttributions": "Content providers",
+            "provenance": "Provenance",
+            "accrualPeriodicity": "Update frequency",
+            "issued": "Issued",
+            "modified": "Last updated",
+            "accuracyAnnotation": "Accuracy",
+            "availabilityAnnotation": "Availability",
+            "completenessAnnotation": "Completeness",
+            "currentnessAnnotation": "Currentness",
+            "relevanceAnnotation": "Relevance",
+            "spatial": "Geographical scope",
+            "temporal": "Temporal scope",
+            "temporalFrom": "From",
+            "temporalTo": "To",
+            "conformsTo": "Conforms to",
+            "conformsToHelpText": "Reference to an implementation rule or other specification that forms the basis for the dataset."
+        },
+        "legal": {
+            "title": "Legal basis",
+            "legalBasisForAccess": "Legal basis for access",
+            "legalBasisForProcessing": "Legal basis for processing",
+            "legalBasisForRestriction": "Legal basis for restriction"
+        },
+        "concepts": {
+            "title": "Concepts used in the dataset"
+        },
+        "related": {
+            "title": "Relation to other datasets",
+            "namelessDataset": "Nameless dataset",
+            "namelessOrganization": "Nameless organization"
+        },
+        "themes": "Themes",
+        "keywords": "Keywords"
+    },
+    "community": {
+        "title": "Discussions on Datalandsbyen",
+        "noData": "No discussions found",
+        "notice": {
+            "title": "What is Datalandsbyen?",
+            "body": "Datalandsbyen is our online forum where you can request data, share experiences, and ask for advice related to data sharing and information management.",
+            "gotoLink": "Go to Datalandsbyen",
+            "moreInfo": "More information"
+        },
+        "topicRow": {
+            "postedBy": "Posted by",
+            "votes": "Votes",
+            "posts": "Posts",
+            "views": "Views"
+        }
+    },
+    "rdf": {
+        "titleHelpText": "All URLs to resources on data.norge.no can provide RDF metadata in various formats, depending on the Accept header sent with the request.",
+        "titleHelpTextLink": "Read more about RDF and the formats we support here",
+        "titleHelpTextTitle": "Glossary",
+        "copyButton": ["Copy", "Copied!"],
+        "loading": "Loading"
+    }
 }

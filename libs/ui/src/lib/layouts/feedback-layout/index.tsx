@@ -22,7 +22,7 @@ const FeedbackLayout = async ({
 }: PropsWithChildren & FeedbackLayoutProps) => {
     // Opt-in SSR
     cookies();
-    
+
     return (
         <div className={styles.feedbackLayout}>
             {children}

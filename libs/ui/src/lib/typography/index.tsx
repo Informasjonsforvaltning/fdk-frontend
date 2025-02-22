@@ -14,7 +14,10 @@ const HeadingWithDivider = ({ children, className, ...rest }: HeadingProps) => (
 );
 
 const Subtext = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
-    <span className={cn(styles.subtext, className)} {...props} />
+    <span
+        className={cn(styles.subtext, className)}
+        {...props}
+    />
 );
 
 export { HeadingWithDivider, Subtext };

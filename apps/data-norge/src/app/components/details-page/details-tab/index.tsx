@@ -22,10 +22,9 @@ export type DatasetDetailsProps = {
     dictionary: Dictionary;
     metadataScore?: JSONValue;
     related?: JSONValue;
-}
+};
 
 const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
-
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     return (
@@ -55,43 +54,39 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                     dictionary={dictionary}
                     metadataScore={metadataScore}
                 />
-                {
-                    (!dataset.contactPoint && !showEmptyRows) ? null :
+                {!dataset.contactPoint && !showEmptyRows ? null : (
                     <ContactDetails
                         dataset={dataset}
                         locale={locale}
                         dictionary={dictionary}
                     />
-                }
+                )}
                 <ContentDetails
                     dataset={dataset}
                     locale={locale}
                     dictionary={dictionary}
                 />
-                {
-                    (!hasLegalBasis(dataset) && !showEmptyRows) ? null :
+                {!hasLegalBasis(dataset) && !showEmptyRows ? null : (
                     <LegalDetails
                         dataset={dataset}
                         locale={locale}
                         dictionary={dictionary}
                     />
-                }
-                {
-                    (!dataset.subject && !showEmptyRows) ? null :
+                )}
+                {!dataset.subject && !showEmptyRows ? null : (
                     <ConceptDetails
                         dataset={dataset}
                         locale={locale}
                         dictionary={dictionary}
                     />
-                }
-                {
-                    (!related?.length && !showEmptyRows) ? null :
+                )}
+                {!related?.length && !showEmptyRows ? null : (
                     <RelatedDetails
                         related={related}
                         locale={locale}
                         dictionary={dictionary}
                     />
-                }
+                )}
                 <section>
                     <Heading
                         level={4}
@@ -99,21 +94,20 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                     >
                         {dictionary.details.themes}
                     </Heading>
-                    {
-                        dataset.theme ? 
+                    {dataset.theme ? (
                         <ChipGroup size='sm'>
-                            {
-                                dataset.theme.map((theme: any) => 
-                                    <Link key={theme.code} href={`/datasets&theme=${theme.code}`}>
-                                        <ChipToggle>
-                                            {printLocaleValue(locale, theme.title)}
-                                        </ChipToggle>
-                                    </Link>
-                                )
-                            }
-                        </ChipGroup>:
+                            {dataset.theme.map((theme: any) => (
+                                <Link
+                                    key={theme.code}
+                                    href={`/datasets&theme=${theme.code}`}
+                                >
+                                    <ChipToggle>{printLocaleValue(locale, theme.title)}</ChipToggle>
+                                </Link>
+                            ))}
+                        </ChipGroup>
+                    ) : (
                         <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-                    }
+                    )}
                 </section>
                 <section>
                     <Heading
@@ -122,21 +116,22 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                     >
                         {dictionary.details.keywords}
                     </Heading>
-                    {
-                        dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? 
+                    {dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? (
                         <ChipGroup size='sm'>
-                            {
-                                dataset.keyword.filter((keyword: any) => keyword[locale]).map((keyword: any, i: number) => 
-                                    <Link key={`keyword-${i}`} href={`/datasets&q=${keyword[locale]}`}>
-                                        <ChipToggle>
-                                            {keyword[locale]}
-                                        </ChipToggle>
+                            {dataset.keyword
+                                .filter((keyword: any) => keyword[locale])
+                                .map((keyword: any, i: number) => (
+                                    <Link
+                                        key={`keyword-${i}`}
+                                        href={`/datasets&q=${keyword[locale]}`}
+                                    >
+                                        <ChipToggle>{keyword[locale]}</ChipToggle>
                                     </Link>
-                                )
-                            }
-                        </ChipGroup>:
+                                ))}
+                        </ChipGroup>
+                    ) : (
                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </section>
             </div>
         </DatasetDetailsTabContext.Provider>

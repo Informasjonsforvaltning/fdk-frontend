@@ -27,7 +27,7 @@ import {
     Tab,
     TabContent,
     HelpText,
-    Paragraph
+    Paragraph,
 } from '@digdir/designsystemet-react';
 
 import Distributions from '../distributions';
@@ -72,9 +72,8 @@ export default function DatasetDetailsPage({
     orgLogo,
     defaultActiveTab = 'overview',
     locale,
-    dictionaries
+    dictionaries,
 }: DatasetDetailsPageType) {
-
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
 
@@ -90,14 +89,13 @@ export default function DatasetDetailsPage({
         },
         {
             href: '#',
-            text: printLocaleValue(locale, resource.title)
+            text: printLocaleValue(locale, resource.title),
         },
     ];
 
     const updateUri = (tab: string) => {
-        window.history.pushState(null, "", `?tab=${tab}`);
-
-    }
+        window.history.pushState(null, '', `?tab=${tab}`);
+    };
 
     return (
         <div className={styles.detailsPage}>
@@ -108,12 +106,13 @@ export default function DatasetDetailsPage({
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    <OrgButton href={`/organizations/${resource.publisher?.id}`} orgLogoSrc={orgLogo}>
-                        {
-                            resource.publisher ?
-                            printLocaleValue(locale, resource.publisher?.prefLabel) :
-                            dictionaries.detailsPage.header.namelessOrganization
-                        }
+                    <OrgButton
+                        href={`/organizations/${resource.publisher?.id}`}
+                        orgLogoSrc={orgLogo}
+                    >
+                        {resource.publisher
+                            ? printLocaleValue(locale, resource.publisher?.prefLabel)
+                            : dictionaries.detailsPage.header.namelessOrganization}
                     </OrgButton>
                     <div className={styles.headerGrid}>
                         <Heading
@@ -121,10 +120,8 @@ export default function DatasetDetailsPage({
                             size='lg'
                             className={styles.title}
                         >
-                            {
-                                printLocaleValue(locale, resource.title) ||
-                                dictionaries.detailsPage.header.namelessDataset
-                            }
+                            {printLocaleValue(locale, resource.title) ||
+                                dictionaries.detailsPage.header.namelessDataset}
                         </Heading>
                         <div className={styles.headerToolbar}>
                             {/*<StarButton
@@ -135,7 +132,7 @@ export default function DatasetDetailsPage({
                                 size='sm'
                                 onClick={() => {
                                     setActiveTab('distributions');
-                                    updateUri('distributions')
+                                    updateUri('distributions');
                                     blink();
                                 }}
                             >
@@ -159,8 +156,7 @@ export default function DatasetDetailsPage({
                                 accessCode={resource.accessRights?.code}
                                 dictionary={dictionaries.detailsPage}
                             />
-                            {
-                                resource.isOpenData &&
+                            {resource.isOpenData && (
                                 <Tag
                                     color='success'
                                     size='sm'
@@ -174,9 +170,7 @@ export default function DatasetDetailsPage({
                                         size='sm'
                                         style={{ transform: 'scale(0.75)' }}
                                     >
-                                        <Paragraph size='sm'>
-                                            {dictionaries.detailsPage.openData.helpText}
-                                        </Paragraph>
+                                        <Paragraph size='sm'>{dictionaries.detailsPage.openData.helpText}</Paragraph>
                                         <Paragraph size='sm'>
                                             <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
                                                 {dictionaries.detailsPage.openData.readMoreLinkText}
@@ -185,10 +179,12 @@ export default function DatasetDetailsPage({
                                     </HelpText>
                                     {/*<Link href='/datasets'>Lisens: {resource.distribution[0].license[0].prefLabel['en']}</Link>*/}
                                 </Tag>
-                            }
+                            )}
                             <span className={styles.lastUpdated}>
                                 {dictionaries.detailsPage.header.published}&nbsp;
-                                {new Date(resource.harvest.firstHarvested).toLocaleString(locale, { dateStyle: 'long' })}
+                                {new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
+                                    dateStyle: 'long',
+                                })}
                             </span>
                         </div>
                     </div>
@@ -214,9 +210,7 @@ export default function DatasetDetailsPage({
                                 onClick={() => updateUri('distributions')}
                             >
                                 {dictionaries.detailsPage.tabs.distributions}&nbsp;
-                                <Badge>
-                                    {sumArrayLengths(resource.distribution, resource.sample, apis)}
-                                </Badge>
+                                <Badge>{sumArrayLengths(resource.distribution, resource.sample, apis)}</Badge>
                             </Tab>
                             <Tab
                                 value='details'
@@ -229,12 +223,11 @@ export default function DatasetDetailsPage({
                                 onClick={() => updateUri('community')}
                             >
                                 {dictionaries.detailsPage.tabs.community}
-                                {
-                                    communityTopics.length > 0 &&
+                                {communityTopics.length > 0 && (
                                     <>
                                         &nbsp;<Badge>{communityTopics.length}</Badge>
                                     </>
-                                }
+                                )}
                             </Tab>
                             <Tab
                                 value='rdf'
@@ -254,23 +247,19 @@ export default function DatasetDetailsPage({
                             </Heading>
                             {/*{resource.description?.['no']}*/}
                             {/*{printLocaleValue(locale, resource.description)}*/}
-                            {
-                                resource.description ?
+                            {resource.description ? (
                                 <div className={styles.box}>
                                     <ExpandableContent>
                                         <Article>
-                                            <Markdown>
-                                                {
-                                                    printLocaleValue(locale, resource.description)
-                                                }
-                                            </Markdown>
+                                            <Markdown>{printLocaleValue(locale, resource.description)}</Markdown>
                                         </Article>
-                                    </ExpandableContent> 
-                                </div> :
+                                    </ExpandableContent>
+                                </div>
+                            ) : (
                                 <PlaceholderBox>
                                     {dictionaries.detailsPage.overview.description.placeholder}
                                 </PlaceholderBox>
-                            }
+                            )}
                         </section>
                         <section className={styles.section}>
                             <Distributions
@@ -282,8 +271,7 @@ export default function DatasetDetailsPage({
                                 dictionary={dictionaries.detailsPage}
                             />
                         </section>
-                        {
-                            similarDatasets && similarDatasets.length > 0 &&
+                        {similarDatasets && similarDatasets.length > 0 && (
                             <>
                                 <BrandDivider className={styles.divider} />
                                 <section className={styles.section}>
@@ -294,32 +282,42 @@ export default function DatasetDetailsPage({
                                         {dictionaries.detailsPage.similarDatasets}
                                     </Heading>
                                     <ScrollShadows className={styles.tableScroller}>
-                                        <table className={cn('table', styles.relatedTable)} style={{minWidth:475}}>
+                                        <table
+                                            className={cn('table', styles.relatedTable)}
+                                            style={{ minWidth: 475 }}
+                                        >
                                             <tbody>
-                                                {
-                                                    similarDatasets && similarDatasets.map((dataset: any) => (
+                                                {similarDatasets &&
+                                                    similarDatasets.map((dataset: any) => (
                                                         <tr key={dataset.id}>
                                                             <td>
                                                                 <Link href={`${dataset.id}`}>
-                                                                    {
-                                                                        printLocaleValue(locale, dataset.title) ||
-                                                                        `Navnløst datasett`
-                                                                    }
+                                                                    {printLocaleValue(locale, dataset.title) ||
+                                                                        `Navnløst datasett`}
                                                                 </Link>
                                                             </td>
                                                             <td>
                                                                 <span className={styles.relatedPublisher}>
-                                                                    {
-                                                                        dataset.publisher ?
-                                                                        printLocaleValue(locale, dataset.publisher?.prefLabel) :
-                                                                        dataset.organization ?
-                                                                        printLocaleValue(locale, dataset.organization?.prefLabel) :
-                                                                        `Ukjent virksomhet`
-                                                                    }
+                                                                    {dataset.publisher
+                                                                        ? printLocaleValue(
+                                                                              locale,
+                                                                              dataset.publisher?.prefLabel,
+                                                                          )
+                                                                        : dataset.organization
+                                                                          ? printLocaleValue(
+                                                                                locale,
+                                                                                dataset.organization?.prefLabel,
+                                                                            )
+                                                                          : `Ukjent virksomhet`}
                                                                 </span>
                                                             </td>
                                                             <td align='right'>
-                                                                <HStack style={{justifyContent: 'flex-end', gap: '0.5rem'}}>
+                                                                <HStack
+                                                                    style={{
+                                                                        justifyContent: 'flex-end',
+                                                                        gap: '0.5rem',
+                                                                    }}
+                                                                >
                                                                     <AccessLevelTag
                                                                         accessCode={dataset.accessRights?.code}
                                                                         dictionary={dictionaries.detailsPage}
@@ -328,14 +326,13 @@ export default function DatasetDetailsPage({
                                                                 </HStack>
                                                             </td>
                                                         </tr>
-                                                    ))
-                                                }
+                                                    ))}
                                             </tbody>
                                         </table>
                                     </ScrollShadows>
                                 </section>
                             </>
-                        }
+                        )}
                     </TabContent>
                     <TabContent value='distributions'>
                         <Distributions
