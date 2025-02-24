@@ -60,11 +60,7 @@
         }
 
         a {
-            svg {
-                max-height: 2rem;
-            }
-
-            &:not(:focus-visible) {
+            &:not(:hover):not(:focus-visible) {
                 color: white;
 
                 svg {
@@ -78,19 +74,6 @@
             gap: 1rem;
             align-items: center;
             text-align: right;
-
-            a {
-                svg {
-                    display: block;
-                    height: 1.75rem;
-                }
-
-                &:hover {
-                    svg {
-                        fill: var(--fds-semantic-border-action-first-subtle);
-                    }
-                }
-            }
         }
     }
 }

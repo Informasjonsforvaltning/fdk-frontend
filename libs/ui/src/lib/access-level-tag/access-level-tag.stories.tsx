@@ -6,8 +6,6 @@ import VStack from '../vstack';
 
 import dictionary from '../../../../dictionaries/src/lib/dictionaries/nb/details-page.json';
 
-console.log(dictionary);
-
 const meta: Meta<typeof AccessLevelTag> = {
     component: AccessLevelTag,
     title: 'AccessLevelTag',

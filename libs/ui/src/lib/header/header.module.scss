@@ -20,8 +20,10 @@
             &:not(.headerSticky) {
                 background: transparent;
 
-                .headerLogo:not(:focus-visible) {
-                    color: white;
+                .headerLogo {
+                    &:not(:focus-visible):not(:hover) {
+                        color: white;
+                    }
                 }
 
                 .headerToolbar {
@@ -89,7 +91,9 @@
         }
 
         .headerLogo {
-            color: var(--color-fdk-navy);
+            &:not(:focus-visible):not(:hover) {
+                color: var(--color-text);
+            }
         }
 
         a,

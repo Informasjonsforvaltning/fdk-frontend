@@ -1,5 +1,6 @@
 @import '@fdk-frontend/ui/core/mixins';
 
+.digdirLogoLink,
 .logo {
     display: flex;
     justify-content: center;
@@ -14,8 +15,14 @@
     span {
         font-size: 1.33333rem;
         color: currentcolor;
-        position: relative;
-        top: 1px;
+        line-height:1.33333rem;
+    }
+}
+
+.digdirLogoLink {
+    svg {
+        width: auto;
+        margin-right:0;
     }
 }
 
@@ -27,8 +34,13 @@
     border-radius: 0.25rem;
 
     &:hover {
+        background-color: var(--fds-semantic-surface-action-first-no_fill-hover);
+
         span {
-            text-decoration: underline;
+            color: var(--color-text);
+        }
+        svg {
+            fill: var(--color-text);
         }
     }
 
