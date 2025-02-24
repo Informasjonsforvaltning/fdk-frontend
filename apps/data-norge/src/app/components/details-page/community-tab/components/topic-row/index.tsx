@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Tag } from '@digdir/designsystemet-react';
+import { Link, Tag, Heading } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon, Chat2Icon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
@@ -29,12 +29,17 @@ const TopicRow = ({
             </td>
             <td>
                 <div className={styles.threadTeaser}>
-                    <Link
-                        href={`${communityBaseUri}/topic/${topic.slug}`}
-                        className={styles.threadLink}
+                    <Heading
+                        level={4}
+                        size='xxsmall'
                     >
-                        {topic.title} <ExternalLinkIcon />
-                    </Link>
+                        <Link
+                            href={`${communityBaseUri}/topic/${topic.slug}`}
+                            className={styles.threadLink}
+                        >
+                            {topic.title} <ExternalLinkIcon />
+                        </Link>
+                    </Heading>
                     <HStack style={{ gap: '0.5rem' }}>
                         <Tag
                             size='sm'

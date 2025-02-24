@@ -21,4 +21,11 @@
             }
         }
     }
+
+    &.table--borderless {
+        th,
+        td {
+            border:0;
+        }
+    }
 }
