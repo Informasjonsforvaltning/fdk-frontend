@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import AccessLevelTag from '.';
+import OpenLicenseTag from '.';
 import VStack from '../vstack';
 
 import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/nb/details-page.json';
 
-const meta: Meta<typeof AccessLevelTag> = {
-    component: AccessLevelTag,
-    title: 'AccessLevelTag',
+const meta: Meta<typeof OpenLicenseTag> = {
+    component: OpenLicenseTag,
+    title: 'OpenLicenseTag',
 };
 
 export default meta;
-type Story = StoryObj<typeof AccessLevelTag>;
+type Story = StoryObj<typeof OpenLicenseTag>;
 
 export const Primary: Story = {
     parameters: {
@@ -23,16 +23,7 @@ export const Primary: Story = {
         <>
             <div style={{ padding: '1rem' }}>
                 <VStack>
-                    <AccessLevelTag
-                        accessCode="PUBLIC"
-                        dictionary={dictionary}
-                    />
-                    <AccessLevelTag
-                        accessCode="RESTRICTED"
-                        dictionary={dictionary}
-                    />
-                    <AccessLevelTag
-                        accessCode="NON_PUBLIC"
+                    <OpenLicenseTag
                         dictionary={dictionary}
                     />
                 </VStack>

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { getDictionary } from '@fdk-frontend/dictionaries';
 
 import StarButton from '.';
 import HStack from '../hstack';
