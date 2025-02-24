@@ -32,7 +32,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
             {topics.length ? (
                 <ScrollShadows className={styles.tableScroller}>
                     <table
-                        className='table'
+                        className='table table--borderless'
                         style={{ minWidth: 600 }}
                     >
                         <tbody>

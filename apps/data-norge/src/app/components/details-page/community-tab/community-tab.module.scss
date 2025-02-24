@@ -29,6 +29,12 @@
         .threadLink {
             display: inline-block;
             margin-bottom: 0.5rem;
+            text-decoration: none;
+            line-height:1.5em;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
         :global(.fds-tag) {
