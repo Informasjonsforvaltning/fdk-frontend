@@ -278,10 +278,15 @@ export default function DatasetDetailsPage({
                                                     similarDatasets.map((dataset: any) => (
                                                         <tr key={dataset.id}>
                                                             <td>
-                                                                <Link href={`${dataset.id}`}>
-                                                                    {printLocaleValue(locale, dataset.title) ||
-                                                                        `Navnløst datasett`}
-                                                                </Link>
+                                                                <Heading
+                                                                    level={5}
+                                                                    size='xxxsmall'
+                                                                >
+                                                                    <Link href={`${dataset.id}`}>
+                                                                        {printLocaleValue(locale, dataset.title) ||
+                                                                            `Navnløst datasett`}
+                                                                    </Link>
+                                                                </Heading>
                                                             </td>
                                                             <td>
                                                                 <span className={styles.relatedPublisher}>

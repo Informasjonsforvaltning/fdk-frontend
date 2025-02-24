@@ -30,7 +30,7 @@ const TopicRow = ({
             <td>
                 <div className={styles.threadTeaser}>
                     <Heading
-                        level={4}
+                        level={5}
                         size='xxsmall'
                     >
                         <Link

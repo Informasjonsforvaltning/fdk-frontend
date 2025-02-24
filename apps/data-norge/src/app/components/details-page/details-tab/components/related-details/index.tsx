@@ -30,10 +30,15 @@ const RelatedDetails = ({ related, locale, dictionary }: { related: any[] } & Om
                                 related.map((dataset: any) => (
                                     <tr key={dataset.id}>
                                         <td>
-                                            <Link href={`${dataset.id}`}>
-                                                {printLocaleValue(locale, dataset.title) ||
-                                                    dictionary.realted.namelessDataset}
-                                            </Link>
+                                            <Heading
+                                                level={5}
+                                                size='xxxsmall'
+                                            >
+                                                <Link href={`${dataset.id}`}>
+                                                    {printLocaleValue(locale, dataset.title) ||
+                                                        dictionary.realted.namelessDataset}
+                                                </Link>
+                                            </Heading>
                                         </td>
                                         <td>
                                             <span className={styles.relatedPublisher}>
