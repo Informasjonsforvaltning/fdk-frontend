@@ -10,6 +10,7 @@
         "module": "esnext",
         "moduleResolution": "node",
         "paths": {
+            "@fdk-frontend/libs": ["libs/*"],
             "@fdk-frontend/data-access": ["libs/data-access/src/index.ts"],
             "@fdk-frontend/data-access/server": ["libs/data-access/src/server.ts"],
             "@fdk-frontend/dictionaries": ["libs/dictionaries/src/index.ts"],
