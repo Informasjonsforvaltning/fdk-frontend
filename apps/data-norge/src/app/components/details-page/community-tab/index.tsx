@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { Heading, Button, Link, Paragraph, Alert } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
@@ -32,7 +33,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
             {topics.length ? (
                 <ScrollShadows className={styles.tableScroller}>
                     <table
-                        className='table table--borderless'
+                        className={cn('table table--borderless', styles.table)}
                         style={{ minWidth: 600 }}
                     >
                         <tbody>
