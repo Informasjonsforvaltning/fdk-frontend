@@ -11,12 +11,12 @@ import Badge from '@fdk-frontend/ui/badge';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Article from '@fdk-frontend/ui/article';
-import HStack from '@fdk-frontend/ui/hstack';
 import OrgButton from '@fdk-frontend/ui/org-button';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import AccessLevelTag from '@fdk-frontend/ui/access-level-tag';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
+import DatasetTable from '@fdk-frontend/ui/dataset-table';
 import {
     Button,
     Heading,
@@ -120,10 +120,6 @@ export default function DatasetDetailsPage({
                                 dictionaries.detailsPage.header.namelessDataset}
                         </Heading>
                         <div className={styles.headerToolbar}>
-                            {/*<StarButton
-                                defaultNumber={13}
-                                defaultStarred={false}
-                            />*/}
                             <Button
                                 size='sm'
                                 onClick={() => {
@@ -269,58 +265,11 @@ export default function DatasetDetailsPage({
                                         {dictionaries.detailsPage.similarDatasets}
                                     </Heading>
                                     <ScrollShadows className={styles.tableScroller}>
-                                        <table
-                                            className={cn('table', styles.relatedTable)}
-                                            style={{ minWidth: 475 }}
-                                        >
-                                            <tbody>
-                                                {similarDatasets &&
-                                                    similarDatasets.map((dataset: any) => (
-                                                        <tr key={dataset.id}>
-                                                            <td>
-                                                                <Heading
-                                                                    level={5}
-                                                                    size='xxxsmall'
-                                                                >
-                                                                    <Link href={`${dataset.id}`}>
-                                                                        {printLocaleValue(locale, dataset.title) ||
-                                                                            `Navnløst datasett`}
-                                                                    </Link>
-                                                                </Heading>
-                                                            </td>
-                                                            <td>
-                                                                <span className={styles.relatedPublisher}>
-                                                                    {dataset.publisher
-                                                                        ? printLocaleValue(
-                                                                              locale,
-                                                                              dataset.publisher?.prefLabel,
-                                                                          )
-                                                                        : dataset.organization
-                                                                          ? printLocaleValue(
-                                                                                locale,
-                                                                                dataset.organization?.prefLabel,
-                                                                            )
-                                                                          : `Ukjent virksomhet`}
-                                                                </span>
-                                                            </td>
-                                                            <td align='right'>
-                                                                <HStack
-                                                                    style={{
-                                                                        justifyContent: 'flex-end',
-                                                                        gap: '0.5rem',
-                                                                    }}
-                                                                >
-                                                                    <AccessLevelTag
-                                                                        accessCode={dataset.accessRights?.code}
-                                                                        dictionary={dictionaries.detailsPage}
-                                                                        nonInteractive
-                                                                    />
-                                                                </HStack>
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-                                            </tbody>
-                                        </table>
+                                        <DatasetTable
+                                            datasets={similarDatasets}
+                                            locale={locale}
+                                            dictionary={dictionaries.detailsPage}
+                                        />
                                     </ScrollShadows>
                                 </section>
                             </>
