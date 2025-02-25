@@ -16,52 +16,54 @@ type DatasetTableProps = {
 const DatasetTable = ({ children, datasets, locale, dictionary, ...props }: DatasetTableProps & React.HTMLAttributes<HTMLDivElement>) => {
 	return (
 		<table className={cn('table', styles.table)}>
-        <tbody>
-            {datasets &&
-                datasets.map((dataset: any) => (
-                    <tr key={dataset.id}>
-                        <td>
-                            <Link
-                            	href={`${dataset.id}`}
-                            	className={styles.datasetLink}
-                            >
-                                {printLocaleValue(locale, dataset.title) ||
-                                    `Navnløst datasett`}
-                            </Link>
-                        </td>
-                        <td>
-                            <span className={styles.relatedPublisher}>
-                                {dataset.publisher
-                                    ? printLocaleValue(
-                                          locale,
-                                          dataset.publisher?.prefLabel,
-                                      )
-                                    : dataset.organization
-                                      ? printLocaleValue(
-                                            locale,
-                                            dataset.organization?.prefLabel,
-                                        )
-                                      : `Ukjent virksomhet`}
-                            </span>
-                        </td>
-                        <td align='right'>
-                            <HStack
-                                style={{
-                                    justifyContent: 'flex-end',
-                                    gap: '0.5rem',
-                                }}
-                            >
-                                <AccessLevelTag
-                                    accessCode={dataset.accessRights?.code}
-                                    dictionary={dictionary}
-                                    nonInteractive
-                                />
-                            </HStack>
-                        </td>
-                    </tr>
-                ))}
-        </tbody>
-    </table>
+	        <tbody>
+	            {datasets &&
+	                datasets.map((dataset: any) => (
+	                    <tr key={dataset.id}>
+	                        <td>
+	                            <Link
+	                            	href={`${dataset.id}`}
+	                            	className={styles.datasetLink}
+	                            >
+	                                {
+	                                	printLocaleValue(locale, dataset.title) ||
+	                                    dictionary.header.namelessDataset
+	                                }
+	                            </Link>
+	                        </td>
+	                        <td>
+	                            <span className={styles.relatedPublisher}>
+	                                {dataset.publisher
+	                                    ? printLocaleValue(
+	                                          locale,
+	                                          dataset.publisher?.prefLabel,
+	                                      )
+	                                    : dataset.organization
+	                                      ? printLocaleValue(
+	                                            locale,
+	                                            dataset.organization?.prefLabel,
+	                                        )
+	                                      : `Ukjent virksomhet`}
+	                            </span>
+	                        </td>
+	                        <td align='right'>
+	                            <HStack
+	                                style={{
+	                                    justifyContent: 'flex-end',
+	                                    gap: '0.5rem',
+	                                }}
+	                            >
+	                                <AccessLevelTag
+	                                    accessCode={dataset.accessRights?.code}
+	                                    dictionary={dictionary}
+	                                    nonInteractive
+	                                />
+	                            </HStack>
+	                        </td>
+	                    </tr>
+	                ))}
+	        </tbody>
+	    </table>
 	);
 }
 

@@ -23,7 +23,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
                     dictionary={dictionary}
                     baseUri={baseUri}
                     motionProps={{
-                        initial: 'show',
+                        initial: 'show'
                     }}
                 />
                 <LanguageSwitcher inverted />

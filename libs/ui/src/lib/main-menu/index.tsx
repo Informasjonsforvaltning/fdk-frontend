@@ -92,7 +92,13 @@ const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenu
                             <li key={item.href}>
                                 <Link href={item.href}>
                                     {item.title}
-                                    {item.external && <ExternalLinkIcon fontSize='1em' />}
+                                    {
+                                        item.external &&
+                                        <ExternalLinkIcon
+                                            aria-hidden
+                                            fontSize='1em'
+                                        />
+                                    }
                                 </Link>
                             </li>
                         ))}
@@ -138,7 +144,13 @@ const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenu
                                 <Link href={item.href}>
                                     {item.href.startsWith('https://github.com') && <GithubLogo />}
                                     {item.title}
-                                    {item.external && <ExternalLinkIcon fontSize='1em' />}
+                                    {
+                                        item.external &&
+                                        <ExternalLinkIcon
+                                            aria-hidden
+                                            fontSize='1em'
+                                        />
+                                    }
                                 </Link>
                             </li>
                         ))}
