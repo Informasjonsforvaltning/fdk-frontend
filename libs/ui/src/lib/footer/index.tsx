@@ -22,6 +22,9 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
                     className={styles.footerNav}
                     dictionary={dictionary}
                     baseUri={baseUri}
+                    motionProps={{
+                        initial: 'show'
+                    }}
                 />
                 <LanguageSwitcher inverted />
             </div>

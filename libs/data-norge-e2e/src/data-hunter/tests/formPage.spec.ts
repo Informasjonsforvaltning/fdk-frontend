@@ -1,23 +1,15 @@
-/* eslint-disable */
-import { test, expect } from '@playwright/test';
+import { test } from '../fixtures/basePage';
 
-test('has title', async ({ page }) => {
-    // await page.goto('/');
-    expect(true).toBe(true);
+test('should not have any automatically detectable accessibility issues', async ({ dataHunterFormPage }) => {
+    await dataHunterFormPage.checkAccessibility();
 });
 
-// import { test } from '../fixtures/basePage';
+test('check page text', async ({ dataHunterFormPage }) => {
+  await dataHunterFormPage.checkPageTitleText();
+  await dataHunterFormPage.checkPageDescriptionText();
+});
 
-// test('should not have any automatically detectable accessibility issues', async ({ dataHunterFormPage }) => {
-//   await dataHunterFormPage.checkAccessibility();
-// });
-
-// test('check page text', async ({ dataHunterFormPage }) => {
-//   await dataHunterFormPage.checkPageTitleText();
-//   await dataHunterFormPage.checkPageDescriptionText();
-// });
-
-// test('fill and submit form', async ({ dataHunterFormPage }) => {
-//   await dataHunterFormPage.fillForm();
-//   await dataHunterFormPage.submitForm();
-// });
+test('fill and submit form', async ({ dataHunterFormPage }) => {
+  await dataHunterFormPage.fillForm();
+  await dataHunterFormPage.submitForm();
+});

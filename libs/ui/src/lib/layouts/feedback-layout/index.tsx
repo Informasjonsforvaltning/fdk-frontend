@@ -43,7 +43,10 @@ const FeedbackLayout = async ({
                             communityLink: (
                                 <Link href={communityBaseUri}>
                                     {dictionary.feedbackBanner.communityLinkText}&nbsp;
-                                    <ExternalLinkIcon fontSize='1em' />
+                                    <ExternalLinkIcon
+                                        aria-hidden
+                                        fontSize='1em'
+                                    />
                                 </Link>
                             ),
                         })}

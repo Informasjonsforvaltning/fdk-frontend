@@ -14,6 +14,7 @@
     ]
   },
   "scripts": {
+    "nx": "nx",
     "build": "nx run-many --target=build --all",
     "dev": "nx run-many --target=dev --all --turbopack",
     "lint": "nx run-many --target=lint --all --no-error-on-unmatched-pattern",

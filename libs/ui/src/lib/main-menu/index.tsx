@@ -14,11 +14,12 @@ import getMainMenuData from './data';
 type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
     dictionary: Dictionary;
     baseUri: string;
+    motionProps?: any;
 };
 
 const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
-const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
+const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenuProps) => {
     const data = getMainMenuData(dictionary, baseUri);
 
     const animations = {
@@ -44,6 +45,7 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
             initial='hidden'
             animate='show'
             aria-label={dictionary.mainMenu.label}
+            {...motionProps}
         >
             <div className={styles.links}>
                 <MotionNav
@@ -90,7 +92,13 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                             <li key={item.href}>
                                 <Link href={item.href}>
                                     {item.title}
-                                    {item.external && <ExternalLinkIcon fontSize='1em' />}
+                                    {
+                                        item.external &&
+                                        <ExternalLinkIcon
+                                            aria-hidden
+                                            fontSize='1em'
+                                        />
+                                    }
                                 </Link>
                             </li>
                         ))}
@@ -136,7 +144,13 @@ const MainMenu = ({ className, dictionary, baseUri }: MainMenuProps) => {
                                 <Link href={item.href}>
                                     {item.href.startsWith('https://github.com') && <GithubLogo />}
                                     {item.title}
-                                    {item.external && <ExternalLinkIcon fontSize='1em' />}
+                                    {
+                                        item.external &&
+                                        <ExternalLinkIcon
+                                            aria-hidden
+                                            fontSize='1em'
+                                        />
+                                    }
                                 </Link>
                             </li>
                         ))}
