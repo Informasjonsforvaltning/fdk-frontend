@@ -1,5 +1,5 @@
-// import { test } from '../fixtures/basePage';
+import { test } from '../fixtures/basePage';
 
-// test('should not have any automatically detectable accessibility issues', async ({ frontpage }) => {
-//   await frontpage.checkAccessibility();
-// });
+test('should not have any automatically detectable accessibility issues', async ({ frontpage }) => {
+    await frontpage.checkAccessibility();
+});
