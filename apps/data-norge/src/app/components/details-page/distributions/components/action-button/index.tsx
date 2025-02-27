@@ -1,13 +1,16 @@
 import React from 'react';
-import { Button, Link } from '@digdir/designsystemet-react';
+import { Button, type ButtonProps, Link } from '@digdir/designsystemet-react';
 
-const ActionButton = ({ children, uri, ...props }: React.HTMLAttributes<HTMLButtonElement>) => {
+type ActionButtonProps = {
+	uri: string;
+}
+
+const ActionButton = ({ children, uri, ...props }: ActionButtonProps & ButtonProps) => {
     return (
         <Button
             asChild
             size='sm'
             variant='secondary'
-            color='first'
             onClick={(e) => {
                 e.stopPropagation();
             }}
