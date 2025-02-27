@@ -1,6 +1,4 @@
-const {
-    FDK_SEARCH_SERVICE_BASE_URI
-} = process.env;
+const { FDK_SEARCH_SERVICE_BASE_URI } = process.env;
 
 export const getRelations = async (resourceId: string) => {
     const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search`;
@@ -17,7 +15,7 @@ export const getRelations = async (resourceId: string) => {
                 },
             },
         }),
-    }).then(res => res.json());
+    }).then((res) => res.json());
 };
 
 export const getOrgDatasets = async (orgPath: string) => {
@@ -35,7 +33,7 @@ export const getOrgDatasets = async (orgPath: string) => {
                 },
             },
         }),
-    }).then(res => res.json());
+    }).then((res) => res.json());
 };
 
 export const getThemeDatasets = async (themes: string[]) => {
@@ -53,5 +51,5 @@ export const getThemeDatasets = async (themes: string[]) => {
                 },
             },
         }),
-    }).then(res => res.json());
+    }).then((res) => res.json());
 };

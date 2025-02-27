@@ -9,7 +9,7 @@ const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
     return (
         <section>
             <Heading
-                level={4}
+                level={2}
                 size='xxsmall'
             >
                 {dictionary.details.concepts.title}
@@ -22,7 +22,7 @@ const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 <dt>
                                     <Link href={subject.uri}>
                                         {printLocaleValue(locale, subject.prefLabel)}
-                                        <ExternalLinkIcon />
+                                        <ExternalLinkIcon aria-hidden />
                                     </Link>
                                 </dt>
                                 <dd>{printLocaleValue(locale, subject.definition)}</dd>

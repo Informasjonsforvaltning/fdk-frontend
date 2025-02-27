@@ -10,7 +10,7 @@ const RelatedDetails = ({ related, locale, dictionary }: { related: any[] } & Om
     return (
         <section>
             <Heading
-                level={4}
+                level={2}
                 size='xxsmall'
             >
                 {dictionary.details.related.title}

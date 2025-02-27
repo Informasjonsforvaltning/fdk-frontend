@@ -82,6 +82,7 @@
             dd {
                 padding: 0.75rem 0.75rem;
                 border-top: 1px solid #ddd;
+                overflow: auto;
 
                 .descBox {
                     border: 0;
@@ -166,7 +167,7 @@
 
                     .lastUpdated {
                         font-size: 0.9em;
-                        opacity: 0.6;
+                        opacity: 0.7;
                         margin-left: 0.25rem;
                         white-space: nowrap;
                         line-height: 2em;

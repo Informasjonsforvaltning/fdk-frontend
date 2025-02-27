@@ -38,12 +38,12 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                 >
                     {showEmptyRows ? (
                         <>
-                            <EyeSlashIcon />
+                            <EyeSlashIcon aria-hidden />
                             {dictionary.details.hideEmptyRows}
                         </>
                     ) : (
                         <>
-                            <EyeIcon />
+                            <EyeIcon aria-hidden />
                             {dictionary.details.showEmptyRows}
                         </>
                     )}
@@ -90,7 +90,7 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                 {!dataset.theme?.length && !showEmptyRows ? null : (
                     <section>
                         <Heading
-                            level={4}
+                            level={2}
                             size='xxsmall'
                         >
                             {dictionary.details.themes}
@@ -114,7 +114,7 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                 {!dataset.keyword?.length && !showEmptyRows ? null : (
                     <section>
                         <Heading
-                            level={4}
+                            level={2}
                             size='xxsmall'
                         >
                             {dictionary.details.keywords}

@@ -15,7 +15,7 @@
     }
 
     .footerNav {
-        h3 {
+        :global(.fds-heading) {
             color: white;
         }
 

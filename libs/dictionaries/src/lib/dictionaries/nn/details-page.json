@@ -178,6 +178,7 @@
         "titleHelpText": "Alle URL-ar til ressursar på data.norge.no kan levere RDF-metadata i fleire ulike format, avhengig av kva for ein Accept-header som blir sendt med.",
         "titleHelpTextLink": "Les meir om RDF og kva format vi støttar her",
         "titleHelpTextTitle": "Omgrep",
+        "inputLabel": "Ressurs URI",
         "copyButton": ["Kopier", "Kopiert!"],
         "loading": "Lastar"
     }

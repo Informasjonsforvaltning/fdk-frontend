@@ -69,7 +69,9 @@ export const Primary: Story = {
         <>
             <div style={{ padding: '1rem' }}>
                 <Box>
-                    <Article><Markdown>{markdown}</Markdown></Article>
+                    <Article>
+                        <Markdown>{markdown}</Markdown>
+                    </Article>
                 </Box>
             </div>
         </>

@@ -21,7 +21,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
     return (
         <section className={styles.section}>
             <Heading
-                level={4}
+                level={2}
                 size='xxsmall'
                 className={styles.heading}
             >
@@ -54,7 +54,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
             <Alert className={styles.notice}>
                 <VStack>
                     <Heading
-                        level={4}
+                        level={2}
                         size='xxsmall'
                     >
                         {dictionary.community.notice.title}
@@ -68,7 +68,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
                         >
                             <Link href={communityBaseUri}>
                                 {dictionary.community.notice.gotoLink}&nbsp;
-                                <ExternalLinkIcon />
+                                <ExternalLinkIcon aria-hidden />
                             </Link>
                         </Button>
                         <Button

@@ -24,20 +24,20 @@ const TopicRow = ({
         <tr {...props}>
             <td width='1'>
                 <IconBadge fontSize='1.5rem'>
-                    <Chat2Icon />
+                    <Chat2Icon aria-hidden />
                 </IconBadge>
             </td>
             <td>
                 <div className={styles.threadTeaser}>
                     <Heading
-                        level={5}
+                        level={3}
                         size='xxsmall'
                     >
                         <Link
                             href={`${communityBaseUri}/topic/${topic.slug}`}
                             className={styles.threadLink}
                         >
-                            {topic.title} <ExternalLinkIcon />
+                            {topic.title} <ExternalLinkIcon aria-hidden />
                         </Link>
                     </Heading>
                     <HStack style={{ gap: '0.5rem' }}>

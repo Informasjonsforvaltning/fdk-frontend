@@ -2,6 +2,7 @@ import { test as base } from '@playwright/test';
 import FormPage from '../page-object-model/formPage';
 import Frontpage from '../page-object-model/frontpage';
 import DocsPage from '../page-object-model/docsPage';
+import DatasetDetailsPage from '../page-object-model/datasetDetailsPage';
 import { generateAccessibilityBuilder } from '../utils/helpers';
 
 export const test = base.extend({
@@ -22,6 +23,12 @@ export const test = base.extend({
         const docsPage = new DocsPage(page, context, accessibilityBuilder);
         await docsPage.goto();
         await use(docsPage);
+    },
+    datasetDetailsPage: async ({ page, context }, use) => {
+        const accessibilityBuilder = await generateAccessibilityBuilder(page);
+        const datasetDetailsPage = new DatasetDetailsPage(page, context, accessibilityBuilder);
+        await datasetDetailsPage.goto();
+        await use(datasetDetailsPage);
     },
 });
 

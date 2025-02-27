@@ -55,7 +55,7 @@ const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenu
                 >
                     <Heading
                         className={styles.linkSectionHeader}
-                        level={3}
+                        level={2}
                         size='sm'
                         id='mainMenu.catalogs.heading'
                     >
@@ -81,7 +81,7 @@ const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenu
                 >
                     <Heading
                         className={styles.linkSectionHeader}
-                        level={3}
+                        level={2}
                         size='sm'
                         id='mainMenu.help.heading'
                     >
@@ -92,13 +92,12 @@ const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenu
                             <li key={item.href}>
                                 <Link href={item.href}>
                                     {item.title}
-                                    {
-                                        item.external &&
+                                    {item.external && (
                                         <ExternalLinkIcon
                                             aria-hidden
                                             fontSize='1em'
                                         />
-                                    }
+                                    )}
                                 </Link>
                             </li>
                         ))}
@@ -111,7 +110,7 @@ const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenu
                 >
                     <Heading
                         className={styles.linkSectionHeader}
-                        level={3}
+                        level={2}
                         size='sm'
                         id='mainMenu.tools.heading'
                     >
@@ -132,7 +131,7 @@ const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenu
                 >
                     <Heading
                         className={styles.linkSectionHeader}
-                        level={3}
+                        level={2}
                         size='sm'
                         id='mainMenu.about.heading'
                     >
@@ -144,13 +143,12 @@ const MainMenu = ({ className, dictionary, baseUri, motionProps = {} }: MainMenu
                                 <Link href={item.href}>
                                     {item.href.startsWith('https://github.com') && <GithubLogo />}
                                     {item.title}
-                                    {
-                                        item.external &&
+                                    {item.external && (
                                         <ExternalLinkIcon
                                             aria-hidden
                                             fontSize='1em'
                                         />
-                                    }
+                                    )}
                                 </Link>
                             </li>
                         ))}

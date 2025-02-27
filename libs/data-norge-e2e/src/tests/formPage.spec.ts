@@ -5,11 +5,11 @@ test('should not have any automatically detectable accessibility issues', async 
 });
 
 test('check page text', async ({ dataHunterFormPage }) => {
-  await dataHunterFormPage.checkPageTitleText();
-  await dataHunterFormPage.checkPageDescriptionText();
+    await dataHunterFormPage.checkPageTitleText();
+    await dataHunterFormPage.checkPageDescriptionText();
 });
 
 test('fill and submit form', async ({ dataHunterFormPage }) => {
-  await dataHunterFormPage.fillForm();
-  await dataHunterFormPage.submitForm();
+    await dataHunterFormPage.fillForm();
+    await dataHunterFormPage.submitForm();
 });

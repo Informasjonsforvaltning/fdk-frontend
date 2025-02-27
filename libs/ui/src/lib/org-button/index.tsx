@@ -21,11 +21,12 @@ const OrgButton = ({ children, href, orgLogoSrc, ...props }: OrgButtonProps & Bu
                 <div className={styles.avatar}>
                     {orgLogoSrc ? (
                         <img
+                            aria-hidden
                             src={orgLogoSrc}
                             alt=''
                         />
                     ) : (
-                        <Buildings3Icon />
+                        <Buildings3Icon aria-hidden />
                     )}
                 </div>
                 {children}

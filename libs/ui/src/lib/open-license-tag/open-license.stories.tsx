@@ -23,9 +23,7 @@ export const Primary: Story = {
         <>
             <div style={{ padding: '1rem' }}>
                 <VStack>
-                    <OpenLicenseTag
-                        dictionary={dictionary}
-                    />
+                    <OpenLicenseTag dictionary={dictionary} />
                 </VStack>
             </div>
         </>

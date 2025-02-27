@@ -21,9 +21,7 @@ export const Primary: Story = {
         <>
             <div style={{ padding: '1rem' }}>
                 <HStack>
-                    <StarButton
-                        labels={['Kopier', 'Kopiert!']}
-                    />
+                    <StarButton labels={['Kopier', 'Kopiert!']} />
                 </HStack>
             </div>
         </>

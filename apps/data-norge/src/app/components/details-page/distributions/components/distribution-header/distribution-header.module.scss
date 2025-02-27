@@ -4,6 +4,11 @@
     align-items: center;
     flex-grow: 1;
     gap: 1rem;
+    margin-right: 110px;
+
+    @media (max-width: 500px) {
+        margin: 0;
+    }
 
     .title {
         display: block;

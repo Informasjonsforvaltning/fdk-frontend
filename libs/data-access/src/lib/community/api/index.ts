@@ -1,6 +1,4 @@
-const {
-    FDK_COMMUNITY_BASE_URI
-} = process.env;
+const { FDK_COMMUNITY_BASE_URI } = process.env;
 
 export const getCommunityPosts = async (searchParams: string) => {
     const uri = `${FDK_COMMUNITY_BASE_URI}/api/search?${searchParams}`;
@@ -9,7 +7,7 @@ export const getCommunityPosts = async (searchParams: string) => {
         headers: {
             Accept: 'application/json',
         },
-    }).then(res => res.json());
+    }).then((res) => res.json());
 };
 
 export const getCommunityTopic = async (topicId: string) => {
@@ -19,5 +17,5 @@ export const getCommunityTopic = async (topicId: string) => {
         headers: {
             Accept: 'application/json',
         },
-    }).then(res => res.json());
+    }).then((res) => res.json());
 };

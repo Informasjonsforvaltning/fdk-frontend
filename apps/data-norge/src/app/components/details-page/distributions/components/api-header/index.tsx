@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react';
 import mime from 'mime-types';
-import { Button, Link, Tag } from '@digdir/designsystemet-react';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { Tag } from '@digdir/designsystemet-react';
 import { type JSONValue } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 import styles from '../distribution-header/distribution-header.module.scss';
@@ -32,22 +31,6 @@ const ApiHeader = ({ api, locale, dictionary, ...props }: ApiHeaderProps & Props
                         ))}
                 </div>
             </span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Button
-                    asChild
-                    size='sm'
-                    variant='secondary'
-                    color='first'
-                    onClick={(e) => {
-                        e.stopPropagation();
-                    }}
-                >
-                    <Link href={`/data-services/${api.id}`}>
-                        {dictionary.apis.header.gotoBtn}
-                        <ArrowRightIcon fontSize='1.2em' />
-                    </Link>
-                </Button>
-            </div>
         </div>
     );
 };

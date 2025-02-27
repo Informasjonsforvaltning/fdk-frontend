@@ -32,7 +32,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
     return (
         <section>
             <Heading
-                level={4}
+                level={2}
                 size='xxsmall'
             >
                 {dictionary.details.general.title}
@@ -48,7 +48,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     <HStack>
                         <span>{dictionary.details.general.firstHarvested}:</span>
                         <HelpText
-                            title={dictionary.details.general.firstHarvesteHelpTextTitle}
+                            title={dictionary.details.general.firstHarvestedHelpTextTitle}
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
                         >
@@ -69,7 +69,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                             {dataset.page ? (
                                 <Link href={dataset.page}>
                                     {dataset.page}
-                                    <ExternalLinkIcon />
+                                    <ExternalLinkIcon aria-hidden />
                                 </Link>
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>

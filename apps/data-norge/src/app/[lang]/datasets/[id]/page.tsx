@@ -11,7 +11,7 @@ import {
     getRelations,
     getOrgDatasets,
     getThemeDatasets,
-    getMetadataScores
+    getMetadataScores,
 } from '@fdk-frontend/data-access/server';
 
 // import mockResource from '../mock/resource-service/sort-test-datasett.json';
@@ -27,10 +27,7 @@ export type DetailsPageWrapperProps = {
 };
 
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
-    const {
-        FDK_BASE_URI = '',
-        FDK_COMMUNITY_BASE_URI = '',
-    } = process.env;
+    const { FDK_BASE_URI = '', FDK_COMMUNITY_BASE_URI = '' } = process.env;
 
     const params = await props.params;
     const searchParams = await props.searchParams;
@@ -129,7 +126,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // If room for more, fetch additional datasets from themes
 
     try {
-        themeDatasets = await getThemeDatasets(dataset?.losTheme?.map((t: any) => t.losPaths[0]),);
+        themeDatasets = await getThemeDatasets(dataset?.losTheme?.map((t: any) => t.losPaths[0]));
 
         // Filter self
         themeDatasets = themeDatasets.hits?.filter((d: any) => d.id !== dataset.id) || [];
