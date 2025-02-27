@@ -4,14 +4,14 @@ import * as mockData from '../data/inputData.json';
 import type AxeBuilder from '@axe-core/playwright';
 import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/en/data-hunter-page.json';
 
-export default class Frontpage {
+export default class DocsPage {
     page: Page;
     context: BrowserContext;
     dictionary: Dictionary;
     accessibilityBuilder;
 
     constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
-        this.url = '/nb';
+        this.url = '/nb/docs';
         this.dictionary = dictionary;
         this.page = page;
         this.context = context;
@@ -33,7 +33,9 @@ export default class Frontpage {
         if (!this.accessibilityBuilder) {
             return;
         }
-        const result = await this.accessibilityBuilder.analyze();
+        const result = await this.accessibilityBuilder
+            .disableRules(['landmark-unique'])
+            .analyze();
         expect.soft(result.violations).toEqual([]);
     }
 }

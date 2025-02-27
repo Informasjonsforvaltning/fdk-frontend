@@ -5,7 +5,6 @@ import type AxeBuilder from '@axe-core/playwright';
 import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/en/data-hunter-page.json';
 
 export default class FormPage {
-    dataHunterPageUrl = '/en/data-hunter';
     page: Page;
     context: BrowserContext;
     dictionary: Dictionary;
@@ -13,6 +12,7 @@ export default class FormPage {
     formData = {};
 
     constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
+        this.url = '/en/data-hunter';
         this.dictionary = dictionary;
         this.page = page;
         this.context = context;
@@ -38,7 +38,7 @@ export default class FormPage {
     form = () => this.page.locator('[id="data-hunter-form"]');
 
     // Helpers
-    public async goto(url: string = this.dataHunterPageUrl) {
+    public async goto(url: string = this.url) {
         await this.page.goto(url);
     }
 
