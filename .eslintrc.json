@@ -1,5 +1,5 @@
 {
-    "ignorePatterns": ["node_modules", "**/*", "libs/storybook-app"],
+    "ignorePatterns": ["node_modules", "**/*", "libs/storybook-app", "libs/data-norge-e2e"],
     "overrides": [
         {
             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],

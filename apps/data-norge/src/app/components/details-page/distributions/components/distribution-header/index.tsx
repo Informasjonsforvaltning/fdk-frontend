@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react';
 import mime from 'mime-types';
-import { Button, Link, Tag } from '@digdir/designsystemet-react';
-import { DownloadIcon } from '@navikt/aksel-icons';
+import { Tag } from '@digdir/designsystemet-react';
 import { type JSONValue } from '@fdk-frontend/types';
 import { isOpenLicense, printLocaleValue } from '@fdk-frontend/utils';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
@@ -69,24 +68,6 @@ const DistributionHeader = ({
                     </div>
                 )}
             </span>
-            {distribution.accessURL && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Button
-                        asChild
-                        size='sm'
-                        variant='secondary'
-                        color='first'
-                        onClick={(e) => {
-                            e.stopPropagation();
-                        }}
-                    >
-                        <Link href={distribution.accessURL}>
-                            <DownloadIcon fontSize='1.2em' />
-                            {dictionary.distributions.header.downloadBtnLabel}
-                        </Link>
-                    </Button>
-                </div>
-            )}
         </div>
     );
 };

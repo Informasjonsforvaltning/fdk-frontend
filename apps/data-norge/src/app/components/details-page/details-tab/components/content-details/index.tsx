@@ -12,7 +12,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
     return (
         <section>
             <Heading
-                level={4}
+                level={2}
                 size='xxsmall'
             >
                 {dictionary.details.content.title}
@@ -43,7 +43,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                             {attribution.agent.uri ? (
                                                 <Link href={attribution.agent.uri}>
                                                     {printLocaleValue(locale, attribution.agent.prefLabel)}
-                                                    <ExternalLinkIcon />
+                                                    <ExternalLinkIcon aria-hidden />
                                                 </Link>
                                             ) : (
                                                 printLocaleValue(locale, attribution.agent.prefLabel)
@@ -179,7 +179,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                                 <li key={`spatial-${i}`}>
                                                     <Link href={spatial.uri}>
                                                         {printLocaleValue(locale, spatial?.prefLabel)}
-                                                        <ExternalLinkIcon />
+                                                        <ExternalLinkIcon aria-hidden />
                                                     </Link>
                                                 </li>
                                             );
@@ -194,7 +194,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                                 <li key={`spatial-${i}`}>
                                                     <Link href={spatial.uri}>
                                                         {spatial.uri}
-                                                        <ExternalLinkIcon />
+                                                        <ExternalLinkIcon aria-hidden />
                                                     </Link>
                                                 </li>
                                             );
@@ -267,7 +267,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                         <li key={item.uri}>
                                             <Link href={item.uri}>
                                                 {printLocaleValue(locale, item?.prefLabel)}
-                                                <ExternalLinkIcon />
+                                                <ExternalLinkIcon aria-hidden />
                                             </Link>
                                         </li>
                                     ))}

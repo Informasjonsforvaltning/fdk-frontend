@@ -67,7 +67,7 @@ const MetadataTab = ({
         >
             <div className={styles.header}>
                 <Heading
-                    level={4}
+                    level={2}
                     size='xxsmall'
                 >
                     <HStack>
@@ -106,6 +106,7 @@ const MetadataTab = ({
                         size='md'
                         readOnly
                         value={uri}
+                        aria-label={dictionary.rdf.inputLabel}
                     />
                 </div>
                 <div className={styles.toolbar}>
@@ -129,6 +130,7 @@ const MetadataTab = ({
                     language={syntax[contentType as keyof typeof syntax]}
                     style={vscDarkPlus}
                     showLineNumbers
+                    tabIndex={0}
                 >
                     {loading && !source.length ? `${dictionary.rdf.loading}...` : source}
                 </SyntaxHighlighter>

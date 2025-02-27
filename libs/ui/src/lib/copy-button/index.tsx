@@ -43,7 +43,8 @@ const CopyButton = ({ labels = ['Kopier', 'Kopiert!'], copyOnClick, buttonProps,
                 onMouseOver={() => setClicked(false)}
                 {...buttonProps}
             >
-                <FilesIcon />
+                <FilesIcon aria-hidden />
+                <span className={'sr-only'}>{labels[0]}</span>
             </Button>
         </Tooltip>
     );

@@ -21,9 +21,7 @@ export const Primary: Story = {
         <>
             <div style={{ padding: '1rem' }}>
                 <HStack>
-                    <CopyButton
-                        labels={['Kopier', 'Kopiert!']}
-                    />
+                    <CopyButton labels={['Kopier', 'Kopiert!']} />
                 </HStack>
             </div>
         </>

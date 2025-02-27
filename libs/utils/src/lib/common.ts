@@ -38,3 +38,7 @@ export const calculateMetadataScore = (score: any) => {
     const calcMaxScore = score?.max_score ?? 0;
     return calcMaxScore === 0 ? 0 : Math.round((calcScore / calcMaxScore) * 100);
 };
+
+export const guid = () => {
+    return 'guid-' + Math.random().toString(36).substr(2, 9);
+};

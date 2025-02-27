@@ -19,9 +19,7 @@ export const Primary: Story = {
     render: () => (
         <>
             <div style={{ padding: '1rem' }}>
-                <PlaceholderBox>
-                    PlaceholderBox
-                </PlaceholderBox>
+                <PlaceholderBox>PlaceholderBox</PlaceholderBox>
             </div>
         </>
     ),

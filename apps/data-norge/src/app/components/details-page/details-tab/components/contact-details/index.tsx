@@ -13,7 +13,7 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
         return contactPoint.hasURL ? (
             <Link href={contactPoint.hasURL}>
                 {contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]}
-                <ExternalLinkIcon />
+                <ExternalLinkIcon aria-hidden />
             </Link>
         ) : (
             contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]
@@ -23,7 +23,7 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
     return (
         <section>
             <Heading
-                level={4}
+                level={2}
                 size='xxsmall'
             >
                 {dictionary.details.contactPoint.title}

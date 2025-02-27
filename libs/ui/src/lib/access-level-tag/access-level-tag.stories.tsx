@@ -24,15 +24,15 @@ export const Primary: Story = {
             <div style={{ padding: '1rem' }}>
                 <VStack>
                     <AccessLevelTag
-                        accessCode="PUBLIC"
+                        accessCode='PUBLIC'
                         dictionary={dictionary}
                     />
                     <AccessLevelTag
-                        accessCode="RESTRICTED"
+                        accessCode='RESTRICTED'
                         dictionary={dictionary}
                     />
                     <AccessLevelTag
-                        accessCode="NON_PUBLIC"
+                        accessCode='NON_PUBLIC'
                         dictionary={dictionary}
                     />
                 </VStack>

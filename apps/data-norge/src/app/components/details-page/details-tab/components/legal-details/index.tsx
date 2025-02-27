@@ -20,7 +20,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
                     <li key={legal.uri}>
                         <Link href={legal.uri}>
                             {printLocaleValue(locale, legal.prefLabel)}
-                            <ExternalLinkIcon />
+                            <ExternalLinkIcon aria-hidden />
                         </Link>
                     </li>
                 ))}
@@ -31,7 +31,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     return (
         <section>
             <Heading
-                level={4}
+                level={2}
                 size='xxsmall'
             >
                 {dictionary.details.legal.title}

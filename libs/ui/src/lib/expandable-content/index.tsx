@@ -45,7 +45,6 @@ const ExpandableContent = ({ children, maxHeight, ...props }: { maxHeight?: numb
             })}
             ref={containerRef}
             data-overflow={overflow}
-            aria-expanded={!collapsed}
             {...props}
         >
             <div
@@ -59,10 +58,8 @@ const ExpandableContent = ({ children, maxHeight, ...props }: { maxHeight?: numb
                     className={styles.button}
                     variant='tertiary'
                     size='sm'
-                    onClick={() => {
-                        // setUserClick(true);
-                        setCollapsed(!collapsed);
-                    }}
+                    onClick={() => setCollapsed(!collapsed)}
+                    aria-expanded={!collapsed}
                 >
                     {collapsed ? (
                         <>

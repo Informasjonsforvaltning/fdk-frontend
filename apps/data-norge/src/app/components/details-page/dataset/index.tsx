@@ -225,7 +225,7 @@ export default function DatasetDetailsPage({
                     <TabContent value='overview'>
                         <section className={styles.section}>
                             <Heading
-                                level={4}
+                                level={2}
                                 size='xxsmall'
                             >
                                 {dictionaries.detailsPage.overview.description.title}
@@ -259,7 +259,7 @@ export default function DatasetDetailsPage({
                                 <BrandDivider className={styles.divider} />
                                 <section className={styles.section}>
                                     <Heading
-                                        level={4}
+                                        level={2}
                                         size='xxsmall'
                                     >
                                         {dictionaries.detailsPage.similarDatasets}

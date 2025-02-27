@@ -1,17 +1,17 @@
 import { Dictionary } from '@fdk-frontend/dictionaries';
 import { expect, Page, BrowserContext } from '@playwright/test';
-import * as mockData from '../data/inputData.json';
 import type AxeBuilder from '@axe-core/playwright';
 import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/en/data-hunter-page.json';
 
-export default class DocsPage {
+export default class DatasetDetailsPage {
     page: Page;
     context: BrowserContext;
     dictionary: Dictionary;
     accessibilityBuilder;
 
     constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
-        this.url = '/nb/docs';
+        // eslint-disable-next-line no-undef
+        this.url = `/nb/datasets/${process.env.E2E_DATASET_ID}`;
         this.dictionary = dictionary;
         this.page = page;
         this.context = context;
@@ -19,23 +19,18 @@ export default class DocsPage {
     }
 
     // Locators
-    pageTitle = () => this.page.getByRole('heading', { name: this.dictionary.aiBanner.title });
-    aiSearchInput = () => this.page.getByLabel(this.dictionary.aiBanner.prompt.label);
-    submitButton = () => this.page.getByRole('button', { name: this.dictionary.aiBanner.prompt.button });
-    form = () => this.page.locator('[id="data-hunter-form"]');
 
     // Helpers
     public async goto(url: string = this.url) {
         await this.page.goto(url);
     }
 
-    public async checkAccessibility() {
+    public async checkAccessibility(tab: string) {
+        if (tab) await this.goto(`${this.url}?tab=${tab}`);
         if (!this.accessibilityBuilder) {
             return;
         }
-        const result = await this.accessibilityBuilder
-            .disableRules(['landmark-unique'])
-            .analyze();
+        const result = await this.accessibilityBuilder.analyze();
         expect.soft(result.violations).toEqual([]);
     }
 }

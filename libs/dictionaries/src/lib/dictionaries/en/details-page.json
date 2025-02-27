@@ -10,7 +10,7 @@
         "published": "Published"
     },
     "accessRights": {
-        "helpTextTitle": "Glossary",
+        "helpTextTitle": "Explanation",
         "unknownLabel": "Unknown access level",
         "readMoreLinkText": "Read more about access levels here",
         "codes": {
@@ -30,7 +30,7 @@
     },
     "openData": {
         "label": "Open data",
-        "helpTextTitle": "Glossary",
+        "helpTextTitle": "Explanation",
         "helpText": "The dataset is classified as public access and has at least one distribution with an approved open license.",
         "readMoreLinkText": "Read more about licenses here"
     },
@@ -84,7 +84,7 @@
     },
     "openLicenseTag": {
         "label": "Valid open license",
-        "helpTextTitle": "Glossary",
+        "helpTextTitle": "Explanation",
         "helpText": "This is a valid open license that allows free use, sharing, and reuse of data in compliance with open data principles. These licenses are recognized for use in public and private datasets, both nationally and internationally.",
         "linkText": "Read more about licenses here"
     },
@@ -98,13 +98,13 @@
             "publisher": "Publisher",
             "firstHarvested": "Published",
             "firstHarvestedHelpText": "This date indicates when the dataset was harvested by data.norge.no. It may have been available earlier elsewhere.",
-            "firstHarvestedHelpTextTitle": "Glossary",
+            "firstHarvestedHelpTextTitle": "Explanation",
             "firstHarvestedHelpTextLink": "Read more about harvesting here",
             "page": "Documentation",
             "metadataQuality": {
                 "title": "Metadata Quality",
                 "helpText": "Metadata quality is an indicator of how well the datasets are described using metadata.",
-                "helpTextTitle": "Glossary",
+                "helpTextTitle": "Explanation",
                 "helpTextLink": "Read more about metadata quality here",
                 "labels": {
                     "excellent": "Excellent",
@@ -177,7 +177,8 @@
     "rdf": {
         "titleHelpText": "All URLs to resources on data.norge.no can provide RDF metadata in various formats, depending on the Accept header sent with the request.",
         "titleHelpTextLink": "Read more about RDF and the formats we support here",
-        "titleHelpTextTitle": "Glossary",
+        "titleHelpTextTitle": "Explanation",
+        "inputLabel": "Resource URI",
         "copyButton": ["Copy", "Copied!"],
         "loading": "Loading"
     }

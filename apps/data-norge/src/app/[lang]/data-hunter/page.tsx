@@ -44,7 +44,7 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
 
     return (
         <>
-            <div style={{margin:'0 2rem'}}>
+            <div style={{ margin: '0 2rem' }}>
                 <Breadcrumbs
                     baseUri={baseUri}
                     breadcrumbList={breadcrumbList}

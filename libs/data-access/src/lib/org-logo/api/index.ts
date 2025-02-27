@@ -1,6 +1,4 @@
-const {
-    DIGDIR_ORGLOGO_API_BASE_URI
-} = process.env;
+const { DIGDIR_ORGLOGO_API_BASE_URI } = process.env;
 
 export const fetchLogo = async (uri: string) => {
     const response = await fetch(uri, { method: 'GET' });
