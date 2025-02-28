@@ -50,16 +50,16 @@ const Norgeskart = () => {
                     center: [initCoords.lat - initCoords.offset, initCoords.lng],
                     keyboard: false,
                     zoom: initCoords.zoom,
-                    zoomControl: false,                
+                    zoomControl: false,
                 });
 
                 // Add tile layer
-                L.tileLayer(urls.kartverket.topo, {}).addTo(mapInstanceRef.current);                
+                L.tileLayer(urls.kartverket.topo, {}).addTo(mapInstanceRef.current);
             }            
         };
 
         initializeMap();
-        
+
         return () => {
             mapInstanceRef?.current?.remove(); // Clean up on unmount
         };
