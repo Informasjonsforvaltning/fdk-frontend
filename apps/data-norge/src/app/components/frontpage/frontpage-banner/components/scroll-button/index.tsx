@@ -47,6 +47,7 @@ const ScrollButton = () => {
         <button
             onClick={scroll}
             className={cn(styles.scrollButton, { [styles.hidden]: hidden })}
+            aria-hidden={hidden}
         >
             <ChevronDownIcon className={styles.arrow} />
             <span>Scroll</span>
