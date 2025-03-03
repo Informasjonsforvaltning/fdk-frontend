@@ -9,3 +9,10 @@ export type LinkObjectType = {
 export type CatalogTypes = 'datasets' | 'apis' | 'terms' | 'information-models' | 'services-events' | 'ai';
 
 export type JSONValue = any;
+
+export interface Dataset {
+  id: string;
+  catalogId: string;
+  _lastModified: string;
+}
+
