@@ -5,6 +5,7 @@
     flex-grow: 1;
     gap: 1rem;
     margin-right: 110px;
+    min-height:38px;
 
     @media (max-width: 500px) {
         margin: 0;
