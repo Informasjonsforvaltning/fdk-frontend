@@ -61,13 +61,16 @@ const Distributions = ({
                                     dictionary={dictionary}
                                 />
                             </Accordion.Header>
-                            <ActionButton uri={distribution.accessURL}>
-                                <DownloadIcon
-                                    aria-hidden
-                                    fontSize='1.2em'
-                                />
-                                {dictionary.distributions.header.downloadBtnLabel}
-                            </ActionButton>
+                            {
+                                distribution.accessURL &&
+                                <ActionButton uri={distribution.accessURL}>
+                                    <DownloadIcon
+                                        aria-hidden
+                                        fontSize='1.2em'
+                                    />
+                                    {dictionary.distributions.header.downloadBtnLabel}
+                                </ActionButton>
+                            }
                             <Accordion.Content className={styles.content}>
                                 <DistributionDetails
                                     distribution={distribution}
