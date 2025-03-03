@@ -72,8 +72,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch metadata scores
 
     try {
-        metadataScore = await getMetadataScores([dataset.uri]);
-        metadataScore = metadataScore?.scores[dataset.uri];
+        metadataScore = (await getMetadataScores([dataset.uri]))?.scores[dataset.uri];
     } catch (err) {
         console.log(err);
     }
