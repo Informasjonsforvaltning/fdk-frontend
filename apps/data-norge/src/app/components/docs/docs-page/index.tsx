@@ -17,6 +17,8 @@ import {
     Alert,
     type AlertProps,
     Button,
+    Heading,
+    type HeadingProps,
     Link,
     Paragraph,
     Divider,
@@ -26,6 +28,8 @@ import {
     TableRow,
     TableHeaderCell,
     TableCell,
+    Tag,
+    type TagProps,
 } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
@@ -48,7 +52,7 @@ export type DocsPageProps = {
     }>;
 };
 
-export default async function DocsPage(pageProps: DocsPageProps) {    
+export default async function DocsPage(pageProps: DocsPageProps) {
     const params = await pageProps.params;
     const rootContentDirectory = pageProps.rootContentDirectory;
     const locale = params.lang ?? i18n.defaultLocale;
@@ -112,6 +116,8 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                     {...props}
                 />
             ),
+            Paragraph: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
+            Heading: (props: HeadingProps) => <Heading {...props} />,
             Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => (
                 <Alert
                     size={size}
@@ -120,7 +126,12 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                 />
             ),
             Button,
-            ConceptPreview: (props: ConceptPreviewProps) => (<ConceptPreview {...props} lang={locale} />),
+            ConceptPreview: (props: ConceptPreviewProps) => (
+                <ConceptPreview
+                    {...props}
+                    lang={locale}
+                />
+            ),
             Link,
             Divider,
             CatalogPromo,
@@ -161,6 +172,12 @@ export default async function DocsPage(pageProps: DocsPageProps) {
             td: (
                 { children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>, // eslint-disable-line
             ) => <TableCell {...props}>{children}</TableCell>,
+            Tag: (props: TagProps) => (
+                <Tag
+                    {...props}
+                    size='sm'
+                />
+            ),
             Ingress: (props: IngressProps) => (
                 <Ingress
                     asChild
@@ -193,12 +210,12 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                 const match = /language-(\w+)/.exec(className || '');
                 return match ? (
                     // @ts-expect-error: ignore complaint that vscDarkPlus does not conform to CSSProperties
-                    (<SyntaxHighlighter
+                    <SyntaxHighlighter
                         style={vscDarkPlus as any}
                         language={match[1]}
                         PreTag='div'
                         {...rest}
-                    />)
+                    />
                 ) : (
                     <code
                         className={className}
@@ -242,11 +259,11 @@ export default async function DocsPage(pageProps: DocsPageProps) {
  * except we extract frontmatter instead of content from MDX compilation
  */
 export const generateMetadata = async function (pageProps: DocsPageProps): Promise<Metadata> {
-    const params = await pageProps.params
+    const params = await pageProps.params;
     const rootContentDirectory = pageProps.rootContentDirectory;
     const locale = params.lang ?? i18n.defaultLocale;
     const slug = params.slug ?? [];
-    
+
     const pageName = slug.length ? slug.at(-1) : rootContentDirectory;
 
     const contentDirectory = getContentDirectory(rootContentDirectory);
