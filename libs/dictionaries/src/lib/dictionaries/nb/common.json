@@ -71,5 +71,10 @@
                 "sparqlSandbox": "SPARQL-sandkasse"
             }
         }
+    },
+    "notFound": {
+        "title": "404: Siden ble ikke funnet ☹️",
+        "message": "Vi klarte dessverre ikke å finne siden du ba om.",
+        "button": "Gå til forsiden"
     }
 }
