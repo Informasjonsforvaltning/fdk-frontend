@@ -1,6 +1,4 @@
-import { type Metadata } from 'next';
-import { headers } from 'next/headers'
-import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { getDictionary } from '@fdk-frontend/dictionaries';
 import { Link, Button, Heading } from '@digdir/designsystemet-react';
 
 import ErrorPage from '../components/error-page';
