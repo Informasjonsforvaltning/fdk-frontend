@@ -27,10 +27,25 @@ Den komplette beskrivelsen med beskrivelse av datasett, distribusjon og datatjen
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.digdir.no/catalog/1> a dcat:Catalog ;
-  dcat:dataset <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
+dct:title "Eksempelkatalog for datasett"@nb ,
+  "Eksempelkatalog for datasett"@nn ,
+  "Example catalog for datasets"@en ;
+dct:description 
+  "En eksempelkatalog for datasett som eies av Digitaliseringsdirektoratet, kun for å illustrere et eksempel"@nb , 
+  "Ei eksempelkatalog for datasett som eiges av Digitaliseringsdorektoratet, bare for å illustrera eit eksempel"@nn ,
+  "An example catalog for datasets that are owned by the Norwegian Digitalization Agency, for illustration purposes only."@en ;
+dct:publisher <https://organization-catalog.fellesdatakatalog.digdir.no/organizations/991825827> ;
+dcat:contactPoint _:contactPoint
+dcat:dataset 
+  <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> ;
   .
 
-_:contactPoint a vcard:Organization ;
+_:contactPoint1 a vcard:Organization ;
+  vcard:hasEmail "informasjonsforvaltning@digdir.no" ;
+  vcard:fn "Informasjonsforvaltning Digdir" ;
+  .
+
+_:contactPoint2 a vcard:Organization ;
   vcard:hasEmail "kunstigintelligens@digdir.no" ;
   vcard:fn "Kunstig Intelligens Digdir" ;
   .
