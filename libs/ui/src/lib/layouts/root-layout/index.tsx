@@ -24,10 +24,6 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
         <html lang={lang}>
             <body>
                 {children}
-                <Footer
-                    dictionary={dictionary}
-                    baseUri={`/${lang}`}
-                />
             </body>
             <Script src='https://siteimproveanalytics.com/js/siteanalyze_6255470.js' />
         </html>

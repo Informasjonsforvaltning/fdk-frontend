@@ -5,4 +5,31 @@
     line-height: 1rem;
     border-radius: 50px;
     background: var(--fds-semantic-surface-info-subtle);
+
+    &[data-color='red'] {
+        background: var(--fds-semantic-surface-danger-default);
+        color:white;
+    }
+
+    &[data-color='blue'] {
+        background: var(--fds-semantic-surface-action-first-default);
+        color: white;
+    }
+
+    &[data-color='green'] {
+        background: var(--fds-semantic-surface-success-default);
+        color: white;
+    }
+
+    &[data-color='red-subtle'] {
+        background: var(--fds-semantic-surface-danger-subtle);
+    }
+
+    &[data-color='blue-subtle'] {
+        background: var(--fds-semantic-surface-action-first-subtle);
+    }
+
+    &[data-color='green-subtle'] {
+        background: var(--fds-semantic-surface-success-subtle);
+    }
 }

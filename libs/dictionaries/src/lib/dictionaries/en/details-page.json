@@ -28,12 +28,6 @@
             }
         }
     },
-    "openData": {
-        "label": "Open data",
-        "helpTextTitle": "Explanation",
-        "helpText": "The dataset is classified as public access and has at least one distribution with an approved open license.",
-        "readMoreLinkText": "Read more about licenses here"
-    },
     "tabs": {
         "overview": "Overview",
         "distributions": "Distributions & API",
@@ -81,12 +75,6 @@
             "url": "URL",
             "page": "Documentation"
         }
-    },
-    "openLicenseTag": {
-        "label": "Valid open license",
-        "helpTextTitle": "Explanation",
-        "helpText": "This is a valid open license that allows free use, sharing, and reuse of data in compliance with open data principles. These licenses are recognized for use in public and private datasets, both nationally and internationally.",
-        "linkText": "Read more about licenses here"
     },
     "similarDatasets": "Similar datasets",
     "details": {

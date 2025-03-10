@@ -3,7 +3,9 @@ import { PropsWithChildren } from 'react';
 import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
 import HeaderLayout from '../header-layout';
+import FooterLayout from '../footer-layout';
 import FeedbackLayout from '../feedback-layout';
+import Footer from '../../footer';
 
 export type DocsLayoutProps = {
     params: Promise<{
@@ -33,15 +35,20 @@ const DocsLayout = async ({ children, params }: PropsWithChildren & DocsLayoutPr
             registrationBaseUri={registrationBaseUri}
             communityBaseUri={communityBaseUri}
         >
-            <main id='main'>
-                <FeedbackLayout
-                    dictionary={docsDictionary}
-                    baseUri={baseUri}
-                    communityBaseUri={communityBaseUri}
-                >
-                    {children}
-                </FeedbackLayout>
-            </main>
+            <FooterLayout
+                dictionary={commonDictionary}
+                baseUri={`/${lang}`}
+            >
+                <main id='main'>
+                    <FeedbackLayout
+                        dictionary={docsDictionary}
+                        baseUri={baseUri}
+                        communityBaseUri={communityBaseUri}
+                    >
+                        {children}
+                    </FeedbackLayout>
+                </main>
+            </FooterLayout>
         </HeaderLayout>
     );
 };

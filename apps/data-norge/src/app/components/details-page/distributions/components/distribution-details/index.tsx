@@ -12,14 +12,17 @@ import OpenLicenseTag from '@fdk-frontend/ui/open-license-tag';
 type DistributionDetailsProps = {
     distribution: JSONValue;
     locale: LocaleCodes;
-    dictionary: Dictionary;
+    dictionaries: {
+        common: Dictionary;
+        detailsPage: Dictionary;
+    };
 };
 
-const DistributionDetails = ({ distribution, locale, dictionary }: DistributionDetailsProps) => {
+const DistributionDetails = ({ distribution, locale, dictionaries }: DistributionDetailsProps) => {
     return (
         <>
             <dl>
-                <dt>{dictionary.distributions.details.description}:</dt>
+                <dt>{dictionaries.detailsPage.distributions.details.description}:</dt>
                 <dd>
                     {distribution.description ? (
                         <Box className={detailsPageStyles.descBox}>
@@ -30,26 +33,26 @@ const DistributionDetails = ({ distribution, locale, dictionary }: DistributionD
                             </ExpandableContent>
                         </Box>
                     ) : (
-                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
-                <dt>{dictionary.distributions.details.accessURL}:</dt>
+                <dt>{dictionaries.detailsPage.distributions.details.accessURL}:</dt>
                 <dd>
                     {distribution.accessURL ? (
                         <Link href='#'>{distribution.accessURL}</Link>
                     ) : (
-                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
-                <dt>{dictionary.distributions.details.downloadURL}:</dt>
+                <dt>{dictionaries.detailsPage.distributions.details.downloadURL}:</dt>
                 <dd>
                     {distribution.downloadURL ? (
                         <Link href='#'>{distribution.downloadURL}</Link>
                     ) : (
-                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
-                <dt>{dictionary.distributions.details.accessService}:</dt>
+                <dt>{dictionaries.detailsPage.distributions.details.accessService}:</dt>
                 <dd>
                     {distribution.accessService ? (
                         distribution.accessService.map((api: any) => (
@@ -61,10 +64,10 @@ const DistributionDetails = ({ distribution, locale, dictionary }: DistributionD
                             </Link>
                         ))
                     ) : (
-                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
-                <dt>{dictionary.distributions.details.page}:</dt>
+                <dt>{dictionaries.detailsPage.distributions.details.page}:</dt>
                 <dd>
                     {distribution.page ? (
                         distribution.page.map((page: any) => (
@@ -76,10 +79,10 @@ const DistributionDetails = ({ distribution, locale, dictionary }: DistributionD
                             </Link>
                         ))
                     ) : (
-                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
-                <dt>{dictionary.distributions.details.license}:</dt>
+                <dt>{dictionaries.detailsPage.distributions.details.license}:</dt>
                 <dd>
                     {distribution.license ? (
                         distribution.license.map((license: any) => (
@@ -87,14 +90,14 @@ const DistributionDetails = ({ distribution, locale, dictionary }: DistributionD
                                 <Link href={license.uri}>
                                     {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
                                 </Link>
-                                {isOpenLicense(license.uri) && <OpenLicenseTag dictionary={dictionary} />}
+                                {isOpenLicense(license.uri) && <OpenLicenseTag dictionary={dictionaries.common} />}
                             </div>
                         ))
                     ) : (
-                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
-                <dt>{dictionary.distributions.details.conformsTo}:</dt>
+                <dt>{dictionaries.detailsPage.distributions.details.conformsTo}:</dt>
                 <dd>
                     {distribution.conformsTo ? (
                         distribution.conformsTo.map((standard: any) => (
@@ -106,7 +109,7 @@ const DistributionDetails = ({ distribution, locale, dictionary }: DistributionD
                             </Link>
                         ))
                     ) : (
-                        <PlaceholderText>{dictionary.distributions.details.noData}</PlaceholderText>
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
             </dl>
