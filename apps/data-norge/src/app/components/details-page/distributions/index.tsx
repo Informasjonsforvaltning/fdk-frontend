@@ -21,7 +21,10 @@ export type DistributionsProps = {
     apis?: JSONValue[];
     className?: string;
     locale: LocaleCodes;
-    dictionary: Dictionary;
+    dictionaries: {
+        common: Dictionary;
+        detailsPage: Dictionary;
+    };
 };
 
 const Distributions = ({
@@ -30,7 +33,7 @@ const Distributions = ({
     apis = [],
     className,
     locale,
-    dictionary,
+    dictionaries,
     ...props
 }: DistributionsProps) => {
     return (
@@ -40,7 +43,7 @@ const Distributions = ({
                 size='xxsmall'
             >
                 <HStack>
-                    <div>{dictionary.distributions.title}</div>
+                    <div>{dictionaries.detailsPage.distributions.title}</div>
                     <Badge>{sumArrayLengths(datasets, exampleData)}</Badge>
                 </HStack>
             </Heading>
@@ -58,7 +61,7 @@ const Distributions = ({
                                 <DistributionHeader
                                     distribution={distribution}
                                     locale={locale}
-                                    dictionary={dictionary}
+                                    dictionary={dictionaries.detailsPage}
                                 />
                             </Accordion.Header>
                             {
@@ -68,14 +71,14 @@ const Distributions = ({
                                         aria-hidden
                                         fontSize='1.2em'
                                     />
-                                    {dictionary.distributions.header.downloadBtnLabel}
+                                    {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
                                 </ActionButton>
                             }
                             <Accordion.Content className={styles.content}>
                                 <DistributionDetails
                                     distribution={distribution}
                                     locale={locale}
-                                    dictionary={dictionary}
+                                    dictionaries={dictionaries}
                                 />
                             </Accordion.Content>
                         </Accordion.Item>
@@ -93,7 +96,7 @@ const Distributions = ({
                                     <DistributionHeader
                                         distribution={example}
                                         locale={locale}
-                                        dictionary={dictionary}
+                                        dictionary={dictionaries.detailsPage}
                                         exampleData={true}
                                     />
                                 </Accordion.Header>
@@ -102,27 +105,27 @@ const Distributions = ({
                                         aria-hidden
                                         fontSize='1.2em'
                                     />
-                                    {dictionary.distributions.header.downloadBtnLabel}
+                                    {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
                                 </ActionButton>
                                 <Accordion.Content className={styles.content}>
                                     <DistributionDetails
                                         distribution={example}
                                         locale={locale}
-                                        dictionary={dictionary}
+                                        dictionaries={dictionaries}
                                     />
                                 </Accordion.Content>
                             </Accordion.Item>
                         ))}
                 </Accordion>
             ) : (
-                <PlaceholderBox>{dictionary.distributions.placeholder}</PlaceholderBox>
+                <PlaceholderBox>{dictionaries.detailsPage.distributions.placeholder}</PlaceholderBox>
             )}
             <Heading
                 level={2}
                 size='xxsmall'
             >
                 <HStack>
-                    <div>{dictionary.apis.title}</div>
+                    <div>{dictionaries.detailsPage.apis.title}</div>
                     <Badge>{apis.length}</Badge>
                 </HStack>
             </Heading>
@@ -140,11 +143,11 @@ const Distributions = ({
                                 <ApiHeader
                                     api={api}
                                     locale={locale}
-                                    dictionary={dictionary}
+                                    dictionary={dictionaries.detailsPage}
                                 />
                             </Accordion.Header>
                             <ActionButton uri={`/data-services/${api.id}`}>
-                                {dictionary.apis.header.gotoBtn}
+                                {dictionaries.detailsPage.apis.header.gotoBtn}
                                 <ArrowRightIcon
                                     aria-hidden
                                     fontSize='1.2em'
@@ -154,14 +157,14 @@ const Distributions = ({
                                 <ApiDetails
                                     api={api}
                                     locale={locale}
-                                    dictionary={dictionary}
+                                    dictionary={dictionaries.detailsPage}
                                 />
                             </Accordion.Content>
                         </Accordion.Item>
                     ))}
                 </Accordion>
             ) : (
-                <PlaceholderBox>{dictionary.apis.placeholder}</PlaceholderBox>
+                <PlaceholderBox>{dictionaries.detailsPage.apis.placeholder}</PlaceholderBox>
             )}
         </div>
     );

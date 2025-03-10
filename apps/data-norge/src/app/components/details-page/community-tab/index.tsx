@@ -72,7 +72,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
                             </Link>
                         </Button>
                         <Button
-                            variant='secondary'
+                            variant='tertiary'
                             size='sm'
                             asChild
                         >

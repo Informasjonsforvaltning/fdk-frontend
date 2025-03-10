@@ -11,8 +11,8 @@ type AccessLevelTagProps = {
 const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, ...props }: AccessLevelTagProps) => {
     let color = 'neutral';
 
-    const label = dictionary.accessRights.codes[accessCode].label || dictionary.accessRights.unknownLabel;
-    const helpText = dictionary.accessRights.codes[accessCode].helpText || '';
+    const label = dictionary.accessRights.codes[accessCode]?.label || dictionary.accessRights.unknownLabel;
+    const helpText = dictionary.accessRights.codes[accessCode]?.helpText || '';
 
     if (accessCode === 'NON_PUBLIC') color = 'danger';
     if (accessCode === 'RESTRICTED') color = 'warning';
@@ -35,7 +35,7 @@ const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, ...props }: Ac
                     >
                         <Paragraph size='sm'>{helpText}</Paragraph>
                         <Paragraph size='sm'>
-                            <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
+                            <Link href='/docs/finding-data/access-data'>
                                 {dictionary.accessRights.readMoreLinkText}
                             </Link>
                         </Paragraph>

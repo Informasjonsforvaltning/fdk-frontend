@@ -15,8 +15,12 @@ import OrgButton from '@fdk-frontend/ui/org-button';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import AccessLevelTag from '@fdk-frontend/ui/access-level-tag';
+import OpenDataTag from '@fdk-frontend/ui/open-data-tag';
+import UnavailableTag from '@fdk-frontend/ui/unavailable-tag';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import DatasetTable from '@fdk-frontend/ui/dataset-table';
+import AccessRequestButton from '@fdk-frontend/ui/access-request-button';
+import ResourceNotAvailableNotice from '@fdk-frontend/ui/resource-not-available-notice';
 import {
     Button,
     Heading,
@@ -35,6 +39,8 @@ import DatasetDetailsTab from '../details-tab';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
 import styles from '../details-page.module.scss';
+
+import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
 
 export type DatasetDetailsPageType = {
     baseUri: string;
@@ -72,6 +78,9 @@ export default function DatasetDetailsPage({
 }: DatasetDetailsPageType) {
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
+
+    const hasDistributions = !!sumArrayLengths(resource.distribution, resource.sample, apis);
+    const accessRequestDemo = accessRequestWhiteList.some(i => i.id === resource.id);
 
     const blink = () => {
         setHighlight(true);
@@ -120,6 +129,13 @@ export default function DatasetDetailsPage({
                                 dictionaries.detailsPage.header.namelessDataset}
                         </Heading>
                         <div className={styles.headerToolbar}>
+                            {
+                                accessRequestDemo &&
+                                <AccessRequestButton
+                                    kind='datasets'
+                                    id={resource.id}
+                                />
+                            }
                             <Button
                                 size='sm'
                                 onClick={() => {
@@ -142,29 +158,14 @@ export default function DatasetDetailsPage({
                                 accessCode={resource.accessRights?.code}
                                 dictionary={dictionaries.detailsPage}
                             />
-                            {resource.isOpenData && (
-                                <Tag
-                                    color='success'
-                                    size='sm'
-                                >
-                                    <Link href={`/datasets?opendata=true`}>
-                                        {dictionaries.detailsPage.openData.label}
-                                    </Link>
-                                    &nbsp;
-                                    <HelpText
-                                        title={dictionaries.detailsPage.openData.helpTextTitle}
-                                        size='sm'
-                                        style={{ transform: 'scale(0.75)' }}
-                                    >
-                                        <Paragraph size='sm'>{dictionaries.detailsPage.openData.helpText}</Paragraph>
-                                        <Paragraph size='sm'>
-                                            <Link href='https://data.norge.no/specification/dcat-ap-no#Datasett-tilgangsrettigheter'>
-                                                {dictionaries.detailsPage.openData.readMoreLinkText}
-                                            </Link>
-                                        </Paragraph>
-                                    </HelpText>
-                                </Tag>
-                            )}
+                            {
+                                resource.isOpenData &&
+                                <OpenDataTag dictionary={dictionaries.common} />
+                            }
+                            {
+                                !hasDistributions &&
+                                <UnavailableTag dictionary={dictionaries.common} />
+                            }
                             <span className={styles.lastUpdated}>
                                 {dictionaries.detailsPage.header.published}&nbsp;
                                 {new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
@@ -245,14 +246,21 @@ export default function DatasetDetailsPage({
                             )}
                         </section>
                         <section className={styles.section}>
-                            <Distributions
-                                datasets={resource.distribution}
-                                exampleData={resource.sample}
-                                apis={apis}
-                                className={cn({ [styles.highlight]: highlight })}
-                                locale={locale}
-                                dictionary={dictionaries.detailsPage}
-                            />
+                            {
+                                !hasDistributions && accessRequestDemo ?
+                                <ResourceNotAvailableNotice
+                                    kind='datasets'
+                                    id={resource.id}
+                                /> :
+                                <Distributions
+                                    datasets={resource.distribution}
+                                    exampleData={resource.sample}
+                                    apis={apis}
+                                    className={cn({ [styles.highlight]: highlight })}
+                                    locale={locale}
+                                    dictionaries={dictionaries}
+                                />
+                            }
                         </section>
                         {similarDatasets && similarDatasets.length > 0 && (
                             <>
@@ -276,14 +284,21 @@ export default function DatasetDetailsPage({
                         )}
                     </TabContent>
                     <TabContent value='distributions'>
-                        <Distributions
-                            datasets={resource.distribution}
-                            exampleData={resource.sample}
-                            apis={apis}
-                            className={cn({ [styles.highlight]: highlight })}
-                            locale={locale}
-                            dictionary={dictionaries.detailsPage}
-                        />
+                        {
+                            !hasDistributions && accessRequestDemo ?
+                            <ResourceNotAvailableNotice
+                                kind='datasets'
+                                id={resource.id}
+                            /> :
+                            <Distributions
+                                datasets={resource.distribution}
+                                exampleData={resource.sample}
+                                apis={apis}
+                                className={cn({ [styles.highlight]: highlight })}
+                                locale={locale}
+                                dictionaries={dictionaries}
+                            />
+                        }
                     </TabContent>
                     <TabContent value='details'>
                         <DatasetDetailsTab

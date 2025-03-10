@@ -76,6 +76,22 @@
         "title": "404: Sida vart ikkje funnen ☹️",
         "message": "Vi klarte dessverre ikkje å finne sida du bad om.",
         "button": "Gå til framsida"
+    },
+    "openDataTag": {
+        "label": "Opne data",
+        "helpTextTitle": "Omgrep",
+        "helpText": "Datasettet er klassifisert som allmenn tilgang og har minst éi distribuering med godkjend open lisens.",
+        "readMoreLinkText": "Les meir om lisensar her"
+    },
+    "openLicenseTag": {
+        "label": "Godkjend open lisens",
+        "helpTextTitle": "Omgrep",
+        "helpText": "Dette er ein godkjend open lisens som tillèt fri bruk, deling og gjenbruk av data i samsvar med prinsippa for opne data. Desse lisensane er anerkjende for bruk i offentlege og private datasett, både nasjonalt og internasjonalt.",
+        "linkText": "Les meir om lisensar her"
+    },
+    "unavailableTag": {
+        "label": "Ingen distribusjonar",
+        "helpTextTitle": "Omgrep",
+        "helpText": "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert."
     }
-
 }

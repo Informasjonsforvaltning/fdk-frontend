@@ -28,12 +28,6 @@
             }
         }
     },
-    "openData": {
-        "label": "Åpne data",
-        "helpTextTitle": "Begrepsforklaring",
-        "helpText": "Datasettet er klassifisert som allmenn tilgang og har minst 1 distribusjon med godkjent åpen lisens.",
-        "readMoreLinkText": "Les mer om lisenser her"
-    },
     "tabs": {
         "overview": "Oversikt",
         "distributions": "Distribusjoner og API",
@@ -81,12 +75,6 @@
             "url": "URL",
             "page": "Dokumentasjon"
         }
-    },
-    "openLicenseTag": {
-        "label": "Godkjent åpen lisens",
-        "helpTextTitle": "Begrepsforklaring",
-        "helpText": "Dette er en godkjent åpen lisens som tillater fri bruk, deling og gjenbruk av data i samsvar med åpne data-prinsipper. Disse lisensene er anerkjent for bruk i offentlige og private datasett, både nasjonalt og internasjonalt.",
-        "linkText": "Les mer om lisenser her"
     },
     "similarDatasets": "Lignende datasett",
     "details": {

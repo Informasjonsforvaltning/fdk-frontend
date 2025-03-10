@@ -1,7 +1,13 @@
 import { PropsWithChildren } from 'react';
+import cn from 'classnames';
 
 import styles from './badge.module.scss';
 
-const Badge = ({ children, ...props }: PropsWithChildren) => <div className={styles.badge}>{children}</div>;
+export type BadgeProps = PropsWithChildren & {
+	'data-color'?: 'orange' | 'green' | 'red';
+}
+
+const Badge = ({ children, className, ...props }: BadgeProps) => 
+	<div className={cn(styles.badge, className)} {...props}>{children}</div>;
 
 export default Badge;
