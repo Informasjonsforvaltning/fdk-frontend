@@ -1,7 +1,7 @@
 @import '@fdk-frontend/ui/core/mixins';
 
 .highlight {
-    //
+    > :global(.fds-alert),
     > :global(.fds-accordion) {
         animation: blink-border 1s ease-in-out 2;
     }

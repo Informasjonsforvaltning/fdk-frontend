@@ -249,6 +249,7 @@ export default function DatasetDetailsPage({
                             {
                                 !hasDistributions && accessRequestDemo ?
                                 <ResourceNotAvailableNotice
+                                    className={cn({ [styles.highlight]: highlight })}
                                     kind='datasets'
                                     id={resource.id}
                                 /> :
@@ -287,6 +288,7 @@ export default function DatasetDetailsPage({
                         {
                             !hasDistributions && accessRequestDemo ?
                             <ResourceNotAvailableNotice
+                                className={cn({ [styles.highlight]: highlight })}
                                 kind='datasets'
                                 id={resource.id}
                             /> :
