@@ -7,7 +7,13 @@
         "namelessDataset": "Nameless dataset",
         "useDatasetButton": "Use dataset",
         "datasetsTagLink": "Datasets",
-        "published": "Published"
+        "published": "Published",
+        "requestAccessButton": "Request access"
+    },
+    "resourceNotAvailableNotice": {
+        "title": "This dataset is not yet available",
+        "body": "This dataset has no distributions. This means that only the description of the dataset is available, while the actual content and data have not yet been published. You can express your interest in the dataset to the responsible organization and request access by clicking the button below. The more people show interest, the greater the chance that the data will be made available.",
+        "moreInfoLink": "More information"
     },
     "accessRights": {
         "helpTextTitle": "Explanation",

@@ -93,5 +93,9 @@
         "label": "Ingen distribusjoner",
         "helpTextTitle": "Begrepsforklaring",
         "helpText": "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert."
+    },
+    "general": {
+        "loading": "Laster...",
+        "redirecting": "Videresender..."
     }
 }

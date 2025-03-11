@@ -134,6 +134,7 @@ export default function DatasetDetailsPage({
                                 <AccessRequestButton
                                     kind='datasets'
                                     id={resource.id}
+                                    dictionary={dictionaries.detailsPage}
                                 />
                             }
                             <Button
@@ -252,6 +253,7 @@ export default function DatasetDetailsPage({
                                     className={cn({ [styles.highlight]: highlight })}
                                     kind='datasets'
                                     id={resource.id}
+                                    dictionary={dictionaries.detailsPage}
                                 /> :
                                 <Distributions
                                     datasets={resource.distribution}
@@ -291,6 +293,7 @@ export default function DatasetDetailsPage({
                                 className={cn({ [styles.highlight]: highlight })}
                                 kind='datasets'
                                 id={resource.id}
+                                dictionary={dictionaries.detailsPage}
                             /> :
                             <Distributions
                                 datasets={resource.distribution}
