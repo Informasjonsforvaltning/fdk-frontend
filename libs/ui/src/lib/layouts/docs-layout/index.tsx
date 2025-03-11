@@ -2,18 +2,12 @@ import { PropsWithChildren } from 'react';
 
 import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
+import { type RootLayoutProps } from '../root-layout';
 import HeaderLayout from '../header-layout';
 import FooterLayout from '../footer-layout';
 import FeedbackLayout from '../feedback-layout';
-import Footer from '../../footer';
 
-export type DocsLayoutProps = {
-    params: Promise<{
-        lang: Locale['code'];
-    }>;
-};
-
-const DocsLayout = async ({ children, params }: PropsWithChildren & DocsLayoutProps) => {
+const DocsLayout = async ({ children, params }: PropsWithChildren & RootLayoutProps) => {
     const { lang } = await params;
 
     const commonDictionary = await getDictionary(lang, 'common');

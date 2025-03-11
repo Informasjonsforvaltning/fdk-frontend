@@ -4,9 +4,7 @@
  * and the id is the id of the specific resource.
  */
 
-import { AccessRequest } from './types';
-
-export const accessRequestWhiteList: AccessRequest[] = [
+export const accessRequestWhiteList = [
   // Staging
   {
     id: '788dc86c-7e14-3a52-8f9e-2808001fbf44',

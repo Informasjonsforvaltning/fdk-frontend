@@ -1,10 +1,10 @@
-import { PropsWithChildren } from 'react';
+import React from 'react';
 import cn from 'classnames';
 
 import styles from './badge.module.scss';
 
-export type BadgeProps = PropsWithChildren & {
-	'data-color'?: 'orange' | 'green' | 'red';
+export type BadgeProps = React.HTMLAttributes<HTMLDivElement> & {
+	'data-color'?: 'orange' | 'green' | 'red' | 'red-subtle' | 'blue-subtle' | 'green-subtle';
 }
 
 const Badge = ({ children, className, ...props }: BadgeProps) => 

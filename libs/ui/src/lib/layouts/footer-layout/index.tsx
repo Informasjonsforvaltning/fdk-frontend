@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 import Footer, { type FooterProps } from '../../footer';
 
 const FooterLayout = ({ children, ...props }: FooterProps & PropsWithChildren) => {
-    const { dictionary, baseUri, registrationBaseUri, communityBaseUri, frontpage } = props;
+    const { dictionary, baseUri } = props;
 
     return (
         <>

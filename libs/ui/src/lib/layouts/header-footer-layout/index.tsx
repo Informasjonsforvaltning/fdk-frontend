@@ -2,20 +2,14 @@ import { PropsWithChildren } from 'react';
 
 import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
 
+import { type RootLayoutProps } from '../root-layout';
 import HeaderLayout from '../header-layout';
 import FooterLayout from '../footer-layout';
 
-export type HeaderFooterLayoutProps = {
-    params: Promise<{
-        lang: Locale['code'];
-    }>;
-};
 
-const HeaderFooterLayout = async ({ children, params }: PropsWithChildren & HeaderFooterLayoutProps) => {
+const HeaderFooterLayout = async ({ children, params }: PropsWithChildren & RootLayoutProps) => {
     const { lang } = await params;
-
     const dictionary = await getDictionary(lang, 'common');
-
     const {
         FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
         FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
