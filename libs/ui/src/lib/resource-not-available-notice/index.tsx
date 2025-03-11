@@ -5,7 +5,7 @@ import HStack from '../hstack';
 import AccessRequestButton, { type AccessRequestButtonProps } from '../access-request-button';
 // import styles from './resource-not-available-notice.module.scss';
 
-const ResourceNotAvailableNotice = ({ children, className, kind, id, ...props }: AccessRequestButtonProps & AlertProps) => {
+const ResourceNotAvailableNotice = ({ children, className, kind, id, dictionary, ...props }: AccessRequestButtonProps & AlertProps) => {
 	return (
 		<div className={className}>
 			<Alert
@@ -17,22 +17,25 @@ const ResourceNotAvailableNotice = ({ children, className, kind, id, ...props }:
 		            level={2}
 		            size='xxsmall'
 		        >
-		            Dette datasettet er enda ikke tilgjengelig
+		            {dictionary.resourceNotAvailableNotice.title}
 		        </Heading>
 		        <Paragraph size='sm'>
-							Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert. Du kan melde din interesse for datasettet til den ansvarlige virksomheten og søke om tilgang ved å klikke på knappen nedenfor. Jo flere som viser interesse, desto større er sjansen for at dataene blir gjort tilgjengelige.
+							{dictionary.resourceNotAvailableNotice.body}
 						</Paragraph>
 		        <HStack>
 		            <AccessRequestButton
 		            	kind={kind}
 		            	id={id}
+		            	dictionary={dictionary}
 		            />
 		            <Button
 		                variant='tertiary'
 		                size='sm'
 		                asChild
 		            >
-		                <Link href='/docs/finding-data/access-data#nasjonal-soknadslosning'>Mer informasjon</Link>
+		                <Link href='/docs/finding-data/access-data#nasjonal-soknadslosning'>
+		                	{dictionary.resourceNotAvailableNotice.moreInfoLink}
+		                </Link>
 		            </Button>
 		        </HStack>
 		    </VStack>

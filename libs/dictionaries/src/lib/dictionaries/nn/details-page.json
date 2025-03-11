@@ -7,7 +7,13 @@
         "namelessDataset": "Namnlaust datasett",
         "useDatasetButton": "Bruk datasett",
         "datasetsTagLink": "Datasett",
-        "published": "Publisert"
+        "published": "Publisert",
+        "requestAccessButton": "Be om tilgong"
+    },
+    "resourceNotAvailableNotice": {
+        "title": "Dette datasettet er ikkje tilgjengeleg enno",
+        "body": "Dette datasettet har ingen distribusjonar. Det betyr at berre skildringa av datasettet er tilgjengeleg, medan sjølve innhaldet og dataa ikkje er publiserte enno. Du kan melde di interesse for datasettet til den ansvarlege verksemda og søkje om tilgang ved å klikke på knappen nedanfor. Jo fleire som viser interesse, dess større er sjansen for at dataa blir gjorde tilgjengelege.",
+        "moreInfoLink": "Meir informasjon"
     },
     "accessRights": {
         "helpTextTitle": "Omgrep",

@@ -24,8 +24,8 @@ const DatasetTable = ({
         <table className={cn('table', styles.table)}>
             <tbody>
                 {datasets &&
-                    datasets.map((dataset: any) => (
-                        <tr key={dataset.id}>
+                    datasets.map((dataset: any, index: number) => (
+                        <tr key={`${dataset.id}-${index}`}>
                             <td>
                                 <Link
                                     href={`${dataset.id}`}
