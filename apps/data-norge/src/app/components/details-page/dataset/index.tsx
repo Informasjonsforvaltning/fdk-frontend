@@ -162,10 +162,10 @@ export default function DatasetDetailsPage({
                                 resource.isOpenData &&
                                 <OpenDataTag dictionary={dictionaries.common} />
                             }
-                            {
+                            {/*
                                 !hasDistributions &&
                                 <UnavailableTag dictionary={dictionaries.common} />
-                            }
+                            */}
                             <span className={styles.lastUpdated}>
                                 {dictionaries.detailsPage.header.published}&nbsp;
                                 {new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
