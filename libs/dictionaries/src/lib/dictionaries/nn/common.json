@@ -93,5 +93,9 @@
         "label": "Ingen distribusjonar",
         "helpTextTitle": "Omgrep",
         "helpText": "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert."
+    },
+    "general": {
+        "loading": "Lastar...",
+        "redirecting": "Videresendar..."
     }
 }

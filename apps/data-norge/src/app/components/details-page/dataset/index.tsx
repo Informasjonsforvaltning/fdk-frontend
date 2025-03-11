@@ -16,7 +16,6 @@ import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import AccessLevelTag from '@fdk-frontend/ui/access-level-tag';
 import OpenDataTag from '@fdk-frontend/ui/open-data-tag';
-import UnavailableTag from '@fdk-frontend/ui/unavailable-tag';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import DatasetTable from '@fdk-frontend/ui/dataset-table';
 import AccessRequestButton from '@fdk-frontend/ui/access-request-button';
@@ -30,8 +29,6 @@ import {
     TabList,
     Tab,
     TabContent,
-    HelpText,
-    Paragraph,
 } from '@digdir/designsystemet-react';
 
 import Distributions from '../distributions';
@@ -163,10 +160,6 @@ export default function DatasetDetailsPage({
                                 resource.isOpenData &&
                                 <OpenDataTag dictionary={dictionaries.common} />
                             }
-                            {/*
-                                !hasDistributions &&
-                                <UnavailableTag dictionary={dictionaries.common} />
-                            */}
                             <span className={styles.lastUpdated}>
                                 {dictionaries.detailsPage.header.published}&nbsp;
                                 {new Date(resource.harvest.firstHarvested).toLocaleString(locale, {

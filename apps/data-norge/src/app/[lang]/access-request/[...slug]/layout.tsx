@@ -1,5 +1,6 @@
-import styles from './access-request-layout.module.scss';
+import BlankLayout from '@fdk-frontend/ui/layouts/blank-layout';
 
-export default function AccessRequestLayout({children, ...props}) {
-	return (<div className={styles.wrapper}>{children}</div>);
-}
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
+export default BlankLayout;
