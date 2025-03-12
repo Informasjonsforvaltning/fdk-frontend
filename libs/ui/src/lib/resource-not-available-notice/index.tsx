@@ -12,7 +12,7 @@ const ResourceNotAvailableNotice = ({ children, className, kind, id, dictionary,
 				severity='warning'
 				{...props}
 			>
-				<VStack style={{marginBottom:'0.5rem', gap:'0.5rem'}}>
+				<VStack style={{marginBottom:'0.66666rem', gap:'0.5rem'}}>
 		        <Heading
 		            level={2}
 		            size='xxsmall'
