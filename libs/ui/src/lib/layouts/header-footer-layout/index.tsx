@@ -1,7 +1,5 @@
 import { PropsWithChildren } from 'react';
-
-import { type Locale, getDictionary } from '@fdk-frontend/dictionaries';
-
+import { getDictionary } from '@fdk-frontend/dictionaries';
 import { type RootLayoutProps } from '../root-layout';
 import HeaderLayout from '../header-layout';
 import FooterLayout from '../footer-layout';
