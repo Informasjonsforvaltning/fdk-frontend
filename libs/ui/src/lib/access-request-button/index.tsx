@@ -9,7 +9,7 @@ export type AccessRequestButtonProps = {
 	kind: CatalogTypes;
 	id: string;
 	dictionary: Dictionary;
-	isAvailable: boolean;
+	isAvailable?: boolean;
 }
 
 const AccessRequestButton = ({ children, kind, id, dictionary, isAvailable, ...props }: AccessRequestButtonProps & React.HTMLAttributes<HTMLDivElement>) => {
