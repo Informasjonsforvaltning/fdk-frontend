@@ -63,3 +63,8 @@ spec:
                             secretKeyRef:
                                 name: commonurl-staging
                                 key: DIGDIR_ORGLOGO_API_BASE_URI
+                      - name: ACCESS_REQUEST_API_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-staging
+                                key: ACCESS_REQUEST_API_HOST
