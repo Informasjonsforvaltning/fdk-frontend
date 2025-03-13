@@ -8,7 +8,8 @@
         "useDatasetButton": "Use dataset",
         "datasetsTagLink": "Datasets",
         "published": "Published",
-        "requestAccessButton": "Request access"
+        "requestAccessButton": "Request access",
+        "showInterestButton": "Report interest"
     },
     "resourceNotAvailableNotice": {
         "title": "This dataset is not yet available",

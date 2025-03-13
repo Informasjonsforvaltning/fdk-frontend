@@ -8,7 +8,8 @@
         "useDatasetButton": "Bruk datasett",
         "datasetsTagLink": "Datasett",
         "published": "Publisert",
-        "requestAccessButton": "Be om tilgong"
+        "requestAccessButton": "Be om tilgong",
+        "showInterestButton": "Meld interesse"
     },
     "resourceNotAvailableNotice": {
         "title": "Dette datasettet er ikkje tilgjengeleg enno",
