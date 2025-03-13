@@ -76,7 +76,7 @@ export default function DatasetDetailsPage({
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
 
-    const hasDistributions = !!sumArrayLengths(resource.distribution, resource.sample, apis);
+    const isAvailable = !!sumArrayLengths(resource.distribution, resource.sample, apis);
     const accessRequestDemo = accessRequestWhiteList.some(i => i.id === resource.id);
 
     const blink = () => {
@@ -132,6 +132,7 @@ export default function DatasetDetailsPage({
                                     kind='datasets'
                                     id={resource.id}
                                     dictionary={dictionaries.detailsPage}
+                                    isAvailable={isAvailable}
                                 />
                             }
                             <Button
@@ -241,7 +242,7 @@ export default function DatasetDetailsPage({
                         </section>
                         <section className={styles.section}>
                             {
-                                !hasDistributions && accessRequestDemo ?
+                                !isAvailable && accessRequestDemo ?
                                 <ResourceNotAvailableNotice
                                     className={cn({ [styles.highlight]: highlight })}
                                     kind='datasets'
@@ -281,7 +282,7 @@ export default function DatasetDetailsPage({
                     </TabContent>
                     <TabContent value='distributions'>
                         {
-                            !hasDistributions && accessRequestDemo ?
+                            !isAvailable && accessRequestDemo ?
                             <ResourceNotAvailableNotice
                                 className={cn({ [styles.highlight]: highlight })}
                                 kind='datasets'

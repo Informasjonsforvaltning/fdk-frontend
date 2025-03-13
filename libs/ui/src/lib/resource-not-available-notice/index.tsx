@@ -27,6 +27,7 @@ const ResourceNotAvailableNotice = ({ children, className, kind, id, dictionary,
 		            	kind={kind}
 		            	id={id}
 		            	dictionary={dictionary}
+		            	isAvailable={false}
 		            />
 		            <Button
 		                variant='tertiary'

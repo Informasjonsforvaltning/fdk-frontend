@@ -9,9 +9,10 @@ export type AccessRequestButtonProps = {
 	kind: CatalogTypes;
 	id: string;
 	dictionary: Dictionary;
+	isAvailable: boolean;
 }
 
-const AccessRequestButton = ({ children, kind, id, dictionary, ...props }: AccessRequestButtonProps & React.HTMLAttributes<HTMLDivElement>) => {
+const AccessRequestButton = ({ children, kind, id, dictionary, isAvailable, ...props }: AccessRequestButtonProps & React.HTMLAttributes<HTMLDivElement>) => {
 
 	const demoItem = accessRequestWhiteList.find(i => i.id === id);
 	const url = demoItem?.requestAddress === 'https://soknad.kudaf.no' ? `/en/access-request/${kind}/${id}` : demoItem?.requestAddress ;
@@ -24,7 +25,7 @@ const AccessRequestButton = ({ children, kind, id, dictionary, ...props }: Acces
 	      asChild
 			>
 				<Link href={url}>
-					{dictionary.header.requestAccessButton}
+					{ isAvailable ? dictionary.header.requestAccessButton : dictionary.header.showInterestButton }
 				</Link>
 			</Button>
 		</BadgeOverlay>
