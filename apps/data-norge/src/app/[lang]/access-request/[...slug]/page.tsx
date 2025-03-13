@@ -16,7 +16,7 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
     const { lang, slug } = await props.params;
     const dictionary = await getDictionary(lang, 'common');
     const [ kind, id ] = slug;
-    
+
     const url = `${ACCESS_REQUEST_API_HOST}/access-request/${lang}/${kind}/${id}`;
     const response = await fetch(url, { method: 'POST' });
     if (!response.ok) notFound();
