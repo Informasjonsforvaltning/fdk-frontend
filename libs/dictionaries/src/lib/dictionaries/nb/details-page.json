@@ -13,7 +13,7 @@
     },
     "resourceNotAvailableNotice": {
         "title": "Dette datasettet er enda ikke tilgjengelig",
-        "body": "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert. Du kan melde din interesse for datasettet til den ansvarlige virksomheten og søke om tilgang ved å klikke på knappen nedenfor. Jo flere som viser interesse, desto større er sjansen for at dataene blir gjort tilgjengelige.",
+        "body": "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert. Du kan melde din interesse for datasettet til den ansvarlige virksomheten ved å klikke på knappen nedenfor. Jo flere som viser interesse, desto større er sjansen for at dataene blir gjort tilgjengelige.",
         "moreInfoLink": "Mer informasjon"
     },
     "accessRights": {
