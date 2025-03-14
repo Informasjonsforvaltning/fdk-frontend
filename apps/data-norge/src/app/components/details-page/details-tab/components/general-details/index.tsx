@@ -40,9 +40,13 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
             <dl>
                 <dt>{dictionary.details.general.publisher}:</dt>
                 <dd>
-                    <Link href={`/organizations/${dataset.publisher?.id}`}>
-                        {dataset.publisher.prefLabel?.[locale] || dataset.publisher.prefLabel?.[i18n.defaultLocale]}
-                    </Link>
+                    {
+                        dataset.publisher ?
+                        <Link href={`/organizations/${dataset.publisher?.id}`}>
+                            {dataset.publisher?.prefLabel?.[locale] || dataset.publisher?.prefLabel?.[i18n.defaultLocale]}
+                        </Link> :
+                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                    }
                 </dd>
                 <dt>
                     <HStack>
@@ -61,7 +65,13 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         </HelpText>
                     </HStack>
                 </dt>
-                <dd>{new Date(dataset.harvest.firstHarvested).toLocaleString(locale, { dateStyle: 'long' })}</dd>
+                <dd>
+                    {
+                        dataset.harvest?.firstHarvested ?
+                        new Date(dataset.harvest.firstHarvested).toLocaleString(locale, { dateStyle: 'long' }) :
+                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                    }
+                </dd>
                 {!dataset.page && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.general.page}:</dt>
