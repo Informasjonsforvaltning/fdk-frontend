@@ -4,7 +4,7 @@ export const getResource = async (uri: string) => {
     return await fetch(uri, {
         method: 'GET',
         headers: {
-            Accept: '*/*',
+            Accept: 'application/json',
             'Content-Type': 'application/json',
         },
     }).then((res) => res.json());

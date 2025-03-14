@@ -5,7 +5,7 @@ export const getMetadataScores = async (ids: string[]) => {
     return await fetch(uri, {
         method: 'POST',
         headers: {
-            Accept: '*/*',
+            Accept: 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({

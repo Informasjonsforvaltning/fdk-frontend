@@ -103,7 +103,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch related resources
 
     try {
-        const relations = await getRelations(dataset.identifier[0]);
+        const relations = await getRelations(dataset.identifier?.[0]);
 
         apiRelations = relations.hits?.filter((r: any) => r.searchType === 'DATA_SERVICE') || [];
         relatedDatasets = relations.hits?.filter((r: any) => r.searchType === 'DATASET') || [];
@@ -126,7 +126,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // If room for more, fetch additional datasets from themes
 
     try {
-        themeDatasets = await getThemeDatasets(dataset?.losTheme?.map((t: any) => t.losPaths[0]));
+        themeDatasets = await getThemeDatasets(dataset.losTheme?.map((t: any) => t.losPaths[0]));
 
         // Filter self
         themeDatasets = themeDatasets.hits?.filter((d: any) => d.id !== dataset.id) || [];
