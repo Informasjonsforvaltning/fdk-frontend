@@ -58,6 +58,11 @@ spec:
                             secretKeyRef:
                                 name: commonurl-demo
                                 key: FDK_RESOURCE_SERVICE_BASE_URI
+                      - name: FDK_MQA_API_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_MQA_API_BASE_URI
                       - name: DIGDIR_ORGLOGO_API_BASE_URI
                         valueFrom:
                             secretKeyRef:
