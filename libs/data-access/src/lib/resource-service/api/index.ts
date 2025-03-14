@@ -1,13 +1,17 @@
 const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
 
 export const getResource = async (uri: string) => {
-    return await fetch(uri, {
+    const data = await fetch(uri, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
     }).then((res) => res.json());
+
+    if (data.message) throw new Error(data.message);
+
+    return data;
 };
 
 export const getDataset = async (datasetId: string) => {
