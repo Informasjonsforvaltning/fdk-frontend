@@ -71,5 +71,31 @@
                 "sparqlSandbox": "SPARQL sandbox"
             }
         }
+    },
+    "notFound": {
+        "title": "404: Page Not Found ☹️",
+        "message": "Unfortunately, we couldn't find the page you requested.",
+        "button": "Go to the homepage"
+    },
+    "openDataTag": {
+        "label": "Open data",
+        "helpTextTitle": "Explanation",
+        "helpText": "The dataset is classified as public access and has at least one distribution with an approved open license.",
+        "readMoreLinkText": "Read more about licenses here"
+    },
+    "openLicenseTag": {
+        "label": "Valid open license",
+        "helpTextTitle": "Explanation",
+        "helpText": "This is a valid open license that allows free use, sharing, and reuse of data in compliance with open data principles. These licenses are recognized for use in public and private datasets, both nationally and internationally.",
+        "linkText": "Read more about licenses here"
+    },
+    "unavailableTag": {
+        "label": "No distributions",
+        "helpTextTitle": "Explanation",
+        "helpText": "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert."
+    },
+    "general": {
+        "loading": "Loading...",
+        "redirecting": "Redirecting..."
     }
 }

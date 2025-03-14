@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { PropsWithChildren } from 'react';
 import { Divider, Popover } from '@digdir/designsystemet-react';

@@ -1,0 +1,5 @@
+@import '@fdk-frontend/ui/core/mixins';
+
+.article {
+    @include article();
+}

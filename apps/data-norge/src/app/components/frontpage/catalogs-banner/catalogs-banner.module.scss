@@ -11,4 +11,8 @@
         text-align: center;
         margin-bottom: 1.5rem;
     }
+
+    @media (max-width: 400px) {
+        padding: 3rem 1.5rem;
+    }
 }

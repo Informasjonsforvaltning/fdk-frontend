@@ -19,7 +19,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env.test') });
  */
 export default defineConfig({
     ...nxE2EPreset(__filename, { testDir: './src' }),
-    reporter: 'html',
+    reporter: 'list',
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
         baseURL,

@@ -1,0 +1,233 @@
+{
+    "hits": [
+        {
+            "id": "c1de5e22-0541-3791-ac21-f93e594a7c53",
+            "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/data-services/5ebce71dc4081a592e10fd2c",
+            "catalog": {
+                "id": "eb3013f6-6542-36ec-bb25-5c544136f7df",
+                "publisher": {
+                    "id": "910244132",
+                    "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/910244132",
+                    "orgPath": "/ANNET/910244132",
+                    "name": "Ramsund og rognan revisjon",
+                    "prefLabel": {
+                        "nb": "Ramsund og rognan revisjon"
+                    }
+                },
+                "title": {
+                    "en": "Data service catalog (910244132)"
+                },
+                "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/catalogs/910244132"
+            },
+            "description": {
+                "nb": "Som en twistpose"
+            },
+            "fdkFormatPrefixed": [
+                "MEDIA_TYPE application/gml+xml",
+                "MEDIA_TYPE text/csv",
+                "MEDIA_TYPE application/json"
+            ],
+            "metadata": {
+                "firstHarvested": "2021-03-17T10:00:04Z",
+                "modified": "2023-02-02T14:09:30Z",
+                "deleted": false,
+                "timestamp": 1726138002000
+            },
+            "organization": {
+                "id": "910244132",
+                "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/910244132",
+                "orgPath": "/ANNET/910244132",
+                "name": "Ramsund og rognan revisjon",
+                "prefLabel": {
+                    "nb": "Ramsund og rognan revisjon"
+                }
+            },
+            "searchType": "DATA_SERVICE",
+            "title": {
+                "nb": "API over godteri"
+            },
+            "relations": [
+                {
+                    "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/9e2851df-df3d-4b54-ba94-789b957f8c1d",
+                    "type": "servesDataset"
+                }
+            ],
+            "isRelatedToTransportportal": false
+        },
+        {
+            "id": "13bdb342-b64f-3e9b-84e0-9d52526f3669",
+            "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/data-services/5f48fb6393384f19e959e347",
+            "catalog": {
+                "id": "eb3013f6-6542-36ec-bb25-5c544136f7df",
+                "publisher": {
+                    "id": "910244132",
+                    "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/910244132",
+                    "orgPath": "/ANNET/910244132",
+                    "name": "Ramsund og rognan revisjon",
+                    "prefLabel": {
+                        "nb": "Ramsund og rognan revisjon"
+                    }
+                },
+                "title": {
+                    "en": "Data service catalog (910244132)"
+                },
+                "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/catalogs/910244132"
+            },
+            "fdkFormatPrefixed": [],
+            "metadata": {
+                "firstHarvested": "2022-02-28T16:21:17Z",
+                "modified": "2023-02-02T14:09:30Z",
+                "deleted": false,
+                "timestamp": 1726138002000
+            },
+            "organization": {
+                "id": "910244132",
+                "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/910244132",
+                "orgPath": "/ANNET/910244132",
+                "name": "Ramsund og rognan revisjon",
+                "prefLabel": {
+                    "nb": "Ramsund og rognan revisjon"
+                }
+            },
+            "searchType": "DATA_SERVICE",
+            "title": {
+                "nb": "Barnehagefakta"
+            },
+            "relations": [
+                {
+                    "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/9e2851df-df3d-4b54-ba94-789b957f8c1d",
+                    "type": "servesDataset"
+                }
+            ],
+            "isRelatedToTransportportal": false
+        },
+        {
+            "id": "29481f98-135e-3df2-9047-73148d702de5",
+            "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/data-services/667bc2e9302bd123f1a86e04",
+            "accessRights": {
+                "uri": "http://publications.europa.eu/resource/authority/access-right/PUBLIC"
+            },
+            "catalog": {
+                "id": "3e091f91-4fc2-338a-901c-1addaa3dca71",
+                "publisher": {
+                    "id": "974760673",
+                    "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/974760673",
+                    "orgPath": "/STAT/912660680/974760673",
+                    "name": "Registerenheten i brønnøysund",
+                    "prefLabel": {
+                        "nb": "Registerenheten i brønnøysund"
+                    }
+                },
+                "title": {
+                    "en": "Data service catalog (974760673)"
+                },
+                "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/catalogs/974760673"
+            },
+            "description": {
+                "nb": "Beskrivelse"
+            },
+            "fdkFormatPrefixed": [],
+            "metadata": {
+                "firstHarvested": "2024-06-26T08:00:02Z",
+                "modified": "2024-06-26T08:00:02Z",
+                "deleted": false,
+                "timestamp": 1730117039000
+            },
+            "keyword": [
+                {
+                    "nb": "søkeord"
+                },
+                {
+                    "nb": "test"
+                },
+                {
+                    "nb": "123"
+                }
+            ],
+            "organization": {
+                "id": "974760673",
+                "uri": "https://organization-catalogue.staging.fellesdatakatalog.digdir.no/organizations/974760673",
+                "orgPath": "/STAT/912660680/974760673",
+                "name": "Registerenheten i brønnøysund",
+                "prefLabel": {
+                    "nb": "Registerenheten i brønnøysund"
+                }
+            },
+            "searchType": "DATA_SERVICE",
+            "title": {
+                "nb": "Alle felter utfylt",
+                "nn": "Nynorsk"
+            },
+            "relations": [
+                {
+                    "uri": "https://data.norge.no/def/serviceType#ACCOUNT_DETAILS",
+                    "type": "conformsTo"
+                },
+                {
+                    "uri": "https://data.utdanning.no/forvaltningsdatabasen",
+                    "type": "servesDataset"
+                },
+                {
+                    "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/910244132/datasets/9e2851df-df3d-4b54-ba94-789b957f8c1d",
+                    "type": "servesDataset"
+                }
+            ],
+            "isRelatedToTransportportal": false
+        }
+    ],
+    "aggregations": {
+        "openData": [],
+        "provenance": [],
+        "orgPath": [
+            {
+                "key": "/ANNET",
+                "count": 2
+            },
+            {
+                "key": "/ANNET/910244132",
+                "count": 2
+            },
+            {
+                "key": "/STAT",
+                "count": 1
+            },
+            {
+                "key": "/STAT/912660680",
+                "count": 1
+            },
+            {
+                "key": "/STAT/912660680/974760673",
+                "count": 1
+            }
+        ],
+        "format": [
+            {
+                "key": "MEDIA_TYPE application/gml+xml",
+                "count": 1
+            },
+            {
+                "key": "MEDIA_TYPE application/json",
+                "count": 1
+            },
+            {
+                "key": "MEDIA_TYPE text/csv",
+                "count": 1
+            }
+        ],
+        "losTheme": [],
+        "dataTheme": [],
+        "accessRights": [
+            {
+                "key": "null",
+                "count": 3
+            }
+        ],
+        "spatial": []
+    },
+    "page": {
+        "currentPage": 0,
+        "size": 3,
+        "totalElements": 3,
+        "totalPages": 1
+    }
+}
