@@ -72,7 +72,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch metadata scores
 
     try {
-        metadataScore = (await getMetadataScores([dataset.uri]))?.scores[dataset.uri];
+        metadataScore = (await getMetadataScores([dataset.uri]))?.scores?.[dataset.uri];
     } catch (err) {
         console.log(err);
     }
@@ -144,7 +144,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             orgDatasets = await getOrgDatasets(dataset.publisher?.orgPath);
 
             // Filter self
-            orgDatasets = orgDatasets.hits.filter((d: any) => d.id !== dataset.id) || [];
+            orgDatasets = orgDatasets.hits?.filter((d: any) => d.id !== dataset.id) || [];
 
             // Combine and limit to 5
             similarDatasets = [...similarDatasets, ...orgDatasets].slice(0, similarItemsLimit);

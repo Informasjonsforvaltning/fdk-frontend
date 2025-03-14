@@ -161,12 +161,15 @@ export default function DatasetDetailsPage({
                                 resource.isOpenData &&
                                 <OpenDataTag dictionary={dictionaries.common} />
                             }
-                            <span className={styles.lastUpdated}>
-                                {dictionaries.detailsPage.header.published}&nbsp;
-                                {new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
-                                    dateStyle: 'long',
-                                })}
-                            </span>
+                            {
+                                resource.harvest?.firstHarvested &&
+                                <span className={styles.lastUpdated}>
+                                    {dictionaries.detailsPage.header.published}&nbsp;
+                                    {new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
+                                        dateStyle: 'long',
+                                    })}
+                                </span>
+                            }
                         </div>
                     </div>
                 </div>
