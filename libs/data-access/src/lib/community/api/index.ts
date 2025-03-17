@@ -7,7 +7,11 @@ export const getCommunityPosts = async (searchParams: string) => {
         headers: {
             Accept: 'application/json',
         },
-    }).then((res) => res.json());
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('community posts not found');
+        return response.json()
+    });
 };
 
 export const getCommunityTopic = async (topicId: string) => {
@@ -17,5 +21,9 @@ export const getCommunityTopic = async (topicId: string) => {
         headers: {
             Accept: 'application/json',
         },
-    }).then((res) => res.json());
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('community topics not found');
+        return response.json()
+    });
 };

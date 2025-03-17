@@ -15,7 +15,11 @@ export const getRelations = async (resourceId: string) => {
                 },
             },
         }),
-    }).then((res) => res.json());
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('relations not found');
+        return response.json()
+    });
 };
 
 export const getOrgDatasets = async (orgPath: string) => {
@@ -33,7 +37,11 @@ export const getOrgDatasets = async (orgPath: string) => {
                 },
             },
         }),
-    }).then((res) => res.json());
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('org datasets not found');
+        return response.json()
+    });
 };
 
 export const getThemeDatasets = async (themes: string[]) => {
@@ -51,5 +59,9 @@ export const getThemeDatasets = async (themes: string[]) => {
                 },
             },
         }),
-    }).then((res) => res.json());
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('theme datasets not found');
+        return response.json()
+    });
 };
