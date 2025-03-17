@@ -57,7 +57,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     try {
         dataset = await getDataset(params.id);
     } catch (err) {
-        console.log(err);
+        console.log(err?.message || err);
         notFound();
     }
 
@@ -66,7 +66,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     try {
         orgLogo = await getOrgLogo(dataset.publisher?.id);
     } catch (err) {
-        console.log(err);
+        console.log(err?.message || err);
     }
 
     // Fetch metadata scores
@@ -74,7 +74,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     try {
         metadataScore = (await getMetadataScores([dataset.uri]))?.scores?.[dataset.uri];
     } catch (err) {
-        console.log(err);
+        console.log(err?.message || err);
     }
 
     // Fetch community posts
@@ -97,7 +97,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             }),
         );
     } catch (err) {
-        console.log(err);
+        console.log(err?.message || err);
     }
 
     // Fetch related resources
@@ -120,7 +120,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
         detailedApis = detailedApiResponses?.filter((api: any) => api !== null) || [];
     } catch (err) {
-        console.log(err);
+        console.log(err?.message || err);
     }
 
     // If room for more, fetch additional datasets from themes
@@ -134,7 +134,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         // Combine and limit to 5
         similarDatasets = [...relatedDatasets, ...themeDatasets].slice(0, similarItemsLimit);
     } catch (err) {
-        console.log(err);
+        console.log(err?.message || err);
     }
 
     // If room for more, fetch additional datasets based on org
@@ -149,7 +149,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             // Combine and limit to 5
             similarDatasets = [...similarDatasets, ...orgDatasets].slice(0, similarItemsLimit);
         } catch (err) {
-            console.log(err);
+            console.log(err?.message || err);
         }
     }
 
@@ -184,7 +184,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             description: dataset.description ?? dictionary.breadcrumbs.datasets,
         };
     } catch (err) {
-        console.log(err);
+        console.log(err?.message || err);
         notFound();
     }
 };
