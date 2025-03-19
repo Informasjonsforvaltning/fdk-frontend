@@ -1,0 +1,3 @@
+[submodule "libs/fdk-types"]
+	path = libs/fdk-types
+	url = https://github.com/Informasjonsforvaltning/fdk-types/
