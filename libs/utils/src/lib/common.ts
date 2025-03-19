@@ -10,7 +10,7 @@ export const printLocaleValue = (locale: LocaleCodes, value: any) => {
     return value[locale] || value[i18n.defaultLocale] || value['no'];
 };
 
-export const sumArrayLengths = (...arrays: any[][]) => {
+export const sumArrayLengths = (...arrays: (any[] | undefined)[]) => {
     return arrays.reduce((sum, array) => sum + (array?.length || 0), 0);
 };
 

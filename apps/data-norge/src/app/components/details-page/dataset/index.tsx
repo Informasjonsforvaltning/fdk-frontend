@@ -4,6 +4,7 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
+import { type Dataset, type DataService } from '@fdk-frontend/fdk-types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
@@ -41,8 +42,8 @@ import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
 
 export type DatasetDetailsPageType = {
     baseUri: string;
-    resource: JSONValue;
-    apis?: JSONValue;
+    resource: Dataset;
+    apis?: DataService[];
     relatedDatasets?: JSONValue;
     similarDatasets?: JSONValue;
     orgDatasets?: JSONValue;
