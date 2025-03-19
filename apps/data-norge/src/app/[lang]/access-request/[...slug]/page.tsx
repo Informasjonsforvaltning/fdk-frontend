@@ -2,6 +2,7 @@
 import { redirect, notFound } from 'next/navigation';
 import { Spinner, Paragraph } from '@digdir/designsystemet-react';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { getAccessRequestDestination } from '@fdk-frontend/data-access/server';
 import styles from './access-request-page.module.scss';
 
 export type AccessRequestPageProps = {
@@ -12,17 +13,18 @@ export type AccessRequestPageProps = {
 };
 
 const AccessRequestPage = async (props: AccessRequestPageProps) => {
-    const { ACCESS_REQUEST_API_HOST } = process.env;
     const { lang, slug } = await props.params;
-    const dictionary = await getDictionary(lang, 'common');
     const [ kind, id ] = slug;
-
-    const url = `${ACCESS_REQUEST_API_HOST}/access-request/${lang}/${kind}/${id}`;
-    const response = await fetch(url, { method: 'POST' });
-    if (!response.ok) notFound();
     
-    const destination = await response.text();
-    redirect(destination);
+    const dictionary = await getDictionary(lang, 'common');
+
+    try {
+        const destination = await getAccessRequestDestination({ lang, kind, id });
+        redirect(destination);
+    } catch (err) {
+        notFound();
+        throw err;
+    }
 
     return (
         <div className={styles.wrapper}>
