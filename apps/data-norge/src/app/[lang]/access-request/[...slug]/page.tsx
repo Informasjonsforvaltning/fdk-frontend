@@ -3,12 +3,13 @@ import { redirect, notFound } from 'next/navigation';
 import { Spinner, Paragraph } from '@digdir/designsystemet-react';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { getAccessRequestDestination } from '@fdk-frontend/data-access/server';
+import { type CatalogTypes } from '@fdk-frontend/types';
 import styles from './access-request-page.module.scss';
 
 export type AccessRequestPageProps = {
     params: Promise<{
         lang: LocaleCodes;
-        slug: string[];
+        slug: [CatalogTypes, string];
     }>;
 };
 
