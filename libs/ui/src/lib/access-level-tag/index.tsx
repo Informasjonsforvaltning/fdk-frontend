@@ -3,7 +3,7 @@ import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { AccessRightsCodes } from '@fdk-frontend/fdk-types';
 
 type AccessLevelTagProps = {
-    accessCode: AccessRightsCodes;
+    accessCode?: AccessRightsCodes;
     dictionary: Dictionary;
     nonInteractive?: boolean;
 };
@@ -11,8 +11,8 @@ type AccessLevelTagProps = {
 const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, ...props }: AccessLevelTagProps) => {
     let color = 'neutral';
 
-    const label = dictionary.accessRights.codes[accessCode]?.label || dictionary.accessRights.unknownLabel;
-    const helpText = dictionary.accessRights.codes[accessCode]?.helpText || '';
+    const label = accessCode ? dictionary.accessRights.codes[accessCode]?.label : dictionary.accessRights.unknownLabel;
+    const helpText = accessCode ? dictionary.accessRights.codes[accessCode]?.helpText : '';
 
     if (accessCode === AccessRightsCodes.NON_PUBLIC) color = 'danger';
     if (accessCode === AccessRightsCodes.RESTRICTED) color = 'warning';
