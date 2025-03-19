@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { printLocaleValue } from '@fdk-frontend/utils';
+import { Dataset } from '@fdk-frontend/fdk-types';
 import DatasetDetailsPage from '../../../components/details-page/dataset';
 import {
     getOrgLogo,
@@ -41,7 +42,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         detailsPage: await getDictionary(locale, 'details-page'),
     };
 
-    let dataset;
+    let dataset: Dataset;
     let metadataScore;
     let orgLogo: string | null;
     let apiRelations;
