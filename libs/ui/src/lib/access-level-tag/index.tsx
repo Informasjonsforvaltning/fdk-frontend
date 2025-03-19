@@ -1,9 +1,9 @@
 import { Link, Tag, TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
-import { DatasetAccessRightsCodes } from '@fdk-frontend/types';
+import { AccessRightsCodes } from '@fdk-frontend/fdk-types';
 
 type AccessLevelTagProps = {
-    accessCode: DatasetAccessRightsCodes;
+    accessCode: AccessRightsCodes;
     dictionary: Dictionary;
     nonInteractive?: boolean;
 };
@@ -14,9 +14,9 @@ const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, ...props }: Ac
     const label = dictionary.accessRights.codes[accessCode]?.label || dictionary.accessRights.unknownLabel;
     const helpText = dictionary.accessRights.codes[accessCode]?.helpText || '';
 
-    if (accessCode === 'NON_PUBLIC') color = 'danger';
-    if (accessCode === 'RESTRICTED') color = 'warning';
-    if (accessCode === 'PUBLIC') color = 'success';
+    if (accessCode === AccessRightsCodes.NON_PUBLIC) color = 'danger';
+    if (accessCode === AccessRightsCodes.RESTRICTED) color = 'warning';
+    if (accessCode === AccessRightsCodes.PUBLIC) color = 'success';
 
     return (
         <Tag

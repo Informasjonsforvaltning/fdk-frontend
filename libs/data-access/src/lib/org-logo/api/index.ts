@@ -6,7 +6,9 @@ export const fetchLogo = async (uri: string) => {
     return uri;
 };
 
-export const getOrgLogo = async (orgNr: string) => {
+export const getOrgLogo = async (orgNr?: string) => {
+    if (!orgNr) return null;
+
     const emblemUri = `${DIGDIR_ORGLOGO_API_BASE_URI}/api/emblem/svg/${orgNr}`;
     const logoSvgUri = `${DIGDIR_ORGLOGO_API_BASE_URI}/api/logo/svg/${orgNr}`;
     const logoOrgUri = `${DIGDIR_ORGLOGO_API_BASE_URI}/api/logo/org/${orgNr}`;

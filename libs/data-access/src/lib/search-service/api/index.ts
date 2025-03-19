@@ -22,7 +22,8 @@ export const getRelations = async (resourceId: string) => {
     });
 };
 
-export const getOrgDatasets = async (orgPath: string) => {
+export const getOrgDatasets = async (orgPath?: string) => {
+    if (!orgPath || !orgPath.length) throw new Error('missing orgpath');
     const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`;
     return await fetch(uri, {
         method: 'POST',
@@ -44,7 +45,8 @@ export const getOrgDatasets = async (orgPath: string) => {
     });
 };
 
-export const getThemeDatasets = async (themes: string[]) => {
+export const getThemeDatasets = async (themes?: string[]) => {
+    if (!themes || !themes.length) throw new Error('missing themes');
     const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`;
     return await fetch(uri, {
         method: 'POST',
