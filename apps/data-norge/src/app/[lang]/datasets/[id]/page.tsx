@@ -43,7 +43,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     let dataset;
     let metadataScore;
-    let orgLogo;
+    let orgLogo: string | null;
     let apiRelations;
     let detailedApis;
     let relatedDatasets;
@@ -59,6 +59,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     } catch (err) {
         console.log(err);
         notFound();
+        throw err;
     }
 
     // Fetch publisher logo

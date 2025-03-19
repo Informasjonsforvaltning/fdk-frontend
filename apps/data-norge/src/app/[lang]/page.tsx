@@ -5,6 +5,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
 import Header from '@fdk-frontend/ui/header';
+import Footer from '@fdk-frontend/ui/footer';
 
 import { FrontpageBanner } from '../components/frontpage/frontpage-banner';
 import { ShareDataBanner } from '../components/frontpage/share-data-banner';
@@ -63,6 +64,10 @@ const Frontpage = async (props: FrontpageProps) => {
                     />
                 </div>
             </main>
+            <Footer
+                dictionary={commonDictionary}
+                baseUri={`/${params.lang}`}
+            />
         </>
     );
 };
