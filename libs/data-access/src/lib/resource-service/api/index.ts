@@ -24,3 +24,15 @@ export const getApi = async (apiId: string) => {
     const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/data-services/${apiId}`;
     return getResource(uri);
 };
+
+export const getApis = async (apiIds: string[]) => {
+    const apis = await Promise.all(
+        apiIds?.map(async (id: string) => {
+            return await getApi(id);
+        }),
+    );
+
+    // Filter out failed requests (null values)
+
+    return apis?.filter((api: any) => api !== null) || [];
+}
