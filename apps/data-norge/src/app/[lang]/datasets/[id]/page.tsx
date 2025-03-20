@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
-    type Dataset,
     type DatasetWithIdentifier,
     type DatasetScores,
     type DatasetScore,
@@ -13,9 +12,8 @@ import DatasetDetailsPage from '../../../components/details-page/dataset';
 import {
     getOrgLogo,
     getDataset,
-    getApi,
-    getCommunityPosts,
-    getCommunityTopic,
+    getApis,
+    getAllCommunityTopics,
     getRelations,
     getOrgDatasets,
     getThemeDatasets,
@@ -52,8 +50,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     let dataset: DatasetWithIdentifier;
     let metadataScore: DatasetScore | null = null;
     let orgLogo: string | null = null;
-    let apiRelations: DataService[] = [];
-    let detailedApis: DataService[] = [];
+    let apiRelations: Partial<DataService>[] = [];
+    let apis: DataService[] = [];
     let relatedDatasets: DatasetWithIdentifier[] = [];
     let similarDatasets: DatasetWithIdentifier[] = [];
     let orgDatasets: DatasetWithIdentifier[] = [];
@@ -89,22 +87,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch community posts
 
     try {
-        const communitySearchParams = new URLSearchParams();
-
-        communitySearchParams.set('term', dataset.id);
-        communitySearchParams.set('sortBy', 'topic.lastposttime');
-        communitySearchParams.set('sortDirection', 'desc');
-
-        const communitySearch = await getCommunityPosts(communitySearchParams.toString());
-
-        const uniqueTopics = new Set<string>();
-        communitySearch.posts.forEach((post: any) => uniqueTopics.add(post.topic.tid));
-
-        communityTopics = await Promise.all(
-            Array.from(uniqueTopics).map(async (topicId: string) => {
-                return await getCommunityTopic(topicId);
-            }),
-        );
+        communityTopics = await getAllCommunityTopics(dataset.id);
     } catch (err) {
         console.log(err);
     }
@@ -114,22 +97,14 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     try {
         const results = await getRelations(dataset.identifier?.[0]);
 
-        apiRelations = results.hits?.filter((r: any) => r.searchType === 'DATA_SERVICE') || [];
-        relatedDatasets = results.hits?.filter((r: any) => r.searchType === 'DATASET') || [];
+        const hits = results?.hits ?? [];
 
-        // Fetch additional details for each related API
+        apiRelations = hits.filter((r: any) => r.searchType === 'DATA_SERVICE');
+        relatedDatasets = hits.filter((r: any) => r.searchType === 'DATASET');
 
-        const detailedApiResponses = await Promise.all(
-            apiRelations?.map(async (api: any) => {
-                return await getApi(api.id);
-            }),
-        );
-
-        // Filter out failed requests (null values)
-
-        detailedApis = detailedApiResponses?.filter((api: any) => api !== null) || [];
+        apis = await getApis(apiRelations.map(api => api.id).filter((id): id is string => id !== undefined));
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     // If room for more, fetch additional datasets from themes
@@ -167,7 +142,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             baseUri={FDK_BASE_URI}
             resource={dataset}
             orgLogo={orgLogo}
-            apis={detailedApis}
+            apis={apis}
             metadataScore={metadataScore}
             similarDatasets={similarDatasets}
             relatedDatasets={relatedDatasets}
