@@ -32,6 +32,12 @@
             }
         }
 
+        .leftColumn,
+        .rightColumn {
+            position:sticky;
+            top:88px;
+        }
+
         .asideContent {
             max-width: 350px;
         }
@@ -74,6 +80,10 @@
 
             .mainColumn {
                 margin-top: 2rem;
+            }
+
+            .leftColumn {
+                position:static;
             }
 
             .rightColumn {
