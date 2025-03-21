@@ -20,6 +20,7 @@ jobs:
               with:
                   # We need to fetch all branches and commits so that Nx affected has a base to compare against.
                   fetch-depth: 0
+                  submodules: true
 
             - name: Update submodules to latest main
               run: |
