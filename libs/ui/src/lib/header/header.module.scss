@@ -3,6 +3,10 @@
 .header {
     + main {
         padding-top: 74px;
+
+        @media (max-width: 650px) {
+            padding-top: 63px;
+        }
     }
 
     &.frontpageHeader {
@@ -16,8 +20,10 @@
             &:not(.headerSticky) {
                 background: transparent;
 
-                .headerLogo:not(:focus-visible) {
-                    color: white;
+                .headerLogo {
+                    &:not(:focus-visible):not(:hover) {
+                        color: white;
+                    }
                 }
 
                 .headerToolbar {
@@ -56,8 +62,11 @@
     width: 100%;
     transition: all linear 200ms;
     max-height: 100vh;
-    overflow: auto;
     background: white;
+
+    @media (max-width: 460px) {
+        overflow: auto;
+    }
 
     &.headerSticky {
         position: fixed;
@@ -82,7 +91,9 @@
         }
 
         .headerLogo {
-            color: var(--color-fdk-navy);
+            &:not(:focus-visible):not(:hover) {
+                color: var(--color-text);
+            }
         }
 
         a,
@@ -121,8 +132,12 @@
                     }
                 }
             }
+        }
 
-            @media (max-width: 400px) {
+        @media (max-width: 400px) {
+            padding: 1rem 1.5rem;
+
+            .headerToolbar {
                 a:last-child {
                     display: none;
                 }
@@ -134,5 +149,9 @@
         max-width: 1000px;
         margin: auto;
         padding: 1rem 2rem;
+
+        @media (max-width: 400px) {
+            padding: 1rem 1.5rem;
+        }
     }
 }

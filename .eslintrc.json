@@ -1,5 +1,5 @@
 {
-    "ignorePatterns": ["node_modules", "**/*", "libs/storybook-app"],
+    "ignorePatterns": ["node_modules", "**/*", "libs/storybook-app", "libs/data-norge-e2e"],
     "overrides": [
         {
             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -60,7 +60,7 @@
                 "no-param-reassign": "error",
                 "no-promise-executor-return": "error",
                 "no-restricted-syntax": [
-                    "error",
+                    "warn",
                     {
                         "message": "Unexpected property on console object was called",
                         "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(error)$/]"

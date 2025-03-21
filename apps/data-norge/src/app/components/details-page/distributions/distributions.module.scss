@@ -1,0 +1,54 @@
+.distributions {
+    border-radius: 3px;
+
+    > :global(.fds-heading) {
+        margin: 2rem 0 1rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}
+
+.accordionItem {
+    position: relative;
+
+    > :global(.fds-link.fds-btn) {
+        margin: 0.5rem 1rem 1rem;
+    }
+
+    @media (min-width: 500px) {
+        > :global(.fds-link.fds-btn) {
+            margin: 0;
+            position: absolute;
+            top: 0.9rem;
+            right: 1rem;
+            z-index: 1;
+        }
+    }
+
+    .header {
+        :global(.fds-accordion__button) {
+            > span {
+                display: flex;
+                flex-grow: 1;
+            }
+
+            @media (max-width: 500px) {
+                flex-direction: row-reverse;
+                align-items: flex-start;
+            }
+        }
+    }
+}
+
+.content {
+    table {
+        width: 100%;
+
+        td,
+        th {
+            background: transparent;
+        }
+    }
+}
