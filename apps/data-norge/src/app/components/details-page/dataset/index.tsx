@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { type JSONValue } from '@fdk-frontend/types';
-import { type Dataset, type DataService } from '@fdk-frontend/fdk-types';
+import { type DatasetWithIdentifier, type DataService, type DatasetScore, type CommunityTopic } from '@fdk-frontend/fdk-types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
@@ -21,6 +20,7 @@ import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import DatasetTable from '@fdk-frontend/ui/dataset-table';
 import AccessRequestButton from '@fdk-frontend/ui/access-request-button';
 import ResourceNotAvailableNotice from '@fdk-frontend/ui/resource-not-available-notice';
+import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
 import {
     Button,
     Heading,
@@ -31,24 +31,21 @@ import {
     Tab,
     TabContent,
 } from '@digdir/designsystemet-react';
-
 import Distributions from '../distributions';
 import DatasetDetailsTab from '../details-tab';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
 import styles from '../details-page.module.scss';
 
-import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
-
 export type DatasetDetailsPageType = {
     baseUri: string;
-    resource: Dataset;
+    resource: DatasetWithIdentifier;
     apis?: DataService[];
-    relatedDatasets?: JSONValue;
-    similarDatasets?: JSONValue;
-    orgDatasets?: JSONValue;
-    metadataScore?: JSONValue;
-    communityTopics?: JSONValue;
+    relatedDatasets?: DatasetWithIdentifier[];
+    similarDatasets?: DatasetWithIdentifier[];
+    orgDatasets?: DatasetWithIdentifier[];
+    metadataScore?: DatasetScore;
+    communityTopics?: CommunityTopic[];
     communityBaseUri: string;
     defaultActiveTab?: string;
     orgLogo?: string | null;
@@ -208,11 +205,7 @@ export default function DatasetDetailsPage({
                                 onClick={() => updateUri('community')}
                             >
                                 {dictionaries.detailsPage.tabs.community}
-                                {communityTopics.length > 0 && (
-                                    <>
-                                        &nbsp;<Badge>{communityTopics.length}</Badge>
-                                    </>
-                                )}
+                                &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
                             </Tab>
                             <Tab
                                 value='rdf'

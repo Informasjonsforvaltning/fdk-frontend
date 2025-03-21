@@ -48,7 +48,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     };
 
     let dataset: DatasetWithIdentifier;
-    let metadataScore: DatasetScore | null = null;
+    let metadataScore: DatasetScore | undefined = undefined;
     let orgLogo: string | null = null;
     let apiRelations: Partial<DataService>[] = [];
     let apis: DataService[] = [];
