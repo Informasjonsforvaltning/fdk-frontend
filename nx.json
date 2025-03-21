@@ -74,6 +74,9 @@
         },
         "e2e-ci--**/*": {
             "dependsOn": ["^build"]
-        }
+        },
+        "test": {
+          "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+        },
     }
 }
