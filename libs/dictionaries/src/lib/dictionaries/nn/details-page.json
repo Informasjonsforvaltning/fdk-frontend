@@ -111,8 +111,7 @@
         },
         "contactPoint": {
             "title": "Kontaktinformasjon",
-            "fullname": "Kontaktperson",
-            "organizationUnit": "Eining",
+            "organizationUnit": "Kontaktpunkt",
             "email": "E-post",
             "telephone": "Telefon"
         },

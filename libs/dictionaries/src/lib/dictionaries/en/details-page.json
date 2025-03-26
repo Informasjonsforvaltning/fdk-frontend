@@ -111,8 +111,7 @@
         },
         "contactPoint": {
             "title": "Contact information",
-            "fullname": "Contact person",
-            "organizationUnit": "Unit",
+            "organizationUnit": "Contact point",
             "email": "Email",
             "telephone": "Telephone"
         },
