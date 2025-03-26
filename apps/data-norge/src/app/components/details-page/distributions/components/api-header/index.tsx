@@ -1,7 +1,8 @@
 import { PropsWithChildren } from 'react';
 import { type DataService } from '@fdk-frontend/fdk-types';
-import { type LocaleCodes, type Dictionary, i18n } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import ApiTags from '@fdk-frontend/ui/api-tags';
+import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from '../distribution-header/distribution-header.module.scss';
 
 type ApiHeaderProps = {
@@ -14,7 +15,7 @@ const ApiHeader = ({ api, locale, dictionary, ...props }: ApiHeaderProps & Props
     return (
         <div className={styles.headerContent}>
             <span className={styles.title}>
-                {api.title?.[locale] || api.title?.[i18n.defaultLocale] || dictionary.apis.header.nameless}
+                {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
                 <ApiTags
                     api={api}
                     dictionary={dictionary}

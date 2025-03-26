@@ -1,30 +1,5 @@
 @import '@fdk-frontend/ui/core/mixins';
 
-.highlight {
-    > :global(.fds-alert),
-    > :global(.fds-accordion) {
-        animation: blink-border 1s ease-in-out 2;
-    }
-}
-
-@keyframes blink-border {
-    0% {
-        box-shadow: 0px 0px 0px 10px transparent;
-    }
-    25% {
-        box-shadow: 0px 0px 0px 10px var(--fds-semantic-surface-focus-default);
-    }
-    50% {
-        box-shadow: 0px 0px 0px 10px transparent;
-    }
-    75% {
-        box-shadow: 0px 0px 0px 10px var(--fds-semantic-surface-focus-default);
-    }
-    100% {
-        box-shadow: 0px 0px 0px 10px transparent;
-    }
-}
-
 .detailsPage {
     margin: 0 2rem 3rem;
     container-type: inline-size;
@@ -45,68 +20,6 @@
 
         @media (max-width: 650px) {
             margin-top: 1rem;
-        }
-
-        .header {
-            margin-bottom: 1.5rem;
-
-            .headerGrid {
-                margin-top: 0.5rem;
-                display: grid;
-                grid-template-areas: 'a b' 'c c';
-                grid-template-columns: auto auto;
-                grid-template-rows: auto auto;
-                gap: 0.75rem;
-
-                .title {
-                    grid-area: a;
-                    font-size: 2.25rem;
-                }
-
-                .headerToolbar {
-                    grid-area: b;
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 1rem;
-                    justify-self: end;
-
-                    button {
-                        white-space: nowrap;
-                    }
-                }
-
-                .headerTags {
-                    grid-area: c;
-                    grid-column: 1 / -1;
-
-                    :global(.fds-tag) {
-                        display: inline-flex;
-                        margin-right: 0.5rem;
-                    }
-
-                    a:not(:hover) {
-                        text-decoration: none;
-                    }
-
-                    .lastUpdated {
-                        font-size: 0.9em;
-                        opacity: 0.7;
-                        margin-left: 0.25rem;
-                        white-space: nowrap;
-                        line-height: 2em;
-                    }
-                }
-
-                @media (max-width: 500px) {
-                    grid-template-areas: 'a' 'c' 'b';
-                    grid-template-columns: 1fr;
-
-                    .headerToolbar {
-                        justify-self: start;
-                        margin-top: 0.5rem;
-                    }
-                }
-            }
         }
 
         .tabsScrollShadows {
@@ -132,16 +45,18 @@
             }
         }
 
-        :global(.fds-tabs__tab) {
-            padding: 0.75rem 1rem;
-            white-space: nowrap;
-        }
+        .tabs {
+            :global(.fds-tabs__tab) {
+                padding: 0.75rem 1rem;
+                white-space: nowrap;
+            }
 
-        :global(.fds-tabs__content) {
-            padding: 1.5rem 0;
+            :global(.fds-tabs__content) {
+                padding: 1.5rem 0;
 
-            > * + * {
-                margin-top: 1.5rem;
+                > * + * {
+                    margin-top: 1.5rem;
+                }
             }
         }
 
