@@ -96,6 +96,7 @@
             "firstHarvestedHelpTextTitle": "Explanation",
             "firstHarvestedHelpTextLink": "Read more about harvesting here",
             "page": "Documentation",
+            "landingPage": "Landing page",
             "metadataQuality": {
                 "title": "Metadata Quality",
                 "helpText": "Metadata quality is an indicator of how well the datasets are described using metadata.",

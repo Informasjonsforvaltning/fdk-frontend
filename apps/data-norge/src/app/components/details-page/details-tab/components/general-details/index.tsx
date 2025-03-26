@@ -73,6 +73,26 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                     )}
                 </dd>
+                {!dataset.landingPage && !showEmptyRows ? null : (
+                    <>
+                        <dt>{dictionary.details.general.landingPage}:</dt>
+                        <dd>
+                            {dataset.landingPage?.length ? (
+                                <ul>
+                                    {dataset.landingPage.map((page) => (
+                                        <li key={page}>
+                                            <Link href={page}>
+                                                {page} <ExternalLinkIcon />
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
+                            )}
+                        </dd>
+                    </>
+                )}
                 {!dataset.page && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.general.page}:</dt>

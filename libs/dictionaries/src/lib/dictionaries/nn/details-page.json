@@ -96,6 +96,7 @@
             "firstHarvestedHelpTextTitle": "Omgrep",
             "firstHarvestedHelpTextLink": "Les meir om innhenting her",
             "page": "Dokumentasjon",
+            "landingPage": "Landingsside",
             "metadataQuality": {
                 "title": "Metadatakvalitet",
                 "helpText": "Metadatakvalitet er ein indikator på kor godt datasettene er beskrive ved hjelp av metadata.",

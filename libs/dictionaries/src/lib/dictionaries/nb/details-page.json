@@ -96,6 +96,7 @@
             "firstHarvestedHelpTextTitle": "Begrepsforklaring",
             "firstHarvestedHelpTextLink": "Les mer om høsting her",
             "page": "Dokumentasjon",
+            "landingPage": "Landingsside",
             "metadataQuality": {
                 "title": "Metadatakvalitet",
                 "helpText": "Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp avmetadata.",
