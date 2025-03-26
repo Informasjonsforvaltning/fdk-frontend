@@ -95,12 +95,12 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         </dd>
                     </>
                 )}
-                {!dataset?.harvest?.modified && !showEmptyRows ? null : (
+                {!dataset?.modified && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.modified}:</dt>
                         <dd>
-                            {dataset?.harvest?.modified ? (
-                                new Date(dataset.harvest.modified).toLocaleString(locale, { dateStyle: 'long' })
+                            {dataset?.modified ? (
+                                new Date(dataset.modified).toLocaleString(locale, { dateStyle: 'long' })
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}

@@ -6,7 +6,7 @@ import {
     type DatasetScores,
     type DatasetScore,
     type DataService,
-    type CommunityTopic
+    type CommunityTopic,
 } from '@fdk-frontend/fdk-types';
 import DatasetDetailsPage from '../../../components/details-page/dataset';
 import {
@@ -79,7 +79,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch metadata scores
 
     try {
-        metadataScore = (await getMetadataScores([dataset.uri]) as DatasetScores)?.scores?.[dataset.uri];
+        metadataScore = ((await getMetadataScores([dataset.uri])) as DatasetScores)?.scores?.[dataset.uri];
     } catch (err) {
         console.log(err);
     }
@@ -102,7 +102,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         apiRelations = hits.filter((r: any) => r.searchType === 'DATA_SERVICE');
         relatedDatasets = hits.filter((r: any) => r.searchType === 'DATASET');
 
-        apis = await getApis(apiRelations.map(api => api.id).filter((id): id is string => id !== undefined));
+        apis = await getApis(apiRelations.map((api) => api.id).filter((id): id is string => id !== undefined));
     } catch (err) {
         console.error(err);
     }

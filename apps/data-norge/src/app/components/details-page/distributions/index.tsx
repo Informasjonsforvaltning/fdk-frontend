@@ -64,8 +64,7 @@ const Distributions = ({
                                     dictionary={dictionaries.detailsPage}
                                 />
                             </Accordion.Header>
-                            {
-                                distribution.accessURL &&
+                            {distribution.accessURL && (
                                 <ActionButton uri={distribution.accessURL}>
                                     <DownloadIcon
                                         aria-hidden
@@ -73,7 +72,7 @@ const Distributions = ({
                                     />
                                     {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
                                 </ActionButton>
-                            }
+                            )}
                             <Accordion.Content className={styles.content}>
                                 <DistributionDetails
                                     distribution={distribution}

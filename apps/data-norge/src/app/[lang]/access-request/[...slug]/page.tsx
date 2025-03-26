@@ -1,4 +1,3 @@
-
 import { redirect, notFound } from 'next/navigation';
 import { Spinner, Paragraph } from '@digdir/designsystemet-react';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
@@ -15,8 +14,8 @@ export type AccessRequestPageProps = {
 
 const AccessRequestPage = async (props: AccessRequestPageProps) => {
     const { lang, slug } = await props.params;
-    const [ kind, id ] = slug;
-    
+    const [kind, id] = slug;
+
     const dictionary = await getDictionary(lang, 'common');
 
     try {
@@ -29,13 +28,18 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
 
     return (
         <div className={styles.wrapper}>
-            <div style={{textAlign:'center'}}>
-                <Spinner title={dictionary.general.redirecting} size='md' variant='interaction' aria-hidden />
+            <div style={{ textAlign: 'center' }}>
+                <Spinner
+                    title={dictionary.general.redirecting}
+                    size='md'
+                    variant='interaction'
+                    aria-hidden
+                />
                 <Paragraph>{dictionary.general.redirecting}</Paragraph>
             </div>
         </div>
     );
-}
+};
 
 export const generateMetadata = async (props: AccessRequestPageProps) => {
     const params = await props.params;
@@ -44,7 +48,6 @@ export const generateMetadata = async (props: AccessRequestPageProps) => {
     return {
         title: `${dictionary.general.redirecting} - data.norge.no`,
     };
-}
-
+};
 
 export default AccessRequestPage;

@@ -25,8 +25,8 @@ jobs:
 
             - name: Update submodules to latest main
               run: |
-                git submodule foreach --recursive git fetch origin
-                git submodule foreach --recursive git checkout origin/main
+                  git submodule foreach --recursive git fetch origin
+                  git submodule foreach --recursive git checkout origin/main
 
             - name: Set SHAs
               uses: nrwl/nx-set-shas@v4

@@ -20,16 +20,16 @@
 
     > .sidebarList {
         > li.itemOpen {
-            position:relative;
+            position: relative;
 
             &:before {
-                content:'';
-                display:block;
-                position:absolute;
-                inset:0;
-                left:-0.5rem;
-                width:2px;
-                background:var(--fds-semantic-surface-action-first-no_fill-hover);
+                content: '';
+                display: block;
+                position: absolute;
+                inset: 0;
+                left: -0.5rem;
+                width: 2px;
+                background: var(--fds-semantic-surface-action-first-no_fill-hover);
             }
             // border-left: 2px solid var(--fds-semantic-surface-action-first-no_fill-hover);
         }

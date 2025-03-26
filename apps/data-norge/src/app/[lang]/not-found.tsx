@@ -29,6 +29,6 @@ export const generateMetadata = async () => {
     const dictionary = await getDictionary('en', 'common');
     return {
         title: `${dictionary.notFound.title} - data.norge.no`,
-        description: dictionary.notFound.message
+        description: dictionary.notFound.message,
     };
 };

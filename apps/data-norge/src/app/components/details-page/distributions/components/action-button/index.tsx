@@ -2,8 +2,8 @@ import React from 'react';
 import { Button, type ButtonProps, Link } from '@digdir/designsystemet-react';
 
 type ActionButtonProps = {
-	uri: string;
-}
+    uri: string;
+};
 
 const ActionButton = ({ children, uri, ...props }: ActionButtonProps & ButtonProps) => {
     return (

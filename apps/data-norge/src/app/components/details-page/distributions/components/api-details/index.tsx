@@ -37,8 +37,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                 </dd>
                 <dt>{dictionary.apis.details.endpoint}:</dt>
                 <dd>
-                    {
-                        api.endpointURL?.length ?
+                    {api.endpointURL?.length ? (
                         api.endpointURL.map((endpointURL: string, i: number) => {
                             return (
                                 <dl key={endpointURL}>
@@ -62,27 +61,26 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                     </dd>
                                 </dl>
                             );
-                        }) :
+                        })
+                    ) : (
                         <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
                 <dt>{dictionary.apis.details.page}:</dt>
                 <dd>
-                    {
-                        api.page?.length ?
-                        (<ul>
-                            {
-                                api.page.map(page => (
-                                    <li key={page}>
-                                        <Link href={page}>
-                                            {page} <ExternalLinkIcon />
-                                        </Link>
-                                    </li>
-                                ))
-                            }
-                        </ul>) :
+                    {api.page?.length ? (
+                        <ul>
+                            {api.page.map((page) => (
+                                <li key={page}>
+                                    <Link href={page}>
+                                        {page} <ExternalLinkIcon />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
                         <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
-                    }
+                    )}
                 </dd>
             </dl>
         </>

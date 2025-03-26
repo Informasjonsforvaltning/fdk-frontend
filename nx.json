@@ -76,7 +76,7 @@
             "dependsOn": ["^build"]
         },
         "test": {
-          "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
-        },
+            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+        }
     }
 }
