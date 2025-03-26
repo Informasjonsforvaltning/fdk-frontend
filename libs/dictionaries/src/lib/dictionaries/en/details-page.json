@@ -11,6 +11,10 @@
         "requestAccessButton": "Request access",
         "showInterestButton": "Report interest"
     },
+    "useDatasetPopover": {
+        "distributions": "Distributions",
+        "apis": "APIs"
+    },
     "resourceNotAvailableNotice": {
         "title": "This dataset is not yet available",
         "body": "This dataset has no distributions. This means that only the description of the dataset is available, while the actual content and data have not yet been published. You can express your interest in the dataset to the responsible organization by clicking the button below. The more people show interest, the greater the chance that the data will be made available.",
@@ -37,7 +41,7 @@
     },
     "tabs": {
         "overview": "Overview",
-        "distributions": "Distributions & API",
+        "distributions": "Distributions & APIs",
         "details": "Details",
         "community": "Discussions",
         "rdf": "RDF"

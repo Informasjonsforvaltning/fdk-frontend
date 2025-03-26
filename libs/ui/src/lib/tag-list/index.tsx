@@ -3,6 +3,7 @@ import cn from 'classnames';
 import styles from './styles.module.scss';
 
 const TagList = ({ children, className, ...props }: React.HTMLAttributes<HTMLUListElement>) => {
+    if (!React.Children.toArray(children).length) return null;
     return (
         <ul
             className={cn(styles.tagList, className)}

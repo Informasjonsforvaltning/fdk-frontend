@@ -4,7 +4,7 @@ import { Accordion, Heading } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
-import { ArrowRightIcon, DownloadIcon } from '@navikt/aksel-icons';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { type SearchObject } from '@fdk-frontend/fdk-types';
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
@@ -74,14 +74,13 @@ const Distributions = ({
                                 <DownloadButton
                                     uris={distribution.accessURL}
                                     className={styles.actionButton}
-                                    modalTitle={printLocaleValue(locale, distribution.title)}
+                                    modalTitle={
+                                        printLocaleValue(locale, distribution.title) ||
+                                        dictionaries.detailsPage.distributions.header.nameless
+                                    }
                                     dictionary={dictionaries.detailsPage}
                                     locale={locale}
                                 >
-                                    <DownloadIcon
-                                        aria-hidden
-                                        fontSize='1.2em'
-                                    />
                                     {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
                                 </DownloadButton>
                             )}
@@ -116,14 +115,13 @@ const Distributions = ({
                                 <DownloadButton
                                     uris={example.accessURL}
                                     className={styles.actionButton}
-                                    modalTitle={printLocaleValue(locale, example.title)}
+                                    modalTitle={
+                                        printLocaleValue(locale, example.title) ||
+                                        dictionaries.detailsPage.distributions.header.nameless
+                                    }
                                     dictionary={dictionaries.detailsPage}
                                     locale={locale}
                                 >
-                                    <DownloadIcon
-                                        aria-hidden
-                                        fontSize='1.2em'
-                                    />
                                     {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
                                 </DownloadButton>
                                 <Accordion.Content className={styles.content}>

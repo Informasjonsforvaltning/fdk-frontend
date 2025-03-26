@@ -58,7 +58,7 @@
 
 .headerOuter {
     position: absolute;
-    z-index: 100;
+    z-index: 1600;
     width: 100%;
     transition: all linear 200ms;
     max-height: 100vh;
@@ -82,7 +82,7 @@
         padding: 1rem 2rem;
         justify-content: space-between;
         position: relative;
-        z-index: 102;
+        z-index: 1601;
         container-type: inline-size;
 
         &.full {
