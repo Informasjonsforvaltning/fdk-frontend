@@ -16,9 +16,7 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
     const { lang } = await params;
     return (
         <html lang={lang}>
-            <body>
-                {children}
-            </body>
+            <body>{children}</body>
             <Script src='https://siteimproveanalytics.com/js/siteanalyze_6255470.js' />
         </html>
     );

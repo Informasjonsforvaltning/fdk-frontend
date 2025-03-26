@@ -17,9 +17,7 @@ const OpenLicenseTag = ({ dictionary }: { dictionary: Dictionary }) => {
             >
                 <Paragraph size='sm'>{dictionary.openLicenseTag.helpText}</Paragraph>
                 <Paragraph size='sm'>
-                    <Link href='/docs/finding-data/access-data'>
-                        {dictionary.openLicenseTag.linkText}
-                    </Link>
+                    <Link href='/docs/finding-data/access-data'>{dictionary.openLicenseTag.linkText}</Link>
                 </Paragraph>
             </HelpText>
         </Tag>

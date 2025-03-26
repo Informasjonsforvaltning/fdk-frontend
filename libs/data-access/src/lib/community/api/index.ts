@@ -1,7 +1,6 @@
 const { FDK_COMMUNITY_BASE_URI } = process.env;
 
 export const getCommunityPosts = async (datasetId: string) => {
-
     const searchParams = new URLSearchParams();
 
     searchParams.set('term', datasetId);
@@ -14,10 +13,9 @@ export const getCommunityPosts = async (datasetId: string) => {
         headers: {
             Accept: 'application/json',
         },
-    })
-    .then(response => {
+    }).then((response) => {
         if (!response.ok) throw new Error('community posts not found');
-        return response.json()
+        return response.json();
     });
 };
 
@@ -28,10 +26,9 @@ export const getCommunityTopic = async (topicId: string) => {
         headers: {
             Accept: 'application/json',
         },
-    })
-    .then(response => {
+    }).then((response) => {
         if (!response.ok) throw new Error('community topics not found');
-        return response.json()
+        return response.json();
     });
 };
 
@@ -42,6 +39,6 @@ export const getAllCommunityTopics = async (datasetId: string) => {
     return await Promise.all(
         Array.from(uniqueTopics).map(async (topicId: string) => {
             return await getCommunityTopic(topicId);
-        })
+        }),
     );
-}
+};

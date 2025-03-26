@@ -11,9 +11,8 @@ export const getMetadataScores = async (ids: string[]) => {
         body: JSON.stringify({
             datasets: ids,
         }),
-    })
-    .then(response => {
+    }).then((response) => {
         if (!response.ok) throw new Error('metadata scores not found');
-        return response.json()
+        return response.json();
     });
 };

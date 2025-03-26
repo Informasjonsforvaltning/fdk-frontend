@@ -17,9 +17,7 @@ const OpenDataTag = ({ dictionary }: { dictionary: Dictionary }) => {
             >
                 <Paragraph size='sm'>{dictionary.openDataTag.helpText}</Paragraph>
                 <Paragraph size='sm'>
-                    <Link href='/docs/finding-data/access-data'>
-                        {dictionary.openDataTag.linkText}
-                    </Link>
+                    <Link href='/docs/finding-data/access-data'>{dictionary.openDataTag.linkText}</Link>
                 </Paragraph>
             </HelpText>
         </Tag>

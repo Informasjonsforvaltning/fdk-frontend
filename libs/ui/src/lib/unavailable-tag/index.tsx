@@ -17,9 +17,7 @@ const UnavailableTag = ({ dictionary }: { dictionary: Dictionary }) => {
             >
                 <Paragraph size='sm'>{dictionary.unavailableTag.helpText}</Paragraph>
                 <Paragraph size='sm'>
-                    <Link href='/docs/finding-data/access-data'>
-                        {dictionary.unavailableTag.linkText}
-                    </Link>
+                    <Link href='/docs/finding-data/access-data'>{dictionary.unavailableTag.linkText}</Link>
                 </Paragraph>
             </HelpText>
         </Tag>

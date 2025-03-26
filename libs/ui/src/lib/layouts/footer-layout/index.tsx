@@ -7,11 +7,11 @@ const FooterLayout = ({ children, ...props }: FooterProps & PropsWithChildren) =
 
     return (
         <>
-        	{children}
-          <Footer
-              dictionary={dictionary}
-              baseUri={baseUri}
-          />
+            {children}
+            <Footer
+                dictionary={dictionary}
+                baseUri={baseUri}
+            />
         </>
     );
 };

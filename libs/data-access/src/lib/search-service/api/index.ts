@@ -15,10 +15,9 @@ export const getRelations = async (resourceId: string) => {
                 },
             },
         }),
-    })
-    .then(response => {
+    }).then((response) => {
         if (!response.ok) throw new Error('relations not found');
-        return response.json()
+        return response.json();
     });
 };
 
@@ -38,10 +37,9 @@ export const getOrgDatasets = async (orgPath?: string) => {
                 },
             },
         }),
-    })
-    .then(response => {
+    }).then((response) => {
         if (!response.ok) throw new Error('org datasets not found');
-        return response.json()
+        return response.json();
     });
 };
 
@@ -61,9 +59,8 @@ export const getThemeDatasets = async (themes?: string[]) => {
                 },
             },
         }),
-    })
-    .then(response => {
+    }).then((response) => {
         if (!response.ok) throw new Error('theme datasets not found');
-        return response.json()
+        return response.json();
     });
 };
