@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { Buildings3Icon } from '@navikt/aksel-icons';
 import { Button, type ButtonProps, Link } from '@digdir/designsystemet-react';
 import styles from './org-button.module.scss';
@@ -8,13 +9,13 @@ export type OrgButtonProps = {
     href?: string;
 };
 
-const OrgButton = ({ children, href, orgLogoSrc, ...props }: OrgButtonProps & ButtonProps) => {
+const OrgButton = ({ children, className, href, orgLogoSrc, ...props }: OrgButtonProps & ButtonProps) => {
     return (
         <Button
             asChild
             size='sm'
             variant='tertiary'
-            className={styles.wrapper}
+            className={cn(styles.wrapper, className)}
             {...props}
         >
             <Link href={href}>

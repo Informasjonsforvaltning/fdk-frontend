@@ -21,21 +21,15 @@ const DistributionHeader = ({
 }: DistributionHeaderProps & PropsWithChildren) => {
     const hasOpenLicense = distribution.license && distribution.license.some((l: any) => isOpenLicense(l.uri));
     const hasTags = hasOpenLicense || exampleData || distribution.fdkFormat?.length || hasOpenLicense;
-    const hasApi = Boolean(distribution.accessService?.length);
 
     return (
         <div className={styles.headerContent}>
             <span className={styles.title}>
-                {distribution.title
-                    ? printLocaleValue(locale, distribution.title)
-                    : distribution.accessURL
-                      ? distribution.accessURL
-                      : dictionary.distributions.header.nameless}
+                {printLocaleValue(locale, distribution.title) || dictionary.distributions.header.nameless}
                 {hasTags && (
                     <DistributionTags
                         distribution={distribution}
                         exampleData={exampleData}
-                        hasApi={hasApi}
                         dictionary={dictionary}
                     />
                 )}

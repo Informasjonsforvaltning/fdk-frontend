@@ -4,10 +4,13 @@
 }
 
 .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
     ul,
     ol {
         background: #fafafa;
-        margin-top: 0.5rem;
     }
 }
 

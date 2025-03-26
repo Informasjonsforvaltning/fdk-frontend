@@ -1,4 +1,4 @@
-@use '@fdk-frontend/ui/placeholder-box/placeholder-box.module' as placeholder-box;
+@use '@fdk-frontend/ui/box/box.module' as box;
 @import '@fdk-frontend/ui/core/mixins';
 
 .wrapper {
@@ -15,7 +15,7 @@
     }
 
     .urlBox {
-        @include placeholder-box.placeholder-box-mixin();
+        @include box.grey-box-mixin();
     }
 
     .toolbar {

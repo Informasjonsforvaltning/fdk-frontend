@@ -1,10 +1,5 @@
 @use '../box/box.module' as box;
 
-@mixin placeholder-box-mixin {
-    @include box.box-mixin();
-    background: #fafafa;
-}
-
 .placeholderBox {
-    @include placeholder-box-mixin();
+    @include box.grey-box-mixin();
 }

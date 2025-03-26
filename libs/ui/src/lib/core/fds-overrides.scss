@@ -129,3 +129,11 @@ Fix for bug where items doesnt wrap
 .fds-paragraph {
     color: currentColor;
 }
+
+.fds-popover {
+    box-shadow: var(--fds-shadow-medium);
+
+    &:not(.fds-popover--info) {
+        border-color: var(--fds-semantic-border-neutral-subtle);
+    }
+}

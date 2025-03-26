@@ -3,16 +3,16 @@ import mime from 'mime-types';
 import { type DataService } from '@fdk-frontend/fdk-types';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Tag } from '@digdir/designsystemet-react';
-import TagList from '../tag-list';
+import TagList, { type TagListProps } from '../tag-list';
 
-type ApiTagsProps = {
+type ApiTagsProps = TagListProps & {
     api: DataService;
     dictionary: Dictionary;
 };
 
-const ApiTags = ({ children, api, dictionary, ...props }: ApiTagsProps & React.HTMLAttributes<HTMLDivElement>) => {
+const ApiTags = ({ children, api, dictionary, ...props }: ApiTagsProps & React.HTMLAttributes<HTMLUListElement>) => {
     return (
-        <TagList>
+        <TagList {...props}>
             {api.fdkFormat
                 ?.filter((format: any) => format?.code)
                 .map((format: any, i: number) => (
