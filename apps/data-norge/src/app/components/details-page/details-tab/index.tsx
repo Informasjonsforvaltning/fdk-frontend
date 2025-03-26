@@ -1,7 +1,10 @@
 import { useState, createContext } from 'react';
 import { Heading, Link, ChipGroup, ChipToggle, Button } from '@digdir/designsystemet-react';
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
-import { type JSONValue } from '@fdk-frontend/types';
+import {
+    type DatasetWithIdentifier,
+    type DatasetScore
+} from '@fdk-frontend/fdk-types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box/';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text/';
@@ -17,11 +20,11 @@ import styles from './details-tab.module.scss';
 const DatasetDetailsTabContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
 
 export type DatasetDetailsProps = {
-    dataset: JSONValue;
+    dataset: DatasetWithIdentifier;
     locale: LocaleCodes;
     dictionary: Dictionary;
-    metadataScore?: JSONValue;
-    related?: JSONValue;
+    metadataScore?: DatasetScore;
+    related?: DatasetWithIdentifier[];
 };
 
 const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore }: DatasetDetailsProps) => {

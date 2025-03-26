@@ -1,13 +1,13 @@
 import { PropsWithChildren } from 'react';
 import mime from 'mime-types';
 import { Tag } from '@digdir/designsystemet-react';
-import { type JSONValue } from '@fdk-frontend/types';
+import { type Distribution } from '@fdk-frontend/fdk-types';
 import { isOpenLicense, printLocaleValue } from '@fdk-frontend/utils';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import styles from './distribution-header.module.scss';
 
 type DistributionHeaderProps = {
-    distribution: JSONValue;
+    distribution: Distribution;
     locale: LocaleCodes;
     dictionary: Dictionary;
     exampleData?: boolean;
@@ -21,10 +21,7 @@ const DistributionHeader = ({
     ...props
 }: DistributionHeaderProps & PropsWithChildren) => {
     const hasOpenLicense = distribution.license && distribution.license.some((l: any) => isOpenLicense(l.uri));
-
-    const hasTags =
-        isOpenLicense(distribution.license?.uri) || exampleData || distribution.fdkFormat?.length || hasOpenLicense;
-
+    const hasTags = hasOpenLicense || exampleData || distribution.fdkFormat?.length || hasOpenLicense;
     return (
         <div className={styles.headerContent}>
             <span className={styles.title}>
@@ -63,6 +60,7 @@ const DistributionHeader = ({
                                     key={format.code}
                                 >
                                     {mime.extension(format.code) || format.code}
+                                    {/*{format.code}*/}
                                 </Tag>
                             ))}
                     </div>

@@ -3,7 +3,12 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { type DatasetWithIdentifier, type DataService, type DatasetScore, type CommunityTopic } from '@fdk-frontend/fdk-types';
+import {
+    type DatasetWithIdentifier,
+    type DataService, 
+    type DatasetScore,
+    type CommunityTopic
+} from '@fdk-frontend/fdk-types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';

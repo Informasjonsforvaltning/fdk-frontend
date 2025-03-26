@@ -1,6 +1,6 @@
 import { Link } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import { type JSONValue } from '@fdk-frontend/types';
+import { type Distribution } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
@@ -10,7 +10,7 @@ import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import OpenLicenseTag from '@fdk-frontend/ui/open-license-tag';
 
 type DistributionDetailsProps = {
-    distribution: JSONValue;
+    distribution: Distribution;
     locale: LocaleCodes;
     dictionaries: {
         common: Dictionary;

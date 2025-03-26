@@ -6,7 +6,7 @@ import DatasetTable from '@fdk-frontend/ui/dataset-table';
 import { DatasetDetailsProps } from '../../';
 import styles from '../../details-tab.module.scss';
 
-const RelatedDetails = ({ related, locale, dictionary }: { related: any[] } & Omit<DatasetDetailsProps, 'dataset'>) => {
+const RelatedDetails = ({ related, locale, dictionary }: Omit<DatasetDetailsProps, 'dataset'>) => {
     return (
         <section>
             <Heading

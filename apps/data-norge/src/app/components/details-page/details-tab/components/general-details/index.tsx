@@ -76,14 +76,21 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     <>
                         <dt>{dictionary.details.general.page}:</dt>
                         <dd>
-                            {dataset.page ? (
-                                <Link href={dataset.page}>
-                                    {dataset.page}
-                                    <ExternalLinkIcon aria-hidden />
-                                </Link>
-                            ) : (
-                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            )}
+                            {
+                                dataset.page?.length ?
+                                (<ul>
+                                    {
+                                        dataset.page.map(page => (
+                                            <li key={page}>
+                                                <Link href={page}>
+                                                    {page} <ExternalLinkIcon />
+                                                </Link>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>) :
+                                <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
+                            }
                         </dd>
                     </>
                 )}

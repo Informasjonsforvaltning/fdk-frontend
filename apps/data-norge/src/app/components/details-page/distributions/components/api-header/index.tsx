@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react';
 import mime from 'mime-types';
 import { Tag } from '@digdir/designsystemet-react';
-import { type JSONValue } from '@fdk-frontend/types';
+import { type DataService } from '@fdk-frontend/fdk-types';
 import { type LocaleCodes, type Dictionary, i18n } from '@fdk-frontend/dictionaries';
 import styles from '../distribution-header/distribution-header.module.scss';
 
 type ApiHeaderProps = {
-    api: JSONValue;
+    api: DataService;
     locale: LocaleCodes;
     dictionary: Dictionary;
 };
