@@ -21,7 +21,7 @@ const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                             <React.Fragment key={subject.uri}>
                                 <dt>
                                     <Link href={subject.uri}>
-                                        {printLocaleValue(locale, subject.prefLabel)}
+                                        {printLocaleValue(locale, subject.prefLabel) || subject.uri}
                                         <ExternalLinkIcon aria-hidden />
                                     </Link>
                                 </dt>
