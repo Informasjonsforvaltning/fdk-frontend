@@ -54,6 +54,7 @@
         "header": {
             "nameless": "Nameless distribution",
             "openLicense": "Open license",
+            "hasApi": "API",
             "exampleData": "Example data",
             "downloadBtnLabel": "Download"
         },

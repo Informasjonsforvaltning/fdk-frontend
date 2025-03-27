@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import mime from 'mime-types';
 import { Tag } from '@digdir/designsystemet-react';
-import { type Distribution } from '@fdk-frontend/fdk-types';
+import { type Distribution, type MediaTypeOrExtent } from '@fdk-frontend/fdk-types';
 import { isOpenLicense, printLocaleValue } from '@fdk-frontend/utils';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import styles from './distribution-header.module.scss';
@@ -22,6 +22,8 @@ const DistributionHeader = ({
 }: DistributionHeaderProps & PropsWithChildren) => {
     const hasOpenLicense = distribution.license && distribution.license.some((l: any) => isOpenLicense(l.uri));
     const hasTags = hasOpenLicense || exampleData || distribution.fdkFormat?.length || hasOpenLicense;
+    const hasApi = distribution.accessService?.length;
+
     return (
         <div className={styles.headerContent}>
             <span className={styles.title}>
@@ -39,6 +41,15 @@ const DistributionHeader = ({
                                 size='sm'
                             >
                                 {dictionary.distributions.header.openLicense}
+                            </Tag>
+                        )}
+                        {hasApi && (
+                            <Tag
+                                className={styles.tag}
+                                color='success'
+                                size='sm'
+                            >
+                                {dictionary.distributions.header.hasApi}
                             </Tag>
                         )}
                         {exampleData && (
@@ -59,8 +70,7 @@ const DistributionHeader = ({
                                     size='sm'
                                     key={format.code}
                                 >
-                                    {mime.extension(format.code) || format.code}
-                                    {/*{format.code}*/}
+                                    {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}
                                 </Tag>
                             ))}
                     </div>

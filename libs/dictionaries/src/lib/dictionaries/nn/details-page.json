@@ -54,6 +54,7 @@
         "header": {
             "nameless": "Namnlaus distribusjon",
             "openLicense": "Open lisens",
+            "hasApi": "API",
             "exampleData": "Døme på data",
             "downloadBtnLabel": "Last ned"
         },

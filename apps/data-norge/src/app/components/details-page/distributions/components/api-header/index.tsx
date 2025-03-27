@@ -26,7 +26,7 @@ const ApiHeader = ({ api, locale, dictionary, ...props }: ApiHeaderProps & Props
                                 size='sm'
                                 key={format.code}
                             >
-                                {mime.extension(format.code) || format.code}
+                                {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}
                             </Tag>
                         ))}
                 </div>
