@@ -54,15 +54,21 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 </dd>
                 <dt>{dictionaries.detailsPage.distributions.details.accessService}:</dt>
                 <dd>
-                    {distribution.accessService ? (
-                        distribution.accessService.map((api: any) => (
-                            <Link
-                                key={api.uri}
-                                href='#'
-                            >
-                                {api.uri}
-                            </Link>
-                        ))
+                    {distribution.accessService?.length ? (
+                        <ol>
+                            {
+                                distribution.accessService.map((api: any) => (
+                                    <li>
+                                        <Link
+                                            key={api.uri}
+                                            href='#'
+                                        >
+                                            {printLocaleValue(locale, api.title) || api.uri}
+                                        </Link>
+                                    </li>
+                                ))
+                            }
+                        </ol>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
