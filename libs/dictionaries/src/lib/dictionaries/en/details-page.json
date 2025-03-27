@@ -96,6 +96,7 @@
             "firstHarvestedHelpText": "This date indicates when the dataset was harvested by data.norge.no. It may have been available earlier elsewhere.",
             "firstHarvestedHelpTextTitle": "Explanation",
             "firstHarvestedHelpTextLink": "Read more about harvesting here",
+            "modified": "Last updated",
             "page": "Documentation",
             "landingPage": "Landing page",
             "metadataQuality": {
@@ -123,7 +124,8 @@
             "qualifiedAttributions": "Content providers",
             "provenance": "Provenance",
             "accrualPeriodicity": "Update frequency",
-            "issued": "Issued",
+            "issued": "First issued",
+            "issuedHelpText": "This date indicates when the data in this dataset was first released. It may have happened before the dataset was published on data.norge.no.",
             "modified": "Last updated",
             "accuracyAnnotation": "Accuracy",
             "availabilityAnnotation": "Availability",

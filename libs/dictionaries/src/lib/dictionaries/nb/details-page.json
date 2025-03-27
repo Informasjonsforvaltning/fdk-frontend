@@ -96,6 +96,7 @@
             "firstHarvestedHelpText": "Denne datoen sier når datasettet ble høstet av data.norge.no. Det kan ha vært tilgjengelig tidligere andre steder.",
             "firstHarvestedHelpTextTitle": "Begrepsforklaring",
             "firstHarvestedHelpTextLink": "Les mer om høsting her",
+            "modified": "Sist oppdatert",
             "page": "Dokumentasjon",
             "landingPage": "Landingsside",
             "metadataQuality": {
@@ -123,7 +124,8 @@
             "qualifiedAttributions": "Innholdsleverandører",
             "provenance": "Opphav",
             "accrualPeriodicity": "Oppdateringsfrekvens",
-            "issued": "Utgitt",
+            "issued": "Først utgitt",
+            "issuedHelpText": "Denne datoen sier når dataene i dette datasettet første gang ble utgitt. Det kan ha skjedd før datasettet ble publisert på data.norge.no.",
             "modified": "Sist oppdatert",
             "accuracyAnnotation": "Nøyaktighet",
             "availabilityAnnotation": "Tilgjengelighet",

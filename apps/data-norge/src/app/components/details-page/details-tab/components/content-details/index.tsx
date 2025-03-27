@@ -85,7 +85,18 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                 )}
                 {!dataset?.issued && !showEmptyRows ? null : (
                     <>
-                        <dt>{dictionary.details.content.issued}:</dt>
+                        <dt>
+                            <HStack>
+                                <span>{dictionary.details.content.issued}:</span>
+                                <HelpText
+                                    title={dictionary.details.general.firstHarvestedHelpTextTitle}
+                                    size='sm'
+                                    style={{ transform: 'scale(0.75)' }}
+                                >
+                                    <Paragraph size='sm'>{dictionary.details.content.issuedHelpText}</Paragraph>
+                                </HelpText>
+                            </HStack>
+                        </dt>
                         <dd>
                             {dataset.issued ? (
                                 new Date(dataset.issued).toLocaleString(locale, { dateStyle: 'long' })

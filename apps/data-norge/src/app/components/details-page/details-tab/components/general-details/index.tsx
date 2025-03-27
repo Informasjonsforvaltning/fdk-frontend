@@ -73,6 +73,16 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                     )}
                 </dd>
+                <dt>
+                    <span>{dictionary.details.general.modified}:</span>
+                </dt>
+                <dd>
+                    {dataset.harvest?.modified ? (
+                        new Date(dataset.harvest.modified).toLocaleString(locale, { dateStyle: 'long' })
+                    ) : (
+                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                    )}
+                </dd>
                 {!dataset.landingPage && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.general.landingPage}:</dt>
