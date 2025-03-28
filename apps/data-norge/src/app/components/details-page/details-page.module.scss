@@ -76,13 +76,19 @@
 
             dt {
                 font-weight: 500;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            dd {
+                overflow: auto;
             }
 
             dt,
             dd {
                 padding: 0.75rem 0.75rem;
                 border-top: 1px solid #ddd;
-                overflow: auto;
 
                 .descBox {
                     border: 0;
