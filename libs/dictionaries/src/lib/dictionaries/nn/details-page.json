@@ -90,7 +90,7 @@
         "hideEmptyRows": "Gøym tomme rader",
         "noData": "Ikkje oppgitt",
         "general": {
-            "title": "Generelt",
+            "title": "Detaljar om dataane",
             "publisher": "Ansvarleg verksemd",
             "firstHarvested": "Publisert",
             "firstHarvestedHelpText": "Denne datoen viser når datasettet vart henta inn av data.norge.no. Det kan ha vore tilgjengeleg tidlegare andre stader.",
