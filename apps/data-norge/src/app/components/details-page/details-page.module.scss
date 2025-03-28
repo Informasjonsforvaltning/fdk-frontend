@@ -79,6 +79,10 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+
+                :global(.fds-helptext__content) {
+                    white-space: wrap;
+                }
             }
 
             dd {
