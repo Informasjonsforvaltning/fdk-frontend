@@ -90,8 +90,8 @@
         "hideEmptyRows": "Skjul tomme rader",
         "noData": "Ikke oppgitt",
         "general": {
-            "title": "Generelt",
-            "publisher": "Ansvarlig virksomhet",
+            "title": "Om datasettet",
+            "publisher": "Utgiver",
             "firstHarvested": "Publisert",
             "firstHarvestedHelpText": "Denne datoen sier når datasettet ble høstet av data.norge.no. Det kan ha vært tilgjengelig tidligere andre steder.",
             "firstHarvestedHelpTextTitle": "Begrepsforklaring",
@@ -119,7 +119,7 @@
             "telephone": "Telefon"
         },
         "content": {
-            "title": "Detaljer om dataene",
+            "title": "Om dataene",
             "language": "Språk",
             "qualifiedAttributions": "Innholdsleverandører",
             "provenance": "Opphav",
