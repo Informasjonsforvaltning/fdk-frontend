@@ -82,7 +82,7 @@
     "@nx/react": "^20.4.2",
     "@nx/storybook": "^20.4.2",
     "@nx/web": "^20.4.2",
-    "@nx/workspace": "^20.4.2",
+    "@nx/workspace": "^20.6.4",
     "@playwright/test": "^1.50.1",
     "@storybook/addon-essentials": "^8.5.3",
     "@storybook/addon-interactions": "^8.5.3",
