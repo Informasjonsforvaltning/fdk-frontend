@@ -6,6 +6,7 @@ import { DatasetDetailsProps } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
 const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
+    console.log(dataset.subject);
     return (
         <section>
             <Heading
@@ -25,7 +26,7 @@ const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                         <ExternalLinkIcon aria-hidden />
                                     </Link>
                                 </dt>
-                                <dd>{printLocaleValue(locale, subject.definition)}</dd>
+                                <dd>{printLocaleValue(locale, subject.description)}</dd>
                             </React.Fragment>
                         );
                     })}

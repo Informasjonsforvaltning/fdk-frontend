@@ -39,7 +39,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.accessURL}:</dt>
                 <dd>
                     {distribution.accessURL ? (
-                        <Link href='#'>{distribution.accessURL}</Link>
+                        <Link href={distribution.accessURL}>{distribution.accessURL}</Link>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -47,7 +47,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.downloadURL}:</dt>
                 <dd>
                     {distribution.downloadURL ? (
-                        <Link href='#'>{distribution.downloadURL}</Link>
+                        <Link href={distribution.downloadURL}>{distribution.downloadURL}</Link>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -61,7 +61,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                                     <li key={api.url}>
                                         <Link
                                             key={api.uri}
-                                            href='#'
+                                            href={api.uri}
                                         >
                                             {printLocaleValue(locale, api.title) || api.uri}
                                         </Link>
