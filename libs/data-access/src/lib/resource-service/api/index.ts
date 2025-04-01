@@ -15,7 +15,6 @@ export const getResource = async (uri: string) => {
 
 export const getDataset = async (datasetId: string) => {
     const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${datasetId}`;
-    console.log(uri);
     return getResource(uri);
 };
 

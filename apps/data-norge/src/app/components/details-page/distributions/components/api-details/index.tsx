@@ -15,7 +15,6 @@ type ApiDetailsProps = {
 };
 
 const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
-    console.log(api);
     return (
         <>
             <dl>

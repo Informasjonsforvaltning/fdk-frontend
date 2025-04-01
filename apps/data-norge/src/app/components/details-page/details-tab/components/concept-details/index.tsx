@@ -6,7 +6,6 @@ import { DatasetDetailsProps } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
 const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
-    console.log(dataset.subject);
     return (
         <section>
             <Heading
