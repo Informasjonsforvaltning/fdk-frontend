@@ -5,7 +5,7 @@ import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import { DatasetDetailsProps } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
-const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
+const ConceptDetails = ({ dataset, locale, dictionary, concepts }: DatasetDetailsProps) => {
     return (
         <section>
             <Heading
@@ -14,18 +14,17 @@ const ConceptDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
             >
                 {dictionary.details.concepts.title}
             </Heading>
-            {dataset?.subject ? (
+            {concepts && concepts.length ? (
                 <dl>
-                    {dataset.subject.map((subject: any) => {
+                    {concepts.map((concept: any) => {
                         return (
-                            <React.Fragment key={subject.uri}>
+                            <React.Fragment key={concept.uri}>
                                 <dt>
-                                    <Link href={subject.uri}>
-                                        {printLocaleValue(locale, subject.prefLabel) || subject.uri}
-                                        <ExternalLinkIcon aria-hidden />
+                                    <Link href={`/concepts/${concept.id}`}>
+                                        {printLocaleValue(locale, concept.title) || concept.uri}
                                     </Link>
                                 </dt>
-                                <dd>{printLocaleValue(locale, subject.description)}</dd>
+                                <dd>{printLocaleValue(locale, concept.description)}</dd>
                             </React.Fragment>
                         );
                     })}

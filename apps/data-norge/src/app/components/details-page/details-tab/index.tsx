@@ -22,9 +22,10 @@ export type DatasetDetailsProps = {
     dictionary: Dictionary;
     metadataScore?: DatasetScore;
     related?: DatasetWithIdentifier[];
+    concepts?: SearchObject[];
 };
 
-const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
+const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore, concepts }: DatasetDetailsProps) => {
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     return (
@@ -76,6 +77,7 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                 {!dataset.subject && !showEmptyRows ? null : (
                     <ConceptDetails
                         dataset={dataset}
+                        concepts={concepts}
                         locale={locale}
                         dictionary={dictionary}
                     />

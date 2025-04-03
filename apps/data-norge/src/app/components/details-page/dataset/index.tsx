@@ -8,6 +8,7 @@ import {
     type DataService,
     type DatasetScore,
     type CommunityTopic,
+    type SearchObject
 } from '@fdk-frontend/fdk-types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
@@ -37,6 +38,7 @@ export type DatasetDetailsPageType = {
     baseUri: string;
     resource: DatasetWithIdentifier;
     apis?: DataService[];
+    concepts?: SearchObject[];
     relatedDatasets?: DatasetWithIdentifier[];
     similarDatasets?: DatasetWithIdentifier[];
     orgDatasets?: DatasetWithIdentifier[];
@@ -56,6 +58,7 @@ export default function DatasetDetailsPage({
     baseUri,
     resource,
     apis,
+    concepts,
     relatedDatasets,
     similarDatasets,
     orgDatasets,
@@ -291,6 +294,7 @@ export default function DatasetDetailsPage({
                         <DatasetDetailsTab
                             dataset={resource}
                             related={relatedDatasets}
+                            concepts={concepts}
                             locale={locale}
                             metadataScore={metadataScore}
                             dictionary={dictionaries.detailsPage}

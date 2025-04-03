@@ -7,6 +7,7 @@ import {
     type DatasetScore,
     type DataService,
     type CommunityTopic,
+    type SearchObject
 } from '@fdk-frontend/fdk-types';
 import DatasetDetailsPage from '../../../components/details-page/dataset';
 import {
@@ -14,10 +15,11 @@ import {
     getDataset,
     getApis,
     getAllCommunityTopics,
-    getRelations,
-    getOrgDatasets,
-    getThemeDatasets,
     getMetadataScores,
+    searchRelations,
+    searchOrgDatasets,
+    searchThemeDatasets,
+    searchConcepts
 } from '@fdk-frontend/data-access/server';
 
 // Note: Leave these for easier debugging
@@ -50,8 +52,9 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     let dataset: DatasetWithIdentifier;
     let metadataScore: DatasetScore | undefined = undefined;
     let orgLogo: string | null = null;
-    let apiRelations: Partial<DataService>[] = [];
+    let apiRelations: SearchObject[] = [];
     let apis: DataService[] = [];
+    let concepts: SearchObject[] = [];
     let relatedDatasets: DatasetWithIdentifier[] = [];
     let similarDatasets: DatasetWithIdentifier[] = [];
     let orgDatasets: DatasetWithIdentifier[] = [];
@@ -92,15 +95,23 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         console.log(err);
     }
 
+    // Lookup concepts/subjects
+
+    try {
+        const results = await searchConcepts(dataset.subject?.map(concept => concept.uri));
+        concepts = results?.hits ?? [];
+    } catch (err) {
+        console.log(err);
+    }
+
     // Fetch related resources
 
     try {
-        const results = await getRelations(dataset.identifier?.[0]);
-
+        const results = await searchRelations(dataset.identifier?.[0]);
         const hits = results?.hits ?? [];
 
-        apiRelations = hits.filter((r: any) => r.searchType === 'DATA_SERVICE');
-        relatedDatasets = hits.filter((r: any) => r.searchType === 'DATASET');
+        apiRelations = hits.filter((r: SearchObject) => r.searchType === 'DATA_SERVICE');
+        relatedDatasets = hits.filter((r: SearchObject) => r.searchType === 'DATASET');
 
         apis = await getApis(apiRelations.map((api) => api.id).filter((id): id is string => id !== undefined));
     } catch (err) {
@@ -110,7 +121,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // If room for more, fetch additional datasets from themes
 
     try {
-        const results = await getThemeDatasets(dataset.losTheme?.map((t: any) => t.losPaths[0]));
+        const results = await searchThemeDatasets(dataset.losTheme?.map((t: any) => t.losPaths[0]));
 
         // Filter self
         themeDatasets = results.hits?.filter((d: any) => d.id !== dataset.id) || [];
@@ -125,7 +136,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     if (similarDatasets && similarDatasets?.length < similarItemsLimit) {
         try {
-            const results = await getOrgDatasets(dataset.publisher?.orgPath);
+            const results = await searchOrgDatasets(dataset.publisher?.orgPath);
 
             // Filter self
             orgDatasets = results.hits?.filter((d: any) => d.id !== dataset.id) || [];
@@ -143,6 +154,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             resource={dataset}
             orgLogo={orgLogo}
             apis={apis}
+            concepts={concepts}
             metadataScore={metadataScore}
             similarDatasets={similarDatasets}
             relatedDatasets={relatedDatasets}
