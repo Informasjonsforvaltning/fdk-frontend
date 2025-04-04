@@ -1,6 +1,5 @@
 import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import { DatasetDetailsProps } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';

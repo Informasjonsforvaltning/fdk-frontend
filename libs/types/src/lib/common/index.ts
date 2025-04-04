@@ -1,6 +1,6 @@
 import {
     type DatasetReference,
-    type Entity
+    type Dataset
 } from '@fdk-frontend/fdk-types';
 
 export type LinkObjectType = {
@@ -15,7 +15,7 @@ export type CatalogTypes = 'datasets' | 'apis' | 'terms' | 'information-models' 
 
 export type JSONValue = any;
 
-interface PopulatedDatasetReference {
+export interface PopulatedDatasetReference {
   reference: DatasetReference;
-  resource: Entity;
+  resource: Dataset;
 }

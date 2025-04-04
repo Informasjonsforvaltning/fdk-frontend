@@ -9,8 +9,8 @@ import {
     type DatasetScore,
     type CommunityTopic,
     type SearchObject,
-    type PopulatedDatasetReference
 } from '@fdk-frontend/fdk-types';
+import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';

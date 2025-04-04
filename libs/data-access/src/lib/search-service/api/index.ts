@@ -71,7 +71,7 @@ export const searchThemeDatasets = async (themes?: string[]) => {
     });
 };
 
-export const searchConcepts = async (conceptUris: string[]) => {
+export const searchConcepts = async (conceptUris?: string[]) => {
     if (!conceptUris || !conceptUris.length) throw new Error('missing conceptUris');
     const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search`;
     return await fetch(uri, {
@@ -93,7 +93,7 @@ export const searchConcepts = async (conceptUris: string[]) => {
     });
 };
 
-export const searchDatasets = async (datasetUris: string[]) => {
+export const searchDatasets = async (datasetUris?: string[]) => {
     if (!datasetUris || !datasetUris.length) throw new Error('missing datasetUris');
     const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`;
     return await fetch(uri, {
@@ -116,8 +116,7 @@ export const searchDatasets = async (datasetUris: string[]) => {
 }
 
 
-export const searchAll = async (uris: string[]) => {
-    console.log('querying', uris);
+export const searchAll = async (uris?: string[]) => {
     if (!uris || !uris.length) throw new Error('missing uris');
     const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search`;
     return await fetch(uri, {
@@ -139,18 +138,19 @@ export const searchAll = async (uris: string[]) => {
     });
 }
 
-export const getPopulatedDatasetReferences = async (references: DatasetReference[]) => {
+export const getPopulatedDatasetReferences = async (references?: DatasetReference[]) => {
+    if (!references || !references.length) throw new Error('missing references');
     return await Promise.all(references.map(async (reference: DatasetReference) => {
 
-        let resource;
+        if (!reference.source?.uri) throw new Error('reference missing source uri');
 
-        if (reference.source.uri.startsWith(FDK_BASE_URI)) {
+        let resource;
+        if (reference.source.uri.startsWith(FDK_BASE_URI as string)) {
             resource = await getResource(reference.source.uri);
         } else {
             resource = await searchAll([reference.source.uri]);
             resource = resource?.hits?.at(0);
         }
-        console.log('response', resource);
         return {
             reference,
             resource

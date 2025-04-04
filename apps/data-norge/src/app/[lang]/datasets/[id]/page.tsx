@@ -8,8 +8,7 @@ import {
     type DatasetScore,
     type DataService,
     type CommunityTopic,
-    type SearchObject,
-    type DatasetReference,
+    type SearchObject
 } from '@fdk-frontend/fdk-types';
 import DatasetDetailsPage from '../../../components/details-page/dataset';
 import {
@@ -104,7 +103,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Lookup concepts/subjects
 
     try {
-        concepts = await searchConcepts(dataset.subject?.map(concept => concept.uri)) ?? [];
+        concepts = await searchConcepts(dataset.subject?.map(concept => concept.uri).filter(uri => uri !== undefined)) ?? [];
     } catch (err) {
         console.log(err);
     }
@@ -112,8 +111,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Find internal related datasets
 
     try {
-        internalRelatedDatasets = await searchDatasets(dataset.references.map(r => r.source.uri));
-        internalRelatedDatasets = internalRelatedDatasets?.hits ?? [];
+        const results = await searchDatasets(dataset.references?.map(r => r.source?.uri).filter(uri => uri !== undefined));
+        internalRelatedDatasets = results?.hits ?? [];
     } catch (err) {
         console.log(err);
     }

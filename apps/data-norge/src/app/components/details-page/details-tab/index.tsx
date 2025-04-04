@@ -1,7 +1,12 @@
 import { useState, createContext } from 'react';
 import { Heading, Link, ChipGroup, ChipToggle, Button } from '@digdir/designsystemet-react';
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
-import { type DatasetWithIdentifier, type DatasetScore, type PopulatedDatasetReference } from '@fdk-frontend/fdk-types';
+import {
+    type DatasetWithIdentifier,
+    type DatasetScore,
+    type SearchObject
+} from '@fdk-frontend/fdk-types';
+import { type PopulatedDatasetReference, } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box/';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text/';
@@ -10,7 +15,6 @@ import ContactDetails from './components/contact-details';
 import ContentDetails from './components/content-details';
 import LegalDetails, { hasLegalBasis } from './components/legal-details';
 import ConceptDetails from './components/concept-details';
-import RelatedDetails from './components/related-details';
 import ReferencesDetails from './components/references-details';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './details-tab.module.scss';
