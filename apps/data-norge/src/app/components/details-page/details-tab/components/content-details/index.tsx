@@ -277,7 +277,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                     {dataset?.conformsTo?.map((item: any, i: number) => (
                                         <li key={item.uri}>
                                             <Link href={item.uri}>
-                                                {printLocaleValue(locale, item?.prefLabel)}
+                                                {printLocaleValue(locale, item?.prefLabel) || item.uri}
                                                 <ExternalLinkIcon aria-hidden />
                                             </Link>
                                         </li>
