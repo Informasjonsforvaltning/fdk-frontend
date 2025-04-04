@@ -13,7 +13,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     const printLegalBasis = (legalBasis: any) => {
-        if (!legalBasis) return <PlaceholderText>{dictionary.details.legal.title}</PlaceholderText>;
+        if (!legalBasis) return <PlaceholderText>{dictionary.details.noData}</PlaceholderText>;
         return (
             <ol>
                 {legalBasis.map((legal: any) => (

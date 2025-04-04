@@ -142,10 +142,10 @@
             "conformsToHelpText": "Referanse til ei implementeringsregel eller anna spesifikasjon som ligg til grunn for datasettet."
         },
         "legal": {
-            "title": "Juridisk grunnlag",
-            "legalBasisForAccess": "Juridisk grunnlag for tilgang",
-            "legalBasisForProcessing": "Juridisk grunnlag for handsaming",
-            "legalBasisForRestriction": "Juridisk grunnlag for avgrensing"
+            "title": "Lovheimler",
+            "legalBasisForAccess": "Utleveringsheimel",
+            "legalBasisForProcessing": "Handsamingsgrunnlag",
+            "legalBasisForRestriction": "Skjermingsheimel"
         },
         "concepts": {
             "title": "Omgrep brukte i datasettet"

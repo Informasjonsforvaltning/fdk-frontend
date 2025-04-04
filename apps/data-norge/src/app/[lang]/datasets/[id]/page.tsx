@@ -27,7 +27,7 @@ import {
 
 // Note: Leave these for easier debugging
 // import mockResource from '../mock/resource-service/sort-test-datasett.json';
-// import mockResource from '../mock/resource-service/lovhjemler.json';
+import mockResource from '../mock/resource-service/lovhjemler.json';
 // import mockSearch from '../mock/search-service/search.json';
 
 export type DetailsPageWrapperProps = {
@@ -103,7 +103,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Lookup concepts/subjects
 
     try {
-        concepts = await searchConcepts(dataset.subject?.map(concept => concept.uri).filter(uri => uri !== undefined)) ?? [];
+        const results = await searchConcepts(dataset.subject?.map(concept => concept.uri).filter(uri => uri !== undefined));
+        concepts = results?.hits ?? [];
     } catch (err) {
         console.log(err);
     }

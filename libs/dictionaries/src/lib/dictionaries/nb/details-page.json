@@ -145,7 +145,7 @@
             "title": "Lovhjemler",
             "legalBasisForAccess": "Utleveringshjemmel",
             "legalBasisForProcessing": "Behandlingshjemmel",
-            "legalBasisForRestriction": "Utleveringshjemmel"
+            "legalBasisForRestriction": "Skjermingshjemmel"
         },
         "concepts": {
             "title": "Begreper brukt i datasett"
