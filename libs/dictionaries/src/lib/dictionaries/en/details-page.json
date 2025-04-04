@@ -153,7 +153,11 @@
         "related": {
             "title": "Relation to other resources",
             "namelessDataset": "Nameless dataset",
-            "namelessOrganization": "Nameless organization",
+            "namelessOrganization": "Nameless organization"
+        },
+        "references": {
+            "title": "References",
+            "relatedResources": "Related resources",
             "relationLabels": {
                 "http://purl.org/dc/terms/associativeRelation": "Associative relation",
                 "http://purl.org/dc/terms/closeMatch": "Close match",
@@ -162,6 +166,7 @@
                 "http://purl.org/dc/terms/specializes": "Specializes",
                 "http://purl.org/dc/terms/memberOf": "Member of",
                 "http://purl.org/dc/terms/replaces": "Replaces",
+                "http://purl.org/dc/terms/isReplacedBy": "Replaced by",
                 "http://purl.org/dc/terms/seeAlso": "See also",
                 "http://purl.org/dc/terms/conformsTo": "Conforms to",
                 "http://purl.org/dc/terms/servesDataset": "Serves dataset",

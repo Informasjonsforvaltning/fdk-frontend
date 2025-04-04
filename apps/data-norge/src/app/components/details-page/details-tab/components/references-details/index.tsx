@@ -15,7 +15,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                 level={2}
                 size='xxsmall'
             >
-                Referanser
+                {dictionary.details.references.title}
             </Heading>
             {populatedReferences && populatedReferences.length ? (
                 <dl>
@@ -24,8 +24,8 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                 			<React.Fragment key={r.reference?.source?.uri}>
                 				<dt>
                 					{
-                						dictionary.details.related.relationLabels[r.reference?.referenceType?.uri] ||
-                						dictionary.details.related.relationLabels.unknown
+                						dictionary.details.references.relationLabels[r.reference?.referenceType?.uri] ||
+                						dictionary.details.references.relationLabels.unknown
                 					}:
                 				</dt>
                 				<dd>
@@ -42,7 +42,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                 			</React.Fragment>
                 		))
                 	}
-    				<dt>Relaterte ressurser:</dt>
+    				<dt>{dictionary.details.references.relatedResources}:</dt>
     				<dd>
     					<ol>
         					{
@@ -64,7 +64,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
     				</dd>
                 </dl>
             ) : (
-                <PlaceholderBox>Ikke oppgitt</PlaceholderBox>
+                <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
             )}
         </section>
     );

@@ -153,7 +153,11 @@
         "related": {
             "title": "Relasjoner til andre ressurser",
             "namelessDataset": "Navnløst datasett",
-            "namelessOrganization": "Navnløs virksomhet",
+            "namelessOrganization": "Navnløs virksomhet"
+        },
+        "references": {
+            "title": "Referanser",
+            "relatedResources": "Relaterte ressurser",
             "relationLabels": {
                 "http://purl.org/dc/terms/associativeRelation": "Assosiert med",
                 "http://purl.org/dc/terms/closeMatch": "Nær match",
@@ -162,6 +166,7 @@
                 "http://purl.org/dc/terms/specializes": "Spesialisert av",
                 "http://purl.org/dc/terms/memberOf": "Medlem av",
                 "http://purl.org/dc/terms/replaces": "Erstatter",
+                "http://purl.org/dc/terms/isReplacedBy": "Erstattet av",
                 "http://purl.org/dc/terms/seeAlso": "Se også",
                 "http://purl.org/dc/terms/conformsTo": "Overholder",
                 "http://purl.org/dc/terms/servesDataset": "Tjener datasett",
