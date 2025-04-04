@@ -85,6 +85,8 @@
         }
     },
     "similarDatasets": "Similar datasets",
+    "internalRelations": "Relations to other resources",
+    "externalRelations": "Relations from other resources",
     "details": {
         "showEmptyRows": "Show empty rows",
         "hideEmptyRows": "Hide empty rows",
@@ -149,9 +151,37 @@
             "title": "Concepts used in the dataset"
         },
         "related": {
-            "title": "Relation to other datasets",
+            "title": "Relation to other resources",
             "namelessDataset": "Nameless dataset",
-            "namelessOrganization": "Nameless organization"
+            "namelessOrganization": "Nameless organization",
+            "relationLabels": {
+                "http://purl.org/dc/terms/associativeRelation": "Associative relation",
+                "http://purl.org/dc/terms/closeMatch": "Close match",
+                "http://purl.org/dc/terms/exactMatch": "Exact match",
+                "http://purl.org/dc/terms/generalizes": "Generalizes",
+                "http://purl.org/dc/terms/specializes": "Specializes",
+                "http://purl.org/dc/terms/memberOf": "Member of",
+                "http://purl.org/dc/terms/replaces": "Replaces",
+                "http://purl.org/dc/terms/seeAlso": "See also",
+                "http://purl.org/dc/terms/conformsTo": "Conforms to",
+                "http://purl.org/dc/terms/servesDataset": "Serves dataset",
+                "http://purl.org/dc/terms/inSeries": "In series",
+                "http://purl.org/dc/terms/subject": "Subject",
+                "http://purl.org/dc/terms/hasPart": "Has part",
+                "http://purl.org/dc/terms/isPartOf": "Is part of",
+                "http://purl.org/dc/terms/isGroupedBy": "Is grouped by",
+                "http://purl.org/dc/terms/isClassifiedBy": "Is classified by",
+                "http://purl.org/dc/terms/isDescribedAt": "Is described at",
+                "http://purl.org/dc/terms/relation": "Relation",
+                "http://purl.org/dc/terms/hasVersion": "Has version",
+                "http://purl.org/dc/terms/isVersionOf": "Is version of",
+                "http://purl.org/dc/terms/references": "References",
+                "http://purl.org/dc/terms/isReferencedBy": "Is referenced by",
+                "http://purl.org/dc/terms/requires": "Requires",
+                "http://purl.org/dc/terms/isRequiredBy": "Is required by",
+                "http://purl.org/dc/terms/source": "Source",
+                "unknown": "Unknown relation"
+            }
         },
         "themes": "Themes",
         "keywords": "Keywords"

@@ -1,4 +1,10 @@
-const { FDK_SEARCH_SERVICE_BASE_URI } = process.env;
+import { type DatasetReference } from '@fdk-frontend/fdk-types';
+import { getResource } from '../../resource-service/api';
+
+const {
+    FDK_SEARCH_SERVICE_BASE_URI,
+    FDK_BASE_URI
+} = process.env;
 
 export const searchRelations = async (resourceId: string) => {
     const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search`;
@@ -85,4 +91,69 @@ export const searchConcepts = async (conceptUris: string[]) => {
         if (!response.ok) throw new Error('concepts not found');
         return response.json();
     });
+};
+
+export const searchDatasets = async (datasetUris: string[]) => {
+    if (!datasetUris || !datasetUris.length) throw new Error('missing datasetUris');
+    const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`;
+    return await fetch(uri, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            filters: {
+                uri: {
+                    value: datasetUris,
+                },
+            },
+        }),
+    }).then((response) => {
+        if (!response.ok) throw new Error('datasets not found');
+        return response.json();
+    });
+}
+
+
+export const searchAll = async (uris: string[]) => {
+    console.log('querying', uris);
+    if (!uris || !uris.length) throw new Error('missing uris');
+    const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search`;
+    return await fetch(uri, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            filters: {
+                uri: {
+                    value: uris,
+                },
+            },
+        }),
+    }).then((response) => {
+        if (!response.ok) throw new Error('resources not found');
+        return response.json();
+    });
+}
+
+export const getPopulatedDatasetReferences = async (references: DatasetReference[]) => {
+    return await Promise.all(references.map(async (reference: DatasetReference) => {
+
+        let resource;
+
+        if (reference.source.uri.startsWith(FDK_BASE_URI)) {
+            resource = await getResource(reference.source.uri);
+        } else {
+            resource = await searchAll([reference.source.uri]);
+            resource = resource?.hits?.at(0);
+        }
+        console.log('response', resource);
+        return {
+            reference,
+            resource
+        };
+    }));
 };

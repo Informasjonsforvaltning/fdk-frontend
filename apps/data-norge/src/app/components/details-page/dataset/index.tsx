@@ -8,7 +8,8 @@ import {
     type DataService,
     type DatasetScore,
     type CommunityTopic,
-    type SearchObject
+    type SearchObject,
+    type PopulatedDatasetReference
 } from '@fdk-frontend/fdk-types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
@@ -39,8 +40,9 @@ export type DatasetDetailsPageType = {
     resource: DatasetWithIdentifier;
     apis?: DataService[];
     concepts?: SearchObject[];
-    relatedDatasets?: DatasetWithIdentifier[];
+    populatedReferences?: PopulatedDatasetReference[];
     similarDatasets?: DatasetWithIdentifier[];
+    internalRelatedDatasets?: DatasetWithIdentifier[];
     orgDatasets?: DatasetWithIdentifier[];
     metadataScore?: DatasetScore;
     communityTopics?: CommunityTopic[];
@@ -59,8 +61,9 @@ export default function DatasetDetailsPage({
     resource,
     apis,
     concepts,
-    relatedDatasets,
+    populatedReferences,
     similarDatasets,
+    internalRelatedDatasets,
     orgDatasets,
     metadataScore,
     communityTopics,
@@ -250,25 +253,44 @@ export default function DatasetDetailsPage({
                                 />
                             )}
                         </section>
-                        {similarDatasets && similarDatasets.length > 0 && (
-                            <>
-                                <BrandDivider className={styles.divider} />
-                                <section className={styles.section}>
-                                    <Heading
-                                        level={2}
-                                        size='xxsmall'
-                                    >
-                                        {dictionaries.detailsPage.similarDatasets}
-                                    </Heading>
-                                    <ScrollShadows className={styles.tableScroller}>
-                                        <DatasetTable
-                                            datasets={similarDatasets}
-                                            locale={locale}
-                                            dictionary={dictionaries.detailsPage}
-                                        />
-                                    </ScrollShadows>
-                                </section>
-                            </>
+                        {
+                            ((internalRelatedDatasets && internalRelatedDatasets.length > 0) ||
+                            (similarDatasets && similarDatasets.length > 0)) &&
+                            <BrandDivider className={styles.divider} />
+                        }
+                        {internalRelatedDatasets && internalRelatedDatasets.length > 0 &&
+                            <section className={styles.section} style={{marginBottom:'3rem'}}>
+                                <Heading
+                                    level={2}
+                                    size='xxsmall'
+                                >
+                                    {dictionaries.detailsPage.internalRelations}
+                                </Heading>
+                                <ScrollShadows className={styles.tableScroller}>
+                                    <DatasetTable
+                                        datasets={internalRelatedDatasets}
+                                        locale={locale}
+                                        dictionary={dictionaries.detailsPage}
+                                    />
+                                </ScrollShadows>
+                            </section>
+                        }
+                        {similarDatasets && similarDatasets.length > 0 && (  
+                            <section className={styles.section}>
+                                <Heading
+                                    level={2}
+                                    size='xxsmall'
+                                >
+                                    {dictionaries.detailsPage.similarDatasets}
+                                </Heading>
+                                <ScrollShadows className={styles.tableScroller}>
+                                    <DatasetTable
+                                        datasets={similarDatasets}
+                                        locale={locale}
+                                        dictionary={dictionaries.detailsPage}
+                                    />
+                                </ScrollShadows>
+                            </section>
                         )}
                     </TabContent>
                     <TabContent value='distributions'>
@@ -293,7 +315,8 @@ export default function DatasetDetailsPage({
                     <TabContent value='details'>
                         <DatasetDetailsTab
                             dataset={resource}
-                            related={relatedDatasets}
+                            internalRelatedDatasets={internalRelatedDatasets}
+                            populatedReferences={populatedReferences}
                             concepts={concepts}
                             locale={locale}
                             metadataScore={metadataScore}

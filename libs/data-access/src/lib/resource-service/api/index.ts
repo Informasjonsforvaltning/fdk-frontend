@@ -1,4 +1,6 @@
-const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
+const {
+    FDK_RESOURCE_SERVICE_BASE_URI
+} = process.env;
 
 export const getResource = async (uri: string) => {
     return await fetch(uri, {

@@ -1,7 +1,7 @@
 import { useState, createContext } from 'react';
 import { Heading, Link, ChipGroup, ChipToggle, Button } from '@digdir/designsystemet-react';
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
-import { type DatasetWithIdentifier, type DatasetScore } from '@fdk-frontend/fdk-types';
+import { type DatasetWithIdentifier, type DatasetScore, type PopulatedDatasetReference } from '@fdk-frontend/fdk-types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box/';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text/';
@@ -11,6 +11,7 @@ import ContentDetails from './components/content-details';
 import LegalDetails, { hasLegalBasis } from './components/legal-details';
 import ConceptDetails from './components/concept-details';
 import RelatedDetails from './components/related-details';
+import ReferencesDetails from './components/references-details';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './details-tab.module.scss';
 
@@ -23,9 +24,11 @@ export type DatasetDetailsProps = {
     metadataScore?: DatasetScore;
     related?: DatasetWithIdentifier[];
     concepts?: SearchObject[];
+    populatedReferences?: PopulatedDatasetReference[];
+    internalRelatedDatasets?: DatasetWithIdentifier[];
 };
 
-const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore, concepts }: DatasetDetailsProps) => {
+const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore, concepts, populatedReferences, internalRelatedDatasets }: DatasetDetailsProps) => {
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     return (
@@ -49,12 +52,6 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                         </>
                     )}
                 </Button>
-                <GeneralDetails
-                    dataset={dataset}
-                    locale={locale}
-                    dictionary={dictionary}
-                    metadataScore={metadataScore}
-                />
                 {!dataset.contactPoint && !showEmptyRows ? null : (
                     <ContactDetails
                         dataset={dataset}
@@ -82,13 +79,26 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                         dictionary={dictionary}
                     />
                 )}
-                {!related?.length && !showEmptyRows ? null : (
-                    <RelatedDetails
-                        related={related}
+                {!populatedReferences?.length && !showEmptyRows ? null : (
+                    <ReferencesDetails
+                        populatedReferences={populatedReferences}
                         locale={locale}
                         dictionary={dictionary}
                     />
                 )}
+                {/*{!internalRelatedDatasets?.length && !showEmptyRows ? null : (
+                    <RelatedDetails
+                        related={internalRelatedDatasets}
+                        locale={locale}
+                        dictionary={dictionary}
+                    />
+                )}*/}
+                <GeneralDetails
+                    dataset={dataset}
+                    locale={locale}
+                    dictionary={dictionary}
+                    metadataScore={metadataScore}
+                />
                 {!dataset.theme?.length && !showEmptyRows ? null : (
                     <section>
                         <Heading

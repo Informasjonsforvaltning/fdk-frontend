@@ -85,6 +85,8 @@
         }
     },
     "similarDatasets": "Lignende datasett",
+    "internalRelations": "Relasjoner til andre ressurser",
+    "externalRelations": "Relasjoner fra andre ressurser",
     "details": {
         "showEmptyRows": "Vis tomme rader",
         "hideEmptyRows": "Skjul tomme rader",
@@ -149,9 +151,37 @@
             "title": "Begreper brukt i datasett"
         },
         "related": {
-            "title": "Relasjoner til andre datasett",
-            "namelessDataset": "Namnlaust datasett",
-            "namelessOrganization": "Namnlaus verksemd"
+            "title": "Relasjoner til andre ressurser",
+            "namelessDataset": "Navnløst datasett",
+            "namelessOrganization": "Navnløs virksomhet",
+            "relationLabels": {
+                "http://purl.org/dc/terms/associativeRelation": "Assosiert med",
+                "http://purl.org/dc/terms/closeMatch": "Nær match",
+                "http://purl.org/dc/terms/exactMatch": "Eksakt match",
+                "http://purl.org/dc/terms/generalizes": "Generalisert av",
+                "http://purl.org/dc/terms/specializes": "Spesialisert av",
+                "http://purl.org/dc/terms/memberOf": "Medlem av",
+                "http://purl.org/dc/terms/replaces": "Erstatter",
+                "http://purl.org/dc/terms/seeAlso": "Se også",
+                "http://purl.org/dc/terms/conformsTo": "Overholder",
+                "http://purl.org/dc/terms/servesDataset": "Tjener datasett",
+                "http://purl.org/dc/terms/inSeries": "I serie",
+                "http://purl.org/dc/terms/subject": "Emne",
+                "http://purl.org/dc/terms/hasPart": "Har del av",
+                "http://purl.org/dc/terms/isPartOf": "Er del av",
+                "http://purl.org/dc/terms/isGroupedBy": "Er gruppert av",
+                "http://purl.org/dc/terms/isClassifiedBy": "Er klassifisert av",
+                "http://purl.org/dc/terms/isDescribedAt": "Er beskrevet på",
+                "http://purl.org/dc/terms/relation": "Relasjon",
+                "http://purl.org/dc/terms/hasVersion": "Har versjon",
+                "http://purl.org/dc/terms/isVersionOf": "Er versjon av",
+                "http://purl.org/dc/terms/references": "Refererer til",
+                "http://purl.org/dc/terms/isReferencedBy": "Er referert til",
+                "http://purl.org/dc/terms/requires": "Krever",
+                "http://purl.org/dc/terms/isRequiredBy": "Kreves av",
+                "http://purl.org/dc/terms/source": "Kilde",
+                "unknown": "Ukjent relasjon"
+            }
         },
         "themes": "Tema",
         "keywords": "Søkord"
