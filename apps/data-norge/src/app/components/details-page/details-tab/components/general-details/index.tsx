@@ -3,6 +3,7 @@ import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import HStack from '@fdk-frontend/ui/hstack';
 import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
+import { type DatasetType } from '@fdk-frontend/fdk-types';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
@@ -128,7 +129,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         <dt>{dictionary.details.general.type}:</dt>
                         <dd>
                             {dataset.dctType ?
-                                printLocaleValue(locale, dataset.dctType?.prefLabel) :
+                                printLocaleValue(locale, (dataset.dctType as DatasetType)?.prefLabel) :
                                 <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                             }
                         </dd>

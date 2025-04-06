@@ -48,6 +48,7 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                     {contactPoint.hasURL ? (
                                         <Link href={contactPoint.hasURL}>
                                             {contactPoint.hasURL}
+                                            <ExternalLinkIcon />
                                         </Link>
                                     ) : (
                                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
