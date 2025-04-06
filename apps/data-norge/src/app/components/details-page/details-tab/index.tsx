@@ -111,14 +111,22 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                         >
                             {dictionary.details.themes}
                         </Heading>
-                        {dataset.theme ? (
+                        {[...(dataset.theme ?? []), ...(dataset.losTheme ?? [])].length ? (
                             <ChipGroup size='sm'>
-                                {dataset.theme.map((theme: any) => (
+                                {dataset.theme?.map((theme: any) => (
                                     <Link
                                         key={theme.code}
                                         href={`/datasets&theme=${theme.code}`}
                                     >
                                         <ChipToggle>{printLocaleValue(locale, theme.title)}</ChipToggle>
+                                    </Link>
+                                ))}
+                                {dataset.losTheme?.map((theme: any) => (
+                                    <Link
+                                        key={theme.code}
+                                        href={`/datasets&losTheme=${theme.code}`}
+                                    >
+                                        <ChipToggle>{printLocaleValue(locale, theme.name)}</ChipToggle>
                                     </Link>
                                 ))}
                             </ChipGroup>
