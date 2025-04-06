@@ -11,14 +11,8 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
 
     const printContactPointOrgUnit = (contactPoint: any) => {
         return contactPoint.hasURL ? (
-            <Link href={contactPoint.hasURL}>
-                {
-                    contactPoint.organizationUnit?.[locale] ||
-                    contactPoint.organizationUnit?.[i18n.defaultLocale] ||
-                    contactPoint.hasURL
-                }
-                <ExternalLinkIcon aria-hidden />
-            </Link>
+            contactPoint.organizationUnit?.[locale] ||
+            contactPoint.organizationUnit?.[i18n.defaultLocale]
         ) : (
             contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]
         );
@@ -41,6 +35,20 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 <dd>
                                     {contactPoint.organizationUnit ? (
                                         printContactPointOrgUnit(contactPoint)
+                                    ) : (
+                                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                    )}
+                                </dd>
+                            </>
+                        )}
+                        {!contactPoint.uri && !showEmptyRows ? null : (
+                            <>
+                                <dt>{dictionary.details.contactPoint.uri}:</dt>
+                                <dd>
+                                    {contactPoint.hasURL ? (
+                                        <Link href={contactPoint.hasURL}>
+                                            {contactPoint.hasURL}
+                                        </Link>
                                     ) : (
                                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                     )}

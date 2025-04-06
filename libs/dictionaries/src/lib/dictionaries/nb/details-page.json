@@ -100,6 +100,7 @@
             "firstHarvestedHelpTextLink": "Les mer om høsting her",
             "modified": "Sist oppdatert",
             "page": "Dokumentasjon",
+            "type": "Datasettype",
             "landingPage": "Landingsside",
             "metadataQuality": {
                 "title": "Metadatakvalitet",
@@ -117,6 +118,7 @@
         "contactPoint": {
             "title": "Kontaktinformasjon",
             "organizationUnit": "Kontaktpunkt",
+            "uri": "Nettside",
             "email": "E-post",
             "telephone": "Telefon"
         },

@@ -100,6 +100,7 @@
             "firstHarvestedHelpTextLink": "Read more about harvesting here",
             "modified": "Last updated",
             "page": "Documentation",
+            "type": "Dataset type",
             "landingPage": "Landing page",
             "metadataQuality": {
                 "title": "Metadata Quality",
@@ -117,6 +118,7 @@
         "contactPoint": {
             "title": "Contact information",
             "organizationUnit": "Contact point",
+            "uri": "Website",
             "email": "Email",
             "telephone": "Telephone"
         },
