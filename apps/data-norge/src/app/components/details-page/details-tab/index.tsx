@@ -16,7 +16,7 @@ import ContentDetails from './components/content-details';
 import LegalDetails, { hasLegalBasis } from './components/legal-details';
 import ConceptDetails from './components/concept-details';
 import ReferencesDetails from './components/references-details';
-import { printLocaleValue } from '@fdk-frontend/utils';
+import DatasetTags from '../dataset-tags';
 import styles from './details-tab.module.scss';
 
 const DatasetDetailsTabContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
@@ -112,24 +112,7 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                             {dictionary.details.themes}
                         </Heading>
                         {[...(dataset.theme ?? []), ...(dataset.losTheme ?? [])].length ? (
-                            <ChipGroup size='sm'>
-                                {dataset.theme?.map((theme: any) => (
-                                    <Link
-                                        key={theme.code}
-                                        href={`/datasets&theme=${theme.code}`}
-                                    >
-                                        <ChipToggle>{printLocaleValue(locale, theme.title)}</ChipToggle>
-                                    </Link>
-                                ))}
-                                {dataset.losTheme?.map((theme: any) => (
-                                    <Link
-                                        key={theme.code}
-                                        href={`/datasets&losTheme=${theme.code}`}
-                                    >
-                                        <ChipToggle>{printLocaleValue(locale, theme.name)}</ChipToggle>
-                                    </Link>
-                                ))}
-                            </ChipGroup>
+                            <DatasetTags dataset={dataset} locale={locale} />
                         ) : (
                             <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
                         )}

@@ -14,7 +14,6 @@ import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
-// import StarButton from '@fdk-frontend/ui/star-button';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Article from '@fdk-frontend/ui/article';
@@ -157,14 +156,6 @@ export default function DatasetDetailsPage({
                                 dictionary={dictionaries.detailsPage}
                             />
                             {resource.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}
-                            {resource.harvest?.firstHarvested && (
-                                <span className={styles.lastUpdated}>
-                                    {dictionaries.detailsPage.header.published}&nbsp;
-                                    {new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
-                                        dateStyle: 'long',
-                                    })}
-                                </span>
-                            )}
                         </div>
                     </div>
                 </div>
