@@ -10,12 +10,9 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     const printContactPointOrgUnit = (contactPoint: any) => {
-        return contactPoint.hasURL ? (
-            contactPoint.organizationUnit?.[locale] ||
-            contactPoint.organizationUnit?.[i18n.defaultLocale]
-        ) : (
-            contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]
-        );
+        return contactPoint.hasURL
+            ? contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]
+            : contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale];
     };
 
     return (

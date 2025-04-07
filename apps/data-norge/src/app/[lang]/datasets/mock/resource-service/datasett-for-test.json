@@ -1,19 +1,15 @@
 {
-    "accessRights":
-    {
+    "accessRights": {
         "code": "RESTRICTED",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "restricted"
         },
         "uri": "http://publications.europa.eu/resource/authority/access-right/RESTRICTED"
     },
     "accessRightsComment": null,
-    "accrualPeriodicity":
-    {
+    "accrualPeriodicity": {
         "code": "BIDECENNIAL",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "bidecennial",
             "nb": "hvert tjuende år",
             "nn": "kvart tjuande år",
@@ -22,33 +18,27 @@
         "uri": "http://publications.europa.eu/resource/authority/frequency/BIDECENNIAL"
     },
     "admsIdentifier": null,
-    "catalog":
-    {
+    "catalog": {
         "description": null,
         "id": "b8d91c97-b2e1-31c0-884c-4db047e48bd1",
-        "publisher":
-        {
+        "publisher": {
             "id": "312460726",
             "name": "KOMISK PRESIS BILLE IKS",
             "orgPath": "/ANNET/312460726",
             "organisasjonsform": "IKS",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Komisk presis bille iks"
             },
             "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/312460726"
         },
-        "title":
-        {
+        "title": {
             "nb": "Datakatalog for KOMISK PRESIS BILLE IKS"
         },
         "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/312460726"
     },
-    "conformsTo":
-    [
+    "conformsTo": [
         {
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Standard for beskrivelse av datasett, datatjenester og datakataloger (DCAT-AP-NO) - EN",
                 "nb": "Standard for beskrivelse av datasett, datatjenester og datakataloger (DCAT-AP-NO)",
                 "nn": "Standard for beskrivelse av datasett, datatjenester og datakataloger (DCAT-AP-NO) - NN"
@@ -56,8 +46,7 @@
             "uri": "https://data.norge.no/specification/dcat-ap-no"
         },
         {
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Verdens beste informasjonsmodell - EN",
                 "nb": "Verdens beste informasjonsmodell",
                 "nn": "Verdens beste informasjonsmodell - NN"
@@ -65,8 +54,7 @@
             "uri": "https://staging.fellesdatakatalog.digdir.no/information-models/6feff2b7-c7e5-3bde-99bf-9e5ae5cd6be8"
         },
         {
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Diversemodell - EN",
                 "nb": "Diversemodell",
                 "nn": "Diversemodell - NN"
@@ -74,26 +62,22 @@
             "uri": "https://staging.fellesdatakatalog.digdir.no/information-models/fbba72f8-7dba-397b-99dc-abcb0d61090c"
         }
     ],
-    "contactPoint":
-    [
+    "contactPoint": [
         {
             "email": "test@digdir.no",
             "fullname": null,
             "hasTelephone": "00000000",
             "hasURL": "https://data.norge.no/nb/contact",
             "organizationName": null,
-            "organizationUnit":
-            {
+            "organizationUnit": {
                 "nb": "Team data.norge"
             },
             "uri": null
         }
     ],
-    "dctType":
-    {
+    "dctType": {
         "code": "TEST_DATA",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "Test data",
             "nb": "Testdata",
             "nn": "Testdata",
@@ -101,23 +85,19 @@
         },
         "uri": "http://publications.europa.eu/resource/authority/dataset-type/TEST_DATA"
     },
-    "description":
-    {
+    "description": {
         "en": "This is a test dataset created via the registration solution and where all the fields in the form are filled in.\n\n---\n\n**Purpose:** Test the new dataset details page in the portal.\n\n**Extra text:**\n\n**Dataens nye drakt**\n\nI et rike av nuller og enere,\\\nder data.norge skinner i scener.\\\nMed åpne kilder og innsikt brett,\\\nligger der skjulte skatter – et datasett.\n\nPå detaljesiden finner du svar,\\\nstatistikk og fakta står alltid klar.\\\nEt nytt design, så friskt og lett,\\\nåpner for kunnskap i riktig nett.\n\nFra tall til trender, fra kode til kunst,\\\nher bygges fremtiden – bit for bit, med lyst.\n\nBy ChatGPT 😊\n",
         "nb": "Dette er et testdatasett som er opprettet via registreringsløsningen og der alle feltene i skjemaet er fylt ut.\n\n---\n\n**Formål:** Test den nye detaljesiden for datasett i portalen.\n\n**Ekstra tekst:**\n\n**Dataens nye drakt**\n\nI et rike av nuller og enere,\\\nder data.norge skinner i scener.\\\nMed åpne kilder og innsikt brett,\\\nligger der skjulte skatter – et datasett.\n\nPå detaljesiden finner du svar,\\\nstatistikk og fakta står alltid klar.\\\nEt nytt design, så friskt og lett,\\\nåpner for kunnskap i riktig nett.\n\nFra tall til trender, fra kode til kunst,\\\nher bygges fremtiden – bit for bit, med lyst.\n\nBy ChatGPT 😊\n",
         "nn": "Dette er et testdatasett som er opprettet via registreringsløsningen og der alle feltene i skjemaet er fylt ut. (nynorsk)\n\n---\n\n**Formål:** Test den nye detaljesiden for datasett i portalen.\n\n**Ekstra tekst:**\n\n**Dataens nye drakt**\n\nI et rike av nuller og enere,\\\nder data.norge skinner i scener.\\\nMed åpne kilder og innsikt brett,\\\nligger der skjulte skatter – et datasett.\n\nPå detaljesiden finner du svar,\\\nstatistikk og fakta står alltid klar.\\\nEt nytt design, så friskt og lett,\\\nåpner for kunnskap i riktig nett.\n\nFra tall til trender, fra kode til kunst,\\\nher bygges fremtiden – bit for bit, med lyst.\n\nBy ChatGPT 😊"
     },
-    "descriptionFormatted":
-    {
+    "descriptionFormatted": {
         "en": "This is a test dataset created via the registration solution and where all the fields in the form are filled in.\n\n---\n\n**Purpose:** Test the new dataset details page in the portal.\n\n**Extra text:**\n\n**Dataens nye drakt**\n\nI et rike av nuller og enere,\\\nder data.norge skinner i scener.\\\nMed åpne kilder og innsikt brett,\\\nligger der skjulte skatter – et datasett.\n\nPå detaljesiden finner du svar,\\\nstatistikk og fakta står alltid klar.\\\nEt nytt design, så friskt og lett,\\\nåpner for kunnskap i riktig nett.\n\nFra tall til trender, fra kode til kunst,\\\nher bygges fremtiden – bit for bit, med lyst.\n\nBy ChatGPT 😊\n",
         "nb": "Dette er et testdatasett som er opprettet via registreringsløsningen og der alle feltene i skjemaet er fylt ut.\n\n---\n\n**Formål:** Test den nye detaljesiden for datasett i portalen.\n\n**Ekstra tekst:**\n\n**Dataens nye drakt**\n\nI et rike av nuller og enere,\\\nder data.norge skinner i scener.\\\nMed åpne kilder og innsikt brett,\\\nligger der skjulte skatter – et datasett.\n\nPå detaljesiden finner du svar,\\\nstatistikk og fakta står alltid klar.\\\nEt nytt design, så friskt og lett,\\\nåpner for kunnskap i riktig nett.\n\nFra tall til trender, fra kode til kunst,\\\nher bygges fremtiden – bit for bit, med lyst.\n\nBy ChatGPT 😊\n",
         "nn": "Dette er et testdatasett som er opprettet via registreringsløsningen og der alle feltene i skjemaet er fylt ut. (nynorsk)\n\n---\n\n**Formål:** Test den nye detaljesiden for datasett i portalen.\n\n**Ekstra tekst:**\n\n**Dataens nye drakt**\n\nI et rike av nuller og enere,\\\nder data.norge skinner i scener.\\\nMed åpne kilder og innsikt brett,\\\nligger der skjulte skatter – et datasett.\n\nPå detaljesiden finner du svar,\\\nstatistikk og fakta står alltid klar.\\\nEt nytt design, så friskt og lett,\\\nåpner for kunnskap i riktig nett.\n\nFra tall til trender, fra kode til kunst,\\\nher bygges fremtiden – bit for bit, med lyst.\n\nBy ChatGPT 😊"
     },
-    "distribution":
-    [
+    "distribution": [
         {
-            "accessService":
-            [
+            "accessService": [
                 {
                     "description": null,
                     "endpointDescription": null,
@@ -137,16 +117,11 @@
                     "uri": "https://testdata.api.skatteetaten.no/api/testnorge/v2/soek/sd-test/"
                 }
             ],
-            "accessURL":
-            [
-                "https://vg.no"
-            ],
+            "accessURL": ["https://vg.no"],
             "compressFormat": null,
-            "conformsTo":
-            [
+            "conformsTo": [
                 {
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Standard til distribusjon - EN",
                         "nb": "Standard til distribusjon",
                         "nn": "Standard til distribusjon  - NN"
@@ -154,18 +129,13 @@
                     "uri": "https://data.norge.no/specification/dcat-ap-no#Distribusjon"
                 }
             ],
-            "description":
-            {
+            "description": {
                 "en": "Dette er distribusjon 1. En veldig bra distribusjon, en fantastisk distribusjon. - EN",
                 "nb": "Dette er distribusjon 1. En veldig bra distribusjon, en fantastisk distribusjon.",
                 "nn": "Dette er distribusjon 1. En veldig bra distribusjon, en fantastisk distribusjon. - NN"
             },
-            "downloadURL":
-            [
-                "https://vg.no"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://vg.no"],
+            "fdkFormat": [
                 {
                     "code": "HTML",
                     "name": "HTML",
@@ -185,14 +155,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/text/html"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Norwegian Licence for Open Government Data",
                         "no": "Norsk lisens for offentlige data"
                     },
@@ -200,8 +168,7 @@
                 }
             ],
             "packageFormat": null,
-            "page":
-            [
+            "page": [
                 {
                     "broader": null,
                     "extraType": null,
@@ -210,8 +177,7 @@
                     "uri": "https://vg.no"
                 }
             ],
-            "title":
-            {
+            "title": {
                 "en": "Distribusjon 1 - EN",
                 "nb": "Distribusjon 1",
                 "nn": "Distribusjon 1 - NN"
@@ -221,16 +187,11 @@
         },
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://banett.no"
-            ],
+            "accessURL": ["https://banett.no"],
             "compressFormat": null,
-            "conformsTo":
-            [
+            "conformsTo": [
                 {
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Standard til distribusjon - EN",
                         "nb": "Standard til distribusjon",
                         "nn": "Standard til distribusjon  - NN"
@@ -238,18 +199,13 @@
                     "uri": "https://data.norge.no/specification/dcat-ap-no#Distribusjon"
                 }
             ],
-            "description":
-            {
+            "description": {
                 "en": "Dette er distribusjon 3. Dette er også en veldig bra distribusjon, en fantastisk distribusjon. - EN",
                 "nb": "Dette er distribusjon 3. Dette er også en veldig bra distribusjon, en fantastisk distribusjon.",
                 "nn": "Dette er distribusjon 3. Dette er også en veldig bra distribusjon, en fantastisk distribusjon. - NN"
             },
-            "downloadURL":
-            [
-                "https://banett.no"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://banett.no"],
+            "fdkFormat": [
                 {
                     "code": "JSON",
                     "name": "JSON",
@@ -265,8 +221,7 @@
             ],
             "license": null,
             "packageFormat": null,
-            "page":
-            [
+            "page": [
                 {
                     "broader": null,
                     "extraType": null,
@@ -275,8 +230,7 @@
                     "uri": "https://banett.no"
                 }
             ],
-            "title":
-            {
+            "title": {
                 "en": "Distribusjon 3 - EN",
                 "nb": "Distribusjon 3",
                 "nn": "Distribusjon 3 - NN"
@@ -285,8 +239,7 @@
             "uri": null
         },
         {
-            "accessService":
-            [
+            "accessService": [
                 {
                     "description": null,
                     "endpointDescription": null,
@@ -294,16 +247,11 @@
                     "uri": "https://dataservice-catalog.staging.fellesdatakatalog.digdir.no/data-services/60cc5a451385284044ca5a7b"
                 }
             ],
-            "accessURL":
-            [
-                "https://dagbladet.no"
-            ],
+            "accessURL": ["https://dagbladet.no"],
             "compressFormat": null,
-            "conformsTo":
-            [
+            "conformsTo": [
                 {
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Standard til distribusjon - EN",
                         "nb": "Standard til distribusjon",
                         "nn": "Standard til distribusjon  - NN"
@@ -311,18 +259,13 @@
                     "uri": "https://data.norge.no/specification/dcat-ap-no#Distribusjon"
                 }
             ],
-            "description":
-            {
+            "description": {
                 "en": "Dette er distribusjon 2. Dette er også en veldig bra distribusjon, en fantastisk distribusjon. - EN\n\n**Eventyret om Kongeriket Datasett og Den Rettferdige Distribusjonen**\n\nDet var en gang et kongerike kalt Datasett, hvor tall, tekst og bilder levde i harmoni. Kongen av dette riket, Algoritmus den Kloke, ønsket at all informasjon skulle være lett tilgjengelig og rettferdig fordelt blant folket.\n\nMen det fantes et problem. Noen byer i kongeriket hadde altfor mye data, mens andre sultet etter informasjon. De rike byene, som StorSample og OverRepresentasjon, hadde uendelige rekker med tall, mens de fattige landsbyene, som Undersample og Skjevfordeling, nesten ikke hadde noe.\n\nFor å rette opp i dette, tilkalte kongen sin mest vise rådgiver, Professor Normalis. Hun foreslo å bruke den magiske formelen for balansert distribusjon, slik at alle deler av riket kunne få lik tilgang til data. Med hjelp fra de fire magiske ridderne – Randomisering, Stratifisering, Skalering og Augmentering – begynte de å spre data jevnt utover hele kongeriket.\n\nSnart blomstret hele Datasett-riket. Algoritmer fra nær og fjern kom for å trene seg på de balanserte dataene, og innsikten de oppnådde var både rettferdig og nøyaktig.\n\nSlik levde Datasett i evig harmoni, takket være den rettferdige distribusjonen!\n\nMoral: Et godt balansert datasett fører til rettferdige og pålitelige analyser.\n\nBy ChatGPT 🙂",
                 "nb": "Dette er distribusjon 2. Dette er også en veldig bra distribusjon, en fantastisk distribusjon.\n\n**Eventyret om Kongeriket Datasett og Den Rettferdige Distribusjonen**\n\nDet var en gang et kongerike kalt Datasett, hvor tall, tekst og bilder levde i harmoni. Kongen av dette riket, Algoritmus den Kloke, ønsket at all informasjon skulle være lett tilgjengelig og rettferdig fordelt blant folket.\n\nMen det fantes et problem. Noen byer i kongeriket hadde altfor mye data, mens andre sultet etter informasjon. De rike byene, som StorSample og OverRepresentasjon, hadde uendelige rekker med tall, mens de fattige landsbyene, som Undersample og Skjevfordeling, nesten ikke hadde noe.\n\nFor å rette opp i dette, tilkalte kongen sin mest vise rådgiver, Professor Normalis. Hun foreslo å bruke den magiske formelen for balansert distribusjon, slik at alle deler av riket kunne få lik tilgang til data. Med hjelp fra de fire magiske ridderne – Randomisering, Stratifisering, Skalering og Augmentering – begynte de å spre data jevnt utover hele kongeriket.\n\nSnart blomstret hele Datasett-riket. Algoritmer fra nær og fjern kom for å trene seg på de balanserte dataene, og innsikten de oppnådde var både rettferdig og nøyaktig.\n\nSlik levde Datasett i evig harmoni, takket være den rettferdige distribusjonen!\n\nMoral: Et godt balansert datasett fører til rettferdige og pålitelige analyser.\n\nBy ChatGPT 🙂",
                 "nn": "Dette er distribusjon 2. Dette er også en veldig bra distribusjon, en fantastisk distribusjon. - NN\n\n**Eventyret om Kongeriket Datasett og Den Rettferdige Distribusjonen**\n\nDet var en gang et kongerike kalt Datasett, hvor tall, tekst og bilder levde i harmoni. Kongen av dette riket, Algoritmus den Kloke, ønsket at all informasjon skulle være lett tilgjengelig og rettferdig fordelt blant folket.\n\nMen det fantes et problem. Noen byer i kongeriket hadde altfor mye data, mens andre sultet etter informasjon. De rike byene, som StorSample og OverRepresentasjon, hadde uendelige rekker med tall, mens de fattige landsbyene, som Undersample og Skjevfordeling, nesten ikke hadde noe.\n\nFor å rette opp i dette, tilkalte kongen sin mest vise rådgiver, Professor Normalis. Hun foreslo å bruke den magiske formelen for balansert distribusjon, slik at alle deler av riket kunne få lik tilgang til data. Med hjelp fra de fire magiske ridderne – Randomisering, Stratifisering, Skalering og Augmentering – begynte de å spre data jevnt utover hele kongeriket.\n\nSnart blomstret hele Datasett-riket. Algoritmer fra nær og fjern kom for å trene seg på de balanserte dataene, og innsikten de oppnådde var både rettferdig og nøyaktig.\n\nSlik levde Datasett i evig harmoni, takket være den rettferdige distribusjonen!\n\nMoral: Et godt balansert datasett fører til rettferdige og pålitelige analyser.\n\nBy ChatGPT 🙂"
             },
-            "downloadURL":
-            [
-                "https://dagbladet.no"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://dagbladet.no"],
+            "fdkFormat": [
                 {
                     "code": "XML",
                     "name": "XML",
@@ -366,14 +309,12 @@
                     "uri": "https://www.iana.org/assignments/media-types/application/json"
                 }
             ],
-            "license":
-            [
+            "license": [
                 {
                     "broader": null,
                     "extraType": null,
                     "narrower": null,
-                    "prefLabel":
-                    {
+                    "prefLabel": {
                         "en": "Creative Commons Universal Public Domain Dedication",
                         "no": "Creative Commons Universal Fristatus-erklæring"
                     },
@@ -381,8 +322,7 @@
                 }
             ],
             "packageFormat": null,
-            "page":
-            [
+            "page": [
                 {
                     "broader": null,
                     "extraType": null,
@@ -391,8 +331,7 @@
                     "uri": "https://dagbladet.no"
                 }
             ],
-            "title":
-            {
+            "title": {
                 "en": "Distribusjon 2 - hva skjer hvis man legger til en ganske lang tittel, mer som en setning, blir dette et problem eller løses det bra. Må ha med litt mer tekst for å teste. Kanskje nok nå. Nei, må ha mer tekst. Fremdeles litt lite. Når er det nok tekst. Det burde være bra nå. Går det bra med lenker også, mon tro. Lenke: https://dagbladet.no - EN",
                 "nb": "Distribusjon 2 - hva skjer hvis man legger til en ganske lang tittel, mer som en setning, blir dette et problem eller løses det bra. Må ha med litt mer tekst for å teste. Kanskje nok nå. Nei, må ha mer tekst. Fremdeles litt lite. Når er det nok tekst. Det burde være bra nå. Går det bra med lenker også, mon tro. Lenke: [Dagbladet](https://dagbladet.no)",
                 "nn": "Distribusjon 2 - hva skjer hvis man legger til en ganske lang tittel, mer som en setning, blir dette et problem eller løses det bra. Må ha med litt mer tekst for å teste. Kanskje nok nå. Nei, må ha mer tekst. Fremdeles litt lite. Når er det nok tekst. Det burde være bra nå. Går det bra med lenker også, mon tro. Lenke: https://dagbladet.no - NN"
@@ -402,55 +341,44 @@
         }
     ],
     "eurovocThemes": null,
-    "harvest":
-    {
+    "harvest": {
         "firstHarvested": "2025-03-20T14:46:09Z",
         "modified": "2025-03-31T07:11:11Z"
     },
-    "hasAccuracyAnnotation":
-    {
-        "hasBody":
-        {
+    "hasAccuracyAnnotation": {
+        "hasBody": {
             "en": "Nøyaktig nok for testing. - EN",
             "nb": "Nøyaktig nok for testing.",
             "nn": "Nøyaktig nok for testing. - NN"
         },
         "inDimension": "http://iso.org/25012/2008/dataquality/Accuracy"
     },
-    "hasAvailabilityAnnotation":
-    {
-        "hasBody":
-        {
+    "hasAvailabilityAnnotation": {
+        "hasBody": {
             "en": "Kun til internt bruk ved testing. - EN",
             "nb": "Kun til internt bruk ved testing.",
             "nn": "Kun til internt bruk ved testing. - NN"
         },
         "inDimension": "http://iso.org/25012/2008/dataquality/Availability"
     },
-    "hasCompletenessAnnotation":
-    {
-        "hasBody":
-        {
+    "hasCompletenessAnnotation": {
+        "hasBody": {
             "en": "Helt komplett - EN",
             "nb": "Helt komplett",
             "nn": "Helt komplett - NN"
         },
         "inDimension": "http://iso.org/25012/2008/dataquality/Completeness"
     },
-    "hasCurrentnessAnnotation":
-    {
-        "hasBody":
-        {
+    "hasCurrentnessAnnotation": {
+        "hasBody": {
             "en": "Veldig aktuell - EN",
             "nb": "Veldig aktuell",
             "nn": "Veldig aktuell - NN"
         },
         "inDimension": "http://iso.org/25012/2008/dataquality/Currentness"
     },
-    "hasRelevanceAnnotation":
-    {
-        "hasBody":
-        {
+    "hasRelevanceAnnotation": {
+        "hasBody": {
             "en": "Relevant for testing - EN",
             "nb": "Relevant for testing",
             "nn": "Relevant for testing - NN"
@@ -458,12 +386,10 @@
         "inDimension": "http://iso.org/25012/2008/dataquality/Relevance"
     },
     "id": "f93fe10c-4664-392b-b825-85c59f0ae2ba",
-    "identifier":
-    [
+    "identifier": [
         "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/312460726/datasets/97563ca8-2144-468a-bfe4-67d39c4e0499"
     ],
-    "inSeries":
-    {
+    "inSeries": {
         "id": null,
         "title": null,
         "uri": "https://registrering.staging.fellesdatakatalog.digdir.no/catalogs/312460726/datasets/678da861-a6d5-4cfd-ac81-3f9e16ac23f6"
@@ -473,8 +399,7 @@
     "isOpenData": false,
     "isRelatedToTransportportal": false,
     "issued": "2025-03-17",
-    "keyword":
-    [
+    "keyword": [
         {
             "en": "test-EN"
         },
@@ -521,16 +446,13 @@
             "nb": "test"
         }
     ],
-    "landingPage":
-    [
+    "landingPage": [
         "https://www.digdir.no/informasjonsforvaltning/hva-er-et-datasett-og-hvilke-datasett-skal-beskrives/2199"
     ],
-    "language":
-    [
+    "language": [
         {
             "code": "ENG",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "English",
                 "nb": "Engelsk",
                 "nn": "Engelsk",
@@ -540,8 +462,7 @@
         },
         {
             "code": "NOR",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Norwegian",
                 "nb": "Norsk",
                 "nn": "Norsk",
@@ -551,8 +472,7 @@
         },
         {
             "code": "SMI",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Sami languages",
                 "nb": "Samisk",
                 "nn": "Samisk",
@@ -561,14 +481,12 @@
             "uri": "http://publications.europa.eu/resource/authority/language/SMI"
         }
     ],
-    "legalBasisForAccess":
-    [
+    "legalBasisForAccess": [
         {
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForDisclosure",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Frostating lagmannsrett - Kjennelse: LF-2015-111129 - EN",
                 "nb": "Frostating lagmannsrett - Kjennelse: LF-2015-111129",
                 "nn": "Frostating lagmannsrett - Kjennelse: LF-2015-111129 - NN"
@@ -579,8 +497,7 @@
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForDisclosure",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Borgarting lagmannsrett - Kjennelse: LB-2018-48727 - EN",
                 "nb": "Borgarting lagmannsrett - Kjennelse: LB-2018-48727",
                 "nn": "Borgarting lagmannsrett - Kjennelse: LB-2018-48727 - NN"
@@ -588,14 +505,12 @@
             "uri": "https://lovdata.no/avgjorelse/lb-2018-48727"
         }
     ],
-    "legalBasisForProcessing":
-    [
+    "legalBasisForProcessing": [
         {
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForDataProcessing",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Oslo tingrett - Dom: TOSL-2023-160384 - EN",
                 "nb": "Oslo tingrett - Dom: TOSL-2023-160384",
                 "nn": "Oslo tingrett - Dom: TOSL-2023-160384 - NN"
@@ -606,8 +521,7 @@
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForDataProcessing",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Borgarting lagmannsrett - Dom: LB-2020-18230 - EN",
                 "nb": "Borgarting lagmannsrett - Dom: LB-2020-18230",
                 "nn": "Borgarting lagmannsrett - Dom: LB-2020-18230 - NN"
@@ -615,14 +529,12 @@
             "uri": "https://lovdata.no/avgjorelse/lb-2020-18230"
         }
     ],
-    "legalBasisForRestriction":
-    [
+    "legalBasisForRestriction": [
         {
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForNonDisclosure",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Lov om informasjon om bestemt angitte områder, skjermingsverdige objekter og bunnforhold - EN",
                 "nb": "Lov om informasjon om bestemt angitte områder, skjermingsverdige objekter og bunnforhold",
                 "nn": "Lov om informasjon om bestemt angitte områder, skjermingsverdige objekter og bunnforhold - NN"
@@ -633,8 +545,7 @@
             "broader": null,
             "extraType": "https://data.norge.no/vocabulary/cpsvno#ruleForNonDisclosure",
             "narrower": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Lov om Etterretningstjenesten (etterretningstjenesteloven) - EN",
                 "nb": "Lov om Etterretningstjenesten (etterretningstjenesteloven)",
                 "nn": "Lov om Etterretningstjenesten (etterretningstjenesteloven) - NN"
@@ -642,17 +553,12 @@
             "uri": "https://lovdata.no/lov/2020-06-19-77"
         }
     ],
-    "losTheme":
-    [
+    "losTheme": [
         {
             "code": "domstol",
             "isTema": false,
-            "losPaths":
-            [
-                "lov-og-rett/rettsvesen/domstol"
-            ],
-            "name":
-            {
+            "losPaths": ["lov-og-rett/rettsvesen/domstol"],
+            "name": {
                 "en": "Court of justice",
                 "nb": "Domstol",
                 "nn": "Domstol"
@@ -662,12 +568,8 @@
         {
             "code": "reisebillett",
             "isTema": false,
-            "losPaths":
-            [
-                "trafikk-og-transport/mobilitetstilbud/reisebillett"
-            ],
-            "name":
-            {
+            "losPaths": ["trafikk-og-transport/mobilitetstilbud/reisebillett"],
+            "name": {
                 "en": "Travel tickets",
                 "nb": "Reisebillett",
                 "nn": "Reisebillett"
@@ -677,12 +579,8 @@
         {
             "code": "lov-og-rett",
             "isTema": true,
-            "losPaths":
-            [
-                "lov-og-rett"
-            ],
-            "name":
-            {
+            "losPaths": ["lov-og-rett"],
+            "name": {
                 "en": "Legal matters",
                 "nb": "Lov og rett",
                 "nn": "Lov og rett"
@@ -692,12 +590,8 @@
         {
             "code": "mobilitetstilbud",
             "isTema": true,
-            "losPaths":
-            [
-                "trafikk-og-transport/mobilitetstilbud"
-            ],
-            "name":
-            {
+            "losPaths": ["trafikk-og-transport/mobilitetstilbud"],
+            "name": {
                 "en": "Mobility services",
                 "nb": "Mobilitetstilbud",
                 "nn": "Mobilitetstilbod"
@@ -707,12 +601,8 @@
         {
             "code": "rettsvesen",
             "isTema": true,
-            "losPaths":
-            [
-                "lov-og-rett/rettsvesen"
-            ],
-            "name":
-            {
+            "losPaths": ["lov-og-rett/rettsvesen"],
+            "name": {
                 "en": "Legal system",
                 "nb": "Rettsvesen",
                 "nn": "Rettsstell"
@@ -722,12 +612,8 @@
         {
             "code": "skatt",
             "isTema": true,
-            "losPaths":
-            [
-                "skatt-og-avgift/skatt"
-            ],
-            "name":
-            {
+            "losPaths": ["skatt-og-avgift/skatt"],
+            "name": {
                 "en": "Taxes",
                 "nb": "Skatt",
                 "nn": "Skatt"
@@ -737,12 +623,8 @@
         {
             "code": "skatt-og-avgift",
             "isTema": true,
-            "losPaths":
-            [
-                "skatt-og-avgift"
-            ],
-            "name":
-            {
+            "losPaths": ["skatt-og-avgift"],
+            "name": {
                 "en": "Taxes and duties",
                 "nb": "Skatt og avgift",
                 "nn": "Skatt og avgift"
@@ -752,12 +634,8 @@
         {
             "code": "sosiale-tjenester",
             "isTema": true,
-            "losPaths":
-            [
-                "sosiale-tjenester"
-            ],
-            "name":
-            {
+            "losPaths": ["sosiale-tjenester"],
+            "name": {
                 "en": "Social services",
                 "nb": "Sosiale tjenester",
                 "nn": "Sosiale tenester"
@@ -769,40 +647,33 @@
     "objective": null,
     "page": null,
     "prev": null,
-    "provenance":
-    {
+    "provenance": {
         "code": "TREDJEPART",
-        "prefLabel":
-        {
+        "prefLabel": {
             "en": "Third party",
             "nb": "Tredjepart",
             "nn": "Tredjepart"
         },
         "uri": "http://data.brreg.no/datakatalog/provinens/tredjepart"
     },
-    "publisher":
-    {
+    "publisher": {
         "id": "312460726",
         "name": "KOMISK PRESIS BILLE IKS",
         "orgPath": "/ANNET/312460726",
         "organisasjonsform": "IKS",
-        "prefLabel":
-        {
+        "prefLabel": {
             "nb": "Komisk presis bille iks"
         },
         "uri": "https://organization-catalog.staging.fellesdatakatalog.digdir.no/organizations/312460726"
     },
-    "qualifiedAttributions":
-    [
+    "qualifiedAttributions": [
         {
-            "agent":
-            {
+            "agent": {
                 "id": "974760673",
                 "name": "REGISTERENHETEN I BRØNNØYSUND",
                 "orgPath": "/STAT/912660680/974760673",
                 "organisasjonsform": "ORGL",
-                "prefLabel":
-                {
+                "prefLabel": {
                     "nb": "Registerenheten i brønnøysund"
                 },
                 "uri": "https://data.brreg.no/enhetsregisteret/api/enheter/974760673"
@@ -810,14 +681,12 @@
             "role": "http://registry.it.csiro.au/def/isotc211/CI_RoleCode/contributor"
         },
         {
-            "agent":
-            {
+            "agent": {
                 "id": "991825827",
                 "name": "DIGITALISERINGSDIREKTORATET",
                 "orgPath": "/STAT/932384469/991825827",
                 "organisasjonsform": "ORGL",
-                "prefLabel":
-                {
+                "prefLabel": {
                     "nb": "Digitaliseringsdirektoratet"
                 },
                 "uri": "https://data.brreg.no/enhetsregisteret/api/enheter/991825827"
@@ -825,17 +694,14 @@
             "role": "http://registry.it.csiro.au/def/isotc211/CI_RoleCode/contributor"
         }
     ],
-    "references":
-    [
+    "references": [
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/isVersionOf"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
@@ -844,14 +710,12 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/isPartOf"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
@@ -860,14 +724,12 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/hasPart"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
@@ -876,14 +738,12 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/isReplacedBy"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
@@ -892,14 +752,12 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/isRequiredBy"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
@@ -908,19 +766,16 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/relation"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
-                "prefLabel":
-                {
+                "prefLabel": {
                     "en": "Levekår Stavanger: Barn med enslige foreldre - EN",
                     "nb": "Levekår Stavanger: Barn med enslige foreldre",
                     "nn": "Levekår Stavanger: Barn med enslige foreldre - NN"
@@ -929,19 +784,16 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/relation"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
-                "prefLabel":
-                {
+                "prefLabel": {
                     "en": "Liste over gyldige registreringer av leverandør (produksjon/import/salg) og radioforhandler (salg) - EN",
                     "nb": "Liste over gyldige registreringer av leverandør (produksjon/import/salg) og radioforhandler (salg)",
                     "nn": "Liste over gyldige registreringer av leverandør (produksjon/import/salg) og radioforhandler (salg) - NN"
@@ -950,19 +802,16 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/relation"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
-                "prefLabel":
-                {
+                "prefLabel": {
                     "en": "Oljedirektoratet - EN",
                     "nb": "Oljedirektoratet",
                     "nn": "Oljedirektoratet - NN"
@@ -971,19 +820,16 @@
             }
         },
         {
-            "referenceType":
-            {
+            "referenceType": {
                 "code": null,
                 "prefLabel": null,
                 "uri": "http://purl.org/dc/terms/relation"
             },
-            "source":
-            {
+            "source": {
                 "broader": null,
                 "extraType": null,
                 "narrower": null,
-                "prefLabel":
-                {
+                "prefLabel": {
                     "en": "Nedgravde containere: Teknisk status - EN",
                     "nb": "Nedgravde containere: Teknisk status",
                     "nn": "Nedgravde containere: Teknisk status - NN"
@@ -992,28 +838,19 @@
             }
         }
     ],
-    "sample":
-    [
+    "sample": [
         {
             "accessService": null,
-            "accessURL":
-            [
-                "https://startsiden.no"
-            ],
+            "accessURL": ["https://startsiden.no"],
             "compressFormat": null,
             "conformsTo": null,
-            "description":
-            {
+            "description": {
                 "en": "Dette er eksempeldata 1. - EN",
                 "nb": "Dette er eksempeldata 1.",
                 "nn": "Dette er eksempeldata 1. - NN"
             },
-            "downloadURL":
-            [
-                "https://startsiden.no"
-            ],
-            "fdkFormat":
-            [
+            "downloadURL": ["https://startsiden.no"],
+            "fdkFormat": [
                 {
                     "code": "RDF_XML",
                     "name": "RDF_XML",
@@ -1036,32 +873,27 @@
         }
     ],
     "source": null,
-    "spatial":
-    [
+    "spatial": [
         {
             "code": "173144",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Nordland"
             },
             "uri": "https://data.geonorge.no/administrativeEnheter/fylke/id/173144"
         },
         {
             "code": "173147",
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Møre og Romsdal"
             },
             "uri": "https://data.geonorge.no/administrativeEnheter/fylke/id/173147"
         }
     ],
-    "subject":
-    [
+    "subject": [
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "test testesen"
             },
             "uri": "https://concept-catalog.staging.fellesdatakatalog.digdir.no/collections/910244132/concepts/75f229c6-dff7-4c0e-a08e-8010391751a4"
@@ -1069,8 +901,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "en": "Example test",
                 "nb": "Eksempel test"
             },
@@ -1079,8 +910,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "Testbegrep til testing",
                 "nn": "Testbegrep til testing"
             },
@@ -1089,8 +919,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "API-test",
                 "nn": "API-test"
             },
@@ -1099,8 +928,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "automatisert test",
                 "nn": "automatisert test"
             },
@@ -1109,8 +937,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "funksjonell test",
                 "nn": "funksjonell test"
             },
@@ -1119,8 +946,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "GUI-test",
                 "nn": "GUI-test"
             },
@@ -1129,8 +955,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "smoke-test",
                 "nn": "smoke-test"
             },
@@ -1139,8 +964,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "teknisk test",
                 "nn": "teknisk test"
             },
@@ -1149,8 +973,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "testfase",
                 "nn": "testfase"
             },
@@ -1159,8 +982,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "testmetode",
                 "nn": "testmetode"
             },
@@ -1169,8 +991,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "testnivå",
                 "nn": "testnivå"
             },
@@ -1179,8 +1000,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "testplan",
                 "nn": "testplan"
             },
@@ -1189,8 +1009,7 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "testpolicy",
                 "nn": "testpolicy"
             },
@@ -1199,28 +1018,24 @@
         {
             "definition": null,
             "identifier": null,
-            "prefLabel":
-            {
+            "prefLabel": {
                 "nb": "testprosedyre",
                 "nn": "testprosedyre"
             },
             "uri": "https://concept-catalog.staging.fellesdatakatalog.digdir.no/collections/974761076/concepts/5cd23f76-dc82-11e5-9b2b-d6d6eb145c82"
         }
     ],
-    "temporal":
-    [
+    "temporal": [
         {
             "endDate": "2025-03-30",
             "startDate": "2025-02-24",
             "uri": null
         }
     ],
-    "theme":
-    [
+    "theme": [
         {
             "code": "GOVE",
-            "title":
-            {
+            "title": {
                 "en": "Government and public sector",
                 "nb": "Forvaltning og offentlig sektor",
                 "nn": "Forvaltning og offentleg sektor",
@@ -1230,8 +1045,7 @@
         },
         {
             "code": "JUST",
-            "title":
-            {
+            "title": {
                 "en": "Justice, legal system and public safety",
                 "nb": "Justis, rettssystem og allmenn sikkerhet",
                 "nn": "Justis, rettssystem og allmenn tryggleik",
@@ -1241,8 +1055,7 @@
         },
         {
             "code": "SOCI",
-            "title":
-            {
+            "title": {
                 "en": "Population and society",
                 "nb": "Befolkning og samfunn",
                 "nn": "Befolkning og samfunn",
@@ -1252,8 +1065,7 @@
         },
         {
             "code": "TRAN",
-            "title":
-            {
+            "title": {
                 "en": "Transport",
                 "nb": "Transport",
                 "nn": "Transport",
@@ -1262,8 +1074,7 @@
             "uri": "http://publications.europa.eu/resource/authority/data-theme/TRAN"
         }
     ],
-    "themeUris":
-    [
+    "themeUris": [
         "http://publications.europa.eu/resource/authority/data-theme/GOVE",
         "http://publications.europa.eu/resource/authority/data-theme/JUST",
         "http://publications.europa.eu/resource/authority/data-theme/SOCI",
@@ -1277,8 +1088,7 @@
         "https://psi.norge.no/los/tema/skatt-og-avgift",
         "https://psi.norge.no/los/tema/sosiale-tjenester"
     ],
-    "title":
-    {
+    "title": {
         "en": "Dataset to test the details page in the portal",
         "nb": "Datasett for å teste detaljesiden i portalen",
         "nn": "Datasett for å teste detaljesiden i portalen - nynorsk"

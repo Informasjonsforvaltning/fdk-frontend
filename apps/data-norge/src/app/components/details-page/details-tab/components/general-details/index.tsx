@@ -128,10 +128,11 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     <>
                         <dt>{dictionary.details.general.type}:</dt>
                         <dd>
-                            {dataset.dctType ?
-                                printLocaleValue(locale, (dataset.dctType as DatasetType)?.prefLabel) :
+                            {dataset.dctType ? (
+                                printLocaleValue(locale, (dataset.dctType as DatasetType)?.prefLabel)
+                            ) : (
                                 <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
-                            }
+                            )}
                         </dd>
                     </>
                 )}

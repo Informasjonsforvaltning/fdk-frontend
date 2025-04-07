@@ -1,12 +1,8 @@
 import { useState, createContext } from 'react';
 import { Heading, Link, ChipGroup, ChipToggle, Button } from '@digdir/designsystemet-react';
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
-import {
-    type DatasetWithIdentifier,
-    type DatasetScore,
-    type SearchObject
-} from '@fdk-frontend/fdk-types';
-import { type PopulatedDatasetReference, } from '@fdk-frontend/types';
+import { type DatasetWithIdentifier, type DatasetScore, type SearchObject } from '@fdk-frontend/fdk-types';
+import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box/';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text/';
@@ -32,7 +28,16 @@ export type DatasetDetailsProps = {
     internalRelatedDatasets?: DatasetWithIdentifier[];
 };
 
-const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore, concepts, populatedReferences, internalRelatedDatasets }: DatasetDetailsProps) => {
+const DatasetDetailsTab = ({
+    dataset,
+    related,
+    locale,
+    dictionary,
+    metadataScore,
+    concepts,
+    populatedReferences,
+    internalRelatedDatasets,
+}: DatasetDetailsProps) => {
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     return (
@@ -112,7 +117,10 @@ const DatasetDetailsTab = ({ dataset, related, locale, dictionary, metadataScore
                             {dictionary.details.themes}
                         </Heading>
                         {[...(dataset.theme ?? []), ...(dataset.losTheme ?? [])].length ? (
-                            <DatasetTags dataset={dataset} locale={locale} />
+                            <DatasetTags
+                                dataset={dataset}
+                                locale={locale}
+                            />
                         ) : (
                             <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
                         )}

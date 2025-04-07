@@ -324,9 +324,7 @@
     ],
     "modified": "2020-12-07",
     "objective": null,
-    "page": [
-        "https://www.digdir.no"
-    ],
+    "page": ["https://www.digdir.no"],
     "prev": null,
     "provenance": {
         "code": "NASJONAL",

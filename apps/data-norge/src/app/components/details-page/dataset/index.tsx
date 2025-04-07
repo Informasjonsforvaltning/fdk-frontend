@@ -244,13 +244,15 @@ export default function DatasetDetailsPage({
                                 />
                             )}
                         </section>
-                        {
-                            ((internalRelatedDatasets && internalRelatedDatasets.length > 0) ||
-                            (similarDatasets && similarDatasets.length > 0)) &&
+                        {((internalRelatedDatasets && internalRelatedDatasets.length > 0) ||
+                            (similarDatasets && similarDatasets.length > 0)) && (
                             <BrandDivider className={styles.divider} />
-                        }
-                        {internalRelatedDatasets && internalRelatedDatasets.length > 0 &&
-                            <section className={styles.section} style={{marginBottom:'3rem'}}>
+                        )}
+                        {internalRelatedDatasets && internalRelatedDatasets.length > 0 && (
+                            <section
+                                className={styles.section}
+                                style={{ marginBottom: '3rem' }}
+                            >
                                 <Heading
                                     level={2}
                                     size='xxsmall'
@@ -265,8 +267,8 @@ export default function DatasetDetailsPage({
                                     />
                                 </ScrollShadows>
                             </section>
-                        }
-                        {similarDatasets && similarDatasets.length > 0 && (  
+                        )}
+                        {similarDatasets && similarDatasets.length > 0 && (
                             <section className={styles.section}>
                                 <Heading
                                     level={2}
