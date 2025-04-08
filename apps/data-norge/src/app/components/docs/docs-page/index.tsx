@@ -1,13 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-
 import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
-
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -34,7 +32,6 @@ import {
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-
 import MdxPage from '../mdx-page';
 import MdxHeading from '../mdx-heading';
 import CatalogPromo from '../catalog-promo';
@@ -244,7 +241,8 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                 {content}
             </MdxPage>
         );
-    } catch {
+    } catch (err) {
+        console.log(err);
         notFound();
     }
 }
