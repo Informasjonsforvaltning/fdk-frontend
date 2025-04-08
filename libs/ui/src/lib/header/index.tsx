@@ -1,22 +1,17 @@
 'use client';
-
 import { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
-
 import { Link, Button } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
-
-import { Dictionary } from '@fdk-frontend/dictionaries';
-
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { LogoLink } from '../logo';
 import MainMenu from '../main-menu';
-
 import styles from './header.module.scss';
 
 export type HeaderProps = {
     dictionary: Dictionary;
-    baseUri?: string;
+    locale: LocaleCodes;
     communityBaseUri?: string;
     registrationBaseUri?: string;
     frontpage?: boolean;
@@ -26,7 +21,7 @@ const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
 const Header = ({
     dictionary,
-    baseUri = '/',
+    locale,
     communityBaseUri = '#',
     registrationBaseUri = '#',
     frontpage,
@@ -90,7 +85,7 @@ const Header = ({
                 <div className={styles.headerInner}>
                     <LogoLink
                         className={styles.headerLogo}
-                        baseUri={baseUri}
+                        href={`/${locale}`}
                     />
                     <div className={styles.headerToolbar}>
                         <Button
@@ -99,7 +94,7 @@ const Header = ({
                             variant='tertiary'
                             aria-label={dictionary.header.findDataButton}
                         >
-                            <Link href={`/search-all`}>
+                            <Link href={`/${locale}/search-all`}>
                                 <MagnifyingGlassIcon
                                     aria-hidden
                                     fontSize='1.5em'
@@ -148,7 +143,7 @@ const Header = ({
                         >
                             <MainMenu
                                 dictionary={dictionary}
-                                baseUri={baseUri}
+                                locale={locale}
                             />
                         </MotionDiv>
                     </div>

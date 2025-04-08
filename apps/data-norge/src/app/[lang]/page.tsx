@@ -1,12 +1,9 @@
 import 'server-only';
-
 import { type Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
-
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
 import Header from '@fdk-frontend/ui/header';
 import Footer from '@fdk-frontend/ui/footer';
-
 import { FrontpageBanner } from '../components/frontpage/frontpage-banner';
 import { ShareDataBanner } from '../components/frontpage/share-data-banner';
 import CatalogsBanner from '../components/frontpage/catalogs-banner';
@@ -23,14 +20,10 @@ const Frontpage = async (props: FrontpageProps) => {
     await noStore();
 
     const {
-        FDK_DATA_NORGE_BASE_URI,
-        FDK_BASE_URI = '',
         FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '',
         FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
         FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
     } = process.env;
-
-    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
 
     const commonDictionary = await getDictionary(params.lang, 'common');
     const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
@@ -39,7 +32,7 @@ const Frontpage = async (props: FrontpageProps) => {
         <>
             <Header
                 dictionary={commonDictionary}
-                baseUri={`/${params.lang}`}
+                locale={params.lang}
                 registrationBaseUri={registrationBaseUri}
                 communityBaseUri={communityBaseUri}
                 frontpage
@@ -47,26 +40,24 @@ const Frontpage = async (props: FrontpageProps) => {
             <main id='main'>
                 <FrontpageBanner
                     dictionary={frontpageDictionary}
-                    baseUri={baseUri}
+                    locale={params.lang}
                     endpoint={`${llmSearchBaseUri}/llm`}
                 />
                 <div className='main-content'>
                     <ShareDataBanner
                         dictionary={frontpageDictionary}
-                        baseUri={baseUri}
                         locale={params.lang}
                     />
                     <CatalogsBanner
                         frontpageDictionary={frontpageDictionary}
                         commonDictionary={commonDictionary}
-                        baseUri={baseUri}
                         locale={params.lang}
                     />
                 </div>
             </main>
             <Footer
                 dictionary={commonDictionary}
-                baseUri={`/${params.lang}`}
+                locale={params.lang}
             />
         </>
     );

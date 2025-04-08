@@ -12,29 +12,25 @@ const DocsLayout = async ({ children, params }: PropsWithChildren & RootLayoutPr
     const docsDictionary = await getDictionary(lang, 'docs');
 
     const {
-        FDK_DATA_NORGE_BASE_URI,
-        FDK_BASE_URI = '',
         FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
         FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
     } = process.env;
 
-    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
-
     return (
         <HeaderLayout
             dictionary={commonDictionary}
-            baseUri={`/${lang}`}
+            locale={lang}
             registrationBaseUri={registrationBaseUri}
             communityBaseUri={communityBaseUri}
         >
             <FooterLayout
                 dictionary={commonDictionary}
-                baseUri={`/${lang}`}
+                locale={lang}
             >
                 <main id='main'>
                     <FeedbackLayout
                         dictionary={docsDictionary}
-                        baseUri={baseUri}
+                        locale={lang}
                         communityBaseUri={communityBaseUri}
                     >
                         {children}

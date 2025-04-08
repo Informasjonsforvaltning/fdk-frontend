@@ -138,7 +138,6 @@ export default async function DocsPage(pageProps: DocsPageProps) {
             CatalogsMenu: () => (
                 <CatalogsMenu
                     dictionary={commonDictionary}
-                    baseUri={baseUri}
                     locale={locale}
                 />
             ),
@@ -243,7 +242,6 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                 sidebars={frontmatter.sidebars as boolean | undefined}
                 currentPath={[rootContentDirectory, ...slug]}
                 locale={locale}
-                baseUri={baseUri}
                 source={source}
             >
                 {content}

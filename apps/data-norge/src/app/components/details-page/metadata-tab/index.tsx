@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import CopyButton from '@fdk-frontend/ui/copy-button';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { ToggleGroup, Heading, Spinner, Textfield, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
 import HStack from '@fdk-frontend/ui/hstack';
 
@@ -12,12 +12,14 @@ import styles from './metadata-tab.module.scss';
 export type MetadataTabProps = {
     uri: string;
     dictionary: Dictionary;
+    locale: LocaleCodes;
 };
 
 const MetadataTab = ({
     children,
     uri,
     dictionary,
+    locale,
     ...props
 }: MetadataTabProps & React.HTMLAttributes<HTMLDivElement>) => {
     const [contentType, setContentType] = useState<string>('text/turtle');
@@ -79,7 +81,7 @@ const MetadataTab = ({
                         >
                             <Paragraph size='sm'>{dictionary.rdf.titleHelpText}</Paragraph>
                             <Paragraph size='sm'>
-                                <Link href='/docs/sharing-data/rdf'>{dictionary.rdf.titleHelpTextLink}</Link>
+                                <Link href={`/${locale}/docs/sharing-data/rdf`}>{dictionary.rdf.titleHelpTextLink}</Link>
                             </Paragraph>
                         </HelpText>
                     </HStack>

@@ -1,14 +1,15 @@
 import { Link, Tag, TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { AccessRightsCodes } from '@fdk-frontend/fdk-types';
 
 type AccessLevelTagProps = {
     accessCode?: AccessRightsCodes;
     dictionary: Dictionary;
     nonInteractive?: boolean;
+    locale: LocaleCodes;
 };
 
-const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, ...props }: AccessLevelTagProps) => {
+const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, locale, ...props }: AccessLevelTagProps) => {
     let color = 'neutral';
 
     const label = accessCode ? dictionary.accessRights.codes[accessCode]?.label : dictionary.accessRights.unknownLabel;
@@ -35,7 +36,7 @@ const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, ...props }: Ac
                     >
                         <Paragraph size='sm'>{helpText}</Paragraph>
                         <Paragraph size='sm'>
-                            <Link href='/docs/finding-data/access-data'>
+                            <Link href={`/${locale}/docs/finding-data/access-data`}>
                                 {dictionary.accessRights.readMoreLinkText}
                             </Link>
                         </Paragraph>

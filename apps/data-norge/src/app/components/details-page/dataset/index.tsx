@@ -85,11 +85,10 @@ export default function DatasetDetailsPage({
 
     const breadcrumbList = [
         {
-            href: '/datasets',
+            href: `/datasets`,
             text: dictionaries.detailsPage.breadcrumbs.datasets,
         },
         {
-            href: '#',
             text: printLocaleValue(locale, resource.title),
         },
     ];
@@ -103,7 +102,6 @@ export default function DatasetDetailsPage({
             <Breadcrumbs
                 dictionary={dictionaries.common}
                 breadcrumbList={breadcrumbList}
-                baseUri=''
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
@@ -149,11 +147,12 @@ export default function DatasetDetailsPage({
                                 color='info'
                                 size='sm'
                             >
-                                <Link href='/datasets'>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
+                                <Link href={`/datasets`}>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
                             </Tag>
                             <AccessLevelTag
                                 accessCode={resource.accessRights?.code}
                                 dictionary={dictionaries.detailsPage}
+                                locale={locale}
                             />
                             {resource.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}
                         </div>
@@ -327,6 +326,7 @@ export default function DatasetDetailsPage({
                         <MetadataTab
                             uri={`${baseUri}/datasets/${resource.id}`}
                             dictionary={dictionaries.detailsPage}
+                            locale={locale}
                         />
                     </TabContent>
                 </Tabs>

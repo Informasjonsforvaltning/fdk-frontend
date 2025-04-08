@@ -8,12 +8,11 @@ import ScrollShadows from '../scroll-shadows';
 import styles from './breadcrumbs.module.scss';
 
 export type BreadcrumbType = {
-    href: string;
     text: string;
+    href?: string;
 };
 
 export type BreadcrumbsProps = {
-    baseUri: string;
     breadcrumbList?: BreadcrumbType[];
     dictionary: Dictionary;
 };
@@ -22,7 +21,7 @@ const BreadcrumbsContainer = ({ children }: React.PropsWithChildren) => (
     <div className={styles.container}>{children}</div>
 );
 
-const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) => (
+const Breadcrumbs = ({ breadcrumbList, dictionary }: BreadcrumbsProps) => (
     <div className={styles.container}>
         <ScrollShadows>
             <nav
@@ -39,7 +38,7 @@ const Breadcrumbs = ({ baseUri, breadcrumbList, dictionary }: BreadcrumbsProps) 
                 {breadcrumbList?.map((breadcrumb, i) => (
                     <div
                         className={styles.crumb}
-                        key={breadcrumb.href}
+                        key={`${breadcrumb.href}-${i}`}
                     >
                         <ChevronRightIcon
                             className={styles.separator}

@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 
 import { Link, Paragraph, HelpText, Button } from '@digdir/designsystemet-react';
 
-import { Dictionary, interpolate } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
 
 const DynamicQuerySuggestion = dynamic(() => import('../query-suggestion'), {
     ssr: false,
@@ -13,11 +13,11 @@ import styles from './aux-panel.module.scss';
 export type AuxPanelProps = {
     dictionary: Dictionary;
     onRequestSearch: (query: string) => void;
-    baseUri: string;
+    locale: LocaleCodes;
     numResults?: number;
 };
 
-const AuxPanel = ({ dictionary, onRequestSearch, baseUri, numResults }: AuxPanelProps) => {
+const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelProps) => {
     const getResultsText = () =>
         numResults !== undefined && numResults > 0
             ? interpolate(dictionary.aiBanner.prompt.responses.resultsFound, { num: numResults })
@@ -49,7 +49,7 @@ const AuxPanel = ({ dictionary, onRequestSearch, baseUri, numResults }: AuxPanel
                         size='sm'
                         asChild
                     >
-                        <Link href={`${baseUri}/docs/finding-data/ai-search`}>
+                        <Link href={`/${locale}/docs/finding-data/ai-search`}>
                             {dictionary.aiBanner.tooltip.readMoreLinkText}
                         </Link>
                     </Button>

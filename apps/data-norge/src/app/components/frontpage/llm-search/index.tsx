@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Textfield, Button, Spinner, ErrorMessage } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
 
 import { ResultItem, ItemObjectType } from './components/result-item';
@@ -15,13 +15,13 @@ import styles from './llm-search.module.scss';
 type LlmSearchProps = {
     endpoint: string;
     dictionary: Dictionary;
-    baseUri: string;
+    locale: LocaleCodes;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 const MotionUl: ForwardRefComponent<any, any> = motion.ul;
 
-const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
+const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [query, setQuery] = useState<string>('');
     const [results, setResults] = useState<any>(undefined);
@@ -145,7 +145,7 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
                     dictionary={dictionary}
                     numResults={results?.hits?.length}
                     onRequestSearch={(value: string) => doSearch(value)}
-                    baseUri={baseUri}
+                    locale={locale}
                 />
             )}
             {error && !loading && (
@@ -180,14 +180,14 @@ const LlmSearch = ({ endpoint, dictionary, baseUri }: LlmSearchProps) => {
                                 >
                                     <ResultItem
                                         item={item}
-                                        baseUri={baseUri}
+                                        locale={locale}
                                     />
                                 </motion.li>
                             ))}
                         <motion.li variants={animations.resultsItem}>
                             <AdvancedSearchPrompt
                                 dictionary={dictionary}
-                                baseUri={baseUri}
+                                locale={locale}
                             />
                         </motion.li>
                     </MotionUl>
