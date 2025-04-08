@@ -12,9 +12,7 @@ type CatalogsMenuProps = {
 };
 
 const CatalogsMenu = ({ dictionary, locale }: CatalogsMenuProps) => {
-    const baseUri = `/${locale}`;
-    const data = getMainMenuData(dictionary, baseUri);
-
+    const data = getMainMenuData(dictionary, locale);
     return (
         <nav
             className={styles.catalogsMenu}

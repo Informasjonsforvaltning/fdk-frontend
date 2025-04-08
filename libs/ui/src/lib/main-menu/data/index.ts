@@ -1,42 +1,42 @@
 import { Dictionary } from '@fdk-frontend/dictionaries';
 
-const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
+const getMainMenuData = (dictionary: Dictionary, locale: string) => ({
     catalogs: [
         {
             key: 'datasets',
             title: dictionary.mainMenu.catalogs.datasets.title,
             description: dictionary.mainMenu.catalogs.datasets.description,
-            href: `${baseUri}/catalogs/datasets`,
+            href: `/${locale}/catalogs/datasets`,
         },
         {
             key: 'apis',
             title: dictionary.mainMenu.catalogs.apis.title,
             description: dictionary.mainMenu.catalogs.apis.description,
-            href: `${baseUri}/catalogs/data-services`,
+            href: `/${locale}/catalogs/data-services`,
         },
         {
             key: 'terms',
             title: dictionary.mainMenu.catalogs.terms.title,
             description: dictionary.mainMenu.catalogs.terms.description,
-            href: `${baseUri}/catalogs/concepts`,
+            href: `/${locale}/catalogs/concepts`,
         },
         {
             key: 'information-models',
             title: dictionary.mainMenu.catalogs.informationModels.title,
             description: dictionary.mainMenu.catalogs.informationModels.description,
-            href: `${baseUri}/catalogs/information-models`,
+            href: `/${locale}/catalogs/information-models`,
         },
         {
             key: 'services-events',
             title: dictionary.mainMenu.catalogs.servicesEvents.title,
             description: dictionary.mainMenu.catalogs.servicesEvents.description,
-            href: `${baseUri}/catalogs/public-services-and-events`,
+            href: `/${locale}/catalogs/public-services-and-events`,
         },
     ],
     help: [
         {
             title: dictionary.mainMenu.help.links.getStarted,
-            href: `${baseUri}/docs`,
+            href: `/${locale}/docs`,
         },
         {
             title: dictionary.mainMenu.help.links.documentation,
@@ -52,37 +52,37 @@ const getMainMenuData = (dictionary: Dictionary, baseUri: string) => ({
     tools: [
         {
             title: dictionary.mainMenu.tools.links.organizations,
-            href: `${baseUri}/organizations`,
+            href: `/${locale}/organizations`,
         },
         {
             title: dictionary.mainMenu.tools.links.requestData,
-            href: `${baseUri}/requests`,
+            href: `/${locale}/requests`,
         },
         {
             title: dictionary.mainMenu.tools.links.dataHunter,
-            href: `${baseUri}/data-hunter`,
+            href: `/${locale}/data-hunter`,
         },
         {
             title: dictionary.mainMenu.tools.links.sparqlSandbox,
-            href: `${baseUri}/sparql`,
+            href: `/${locale}/sparql`,
         },
         {
             title: dictionary.mainMenu.catalogs.ai.title,
-            href: `${baseUri}/kunstig-intelligens`,
+            href: `/${locale}/kunstig-intelligens`,
         },
     ],
     about: [
         {
             title: dictionary.mainMenu.about.links.aboutUs,
-            href: `${baseUri}/about`,
+            href: `/${locale}/about`,
         },
         {
             title: dictionary.mainMenu.about.links.reports,
-            href: `${baseUri}/reports`,
+            href: `/${locale}/reports`,
         },
         {
             title: dictionary.mainMenu.about.links.contactUs,
-            href: `${baseUri}/contact`,
+            href: `/${locale}/contact`,
         },
         {
             title: dictionary.mainMenu.about.links.a11yStatement,

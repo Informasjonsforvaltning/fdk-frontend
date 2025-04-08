@@ -20,9 +20,7 @@ type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
 const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
 const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuProps) => {
-    const baseUri = `/${locale}`
-    const data = getMainMenuData(dictionary, baseUri);
-
+    const data = getMainMenuData(dictionary, locale);
     const animations = {
         links: {
             hidden: { opacity: 0 },
