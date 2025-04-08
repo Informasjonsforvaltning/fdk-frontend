@@ -65,9 +65,6 @@ export default async function DocsPage(pageProps: DocsPageProps) {
 
     const commonDictionary = await getDictionary(locale, 'common');
 
-    const { FDK_DATA_NORGE_BASE_URI, FDK_BASE_URI = '' } = process.env;
-    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
-
     try {
         // Get raw MDX source
         const source = await fs.readFile(filePath, 'utf8');
