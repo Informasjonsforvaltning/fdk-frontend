@@ -141,7 +141,7 @@ const DatasetDetailsTab = ({
                                     .map((keyword: any, i: number) => (
                                         <Link
                                             key={`keyword-${i}`}
-                                            href={`/datasets&q=${keyword[locale]}`}
+                                            href={`/datasets?q=${keyword[locale]}`}
                                         >
                                             <ChipToggle>{keyword[locale]}</ChipToggle>
                                         </Link>
