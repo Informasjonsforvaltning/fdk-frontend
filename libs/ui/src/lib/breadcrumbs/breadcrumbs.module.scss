@@ -1,15 +1,21 @@
 @import '@fdk-frontend/ui/core/mixins';
 
 .container {
-    padding: 0 2rem;
+    margin: 0 -2rem;
+    background: #f8f8f8;
+
+    @media (max-width: 400px) {
+        margin: 0 -1.5rem;
+    }
 }
 
 .breadcrumbs {
     display: flex;
     align-items: center;
-    margin: 1rem 0 2rem;
     white-space: nowrap;
-    overflow-x: auto;
+    padding: 0.75rem 2rem;
+
+    // border-bottom:1px solid #eee;
 
     a {
         color: var(--color-link);
@@ -22,7 +28,12 @@
     }
 
     @media (max-width: 865px) {
-        margin: 0 0 1rem 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 400px) {
+        padding: 0.75rem 1.5rem;
     }
 }
 

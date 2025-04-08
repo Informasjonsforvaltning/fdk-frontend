@@ -9,13 +9,13 @@
         padding: 4rem 2rem;
         container-type: inline-size;
 
-        @media (max-width: 800px) {
-            padding-bottom: 2rem;
+        @media (max-width: 400px) {
+            padding: 3rem 1.5rem;
         }
     }
 
     .footerNav {
-        h3 {
+        :global(.fds-heading) {
             color: white;
         }
 
@@ -51,6 +51,7 @@
             @container (max-width: 400px) {
                 flex-direction: column;
                 gap: 1.5rem;
+                padding: 2rem 1.5rem;
 
                 .digdirCredit {
                     justify-content: flex-end;
@@ -59,11 +60,7 @@
         }
 
         a {
-            svg {
-                max-height: 2rem;
-            }
-
-            &:not(:focus-visible) {
+            &:not(:hover):not(:focus-visible) {
                 color: white;
 
                 svg {
@@ -77,19 +74,6 @@
             gap: 1rem;
             align-items: center;
             text-align: right;
-
-            a {
-                svg {
-                    display: block;
-                    height: 1.75rem;
-                }
-
-                &:hover {
-                    svg {
-                        fill: var(--fds-semantic-border-action-first-subtle);
-                    }
-                }
-            }
         }
     }
 }

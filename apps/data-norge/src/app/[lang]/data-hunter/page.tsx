@@ -7,7 +7,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
-import Breadcrumbs, { BreadcrumbsContainer } from '@fdk-frontend/ui/breadcrumbs';
+import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import { getPaths } from '@fdk-frontend/utils';
 
 import DataHunterForm from './components/data-hunter-form';
@@ -23,9 +23,7 @@ type DataHunterPageProps = {
 const DataHunterPage = async (props: DataHunterPageProps) => {
     const params = await props.params;
 
-    const {
-        lang
-    } = params;
+    const { lang } = params;
 
     // Opt-in dynamic rendering
     await noStore();
@@ -46,13 +44,13 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
 
     return (
         <>
-            <BreadcrumbsContainer>
+            <div style={{ margin: '0 2rem' }}>
                 <Breadcrumbs
                     baseUri={baseUri}
                     breadcrumbList={breadcrumbList}
                     dictionary={commonDictionary}
                 />
-            </BreadcrumbsContainer>
+            </div>
             <div className={styles.contentContainer}>
                 <Heading
                     size='xlarge'

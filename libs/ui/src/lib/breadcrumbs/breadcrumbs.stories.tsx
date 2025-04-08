@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { getDictionary } from '@fdk-frontend/dictionaries';
 
 import Breadcrumbs from '.';
 
-const dictionary = await getDictionary('en', 'data-hunter-page');
+import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/nb/common.json';
 
 const meta: Meta<typeof Breadcrumbs> = {
     component: Breadcrumbs,

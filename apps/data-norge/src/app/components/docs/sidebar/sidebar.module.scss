@@ -17,6 +17,23 @@
             }
         }
     }
+
+    > .sidebarList {
+        > li.itemOpen {
+            position: relative;
+
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                inset: 0;
+                left: -0.5rem;
+                width: 2px;
+                background: var(--fds-semantic-surface-action-first-no_fill-hover);
+            }
+            // border-left: 2px solid var(--fds-semantic-surface-action-first-no_fill-hover);
+        }
+    }
 }
 
 .sidebarList {
@@ -24,15 +41,12 @@
 
     li {
         &.itemOpen {
-            background: #f8f8f8;
-            background: rgba(0, 0, 0, 0.04);
-            border-radius: 0.25rem;
-
             li {
                 background: transparent;
 
                 strong {
                     background: transparent;
+                    background: #f8f8f8;
                 }
             }
         }
@@ -42,6 +56,7 @@
 
             > button {
                 padding: 0.2rem 0.25rem;
+                padding: 0.4rem 0.4rem;
                 position: absolute;
                 top: 0.25rem;
                 right: 0.25rem;
@@ -56,7 +71,8 @@
         strong {
             flex-grow: 1;
             display: block;
-            padding: 0.25rem 0.5rem;
+            padding: 0.4rem 0.75rem;
+            // padding: 0.5rem 1rem;
             text-decoration: none;
             border-radius: 0.25rem;
             padding-right: 2rem;

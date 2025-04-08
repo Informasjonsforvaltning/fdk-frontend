@@ -1,0 +1,11 @@
+.wrapper {
+    position: relative;
+
+    .badge {
+        position: absolute !important;
+        right: -0.66666rem;
+        bottom: -0.66666rem;
+        z-index: 1;
+        pointer-events: none;
+    }
+}

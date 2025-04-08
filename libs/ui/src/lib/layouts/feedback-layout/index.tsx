@@ -22,7 +22,7 @@ const FeedbackLayout = async ({
 }: PropsWithChildren & FeedbackLayoutProps) => {
     // Opt-in SSR
     cookies();
-    
+
     return (
         <div className={styles.feedbackLayout}>
             {children}
@@ -43,7 +43,10 @@ const FeedbackLayout = async ({
                             communityLink: (
                                 <Link href={communityBaseUri}>
                                     {dictionary.feedbackBanner.communityLinkText}&nbsp;
-                                    <ExternalLinkIcon fontSize='1em' />
+                                    <ExternalLinkIcon
+                                        aria-hidden
+                                        fontSize='1em'
+                                    />
                                 </Link>
                             ),
                         })}

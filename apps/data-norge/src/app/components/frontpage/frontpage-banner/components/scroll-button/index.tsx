@@ -50,7 +50,10 @@ const ScrollButton = () => {
             aria-hidden={hidden}
             tabIndex={hidden ? -1 : undefined}
         >
-            <ChevronDownIcon className={styles.arrow} />
+            <ChevronDownIcon
+                aria-hidden
+                className={styles.arrow}
+            />
             <span>Scroll</span>
         </button>
     );

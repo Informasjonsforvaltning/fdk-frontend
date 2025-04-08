@@ -1,0 +1,31 @@
+.container {
+    &.collapsed {
+        .content {
+            // max-height: 300px;
+            overflow: hidden;
+            position: relative;
+
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 50px;
+                background: linear-gradient(transparent, #fafafa);
+                pointer-events: none;
+            }
+        }
+
+        .button {
+            z-index: 1;
+        }
+    }
+
+    &.overflow {
+        .content {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

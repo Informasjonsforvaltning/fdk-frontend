@@ -71,5 +71,31 @@
                 "sparqlSandbox": "SPARQL-sandkasse"
             }
         }
+    },
+    "notFound": {
+        "title": "404: Siden ble ikke funnet ☹️",
+        "message": "Vi klarte dessverre ikke å finne siden du ba om.",
+        "button": "Gå til forsiden"
+    },
+    "openDataTag": {
+        "label": "Åpne data",
+        "helpTextTitle": "Begrepsforklaring",
+        "helpText": "Datasettet er klassifisert som allmenn tilgang og har minst 1 distribusjon med godkjent åpen lisens.",
+        "readMoreLinkText": "Les mer om lisenser her"
+    },
+    "openLicenseTag": {
+        "label": "Godkjent åpen lisens",
+        "helpTextTitle": "Begrepsforklaring",
+        "helpText": "Dette er en godkjent åpen lisens som tillater fri bruk, deling og gjenbruk av data i samsvar med åpne data-prinsipper. Disse lisensene er anerkjent for bruk i offentlige og private datasett, både nasjonalt og internasjonalt.",
+        "linkText": "Les mer om lisenser her"
+    },
+    "unavailableTag": {
+        "label": "Ingen distribusjoner",
+        "helpTextTitle": "Begrepsforklaring",
+        "helpText": "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert."
+    },
+    "general": {
+        "loading": "Laster...",
+        "redirecting": "Videresender..."
     }
 }

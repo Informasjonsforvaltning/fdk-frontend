@@ -6,7 +6,7 @@ import MainMenu from '../main-menu';
 
 import styles from './footer.module.scss';
 
-type FooterProps = {
+export type FooterProps = {
     dictionary: Dictionary;
     baseUri: string;
 };

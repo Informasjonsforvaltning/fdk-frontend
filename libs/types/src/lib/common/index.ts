@@ -1,3 +1,5 @@
+import { type DatasetReference, type Dataset } from '@fdk-frontend/fdk-types';
+
 export type LinkObjectType = {
     href?: string;
     className?: string;
@@ -7,3 +9,10 @@ export type LinkObjectType = {
 };
 
 export type CatalogTypes = 'datasets' | 'apis' | 'terms' | 'information-models' | 'services-events' | 'ai';
+
+export type JSONValue = any;
+
+export interface PopulatedDatasetReference {
+    reference: DatasetReference;
+    resource: Dataset;
+}

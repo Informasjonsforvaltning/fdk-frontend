@@ -28,28 +28,48 @@ spec:
                             secretKeyRef:
                                 name: commonurl-prod
                                 key: FDK_BASE_URI
-                      - name: FDK_DATA_NORGE_BASE_URI
-                        valueFrom:
-                            secretKeyRef:
-                                name: commonurl-prod
-                                key: FDK_DATA_NORGE_BASE_URI
                       - name: DATAJEGER_EMAIL_ADDRESS
                         valueFrom:
                             secretKeyRef:
-                                name: fdk-smtp-prod
+                                name: fdk-smtp-staging
                                 key: DATAJEGER_EMAIL_ADDRESS
                       - name: FDK_MAIL_SERVICE_ENDPOINT
                         valueFrom:
                             secretKeyRef:
-                                name: fdk-smtp-prod
+                                name: fdk-smtp-staging
                                 key: FDK_MAIL_SENDER_SERVICE_ENDPOINT
                       - name: FDK_MAIL_SERVICE_API_KEY
                         valueFrom:
                             secretKeyRef:
-                                name: fdk-smtp-prod
+                                name: fdk-smtp-staging
                                 key: API_KEY
                       - name: FDK_LLM_SEARCH_BASE_URI
                         valueFrom:
                             secretKeyRef:
                                 name: commonurl-prod
                                 key: FDK_LLM_SEARCH_BASE_URI
+                      - name: FDK_SEARCH_SERVICE_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: FDK_SEARCH_SERVICE_BASE_URI
+                      - name: FDK_RESOURCE_SERVICE_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: FDK_RESOURCE_SERVICE_BASE_URI
+                      - name: FDK_MQA_API_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: FDK_MQA_API_BASE_URI
+                      - name: DIGDIR_ORGLOGO_API_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: DIGDIR_ORGLOGO_API_BASE_URI
+                      - name: ACCESS_REQUEST_API_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: ACCESS_REQUEST_API_HOST
