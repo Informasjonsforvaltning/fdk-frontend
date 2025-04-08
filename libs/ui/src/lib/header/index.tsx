@@ -12,8 +12,6 @@ import styles from './header.module.scss';
 export type HeaderProps = {
     dictionary: Dictionary;
     locale: LocaleCodes;
-    communityBaseUri?: string;
-    registrationBaseUri?: string;
     frontpage?: boolean;
 };
 
@@ -22,8 +20,6 @@ const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 const Header = ({
     dictionary,
     locale,
-    communityBaseUri = '#',
-    registrationBaseUri = '#',
     frontpage,
 }: HeaderProps) => {
     const headerRef = useRef<HTMLDivElement>(null);
@@ -94,7 +90,7 @@ const Header = ({
                             variant='tertiary'
                             aria-label={dictionary.header.findDataButton}
                         >
-                            <Link href={`/${locale}/search-all`}>
+                            <Link href={`/search-all`}>
                                 <MagnifyingGlassIcon
                                     aria-hidden
                                     fontSize='1.5em'
