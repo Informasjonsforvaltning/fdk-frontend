@@ -20,9 +20,7 @@ const Frontpage = async (props: FrontpageProps) => {
     await noStore();
 
     const {
-        FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '',
-        FDK_COMMUNITY_BASE_URI: communityBaseUri = '/',
-        FDK_REGISTRATION_BASE_URI: registrationBaseUri = '/',
+        FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = ''
     } = process.env;
 
     const commonDictionary = await getDictionary(params.lang, 'common');
@@ -33,8 +31,6 @@ const Frontpage = async (props: FrontpageProps) => {
             <Header
                 dictionary={commonDictionary}
                 locale={params.lang}
-                registrationBaseUri={registrationBaseUri}
-                communityBaseUri={communityBaseUri}
                 frontpage
             />
             <main id='main'>

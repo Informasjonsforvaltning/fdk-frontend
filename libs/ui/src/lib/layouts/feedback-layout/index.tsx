@@ -11,7 +11,7 @@ import { cookies } from 'next/headers';
 type FeedbackLayoutProps = {
     dictionary: Dictionary;
     locale: LocaleCodes;
-    communityBaseUri: string;
+    communityBaseUri?: string;
 };
 
 const FeedbackLayout = async ({
