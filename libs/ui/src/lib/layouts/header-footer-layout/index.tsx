@@ -13,13 +13,13 @@ const HeaderFooterLayout = async ({ children, params }: PropsWithChildren & Root
     return (
         <HeaderLayout
             dictionary={dictionary}
-            baseUri={`/${lang}`}
+            locale={lang}
             registrationBaseUri={registrationBaseUri}
             communityBaseUri={communityBaseUri}
         >
             <FooterLayout
                 dictionary={dictionary}
-                baseUri={`/${lang}`}
+                locale={lang}
             >
                 {children}
             </FooterLayout>

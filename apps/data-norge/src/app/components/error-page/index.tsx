@@ -14,7 +14,7 @@ export default async function ErrorPage({ children }: PropsWithChildren) {
         <>
             <Header
                 dictionary={commonDictionary}
-                baseUri={`/${lang}`}
+                locale={lang}
                 registrationBaseUri={registrationBaseUri}
                 communityBaseUri={communityBaseUri}
                 frontpage

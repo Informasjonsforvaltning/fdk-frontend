@@ -3,21 +3,21 @@ import { PropsWithChildren } from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
-import { type Dictionary, interpolate } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
 
 import styles from './feedback-layout.module.scss';
 import { cookies } from 'next/headers';
 
 type FeedbackLayoutProps = {
     dictionary: Dictionary;
-    baseUri: string;
+    locale: LocaleCodes;
     communityBaseUri: string;
 };
 
 const FeedbackLayout = async ({
     children,
     dictionary,
-    baseUri,
+    locale,
     communityBaseUri,
 }: PropsWithChildren & FeedbackLayoutProps) => {
     // Opt-in SSR
@@ -38,7 +38,7 @@ const FeedbackLayout = async ({
                     <div>
                         {interpolate(dictionary.feedbackBanner.text, {
                             contactLink: (
-                                <Link href={`${baseUri}/contact`}>{dictionary.feedbackBanner.contactLinkText}</Link>
+                                <Link href={`/${locale}/contact`}>{dictionary.feedbackBanner.contactLinkText}</Link>
                             ),
                             communityLink: (
                                 <Link href={communityBaseUri}>

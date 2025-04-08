@@ -1,17 +1,11 @@
 import 'server-only';
-
 import React from 'react';
 import type { Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
-
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
-
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
-import { getPaths } from '@fdk-frontend/utils';
-
 import DataHunterForm from './components/data-hunter-form';
-
 import styles from './page.module.css';
 
 type DataHunterPageProps = {
@@ -22,22 +16,16 @@ type DataHunterPageProps = {
 
 const DataHunterPage = async (props: DataHunterPageProps) => {
     const params = await props.params;
-
     const { lang } = params;
-
     // Opt-in dynamic rendering
     await noStore();
 
     const dictionary = await getDictionary(lang, 'data-hunter-page');
     const commonDictionary = await getDictionary(lang, 'common');
 
-    const { FDK_DATA_NORGE_BASE_URI, FDK_BASE_URI = '/' } = process.env;
-
-    const baseUri = FDK_DATA_NORGE_BASE_URI || FDK_BASE_URI;
-
     const breadcrumbList = [
         {
-            href: getPaths(baseUri).dataHunter,
+            href: `/${lang}/data-hunter`,
             text: dictionary.dataHunter,
         },
     ];
@@ -46,7 +34,6 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
         <>
             <div style={{ margin: '0 2rem' }}>
                 <Breadcrumbs
-                    baseUri={baseUri}
                     breadcrumbList={breadcrumbList}
                     dictionary={commonDictionary}
                 />

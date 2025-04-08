@@ -1,5 +1,5 @@
 import { Button, Paragraph, Link } from '@digdir/designsystemet-react';
-import { Dictionary, interpolate, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
 
 import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 
@@ -8,11 +8,10 @@ import OrganizationCarousel from '../organization-carousel';
 
 type ShareDataBannerProps = {
     dictionary: Dictionary;
-    baseUri: string;
     locale: LocaleCodes;
 };
 
-const ShareDataBanner = ({ dictionary, baseUri, locale }: ShareDataBannerProps) => (
+const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
     <div className={styles.shareDataBanner}>
         <HeadingWithDivider
             level={2}
@@ -22,13 +21,13 @@ const ShareDataBanner = ({ dictionary, baseUri, locale }: ShareDataBannerProps) 
         </HeadingWithDivider>
         <Paragraph>
             {interpolate(dictionary.shareDataBanner.content, {
-                link: <Link href={`${baseUri}/organizations`}>{dictionary.shareDataBanner.organizationsLinkText}</Link>,
+                link: <Link href={`/${locale}/organizations`}>{dictionary.shareDataBanner.organizationsLinkText}</Link>,
             })}
         </Paragraph>
         <div className={styles.buttons}>
             <Button asChild>
                 <Link
-                    href={`${baseUri}/publishing`}
+                    href={`/${locale}/publishing`}
                     inverted
                 >
                     {dictionary.shareDataBanner.shareDataLinkText}
@@ -38,7 +37,7 @@ const ShareDataBanner = ({ dictionary, baseUri, locale }: ShareDataBannerProps) 
                 asChild
                 variant='secondary'
             >
-                <Link href={`${baseUri}/${locale}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
+                <Link href={`/${locale}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
             </Button>
         </div>
     </div>

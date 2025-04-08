@@ -1,17 +1,15 @@
-import { Dictionary } from '@fdk-frontend/dictionaries';
-
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { LogoLink, DigdirLogoLink } from '../logo';
 import LanguageSwitcher from '../language-switcher';
 import MainMenu from '../main-menu';
-
 import styles from './footer.module.scss';
 
 export type FooterProps = {
     dictionary: Dictionary;
-    baseUri: string;
+    locale: LocaleCodes;
 };
 
-const Footer = ({ dictionary, baseUri }: FooterProps) => {
+const Footer = ({ dictionary, locale }: FooterProps) => {
     return (
         <footer
             className={styles.footer}
@@ -21,7 +19,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
                 <MainMenu
                     className={styles.footerNav}
                     dictionary={dictionary}
-                    baseUri={baseUri}
+                    locale={locale}
                     motionProps={{
                         initial: 'show',
                     }}
@@ -30,7 +28,7 @@ const Footer = ({ dictionary, baseUri }: FooterProps) => {
             </div>
             <div className={styles.bottom}>
                 <div className={styles.bottomInner}>
-                    <LogoLink baseUri={baseUri} />
+                    <LogoLink href={`/${locale}`} />
                     <div className={styles.digdirCredit}>
                         <span>{dictionary.footer.digdirCredit}</span>
                         <DigdirLogoLink href={`https://www.digdir.no/`} />
