@@ -17,7 +17,7 @@ const DatasetTags = ({ locale, dataset }: DatasetTagsProps & React.HTMLAttribute
                     key={theme.code}
                     href={`/datasets?theme=${theme.code}`}
                 >
-                    <ChipToggle>{printLocaleValue(locale, theme.title)}</ChipToggle>
+                    <ChipToggle>{printLocaleValue(locale, theme.title) || theme.code}</ChipToggle>
                 </Link>
             ))}
             {dataset.losTheme?.map((theme: any) => (
@@ -25,7 +25,7 @@ const DatasetTags = ({ locale, dataset }: DatasetTagsProps & React.HTMLAttribute
                     key={theme.code}
                     href={`/datasets?losTheme=${theme.code}`}
                 >
-                    <ChipToggle>{printLocaleValue(locale, theme.name)}</ChipToggle>
+                    <ChipToggle>{printLocaleValue(locale, theme.name) || theme.code}</ChipToggle>
                 </Link>
             ))}
         </ChipGroup>
