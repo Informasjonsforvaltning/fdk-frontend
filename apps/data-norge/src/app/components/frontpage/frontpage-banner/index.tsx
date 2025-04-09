@@ -6,6 +6,7 @@ import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 import LlmSearch from '../llm-search';
 import Norgeskart from './components/norgeskart';
 import ScrollButton from './components/scroll-button';
+import StudentSurveryBanner from '../student-survey-banner';
 
 import styles from './frontpage-banner.module.scss';
 
@@ -36,6 +37,7 @@ const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps)
         <div className={styles.gradient} />
         <Norgeskart />
         <ScrollButton />
+        <StudentSurveryBanner className={styles.bannerNotice} />
     </div>
 );
 
