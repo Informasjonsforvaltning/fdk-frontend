@@ -21,7 +21,7 @@ const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
         </HeadingWithDivider>
         <Paragraph>
             {interpolate(dictionary.shareDataBanner.content, {
-                link: <Link href={`/${locale}/organizations`}>{dictionary.shareDataBanner.organizationsLinkText}</Link>,
+                link: <Link href={`/organizations`}>{dictionary.shareDataBanner.organizationsLinkText}</Link>,
             })}
         </Paragraph>
         <div className={styles.buttons}>
