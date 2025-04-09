@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:22-alpine
 ARG NODE_ENV
 WORKDIR /app
 COPY .yarnrc.yml yarn.lock dist/apps/data-norge ./

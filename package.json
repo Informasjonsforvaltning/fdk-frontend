@@ -6,7 +6,7 @@
     "engines": {
         "node": ">=20.11.1"
     },
-    "packageManager": "yarn@4.6.0",
+    "packageManager": "yarn@4.8.1+sha256.8c8cf7bef23cced7c138d0da3ea72d43d2626727f1ae309edb853c41ab18ef1c",
     "lint-staged": {
         "*.tsx": [
             "eslint --cache --fix",
