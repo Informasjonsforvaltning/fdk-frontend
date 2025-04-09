@@ -43,7 +43,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                     <dt>{dictionary.apis.details.url}:</dt>
                                     <dd>
                                         <Link href={endpointURL}>
-                                            {endpointURL} <ExternalLinkIcon />
+                                            {endpointURL} <ExternalLinkIcon aria-hidden />
                                         </Link>
                                     </dd>
                                     <dt>{dictionary.apis.details.description}:</dt>
@@ -72,7 +72,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                             {api.page.map((page) => (
                                 <li key={page}>
                                     <Link href={page}>
-                                        {page} <ExternalLinkIcon />
+                                        {page} <ExternalLinkIcon aria-hidden />
                                     </Link>
                                 </li>
                             ))}
