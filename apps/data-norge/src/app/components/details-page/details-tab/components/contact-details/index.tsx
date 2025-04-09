@@ -38,7 +38,7 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 </dd>
                             </>
                         )}
-                        {!contactPoint.uri && !showEmptyRows ? null : (
+                        {!contactPoint.hasURL && !showEmptyRows ? null : (
                             <>
                                 <dt>{dictionary.details.contactPoint.uri}:</dt>
                                 <dd>
