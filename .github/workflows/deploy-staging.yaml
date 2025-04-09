@@ -78,6 +78,7 @@ jobs:
         with:
             app_name: ${{ matrix.appname }}-frontend
             environment: staging
+            gh_environment: staging
             build_env: true
             build_env_name: BINARY
             build_env_value: ${{ matrix.appname }}-frontend
@@ -99,6 +100,7 @@ jobs:
         with:
             app_name: ${{ matrix.appname }}-frontend
             environment: staging
+            gh_environment: staging
             monorepo_app: true
             cluster: digdir-fdk-dev
         secrets:
