@@ -79,3 +79,14 @@
     background: var(--fds-brand-alt3-600);
     border-radius: 0.25rem;
 }
+
+.bannerNotice {
+    position:absolute;
+    bottom:0rem;
+    left:0;
+    z-index:1;
+    width:100%;
+    border-radius:0.25rem;
+    // margin:2rem;
+    color: var(--color-text);
+}
