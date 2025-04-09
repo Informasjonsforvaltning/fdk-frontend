@@ -2,6 +2,17 @@
 
 .wrapper {
 	background: var(--fds-semantic-surface-info-subtle);
+	background: var(--color-fdk-navy-dark);
 	padding:1rem;
 	text-align:center;
+	color: var(--fds-semantic-border-action-first-subtle);
+
+	strong {
+		color: white;
+		opacity:0.9;
+	}
+
+	:global(.fds-link):not(:focus-visible) {
+		color: var(--fds-semantic-border-action-first-subtle);
+	}
 }
