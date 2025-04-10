@@ -11,8 +11,7 @@ import * as dotenv from 'dotenv';
  */
 dotenv.config({ path: path.resolve(__dirname, '.env.test') });
 
-// For CI, you may want to set BASE_URL to the deployed application.
-const baseURL = process.env['FDK_BASE_URI'] || 'http://127.0.0.1:3000';
+const baseURL = 'http://127.0.0.1:3000';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
