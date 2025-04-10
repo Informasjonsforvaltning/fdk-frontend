@@ -19,7 +19,7 @@ const AdvancedSearchPrompt = ({ dictionary, locale }: AdvancedSearchPromptProps)
                 size='small'
                 variant='primary'
             >
-                <Link href={`/${locale}/search-all`}>
+                <Link href={`/search-all`}>
                     <MagnifyingGlassIcon
                         aria-hidden
                         fontSize='1.5em'
