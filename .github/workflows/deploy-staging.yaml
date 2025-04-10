@@ -5,11 +5,14 @@ on:
         types: [ready_for_review, opened, reopened, synchronize]
         branches:
             - main
+        paths-ignore:
+            - 'README.md'
+            - 'LICENSE'
     workflow_dispatch:
 
 jobs:
     test:
-        name: Test and build
+        name: Test
         if: github.event.pull_request.draft == false
         runs-on: ubuntu-latest
         outputs:
@@ -56,21 +59,65 @@ jobs:
                   echo "matrix={\"appname\":$(yarn --silent run matrix)}" >> $GITHUB_OUTPUT
                   echo "changed=$(yarn --silent run matrix)" >> $GITHUB_OUTPUT
 
-            - run: yarn playwright install
-            - run: yarn run affected:lint
-            - run: yarn run affected:test   --configuration=ci
-            - run: yarn run affected:e2e    --configuration=ci
-            - run: yarn run affected:build  --configuration=ci
+            - run: yarn run lint --configuration=ci
+            - run: yarn run test --configuration=ci
+
+    build-app:
+        name: Build app ${{ matrix.appname }}
+        needs: [test]
+        if: ${{ needs.test.outputs.changed != '[]' }}
+        runs-on: ubuntu-latest
+        strategy:
+            matrix: ${{fromJSON(needs.test.outputs.matrix)}}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+                  fetch-depth: 0
+                  submodules: true
+
+            - name: Update submodules to latest main
+              run: |
+                  git submodule foreach --recursive git fetch origin
+                  git submodule foreach --recursive git checkout origin/main
+
+            - name: Set SHAs
+              uses: nrwl/nx-set-shas@v4
+
+            - name: Enable corepack
+              run: corepack enable
+
+            - name: Use Node.js 22.14.0
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22.14.0
+                  cache: 'yarn'
+
+            - name: Yarn install
+              run: |
+                  yarn set version stable
+                  yarn install --no-immutable
+
+            - name: Caching Nx
+              uses: actions/cache@v4
+              with:
+                  path: node_modules/.cache
+                  key: cache-nx-${{ hashFiles('yarn.lock') }}
+
+            - run: yarn playwright install 
+            - run: yarn nx e2e ${{ matrix.appname }}-e2e --configuration=ci
+            - run: yarn nx build ${{ matrix.appname }} --configuration=ci
 
             - name: Caching Dist Folder
               uses: actions/cache@v4
               with:
                   path: ./dist
-                  key: cache-dist-${{ github.sha }}
+                  key: cache-dist-${{ github.sha }}-${{ matrix.appname }}
 
     build:
-        name: Build affected apps when pull request is created
-        needs: [test]
+        name: Build image for ${{ matrix.appname }}
+        needs: [test, build-app]
         if: ${{ needs.test.outputs.changed != '[]' }}
         strategy:
             matrix: ${{fromJSON(needs.test.outputs.matrix)}}
@@ -83,14 +130,14 @@ jobs:
             build_env_name: BINARY
             build_env_value: ${{ matrix.appname }}-frontend
             cache_path: ./dist
-            cache_key: cache-dist-${{ github.sha }}
+            cache_key: cache-dist-${{ github.sha }}-${{ matrix.appname }}
             dockerfile: apps/${{ matrix.appname }}/Dockerfile
             monorepo_app: true
         secrets:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     deploy:
-        name: Deploy affected apps to staging environment with reusable workflow
+        name: Deploy image for ${{ matrix.appname }} to staging
         needs: [test, build]
         if: ${{ needs.test.outputs.changed != '[]' && github.actor != 'dependabot[bot]'}}
         strategy:

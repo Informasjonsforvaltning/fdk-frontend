@@ -36,7 +36,9 @@
         "affected:dep-graph:ci": "nx affected:dep-graph --base=origin/main --head=HEAD",
         "affected:apps:ci": "nx affected:apps --base=origin/main --head=HEAD",
         "affected:libs:ci": "nx affected:libs --base=origin/main --head=HEAD",
-        "matrix": "nx show projects --affected --type=app| tr '\n' ',' | jq -cR 'split(\",\")[:-1]'",
+        "affected:matrix": "nx show projects --affected --type=app | tr '\n' ',' | jq -cR 'split(\",\")[:-1]'",
+        "all:matrix":  "nx show projects --type=app | tr '\n' ',' | jq -cR 'split(\",\")[:-1]'",
+        "matrix": "[ -z \"$(yarn run affected:matrix)\" ] && yarn run all:matrix || yarn run affected:matrix",
         "format": "nx format:write",
         "storybook": "nx storybook storybook-app"
     },
