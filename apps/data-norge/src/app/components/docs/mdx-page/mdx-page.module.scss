@@ -1,3 +1,5 @@
+@import '@fdk-frontend/ui/core/mixins';
+
 .mdxPage {
     margin: 0 2rem 3rem;
     container-type: inline-size;
@@ -8,6 +10,7 @@
         grid-template-columns: calc(25% - 0.5rem) calc(50% - 2rem) calc(25% - 0.5rem);
         grid-template-areas: '. article .';
         gap: 2rem;
+        margin-top: 2rem;
 
         &.noSidebars {
             grid-template-columns: 100%;
@@ -29,11 +32,18 @@
             }
         }
 
+        .leftColumn,
+        .rightColumn {
+            position: sticky;
+            top: 88px;
+        }
+
         .asideContent {
             max-width: 350px;
         }
 
         .article {
+            @include article();
             max-width: 700px;
             margin: 0 auto;
 
@@ -66,9 +76,14 @@
 
         @container (max-width: 800px) {
             display: block;
+            margin-top: 0;
 
             .mainColumn {
                 margin-top: 2rem;
+            }
+
+            .leftColumn {
+                position: static;
             }
 
             .rightColumn {
@@ -87,6 +102,17 @@
                     max-width: 700px;
                     margin: 0 auto;
                 }
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        margin: 0 1.5rem 3rem;
+
+        .content {
+            .asideContent {
+                margin: 0 -1.5rem;
+                padding: 1rem 1.5rem;
             }
         }
     }

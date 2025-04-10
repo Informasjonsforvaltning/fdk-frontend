@@ -9,11 +9,10 @@ import Breadcrumbs from '../breadcrumbs';
 type DynamicBreadcrumbsProps = {
     commonDictionary: Dictionary;
     docsDictionary: Dictionary;
-    baseUri: string;
     locale: LocaleCodes;
 };
 
-const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, baseUri, locale }: DynamicBreadcrumbsProps) => {
+const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, locale }: DynamicBreadcrumbsProps) => {
     const pathname = usePathname();
 
     const createBreadcrumbPaths = function (pname: string) {
@@ -42,7 +41,6 @@ const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, baseUri, locale 
         <Breadcrumbs
             breadcrumbList={textedItems}
             dictionary={commonDictionary}
-            baseUri={baseUri}
         />
     );
 };

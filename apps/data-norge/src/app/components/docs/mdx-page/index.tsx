@@ -9,19 +9,17 @@ import Sidebar from '../sidebar';
 import TableOfContents from '../table-of-contents';
 
 import pageStyles from './mdx-page.module.scss';
-import typography from './typography.module.scss';
 
 import { extractHeadlines, type MdxHeadlineObjectNode } from './utils';
 
 export type MdxPageProps = PropsWithChildren & {
     currentPath: string[];
     locale: LocaleCodes;
-    baseUri: string;
     source: string;
     sidebars?: boolean;
 };
 
-const MdxPage = async ({ children, sidebars = true, currentPath, locale, baseUri, source }: MdxPageProps) => {
+const MdxPage = async ({ children, sidebars = true, currentPath, locale, source }: MdxPageProps) => {
     const docsDictionary = await getDictionary(locale, 'docs');
     const commonDictionary = await getDictionary(locale, 'common');
 
@@ -32,7 +30,6 @@ const MdxPage = async ({ children, sidebars = true, currentPath, locale, baseUri
             <DynamicBreadcrumbs
                 docsDictionary={docsDictionary}
                 commonDictionary={commonDictionary}
-                baseUri={baseUri}
                 locale={locale}
             />
             <div className={cn(pageStyles.content, { [pageStyles.noSidebars]: !sidebars })}>
@@ -48,7 +45,7 @@ const MdxPage = async ({ children, sidebars = true, currentPath, locale, baseUri
                     </div>
                 )}
                 <div className={pageStyles.mainColumn}>
-                    <article className={cn(pageStyles.article, typography.article)}>{children}</article>
+                    <article className={cn(pageStyles.article)}>{children}</article>
                 </div>
                 {sidebars && (
                     <div className={pageStyles.rightColumn}>

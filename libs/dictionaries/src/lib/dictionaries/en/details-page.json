@@ -1,0 +1,220 @@
+{
+    "breadcrumbs": {
+        "datasets": "Datasets"
+    },
+    "header": {
+        "namelessOrganization": "Nameless organization",
+        "namelessDataset": "Nameless dataset",
+        "useDatasetButton": "Use dataset",
+        "datasetsTagLink": "Datasets",
+        "published": "Published",
+        "requestAccessButton": "Request access",
+        "showInterestButton": "Report interest"
+    },
+    "resourceNotAvailableNotice": {
+        "title": "This dataset is not yet available",
+        "body": "This dataset has no distributions. This means that only the description of the dataset is available, while the actual content and data have not yet been published. You can express your interest in the dataset to the responsible organization by clicking the button below. The more people show interest, the greater the chance that the data will be made available.",
+        "moreInfoLink": "More information"
+    },
+    "accessRights": {
+        "helpTextTitle": "Explanation",
+        "unknownLabel": "Unknown access level",
+        "readMoreLinkText": "Read more about access levels here",
+        "codes": {
+            "NON_PUBLIC": {
+                "label": "Non-public access",
+                "helpText": "Not publicly available due to privacy, security, or other reasons. This category may include resources containing sensitive or personal information."
+            },
+            "RESTRICTED": {
+                "label": "Restricted access",
+                "helpText": "Only available under certain conditions. This category may include resources requiring payment, resources shared under confidentiality agreements, or resources where the publisher or owner has not yet decided if they can be made public."
+            },
+            "PUBLIC": {
+                "label": "Public access",
+                "helpText": "Publicly available to everyone. Access may still require registration and an API key request, as long as anyone can request such registration and/or API keys."
+            }
+        }
+    },
+    "tabs": {
+        "overview": "Overview",
+        "distributions": "Distributions & API",
+        "details": "Details",
+        "community": "Discussions",
+        "rdf": "RDF"
+    },
+    "overview": {
+        "description": {
+            "title": "Description",
+            "placeholder": "This dataset has no description"
+        }
+    },
+    "distributions": {
+        "title": "Distributions",
+        "placeholder": "This dataset has no distributions.",
+        "header": {
+            "nameless": "Nameless distribution",
+            "openLicense": "Open license",
+            "hasApi": "API",
+            "exampleData": "Example data",
+            "downloadBtnLabel": "Download"
+        },
+        "details": {
+            "description": "Description",
+            "accessURL": "Access URL",
+            "downloadURL": "Direct download",
+            "accessService": "API",
+            "page": "Documentation",
+            "license": "License",
+            "conformsTo": "Conforms to",
+            "noData": "Not provided"
+        }
+    },
+    "apis": {
+        "title": "APIs providing this dataset",
+        "placeholder": "No registered APIs provide this dataset.",
+        "header": {
+            "nameless": "Nameless API",
+            "gotoBtn": "Go to API"
+        },
+        "details": {
+            "noData": "Not provided",
+            "description": "Description",
+            "endpoint": "Endpoint",
+            "url": "URL",
+            "page": "Documentation"
+        }
+    },
+    "similarDatasets": "Similar datasets",
+    "internalRelations": "Relations to other resources",
+    "externalRelations": "Relations from other resources",
+    "details": {
+        "showEmptyRows": "Show empty rows",
+        "hideEmptyRows": "Hide empty rows",
+        "noData": "Not provided",
+        "general": {
+            "title": "About this dataset",
+            "publisher": "Publisher",
+            "firstHarvested": "Published",
+            "firstHarvestedHelpText": "This date indicates when the dataset was harvested by data.norge.no. It may have been available earlier elsewhere.",
+            "firstHarvestedHelpTextTitle": "Explanation",
+            "firstHarvestedHelpTextLink": "Read more about harvesting here",
+            "modified": "Last updated",
+            "page": "Documentation",
+            "type": "Dataset type",
+            "landingPage": "Landing page",
+            "metadataQuality": {
+                "title": "Metadata Quality",
+                "helpText": "Metadata quality is an indicator of how well the datasets are described using metadata.",
+                "helpTextTitle": "Explanation",
+                "helpTextLink": "Read more about metadata quality here",
+                "labels": {
+                    "excellent": "Excellent",
+                    "good": "Good",
+                    "sufficient": "Sufficient",
+                    "poor": "Poor"
+                }
+            }
+        },
+        "contactPoint": {
+            "title": "Contact information",
+            "organizationUnit": "Contact point",
+            "uri": "Website",
+            "email": "Email",
+            "telephone": "Telephone"
+        },
+        "content": {
+            "title": "About the data",
+            "language": "Language",
+            "qualifiedAttributions": "Content providers",
+            "provenance": "Provenance",
+            "accrualPeriodicity": "Update frequency",
+            "issued": "First issued",
+            "issuedHelpText": "This date indicates when the data in this dataset was first released. It may have happened before the dataset was published on data.norge.no.",
+            "modified": "Last updated",
+            "accuracyAnnotation": "Accuracy",
+            "availabilityAnnotation": "Availability",
+            "completenessAnnotation": "Completeness",
+            "currentnessAnnotation": "Currentness",
+            "relevanceAnnotation": "Relevance",
+            "spatial": "Geographical scope",
+            "temporal": "Temporal scope",
+            "temporalFrom": "From",
+            "temporalTo": "To",
+            "conformsTo": "Conforms to",
+            "conformsToHelpText": "Reference to an implementation rule or other specification that forms the basis for the dataset."
+        },
+        "legal": {
+            "title": "Legal basis",
+            "legalBasisForAccess": "Legal basis for access",
+            "legalBasisForProcessing": "Legal basis for processing",
+            "legalBasisForRestriction": "Legal basis for restriction"
+        },
+        "concepts": {
+            "title": "Concepts used in the dataset"
+        },
+        "related": {
+            "title": "Relation to other resources",
+            "namelessDataset": "Nameless dataset",
+            "namelessOrganization": "Nameless organization"
+        },
+        "references": {
+            "title": "References",
+            "relatedResources": "Related resources",
+            "relationLabels": {
+                "http://purl.org/dc/terms/associativeRelation": "Associative relation",
+                "http://purl.org/dc/terms/closeMatch": "Close match",
+                "http://purl.org/dc/terms/exactMatch": "Exact match",
+                "http://purl.org/dc/terms/generalizes": "Generalizes",
+                "http://purl.org/dc/terms/specializes": "Specializes",
+                "http://purl.org/dc/terms/memberOf": "Member of",
+                "http://purl.org/dc/terms/replaces": "Replaces",
+                "http://purl.org/dc/terms/isReplacedBy": "Replaced by",
+                "http://purl.org/dc/terms/seeAlso": "See also",
+                "http://purl.org/dc/terms/conformsTo": "Conforms to",
+                "http://purl.org/dc/terms/servesDataset": "Serves dataset",
+                "http://purl.org/dc/terms/inSeries": "In series",
+                "http://purl.org/dc/terms/subject": "Subject",
+                "http://purl.org/dc/terms/hasPart": "Has part",
+                "http://purl.org/dc/terms/isPartOf": "Is part of",
+                "http://purl.org/dc/terms/isGroupedBy": "Is grouped by",
+                "http://purl.org/dc/terms/isClassifiedBy": "Is classified by",
+                "http://purl.org/dc/terms/isDescribedAt": "Is described at",
+                "http://purl.org/dc/terms/relation": "Relation",
+                "http://purl.org/dc/terms/hasVersion": "Has version",
+                "http://purl.org/dc/terms/isVersionOf": "Is version of",
+                "http://purl.org/dc/terms/references": "References",
+                "http://purl.org/dc/terms/isReferencedBy": "Is referenced by",
+                "http://purl.org/dc/terms/requires": "Requires",
+                "http://purl.org/dc/terms/isRequiredBy": "Is required by",
+                "http://purl.org/dc/terms/source": "Source",
+                "unknown": "Unknown relation"
+            }
+        },
+        "themes": "Themes",
+        "keywords": "Keywords"
+    },
+    "community": {
+        "title": "Discussions on Datalandsbyen",
+        "noData": "No discussions found",
+        "notice": {
+            "title": "What is Datalandsbyen?",
+            "body": "Datalandsbyen is our online forum where you can request data, share experiences, and ask for advice related to data sharing and information management.",
+            "gotoLink": "Go to Datalandsbyen",
+            "moreInfo": "More information"
+        },
+        "topicRow": {
+            "postedBy": "Posted by",
+            "votes": "Votes",
+            "posts": "Posts",
+            "views": "Views"
+        }
+    },
+    "rdf": {
+        "titleHelpText": "All URLs to resources on data.norge.no can provide RDF metadata in various formats, depending on the Accept header sent with the request.",
+        "titleHelpTextLink": "Read more about RDF and the formats we support here",
+        "titleHelpTextTitle": "Explanation",
+        "inputLabel": "Resource URI",
+        "copyButton": ["Copy", "Copied!"],
+        "loading": "Loading"
+    }
+}

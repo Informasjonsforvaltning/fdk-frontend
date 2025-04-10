@@ -1,21 +1,22 @@
 import React from 'react';
 
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 
 import LlmSearch from '../llm-search';
 import Norgeskart from './components/norgeskart';
 import ScrollButton from './components/scroll-button';
+import StudentSurveryBanner from '../student-survey-banner';
 
 import styles from './frontpage-banner.module.scss';
 
 type FrontpageBannerProps = {
     dictionary: Dictionary;
-    baseUri: string;
+    locale: LocaleCodes;
     endpoint: string;
 };
 
-const FrontpageBanner = ({ dictionary, baseUri, endpoint }: FrontpageBannerProps) => (
+const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps) => (
     <div
         className={styles.outer}
         id='frontpage-banner'
@@ -29,13 +30,17 @@ const FrontpageBanner = ({ dictionary, baseUri, endpoint }: FrontpageBannerProps
             </HeadingWithDivider>
             <LlmSearch
                 dictionary={dictionary}
-                baseUri={baseUri}
+                locale={locale}
                 endpoint={endpoint}
             />
         </div>
         <div className={styles.gradient} />
         <Norgeskart />
         <ScrollButton />
+        {
+            ['nb', 'nn'].includes(locale) &&
+            <StudentSurveryBanner className={styles.bannerNotice} />
+        }
     </div>
 );
 

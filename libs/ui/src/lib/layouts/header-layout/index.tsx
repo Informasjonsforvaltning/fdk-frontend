@@ -3,15 +3,12 @@ import { PropsWithChildren } from 'react';
 import Header, { type HeaderProps } from '../../header';
 
 const HeaderLayout = ({ children, ...props }: HeaderProps & PropsWithChildren) => {
-    const { dictionary, baseUri, registrationBaseUri, communityBaseUri, frontpage } = props;
-
+    const { dictionary, locale, frontpage } = props;
     return (
         <>
             <Header
                 dictionary={dictionary}
-                baseUri={baseUri}
-                registrationBaseUri={registrationBaseUri}
-                communityBaseUri={communityBaseUri}
+                locale={locale}
                 frontpage={frontpage}
             />
             {children}

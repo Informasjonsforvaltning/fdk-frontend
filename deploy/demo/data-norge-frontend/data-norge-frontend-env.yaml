@@ -28,8 +28,6 @@ spec:
                             secretKeyRef:
                                 name: commonurl-demo
                                 key: FDK_BASE_URI
-                      - name: FDK_USE_DEMO_LOGO
-                        value: 'true'
                       - name: DATAJEGER_EMAIL_ADDRESS
                         valueFrom:
                             secretKeyRef:
@@ -50,3 +48,28 @@ spec:
                             secretKeyRef:
                                 name: commonurl-demo
                                 key: FDK_LLM_SEARCH_BASE_URI
+                      - name: FDK_SEARCH_SERVICE_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_SEARCH_SERVICE_BASE_URI
+                      - name: FDK_RESOURCE_SERVICE_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_RESOURCE_SERVICE_BASE_URI
+                      - name: FDK_MQA_API_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: FDK_MQA_API_BASE_URI
+                      - name: DIGDIR_ORGLOGO_API_BASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: DIGDIR_ORGLOGO_API_BASE_URI
+                      - name: ACCESS_REQUEST_API_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-demo
+                                key: ACCESS_REQUEST_API_HOST

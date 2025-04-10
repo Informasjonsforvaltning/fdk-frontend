@@ -7,11 +7,10 @@ import styles from './catalogs-banner.module.scss';
 type CatalogsBannerProps = {
     commonDictionary: Dictionary;
     frontpageDictionary: Dictionary;
-    baseUri: string;
     locale: LocaleCodes;
 };
 
-const CatalogsBanner = ({ commonDictionary, frontpageDictionary, baseUri, locale }: CatalogsBannerProps) => (
+const CatalogsBanner = ({ commonDictionary, frontpageDictionary, locale }: CatalogsBannerProps) => (
     <div className={styles.catalogsBanner}>
         <div className={styles.inner}>
             <HeadingWithDivider
@@ -23,7 +22,6 @@ const CatalogsBanner = ({ commonDictionary, frontpageDictionary, baseUri, locale
             </HeadingWithDivider>
             <CatalogsMenu
                 dictionary={commonDictionary}
-                baseUri={baseUri}
                 locale={locale}
             />
         </div>

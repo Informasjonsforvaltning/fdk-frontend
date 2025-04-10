@@ -18,9 +18,8 @@ export type LogoLinkProps = {
     baseUri?: string;
 };
 
-const LogoLink = ({ className, baseUri, ...rest }: LogoLinkProps & Omit<LinkProps, 'children'>) => (
+const LogoLink = ({ className, ...rest }: LogoLinkProps & Omit<LinkProps, 'children'>) => (
     <Link
-        href={baseUri}
         className={cn(styles.logoLink, className)}
         {...rest}
     >

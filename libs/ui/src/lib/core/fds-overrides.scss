@@ -1,13 +1,11 @@
+@import './mixins';
+
 * {
     font-family: inherit;
 }
 
 .fds-heading {
-    &--xxs {
-        font-size: 1.1rem;
-        font-weight: 600;
-        line-height: 1.3em;
-    }
+    font-weight: 500;
 }
 
 .fds-ingress {
@@ -16,6 +14,19 @@
 }
 
 .fds-link {
+    &:not(.fds-btn, .fds-card) {
+        display: inline;
+
+        svg {
+            // margin-top:-1em;
+            vertical-align: middle;
+
+            &:last-child {
+                margin-left: 0.125rem;
+            }
+        }
+    }
+
     &:visited {
         &:not(:focus-visible) {
             color: var(--color-link);
@@ -53,4 +64,71 @@
     svg {
         font-size: 1.3rem;
     }
+}
+
+.fds-table {
+    width: 100%;
+
+    td,
+    th {
+        padding: 0.5rem 0.75rem;
+        border-color: var(--fds-semantic-border-neutral-subtle);
+    }
+
+    tr {
+        &:hover {
+            td,
+            th {
+                background: #fafafa;
+            }
+        }
+    }
+
+    tbody {
+        &:first-child {
+            tr {
+                &:first-child {
+                    td {
+                        border-top: 1px solid var(--fds-semantic-border-neutral-subtle);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.fds-accordion__item {
+    > h3 button:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+.fds-accordion__item--open {
+    > h3 button {
+        background: white;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.025);
+        }
+    }
+}
+
+.fds-accordion__expand-icon {
+    flex-shrink: 0;
+}
+
+/*
+Fix for weird code block inside Alert overflow bug.
+https://data.norge.no/nb/docs/sharing-data/how-to-dataset/2-dataset-description
+*/
+.fds-alert__content {
+    @include article();
+    overflow: hidden;
+    display: block;
+}
+
+/*
+Fix for bug where items doesnt wrap
+*/
+.fds-chip--group-container {
+    flex-wrap: wrap;
 }

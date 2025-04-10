@@ -8,13 +8,11 @@ import styles from './catalogs-menu.module.scss';
 
 type CatalogsMenuProps = {
     dictionary: Dictionary;
-    baseUri: string;
     locale: LocaleCodes;
 };
 
-const CatalogsMenu = ({ dictionary, baseUri, locale }: CatalogsMenuProps) => {
-    const data = getMainMenuData(dictionary, `${baseUri}/${locale}`);
-
+const CatalogsMenu = ({ dictionary, locale }: CatalogsMenuProps) => {
+    const data = getMainMenuData(dictionary, locale);
     return (
         <nav
             className={styles.catalogsMenu}

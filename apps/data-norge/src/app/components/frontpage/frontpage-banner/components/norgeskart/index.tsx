@@ -34,7 +34,6 @@ const Norgeskart = () => {
     ];
 
     useEffect(() => {
-
         const initializeMap = async () => {
             // Dynamically import Leaflet only when needed
             const L = await import('leaflet');
@@ -44,7 +43,7 @@ const Norgeskart = () => {
             const initCoords = locations[randomIndex];
 
             // Initialize Leaflet map
-            if(mapRef.current !== null) {
+            if (mapRef.current !== null) {
                 mapInstanceRef.current = L.map(mapRef.current, {
                     attributionControl: false,
                     center: [initCoords.lat - initCoords.offset, initCoords.lng],
@@ -55,7 +54,7 @@ const Norgeskart = () => {
 
                 // Add tile layer
                 L.tileLayer(urls.kartverket.topo, {}).addTo(mapInstanceRef.current);
-            }            
+            }
         };
 
         initializeMap();
@@ -65,7 +64,13 @@ const Norgeskart = () => {
         };
     }, []);
 
-    return <div ref={mapRef} className={styles.norgeskart} aria-hidden={true} />;
+    return (
+        <div
+            ref={mapRef}
+            className={styles.norgeskart}
+            aria-hidden={true}
+        />
+    );
 };
 
 export default Norgeskart;

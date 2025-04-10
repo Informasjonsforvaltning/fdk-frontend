@@ -20,6 +20,12 @@ jobs:
               with:
                   # We need to fetch all branches and commits so that Nx affected has a base to compare against.
                   fetch-depth: 0
+                  submodules: true
+
+            - name: Update submodules to latest main
+              run: |
+                  git submodule foreach --recursive git fetch origin
+                  git submodule foreach --recursive git checkout origin/main
 
             - name: Set SHAs
               uses: nrwl/nx-set-shas@v4
@@ -72,6 +78,7 @@ jobs:
         with:
             app_name: ${{ matrix.appname }}-frontend
             environment: prod
+            gh_environment: prod
             build_env: true
             build_env_name: BINARY
             build_env_value: ${{ matrix.appname }}-frontend
@@ -93,6 +100,7 @@ jobs:
         with:
             app_name: ${{ matrix.appname }}-frontend
             environment: prod
+            gh_environment: prod
             monorepo_app: true
             cluster: digdir-fdk-prod
         secrets:
@@ -111,6 +119,7 @@ jobs:
         with:
             app_name: ${{ matrix.appname }}-frontend
             environment: demo
+            gh_environment: demo
             monorepo_app: true
             cluster: digdir-fdk-dev
         secrets:
