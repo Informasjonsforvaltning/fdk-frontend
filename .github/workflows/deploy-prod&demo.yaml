@@ -8,7 +8,7 @@ on:
             - main
         paths-ignore:
             - 'README.md'
-            - 'LICENSE'        
+            - 'LICENSE'
     workflow_dispatch:
 
 jobs:
@@ -158,7 +158,7 @@ jobs:
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
     deploy-demo:
-        name: Deploy affected apps to demo environment
+        name: Deploy image for ${{ matrix.appname }} to demo
         needs: [test, deploy-prod]
         strategy:
             matrix: ${{fromJSON(needs.test.outputs.matrix)}}
