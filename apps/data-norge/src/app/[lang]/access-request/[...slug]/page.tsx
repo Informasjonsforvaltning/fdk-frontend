@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { redirect, notFound } from 'next/navigation';
 import { Spinner, Paragraph } from '@digdir/designsystemet-react';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
@@ -20,8 +21,10 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
 
     try {
         const destination = await getAccessRequestDestination({ lang, kind, id });
-        redirect(destination);
+        console.log('destination', destination);
+        // redirect(destination);
     } catch (err) {
+        console.log(err);
         notFound();
         throw err;
     }

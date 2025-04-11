@@ -11,6 +11,7 @@ const ResourceNotAvailableNotice = ({
     kind,
     id,
     dictionary,
+    locale,
     ...props
 }: AccessRequestButtonProps & AlertProps) => {
     return (
@@ -33,6 +34,7 @@ const ResourceNotAvailableNotice = ({
                             id={id}
                             dictionary={dictionary}
                             isAvailable={false}
+                            locale={locale}
                         />
                         <Button
                             variant='tertiary'
