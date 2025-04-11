@@ -204,7 +204,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         const title = printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset;
         return {
             title: `${title} - ${dictionary.breadcrumbs.datasets} - data.norge.no`,
-            description: dataset.description ?? dictionary.breadcrumbs.datasets,
+            description: printLocaleValue(locale, dataset.description) ?? dictionary.breadcrumbs.datasets,
         };
     } catch (err) {
         console.log(err);
