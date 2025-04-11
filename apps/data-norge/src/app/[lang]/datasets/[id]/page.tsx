@@ -80,24 +80,24 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     try {
         orgLogo = await getOrgLogo(dataset.publisher?.id);
-    } catch (err) {
-        console.log(err);
+    } catch {
+        // Do nothing
     }
 
     // Fetch metadata scores
 
     try {
         metadataScore = ((await getMetadataScores([dataset.uri])) as DatasetScores)?.scores?.[dataset.uri];
-    } catch (err) {
-        console.log(err);
+    } catch {
+        // Do nothing
     }
 
     // Fetch community posts
 
     try {
         communityTopics = await getAllCommunityTopics(dataset.id);
-    } catch (err) {
-        console.log(err);
+    } catch {
+        // Do nothing
     }
 
     // Lookup concepts/subjects
@@ -107,8 +107,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             dataset.subject?.map((concept) => concept.uri).filter((uri) => uri !== undefined),
         );
         concepts = results?.hits ?? [];
-    } catch (err) {
-        console.log(err);
+    } catch {
+        // Do nothing
     }
 
     // Find internal related datasets
@@ -118,16 +118,16 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             dataset.references?.map((r) => r.source?.uri).filter((uri) => uri !== undefined),
         );
         internalRelatedDatasets = results?.hits ?? [];
-    } catch (err) {
-        console.log(err);
+    } catch {
+        // Do nothing
     }
 
     // Lookup references
 
     try {
         populatedReferences = await getPopulatedDatasetReferences(dataset.references);
-    } catch (err) {
-        console.log(err);
+    } catch {
+        // Do nothing
     }
 
     // Find external related resources
@@ -140,8 +140,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         externalRelatedDatasets = hits.filter((r: SearchObject) => r.searchType === 'DATASET');
 
         apis = await getApis(externalRelatedAPIs.map((api) => api.id).filter((id): id is string => id !== undefined));
-    } catch (err) {
-        console.error(err);
+    } catch {
+        // Do nothing
     }
 
     // If room for more, fetch additional datasets from themes
@@ -154,8 +154,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
         // Combine and limit to 5
         similarDatasets = [...externalRelatedDatasets, ...themeDatasets].slice(0, similarItemsLimit);
-    } catch (err) {
-        console.log(err);
+    } catch {
+        // Do nothing
     }
 
     // If room for more, fetch additional datasets based on org
@@ -169,8 +169,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
             // Combine and limit to 5
             similarDatasets = [...similarDatasets, ...orgDatasets].slice(0, similarItemsLimit);
-        } catch (err) {
-            console.log(err);
+        } catch {
+            // Do nothing
         }
     }
 
