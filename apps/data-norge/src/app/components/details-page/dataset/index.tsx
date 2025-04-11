@@ -129,6 +129,7 @@ export default function DatasetDetailsPage({
                                     id={resource.id}
                                     dictionary={dictionaries.detailsPage}
                                     isAvailable={isAvailable}
+                                    locale={locale}
                                 />
                             )}
                             <Button
@@ -231,6 +232,7 @@ export default function DatasetDetailsPage({
                                     kind='datasets'
                                     id={resource.id}
                                     dictionary={dictionaries.detailsPage}
+                                    locale={locale}
                                 />
                             ) : (
                                 <Distributions
@@ -292,6 +294,7 @@ export default function DatasetDetailsPage({
                                 kind='datasets'
                                 id={resource.id}
                                 dictionary={dictionaries.detailsPage}
+                                locale={locale}
                             />
                         ) : (
                             <Distributions
