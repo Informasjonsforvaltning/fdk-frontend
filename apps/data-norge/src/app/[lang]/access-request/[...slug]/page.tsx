@@ -22,7 +22,7 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
     try {
         const destination = await getAccessRequestDestination({ lang, kind, id });
         console.log('destination', destination);
-        // redirect(destination);
+        redirect(destination);
     } catch (err) {
         console.log(err);
         notFound();
