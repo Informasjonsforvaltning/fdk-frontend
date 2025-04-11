@@ -3,12 +3,13 @@ import { Button, Link } from '@digdir/designsystemet-react';
 import BadgeOverlay from '../badge-overlay';
 import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
 import { type CatalogTypes } from '@fdk-frontend/types';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
 export type AccessRequestButtonProps = {
     kind: CatalogTypes;
     id: string;
     dictionary: Dictionary;
+    locale: LocaleCodes;
     isAvailable?: boolean;
 };
 
@@ -17,13 +18,14 @@ const AccessRequestButton = ({
     kind,
     id,
     dictionary,
+    locale,
     isAvailable,
     ...props
 }: AccessRequestButtonProps & React.HTMLAttributes<HTMLDivElement>) => {
     const demoItem = accessRequestWhiteList.find((i) => i.id === id);
     const url =
         demoItem?.requestAddress === 'https://soknad.kudaf.no'
-            ? `/en/access-request/${kind}/${id}`
+            ? `/${locale}/access-request/${kind}/${id}`
             : demoItem?.requestAddress;
 
     return (
