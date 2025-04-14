@@ -5,14 +5,13 @@ import { workspaceRoot } from '@nx/devkit';
 import path = require('path');
 import * as dotenv from 'dotenv';
 
-// For CI, you may want to set BASE_URL to the deployed application.
-const baseURL = process.env['BASE_URI'] || 'http://127.0.0.1:3000';
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
 dotenv.config({ path: path.resolve(__dirname, '.env.test') });
+
+const baseURL = 'http://127.0.0.1:3000';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -28,7 +27,7 @@ export default defineConfig({
     },
     /* Run your local dev server before starting the tests */
     webServer: {
-        command: 'yarn nx dev data-norge',
+        command: 'yarn nx dev data-norge --configuration=e2e',
         url: 'http://127.0.0.1:3000',
         reuseExistingServer: !process.env.CI,
         cwd: workspaceRoot,

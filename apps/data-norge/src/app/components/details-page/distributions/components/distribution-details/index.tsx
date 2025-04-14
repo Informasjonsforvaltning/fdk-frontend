@@ -57,7 +57,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                     {distribution.accessService?.length ? (
                         <ol>
                             {distribution.accessService.map((api: any) => (
-                                <li key={api.url}>
+                                <li key={api.uri}>
                                     <Link
                                         key={api.uri}
                                         href={api.uri}

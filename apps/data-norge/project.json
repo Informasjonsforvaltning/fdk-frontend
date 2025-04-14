@@ -12,6 +12,17 @@
                 "outputPath": "dist/apps/data-norge"
             },
             "outputs": ["{options.outputPath}"]
+        },
+        "dev": {
+            "executor": "@nx/next:server",
+            "options": {
+                "buildTarget": "data-norge:build:development",
+                "port": 3000,
+                "dev": true
+            },
+            "configurations": {
+                "e2e": {}
+            }
         }
     }
 }
