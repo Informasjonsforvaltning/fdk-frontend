@@ -18,16 +18,16 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
     const [kind, id] = slug;
 
     const dictionary = await getDictionary(lang, 'common');
+    let destination;
 
     try {
-        const destination = await getAccessRequestDestination({ lang, kind, id });
-        console.log('destination', destination);
-        redirect(destination);
+        destination = await getAccessRequestDestination({ lang, kind, id });
     } catch (err) {
         console.log(err);
         notFound();
-        throw err;
     }
+
+    redirect(destination);
 
     return (
         <div className={styles.wrapper}>
