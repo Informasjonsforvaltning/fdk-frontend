@@ -39,7 +39,7 @@ export type DetailsPageWrapperProps = {
 };
 
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
-    const { FDK_BASE_URI = '', FDK_COMMUNITY_BASE_URI = '' } = process.env;
+    const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI } = process.env;
 
     const params = await props.params;
     const searchParams = await props.searchParams;
@@ -96,8 +96,9 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     try {
         communityTopics = await getAllCommunityTopics(dataset.id);
-    } catch {
-        // Do nothing
+        console.log('[debug] communityTopics', communityTopics);
+    } catch (err) {
+        console.error('[error] Failed to fetch community topics:', err);
     }
 
     // Lookup concepts/subjects
@@ -176,7 +177,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     return (
         <DatasetDetailsPage
-            baseUri={FDK_BASE_URI}
+            baseUri={FDK_BASE_URI as string}
             resource={dataset}
             orgLogo={orgLogo}
             apis={apis}
@@ -186,7 +187,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             populatedReferences={populatedReferences}
             internalRelatedDatasets={internalRelatedDatasets}
             communityTopics={communityTopics}
-            communityBaseUri={FDK_COMMUNITY_BASE_URI}
+            communityBaseUri={FDK_COMMUNITY_BASE_URI as string}
             locale={locale}
             dictionaries={dictionaries}
             defaultActiveTab={activeTab}
