@@ -1,56 +1,41 @@
 const { FDK_COMMUNITY_BASE_URI } = process.env;
 
-export const getCommunityPosts = async (datasetId: string) => {
-    const searchParams = new URLSearchParams();
+const fetchJson = async (uri: string) => {
+    console.log('[debug] fetch uri', uri);
 
-    searchParams.set('term', datasetId);
-    searchParams.set('sortBy', 'topic.lastposttime');
-    searchParams.set('sortDirection', 'desc');
-
-    const uri = `${FDK_COMMUNITY_BASE_URI}/api/search?${searchParams}`;
-
-    console.log('[debug] getCommunityPosts uri', uri);
-
-    return await fetch(uri, {
+    const response = await fetch(uri, {
         method: 'GET',
-        headers: {
-            Accept: 'application/json',
-        },
-    }).then((response) => {
-        if (!response.ok) throw new Error('community posts not found');
-        
-        console.log('[debug] getCommunityPosts response', response);
-
-        return response.json();
+        headers: { Accept: 'application/json' },
     });
+
+    console.log('[debug] fetch response', response);
+
+    if (!response.ok) {
+        throw new Error(`Fetch failed: ${response.status} ${response.statusText}`);
+    }
+
+    return response.json();
 };
 
-export const getCommunityTopic = async (topicId: string) => {
-    const uri = `${FDK_COMMUNITY_BASE_URI}/api/topic/${topicId}`;
-    
-    console.log('[debug] getCommunityTopic uri', uri);
-
-    return await fetch(uri, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-        },
-    }).then((response) => {
-        if (!response.ok) throw new Error('community topics not found');
-
-        console.log('[debug] getCommunityTopic response', response);
-
-        return response.json();
+export const getCommunityPosts = (datasetId: string) => {
+    const searchParams = new URLSearchParams({
+        term: datasetId,
+        sortBy: 'topic.lastposttime',
+        sortDirection: 'desc',
     });
+
+    const uri = `${FDK_COMMUNITY_BASE_URI}/api/search?${searchParams}`;
+    return fetchJson(uri);
+};
+
+export const getCommunityTopic = (topicId: string) => {
+    const uri = `${FDK_COMMUNITY_BASE_URI}/api/topic/${topicId}`;
+    return fetchJson(uri);
 };
 
 export const getAllCommunityTopics = async (datasetId: string) => {
-    const communitySearch = await getCommunityPosts(datasetId);
-    const uniqueTopics = new Set<string>();
-    communitySearch.posts.forEach((post: any) => uniqueTopics.add(post.topic.tid));
-    return await Promise.all(
-        Array.from(uniqueTopics).map(async (topicId: string) => {
-            return await getCommunityTopic(topicId);
-        }),
-    );
+    const { posts } = await getCommunityPosts(datasetId);
+    const uniqueTopicIds = Array.from(new Set(posts.map((p: any) => p.topic.tid)));
+    console.log('[debug] uniqueTopicIds', uniqueTopicIds);
+    return Promise.all(uniqueTopicIds.map(getCommunityTopic));
 };
