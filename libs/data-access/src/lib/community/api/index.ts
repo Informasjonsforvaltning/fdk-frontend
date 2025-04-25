@@ -35,7 +35,11 @@ export const getCommunityTopic = (topicId: string) => {
 
 export const getAllCommunityTopics = async (datasetId: string) => {
     const { posts } = await getCommunityPosts(datasetId);
-    const uniqueTopicIds = Array.from(new Set(posts.map((p: any) => p.topic.tid)));
+    const uniqueTopicIds: string[] = Array.from(
+        new Set(posts.map((p: any) => p.topic.tid))
+    );
+
     console.log('[debug] uniqueTopicIds', uniqueTopicIds);
+
     return Promise.all(uniqueTopicIds.map(getCommunityTopic));
 };
