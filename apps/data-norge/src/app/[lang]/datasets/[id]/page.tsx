@@ -39,7 +39,11 @@ export type DetailsPageWrapperProps = {
 };
 
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
-    const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI } = process.env;
+    const {
+        FDK_BASE_URI,
+        FDK_COMMUNITY_BASE_URI,
+        FDK_DATASET_PREVIEW_API_KEY
+    } = process.env;
 
     const params = await props.params;
     const searchParams = await props.searchParams;
@@ -178,6 +182,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     return (
         <DatasetDetailsPage
             baseUri={FDK_BASE_URI as string}
+            datasetPreviewApiKey={FDK_DATASET_PREVIEW_API_KEY as string}
             resource={dataset}
             orgLogo={orgLogo}
             apis={apis}
