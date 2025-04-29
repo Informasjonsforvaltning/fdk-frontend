@@ -21,6 +21,12 @@ git clone https://github.com/Informasjonsforvaltning/fdk-frontend.git --recurse-
 cd fdk-frontend
 ```
 
+Create .env.local from .env.example
+
+```bash
+cp .env.example .env.local
+```
+
 Install dependencies:
 
 ```bash
