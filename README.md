@@ -1,6 +1,6 @@
 # FDK Frontend
 
-Monorepo powering the web frontend for data.norge.no. Built with NX, it includes the main Next.js web application, resuable React UI components, a Storybook component browser, and other related libraries.
+Monorepo powering the web frontend for [data.norge.no](https://data.norge.no/). Built with [NX](https://nx.dev/), it includes the main Next.js web application, resuable React UI components, a Storybook component browser, and other related libraries.
 
 For a broader understanding of the system’s context, refer to the [architecture documentation](https://github.com/Informasjonsforvaltning/architecture-documentation) wiki. For more specific
 context on this application, see the [Portal](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#portal) subsystem section.
