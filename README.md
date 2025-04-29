@@ -5,6 +5,9 @@ related projects. It contains several applications and libraries that are used t
 built using [Nx](https://nx.dev/) and contains several applications and libraries. The applications are built using
 [Next.js](https://nextjs.org/) and the libraries are built using [React](https://reactjs.org/).
 
+For a broader understanding of the system’s context, refer to the [architecture documentation](https://github.com/Informasjonsforvaltning/architecture-documentation) wiki. For more specific
+context on this application, see the [Portal](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#portal) subsystem section.
+
 ## Getting started
 This section describes how to get started with the FDK Frontend monorepo. It includes instructions for setting up the
 development environment, running the applications, and building the applications for production. 
