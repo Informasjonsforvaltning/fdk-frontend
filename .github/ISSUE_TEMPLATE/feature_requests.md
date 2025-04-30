@@ -2,7 +2,7 @@
 name: Feature forespørsel
 about: Forespør en ny feature
 title: '[Feat]: kort beskrivelse av feature'
-labels: 'enhancement'
+type: 'Feature'
 ---
 
 ## 🚀 Feature forespørsel
