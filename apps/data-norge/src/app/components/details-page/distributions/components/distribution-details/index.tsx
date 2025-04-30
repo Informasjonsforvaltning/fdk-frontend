@@ -40,7 +40,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 </dd>
                 <dt>{dictionaries.detailsPage.distributions.details.accessURL}:</dt>
                 <dd>
-                    {distribution.accessURL ? (
+                    {distribution.accessURL?.at(0) ? (
                         <Link href={distribution.accessURL.at(0)}>{distribution.accessURL.at(0)}</Link>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
@@ -48,10 +48,13 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 </dd>
                 <dt>{dictionaries.detailsPage.distributions.details.downloadURL}:</dt>
                 <dd>
-                    {distribution.downloadURL ? (
+                    {distribution.downloadURL?.at(0) ? (
                         <HStack style={{justifyContent:'space-between'}}>
                             <Link href={distribution.downloadURL.at(0)}>{distribution.downloadURL.at(0)}</Link>
-                            <DatasetPreviewWidget downloadUrl={distribution.downloadURL.at(0)} />
+                            <DatasetPreviewWidget
+                                downloadUrl={distribution.downloadURL?.at(0) as string}
+                                rows={100}
+                            />
                         </HStack>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>

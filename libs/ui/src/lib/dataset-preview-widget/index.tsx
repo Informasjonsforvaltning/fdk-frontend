@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Tag, Spinner, Button } from '@digdir/designsystemet-react';
+import { Tag, Spinner, Button, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
 import {
 	fetchCsrfToken,
 	fetchDatasetPreview
@@ -64,8 +64,18 @@ const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWid
 			}
 			{
 				error &&
-				<Tag size='sm' color='warning'>
-					⚠️ Forhåndsvisning ikke tilgjengelig
+				<Tag size='sm' color='info'>
+					Forhåndsvisning ikke tilgjengelig&nbsp;
+					<HelpText
+		                title={''}
+		                size='sm'
+		                style={{ transform: 'scale(0.75)' }}
+		            >
+		                <Paragraph size='sm'>asdad</Paragraph>
+		                <Paragraph size='sm'>
+		                    <Link href='/docs/finding-data/access-data'>Les mer her</Link>
+		                </Paragraph>
+		            </HelpText>
 				</Tag>
 			}
 			{

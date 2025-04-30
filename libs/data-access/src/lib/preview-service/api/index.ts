@@ -1,4 +1,4 @@
-export const fetchCsrfToken = async (baseUri) => {
+export const fetchCsrfToken = async (baseUri: string) => {
 	const endpoint = `${baseUri}/preview/csrf`;
 	const response = await fetch(endpoint, {
         method: 'GET',
@@ -13,7 +13,13 @@ export const fetchCsrfToken = async (baseUri) => {
     return response.json();
 }
 
-export const fetchDatasetPreview = async (baseUri, apiKey, downloadUrl, rows, token) => {
+export const fetchDatasetPreview = async (
+	baseUri: string,
+	apiKey: string,
+	downloadUrl: string,
+	rows: number,
+	token: string
+) => {
 	const endpoint = `${baseUri}/preview`;
 	const response = await fetch(endpoint, {
         method: 'POST',
