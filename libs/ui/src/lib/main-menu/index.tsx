@@ -89,15 +89,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
                     <ul>
                         {data.help.map((item) => (
                             <li key={item.href}>
-                                <Link href={item.href}>
-                                    {item.title}
-                                    {item.external && (
-                                        <ExternalLinkIcon
-                                            aria-hidden
-                                            fontSize='1em'
-                                        />
-                                    )}
-                                </Link>
+                                <Link href={item.href}>{item.title}</Link>
                             </li>
                         ))}
                     </ul>
