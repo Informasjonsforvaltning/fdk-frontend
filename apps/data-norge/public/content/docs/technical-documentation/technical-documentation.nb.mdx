@@ -1,0 +1,77 @@
+---
+title: Teknisk dokumentasjon - data.norge.no
+description: Overordnet informasjon om tekniske aspekter ved data.norge.no
+---
+
+# Teknisk informasjon
+
+<Ingress size='xs'>Her finner du overordnet informasjon om tekniske aspekter ved data.norge.no.</Ingress>
+
+## Om data.norge.no
+
+Data.norge.no er Norges nasjonale dataportal. Dataportalen består av flere datakataloger som er basert på nasjonale standarder og spesifikasjoner. Katalogene fylles med informasjon gjennom å høste virksomheters egne kataloger, enten de drifter dem lokalt hos seg eller om de bruker registreringsløsningen som tilbys av data.norge.no.
+
+### Flyt fra registrering til portal
+![Forenklet diagram over flyt fra registrering til portal](https://cms.fellesdatakatalog.digdir.no/uploads/Forenklet_diagram_over_flyt_fra_registrering_til_portal_nb_11772cf41d.png) 
+Data kan registreres enten i lokale eller sektorielle datakataloger som driftes av en virksomhet eller sektor, eller i datakatalogen som driftes av data.norge.no (Registrering). Registrering støtter registrering av datasett, begrep, API-er, informasjonsmodeller og tjenester. Høsteren høster datasett, begrep, API-er, informasjonsmodeller, tjenester og hendelser fra datakatalogene automatisk. Portalen lytter til hendelser fra høsteren og tilbyr søk og oversikt over datasett, begrep, API-er, informasjonsmodeller, tjenester og hendelser.
+
+### Mer informasjon om tjenestene: 
+- [Portal (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-portal)
+- [Høsteløsningen (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-harvesting)
+- [Registreringsløsningen (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-registration)
+
+### Katalogene i dataportalen:
+- [Datasett](/catalogs/datasets)
+- [Begrep](/catalogs/concepts)
+- [API-er](/catalogs/data-services)
+- [Informasjonsmodeller](/catalogs/information-models)
+- [Tjenester og hendelser](/catalogs/public-services-and-events)
+
+Du kan lese mer overordnet om Data.norge.no og dets formål på [Om data.norge.no](/about/)
+
+## Åpen kildekode
+
+Kildekoden til Data.norge.no ligger åpent tilgjengelig på [Github-organisasjonen Informasjonsforvaltning](https://github.com/Informasjonsforvaltning). 
+For å få oversikt over hvordan repositoryene henger sammen, kan du gå til [Arkitekturdokumentasjonen på Github](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation).
+
+### Lisens
+
+All vår kildekode har den åpne lisensen [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). Eksterne bibliotek kan ha en annen lisens. Vi anbefaler at du sjekker opp gjeldende lisens for eksterne bibliotek før du tar dem i bruk. 
+
+## Teknologier
+
+De teknologiene som er mest brukt er:
+* Språk: Python, Kotlin, Typescript, Rust 
+* Rammeverk: React, Next.js, Spring
+* Databaser/datastrømming: Postgres, MongoDB, Kafka
+* Designsystem: [Designsystemet](https://www.designsystemet.no/)
+
+## Personvern, sikkerhet og universell utforming
+
+### Personvern
+Data.norge.no er underlagt norsk lovgiving om behandling av personopplysninger. 
+[Personopplysningsloven](https://lovdata.no/dokument/NL/lov/2018-06-15-38) gjennomfører EUs personvernsforordning (GDPR) i norsk rett.
+
+Det behandles minimalt av personopplysninger i løsningene i dag, og det gjelder kun registreringsløsningen og høsteløsningen.
+
+### Sikkerhet
+Vi har et stort fokus på sikkerhet og følger [Digdirs prinsipper for sikkerhet i utvikling](https://baksia.digdir.no/produktleveransemodell/prinsipper/sikkerhet/)
+
+#### Vi bruker følgende verktøy for å skanne etter sårbarheter i koden:
+- Dependabot
+- Pip-audit for Python
+- Npm-audit for JavaScript/Typescript
+- Github Security Alerts (CodeQL, Dependabot)
+- Synopsys Polaris (DAST)
+- Prometheus og Trivy for Docker images
+
+### Universell utforming
+Som offentlig virksomhet må Digdir tilby løsninger som minimum støtter EUs webdirektiv (WAD) og WCAG 2.1 AA. I tillegg må hvert nettsted erklære etterlevelse av kravene gjennom en tilgjengelighetserklæring. Dette er nærmere beskrevet i [Forskrift om universell utforming av informasjons- og kommunikasjonsteknologiske (IKT)-løsninger](https://lovdata.no/dokument/SF/forskrift/2013-06-21-732) og på [EUs webdirektiv (WAD) (uutilsynet.no)](https://www.uutilsynet.no/webdirektivet-wad/eus-webdirektiv-wad/265).
+
+[Tilgjengelighetserklæring for data.norge.no](https://uustatus.no/nb/erklaringer/publisert/8020b962-b706-4cdf-ab8b-cdb5f480a696)
+
+#### Vi bruker følgende verktøy for å finne WCAG-brudd:
+- Siteimprove
+- Pa11y
+
+I tillegg tester vi manuelt for å finne feil som ikke kan avdekkes av verktøyene. 
