@@ -29,8 +29,8 @@ import {
     Tag,
     type TagProps,
 } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import MdxPage from '../mdx-page';
 import MdxHeading from '../mdx-heading';
@@ -183,10 +183,9 @@ export default async function DocsPage(pageProps: DocsPageProps) {
             a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
                 if (rest.href?.startsWith('http')) {
                     return (
-                        <Link {...rest}>
+                        <ExternalLink {...rest}>
                             {children}
-                            <ExternalLinkIcon fontSize='1em' />
-                        </Link>
+                        </ExternalLink>
                     );
                 } else if (rest.href?.startsWith('/docs')) {
                     return (

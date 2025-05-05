@@ -1,9 +1,8 @@
-import { Link } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { i18n, type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type DataService } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import detailsPageStyles from '../../../details-page.module.scss';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
@@ -42,9 +41,9 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                 <dl key={endpointURL}>
                                     <dt>{dictionary.apis.details.url}:</dt>
                                     <dd>
-                                        <Link href={endpointURL}>
-                                            {endpointURL} <ExternalLinkIcon aria-hidden />
-                                        </Link>
+                                        <ExternalLink href={endpointURL}>
+                                            {endpointURL}
+                                        </ExternalLink>
                                     </dd>
                                     <dt>{dictionary.apis.details.description}:</dt>
                                     <dd>
@@ -71,9 +70,9 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <ul>
                             {api.page.map((page) => (
                                 <li key={page}>
-                                    <Link href={page}>
-                                        {page} <ExternalLinkIcon aria-hidden />
-                                    </Link>
+                                    <ExternalLink href={page}>
+                                        {page}
+                                    </ExternalLink>
                                 </li>
                             ))}
                         </ul>

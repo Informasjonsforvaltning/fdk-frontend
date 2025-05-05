@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import HStack from '@fdk-frontend/ui/hstack';
 import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
 import { type DatasetType } from '@fdk-frontend/fdk-types';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
@@ -92,9 +92,9 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                 <ul>
                                     {dataset.landingPage.map((page) => (
                                         <li key={page}>
-                                            <Link href={page}>
-                                                {page} <ExternalLinkIcon aria-hidden />
-                                            </Link>
+                                            <ExternalLink href={page}>
+                                                {page}
+                                            </ExternalLink>
                                         </li>
                                     ))}
                                 </ul>
@@ -112,9 +112,9 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                 <ul>
                                     {dataset.page.map((page) => (
                                         <li key={page}>
-                                            <Link href={page}>
-                                                {page} <ExternalLinkIcon aria-hidden />
-                                            </Link>
+                                            <ExternalLink href={page}>
+                                                {page}
+                                            </ExternalLink>
                                         </li>
                                     ))}
                                 </ul>

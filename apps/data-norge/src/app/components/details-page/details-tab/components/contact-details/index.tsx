@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
@@ -43,10 +43,9 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 <dt>{dictionary.details.contactPoint.uri}:</dt>
                                 <dd>
                                     {contactPoint.hasURL ? (
-                                        <Link href={contactPoint.hasURL}>
+                                        <ExternalLink href={contactPoint.hasURL}>
                                             {contactPoint.hasURL}
-                                            <ExternalLinkIcon aria-hidden />
-                                        </Link>
+                                        </ExternalLink>
                                     ) : (
                                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                     )}
