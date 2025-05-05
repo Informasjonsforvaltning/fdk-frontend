@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, Tag, Heading } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon, Chat2Icon } from '@navikt/aksel-icons';
+import { Chat2Icon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import HStack from '@fdk-frontend/ui/hstack';
 import { Subtext } from '@fdk-frontend/ui/typography';
 import IconBadge from '@fdk-frontend/ui/icon-badge';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import styles from '../../community-tab.module.scss';
 
 export type TopicRowProps = {
@@ -33,12 +34,12 @@ const TopicRow = ({
                         level={3}
                         size='xxsmall'
                     >
-                        <Link
+                        <ExternalLink
                             href={`${communityBaseUri}/topic/${topic.slug}`}
                             className={styles.threadLink}
                         >
-                            {topic.title} <ExternalLinkIcon aria-hidden />
-                        </Link>
+                            {topic.title}
+                        </ExternalLink>
                     </Heading>
                     <HStack style={{ gap: '0.5rem' }}>
                         <Tag

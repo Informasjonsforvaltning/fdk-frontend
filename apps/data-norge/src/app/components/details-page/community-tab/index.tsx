@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import { Heading, Button, Link, Paragraph, Alert } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import Badge from '@fdk-frontend/ui/badge';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import HStack from '@fdk-frontend/ui/hstack';
 import VStack from '@fdk-frontend/ui/vstack';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
@@ -66,10 +66,9 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
                             size='sm'
                             asChild
                         >
-                            <Link href={communityBaseUri}>
-                                {dictionary.community.notice.gotoLink}&nbsp;
-                                <ExternalLinkIcon aria-hidden />
-                            </Link>
+                            <ExternalLink href={communityBaseUri}>
+                                {dictionary.community.notice.gotoLink}
+                            </ExternalLink>
                         </Button>
                         <Button
                             variant='tertiary'

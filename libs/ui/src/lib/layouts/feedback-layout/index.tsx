@@ -1,10 +1,7 @@
 import { PropsWithChildren } from 'react';
-
 import { Heading, Link } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
-
+import ExternalLink from '../../external-link';
 import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
-
 import styles from './feedback-layout.module.scss';
 import { cookies } from 'next/headers';
 
@@ -41,13 +38,9 @@ const FeedbackLayout = async ({
                                 <Link href={`/${locale}/contact`}>{dictionary.feedbackBanner.contactLinkText}</Link>
                             ),
                             communityLink: (
-                                <Link href={communityBaseUri}>
-                                    {dictionary.feedbackBanner.communityLinkText}&nbsp;
-                                    <ExternalLinkIcon
-                                        aria-hidden
-                                        fontSize='1em'
-                                    />
-                                </Link>
+                                <ExternalLink href={communityBaseUri}>
+                                    {dictionary.feedbackBanner.communityLinkText}
+                                </ExternalLink>
                             ),
                         })}
                     </div>

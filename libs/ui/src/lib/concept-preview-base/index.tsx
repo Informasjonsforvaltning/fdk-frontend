@@ -2,7 +2,7 @@
 
 import { PropsWithChildren } from 'react';
 import { Divider, Popover } from '@digdir/designsystemet-react';
-import { Link } from '../link';
+import ExternalLink from '../external-link';
 
 type ConceptPreviewProps = PropsWithChildren & {
     label: string;
@@ -24,12 +24,9 @@ const ConceptPreviewBase = ({ label, definition, uri, goToDataNorgeText, childre
                     <Divider />
                     {definition}
                     <Divider />
-                    <Link
-                        external
-                        href={uri}
-                    >
+                    <ExternalLink href={uri}>
                         {goToDataNorgeText}
-                    </Link>
+                    </ExternalLink>
                 </Popover.Content>
             </Popover>
         </>

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Heading, Link, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import { Heading, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import HStack from '@fdk-frontend/ui/hstack';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -41,10 +41,9 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                     {dataset.qualifiedAttributions.map((attribution: any, i: number) => (
                                         <li key={`attribution-${i}`}>
                                             {attribution.agent.uri ? (
-                                                <Link href={attribution.agent.uri}>
+                                                <ExternalLink href={attribution.agent.uri}>
                                                     {printLocaleValue(locale, attribution.agent.prefLabel)}
-                                                    <ExternalLinkIcon aria-hidden />
-                                                </Link>
+                                                </ExternalLink>
                                             ) : (
                                                 printLocaleValue(locale, attribution.agent.prefLabel)
                                             )}
@@ -188,10 +187,9 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                         if (spatial.prefLabel && spatial.uri) {
                                             return (
                                                 <li key={`spatial-${i}`}>
-                                                    <Link href={spatial.uri}>
+                                                    <ExternalLink href={spatial.uri}>
                                                         {printLocaleValue(locale, spatial?.prefLabel)}
-                                                        <ExternalLinkIcon aria-hidden />
-                                                    </Link>
+                                                    </ExternalLink>
                                                 </li>
                                             );
                                         } else if (spatial.prefLabel) {
@@ -203,10 +201,9 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                         } else if (spatial.uri) {
                                             return (
                                                 <li key={`spatial-${i}`}>
-                                                    <Link href={spatial.uri}>
+                                                    <ExternalLink href={spatial.uri}>
                                                         {spatial.uri}
-                                                        <ExternalLinkIcon aria-hidden />
-                                                    </Link>
+                                                    </ExternalLink>
                                                 </li>
                                             );
                                         }
@@ -276,10 +273,9 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 <ol>
                                     {dataset?.conformsTo?.map((item: any, i: number) => (
                                         <li key={item.uri}>
-                                            <Link href={item.uri}>
+                                            <ExternalLink href={item.uri}>
                                                 {printLocaleValue(locale, item?.prefLabel) || item.uri}
-                                                <ExternalLinkIcon aria-hidden />
-                                            </Link>
+                                            </ExternalLink>
                                         </li>
                                     ))}
                                 </ol>

@@ -4,9 +4,8 @@ import React from 'react';
 import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Heading } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-
+import ExternalLink from '../external-link';
 import styles from './main-menu.module.scss';
 import GithubLogo from './images/github-logo';
 import getMainMenuData from './data';
@@ -131,16 +130,16 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
                     <ul>
                         {data.about.map((item) => (
                             <li key={item.href}>
-                                <Link href={item.href}>
-                                    {item.href.startsWith('https://github.com') && <GithubLogo />}
-                                    {item.title}
-                                    {item.external && (
-                                        <ExternalLinkIcon
-                                            aria-hidden
-                                            fontSize='1em'
-                                        />
-                                    )}
-                                </Link>
+                                {
+                                    item.external ?
+                                    <ExternalLink href={item.href}>
+                                        {item.href.startsWith('https://github.com') && <GithubLogo style={{marginRight:'0.125em'}} />}
+                                        {item.title}
+                                    </ExternalLink> :
+                                    <Link href={item.href}>
+                                        {item.title}
+                                    </Link>
+                                }
                             </li>
                         ))}
                     </ul>

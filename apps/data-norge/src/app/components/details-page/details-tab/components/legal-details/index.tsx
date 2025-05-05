@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Heading, Link } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { Heading } from '@digdir/designsystemet-react';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -18,10 +18,9 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
             <ol>
                 {legalBasis.map((legal: any) => (
                     <li key={legal.uri}>
-                        <Link href={legal.uri}>
+                        <ExternalLink href={legal.uri}>
                             {printLocaleValue(locale, legal.prefLabel)}
-                            <ExternalLinkIcon aria-hidden />
-                        </Link>
+                        </ExternalLink>
                     </li>
                 ))}
             </ol>
