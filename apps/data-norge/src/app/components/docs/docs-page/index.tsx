@@ -171,12 +171,14 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                     size='sm'
                 />
             ),
-            Ingress: (props: IngressProps) => (
+            Ingress: ({ children, ...props }: IngressProps) => (
                 <Ingress
                     asChild
                     {...props}
                     size={'md'}
-                />
+                >
+                    <div>{children}</div>
+                </Ingress>
             ),
             a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
                 if (rest.href?.startsWith('http')) {
