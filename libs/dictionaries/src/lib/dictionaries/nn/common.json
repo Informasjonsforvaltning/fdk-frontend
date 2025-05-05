@@ -58,8 +58,8 @@
             "heading": "Hjelp og rettleiing",
             "links": {
                 "community": "Datafellesskapet",
-                "documentation": "Dokumentasjon",
-                "getStarted": "Kom i gang"
+                "technical": "Teknisk dokumentasjon",
+                "userGuide": "Brukerveileiing"
             }
         },
         "tools": {

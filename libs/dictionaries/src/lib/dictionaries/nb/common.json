@@ -58,8 +58,8 @@
             "heading": "Hjelp og veiledning",
             "links": {
                 "community": "Datalandsbyen",
-                "documentation": "Dokumentasjon",
-                "getStarted": "Kom i gang"
+                "technical": "Teknisk dokumentasjon",
+                "userGuide": "Brukerveiledning"
             }
         },
         "tools": {

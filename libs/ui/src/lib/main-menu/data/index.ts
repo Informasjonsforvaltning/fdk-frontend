@@ -35,18 +35,16 @@ const getMainMenuData = (dictionary: Dictionary, locale: string) => ({
     ],
     help: [
         {
-            title: dictionary.mainMenu.help.links.getStarted,
+            title: dictionary.mainMenu.help.links.userGuide,
             href: `/${locale}/docs`,
         },
         {
-            title: dictionary.mainMenu.help.links.documentation,
-            href: `https://informasjonsforvaltning.github.io/`,
-            external: true,
+            title: dictionary.mainMenu.help.links.community,
+            href: `/${locale}/docs/community`,
         },
         {
-            title: dictionary.mainMenu.help.links.community,
-            href: `https://datalandsbyen.norge.no/`,
-            external: true,
+            title: dictionary.mainMenu.help.links.technical,
+            href: `/${locale}/technical`,
         },
     ],
     tools: [
