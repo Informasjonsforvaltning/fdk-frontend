@@ -1,0 +1,123 @@
+---
+title: Søkeendepunkt - data.norge.no
+description: Søkeendepunktet lar deg søke på data.norge.no med Elastic search.
+---
+
+# Søkeendepunkt
+
+<Ingress size='xs'>Søkeendepunktet lar deg søke på data.norge.no med Elastic search. 
+Tenesten som er ansvarleg for å handtere søk er [fdk-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-search-service).</Ingress>
+
+<Alert
+    severity='warning'
+    size='sm'
+>
+    **Viktig**: Dette API-et vert nytta internt i tenesteutviklinga på data.norge.no, og kan av den grunn bli endra over tid. Vi anbefaler ikkje å nytte dette API-et om ein er avhengig av stabilitet og konsistens.
+</Alert> 
+
+## Endepunkt i ulike miljø
+
+* Produksjonsmiljø: https://search.api.fellesdatakatalog.digdir.no/search 
+* Demomiljø:  https://search.api.demo.fellesdatakatalog.digdir.no/search
+
+##Dokumentasjon
+
+[OpenAPI-spesifikasjon for søkeendepunktet (Github)](https://raw.githubusercontent.com/Informasjonsforvaltning/fdk-search-service/main/openapi.yaml) 
+
+## Utforming av spørjingar
+
+Du kan søke mot endepunktet med heilt enkle spørjingar. I eksempelet under har vi søkt på test. Denne spørjinga vil gje treff på alle ressursar som har ordet test i tittel, beskriving eller søkeord. 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test"}'
+```
+
+### Søkbare felt
+
+Det er tre søkbare felt du kan søke på gjennom søketenesten. Desse er 'title'(tittel), 'description'(beskriving) og 'keyword'(søkeord). 
+Søket vil som utgangspunkt prøve å finne treff på spørjinga i alle tre feltane, men det er mogleg å definere kva for eit felt det skal inkludere i søket. 
+
+I eksempelet nedanfor har vi avgrensa søket til å berre søke i feltet 'description'(beskriving).
+
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search -H 'Content-type: application/json' -d '{"query":"test, "fields": {"title":false, "description":true, "keyword":false}}'
+```
+
+### Vekting av søketreff
+
+Treff i enkelte felt vert prioritert over andre, til dømes vil eit treff på tittel vektast høgare enn eit treff i feltet for beskriving. 
+
+| Felt | Vekting |
+| ----- | ----- | 
+| tittel, nøyaktig treff på frase | 30 |
+| tittel, delvis treff på frase | 15 |
+| søkeord | 5 | 
+| beskriving | 1 |
+
+La oss nytte tittelen "test søkendepunkt demo " og dei to spørjingane "test demo" og "søkeendepunkt demo". Den fyrste spørjinga vil ha to delvise treff, "test" og "demo", med ein kombinert søkeverdi på 15 + 15 = 30. 
+Den andre spørjinga vil ha tre treff, hvor to er delvise treff, "søkeendepunkt" og "demo", og eit er eit nøyaktig treff på frase, "søkeendepunkt demo", med ein kombinert søkeverdi på 15 + 15 + 30 = 60. 
+
+### Spesifikke ressurstypar
+
+Kvar ressurstype som er tilgjengelege på data.norge.no har sitt eige endepunkt.
+
+| Ressurstype | Endepunkt |
+| ----- | ----- | 
+| Datasett | '/datasets' |
+| API-ar | '/data-services' |
+| Omgrep | '/concepts' | 
+| Informasjonsmodellar | '/information-models' |
+| Tenester | '/services' |
+| Hendingar | '/events' | 
+
+I dette eksempelet går spørjinga vår mot endepunktet for datasett i demomiljøet.
+```Shell
+curl -X POST 'http://search.api.demo.fellesdatakatalog.digdir.no/search/datasets' -H 'Content-Type: application/json' -d '{"query":"test"}'
+```
+
+### Paginering
+Alle søkeresultat vil være paginert, det er mogleg å tilpasse antall treff og sidenummer med pagineringsfeltet i søket. 
+
+Eksempel på bruk av pagineringsfelt, med gjeldande side satt til nummer 5 og kor det er 10 treff på sida: 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","pagination":{"size":10,"page":5}}'
+```
+
+### Filtrering
+
+Det er mogleg å filtrere på søkeresultatet. Du finn ei oversikt over moglege søkefiltre og kva type verdiar dei godtek i OpenAPI-spesifikasjonen for søketenesten.
+
+Her har vi filtrert på feltet datatema, med verdien for miljø. 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"dataTheme":{value":["ENVI"]}}}'
+```
+
+I dette eksempelet filtrerer vi på åpne data. 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"openData":{value":true}}}'
+```
+
+Og her bruker vi format-filteret for å få treff som inneheld mediatypen JSON. 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"formats":{value":["MEDIA_TYPE application/json"]}}}'
+```
+
+### Aggregering
+
+Kvart søkeresultat vil innehalde aggregeringar av spørjinga med moglege filterverdiar. Det er alltid inkludert ein verdi for kvart filter, 
+dette er ei liste over filtreringsmoglegheitene representert i det totale søkeresultatet og ei telling av kor mange treff som treffer kvar filtreringsmoglegheit.
+
+Gitt at dette søket: 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test"}'
+```
+
+Gjev følgjande agreggering i resultatet: 
+```
+"aggregations":{"accessRights":[{"key":PUBLIC","count":5},{"key":"RESTRICTED","count"16}]}
+```
+
+Så vil det neste eksempelet gje fem treff i resultatet sitt, fordi dei aggregerte verdiane viser at spørjinga gjev fem treff kor verdien for access rights (tilgangsrettigheter) er PUBLIC (tilgjengelige for allmenta)
+og 16 kor verdien er RESTRICTED (avgrensa). 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"accessRights":{value":["PUBLIC"]}}}'
+```

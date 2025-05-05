@@ -1,0 +1,37 @@
+---
+title: Arkitektur - data.norge.no
+description: Her finner du informasjon om den overordnede arkitekturen bak data.norge.no
+---
+
+# Arkitektur
+
+<Ingress size='xs'>Her finner du informasjon om den overordnede arkitekturen bak data.norge.no.</Ingress>
+
+## Rammeverk:
+
+### C4
+
+Vi bruker [C4-modellen](https://c4model.com/) som rammeverk for å beskrive systemet på ulike abstraksjonsnivåer med et konsistent sett av notasjoner.
+
+## Diagram
+
+Sammenhengen mellom komponentene illustreres i følgende diagram:
+
+![Diagram som beskriver sammenhengen mellom komponentene på data.norge.no](https://raw.githubusercontent.com/Informasjonsforvaltning/architecture-documentation/refs/heads/main/generated/system.svg)
+En datatilbyder som er ansatt i en virksomhet i offentlig sektor registrerer og deler beskrivelser av data som virksomheten forvalter. 
+Disse kan registreres i Registrering, en datakatalog som forvaltes av data.norge.no, eller gjennom virksomhetens eller sektorens egne datakatalog. 
+
+Registrering bruker en identitets- og tilgangsløsning som snakker med en ekstern identitetstilbyder (som f.eks. ID-porten) for å autorisere brukere. Registreringsløsningen søker etter data i portal. 
+
+Høsteren høster datasett, begrep, API-er, informasjonsmodeller, tjenester og hendelser fra datakataloger automatisk, både lokale og den data.norge.no forvalter. 
+
+Portalen lytter til datahendelser fra høsteren og tilbyr søk og oversikt over datasett, begrep, API-er, informasjonsmodeller, tjenester og hendelser. 
+
+Metadatakvalitet er en tjeneste som måler datasett opp mot ulike indikatorer som er basert på [FAIR-prinsippene](https://www.openscience.no/apen-forskning/forskningsdata/fair). Metadatakvalitet lytter til datahendelser fra høsteren. 
+Portalen får en datasettkvalitetsscore fra metadatakvalitet. 
+
+En datakonsument som representerer en virksomhet, forsker eller sivilsamfunnet finner, forstår og bruker data fra offentlig sektor gjennom portalen.  
+
+Du kan lese mer om arkitekturen bak data.norge.no på [Arkitekturdokumentasjonen på Github (på engelsk)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation).
+
+Tjenestene er under stadig utvikling, dermed kan detaljene i arkitekturen endre seg over tid. 

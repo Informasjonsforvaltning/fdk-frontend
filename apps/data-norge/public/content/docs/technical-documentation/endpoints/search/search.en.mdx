@@ -1,0 +1,125 @@
+---
+title: Search endpoint - data.norge.no
+description: The search endpoint allows you to search data.norge.no using Elastic Search.
+---
+
+# Search endpoint
+
+<Ingress size='xs'>The search endpoint allows you to search data.norge.no using Elastic Search.
+The service that is responsible for handling searches is [fdk-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-search-service).</Ingress>
+
+<Alert
+    severity='warning'
+    size='sm'
+>
+    **Important**: This API is used internally in the service development on data.norge.no, and may therefore be altered over time. We do not reccomend usin this API if you are dependent on stability and consistency.
+</Alert> 
+
+## Endpoints to different environments
+
+* Production environment: https://search.api.fellesdatakatalog.digdir.no/search 
+* Demo environment:  https://search.api.demo.fellesdatakatalog.digdir.no/search
+
+##Documentation
+
+[OpenAPI-specification for the search endpoint (Github)](https://raw.githubusercontent.com/Informasjonsforvaltning/fdk-search-service/main/openapi.yaml) 
+
+## Design queries
+
+You may search the endepoint med simple queries. In the exampe below, we have searched for 'test'. This query will find matches on all resources that has the word test in title, description or keyword.  
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test"}'
+```
+
+### Searchable fields
+
+There are three searchable fields, these are title, description and keyword. 
+The service will by default try to find matches for the query in all three fields, but it is possible to define which of the fields it should include in the search body.
+
+In the example below, we have narrowed the search to only search in the field 'description'.
+
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search -H 'Content-type: application/json' -d '{"query":"test, "fields": {"title":false, "description":true, "keyword":false}}'
+```
+
+### Boosting of hits
+
+Hits from some fields will be prioritized over others, i.e. a matching hit from the title field will be prioritized over a hit from the description field. 
+
+| Field | Boost |
+| ----- | ----- | 
+| title, full phrase match | 30 |
+| title, partial match | 15 |
+| keyword | 5 | 
+| description | 1 |
+
+Take the title “Test search service” and the two queries “test service” and “search service”. The first query will have 2 partial matches “test” and “service”, with a combined search value of 15 + 15 = 30, 
+the second query will have 3 matches where two are partial, “search” and “service”, and one is a full phrase match, “search service”, with a combined search value of 15 + 15 + 30 = 60. 
+
+### Specific resource types
+
+Each resource type has it’s own endpoint.
+
+| Resource type | Endepoint |
+| ----- | ----- | 
+| Datasets | '/datasets' |
+| APIs | '/data-services' |
+| Concepts | '/concepts' | 
+| Information models | '/information-models' |
+| Services | '/services' |
+| Events | '/events' | 
+
+In this example our query goes to the endpoint for datasets in the demo environment.
+```Shell
+curl -X POST 'http://search.api.demo.fellesdatakatalog.digdir.no/search/datasets' -H 'Content-Type: application/json' -d '{"query":"test"}'
+```
+
+### Pagination
+
+All search results will be paginated, it is possible to customize the size and page number with the pagination field in the search body.
+
+Example using the pagination field, with current page set to number 5 and there are 10 hits per page:
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","pagination":{"size":10,"page":5}}'
+```
+
+### Filtering
+
+It’s possible to filter the search result, see SearchFilters in the OpenAPI specification for a list of all possible filters and what type of value they accept.
+
+In the axample below, we have filtrated on the fielt data theme with the value for environment.
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"dataTheme":{value":["ENVI"]}}}'
+```
+
+In this eksempelet, we filtrate on open data.
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"openData":{value":true}}}'
+```
+
+Og here we use the vi format filter to get hits that contain the mediatype JSON. 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"formats":{value":["MEDIA_TYPE application/json"]}}}'
+```
+
+### Aggregations
+
+Each search result will include aggregations of the query for possible filter values. 
+There are always included a value for each filter, it’s a list of the filter options represented in the total search result and a count of how many hits the filter option has.
+
+Given that this search: 
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test"}'
+```
+
+Has this as the aggregation in the result: 
+```
+"aggregations":{"accessRights":[{"key":PUBLIC","count":5},{"key":"RESTRICTED","count"16}]}
+```
+
+Then the next example would therefore have five hits in its result, since the aggregations values show that the query has five hits where the value for the access rights field is PUBLIC 
+and sixteen where the value is RESTRICTED.
+
+```Shell
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"accessRights":{value":["PUBLIC"]}}}'
+```

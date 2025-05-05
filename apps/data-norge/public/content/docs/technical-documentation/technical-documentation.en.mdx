@@ -1,0 +1,79 @@
+---
+title: Technical documentation - data.norge.no
+description: High level information about technical aspects of data.norge.no
+---
+
+# Technical documentation
+
+<Ingress size='xs'>On this page, you will find high level information about technical aspects of data.norge.no.</Ingress>
+
+## About data.norge.no
+
+Data.norge.no is Norway's national data portal. The data portal consists of several data catalogs that are based on national standards and spesifications. The catalogs are filled with information through harvesting of the organizations' own catalogs, whether they host them locally, or use the registration service offered by data.norge.no.
+
+### Flow from registration to portal
+![Simplified diagram over flow from registration to portal](https://cms.fellesdatakatalog.digdir.no/uploads/Forenklet_diagram_over_flyt_fra_registrering_til_portal_en_e7f6eccda4.png) 
+Data may be registrered either in local or sectorial data catalogs that are hosted by an organization or sector, or in data catalogs that are hosted by data.norge.no (Registration). Registration supports registration of datasets, concepts, APIs, information models and services. The harvester harvests datasets, concepts, APIs, information models, services and events from the data catalogs automatically. The portal listens to events from the harvester and offers a search and overview over datasets, concepts, APIs, information models, services and events. 
+
+### More information about the services: 
+- [Portal (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-portal)
+- [Harvest service (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-harvesting)
+- [Registreration service (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-registration)
+
+### The catalogs avaliable through the data portal: 
+- [Datasets](/catalogs/datasets)
+- [Concepts](/catalogs/concepts)
+- [Data services/APIs](/catalogs/data-services)
+- [Information models](/catalogs/information-models)
+- [Services and events](/catalogs/public-services-and-events)
+
+You can read more about Data.norge.no and its purpose on [About data.norge.no](/about/)
+
+## Open source software
+
+The source code of Data.norge.no is available on [the Github organization Informasjonsforvaltning](https://github.com/Informasjonsforvaltning). 
+On our [Architecture documentation on Github](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation) you can get an overview over how the repositories are connected to each other.
+
+### License
+
+All of our code has the open license [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). External libraries may have a different license. We reccomend you to investigate the licence of external libraries before using them. 
+
+## Technologies
+
+The most used technologies are:
+* Languages: Python, Kotlin, Typescript, Rust 
+* Frameworks: React, Next.js, Spring
+* Databases/data streaming: Postgres, MongoDB, Kafka.
+* Design system: [Designsystemet](https://www.designsystemet.no/)
+
+## Privacy, security and universal design
+
+### Privacy
+Data.norge.no is subject to norwegian legislation on processing of personal data. 
+[Personopplysningsloven](https://lovdata.no/dokument/NL/lov/2018-06-15-38) implements [REGULATION (EU) 2016/679 (GDPR)](https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng) in Norwegian law.
+
+Minimal personal data is processed in the solutions today, and this data is only processed in the registration service and harvest service. More information is available in our [Terms of use](https://data.norge.no/publishing/terms-of-use).
+
+### Security
+We have a strong focus on security and follow [Digdirs prinsiples for security in development (only available in Norwegian)](https://baksia.digdir.no/produktleveransemodell/prinsipper/sikkerhet/). 
+
+#### We use following tools to scan for vulnerabilities in our code:
+- Dependabot
+- Pip-audit for Python
+- Npm-audit for JavaScript/Typescript
+- Github Security Alerts (CodeQL, Dependabot)
+- Synopsys Polaris (DAST)
+- Prometheus og Trivy for Docker images
+
+### Universal design
+As a public body, The Norwegian Digitalisation Agency has to offer services that as a minimum abides to EU's Web directive (WAD) 
+and WCAG 2.1 AA. In addition to this, each service must declare its compliance degree of these demands in an accessibility statement.
+The demands are described in greater detail in [Regulations that legislate universal design of information and communication technology (ICT) in Norway (in Norwegian)](https://lovdata.no/dokument/SF/forskrift/2013-06-21-732) and [EUs web directive (WAD) (uutilsynet.no) (in Norwegian)](https://www.uutilsynet.no/webdirektivet-wad/eus-webdirektiv-wad/265).
+
+[Accessibility statement for data.norge.no (in Norwegian)](https://uustatus.no/nb/erklaringer/publisert/8020b962-b706-4cdf-ab8b-cdb5f480a696)
+
+#### We use the following tools to find vialotions of WCAG demands:
+- Siteimprove
+- Pa11y
+
+In addition to this, we test manually to find violations that are not covered by these tools. 

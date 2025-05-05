@@ -1,0 +1,26 @@
+---
+title: Infrastruktur - data.norge.no
+description: Her finner du informasjon om infrastrukturen Data.norge.no kjører på
+---
+
+# Infrastruktur
+
+<Ingress size='xs'>Her finner du informasjon om infrastrukturen Data.norge.no kjører på. 
+Du finner informasjon om det meste av infrastrukturen i [Github-repoet fdk-infra](https://github.com/Informasjonsforvaltning/fdk-infra)</Ingress>
+
+## Hvor driftes løsningen?
+
+Løsningen driftes på Google Cloud Platform, primært i tjenesten Google Kubernetes Engine.
+
+Vi lagrer alle backuper (dvs disker og PostgreSQL) i en Multi-region, som består av medlemsstater av EU. Det vil si at backupen er lagret i minimum to av datasenterene i hhv Polen, Spania, 
+Belgia, Tyskland, Nederland, Italia, Frankrike og Finland til enhver tid, selve plasseringen er ikke permanent. 
+
+## Kjøremiljøer
+
+Løsningen er tilgjengelig i flere miljø, som hver har sitt formål. 
+
+**Produksjon** - det miljøet som inneholder de offisielle produksjonsdataene som leveres av virksomhetene. [Lenke til produksjons-miljø](https://data.norge.no) 
+
+**Demo** - det miljøet som eksterne kan teste løsningen gjennom. Inneholder testdata, i hovedsak fra fiktive virksomheter. Noen av testdataene i demo er kopier av produksjonsdata, men det meste er helt fiktive data. Dette miljøet er kun for testformål og innholdet kan være mangelfullt og feilaktig. Eksterne som ønsker å teste registrerings- og/eller høsteløsning i demo kan [ta kontakt med oss](https://data.norge.no/nb/contact). Oppgi om du ønsker å teste med en fiktiv virksomhet eller med egen virksomhet. [Lenke til demo-miljø](https://demo.fellesdatakatalog.digdir.no/)
+
+**Staging** - det interne testmiljøet for utviklingsteamet som jobber med data.norge.no. Dette miljøet vil oppleves ustabilt, da vi oppdaterer det flere ganger om dagen og funksjonalitet dermed vil endre seg ofte. Eksterne skal i utgangspunktet ikke bruke dette miljøet. 
