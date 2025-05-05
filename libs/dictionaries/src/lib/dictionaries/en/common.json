@@ -58,8 +58,8 @@
             "heading": "Help and guidance",
             "links": {
                 "community": "Community",
-                "documentation": "Documentation",
-                "getStarted": "Get started"
+                "technical": "Technical documentation",
+                "userGuide": "User guide"
             }
         },
         "tools": {
