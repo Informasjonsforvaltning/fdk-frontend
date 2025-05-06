@@ -196,7 +196,7 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
             <Alert severity='warning' size='sm' style={{marginTop:'1.5rem'}}>
                 <div>
                     <strong>{dictionary.aiBanner.aiSearchDownNotice.title}</strong><br/>
-                    {dictionary.aiBanner.aiSearchDownNotice.subtext} <Link href={`${locale}/search-all`}>{dictionary.aiBanner.aiSearchDownNotice.linkText}</Link>
+                    {dictionary.aiBanner.aiSearchDownNotice.subtext} <Link href={`/search-all`}>{dictionary.aiBanner.aiSearchDownNotice.linkText}</Link>
                 </div>
             </Alert>
         </div>
