@@ -42,6 +42,11 @@
             "label": "Om KI-søket",
             "readMoreLinkText": "Les mer om KI-søket her",
             "text": "Vårt KI-søk gjør det enkelt å finne datasett ved å bruke naturlig språk uten at du trenger å kjenne til spesifikke datasettnavn, fagtermer eller tekniske formater. Vær obs på at KI-søket kan være både ufullstendig og inneholde feil."
+        },
+        "aiSearchDownNotice": {
+            "title": "AI-søket er utilgjengelig akkurat nå",
+            "subtext": "Vi jobber med feilretting. I mellomtiden kan du",
+            "linkText": "søke etter datasett her →"
         }
     },
     "catalogsBanner": {

@@ -42,6 +42,11 @@
             "label": "About AI Search",
             "readMoreLinkText": "Read more about the AI Search here",
             "text": "Our AI Search makes it easy to find datasets using natural language without needing to know specific dataset names, technical terms, or formats. Please note that the AI Search may be both incomplete and contain errors."
+        },
+        "aiSearchDownNotice": {
+            "title": "AI search is currently unavailable",
+            "subtext": "We are working on a fix. Meanwhile you can",
+            "linkText": "search for datasets here →"
         }
     },
     "catalogsBanner": {

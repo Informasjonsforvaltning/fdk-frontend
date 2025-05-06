@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ForwardRefComponent, motion } from 'framer-motion';
-import { Textfield, Button, Spinner, ErrorMessage } from '@digdir/designsystemet-react';
+import { Textfield, Button, Spinner, ErrorMessage, Alert, Link } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
@@ -193,6 +193,12 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                     </MotionUl>
                 </MotionDiv>
             )}
+            <Alert severity='warning' size='sm' style={{marginTop:'1.5rem'}}>
+                <div>
+                    <strong>{dictionary.aiBanner.aiSearchDownNotice.title}</strong><br/>
+                    {dictionary.aiBanner.aiSearchDownNotice.subtext} <Link href={`${locale}/search-all`}>{dictionary.aiBanner.aiSearchDownNotice.linkText}</Link>
+                </div>
+            </Alert>
         </div>
     );
 };
