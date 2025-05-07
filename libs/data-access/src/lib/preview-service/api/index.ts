@@ -1,10 +1,9 @@
-export const fetchCsrfToken = async (baseUri: string) => {
+export const fetchCsrfToken = async (baseUri: string, apiKey: string) => {
 	const endpoint = `${baseUri}/dataset/preview/csrf`;
 	const response = await fetch(endpoint, {
         method: 'GET',
-        withCredentials: true,
-        headers: { Accept: 'application/json' },
-        mode: 'cors'
+        credentials: 'include',
+        headers: { Accept: 'application/json', 'X-API-KEY': apiKey }        
     });
 
     if (!response.ok) {
@@ -24,9 +23,9 @@ export const fetchDatasetPreview = async (
 	const endpoint = `${baseUri}/dataset/preview`;
 	const response = await fetch(endpoint, {
         method: 'POST',
-        withCredentials: true,
+        credentials: 'include',
         headers: {
-        	'X-CSRF-TOKEN': token,
+        	'X-XSRF-TOKEN': token,
       		'X-API-KEY': apiKey,
         	Accept: 'application/json'
         },

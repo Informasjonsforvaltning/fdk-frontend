@@ -25,7 +25,7 @@ const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWid
 
 		const getDatasetPreview = async () => {
 			try {
-				const token = await fetchCsrfToken(FDK_BASE_URI);
+				const { token } = await fetchCsrfToken(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
 				if (!token) throw new Error('Failed to get CSRF token');
 
 				console.log('token', token);
