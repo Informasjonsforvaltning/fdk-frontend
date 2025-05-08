@@ -6,7 +6,6 @@ import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
 import LlmSearch from '../llm-search';
 import Norgeskart from './components/norgeskart';
 import ScrollButton from './components/scroll-button';
-import StudentSurveryBanner from '../student-survey-banner';
 
 import styles from './frontpage-banner.module.scss';
 
@@ -38,8 +37,7 @@ const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps)
         <Norgeskart />
         <ScrollButton />
         {
-            ['nb', 'nn'].includes(locale) &&
-            <StudentSurveryBanner className={styles.bannerNotice} />
+            ['nb', 'nn'].includes(locale)
         }
     </div>
 );
