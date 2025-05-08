@@ -36,9 +36,6 @@ const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps)
         <div className={styles.gradient} />
         <Norgeskart />
         <ScrollButton />
-        {
-            ['nb', 'nn'].includes(locale)
-        }
     </div>
 );
 
