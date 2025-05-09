@@ -81,7 +81,7 @@
         "@nx/eslint-plugin": "^20.7.2",
         "@nx/jest": "^20.7.2",
         "@nx/js": "^20.7.2",
-        "@nx/next": "^20.7.2",
+        "@nx/next": "^20.8.1",
         "@nx/playwright": "^20.7.2",
         "@nx/react": "^20.7.2",
         "@nx/storybook": "^20.7.2",
