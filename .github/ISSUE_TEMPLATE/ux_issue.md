@@ -1,8 +1,9 @@
 ---
 name: UX issue
 about: Lag et UX issue
-title: '[UX]: kort beskrivelse av problemet'
+title: '[UX]: kort beskrivelse av saken'
 labels: 'ux'
+type: 'Feature'
 ---
 
 ## 🪄 UX rapport
