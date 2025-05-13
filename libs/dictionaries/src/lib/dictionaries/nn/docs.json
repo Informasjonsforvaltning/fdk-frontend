@@ -35,7 +35,7 @@
         "/docs/records-of-processing-activities": "Behandlingsoversikt",
         "/docs/records-of-processing-activities/how-to-login": "Korleis logge inn",
         "/docs/records-of-processing-activities/how-to-export-data": "Korleis hente ut dine data" ,
-        "/docs/technical": "Teknisk dokumentasjon" ,
+        "/technical": "Teknisk dokumentasjon" ,
         "/technical/architecture": "Arkitektur" ,
         "/technical/infrastructure": "Infrastruktur" ,
         "/technical/api": "API" ,
