@@ -6,7 +6,6 @@ const OpenLicenseTag = ({ dictionary }: { dictionary: Dictionary }) => {
         <Tag
             color='success'
             size='sm'
-            style={{ display: 'inline-flex', marginLeft: '0.5rem' }}
         >
             {dictionary.openLicenseTag.label}
             &nbsp;

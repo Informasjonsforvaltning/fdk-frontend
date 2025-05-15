@@ -76,8 +76,8 @@ spec:
                       - name: FDK_DATASET_PREVIEW_API_KEY
                         valueFrom:
                             secretKeyRef:
-                                name: commonurl-staging
-                                key: FDK_DATASET_PREVIEW_API_KEY
+                                name: fdk-dataset-preview-service
+                                key: API_KEY
                       - name: NEXT_PUBLIC_FDK_BASE_URI
                         valueFrom:
                             secretKeyRef:

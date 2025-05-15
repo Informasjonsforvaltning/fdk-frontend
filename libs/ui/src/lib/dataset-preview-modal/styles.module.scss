@@ -1,0 +1,28 @@
+.modal {
+}
+
+.dialog {
+    max-width: 80vw;
+    animation: none;
+}
+
+.content {
+    max-height: 60vh;
+    background: #fafafa;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.arrowIcon {
+    float: left;
+    margin-right: 0.5rem;
+}
+
+.maxRowsNotice {
+    display: inline-flex;
+    margin-left: 0.5rem;
+}
+
+.headerWrapper {
+    margin-bottom: 0.5rem;
+}
