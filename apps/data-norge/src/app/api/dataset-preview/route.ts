@@ -14,40 +14,35 @@ export const POST = async function (request: Request) {
 
     try {
         // console.log(FDK_BASE_URI, TEMP_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
-
+        
         const { downloadUrl } = await request.json();
+        const referer = request.headers.get('referer') ?? '';
 
         console.log('downloadUrl', downloadUrl);
         
         const csrfResponse = await fetchCsrfToken({
             baseUri: TEMP_BASE_URI,
-            apiKey: FDK_DATASET_PREVIEW_API_KEY
+            apiKey: `${FDK_DATASET_PREVIEW_API_KEY}`,
+            referer 
         });
 
         const { token } = await csrfResponse.json();
-        
-        console.log('token', token);
-
-        const cookies = csrfResponse.header?.get('set-cookie') ||
-            csrfResponse.headers.get('Set-Cookie') ||
-            '';
-
-        console.log('cookies', cookies);
-
+        const cookies = csrfResponse.headers.getSetCookie();
         const previewData = await fetchDatasetPreview({
             baseUri: TEMP_BASE_URI,
-            apiKey: FDK_DATASET_PREVIEW_API_KEY,
+            apiKey: `${FDK_DATASET_PREVIEW_API_KEY}`,
             url: downloadUrl,
+            rows: 100,
             token,
-            cookies
+            cookies,
+            referer
         });
 
-        console.log('previewData', previewData);
-
-        return new Response(previewData, { status: 200 });
+        console.log('preview data: ', previewData);
+        return new Response(JSON.stringify(previewData), { status: 200 });
 
     } catch (err) {
         console.error('Failed to get dataset preview', err);
-        return new Response('Invalid request body', { status: 500 });
+        return new Response('Failed to get dataset preview', { status: 500 });
     }
 };

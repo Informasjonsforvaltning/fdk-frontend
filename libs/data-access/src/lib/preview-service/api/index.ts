@@ -1,16 +1,18 @@
 type DatasetPreviewCsrfProps = {
     baseUri: string;
     apiKey: string;
+    referer: string;
 }
 
-export const fetchCsrfToken = async ({ baseUri, apiKey }: DatasetPreviewCsrfProps) => {
+export const fetchCsrfToken = async ({ baseUri, apiKey, referer }: DatasetPreviewCsrfProps) => {
 	const endpoint = `${baseUri}/preview/csrf`;
 	const response = await fetch(endpoint, {
         method: 'GET',
         credentials: 'include',
         headers: { 
             Accept: 'application/json',
-            'X-API-KEY': apiKey
+            'X-API-KEY': apiKey,
+            Referer: referer
         }
     });
 
@@ -27,7 +29,8 @@ type DatasetPreviewOptions = {
     url: string,
     rows: number,
     token: string,
-    cookies: string
+    cookies: string[],
+    referer: string
 };
 
 export const fetchDatasetPreview = async ({
@@ -36,30 +39,30 @@ export const fetchDatasetPreview = async ({
     url,
     rows = 100,
     token,
-    cookies
+    cookies,
+    referer
 }: DatasetPreviewOptions) => {
 	const endpoint = `${baseUri}/preview`;
-    const options = {
+    const response = await fetch(endpoint, {
         method: 'POST',
         credentials: 'include',
         headers: {
             Accept: 'application/json',
-            "Content-Type": 'application/json',
-            Cookie: cookies,
+            "Content-Type": 'application/json',            
             'X-XSRF-TOKEN': token,
-            'X-API-KEY': apiKey
+            'X-API-KEY': apiKey,
+            Cookie: cookies.join('; '),
+            Referer: referer
         },
         body: JSON.stringify({
             url,
             rows
         }),
-    };
-    console.log(options);
-	const response = await fetch(endpoint, options);
+    });
 
     if (!response.ok) {
         throw new Error(`Fetch failed: ${response.status} ${response.statusText}`);
     }
 
-    return response;
+    return response.json();
 };

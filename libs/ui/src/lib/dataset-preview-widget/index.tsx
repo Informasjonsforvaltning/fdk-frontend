@@ -33,7 +33,7 @@ const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWid
 					body: JSON.stringify({ downloadUrl })
 				});
 
-				console.log(result);
+				console.log('Preview result', result);
 
 				// const { token } = await fetchCsrfToken(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
 				// if (!token) throw new Error('Failed to get CSRF token');
