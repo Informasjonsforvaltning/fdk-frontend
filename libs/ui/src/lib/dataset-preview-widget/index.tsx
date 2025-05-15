@@ -25,19 +25,29 @@ const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWid
 
 		const getDatasetPreview = async () => {
 			try {
-				const { token } = await fetchCsrfToken(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
-				if (!token) throw new Error('Failed to get CSRF token');
 
-				console.log('token', token);
+				downloadUrl = 'https://www.udir.no/contentassets/1124267533de49849bc04b658bc44207/np-regning-5-trinn_2023.csv';
 
-				downloadUrl = 'https://www.nkom.no/files/nummerplaner/E164.csv';
+				const result = await fetch('/api/dataset-preview', {
+					method: 'POST',
+					body: JSON.stringify({ downloadUrl })
+				});
 
-				const previewData = await fetchDatasetPreview(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY, downloadUrl, rows, token);
-				if (!previewData) throw new Error('Failed to get dataset preview');
+				console.log(result);
 
-				setData(previewData);
+				// const { token } = await fetchCsrfToken(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
+				// if (!token) throw new Error('Failed to get CSRF token');
 
-				console.log('preview', previewData);
+				// console.log('token', token);
+
+				// downloadUrl = 'https://www.nkom.no/files/nummerplaner/E164.csv';
+
+				// const previewData = await fetchDatasetPreview(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY, downloadUrl, rows, token);
+				// if (!previewData) throw new Error('Failed to get dataset preview');
+
+				// setData(previewData);
+
+				// console.log('preview', previewData);
 			} catch (err) {
 				console.log(err);
 				setError(true);
