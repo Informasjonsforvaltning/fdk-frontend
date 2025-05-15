@@ -53,7 +53,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                             <Link href={distribution.downloadURL.at(0)}>{distribution.downloadURL.at(0)}</Link>
                             <DatasetPreviewWidget
                                 downloadUrl={distribution.downloadURL?.at(0) as string}
-                                rows={100}
+                                title={printLocaleValue(locale, distribution.title)}
                             />
                         </HStack>
                     ) : (

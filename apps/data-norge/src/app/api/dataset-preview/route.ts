@@ -13,7 +13,7 @@ export const POST = async function (request: Request) {
     const TEMP_BASE_URI = 'http://localhost:8080';
 
     try {
-        // console.log(FDK_BASE_URI, TEMP_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
+        console.log(FDK_BASE_URI, TEMP_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
         
         const { downloadUrl } = await request.json();
         const referer = request.headers.get('referer') ?? '';

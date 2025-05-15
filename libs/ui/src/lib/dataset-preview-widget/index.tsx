@@ -2,21 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import { Tag, Spinner, Button, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
-import {
-	fetchCsrfToken,
-	fetchDatasetPreview
-} from '@fdk-frontend/data-access/server';
-import { useEnvironmentVariables } from '@fdk-frontend/utils';
+import { EyeIcon } from '@navikt/aksel-icons';
 import styles from './styles.module.scss';
+import DatasetPreviewModal from '../dataset-preview-modal/';
 
 type DatasetPreviewWidgetProps = {
 	downloadUrl: string;
-	rows: number;
+	title: string;
 }
 
-const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
+const DatasetPreviewWidget = ({ downloadUrl, title, ...props }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
 
-	const { FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY } = useEnvironmentVariables();
 	const [ loading, setLoading ] = useState(true);
 	const [ error, setError ] = useState(false);
 	const [ data, setData ] = useState<any>(undefined);
@@ -25,29 +21,17 @@ const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWid
 
 		const getDatasetPreview = async () => {
 			try {
-
-				downloadUrl = 'https://www.udir.no/contentassets/1124267533de49849bc04b658bc44207/np-regning-5-trinn_2023.csv';
-
 				const result = await fetch('/api/dataset-preview', {
 					method: 'POST',
 					body: JSON.stringify({ downloadUrl })
 				});
 
-				console.log('Preview result', result);
+				const json = await result.json();
 
-				// const { token } = await fetchCsrfToken(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
-				// if (!token) throw new Error('Failed to get CSRF token');
+				console.log('Preview result', json);
 
-				// console.log('token', token);
+				setData(json);
 
-				// downloadUrl = 'https://www.nkom.no/files/nummerplaner/E164.csv';
-
-				// const previewData = await fetchDatasetPreview(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY, downloadUrl, rows, token);
-				// if (!previewData) throw new Error('Failed to get dataset preview');
-
-				// setData(previewData);
-
-				// console.log('preview', previewData);
 			} catch (err) {
 				console.log(err);
 				setError(true);
@@ -83,16 +67,24 @@ const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWid
 		                size='sm'
 		                style={{ transform: 'scale(0.75)' }}
 		            >
-		                <Paragraph size='sm'>asdad</Paragraph>
 		                <Paragraph size='sm'>
-		                    <Link href='/docs/finding-data/access-data'>Les mer her</Link>
+		                	Forhåndsvisning er kun tilgjengelig for datakilder med <code>CSV</code> og <code>XLS/XLSX</code> format.
 		                </Paragraph>
 		            </HelpText>
 				</Tag>
 			}
 			{
 				data &&
-				<Button>Vis forhåndsvisning</Button>
+				<DatasetPreviewModal
+					title={title}
+					data={data}
+					downloadUrl={downloadUrl}
+					trigger={
+						<Button size='sm' variant='secondary'>
+							<EyeIcon fontSize='1.2em' /> Vis forhåndsvisning
+						</Button>
+					}
+				/>
 			}
 		</div>
 	);
