@@ -1,71 +1,59 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Tag, Spinner, Button, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
-import {
-	fetchCsrfToken,
-	fetchDatasetPreview
-} from '@fdk-frontend/data-access/server';
-import { useEnvironmentVariables } from '@fdk-frontend/utils';
+import { Tag, Spinner, Button, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import { EyeIcon } from '@navikt/aksel-icons';
 import styles from './styles.module.scss';
+import DatasetPreviewModal from '../dataset-preview-modal/';
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 type DatasetPreviewWidgetProps = {
-	downloadUrl: string;
-	rows: number;
-}
+    downloadUrl: string;
+    title: string;
+    dictionary: Dictionary;
+};
 
-const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
+const DatasetPreviewWidget = ({
+    downloadUrl,
+    title,
+    dictionary,
+    ...props
+}: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [data, setData] = useState<any>(undefined);
 
-	const { FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY } = useEnvironmentVariables();
-	const [ loading, setLoading ] = useState(true);
-	const [ error, setError ] = useState(false);
-	const [ data, setData ] = useState<any>(undefined);
+    useEffect(() => {
+        const getDatasetPreview = async () => {
+            try {
+                const response = await fetch('/api/dataset-preview', {
+                    method: 'POST',
+                    body: JSON.stringify({ downloadUrl }),
+                });
 
-	useEffect(() => {
+                if (!response.ok) throw new Error('Request failed');
 
-		const getDatasetPreview = async () => {
-			try {
+                const json = await response.json();
+                setData(json);
+            } catch (err) {
+                console.log(err);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-				downloadUrl = 'https://www.udir.no/contentassets/1124267533de49849bc04b658bc44207/np-regning-5-trinn_2023.csv';
+        getDatasetPreview();
+    }, []);
 
-				const result = await fetch('/api/dataset-preview', {
-					method: 'POST',
-					body: JSON.stringify({ downloadUrl })
-				});
-
-				console.log('Preview result', result);
-
-				// const { token } = await fetchCsrfToken(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY);
-				// if (!token) throw new Error('Failed to get CSRF token');
-
-				// console.log('token', token);
-
-				// downloadUrl = 'https://www.nkom.no/files/nummerplaner/E164.csv';
-
-				// const previewData = await fetchDatasetPreview(FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY, downloadUrl, rows, token);
-				// if (!previewData) throw new Error('Failed to get dataset preview');
-
-				// setData(previewData);
-
-				// console.log('preview', previewData);
-			} catch (err) {
-				console.log(err);
-				setError(true);
-			} finally {
-				setLoading(false);
-			}
-		}
-
-		getDatasetPreview();
-
-	}, []);
-
-	return (
-		<div className={styles.wrapper} {...props}>
-			{
-				loading &&
-				<div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {`Genererer forhåndsvisning...`}
+    return (
+        <div
+            className={styles.wrapper}
+            {...props}
+        >
+            {loading && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    {dictionary.datasetPreview.generatingPreview}
                     <Spinner
                         title={'loading'}
                         size='xs'
@@ -73,29 +61,41 @@ const DatasetPreviewWidget = ({ downloadUrl, rows, ...props }: DatasetPreviewWid
                         aria-hidden={true}
                     />
                 </div>
-			}
-			{
-				error &&
-				<Tag size='sm' color='info'>
-					Forhåndsvisning ikke tilgjengelig&nbsp;
-					<HelpText
-		                title={''}
-		                size='sm'
-		                style={{ transform: 'scale(0.75)' }}
-		            >
-		                <Paragraph size='sm'>asdad</Paragraph>
-		                <Paragraph size='sm'>
-		                    <Link href='/docs/finding-data/access-data'>Les mer her</Link>
-		                </Paragraph>
-		            </HelpText>
-				</Tag>
-			}
-			{
-				data &&
-				<Button>Vis forhåndsvisning</Button>
-			}
-		</div>
-	);
-}
+            )}
+            {error && !data?.table && (
+                <Tag
+                    size='sm'
+                    color='info'
+                >
+                    {dictionary.datasetPreview.previewNotAvailable}&nbsp;
+                    <HelpText
+                        title={''}
+                        size='sm'
+                        style={{ transform: 'scale(0.75)' }}
+                    >
+                        <Paragraph size='sm'>{dictionary.datasetPreview.previewNotAvailableHelpText}</Paragraph>
+                    </HelpText>
+                </Tag>
+            )}
+            {!error && data?.table && (
+                <DatasetPreviewModal
+                    title={title}
+                    data={data}
+                    downloadUrl={downloadUrl}
+                    trigger={
+                        <Button
+                            size='sm'
+                            variant='secondary'
+                        >
+                            <EyeIcon fontSize='1.2em' />
+                            {dictionary.datasetPreview.showPreviewButton}
+                        </Button>
+                    }
+                    dictionary={dictionary}
+                />
+            )}
+        </div>
+    );
+};
 
 export default DatasetPreviewWidget;

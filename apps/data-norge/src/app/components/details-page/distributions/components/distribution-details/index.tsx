@@ -2,14 +2,14 @@ import { Link } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type Distribution } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
-import HStack from '@fdk-frontend/ui/hstack';
+import VStack from '@fdk-frontend/ui/vstack';
 import Box from '@fdk-frontend/ui/box';
 import DatasetPreviewWidget from '@fdk-frontend/ui/dataset-preview-widget';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import { printLocaleValue, isOpenLicense } from '@fdk-frontend/utils';
-import detailsPageStyles from '../../../details-page.module.scss';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import OpenLicenseTag from '@fdk-frontend/ui/open-license-tag';
+import detailsPageStyles from '../../../details-page.module.scss';
 
 type DistributionDetailsProps = {
     distribution: Distribution;
@@ -21,6 +21,11 @@ type DistributionDetailsProps = {
 };
 
 const DistributionDetails = ({ distribution, locale, dictionaries }: DistributionDetailsProps) => {
+    const datasetPreviewTitle =
+        printLocaleValue(locale, distribution.title) ||
+        distribution.downloadURL?.at(0) ||
+        dictionaries.detailsPage.distributions.header.nameless;
+
     return (
         <>
             <dl>
@@ -49,13 +54,14 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.downloadURL}:</dt>
                 <dd>
                     {distribution.downloadURL?.at(0) ? (
-                        <HStack style={{justifyContent:'space-between'}}>
+                        <VStack>
                             <Link href={distribution.downloadURL.at(0)}>{distribution.downloadURL.at(0)}</Link>
                             <DatasetPreviewWidget
                                 downloadUrl={distribution.downloadURL?.at(0) as string}
-                                rows={100}
+                                title={datasetPreviewTitle}
+                                dictionary={dictionaries.detailsPage}
                             />
-                        </HStack>
+                        </VStack>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -98,12 +104,12 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dd>
                     {distribution.license ? (
                         distribution.license.map((license: any) => (
-                            <HStack style={{justifyContent:'space-between'}} key={license.uri}>
+                            <VStack key={license.uri}>
                                 <Link href={license.uri}>
                                     {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
                                 </Link>
                                 {isOpenLicense(license.uri) && <OpenLicenseTag dictionary={dictionaries.common} />}
-                            </HStack>
+                            </VStack>
                         ))
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>

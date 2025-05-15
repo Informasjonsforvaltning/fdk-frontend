@@ -5,12 +5,13 @@ import { FilesIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import HStack from '../hstack';
 
 type CopyButtonProps = {
-    labels: string[];
+    copyLabel: string;
+    copiedLabel: string;
     copyOnClick: string;
     buttonProps?: ButtonProps;
 };
 
-const CopyButton = ({ labels = ['Kopier', 'Kopiert!'], copyOnClick, buttonProps, ...props }: CopyButtonProps) => {
+const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, buttonProps, ...props }: CopyButtonProps) => {
     const [clicked, setClicked] = useState(false);
 
     const copyToClipboard = (text: string) => {
@@ -28,10 +29,10 @@ const CopyButton = ({ labels = ['Kopier', 'Kopiert!'], copyOnClick, buttonProps,
                             color='#D1F4E1'
                             fontSize='1.2em'
                         />
-                        {labels.at(1)}
+                        {copiedLabel}
                     </HStack>
                 ) : (
-                    labels.at(0)
+                    copyLabel
                 )
             }
             placement='top'
@@ -44,7 +45,7 @@ const CopyButton = ({ labels = ['Kopier', 'Kopiert!'], copyOnClick, buttonProps,
                 {...buttonProps}
             >
                 <FilesIcon aria-hidden />
-                <span className={'sr-only'}>{labels[0]}</span>
+                <span className={'sr-only'}>{copyLabel}</span>
             </Button>
         </Tooltip>
     );

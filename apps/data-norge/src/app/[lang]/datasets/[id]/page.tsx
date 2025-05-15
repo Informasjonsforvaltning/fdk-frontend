@@ -39,11 +39,7 @@ export type DetailsPageWrapperProps = {
 };
 
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
-    const {
-        FDK_BASE_URI,
-        FDK_COMMUNITY_BASE_URI,
-        FDK_DATASET_PREVIEW_API_KEY
-    } = process.env;
+    const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI, FDK_DATASET_PREVIEW_API_KEY } = process.env;
 
     const params = await props.params;
     const searchParams = await props.searchParams;

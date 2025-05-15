@@ -11,11 +11,7 @@ import {
     type SearchObject,
 } from '@fdk-frontend/fdk-types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
-import {
-    sumArrayLengths,
-    printLocaleValue,
-    EnvironmentVariablesProvider
-} from '@fdk-frontend/utils';
+import { sumArrayLengths, printLocaleValue, EnvironmentVariablesProvider } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
@@ -104,10 +100,12 @@ export default function DatasetDetailsPage({
     };
 
     return (
-        <EnvironmentVariablesProvider vars={{
-            FDK_BASE_URI: baseUri,
-            FDK_DATASET_PREVIEW_API_KEY: datasetPreviewApiKey
-        }}>
+        <EnvironmentVariablesProvider
+            vars={{
+                FDK_BASE_URI: baseUri,
+                FDK_DATASET_PREVIEW_API_KEY: datasetPreviewApiKey,
+            }}
+        >
             <div className={styles.detailsPage}>
                 <Breadcrumbs
                     dictionary={dictionaries.common}

@@ -216,5 +216,15 @@
         "inputLabel": "Ressurs URI",
         "copyButton": ["Kopier", "Kopiert!"],
         "loading": "Laster"
+    },
+    "datasetPreview": {
+        "generatingPreview": "Genererer forhåndsvisning...",
+        "previewNotAvailable": "Forhåndsvisning ikke tilgjengelig",
+        "previewNotAvailableHelpText": "Forhåndsvisning er kun tilgjengelig for datakilder med CSV og XLS/XLSX format.",
+        "showPreviewButton": "Vis forhåndsvisning",
+        "showingMaxRows": "Viser maks 100 rader",
+        "closeButton": "Lukk vindu",
+        "downloadButton": "Last ned hele datasettet",
+        "noTableData": "Ingen tabelldata tilgjengelig"
     }
 }
