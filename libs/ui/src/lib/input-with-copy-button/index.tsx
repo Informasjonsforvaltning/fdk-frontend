@@ -1,6 +1,6 @@
 import React from 'react';
-import CopyButton from '@fdk-frontend/ui/copy-button';
 import { Textfield } from '@digdir/designsystemet-react';
+import CopyButton from '../copy-button';
 import styles from './styles.module.scss';
 
 type InputWithCopyButtonProps = {

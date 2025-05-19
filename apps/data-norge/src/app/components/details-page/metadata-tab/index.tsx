@@ -120,7 +120,8 @@ const MetadataTab = ({
             </div>
             <div className={cn(styles.content, styles.article)}>
                 <CopyButton
-                    labels={[dictionary.rdf.copyButton.at(0), dictionary.rdf.copyButton.at(1)]}
+                    copyLabel={dictionary.rdf.copyButton.at(0)}
+                    copiedLabel={dictionary.rdf.copyButton.at(1)}
                     copyOnClick={source}
                 />
                 <SyntaxHighlighter
