@@ -3,8 +3,9 @@ import cn from 'classnames';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import CopyButton from '@fdk-frontend/ui/copy-button';
+import InputWithCopyButton from '@fdk-frontend/ui/input-with-copy-button';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { ToggleGroup, Heading, Spinner, Textfield, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
+import { ToggleGroup, Heading, Spinner, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
 import HStack from '@fdk-frontend/ui/hstack';
 
 import styles from './metadata-tab.module.scss';
@@ -99,18 +100,12 @@ const MetadataTab = ({
                 )}
             </div>
             <div className={styles.header}>
-                <div className={styles.urlbar}>
-                    <CopyButton
-                        labels={[dictionary.rdf.copyButton.at(0), dictionary.rdf.copyButton.at(1)]}
-                        copyOnClick={uri}
-                    />
-                    <Textfield
-                        size='md'
-                        readOnly
-                        value={uri}
-                        aria-label={dictionary.rdf.inputLabel}
-                    />
-                </div>
+                <InputWithCopyButton
+                    value={uri}
+                    inputLabel={dictionary.rdf.inputLabel}
+                    copyLabel={dictionary.rdf.copyButton.at(0)}
+                    copiedLabel={dictionary.rdf.copyButton.at(1)}
+                />
                 <div className={styles.toolbar}>
                     <ToggleGroup
                         defaultValue={contentType}

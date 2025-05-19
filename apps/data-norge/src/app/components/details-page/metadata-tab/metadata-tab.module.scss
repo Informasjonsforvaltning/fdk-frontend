@@ -19,24 +19,6 @@
                 margin-bottom: 1rem;
             }
         }
-
-        .urlbar {
-            position: relative;
-            flex-grow: 1;
-
-            :global(.fds-textfield) {
-                input[readOnly] {
-                    color: #666;
-                }
-            }
-
-            :global(.fds-btn) {
-                position: absolute;
-                top: 0.25rem;
-                right: 0.25rem;
-                z-index: 1;
-            }
-        }
     }
 
     .toolbar {
