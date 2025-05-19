@@ -7,7 +7,6 @@ import {
     TableHeaderCell,
     TableCell
 } from '@digdir/designsystemet-react';
-// import styles from './my-component.module.scss';
 
 type DatasetPreviewTableProps = {
 	tableData: any;

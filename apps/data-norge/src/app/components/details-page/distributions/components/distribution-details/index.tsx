@@ -21,6 +21,11 @@ type DistributionDetailsProps = {
 };
 
 const DistributionDetails = ({ distribution, locale, dictionaries }: DistributionDetailsProps) => {
+
+    const datasetPreviewTitle = printLocaleValue(locale, distribution.title) ||
+        distribution.downloadURL?.at(0) ||
+        dictionaries.detailsPage.distributions.header.nameless;
+
     return (
         <>
             <dl>
@@ -53,7 +58,8 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                             <Link href={distribution.downloadURL.at(0)}>{distribution.downloadURL.at(0)}</Link>
                             <DatasetPreviewWidget
                                 downloadUrl={distribution.downloadURL?.at(0) as string}
-                                title={printLocaleValue(locale, distribution.title)}
+                                title={datasetPreviewTitle}
+                                dictionary={dictionaries.detailsPage}
                             />
                         </HStack>
                     ) : (

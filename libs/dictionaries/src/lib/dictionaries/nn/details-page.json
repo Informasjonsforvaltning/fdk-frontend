@@ -55,7 +55,7 @@
             "nameless": "Namnlaus distribusjon",
             "openLicense": "Open lisens",
             "hasApi": "API",
-            "exampleData": "Døme på data",
+            "exampleData": "Eksempeldata",
             "downloadBtnLabel": "Last ned"
         },
         "details": {
@@ -216,5 +216,14 @@
         "inputLabel": "Ressurs URI",
         "copyButton": ["Kopier", "Kopiert!"],
         "loading": "Lastar"
+    },
+    "datasetPreview": {
+        "generatingPreview": "Genererer førehandsvising...",
+        "previewNotAvailable": "Førehandsvising ikkje tilgjengeleg",
+        "previewNotAvailableHelpText": "Førehandsvising er berre tilgjengeleg for datakjelder med CSV og XLS/XLSX-format.",
+        "showPreviewButton": "Vis førehandsvising",
+        "showingMaxRows": "Viser maks 100 rader",
+        "closeButton": "Lukk vindauge",
+        "downloadButton": "Last ned heile datasettet"
     }
 }

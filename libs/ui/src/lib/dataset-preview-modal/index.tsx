@@ -11,15 +11,17 @@ import styles from './styles.module.scss';
 import DatasetPreviewTable from '../dataset-preview-table/';
 import HStack from '../hstack';
 import Markdown from '../markdown';
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 type DatasetPreviewModalProps = {
 	trigger: ReactNode;
 	title: string;
 	data: any;
 	downloadUrl: string;
+	dictionary: Dictionary;
 }
 
-const DatasetPreviewModal = ({ children, title, data, trigger, downloadUrl, ...props }: DatasetPreviewModalProps & React.HTMLAttributes<HTMLDivElement>) => {
+const DatasetPreviewModal = ({ children, title, data, trigger, downloadUrl, dictionary, ...props }: DatasetPreviewModalProps & React.HTMLAttributes<HTMLDivElement>) => {
 
 	const modalRef = useRef<HTMLDialogElement>(null);
 
@@ -32,21 +34,19 @@ const DatasetPreviewModal = ({ children, title, data, trigger, downloadUrl, ...p
 	        onInteractOutside={() => modalRef.current?.close()}
 	      >
       		<Modal.Header closeButton={true}>
-      			<HStack>
+      			<HStack style={{marginBottom:'0.75rem'}}>
       				{title}
-      				<Tag size='sm' color='warning'>Viser maks 100 rader</Tag>
+      				<Tag size='sm' color='warning'>{dictionary.datasetPreview.showingMaxRows}</Tag>
       			</HStack>
       			<HStack style={{marginTop:'0.5rem'}}>
       				<ArrowDownRightIcon />
       				<Paragraph size='sm'>
       					<code>{downloadUrl}</code>
       				</Paragraph>
-      				{/*<Paragraph size='sm'>
-      					<code>{downloadUrl}</code>
-      				</Paragraph>*/}
       			</HStack>
       		</Modal.Header>
             <Modal.Content className={styles.content}>
+            	<div className={styles.inner}>
             	{
             		data.table ?
             		<DatasetPreviewTable tableData={data.table} /> :
@@ -54,6 +54,7 @@ const DatasetPreviewModal = ({ children, title, data, trigger, downloadUrl, ...p
             			{data.plain}
             		</Markdown>
             	}
+            	</div>
             </Modal.Content>
             <Modal.Footer>
             	<Button
@@ -61,7 +62,7 @@ const DatasetPreviewModal = ({ children, title, data, trigger, downloadUrl, ...p
             		variant='secondary'
             		onClick={() => modalRef.current?.close()}
             	>
-            		Lukk vindu
+            		{dictionary.datasetPreview.closeButton}
             	</Button>
             	<Button
             		asChild
@@ -70,7 +71,7 @@ const DatasetPreviewModal = ({ children, title, data, trigger, downloadUrl, ...p
             	>
             		<Link href={downloadUrl}>
             			<DownloadIcon fontSize='1.2em' />
-            			Last ned hele datasettet
+            			{dictionary.datasetPreview.downloadButton}
             		</Link>
             	</Button>
             </Modal.Footer>

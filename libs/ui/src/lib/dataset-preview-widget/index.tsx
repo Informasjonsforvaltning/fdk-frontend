@@ -5,13 +5,15 @@ import { Tag, Spinner, Button, HelpText, Paragraph } from '@digdir/designsysteme
 import { EyeIcon } from '@navikt/aksel-icons';
 import styles from './styles.module.scss';
 import DatasetPreviewModal from '../dataset-preview-modal/';
+import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 type DatasetPreviewWidgetProps = {
 	downloadUrl: string;
 	title: string;
+	dictionary: Dictionary;
 }
 
-const DatasetPreviewWidget = ({ downloadUrl, title, ...props }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
+const DatasetPreviewWidget = ({ downloadUrl, title, dictionary, ...props }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
 
 	const [ loading, setLoading ] = useState(true);
 	const [ error, setError ] = useState(false);
@@ -21,12 +23,14 @@ const DatasetPreviewWidget = ({ downloadUrl, title, ...props }: DatasetPreviewWi
 
 		const getDatasetPreview = async () => {
 			try {
-				const result = await fetch('/api/dataset-preview', {
+				const response = await fetch('/api/dataset-preview', {
 					method: 'POST',
 					body: JSON.stringify({ downloadUrl })
 				});
 
-				const json = await result.json();
+				if (!response.ok) throw new Error('Request failed');
+
+				const json = await response.json();
 
 				console.log('Preview result', json);
 
@@ -49,7 +53,7 @@ const DatasetPreviewWidget = ({ downloadUrl, title, ...props }: DatasetPreviewWi
 			{
 				loading &&
 				<div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {`Genererer forhåndsvisning...`}
+                    {dictionary.datasetPreview.generatingPreview}
                     <Spinner
                         title={'loading'}
                         size='xs'
@@ -61,14 +65,14 @@ const DatasetPreviewWidget = ({ downloadUrl, title, ...props }: DatasetPreviewWi
 			{
 				error &&
 				<Tag size='sm' color='info'>
-					Forhåndsvisning ikke tilgjengelig&nbsp;
+					{dictionary.datasetPreview.previewNotAvailable}&nbsp;
 					<HelpText
 		                title={''}
 		                size='sm'
 		                style={{ transform: 'scale(0.75)' }}
 		            >
 		                <Paragraph size='sm'>
-		                	Forhåndsvisning er kun tilgjengelig for datakilder med <code>CSV</code> og <code>XLS/XLSX</code> format.
+		                	{dictionary.datasetPreview.previewNotAvailableHelpText}
 		                </Paragraph>
 		            </HelpText>
 				</Tag>
@@ -81,9 +85,11 @@ const DatasetPreviewWidget = ({ downloadUrl, title, ...props }: DatasetPreviewWi
 					downloadUrl={downloadUrl}
 					trigger={
 						<Button size='sm' variant='secondary'>
-							<EyeIcon fontSize='1.2em' /> Vis forhåndsvisning
+							<EyeIcon fontSize='1.2em' /> 
+							{dictionary.datasetPreview.showPreviewButton}
 						</Button>
 					}
+					dictionary={dictionary}
 				/>
 			}
 		</div>
