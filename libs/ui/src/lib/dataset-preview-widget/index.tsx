@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Tag, Spinner, Button, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
+import { Tag, Spinner, Button, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { EyeIcon } from '@navikt/aksel-icons';
 import styles from './styles.module.scss';
 import DatasetPreviewModal from '../dataset-preview-modal/';
