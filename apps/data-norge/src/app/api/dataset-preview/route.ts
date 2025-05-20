@@ -17,12 +17,14 @@ export const POST = async function (request: Request) {
         const { downloadUrl } = await request.json();
         const referer = request.headers.get('referer') ?? '';
 
+        console.log('requestUrl', baseUri);
+
         console.log('downloadUrl', downloadUrl);
         
         const csrfResponse = await fetchCsrfToken({
             baseUri: `${baseUri}`,
             apiKey: `${FDK_DATASET_PREVIEW_API_KEY}`,
-            referer 
+            referer
         });
 
         const { token } = await csrfResponse.json();
