@@ -5,21 +5,21 @@ import {
 
 const {
     FDK_BASE_URI,
-    FDK_DATASET_PREVIEW_API_KEY
+    FDK_DATASET_PREVIEW_API_KEY,
+    FDK_DATASET_PREVIEW_LOCAL_BASE_URI
 } = process.env;
 
 export const POST = async function (request: Request) {
     try {
         const baseUri = process.env.NODE_ENV === 'development'
-            ? 'http://localhost:8080'
-            : FDK_BASE_URI;
+            ? FDK_DATASET_PREVIEW_LOCAL_BASE_URI
+            : `${FDK_BASE_URI}/dataset`;
 
         const { downloadUrl } = await request.json();
+
+        console.log(`Requesting preview data for ${downloadUrl}`);
+
         const referer = request.headers.get('referer') ?? '';
-
-        console.log('requestUrl', baseUri);
-
-        console.log('downloadUrl', downloadUrl);
         
         const csrfResponse = await fetchCsrfToken({
             baseUri: `${baseUri}`,
@@ -39,11 +39,11 @@ export const POST = async function (request: Request) {
             referer
         });
 
-        console.log('preview data: ', previewData);
+        console.log('Data received from fdk-dataset-preview-service: ', JSON.stringify(previewData));
         return new Response(JSON.stringify(previewData), { status: 200 });
 
     } catch (err) {
-        console.error('Failed to get dataset preview', err);
+        console.error('Failed to get dataset preview', JSON.stringify(err));
         return new Response('Failed to get dataset preview', { status: 500 });
     }
 };

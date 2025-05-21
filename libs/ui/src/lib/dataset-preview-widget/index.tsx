@@ -31,9 +31,6 @@ const DatasetPreviewWidget = ({ downloadUrl, title, dictionary, ...props }: Data
 				if (!response.ok) throw new Error('Request failed');
 
 				const json = await response.json();
-
-				console.log('Preview result', json);
-
 				setData(json);
 
 			} catch (err) {

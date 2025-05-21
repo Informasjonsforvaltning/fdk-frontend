@@ -5,9 +5,9 @@ type DatasetPreviewCsrfProps = {
 }
 
 export const fetchCsrfToken = async ({ baseUri, apiKey, referer }: DatasetPreviewCsrfProps) => {
-	const endpoint = `${baseUri}/dataset/preview/csrf`;
+	const endpoint = `${baseUri}/preview/csrf`;
     
-    console.log(`Fetching CSRF token`, endpoint, apiKey);
+    console.log(`Fetching CSRF token`, JSON.stringify({ endpoint, apiKey }));
 
 	const response = await fetch(endpoint, {
         method: 'GET',
@@ -45,9 +45,9 @@ export const fetchDatasetPreview = async ({
     cookies,
     referer
 }: DatasetPreviewOptions) => {
-	const endpoint = `${baseUri}/dataset/preview`;
+	const endpoint = `${baseUri}/preview`;
 
-    console.log(`Fetching dataset preview`, endpoint, apiKey, token);
+    console.log(`Fetching dataset preview`, JSON.stringify({ url, endpoint, apiKey, token }));
 
     const response = await fetch(endpoint, {
         method: 'POST',
