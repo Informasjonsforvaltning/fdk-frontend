@@ -11,7 +11,7 @@ import {
     type SearchObject,
 } from '@fdk-frontend/fdk-types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
-import { sumArrayLengths, printLocaleValue, EnvironmentVariablesProvider } from '@fdk-frontend/utils';
+import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
 import Badge from '@fdk-frontend/ui/badge';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
@@ -36,7 +36,6 @@ import styles from '../details-page.module.scss';
 
 export type DatasetDetailsPageType = {
     baseUri: string;
-    datasetPreviewApiKey: string;
     resource: DatasetWithIdentifier;
     apis?: DataService[];
     concepts?: SearchObject[];
@@ -58,7 +57,6 @@ export type DatasetDetailsPageType = {
 
 export default function DatasetDetailsPage({
     baseUri,
-    datasetPreviewApiKey,
     resource,
     apis,
     concepts,
@@ -100,202 +98,134 @@ export default function DatasetDetailsPage({
     };
 
     return (
-        <EnvironmentVariablesProvider
-            vars={{
-                FDK_BASE_URI: baseUri,
-                FDK_DATASET_PREVIEW_API_KEY: datasetPreviewApiKey,
-            }}
-        >
-            <div className={styles.detailsPage}>
-                <Breadcrumbs
-                    dictionary={dictionaries.common}
-                    breadcrumbList={breadcrumbList}
-                />
-                <div className={styles.mainContent}>
-                    <div className={styles.header}>
-                        <OrgButton
-                            href={`/organizations/${resource.publisher?.id}`}
-                            orgLogoSrc={orgLogo}
+        <div className={styles.detailsPage}>
+            <Breadcrumbs
+                dictionary={dictionaries.common}
+                breadcrumbList={breadcrumbList}
+            />
+            <div className={styles.mainContent}>
+                <div className={styles.header}>
+                    <OrgButton
+                        href={`/organizations/${resource.publisher?.id}`}
+                        orgLogoSrc={orgLogo}
+                    >
+                        {resource.publisher
+                            ? printLocaleValue(locale, resource.publisher?.prefLabel)
+                            : dictionaries.detailsPage.header.namelessOrganization}
+                    </OrgButton>
+                    <div className={styles.headerGrid}>
+                        <Heading
+                            level={1}
+                            size='lg'
+                            className={styles.title}
                         >
-                            {resource.publisher
-                                ? printLocaleValue(locale, resource.publisher?.prefLabel)
-                                : dictionaries.detailsPage.header.namelessOrganization}
-                        </OrgButton>
-                        <div className={styles.headerGrid}>
-                            <Heading
-                                level={1}
-                                size='lg'
-                                className={styles.title}
-                            >
-                                {printLocaleValue(locale, resource.title) ||
-                                    dictionaries.detailsPage.header.namelessDataset}
-                            </Heading>
-                            <div className={styles.headerToolbar}>
-                                {accessRequestDemo && (
-                                    <AccessRequestButton
-                                        kind='datasets'
-                                        id={resource.id}
-                                        dictionary={dictionaries.detailsPage}
-                                        isAvailable={isAvailable}
-                                        locale={locale}
-                                    />
-                                )}
-                                <Button
-                                    size='sm'
-                                    onClick={() => {
-                                        setActiveTab('distributions');
-                                        updateUri('distributions');
-                                        blink();
-                                    }}
-                                >
-                                    {dictionaries.detailsPage.header.useDatasetButton}
-                                </Button>
-                            </div>
-                            <div className={styles.headerTags}>
-                                <Tag
-                                    color='info'
-                                    size='sm'
-                                >
-                                    <Link href={`/datasets`}>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
-                                </Tag>
-                                <AccessLevelTag
-                                    accessCode={resource.accessRights?.code}
+                            {printLocaleValue(locale, resource.title) ||
+                                dictionaries.detailsPage.header.namelessDataset}
+                        </Heading>
+                        <div className={styles.headerToolbar}>
+                            {accessRequestDemo && (
+                                <AccessRequestButton
+                                    kind='datasets'
+                                    id={resource.id}
                                     dictionary={dictionaries.detailsPage}
+                                    isAvailable={isAvailable}
                                     locale={locale}
                                 />
-                                {resource.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}
-                            </div>
+                            )}
+                            <Button
+                                size='sm'
+                                onClick={() => {
+                                    setActiveTab('distributions');
+                                    updateUri('distributions');
+                                    blink();
+                                }}
+                            >
+                                {dictionaries.detailsPage.header.useDatasetButton}
+                            </Button>
+                        </div>
+                        <div className={styles.headerTags}>
+                            <Tag
+                                color='info'
+                                size='sm'
+                            >
+                                <Link href={`/datasets`}>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
+                            </Tag>
+                            <AccessLevelTag
+                                accessCode={resource.accessRights?.code}
+                                dictionary={dictionaries.detailsPage}
+                                locale={locale}
+                            />
+                            {resource.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}
                         </div>
                     </div>
-                    <Tabs
-                        defaultValue='overview'
-                        size='sm'
-                        value={activeTab}
-                        onChange={(value) => {
-                            setActiveTab(value);
-                        }}
-                    >
-                        <ScrollShadows className={styles.tabsScrollShadows}>
-                            <TabList>
-                                <Tab
-                                    value='overview'
-                                    onClick={() => updateUri('overview')}
-                                >
-                                    {dictionaries.detailsPage.tabs.overview}
-                                </Tab>
-                                <Tab
-                                    value='distributions'
-                                    onClick={() => updateUri('distributions')}
-                                >
-                                    {dictionaries.detailsPage.tabs.distributions}&nbsp;
-                                    <Badge>{sumArrayLengths(resource.distribution, resource.sample, apis)}</Badge>
-                                </Tab>
-                                <Tab
-                                    value='details'
-                                    onClick={() => updateUri('details')}
-                                >
-                                    {dictionaries.detailsPage.tabs.details}
-                                </Tab>
-                                <Tab
-                                    value='community'
-                                    onClick={() => updateUri('community')}
-                                >
-                                    {dictionaries.detailsPage.tabs.community}
-                                    &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
-                                </Tab>
-                                <Tab
-                                    value='rdf'
-                                    onClick={() => updateUri('rdf')}
-                                >
-                                    {dictionaries.detailsPage.tabs.rdf}
-                                </Tab>
-                            </TabList>
-                        </ScrollShadows>
-                        <TabContent value='overview'>
-                            <section className={styles.section}>
-                                <Heading
-                                    level={2}
-                                    size='xxsmall'
-                                >
-                                    {dictionaries.detailsPage.overview.description.title}
-                                </Heading>
-                                {resource.description ? (
-                                    <div className={styles.box}>
-                                        <ExpandableContent>
-                                            <Article>
-                                                <Markdown>{printLocaleValue(locale, resource.description)}</Markdown>
-                                            </Article>
-                                        </ExpandableContent>
-                                    </div>
-                                ) : (
-                                    <PlaceholderBox>
-                                        {dictionaries.detailsPage.overview.description.placeholder}
-                                    </PlaceholderBox>
-                                )}
-                            </section>
-                            <section className={styles.section}>
-                                {!isAvailable && accessRequestDemo ? (
-                                    <ResourceNotAvailableNotice
-                                        className={cn({ [styles.highlight]: highlight })}
-                                        kind='datasets'
-                                        id={resource.id}
-                                        dictionary={dictionaries.detailsPage}
-                                        locale={locale}
-                                    />
-                                ) : (
-                                    <Distributions
-                                        datasets={resource.distribution}
-                                        exampleData={resource.sample}
-                                        apis={apis}
-                                        className={cn({ [styles.highlight]: highlight })}
-                                        locale={locale}
-                                        dictionaries={dictionaries}
-                                    />
-                                )}
-                            </section>
-                            {((internalRelatedDatasets && internalRelatedDatasets.length > 0) ||
-                                (similarDatasets && similarDatasets.length > 0)) && (
-                                <BrandDivider className={styles.divider} />
+                </div>
+                <Tabs
+                    defaultValue='overview'
+                    size='sm'
+                    value={activeTab}
+                    onChange={(value) => {
+                        setActiveTab(value);
+                    }}
+                >
+                    <ScrollShadows className={styles.tabsScrollShadows}>
+                        <TabList>
+                            <Tab
+                                value='overview'
+                                onClick={() => updateUri('overview')}
+                            >
+                                {dictionaries.detailsPage.tabs.overview}
+                            </Tab>
+                            <Tab
+                                value='distributions'
+                                onClick={() => updateUri('distributions')}
+                            >
+                                {dictionaries.detailsPage.tabs.distributions}&nbsp;
+                                <Badge>{sumArrayLengths(resource.distribution, resource.sample, apis)}</Badge>
+                            </Tab>
+                            <Tab
+                                value='details'
+                                onClick={() => updateUri('details')}
+                            >
+                                {dictionaries.detailsPage.tabs.details}
+                            </Tab>
+                            <Tab
+                                value='community'
+                                onClick={() => updateUri('community')}
+                            >
+                                {dictionaries.detailsPage.tabs.community}
+                                &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
+                            </Tab>
+                            <Tab
+                                value='rdf'
+                                onClick={() => updateUri('rdf')}
+                            >
+                                {dictionaries.detailsPage.tabs.rdf}
+                            </Tab>
+                        </TabList>
+                    </ScrollShadows>
+                    <TabContent value='overview'>
+                        <section className={styles.section}>
+                            <Heading
+                                level={2}
+                                size='xxsmall'
+                            >
+                                {dictionaries.detailsPage.overview.description.title}
+                            </Heading>
+                            {resource.description ? (
+                                <div className={styles.box}>
+                                    <ExpandableContent>
+                                        <Article>
+                                            <Markdown>{printLocaleValue(locale, resource.description)}</Markdown>
+                                        </Article>
+                                    </ExpandableContent>
+                                </div>
+                            ) : (
+                                <PlaceholderBox>
+                                    {dictionaries.detailsPage.overview.description.placeholder}
+                                </PlaceholderBox>
                             )}
-                            {internalRelatedDatasets && internalRelatedDatasets.length > 0 && (
-                                <section
-                                    className={styles.section}
-                                    style={{ marginBottom: '3rem' }}
-                                >
-                                    <Heading
-                                        level={2}
-                                        size='xxsmall'
-                                    >
-                                        {dictionaries.detailsPage.internalRelations}
-                                    </Heading>
-                                    <ScrollShadows className={styles.tableScroller}>
-                                        <DatasetTable
-                                            datasets={internalRelatedDatasets}
-                                            locale={locale}
-                                            dictionary={dictionaries.detailsPage}
-                                        />
-                                    </ScrollShadows>
-                                </section>
-                            )}
-                            {similarDatasets && similarDatasets.length > 0 && (
-                                <section className={styles.section}>
-                                    <Heading
-                                        level={2}
-                                        size='xxsmall'
-                                    >
-                                        {dictionaries.detailsPage.similarDatasets}
-                                    </Heading>
-                                    <ScrollShadows className={styles.tableScroller}>
-                                        <DatasetTable
-                                            datasets={similarDatasets}
-                                            locale={locale}
-                                            dictionary={dictionaries.detailsPage}
-                                        />
-                                    </ScrollShadows>
-                                </section>
-                            )}
-                        </TabContent>
-                        <TabContent value='distributions'>
+                        </section>
+                        <section className={styles.section}>
                             {!isAvailable && accessRequestDemo ? (
                                 <ResourceNotAvailableNotice
                                     className={cn({ [styles.highlight]: highlight })}
@@ -314,35 +244,96 @@ export default function DatasetDetailsPage({
                                     dictionaries={dictionaries}
                                 />
                             )}
-                        </TabContent>
-                        <TabContent value='details'>
-                            <DatasetDetailsTab
-                                dataset={resource}
-                                internalRelatedDatasets={internalRelatedDatasets}
-                                populatedReferences={populatedReferences}
-                                concepts={concepts}
+                        </section>
+                        {((internalRelatedDatasets && internalRelatedDatasets.length > 0) ||
+                            (similarDatasets && similarDatasets.length > 0)) && (
+                            <BrandDivider className={styles.divider} />
+                        )}
+                        {internalRelatedDatasets && internalRelatedDatasets.length > 0 && (
+                            <section
+                                className={styles.section}
+                                style={{ marginBottom: '3rem' }}
+                            >
+                                <Heading
+                                    level={2}
+                                    size='xxsmall'
+                                >
+                                    {dictionaries.detailsPage.internalRelations}
+                                </Heading>
+                                <ScrollShadows className={styles.tableScroller}>
+                                    <DatasetTable
+                                        datasets={internalRelatedDatasets}
+                                        locale={locale}
+                                        dictionary={dictionaries.detailsPage}
+                                    />
+                                </ScrollShadows>
+                            </section>
+                        )}
+                        {similarDatasets && similarDatasets.length > 0 && (
+                            <section className={styles.section}>
+                                <Heading
+                                    level={2}
+                                    size='xxsmall'
+                                >
+                                    {dictionaries.detailsPage.similarDatasets}
+                                </Heading>
+                                <ScrollShadows className={styles.tableScroller}>
+                                    <DatasetTable
+                                        datasets={similarDatasets}
+                                        locale={locale}
+                                        dictionary={dictionaries.detailsPage}
+                                    />
+                                </ScrollShadows>
+                            </section>
+                        )}
+                    </TabContent>
+                    <TabContent value='distributions'>
+                        {!isAvailable && accessRequestDemo ? (
+                            <ResourceNotAvailableNotice
+                                className={cn({ [styles.highlight]: highlight })}
+                                kind='datasets'
+                                id={resource.id}
+                                dictionary={dictionaries.detailsPage}
                                 locale={locale}
-                                metadataScore={metadataScore}
-                                dictionary={dictionaries.detailsPage}
                             />
-                        </TabContent>
-                        <TabContent value='community'>
-                            <CommunityTab
-                                topics={communityTopics}
-                                communityBaseUri={communityBaseUri}
-                                dictionary={dictionaries.detailsPage}
-                            />
-                        </TabContent>
-                        <TabContent value='rdf'>
-                            <MetadataTab
-                                uri={`${baseUri}/datasets/${resource.id}`}
-                                dictionary={dictionaries.detailsPage}
+                        ) : (
+                            <Distributions
+                                datasets={resource.distribution}
+                                exampleData={resource.sample}
+                                apis={apis}
+                                className={cn({ [styles.highlight]: highlight })}
                                 locale={locale}
+                                dictionaries={dictionaries}
                             />
-                        </TabContent>
-                    </Tabs>
-                </div>
+                        )}
+                    </TabContent>
+                    <TabContent value='details'>
+                        <DatasetDetailsTab
+                            dataset={resource}
+                            internalRelatedDatasets={internalRelatedDatasets}
+                            populatedReferences={populatedReferences}
+                            concepts={concepts}
+                            locale={locale}
+                            metadataScore={metadataScore}
+                            dictionary={dictionaries.detailsPage}
+                        />
+                    </TabContent>
+                    <TabContent value='community'>
+                        <CommunityTab
+                            topics={communityTopics}
+                            communityBaseUri={communityBaseUri}
+                            dictionary={dictionaries.detailsPage}
+                        />
+                    </TabContent>
+                    <TabContent value='rdf'>
+                        <MetadataTab
+                            uri={`${baseUri}/datasets/${resource.id}`}
+                            dictionary={dictionaries.detailsPage}
+                            locale={locale}
+                        />
+                    </TabContent>
+                </Tabs>
             </div>
-        </EnvironmentVariablesProvider>
+        </div>
     );
 }
