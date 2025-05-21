@@ -243,7 +243,7 @@ export default async function DocsPage(pageProps: DocsPageProps) {
             </MdxPage>
         );
     } catch (err) {
-        console.log(err);
+        console.error(`Failed to compile MDX page for filePath ${filePath}`, JSON.stringify(err));
         notFound();
     }
 }

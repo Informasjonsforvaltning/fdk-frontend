@@ -8,9 +8,6 @@ export const POST = async function (request: Request) {
             process.env.NODE_ENV === 'development' ? FDK_DATASET_PREVIEW_LOCAL_BASE_URI : `${FDK_BASE_URI}/dataset`;
 
         const { downloadUrl } = await request.json();
-
-        console.log(`Requesting preview data for ${downloadUrl}`);
-
         const referer = request.headers.get('referer') ?? '';
 
         const csrfResponse = await fetchCsrfToken({
@@ -30,8 +27,6 @@ export const POST = async function (request: Request) {
             cookies,
             referer,
         });
-
-        console.log('Data received from fdk-dataset-preview-service: ', JSON.stringify(previewData));
         return new Response(JSON.stringify(previewData), { status: 200 });
     } catch (err) {
         console.error('Failed to get dataset preview', JSON.stringify(err));

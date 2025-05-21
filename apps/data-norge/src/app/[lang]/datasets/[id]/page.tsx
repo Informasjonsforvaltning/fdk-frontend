@@ -71,7 +71,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     try {
         dataset = await getDataset(params.id);
     } catch (err) {
-        console.log(err);
+        console.error(`Failed to get dataset with ID ${params.id}`, JSON.stringify(err));
         notFound();
         throw err;
     }
@@ -96,9 +96,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     try {
         communityTopics = await getAllCommunityTopics(dataset.id);
-        console.log('[debug] communityTopics', communityTopics);
-    } catch (err) {
-        console.error('[error] Failed to fetch community topics:', err);
+    } catch {
+        // Do nothing
     }
 
     // Lookup concepts/subjects
@@ -208,7 +207,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             description: printLocaleValue(locale, dataset.description) ?? dictionary.breadcrumbs.datasets,
         };
     } catch (err) {
-        console.log(err);
+        console.error(`Failed generate metadata for dataset with ID ${params.id}`, JSON.stringify(err));
         notFound();
     }
 };
