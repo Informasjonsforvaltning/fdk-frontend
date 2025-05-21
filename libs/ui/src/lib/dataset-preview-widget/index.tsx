@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Tag, Spinner, Button, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { EyeIcon } from '@navikt/aksel-icons';
-import styles from './styles.module.scss';
 import DatasetPreviewModal from '../dataset-preview-modal/';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 
@@ -35,8 +34,7 @@ const DatasetPreviewWidget = ({
 
                 const json = await response.json();
                 setData(json);
-            } catch (err) {
-                console.log(err);
+            } catch {
                 setError(true);
             } finally {
                 setLoading(false);
@@ -47,10 +45,7 @@ const DatasetPreviewWidget = ({
     }, []);
 
     return (
-        <div
-            className={styles.wrapper}
-            {...props}
-        >
+        <div {...props}>
             {loading && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     {dictionary.datasetPreview.generatingPreview}

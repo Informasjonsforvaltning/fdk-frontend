@@ -23,7 +23,7 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
     try {
         destination = await getAccessRequestDestination({ lang, kind, id });
     } catch (err) {
-        console.log(err);
+        console.error(`Failed to get access request destination`, JSON.stringify(err));
         notFound();
     }
 
