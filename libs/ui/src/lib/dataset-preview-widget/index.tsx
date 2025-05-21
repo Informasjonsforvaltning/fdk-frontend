@@ -63,7 +63,7 @@ const DatasetPreviewWidget = ({ downloadUrl, title, dictionary, ...props }: Data
                 </div>
 			}
 			{
-				error &&
+				(error && !data?.table) &&
 				<Tag size='sm' color='info'>
 					{dictionary.datasetPreview.previewNotAvailable}&nbsp;
 					<HelpText
@@ -78,7 +78,7 @@ const DatasetPreviewWidget = ({ downloadUrl, title, dictionary, ...props }: Data
 				</Tag>
 			}
 			{
-				data &&
+				(!error && data?.table) &&
 				<DatasetPreviewModal
 					title={title}
 					data={data}

@@ -224,6 +224,7 @@
         "showPreviewButton": "Vis førehandsvising",
         "showingMaxRows": "Viser maks 100 rader",
         "closeButton": "Lukk vindauge",
-        "downloadButton": "Last ned heile datasettet"
+        "downloadButton": "Last ned heile datasettet",
+        "noTableData": "Ingen tabelldata tilgjengeleg"
     }
 }

@@ -224,6 +224,7 @@
         "showPreviewButton": "Vis forhåndsvisning",
         "showingMaxRows": "Viser maks 100 rader",
         "closeButton": "Lukk vindu",
-        "downloadButton": "Last ned hele datasettet"
+        "downloadButton": "Last ned hele datasettet",
+        "noTableData": "Ingen tabelldata tilgjengelig"
     }
 }

@@ -224,6 +224,7 @@
         "showPreviewButton": "Show preview",
         "showingMaxRows": "Showing max 100 rows",
         "closeButton": "Close window",
-        "downloadButton": "Download full dataset"
+        "downloadButton": "Download full dataset",
+        "noTableData": "No table data available"
     }
 }

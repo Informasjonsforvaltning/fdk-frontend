@@ -12,9 +12,16 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.inner {
-	// padding:1rem;
-	// background: #fafafa;
-	// border: 1px solid #ddd;
-    // border-radius: 0.25rem;
+.arrowIcon {
+	float:left;
+	margin-right:0.5rem;
+}
+
+.maxRowsNotice {
+	display:inline-flex;
+	margin-left:0.5rem;
+}
+
+.headerWrapper {
+	margin-bottom:0.5rem;
 }

@@ -1,5 +1,6 @@
 import React, { ReactNode, useRef } from 'react';
 import {
+	Alert,
 	Modal,
 	Button,
 	Tag,
@@ -9,8 +10,6 @@ import {
 import { DownloadIcon, ArrowDownRightIcon } from '@navikt/aksel-icons';
 import styles from './styles.module.scss';
 import DatasetPreviewTable from '../dataset-preview-table/';
-import HStack from '../hstack';
-import Markdown from '../markdown';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 type DatasetPreviewModalProps = {
@@ -34,26 +33,28 @@ const DatasetPreviewModal = ({ children, title, data, trigger, downloadUrl, dict
 	        onInteractOutside={() => modalRef.current?.close()}
 	      >
       		<Modal.Header closeButton={true}>
-      			<HStack style={{marginBottom:'0.75rem'}}>
+      			<div className={styles.headerWrapper}>
       				{title}
-      				<Tag size='sm' color='warning'>{dictionary.datasetPreview.showingMaxRows}</Tag>
-      			</HStack>
-      			<HStack style={{marginTop:'0.5rem'}}>
-      				<ArrowDownRightIcon />
+      				<Tag className={styles.maxRowsNotice} size='sm' color='warning'>
+      					{dictionary.datasetPreview.showingMaxRows}
+      				</Tag>
+      			</div>
+      			<div>
+      				<ArrowDownRightIcon className={styles.arrowIcon} />
       				<Paragraph size='sm'>
       					<code>{downloadUrl}</code>
       				</Paragraph>
-      			</HStack>
+      			</div>
       		</Modal.Header>
             <Modal.Content className={styles.content}>
             	<div className={styles.inner}>
-            	{
-            		data.table ?
-            		<DatasetPreviewTable tableData={data.table} /> :
-            		<Markdown>
-            			{data.plain}
-            		</Markdown>
-            	}
+	            	{
+	            		data.table ?
+	            		<DatasetPreviewTable tableData={data.table} /> :
+	            		<Alert size='sm'>
+	            			{dictionary.datasetPreview.noTableData}
+	            		</Alert>
+	            	}
             	</div>
             </Modal.Content>
             <Modal.Footer>
