@@ -125,7 +125,7 @@
         "jest-axe": "^10.0.0",
         "jest-environment-jsdom": "^29.7.0",
         "lint-staged": "^15.5.0",
-        "nx": "^20.7.2",
+        "nx": "^21.1.2",
         "playwright-core": "^1.51.1",
         "postcss": "^8.5.3",
         "postcss-flexbugs-fixes": "^5.0.2",
