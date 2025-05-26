@@ -78,8 +78,3 @@ spec:
                             secretKeyRef:
                                 name: fdk-dataset-preview-service
                                 key: API_KEY
-                      - name: NEXT_PUBLIC_FDK_BASE_URI
-                        valueFrom:
-                            secretKeyRef:
-                                name: commonurl-demo
-                                key: FDK_BASE_URI
