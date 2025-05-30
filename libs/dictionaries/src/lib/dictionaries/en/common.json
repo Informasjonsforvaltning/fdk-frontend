@@ -97,5 +97,11 @@
     "general": {
         "loading": "Loading...",
         "redirecting": "Redirecting..."
+    },
+    "feedbackBanner": {
+        "heading": "Did you find what you were looking for?",
+        "text": "You can {{contactLink}} here, or ask for help in our {{communityLink}}.",
+        "contactLinkText": "contact us",
+        "communityLinkText": "Community"
     }
 }

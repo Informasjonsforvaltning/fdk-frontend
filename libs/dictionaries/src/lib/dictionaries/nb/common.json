@@ -97,5 +97,11 @@
     "general": {
         "loading": "Laster...",
         "redirecting": "Videresender..."
+    },
+    "feedbackBanner": {
+        "heading": "Finner du det du leter etter?",
+        "text": "{{contactLink}} med oss her, eller spør om hjelp i {{communityLink}}.",
+        "contactLinkText": "Ta kontakt",
+        "communityLinkText": "Datalandsbyen"
     }
 }
