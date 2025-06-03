@@ -1,4 +1,4 @@
-import { i18n, type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type DataService } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
@@ -6,6 +6,7 @@ import ExternalLink from '@fdk-frontend/ui/external-link';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import detailsPageStyles from '../../../details-page.module.scss';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
+import { printLocaleValue } from '@fdk-frontend/utils';
 
 type ApiDetailsProps = {
     api: DataService;
@@ -23,9 +24,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <Box className={detailsPageStyles.descBox}>
                             <ExpandableContent maxHeight={100}>
                                 <article className={detailsPageStyles.article}>
-                                    <Markdown>
-                                        {api.description?.[locale] || api.description?.[i18n.defaultLocale]}
-                                    </Markdown>
+                                    <Markdown locale={locale}>{printLocaleValue(locale, api.description)}</Markdown>
                                 </article>
                             </ExpandableContent>
                         </Box>
@@ -41,9 +40,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                 <dl key={endpointURL}>
                                     <dt>{dictionary.apis.details.url}:</dt>
                                     <dd>
-                                        <ExternalLink href={endpointURL}>
-                                            {endpointURL}
-                                        </ExternalLink>
+                                        <ExternalLink href={endpointURL}>{endpointURL}</ExternalLink>
                                     </dd>
                                     <dt>{dictionary.apis.details.description}:</dt>
                                     <dd>
@@ -70,9 +67,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <ul>
                             {api.page.map((page) => (
                                 <li key={page}>
-                                    <ExternalLink href={page}>
-                                        {page}
-                                    </ExternalLink>
+                                    <ExternalLink href={page}>{page}</ExternalLink>
                                 </li>
                             ))}
                         </ul>

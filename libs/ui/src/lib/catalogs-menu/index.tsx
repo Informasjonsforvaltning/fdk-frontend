@@ -18,7 +18,7 @@ const CatalogsMenu = ({ dictionary, locale }: CatalogsMenuProps) => {
             className={styles.catalogsMenu}
             aria-label={dictionary.mainMenu.catalogs.label}
         >
-            <ul>
+            <ul className={styles.menuList}>
                 {data.catalogs.map((item: any, i: number) => (
                     <li key={item.key}>
                         <Card

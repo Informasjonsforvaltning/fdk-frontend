@@ -66,23 +66,31 @@
 
     ul,
     ol {
-        list-style: none;
-        padding: 0 0 0 1.25rem;
+        &:not([class]) {
+            list-style: none;
+            padding: 0 0 0 1.25rem;
+        }
     }
 
     ul,
     ol {
-        li {
-            margin-bottom: 0.5rem;
+        &:not([class]) {
+            li {
+                margin-bottom: 0.5rem;
+            }
         }
     }
 
     ul {
-        list-style: disc;
+        &:not([class]) {
+            list-style: disc;
+        }
     }
 
     ol {
-        list-style: decimal;
+        &:not([class]) {
+            list-style: decimal;
+        }
     }
 
     hr {

@@ -215,7 +215,9 @@ export default function DatasetDetailsPage({
                                 <div className={styles.box}>
                                     <ExpandableContent>
                                         <Article>
-                                            <Markdown>{printLocaleValue(locale, resource.description)}</Markdown>
+                                            <Markdown locale={locale}>
+                                                {printLocaleValue(locale, resource.description)}
+                                            </Markdown>
                                         </Article>
                                     </ExpandableContent>
                                 </div>

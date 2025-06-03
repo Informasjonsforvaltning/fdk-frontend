@@ -35,7 +35,9 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                         <Box className={detailsPageStyles.descBox}>
                             <ExpandableContent maxHeight={100}>
                                 <article className={detailsPageStyles.article}>
-                                    <Markdown>{printLocaleValue(locale, distribution.description)}</Markdown>
+                                    <Markdown locale={locale}>
+                                        {printLocaleValue(locale, distribution.description)}
+                                    </Markdown>
                                 </article>
                             </ExpandableContent>
                         </Box>
