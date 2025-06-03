@@ -1,11 +1,9 @@
 import { PropsWithChildren } from 'react';
-
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
-import ConceptPreviewBase from '@fdk-frontend/ui/concept-preview-base';
 import { getSkosLabel, getSkosDefinition } from '@fdk-frontend/utils/concept-preview-utils';
-
-import styles from './concept-preview.module.css';
 import { getConceptAsJsonLd } from '@fdk-frontend/data-access/server';
+import ConceptPreviewBase from '../concept-preview-base';
+import styles from './concept-preview.module.css';
 
 export type ConceptPreviewProps = PropsWithChildren & {
     uri: string;

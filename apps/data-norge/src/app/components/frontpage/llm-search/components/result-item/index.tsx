@@ -35,7 +35,7 @@ const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTM
                 <span className={styles.publisher}> ({item.publisher})</span>
             </Heading>
             <div className={styles.description}>
-                <Markdown>{item.description}</Markdown>
+                <Markdown locale={locale}>{item.description}</Markdown>
             </div>
         </div>
     </a>

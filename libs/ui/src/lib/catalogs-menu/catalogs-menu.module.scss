@@ -3,7 +3,7 @@
 .catalogsMenu {
     container-type: inline-size;
 
-    ul {
+    .menuList {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: auto;
