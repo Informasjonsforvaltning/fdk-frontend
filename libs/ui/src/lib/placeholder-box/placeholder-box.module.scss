@@ -1,6 +1,10 @@
-.placeholderBox {
-    border: 1px solid #ddd;
-    border-radius: 0.25rem;
-    padding: 0.75rem 0.75rem;
+@use '../box/box.module' as box;
+
+@mixin placeholder-box-mixin {
+    @include box.box-mixin();
     background: #fafafa;
+}
+
+.placeholderBox {
+    @include placeholder-box-mixin();
 }

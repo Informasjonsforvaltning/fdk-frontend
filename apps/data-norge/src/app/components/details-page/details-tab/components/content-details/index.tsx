@@ -41,7 +41,11 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                     {dataset.qualifiedAttributions.map((attribution: any, i: number) => (
                                         <li key={`attribution-${i}`}>
                                             {attribution.agent.uri ? (
-                                                <ExternalLink href={attribution.agent.uri}>
+                                                <ExternalLink
+                                                    href={attribution.agent.uri}
+                                                    locale={locale}
+                                                    gateway
+                                                >
                                                     {printLocaleValue(locale, attribution.agent.prefLabel)}
                                                 </ExternalLink>
                                             ) : (
@@ -187,7 +191,11 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                         if (spatial.prefLabel && spatial.uri) {
                                             return (
                                                 <li key={`spatial-${i}`}>
-                                                    <ExternalLink href={spatial.uri}>
+                                                    <ExternalLink
+                                                        href={spatial.uri}
+                                                        locale={locale}
+                                                        gateway
+                                                    >
                                                         {printLocaleValue(locale, spatial?.prefLabel)}
                                                     </ExternalLink>
                                                 </li>
@@ -201,7 +209,11 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                         } else if (spatial.uri) {
                                             return (
                                                 <li key={`spatial-${i}`}>
-                                                    <ExternalLink href={spatial.uri}>
+                                                    <ExternalLink
+                                                        href={spatial.uri}
+                                                        locale={locale}
+                                                        gateway
+                                                    >
                                                         {spatial.uri}
                                                     </ExternalLink>
                                                 </li>
@@ -273,7 +285,11 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 <ol>
                                     {dataset?.conformsTo?.map((item: any, i: number) => (
                                         <li key={item.uri}>
-                                            <ExternalLink href={item.uri}>
+                                            <ExternalLink
+                                                href={item.uri}
+                                                locale={locale}
+                                                gateway
+                                            >
                                                 {printLocaleValue(locale, item?.prefLabel) || item.uri}
                                             </ExternalLink>
                                         </li>

@@ -18,7 +18,11 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
             <ol>
                 {legalBasis.map((legal: any) => (
                     <li key={legal.uri}>
-                        <ExternalLink href={legal.uri}>
+                        <ExternalLink
+                            href={legal.uri}
+                            locale={locale}
+                            gateway
+                        >
                             {printLocaleValue(locale, legal.prefLabel)}
                         </ExternalLink>
                     </li>

@@ -33,7 +33,10 @@ const FeedbackBanner = ({
                             <Link href={`/${locale}/contact`}>{dictionary.feedbackBanner.contactLinkText}</Link>
                         ),
                         communityLink: (
-                            <ExternalLink href={communityBaseUri}>
+                            <ExternalLink
+                                href={communityBaseUri}
+                                locale={locale}
+                            >
                                 {dictionary.feedbackBanner.communityLinkText}
                             </ExternalLink>
                         ),

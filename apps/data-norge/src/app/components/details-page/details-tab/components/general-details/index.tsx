@@ -92,7 +92,11 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                 <ul>
                                     {dataset.landingPage.map((page) => (
                                         <li key={page}>
-                                            <ExternalLink href={page}>
+                                            <ExternalLink
+                                                href={page}
+                                                locale={locale}
+                                                gateway
+                                            >
                                                 {page}
                                             </ExternalLink>
                                         </li>
@@ -112,7 +116,11 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                 <ul>
                                     {dataset.page.map((page) => (
                                         <li key={page}>
-                                            <ExternalLink href={page}>
+                                            <ExternalLink
+                                                href={page}
+                                                locale={locale}
+                                                gateway
+                                            >
                                                 {page}
                                             </ExternalLink>
                                         </li>
