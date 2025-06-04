@@ -1,3 +1,4 @@
+import React from 'react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type DataService } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
@@ -24,7 +25,20 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <Box className={detailsPageStyles.descBox}>
                             <ExpandableContent maxHeight={100}>
                                 <article className={detailsPageStyles.article}>
-                                    <Markdown locale={locale}>{printLocaleValue(locale, api.description)}</Markdown>
+                                    <Markdown
+                                        locale={locale}
+                                        components={{
+                                            a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+                                                <ExternalLink
+                                                    {...props}
+                                                    locale={locale}
+                                                    gateway
+                                                />
+                                            ),
+                                        }}
+                                    >
+                                        {printLocaleValue(locale, api.description)}
+                                    </Markdown>
                                 </article>
                             </ExpandableContent>
                         </Box>
@@ -40,14 +54,35 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                 <dl key={endpointURL}>
                                     <dt>{dictionary.apis.details.url}:</dt>
                                     <dd>
-                                        <ExternalLink href={endpointURL}>{endpointURL}</ExternalLink>
+                                        <ExternalLink
+                                            href={endpointURL}
+                                            locale={locale}
+                                            gateway
+                                        >
+                                            {endpointURL}
+                                        </ExternalLink>
                                     </dd>
                                     <dt>{dictionary.apis.details.description}:</dt>
                                     <dd>
                                         {api.endpointDescription && api.endpointDescription[i] ? (
                                             <ExpandableContent maxHeight={100}>
                                                 <article className={detailsPageStyles.article}>
-                                                    <Markdown>{api.endpointDescription[i]}</Markdown>
+                                                    <Markdown
+                                                        locale={locale}
+                                                        components={{
+                                                            a: (
+                                                                props: React.AnchorHTMLAttributes<HTMLAnchorElement>,
+                                                            ) => (
+                                                                <ExternalLink
+                                                                    {...props}
+                                                                    locale={locale}
+                                                                    gateway
+                                                                />
+                                                            ),
+                                                        }}
+                                                    >
+                                                        {api.endpointDescription[i]}
+                                                    </Markdown>
                                                 </article>
                                             </ExpandableContent>
                                         ) : (
@@ -67,7 +102,13 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <ul>
                             {api.page.map((page) => (
                                 <li key={page}>
-                                    <ExternalLink href={page}>{page}</ExternalLink>
+                                    <ExternalLink
+                                        href={page}
+                                        locale={locale}
+                                        gateway
+                                    >
+                                        {page}
+                                    </ExternalLink>
                                 </li>
                             ))}
                         </ul>

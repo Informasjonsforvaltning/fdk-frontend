@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { Heading, Button, Link, Paragraph, Alert } from '@digdir/designsystemet-react';
 import { type JSONValue } from '@fdk-frontend/types';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import Badge from '@fdk-frontend/ui/badge';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import HStack from '@fdk-frontend/ui/hstack';
@@ -15,9 +15,10 @@ export type CommunityTabProps = {
     communityBaseUri: string;
     topics?: JSONValue;
     dictionary: Dictionary;
+    locale: LocaleCodes;
 };
 
-const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProps) => {
+const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: CommunityTabProps) => {
     return (
         <section className={styles.section}>
             <Heading
@@ -43,6 +44,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
                                     topic={topic}
                                     communityBaseUri={communityBaseUri}
                                     dictionary={dictionary}
+                                    locale={locale}
                                 />
                             ))}
                         </tbody>
@@ -66,7 +68,10 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary }: CommunityTabProp
                             size='sm'
                             asChild
                         >
-                            <ExternalLink href={communityBaseUri}>
+                            <ExternalLink
+                                href={communityBaseUri}
+                                locale={locale}
+                            >
                                 {dictionary.community.notice.gotoLink}
                             </ExternalLink>
                         </Button>

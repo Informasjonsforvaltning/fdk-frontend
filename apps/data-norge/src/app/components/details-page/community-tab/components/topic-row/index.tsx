@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Tag, Heading } from '@digdir/designsystemet-react';
 import { Chat2Icon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import HStack from '@fdk-frontend/ui/hstack';
 import { Subtext } from '@fdk-frontend/ui/typography';
 import IconBadge from '@fdk-frontend/ui/icon-badge';
@@ -13,6 +13,7 @@ export type TopicRowProps = {
     communityBaseUri: string;
     topic: JSONValue;
     dictionary: Dictionary;
+    locale: LocaleCodes;
 };
 
 const TopicRow = ({

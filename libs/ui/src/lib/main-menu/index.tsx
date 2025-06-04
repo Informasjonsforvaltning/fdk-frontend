@@ -130,16 +130,19 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
                     <ul>
                         {data.about.map((item) => (
                             <li key={item.href}>
-                                {
-                                    item.external ?
-                                    <ExternalLink href={item.href}>
-                                        {item.href.startsWith('https://github.com') && <GithubLogo style={{marginRight:'0.125em'}} />}
+                                {item.external ? (
+                                    <ExternalLink
+                                        href={item.href}
+                                        locale={locale}
+                                    >
+                                        {item.href.startsWith('https://github.com') && (
+                                            <GithubLogo style={{ marginRight: '0.125em' }} />
+                                        )}
                                         {item.title}
-                                    </ExternalLink> :
-                                    <Link href={item.href}>
-                                        {item.title}
-                                    </Link>
-                                }
+                                    </ExternalLink>
+                                ) : (
+                                    <Link href={item.href}>{item.title}</Link>
+                                )}
                             </li>
                         ))}
                     </ul>

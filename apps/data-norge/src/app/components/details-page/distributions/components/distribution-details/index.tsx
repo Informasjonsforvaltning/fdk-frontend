@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type Distribution } from '@fdk-frontend/fdk-types';
@@ -9,6 +10,7 @@ import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import { printLocaleValue, isOpenLicense } from '@fdk-frontend/utils';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import OpenLicenseTag from '@fdk-frontend/ui/open-license-tag';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import detailsPageStyles from '../../../details-page.module.scss';
 
 type DistributionDetailsProps = {
@@ -35,7 +37,18 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                         <Box className={detailsPageStyles.descBox}>
                             <ExpandableContent maxHeight={100}>
                                 <article className={detailsPageStyles.article}>
-                                    <Markdown locale={locale}>
+                                    <Markdown
+                                        locale={locale}
+                                        components={{
+                                            a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+                                                <ExternalLink
+                                                    {...props}
+                                                    locale={locale}
+                                                    gateway
+                                                />
+                                            ),
+                                        }}
+                                    >
                                         {printLocaleValue(locale, distribution.description)}
                                     </Markdown>
                                 </article>
@@ -48,7 +61,13 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.accessURL}:</dt>
                 <dd>
                     {distribution.accessURL?.at(0) ? (
-                        <Link href={distribution.accessURL.at(0)}>{distribution.accessURL.at(0)}</Link>
+                        <ExternalLink
+                            href={distribution.accessURL.at(0)}
+                            locale={locale}
+                            gateway
+                        >
+                            {distribution.accessURL.at(0)}
+                        </ExternalLink>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -57,7 +76,13 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dd>
                     {distribution.downloadURL?.at(0) ? (
                         <VStack>
-                            <Link href={distribution.downloadURL.at(0)}>{distribution.downloadURL.at(0)}</Link>
+                            <ExternalLink
+                                href={distribution.downloadURL.at(0)}
+                                locale={locale}
+                                gateway
+                            >
+                                {distribution.downloadURL.at(0)}
+                            </ExternalLink>
                             <DatasetPreviewWidget
                                 downloadUrl={distribution.downloadURL?.at(0) as string}
                                 title={datasetPreviewTitle}
@@ -91,12 +116,14 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dd>
                     {distribution.page ? (
                         distribution.page.map((page: any) => (
-                            <Link
+                            <ExternalLink
                                 key={page.uri}
                                 href={page.uri}
+                                locale={locale}
+                                gateway
                             >
                                 {page.uri}
-                            </Link>
+                            </ExternalLink>
                         ))
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
@@ -107,9 +134,12 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                     {distribution.license ? (
                         distribution.license.map((license: any) => (
                             <VStack key={license.uri}>
-                                <Link href={license.uri}>
+                                <ExternalLink
+                                    href={license.uri}
+                                    locale={locale}
+                                >
                                     {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
-                                </Link>
+                                </ExternalLink>
                                 {isOpenLicense(license.uri) && <OpenLicenseTag dictionary={dictionaries.common} />}
                             </VStack>
                         ))
@@ -121,12 +151,14 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dd>
                     {distribution.conformsTo ? (
                         distribution.conformsTo.map((standard: any) => (
-                            <Link
+                            <ExternalLink
+                                locale={locale}
                                 href={standard.uri}
                                 key={standard.uri}
+                                gateway
                             >
                                 {standard.prefLabel ? printLocaleValue(locale, standard.prefLabel) : standard.uri}
-                            </Link>
+                            </ExternalLink>
                         ))
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { DatasetDetailsProps } from '../../';
 
@@ -32,10 +33,14 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                                         {printLocaleValue(locale, r.resource?.title)}
                                     </Link>
                                 ) : (
-                                    <Link href={r.reference.source?.uri}>
+                                    <ExternalLink
+                                        href={r.reference.source?.uri}
+                                        locale={locale}
+                                        gateway
+                                    >
                                         {printLocaleValue(locale, r.reference.source?.prefLabel) ||
                                             r.reference.source?.uri}
-                                    </Link>
+                                    </ExternalLink>
                                 )}
                             </dd>
                         </React.Fragment>
@@ -49,13 +54,18 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                                         <Link
                                             href={r.resource ? `/datasets/${r.resource.id}` : r.reference.source?.uri}
                                         >
-                                            {printLocaleValue(locale, r.resource?.title)}
+                                            {printLocaleValue(locale, r.resource?.title)} yalla
                                         </Link>
                                     ) : (
-                                        <Link href={r.reference.source?.uri}>
+                                        <ExternalLink
+                                            href={r.reference.source?.uri}
+                                            locale={locale}
+                                            gateway
+                                        >
                                             {printLocaleValue(locale, r.reference.source?.prefLabel) ||
-                                                r.reference.source?.uri}
-                                        </Link>
+                                                r.reference.source?.uri}{' '}
+                                            balla
+                                        </ExternalLink>
                                     )}
                                 </li>
                             ))}
