@@ -3,6 +3,7 @@ import { Heading } from '@digdir/designsystemet-react';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import ExternalLink from '@fdk-frontend/ui/external-link';
+import SmartList from '@fdk-frontend/ui/smart-list';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -15,19 +16,18 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     const printLegalBasis = (legalBasis: any) => {
         if (!legalBasis) return <PlaceholderText>{dictionary.details.noData}</PlaceholderText>;
         return (
-            <ol>
-                {legalBasis.map((legal: any) => (
-                    <li key={legal.uri}>
-                        <ExternalLink
-                            href={legal.uri}
-                            locale={locale}
-                            gateway
-                        >
-                            {printLocaleValue(locale, legal.prefLabel)}
-                        </ExternalLink>
-                    </li>
-                ))}
-            </ol>
+            <SmartList
+                items={legalBasis}
+                renderItem={(legal: any) => (
+                    <ExternalLink
+                        href={legal.uri as string}
+                        locale={locale}
+                        gateway
+                    >
+                        {printLocaleValue(locale, legal.prefLabel)}
+                    </ExternalLink>
+                )}
+            />
         );
     };
 

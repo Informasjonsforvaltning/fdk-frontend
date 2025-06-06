@@ -2,6 +2,7 @@ import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import ExternalLink from '@fdk-frontend/ui/external-link';
+import SmartList from '@fdk-frontend/ui/smart-list';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { DatasetDetailsProps } from '../../';
 
@@ -29,7 +30,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                             </dt>
                             <dd>
                                 {r.resource ? (
-                                    <Link href={`/datasets/${r.resource?.id}`}>
+                                    <Link href={`/${locale}/datasets/${r.resource?.id}`}>
                                         {printLocaleValue(locale, r.resource?.title)}
                                     </Link>
                                 ) : (
@@ -47,29 +48,24 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                     ))}
                     <dt>{dictionary.details.references.relatedResources}:</dt>
                     <dd>
-                        <ol>
-                            {other.map((r) => (
-                                <li key={r.reference?.source?.uri}>
-                                    {r.resource ? (
-                                        <Link
-                                            href={r.resource ? `/datasets/${r.resource.id}` : r.reference.source?.uri}
-                                        >
-                                            {printLocaleValue(locale, r.resource?.title)} yalla
-                                        </Link>
-                                    ) : (
-                                        <ExternalLink
-                                            href={r.reference.source?.uri}
-                                            locale={locale}
-                                            gateway
-                                        >
-                                            {printLocaleValue(locale, r.reference.source?.prefLabel) ||
-                                                r.reference.source?.uri}{' '}
-                                            balla
-                                        </ExternalLink>
-                                    )}
-                                </li>
-                            ))}
-                        </ol>
+                        <SmartList
+                            items={other}
+                            renderItem={(r) => (
+                                r.resource ?
+                                <Link
+                                    href={r.resource ? `/${locale}/datasets/${r.resource.id}` : r.reference.source?.uri}
+                                >
+                                    {printLocaleValue(locale, r.resource?.title)}
+                                </Link> :
+                                <ExternalLink
+                                    href={r.reference.source?.uri}
+                                    locale={locale}
+                                    gateway
+                                >
+                                    {printLocaleValue(locale, r.reference.source?.prefLabel) || r.reference.source?.uri}
+                                </ExternalLink>
+                            )}
+                        />
                     </dd>
                 </dl>
             ) : (
