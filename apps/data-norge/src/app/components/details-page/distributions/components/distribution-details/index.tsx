@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type Distribution } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
@@ -11,6 +10,7 @@ import { printLocaleValue, isOpenLicense } from '@fdk-frontend/utils';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import OpenLicenseTag from '@fdk-frontend/ui/open-license-tag';
 import ExternalLink from '@fdk-frontend/ui/external-link';
+import SmartList from '@fdk-frontend/ui/smart-list';
 import detailsPageStyles from '../../../details-page.module.scss';
 
 type DistributionDetailsProps = {
@@ -60,35 +60,47 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 </dd>
                 <dt>{dictionaries.detailsPage.distributions.details.accessURL}:</dt>
                 <dd>
-                    {distribution.accessURL?.at(0) ? (
-                        <ExternalLink
-                            href={distribution.accessURL.at(0)}
-                            locale={locale}
-                            gateway
-                        >
-                            {distribution.accessURL.at(0)}
-                        </ExternalLink>
+                    {distribution.accessURL?.length ? (
+                        <SmartList
+                            listType='ol'
+                            items={distribution.accessURL}
+                            renderItem={(url) => (
+                                <ExternalLink
+                                    href={url}
+                                    locale={locale}
+                                    gateway
+                                >
+                                    {url}
+                                </ExternalLink>
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
                 <dt>{dictionaries.detailsPage.distributions.details.downloadURL}:</dt>
                 <dd>
-                    {distribution.downloadURL?.at(0) ? (
-                        <VStack>
-                            <ExternalLink
-                                href={distribution.downloadURL.at(0)}
-                                locale={locale}
-                                gateway
-                            >
-                                {distribution.downloadURL.at(0)}
-                            </ExternalLink>
-                            <DatasetPreviewWidget
-                                downloadUrl={distribution.downloadURL?.at(0) as string}
-                                title={datasetPreviewTitle}
-                                dictionary={dictionaries.detailsPage}
-                            />
-                        </VStack>
+                    {distribution.downloadURL?.length ? (
+                        <SmartList
+                            listType='ol'
+                            items={distribution.downloadURL}
+                            renderItem={(url) => (
+                                <VStack>
+                                    <ExternalLink
+                                        href={url}
+                                        locale={locale}
+                                        gateway
+                                    >
+                                        {url}
+                                    </ExternalLink>
+                                    <DatasetPreviewWidget
+                                        downloadUrl={url as string}
+                                        title={datasetPreviewTitle}
+                                        dictionary={dictionaries.detailsPage}
+                                    />
+                                </VStack>
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -96,18 +108,19 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.accessService}:</dt>
                 <dd>
                     {distribution.accessService?.length ? (
-                        <ol>
-                            {distribution.accessService.map((api: any) => (
-                                <li key={api.uri}>
-                                    <Link
-                                        key={api.uri}
-                                        href={api.uri}
-                                    >
-                                        {printLocaleValue(locale, api.title) || api.uri}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ol>
+                        <SmartList
+                            listType='ol'
+                            items={distribution.accessService}
+                            renderItem={(api) => (
+                                <ExternalLink
+                                    href={api.uri}
+                                    locale={locale}
+                                    gateway
+                                >
+                                    {printLocaleValue(locale, api.title) || api.uri}
+                                </ExternalLink>
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -115,16 +128,19 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.page}:</dt>
                 <dd>
                     {distribution.page ? (
-                        distribution.page.map((page: any) => (
-                            <ExternalLink
-                                key={page.uri}
-                                href={page.uri}
-                                locale={locale}
-                                gateway
-                            >
-                                {page.uri}
-                            </ExternalLink>
-                        ))
+                        <SmartList
+                            listType='ol'
+                            items={distribution.page}
+                            renderItem={(page) => (
+                                <ExternalLink
+                                    href={page.uri}
+                                    locale={locale}
+                                    gateway
+                                >
+                                    {page.uri}
+                                </ExternalLink>
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -132,17 +148,21 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.license}:</dt>
                 <dd>
                     {distribution.license ? (
-                        distribution.license.map((license: any) => (
-                            <VStack key={license.uri}>
-                                <ExternalLink
-                                    href={license.uri}
-                                    locale={locale}
-                                >
-                                    {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
-                                </ExternalLink>
-                                {isOpenLicense(license.uri) && <OpenLicenseTag dictionary={dictionaries.common} />}
-                            </VStack>
-                        ))
+                        <SmartList
+                            listType='ol'
+                            items={distribution.license}
+                            renderItem={(license) => (
+                                <VStack key={license.uri}>
+                                    <ExternalLink
+                                        href={license.uri}
+                                        locale={locale}
+                                    >
+                                        {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
+                                    </ExternalLink>
+                                    {isOpenLicense(license.uri) && <OpenLicenseTag dictionary={dictionaries.common} />}
+                                </VStack>
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -150,16 +170,19 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.conformsTo}:</dt>
                 <dd>
                     {distribution.conformsTo ? (
-                        distribution.conformsTo.map((standard: any) => (
-                            <ExternalLink
-                                locale={locale}
-                                href={standard.uri}
-                                key={standard.uri}
-                                gateway
-                            >
-                                {standard.prefLabel ? printLocaleValue(locale, standard.prefLabel) : standard.uri}
-                            </ExternalLink>
-                        ))
+                        <SmartList
+                            listType='ol'
+                            items={distribution.conformsTo}
+                            renderItem={(standard) => (
+                                <ExternalLink
+                                    href={standard.uri}
+                                    locale={locale} 
+                                    gateway
+                                >
+                                    {standard.prefLabel ? printLocaleValue(locale, standard.prefLabel) : standard.uri}
+                                </ExternalLink>
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}

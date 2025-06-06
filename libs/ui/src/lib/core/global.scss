@@ -71,3 +71,11 @@ html {
 .sr-only {
     @include sr-only();
 }
+
+ol,
+ul {
+    &.list-no-style {
+        list-style: none !important;
+        margin-left: 0 !important;
+    }
+}

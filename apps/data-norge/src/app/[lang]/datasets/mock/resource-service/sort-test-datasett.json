@@ -111,7 +111,7 @@
                     "uri": "https://dataservice-publisher.staging.fellesdatakatalog.digdir.no/dataservices/8db9fae19a763e05149bff2ef23c72c539d052db"
                 }
             ],
-            "accessURL": ["https://distro.com"],
+            "accessURL": ["https://distro.com", "yalla"],
             "compressFormat": null,
             "conformsTo": [
                 {
@@ -124,7 +124,7 @@
                 "nb": "God fokrlaring",
                 "nn": "God fokrlaring"
             },
-            "downloadURL": ["https://distro.com/dl"],
+            "downloadURL": ["https://distro.com/dl", "https://distro.com/dl"],
             "fdkFormat": [
                 {
                     "code": "text/csv",
@@ -147,6 +147,13 @@
             ],
             "packageFormat": null,
             "page": [
+                {
+                    "broader": null,
+                    "extraType": null,
+                    "narrower": null,
+                    "prefLabel": null,
+                    "uri": "http://docs.com"
+                },
                 {
                     "broader": null,
                     "extraType": null,

@@ -52,17 +52,16 @@
         }
 
         dl {
+            ul,
             ol {
                 list-style: numeric;
                 margin-left: 1rem;
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
-
-                &:global(.no-style) {
-                    list-style: none;
-                    margin: 0;
-                }
+            }
+            ul {
+                list-style:disc;
             }
         }
 

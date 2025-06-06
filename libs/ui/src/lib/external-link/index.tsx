@@ -5,6 +5,10 @@ import { Link, type LinkProps } from '@digdir/designsystemet-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 
+/**
+ * @prop {boolean} gateway - Determines if the link should go through /leaving-gateway. 
+ * Will still be bypassed if link goes to same hostname as app.
+ */
 export type ExternalLinkProps = Omit<LinkProps, 'children'> &
     PropsWithChildren & {
         locale?: LocaleCodes;

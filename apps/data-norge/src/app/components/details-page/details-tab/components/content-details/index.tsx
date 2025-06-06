@@ -3,6 +3,7 @@ import { Heading, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import HStack from '@fdk-frontend/ui/hstack';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import ExternalLink from '@fdk-frontend/ui/external-link';
+import SmartList from '@fdk-frontend/ui/smart-list';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -37,23 +38,21 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>{dictionary.details.content.qualifiedAttributions}:</dt>
                         <dd>
                             {dataset.qualifiedAttributions ? (
-                                <ol>
-                                    {dataset.qualifiedAttributions.map((attribution: any, i: number) => (
-                                        <li key={`attribution-${i}`}>
-                                            {attribution.agent.uri ? (
-                                                <ExternalLink
-                                                    href={attribution.agent.uri}
-                                                    locale={locale}
-                                                    gateway
-                                                >
-                                                    {printLocaleValue(locale, attribution.agent.prefLabel)}
-                                                </ExternalLink>
-                                            ) : (
-                                                printLocaleValue(locale, attribution.agent.prefLabel)
-                                            )}
-                                        </li>
-                                    ))}
-                                </ol>
+                                <SmartList
+                                    listType='ol'
+                                    items={dataset.qualifiedAttributions}
+                                    renderItem={(attribution) => (
+                                        attribution.agent.uri ?
+                                        <ExternalLink
+                                            href={attribution.agent.uri}
+                                            locale={locale}
+                                            gateway
+                                        >
+                                            {printLocaleValue(locale, attribution.agent.prefLabel)}
+                                        </ExternalLink> :
+                                        printLocaleValue(locale, attribution.agent.prefLabel)
+                                    )}
+                                />
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
@@ -186,41 +185,25 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>{dictionary.details.content.spatial}:</dt>
                         <dd>
                             {dataset?.spatial ? (
-                                <ol>
-                                    {dataset?.spatial?.map((spatial: any, i: number) => {
-                                        if (spatial.prefLabel && spatial.uri) {
-                                            return (
-                                                <li key={`spatial-${i}`}>
-                                                    <ExternalLink
-                                                        href={spatial.uri}
-                                                        locale={locale}
-                                                        gateway
-                                                    >
-                                                        {printLocaleValue(locale, spatial?.prefLabel)}
-                                                    </ExternalLink>
-                                                </li>
-                                            );
-                                        } else if (spatial.prefLabel) {
-                                            return (
-                                                <li key={`spatial-${i}`}>
-                                                    {printLocaleValue(locale, spatial?.prefLabel)}
-                                                </li>
-                                            );
-                                        } else if (spatial.uri) {
-                                            return (
-                                                <li key={`spatial-${i}`}>
-                                                    <ExternalLink
-                                                        href={spatial.uri}
-                                                        locale={locale}
-                                                        gateway
-                                                    >
-                                                        {spatial.uri}
-                                                    </ExternalLink>
-                                                </li>
-                                            );
-                                        }
-                                    })}
-                                </ol>
+                                <SmartList
+                                    listType='ol'
+                                    items={dataset.spatial}
+                                    renderItem={(spatial) => (
+                                        spatial.uri ?
+                                        <ExternalLink
+                                            href={spatial.uri}
+                                            locale={locale}
+                                            gateway
+                                        >
+                                            {
+                                                spatial.prefLabel ?
+                                                printLocaleValue(locale, spatial?.prefLabel) :
+                                                spatial.uri
+                                            }
+                                        </ExternalLink> :
+                                        printLocaleValue(locale, spatial?.prefLabel)
+                                    )}
+                                />
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
@@ -232,34 +215,34 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>{dictionary.details.content.temporal}:</dt>
                         <dd>
                             {dataset?.temporal ? (
-                                <ol className='no-style'>
-                                    {dataset?.temporal?.map((temporal: any, i: number) => (
-                                        <li key={`temporal-${i}`}>
-                                            <dl>
-                                                {temporal.startDate && (
-                                                    <>
-                                                        <dt>{dictionary.details.content.temporalFrom}:</dt>
-                                                        <dd>
-                                                            {new Date(temporal.startDate).toLocaleString(locale, {
-                                                                dateStyle: 'long',
-                                                            })}
-                                                        </dd>
-                                                    </>
-                                                )}
-                                                {temporal.endDate && (
-                                                    <>
-                                                        <dt>{dictionary.details.content.temporalTo}:</dt>
-                                                        <dd>
-                                                            {new Date(temporal.endDate).toLocaleString(locale, {
-                                                                dateStyle: 'long',
-                                                            })}
-                                                        </dd>
-                                                    </>
-                                                )}
-                                            </dl>
-                                        </li>
-                                    ))}
-                                </ol>
+                                <SmartList
+                                    className='list-no-style'
+                                    items={dataset.temporal}
+                                    renderItem={(temporal) => (
+                                        <dl>
+                                            {temporal.startDate && (
+                                                <>
+                                                    <dt>{dictionary.details.content.temporalFrom}:</dt>
+                                                    <dd>
+                                                        {new Date(temporal.startDate).toLocaleString(locale, {
+                                                            dateStyle: 'long',
+                                                        })}
+                                                    </dd>
+                                                </>
+                                            )}
+                                            {temporal.endDate && (
+                                                <>
+                                                    <dt>{dictionary.details.content.temporalTo}:</dt>
+                                                    <dd>
+                                                        {new Date(temporal.endDate).toLocaleString(locale, {
+                                                            dateStyle: 'long',
+                                                        })}
+                                                    </dd>
+                                                </>
+                                            )}
+                                        </dl>
+                                    )}
+                                />
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
@@ -282,19 +265,19 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         </dt>
                         <dd>
                             {dataset?.conformsTo ? (
-                                <ol>
-                                    {dataset?.conformsTo?.map((item: any, i: number) => (
-                                        <li key={item.uri}>
-                                            <ExternalLink
-                                                href={item.uri}
-                                                locale={locale}
-                                                gateway
-                                            >
-                                                {printLocaleValue(locale, item?.prefLabel) || item.uri}
-                                            </ExternalLink>
-                                        </li>
-                                    ))}
-                                </ol>
+                                <SmartList
+                                    listType='ol'
+                                    items={dataset.conformsTo}
+                                    renderItem={(item) => (
+                                        <ExternalLink
+                                            href={item.uri}
+                                            locale={locale}
+                                            gateway
+                                        >
+                                            {printLocaleValue(locale, item?.prefLabel) || item.uri}
+                                        </ExternalLink>
+                                    )}
+                                />
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
