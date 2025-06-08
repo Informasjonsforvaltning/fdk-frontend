@@ -12143,7 +12143,7 @@ __metadata:
     eslint-plugin-playwright: "npm:^2.2.0"
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-hooks: "npm:^5.2.0"
-    framer-motion: "npm:^12.13.0"
+    framer-motion: "npm:^12.16.0"
     identity-obj-proxy: "npm:^3.0.0"
     jest: "npm:^29.7.0"
     jest-axe: "npm:^10.0.0"
@@ -12576,11 +12576,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^12.13.0":
-  version: 12.13.0
-  resolution: "framer-motion@npm:12.13.0"
+"framer-motion@npm:^12.16.0":
+  version: 12.16.0
+  resolution: "framer-motion@npm:12.16.0"
   dependencies:
-    motion-dom: "npm:^12.13.0"
+    motion-dom: "npm:^12.16.0"
     motion-utils: "npm:^12.12.1"
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -12594,7 +12594,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/869306b2c83399c462eb46f23aef571664561a145b0dbd8116472b18dd45a8f9ed5358295eebd37272260d7693be365b6653c99725ce6f162f007b157ad70385
+  checksum: 10c0/df8d61553d0aebb2f679620a9c70e90e82b4245fbbd3333d779399b555e6344eb72c453c2483071a9b2c6fd1f8ba680e211b494468d69c9c060a344e0d6d8893
   languageName: node
   linkType: hard
 
@@ -17005,12 +17005,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion-dom@npm:^12.13.0":
-  version: 12.13.0
-  resolution: "motion-dom@npm:12.13.0"
+"motion-dom@npm:^12.16.0":
+  version: 12.16.0
+  resolution: "motion-dom@npm:12.16.0"
   dependencies:
     motion-utils: "npm:^12.12.1"
-  checksum: 10c0/7b66adb115a242a45c98c9fe2c3aa737a9a085464bce280d9d84442f69a607eb5baf8cb2207bc7a208d438daaf4520f84c0a1afadfefa9c59f3f80d04288016a
+  checksum: 10c0/b5d770c5fc2ff163fe160e5152b647c67eefa5ee3ccb1ea59819056893913f20e98af6223615c374f6c835a1796ca77181ee4d0e7464bb8a79a79c00fa0a2b72
   languageName: node
   linkType: hard
 
