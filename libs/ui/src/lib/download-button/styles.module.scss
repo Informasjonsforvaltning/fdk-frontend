@@ -1,0 +1,19 @@
+@use '../link-list/styles.module' as link-list;
+
+.dialog {
+    animation: none;
+    max-width: 650px;
+}
+
+.content {
+    ul,
+    ol {
+        background: #fafafa;
+        margin-top: 0.5rem;
+    }
+}
+
+.downloadLink {
+    display: flex;
+    gap: 0.5rem;
+}

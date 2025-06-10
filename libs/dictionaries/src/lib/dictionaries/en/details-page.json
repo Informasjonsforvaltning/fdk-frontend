@@ -67,6 +67,10 @@
             "license": "License",
             "conformsTo": "Conforms to",
             "noData": "Not provided"
+        },
+        "downloadModal": {
+            "header": "This distribution is available at the following URLs",
+            "closeBtn": "Close"
         }
     },
     "apis": {

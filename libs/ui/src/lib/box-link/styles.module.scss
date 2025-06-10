@@ -1,0 +1,15 @@
+@use '../box/box.module' as box;
+
+@mixin box-link-mixin {
+    @include box.box-mixin();
+    display: flex !important;
+    padding: 0.75rem;
+
+    &:hover {
+        background: var(--fds-semantic-surface-action-first-no_fill-hover);
+    }
+}
+
+.boxLink {
+    @include box-link-mixin();
+}

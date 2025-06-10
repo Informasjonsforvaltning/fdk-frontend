@@ -3,17 +3,18 @@ import cn from 'classnames';
 import { Accordion, Heading } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
-import { sumArrayLengths } from '@fdk-frontend/utils';
+import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import { ArrowRightIcon, DownloadIcon } from '@navikt/aksel-icons';
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
+import ActionButton from '@fdk-frontend/ui/action-button';
+import DownloadButton from '@fdk-frontend/ui/download-button';
 import styles from './distributions.module.scss';
 import DistributionDetails from './components/distribution-details';
 import DistributionHeader from './components/distribution-header';
 import ApiHeader from './components/api-header';
 import ApiDetails from './components/api-details';
-import ActionButton from './components/action-button';
 
 export type DistributionsProps = {
     datasets?: JSONValue[];
@@ -65,13 +66,18 @@ const Distributions = ({
                                 />
                             </Accordion.Header>
                             {distribution.accessURL && (
-                                <ActionButton uri={distribution.accessURL}>
+                                <DownloadButton
+                                    uris={distribution.accessURL}
+                                    className={styles.actionButton}
+                                    modalTitle={printLocaleValue(locale, distribution.title)}
+                                    dictionary={dictionaries.detailsPage}
+                                >
                                     <DownloadIcon
                                         aria-hidden
                                         fontSize='1.2em'
                                     />
                                     {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
-                                </ActionButton>
+                                </DownloadButton>
                             )}
                             <Accordion.Content className={styles.content}>
                                 <DistributionDetails
@@ -99,13 +105,18 @@ const Distributions = ({
                                         exampleData={true}
                                     />
                                 </Accordion.Header>
-                                <ActionButton uri={example.accessURL}>
+                                <DownloadButton
+                                    uris={[example.accessURL]}
+                                    className={styles.actionButton}
+                                    modalTitle={printLocaleValue(locale, example.title)}
+                                    dictionary={dictionaries.detailsPage}
+                                >
                                     <DownloadIcon
                                         aria-hidden
                                         fontSize='1.2em'
                                     />
                                     {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
-                                </ActionButton>
+                                </DownloadButton>
                                 <Accordion.Content className={styles.content}>
                                     <DistributionDetails
                                         distribution={example}
@@ -145,7 +156,10 @@ const Distributions = ({
                                     dictionary={dictionaries.detailsPage}
                                 />
                             </Accordion.Header>
-                            <ActionButton uri={`/data-services/${api.id}`}>
+                            <ActionButton
+                                uri={`/data-services/${api.id}`}
+                                className={styles.actionButton}
+                            >
                                 {dictionaries.detailsPage.apis.header.gotoBtn}
                                 <ArrowRightIcon
                                     aria-hidden
