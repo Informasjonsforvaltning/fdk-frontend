@@ -67,6 +67,10 @@
             "license": "Lisens",
             "conformsTo": "I samsvar med",
             "noData": "Ikkje oppgitt"
+        },
+        "downloadModal": {
+            "header": "Denne distribusjonen er tilgjengeleg på følgjande URL-ar:",
+            "closeBtn": "Lukk vindu"
         }
     },
     "apis": {

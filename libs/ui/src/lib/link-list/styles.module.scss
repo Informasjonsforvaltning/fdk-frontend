@@ -1,0 +1,64 @@
+@use '../box/box.module' as box;
+
+@mixin link-list-mixin {
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        .fdk-box-link {
+            flex-grow: 1;
+        }
+
+        &:not(:first-child) {
+            .fdk-box-link {
+                // border-top:0;
+                margin-top: -1px;
+            }
+        }
+
+        &:not(:first-child, :last-child) {
+            .fdk-box-link {
+                border-radius: 0;
+            }
+        }
+
+        &:first-child {
+            .fdk-box-link {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+
+        &:last-child {
+            .fdk-box-link {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+    }
+}
+
+@mixin link-list-table-mixin {
+    @include box.box-mixin();
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    padding: 0;
+
+    tr {
+        td {
+            vertical-align: middle;
+        }
+        &:not(:first-child) {
+            td {
+                border-top: 1px solid #ddd;
+            }
+        }
+    }
+
+    .fdk-box-link {
+        border: 0;
+        border-radius: 0;
+    }
+}

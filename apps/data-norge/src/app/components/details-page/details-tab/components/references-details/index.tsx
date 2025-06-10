@@ -50,21 +50,28 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                     <dd>
                         <SmartList
                             items={other}
-                            renderItem={(r) => (
-                                r.resource ?
-                                <Link
-                                    href={r.resource ? `/${locale}/datasets/${r.resource.id}` : r.reference.source?.uri}
-                                >
-                                    {printLocaleValue(locale, r.resource?.title)}
-                                </Link> :
-                                <ExternalLink
-                                    href={r.reference.source?.uri}
-                                    locale={locale}
-                                    gateway
-                                >
-                                    {printLocaleValue(locale, r.reference.source?.prefLabel) || r.reference.source?.uri}
-                                </ExternalLink>
-                            )}
+                            renderItem={(r) =>
+                                r.resource ? (
+                                    <Link
+                                        href={
+                                            r.resource
+                                                ? `/${locale}/datasets/${r.resource.id}`
+                                                : r.reference.source?.uri
+                                        }
+                                    >
+                                        {printLocaleValue(locale, r.resource?.title)}
+                                    </Link>
+                                ) : (
+                                    <ExternalLink
+                                        href={r.reference.source?.uri}
+                                        locale={locale}
+                                        gateway
+                                    >
+                                        {printLocaleValue(locale, r.reference.source?.prefLabel) ||
+                                            r.reference.source?.uri}
+                                    </ExternalLink>
+                                )
+                            }
                         />
                     </dd>
                 </dl>

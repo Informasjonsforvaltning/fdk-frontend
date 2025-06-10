@@ -41,17 +41,19 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 <SmartList
                                     listType='ol'
                                     items={dataset.qualifiedAttributions}
-                                    renderItem={(attribution) => (
-                                        attribution.agent.uri ?
-                                        <ExternalLink
-                                            href={attribution.agent.uri}
-                                            locale={locale}
-                                            gateway
-                                        >
-                                            {printLocaleValue(locale, attribution.agent.prefLabel)}
-                                        </ExternalLink> :
-                                        printLocaleValue(locale, attribution.agent.prefLabel)
-                                    )}
+                                    renderItem={(attribution) =>
+                                        attribution.agent.uri ? (
+                                            <ExternalLink
+                                                href={attribution.agent.uri}
+                                                locale={locale}
+                                                gateway
+                                            >
+                                                {printLocaleValue(locale, attribution.agent.prefLabel)}
+                                            </ExternalLink>
+                                        ) : (
+                                            printLocaleValue(locale, attribution.agent.prefLabel)
+                                        )
+                                    }
                                 />
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
@@ -188,21 +190,21 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 <SmartList
                                     listType='ol'
                                     items={dataset.spatial}
-                                    renderItem={(spatial) => (
-                                        spatial.uri ?
-                                        <ExternalLink
-                                            href={spatial.uri}
-                                            locale={locale}
-                                            gateway
-                                        >
-                                            {
-                                                spatial.prefLabel ?
-                                                printLocaleValue(locale, spatial?.prefLabel) :
-                                                spatial.uri
-                                            }
-                                        </ExternalLink> :
-                                        printLocaleValue(locale, spatial?.prefLabel)
-                                    )}
+                                    renderItem={(spatial) =>
+                                        spatial.uri ? (
+                                            <ExternalLink
+                                                href={spatial.uri}
+                                                locale={locale}
+                                                gateway
+                                            >
+                                                {spatial.prefLabel
+                                                    ? printLocaleValue(locale, spatial?.prefLabel)
+                                                    : spatial.uri}
+                                            </ExternalLink>
+                                        ) : (
+                                            printLocaleValue(locale, spatial?.prefLabel)
+                                        )
+                                    }
                                 />
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>

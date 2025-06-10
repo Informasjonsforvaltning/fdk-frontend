@@ -62,6 +62,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dd>
                     {distribution.accessURL?.length ? (
                         <SmartList
+                            className='fdk-link-list'
                             listType='ol'
                             items={distribution.accessURL}
                             renderItem={(url) => (
@@ -69,6 +70,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                                     href={url}
                                     locale={locale}
                                     gateway
+                                    className='fdk-box-link'
                                 >
                                     {url}
                                 </ExternalLink>
@@ -81,26 +83,34 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.downloadURL}:</dt>
                 <dd>
                     {distribution.downloadURL?.length ? (
-                        <SmartList
-                            listType='ol'
-                            items={distribution.downloadURL}
-                            renderItem={(url) => (
-                                <VStack>
-                                    <ExternalLink
-                                        href={url}
-                                        locale={locale}
-                                        gateway
-                                    >
-                                        {url}
-                                    </ExternalLink>
-                                    <DatasetPreviewWidget
-                                        downloadUrl={url as string}
-                                        title={datasetPreviewTitle}
-                                        dictionary={dictionaries.detailsPage}
-                                    />
-                                </VStack>
-                            )}
-                        />
+                        <table className='fdk-link-list-table'>
+                            <tbody>
+                                {distribution.downloadURL.map((url: string, index: number) => (
+                                    <tr key={`${url}-${index}`}>
+                                        <td>
+                                            <ExternalLink
+                                                href={url}
+                                                locale={locale}
+                                                gateway
+                                                className='fdk-box-link'
+                                            >
+                                                {url}
+                                            </ExternalLink>
+                                        </td>
+                                        <td
+                                            width='1'
+                                            align='right'
+                                        >
+                                            <DatasetPreviewWidget
+                                                downloadUrl={url as string}
+                                                title={datasetPreviewTitle}
+                                                dictionary={dictionaries.detailsPage}
+                                            />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -109,6 +119,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dd>
                     {distribution.accessService?.length ? (
                         <SmartList
+                            className='fdk-link-list'
                             listType='ol'
                             items={distribution.accessService}
                             renderItem={(api) => (
@@ -116,6 +127,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                                     href={api.uri}
                                     locale={locale}
                                     gateway
+                                    className='fdk-box-link'
                                 >
                                     {printLocaleValue(locale, api.title) || api.uri}
                                 </ExternalLink>
@@ -129,6 +141,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dd>
                     {distribution.page ? (
                         <SmartList
+                            className='fdk-link-list'
                             listType='ol'
                             items={distribution.page}
                             renderItem={(page) => (
@@ -136,6 +149,7 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                                     href={page.uri}
                                     locale={locale}
                                     gateway
+                                    className='fdk-box-link'
                                 >
                                     {page.uri}
                                 </ExternalLink>
@@ -156,10 +170,16 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                                     <ExternalLink
                                         href={license.uri}
                                         locale={locale}
+                                        className='fdk-box-link'
                                     >
                                         {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
                                     </ExternalLink>
-                                    {isOpenLicense(license.uri) && <OpenLicenseTag dictionary={dictionaries.common} />}
+                                    {isOpenLicense(license.uri) && (
+                                        <OpenLicenseTag
+                                            dictionary={dictionaries.common}
+                                            style={{ marginBottom: '0.5rem' }}
+                                        />
+                                    )}
                                 </VStack>
                             )}
                         />
@@ -171,13 +191,15 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dd>
                     {distribution.conformsTo ? (
                         <SmartList
+                            className='fdk-link-list'
                             listType='ol'
                             items={distribution.conformsTo}
                             renderItem={(standard) => (
                                 <ExternalLink
                                     href={standard.uri}
-                                    locale={locale} 
+                                    locale={locale}
                                     gateway
+                                    className='fdk-box-link'
                                 >
                                     {standard.prefLabel ? printLocaleValue(locale, standard.prefLabel) : standard.uri}
                                 </ExternalLink>

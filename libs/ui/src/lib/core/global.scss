@@ -1,3 +1,6 @@
+@use '../link-list/styles.module' as link-list;
+@use '../box-link/styles.module' as box-link;
+
 /* Define layers in specific order */
 @layer reset, fds;
 
@@ -74,8 +77,20 @@ html {
 
 ol,
 ul {
-    &.list-no-style {
+    &.fdk-list-no-style {
         list-style: none !important;
         margin-left: 0 !important;
     }
+
+    &.fdk-link-list {
+        @include link-list.link-list-mixin();
+    }
+}
+
+a.fdk-box-link {
+    @include box-link.box-link-mixin();
+}
+
+table.fdk-link-list-table {
+    @include link-list.link-list-table-mixin();
 }
