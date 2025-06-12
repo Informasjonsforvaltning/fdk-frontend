@@ -1,11 +1,12 @@
-import { Link, Tag, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import { Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 
-const OpenLicenseTag = ({ dictionary }: { dictionary: Dictionary }) => {
+const OpenLicenseTag = ({ dictionary, ...rest }: { dictionary: Dictionary } & TagProps) => {
     return (
         <Tag
             color='success'
             size='sm'
+            {...rest}
         >
             {dictionary.openLicenseTag.label}
             &nbsp;

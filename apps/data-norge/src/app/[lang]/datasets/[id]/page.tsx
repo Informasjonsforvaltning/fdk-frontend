@@ -69,6 +69,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch details about dataset
 
     try {
+        // dataset = mockResource;
         dataset = await getDataset(params.id);
     } catch (err) {
         console.error(`Failed to get dataset with ID ${params.id}`, JSON.stringify(err));

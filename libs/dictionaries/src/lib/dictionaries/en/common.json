@@ -103,5 +103,12 @@
         "text": "You can {{contactLink}} here, or ask for help in our {{communityLink}}.",
         "contactLinkText": "contact us",
         "communityLinkText": "Community"
+    },
+    "leavingGateway": {
+        "heading": "Caution! You are now leaving data.norge.no...",
+        "linkLabel": "The link you clicked points to the following address:",
+        "alertText": "Please be aware of the following:\n- The destination is not part of data.norge.no\n- We have no control over the content at the destination\n- Report broken links to the responsible organization",
+        "abortButton": "Stay on data.norge.no",
+        "continueButton": "Continue"
     }
 }

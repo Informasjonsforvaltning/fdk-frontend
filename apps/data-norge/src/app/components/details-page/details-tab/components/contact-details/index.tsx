@@ -43,7 +43,11 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 <dt>{dictionary.details.contactPoint.uri}:</dt>
                                 <dd>
                                     {contactPoint.hasURL ? (
-                                        <ExternalLink href={contactPoint.hasURL}>
+                                        <ExternalLink
+                                            href={contactPoint.hasURL}
+                                            locale={locale}
+                                            gateway
+                                        >
                                             {contactPoint.hasURL}
                                         </ExternalLink>
                                     ) : (

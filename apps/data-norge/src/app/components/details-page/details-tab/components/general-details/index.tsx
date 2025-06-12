@@ -5,6 +5,7 @@ import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
 import { type DatasetType } from '@fdk-frontend/fdk-types';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import ExternalLink from '@fdk-frontend/ui/external-link';
+import SmartList from '@fdk-frontend/ui/smart-list';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
@@ -89,17 +90,20 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         <dt>{dictionary.details.general.landingPage}:</dt>
                         <dd>
                             {dataset.landingPage?.length ? (
-                                <ul>
-                                    {dataset.landingPage.map((page) => (
-                                        <li key={page}>
-                                            <ExternalLink href={page}>
-                                                {page}
-                                            </ExternalLink>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <SmartList
+                                    items={dataset.landingPage}
+                                    renderItem={(page) => (
+                                        <ExternalLink
+                                            href={page}
+                                            locale={locale}
+                                            gateway
+                                        >
+                                            {page}
+                                        </ExternalLink>
+                                    )}
+                                />
                             ) : (
-                                <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
                         </dd>
                     </>
@@ -109,17 +113,20 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         <dt>{dictionary.details.general.page}:</dt>
                         <dd>
                             {dataset.page?.length ? (
-                                <ul>
-                                    {dataset.page.map((page) => (
-                                        <li key={page}>
-                                            <ExternalLink href={page}>
-                                                {page}
-                                            </ExternalLink>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <SmartList
+                                    items={dataset.page}
+                                    renderItem={(page) => (
+                                        <ExternalLink
+                                            href={page}
+                                            locale={locale}
+                                            gateway
+                                        >
+                                            {page}
+                                        </ExternalLink>
+                                    )}
+                                />
                             ) : (
-                                <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
                         </dd>
                     </>
@@ -131,7 +138,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                             {dataset.dctType ? (
                                 printLocaleValue(locale, (dataset.dctType as DatasetType)?.prefLabel)
                             ) : (
-                                <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
                         </dd>
                     </>

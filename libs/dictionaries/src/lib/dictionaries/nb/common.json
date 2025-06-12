@@ -103,5 +103,12 @@
         "text": "{{contactLink}} med oss her, eller spør om hjelp i {{communityLink}}.",
         "contactLinkText": "Ta kontakt",
         "communityLinkText": "Datalandsbyen"
+    },
+    "leavingGateway": {
+        "heading": "Obs! Du forlater nå data.norge.no...",
+        "linkLabel": "Lenken du har klikket på peker til følgende adresse:",
+        "alertText": "Vær obs på følgende:\n- Destinasjonen er ikke en del av data.norge.no\n- Vi har ingen kontroll over innholdet på destinasjonen\n- Meld fra om brutte lenker til den ansvarlige virksomheten",
+        "abortButton": "Bli på data.norge.no",
+        "continueButton": "Fortsett"
     }
 }

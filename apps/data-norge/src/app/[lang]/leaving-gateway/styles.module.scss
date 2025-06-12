@@ -1,0 +1,24 @@
+@use '@fdk-frontend/ui/placeholder-box/placeholder-box.module' as placeholder-box;
+@import '@fdk-frontend/ui/core/mixins';
+
+.wrapper {
+    position: absolute;
+    inset: 0;
+    background: white;
+    display: grid;
+    place-items: center;
+
+    .inner {
+        @include article();
+        max-width: 600px;
+    }
+
+    .urlBox {
+        @include placeholder-box.placeholder-box-mixin();
+    }
+
+    .toolbar {
+        display: flex;
+        gap: 1rem;
+    }
+}

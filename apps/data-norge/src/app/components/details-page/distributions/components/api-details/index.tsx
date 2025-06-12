@@ -1,3 +1,4 @@
+import React from 'react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type DataService } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
@@ -6,6 +7,7 @@ import ExternalLink from '@fdk-frontend/ui/external-link';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import detailsPageStyles from '../../../details-page.module.scss';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
+import SmartList from '@fdk-frontend/ui/smart-list';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
 type ApiDetailsProps = {
@@ -24,7 +26,20 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <Box className={detailsPageStyles.descBox}>
                             <ExpandableContent maxHeight={100}>
                                 <article className={detailsPageStyles.article}>
-                                    <Markdown locale={locale}>{printLocaleValue(locale, api.description)}</Markdown>
+                                    <Markdown
+                                        locale={locale}
+                                        components={{
+                                            a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+                                                <ExternalLink
+                                                    {...props}
+                                                    locale={locale}
+                                                    gateway
+                                                />
+                                            ),
+                                        }}
+                                    >
+                                        {printLocaleValue(locale, api.description)}
+                                    </Markdown>
                                 </article>
                             </ExpandableContent>
                         </Box>
@@ -35,19 +50,42 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                 <dt>{dictionary.apis.details.endpoint}:</dt>
                 <dd>
                     {api.endpointURL?.length ? (
-                        api.endpointURL.map((endpointURL: string, i: number) => {
-                            return (
+                        <SmartList
+                            className='list-no-style'
+                            items={api.endpointURL}
+                            renderItem={(endpointURL: string, i: number) => (
                                 <dl key={endpointURL}>
                                     <dt>{dictionary.apis.details.url}:</dt>
                                     <dd>
-                                        <ExternalLink href={endpointURL}>{endpointURL}</ExternalLink>
+                                        <ExternalLink
+                                            href={endpointURL}
+                                            locale={locale}
+                                            gateway
+                                        >
+                                            {endpointURL}
+                                        </ExternalLink>
                                     </dd>
                                     <dt>{dictionary.apis.details.description}:</dt>
                                     <dd>
                                         {api.endpointDescription && api.endpointDescription[i] ? (
                                             <ExpandableContent maxHeight={100}>
                                                 <article className={detailsPageStyles.article}>
-                                                    <Markdown>{api.endpointDescription[i]}</Markdown>
+                                                    <Markdown
+                                                        locale={locale}
+                                                        components={{
+                                                            a: (
+                                                                props: React.AnchorHTMLAttributes<HTMLAnchorElement>,
+                                                            ) => (
+                                                                <ExternalLink
+                                                                    {...props}
+                                                                    locale={locale}
+                                                                    gateway
+                                                                />
+                                                            ),
+                                                        }}
+                                                    >
+                                                        {api.endpointDescription[i]}
+                                                    </Markdown>
                                                 </article>
                                             </ExpandableContent>
                                         ) : (
@@ -55,8 +93,8 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                         )}
                                     </dd>
                                 </dl>
-                            );
-                        })
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                     )}
@@ -64,13 +102,19 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                 <dt>{dictionary.apis.details.page}:</dt>
                 <dd>
                     {api.page?.length ? (
-                        <ul>
-                            {api.page.map((page) => (
-                                <li key={page}>
-                                    <ExternalLink href={page}>{page}</ExternalLink>
-                                </li>
-                            ))}
-                        </ul>
+                        <SmartList
+                            listType='ol'
+                            items={api.page}
+                            renderItem={(page) => (
+                                <ExternalLink
+                                    href={page}
+                                    locale={locale}
+                                    gateway
+                                >
+                                    {page}
+                                </ExternalLink>
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                     )}
