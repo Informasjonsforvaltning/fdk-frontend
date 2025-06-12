@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import cn from 'classnames';
 import { Button, type ButtonProps, Modal } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import Badge from '../badge';
 import ExternalLink from '../external-link';
 import styles from './styles.module.scss';
@@ -11,9 +11,10 @@ type DownloadButtonProps = {
     modalTitle: string;
     uris: string[];
     dictionary: Dictionary;
+    locale: LocaleCodes;
 };
 
-const DownloadButton = ({ children, modalTitle, uris, dictionary, ...props }: DownloadButtonProps & ButtonProps) => {
+const DownloadButton = ({ children, modalTitle, uris, dictionary, locale, ...props }: DownloadButtonProps & ButtonProps) => {
     const modalRef = useRef<HTMLDialogElement>(null);
 
     if (uris.length === 1) {
@@ -30,6 +31,7 @@ const DownloadButton = ({ children, modalTitle, uris, dictionary, ...props }: Do
                 <ExternalLink
                 	href={uris[0]}
                 	gateway
+                	locale={locale}
                	>
                 	{children}
                 </ExternalLink>
@@ -63,6 +65,7 @@ const DownloadButton = ({ children, modalTitle, uris, dictionary, ...props }: Do
                                     href={uri}
                                     className={cn('fdk-box-link', styles.downloadLink)}
                                     gateway
+                                    locale={locale}
                                 >
                                     <DownloadIcon
                                         aria-hidden

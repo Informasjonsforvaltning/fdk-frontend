@@ -71,6 +71,7 @@ const Distributions = ({
                                     className={styles.actionButton}
                                     modalTitle={printLocaleValue(locale, distribution.title)}
                                     dictionary={dictionaries.detailsPage}
+                                    locale={locale}
                                 >
                                     <DownloadIcon
                                         aria-hidden
@@ -110,6 +111,7 @@ const Distributions = ({
                                     className={styles.actionButton}
                                     modalTitle={printLocaleValue(locale, example.title)}
                                     dictionary={dictionaries.detailsPage}
+                                    locale={locale}
                                 >
                                     <DownloadIcon
                                         aria-hidden
