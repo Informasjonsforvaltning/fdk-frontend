@@ -11,6 +11,7 @@ import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import OpenLicenseTag from '@fdk-frontend/ui/open-license-tag';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
+import DownloadDistributionWidget from '@fdk-frontend/ui/download-distribution-widget';
 import detailsPageStyles from '../../../details-page.module.scss';
 
 type DistributionDetailsProps = {
@@ -83,34 +84,18 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                 <dt>{dictionaries.detailsPage.distributions.details.downloadURL}:</dt>
                 <dd>
                     {distribution.downloadURL?.length ? (
-                        <table className='fdk-link-list-table'>
-                            <tbody>
-                                {distribution.downloadURL.map((url: string, index: number) => (
-                                    <tr key={`${url}-${index}`}>
-                                        <td>
-                                            <ExternalLink
-                                                href={url}
-                                                locale={locale}
-                                                gateway
-                                                className='fdk-box-link'
-                                            >
-                                                {url}
-                                            </ExternalLink>
-                                        </td>
-                                        <td
-                                            width='1'
-                                            align='right'
-                                        >
-                                            <DatasetPreviewWidget
-                                                downloadUrl={url as string}
-                                                title={datasetPreviewTitle}
-                                                dictionary={dictionaries.detailsPage}
-                                            />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <SmartList
+                            className='fdk-link-list'
+                            listType='ol'
+                            items={distribution.downloadURL}
+                            renderItem={(url) => (
+                                <DownloadDistributionWidget
+                                    dictionary={dictionaries.detailsPage}
+                                    locale={locale}
+                                    downloadUrl={url}
+                                />
+                            )}
+                        />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
