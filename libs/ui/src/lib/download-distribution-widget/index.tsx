@@ -1,5 +1,4 @@
 import React from 'react';
-import cn from 'classnames';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import Box from '../box';
 import ExternalLink from '../external-link';
@@ -7,12 +6,14 @@ import DatasetPreviewWidget from '../dataset-preview-widget/';
 import styles from './styles.module.scss';
 
 type DownloadDistributionWidgetProps = {
+	title: string;
 	downloadUrl: string;
 	dictionary: Dictionary;
 	locale: LocaleCodes;
 }
 
-const DownloadDistributionWidget = ({ downloadUrl, dictionary, locale, ...props }: DownloadDistributionWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
+const DownloadDistributionWidget = ({ title, downloadUrl, dictionary, locale, ...props }: DownloadDistributionWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
+	const datasetPreviewTitle = title || downloadUrl || dictionary.distributions.header.nameless;
 	return (
 		<Box
 			className={styles.wrapper}
@@ -21,6 +22,7 @@ const DownloadDistributionWidget = ({ downloadUrl, dictionary, locale, ...props 
 			<ExternalLink
 				className='fdk-box-link'
 				href={downloadUrl}
+				locale={locale}
 				gateway
 			>
 				{downloadUrl}
@@ -30,7 +32,7 @@ const DownloadDistributionWidget = ({ downloadUrl, dictionary, locale, ...props 
 					className={styles.previewWidget}
 					downloadUrl={downloadUrl}
 					dictionary={dictionary}
-					locale={locale}
+					title={datasetPreviewTitle}
 				/>
 			</div>
 		</Box>

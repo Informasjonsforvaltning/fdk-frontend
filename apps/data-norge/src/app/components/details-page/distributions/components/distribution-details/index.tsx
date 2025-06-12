@@ -2,13 +2,11 @@ import React from 'react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type Distribution } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
-import VStack from '@fdk-frontend/ui/vstack';
 import Box from '@fdk-frontend/ui/box';
-import DatasetPreviewWidget from '@fdk-frontend/ui/dataset-preview-widget';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
-import { printLocaleValue, isOpenLicense } from '@fdk-frontend/utils';
+import { printLocaleValue } from '@fdk-frontend/utils';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
-import OpenLicenseTag from '@fdk-frontend/ui/open-license-tag';
+import LicenseBoxLink from '@fdk-frontend/ui/license-box-link';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
 import DownloadDistributionWidget from '@fdk-frontend/ui/download-distribution-widget';
@@ -24,11 +22,6 @@ type DistributionDetailsProps = {
 };
 
 const DistributionDetails = ({ distribution, locale, dictionaries }: DistributionDetailsProps) => {
-    const datasetPreviewTitle =
-        printLocaleValue(locale, distribution.title) ||
-        distribution.downloadURL?.at(0) ||
-        dictionaries.detailsPage.distributions.header.nameless;
-
     return (
         <>
             <dl>
@@ -90,9 +83,10 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                             items={distribution.downloadURL}
                             renderItem={(url) => (
                                 <DownloadDistributionWidget
+                                    title={printLocaleValue(locale, distribution.title)}
+                                    downloadUrl={url}
                                     dictionary={dictionaries.detailsPage}
                                     locale={locale}
-                                    downloadUrl={url}
                                 />
                             )}
                         />
@@ -151,21 +145,9 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                             listType='ol'
                             items={distribution.license}
                             renderItem={(license) => (
-                                <VStack key={license.uri}>
-                                    <ExternalLink
-                                        href={license.uri}
-                                        locale={locale}
-                                        className='fdk-box-link'
-                                    >
-                                        {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
-                                    </ExternalLink>
-                                    {isOpenLicense(license.uri) && (
-                                        <OpenLicenseTag
-                                            dictionary={dictionaries.common}
-                                            style={{ marginBottom: '0.5rem' }}
-                                        />
-                                    )}
-                                </VStack>
+                                <LicenseBoxLink uri={license.uri} dictionary={dictionaries.common} locale={locale}>
+                                    {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
+                                </LicenseBoxLink>
                             )}
                         />
                     ) : (
