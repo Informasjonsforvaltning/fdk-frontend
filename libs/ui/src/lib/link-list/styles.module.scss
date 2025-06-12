@@ -6,32 +6,33 @@
         align-items: center;
         gap: 0.25rem;
 
-        .fdk-box-link {
+        > * {
             flex-grow: 1;
         }
 
         &:not(:first-child) {
-            .fdk-box-link {
+            // .fdk-box-link {
+            > * {
                 // border-top:0;
                 margin-top: -1px;
             }
         }
 
         &:not(:first-child, :last-child) {
-            .fdk-box-link {
+            > * {
                 border-radius: 0;
             }
         }
 
         &:first-child {
-            .fdk-box-link {
+            > * {
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
             }
         }
 
         &:last-child {
-            .fdk-box-link {
+            > * {
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
             }

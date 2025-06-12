@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Spinner, Button } from '@digdir/designsystemet-react';
+import { Spinner, Button, Tooltip, HelpText, Tag, Paragraph } from '@digdir/designsystemet-react';
 import { EyeIcon } from '@navikt/aksel-icons';
 import DatasetPreviewModal from '../dataset-preview-modal/';
 import { type Dictionary } from '@fdk-frontend/dictionaries';

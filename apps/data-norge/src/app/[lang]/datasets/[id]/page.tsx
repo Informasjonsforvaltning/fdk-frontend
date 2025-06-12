@@ -26,7 +26,7 @@ import {
 } from '@fdk-frontend/data-access/server';
 
 // Note: Leave these for easier debugging
-// import mockResource from '../mock/resource-service/sort-test-datasett.json';
+import mockResource from '../mock/resource-service/sort-test-datasett.json';
 // import mockResource from '../mock/resource-service/lovhjemler.json';
 // import mockSearch from '../mock/search-service/search.json';
 
@@ -69,8 +69,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch details about dataset
 
     try {
-        // dataset = mockResource;
-        dataset = await getDataset(params.id);
+        dataset = mockResource;
+        // dataset = await getDataset(params.id);
     } catch (err) {
         console.error(`Failed to get dataset with ID ${params.id}`, JSON.stringify(err));
         notFound();
