@@ -3,13 +3,9 @@
 	position:relative;
 	container-type: inline-size;
 
-	:global(.fdk-tooltip) {
-		display:none;
-	}
-
 	:global(.fdk-box-link) {
 		border:0;
-		padding-right:220px;
+		padding-right:15rem;
 
 		@container (max-width: 500px) {
 			padding-right:4rem;
