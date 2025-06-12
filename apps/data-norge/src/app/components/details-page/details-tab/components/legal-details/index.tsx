@@ -44,19 +44,19 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
                     {!dataset.legalBasisForAccess && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.legal.legalBasisForAccess}:</dt>
-                            <dd>{printLegalBasis(dataset.legalBasisForAccess)}</dd>
+                            <dd className='article'>{printLegalBasis(dataset.legalBasisForAccess)}</dd>
                         </>
                     )}
                     {!dataset.legalBasisForProcessing && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.legal.legalBasisForProcessing}:</dt>
-                            <dd>{printLegalBasis(dataset.legalBasisForProcessing)}</dd>
+                            <dd className='article'>{printLegalBasis(dataset.legalBasisForProcessing)}</dd>
                         </>
                     )}
                     {!dataset.legalBasisForRestriction && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.legal.legalBasisForRestriction}:</dt>
-                            <dd>{printLegalBasis(dataset.legalBasisForRestriction)}</dd>
+                            <dd className='article'>{printLegalBasis(dataset.legalBasisForRestriction)}</dd>
                         </>
                     )}
                 </dl>

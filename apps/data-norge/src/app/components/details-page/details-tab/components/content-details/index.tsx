@@ -38,11 +38,9 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>{dictionary.details.content.qualifiedAttributions}:</dt>
                         <dd>
                             {dataset.qualifiedAttributions ? (
-                                <SmartList
-                                    listType='ol'
-                                    items={dataset.qualifiedAttributions}
-                                    renderItem={(attribution) =>
-                                        attribution.agent.uri ? (
+                                dataset.qualifiedAttributions.map((attribution, index) => (
+                                    <span key={`attribution-${index}`}>
+                                        {attribution.agent.uri ? (
                                             <ExternalLink
                                                 href={attribution.agent.uri}
                                                 locale={locale}
@@ -52,9 +50,10 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                             </ExternalLink>
                                         ) : (
                                             printLocaleValue(locale, attribution.agent.prefLabel)
-                                        )
-                                    }
-                                />
+                                        )}
+                                        {index < dataset.qualifiedAttributions.length - 1 && ', '}
+                                    </span>
+                                ))
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
@@ -185,7 +184,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                 {!dataset?.spatial && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.spatial}:</dt>
-                        <dd>
+                        <dd className='article'>
                             {dataset?.spatial ? (
                                 <SmartList
                                     listType='ol'
@@ -218,8 +217,8 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dd>
                             {dataset?.temporal ? (
                                 <SmartList
-                                    className='list-no-style'
                                     items={dataset.temporal}
+                                    style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
                                     renderItem={(temporal) => (
                                         <dl>
                                             {temporal.startDate && (
@@ -265,7 +264,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 </HelpText>
                             </HStack>
                         </dt>
-                        <dd>
+                        <dd className='article'>
                             {dataset?.conformsTo ? (
                                 <SmartList
                                     listType='ol'

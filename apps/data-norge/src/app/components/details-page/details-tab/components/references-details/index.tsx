@@ -47,7 +47,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                         </React.Fragment>
                     ))}
                     <dt>{dictionary.details.references.relatedResources}:</dt>
-                    <dd>
+                    <dd className='article'>
                         <SmartList
                             items={other}
                             renderItem={(r) =>

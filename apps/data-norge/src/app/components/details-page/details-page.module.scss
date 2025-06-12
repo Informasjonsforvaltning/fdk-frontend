@@ -52,20 +52,6 @@
         }
 
         dl {
-            // ul,
-            // ol {
-            //     list-style: numeric;
-            //     margin-left: 1rem;
-            //     display: flex;
-            //     flex-direction: column;
-            //     gap: 0.5rem;
-            // }
-            // ul {
-            //     list-style:disc;
-            // }
-        }
-
-        dl {
             display: grid;
             grid-template-columns: 1fr 3fr;
             grid-template-columns: minmax(100px, 1fr) minmax(200px, 3fr);
