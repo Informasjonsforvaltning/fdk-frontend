@@ -1,5 +1,6 @@
 @use '../link-list/styles.module' as link-list;
 @use '../box-link/styles.module' as box-link;
+@use './mixins' as core-mixins;
 
 /* Define layers in specific order */
 @layer reset, fds;
@@ -93,4 +94,8 @@ a.fdk-box-link {
 
 table.fdk-link-list-table {
     @include link-list.link-list-table-mixin();
+}
+
+.article {
+    @include core-mixins.article();
 }

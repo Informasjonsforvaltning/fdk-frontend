@@ -17,12 +17,10 @@ export type ExternalLinkProps = Omit<LinkProps, 'children'> &
     };
 
 const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway, ...props }: ExternalLinkProps) => {
-    
     const { href = '' } = props;
-    const [ target, setTarget ] = useState(href);
-    
-    useEffect(() => {
+    const [target, setTarget] = useState(href);
 
+    useEffect(() => {
         const searchParams = new URLSearchParams();
         searchParams.set('url', href);
         const gatewayLink = `/${locale}/leaving-gateway?${searchParams}`;
@@ -35,7 +33,6 @@ const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway
         if (gateway && !isSameHostname) {
             setTarget(gatewayLink);
         }
-
     }, []);
 
     return (

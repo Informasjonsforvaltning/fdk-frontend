@@ -14,7 +14,14 @@ type DownloadButtonProps = {
     locale: LocaleCodes;
 };
 
-const DownloadButton = ({ children, modalTitle, uris, dictionary, locale, ...props }: DownloadButtonProps & ButtonProps) => {
+const DownloadButton = ({
+    children,
+    modalTitle,
+    uris,
+    dictionary,
+    locale,
+    ...props
+}: DownloadButtonProps & ButtonProps) => {
     const modalRef = useRef<HTMLDialogElement>(null);
 
     if (uris.length === 1) {
@@ -29,11 +36,11 @@ const DownloadButton = ({ children, modalTitle, uris, dictionary, locale, ...pro
                 {...props}
             >
                 <ExternalLink
-                	href={uris[0]}
-                	gateway
-                	locale={locale}
-               	>
-                	{children}
+                    href={uris[0]}
+                    gateway
+                    locale={locale}
+                >
+                    {children}
                 </ExternalLink>
             </Button>
         );
