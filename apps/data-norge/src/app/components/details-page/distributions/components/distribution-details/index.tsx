@@ -145,7 +145,11 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                             listType='ol'
                             items={distribution.license}
                             renderItem={(license) => (
-                                <LicenseBoxLink uri={license.uri} dictionary={dictionaries.common} locale={locale}>
+                                <LicenseBoxLink
+                                    uri={license.uri}
+                                    dictionary={dictionaries.common}
+                                    locale={locale}
+                                >
                                     {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
                                 </LicenseBoxLink>
                             )}

@@ -1,31 +1,31 @@
 .wrapper {
-	padding:0;
-	position:relative;
-	container-type: inline-size;
+    padding: 0;
+    position: relative;
+    container-type: inline-size;
 
-	:global(.fdk-box-link) {
-		border:0;
-		padding-right:15rem;
+    :global(.fdk-box-link) {
+        border: 0;
+        padding-right: 15rem;
 
-		@container (max-width: 500px) {
-			padding-right:4rem;
-		}
-	}
+        @container (max-width: 500px) {
+            padding-right: 4rem;
+        }
+    }
 
-	.previewWidgetContainer {
-		position:absolute;
-		top:0;
-		right:0.5rem;
-		bottom:0;
-		display:grid;
-		place-items:center;
-	}
+    .previewWidgetContainer {
+        position: absolute;
+        top: 0;
+        right: 0.5rem;
+        bottom: 0;
+        display: grid;
+        place-items: center;
+    }
 
-	.previewWidget {
-		@container (max-width: 500px) {
-			span {
-				display:none;
-			}
-		}
-	}
+    .previewTriggerBtn {
+        @container (max-width: 500px) {
+            span {
+                display: none;
+            }
+        }
+    }
 }

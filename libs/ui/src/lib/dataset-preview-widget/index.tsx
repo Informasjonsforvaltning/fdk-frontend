@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import cn from 'classnames';
 import { Spinner, Button } from '@digdir/designsystemet-react';
 import { EyeIcon } from '@navikt/aksel-icons';
 import DatasetPreviewModal from '../dataset-preview-modal/';
@@ -11,12 +12,14 @@ type DatasetPreviewWidgetProps = {
     downloadUrl: string;
     title: string;
     dictionary: Dictionary;
+    triggerBtnClass?: string;
 };
 
 const DatasetPreviewWidget = ({
     downloadUrl,
     title,
     dictionary,
+    triggerBtnClass,
     ...props
 }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
     const [loading, setLoading] = useState(true);
@@ -61,16 +64,17 @@ const DatasetPreviewWidget = ({
             {!error && data?.table && (
                 <DatasetPreviewModal
                     title={title}
-                    data={data}
+                    data={data || {}}
                     downloadUrl={downloadUrl}
                     trigger={
                         <Button
                             size='sm'
                             variant='secondary'
-                            className={styles.previewBtn}
+                            className={cn(styles.previewBtn, triggerBtnClass)}
+                            aria-label={dictionary.datasetPreview.showPreviewButton}
                         >
                             <EyeIcon fontSize='1.2em' />
-                            {dictionary.datasetPreview.showPreviewButton}
+                            <span>{dictionary.datasetPreview.showPreviewButton}</span>
                         </Button>
                     }
                     dictionary={dictionary}
