@@ -1,24 +1,23 @@
 .wrapper {
-	position:relative;
-	padding:0;
+    position: relative;
+    padding: 0;
 
-	&.isOpenLicense {
+    &.isOpenLicense {
+        :global(.fdk-box-link) {
+            padding-right: 9rem;
+        }
+    }
 
-		:global(.fdk-box-link) {
-			padding-right:9rem;
-		}
-	}
+    :global(.fdk-box-link) {
+        border: 0;
+    }
 
-	:global(.fdk-box-link) {
-		border:0;
-	}
-
-	.licenseTagContainer {
-		position:absolute;
-		top:0;
-		right:0.5rem;
-		bottom:0;
-		display:grid;
-		place-items:center;
-	}
+    .licenseTagContainer {
+        position: absolute;
+        top: 0;
+        right: 0.5rem;
+        bottom: 0;
+        display: grid;
+        place-items: center;
+    }
 }

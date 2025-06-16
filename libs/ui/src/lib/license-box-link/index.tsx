@@ -8,18 +8,24 @@ import OpenLicenseTag from '../open-license-tag';
 import styles from './styles.module.scss';
 
 type LicenseBoxLinkProps = {
-	uri: string;
-	locale: LocaleCodes;
-	dictionary: Dictionary;
-}
+    uri: string;
+    locale: LocaleCodes;
+    dictionary: Dictionary;
+};
 
-const LicenseBoxLink = ({ children, uri, dictionary, locale, ...props }: LicenseBoxLinkProps & React.HTMLAttributes<HTMLDivElement>) => {
-	return (
-		<Box
-			className={cn(styles.wrapper, { [styles.isOpenLicense]: isOpenLicense(uri) })}
-			{...props}
-		>
-			<ExternalLink
+const LicenseBoxLink = ({
+    children,
+    uri,
+    dictionary,
+    locale,
+    ...props
+}: LicenseBoxLinkProps & React.HTMLAttributes<HTMLDivElement>) => {
+    return (
+        <Box
+            className={cn(styles.wrapper, { [styles.isOpenLicense]: isOpenLicense(uri) })}
+            {...props}
+        >
+            <ExternalLink
                 href={uri}
                 locale={locale}
                 className='fdk-box-link'
@@ -28,11 +34,11 @@ const LicenseBoxLink = ({ children, uri, dictionary, locale, ...props }: License
             </ExternalLink>
             {isOpenLicense(uri) && (
                 <div className={styles.licenseTagContainer}>
-                	<OpenLicenseTag dictionary={dictionary} />
+                    <OpenLicenseTag dictionary={dictionary} />
                 </div>
             )}
-		</Box>
-	);
-}
+        </Box>
+    );
+};
 
 export default LicenseBoxLink;

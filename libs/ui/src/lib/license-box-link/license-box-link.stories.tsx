@@ -22,7 +22,11 @@ export const Primary: Story = {
     render: () => (
         <>
             <div style={{ padding: '1rem' }}>
-                <LicenseBoxLink uri='http://www.example.com/' locale='nb' dictionary={dictionary}>
+                <LicenseBoxLink
+                    uri='http://www.example.com/'
+                    locale='nb'
+                    dictionary={dictionary}
+                >
                     This is a LicenseBoxLink
                 </LicenseBoxLink>
             </div>
