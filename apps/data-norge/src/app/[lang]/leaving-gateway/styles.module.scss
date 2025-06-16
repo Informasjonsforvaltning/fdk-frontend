@@ -11,6 +11,7 @@
     .inner {
         @include article();
         max-width: 600px;
+        padding:1rem;
     }
 
     .urlBox {
