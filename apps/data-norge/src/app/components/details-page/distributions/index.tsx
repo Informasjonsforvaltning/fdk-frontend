@@ -107,7 +107,7 @@ const Distributions = ({
                                     />
                                 </Accordion.Header>
                                 <DownloadButton
-                                    uris={[example.accessURL]}
+                                    uris={example.accessURL}
                                     className={styles.actionButton}
                                     modalTitle={printLocaleValue(locale, example.title)}
                                     dictionary={dictionaries.detailsPage}
