@@ -102,13 +102,13 @@
                     "description": null,
                     "endpointDescription": null,
                     "title": null,
-                    "uri": "https://dataservice-publisher.staging.fellesdatakatalog.digdir.no/dataservices/3b3cf227094d309f4d3c1cdb1ba3e556d59ce977"
+                    "uri": "https://testdata.api.skatteetaten.no/api/testnorge/v2/soek/sd-test/"
                 },
                 {
                     "description": null,
                     "endpointDescription": null,
                     "title": null,
-                    "uri": "https://dataservice-publisher.staging.fellesdatakatalog.digdir.no/dataservices/8db9fae19a763e05149bff2ef23c72c539d052db"
+                    "uri": "https://testdaasoikta.api.skatteetaten.no/api/testnorge/v2/soek/sd-test/"
                 }
             ],
             "accessURL": ["https://distro.com", "yalla"],
@@ -116,7 +116,7 @@
             "conformsTo": [
                 {
                     "prefLabel": null,
-                    "uri": "http://standard2.com"
+                    "uri": "http://data.skatteetaten.no/ns/modell/PassStellBarn/OppgaveOverPassOgStellAvBarn"
                 }
             ],
             "description": {
@@ -416,7 +416,14 @@
     ],
     "sample": [
         {
-            "accessService": null,
+            "accessService": [
+                {
+                    "description": null,
+                    "endpointDescription": null,
+                    "title": null,
+                    "uri": "https://testdata.api.skatteetaten.no/api/testnorge/v2/soek/sd-test/"
+                }
+            ],
             "accessURL": ["https://staging.io"],
             "compressFormat": null,
             "conformsTo": null,

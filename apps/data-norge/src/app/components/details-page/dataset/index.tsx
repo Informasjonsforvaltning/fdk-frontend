@@ -54,6 +54,8 @@ export type DatasetDetailsPageType = {
         common: Dictionary;
         detailsPage: Dictionary;
     };
+    resolvedDistributionDataServices?: SearchObject[];
+    resolvedDistributionInformationModels?: SearchObject[];
 };
 
 export default function DatasetDetailsPage({
@@ -72,6 +74,8 @@ export default function DatasetDetailsPage({
     defaultActiveTab = 'overview',
     locale,
     dictionaries,
+    resolvedDistributionDataServices,
+    resolvedDistributionInformationModels,
 }: DatasetDetailsPageType) {
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [highlight, setHighlight] = useState(false);
@@ -256,6 +260,8 @@ export default function DatasetDetailsPage({
                                     className={cn({ [styles.highlight]: highlight })}
                                     locale={locale}
                                     dictionaries={dictionaries}
+                                    resolvedDistributionDataServices={resolvedDistributionDataServices}
+                                    resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                                 />
                             )}
                         </section>
@@ -318,6 +324,8 @@ export default function DatasetDetailsPage({
                                 className={cn({ [styles.highlight]: highlight })}
                                 locale={locale}
                                 dictionaries={dictionaries}
+                                resolvedDistributionDataServices={resolvedDistributionDataServices}
+                                resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                             />
                         )}
                     </TabContent>

@@ -5,6 +5,7 @@ import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import { ArrowRightIcon, DownloadIcon } from '@navikt/aksel-icons';
+import { type SearchObject } from '@fdk-frontend/fdk-types';
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
@@ -26,6 +27,8 @@ export type DistributionsProps = {
         common: Dictionary;
         detailsPage: Dictionary;
     };
+    resolvedDistributionDataServices?: SearchObject[];
+    resolvedDistributionInformationModels?: SearchObject[];
 };
 
 const Distributions = ({
@@ -35,6 +38,8 @@ const Distributions = ({
     className,
     locale,
     dictionaries,
+    resolvedDistributionDataServices = [],
+    resolvedDistributionInformationModels = [],
     ...props
 }: DistributionsProps) => {
     return (
@@ -85,6 +90,8 @@ const Distributions = ({
                                     distribution={distribution}
                                     locale={locale}
                                     dictionaries={dictionaries}
+                                    resolvedDistributionDataServices={resolvedDistributionDataServices}
+                                    resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                                 />
                             </Accordion.Content>
                         </Accordion.Item>
@@ -124,6 +131,8 @@ const Distributions = ({
                                         distribution={example}
                                         locale={locale}
                                         dictionaries={dictionaries}
+                                        resolvedDistributionDataServices={resolvedDistributionDataServices}
+                                        resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                                     />
                                 </Accordion.Content>
                             </Accordion.Item>

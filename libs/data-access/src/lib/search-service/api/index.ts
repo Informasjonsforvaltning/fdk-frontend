@@ -112,6 +112,51 @@ export const searchDatasets = async (datasetUris?: string[]) => {
     });
 };
 
+export const searchDataServices = async (uris?: string[]) => {
+    if (!uris || !uris.length) throw new Error('missing uris');
+    const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search/data-services`;
+    return await fetch(uri, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            filters: {
+                uri: {
+                    value: uris,
+                },
+            },
+        }),
+    }).then((response) => {
+        // console.log('searchDataServices response', response);
+        if (!response.ok) throw new Error('data services not found');
+        return response.json();
+    });
+};
+
+export const searchInformationModels = async (uris?: string[]) => {
+    if (!uris || !uris.length) throw new Error('missing uris');
+    const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search/information-models`;
+    return await fetch(uri, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            filters: {
+                uri: {
+                    value: uris,
+                },
+            },
+        }),
+    }).then((response) => {
+        if (!response.ok) throw new Error('information models not found');
+        return response.json();
+    });
+};
+
 export const searchAll = async (uris?: string[]) => {
     if (!uris || !uris.length) throw new Error('missing uris');
     const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search`;

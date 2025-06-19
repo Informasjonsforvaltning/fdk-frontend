@@ -9,6 +9,7 @@ import {
     type DataService,
     type CommunityTopic,
     type SearchObject,
+    type AccessService,
 } from '@fdk-frontend/fdk-types';
 import DatasetDetailsPage from '../../../components/details-page/dataset';
 import {
@@ -23,6 +24,8 @@ import {
     searchConcepts,
     getPopulatedDatasetReferences,
     searchDatasets,
+    searchDataServices,
+    searchInformationModels,
 } from '@fdk-frontend/data-access/server';
 
 // Note: Leave these for easier debugging
@@ -65,16 +68,51 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     let themeDatasets: DatasetWithIdentifier[] = [];
     let communityTopics: CommunityTopic[] = [];
     let populatedReferences: PopulatedDatasetReference[] = [];
+    let resolvedDistributionDataServices: SearchObject[] = [];
+    let resolvedDistributionInformationModels: SearchObject[] = [];
 
     // Fetch details about dataset
 
     try {
         dataset = await getDataset(params.id);
-        // dataset = mockResource;
     } catch (err) {
         console.error(`Failed to get dataset with ID ${params.id}`, JSON.stringify(err));
         notFound();
         throw err;
+    }
+
+    // Resolve data services from distribution & sample access services
+
+    try {
+        const services = [
+            ...(dataset.distribution ?? []).reduce<AccessService[]>(
+                (acc, dist) => acc.concat(dist.accessService ?? []),
+                [],
+            ),
+            ...(dataset.sample ?? []).reduce<AccessService[]>(
+                (acc, sample) => acc.concat(sample.accessService ?? []),
+                [],
+            ),
+        ];
+        const uris = services.map((service) => service?.uri).filter((uri) => !!uri);
+        const { hits = [] } = await searchDataServices(uris);
+        resolvedDistributionDataServices = hits;
+    } catch {
+        // Do nothing
+    }
+
+    // Resolve information models from distribution & sample conformsTo property
+
+    try {
+        const conformsTo = [
+            ...(dataset.distribution ?? []).reduce<any[]>((acc, dist) => acc.concat(dist.conformsTo ?? []), []),
+            ...(dataset.sample ?? []).reduce<any[]>((acc, sample) => acc.concat(sample.conformsTo ?? []), []),
+        ];
+        const uris = conformsTo.map((standard) => standard?.uri).filter((uri) => !!uri);
+        const { hits = [] } = await searchInformationModels(uris);
+        resolvedDistributionInformationModels = hits;
+    } catch {
+        // Do nothing
     }
 
     // Fetch publisher logo
@@ -191,6 +229,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             locale={locale}
             dictionaries={dictionaries}
             defaultActiveTab={activeTab}
+            resolvedDistributionDataServices={resolvedDistributionDataServices}
+            resolvedDistributionInformationModels={resolvedDistributionInformationModels}
         />
     );
 };

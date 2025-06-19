@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import { type Distribution } from '@fdk-frontend/fdk-types';
+import { type Distribution, type SearchObject } from '@fdk-frontend/fdk-types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
@@ -19,9 +20,17 @@ type DistributionDetailsProps = {
         common: Dictionary;
         detailsPage: Dictionary;
     };
+    resolvedDistributionDataServices?: SearchObject[];
+    resolvedDistributionInformationModels?: SearchObject[];
 };
 
-const DistributionDetails = ({ distribution, locale, dictionaries }: DistributionDetailsProps) => {
+const DistributionDetails = ({
+    distribution,
+    locale,
+    dictionaries,
+    resolvedDistributionDataServices = [],
+    resolvedDistributionInformationModels = [],
+}: DistributionDetailsProps) => {
     return (
         <>
             <dl>
@@ -101,16 +110,34 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                             className='fdk-link-list'
                             listType='ol'
                             items={distribution.accessService}
-                            renderItem={(api) => (
-                                <ExternalLink
-                                    href={api.uri}
-                                    locale={locale}
-                                    gateway
-                                    className='fdk-box-link'
-                                >
-                                    {printLocaleValue(locale, api.title) || api.uri}
-                                </ExternalLink>
-                            )}
+                            renderItem={(api) => {
+                                const resolvedDataService = resolvedDistributionDataServices.find(
+                                    (service) => service.uri === api.uri,
+                                );
+
+                                if (resolvedDataService) {
+                                    return (
+                                        <Link
+                                            href={`/data-services/${resolvedDataService.id}`}
+                                            className='fdk-box-link'
+                                        >
+                                            {printLocaleValue(locale, resolvedDataService.title) ||
+                                                resolvedDataService.uri}
+                                        </Link>
+                                    );
+                                }
+
+                                return (
+                                    <ExternalLink
+                                        href={api.uri}
+                                        locale={locale}
+                                        gateway
+                                        className='fdk-box-link'
+                                    >
+                                        {printLocaleValue(locale, api.title) || api.uri}
+                                    </ExternalLink>
+                                );
+                            }}
                         />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
@@ -165,16 +192,34 @@ const DistributionDetails = ({ distribution, locale, dictionaries }: Distributio
                             className='fdk-link-list'
                             listType='ol'
                             items={distribution.conformsTo}
-                            renderItem={(standard) => (
-                                <ExternalLink
-                                    href={standard.uri}
-                                    locale={locale}
-                                    gateway
-                                    className='fdk-box-link'
-                                >
-                                    {standard.prefLabel ? printLocaleValue(locale, standard.prefLabel) : standard.uri}
-                                </ExternalLink>
-                            )}
+                            renderItem={(standard) => {
+                                const resolvedInformationModel = resolvedDistributionInformationModels.find(
+                                    (infoModel) => infoModel.uri === standard.uri,
+                                );
+
+                                if (resolvedInformationModel) {
+                                    return (
+                                        <Link
+                                            href={`/information-models/${resolvedInformationModel.id}`}
+                                            className='fdk-box-link'
+                                        >
+                                            {printLocaleValue(locale, resolvedInformationModel.title) ||
+                                                resolvedInformationModel.uri}
+                                        </Link>
+                                    );
+                                }
+
+                                return (
+                                    <ExternalLink
+                                        href={standard.uri}
+                                        locale={locale}
+                                        gateway
+                                        className='fdk-box-link'
+                                    >
+                                        {printLocaleValue(locale, standard.prefLabel) || standard.uri}
+                                    </ExternalLink>
+                                );
+                            }}
                         />
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
