@@ -53,6 +53,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <SmartList
                             className='list-no-style'
                             items={api.endpointURL}
+                            style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
                             renderItem={(endpointURL: string, i: number) => (
                                 <dl key={endpointURL}>
                                     <dt>{dictionary.apis.details.url}:</dt>
