@@ -1,21 +1,25 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Tag, Spinner, Button, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import cn from 'classnames';
+import { Spinner, Button } from '@digdir/designsystemet-react';
 import { EyeIcon } from '@navikt/aksel-icons';
 import DatasetPreviewModal from '../dataset-preview-modal/';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
+import styles from './styles.module.scss';
 
 type DatasetPreviewWidgetProps = {
     downloadUrl: string;
     title: string;
     dictionary: Dictionary;
+    triggerBtnClass?: string;
 };
 
 const DatasetPreviewWidget = ({
     downloadUrl,
     title,
     dictionary,
+    triggerBtnClass,
     ...props
 }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
     const [loading, setLoading] = useState(true);
@@ -47,7 +51,7 @@ const DatasetPreviewWidget = ({
     return (
         <div {...props}>
             {loading && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div className={styles.loading}>
                     {dictionary.datasetPreview.generatingPreview}
                     <Spinner
                         title={'loading'}
@@ -57,33 +61,20 @@ const DatasetPreviewWidget = ({
                     />
                 </div>
             )}
-            {error && !data?.table && (
-                <Tag
-                    size='sm'
-                    color='info'
-                >
-                    {dictionary.datasetPreview.previewNotAvailable}&nbsp;
-                    <HelpText
-                        title={''}
-                        size='sm'
-                        style={{ transform: 'scale(0.75)' }}
-                    >
-                        <Paragraph size='sm'>{dictionary.datasetPreview.previewNotAvailableHelpText}</Paragraph>
-                    </HelpText>
-                </Tag>
-            )}
             {!error && data?.table && (
                 <DatasetPreviewModal
                     title={title}
-                    data={data}
+                    data={data || {}}
                     downloadUrl={downloadUrl}
                     trigger={
                         <Button
                             size='sm'
                             variant='secondary'
+                            className={cn(styles.previewBtn, triggerBtnClass)}
+                            aria-label={dictionary.datasetPreview.showPreviewButton}
                         >
                             <EyeIcon fontSize='1.2em' />
-                            {dictionary.datasetPreview.showPreviewButton}
+                            <span>{dictionary.datasetPreview.showPreviewButton}</span>
                         </Button>
                     }
                     dictionary={dictionary}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import {
@@ -26,6 +26,7 @@ import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import DatasetTable from '@fdk-frontend/ui/dataset-table';
 import AccessRequestButton from '@fdk-frontend/ui/access-request-button';
 import ResourceNotAvailableNotice from '@fdk-frontend/ui/resource-not-available-notice';
+import ExternalLink from '@fdk-frontend/ui/external-link';
 import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
 import { Button, Heading, Link, Tag, Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
 import Distributions from '../distributions';
@@ -215,7 +216,18 @@ export default function DatasetDetailsPage({
                                 <div className={styles.box}>
                                     <ExpandableContent>
                                         <Article>
-                                            <Markdown locale={locale}>
+                                            <Markdown
+                                                locale={locale}
+                                                components={{
+                                                    a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+                                                        <ExternalLink
+                                                            {...props}
+                                                            locale={locale}
+                                                            gateway
+                                                        />
+                                                    ),
+                                                }}
+                                            >
                                                 {printLocaleValue(locale, resource.description)}
                                             </Markdown>
                                         </Article>
@@ -325,6 +337,7 @@ export default function DatasetDetailsPage({
                             topics={communityTopics}
                             communityBaseUri={communityBaseUri}
                             dictionary={dictionaries.detailsPage}
+                            locale={locale}
                         />
                     </TabContent>
                     <TabContent value='rdf'>
