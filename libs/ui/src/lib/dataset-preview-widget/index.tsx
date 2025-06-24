@@ -6,6 +6,12 @@ import { Spinner, Button } from '@digdir/designsystemet-react';
 import { EyeIcon } from '@navikt/aksel-icons';
 import DatasetPreviewModal from '../dataset-preview-modal/';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
+import {
+    trackSiteImproveEvent,
+    EventCategory,
+    EventAction,
+    EventLabel,
+} from '@fdk-frontend/utils/siteimprove-analytics';
 import styles from './styles.module.scss';
 
 type DatasetPreviewWidgetProps = {
@@ -72,6 +78,13 @@ const DatasetPreviewWidget = ({
                             variant='secondary'
                             className={cn(styles.previewBtn, triggerBtnClass)}
                             aria-label={dictionary.datasetPreview.showPreviewButton}
+                            onClick={() =>
+                                trackSiteImproveEvent({
+                                    category: EventCategory.DETAILS_PAGE,
+                                    action: EventAction.CLICK,
+                                    label: EventLabel.SHOW_DATASET_PREVIEW_BUTTON,
+                                })
+                            }
                         >
                             <EyeIcon fontSize='1.2em' />
                             <span>{dictionary.datasetPreview.showPreviewButton}</span>
