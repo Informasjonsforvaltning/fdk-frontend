@@ -28,6 +28,12 @@ import AccessRequestButton from '@fdk-frontend/ui/access-request-button';
 import ResourceNotAvailableNotice from '@fdk-frontend/ui/resource-not-available-notice';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
+import {
+    trackSiteImproveEvent,
+    EventCategory,
+    EventAction,
+    EventLabel,
+} from '@fdk-frontend/utils/siteimprove-analytics';
 import { Button, Heading, Link, Tag, Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
 import Distributions from '../distributions';
 import DatasetDetailsTab from '../details-tab';
@@ -143,6 +149,11 @@ export default function DatasetDetailsPage({
                                     setActiveTab('distributions');
                                     updateUri('distributions');
                                     blink();
+                                    trackSiteImproveEvent({
+                                        category: EventCategory.DETAILS_PAGE,
+                                        action: EventAction.CLICK,
+                                        label: EventLabel.USE_DATASET_BUTTON,
+                                    });
                                 }}
                             >
                                 {dictionaries.detailsPage.header.useDatasetButton}
