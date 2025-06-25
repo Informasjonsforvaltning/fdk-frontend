@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
+import DList from '@fdk-frontend/ui/dlist';
 import { DatasetDetailsProps } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -14,7 +15,7 @@ const ConceptDetails = ({ dataset, locale, dictionary, concepts }: DatasetDetail
                 {dictionary.details.concepts.title}
             </Heading>
             {concepts && concepts.length ? (
-                <dl>
+                <DList>
                     {concepts.map((concept: any) => {
                         return (
                             <React.Fragment key={concept.uri}>
@@ -27,7 +28,7 @@ const ConceptDetails = ({ dataset, locale, dictionary, concepts }: DatasetDetail
                             </React.Fragment>
                         );
                     })}
-                </dl>
+                </DList>
             ) : (
                 <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
             )}

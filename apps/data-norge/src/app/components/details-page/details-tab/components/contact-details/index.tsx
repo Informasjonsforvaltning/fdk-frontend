@@ -3,6 +3,7 @@ import { Heading, Link } from '@digdir/designsystemet-react';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import ExternalLink from '@fdk-frontend/ui/external-link';
+import DList from '@fdk-frontend/ui/dlist';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
@@ -25,7 +26,7 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
             </Heading>
             {dataset.contactPoint && dataset.contactPoint.length > 0 ? (
                 dataset.contactPoint.map((contactPoint: any, i: number) => (
-                    <dl key={`contactPoint-${i}`}>
+                    <DList key={`contactPoint-${i}`}>
                         {!contactPoint.organizationUnit && !showEmptyRows ? null : (
                             <>
                                 <dt>{dictionary.details.contactPoint.organizationUnit}:</dt>
@@ -78,7 +79,7 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 </dd>
                             </>
                         )}
-                    </dl>
+                    </DList>
                 ))
             ) : (
                 <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>

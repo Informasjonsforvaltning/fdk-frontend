@@ -3,6 +3,7 @@ import { Heading, Link } from '@digdir/designsystemet-react';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
+import DList from '@fdk-frontend/ui/dlist';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { DatasetDetailsProps } from '../../';
 
@@ -20,7 +21,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                 {dictionary.details.references.title}
             </Heading>
             {populatedReferences && populatedReferences.length ? (
-                <dl>
+                <DList>
                     {relations.map((r) => (
                         <React.Fragment key={r.reference?.source?.uri}>
                             <dt>
@@ -74,7 +75,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                             }
                         />
                     </dd>
-                </dl>
+                </DList>
             ) : (
                 <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
             )}

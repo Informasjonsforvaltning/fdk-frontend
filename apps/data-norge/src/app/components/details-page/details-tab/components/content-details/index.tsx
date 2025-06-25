@@ -4,6 +4,7 @@ import HStack from '@fdk-frontend/ui/hstack';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
+import DList from '@fdk-frontend/ui/dlist';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -18,7 +19,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
             >
                 {dictionary.details.content.title}
             </Heading>
-            <dl>
+            <DList>
                 {!dataset.language && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.language}:</dt>
@@ -220,7 +221,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                     items={dataset.temporal}
                                     style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
                                     renderItem={(temporal) => (
-                                        <dl>
+                                        <DList>
                                             {temporal.startDate && (
                                                 <>
                                                     <dt>{dictionary.details.content.temporalFrom}:</dt>
@@ -241,7 +242,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                                     </dd>
                                                 </>
                                             )}
-                                        </dl>
+                                        </DList>
                                     )}
                                 />
                             ) : (
@@ -285,7 +286,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         </dd>
                     </>
                 )}
-            </dl>
+            </DList>
         </section>
     );
 };

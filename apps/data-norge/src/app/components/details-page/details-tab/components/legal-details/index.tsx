@@ -4,6 +4,7 @@ import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
+import DList from '@fdk-frontend/ui/dlist';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -40,7 +41,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
                 {dictionary.details.legal.title}
             </Heading>
             {hasLegalBasis(dataset) ? (
-                <dl>
+                <DList>
                     {!dataset.legalBasisForAccess && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.legal.legalBasisForAccess}:</dt>
@@ -59,7 +60,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
                             <dd className='article'>{printLegalBasis(dataset.legalBasisForRestriction)}</dd>
                         </>
                     )}
-                </dl>
+                </DList>
             ) : (
                 <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
             )}
