@@ -65,7 +65,7 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.accessURL?.length ? (
                         <SmartList
-                            className='fdk-link-list'
+                            className='fdk-box-list'
                             listType='ol'
                             items={distribution.accessURL}
                             renderItem={(url) => (
@@ -87,7 +87,7 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.downloadURL?.length ? (
                         <SmartList
-                            className='fdk-link-list'
+                            className='fdk-box-list'
                             listType='ol'
                             items={distribution.downloadURL}
                             renderItem={(url) => (
@@ -107,7 +107,7 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.accessService?.length ? (
                         <SmartList
-                            className='fdk-link-list'
+                            className='fdk-box-list'
                             listType='ol'
                             items={distribution.accessService}
                             renderItem={(api) => {
@@ -147,7 +147,7 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.page ? (
                         <SmartList
-                            className='fdk-link-list'
+                            className='fdk-box-list'
                             listType='ol'
                             items={distribution.page}
                             renderItem={(page) => (
@@ -189,7 +189,7 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.conformsTo ? (
                         <SmartList
-                            className='fdk-link-list'
+                            className='fdk-box-list'
                             listType='ol'
                             items={distribution.conformsTo}
                             renderItem={(standard) => {

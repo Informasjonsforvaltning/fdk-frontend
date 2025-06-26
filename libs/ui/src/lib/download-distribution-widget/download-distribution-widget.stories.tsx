@@ -30,7 +30,7 @@ export const Primary: Story = {
             </div>
             In LinkList:
             <div style={{ padding: '1rem' }}>
-                <ul className='fdk-link-list'>
+                <ul className='fdk-box-list'>
                     <li>
                         <DownloadDistributionWidget
                             dictionary={dictionary}

@@ -65,7 +65,7 @@ const DownloadButton = ({
             >
                 <Modal.Header closeButton={true}>{dictionary.distributions.downloadModal.header}</Modal.Header>
                 <Modal.Content className={styles.content}>
-                    <ul className='fdk-link-list'>
+                    <ul className='fdk-box-list'>
                         {uris.map((uri: string, index: number) => (
                             <li key={`${uri}-${index}`}>
                                 <ExternalLink

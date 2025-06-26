@@ -1,18 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Link, Button, Tag } from '@digdir/designsystemet-react';
+import { Button, Tag } from '@digdir/designsystemet-react';
+import Box from '../box';
+import PlaceholderBox from '../placeholder-box/';
 import BoxLink from '../box-link';
 import ExternalLink from '../external-link';
 
-const LinkList = <ul />;
+const BoxList = <ul />;
 
-const meta: Meta<typeof LinkList> = {
-    component: LinkList,
-    title: 'LinkList',
+const meta: Meta<typeof BoxList> = {
+    component: BoxList,
+    title: 'BoxList',
 };
 
 export default meta;
-type Story = StoryObj<typeof LinkList>;
+type Story = StoryObj<typeof BoxList>;
 
 export const Primary: Story = {
     parameters: {
@@ -23,39 +25,55 @@ export const Primary: Story = {
     render: () => (
         <>
             <div style={{ padding: '1rem' }}>
-                <ul className='fdk-link-list'>
+                <ul className='fdk-box-list'>
                     <li>
-                        <Link href='#'>This is a Link</Link>
+                        <Box>This is a Box</Box>
                     </li>
                     <li>
-                        <Link href='#'>This is a Link</Link>
+                        <Box>This is a Box</Box>
                     </li>
                     <li>
-                        <Link href='#'>This is a Link</Link>
+                        <Box>This is a Box</Box>
                     </li>
                     <li>
-                        <Link href='#'>This is a Link</Link>
-                    </li>
-                </ul>
-            </div>
-            <div style={{ padding: '1rem' }}>
-                <ul className='fdk-link-list'>
-                    <li>
-                        <BoxLink href='#'>This is a BoxLink</BoxLink>
-                    </li>
-                    <li>
-                        <BoxLink href='#'>This is a BoxLink</BoxLink>
-                    </li>
-                    <li>
-                        <BoxLink href='#'>This is a BoxLink</BoxLink>
-                    </li>
-                    <li>
-                        <BoxLink href='#'>This is a BoxLink</BoxLink>
+                        <Box>This is a Box</Box>
                     </li>
                 </ul>
             </div>
             <div style={{ padding: '1rem' }}>
-                <ul className='fdk-link-list'>
+                <ul className='fdk-box-list'>
+                    <li>
+                        <PlaceholderBox>This is a PlaceholderBox</PlaceholderBox>
+                    </li>
+                    <li>
+                        <PlaceholderBox>This is a PlaceholderBox</PlaceholderBox>
+                    </li>
+                    <li>
+                        <PlaceholderBox>This is a PlaceholderBox</PlaceholderBox>
+                    </li>
+                    <li>
+                        <PlaceholderBox>This is a PlaceholderBox</PlaceholderBox>
+                    </li>
+                </ul>
+            </div>
+            <div style={{ padding: '1rem' }}>
+                <ul className='fdk-box-list'>
+                    <li>
+                        <BoxLink href='#'>This is a BoxLink</BoxLink>
+                    </li>
+                    <li>
+                        <BoxLink href='#'>This is a BoxLink</BoxLink>
+                    </li>
+                    <li>
+                        <BoxLink href='#'>This is a BoxLink</BoxLink>
+                    </li>
+                    <li>
+                        <BoxLink href='#'>This is a BoxLink</BoxLink>
+                    </li>
+                </ul>
+            </div>
+            <div style={{ padding: '1rem' }}>
+                <ul className='fdk-box-list'>
                     <li>
                         <ExternalLink
                             className='fdk-box-link'
@@ -91,7 +109,7 @@ export const Primary: Story = {
                 </ul>
             </div>
             <div style={{ padding: '1rem' }}>
-                <ul className='fdk-link-list'>
+                <ul className='fdk-box-list'>
                     <li>
                         <BoxLink href='#'>This is a BoxLink</BoxLink>
                     </li>
@@ -119,7 +137,7 @@ export const Primary: Story = {
                 </ul>
             </div>
             <div style={{ padding: '1rem' }}>
-                <table className='fdk-link-list-table'>
+                <table className='fdk-box-list-table'>
                     <tr>
                         <td colSpan='2'>
                             <BoxLink href='#'>This is a BoxLink</BoxLink>
