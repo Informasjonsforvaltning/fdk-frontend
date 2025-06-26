@@ -12,7 +12,9 @@
     }
 
     .title {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
         font-size: 1.1rem;
         font-weight: 600;
         flex-grow: 1;
