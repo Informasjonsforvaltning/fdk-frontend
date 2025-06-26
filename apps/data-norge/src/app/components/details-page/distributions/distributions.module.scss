@@ -50,3 +50,25 @@
         }
     }
 }
+
+.descBox {
+    &[className] {
+        border: 0;
+        padding: 0;
+
+        > div {
+            &[data-overflow='true'] {
+                border: 1px solid #ddd;
+                border-radius: 0.25rem;
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            > div[data-overflow] {
+                border: 0;
+                padding: 0;
+            }
+        }
+    }
+}

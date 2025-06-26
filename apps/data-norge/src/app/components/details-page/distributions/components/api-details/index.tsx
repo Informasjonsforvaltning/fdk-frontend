@@ -8,7 +8,10 @@ import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import detailsPageStyles from '../../../details-page.module.scss';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import SmartList from '@fdk-frontend/ui/smart-list';
+import DList from '@fdk-frontend/ui/dlist';
+import Article from '@fdk-frontend/ui/article';
 import { printLocaleValue } from '@fdk-frontend/utils';
+import distStyles from '../../distributions.module.scss';
 
 type ApiDetailsProps = {
     api: DataService;
@@ -19,13 +22,13 @@ type ApiDetailsProps = {
 const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
     return (
         <>
-            <dl>
+            <DList>
                 <dt>{dictionary.apis.details.description}:</dt>
                 <dd>
                     {api.description ? (
-                        <Box className={detailsPageStyles.descBox}>
+                        <Box className={distStyles.descBox}>
                             <ExpandableContent maxHeight={100}>
-                                <article className={detailsPageStyles.article}>
+                                <Article>
                                     <Markdown
                                         locale={locale}
                                         components={{
@@ -40,7 +43,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                     >
                                         {printLocaleValue(locale, api.description)}
                                     </Markdown>
-                                </article>
+                                </Article>
                             </ExpandableContent>
                         </Box>
                     ) : (
@@ -55,7 +58,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                             items={api.endpointURL}
                             style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
                             renderItem={(endpointURL: string, i: number) => (
-                                <dl key={endpointURL}>
+                                <DList key={endpointURL}>
                                     <dt>{dictionary.apis.details.url}:</dt>
                                     <dd>
                                         <ExternalLink
@@ -93,7 +96,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                             <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                                         )}
                                     </dd>
-                                </dl>
+                                </DList>
                             )}
                         />
                     ) : (
@@ -120,7 +123,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                     )}
                 </dd>
-            </dl>
+            </DList>
         </>
     );
 };

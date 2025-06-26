@@ -6,6 +6,7 @@ import { type DatasetType } from '@fdk-frontend/fdk-types';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
+import DList from '@fdk-frontend/ui/dlist';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
@@ -39,7 +40,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
             >
                 {dictionary.details.general.title}
             </Heading>
-            <dl>
+            <DList>
                 <dt>{dictionary.details.general.publisher}:</dt>
                 <dd>
                     {dataset.publisher ? (
@@ -168,7 +169,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         {metadataQuality.label}
                     </Tag>
                 </dd>
-            </dl>
+            </DList>
         </section>
     );
 };

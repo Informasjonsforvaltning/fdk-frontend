@@ -10,8 +10,10 @@ import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import LicenseBoxLink from '@fdk-frontend/ui/license-box-link';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
+import DList from '@fdk-frontend/ui/dlist';
+import Article from '@fdk-frontend/ui/article';
 import DownloadDistributionWidget from '@fdk-frontend/ui/download-distribution-widget';
-import detailsPageStyles from '../../../details-page.module.scss';
+import distStyles from '../../distributions.module.scss';
 
 type DistributionDetailsProps = {
     distribution: Distribution;
@@ -33,13 +35,13 @@ const DistributionDetails = ({
 }: DistributionDetailsProps) => {
     return (
         <>
-            <dl>
+            <DList>
                 <dt>{dictionaries.detailsPage.distributions.details.description}:</dt>
                 <dd>
                     {distribution.description ? (
-                        <Box className={detailsPageStyles.descBox}>
+                        <Box className={distStyles.descBox}>
                             <ExpandableContent maxHeight={100}>
-                                <article className={detailsPageStyles.article}>
+                                <Article>
                                     <Markdown
                                         locale={locale}
                                         components={{
@@ -54,7 +56,7 @@ const DistributionDetails = ({
                                     >
                                         {printLocaleValue(locale, distribution.description)}
                                     </Markdown>
-                                </article>
+                                </Article>
                             </ExpandableContent>
                         </Box>
                     ) : (
@@ -225,7 +227,7 @@ const DistributionDetails = ({
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
-            </dl>
+            </DList>
         </>
     );
 };
