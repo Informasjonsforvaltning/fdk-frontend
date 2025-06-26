@@ -6,13 +6,13 @@ import { Tag } from '@digdir/designsystemet-react';
 import TagList from '../tag-list';
 
 type ApiTagsProps = {
-	api: DataService;
-	dictionary: Dictionary;
-}
+    api: DataService;
+    dictionary: Dictionary;
+};
 
 const ApiTags = ({ children, api, dictionary, ...props }: ApiTagsProps & React.HTMLAttributes<HTMLDivElement>) => {
-	return (
-		<TagList>
+    return (
+        <TagList>
             {api.fdkFormat
                 ?.filter((format: any) => format?.code)
                 .map((format: any, i: number) => (
@@ -25,7 +25,7 @@ const ApiTags = ({ children, api, dictionary, ...props }: ApiTagsProps & React.H
                     </Tag>
                 ))}
         </TagList>
-	);
-}
+    );
+};
 
 export default ApiTags;

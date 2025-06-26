@@ -11,10 +11,16 @@ type DistributionTagsProps = {
     exampleData?: boolean;
     dictionary: Dictionary;
     hasApi?: boolean;
-}
+};
 
-const DistributionTags = ({ children, distribution, exampleData, dictionary, hasApi, ...props }: DistributionTagsProps & React.HTMLAttributes<HTMLDivElement>) => {
-
+const DistributionTags = ({
+    children,
+    distribution,
+    exampleData,
+    dictionary,
+    hasApi,
+    ...props
+}: DistributionTagsProps & React.HTMLAttributes<HTMLDivElement>) => {
     const hasOpenLicense = distribution.license && distribution.license.some((l: any) => isOpenLicense(l.uri));
 
     return (
@@ -56,6 +62,6 @@ const DistributionTags = ({ children, distribution, exampleData, dictionary, has
                 ))}
         </TagList>
     );
-}
+};
 
 export default DistributionTags;
