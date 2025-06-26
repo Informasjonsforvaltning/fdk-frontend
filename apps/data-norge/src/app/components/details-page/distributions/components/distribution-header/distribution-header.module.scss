@@ -16,22 +16,6 @@
         font-size: 1.1rem;
         font-weight: 600;
         flex-grow: 1;
-
-        .tags {
-            display: flex;
-            gap: 0.5rem;
-            font-weight: normal;
-            font-size: 0.8em;
-            align-items: center;
-            margin-top: 0.5rem;
-            flex-wrap: wrap;
-
-            .tag {
-                min-height: 1.5rem;
-                // font-size:1em;
-                // background:white;
-            }
-        }
     }
 
     :global(.fds-link) {

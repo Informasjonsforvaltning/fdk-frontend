@@ -1,0 +1,12 @@
+.tagList {
+    display: flex;
+    gap: 0.5rem;
+    font-weight: normal;
+    font-size: 0.8em;
+    align-items: center;
+    flex-wrap: wrap;
+
+    :global(.fds-tag) {
+        min-height: 1.5rem;
+    }
+}
