@@ -1,4 +1,4 @@
-@use '../link-list/styles.module' as link-list;
+@use '../box-list/styles.module' as box-list;
 @use '../box-link/styles.module' as box-link;
 @use './mixins' as core-mixins;
 
@@ -83,8 +83,8 @@ ul {
         margin-left: 0 !important;
     }
 
-    &.fdk-link-list {
-        @include link-list.link-list-mixin();
+    &.fdk-box-list {
+        @include box-list.box-list-mixin();
     }
 }
 
@@ -92,8 +92,8 @@ a.fdk-box-link {
     @include box-link.box-link-mixin();
 }
 
-table.fdk-link-list-table {
-    @include link-list.link-list-table-mixin();
+table.fdk-box-list-table {
+    @include box-list.box-list-table-mixin();
 }
 
 .article {
