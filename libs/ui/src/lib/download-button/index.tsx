@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 type DownloadButtonProps = {
     modalTitle: string;
-    uris: string[];
+    uris?: string[];
     dictionary: Dictionary;
     locale: LocaleCodes;
 };
@@ -23,6 +23,8 @@ const DownloadButton = ({
     ...props
 }: DownloadButtonProps & ButtonProps) => {
     const modalRef = useRef<HTMLDialogElement>(null);
+
+    if (!uris) return null;
 
     if (uris.length === 1) {
         return (
@@ -75,7 +77,7 @@ const DownloadButton = ({
                 <Modal.Content className={styles.content}>
                     {dictionary.distributions.downloadModal.header}
                     <ul className='fdk-box-list'>
-                        {uris.map((uri: string, index: number) => (
+                        {uris?.map((uri: string, index: number) => (
                             <li key={`${uri}-${index}`}>
                                 <ExternalLink
                                     href={uri}
