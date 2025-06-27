@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 type DownloadButtonProps = {
     modalTitle: string;
-    uris: string[];
+    uris?: string[];
     dictionary: Dictionary;
     locale: LocaleCodes;
 };
@@ -23,6 +23,8 @@ const DownloadButton = ({
     ...props
 }: DownloadButtonProps & ButtonProps) => {
     const modalRef = useRef<HTMLDialogElement>(null);
+
+    if (!uris) return null;
 
     if (uris.length === 1) {
         return (
@@ -40,6 +42,10 @@ const DownloadButton = ({
                     gateway
                     locale={locale}
                 >
+                    <DownloadIcon
+                        aria-hidden
+                        fontSize='1.2em'
+                    />
                     {children}
                 </ExternalLink>
             </Button>
@@ -54,6 +60,10 @@ const DownloadButton = ({
                     variant='secondary'
                     {...props}
                 >
+                    <DownloadIcon
+                        aria-hidden
+                        fontSize='1.2em'
+                    />
                     {children}
                     <Badge>{uris.length}</Badge>
                 </Button>
@@ -63,10 +73,11 @@ const DownloadButton = ({
                 className={styles.dialog}
                 onInteractOutside={() => modalRef.current?.close()}
             >
-                <Modal.Header closeButton={true}>{dictionary.distributions.downloadModal.header}</Modal.Header>
+                <Modal.Header closeButton={true}>{modalTitle}</Modal.Header>
                 <Modal.Content className={styles.content}>
+                    {dictionary.distributions.downloadModal.header}
                     <ul className='fdk-box-list'>
-                        {uris.map((uri: string, index: number) => (
+                        {uris?.map((uri: string, index: number) => (
                             <li key={`${uri}-${index}`}>
                                 <ExternalLink
                                     href={uri}
@@ -91,6 +102,10 @@ const DownloadButton = ({
                         variant='secondary'
                         onClick={() => modalRef.current?.close()}
                     >
+                        <DownloadIcon
+                            aria-hidden
+                            fontSize='1.2em'
+                        />
                         {dictionary.distributions.downloadModal.closeBtn}
                     </Button>
                 </Modal.Footer>

@@ -4,9 +4,9 @@ import { type Distribution } from '@fdk-frontend/fdk-types';
 import { isOpenLicense } from '@fdk-frontend/utils';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Tag } from '@digdir/designsystemet-react';
-import TagList from '../tag-list';
+import TagList, { type TagListProps } from '../tag-list';
 
-type DistributionTagsProps = {
+type DistributionTagsProps = TagListProps & {
     distribution: Distribution;
     exampleData?: boolean;
     dictionary: Dictionary;
@@ -20,11 +20,11 @@ const DistributionTags = ({
     dictionary,
     hasApi,
     ...props
-}: DistributionTagsProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: DistributionTagsProps & React.HTMLAttributes<HTMLUListElement>) => {
     const hasOpenLicense = distribution.license && distribution.license.some((l: any) => isOpenLicense(l.uri));
 
     return (
-        <TagList>
+        <TagList {...props}>
             {hasOpenLicense && (
                 <Tag
                     color='success'

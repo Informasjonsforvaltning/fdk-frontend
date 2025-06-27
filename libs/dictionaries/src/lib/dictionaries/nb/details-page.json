@@ -11,6 +11,10 @@
         "requestAccessButton": "Be om tilgang",
         "showInterestButton": "Meld interesse"
     },
+    "useDatasetPopover": {
+        "distributions": "Distribusjoner",
+        "apis": "API-er"
+    },
     "resourceNotAvailableNotice": {
         "title": "Dette datasettet er enda ikke tilgjengelig",
         "body": "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert. Du kan melde din interesse for datasettet til den ansvarlige virksomheten ved å klikke på knappen nedenfor. Jo flere som viser interesse, desto større er sjansen for at dataene blir gjort tilgjengelige.",
@@ -37,7 +41,7 @@
     },
     "tabs": {
         "overview": "Oversikt",
-        "distributions": "Distribusjoner og API",
+        "distributions": "Distribusjoner og API-er",
         "details": "Detaljer",
         "community": "Diskusjoner",
         "rdf": "RDF"

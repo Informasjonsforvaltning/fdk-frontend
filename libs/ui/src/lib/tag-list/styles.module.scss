@@ -9,4 +9,9 @@
     :global(.fds-tag) {
         min-height: 1.5rem;
     }
+
+    .tagsOmitted span {
+        font-size: 0.9em;
+        opacity: 0.7;
+    }
 }

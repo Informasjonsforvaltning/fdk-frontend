@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import cn from 'classnames';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import {
     type DatasetWithIdentifier,
@@ -17,28 +16,19 @@ import Badge from '@fdk-frontend/ui/badge';
 import { BrandDivider } from '@fdk-frontend/ui/divider';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Article from '@fdk-frontend/ui/article';
-import OrgButton from '@fdk-frontend/ui/org-button';
 import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';
-import AccessLevelTag from '@fdk-frontend/ui/access-level-tag';
-import OpenDataTag from '@fdk-frontend/ui/open-data-tag';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import DatasetTable from '@fdk-frontend/ui/dataset-table';
-import AccessRequestButton from '@fdk-frontend/ui/access-request-button';
 import ResourceNotAvailableNotice from '@fdk-frontend/ui/resource-not-available-notice';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
-import {
-    trackSiteImproveEvent,
-    EventCategory,
-    EventAction,
-    EventLabel,
-} from '@fdk-frontend/utils/siteimprove-analytics';
-import { Button, Heading, Link, Tag, Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
+import { Heading, Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
 import Distributions from '../distributions';
 import DatasetDetailsTab from '../details-tab';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
+import DatasetHeader from '../dataset-header';
 import styles from '../details-page.module.scss';
 
 export type DatasetDetailsPageType = {
@@ -84,15 +74,8 @@ export default function DatasetDetailsPage({
     resolvedDistributionInformationModels,
 }: DatasetDetailsPageType) {
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
-    const [highlight, setHighlight] = useState(false);
-
     const isAvailable = !!sumArrayLengths(resource.distribution, resource.sample, apis);
     const accessRequestDemo = accessRequestWhiteList.some((i) => i.id === resource.id);
-
-    const blink = () => {
-        setHighlight(true);
-        setTimeout(() => setHighlight(false), 1000);
-    };
 
     const breadcrumbList = [
         {
@@ -115,67 +98,17 @@ export default function DatasetDetailsPage({
                 breadcrumbList={breadcrumbList}
             />
             <div className={styles.mainContent}>
-                <div className={styles.header}>
-                    <OrgButton
-                        href={`/organizations/${resource.publisher?.id}`}
-                        orgLogoSrc={orgLogo}
-                    >
-                        {resource.publisher
-                            ? printLocaleValue(locale, resource.publisher?.prefLabel)
-                            : dictionaries.detailsPage.header.namelessOrganization}
-                    </OrgButton>
-                    <div className={styles.headerGrid}>
-                        <Heading
-                            level={1}
-                            size='lg'
-                            className={styles.title}
-                        >
-                            {printLocaleValue(locale, resource.title) ||
-                                dictionaries.detailsPage.header.namelessDataset}
-                        </Heading>
-                        <div className={styles.headerToolbar}>
-                            {accessRequestDemo && (
-                                <AccessRequestButton
-                                    kind='datasets'
-                                    id={resource.id}
-                                    dictionary={dictionaries.detailsPage}
-                                    isAvailable={isAvailable}
-                                    locale={locale}
-                                />
-                            )}
-                            <Button
-                                size='sm'
-                                onClick={() => {
-                                    setActiveTab('distributions');
-                                    updateUri('distributions');
-                                    blink();
-                                    trackSiteImproveEvent({
-                                        category: EventCategory.DETAILS_PAGE,
-                                        action: EventAction.CLICK,
-                                        label: EventLabel.USE_DATASET_BUTTON,
-                                    });
-                                }}
-                            >
-                                {dictionaries.detailsPage.header.useDatasetButton}
-                            </Button>
-                        </div>
-                        <div className={styles.headerTags}>
-                            <Tag
-                                color='info'
-                                size='sm'
-                            >
-                                <Link href={`/datasets`}>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
-                            </Tag>
-                            <AccessLevelTag
-                                accessCode={resource.accessRights?.code}
-                                dictionary={dictionaries.detailsPage}
-                                locale={locale}
-                            />
-                            {resource.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}
-                        </div>
-                    </div>
-                </div>
+                <DatasetHeader
+                    dataset={resource}
+                    apis={apis}
+                    dictionaries={dictionaries}
+                    locale={locale}
+                    orgLogo={orgLogo}
+                    accessRequestDemo={accessRequestDemo}
+                    isAvailable={isAvailable}
+                />
                 <Tabs
+                    className={styles.tabs}
                     defaultValue='overview'
                     size='sm'
                     value={activeTab}
@@ -257,7 +190,6 @@ export default function DatasetDetailsPage({
                         <section className={styles.section}>
                             {!isAvailable && accessRequestDemo ? (
                                 <ResourceNotAvailableNotice
-                                    className={cn({ [styles.highlight]: highlight })}
                                     kind='datasets'
                                     id={resource.id}
                                     dictionary={dictionaries.detailsPage}
@@ -268,7 +200,6 @@ export default function DatasetDetailsPage({
                                     datasets={resource.distribution}
                                     exampleData={resource.sample}
                                     apis={apis}
-                                    className={cn({ [styles.highlight]: highlight })}
                                     locale={locale}
                                     dictionaries={dictionaries}
                                     resolvedDistributionDataServices={resolvedDistributionDataServices}
@@ -321,7 +252,6 @@ export default function DatasetDetailsPage({
                     <TabContent value='distributions'>
                         {!isAvailable && accessRequestDemo ? (
                             <ResourceNotAvailableNotice
-                                className={cn({ [styles.highlight]: highlight })}
                                 kind='datasets'
                                 id={resource.id}
                                 dictionary={dictionaries.detailsPage}
@@ -332,7 +262,6 @@ export default function DatasetDetailsPage({
                                 datasets={resource.distribution}
                                 exampleData={resource.sample}
                                 apis={apis}
-                                className={cn({ [styles.highlight]: highlight })}
                                 locale={locale}
                                 dictionaries={dictionaries}
                                 resolvedDistributionDataServices={resolvedDistributionDataServices}

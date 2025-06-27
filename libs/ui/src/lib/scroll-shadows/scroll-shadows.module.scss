@@ -64,11 +64,11 @@
         opacity: 0.5;
     }
 
-    &.shadowTop .inner::before {
+    &.shadowTop .scroller::before {
         opacity: 0.5;
     }
 
-    &.shadowBottom .inner::after {
+    &.shadowBottom .scroller::after {
         opacity: 0.5;
     }
 }

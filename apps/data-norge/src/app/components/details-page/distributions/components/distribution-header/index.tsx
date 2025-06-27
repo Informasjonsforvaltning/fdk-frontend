@@ -26,11 +26,7 @@ const DistributionHeader = ({
     return (
         <div className={styles.headerContent}>
             <span className={styles.title}>
-                {distribution.title
-                    ? printLocaleValue(locale, distribution.title)
-                    : distribution.accessURL
-                      ? distribution.accessURL
-                      : dictionary.distributions.header.nameless}
+                {printLocaleValue(locale, distribution.title) || dictionary.distributions.header.nameless}
                 {hasTags && (
                     <DistributionTags
                         distribution={distribution}
