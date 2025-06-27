@@ -8,6 +8,7 @@ import ActionButton from '../action-button';
 import { Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
 import ApiTags from '../api-tags';
 import DistributionTags from '../distribution-tags';
+import ScrollShadows from '../scroll-shadows';
 import {
     trackSiteImproveEvent,
     EventCategory,
@@ -70,36 +71,39 @@ const UseDatasetPopover = ({
                 </TabList>
                 <TabContent value='dist'>
                     {distributions.length ? (
-                        <ul className='fdk-box-list'>
-                            {distributions.map((d, index) => (
-                                <li key={`distribution-${index}`}>
-                                    <div className={styles.popoverListItem}>
-                                        <div className={styles.itemDetails}>
-                                            <span className={styles.itemTitle}>
-                                                {printLocaleValue(locale, d.title) ||
-                                                    dictionary.distributions.header.nameless}
-                                            </span>
-                                            <DistributionTags
-                                                distribution={d}
+                        <ScrollShadows className={styles.popoverScroller}>
+                            <ul className='fdk-box-list'>
+                                {distributions.map((d, index) => (
+                                    <li key={`distribution-${index}`}>
+                                        <div className={styles.popoverListItem}>
+                                            <div className={styles.itemDetails}>
+                                                <span className={styles.itemTitle}>
+                                                    {printLocaleValue(locale, d.title) ||
+                                                        dictionary.distributions.header.nameless}
+                                                </span>
+                                                <DistributionTags
+                                                    distribution={d}
+                                                    dictionary={dictionary}
+                                                    maxTags={4}
+                                                />
+                                            </div>
+                                            <DownloadButton
+                                                uris={d.accessURL}
+                                                className={styles.actionButton}
+                                                modalTitle={
+                                                    printLocaleValue(locale, d.title) ||
+                                                    dictionary.distributions.header.nameless
+                                                }
                                                 dictionary={dictionary}
-                                            />
+                                                locale={locale}
+                                            >
+                                                {dictionary.distributions.header.downloadBtnLabel}
+                                            </DownloadButton>
                                         </div>
-                                        <DownloadButton
-                                            uris={d.accessURL}
-                                            className={styles.actionButton}
-                                            modalTitle={
-                                                printLocaleValue(locale, d.title) ||
-                                                dictionary.distributions.header.nameless
-                                            }
-                                            dictionary={dictionary}
-                                            locale={locale}
-                                        >
-                                            {dictionary.distributions.header.downloadBtnLabel}
-                                        </DownloadButton>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
+                                    </li>
+                                ))}
+                            </ul>
+                        </ScrollShadows>
                     ) : (
                         <PlaceholderBox>{dictionary.distributions.placeholder}</PlaceholderBox>
                     )}
