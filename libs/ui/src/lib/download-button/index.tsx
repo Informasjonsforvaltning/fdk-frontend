@@ -102,10 +102,6 @@ const DownloadButton = ({
                         variant='secondary'
                         onClick={() => modalRef.current?.close()}
                     >
-                        <DownloadIcon
-                            aria-hidden
-                            fontSize='1.2em'
-                        />
                         {dictionary.distributions.downloadModal.closeBtn}
                     </Button>
                 </Modal.Footer>
