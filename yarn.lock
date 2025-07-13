@@ -12143,7 +12143,7 @@ __metadata:
     eslint-plugin-playwright: "npm:^2.2.0"
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-hooks: "npm:^5.2.0"
-    framer-motion: "npm:^12.13.0"
+    framer-motion: "npm:^12.23.3"
     identity-obj-proxy: "npm:^3.0.0"
     jest: "npm:^29.7.0"
     jest-axe: "npm:^10.0.0"
@@ -12576,12 +12576,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^12.13.0":
-  version: 12.13.0
-  resolution: "framer-motion@npm:12.13.0"
+"framer-motion@npm:^12.23.3":
+  version: 12.23.3
+  resolution: "framer-motion@npm:12.23.3"
   dependencies:
-    motion-dom: "npm:^12.13.0"
-    motion-utils: "npm:^12.12.1"
+    motion-dom: "npm:^12.23.2"
+    motion-utils: "npm:^12.23.2"
     tslib: "npm:^2.4.0"
   peerDependencies:
     "@emotion/is-prop-valid": "*"
@@ -12594,7 +12594,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/869306b2c83399c462eb46f23aef571664561a145b0dbd8116472b18dd45a8f9ed5358295eebd37272260d7693be365b6653c99725ce6f162f007b157ad70385
+  checksum: 10c0/597c00de515426476b8f3eab656736415fe56d41dbfa6f87db5dddf93a47e7fee9d193c3da5c58bd07f6f4f36107915479456db950ce865fb85753e44b66a81c
   languageName: node
   linkType: hard
 
@@ -17005,19 +17005,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion-dom@npm:^12.13.0":
-  version: 12.13.0
-  resolution: "motion-dom@npm:12.13.0"
+"motion-dom@npm:^12.23.2":
+  version: 12.23.2
+  resolution: "motion-dom@npm:12.23.2"
   dependencies:
-    motion-utils: "npm:^12.12.1"
-  checksum: 10c0/7b66adb115a242a45c98c9fe2c3aa737a9a085464bce280d9d84442f69a607eb5baf8cb2207bc7a208d438daaf4520f84c0a1afadfefa9c59f3f80d04288016a
+    motion-utils: "npm:^12.23.2"
+  checksum: 10c0/91455a31c558ebd915b45a4157d14553733c432a208c2ab61c54e3d305f32793e559609e2cc2b2d4acaa712637ac067ca62e359d5c6d8b22022bfbff7c023ab8
   languageName: node
   linkType: hard
 
-"motion-utils@npm:^12.12.1":
-  version: 12.12.1
-  resolution: "motion-utils@npm:12.12.1"
-  checksum: 10c0/880a174769d1be42b46cfb34af81b4a629c068d30d5cf7e07d249fbf2f5121d577482d3ea5bdc1db549c0288733e1e987efecb195fae350995270651559c6697
+"motion-utils@npm:^12.23.2":
+  version: 12.23.2
+  resolution: "motion-utils@npm:12.23.2"
+  checksum: 10c0/bb7479b780371acd43e3a18721deaa9e0324e6f672751310ee1a886e9fd46fe5f71e51510140dadcbd2f81100cd32b9614a2ff40ab2bb8d074d1fb321f6bdd89
   languageName: node
   linkType: hard
 
