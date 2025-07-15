@@ -90,7 +90,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
                 [],
             ),
             ...(dataset.sample ?? []).reduce<AccessService[]>(
-                (acc, sample) => acc.concat(sample.accessService ?? []),
+                (acc, sample) => acc.concat((sample as any).accessService ?? []),
                 [],
             ),
         ];
@@ -106,7 +106,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     try {
         const conformsTo = [
             ...(dataset.distribution ?? []).reduce<any[]>((acc, dist) => acc.concat(dist.conformsTo ?? []), []),
-            ...(dataset.sample ?? []).reduce<any[]>((acc, sample) => acc.concat(sample.conformsTo ?? []), []),
+            ...(dataset.sample ?? []).reduce<any[]>((acc, sample) => acc.concat((sample as any).conformsTo ?? []), []),
         ];
         const uris = conformsTo.map((standard) => standard?.uri).filter((uri) => !!uri);
         const { hits = [] } = await searchInformationModels(uris);
@@ -243,9 +243,61 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     try {
         const dataset = await getDataset(params.id);
         const title = printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset;
+        const description = printLocaleValue(locale, dataset.description) ?? dictionary.breadcrumbs.datasets;
+        const publisher = printLocaleValue(locale, dataset.publisher?.prefLabel);
+        const keywords = dataset.keyword?.map((k: any) => printLocaleValue(locale, k)).filter(Boolean).join(', ');
+
+        // Create structured data for better SEO
+        const structuredData = {
+            '@context': 'https://schema.org',
+            '@type': 'Dataset',
+            name: title,
+            description: description,
+            url: `https://data.norge.no/${locale}/datasets/${dataset.id}`,
+            identifier: dataset.id,
+            publisher: publisher ? {
+                '@type': 'Organization',
+                name: publisher
+            } : undefined,
+            dateModified: dataset.modified,
+            datePublished: dataset.issued,
+            keywords: keywords,
+            isAccessibleForFree: dataset.isOpenData,
+            distribution: dataset.distribution?.map((dist: any) => ({
+                '@type': 'DataDownload',
+                encodingFormat: dist.format?.prefLabel?.nb || dist.format?.prefLabel?.en,
+                contentUrl: dist.accessURL
+            }))
+        };
+
         return {
             title: `${title} - ${dictionary.breadcrumbs.datasets} - data.norge.no`,
-            description: printLocaleValue(locale, dataset.description) ?? dictionary.breadcrumbs.datasets,
+            description: description,
+            keywords: keywords,
+            openGraph: {
+                title: title,
+                description: description,
+                type: 'website',
+                url: `https://data.norge.no/${locale}/datasets/${dataset.id}`,
+                siteName: 'data.norge.no',
+                locale: locale,
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: title,
+                description: description,
+            },
+            alternates: {
+                canonical: `https://data.norge.no/${locale}/datasets/${dataset.id}`,
+                languages: {
+                    'nb': `https://data.norge.no/nb/datasets/${dataset.id}`,
+                    'en': `https://data.norge.no/en/datasets/${dataset.id}`,
+                    'nn': `https://data.norge.no/nn/datasets/${dataset.id}`,
+                },
+            },
+            other: {
+                'structured-data': JSON.stringify(structuredData),
+            },
         };
     } catch (err) {
         console.error(`Failed generate metadata for dataset with ID ${params.id}`, JSON.stringify(err));

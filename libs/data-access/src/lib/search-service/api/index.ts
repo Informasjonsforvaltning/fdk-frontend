@@ -122,3 +122,23 @@ export const getPopulatedDatasetReferences = async (references?: DatasetReferenc
         }),
     );
 };
+
+export const getAllDatasets = async (page = 1, size = 1000) => {
+    const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`;
+    return await fetch(uri, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            pagination: {
+                size,
+                page,
+            },
+        }),
+    }).then((response) => {
+        if (!response.ok) throw new Error('datasets not found');
+        return response.json();
+    });
+};

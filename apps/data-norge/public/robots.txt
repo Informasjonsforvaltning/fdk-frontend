@@ -1,0 +1,18 @@
+# Only allow crawling on the correct domain
+User-agent: *
+Disallow: /
+
+# Allow crawling only on data.norge.no
+Host: https://data.norge.no
+
+# Sitemap
+Sitemap: https://data.norge.no/sitemap.xml
+
+# Crawl delay (optional - be respectful to your servers)
+Crawl-delay: 1
+
+# Disallow API and Next.js internal paths (for data.norge.no only)
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/ 
