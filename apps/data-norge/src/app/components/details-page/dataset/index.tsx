@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import DatasetStructuredData from '../../structured-data/dataset-structured-data';
 import {
     type DatasetWithIdentifier,
     type DataService,
@@ -93,6 +94,11 @@ export default function DatasetDetailsPage({
 
     return (
         <div className={styles.detailsPage}>
+            <DatasetStructuredData
+                dataset={resource}
+                locale={locale}
+                baseUri={baseUri}
+            />
             <Breadcrumbs
                 dictionary={dictionaries.common}
                 breadcrumbList={breadcrumbList}
@@ -209,8 +215,8 @@ export default function DatasetDetailsPage({
                         </section>
                         {((internalRelatedDatasets && internalRelatedDatasets.length > 0) ||
                             (similarDatasets && similarDatasets.length > 0)) && (
-                            <BrandDivider className={styles.divider} />
-                        )}
+                                <BrandDivider className={styles.divider} />
+                            )}
                         {internalRelatedDatasets && internalRelatedDatasets.length > 0 && (
                             <section
                                 className={styles.section}
