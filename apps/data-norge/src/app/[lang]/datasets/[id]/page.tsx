@@ -172,7 +172,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Find external related resources
 
     try {
-        const results = await searchRelations(dataset.identifier?.[0]);
+        const results = await searchRelations(dataset.uri);
         const hits = results?.hits ?? [];
 
         externalRelatedAPIs = hits.filter((r: SearchObject) => r.searchType === 'DATA_SERVICE');
