@@ -20,6 +20,16 @@ const nextConfig = {
     sassOptions: {
         silenceDeprecations: ['legacy-js-api', 'import'],
     },
+    webpack: (config) => {
+        // Optimize cache for large strings
+        config.cache = {
+            ...config.cache,
+            compression: 'gzip', // Compress cache entries
+            maxMemoryGenerations: 1, // Reduce memory usage
+        };
+        
+        return config;
+    },
     async redirects() {
         return [
             {
