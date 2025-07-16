@@ -4,7 +4,7 @@ import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
 import DList from '@fdk-frontend/ui/dlist';
-import { printLocaleValue } from '@fdk-frontend/utils';
+import { printLocaleValue, getDatasetSlug } from '@fdk-frontend/utils';
 import { DatasetDetailsProps } from '../../';
 
 const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<DatasetDetailsProps, 'dataset'>) => {
@@ -31,7 +31,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                             </dt>
                             <dd>
                                 {r.resource ? (
-                                    <Link href={`/${locale}/datasets/${r.resource?.id}`}>
+                                    <Link href={`/${locale}/datasets/${r.resource?.id}/${getDatasetSlug(r.resource, locale)}`}>
                                         {printLocaleValue(locale, r.resource?.title)}
                                     </Link>
                                 ) : (
@@ -56,7 +56,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                                     <Link
                                         href={
                                             r.resource
-                                                ? `/${locale}/datasets/${r.resource.id}`
+                                                ? `/${locale}/datasets/${r.resource.id}/${getDatasetSlug(r.resource, locale)}`
                                                 : r.reference.source?.uri
                                         }
                                     >

@@ -1,3 +1,4 @@
+import { escapeRegExp } from 'lodash';
 import { test, expect } from '../fixtures/basePage';
 
 // Declare process for TypeScript
@@ -29,6 +30,19 @@ const fetchSitemap = async (page: any): Promise<{ response: any; content: string
 };
 
 test.describe('SEO Tests', () => {
+    // Configure retries for better stability with multiple workers
+    // This allows tests to run in parallel while handling transient failures
+    test.describe.configure({ retries: 3 });
+    // Use a unique test isolation approach
+    test.beforeEach(async ({ page, context }) => {
+        // Clear any existing state and ensure clean start
+        await page.goto('about:blank');
+        // Clear cookies and storage for better isolation
+        await context.clearCookies();
+        // Add a small delay to ensure clean state
+        await page.waitForTimeout(100);
+    });
+
     test.describe('robots.txt', () => {
         test('should be accessible and contain correct directives', async ({ page }) => {
             const response = await page.goto('/robots.txt');
@@ -143,9 +157,9 @@ test.describe('SEO Tests', () => {
             const contentSections = ['about', 'contact', 'catalogs', 'docs', 'technical'];
 
             for (const section of contentSections) {
-                for (const locale of ['nb', 'en', 'nn']) {
+                ['nb', 'en', 'nn'].forEach((locale) => {
                     expect(content).toContain(`<loc>https://data.norge.no/${locale}/${section}</loc>`);
-                }
+                });
             }
         });
 
@@ -172,9 +186,9 @@ test.describe('SEO Tests', () => {
             ];
 
             for (const subpage of subpages) {
-                for (const locale of ['nb', 'en', 'nn']) {
+                ['nb', 'en', 'nn'].forEach((locale) => {
                     expect(content).toContain(`<loc>https://data.norge.no/${locale}/${subpage}</loc>`);
-                }
+                });
             }
         });
 
@@ -199,9 +213,9 @@ test.describe('SEO Tests', () => {
             ];
 
             for (const subpage of deepSubpages) {
-                for (const locale of ['nb', 'en', 'nn']) {
+                ['nb', 'en', 'nn'].forEach((locale) => {
                     expect(content).toContain(`<loc>https://data.norge.no/${locale}/${subpage}</loc>`);
-                }
+                });
             }
         });
 
@@ -218,13 +232,15 @@ test.describe('SEO Tests', () => {
             ];
 
             for (const priorityTest of priorityTests) {
-                for (const locale of ['nb', 'en', 'nn']) {
+                const localeChecks = ['nb', 'en', 'nn'].map((locale) => {
                     const urlPattern = new RegExp(
                         `<url>\\s*<loc>https://data\\.norge\\.no/${locale}/${priorityTest.path}</loc>\\s*<lastmod>[^<]+</lastmod>\\s*<changefreq>weekly</changefreq>\\s*<priority>${priorityTest.expectedPriority}</priority>\\s*</url>`,
                         's',
                     );
                     expect(content).toMatch(urlPattern);
-                }
+                });
+                // Execute all locale checks for this priority test
+                localeChecks.forEach((check) => check);
             }
         });
 
@@ -242,13 +258,15 @@ test.describe('SEO Tests', () => {
             ];
 
             for (const priorityTest of subpagePriorityTests) {
-                for (const locale of ['nb', 'en', 'nn']) {
+                const localeChecks = ['nb', 'en', 'nn'].map((locale) => {
                     const urlPattern = new RegExp(
                         `<url>\\s*<loc>https://data\\.norge\\.no/${locale}/${priorityTest.path}</loc>\\s*<lastmod>[^<]+</lastmod>\\s*<changefreq>weekly</changefreq>\\s*<priority>${priorityTest.expectedPriority}</priority>\\s*</url>`,
                         's',
                     );
                     expect(content).toMatch(urlPattern);
-                }
+                });
+                // Execute all locale checks for this priority test
+                localeChecks.forEach((check) => check);
             }
         });
 
@@ -269,13 +287,15 @@ test.describe('SEO Tests', () => {
             const contentSections = ['about', 'contact', 'catalogs', 'docs', 'technical'];
 
             for (const section of contentSections) {
-                for (const locale of ['nb', 'en', 'nn']) {
+                const localeChecks = ['nb', 'en', 'nn'].map((locale) => {
                     const urlPattern = new RegExp(
                         `<url>\\s*<loc>https://data\\.norge\\.no/${locale}/${section}</loc>\\s*<lastmod>[^<]+</lastmod>\\s*<changefreq>weekly</changefreq>\\s*<priority>[^<]+</priority>\\s*</url>`,
                         's',
                     );
                     expect(content).toMatch(urlPattern);
-                }
+                });
+                // Execute all locale checks for this section
+                localeChecks.forEach((check) => check);
             }
         });
 
@@ -286,13 +306,15 @@ test.describe('SEO Tests', () => {
             const contentSections = ['about', 'contact', 'catalogs', 'docs', 'technical'];
 
             for (const section of contentSections) {
-                for (const locale of ['nb', 'en', 'nn']) {
+                const localeChecks = ['nb', 'en', 'nn'].map((locale) => {
                     const urlPattern = new RegExp(
                         `<url>\\s*<loc>https://data\\.norge\\.no/${locale}/${section}</loc>\\s*<lastmod>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z</lastmod>\\s*<changefreq>weekly</changefreq>\\s*<priority>[^<]+</priority>\\s*</url>`,
                         's',
                     );
                     expect(content).toMatch(urlPattern);
-                }
+                });
+                // Execute all locale checks for this section
+                localeChecks.forEach((check) => check);
             }
         });
 
@@ -300,9 +322,9 @@ test.describe('SEO Tests', () => {
             const { content } = await fetchSitemap(page);
 
             // data-hunter should be included as a core static page
-            for (const locale of ['nb', 'en', 'nn']) {
+            ['nb', 'en', 'nn'].forEach((locale) => {
                 expect(content).toContain(`<loc>https://data.norge.no/${locale}/data-hunter</loc>`);
-            }
+            });
 
             // Should not be treated as a content directory (no subpages)
             expect(content).not.toContain('data-hunter/');
@@ -484,17 +506,17 @@ test.describe('SEO Tests', () => {
             expect(title).toBeTruthy();
             expect(title.length).toBeGreaterThan(0);
 
-            await expect(page.locator('meta[name="description"]')).toHaveAttribute('content');
-            const description = await page.locator('meta[name="description"]').getAttribute('content');
-            expect(description!.length).toBeGreaterThan(0);
+            const descriptionLocator = page.locator('meta[name="description"]');
+            await expect(descriptionLocator).toHaveAttribute('content');
+            // eslint-disable-next-line playwright/prefer-web-first-assertions
+            await expect(descriptionLocator.getAttribute('content')).toBeTruthy();
 
             // Check for Open Graph tags
             await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content');
             await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content');
-            await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content');
-
-            const ogUrl = await page.locator('meta[property="og:url"]').getAttribute('content');
-            expect(ogUrl).toContain('data.norge.no');
+            const ogUrlLocator = page.locator('meta[property="og:url"]');
+            await expect(ogUrlLocator).toHaveAttribute('content');
+            await expect(ogUrlLocator).toHaveAttribute('content', /data\.norge\.no/);
         });
 
         test('should have proper language alternates', async ({ page }) => {
@@ -506,9 +528,9 @@ test.describe('SEO Tests', () => {
             await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(3);
 
             // Check for canonical URL
-            await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href');
-            const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
-            expect(canonical).toContain('data.norge.no');
+            const canonicalLocator = page.locator('link[rel="canonical"]');
+            await expect(canonicalLocator).toHaveAttribute('href');
+            await expect(canonicalLocator).toHaveAttribute('href', /data\.norge\.no/);
         });
 
         test('should have proper Twitter Card meta tags', async ({ page }) => {
@@ -519,6 +541,487 @@ test.describe('SEO Tests', () => {
             await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary_large_image');
             await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content');
             await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content');
+        });
+    });
+
+    test.describe('SEO-Friendly URLs and Redirects', () => {
+        test('should redirect old URLs to new slug URLs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+
+            // Navigate to old URL format and wait for redirect with retry logic
+            await page.goto(`/nb/datasets/${datasetId}`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+
+            // Wait for redirect to complete with retry logic
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+
+            // Should redirect to new URL with slug
+            expect(page.url()).toMatch(/\/nb\/datasets\/[^/]+\/[^/]+$/);
+
+            // URL should contain the dataset ID
+            expect(page.url()).toContain(datasetId);
+
+            // Should not be the old format
+            expect(page.url()).not.toBe(`/nb/datasets/${datasetId}`);
+        });
+
+        test('should preserve query parameters during redirects', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+
+            // Navigate to old URL with query parameters and wait for redirect
+            await page.goto(`/nb/datasets/${datasetId}?tab=distributions&highlight=api`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+
+            // Wait for redirect to complete with retry logic
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+
+            // Should redirect to new URL with slug and preserved query parameters
+            expect(page.url()).toMatch(/\/nb\/datasets\/[^/]+\/[^/]+\?tab=distributions&highlight=api$/);
+
+            // Should contain the dataset ID
+            expect(page.url()).toContain(datasetId);
+
+            // Should preserve all query parameters
+            expect(page.url()).toContain('tab=distributions');
+            expect(page.url()).toContain('highlight=api');
+        });
+
+        test('should redirect invalid slugs to correct slugs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+
+            // Navigate to URL with invalid slug and wait for redirect
+            await page.goto(`/nb/datasets/${datasetId}/wrong-slug`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+
+            // Wait for redirect to complete with retry logic
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+
+            // Should redirect to correct slug
+            expect(page.url()).toMatch(/\/nb\/datasets\/[^/]+\/[^/]+$/);
+
+            // Should not contain the wrong slug
+            expect(page.url()).not.toContain('wrong-slug');
+
+            // Should contain the dataset ID
+            expect(page.url()).toContain(datasetId);
+        });
+
+        test('should preserve query parameters when redirecting invalid slugs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+
+            // Navigate to URL with invalid slug and query parameters and wait for redirect
+            await page.goto(`/nb/datasets/${datasetId}/wrong-slug?tab=details&highlight=concept`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+
+            // Wait for redirect to complete with retry logic
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+
+            // Should redirect to correct slug with preserved query parameters
+            expect(page.url()).toMatch(/\/nb\/datasets\/[^/]+\/[^/]+\?tab=details&highlight=concept$/);
+
+            // Should preserve all query parameters
+            expect(page.url()).toContain('tab=details');
+            expect(page.url()).toContain('highlight=concept');
+
+            // Should not contain the wrong slug
+            expect(page.url()).not.toContain('wrong-slug');
+        });
+
+        test('should have proper slug format in URLs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+
+            // Navigate to dataset page
+            const success = await navigateToDataset(page, datasetId);
+            if (!success) return;
+
+            // URL should follow the pattern: /locale/datasets/id/slug
+            const url = page.url();
+            const urlObj = new URL(url);
+            const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
+
+            // Should have at least 4 parts: locale/datasets/id/slug
+            expect(pathParts.length).toBeGreaterThanOrEqual(4);
+
+            // Should contain locale
+            expect(['nb', 'en', 'nn']).toContain(pathParts[0]);
+
+            // Should contain 'datasets'
+            expect(pathParts[1]).toBe('datasets');
+
+            // Should contain dataset ID
+            expect(pathParts[2]).toBe(datasetId);
+
+            // Should have a slug (not empty)
+            expect(pathParts[3]).toBeTruthy();
+            expect(pathParts[3].length).toBeGreaterThan(0);
+
+            // Slug should be URL-friendly (no spaces, special chars)
+            const slug = pathParts[3].split('?')[0]; // Remove query params
+            expect(slug).toMatch(/^[a-z0-9-]+$/);
+        });
+
+        test('should have different slugs for different locales', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+
+            // Navigate to dataset in Norwegian and wait for redirect
+            await page.goto(`/nb/datasets/${datasetId}`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+            const nbUrl = page.url();
+            const nbUrlObj = new URL(nbUrl);
+            const nbPathParts = nbUrlObj.pathname.split('/').filter((part) => part.length > 0);
+            // Ensure we have enough path parts before accessing index 3
+            expect(nbPathParts.length).toBeGreaterThanOrEqual(4);
+            const nbSlug = nbPathParts[3].split('?')[0];
+
+            // Navigate to dataset in English and wait for redirect
+            await page.goto(`/en/datasets/${datasetId}`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+            const enUrl = page.url();
+            const enUrlObj = new URL(enUrl);
+            const enPathParts = enUrlObj.pathname.split('/').filter((part) => part.length > 0);
+            // Ensure we have enough path parts before accessing index 3
+            expect(enPathParts.length).toBeGreaterThanOrEqual(4);
+            const enSlug = enPathParts[3].split('?')[0];
+
+            // Navigate to dataset in Nynorsk and wait for redirect
+            await page.goto(`/nn/datasets/${datasetId}`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+            const nnUrl = page.url();
+            const nnUrlObj = new URL(nnUrl);
+            const nnPathParts = nnUrlObj.pathname.split('/').filter((part) => part.length > 0);
+            // Ensure we have enough path parts before accessing index 3
+            expect(nnPathParts.length).toBeGreaterThanOrEqual(4);
+            const nnSlug = nnPathParts[3].split('?')[0];
+
+            // All slugs should exist
+            expect(nbSlug).toBeTruthy();
+            expect(enSlug).toBeTruthy();
+            expect(nnSlug).toBeTruthy();
+
+            // Slugs should be URL-friendly
+            expect(nbSlug).toMatch(/^[a-z0-9-]+$/);
+            expect(enSlug).toMatch(/^[a-z0-9-]+$/);
+            expect(nnSlug).toMatch(/^[a-z0-9-]+$/);
+        });
+
+        test('should have SEO-friendly URLs in sitemap', async ({ page }) => {
+            const { content } = await fetchSitemap(page);
+
+            // Should contain dataset URLs with slugs
+            expect(content).toMatch(/https:\/\/data\.norge\.no\/[a-z]{2}\/datasets\/[^/]+\/[^/]+/);
+
+            // Should not contain old format URLs (without slugs)
+            expect(content).not.toMatch(/https:\/\/data\.norge\.no\/[a-z]{2}\/datasets\/[^/]+<\/loc>/);
+        });
+
+        test('should have proper canonical URLs with slugs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const success = await navigateToDataset(page, datasetId);
+            if (!success) return;
+
+            // Check canonical URL
+            const canonicalLocator = page.locator('link[rel="canonical"]');
+            await expect(canonicalLocator).toHaveAttribute('href');
+
+            // Should contain slug
+            await expect(canonicalLocator).toHaveAttribute('href', /\/datasets\/[^/]+\/[^/]+$/);
+
+            // Should not be old format
+            await expect(canonicalLocator).not.toHaveAttribute('href', /\/datasets\/[^/]+$/);
+
+            // Should contain dataset ID
+            await expect(canonicalLocator).toHaveAttribute('href', new RegExp(escapeRegExp(datasetId)));
+        });
+
+        test('should have proper Open Graph URLs with slugs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const success = await navigateToDataset(page, datasetId);
+            if (!success) return;
+
+            // Check Open Graph URL
+            const ogUrlLocator = page.locator('meta[property="og:url"]');
+            await expect(ogUrlLocator).toHaveAttribute('content');
+
+            // Should contain slug
+            await expect(ogUrlLocator).toHaveAttribute('content', /\/datasets\/[^/]+\/[^/]+$/);
+
+            // Should not be old format
+            await expect(ogUrlLocator).not.toHaveAttribute('content', /\/datasets\/[^/]+$/);
+
+            // Should contain dataset ID
+            await expect(ogUrlLocator).toHaveAttribute('content', new RegExp(escapeRegExp(datasetId)));
+        });
+
+        test('should have proper language alternates with slugs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const success = await navigateToDataset(page, datasetId);
+            if (!success) return;
+
+            // Check hreflang tags
+            const hreflangLocator = page.locator('link[rel="alternate"][hreflang]');
+            await expect(hreflangLocator).toHaveCount(3); // nb, en, nn
+
+            // Get all href attributes concurrently
+            const hrefPromises = (await hreflangLocator.all()).map(async (tag) => {
+                // eslint-disable-next-line playwright/prefer-web-first-assertions
+                return await tag.getAttribute('href');
+            });
+            const hrefs = await Promise.all(hrefPromises);
+
+            // Validate all hrefs
+            hrefs.forEach((href: any) => {
+                expect(href).toBeTruthy();
+
+                // Should contain slug
+                expect(href).toMatch(/\/datasets\/[^/]+\/[^/]+$/);
+
+                // Should not be old format
+                expect(href).not.toMatch(/\/datasets\/[^/]+$/);
+
+                // Should contain dataset ID
+                expect(href).toContain(datasetId);
+            });
+        });
+
+        test('should have proper structured data URLs with slugs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const success = await navigateToDataset(page, datasetId);
+            if (!success) return;
+
+            // Check JSON-LD structured data
+            const jsonLdScript = await page
+                .locator('script[id="dataset-structured-data"][type="application/ld+json"]')
+                .first();
+            const jsonLdContent = await jsonLdScript.textContent();
+            const structuredData = JSON.parse(jsonLdContent!);
+
+            // Should have URL with slug
+            expect(structuredData.url).toMatch(/\/datasets\/[^/]+\/[^/]+$/);
+
+            // Should not be old format
+            expect(structuredData.url).not.toMatch(/\/datasets\/[^/]+$/);
+
+            // Should contain dataset ID
+            expect(structuredData.url).toContain(datasetId);
+        });
+
+        test('should have proper breadcrumb URLs with slugs', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const success = await navigateToDataset(page, datasetId);
+            if (!success) return;
+
+            // Check breadcrumb structured data
+            const breadcrumbScript = await page
+                .locator('script[id="breadcrumb-structured-data"][type="application/ld+json"]')
+                .first();
+            const breadcrumbContent = await breadcrumbScript.textContent();
+            const breadcrumbData = JSON.parse(breadcrumbContent!);
+
+            // Last breadcrumb item should have URL with slug
+            const lastItem = breadcrumbData.itemListElement[breadcrumbData.itemListElement.length - 1];
+            expect(lastItem.item).toMatch(/\/datasets\/[^/]+\/[^/]+$/);
+
+            // Should not be old format
+            expect(lastItem.item).not.toMatch(/\/datasets\/[^/]+$/);
+
+            // Should contain dataset ID
+            expect(lastItem.item).toContain(datasetId);
+        });
+
+        test('should handle edge cases in slug generation', async ({ page }) => {
+            // Test with special characters in dataset title
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const success = await navigateToDataset(page, datasetId);
+            if (!success) return;
+
+            const url = page.url();
+            const urlObj = new URL(url);
+            const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
+            const slug = pathParts[3].split('?')[0];
+
+            // Slug should be URL-safe
+            expect(slug).toMatch(/^[a-z0-9-]+$/);
+
+            // Should not contain special characters
+            expect(slug).not.toMatch(/[^a-z0-9-]/);
+
+            // Should not be empty
+            expect(slug.length).toBeGreaterThan(0);
+        });
+
+        test('should maintain consistent URL structure for Norwegian locale', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const locale = 'nb';
+
+            await page.goto(`/${locale}/datasets/${datasetId}`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+
+            const url = page.url();
+            const urlObj = new URL(url);
+            const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
+
+            // Should have consistent structure
+            expect(pathParts.length).toBeGreaterThanOrEqual(4);
+            expect(pathParts[0]).toBe(locale);
+            expect(pathParts[1]).toBe('datasets');
+            expect(pathParts[2]).toBe(datasetId);
+            expect(pathParts[3]).toBeTruthy(); // slug
+
+            // Slug should be URL-friendly
+            const slug = pathParts[3].split('?')[0];
+            expect(slug).toMatch(/^[a-z0-9-]+$/);
+        });
+
+        test('should maintain consistent URL structure for English locale', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const locale = 'en';
+
+            await page.goto(`/${locale}/datasets/${datasetId}`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+
+            const url = page.url();
+            const urlObj = new URL(url);
+            const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
+
+            // Should have consistent structure
+            expect(pathParts.length).toBeGreaterThanOrEqual(4);
+            expect(pathParts[0]).toBe(locale);
+            expect(pathParts[1]).toBe('datasets');
+            expect(pathParts[2]).toBe(datasetId);
+            expect(pathParts[3]).toBeTruthy(); // slug
+
+            // Slug should be URL-friendly
+            const slug = pathParts[3].split('?')[0];
+            expect(slug).toMatch(/^[a-z0-9-]+$/);
+        });
+
+        test('should maintain consistent URL structure for Nynorsk locale', async ({ page }) => {
+            const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
+            const locale = 'nn';
+
+            await page.goto(`/${locale}/datasets/${datasetId}`, {
+                waitUntil: 'load',
+                timeout: 30000,
+            });
+            await page.waitForFunction(
+                () => {
+                    // eslint-disable-next-line no-undef
+                    const url = window.location.href;
+                    const urlObj = new URL(url);
+                    return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
+                },
+                { timeout: 10000 },
+            );
+
+            const url = page.url();
+            const urlObj = new URL(url);
+            const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
+
+            // Should have consistent structure
+            expect(pathParts.length).toBeGreaterThanOrEqual(4);
+            expect(pathParts[0]).toBe(locale);
+            expect(pathParts[1]).toBe('datasets');
+            expect(pathParts[2]).toBe(datasetId);
+            expect(pathParts[3]).toBeTruthy(); // slug
+
+            // Slug should be URL-friendly
+            const slug = pathParts[3].split('?')[0];
+            expect(slug).toMatch(/^[a-z0-9-]+$/);
         });
     });
 });

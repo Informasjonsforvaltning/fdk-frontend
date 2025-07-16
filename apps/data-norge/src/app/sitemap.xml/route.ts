@@ -4,6 +4,7 @@ import { i18n } from '@fdk-frontend/dictionaries';
 import { getAllDatasets } from '@fdk-frontend/data-access/server';
 import { readdir, stat } from 'fs/promises';
 import { join } from 'path';
+import { getDatasetSlug } from '@fdk-frontend/utils';
 
 // Atomic cache for sitemap
 const SITEMAP_CACHE = {
@@ -24,7 +25,7 @@ const atomicUpdateSitemapCache = (newSitemap: string): boolean => {
     }
 
     return false; // Not updated
-}
+};
 
 // Utility function to recursively scan content directories
 const scanContentDirectory = async (dirPath: string, basePath = ''): Promise<string[]> => {
@@ -286,12 +287,15 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
     // Generate dataset pages for all supported locales
     const datasetPages = allDatasets.flatMap((dataset: any) => {
         const lastModified = dataset.modified ? new Date(dataset.modified) : new Date();
-        return i18n.locales.map((locale) => ({
-            url: `${baseUrl}/${locale.code}/datasets/${dataset.id}`,
-            lastModified,
-            changeFrequency: 'weekly' as const,
-            priority: 0.6,
-        }));
+        return i18n.locales.map((locale) => {
+            const slug = getDatasetSlug(dataset, locale.code);
+            return {
+                url: `${baseUrl}/${locale.code}/datasets/${dataset.id}/${slug}`,
+                lastModified,
+                changeFrequency: 'weekly' as const,
+                priority: 0.6,
+            };
+        });
     });
 
     return [...coreStaticPages, ...contentPages, ...datasetPages];

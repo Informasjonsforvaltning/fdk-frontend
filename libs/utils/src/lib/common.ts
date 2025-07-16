@@ -1,4 +1,5 @@
 import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import slugify from 'slugify';
 
 export const print = (str?: string) => {
     return str || '[undefined]';
@@ -41,4 +42,9 @@ export const calculateMetadataScore = (score: any) => {
 
 export const guid = () => {
     return 'guid-' + Math.random().toString(36).substr(2, 9);
+};
+
+export const getDatasetSlug = (dataset: any, locale: LocaleCodes) => {
+    const title = printLocaleValue(locale, dataset.title) || '';
+    return slugify(title, { lower: true, strict: true }) || dataset.id;
 };

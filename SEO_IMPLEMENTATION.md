@@ -6,15 +6,94 @@ This document outlines the SEO implementation for making dataset pages discovera
 
 With over 9000 datasets that are dynamically generated, we've implemented a comprehensive SEO strategy that includes:
 
-1. **Dynamic Sitemap Generation** - Automatically includes all dataset pages
-2. **Enhanced Metadata** - Rich metadata for each dataset page
-3. **Structured Data** - Schema.org markup for better search engine understanding
-4. **Robots.txt** - Proper crawling instructions
-5. **Internationalization Support** - SEO for all supported languages (nb, en, nn)
+1. **SEO-Friendly URLs** - Descriptive URLs with dataset titles as slugs
+2. **Dynamic Sitemap Generation** - Automatically includes all dataset pages
+3. **Enhanced Metadata** - Rich metadata for each dataset page
+4. **Structured Data** - Schema.org markup for better search engine understanding
+5. **Robots.txt** - Proper crawling instructions
+6. **Internationalization Support** - SEO for all supported languages (nb, en, nn)
 
 ## Implementation Details
 
-### 1. Dynamic Sitemap (`/sitemap.xml/route.ts`)
+### 1. SEO-Friendly URLs with Slugs
+
+- **Implementation**: Automatic slug generation from dataset titles
+- **URL Pattern**: `/{locale}/datasets/{id}/{slug}`
+- **Example**: `/nb/datasets/123/my-dataset-title`
+- **Features**:
+    - **Automatic slug generation**: Uses `getDatasetSlug()` utility function
+    - **Locale-specific slugs**: Different slugs for different languages
+    - **Backward compatibility**: Old URLs redirect to new SEO-friendly URLs
+    - **Query parameter preservation**: All query parameters preserved during redirects
+    - **Canonical URLs**: Ensures consistent URL structure across the site
+    - **Internal link updates**: All internal links use the new URL format
+
+#### **URL Structure**
+
+**Old Format**: `/nb/datasets/123`
+**New Format**: `/nb/datasets/123/my-dataset-title`
+
+#### **Implementation Details**
+
+**Route Structure**:
+
+- `[id]/page.tsx` - Handles old URLs and redirects to canonical slug
+- `[id]/[slug]/page.tsx` - Handles new URLs with slug validation
+
+**Slug Generation**:
+
+```typescript
+// Uses slugify and printLocaleValue for clean, readable URLs
+const slug = getDatasetSlug(dataset, locale);
+// Example: "My Dataset Title" → "my-dataset-title"
+```
+
+**Redirect Logic**:
+
+```typescript
+// Old route redirects to canonical slug
+const canonicalSlug = getDatasetSlug(dataset, locale);
+const queryString = new URLSearchParams(searchParams).toString();
+const redirectUrl = queryString
+    ? `/${locale}/datasets/${params.id}/${canonicalSlug}?${queryString}`
+    : `/${locale}/datasets/${params.id}/${canonicalSlug}`;
+redirect(redirectUrl);
+```
+
+**Slug Validation**:
+
+```typescript
+// New route validates slug and redirects if incorrect
+const canonicalSlug = getDatasetSlug(dataset, locale);
+if (params.slug !== canonicalSlug) {
+    // Preserve query parameters during redirect
+    const queryString = new URLSearchParams(searchParams).toString();
+    const redirectUrl = queryString
+        ? `/${locale}/datasets/${params.id}/${canonicalSlug}?${queryString}`
+        : `/${locale}/datasets/${params.id}/${canonicalSlug}`;
+    redirect(redirectUrl);
+}
+```
+
+#### **SEO Benefits**
+
+- **Descriptive URLs**: URLs describe the content, improving click-through rates
+- **Keyword-rich URLs**: Dataset titles in URLs help with search rankings
+- **User-friendly**: Clean, readable URLs improve user experience
+- **Consistent structure**: All dataset URLs follow the same pattern
+- **Language-specific**: Different slugs for different languages improve international SEO
+
+#### **Internal Link Updates**
+
+All internal links have been updated to use the new URL format:
+
+- **Structured data**: JSON-LD URLs include slugs
+- **Metadata**: Open Graph and canonical URLs include slugs
+- **References**: Dataset reference links use slug URLs
+- **Search results**: LLM search results link to slug URLs
+- **Sitemap**: All sitemap entries use slug URLs
+
+### 2. Dynamic Sitemap (`/sitemap.xml/route.ts`)
 
 - **Location**: `apps/data-norge/src/app/sitemap.xml/route.ts`
 - **Function**: Automatically generates a sitemap with all dataset pages and content pages
@@ -25,6 +104,7 @@ With over 9000 datasets that are dynamically generated, we've implemented a comp
     - **Server-side caching**: 5-minute in-memory cache for improved performance
     - **Route handler approach**: Uses Next.js API route for better control over headers and caching
     - **Comprehensive coverage**: Includes all static pages, content pages, and dataset pages for all locales
+- **SEO-friendly URLs**: All dataset entries use the new slug-based URLs
     - **Smart prioritization**: Sets appropriate `changeFrequency` and `priority` values based on content type and depth
     - **Internationalization**: Generates URLs for all supported languages (nb, en, nn)
     - **Automatic maintenance**: New content pages are automatically included when folders are added
@@ -375,12 +455,20 @@ The comprehensive content pages test suite validates:
 
 ### Manual Testing
 
+#### URL Testing
+
+1. **Test Old URLs**: Verify old URLs redirect to new slug URLs
+2. **Test Invalid Slugs**: Verify incorrect slugs redirect to correct slugs
+3. **Test Query Parameters**: Verify query parameters are preserved during redirects
+4. **Test Internal Links**: Verify all internal links use new URL format
+
 #### Sitemap Testing
 
 1. **Validate Sitemap**: Use online sitemap validators
 2. **Check Coverage**: Verify all dataset pages and content pages are included
-3. **Test Crawling**: Use Google Search Console's URL inspection tool
-4. **Content Discovery**: Verify new content folders are automatically included
+3. **Check URL Format**: Verify all dataset URLs use the new slug format
+4. **Test Crawling**: Use Google Search Console's URL inspection tool
+5. **Content Discovery**: Verify new content folders are automatically included
 
 #### Structured Data Testing
 
@@ -403,6 +491,10 @@ npm run e2e
 - [ ] Add `NEXT_PUBLIC_BASE_URL` environment variable
 - [ ] Deploy updated code with SEO enhancements
 - [ ] Run e2e tests to verify SEO implementation: `npm run e2e:seo`
+- [ ] Test URL redirects and slug functionality
+- [ ] Verify old URLs redirect to new slug URLs
+- [ ] Test query parameter preservation during redirects
+- [ ] Verify all internal links use new URL format
 - [ ] Submit sitemap to Google Search Console
 - [ ] Test sitemap accessibility at `/sitemap.xml`
 - [ ] Verify robots.txt at `/robots.txt`
@@ -416,13 +508,16 @@ npm run e2e
 
 With this implementation, you should see:
 
-1. **Improved Indexing**: All dataset pages and content pages should be discoverable by search engines
-2. **Rich Snippets**: Dataset pages may appear with enhanced information in search results
-3. **Better Rankings**: Improved visibility for dataset-related and content-related searches
-4. **International Traffic**: Proper indexing for all supported languages
-5. **Automatic Content Discovery**: New content pages automatically included in sitemap when folders are added
-6. **Optimized Crawling**: Search engines focus on high-priority content first
-7. **Comprehensive Coverage**: All content types (data, documentation, technical) properly indexed
+1. **SEO-Friendly URLs**: Clean, descriptive URLs improve click-through rates and search rankings
+2. **Improved Indexing**: All dataset pages and content pages should be discoverable by search engines
+3. **Rich Snippets**: Dataset pages may appear with enhanced information in search results
+4. **Better Rankings**: Improved visibility for dataset-related and content-related searches
+5. **International Traffic**: Proper indexing for all supported languages
+6. **Automatic Content Discovery**: New content pages automatically included in sitemap when folders are added
+7. **Optimized Crawling**: Search engines focus on high-priority content first
+8. **Comprehensive Coverage**: All content types (data, documentation, technical) properly indexed
+9. **Backward Compatibility**: Old URLs continue to work and redirect properly
+10. **User Experience**: Clean, readable URLs improve user experience and sharing
 
 ## Monitoring
 
