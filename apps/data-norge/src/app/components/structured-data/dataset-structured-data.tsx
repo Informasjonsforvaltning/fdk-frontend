@@ -3,7 +3,7 @@
 import Script from 'next/script';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type DatasetWithIdentifier } from '@fdk-frontend/fdk-types';
-import { printLocaleValue } from '@fdk-frontend/utils';
+import { printLocaleValue, getDatasetSlug } from '@fdk-frontend/utils';
 
 export type DatasetStructuredDataProps = {
     dataset: DatasetWithIdentifier;
@@ -48,7 +48,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         '@type': 'Dataset',
         name: sanitizeString(printLocaleValue(locale, dataset.title)),
         description: sanitizeString(printLocaleValue(locale, dataset.description)),
-        url: `${baseUri}/${locale}/datasets/${dataset.id}`,
+        url: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
         identifier: dataset.id,
         publisher: dataset.publisher?.prefLabel ? {
             '@type': 'Organization',
@@ -105,7 +105,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
                 '@type': 'ListItem',
                 position: 3,
                 name: sanitizeString(printLocaleValue(locale, dataset.title)),
-                item: `${baseUri}/${locale}/datasets/${dataset.id}`
+                item: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`
             }
         ]
     };

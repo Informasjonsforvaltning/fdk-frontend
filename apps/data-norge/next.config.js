@@ -27,7 +27,7 @@ const nextConfig = {
             compression: 'gzip', // Compress cache entries
             maxMemoryGenerations: 1, // Reduce memory usage
         };
-        
+
         return config;
     },
     async redirects() {

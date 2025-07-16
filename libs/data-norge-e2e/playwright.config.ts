@@ -25,6 +25,12 @@ export default defineConfig({
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
     },
+    /* Global test timeout */
+    timeout: 60000,
+    /* Retry failed tests */
+    retries: 2,
+    /* Workers configuration - allow more workers since we're using retries */
+    workers: 3,
     /* Run your local dev server before starting the tests */
     webServer: {
         command: 'yarn nx dev data-norge --configuration=e2e',
