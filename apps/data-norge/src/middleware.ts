@@ -10,6 +10,10 @@ export const middleware = (request: NextRequest) => {
         [
             '/manifest.json',
             '/favicon.ico',
+            '/favicon.png',
+            '/favicon-16x16.png',
+            '/favicon-32x32.png',
+            '/apple-touch-icon.png',
             '/robots.txt',
             '/sitemap.xml',
             // Your other files in `public`
@@ -33,7 +37,10 @@ export const middleware = (request: NextRequest) => {
 
 export const config = {
     // Matcher ignoring `/_next/` and `/api/`
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)', { source: '/' }],
+    matcher: [
+        '/((?!api|_next/static|_next/image|favicon.png|favicon-16x16.png|favicon-32x32.png|apple-touch-icon.png).*)',
+        { source: '/' },
+    ],
     missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
