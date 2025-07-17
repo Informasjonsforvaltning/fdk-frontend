@@ -132,22 +132,26 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
     const allDatasets: any[] = [];
     const size = 1000;
 
-    // First, get the first page to determine total count
-    const firstPageResponse = await getAllDatasets(1, size);
+    // First, get the first page (page 0) to determine total count
+    const firstPageResponse = await getAllDatasets(0, size);
     const totalPages = firstPageResponse.page.totalPages || 0;
 
     // Add first page results
     allDatasets.push(...(firstPageResponse.hits || []));
 
-    // Fetch remaining pages concurrently (if more than 1 page)
+    // Process remaining pages sequentially
     if (totalPages > 1) {
-        const remainingPages = Array.from({ length: totalPages - 1 }, (_, i) => i + 2);
-        const pagePromises = remainingPages.map((page) => getAllDatasets(page, size));
-        const pageResults = await Promise.all(pagePromises);
-
-        pageResults.forEach((result) => {
-            allDatasets.push(...(result.hits || []));
-        });
+        for (let page = 1; page < totalPages; page++) {
+            try {
+                // eslint-disable-next-line no-await-in-loop
+                const result = await getAllDatasets(page, size);
+                allDatasets.push(...(result.hits || []));
+                console.log(`Processed page ${page}/${totalPages - 1}`);
+            } catch (error) {
+                console.error(`Failed to fetch page ${page}:`, error);
+                // Continue with other pages
+            }
+        }
     }
 
     // Core static pages (not in content directory)
