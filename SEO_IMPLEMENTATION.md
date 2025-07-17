@@ -172,31 +172,28 @@ The sitemap generation uses efficient concurrent pagination to fetch all dataset
 
 #### **Dataset Pagination**
 
-1. **Fetches first page** to determine total page count
-2. **Concurrent pagination** using `Promise.all()` for remaining pages
+1. **Fetches first page (page 0)** to determine total page count
+2. **Sequential pagination** to avoid overwhelming the search service
 3. **Batch size of 1000** datasets per request for optimal performance
 
 ```typescript
-// Efficient concurrent pagination implementation
+// Efficient sequential pagination implementation
 const allDatasets: any[] = [];
 const size = 1000;
 
-// First, get the first page to determine total count
-const firstPageResponse = await getAllDatasets(1, size);
+// First, get the first page (page 0) to determine total count
+const firstPageResponse = await getAllDatasets(0, size);
 const totalPages = firstPageResponse.page.totalPages || 0;
 
 // Add first page results
 allDatasets.push(...(firstPageResponse.hits || []));
 
-// Fetch remaining pages concurrently (if more than 1 page)
+// Process remaining pages sequentially to avoid "all shards failed"
 if (totalPages > 1) {
-    const remainingPages = Array.from({ length: totalPages - 1 }, (_, i) => i + 2);
-    const pagePromises = remainingPages.map((page) => getAllDatasets(page, size));
-    const pageResults = await Promise.all(pagePromises);
-
-    pageResults.forEach((result) => {
+    for (let page = 1; page < totalPages; page++) {
+        const result = await getAllDatasets(page, size);
         allDatasets.push(...(result.hits || []));
-    });
+    }
 }
 ```
 
@@ -327,39 +324,60 @@ The sitemap uses a carefully designed priority hierarchy to guide search engine 
 The sitemap implements server-side caching for improved performance:
 
 ```typescript
-// Server-side caching implementation
-let cachedSitemap: string | null = null;
-let cacheTimestamp: number = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+// Server-side caching implementation with atomic updates
+const SITEMAP_CACHE = {
+    sitemap: null as string | null,
+    timestamp: 0,
+    duration: 5 * 60 * 1000, // 5 minutes
+};
+
+const atomicUpdateSitemapCache = (newSitemap: string): boolean => {
+    const now = Date.now();
+    if (!SITEMAP_CACHE.sitemap || now - SITEMAP_CACHE.timestamp >= SITEMAP_CACHE.duration) {
+        SITEMAP_CACHE.sitemap = newSitemap;
+        SITEMAP_CACHE.timestamp = now;
+        return true; // Updated
+    }
+    return false; // Not updated
+};
 
 export async function GET(request: NextRequest) {
     const now = Date.now();
 
     // Return cached version if still valid
-    if (cachedSitemap && now - cacheTimestamp < CACHE_DURATION) {
-        return new NextResponse(cachedSitemap, {
+    if (SITEMAP_CACHE.sitemap && now - SITEMAP_CACHE.timestamp < SITEMAP_CACHE.duration) {
+        return new NextResponse(SITEMAP_CACHE.sitemap, {
             status: 200,
             headers: {
                 'Content-Type': 'application/xml',
                 'Cache-Control': 'public, max-age=300, s-maxage=600',
-                ETag: `sitemap-${cacheTimestamp}`,
+                ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
             },
         });
     }
 
-    // Generate fresh sitemap and cache it
-    const sitemap = await generateSitemap();
-    cachedSitemap = sitemap;
-    cacheTimestamp = now;
+    try {
+        // Generate fresh sitemap
+        const sitemap = await generateSitemap();
 
-    return new NextResponse(sitemap, {
-        status: 200,
-        headers: {
-            'Content-Type': 'application/xml',
-            'Cache-Control': 'public, max-age=300, s-maxage=600',
-            ETag: `sitemap-${cacheTimestamp}`,
-        },
-    });
+        // Atomic update
+        const wasUpdated = atomicUpdateSitemapCache(sitemap);
+        if (wasUpdated) {
+            console.log('Sitemap cache updated');
+        }
+
+        return new NextResponse(sitemap, {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/xml',
+                'Cache-Control': 'public, max-age=300, s-maxage=600',
+                ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
+            },
+        });
+    } catch (error) {
+        console.error('Error generating sitemap:', error);
+        return new NextResponse('Error generating sitemap', { status: 500 });
+    }
 }
 ```
 
