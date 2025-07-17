@@ -1,10 +1,8 @@
 import { type DatasetReference } from '@fdk-frontend/fdk-types';
 import { getResource } from '../../resource-service/api';
 
-const { FDK_SEARCH_SERVICE_BASE_URI, FDK_BASE_URI } = process.env;
-
 export const searchApi = async (path: string, body: any) => {
-    const uri = `${FDK_SEARCH_SERVICE_BASE_URI}${path}`;
+    const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}${path}`;
     const options = {
         method: 'POST',
         headers: {
@@ -13,8 +11,11 @@ export const searchApi = async (path: string, body: any) => {
         },
         body: JSON.stringify(body),
     };
-    return await fetch(uri, options).then((response) => {
-        if (!response.ok) throw new Error('search failed');
+    return await fetch(uri, options).then(async (response) => {
+        if (!response.ok) {
+            console.error('search failed', uri, await response.json());
+            throw new Error('search failed');
+        }
         return response.json();
     });
 };
@@ -103,7 +104,7 @@ export const getPopulatedDatasetReferences = async (references?: DatasetReferenc
             if (!reference.source?.uri) throw new Error('reference missing source uri');
 
             let resource;
-            if (reference.source.uri.startsWith(FDK_BASE_URI as string)) {
+            if (reference.source.uri.startsWith(process.env.FDK_BASE_URI as string)) {
                 resource = await getResource(reference.source.uri);
             } else {
                 resource = await searchApi('/search', {
@@ -124,21 +125,10 @@ export const getPopulatedDatasetReferences = async (references?: DatasetReferenc
 };
 
 export const getAllDatasets = async (page = 1, size = 1000) => {
-    const uri = `${FDK_SEARCH_SERVICE_BASE_URI}/search/datasets`;
-    return await fetch(uri, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
+    return await searchApi('/search/datasets', {
+        pagination: {
+            size,
+            page,
         },
-        body: JSON.stringify({
-            pagination: {
-                size,
-                page,
-            },
-        }),
-    }).then((response) => {
-        if (!response.ok) throw new Error('datasets not found');
-        return response.json();
     });
 };
