@@ -243,6 +243,14 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         const publisher = printLocaleValue(locale, dataset.publisher?.prefLabel);
         const keywords = dataset.keyword?.map((k: any) => printLocaleValue(locale, k)).filter(Boolean).join(', ');
 
+        // Get the first available license URL from distributions
+        const getFirstLicenseUrl = () => {
+            const firstDistributionWithLicense = dataset.distribution?.find((dist: any) => dist.license?.length > 0);
+            const firstLicense = firstDistributionWithLicense?.license?.[0];
+
+            return firstLicense?.uri;
+        };
+
         // Create structured data for better SEO
         const structuredData = {
             '@context': 'https://schema.org',
@@ -251,18 +259,21 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             description: description,
             url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
             identifier: dataset.id,
-            publisher: publisher ? {
-                '@type': 'Organization',
-                name: publisher
-            } : undefined,
+            ...(publisher && {
+                publisher: {
+                    '@type': 'Organization',
+                    name: publisher
+                }
+            }),
             dateModified: dataset.modified,
             datePublished: dataset.issued,
             keywords: keywords,
             isAccessibleForFree: dataset.isOpenData,
-            distribution: dataset.distribution?.map((dist: any) => ({
+            ...(getFirstLicenseUrl() && { license: getFirstLicenseUrl() }),
+            distribution: dataset.distribution?.filter((dist: any) => dist.accessURL || dist.downloadURL).map((dist: any) => ({
                 '@type': 'DataDownload',
-                encodingFormat: dist.format?.prefLabel?.nb || dist.format?.prefLabel?.en,
-                contentUrl: dist.accessURL
+                ...(dist.fdkFormat?.uri && { encodingFormat: dist.fdkFormat.uri }),
+                contentUrl: dist.downloadURL || dist.accessURL
             }))
         };
 
