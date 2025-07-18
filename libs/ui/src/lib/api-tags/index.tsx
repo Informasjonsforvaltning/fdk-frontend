@@ -1,6 +1,6 @@
 import React from 'react';
 import mime from 'mime-types';
-import { type DataService } from '@fdk-frontend/fdk-types';
+import { type DataService } from '@fellesdatakatalog/types';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Tag } from '@digdir/designsystemet-react';
 import TagList, { type TagListProps } from '../tag-list';

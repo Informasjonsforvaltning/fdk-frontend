@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import { type Distribution, type SearchObject } from '@fdk-frontend/fdk-types';
+import { type Distribution, type SearchObject } from '@fellesdatakatalog/types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
 import ExpandableContent from '@fdk-frontend/ui/expandable-content';

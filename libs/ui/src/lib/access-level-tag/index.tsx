@@ -1,6 +1,6 @@
 import { Link, Tag, TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { AccessRightsCodes } from '@fdk-frontend/fdk-types';
+import { AccessRightsCodes } from '@fellesdatakatalog/types';
 
 type AccessLevelTagProps = {
     accessCode?: AccessRightsCodes;

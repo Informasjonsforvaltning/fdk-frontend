@@ -10,7 +10,7 @@ import {
     type CommunityTopic,
     type SearchObject,
     type AccessService,
-} from '@fdk-frontend/fdk-types';
+} from '@fellesdatakatalog/types';
 import DatasetDetailsPage from '../../../../components/details-page/dataset';
 import {
     getOrgLogo,

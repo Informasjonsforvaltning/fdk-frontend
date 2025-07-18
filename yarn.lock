@@ -2603,6 +2603,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fellesdatakatalog/types@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@fellesdatakatalog/types@npm:1.0.1"
+  dependencies:
+    typescript: "npm:^5.8.2"
+  checksum: 10c0/93a9fab4781b525d8c244a110b4139553fd011ba3b6193fc4ae64454f89f423e23b9f17052c9c05c2d95177ced165617db965d42604226d19160e25ee99c9ed4
+  languageName: node
+  linkType: hard
+
 "@floating-ui/core@npm:^1.6.0":
   version: 1.6.9
   resolution: "@floating-ui/core@npm:1.6.9"
@@ -12092,6 +12101,7 @@ __metadata:
     "@digdir/designsystemet-theme": "npm:^0.15.3"
     "@emotion/is-prop-valid": "npm:^1.3.1"
     "@eslint/js": "npm:^9.27.0"
+    "@fellesdatakatalog/types": "npm:^1.0.1"
     "@mdx-js/loader": "npm:^3.1.0"
     "@mdx-js/react": "npm:^3.1.0"
     "@navikt/aksel-icons": "npm:^7.22.0"
@@ -22593,7 +22603,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.8.3":
+"typescript@npm:^5.8.2, typescript@npm:^5.8.3":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -22613,7 +22623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.8.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
   version: 5.8.3
   resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:

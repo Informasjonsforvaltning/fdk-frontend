@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
 import HStack from '@fdk-frontend/ui/hstack';
 import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
-import { type DatasetType } from '@fdk-frontend/fdk-types';
+import { type DatasetType } from '@fellesdatakatalog/types';
 import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
 import ExternalLink from '@fdk-frontend/ui/external-link';
 import SmartList from '@fdk-frontend/ui/smart-list';
