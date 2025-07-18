@@ -1,4 +1,4 @@
-import { type DatasetReference } from '@fdk-frontend/fdk-types';
+import { type DatasetReference } from '@fellesdatakatalog/types';
 import { getResource } from '../../resource-service/api';
 
 export const searchApi = async (path: string, body: any) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import mime from 'mime-types';
-import { type Distribution } from '@fdk-frontend/fdk-types';
+import { type Distribution } from '@fellesdatakatalog/types';
 import { isOpenLicense } from '@fdk-frontend/utils';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Tag } from '@digdir/designsystemet-react';

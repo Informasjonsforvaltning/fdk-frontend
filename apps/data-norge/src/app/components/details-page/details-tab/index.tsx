@@ -1,7 +1,7 @@
 import { useState, createContext } from 'react';
 import { Heading, Link, ChipGroup, ChipToggle, Button } from '@digdir/designsystemet-react';
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
-import { type DatasetWithIdentifier, type DatasetScore, type SearchObject } from '@fdk-frontend/fdk-types';
+import { type DatasetWithIdentifier, type DatasetScore, type SearchObject } from '@fellesdatakatalog/types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box/';

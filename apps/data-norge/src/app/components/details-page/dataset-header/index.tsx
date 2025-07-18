@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { type DatasetWithIdentifier, type DataService } from '@fdk-frontend/fdk-types';
+import { type DatasetWithIdentifier, type DataService } from '@fellesdatakatalog/types';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import OrgButton from '@fdk-frontend/ui/org-button';
@@ -86,6 +86,12 @@ const DatasetHeader = ({
                     size='sm'
                 >
                     <Link href='/datasets'>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
+                </Tag>
+                <Tag
+                    color='neutral'
+                    size='sm'
+                >
+                    Del av Offentlige anskaffelser
                 </Tag>
                 <AccessLevelTag
                     accessCode={dataset.accessRights?.code}

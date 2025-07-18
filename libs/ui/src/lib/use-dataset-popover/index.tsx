@@ -15,7 +15,7 @@ import {
     EventAction,
     EventLabel,
 } from '@fdk-frontend/utils/siteimprove-analytics';
-import { type DatasetWithIdentifier, type DataService } from '@fdk-frontend/fdk-types';
+import { type DatasetWithIdentifier, type DataService } from '@fellesdatakatalog/types';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import styles from './styles.module.scss';
 

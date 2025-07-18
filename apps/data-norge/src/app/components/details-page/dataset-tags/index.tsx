@@ -1,5 +1,5 @@
 import React from 'react';
-import { type Dataset } from '@fdk-frontend/fdk-types';
+import { type Dataset } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { ChipGroup, ChipToggle, Link } from '@digdir/designsystemet-react';

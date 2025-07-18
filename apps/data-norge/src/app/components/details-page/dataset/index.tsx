@@ -9,7 +9,7 @@ import {
     type DatasetScore,
     type CommunityTopic,
     type SearchObject,
-} from '@fdk-frontend/fdk-types';
+} from '@fellesdatakatalog/types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';

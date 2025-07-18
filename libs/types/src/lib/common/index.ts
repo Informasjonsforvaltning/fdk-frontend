@@ -1,4 +1,4 @@
-import { type DatasetReference, type Dataset } from '@fdk-frontend/fdk-types';
+import { type DatasetReference, type Dataset } from '@fellesdatakatalog/types';
 
 export type LinkObjectType = {
     href?: string;

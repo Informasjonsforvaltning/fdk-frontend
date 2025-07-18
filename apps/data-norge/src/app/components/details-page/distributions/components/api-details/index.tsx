@@ -1,6 +1,6 @@
 import React from 'react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import { type DataService } from '@fdk-frontend/fdk-types';
+import { type DataService } from '@fellesdatakatalog/types';
 import Markdown from '@fdk-frontend/ui/markdown';
 import Box from '@fdk-frontend/ui/box';
 import ExternalLink from '@fdk-frontend/ui/external-link';

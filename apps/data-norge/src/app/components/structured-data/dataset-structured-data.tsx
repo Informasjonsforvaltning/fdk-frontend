@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { type DatasetWithIdentifier } from '@fdk-frontend/fdk-types';
+import { type DatasetWithIdentifier } from '@fellesdatakatalog/types';
 import { printLocaleValue, getDatasetSlug } from '@fdk-frontend/utils';
 
 export type DatasetStructuredDataProps = {

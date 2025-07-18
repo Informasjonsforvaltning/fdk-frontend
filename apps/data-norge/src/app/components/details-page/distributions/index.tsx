@@ -5,7 +5,7 @@ import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { type SearchObject } from '@fdk-frontend/fdk-types';
+import { type SearchObject } from '@fellesdatakatalog/types';
 import Badge from '@fdk-frontend/ui/badge';
 import HStack from '@fdk-frontend/ui/hstack';
 import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
