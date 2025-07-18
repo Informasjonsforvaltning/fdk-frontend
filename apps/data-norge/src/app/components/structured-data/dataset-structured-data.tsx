@@ -42,6 +42,14 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         });
     };
 
+    // Get the first available license URL from distributions
+    const getFirstLicenseUrl = () => {
+        const firstDistributionWithLicense = dataset.distribution?.find(dist => dist.license?.length > 0);
+        const firstLicense = firstDistributionWithLicense?.license?.[0];
+
+        return firstLicense?.uri;
+    };
+
     // Create comprehensive structured data for SEO
     const structuredData = {
         '@context': 'https://schema.org',
@@ -50,16 +58,18 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         description: sanitizeString(printLocaleValue(locale, dataset.description)),
         url: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
         identifier: dataset.id,
-        publisher: dataset.publisher?.prefLabel ? {
-            '@type': 'Organization',
-            name: sanitizeString(printLocaleValue(locale, dataset.publisher.prefLabel)),
-            url: dataset.publisher?.uri
-        } : undefined,
+        ...(dataset.publisher?.prefLabel && {
+            publisher: {
+                '@type': 'Organization',
+                name: sanitizeString(printLocaleValue(locale, dataset.publisher.prefLabel)),
+                url: dataset.publisher?.uri
+            }
+        }),
         dateModified: dataset.modified,
         datePublished: dataset.issued,
         keywords: dataset.keyword?.map(k => sanitizeString(printLocaleValue(locale, k))).filter(Boolean).join(', '),
         isAccessibleForFree: dataset.isOpenData,
-        license: dataset.accessRights?.code ? dataset.accessRights.code : undefined,
+        ...(getFirstLicenseUrl() && { license: getFirstLicenseUrl() }),
         spatialCoverage: dataset.spatial && dataset.spatial.length > 0 ? sanitizeArray(dataset.spatial.map(spatial => ({
             '@type': 'Place',
             name: sanitizeString(printLocaleValue(locale, spatial.prefLabel))
@@ -71,7 +81,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         }))) : undefined,
         distribution: sanitizeArray(dataset.distribution?.map(dist => ({
             '@type': 'DataDownload',
-            encodingFormat: dist.fdkFormat?.[0]?.code || dist.fdkFormat?.[0]?.name,
+            ...(dist.fdkFormat?.[0]?.code || dist.fdkFormat?.[0]?.name ? { encodingFormat: dist.fdkFormat?.[0]?.code || dist.fdkFormat?.[0]?.name } : {}),
             contentUrl: dist.accessURL?.[0],
             name: dist.title ? sanitizeString(printLocaleValue(locale, dist.title)) : undefined,
             description: dist.description ? sanitizeString(printLocaleValue(locale, dist.description)) : undefined
