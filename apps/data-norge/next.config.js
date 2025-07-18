@@ -32,6 +32,7 @@ const nextConfig = {
     },
     async redirects() {
         return [
+            // Content redirects
             {
                 source: '/:lang/docs/tutorials/:slug',
                 destination: '/:lang/docs/sharing-data/:slug',

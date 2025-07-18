@@ -64,6 +64,9 @@ export const generateMetadata = async (props: DataHunterPageProps): Promise<Meta
     return {
         title: dictionary.metadata.title,
         description: dictionary.metadata.description,
+        alternates: {
+            canonical: `https://data.norge.no/${params.lang}/data-hunter`,
+        },
     };
 };
 
