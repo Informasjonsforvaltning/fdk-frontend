@@ -112,9 +112,16 @@ export const generateMetadata = async function (pageProps: DocsPageProps): Promi
         const title = frontmatter.title ? `${frontmatter.title} - data.norge.no` : `data.norge.no`;
         const description = frontmatter.description as string | undefined;
 
+        // Construct canonical URL based on current path
+        const canonicalPath = [rootContentDirectory, ...slug].join('/');
+        const canonicalUrl = `https://data.norge.no/${locale}/${canonicalPath}`;
+
         return {
             title,
             description,
+            alternates: {
+                canonical: canonicalUrl,
+            },
         };
     } catch {
         return notFound();

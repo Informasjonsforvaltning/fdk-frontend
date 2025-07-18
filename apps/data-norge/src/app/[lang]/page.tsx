@@ -66,6 +66,9 @@ export const generateMetadata = async (props: FrontpageProps): Promise<Metadata>
     return {
         title: `${frontpageDictionary.metadata.title} - data.norge.no`,
         description: frontpageDictionary.metadata.description,
+        alternates: {
+            canonical: `https://data.norge.no/${params.lang}`,
+        },
     };
 };
 
