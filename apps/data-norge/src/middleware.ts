@@ -10,11 +10,11 @@ export const middleware = (request: NextRequest) => {
         [
             '/manifest.json',
             '/favicon.ico',
-            '/favicon.png',
-            '/favicon-16x16.png',
-            '/favicon-32x32.png',
-            '/favicon-48x48.png',
-            '/apple-touch-icon.png',
+            '/icon0.svg',
+            '/icon1.png',
+            '/apple-icon.png',
+            '/web-app-manifest-192x192.png',
+            '/web-app-manifest-512x512.png',
             '/robots.txt',
             '/sitemap.xml',
             // Your other files in `public`
