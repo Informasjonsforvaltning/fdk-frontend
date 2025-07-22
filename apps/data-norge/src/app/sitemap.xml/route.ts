@@ -6,6 +6,8 @@ import { readdir, stat } from 'fs/promises';
 import { join } from 'path';
 import { getDatasetSlug } from '@fdk-frontend/utils';
 
+export const dynamic = 'force-dynamic';
+
 // Atomic cache for sitemap
 const SITEMAP_CACHE = {
     sitemap: null as string | null,
