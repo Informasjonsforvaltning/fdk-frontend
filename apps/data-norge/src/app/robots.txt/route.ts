@@ -6,7 +6,7 @@ export const GET = async (request: NextRequest) => {
     const isCanonicalDomain = !FDK_BASE_URI?.match(/^https:\/\/(staging|demo)\./);
 
     // Log for debugging (remove in production)
-    console.log(`Robots.txt requested - FDK_BASE_URI: ${FDK_BASE_URI}, isCanonicalDomain: ${isCanonicalDomain}`);
+    console.error(`Robots.txt requested - FDK_BASE_URI: ${FDK_BASE_URI}, isCanonicalDomain: ${isCanonicalDomain}`);
 
     let robotsContent: string;
 
