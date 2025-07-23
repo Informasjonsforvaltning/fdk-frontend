@@ -1,16 +1,9 @@
 import React from 'react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type DataService } from '@fellesdatakatalog/types';
-import Markdown from '@fdk-frontend/ui/markdown';
-import Box from '@fdk-frontend/ui/box';
-import ExternalLink from '@fdk-frontend/ui/external-link';
-import ExpandableContent from '@fdk-frontend/ui/expandable-content';
-import detailsPageStyles from '../../../details-page.module.scss';
-import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
-import SmartList from '@fdk-frontend/ui/smart-list';
-import DList from '@fdk-frontend/ui/dlist';
-import Article from '@fdk-frontend/ui/article';
+import { Markdown, Box, ExternalLink, ExpandableContent, PlaceholderText, SmartList, Dlist, Article } from '@fdk-frontend/ui';
 import { printLocaleValue } from '@fdk-frontend/utils';
+import detailsPageStyles from '../../../details-page.module.scss';
 import distStyles from '../../distributions.module.scss';
 
 type ApiDetailsProps = {
@@ -22,7 +15,7 @@ type ApiDetailsProps = {
 const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
     return (
         <>
-            <DList>
+            <Dlist>
                 <dt>{dictionary.apis.details.description}:</dt>
                 <dd>
                     {api.description ? (
@@ -58,7 +51,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                             items={api.endpointURL}
                             style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
                             renderItem={(endpointURL: string, i: number) => (
-                                <DList key={endpointURL}>
+                                <Dlist key={endpointURL}>
                                     <dt>{dictionary.apis.details.url}:</dt>
                                     <dd>
                                         <ExternalLink
@@ -96,7 +89,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                             <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                                         )}
                                     </dd>
-                                </DList>
+                                </Dlist>
                             )}
                         />
                     ) : (
@@ -123,7 +116,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                         <PlaceholderText>{dictionary.apis.details.noData}</PlaceholderText>
                     )}
                 </dd>
-            </DList>
+            </Dlist>
         </>
     );
 };

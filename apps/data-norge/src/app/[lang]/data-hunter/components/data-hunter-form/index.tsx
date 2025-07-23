@@ -3,8 +3,7 @@
 import { useActionState } from 'react';
 import { Paragraph, Textarea, Textfield, Button } from '@digdir/designsystemet-react';
 
-import { LabelWithTag } from '@fdk-frontend/ui/label-with-tag';
-import { SubmitStatusAlert } from '@fdk-frontend/ui/alert-submit-status';
+import { LabelWithTag, SubmitStatusAlert } from '@fdk-frontend/ui';
 
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { useFormStatus } from 'react-dom';

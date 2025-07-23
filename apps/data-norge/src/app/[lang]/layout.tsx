@@ -1,4 +1,4 @@
-import RootLayout, { generateStaticParams } from '@fdk-frontend/ui/layouts/root-layout';
+import { RootLayout, generateStaticParams } from '@fdk-frontend/ui';
 
 export default RootLayout;
 export { generateStaticParams };

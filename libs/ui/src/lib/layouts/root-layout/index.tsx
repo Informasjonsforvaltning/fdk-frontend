@@ -1,4 +1,3 @@
-import 'server-only';
 import '../../core/global.scss';
 import { PropsWithChildren } from 'react';
 import Script from 'next/script';

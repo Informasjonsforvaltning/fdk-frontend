@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { type DataService } from '@fellesdatakatalog/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import ApiTags from '@fdk-frontend/ui/api-tags';
+import { ApiTags } from '@fdk-frontend/ui';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from '../distribution-header/distribution-header.module.scss';
 

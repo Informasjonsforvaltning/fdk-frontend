@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { ArrowRightIcon } from '@navikt/aksel-icons';

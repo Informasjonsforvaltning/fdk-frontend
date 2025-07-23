@@ -2,12 +2,7 @@ import cn from 'classnames';
 import { Heading, Button, Link, Paragraph, Alert } from '@digdir/designsystemet-react';
 import { type JSONValue } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import Badge from '@fdk-frontend/ui/badge';
-import ExternalLink from '@fdk-frontend/ui/external-link';
-import HStack from '@fdk-frontend/ui/hstack';
-import VStack from '@fdk-frontend/ui/vstack';
-import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
-import PlaceholderBox from '@fdk-frontend/ui/placeholder-box/';
+import { Badge, ExternalLink, Hstack, VStack, ScrollShadows, PlaceholderBox } from '@fdk-frontend/ui';
 import styles from './community-tab.module.scss';
 import TopicRow from './components/topic-row';
 
@@ -26,10 +21,10 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
                 size='xxsmall'
                 className={styles.heading}
             >
-                <HStack>
+                <Hstack>
                     {dictionary.community.title}
                     <Badge>{topics.length}</Badge>
-                </HStack>
+                </Hstack>
             </Heading>
             {topics.length ? (
                 <ScrollShadows className={styles.tableScroller}>
@@ -62,7 +57,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
                         {dictionary.community.notice.title}
                     </Heading>
                     <Paragraph size='sm'>{dictionary.community.notice.body}</Paragraph>
-                    <HStack className={styles.toolbar}>
+                    <Hstack className={styles.toolbar}>
                         <Button
                             variant='secondary'
                             size='sm'
@@ -82,7 +77,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
                         >
                             <Link href='/docs/community'>{dictionary.community.notice.moreInfo}</Link>
                         </Button>
-                    </HStack>
+                    </Hstack>
                 </VStack>
             </Alert>
         </section>

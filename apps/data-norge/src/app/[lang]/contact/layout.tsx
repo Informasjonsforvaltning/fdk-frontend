@@ -1,4 +1,4 @@
-import NormalLayout from '@fdk-frontend/ui/layouts/normal-layout';
+import { NormalLayout } from '@fdk-frontend/ui';
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';

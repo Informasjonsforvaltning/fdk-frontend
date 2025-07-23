@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { Button, Tooltip } from '@digdir/designsystemet-react';
 import { StarIcon, StarFillIcon } from '@navikt/aksel-icons';

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import CopyButton from '@fdk-frontend/ui/copy-button';
-import InputWithCopyButton from '@fdk-frontend/ui/input-with-copy-button';
+import { CopyButton, InputWithCopyButton, Hstack } from '@fdk-frontend/ui';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { ToggleGroup, Heading, Spinner, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
-import HStack from '@fdk-frontend/ui/hstack';
 
 import styles from './metadata-tab.module.scss';
 
@@ -73,7 +71,7 @@ const MetadataTab = ({
                     level={2}
                     size='xxsmall'
                 >
-                    <HStack>
+                    <Hstack>
                         Resource Description Framework (RDF)
                         <HelpText
                             title={dictionary.rdf.titleHelpTextTitle}
@@ -87,7 +85,7 @@ const MetadataTab = ({
                                 </Link>
                             </Paragraph>
                         </HelpText>
-                    </HStack>
+                    </Hstack>
                 </Heading>
                 {loading && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

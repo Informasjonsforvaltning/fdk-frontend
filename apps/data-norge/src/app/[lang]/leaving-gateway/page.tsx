@@ -1,10 +1,7 @@
 // eslint-disable-next-line
 import { Paragraph, Heading, Alert, Link, Button } from '@digdir/designsystemet-react';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import HStack from '@fdk-frontend/ui/hstack';
-import VStack from '@fdk-frontend/ui/vstack';
-import BackButton from '@fdk-frontend/ui/back-button';
-import Markdown from '@fdk-frontend/ui/markdown';
+import { Hstack, VStack, BackButton, Markdown } from '@fdk-frontend/ui';
 import styles from './styles.module.scss';
 
 export type LeavingGatewayPageProps = {
@@ -40,7 +37,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
                 <Alert size='sm'>
                     <Markdown>{dictionary.leavingGateway.alertText}</Markdown>
                 </Alert>
-                <HStack>
+                <Hstack>
                     <BackButton
                         size='sm'
                         variant='secondary'
@@ -54,7 +51,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
                     >
                         <Link href={url}>{dictionary.leavingGateway.continueButton}</Link>
                     </Button>
-                </HStack>
+                </Hstack>
             </div>
         </div>
     );

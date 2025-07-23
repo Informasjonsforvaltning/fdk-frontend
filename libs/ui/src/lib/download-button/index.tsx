@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef } from 'react';
 import cn from 'classnames';
 import { Button, type ButtonProps, Modal } from '@digdir/designsystemet-react';

@@ -6,9 +6,7 @@ import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { mdxComponents } from '@fdk-frontend/ui/markdown';
-import CatalogsMenu from '@fdk-frontend/ui/catalogs-menu';
-import CatalogPromo from '@fdk-frontend/ui/catalog-promo';
+import { mdxComponents, CatalogsMenu, CatalogPromo } from '@fdk-frontend/ui';
 import MdxPage from '../mdx-page';
 
 const getContentDirectory = (rootContentDirectory: string) => {

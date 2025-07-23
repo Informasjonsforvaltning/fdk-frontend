@@ -12,17 +12,19 @@ import {
 } from '@fellesdatakatalog/types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
-import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
-import Badge from '@fdk-frontend/ui/badge';
-import { BrandDivider } from '@fdk-frontend/ui/divider';
-import Markdown from '@fdk-frontend/ui/markdown';
-import Article from '@fdk-frontend/ui/article';
-import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
-import ExpandableContent from '@fdk-frontend/ui/expandable-content';
-import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
-import DatasetTable from '@fdk-frontend/ui/dataset-table';
-import ResourceNotAvailableNotice from '@fdk-frontend/ui/resource-not-available-notice';
-import ExternalLink from '@fdk-frontend/ui/external-link';
+import {
+    Breadcrumbs,
+    Badge,
+    BrandDivider,
+    Markdown,
+    Article,
+    ScrollShadows,
+    ExpandableContent,
+    PlaceholderBox,
+    DatasetTable,
+    ResourceNotAvailableNotice,
+    ExternalLink
+} from '@fdk-frontend/ui';
 import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
 import { Heading, Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
 import Distributions from '../distributions';
