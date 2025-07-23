@@ -1,8 +1,6 @@
 import React from 'react';
 import { Heading } from '@digdir/designsystemet-react';
-import ScrollShadows from '@fdk-frontend/ui/scroll-shadows';
-import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
-import DatasetTable from '@fdk-frontend/ui/dataset-table';
+import { ScrollShadows, PlaceholderBox, DatasetTable } from '@fdk-frontend/ui';
 import { DatasetDetailsProps } from '../../';
 import styles from '../../details-tab.module.scss';
 

@@ -3,10 +3,7 @@ import { Link, Tag, Heading } from '@digdir/designsystemet-react';
 import { Chat2Icon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import HStack from '@fdk-frontend/ui/hstack';
-import { Subtext } from '@fdk-frontend/ui/typography';
-import IconBadge from '@fdk-frontend/ui/icon-badge';
-import ExternalLink from '@fdk-frontend/ui/external-link';
+import { Hstack, Subtext, IconBadge, ExternalLink } from '@fdk-frontend/ui';
 import styles from '../../community-tab.module.scss';
 
 export type TopicRowProps = {
@@ -42,7 +39,7 @@ const TopicRow = ({
                             {topic.title}
                         </ExternalLink>
                     </Heading>
-                    <HStack style={{ gap: '0.5rem' }}>
+                    <Hstack style={{ gap: '0.5rem' }}>
                         <Tag
                             size='sm'
                             color='neutral'
@@ -52,11 +49,11 @@ const TopicRow = ({
                             </Link>
                         </Tag>
                         <Subtext>{`${dictionary.community.topicRow.postedBy} ${topic.author.username}`}</Subtext>
-                    </HStack>
+                    </Hstack>
                 </div>
             </td>
             <td align='right'>
-                <HStack style={{ justifyContent: 'flex-end' }}>
+                <Hstack style={{ justifyContent: 'flex-end' }}>
                     <div className={styles.forumStats}>
                         <span>{topic.votes}</span>
                         <Subtext>{dictionary.community.topicRow.votes}</Subtext>
@@ -69,7 +66,7 @@ const TopicRow = ({
                         <span>{topic.viewcount}</span>
                         <Subtext>{dictionary.community.topicRow.views}</Subtext>
                     </div>
-                </HStack>
+                </Hstack>
             </td>
         </tr>
     );

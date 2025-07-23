@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode, useRef } from 'react';
 import { Alert, Modal, Button, Tag, Link, Paragraph } from '@digdir/designsystemet-react';
 import { DownloadIcon, ArrowDownRightIcon } from '@navikt/aksel-icons';

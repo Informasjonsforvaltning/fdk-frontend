@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
+import { HeadingWithDivider } from '@fdk-frontend/ui';
 
 import LlmSearch from '../llm-search';
 import Norgeskart from './components/norgeskart';

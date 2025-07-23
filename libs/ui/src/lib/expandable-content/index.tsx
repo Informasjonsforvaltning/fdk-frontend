@@ -1,3 +1,5 @@
+'use client';
+
 import { PropsWithChildren, useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { Button } from '@digdir/designsystemet-react';

@@ -1,12 +1,8 @@
 import { useContext } from 'react';
 import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import HStack from '@fdk-frontend/ui/hstack';
+import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
 import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
 import { type DatasetType } from '@fellesdatakatalog/types';
-import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
-import ExternalLink from '@fdk-frontend/ui/external-link';
-import SmartList from '@fdk-frontend/ui/smart-list';
-import DList from '@fdk-frontend/ui/dlist';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 
@@ -40,7 +36,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
             >
                 {dictionary.details.general.title}
             </Heading>
-            <DList>
+            <Dlist>
                 <dt>{dictionary.details.general.publisher}:</dt>
                 <dd>
                     {dataset.publisher ? (
@@ -53,7 +49,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     )}
                 </dd>
                 <dt>
-                    <HStack>
+                    <Hstack>
                         <span>{dictionary.details.general.firstHarvested}:</span>
                         <HelpText
                             title={dictionary.details.general.firstHarvestedHelpTextTitle}
@@ -67,7 +63,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                 </Link>
                             </Paragraph>
                         </HelpText>
-                    </HStack>
+                    </Hstack>
                 </dt>
                 <dd>
                     {dataset.harvest?.firstHarvested ? (
@@ -145,7 +141,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     </>
                 )}
                 <dt>
-                    <HStack>
+                    <Hstack>
                         {dictionary.details.general.metadataQuality.title}:
                         <HelpText
                             title={dictionary.details.general.metadataQuality.helpTextTitle}
@@ -159,7 +155,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                 </Link>
                             </Paragraph>
                         </HelpText>
-                    </HStack>
+                    </Hstack>
                 </dt>
                 <dd>
                     <Tag
@@ -169,7 +165,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         {metadataQuality.label}
                     </Tag>
                 </dd>
-            </DList>
+            </Dlist>
         </section>
     );
 };

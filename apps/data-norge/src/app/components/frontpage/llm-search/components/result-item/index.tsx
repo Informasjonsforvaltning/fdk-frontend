@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heading } from '@digdir/designsystemet-react';
-import Markdown from '@fdk-frontend/ui/markdown';
+import { Markdown } from '@fdk-frontend/ui';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { getDatasetSlug } from '@fdk-frontend/utils';
 

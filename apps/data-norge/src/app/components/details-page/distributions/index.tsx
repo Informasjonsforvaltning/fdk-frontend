@@ -6,11 +6,7 @@ import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import Badge from '@fdk-frontend/ui/badge';
-import HStack from '@fdk-frontend/ui/hstack';
-import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
-import ActionButton from '@fdk-frontend/ui/action-button';
-import DownloadButton from '@fdk-frontend/ui/download-button';
+import { Badge, Hstack, PlaceholderBox, ActionButton, DownloadButton } from '@fdk-frontend/ui';
 import styles from './distributions.module.scss';
 import DistributionDetails from './components/distribution-details';
 import DistributionHeader from './components/distribution-header';
@@ -48,10 +44,10 @@ const Distributions = ({
                 level={2}
                 size='xxsmall'
             >
-                <HStack>
+                <Hstack>
                     <div>{dictionaries.detailsPage.distributions.title}</div>
                     <Badge>{sumArrayLengths(datasets, exampleData)}</Badge>
-                </HStack>
+                </Hstack>
             </Heading>
             {datasets && datasets.length ? (
                 <Accordion border>
@@ -143,10 +139,10 @@ const Distributions = ({
                 level={2}
                 size='xxsmall'
             >
-                <HStack>
+                <Hstack>
                     <div>{dictionaries.detailsPage.apis.title}</div>
                     <Badge>{apis.length}</Badge>
-                </HStack>
+                </Hstack>
             </Heading>
             {apis && apis.length ? (
                 <Accordion border>

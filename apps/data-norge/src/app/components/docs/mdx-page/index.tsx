@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 import { PropsWithChildren } from 'react';
 
-import DynamicBreadcrumbs from '@fdk-frontend/ui/dynamic-breadcrumbs';
+import { DynamicBreadcrumbs } from '@fdk-frontend/ui';
 import { type LocaleCodes, getDictionary } from '@fdk-frontend/dictionaries';
 
 import Sidebar from '../sidebar';

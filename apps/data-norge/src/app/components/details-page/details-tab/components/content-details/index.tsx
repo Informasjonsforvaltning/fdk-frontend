@@ -1,10 +1,6 @@
 import React, { useContext } from 'react';
 import { Heading, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import HStack from '@fdk-frontend/ui/hstack';
-import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
-import ExternalLink from '@fdk-frontend/ui/external-link';
-import SmartList from '@fdk-frontend/ui/smart-list';
-import DList from '@fdk-frontend/ui/dlist';
+import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -19,7 +15,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
             >
                 {dictionary.details.content.title}
             </Heading>
-            <DList>
+            <Dlist>
                 {!dataset.language && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.language}:</dt>
@@ -90,7 +86,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                 {!dataset?.issued && !showEmptyRows ? null : (
                     <>
                         <dt>
-                            <HStack>
+                            <Hstack>
                                 <span>{dictionary.details.content.issued}:</span>
                                 <HelpText
                                     title={dictionary.details.general.firstHarvestedHelpTextTitle}
@@ -99,7 +95,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 >
                                     <Paragraph size='sm'>{dictionary.details.content.issuedHelpText}</Paragraph>
                                 </HelpText>
-                            </HStack>
+                            </Hstack>
                         </dt>
                         <dd>
                             {dataset.issued ? (
@@ -221,7 +217,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                     items={dataset.temporal}
                                     style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
                                     renderItem={(temporal) => (
-                                        <DList>
+                                        <Dlist>
                                             {temporal.startDate && (
                                                 <>
                                                     <dt>{dictionary.details.content.temporalFrom}:</dt>
@@ -242,7 +238,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                                     </dd>
                                                 </>
                                             )}
-                                        </DList>
+                                        </Dlist>
                                     )}
                                 />
                             ) : (
@@ -254,7 +250,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                 {!dataset?.conformsTo && !showEmptyRows ? null : (
                     <>
                         <dt>
-                            <HStack>
+                            <Hstack>
                                 {dictionary.details.content.conformsTo}:
                                 <HelpText
                                     title={dictionary.details.content.conformsToHelpText}
@@ -263,7 +259,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 >
                                     <Paragraph size='sm'>{dictionary.details.content.conformsToHelpText}</Paragraph>
                                 </HelpText>
-                            </HStack>
+                            </Hstack>
                         </dt>
                         <dd className='article'>
                             {dataset?.conformsTo ? (
@@ -286,7 +282,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         </dd>
                     </>
                 )}
-            </DList>
+            </Dlist>
         </section>
     );
 };

@@ -1,10 +1,6 @@
 import React, { useContext } from 'react';
 import { Heading } from '@digdir/designsystemet-react';
-import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
-import PlaceholderBox from '@fdk-frontend/ui/placeholder-box';
-import ExternalLink from '@fdk-frontend/ui/external-link';
-import SmartList from '@fdk-frontend/ui/smart-list';
-import DList from '@fdk-frontend/ui/dlist';
+import { PlaceholderText, PlaceholderBox, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
 
@@ -41,7 +37,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
                 {dictionary.details.legal.title}
             </Heading>
             {hasLegalBasis(dataset) ? (
-                <DList>
+                <Dlist>
                     {!dataset.legalBasisForAccess && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.legal.legalBasisForAccess}:</dt>
@@ -60,7 +56,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
                             <dd className='article'>{printLegalBasis(dataset.legalBasisForRestriction)}</dd>
                         </>
                     )}
-                </DList>
+                </Dlist>
             ) : (
                 <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
             )}

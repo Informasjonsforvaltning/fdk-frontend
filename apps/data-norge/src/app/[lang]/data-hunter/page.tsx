@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
-import Breadcrumbs from '@fdk-frontend/ui/breadcrumbs';
+import { Breadcrumbs } from '@fdk-frontend/ui';
 import DataHunterForm from './components/data-hunter-form';
 import styles from './page.module.css';
 

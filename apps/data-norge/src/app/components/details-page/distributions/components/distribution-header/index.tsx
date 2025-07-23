@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { type Distribution } from '@fellesdatakatalog/types';
 import { isOpenLicense, printLocaleValue } from '@fdk-frontend/utils';
-import DistributionTags from '@fdk-frontend/ui/distribution-tags';
+import { DistributionTags } from '@fdk-frontend/ui';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import styles from './distribution-header.module.scss';
 

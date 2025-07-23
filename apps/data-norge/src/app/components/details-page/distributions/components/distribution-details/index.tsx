@@ -1,18 +1,9 @@
 import React from 'react';
 import { Link } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import { type Distribution, type SearchObject } from '@fellesdatakatalog/types';
-import Markdown from '@fdk-frontend/ui/markdown';
-import Box from '@fdk-frontend/ui/box';
-import ExpandableContent from '@fdk-frontend/ui/expandable-content';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import PlaceholderText from '@fdk-frontend/ui/placeholder-text';
-import LicenseBoxLink from '@fdk-frontend/ui/license-box-link';
-import ExternalLink from '@fdk-frontend/ui/external-link';
-import SmartList from '@fdk-frontend/ui/smart-list';
-import DList from '@fdk-frontend/ui/dlist';
-import Article from '@fdk-frontend/ui/article';
-import DownloadDistributionWidget from '@fdk-frontend/ui/download-distribution-widget';
+import { type Distribution, type SearchObject } from '@fellesdatakatalog/types';
+import { Markdown, Box, ExpandableContent, PlaceholderText, LicenseBoxLink, ExternalLink, SmartList, Dlist, Article, DownloadDistributionWidget } from '@fdk-frontend/ui';
 import distStyles from '../../distributions.module.scss';
 
 type DistributionDetailsProps = {
@@ -35,7 +26,7 @@ const DistributionDetails = ({
 }: DistributionDetailsProps) => {
     return (
         <>
-            <DList>
+            <Dlist>
                 <dt>{dictionaries.detailsPage.distributions.details.description}:</dt>
                 <dd>
                     {distribution.description ? (
@@ -227,7 +218,7 @@ const DistributionDetails = ({
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
-            </DList>
+            </Dlist>
         </>
     );
 };

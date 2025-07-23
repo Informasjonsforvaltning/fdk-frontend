@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { Button, type ButtonProps, Tooltip } from '@digdir/designsystemet-react';
 import { FilesIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';

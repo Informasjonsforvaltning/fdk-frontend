@@ -1,7 +1,7 @@
 import { Button, Paragraph, Link } from '@digdir/designsystemet-react';
 import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
 
-import { HeadingWithDivider } from '@fdk-frontend/ui/typography';
+import { HeadingWithDivider } from '@fdk-frontend/ui';
 
 import styles from './share-data-banner.module.scss';
 import OrganizationCarousel from '../organization-carousel';

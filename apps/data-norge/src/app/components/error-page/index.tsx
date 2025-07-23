@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import Header from '@fdk-frontend/ui/header';
+import { Header } from '@fdk-frontend/ui';
 import { getDictionary } from '@fdk-frontend/dictionaries';
 import styles from './error-page.module.scss';
 
