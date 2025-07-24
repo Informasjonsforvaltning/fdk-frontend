@@ -21,7 +21,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
 
     const sanitizeArray = (arr: any[] | undefined): any[] | undefined => {
         if (!arr || !Array.isArray(arr)) return undefined;
-        return arr.map(item => {
+        return arr.map((item) => {
             if (typeof item === 'string') {
                 return sanitizeString(item);
             }
@@ -50,38 +50,55 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         description: sanitizeString(printLocaleValue(locale, dataset.description)),
         url: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
         identifier: dataset.id,
-        publisher: dataset.publisher?.prefLabel ? {
-            '@type': 'Organization',
-            name: sanitizeString(printLocaleValue(locale, dataset.publisher.prefLabel)),
-            url: dataset.publisher?.uri
-        } : undefined,
+        publisher: dataset.publisher?.prefLabel
+            ? {
+                  '@type': 'Organization',
+                  name: sanitizeString(printLocaleValue(locale, dataset.publisher.prefLabel)),
+                  url: dataset.publisher?.uri,
+              }
+            : undefined,
         dateModified: dataset.modified,
         datePublished: dataset.issued,
-        keywords: dataset.keyword?.map(k => sanitizeString(printLocaleValue(locale, k))).filter(Boolean).join(', '),
+        keywords: dataset.keyword
+            ?.map((k) => sanitizeString(printLocaleValue(locale, k)))
+            .filter(Boolean)
+            .join(', '),
         isAccessibleForFree: dataset.isOpenData,
         license: dataset.accessRights?.code ? dataset.accessRights.code : undefined,
-        spatialCoverage: dataset.spatial && dataset.spatial.length > 0 ? sanitizeArray(dataset.spatial.map(spatial => ({
-            '@type': 'Place',
-            name: sanitizeString(printLocaleValue(locale, spatial.prefLabel))
-        }))) : undefined,
-        temporalCoverage: dataset.temporal && dataset.temporal.length > 0 ? sanitizeArray(dataset.temporal.map(temporal => ({
-            '@type': 'TemporalCoverage',
-            startDate: temporal.startDate,
-            endDate: temporal.endDate
-        }))) : undefined,
-        distribution: sanitizeArray(dataset.distribution?.map(dist => ({
-            '@type': 'DataDownload',
-            encodingFormat: dist.fdkFormat?.[0]?.code || dist.fdkFormat?.[0]?.name,
-            contentUrl: dist.accessURL?.[0],
-            name: dist.title ? sanitizeString(printLocaleValue(locale, dist.title)) : undefined,
-            description: dist.description ? sanitizeString(printLocaleValue(locale, dist.description)) : undefined
-        }))),
+        spatialCoverage:
+            dataset.spatial && dataset.spatial.length > 0
+                ? sanitizeArray(
+                      dataset.spatial.map((spatial) => ({
+                          '@type': 'Place',
+                          name: sanitizeString(printLocaleValue(locale, spatial.prefLabel)),
+                      })),
+                  )
+                : undefined,
+        temporalCoverage:
+            dataset.temporal && dataset.temporal.length > 0
+                ? sanitizeArray(
+                      dataset.temporal.map((temporal) => ({
+                          '@type': 'TemporalCoverage',
+                          startDate: temporal.startDate,
+                          endDate: temporal.endDate,
+                      })),
+                  )
+                : undefined,
+        distribution: sanitizeArray(
+            dataset.distribution?.map((dist) => ({
+                '@type': 'DataDownload',
+                encodingFormat: dist.fdkFormat?.[0]?.code || dist.fdkFormat?.[0]?.name,
+                contentUrl: dist.accessURL?.[0],
+                name: dist.title ? sanitizeString(printLocaleValue(locale, dist.title)) : undefined,
+                description: dist.description ? sanitizeString(printLocaleValue(locale, dist.description)) : undefined,
+            })),
+        ),
         // Additional properties for better SEO
         mainEntity: {
             '@type': 'Dataset',
             name: sanitizeString(printLocaleValue(locale, dataset.title)),
-            description: sanitizeString(printLocaleValue(locale, dataset.description))
-        }
+            description: sanitizeString(printLocaleValue(locale, dataset.description)),
+        },
     };
 
     // Create breadcrumb structured data
@@ -93,21 +110,21 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: `${baseUri}/${locale}`
+                item: `${baseUri}/${locale}`,
             },
             {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Datasets',
-                item: `${baseUri}/${locale}/datasets`
+                item: `${baseUri}/${locale}/datasets`,
             },
             {
                 '@type': 'ListItem',
                 position: 3,
                 name: sanitizeString(printLocaleValue(locale, dataset.title)),
-                item: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`
-            }
-        ]
+                item: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
+            },
+        ],
     };
 
     // Safely stringify with error handling
@@ -127,19 +144,19 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
     return (
         <>
             <Script
-                id="dataset-structured-data"
-                type="application/ld+json"
+                id='dataset-structured-data'
+                type='application/ld+json'
                 dangerouslySetInnerHTML={{
                     __html: safeStringify(structuredData),
                 }}
             />
             <Script
-                id="breadcrumb-structured-data"
-                type="application/ld+json"
+                id='breadcrumb-structured-data'
+                type='application/ld+json'
                 dangerouslySetInnerHTML={{
                     __html: safeStringify(breadcrumbData),
                 }}
             />
         </>
     );
-} 
+}

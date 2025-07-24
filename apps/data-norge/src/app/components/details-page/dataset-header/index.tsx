@@ -4,7 +4,14 @@ import React from 'react';
 import { type DatasetWithIdentifier, type DataService } from '@fellesdatakatalog/types';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import { OrgButton, OpenDataTag, AccessRequestButton, AccessLevelTag, UseDatasetPopover, TagList } from '@fdk-frontend/ui';
+import {
+    OrgButton,
+    OpenDataTag,
+    AccessRequestButton,
+    AccessLevelTag,
+    UseDatasetPopover,
+    TagList,
+} from '@fdk-frontend/ui';
 import { Heading, Link, Tag, Popover } from '@digdir/designsystemet-react';
 import styles from './dataset-header.module.scss';
 

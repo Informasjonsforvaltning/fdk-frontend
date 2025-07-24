@@ -241,7 +241,10 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         const title = printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset;
         const description = printLocaleValue(locale, dataset.description) ?? dictionary.breadcrumbs.datasets;
         const publisher = printLocaleValue(locale, dataset.publisher?.prefLabel);
-        const keywords = dataset.keyword?.map((k: any) => printLocaleValue(locale, k)).filter(Boolean).join(', ');
+        const keywords = dataset.keyword
+            ?.map((k: any) => printLocaleValue(locale, k))
+            .filter(Boolean)
+            .join(', ');
 
         // Create structured data for better SEO
         const structuredData = {
@@ -251,10 +254,12 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             description: description,
             url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
             identifier: dataset.id,
-            publisher: publisher ? {
-                '@type': 'Organization',
-                name: publisher
-            } : undefined,
+            publisher: publisher
+                ? {
+                      '@type': 'Organization',
+                      name: publisher,
+                  }
+                : undefined,
             dateModified: dataset.modified,
             datePublished: dataset.issued,
             keywords: keywords,
@@ -262,8 +267,8 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             distribution: dataset.distribution?.map((dist: any) => ({
                 '@type': 'DataDownload',
                 encodingFormat: dist.format?.prefLabel?.nb || dist.format?.prefLabel?.en,
-                contentUrl: dist.accessURL
-            }))
+                contentUrl: dist.accessURL,
+            })),
         };
 
         return {
@@ -286,9 +291,9 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             alternates: {
                 canonical: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
                 languages: {
-                    'nb': `https://data.norge.no/nb/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nb')}`,
-                    'en': `https://data.norge.no/en/datasets/${dataset.id}/${getDatasetSlug(dataset, 'en')}`,
-                    'nn': `https://data.norge.no/nn/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nn')}`,
+                    nb: `https://data.norge.no/nb/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nb')}`,
+                    en: `https://data.norge.no/en/datasets/${dataset.id}/${getDatasetSlug(dataset, 'en')}`,
+                    nn: `https://data.norge.no/nn/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nn')}`,
                 },
             },
             other: {
@@ -301,4 +306,4 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     }
 };
 
-export default DetailsPageWrapper; 
+export default DetailsPageWrapper;

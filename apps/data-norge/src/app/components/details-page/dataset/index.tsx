@@ -23,7 +23,7 @@ import {
     PlaceholderBox,
     DatasetTable,
     ResourceNotAvailableNotice,
-    ExternalLink
+    ExternalLink,
 } from '@fdk-frontend/ui';
 import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
 import { Heading, Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
@@ -217,8 +217,8 @@ export default function DatasetDetailsPage({
                         </section>
                         {((internalRelatedDatasets && internalRelatedDatasets.length > 0) ||
                             (similarDatasets && similarDatasets.length > 0)) && (
-                                <BrandDivider className={styles.divider} />
-                            )}
+                            <BrandDivider className={styles.divider} />
+                        )}
                         {internalRelatedDatasets && internalRelatedDatasets.length > 0 && (
                             <section
                                 className={styles.section}
