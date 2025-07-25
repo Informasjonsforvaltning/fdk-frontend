@@ -20,7 +20,9 @@
         }
 
         :global(.fds-link) {
-            color: var(--color-link-negative);
+            &, &:visited {
+                color: var(--color-link-negative);
+            }
 
             svg {
                 fill: var(--color-link-negative);
