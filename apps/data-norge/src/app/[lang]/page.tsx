@@ -18,9 +18,7 @@ const Frontpage = async (props: FrontpageProps) => {
     // Opt-in dynamic rendering
     await noStore();
 
-    const {
-        FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = ''
-    } = process.env;
+    const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
 
     const commonDictionary = await getDictionary(params.lang, 'common');
     const frontpageDictionary = await getDictionary(params.lang, 'frontpage');

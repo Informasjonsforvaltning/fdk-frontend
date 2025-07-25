@@ -3,7 +3,18 @@ import { Link } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { type Distribution, type SearchObject } from '@fellesdatakatalog/types';
-import { Markdown, Box, ExpandableContent, PlaceholderText, LicenseBoxLink, ExternalLink, SmartList, Dlist, Article, DownloadDistributionWidget } from '@fdk-frontend/ui';
+import {
+    Markdown,
+    Box,
+    ExpandableContent,
+    PlaceholderText,
+    LicenseBoxLink,
+    ExternalLink,
+    SmartList,
+    Dlist,
+    Article,
+    DownloadDistributionWidget,
+} from '@fdk-frontend/ui';
 import distStyles from '../../distributions.module.scss';
 
 type DistributionDetailsProps = {

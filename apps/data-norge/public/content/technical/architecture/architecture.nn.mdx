@@ -18,20 +18,20 @@ Vi nyttar [C4-modellen](https://c4model.com/) som rammeverk for å teikne system
 Samanhengen mellom komponentane vert illustrert i følgjande diagram:
 
 ![Diagram som beskriv samanhengen mellom komponentane på data.norge.no](https://raw.githubusercontent.com/Informasjonsforvaltning/architecture-documentation/refs/heads/main/generated/system.svg)
-Ein datatilbydar som er tilsett i ei verksemd i offentleg sektor registrerer og deler beskrivingar av data som verksemda forvaltar. 
-Desse kan registrerast i Registrering, ein datakatalog som vert forvalta av data.norge.no, eller gjennom verksemda eller sektoren sin eigen datakatalog. 
+Ein datatilbydar som er tilsett i ei verksemd i offentleg sektor registrerer og deler beskrivingar av data som verksemda forvaltar.
+Desse kan registrerast i Registrering, ein datakatalog som vert forvalta av data.norge.no, eller gjennom verksemda eller sektoren sin eigen datakatalog.
 
-Registrering nyttar ei identitets- og tilgangsløysing som snakkar med ein ekstern identitetstilbydar (som t.d. ID-porten) for å autorisere brukarar. Registreringsløysinga søker etter data i portal. 
+Registrering nyttar ei identitets- og tilgangsløysing som snakkar med ein ekstern identitetstilbydar (som t.d. ID-porten) for å autorisere brukarar. Registreringsløysinga søker etter data i portal.
 
-Haustaren haustar datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar frå datakatalogar automatisk, både lokale og den data.norge.no forvaltar. 
+Haustaren haustar datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar frå datakatalogar automatisk, både lokale og den data.norge.no forvaltar.
 
-Portalen lyttar til datahendingar frå haustaren og tilbyr søk og oversikt over datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar. 
+Portalen lyttar til datahendingar frå haustaren og tilbyr søk og oversikt over datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar.
 
-Metadatakvalitet er ei teneste som måler datasett opp mot ulike indikatorar som er basert på [FAIR-prinsippane](https://www.openscience.no/apen-forskning/forskningsdata/fair). Metadatakvalitet lyttar til datahendingar frå haustaren. 
-Portalen får ein datasettkvalitetsscore frå metadatakvalitet. 
+Metadatakvalitet er ei teneste som måler datasett opp mot ulike indikatorar som er basert på [FAIR-prinsippane](https://www.openscience.no/apen-forskning/forskningsdata/fair). Metadatakvalitet lyttar til datahendingar frå haustaren.
+Portalen får ein datasettkvalitetsscore frå metadatakvalitet.
 
-Ein datakonsument som representerer ei verksemd, ein forsker eller sivilsamfunnet finn, forstår og nyttar data frå offentleg sektor gjennom portalen.  
+Ein datakonsument som representerer ei verksemd, ein forsker eller sivilsamfunnet finn, forstår og nyttar data frå offentleg sektor gjennom portalen.
 
 Du kan lese meir om arkitekturen bak data.norge.no på [Arkitekturdokumentasjonen på Github (på engelsk)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation)
 
-Tenestene er under stadig utvikling, av den grunn kan detaljane i arkitekturen endre seg over tid. 
+Tenestene er under stadig utvikling, av den grunn kan detaljane i arkitekturen endre seg over tid.

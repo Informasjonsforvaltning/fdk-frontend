@@ -1,7 +1,16 @@
 import React from 'react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type DataService } from '@fellesdatakatalog/types';
-import { Markdown, Box, ExternalLink, ExpandableContent, PlaceholderText, SmartList, Dlist, Article } from '@fdk-frontend/ui';
+import {
+    Markdown,
+    Box,
+    ExternalLink,
+    ExpandableContent,
+    PlaceholderText,
+    SmartList,
+    Dlist,
+    Article,
+} from '@fdk-frontend/ui';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import detailsPageStyles from '../../../details-page.module.scss';
 import distStyles from '../../distributions.module.scss';

@@ -5,25 +5,28 @@ description: Informasjon about the infrastructure Data.norge.no runs on.
 
 # Infrastructure
 
-<Ingress size='xs'>On this page you will find information about the infrastructure Data.norge.no runs on. 
-You will find information about most of our infrastructure in [the Github repo fdk-infra](https://github.com/Informasjonsforvaltning/fdk-infra)</Ingress>
+<Ingress size='xs'>
+    On this page you will find information about the infrastructure Data.norge.no runs on. You will find information
+    about most of our infrastructure in [the Github repo
+    fdk-infra](https://github.com/Informasjonsforvaltning/fdk-infra)
+</Ingress>
 
 ## Where is the service hosted?
 
 The service is hosted on Google Cloud Platform, primarily through the service Google Kubernetes Engine.
 
-We save all backups () lagrer alle backups (that is disks and PostgreSQL) in a Multi region, that consists of member states of EU. That is to say that the backup is saved in minimum two of the data centers in respectively Polen, Spain, 
-Belgium, Germany, The Netherlands, Italy, France and Finland at any time, the location itself is not permanent. 
+We save all backups () lagrer alle backups (that is disks and PostgreSQL) in a Multi region, that consists of member states of EU. That is to say that the backup is saved in minimum two of the data centers in respectively Polen, Spain,
+Belgium, Germany, The Netherlands, Italy, France and Finland at any time, the location itself is not permanent.
 
 ## Runtime environments
 
 The service is available in several environments, each of which has its own purpose.
 
-**Production** - the environment that contains the official production data that are delievered by the organizations. [Link to the production environment](https://data.norge.no) 
+**Production** - the environment that contains the official production data that are delievered by the organizations. [Link to the production environment](https://data.norge.no)
 
-**Demo** - the environment that external users may test the service through. Contains test data, mainly from fictional organizations. Some of the test data in demo is copies of production data, but mostly the data is completely fictional. 
-This environment for test purposes only, and the content may be inadequate and incorrect. External users that wish to test the registration and/or harvesting service in demo may [contact us](https://data.norge.no/nb/contact). 
+**Demo** - the environment that external users may test the service through. Contains test data, mainly from fictional organizations. Some of the test data in demo is copies of production data, but mostly the data is completely fictional.
+This environment for test purposes only, and the content may be inadequate and incorrect. External users that wish to test the registration and/or harvesting service in demo may [contact us](https://data.norge.no/nb/contact).
 Let us know if you want to test with a fictional organization or with your own organization. [Link to the demo environment](https://demo.fellesdatakatalog.digdir.no/)
 
-**Staging** - the internal test environment for the team managing data.norge.no. This environment will feel unstable, as we update it several timas a day and functionality 
-therefore will change often. External users shall not use this environment in principle. 
+**Staging** - the internal test environment for the team managing data.norge.no. This environment will feel unstable, as we update it several timas a day and functionality
+therefore will change often. External users shall not use this environment in principle.

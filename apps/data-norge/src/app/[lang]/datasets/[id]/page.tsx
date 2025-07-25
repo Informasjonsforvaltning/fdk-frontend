@@ -26,7 +26,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         const queryString = searchParams ? new URLSearchParams(searchParams as Record<string, string>).toString() : '';
         redirectUrl = queryString
             ? `/${locale}/datasets/${params.id}/${canonicalSlug}?${queryString}`
-            : `/${locale}/datasets/${params.id}/${canonicalSlug}`;        
+            : `/${locale}/datasets/${params.id}/${canonicalSlug}`;
     } catch (err) {
         console.error(`Failed to get dataset with ID ${params.id}`, JSON.stringify(err));
         notFound();

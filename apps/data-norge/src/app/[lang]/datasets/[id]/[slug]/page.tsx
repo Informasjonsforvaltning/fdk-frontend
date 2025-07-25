@@ -241,7 +241,10 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         const title = printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset;
         const description = printLocaleValue(locale, dataset.description) ?? dictionary.breadcrumbs.datasets;
         const publisher = printLocaleValue(locale, dataset.publisher?.prefLabel);
-        const keywords = dataset.keyword?.map((k: any) => printLocaleValue(locale, k)).filter(Boolean).join(', ');
+        const keywords = dataset.keyword
+            ?.map((k: any) => printLocaleValue(locale, k))
+            .filter(Boolean)
+            .join(', ');
 
         // Get the first available license URL from distributions
         const getFirstLicenseUrl = () => {
@@ -262,19 +265,21 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             ...(publisher && {
                 publisher: {
                     '@type': 'Organization',
-                    name: publisher
-                }
+                    name: publisher,
+                },
             }),
             dateModified: dataset.modified,
             datePublished: dataset.issued,
             keywords: keywords,
             isAccessibleForFree: dataset.isOpenData,
             ...(getFirstLicenseUrl() && { license: getFirstLicenseUrl() }),
-            distribution: dataset.distribution?.filter((dist: any) => dist.accessURL || dist.downloadURL).map((dist: any) => ({
-                '@type': 'DataDownload',
-                ...(dist.fdkFormat?.uri && { encodingFormat: dist.fdkFormat.uri }),
-                contentUrl: dist.downloadURL || dist.accessURL
-            }))
+            distribution: dataset.distribution
+                ?.filter((dist: any) => dist.accessURL || dist.downloadURL)
+                .map((dist: any) => ({
+                    '@type': 'DataDownload',
+                    ...(dist.fdkFormat?.uri && { encodingFormat: dist.fdkFormat.uri }),
+                    contentUrl: dist.downloadURL || dist.accessURL,
+                })),
         };
 
         return {
@@ -297,9 +302,9 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             alternates: {
                 canonical: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
                 languages: {
-                    'nb': `https://data.norge.no/nb/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nb')}`,
-                    'en': `https://data.norge.no/en/datasets/${dataset.id}/${getDatasetSlug(dataset, 'en')}`,
-                    'nn': `https://data.norge.no/nn/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nn')}`,
+                    nb: `https://data.norge.no/nb/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nb')}`,
+                    en: `https://data.norge.no/en/datasets/${dataset.id}/${getDatasetSlug(dataset, 'en')}`,
+                    nn: `https://data.norge.no/nn/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nn')}`,
                 },
             },
             other: {
@@ -312,4 +317,4 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     }
 };
 
-export default DetailsPageWrapper; 
+export default DetailsPageWrapper;

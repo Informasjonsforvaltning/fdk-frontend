@@ -9,19 +9,22 @@ description: Overordna informasjon om tekniske aspekt ved data.norge.no
 
 ## Om data.norge.no
 
-Data.norge.no er Noregs nasjonale dataportal. Dataportalen består av fleire datakatalogar som er basert på nasjonale standardar og spesifikasjonar. 
+Data.norge.no er Noregs nasjonale dataportal. Dataportalen består av fleire datakatalogar som er basert på nasjonale standardar og spesifikasjonar.
 Katalogane fyllast med informasjon gjennom hausting av verksemder sine eigne katalogar, anten dei driftar dei lokalt hos seg eller om dei nyttar registreringsløysinga som vert tilbudt av data.norge.no.
 
 ### Flyt frå registrering til portal
-![Forenkla diagram over flyt frå registrering til portal](https://cms.fellesdatakatalog.digdir.no/uploads/Forenklet_diagram_over_flyt_fra_registrering_til_portal_nn_47d3f7d43b.png) 
+
+![Forenkla diagram over flyt frå registrering til portal](https://cms.fellesdatakatalog.digdir.no/uploads/Forenklet_diagram_over_flyt_fra_registrering_til_portal_nn_47d3f7d43b.png)
 Data kan registrerast anten i lokale eller sektorielle datakatalogar som vert drifta av ei virksomhet eller ein sektor, eller i datakatalogen som vert drifta av data.norge.no (Registrering). Registrering støttar registrering av datasett, omgrep, API-ar, informasjonsmodellar og tenester. Haustaren hauster datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar frå datakatalogane automatisk. Portalen lyttar til hendingar frå haustaren og tilbyr søk og oversyn over datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar.
 
-### Meir informasjon om tenestene: 
+### Meir informasjon om tenestene:
+
 - [Portal (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-portal)
 - [Hausteløysinga (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-harvesting)
 - [Registreringsløysninga (Github)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation#-registration)
 
 ### Katalogane i dataportalen:
+
 - [Datasett](/catalogs/datasets)
 - [Omgrep](/catalogs/concepts)
 - [API-ar](/catalogs/data-services)
@@ -32,33 +35,37 @@ Du kan lese meir overordna om Data.norge.no og formålet på [Om data.norge.no](
 
 ## Åpen kjeldekode
 
-Kjeldekoden til Data.norge.no ligg åpent tilgjengeleg på [Github-organisasjonen Informasjonsforvaltning](https://github.com/Informasjonsforvaltning). 
+Kjeldekoden til Data.norge.no ligg åpent tilgjengeleg på [Github-organisasjonen Informasjonsforvaltning](https://github.com/Informasjonsforvaltning).
 For å få oversyn over korleis repository-ane heng saman, kan du gå til [Arkitekturdokumentasjonen på Github](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation).
 
 ### Lisens
 
-All kjeldekoda vår har den åpne lisensen [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). Eksterne bibliotek kan ha ei anna lisens. Vi anbefaler at du sjekkar opp gjeldande lisens for eksterne bibliotek før du brukar dei. 
+All kjeldekoda vår har den åpne lisensen [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). Eksterne bibliotek kan ha ei anna lisens. Vi anbefaler at du sjekkar opp gjeldande lisens for eksterne bibliotek før du brukar dei.
 
 ## Teknologiar
 
 De teknologiane som er mest nytta er:
-* Språk: Python, Kotlin, Typescript, Rust 
-* Rammeverk: React, Next.js, Spring
-* Databasar/datastrauming: Postgres, MongoDB, Kafka
-* Designsystem: [Designsystemet](https://www.designsystemet.no/)
+
+- Språk: Python, Kotlin, Typescript, Rust
+- Rammeverk: React, Next.js, Spring
+- Databasar/datastrauming: Postgres, MongoDB, Kafka
+- Designsystem: [Designsystemet](https://www.designsystemet.no/)
 
 ## Personvern, sikkerheit og universell utforming
 
 ### Personvern
-Data.norge.no er underlagd norsk lovgiving om behandling av personopplysningar. 
+
+Data.norge.no er underlagd norsk lovgiving om behandling av personopplysningar.
 [Personopplysningsloven](https://lovdata.no/dokument/NL/lov/2018-06-15-38) gjennomfører EUs personvernsforordning (GDPR) i norsk rett.
 
 Det vert behandla minimalt av personopplysningar i løysingane i dag, og det gjeld kun registreringsløysinga og hausteløysninga.
 
 ### Sikkerheit
+
 Vi har eit stort fokus på sikkerheit og følgjer [Digdirs prinsipp for sikkerheit i utvikling](https://baksia.digdir.no/produktleveransemodell/prinsipper/sikkerhet/)
 
 #### Vi nyttar følgjande verktøy for å skanne etter sårbarheiter i koden:
+
 - Dependabot
 - Pip-audit for Python
 - Npm-audit for JavaScript/Typescript
@@ -67,11 +74,13 @@ Vi har eit stort fokus på sikkerheit og følgjer [Digdirs prinsipp for sikkerhe
 - Prometheus og Trivy for Docker images
 
 ### Universell utforming
+
 Som offentleg verksemd må Digdir tilby løysingar som minimum støttar EU sitt webdirektiv (WAD) og WCAG 2.1 AA. Attpåtil må kvar nettstad erklære etterleving av krava gjennom ei tilgjengelighetserklæring. Dette er nærare beskrive i [Forskrift om universell utforming av informasjons- og kommunikasjonsteknologiske (IKT)-løysningar](https://lovdata.no/dokument/SF/forskrift/2013-06-21-732) og på [EUs webdirektiv (WAD) (uutilsynet.no)](https://www.uutilsynet.no/webdirektivet-wad/eus-webdirektiv-wad/265).
 
 [Tilgjengelighetserklæring for data.norge.no](https://uustatus.no/nb/erklaringer/publisert/8020b962-b706-4cdf-ab8b-cdb5f480a696)
 
 #### Vi nyttar følgjande verktøy for å finne WCAG-brot:
+
 - Siteimprove
 - Pa11y
 

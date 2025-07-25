@@ -28,7 +28,9 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                             </dt>
                             <dd>
                                 {r.resource ? (
-                                    <Link href={`/${locale}/datasets/${r.resource?.id}/${getDatasetSlug(r.resource, locale)}`}>
+                                    <Link
+                                        href={`/${locale}/datasets/${r.resource?.id}/${getDatasetSlug(r.resource, locale)}`}
+                                    >
                                         {printLocaleValue(locale, r.resource?.title)}
                                     </Link>
                                 ) : (
