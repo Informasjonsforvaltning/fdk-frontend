@@ -5,10 +5,7 @@ import HeaderLayout from '../header-layout';
 import FooterLayout from '../footer-layout';
 import FeedbackBanner from '../../feedback-banner';
 
-const NormalLayout = async ({
-    children,
-    params,
-}: PropsWithChildren & RootLayoutProps) => {
+const NormalLayout = async ({ children, params }: PropsWithChildren & RootLayoutProps) => {
     const { lang } = await params;
 
     const dictionary = await getDictionary(lang, 'common');

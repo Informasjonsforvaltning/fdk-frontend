@@ -12,7 +12,7 @@ test.describe('distributions tab', () => {
         await datasetDetailsPage.checkAccessibility('distributions');
     });
 });
-   
+
 test.describe('details tab', () => {
     test('should not have any automatically detectable accessibility issues', async ({ datasetDetailsPage }) => {
         await datasetDetailsPage.checkAccessibility('details');

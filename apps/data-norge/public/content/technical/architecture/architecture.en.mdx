@@ -5,7 +5,9 @@ description: Information about the high level architecture behind data.norge.no.
 
 # Architecture
 
-<Ingress size='xs'>On this page you will find information about the high level architecture behind data.norge.no.</Ingress>
+<Ingress size='xs'>
+    On this page you will find information about the high level architecture behind data.norge.no.
+</Ingress>
 
 ## Framework:
 
@@ -18,20 +20,20 @@ We use [the C4 model](https://c4model.com/) as framework to describe the system 
 The relations between the components are illustrated in the following diagram:
 
 ![Diagram that describes the relations between the components on data.norge.no](https://raw.githubusercontent.com/Informasjonsforvaltning/architecture-documentation/refs/heads/main/generated/system.svg)
-A data provider that is employed by a public sector organization registrers and shares descriptions of data which the organization manages. 
+A data provider that is employed by a public sector organization registrers and shares descriptions of data which the organization manages.
 These may be registered in Registration, a data catalog that is managed by data.norge.no, or through the organization's or sector's own catalog.
 
-Registration uses an identity- og access management (IAM) service that is connected to an external identity provider (IdP) (i.e. ID-porten) to authorize users. Registration search for data in the portal. 
+Registration uses an identity- og access management (IAM) service that is connected to an external identity provider (IdP) (i.e. ID-porten) to authorize users. Registration search for data in the portal.
 
-The harvester harvests datasets, concepts, APIs, information models, services and events from data catalogs automatically, both local catalogs and the one that is hosted by data.norge.no. 
+The harvester harvests datasets, concepts, APIs, information models, services and events from data catalogs automatically, both local catalogs and the one that is hosted by data.norge.no.
 
-The portal listens to data events from the harvester and offers a search and overview over datasets, concepts, APIs, information models, services and events. 
+The portal listens to data events from the harvester and offers a search and overview over datasets, concepts, APIs, information models, services and events.
 
-Metadata quality is a service that measures datasets up against different indicators based on the [FAIR principles](https://www.go-fair.org/fair-principles/). Metadata quality listens to data events from the harvester. 
+Metadata quality is a service that measures datasets up against different indicators based on the [FAIR principles](https://www.go-fair.org/fair-principles/). Metadata quality listens to data events from the harvester.
 The portal gets a dataset quality score from metadata quality.
 
-A data consumer that represents a business, researcher, or the sivil society finds, understands and uses data from the public sector through the portal.  
+A data consumer that represents a business, researcher, or the sivil society finds, understands and uses data from the public sector through the portal.
 
-You can read more about the architecture behind data.norge.no on [Architecture documentation on Github](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation) 
+You can read more about the architecture behind data.norge.no on [Architecture documentation on Github](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation)
 
 The services are constantly being developed, as a result details in the architecture may change over time.

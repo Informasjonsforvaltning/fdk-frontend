@@ -8,6 +8,7 @@ context on this application, see the [Portal](https://github.com/Informasjonsfor
 ## Getting started
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/en/download/) >=20.11.1
 - [yarn](https://yarnpkg.com/getting-started/install) >=1.22.19
 - [Nx](https://nx.dev/getting-started/installation) >=15.10.0
