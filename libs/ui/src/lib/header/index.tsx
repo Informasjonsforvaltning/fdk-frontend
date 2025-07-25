@@ -17,11 +17,7 @@ export type HeaderProps = {
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({
-    dictionary,
-    locale,
-    frontpage,
-}: HeaderProps) => {
+const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
