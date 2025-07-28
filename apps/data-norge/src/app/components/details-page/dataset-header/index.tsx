@@ -89,12 +89,6 @@ const DatasetHeader = ({
                 >
                     <Link href='/datasets'>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
                 </Tag>
-                <Tag
-                    color='neutral'
-                    size='sm'
-                >
-                    Del av Offentlige anskaffelser
-                </Tag>
                 <AccessLevelTag
                     accessCode={dataset.accessRights?.code}
                     locale={locale}
