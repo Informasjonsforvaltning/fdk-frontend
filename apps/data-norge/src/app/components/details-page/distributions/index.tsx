@@ -49,7 +49,7 @@ const Distributions = ({
                     <Badge>{sumArrayLengths(datasets, exampleData)}</Badge>
                 </Hstack>
             </Heading>
-            {datasets && datasets.length ? (
+            {sumArrayLengths(datasets, exampleData) > 0 ? (
                 <Accordion border>
                     {datasets.map((distribution, index) => (
                         <Accordion.Item
