@@ -51,7 +51,7 @@ const Distributions = ({
             </Heading>
             {sumArrayLengths(datasets, exampleData) > 0 ? (
                 <Accordion border>
-                    {datasets.map((distribution, index) => (
+                    {datasets && datasets.map((distribution, index) => (
                         <Accordion.Item
                             className={styles.accordionItem}
                             key={`${distribution.accessURL}-${index}`}
