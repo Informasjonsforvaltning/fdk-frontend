@@ -683,6 +683,7 @@ test.describe('SEO Tests', () => {
             const url = page.url();
             const urlObj = new URL(url);
             const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
+            console.log('SEO Tests - pathParts', pathParts);
 
             // Should have at least 4 parts: locale/datasets/id/slug
             expect(pathParts.length).toBeGreaterThanOrEqual(4);
@@ -725,6 +726,7 @@ test.describe('SEO Tests', () => {
             const nbUrl = page.url();
             const nbUrlObj = new URL(nbUrl);
             const nbPathParts = nbUrlObj.pathname.split('/').filter((part) => part.length > 0);
+            console.log('SEO Tests - pathParts', nbPathParts);
             // Ensure we have enough path parts before accessing index 3
             expect(nbPathParts.length).toBeGreaterThanOrEqual(4);
             const nbSlug = nbPathParts[3].split('?')[0];
@@ -746,6 +748,7 @@ test.describe('SEO Tests', () => {
             const enUrl = page.url();
             const enUrlObj = new URL(enUrl);
             const enPathParts = enUrlObj.pathname.split('/').filter((part) => part.length > 0);
+            console.log('SEO Tests - pathParts', enPathParts);
             // Ensure we have enough path parts before accessing index 3
             expect(enPathParts.length).toBeGreaterThanOrEqual(4);
             const enSlug = enPathParts[3].split('?')[0];
@@ -767,6 +770,7 @@ test.describe('SEO Tests', () => {
             const nnUrl = page.url();
             const nnUrlObj = new URL(nnUrl);
             const nnPathParts = nnUrlObj.pathname.split('/').filter((part) => part.length > 0);
+            console.log('SEO Tests - pathParts', nnPathParts);
             // Ensure we have enough path parts before accessing index 3
             expect(nnPathParts.length).toBeGreaterThanOrEqual(4);
             const nnSlug = nnPathParts[3].split('?')[0];
@@ -941,6 +945,7 @@ test.describe('SEO Tests', () => {
             const urlObj = new URL(url);
             const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
 
+            console.log('SEO Tests - pathParts', pathParts);
             // Should have consistent structure
             expect(pathParts.length).toBeGreaterThanOrEqual(4);
             expect(pathParts[0]).toBe(locale);
@@ -975,6 +980,7 @@ test.describe('SEO Tests', () => {
             const urlObj = new URL(url);
             const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
 
+            console.log('SEO Tests - pathParts', pathParts);
             // Should have consistent structure
             expect(pathParts.length).toBeGreaterThanOrEqual(4);
             expect(pathParts[0]).toBe(locale);
@@ -1009,6 +1015,7 @@ test.describe('SEO Tests', () => {
             const urlObj = new URL(url);
             const pathParts = urlObj.pathname.split('/').filter((part) => part.length > 0);
 
+            console.log('SEO Tests - pathParts', pathParts);
             // Should have consistent structure
             expect(pathParts.length).toBeGreaterThanOrEqual(4);
             expect(pathParts[0]).toBe(locale);
