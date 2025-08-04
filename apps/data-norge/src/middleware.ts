@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { i18n, Locale } from '@fdk-frontend/dictionaries';
+import { isCanonicalDomain } from './utils/domain';
 
 export const middleware = (request: NextRequest) => {
     // Get the pathname and remove basePath
@@ -34,6 +35,19 @@ export const middleware = (request: NextRequest) => {
             new URL(`${basePath}${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
         );
     }
+
+    // Add X-Robots-Tag header based on domain logic (same as robots.txt)
+    const response = NextResponse.next();
+
+    if (isCanonicalDomain()) {
+        // Allow crawling on canonical domain
+        response.headers.set('X-Robots-Tag', 'index, follow');
+    } else {
+        // Block crawling on non-canonical domains (staging, demo, development)
+        response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    }
+
+    return response;
 };
 
 export const config = {

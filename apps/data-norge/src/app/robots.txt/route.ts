@@ -1,18 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isCanonicalDomain } from '../../utils/domain';
 
 export const dynamic = 'force-dynamic';
 
 export const GET = async (request: NextRequest) => {
-    const { FDK_BASE_URI } = process.env;
-    // Even though the canonical domain is https://data.norge.no, we will use FDK_BASE_URI to allow crawling of all public pages
-    const isCanonicalDomain = !FDK_BASE_URI?.match(/^https:\/\/(staging|demo)\./);
-
-    // Log for debugging (remove in production)
-    console.error(`Robots.txt requested - FDK_BASE_URI: ${FDK_BASE_URI}, isCanonicalDomain: ${isCanonicalDomain}`);
-
     let robotsContent: string;
 
-    if (isCanonicalDomain) {
+    if (isCanonicalDomain()) {
         // Allow crawling on canonical domain
         robotsContent = `# Allow crawling of all public pages
 User-agent: *
