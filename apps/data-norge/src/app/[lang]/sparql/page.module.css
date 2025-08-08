@@ -1,0 +1,9 @@
+.contentContainer {
+    max-width: 1000px;
+    padding: 2rem;
+    margin: auto;
+}
+
+.sparqlEditor :global(.yasr_results) {
+    overflow: auto;
+}
