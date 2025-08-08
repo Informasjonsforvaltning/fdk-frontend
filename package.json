@@ -53,6 +53,7 @@
         "@next/mdx": "15.4.0-canary.52",
         "@types/mdx": "^2.0.13",
         "@types/react-syntax-highlighter": "^15.5.13",
+        "@zazuko/yasgui": "^4.5.0",
         "classnames": "^2.5.1",
         "framer-motion": "^12.13.0",
         "js-cookie": "^3.0.5",
@@ -60,7 +61,7 @@
         "leaflet": "^1.9.4",
         "marked": "^15.0.12",
         "mime-types": "^3.0.1",
-        "next": "^15.3.2",
+        "next": "^15.3.3",
         "next-mdx-remote": "^5.0.0",
         "normalize.css": "^8.0.1",
         "react": "^19.1.0",
@@ -154,6 +155,7 @@
         "prismjs": "^1.30.0",
         "undici": "^5.29.0",
         "http-proxy-middleware": "^2.0.8",
-        "on-headers": "^1.1.0"
+        "on-headers": "^1.1.0",
+        "koa": "^2.16.2"
     }
 }

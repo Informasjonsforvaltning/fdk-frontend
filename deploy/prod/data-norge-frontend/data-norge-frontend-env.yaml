@@ -78,3 +78,8 @@ spec:
                             secretKeyRef:
                                 name: fdk-dataset-preview-service
                                 key: API_KEY
+                      - name: FDK_SPARQL_ENDPOINT
+                        valueFrom:
+                            secretKeyRef:
+                                name: commonurl-prod
+                                key: FDK_SPARQL_API_BASE_URI
