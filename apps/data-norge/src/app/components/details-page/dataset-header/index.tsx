@@ -14,6 +14,7 @@ import {
 } from '@fdk-frontend/ui';
 import { Heading, Link, Tag, Popover } from '@digdir/designsystemet-react';
 import styles from './dataset-header.module.scss';
+import { OrgLogo } from '@fellesdatakatalog/ui';
 
 type DatasetHeaderProps = {
     dataset: DatasetWithIdentifier;
@@ -50,6 +51,7 @@ const DatasetHeader = ({
                     ? printLocaleValue(locale, dataset.publisher?.prefLabel)
                     : dictionaries.detailsPage.header.namelessOrganization}
             </OrgButton>
+            <OrgLogo orgLogoSrc={orgLogo} />
             <Heading
                 level={1}
                 size='lg'
