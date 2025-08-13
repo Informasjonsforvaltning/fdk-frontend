@@ -29,6 +29,53 @@ const atomicUpdateSitemapCache = (newSitemap: string): boolean => {
     return false; // Not updated
 };
 
+// Function to fetch and parse specification links
+const fetchSpecificationLinks = async (baseUrl: string): Promise<MetadataRoute.Sitemap> => {
+    const specificationPages: MetadataRoute.Sitemap = [];
+
+    try {
+        const fdkBaseUri = process.env.FDK_BASE_URI;
+        if (!fdkBaseUri) {
+            console.warn('FDK_BASE_URI not configured, skipping specification links');
+            return specificationPages;
+        }
+
+        const specificationUrl = `${fdkBaseUri}/specification`;
+        const response = await fetch(specificationUrl);
+
+        if (!response.ok) {
+            console.warn(`Failed to fetch specification page: ${response.status}`);
+            return specificationPages;
+        }
+
+        const html = await response.text();
+
+        // Parse the HTML to extract links from the table
+        // Using regex to extract href attributes from anchor tags in table rows
+        const linkRegex = /<a href="specification\/([^"]+)">([^<]+)<\/a>/g;
+        let match;
+
+        while ((match = linkRegex.exec(html)) !== null) {
+            const [, path] = match;
+            const fullPath = `specification/${path}`;
+
+            // Add entry at root level without locale prefix
+            specificationPages.push({
+                url: `${baseUrl}/${fullPath}`,
+                lastModified: new Date(),
+                changeFrequency: 'monthly' as const,
+                priority: 0.5,
+            });
+        }
+
+        console.log(`Added ${specificationPages.length} specification pages to sitemap`);
+    } catch (error) {
+        console.error('Error fetching specification links:', error);
+    }
+
+    return specificationPages;
+};
+
 // Utility function to recursively scan content directories
 const scanContentDirectory = async (dirPath: string, basePath = ''): Promise<string[]> => {
     const paths: string[] = [];
@@ -290,6 +337,9 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
     // Generate content pages dynamically
     const contentPages = await generateContentPages(baseUrl);
 
+    // Fetch specification pages
+    const specificationPages = await fetchSpecificationLinks(baseUrl);
+
     // Generate dataset pages for all supported locales
     const datasetPages = allDatasets.flatMap((dataset: any) => {
         const lastModified = dataset.modified ? new Date(dataset.modified) : new Date();
@@ -304,7 +354,7 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
         });
     });
 
-    return [...coreStaticPages, ...contentPages, ...datasetPages];
+    return [...coreStaticPages, ...contentPages, ...specificationPages, ...datasetPages];
 };
 
 // Export the sitemap generation function for use in route handler
