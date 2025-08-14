@@ -121,7 +121,8 @@
                     "sufficient": "Sufficient",
                     "poor": "Poor"
                 }
-            }
+            },
+            "copyButton": ["Copy", "Copied!"]
         },
         "contactPoint": {
             "title": "Contact information",
