@@ -167,7 +167,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 </dd>
                 <dt>UID:</dt>
                 <dd>
-                    <HStack>
+                    <Hstack>
                         {dataset.id}
                         <CopyButton
                             copyLabel={dictionary.details.general.copyButton[0]}
@@ -177,7 +177,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                 style: { margin: '-0.25rem 0' }
                             }}
                         />
-                    </HStack>
+                    </Hstack>
                 </dd>
             </Dlist>
         </section>
