@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
-import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
+import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, CopyButton } from '@fdk-frontend/ui';
 import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
 import { type DatasetType } from '@fellesdatakatalog/types';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
@@ -164,6 +164,20 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     >
                         {metadataQuality.label}
                     </Tag>
+                </dd>
+                <dt>UID:</dt>
+                <dd>
+                    <HStack>
+                        {dataset.id}
+                        <CopyButton
+                            copyLabel={dictionary.details.general.copyButton[0]}
+                            copiedLabel={dictionary.details.general.copyButton[1]}
+                            copyOnClick={dataset.id}
+                            buttonProps={{
+                                style: { margin: '-0.25rem 0' }
+                            }}
+                        />
+                    </HStack>
                 </dd>
             </Dlist>
         </section>

@@ -121,7 +121,8 @@
                     "sufficient": "Tilstrekkeleg",
                     "poor": "Dårleg"
                 }
-            }
+            },
+            "copyButton": ["Kopier", "Kopiert!"]
         },
         "contactPoint": {
             "title": "Kontaktinformasjon",
