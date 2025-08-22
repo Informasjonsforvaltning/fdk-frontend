@@ -108,7 +108,7 @@ const NestedList = ({ items, locale, pathname, dictionary }: NestedListProps) =>
                         className={cn({ [styles.itemOpen]: isOpen })}
                     >
                         <div>
-                            {hasChildren && getToggleButton(isOpen, item.path, )}
+                            {hasChildren && getToggleButton(isOpen, item.path)}
                             {itemPathWithLocale === pathname ? (
                                 <strong>{item.title}</strong>
                             ) : (
