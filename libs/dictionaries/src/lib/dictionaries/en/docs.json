@@ -51,5 +51,9 @@
         "labelMissing": "Label is missing",
         "descriptionMissing": "Description is missing",
         "goToDatanorge": "Go to description at data.norge.no"
+    },
+    "general": {
+        "expand": "Expand",
+        "collapse": "Collapse"
     }
 }
