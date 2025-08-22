@@ -53,5 +53,9 @@
         "labelMissing": "Manglar term",
         "descriptionMissing": "Beskriving manglar",
         "goToDatanorge": "Gå til beskrivinga på data.norge.no"
+    },
+    "general": {
+        "expand": "Utvid",
+        "collapse": "Kollaps"
     }
 }

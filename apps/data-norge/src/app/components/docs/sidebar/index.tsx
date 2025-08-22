@@ -28,6 +28,7 @@ type NestedListProps = {
     items: SidebarItemObject[];
     locale: LocaleCodes;
     pathname: string;
+    dictionary: Dictionary;
 };
 
 const buildNestedStructure = (data: Dictionary, basePath: string, locale: LocaleCodes): SidebarItemObject[] => {
@@ -55,7 +56,7 @@ const buildNestedStructure = (data: Dictionary, basePath: string, locale: Locale
     return nested;
 };
 
-const NestedList = ({ items, locale, pathname }: NestedListProps) => {
+const NestedList = ({ items, locale, pathname, dictionary }: NestedListProps) => {
     const [openItems, setOpenItems] = useState<Record<string, boolean>>(() => {
         const initialOpenState: Record<string, boolean> = {};
         items.forEach((item) => {
@@ -77,8 +78,8 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
         <Button
             variant='tertiary'
             onClick={() => toggleOpen(itemPath)}
-            aria-labelledby={itemPath}
             aria-pressed={isOpen}
+            aria-label={isOpen ? dictionary.general.collapse : dictionary.general.expand}
         >
             {isOpen ? (
                 <ChevronUpIcon
@@ -107,7 +108,7 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
                         className={cn({ [styles.itemOpen]: isOpen })}
                     >
                         <div>
-                            {hasChildren && getToggleButton(isOpen, item.path)}
+                            {hasChildren && getToggleButton(isOpen, item.path, )}
                             {itemPathWithLocale === pathname ? (
                                 <strong>{item.title}</strong>
                             ) : (
@@ -125,6 +126,7 @@ const NestedList = ({ items, locale, pathname }: NestedListProps) => {
                                 items={item.children as SidebarItemObject[]}
                                 locale={locale}
                                 pathname={pathname}
+                                dictionary={dictionary}
                             />
                         )}
                     </li>
@@ -155,6 +157,7 @@ const Sidebar = ({ dictionary, currentPath, locale }: SidebarProps) => {
                 items={nestedData[0]?.children || []}
                 locale={locale}
                 pathname={pathname}
+                dictionary = {dictionary}
             />
         </nav>
     );
