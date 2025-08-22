@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { mdxComponents } from './components';
+import remarkGfm from 'remark-gfm';
 
 export const defaultAllowedElements = [
     'p',
@@ -50,6 +51,7 @@ const Markdown = ({
     return (
         <ReactMarkdown
             allowedElements={allowedElements}
+            remarkPlugins={[remarkGfm]}
             components={{
                 ...mdxComponents({ locale }),
                 ...components,
