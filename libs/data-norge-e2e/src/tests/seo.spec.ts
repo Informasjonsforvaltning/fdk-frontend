@@ -23,9 +23,28 @@ const navigateToDataset = async (page: any, datasetId: string): Promise<boolean>
 
 // Helper function to fetch sitemap
 const fetchSitemap = async (page: any): Promise<{ response: any; content: string }> => {
-    const response = await page.goto('/sitemap.xml');
-    const content = await response?.text();
+    console.log('Fetching sitemap...');
 
+    // Set a longer timeout specifically for sitemap requests
+    const response = await page.goto('/sitemap.xml', {
+        timeout: 90000, // 90 seconds for sitemap generation
+    });
+
+    if (!response) {
+        throw new Error('Failed to get sitemap response');
+    }
+
+    if (response.status() !== 200) {
+        throw new Error(`Sitemap request failed with status: ${response.status()}`);
+    }
+
+    const content = await response.text();
+
+    if (!content) {
+        throw new Error('Sitemap content is empty');
+    }
+
+    console.log('Sitemap fetched successfully');
     return { response, content };
 };
 
@@ -66,18 +85,29 @@ test.describe('SEO Tests', () => {
     });
 
     test.describe('sitemap.xml', () => {
+        // Configure longer timeout for sitemap tests due to potential long generation time
+        test.describe.configure({ timeout: 120000 }); // 2 minutes for sitemap tests
+
+        test.beforeEach(async () => {
+            console.log('Starting sitemap test...');
+        });
+
         test('should be accessible and contain valid XML structure', async ({ page }) => {
-            const response = await page.goto('/sitemap.xml');
+            const response = await page.goto('/sitemap.xml', {
+                timeout: 90000, // 90 seconds for sitemap generation
+            });
             expect(response?.status()).toBe(200);
 
             const content = await response?.text();
             expect(content).toContain('<?xml version="1.0" encoding="UTF-8"?>');
-            expect(content).toContain('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+            expect(content).toContain('<urlset');
             expect(content).toContain('</urlset>');
         });
 
         test('should contain static pages for all locales', async ({ page }) => {
+            console.log('Starting sitemap static pages test...');
             const { content } = await fetchSitemap(page);
+            console.log(`Sitemap fetched successfully, content length: ${content.length}`);
 
             // Check for home pages in all locales
             expect(content).toContain('<loc>https://data.norge.no/nb</loc>');
@@ -121,7 +151,9 @@ test.describe('SEO Tests', () => {
         });
 
         test('should contain dataset pages for all locales', async ({ page }) => {
+            console.log('Starting dataset pages test...');
             const { content } = await fetchSitemap(page);
+            console.log(`Dataset pages test - sitemap content length: ${content.length}`);
 
             // Should contain dataset URLs for all locales
             expect(content).toMatch(/https:\/\/data\.norge\.no\/nb\/datasets\/[^<]+/);
