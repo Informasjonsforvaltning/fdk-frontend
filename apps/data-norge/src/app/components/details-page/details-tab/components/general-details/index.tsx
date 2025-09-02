@@ -85,7 +85,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 {!dataset.landingPage && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.general.landingPage}:</dt>
-                        <dd>
+                        <dd className='article'>
                             {dataset.landingPage?.length ? (
                                 <SmartList
                                     items={dataset.landingPage}

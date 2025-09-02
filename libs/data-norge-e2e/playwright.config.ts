@@ -19,14 +19,14 @@ const baseURL = 'http://127.0.0.1:3000';
 export default defineConfig({
     ...nxE2EPreset(__filename, { testDir: './src' }),
     reporter: 'list',
-    /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+    /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions */
     use: {
         baseURL,
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
     },
-    /* Global test timeout */
-    timeout: 60000,
+    /* Global test timeout - increased to handle sitemap generation */
+    timeout: 120000, // 2 minutes
     /* Retry failed tests */
     retries: 2,
     /* Workers configuration - allow more workers since we're using retries */
