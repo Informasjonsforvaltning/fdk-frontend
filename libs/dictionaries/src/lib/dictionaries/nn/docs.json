@@ -44,7 +44,8 @@
         "/technical/api/sparql": "SPARQL",
         "/technical/follow-our-work": "Følg arbeidet vårt",
         "/docs/community": "Datalandsbyen",
-        "/docs/resources": "Ressursar"
+        "/docs/resources": "Ressursar",
+        "/validator": "Valideringsverktøy"
     },
     "tableOfContents": {
         "onThisPage": "På denne sida:"

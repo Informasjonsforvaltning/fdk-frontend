@@ -42,7 +42,8 @@
         "/technical/api/sparql": "SPARQL",
         "/technical/follow-our-work": "Follow our work",
         "/docs/community": "Community",
-        "/docs/resources": "Resources"
+        "/docs/resources": "Resources",
+        "/validator": "Validation tool"
     },
     "tableOfContents": {
         "onThisPage": "On this page:"
