@@ -45,7 +45,7 @@
     "dependencies": {
         "@digdir/designsystemet-css": "^0.10.0",
         "@digdir/designsystemet-react": "^0.63.1",
-        "@digdir/designsystemet-theme": "^0.15.3",
+        "@digdir/designsystemet-theme": "^1.4.0",
         "@fellesdatakatalog/types": "^1.0.2",
         "@mdx-js/loader": "^3.1.0",
         "@mdx-js/react": "^3.1.0",
