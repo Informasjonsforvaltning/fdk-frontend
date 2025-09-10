@@ -24,21 +24,23 @@ const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
                 link: <Link href={`/organizations`}>{dictionary.shareDataBanner.organizationsLinkText}</Link>,
             })}
         </Paragraph>
-        <div className={styles.buttons}>
-            <Button asChild>
-                <Link
-                    href={`/${locale}/publishing`}
-                    inverted
+        <div>
+            <div className={styles.buttons}>
+                <Button asChild>
+                    <Link
+                        href={`/publishing`}
+                        inverted
+                    >
+                        {dictionary.shareDataBanner.shareDataLinkText}
+                    </Link>
+                </Button>
+                <Button
+                    asChild
+                    variant='secondary'
                 >
-                    {dictionary.shareDataBanner.shareDataLinkText}
-                </Link>
-            </Button>
-            <Button
-                asChild
-                variant='secondary'
-            >
-                <Link href={`/${locale}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
-            </Button>
+                    <Link href={`/${locale}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
+                </Button>
+            </div>
         </div>
     </div>
 );
