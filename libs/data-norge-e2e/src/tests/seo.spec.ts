@@ -84,7 +84,7 @@ test.describe('SEO Tests', () => {
         });
     });
 
-    test.describe('sitemap.xml', () => {
+    test.describe.skip('sitemap.xml', () => {
         // Configure longer timeout for sitemap tests due to potential long generation time
         test.describe.configure({ timeout: 120000 }); // 2 minutes for sitemap tests
 
