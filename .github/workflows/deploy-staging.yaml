@@ -58,8 +58,30 @@ jobs:
 
             - id: set-matrix
               run: |
-                  echo "matrix={\"appname\":$(yarn --silent run matrix)}" >> $GITHUB_OUTPUT
-                  echo "changed=$(yarn --silent run matrix)" >> $GITHUB_OUTPUT
+                  echo "=== Debugging Nx Commands ==="
+                  echo "Git SHA: ${{ github.sha }}"
+                  echo "Base SHA: ${{ github.event.pull_request.base.sha }}"
+
+                  echo "=== Checking Nx workspace ==="
+                  yarn nx show projects --type=app
+
+                  echo "=== Testing affected command ==="
+                  yarn nx show projects --affected --type=app
+
+                  echo "=== Testing affected command with base ==="
+                  yarn nx show projects --affected --type=app --base=HEAD~1
+
+                  echo "=== Running matrix command ==="
+                  MATRIX_OUTPUT=$(yarn --silent run matrix)
+                  echo "Matrix output: '$MATRIX_OUTPUT'"
+                  echo "Matrix output length: ${#MATRIX_OUTPUT}"
+
+                  # Convert array to matrix format with appname property
+                  MATRIX_JSON=$(echo "$MATRIX_OUTPUT" | jq -c '{"appname": .}')
+                  echo "Matrix JSON: $MATRIX_JSON"
+
+                  echo "matrix=$MATRIX_JSON" >> $GITHUB_OUTPUT
+                  echo "changed=$MATRIX_OUTPUT" >> $GITHUB_OUTPUT
 
             - run: yarn run lint --configuration=ci
             - run: yarn run test --configuration=ci

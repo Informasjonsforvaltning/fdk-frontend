@@ -4,6 +4,3 @@ kind: Kustomization
 namespace: demo
 resources:
     - ../../base/data-norge-frontend
-
-patchesStrategicMerge:
-    - data-norge-frontend-env.yaml
