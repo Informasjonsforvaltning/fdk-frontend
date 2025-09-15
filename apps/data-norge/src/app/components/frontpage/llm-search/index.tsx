@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ForwardRefComponent, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Textfield, Button, Spinner, ErrorMessage } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
@@ -18,8 +18,8 @@ type LlmSearchProps = {
     locale: LocaleCodes;
 };
 
-const MotionDiv: ForwardRefComponent<any, any> = motion.div;
-const MotionUl: ForwardRefComponent<any, any> = motion.ul;
+const MotionDiv = motion.div;
+const MotionUl = motion.ul;
 
 const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -98,11 +98,13 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
             } else {
                 setError(dictionary.aiBanner.prompt.errors.generic);
             }
-        } catch (error) {
+        } catch (err) {
             setLoading(false);
-            if (error instanceof Error && error.name === 'AbortError') {
+            if (err instanceof Error && err.name === 'AbortError') {
                 setError('Request timed out');
             } else {
+                // Log the error for debugging
+                console.warn('LLM search error:', err);
                 setError(dictionary.aiBanner.prompt.errors.generic);
             }
         }
