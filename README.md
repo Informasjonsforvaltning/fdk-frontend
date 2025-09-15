@@ -42,3 +42,51 @@ nx run data-norge:dev
 ```
 
 Go to http://localhost:3000
+
+## Troubleshooting
+
+### Frontpage Hanging/Performance Issues
+
+If the frontpage is hanging or taking an extremely long time to load (100+ seconds), this is likely due to shared dictionary reference issues between components.
+
+#### Symptoms:
+
+- Frontpage loads very slowly (100+ seconds) or hangs completely
+- Individual components (Header, Footer) work fine when rendered alone
+- About page and other pages load normally
+- Console shows no obvious errors
+- Server compiles successfully but requests timeout
+
+#### Root Cause:
+
+When multiple components (Header, Footer, CatalogsBanner) share the same dictionary object, it can cause reference conflicts or mutations that lead to performance issues or hanging.
+
+#### Solution:
+
+Use the `getSafeDictionary()` utility function to create isolated dictionary copies for each component:
+
+```typescript
+import { getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
+
+// ❌ Problematic - shared reference
+const commonDictionary = await getDictionary(params.lang, 'common');
+<Header dictionary={commonDictionary} />
+<Footer dictionary={commonDictionary} />
+
+// ✅ Fixed - isolated copies
+const commonDictionary = await getDictionary(params.lang, 'common');
+const headerDictionary = getSafeDictionary(commonDictionary);
+const footerDictionary = getSafeDictionary(commonDictionary);
+<Header dictionary={headerDictionary} />
+<Footer dictionary={footerDictionary} />
+```
+
+#### Alternative Solutions:
+
+- Use `JSON.parse(JSON.stringify(dictionary))` for deep cloning
+- Use `structuredClone(dictionary)` for more robust cloning
+- Use shallow copy `{ ...dictionary }` if only first-level properties are accessed
+
+#### Prevention:
+
+Always create separate dictionary instances when passing the same dictionary to multiple components to avoid shared reference issues.

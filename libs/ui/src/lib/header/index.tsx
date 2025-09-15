@@ -54,7 +54,7 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
             window.removeEventListener('scroll', toggleSticky);
             window.removeEventListener('click', handleClick);
         };
-    });
+    }, [frontpage, sticky]);
 
     return (
         <header

@@ -21,7 +21,7 @@ export const middleware = (request: NextRequest) => {
             // Your other files in `public`
         ].includes(pathname)
     ) {
-        return null;
+        return NextResponse.next();
     }
 
     // Check if there is any supported locale in the pathname
