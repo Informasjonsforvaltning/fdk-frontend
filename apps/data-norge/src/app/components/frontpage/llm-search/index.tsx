@@ -75,6 +75,10 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
         setLoading(true);
 
         try {
+            // Add timeout to prevent hanging
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
@@ -82,8 +86,10 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ query: queryToSubmit }),
+                signal: controller.signal,
             });
 
+            clearTimeout(timeoutId);
             setLoading(false);
 
             if (response.status === 200) {
@@ -92,9 +98,13 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
             } else {
                 setError(dictionary.aiBanner.prompt.errors.generic);
             }
-        } catch {
+        } catch (error) {
             setLoading(false);
-            setError(dictionary.aiBanner.prompt.errors.generic);
+            if (error instanceof Error && error.name === 'AbortError') {
+                setError('Request timed out');
+            } else {
+                setError(dictionary.aiBanner.prompt.errors.generic);
+            }
         }
     };
 

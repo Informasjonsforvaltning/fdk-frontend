@@ -1,7 +1,7 @@
 import 'server-only';
 import { type Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { type Locale, getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
 import { Header, Footer } from '@fdk-frontend/ui';
 import { FrontpageBanner } from '../components/frontpage/frontpage-banner';
 import { ShareDataBanner } from '../components/frontpage/share-data-banner';
@@ -15,18 +15,22 @@ export type FrontpageProps = {
 
 const Frontpage = async (props: FrontpageProps) => {
     const params = await props.params;
+
     // Opt-in dynamic rendering
     await noStore();
 
     const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
 
     const commonDictionary = await getDictionary(params.lang, 'common');
+    const commonDictionaryForHeader = getSafeDictionary(commonDictionary);
     const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
+
+
 
     return (
         <>
             <Header
-                dictionary={commonDictionary}
+                dictionary={commonDictionaryForHeader}
                 locale={params.lang}
                 frontpage
             />

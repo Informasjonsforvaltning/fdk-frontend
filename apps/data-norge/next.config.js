@@ -20,13 +20,56 @@ const nextConfig = {
     sassOptions: {
         silenceDeprecations: ['legacy-js-api', 'import'],
     },
+    // Add experimental features for better compatibility
+    experimental: {
+        // Disable React Compiler to prevent hanging issues
+        reactCompiler: false,
+        // Optimize for development
+        optimizePackageImports: ['@digdir/designsystemet-react'],
+    },
+    // Add timeout configuration
+    serverExternalPackages: ['@fellesdatakatalog/types'],
+    // Optimize images
+    images: {
+        unoptimized: process.env.NODE_ENV === 'development',
+    },
     webpack: (config) => {
-        // Optimize cache for large strings
-        config.cache = {
-            ...config.cache,
-            compression: 'gzip', // Compress cache entries
-            maxMemoryGenerations: 1, // Reduce memory usage
+        // Completely disable all caching mechanisms
+        config.cache = false;
+
+        // Disable persistent caching
+        if (config.cache && typeof config.cache === 'object') {
+            config.cache = false;
+        }
+
+        // Ignore problematic native dependencies
+        config.resolve = {
+            ...config.resolve,
+            alias: {
+                ...config.resolve?.alias,
+                'rdf-canonize-native': false,
+            },
+            fallback: {
+                ...config.resolve?.fallback,
+                'rdf-canonize-native': false,
+                crypto: false,
+                stream: false,
+                util: false,
+            },
         };
+
+        // Optimize for development
+        if (process.env.NODE_ENV === 'development') {
+            config.optimization = {
+                ...config.optimization,
+                removeAvailableModules: false,
+                removeEmptyChunks: false,
+                splitChunks: false,
+            };
+
+            // Disable source maps in development to speed up builds
+            config.devtool = false;
+        }
 
         return config;
     },

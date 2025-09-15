@@ -26,17 +26,41 @@ export type Dictionary = {
     [key: string]: any;
 };
 
+// Cache for loaded dictionaries to avoid repeated imports
+const dictionaryCache = new Map<string, Dictionary>();
+
 export const getDictionary = async (localeCode: LocaleCodes, set: string): Promise<Dictionary> => {
+    const cacheKey = `${localeCode}-${set}`;
+
+    // Check cache first
+    if (dictionaryCache.has(cacheKey)) {
+        return dictionaryCache.get(cacheKey)!;
+    }
+
     try {
         const module = await import(`../dictionaries/${localeCode}/${set}.json`);
-        return module.default as Dictionary;
+        const dictionary = module.default as Dictionary;
+        dictionaryCache.set(cacheKey, dictionary);
+        return dictionary;
     } catch (error) {
         console.warn(
             `Could not load dictionary for locale: ${localeCode}, set: ${set}. Falling back to default locale.`,
         );
+        const fallbackKey = `${i18n.defaultLocale}-${set}`;
+
+        if (dictionaryCache.has(fallbackKey)) {
+            return dictionaryCache.get(fallbackKey)!;
+        }
+
         const fallbackModule = await import(`../dictionaries/${i18n.defaultLocale}/${set}.json`);
-        return fallbackModule.default as Dictionary;
+        const fallbackDictionary = fallbackModule.default as Dictionary;
+        dictionaryCache.set(fallbackKey, fallbackDictionary);
+        return fallbackDictionary;
     }
+};
+
+export const getSafeDictionary = (dictionary: Dictionary): Dictionary => {
+    return JSON.parse(JSON.stringify(dictionary)) as Dictionary;
 };
 
 /**
