@@ -25,8 +25,6 @@ const Frontpage = async (props: FrontpageProps) => {
     const commonDictionaryForHeader = getSafeDictionary(commonDictionary);
     const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
 
-
-
     return (
         <>
             <Header

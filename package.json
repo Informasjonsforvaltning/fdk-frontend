@@ -12,7 +12,7 @@
         "@types/react": "^19.1.5",
         "@types/react-dom": "^19.1.5"
     },
-    "packageManager": "yarn@4.8.1+sha256.8c8cf7bef23cced7c138d0da3ea72d43d2626727f1ae309edb853c41ab18ef1c",
+    "packageManager": "yarn@4.9.4",
     "lint-staged": {
         "*.tsx": [
             "eslint --cache --fix",
