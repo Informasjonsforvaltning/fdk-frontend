@@ -2544,7 +2544,7 @@ __metadata:
 
 "@fellesdatakatalog/ui@file:../fdk-ui::locator=fdk-frontend%40workspace%3A.":
   version: 1.0.0
-  resolution: "@fellesdatakatalog/ui@file:../fdk-ui#../fdk-ui::hash=aaefef&locator=fdk-frontend%40workspace%3A."
+  resolution: "@fellesdatakatalog/ui@file:../fdk-ui#../fdk-ui::hash=709d68&locator=fdk-frontend%40workspace%3A."
   dependencies:
     "@navikt/aksel-icons": "npm:^7.11.0"
     classnames: "npm:^2.5.1"
@@ -2552,7 +2552,7 @@ __metadata:
     "@digdir/designsystemet-react": ^1.1.9
     react: ^19.1.1
     react-dom: ^19.1.1
-  checksum: 10c0/aaf27266491dffd1580d48d53f9fda7b057cae7d82a2888e791ceb7c5b202f800dd35cdf567deb33c9cd17fa14d1107f8e2081a110ed93d444ac733f65a56013
+  checksum: 10c0/bc2dd688db61e3d0da71830da34f0b876ebda5522b3ec24a9061b4cb479172db7c039828b5a5d462ef7f940638369a1873536274030933a9cdb2e7b05e33885a
   languageName: node
   linkType: hard
 
