@@ -51,7 +51,7 @@ const DatasetHeader = ({
                     ? printLocaleValue(locale, dataset.publisher?.prefLabel)
                     : dictionaries.detailsPage.header.namelessOrganization}
             </OrgButton>
-            <OrgLogo orgLogoSrc={orgLogo} />
+            {/* <OrgLogo orgLogoSrc={orgLogo} /> */}
             <Heading
                 level={1}
                 size='lg'
