@@ -5,3 +5,4 @@ export { default as HeaderFooterLayout } from './header-footer-layout';
 export { default as HeaderLayout } from './header-layout';
 export { default as RootLayout } from './root-layout';
 export { generateStaticParams } from './root-layout';
+export { type RootLayoutProps } from './root-layout';
