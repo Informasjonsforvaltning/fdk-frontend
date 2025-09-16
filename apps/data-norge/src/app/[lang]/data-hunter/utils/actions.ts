@@ -2,6 +2,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
 import { extractFormEntries, FormState, FormStatusEnum, getFormState } from '@fdk-frontend/utils';
 import { schema } from './schema';
 import { sendEmail } from './helpers';
@@ -17,7 +18,11 @@ export const sendEmailAction = async (prevState: FormState, formData: FormData) 
     const parse = schema.safeParse(extractFormEntries(formData));
 
     if (!parse.success) {
-        return getFormState(FormStatusEnum.ERROR, parse.error.formErrors.fieldErrors);
+        const treeified = z.treeifyError(parse.error);
+        const fieldErrors = treeified.properties
+            ? Object.fromEntries(Object.entries(treeified.properties).map(([key, value]) => [key, value?.errors || []]))
+            : {};
+        return getFormState(FormStatusEnum.ERROR, fieldErrors);
     }
 
     try {
