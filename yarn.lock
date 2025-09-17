@@ -2064,10 +2064,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digdir/designsystemet-theme@npm:^0.15.3":
-  version: 0.15.3
-  resolution: "@digdir/designsystemet-theme@npm:0.15.3"
-  checksum: 10c0/1aab6ad54c3442aaf0fab9b5585e640c596a6d3a45cb8bbb3ca959f15d592321e7c9db01bca0bb778aaeb04fb04901e56b2b01bbd6aa0b8a9b2b6ad54d8a6e72
+"@digdir/designsystemet-theme@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@digdir/designsystemet-theme@npm:1.5.0"
+  checksum: 10c0/a736043acc7bdb0895f2538ec70ccb5c3d3147881844a585ff068f8cf75594d0055d96c3fb9986203a6e95b9ef714cc8cd764342f8e1f3ae8b806d4922727d98
   languageName: node
   linkType: hard
 
@@ -13768,7 +13768,7 @@ __metadata:
     "@babel/preset-react": "npm:^7.27.1"
     "@digdir/designsystemet-css": "npm:^0.10.0"
     "@digdir/designsystemet-react": "npm:^0.63.1"
-    "@digdir/designsystemet-theme": "npm:^0.15.3"
+    "@digdir/designsystemet-theme": "npm:^1.5.0"
     "@emotion/is-prop-valid": "npm:^1.4.0"
     "@eslint/js": "npm:^9.35.0"
     "@fellesdatakatalog/types": "npm:^1.0.2"
