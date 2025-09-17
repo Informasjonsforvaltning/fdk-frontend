@@ -10,7 +10,9 @@
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "@types/react": "^19.1.5",
-        "@types/react-dom": "^19.1.5"
+        "@types/react-dom": "^19.1.5",
+        "prismjs": "^1.30.0",
+        "tmp": "^0.2.5"
     },
     "packageManager": "yarn@4.9.4",
     "lint-staged": {
