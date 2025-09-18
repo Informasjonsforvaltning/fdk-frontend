@@ -28,7 +28,7 @@ const DatasetTable = ({
                         <tr key={`${dataset.id}-${index}`}>
                             <td>
                                 <Link
-                                    href={`${dataset.id}`}
+                                    href={`/${locale}/datasets/${dataset.id}`}
                                     className={styles.datasetLink}
                                 >
                                     {printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset}
