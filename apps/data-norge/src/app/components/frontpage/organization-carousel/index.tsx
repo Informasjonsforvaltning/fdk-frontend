@@ -3,7 +3,7 @@
 import organizations from './organizations.json';
 import styles from './organization-carousel.module.scss';
 import React, { useEffect, useState } from 'react';
-import { Popover } from '@digdir/designsystemet-react';
+import { Tooltip } from '@digdir/designsystemet-react';
 import { Dictionary } from '@fdk-frontend/dictionaries';
 
 type Props = {
@@ -42,12 +42,15 @@ const OrganizationCarousel = ({ dictionary }: Props) => {
 
     return (
         <div>
-            <Popover
-                open={open}
-                placement='left'
-                variant='info'
+            <Tooltip
+                className={styles.tooltip}
+                content={
+                    isPaused ?
+                    dictionary.shareDataBanner.popover.start :
+                    dictionary.shareDataBanner.popover.pause
+                }
+                placement='top'
             >
-                <Popover.Trigger asChild>
                     <span
                         role='button'
                         tabIndex={0}
@@ -59,11 +62,7 @@ const OrganizationCarousel = ({ dictionary }: Props) => {
                     >
                         {`${dictionary.shareDataBanner.doLike} ${shuffledOrganizations[currentIndex]}`}
                     </span>
-                </Popover.Trigger>
-                <Popover.Content>
-                    {isPaused ? dictionary.shareDataBanner.popover.start : dictionary.shareDataBanner.popover.pause}
-                </Popover.Content>
-            </Popover>
+            </Tooltip>
         </div>
     );
 };

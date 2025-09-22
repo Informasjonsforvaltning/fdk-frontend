@@ -40,13 +40,13 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
             </div>
             <div className={styles.contentContainer}>
                 <Heading
-                    size='xlarge'
+                    data-size='xl'
                     spacing
                 >
                     {dictionary.dataHunterForm.title}
                 </Heading>
                 <Paragraph
-                    size='large'
+                    data-size='lg'
                     spacing
                 >
                     {dictionary.dataHunterForm.description}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Textfield } from '@digdir/designsystemet-react';
-import CopyButton from '../copy-button';
+import { CopyButton } from '@fellesdatakatalog/ui';
 import styles from './styles.module.scss';
 
 type InputWithCopyButtonProps = {
@@ -22,16 +22,18 @@ const InputWithCopyButton = ({
             className={styles.wrapper}
             {...props}
         >
-            <CopyButton
-                copyLabel={copyLabel}
-                copiedLabel={copiedLabel}
-                copyOnClick={value}
-            />
             <Textfield
-                size='md'
+                className={styles.input}
+                data-size='md'
                 value={value}
                 aria-label={inputLabel}
                 readOnly
+            />
+            <CopyButton
+                className={styles.button}
+                copyLabel={copyLabel}
+                copiedLabel={copiedLabel}
+                copyOnClick={value}
             />
         </div>
     );

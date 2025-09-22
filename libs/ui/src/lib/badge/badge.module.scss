@@ -5,6 +5,7 @@
     line-height: 1rem;
     border-radius: 50px;
     background: var(--fds-semantic-surface-info-subtle);
+    background: var(--ds-color-surface-tinted);
 
     &[data-color='red'] {
         background: var(--fds-semantic-surface-danger-default);

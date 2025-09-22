@@ -1,7 +1,7 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .article {
-    @include article();
+    @include core-mixins.article();
 }
 
 .wrapper {
@@ -30,11 +30,15 @@
     .content {
         position: relative;
 
-        :global(.fds-btn) {
+        .copyButton {
             position: absolute;
-            top: 0.25rem;
-            right: 0.25rem;
+            top: 0.5rem;
+            right: 0.5rem;
             z-index: 1;
+
+            button span {
+                @include core-mixins.sr-only();
+            }
         }
     }
 }

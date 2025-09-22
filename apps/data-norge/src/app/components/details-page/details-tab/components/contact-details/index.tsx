@@ -17,7 +17,7 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
         <section>
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='2xs'
             >
                 {dictionary.details.contactPoint.title}
             </Heading>

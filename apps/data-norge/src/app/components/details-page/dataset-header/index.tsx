@@ -52,7 +52,7 @@ const DatasetHeader = ({
             </OrgButton>
             <Heading
                 level={1}
-                size='lg'
+                data-size='lg'
                 className={styles.title}
             >
                 {printLocaleValue(locale, dataset.title) || dictionaries.detailsPage.header.namelessDataset}
@@ -67,25 +67,17 @@ const DatasetHeader = ({
                         isAvailable={isAvailable}
                     />
                 )}
-                <Popover
-                    size='sm'
-                    placement='bottom-end'
-                >
-                    <Popover.Trigger size='sm'>{dictionaries.detailsPage.header.useDatasetButton}</Popover.Trigger>
-                    <Popover.Content style={{ maxWidth: 350 }}>
-                        <UseDatasetPopover
-                            dataset={dataset}
-                            apis={apis}
-                            dictionary={dictionaries.detailsPage}
-                            locale={locale}
-                        />
-                    </Popover.Content>
-                </Popover>
+                <UseDatasetPopover
+                    dataset={dataset}
+                    apis={apis}
+                    dictionary={dictionaries.detailsPage}
+                    locale={locale}
+                />
             </div>
             <TagList className={styles.headerTags}>
                 <Tag
                     color='info'
-                    size='sm'
+                    data-size='sm'
                 >
                     <Link href='/datasets'>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
                 </Tag>

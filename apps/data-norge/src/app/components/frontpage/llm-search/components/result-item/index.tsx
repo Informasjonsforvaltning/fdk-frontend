@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from '@digdir/designsystemet-react';
+import { Heading, Link } from '@digdir/designsystemet-react';
 import { Markdown } from '@fdk-frontend/ui';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { getDatasetSlug } from '@fdk-frontend/utils';
@@ -25,16 +25,17 @@ const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTM
     const slug = getDatasetSlug(item, locale);
 
     return (
-        <a
+        <Link
             href={`/${locale}/datasets/${item.id}/${slug}`}
             className={styles.link}
+            data-color-scheme='dark'
             {...rest}
         >
             <div>
                 <Heading
                     className={styles.heading}
                     level={4}
-                    size='xxsmall'
+                    data-size='2xs'
                 >
                     <span className={styles.title}>{item.title}</span>
                     <span className={styles.publisher}> ({item.publisher})</span>
@@ -43,7 +44,7 @@ const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTM
                     <Markdown locale={locale}>{item.description}</Markdown>
                 </div>
             </div>
-        </a>
+        </Link>
     );
 };
 

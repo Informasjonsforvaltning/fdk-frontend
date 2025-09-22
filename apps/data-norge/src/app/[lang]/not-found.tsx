@@ -9,7 +9,7 @@ export default async function NotFound() {
         <ErrorPage>
             <Heading
                 level={1}
-                size='medium'
+                data-size='md'
             >
                 {dictionary.notFound.title}
             </Heading>
@@ -17,7 +17,7 @@ export default async function NotFound() {
             <Button
                 asChild
                 variant='primary'
-                size='small'
+                data-size='sm'
             >
                 <Link href='/'>{dictionary.notFound.button}</Link>
             </Button>
