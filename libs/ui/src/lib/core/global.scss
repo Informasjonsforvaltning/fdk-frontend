@@ -1,8 +1,38 @@
+@import './reset.css';
+@import '@digdir/designsystemet-theme';
+@import '@digdir/designsystemet-css';
+
+// :root {
+//     --color-text: #1e2b3c;
+//     --color-link: var(--fds-semantic-surface-action-first-default);
+//     --color-link-negative: var(--fds-semantic-border-action-first-subtle);
+//     --color-fdk-navy: var(--fds-semantic-surface-neutral-inverted);
+//     --color-fdk-navy-dark: color-mix(in srgb, var(--color-fdk-navy), #000 60%);
+// }
+
+// body {
+//     font-family:
+//         system-ui,
+//         -apple-system,
+//         BlinkMacSystemFont,
+//         'Segoe UI',
+//         Roboto,
+//         'Helvetica Neue',
+//         Arial,
+//         sans-serif;
+//     background: var(--color-fdk-navy-dark);
+//     color: var(--color-text);
+
+//     main {
+//         background: white;
+//     }
+// }
+
+/*
 @use '../box-list/styles.module' as box-list;
 @use '../box-link/styles.module' as box-link;
 @use './mixins' as core-mixins;
 
-/* Define layers in specific order */
 @layer reset, fds;
 
 // This must be imported before designsystem styles below
@@ -15,9 +45,6 @@
 @import './fds-overrides';
 @import './table';
 
-/* Small devices such as large phones (640px and up) */
-
-/* breakpoints based on bootstrap's breakpoints */
 :root {
     --breakpoint-small: 640px;
     --breakpoint-medium: 768px;
@@ -99,3 +126,4 @@ table.fdk-box-list-table {
 .article {
     @include core-mixins.article();
 }
+*/
