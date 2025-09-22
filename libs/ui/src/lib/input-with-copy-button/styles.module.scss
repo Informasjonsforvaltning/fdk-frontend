@@ -2,16 +2,18 @@
     position: relative;
     flex-grow: 1;
 
-    :global(.fds-textfield) {
-        input[readOnly] {
-            color: #666;
-        }
+    .input {
+        color: #666;
     }
 
-    :global(.fds-btn) {
+    :global(.ds-button) {
         position: absolute;
-        top: 0.25rem;
-        right: 0.25rem;
+        top: 3px;
+        right: 3px;
         z-index: 1;
+
+        &:not(:hover):not(:active) {
+            background: white;
+        }
     }
 }

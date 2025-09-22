@@ -60,9 +60,8 @@ const DatasetPreviewWidget = ({
                 <div className={styles.loading}>
                     {dictionary.datasetPreview.generatingPreview}
                     <Spinner
-                        title={'loading'}
-                        size='xs'
-                        variant='interaction'
+                        aria-label={'loading'}
+                        data-size='xs'
                         aria-hidden={true}
                     />
                 </div>
@@ -74,7 +73,7 @@ const DatasetPreviewWidget = ({
                     downloadUrl={downloadUrl}
                     trigger={
                         <Button
-                            size='sm'
+                            data-size='sm'
                             variant='secondary'
                             className={cn(styles.previewBtn, triggerBtnClass)}
                             aria-label={dictionary.datasetPreview.showPreviewButton}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
-import { Paragraph, Textarea, Textfield, Button } from '@digdir/designsystemet-react';
+import { Paragraph, Textfield, Button } from '@digdir/designsystemet-react';
 
 import { LabelWithTag, SubmitStatusAlert } from '@fdk-frontend/ui';
 
@@ -29,7 +29,8 @@ const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
                 action={formAction}
                 className={styles.form}
             >
-                <Textarea
+                <Textfield
+                    multiline={true}
                     name='dataset'
                     className={styles.textArea}
                     required
@@ -44,7 +45,8 @@ const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
                     description={<Paragraph>{dictionary.dataHunterForm.dataset.description}</Paragraph>}
                     error={extractErrorMessages('dataset', state, dictionary)}
                 />
-                <Textarea
+                <Textfield
+                    multiline={true}
                     name='location'
                     className={styles.textArea}
                     cols={textAreaCols}
@@ -52,7 +54,8 @@ const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
                     label={<LabelWithTag labelText={dictionary.dataHunterForm.location.label} />}
                     description={<Paragraph>{dictionary.dataHunterForm.location.description}</Paragraph>}
                 />
-                <Textarea
+                <Textfield
+                    multiline={true}
                     name='efforts'
                     className={styles.textArea}
                     cols={textAreaCols}

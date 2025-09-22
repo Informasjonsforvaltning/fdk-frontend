@@ -9,11 +9,26 @@
     width: 1px;
 }
 
-@mixin fds-focus-visible-block {
-    --fds-focus-border-width: 3px;
-    box-shadow: 0 0 0 var(--fds-focus-border-width) var(--fds-semantic-border-focus-boxshadow);
-    outline: var(--fds-focus-border-width) solid var(--fds-semantic-border-focus-outline);
-    outline-offset: var(--fds-focus-border-width);
+@mixin focus-inline {
+    background: var(--ds-color-focus-outer);
+    color: var(--ds-color-focus-inner);
+    outline: 2px solid transparent;
+}
+
+@mixin focus-block {
+    box-shadow: var(--_ds--focus, var(--dsc-focus-boxShadow));
+    outline: var(--_ds--focus, var(--dsc-focus-outline));
+    outline-offset: var(--_ds--focus, var(--ds-border-width-focus));
+}
+
+/*
+    Remember to set data-color-scheme='dark' on element or container 
+    so that focus-block color tokens are correct.
+*/
+@mixin focus-block-dark {
+    @include focus-block();
+    background: transparent;
+    color: var(--fdk-link-color-negative);
 }
 
 @mixin article {
@@ -101,5 +116,28 @@
         height: 1px;
         border: 0;
         background: var(--fds-semantic-border-neutral-subtle);
+    }
+
+    img {
+        max-width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #eee;
+    }
+
+    code {
+        &:not([class]) {
+            background: rgba(0, 0, 0, 0.05);
+            font-size: 0.85em;
+            padding: 0.2em 0.4em;
+            white-space: break-spaces;
+            border-radius: 6px;
+            color: #444;
+        }
+    }
+
+    pre {
+        > div:focus-visible {
+            @include focus-block();
+        }
     }
 }

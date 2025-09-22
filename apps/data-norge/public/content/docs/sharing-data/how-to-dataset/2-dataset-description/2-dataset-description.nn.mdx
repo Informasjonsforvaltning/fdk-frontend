@@ -7,7 +7,7 @@ description: Lær korleis du lagar ei beskriving av datasettet ditt.
 
 No er du klar til å lage beskrivinga i rett format, slik at ho kan publiserast til data.norge.no. Det er her moroa byrjar!
 
-<Alert size='sm'>
+<Alert>
     **Nyttig å vite**: Vi må lage beskrivinga i eit strukturert dataformat som data.norge.no sitt system kan forstå.
     Dette formatet heiter RDF (Resource Description Framework) og er i bruk òg blant andre europeiske dataportalar og i
     fleire private verksemder sine datakatalogar. RDF kan skrivast på fleire ulike måtar – i døma under bruker vi
@@ -15,10 +15,7 @@ No er du klar til å lage beskrivinga i rett format, slik at ho kan publiserast 
     her](/docs/sharing-data/rdf)
 </Alert>
 
-<Alert
-    severity='warning'
-    size='sm'
->
+<Alert data-color='warning'>
     **Viktig**: Du bør bruke eit tekstredigeringsprogram som ikkje formaterer teksten. Microsoft Word eignar seg dårleg,
     medan Windows Notepad, VS Code eller liknande fungerer bra.
 </Alert>
@@ -59,7 +56,7 @@ Og tilsvarande vil vi leggje til ei tekstleg beskriving på bokmål, nynorsk og 
 ```
 
 <Alert
-    size='sm'
+    
 >
     **Merk**: For å spare plass i døma har vi utelatt dei såkalla prefiksa.
     Men alle døma treng at prefiksa lista opp rett under er definerte for å vere gyldig Turtle og RDF.
@@ -99,9 +96,7 @@ Beskrivinga vil då sjå slik ut:
   .
 ```
 
-<Alert size='sm'>
-    **Tips**: Du kan leggje inn kommentarar i Turtle med teiknet `#`, då blir det som kjem etter ignorert.
-</Alert>
+<Alert>**Tips**: Du kan leggje inn kommentarar i Turtle med teiknet `#`, då blir det som kjem etter ignorert.</Alert>
 
 ### Ressurser uten namn: Blanke noder
 
@@ -154,7 +149,7 @@ For å finne aktuelle kodar til di beskriving kan du sjå gjennom innhaldet i ko
 - [Informasjon om Los (psi.norge.no)](https://psi.norge.no/los/)
 - [Oversikt over kodar i EuroVoc (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141)
 
-<Alert size='sm'>
+<Alert>
     **Tips**: Vi har ei eiga side som går i detalj om [korleis bruke
     kodar](/docs/sharing-data/how-to-dataset/7-extras-code-lists) for å merke datasett tematisk, angi dekningsområde og
     lisens, med meir. Ta gjerne ein kikk der om du lurar på noko.
@@ -236,7 +231,7 @@ Heile beskrivinga av datasettet vil så langt sjå slik ut:
 Du kan no validere beskrivinga i [DCAT-AP-NO-validatoren](https://data.norge.no/validator) for å sjekke at ho samsvarar med standarden/spesifikasjonen for datasettbeskrivingar.
 Validatoren sjekkar at du har fylt ut alle obligatoriske felt, og at felta har riktig type innhald.
 
-<Alert size='sm'>
+<Alert>
     **Tips**: For å finne ut kvar det eventuelt er syntaksfeil kan du sjekke beskrivinga di på
     [https://www.easyrdf.org/converter](https://www.easyrdf.org/converter). Den gir tilbakemelding om kva linje som
     inneheld feil, men den veit ingenting om beskrivinga di er i samsvar med DCAT-AP-NO.

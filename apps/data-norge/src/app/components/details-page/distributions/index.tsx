@@ -1,6 +1,6 @@
 'use client';
 import cn from 'classnames';
-import { Accordion, Heading } from '@digdir/designsystemet-react';
+import { Card, Details, Heading } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
@@ -42,7 +42,7 @@ const Distributions = ({
         <div className={cn(styles.distributions, className)}>
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='xs'
             >
                 <Hstack>
                     <div>{dictionaries.detailsPage.distributions.title}</div>
@@ -50,64 +50,82 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {sumArrayLengths(datasets, exampleData) > 0 ? (
-                <Accordion border>
-                    {datasets && datasets.map((distribution, index) => (
-                        <Accordion.Item
-                            className={styles.accordionItem}
-                            key={`${distribution.accessURL}-${index}`}
-                        >
-                            <Accordion.Header
-                                level={3}
-                                className={styles.header}
+                <Card>
+                    {datasets &&
+                        datasets.map((distribution, index) => (
+                            <div
+                                key={`distribution-${index}`}
+                                className={styles.accordionWrapper}
                             >
-                                <DistributionHeader
-                                    distribution={distribution}
-                                    locale={locale}
-                                    dictionary={dictionaries.detailsPage}
-                                />
-                            </Accordion.Header>
-                            {distribution.accessURL && (
-                                <DownloadButton
-                                    uris={distribution.accessURL}
-                                    className={styles.actionButton}
-                                    modalTitle={
-                                        printLocaleValue(locale, distribution.title) ||
-                                        dictionaries.detailsPage.distributions.header.nameless
-                                    }
-                                    dictionary={dictionaries.detailsPage}
-                                    locale={locale}
+                                <Details
+                                    className={styles.accordionItem}
+                                    key={`${distribution.accessURL}-${index}`}
                                 >
-                                    {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
-                                </DownloadButton>
-                            )}
-                            <Accordion.Content className={styles.content}>
-                                <DistributionDetails
-                                    distribution={distribution}
-                                    locale={locale}
-                                    dictionaries={dictionaries}
-                                    resolvedDistributionDataServices={resolvedDistributionDataServices}
-                                    resolvedDistributionInformationModels={resolvedDistributionInformationModels}
-                                />
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    ))}
+                                    <Details.Summary>
+                                        <DistributionHeader
+                                            distribution={distribution}
+                                            locale={locale}
+                                            dictionary={dictionaries.detailsPage}
+                                        />
+                                    </Details.Summary>
+                                    <Details.Content className={styles.content}>
+                                        <DistributionDetails
+                                            distribution={distribution}
+                                            locale={locale}
+                                            dictionaries={dictionaries}
+                                            resolvedDistributionDataServices={resolvedDistributionDataServices}
+                                            resolvedDistributionInformationModels={
+                                                resolvedDistributionInformationModels
+                                            }
+                                        />
+                                    </Details.Content>
+                                </Details>
+                                {distribution.accessURL && (
+                                    <DownloadButton
+                                        uris={distribution.accessURL}
+                                        className={styles.actionButton}
+                                        modalTitle={
+                                            printLocaleValue(locale, distribution.title) ||
+                                            dictionaries.detailsPage.distributions.header.nameless
+                                        }
+                                        dictionary={dictionaries.detailsPage}
+                                        locale={locale}
+                                    >
+                                        {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
+                                    </DownloadButton>
+                                )}
+                            </div>
+                        ))}
                     {exampleData &&
                         exampleData.map((example, index) => (
-                            <Accordion.Item
-                                className={styles.accordionItem}
-                                key={example.accessURL}
+                            <div
+                                key={`example-${index}`}
+                                className={styles.accordionWrapper}
                             >
-                                <Accordion.Header
-                                    level={3}
-                                    className={styles.header}
+                                <Details
+                                    className={styles.accordionItem}
+                                    key={example.accessURL}
                                 >
-                                    <DistributionHeader
-                                        distribution={example}
-                                        locale={locale}
-                                        dictionary={dictionaries.detailsPage}
-                                        exampleData={true}
-                                    />
-                                </Accordion.Header>
+                                    <Details.Summary>
+                                        <DistributionHeader
+                                            distribution={example}
+                                            locale={locale}
+                                            dictionary={dictionaries.detailsPage}
+                                            exampleData={true}
+                                        />
+                                    </Details.Summary>
+                                    <Details.Content className={styles.content}>
+                                        <DistributionDetails
+                                            distribution={example}
+                                            locale={locale}
+                                            dictionaries={dictionaries}
+                                            resolvedDistributionDataServices={resolvedDistributionDataServices}
+                                            resolvedDistributionInformationModels={
+                                                resolvedDistributionInformationModels
+                                            }
+                                        />
+                                    </Details.Content>
+                                </Details>
                                 <DownloadButton
                                     uris={example.accessURL}
                                     className={styles.actionButton}
@@ -120,24 +138,15 @@ const Distributions = ({
                                 >
                                     {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
                                 </DownloadButton>
-                                <Accordion.Content className={styles.content}>
-                                    <DistributionDetails
-                                        distribution={example}
-                                        locale={locale}
-                                        dictionaries={dictionaries}
-                                        resolvedDistributionDataServices={resolvedDistributionDataServices}
-                                        resolvedDistributionInformationModels={resolvedDistributionInformationModels}
-                                    />
-                                </Accordion.Content>
-                            </Accordion.Item>
+                            </div>
                         ))}
-                </Accordion>
+                </Card>
             ) : (
                 <PlaceholderBox>{dictionaries.detailsPage.distributions.placeholder}</PlaceholderBox>
             )}
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='xs'
             >
                 <Hstack>
                     <div>{dictionaries.detailsPage.apis.title}</div>
@@ -145,22 +154,31 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {apis && apis.length ? (
-                <Accordion border>
+                <Card>
                     {apis.map((api, index) => (
-                        <Accordion.Item
-                            className={styles.accordionItem}
-                            key={api.id}
+                        <div
+                            key={`api-${index}`}
+                            className={styles.accordionWrapper}
                         >
-                            <Accordion.Header
-                                level={3}
-                                className={styles.header}
+                            <Details
+                                className={styles.accordionItem}
+                                key={api.id}
                             >
-                                <ApiHeader
-                                    api={api}
-                                    locale={locale}
-                                    dictionary={dictionaries.detailsPage}
-                                />
-                            </Accordion.Header>
+                                <Details.Summary>
+                                    <ApiHeader
+                                        api={api}
+                                        locale={locale}
+                                        dictionary={dictionaries.detailsPage}
+                                    />
+                                </Details.Summary>
+                                <Details.Content className={styles.content}>
+                                    <ApiDetails
+                                        api={api}
+                                        locale={locale}
+                                        dictionary={dictionaries.detailsPage}
+                                    />
+                                </Details.Content>
+                            </Details>
                             <ActionButton
                                 uri={`/data-services/${api.id}`}
                                 className={styles.actionButton}
@@ -171,16 +189,9 @@ const Distributions = ({
                                     fontSize='1.2em'
                                 />
                             </ActionButton>
-                            <Accordion.Content className={styles.content}>
-                                <ApiDetails
-                                    api={api}
-                                    locale={locale}
-                                    dictionary={dictionaries.detailsPage}
-                                />
-                            </Accordion.Content>
-                        </Accordion.Item>
+                        </div>
                     ))}
-                </Accordion>
+                </Card>
             ) : (
                 <PlaceholderBox>{dictionaries.detailsPage.apis.placeholder}</PlaceholderBox>
             )}

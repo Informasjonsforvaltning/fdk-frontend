@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { Prism as SyntaxHighlighter, type SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import {
-    Ingress,
-    type IngressProps,
     Alert,
     type AlertProps,
     Button,
@@ -69,18 +67,13 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
                 {...props}
             />
         ),
-        p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-            <Paragraph
-                size='sm'
-                {...props}
-            />
-        ),
+        p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
         Paragraph: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
         Heading: (props: HeadingProps) => <Heading {...props} />,
-        Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => (
+        Alert: ({ 'data-size': dataSize = 'sm', 'data-color': dataColor, ...props }: AlertProps) => (
             <Alert
-                size={size}
-                iconTitle={iconTitle}
+                data-size={dataSize}
+                data-color={dataColor}
                 {...props}
             />
         ),
@@ -95,12 +88,7 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         Divider,
         Image,
         table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
-            <Table
-                {...(props as any)}
-                size='sm'
-            >
-                {children}
-            </Table>
+            <Table {...(props as any)}>{children}</Table>
         ),
         thead: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
             <TableHead {...props}>{children}</TableHead>
@@ -117,20 +105,14 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         td: (
             { children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>, // eslint-disable-line
         ) => <TableCell {...props}>{children}</TableCell>,
-        Tag: (props: TagProps) => (
-            <Tag
+        Tag: (props: TagProps) => <Tag {...props} />,
+        Ingress: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+            <Paragraph
+                data-size='md'
                 {...props}
-                size='sm'
-            />
-        ),
-        Ingress: ({ children, ...props }: IngressProps) => (
-            <Ingress
-                asChild
-                {...props}
-                size={'md'}
             >
-                <div>{children}</div>
-            </Ingress>
+                {children}
+            </Paragraph>
         ),
         a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
             if (rest.href?.startsWith('http')) {
@@ -159,12 +141,14 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
                         style={vscDarkPlus as any}
                         language={match[1]}
                         PreTag='div'
+                        tabIndex={0}
                         {...rest}
                     />
                 ) : (
                     <SyntaxHighlighter
                         style={vscDarkPlus as any}
                         PreTag='div'
+                        tabIndex={0}
                         {...rest}
                     />
                 );

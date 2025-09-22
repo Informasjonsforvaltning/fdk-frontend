@@ -20,7 +20,9 @@ export type LogoLinkProps = {
 
 const LogoLink = ({ className, ...rest }: LogoLinkProps & Omit<LinkProps, 'children'>) => (
     <Link
-        className={cn(styles.logoLink, className)}
+        className={cn(styles.logoLink, 'ds-button', className)}
+        data-size='sm'
+        data-variant='tertiary'
         {...rest}
     >
         <Logo />
@@ -29,7 +31,9 @@ const LogoLink = ({ className, ...rest }: LogoLinkProps & Omit<LinkProps, 'child
 
 const DigdirLogoLink = ({ className, ...props }: Omit<LinkProps, 'children'>) => (
     <Link
-        className={cn(styles.digdirLogoLink, className)}
+        className={cn(styles.digdirLogoLink, 'ds-button', className)}
+        data-size='sm'
+        data-variant='tertiary'
         {...props}
     >
         <DigdirLogo />

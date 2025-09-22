@@ -44,23 +44,32 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
         }
     };
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && showMenu) {
+            setShowMenu(false);
+        }
+    };
+
     useEffect(() => {
         toggleSticky();
 
         window.addEventListener('scroll', toggleSticky);
         window.addEventListener('click', handleClick);
+        window.addEventListener('keydown', handleKeyDown);
 
         return () => {
             window.removeEventListener('scroll', toggleSticky);
             window.removeEventListener('click', handleClick);
+            window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [frontpage, sticky]);
+    }, [frontpage, sticky, showMenu]);
 
     return (
         <header
             aria-label='Header'
             className={cn(styles.header, { [styles.frontpageHeader]: frontpage })}
             ref={headerRef}
+            data-color-scheme={!showMenu && frontpage ? 'dark' : 'light'}
         >
             <div
                 className={cn(styles.headerOuter, {
@@ -82,41 +91,28 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
                     <div className={styles.headerToolbar}>
                         <Button
                             asChild
-                            size='small'
+                            data-size='sm'
                             variant='tertiary'
                             aria-label={dictionary.header.findDataButton}
                         >
                             <Link href={`/search-all`}>
-                                <MagnifyingGlassIcon
-                                    aria-hidden
-                                    fontSize='1.5em'
-                                />
+                                <MagnifyingGlassIcon aria-hidden />
                                 <span>{dictionary.header.findDataButton}</span>
                             </Link>
                         </Button>
                         <Button
-                            size='small'
+                            data-size='sm'
                             variant={showMenu ? 'secondary' : 'tertiary'}
                             onClick={() => setShowMenu(!showMenu)}
                             aria-label={dictionary.header.menuButton}
                             aria-pressed={showMenu}
                         >
-                            {showMenu ? (
-                                <XMarkIcon
-                                    aria-hidden
-                                    fontSize='1.5em'
-                                />
-                            ) : (
-                                <MenuHamburgerIcon
-                                    aria-hidden
-                                    fontSize='1.5em'
-                                />
-                            )}
+                            {showMenu ? <XMarkIcon aria-hidden /> : <MenuHamburgerIcon aria-hidden />}
                             <span>{dictionary.header.menuButton}</span>
                         </Button>
                         <Button
                             asChild
-                            size='small'
+                            data-size='sm'
                             variant='primary'
                         >
                             <Link href={`/publishing`}>

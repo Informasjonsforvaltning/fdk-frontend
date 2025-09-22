@@ -7,7 +7,7 @@ description: Learn how to create a description of your dataset.
 
 Now you are ready to create the description in the correct format so that it can be published to data.norge.no. This is where the fun begins!
 
-<Alert size='sm'>
+<Alert>
     **Good to know**: We need to create the description in a structured data format that the data.norge.no system can
     understand. This format is called RDF (Resource Description Framework) and is also used by other European data
     portals and several private companies' data catalogs. RDF can be written in various ways – in the examples below, we
@@ -15,10 +15,7 @@ Now you are ready to create the description in the correct format so that it can
     here](/docs/sharing-data/rdf).
 </Alert>
 
-<Alert
-    severity='warning'
-    size='sm'
->
+<Alert data-color='warning'>
     **Important**: You should use a text editor that does not format the text. Microsoft Word is not suitable, while
     Windows Notepad, VS Code, or similar programs work well.
 </Alert>
@@ -59,7 +56,7 @@ Similarly, we will add a textual description in Bokmål, Nynorsk, and English us
 ```
 
 <Alert
-    size='sm'
+    
 >
     **Note**: To save space in the examples, we have omitted the so-called prefixes.
     However, all examples need the prefixes listed below to be valid Turtle and RDF.
@@ -99,9 +96,7 @@ The description will then look like this:
   .
 ```
 
-<Alert size='sm'>
-    **Tip**: You can add comments in Turtle with the `#` symbol; anything following it will be ignored.
-</Alert>
+<Alert>**Tip**: You can add comments in Turtle with the `#` symbol; anything following it will be ignored.</Alert>
 
 ### Resources Without Names: Blank Nodes
 
@@ -155,7 +150,7 @@ To find relevant codes for your description, you can browse the content of the c
 - [Information about Los (psi.norge.no)](https://psi.norge.no/los/)
 - [Overview of codes in EuroVoc (op.europa.eu)](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://eurovoc.europa.eu/100141)
 
-<Alert size='sm'>
+<Alert>
     **Tip**: We have a dedicated page that goes into detail about [how to use
     codes](/docs/sharing-data/how-to-dataset/7-extras-code-lists) for thematically tagging datasets, specifying
     geograpichal coverage and license, etc. Feel free to take a look there if you have any questions.
@@ -239,7 +234,7 @@ The full description of the dataset in Turtle format so far looks like this:
 You can now validate the description in the [DCAT-AP-NO Validator](https://data.norge.no/validator) to ensure that it complies with the standard/specification for dataset descriptions.
 The validator checks that you have filled in all the required fields and that the fields contain the correct type of content.
 
-<Alert size='sm'>
+<Alert>
     **Tip**: To find out where there might be syntax errors, you can check your description on
     [https://www.easyrdf.org/converter](https://www.easyrdf.org/converter). It provides feedback on which line contains
     an error, but it doesn't know whether your description complies with DCAT-AP-NO.

@@ -32,10 +32,6 @@
     .headerTags {
         grid-area: d;
         grid-column: 1 / -1;
-
-        a:not(:hover) {
-            text-decoration: none;
-        }
     }
 
     .lastUpdated {

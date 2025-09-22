@@ -17,10 +17,10 @@ const StarButton = ({ defaultNumber = 0, defaultStarred = false }) => {
             <Button
                 className={styles.button}
                 variant='secondary'
-                size='sm'
+                data-size='sm'
                 onClick={() => setStarred(!starred)}
                 aria-pressed={starred}
-                color={starred ? 'success' : undefined}
+                data-color={starred ? 'success' : undefined}
             >
                 <div className={styles.content}>
                     {starred ? (

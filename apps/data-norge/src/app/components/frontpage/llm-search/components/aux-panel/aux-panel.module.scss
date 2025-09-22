@@ -1,53 +1,19 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .auxPanel {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    color: var(--fds-semantic-border-action-first-subtle);
-    margin-top: 1rem;
+    color: var(--fdk-color-cyan);
+    margin-top: 0.5rem;
 }
 
-.helptext {
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 0.25rem;
-
-    svg {
-        transform: scale(0.75);
-        color: white;
+.helptextWrapper {
+    > :global(.ds-button) {
+        font-size: 0.9rem;
+        white-space: nowrap;
     }
-
-    + div {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 1rem;
-        font-size: 1rem;
-        color: var(--color-text);
-
-        a {
-            width: 100%;
-            text-decoration: none;
-        }
-    }
-
-    &:focus-visible {
-        @include fds-focus-visible-block();
-
-        svg {
-            color: var(--fds-semantic-border-focus-outline);
-        }
-    }
-
-    @media (min-width: 550px) {
-        span {
-            width: auto;
-            height: auto;
-            clip: auto;
-            overflow: visible;
-            position: static;
-            color: white;
-        }
+    :global(.ds-popover) {
+        @include core-mixins.article();
     }
 }

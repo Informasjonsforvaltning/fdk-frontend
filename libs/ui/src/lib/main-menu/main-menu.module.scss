@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .mainMenu {
     container-type: inline-size;
@@ -23,27 +23,15 @@
 
         a {
             display: flex;
-            color: var(--color-link);
             padding: 0.5rem 1rem;
             text-decoration: none;
             margin: 0 0 0 -1rem;
             border-radius: 0.25rem;
+            align-items: center;
+            gap: 0.25rem;
 
             &:hover {
-                background: var(--fds-semantic-surface-action-first-no_fill-hover);
-            }
-
-            svg {
-                fill: var(--color-link);
-            }
-
-            &:focus-visible {
-                @include fds-focus-visible-block();
-                color: black;
-
-                svg {
-                    fill: black;
-                }
+                background: var(--ds-color-surface-hover);
             }
         }
 

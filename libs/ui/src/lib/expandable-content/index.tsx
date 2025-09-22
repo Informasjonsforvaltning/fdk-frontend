@@ -59,7 +59,7 @@ const ExpandableContent = ({ children, maxHeight, ...props }: { maxHeight?: numb
                 <Button
                     className={styles.button}
                     variant='tertiary'
-                    size='sm'
+                    data-size='sm'
                     onClick={() => setCollapsed(!collapsed)}
                     aria-expanded={!collapsed}
                 >

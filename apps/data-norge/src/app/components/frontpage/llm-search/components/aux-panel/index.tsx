@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic';
-
-import { Link, Paragraph, HelpText, Button } from '@digdir/designsystemet-react';
-
+import { Link, Paragraph, Button, Popover } from '@digdir/designsystemet-react';
 import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
 
-const DynamicQuerySuggestion = dynamic(() => import('../query-suggestion'), {
+// import QuerySuggestion from '../query-suggestion';
+const QuerySuggestion = dynamic(() => import('../query-suggestion'), {
     ssr: false,
 });
 
@@ -27,7 +26,7 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
         <div className={styles.auxPanel}>
             <div>
                 {numResults === undefined ? (
-                    <DynamicQuerySuggestion
+                    <QuerySuggestion
                         dictionary={dictionary}
                         onClick={onRequestSearch}
                     />
@@ -35,26 +34,33 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
                     getResultsText()
                 )}
             </div>
-            <HelpText
-                size='sm'
-                title={dictionary.aiBanner.tooltip.label}
-                className={styles.helptext}
-            >
-                <Paragraph size='sm'>{dictionary.aiBanner.tooltip.text}</Paragraph>
-                <Paragraph size='xs'>
-                    <b>{dictionary.aiBanner.tooltip.disclaimer}</b>
-                </Paragraph>
-                <Paragraph size='sm'>
-                    <Button
-                        size='sm'
-                        asChild
+            <div className={styles.helptextWrapper}>
+                <Popover.TriggerContext>
+                    <Popover.Trigger
+                        variant='tertiary'
+                        data-size='sm'
+                        data-color-scheme='dark'
                     >
-                        <Link href={`/${locale}/docs/finding-data/ai-search`}>
-                            {dictionary.aiBanner.tooltip.readMoreLinkText}
-                        </Link>
-                    </Button>
-                </Paragraph>
-            </HelpText>
+                        {dictionary.aiBanner.tooltip.label}
+                    </Popover.Trigger>
+                    <Popover placement='right'>
+                        <Paragraph>{dictionary.aiBanner.tooltip.text}</Paragraph>
+                        <Paragraph>
+                            <b>{dictionary.aiBanner.tooltip.disclaimer}</b>
+                        </Paragraph>
+                        <Paragraph>
+                            <Button
+                                data-size='sm'
+                                asChild
+                            >
+                                <Link href={`/${locale}/docs/finding-data/ai-search`}>
+                                    {dictionary.aiBanner.tooltip.readMoreLinkText}
+                                </Link>
+                            </Button>
+                        </Paragraph>
+                    </Popover>
+                </Popover.TriggerContext>
+            </div>
         </div>
     );
 };

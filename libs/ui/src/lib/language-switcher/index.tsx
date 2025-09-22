@@ -1,18 +1,14 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import cn from 'classnames';
+import React from 'react';
 import { ToggleGroup } from '@digdir/designsystemet-react';
 
 import { i18n, LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import styles from './language-switcher.module.scss';
 
-type LanguageSwitcherProps = {
-    inverted?: boolean;
-};
-
-const LanguageSwitcher = ({ inverted }: LanguageSwitcherProps) => {
+const LanguageSwitcher = (props: React.HTMLAttributes<HTMLElement>) => {
     const router = useRouter();
     const pathName = usePathname();
 
@@ -27,12 +23,15 @@ const LanguageSwitcher = ({ inverted }: LanguageSwitcherProps) => {
     };
 
     return (
-        <nav aria-label='Select language'>
+        <nav
+            aria-label='Select language'
+            {...props}
+        >
             <ToggleGroup
-                className={cn(styles.languageSwitcher, { [styles.inverted]: inverted })}
+                className={styles.languageSwitcher}
                 defaultValue={defaultCode}
-                size='sm'
                 onChange={(code) => onLanguageSelect(code as LocaleCodes)}
+                data-size='sm'
             >
                 {i18n.locales.map((locale) => (
                     <ToggleGroup.Item

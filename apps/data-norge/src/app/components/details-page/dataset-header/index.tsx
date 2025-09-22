@@ -12,7 +12,7 @@ import {
     UseDatasetPopover,
     TagList,
 } from '@fdk-frontend/ui';
-import { Heading, Link, Tag, Popover } from '@digdir/designsystemet-react';
+import { Heading, Link, Tag } from '@digdir/designsystemet-react';
 import styles from './dataset-header.module.scss';
 
 type DatasetHeaderProps = {
@@ -46,13 +46,12 @@ const DatasetHeader = ({
                 orgLogoSrc={orgLogo}
                 className={styles.orgBtn}
             >
-                {dataset.publisher
-                    ? printLocaleValue(locale, dataset.publisher?.prefLabel)
-                    : dictionaries.detailsPage.header.namelessOrganization}
+                {printLocaleValue(locale, dataset.publisher?.prefLabel) ??
+                    dictionaries.detailsPage.header.namelessOrganization}
             </OrgButton>
             <Heading
                 level={1}
-                size='lg'
+                data-size='lg'
                 className={styles.title}
             >
                 {printLocaleValue(locale, dataset.title) || dictionaries.detailsPage.header.namelessDataset}
@@ -67,25 +66,17 @@ const DatasetHeader = ({
                         isAvailable={isAvailable}
                     />
                 )}
-                <Popover
-                    size='sm'
-                    placement='bottom-end'
-                >
-                    <Popover.Trigger size='sm'>{dictionaries.detailsPage.header.useDatasetButton}</Popover.Trigger>
-                    <Popover.Content style={{ maxWidth: 350 }}>
-                        <UseDatasetPopover
-                            dataset={dataset}
-                            apis={apis}
-                            dictionary={dictionaries.detailsPage}
-                            locale={locale}
-                        />
-                    </Popover.Content>
-                </Popover>
+                <UseDatasetPopover
+                    dataset={dataset}
+                    apis={apis}
+                    dictionary={dictionaries.detailsPage}
+                    locale={locale}
+                />
             </div>
             <TagList className={styles.headerTags}>
                 <Tag
-                    color='info'
-                    size='sm'
+                    data-color='info'
+                    data-size='md'
                 >
                     <Link href='/datasets'>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
                 </Tag>
@@ -93,6 +84,7 @@ const DatasetHeader = ({
                     accessCode={dataset.accessRights?.code}
                     locale={locale}
                     dictionary={dictionaries.detailsPage}
+                    data-size='md'
                 />
                 {dataset.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}
             </TagList>

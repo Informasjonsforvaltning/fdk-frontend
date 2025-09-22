@@ -17,17 +17,17 @@ const ResourceNotAvailableNotice = ({
     return (
         <div className={className}>
             <Alert
-                severity='warning'
+                data-color='warning'
                 {...props}
             >
                 <VStack style={{ marginBottom: '0.66666rem', gap: '0.5rem' }}>
                     <Heading
                         level={2}
-                        size='xxsmall'
+                        data-size='2xs'
                     >
                         {dictionary.resourceNotAvailableNotice.title}
                     </Heading>
-                    <Paragraph size='sm'>{dictionary.resourceNotAvailableNotice.body}</Paragraph>
+                    <Paragraph data-size='sm'>{dictionary.resourceNotAvailableNotice.body}</Paragraph>
                     <HStack>
                         <AccessRequestButton
                             kind={kind}
@@ -38,7 +38,7 @@ const ResourceNotAvailableNotice = ({
                         />
                         <Button
                             variant='tertiary'
-                            size='sm'
+                            data-size='sm'
                             asChild
                         >
                             <Link href='/docs/finding-data/access-data#nasjonal-soknadslosning'>

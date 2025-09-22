@@ -38,7 +38,7 @@ const AccessRequestButton = ({
         <BadgeOverlay badgeProps={{ children: 'beta', 'data-color': 'green-subtle' }}>
             <Button
                 variant='secondary'
-                size='sm'
+                data-size='sm'
                 asChild
                 onClick={(e) => {
                     e.preventDefault();

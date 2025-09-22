@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, Heading, Card, Paragraph } from '@digdir/designsystemet-react';
+import { Heading, Card, Paragraph } from '@digdir/designsystemet-react';
 import { Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import getMainMenuData from '../main-menu/data';
 
@@ -21,25 +21,19 @@ const CatalogsMenu = ({ dictionary, locale }: CatalogsMenuProps) => {
             <ul className={styles.menuList}>
                 {data.catalogs.map((item: any, i: number) => (
                     <li key={item.key}>
-                        <Card
-                            className={styles.card}
-                            asChild
-                            isLink
-                        >
-                            <Link href={`${item.href}`}>
-                                <Card.Header>
+                        <Card asChild>
+                            <a href={`${item.href}`}>
+                                <Card.Block>
                                     <Heading
                                         className={styles.catalogTitle}
-                                        size='xxsmall'
+                                        data-size='2xs'
                                         level={3}
                                     >
                                         <span>{item.title}</span>
                                     </Heading>
-                                </Card.Header>
-                                <Card.Content>
-                                    <Paragraph size='small'>{item.description}</Paragraph>
-                                </Card.Content>
-                            </Link>
+                                    <Paragraph data-size='sm'>{item.description}</Paragraph>
+                                </Card.Block>
+                            </a>
                         </Card>
                     </li>
                 ))}

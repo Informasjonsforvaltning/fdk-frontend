@@ -1,7 +1,7 @@
 .distributions {
     border-radius: 3px;
 
-    > :global(.fds-heading) {
+    > :global(.ds-heading) {
         margin: 2rem 0 1rem;
 
         &:first-child {
@@ -10,21 +10,49 @@
     }
 }
 
-.accordionItem {
+.accordionWrapper {
     position: relative;
+    margin-block: 0;
 
-    .actionButton {
-        margin: 0.5rem 1rem 1rem;
-
-        @media (min-width: 500px) {
-            margin: 0;
-            position: absolute;
-            top: 0.9rem;
-            right: 1rem;
-            z-index: 1;
-        }
+    .accordionItem {
+        border-top: 0;
     }
 
+    &:last-child {
+        .accordionItem {
+            border-bottom: 0;
+        }
+    }
+}
+
+.actionButton {
+    margin: 0.5rem 1rem 1rem;
+
+    &:not(:hover):not(:focus-visible):not(:active) {
+        background: white;
+    }
+
+    @media (min-width: 500px) {
+        margin: 0;
+        position: absolute;
+        top: 0.9rem;
+        right: 1rem;
+        z-index: 1;
+    }
+}
+
+.accordionItem {
+    u-summary {
+        min-height: 4.5rem;
+
+        &:hover,
+        &[aria-expanded='true'] {
+            :global(.ds-tag) {
+                background: white;
+                background: var(--ds-color-surface-hover);
+            }
+        }
+    }
     .header {
         :global(.fds-accordion__button) {
             > span {
@@ -41,6 +69,10 @@
 }
 
 .content {
+    margin-top: var(--ds-size-5);
+    margin: 0;
+    padding: var(--ds-size-5);
+
     table {
         width: 100%;
 

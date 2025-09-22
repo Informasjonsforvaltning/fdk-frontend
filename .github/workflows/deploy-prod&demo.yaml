@@ -16,9 +16,6 @@ jobs:
         name: Test
         if: github.event.pull_request.draft == false
         runs-on: ubuntu-latest
-        outputs:
-            matrix: ${{ steps.set-matrix.outputs.matrix }}
-            changed: ${{ steps.set-matrix.outputs.changed }}
         steps:
             - name: Checkout
               uses: actions/checkout@v5
@@ -56,43 +53,13 @@ jobs:
                   path: node_modules/.cache
                   key: cache-nx-${{ hashFiles('yarn.lock') }}
 
-            - id: set-matrix
-              run: |
-                  echo "=== Debugging Nx Commands ==="
-                  echo "Git SHA: ${{ github.sha }}"
-                  echo "Base SHA: ${{ github.event.pull_request.base.sha }}"
-
-                  echo "=== Checking Nx workspace ==="
-                  yarn nx show projects --type=app
-
-                  echo "=== Testing affected command ==="
-                  yarn nx show projects --affected --type=app
-
-                  echo "=== Testing affected command with base ==="
-                  yarn nx show projects --affected --type=app --base=HEAD~1
-
-                  echo "=== Running matrix command ==="
-                  MATRIX_OUTPUT=$(yarn --silent run matrix)
-                  echo "Matrix output: '$MATRIX_OUTPUT'"
-                  echo "Matrix output length: ${#MATRIX_OUTPUT}"
-
-                  # Convert array to matrix format with appname property
-                  MATRIX_JSON=$(echo "$MATRIX_OUTPUT" | jq -c '{"appname": .}')
-                  echo "Matrix JSON: $MATRIX_JSON"
-
-                  echo "matrix=$MATRIX_JSON" >> $GITHUB_OUTPUT
-                  echo "changed=$MATRIX_OUTPUT" >> $GITHUB_OUTPUT
-
             - run: yarn run lint --configuration=ci
             - run: yarn run test --configuration=ci
 
     build-app:
-        name: Build app ${{ matrix.appname }}
+        name: Build data-norge app
         needs: [test]
-        if: ${{ needs.test.outputs.changed != '[]' }}
         runs-on: ubuntu-latest
-        strategy:
-            matrix: ${{fromJSON(needs.test.outputs.matrix)}}
         steps:
             - name: Checkout
               uses: actions/checkout@v5
@@ -130,46 +97,39 @@ jobs:
                   key: cache-nx-${{ hashFiles('yarn.lock') }}
 
             - run: yarn playwright install
-            #- run: yarn nx e2e ${{ matrix.appname }}-e2e --configuration=ci
-            - run: yarn nx build ${{ matrix.appname }} --configuration=ci
+            #- run: yarn nx e2e data-norge-e2e --configuration=ci
+            - run: yarn nx build data-norge --configuration=ci
 
             - name: Caching Dist Folder
               uses: actions/cache@v4
               with:
                   path: ./dist
-                  key: cache-dist-${{ github.sha }}-${{ matrix.appname }}
+                  key: cache-dist-${{ github.sha }}-data-norge
 
     build:
-        name: Build image for ${{ matrix.appname }}
+        name: Build image for data-norge
         needs: [test, build-app]
-        if: ${{ needs.test.outputs.changed != '[]' }}
-        strategy:
-            matrix: ${{fromJSON(needs.test.outputs.matrix)}}
         uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
         with:
-            app_name: ${{ matrix.appname }}-frontend
+            app_name: data-norge-frontend
             environment: prod
             gh_environment: prod
             build_env: true
             build_env_name: BINARY
-            build_env_value: ${{ matrix.appname }}-frontend
+            build_env_value: data-norge-frontend
             cache_path: ./dist
-            cache_key: cache-dist-${{ github.sha }}-${{ matrix.appname }}
-            dockerfile: apps/${{ matrix.appname }}/Dockerfile
+            cache_key: cache-dist-${{ github.sha }}-data-norge
+            dockerfile: apps/data-norge/Dockerfile
             monorepo_app: true
         secrets:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     deploy-prod:
-        name: Deploy image for ${{ matrix.appname }} to production
+        name: Deploy image for data-norge to production
         needs: [test, build]
-        strategy:
-            matrix: ${{fromJSON(needs.test.outputs.matrix)}}
-            fail-fast: false
-        if: ${{ needs.test.outputs.changed != '[]' }}
         uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
         with:
-            app_name: ${{ matrix.appname }}-frontend
+            app_name: data-norge-frontend
             environment: prod
             gh_environment: prod
             monorepo_app: true
@@ -180,15 +140,11 @@ jobs:
             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
     deploy-demo:
-        name: Deploy image for ${{ matrix.appname }} to demo
+        name: Deploy image for data-norge to demo
         needs: [test, deploy-prod]
-        strategy:
-            matrix: ${{fromJSON(needs.test.outputs.matrix)}}
-            fail-fast: false
-        if: ${{ needs.test.outputs.changed != '[]' }}
         uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
         with:
-            app_name: ${{ matrix.appname }}-frontend
+            app_name: data-norge-frontend
             environment: demo
             gh_environment: demo
             monorepo_app: true

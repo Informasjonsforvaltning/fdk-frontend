@@ -1,4 +1,5 @@
-import { screen, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
 import { axe, toHaveNoViolations } from 'jest-axe';
 
 import { LabelWithTag } from '.';

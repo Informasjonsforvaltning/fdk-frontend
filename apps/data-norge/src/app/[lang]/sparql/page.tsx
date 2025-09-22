@@ -38,20 +38,13 @@ const SparqlPage = async (props: SparqlPageProps) => {
                 />
             </div>
             <div className={styles.contentContainer}>
-                <Heading
-                    size='xlarge'
-                    spacing
-                >
-                    {dictionary.title}
-                </Heading>
-                <Paragraph
-                    size='large'
-                    spacing
-                >
-                    {dictionary.description}
-                </Paragraph>
+                <Heading data-size='xl'>{dictionary.title}</Heading>
+                <Paragraph data-size='lg'>{dictionary.description}</Paragraph>
                 {FDK_SPARQL_ENDPOINT && (
-                    <SparqlEditor endpoint={FDK_SPARQL_ENDPOINT} className={styles.sparqlEditor} />
+                    <SparqlEditor
+                        endpoint={FDK_SPARQL_ENDPOINT}
+                        className={styles.sparqlEditor}
+                    />
                 )}
             </div>
         </>

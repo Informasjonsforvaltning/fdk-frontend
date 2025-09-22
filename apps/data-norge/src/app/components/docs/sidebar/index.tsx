@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import cn from 'classnames';
 
-import { Heading, Button } from '@digdir/designsystemet-react';
+import { Heading, Button, Link } from '@digdir/designsystemet-react';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
@@ -108,18 +108,18 @@ const NestedList = ({ items, locale, pathname, dictionary }: NestedListProps) =>
                         className={cn({ [styles.itemOpen]: isOpen })}
                     >
                         <div>
-                            {hasChildren && getToggleButton(isOpen, item.path)}
                             {itemPathWithLocale === pathname ? (
                                 <strong>{item.title}</strong>
                             ) : (
-                                <a
+                                <Link
                                     href={itemPathWithLocale}
                                     aria-expanded={hasChildren ? isOpen : undefined}
                                     id={item.path}
                                 >
                                     {item.title}
-                                </a>
+                                </Link>
                             )}
+                            {hasChildren && getToggleButton(isOpen, item.path)}
                         </div>
                         {isOpen && hasChildren && (
                             <NestedList
@@ -149,15 +149,15 @@ const Sidebar = ({ dictionary, currentPath, locale }: SidebarProps) => {
             <Heading
                 id='sidebar-heading'
                 level={2}
-                size='xs'
+                data-size='xs'
             >
-                <a href={`/${locale}${nestedData?.[0]?.path}`}>{nestedData?.[0]?.title}</a>
+                <Link href={`/${locale}${nestedData?.[0]?.path}`}>{nestedData?.[0]?.title}</Link>
             </Heading>
             <NestedList
                 items={nestedData[0]?.children || []}
                 locale={locale}
                 pathname={pathname}
-                dictionary = {dictionary}
+                dictionary={dictionary}
             />
         </nav>
     );

@@ -12,7 +12,7 @@ const DatasetPreviewTable = ({
 }: DatasetPreviewTableProps & React.HTMLAttributes<HTMLTableElement>) => {
     return (
         <Table
-            size='sm'
+            data-size='sm'
             {...props}
         >
             <TableHead>
