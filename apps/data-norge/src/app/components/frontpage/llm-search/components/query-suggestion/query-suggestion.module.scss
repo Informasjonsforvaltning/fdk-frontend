@@ -1,2 +1,10 @@
-.query-suggestion {
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
+
+.querySuggestion {
+    background: transparent;
+    .customLink {
+        &:not(:hover):not(:focus):not(:active):not(:focus-visible) {
+            color: white;
+        }
+    }
 }

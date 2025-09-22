@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { mdxComponents, CatalogsMenu, CatalogPromo } from '@fdk-frontend/ui';
+import { mdxComponents, CatalogsMenu, AlertWithLinkButton } from '@fdk-frontend/ui';
 import MdxPage from '../mdx-page';
 
 const getContentDirectory = (rootContentDirectory: string) => {
@@ -49,7 +49,7 @@ export default async function DocsPage(pageProps: DocsPageProps) {
             },
             components: {
                 ...mdxComponents({ locale }),
-                CatalogPromo,
+                AlertWithLinkButton,
                 CatalogsMenu: () => (
                     <CatalogsMenu
                         locale={locale}

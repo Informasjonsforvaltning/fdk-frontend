@@ -10,14 +10,12 @@
         margin: auto;
         width: 2.5rem;
         height: 4px;
-        background: red;
-        background: var(--fds-brand-alt3-600);
+        background: var(--fdk-color-blue-light);
         border-radius: 0.25rem;
     }
 }
 
 .subtext {
     font-size: 0.9rem;
-    // opacity:0.6;
-    color: #888;
+    color: rgba(0, 0, 0, 0.5);
 }

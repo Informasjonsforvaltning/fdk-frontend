@@ -1,6 +1,7 @@
-import { Link, Tag, TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import { Link, Tag, TagProps, Paragraph } from '@digdir/designsystemet-react';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { AccessRightsCodes } from '@fellesdatakatalog/types';
+import { HelpText } from '@fellesdatakatalog/ui';
 
 type AccessLevelTagProps = {
     accessCode?: AccessRightsCodes;
@@ -20,22 +21,15 @@ const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, locale, ...pro
     if (accessCode === AccessRightsCodes.PUBLIC) color = 'success';
 
     return (
-        <Tag
-            color={color as TagProps['color']}
-            size='sm'
-        >
+        <Tag data-color={color as TagProps['color']}>
             {nonInteractive ? (
                 label
             ) : (
                 <>
                     <Link href={`/datasets?accessrights=${accessCode}`}>{label}</Link>&nbsp;
-                    <HelpText
-                        title={dictionary.accessRights.helpTextTitle}
-                        size='sm'
-                        style={{ transform: 'scale(0.75)' }}
-                    >
-                        <Paragraph size='sm'>{helpText}</Paragraph>
-                        <Paragraph size='sm'>
+                    <HelpText aria-label={dictionary.accessRights.helpTextTitle}>
+                        <Paragraph data-size='sm'>{helpText}</Paragraph>
+                        <Paragraph data-size='sm'>
                             <Link href={`/${locale}/docs/finding-data/access-data`}>
                                 {dictionary.accessRights.readMoreLinkText}
                             </Link>

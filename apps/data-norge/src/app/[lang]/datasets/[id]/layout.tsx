@@ -7,9 +7,9 @@ export const dynamic = 'force-dynamic';
 
 const DatasetLayout = async ({
     children,
-    params
+    params,
 }: PropsWithChildren & {
-    params: Promise<{ lang: string; id: string }>
+    params: Promise<{ lang: string; id: string }>;
 }) => {
     const typedParams = params as Promise<{ lang: LocaleCodes; id: string }>;
     return <NormalLayout params={typedParams}>{children}</NormalLayout>;

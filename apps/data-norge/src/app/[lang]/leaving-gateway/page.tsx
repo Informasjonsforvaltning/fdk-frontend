@@ -24,29 +24,29 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
             <div className={styles.inner}>
                 <Heading
                     level={2}
-                    size='sm'
+                    data-size='sm'
                 >
                     {dictionary.leavingGateway.heading}
                 </Heading>
                 <VStack>
-                    <Paragraph size='sm'>{dictionary.leavingGateway.linkLabel}</Paragraph>
+                    <Paragraph data-size='sm'>{dictionary.leavingGateway.linkLabel}</Paragraph>
                     <div className={styles.urlBox}>
                         <Link href={url}>{url}</Link>
                     </div>
                 </VStack>
-                <Alert size='sm'>
+                <Alert data-size='sm'>
                     <Markdown>{dictionary.leavingGateway.alertText}</Markdown>
                 </Alert>
                 <Hstack>
                     <BackButton
-                        size='sm'
+                        data-size='sm'
                         variant='secondary'
                     >
                         {dictionary.leavingGateway.abortButton}
                     </BackButton>
                     <Button
                         asChild
-                        size='sm'
+                        data-size='sm'
                         variant='primary'
                     >
                         <Link href={url}>{dictionary.leavingGateway.continueButton}</Link>

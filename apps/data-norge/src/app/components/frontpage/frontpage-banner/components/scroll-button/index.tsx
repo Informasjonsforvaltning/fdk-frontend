@@ -49,6 +49,7 @@ const ScrollButton = () => {
             className={cn(styles.scrollButton, { [styles.hidden]: hidden })}
             aria-hidden={hidden}
             tabIndex={hidden ? -1 : undefined}
+            data-color-scheme='dark'
         >
             <ChevronDownIcon
                 aria-hidden

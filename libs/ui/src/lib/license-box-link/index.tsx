@@ -1,23 +1,23 @@
 import React from 'react';
 import cn from 'classnames';
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { isOpenLicense } from '@fdk-frontend/utils';
 import Box from '../box';
 import ExternalLink from '../external-link';
-import OpenLicenseTag from '../open-license-tag';
+import { Tag } from '@digdir/designsystemet-react';
 import styles from './styles.module.scss';
 
 type LicenseBoxLinkProps = {
     uri: string;
     locale: LocaleCodes;
-    dictionary: Dictionary;
+    openLicenseLabel: string;
 };
 
 const LicenseBoxLink = ({
     children,
     uri,
-    dictionary,
     locale,
+    openLicenseLabel,
     ...props
 }: LicenseBoxLinkProps & React.HTMLAttributes<HTMLDivElement>) => {
     return (
@@ -34,7 +34,12 @@ const LicenseBoxLink = ({
             </ExternalLink>
             {isOpenLicense(uri) && (
                 <div className={styles.licenseTagContainer}>
-                    <OpenLicenseTag dictionary={dictionary} />
+                    <Tag
+                        data-color='success'
+                        data-size='md'
+                    >
+                        {openLicenseLabel}
+                    </Tag>
                 </div>
             )}
         </Box>

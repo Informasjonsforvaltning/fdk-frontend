@@ -30,7 +30,7 @@ const TopicRow = ({
                 <div className={styles.threadTeaser}>
                     <Heading
                         level={3}
-                        size='xxsmall'
+                        data-size='xs'
                     >
                         <ExternalLink
                             href={`${communityBaseUri}/topic/${topic.slug}`}
@@ -41,7 +41,7 @@ const TopicRow = ({
                     </Heading>
                     <Hstack style={{ gap: '0.5rem' }}>
                         <Tag
-                            size='sm'
+                            data-size='sm'
                             color='neutral'
                         >
                             <Link href={`${communityBaseUri}/category/${topic.category.slug}`}>

@@ -7,16 +7,15 @@
     justify-content: center;
     color: white;
     container-type: inline-size;
-    background: var(--color-fdk-navy-dark);
+    background: var(--fdk-color-navy-dark);
 
     .gradient {
         content: '';
         display: block;
         position: absolute;
         inset: 0;
-        background: red;
         z-index: 1;
-        background: radial-gradient(circle, var(--color-fdk-navy), var(--color-fdk-navy-dark));
+        background: radial-gradient(circle, var(--fdk-color-navy), var(--fdk-color-navy-dark));
         mix-blend-mode: hard-light;
     }
 
@@ -46,7 +45,7 @@
 }
 
 .headline {
-    &:global(.fds-heading) {
+    &:global(.ds-heading) {
         font-size: 5rem;
         line-height: 1em;
         font-weight: bold;
@@ -55,15 +54,6 @@
         color: white;
         pointer-events: none;
     }
-}
-
-.dividerLine {
-    margin: auto;
-    width: 3rem;
-    height: 4px;
-    background: red;
-    background: var(--fds-brand-alt3-600);
-    border-radius: 0.25rem;
 }
 
 .bannerNotice {

@@ -22,7 +22,7 @@ const FeedbackBanner = ({
             <div className={styles.feedbackBannerInner}>
                 <Heading
                     className={styles.heading}
-                    size='xs'
+                    data-size='xs'
                     level={2}
                 >
                     {dictionary.feedbackBanner.heading}

@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .sidebar {
     h2 {
@@ -6,14 +6,13 @@
 
         a {
             text-decoration: none;
-            color: var(--color-text);
+
+            &:not(:hover):not(:focus-visible) {
+                color: var(--fdk-text-color) !important;
+            }
 
             &:hover {
                 text-decoration: underline;
-            }
-
-            &:focus-visible {
-                @include fds-focus-visible-block();
             }
         }
     }
@@ -29,9 +28,8 @@
                 inset: 0;
                 left: -0.5rem;
                 width: 2px;
-                background: var(--fds-semantic-surface-action-first-no_fill-hover);
+                background: var(--ds-color-surface-hover);
             }
-            // border-left: 2px solid var(--fds-semantic-surface-action-first-no_fill-hover);
         }
     }
 }
@@ -81,15 +79,13 @@
             background: #f8f8f8;
         }
         a {
-            color: var(--color-link);
-
-            &:hover {
-                background: #f4f4f4;
-                background: var(--fds-semantic-surface-action-first-no_fill-hover);
+            &:hover:not(:focus-visible) {
+                background: var(--ds-color-surface-hover);
             }
-
             &:focus-visible {
-                @include fds-focus-visible-block();
+                + button {
+                    color: var(--ds-color-focus-inner);
+                }
             }
         }
     }

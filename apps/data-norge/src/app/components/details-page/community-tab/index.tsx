@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Heading, Button, Link, Paragraph, Alert } from '@digdir/designsystemet-react';
+import { Heading, Button, Link, Paragraph, Alert, Table } from '@digdir/designsystemet-react';
 import { type JSONValue } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { Badge, ExternalLink, Hstack, VStack, ScrollShadows, PlaceholderBox } from '@fdk-frontend/ui';
@@ -18,7 +18,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
         <section className={styles.section}>
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='xs'
                 className={styles.heading}
             >
                 <Hstack>
@@ -28,9 +28,10 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
             </Heading>
             {topics.length ? (
                 <ScrollShadows className={styles.tableScroller}>
-                    <table
-                        className={cn('table table--borderless', styles.table)}
+                    <Table
+                        className={cn('table', styles.table)}
                         style={{ minWidth: 600 }}
+                        hover
                     >
                         <tbody>
                             {topics.map((topic: any) => (
@@ -43,7 +44,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
                                 />
                             ))}
                         </tbody>
-                    </table>
+                    </Table>
                 </ScrollShadows>
             ) : (
                 <PlaceholderBox>{dictionary.community.noData}</PlaceholderBox>
@@ -52,15 +53,15 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
                 <VStack>
                     <Heading
                         level={2}
-                        size='xxsmall'
+                        data-size='xs'
                     >
                         {dictionary.community.notice.title}
                     </Heading>
-                    <Paragraph size='sm'>{dictionary.community.notice.body}</Paragraph>
+                    <Paragraph data-size='sm'>{dictionary.community.notice.body}</Paragraph>
                     <Hstack className={styles.toolbar}>
                         <Button
                             variant='secondary'
-                            size='sm'
+                            data-size='sm'
                             asChild
                         >
                             <ExternalLink
@@ -72,7 +73,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
                         </Button>
                         <Button
                             variant='tertiary'
-                            size='sm'
+                            data-size='sm'
                             asChild
                         >
                             <Link href='/docs/community'>{dictionary.community.notice.moreInfo}</Link>

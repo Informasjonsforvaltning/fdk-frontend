@@ -1,20 +1,23 @@
-import type { StorybookConfig } from '@storybook/nextjs';
+import type { StorybookConfig } from '@storybook/react-webpack5';
 import * as path from 'path';
 
 const config: StorybookConfig = {
-    stories: ['../../**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-    addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
+    stories: [
+        '../src/app/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+        '../../libs/ui/src/**/*.stories.@(js|jsx|ts|tsx)',
+        '../../apps/data-norge/src/**/*.stories.@(js|jsx|ts|tsx)',
+    ],
+    addons: ['@storybook/addon-essentials', '@storybook/addon-interactions', '@nx/react/plugins/storybook'],
     framework: {
-        name: '@storybook/nextjs',
+        name: '@storybook/react-webpack5',
         options: {},
     },
-    webpack(baseConfig) {
+    webpackFinal(baseConfig) {
         baseConfig.resolve = {
             ...(baseConfig.resolve ?? {}),
             alias: {
                 ...(baseConfig.resolve?.alias ?? {}),
-                '@opentelemetry/api': 'next/dist/compiled/@opentelemetry/api',
-                '@fdk-frontend/ui/core': path.resolve(__dirname, '../../ui/src/lib/core'),
+                '@fdk-frontend/ui/core': path.resolve(__dirname, '../../libs/ui/src/lib/core'),
             },
         };
         return baseConfig;

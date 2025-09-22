@@ -1,21 +1,24 @@
 @use '../box/box.module' as box;
 
+.popover {
+    padding: 0;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 350px;
+    width: 400px;
 
     @media (max-width: 400px) {
         width: auto;
     }
 
-    :global(.fds-tabs__tablist) {
-        margin: -0.5rem -0.75rem 0;
+    [role='tablist'] {
         display: grid;
         grid-template-columns: 1fr 1fr;
 
-        :global(.fds-tabs__tab) {
+        [role='tab'] {
             padding: 1rem 1.25rem;
         }
     }
@@ -36,8 +39,8 @@
         align-items: start;
         gap: 1rem;
 
-        > :global(.fds-link),
-        > :global(.fds-btn) {
+        > :global(.ds-link),
+        > :global(.ds-btn) {
             white-space: nowrap;
         }
 

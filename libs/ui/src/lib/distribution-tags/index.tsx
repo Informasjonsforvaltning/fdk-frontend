@@ -27,24 +27,24 @@ const DistributionTags = ({
         <TagList {...props}>
             {hasOpenLicense && (
                 <Tag
-                    color='success'
-                    size='sm'
+                    data-color='success'
+                    data-size='md'
                 >
                     {dictionary.distributions.header.openLicense}
                 </Tag>
             )}
             {hasApi && (
                 <Tag
-                    color='success'
-                    size='sm'
+                    data-color='success'
+                    data-size='md'
                 >
                     {dictionary.distributions.header.hasApi}
                 </Tag>
             )}
             {exampleData && (
                 <Tag
-                    color='neutral'
-                    size='sm'
+                    data-color='neutral'
+                    data-size='md'
                 >
                     {dictionary.distributions.header.exampleData}
                 </Tag>
@@ -53,8 +53,8 @@ const DistributionTags = ({
                 ?.filter((format: any) => format?.code)
                 .map((format: any) => (
                     <Tag
-                        color='info'
-                        size='sm'
+                        data-color='info'
+                        data-size='md'
                         key={format.code}
                     >
                         {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}

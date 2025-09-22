@@ -4,32 +4,36 @@
     font-size: 0.8rem;
     line-height: 1rem;
     border-radius: 50px;
-    background: var(--fds-semantic-surface-info-subtle);
+    background: var(--ds-color-surface-tinted);
 
     &[data-color='red'] {
-        background: var(--fds-semantic-surface-danger-default);
+        background: var(--ds-color-danger-base-default);
         color: white;
     }
 
+    &[data-color='orange'] {
+        background: var(--ds-color-warning-base-default);
+    }
+
     &[data-color='blue'] {
-        background: var(--fds-semantic-surface-action-first-default);
+        background: var(--ds-color-info-base-default);
         color: white;
     }
 
     &[data-color='green'] {
-        background: var(--fds-semantic-surface-success-default);
+        background: var(--ds-color-success-base-default);
         color: white;
     }
 
     &[data-color='red-subtle'] {
-        background: var(--fds-semantic-surface-danger-subtle);
+        background: var(--ds-color-danger-surface-tinted);
     }
 
     &[data-color='blue-subtle'] {
-        background: var(--fds-semantic-surface-action-first-subtle);
+        background: var(--ds-color-surface-tinted);
     }
 
     &[data-color='green-subtle'] {
-        background: var(--fds-semantic-surface-success-subtle);
+        background: var(--ds-color-success-surface-tinted);
     }
 }

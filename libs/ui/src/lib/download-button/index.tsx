@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import cn from 'classnames';
-import { Button, type ButtonProps, Modal } from '@digdir/designsystemet-react';
+import { Heading, Button, type ButtonProps, Dialog } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import Badge from '../badge';
@@ -32,7 +32,7 @@ const DownloadButton = ({
         return (
             <Button
                 asChild
-                size='sm'
+                data-size='sm'
                 variant='secondary'
                 onClick={(e) => {
                     e.stopPropagation();
@@ -55,10 +55,10 @@ const DownloadButton = ({
     }
 
     return (
-        <Modal.Root>
-            <Modal.Trigger asChild>
+        <Dialog.TriggerContext>
+            <Dialog.Trigger asChild>
                 <Button
-                    size='sm'
+                    data-size='sm'
                     variant='secondary'
                     {...props}
                 >
@@ -69,14 +69,16 @@ const DownloadButton = ({
                     {children}
                     <Badge>{uris.length}</Badge>
                 </Button>
-            </Modal.Trigger>
-            <Modal.Dialog
+            </Dialog.Trigger>
+            <Dialog
                 ref={modalRef}
                 className={styles.dialog}
-                onInteractOutside={() => modalRef.current?.close()}
+                closedby='any'
             >
-                <Modal.Header closeButton={true}>{modalTitle}</Modal.Header>
-                <Modal.Content className={styles.content}>
+                <Dialog.Block>
+                    <Heading data-size='xs'>{modalTitle}</Heading>
+                </Dialog.Block>
+                <Dialog.Block className={styles.content}>
                     {dictionary.distributions.downloadModal.header}
                     <ul className='fdk-box-list'>
                         {uris?.map((uri: string, index: number) => (
@@ -97,18 +99,18 @@ const DownloadButton = ({
                             </li>
                         ))}
                     </ul>
-                </Modal.Content>
-                <Modal.Footer>
+                </Dialog.Block>
+                <Dialog.Block>
                     <Button
-                        size='sm'
+                        data-size='sm'
                         variant='secondary'
-                        onClick={() => modalRef.current?.close()}
+                        data-command='close'
                     >
                         {dictionary.distributions.downloadModal.closeBtn}
                     </Button>
-                </Modal.Footer>
-            </Modal.Dialog>
-        </Modal.Root>
+                </Dialog.Block>
+            </Dialog>
+        </Dialog.TriggerContext>
     );
 };
 

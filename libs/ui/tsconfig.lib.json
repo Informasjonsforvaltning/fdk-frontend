@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "composite": true,
+        "declaration": true,
         "outDir": "../../dist/out-tsc",
         "target": "es2017",
         "types": [

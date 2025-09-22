@@ -18,6 +18,7 @@ node_modules
 .settings/
 *.sublime-workspace
 .vscode
+.cursor
 
 # misc
 /.sass-cache

@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .header {
     + main {
@@ -21,16 +21,26 @@
                 background: transparent;
 
                 .headerLogo {
-                    &:not(:focus-visible):not(:hover) {
-                        color: white;
+                    &:not(:hover) {
+                        color: white !important;
                     }
                 }
 
+                /*
+                    Override dark mode styles for passive header buttons on frontpage
+                */
                 .headerToolbar {
-                    a,
-                    button {
-                        &:not(:hover):not(:focus-visible) {
-                            color: white;
+                    :global(.ds-button) {
+                        color: white !important;
+
+                        &:last-child {
+                            &:focus-visible,
+                            &:not(:hover):not(:active) {
+                                background: var(--fdk-color-blue);
+                            }
+                            &:hover {
+                                background: var(--fdk-color-blue-dark);
+                            }
                         }
                     }
                 }
@@ -41,18 +51,17 @@
 
 .skipToMain {
     position: fixed;
-    z-index: 200;
+    z-index: 1700;
     display: block;
     width: 100%;
     padding: 1rem;
     border: 0;
-    border-bottom: 2px solid black;
     text-align: center;
     text-decoration: none;
     box-shadow: none;
 
     &:not(:focus) {
-        @include sr-only();
+        @include core-mixins.sr-only();
     }
 }
 
@@ -71,13 +80,12 @@
     &.headerSticky {
         position: fixed;
         background: white;
-        box-shadow: var(--fds-shadow-medium);
+        box-shadow: var(--ds-shadow-md);
     }
 
     .headerInner {
         display: flex;
         align-items: center;
-        // max-width:1280px;
         margin: auto;
         padding: 1rem 2rem;
         justify-content: space-between;
@@ -91,36 +99,14 @@
         }
 
         .headerLogo {
-            &:not(:focus-visible):not(:hover) {
-                color: var(--color-text);
-            }
-        }
-
-        a,
-        button {
-            &:focus-visible {
-                @include fds-focus-visible-block();
-                background: var(--fds-semantic-border-focus-outline);
-                color: black !important;
+            &:not(:hover) {
+                color: var(--fdk-text-color) !important;
             }
         }
 
         .headerToolbar {
             display: flex;
             gap: 1rem;
-
-            a,
-            button {
-                text-decoration: none;
-
-                &:not(:hover) {
-                    color: var(--fds-semantic-surface-action-first-default);
-                }
-
-                &:last-child:not(:focus-visible) {
-                    color: white;
-                }
-            }
 
             @container (max-width: 500px) {
                 gap: 0.5rem;
@@ -134,7 +120,7 @@
             }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 650px) {
             padding: 1rem 1.5rem;
 
             .headerToolbar {

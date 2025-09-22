@@ -13,19 +13,16 @@ type ConceptPreviewProps = PropsWithChildren & {
 const ConceptPreviewBase = ({ label, definition, uri, goToDataNorgeText, children }: ConceptPreviewProps) => {
     return (
         <>
-            <Popover
-                portal
-                placement='bottom'
-            >
+            <Popover.TriggerContext>
                 <Popover.Trigger asChild>{children}</Popover.Trigger>
-                <Popover.Content>
+                <Popover placement='bottom'>
                     {label}
                     <Divider />
                     {definition}
                     <Divider />
                     <Link href={uri}>{goToDataNorgeText}</Link>
-                </Popover.Content>
-            </Popover>
+                </Popover>
+            </Popover.TriggerContext>
         </>
     );
 };

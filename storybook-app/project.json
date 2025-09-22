@@ -1,0 +1,19 @@
+{
+    "name": "storybook-app",
+    "$schema": "../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "storybook-app/src",
+    "projectType": "application",
+    "tags": [],
+    "// targets": "to see all targets run: nx show project storybook-app --web",
+    "targets": {
+        "storybook": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "storybook-app",
+                "command": "storybook dev --port 6007"
+            },
+            "continuous": true,
+            "parallelism": true
+        }
+    }
+}

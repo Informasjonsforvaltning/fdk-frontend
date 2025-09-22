@@ -7,9 +7,9 @@ export const dynamic = 'force-dynamic';
 
 const CatalogsLayout = async ({
     children,
-    params
+    params,
 }: PropsWithChildren & {
-    params: Promise<{ lang: string }>
+    params: Promise<{ lang: string }>;
 }) => {
     const typedParams = params as Promise<{ lang: LocaleCodes }>;
     return <NormalLayout params={typedParams}>{children}</NormalLayout>;

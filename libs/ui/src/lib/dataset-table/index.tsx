@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { Link } from '@digdir/designsystemet-react';
+import { Link, Table } from '@digdir/designsystemet-react';
 import AccessLevelTag from '../access-level-tag';
 import HStack from '../hstack';
 import { printLocaleValue } from '@fdk-frontend/utils';
@@ -21,7 +21,12 @@ const DatasetTable = ({
     ...props
 }: DatasetTableProps & React.HTMLAttributes<HTMLDivElement>) => {
     return (
-        <table className={cn('table', styles.table)}>
+        <Table
+            className={cn('table', styles.table)}
+            data-size='sm'
+            border
+            hover
+        >
             <tbody>
                 {datasets &&
                     datasets.map((dataset: any, index: number) => (
@@ -61,7 +66,7 @@ const DatasetTable = ({
                         </tr>
                     ))}
             </tbody>
-        </table>
+        </Table>
     );
 };
 

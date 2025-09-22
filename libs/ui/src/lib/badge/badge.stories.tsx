@@ -29,3 +29,26 @@ export const Primary: Story = {
         </>
     ),
 };
+
+export const AllColors: Story = {
+    parameters: {
+        nextjs: {
+            appDirectory: true,
+        },
+    },
+    render: () => (
+        <>
+            <div style={{ padding: '1rem' }}>
+                <HStack>
+                    <Badge>Default</Badge>
+                    <Badge data-color='orange'>Orange</Badge>
+                    <Badge data-color='green'>Green</Badge>
+                    <Badge data-color='red'>Red</Badge>
+                    <Badge data-color='red-subtle'>Red Subtle</Badge>
+                    <Badge data-color='blue-subtle'>Blue Subtle</Badge>
+                    <Badge data-color='green-subtle'>Green Subtle</Badge>
+                </HStack>
+            </div>
+        </>
+    ),
+};

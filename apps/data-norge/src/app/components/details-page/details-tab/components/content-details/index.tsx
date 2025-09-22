@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { Heading, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import { Heading, Paragraph } from '@digdir/designsystemet-react';
 import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
+import { HelpText } from '@fellesdatakatalog/ui';
 
 const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
@@ -11,7 +12,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
         <section>
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='xs'
             >
                 {dictionary.details.content.title}
             </Heading>
@@ -88,12 +89,8 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>
                             <Hstack>
                                 <span>{dictionary.details.content.issued}:</span>
-                                <HelpText
-                                    title={dictionary.details.general.firstHarvestedHelpTextTitle}
-                                    size='sm'
-                                    style={{ transform: 'scale(0.75)' }}
-                                >
-                                    <Paragraph size='sm'>{dictionary.details.content.issuedHelpText}</Paragraph>
+                                <HelpText aria-label={dictionary.details.general.firstHarvestedHelpTextTitle}>
+                                    <Paragraph>{dictionary.details.content.issuedHelpText}</Paragraph>
                                 </HelpText>
                             </Hstack>
                         </dt>
@@ -252,12 +249,8 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>
                             <Hstack>
                                 {dictionary.details.content.conformsTo}:
-                                <HelpText
-                                    title={dictionary.details.content.conformsToHelpText}
-                                    size='sm'
-                                    style={{ transform: 'scale(0.75)' }}
-                                >
-                                    <Paragraph size='sm'>{dictionary.details.content.conformsToHelpText}</Paragraph>
+                                <HelpText aria-label={dictionary.details.content.conformsToHelpText}>
+                                    <Paragraph>{dictionary.details.content.conformsToHelpText}</Paragraph>
                                 </HelpText>
                             </Hstack>
                         </dt>

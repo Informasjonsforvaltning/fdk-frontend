@@ -178,7 +178,7 @@ const DistributionDetails = ({
                             renderItem={(license) => (
                                 <LicenseBoxLink
                                     uri={license.uri}
-                                    dictionary={dictionaries.common}
+                                    openLicenseLabel={dictionaries.detailsPage.distributions.header.openLicense}
                                     locale={locale}
                                 >
                                     {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}

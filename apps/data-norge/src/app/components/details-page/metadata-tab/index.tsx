@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { CopyButton, InputWithCopyButton, Hstack } from '@fdk-frontend/ui';
+import { InputWithCopyButton, Hstack } from '@fdk-frontend/ui';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { ToggleGroup, Heading, Spinner, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
+import { ToggleGroup, Heading, Spinner, Paragraph, Link } from '@digdir/designsystemet-react';
+import { CopyButton, HelpText } from '@fellesdatakatalog/ui';
 
 import styles from './metadata-tab.module.scss';
 
@@ -69,17 +70,13 @@ const MetadataTab = ({
             <div className={styles.header}>
                 <Heading
                     level={2}
-                    size='xxsmall'
+                    data-size='xs'
                 >
                     <Hstack>
                         Resource Description Framework (RDF)
-                        <HelpText
-                            title={dictionary.rdf.titleHelpTextTitle}
-                            size='sm'
-                            style={{ transform: 'scale(0.75)' }}
-                        >
-                            <Paragraph size='sm'>{dictionary.rdf.titleHelpText}</Paragraph>
-                            <Paragraph size='sm'>
+                        <HelpText aria-label={dictionary.rdf.titleHelpTextTitle}>
+                            <Paragraph data-size='md'>{dictionary.rdf.titleHelpText}</Paragraph>
+                            <Paragraph data-size='md'>
                                 <Link href={`/${locale}/docs/sharing-data/rdf`}>
                                     {dictionary.rdf.titleHelpTextLink}
                                 </Link>
@@ -91,9 +88,8 @@ const MetadataTab = ({
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         {`${dictionary.rdf.loading}...`}
                         <Spinner
-                            title={dictionary.rdf.loading}
-                            size='xs'
-                            variant='interaction'
+                            aria-label={dictionary.rdf.loading}
+                            data-size='xs'
                             aria-hidden={true}
                         />
                     </div>
@@ -109,7 +105,7 @@ const MetadataTab = ({
                 <div className={styles.toolbar}>
                     <ToggleGroup
                         defaultValue={contentType}
-                        size='sm'
+                        data-size='sm'
                         onChange={(value) => setContentType(value)}
                     >
                         <ToggleGroup.Item value='text/turtle'>Turtle</ToggleGroup.Item>
@@ -119,11 +115,15 @@ const MetadataTab = ({
                 </div>
             </div>
             <div className={cn(styles.content, styles.article)}>
-                <CopyButton
-                    copyLabel={dictionary.rdf.copyButton.at(0)}
-                    copiedLabel={dictionary.rdf.copyButton.at(1)}
-                    copyOnClick={source}
-                />
+                <div className={styles.copyButton}>
+                    <CopyButton
+                        copyLabel={dictionary.rdf.copyButton.at(0)}
+                        copiedLabel={dictionary.rdf.copyButton.at(1)}
+                        copyOnClick={source}
+                        data-color-scheme='dark'
+                        icon
+                    />
+                </div>
                 <SyntaxHighlighter
                     language={syntax[contentType as keyof typeof syntax]}
                     style={vscDarkPlus}

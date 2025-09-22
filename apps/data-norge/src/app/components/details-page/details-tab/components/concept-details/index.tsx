@@ -9,7 +9,7 @@ const ConceptDetails = ({ dataset, locale, dictionary, concepts }: DatasetDetail
         <section>
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='xs'
             >
                 {dictionary.details.concepts.title}
             </Heading>

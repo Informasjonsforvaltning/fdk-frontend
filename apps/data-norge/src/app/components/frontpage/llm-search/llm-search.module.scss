@@ -10,8 +10,8 @@
 
 .llmSearchButton {
     position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
+    right: calc(0.5rem - 1px);
+    bottom: calc(0.5rem - 1px);
     font-size: medium;
 
     title + circle {
@@ -33,8 +33,16 @@
     position: relative;
     gap: 1rem;
 
+    :global(.ds-field-affixes) {
+        background: transparent !important;
+
+        + :global(.ds-validation-message) {
+            display: none;
+        }
+    }
+
     input {
-        background: rgba(0, 0, 0, 0.33333);
+        background-color: rgba(0, 0, 0, 0.33333);
         color: white;
         padding-right: 7rem;
         font-size: 1.25rem;
@@ -47,6 +55,15 @@
         &:hover {
             border-color: rgba(255, 255, 255, 0.75);
             box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+        }
+
+        &[aria-invalid] {
+            border-color: var(--fdk-color-red);
+
+            &:focus,
+            &:hover {
+                box-shadow: inset 0 0 0 1px var(--fdk-color-red);
+            }
         }
     }
 
@@ -72,7 +89,7 @@
 
 .status {
     margin-top: 1rem;
-    color: var(--fds-semantic-border-action-first-subtle);
+    color: var(--fdk-color-cyan);
 
     .errorMessage {
         color: var(--fds-brand-alt1-600);
