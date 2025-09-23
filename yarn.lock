@@ -2042,32 +2042,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digdir/designsystemet-css@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "@digdir/designsystemet-css@npm:0.10.0"
-  checksum: 10c0/695f3bedf73aa440d832bccdf710a7ebb1a0fc05bfce2b4f9a70fb3e8abfae67f3792cfaaaddf1d87f5a2e7cd8edbf2e6f0d3fd020878b731dee5e3f61044935
+"@digdir/designsystemet-css@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@digdir/designsystemet-css@npm:1.5.1"
+  checksum: 10c0/34c22e0127e1a15c7a3ca3d6246c92fc3d9727fb45768e08faae47f255249d7eb12aa79369d9bfcd743fc3210e3949040e849902d93a0fc6f0b4c7dc82b6502b
   languageName: node
   linkType: hard
 
-"@digdir/designsystemet-react@npm:^0.63.1":
-  version: 0.63.1
-  resolution: "@digdir/designsystemet-react@npm:0.63.1"
+"@digdir/designsystemet-react@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@digdir/designsystemet-react@npm:1.5.1"
   dependencies:
-    "@floating-ui/react": "npm:0.26.12"
-    "@navikt/aksel-icons": "npm:^5.12.2"
-    "@radix-ui/react-slot": "npm:^1.0.2"
-    "@tanstack/react-virtual": "npm:^3.2.0"
+    "@floating-ui/dom": "npm:^1.7.4"
+    "@floating-ui/react": "npm:0.26.23"
+    "@navikt/aksel-icons": "npm:^7.29.1"
+    "@radix-ui/react-slot": "npm:^1.2.3"
+    "@tanstack/react-virtual": "npm:^3.13.12"
+    "@u-elements/u-combobox": "npm:^1.0.1"
+    "@u-elements/u-datalist": "npm:^1.0.14"
+    "@u-elements/u-details": "npm:^0.1.5"
+    clsx: "npm:^2.1.1"
   peerDependencies:
-    react: ">=18.3.1"
-    react-dom: ">=18.3.1"
-  checksum: 10c0/20ad11de9fb0203ff10cffd0966b56a39503a7863db1aa69b772e38b47c3fd98828a60310a4ce8c1d4163d7edc9704341222877286e6a7ad65723b7909e2ac5b
+    react: ">=18.3.1 || ^19.0.0"
+    react-dom: ">=18.3.1 || ^19.0.0"
+  checksum: 10c0/35f946c44d7e07c2bb3044827f425560575e03b983087725325b2fa5aa813ec43d2423f8f24fa317ea9f9788b82a2f76d31363fbb72520b39482c639c4fd5274
   languageName: node
   linkType: hard
 
-"@digdir/designsystemet-theme@npm:^0.15.3":
-  version: 0.15.3
-  resolution: "@digdir/designsystemet-theme@npm:0.15.3"
-  checksum: 10c0/1aab6ad54c3442aaf0fab9b5585e640c596a6d3a45cb8bbb3ca959f15d592321e7c9db01bca0bb778aaeb04fb04901e56b2b01bbd6aa0b8a9b2b6ad54d8a6e72
+"@digdir/designsystemet-theme@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@digdir/designsystemet-theme@npm:1.5.1"
+  checksum: 10c0/81442cbe470fd9d3082c0547c60aaf4700c4e37340392dc72a2b3cf5c03c51a2a5d55e819becf4a89511f83f29714059ab4e2ba5b6e4ec671e1f9da4dc0d0f53
   languageName: node
   linkType: hard
 
@@ -2633,43 +2638,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/dom@npm:^1.7.3":
-  version: 1.7.3
-  resolution: "@floating-ui/dom@npm:1.7.3"
+"@floating-ui/dom@npm:^1.7.4":
+  version: 1.7.4
+  resolution: "@floating-ui/dom@npm:1.7.4"
   dependencies:
     "@floating-ui/core": "npm:^1.7.3"
     "@floating-ui/utils": "npm:^0.2.10"
-  checksum: 10c0/cba30e9af1a52fb7cb443ae516d7aec032b33da2fa50914dcb18fc834dc31c71922f5c7653431e70d493f347018b2ce6435c98b3f154d92082345689b4458e59
+  checksum: 10c0/da6166c25f9b0729caa9f498685a73a0e28251613b35d27db8de8014bc9d045158a23c092b405321a3d67c2064909b6e2a7e6c1c9cc0f62967dca5779f5aef30
   languageName: node
   linkType: hard
 
-"@floating-ui/react-dom@npm:^2.0.0":
-  version: 2.1.5
-  resolution: "@floating-ui/react-dom@npm:2.1.5"
+"@floating-ui/react-dom@npm:^2.1.1":
+  version: 2.1.6
+  resolution: "@floating-ui/react-dom@npm:2.1.6"
   dependencies:
-    "@floating-ui/dom": "npm:^1.7.3"
+    "@floating-ui/dom": "npm:^1.7.4"
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 10c0/2dc9571845138e5f39952900fa4d1ad077968c97c1fd1eae30e624db42a29f6fc897c11f926b5e63c468d541eff78b41c2aa1ec45eed2f3a1cc8aa95898f3260
+  checksum: 10c0/6654834a8e73ecbdbc6cad2ad8f7abc698ac7c1800ded4d61113525c591c03d2e3b59d3cf9205859221465ea38c87af4f9e6e204703c5b7a7e85332d1eef2e18
   languageName: node
   linkType: hard
 
-"@floating-ui/react@npm:0.26.12":
-  version: 0.26.12
-  resolution: "@floating-ui/react@npm:0.26.12"
+"@floating-ui/react@npm:0.26.23":
+  version: 0.26.23
+  resolution: "@floating-ui/react@npm:0.26.23"
   dependencies:
-    "@floating-ui/react-dom": "npm:^2.0.0"
-    "@floating-ui/utils": "npm:^0.2.0"
+    "@floating-ui/react-dom": "npm:^2.1.1"
+    "@floating-ui/utils": "npm:^0.2.7"
     tabbable: "npm:^6.0.0"
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 10c0/f47e133b9fe5dd404886c4e69e760dc0d6ab30774de82b5547cba83d0cd6e7a3bb4c221587e115a3c0c466ac344578c3db78b5808b5acd70ae5d43d587de9fd1
+  checksum: 10c0/d339c3d760e83c8384a16c8a38fb47f7f855a3db4d19117fd54cccbf871a27b089887202074e9871ffc19ad769bed709ecdd69445a39d2ea9406c84814427f3b
   languageName: node
   linkType: hard
 
-"@floating-ui/utils@npm:^0.2.0, @floating-ui/utils@npm:^0.2.10":
+"@floating-ui/utils@npm:^0.2.10, @floating-ui/utils@npm:^0.2.7":
   version: 0.2.10
   resolution: "@floating-ui/utils@npm:0.2.10"
   checksum: 10c0/e9bc2a1730ede1ee25843937e911ab6e846a733a4488623cd353f94721b05ec2c9ec6437613a2ac9379a94c2fd40c797a2ba6fa1df2716f5ce4aa6ddb1cf9ea4
@@ -4859,14 +4864,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^5.12.2":
-  version: 5.18.3
-  resolution: "@navikt/aksel-icons@npm:5.18.3"
-  checksum: 10c0/1a1bb143f0353fea6d383a4b1be2a9c34826b9e4b7f64c1decf85cf660db60fb9ed1e468e8423af6ebe8b0e399fc1621d8a9cab0ef9949a3582ae9adb916bc0d
-  languageName: node
-  linkType: hard
-
-"@navikt/aksel-icons@npm:^7.30.0":
+"@navikt/aksel-icons@npm:^7.29.1, @navikt/aksel-icons@npm:^7.30.0":
   version: 7.30.1
   resolution: "@navikt/aksel-icons@npm:7.30.1"
   checksum: 10c0/0efcb981a9a57250d6484909b89b3f3ec94a96b445d651f52de2b3ec5b4120bd21a58e585e33502e5ffaeee6d6645251906c4102d5bae893e179c05623f0c61f
@@ -5826,7 +5824,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-slot@npm:^1.0.2":
+"@radix-ui/react-slot@npm:^1.2.3":
   version: 1.2.3
   resolution: "@radix-ui/react-slot@npm:1.2.3"
   dependencies:
@@ -7383,7 +7381,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-virtual@npm:^3.2.0":
+"@tanstack/react-virtual@npm:^3.13.12":
   version: 3.13.12
   resolution: "@tanstack/react-virtual@npm:3.13.12"
   dependencies:
@@ -8471,6 +8469,27 @@ __metadata:
     "@typescript-eslint/types": "npm:8.43.0"
     eslint-visitor-keys: "npm:^4.2.1"
   checksum: 10c0/5d576eaf7bea41933ba726f4b24410bd3fc2521ef286967c3dc630c6a90fabff2a2d7c4d12cb841d3f946d2e5e6fb2605e7edd84e3360308fe379dbf2b8dc2fa
+  languageName: node
+  linkType: hard
+
+"@u-elements/u-combobox@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@u-elements/u-combobox@npm:1.0.1"
+  checksum: 10c0/a2373c4995b71310b2a0704108c0c1846314bd76c923e27056fff6cc4634dacb1130e2cf44943b1725f60541ca8a8611413989efe9328d915321cbc404abfc10
+  languageName: node
+  linkType: hard
+
+"@u-elements/u-datalist@npm:^1.0.14":
+  version: 1.0.14
+  resolution: "@u-elements/u-datalist@npm:1.0.14"
+  checksum: 10c0/d9190f969c564fb88b1b94c1b9992fed58ca3c865543fdbcf70f688f3e87dedfcb3f96582f70a61f1bd68ee3b4c964b340412671597dea659471982354131b4a
+  languageName: node
+  linkType: hard
+
+"@u-elements/u-details@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@u-elements/u-details@npm:0.1.5"
+  checksum: 10c0/285342d86f8c4b9503ca707a368f07ef43d0d6370869098b59e1147c067fd0f475b0662a877a88a6a135c74624fc918971050f0715af67c0a2a88022fa85dbc0
   languageName: node
   linkType: hard
 
@@ -10788,6 +10807,13 @@ __metadata:
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
   checksum: 10c0/2176952b3649293473999a95d7bebfc9dc96410f6cbd3d2595cf12fd401f63a4bf41a7adbfd3ab2ff09ed60cb9870c58c6acdd18b87767366fabfc163700f13b
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
   languageName: node
   linkType: hard
 
@@ -13766,9 +13792,9 @@ __metadata:
     "@axe-core/playwright": "npm:^4.10.1"
     "@babel/core": "npm:^7.28.0"
     "@babel/preset-react": "npm:^7.27.1"
-    "@digdir/designsystemet-css": "npm:^0.10.0"
-    "@digdir/designsystemet-react": "npm:^0.63.1"
-    "@digdir/designsystemet-theme": "npm:^0.15.3"
+    "@digdir/designsystemet-css": "npm:^1.5.1"
+    "@digdir/designsystemet-react": "npm:^1.5.1"
+    "@digdir/designsystemet-theme": "npm:^1.5.1"
     "@emotion/is-prop-valid": "npm:^1.4.0"
     "@eslint/js": "npm:^9.35.0"
     "@fellesdatakatalog/types": "npm:^1.0.2"

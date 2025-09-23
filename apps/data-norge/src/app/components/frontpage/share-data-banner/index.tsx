@@ -17,7 +17,7 @@ const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
             level={2}
             className={styles.headline}
         >
-            <OrganizationCarousel dictionary={dictionary} />
+            {/* <OrganizationCarousel dictionary={dictionary} /> */}
         </HeadingWithDivider>
         <Paragraph>
             {interpolate(dictionary.shareDataBanner.content, {
@@ -27,10 +27,7 @@ const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
         <div>
             <div className={styles.buttons}>
                 <Button asChild>
-                    <Link
-                        href={`/publishing`}
-                        inverted
-                    >
+                    <Link href={`/publishing`}>
                         {dictionary.shareDataBanner.shareDataLinkText}
                     </Link>
                 </Button>

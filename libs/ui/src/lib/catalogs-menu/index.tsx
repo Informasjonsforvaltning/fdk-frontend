@@ -24,21 +24,16 @@ const CatalogsMenu = ({ dictionary, locale }: CatalogsMenuProps) => {
                         <Card
                             className={styles.card}
                             asChild
-                            isLink
                         >
                             <Link href={`${item.href}`}>
-                                <Card.Header>
-                                    <Heading
-                                        className={styles.catalogTitle}
-                                        size='xxsmall'
-                                        level={3}
-                                    >
-                                        <span>{item.title}</span>
-                                    </Heading>
-                                </Card.Header>
-                                <Card.Content>
-                                    <Paragraph size='small'>{item.description}</Paragraph>
-                                </Card.Content>
+                                <Heading
+                                    className={styles.catalogTitle}
+                                    size='xxsmall'
+                                    level={3}
+                                >
+                                    <span>{item.title}</span>
+                                </Heading>
+                                <Paragraph size='small'>{item.description}</Paragraph>
                             </Link>
                         </Card>
                     </li>

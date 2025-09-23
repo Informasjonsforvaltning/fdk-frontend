@@ -35,7 +35,7 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
                     getResultsText()
                 )}
             </div>
-            <HelpText
+            {/* <HelpText
                 size='sm'
                 title={dictionary.aiBanner.tooltip.label}
                 className={styles.helptext}
@@ -54,7 +54,7 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
                         </Link>
                     </Button>
                 </Paragraph>
-            </HelpText>
+            </HelpText> */}
         </div>
     );
 };

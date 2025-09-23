@@ -1,32 +1,59 @@
+@layer reset, fds;
+
 @import './reset.css';
-@import '@digdir/designsystemet-theme';
 @import '@digdir/designsystemet-css';
+@import '@digdir/designsystemet-theme';
 
-// :root {
-//     --color-text: #1e2b3c;
-//     --color-link: var(--fds-semantic-surface-action-first-default);
-//     --color-link-negative: var(--fds-semantic-border-action-first-subtle);
-//     --color-fdk-navy: var(--fds-semantic-surface-neutral-inverted);
-//     --color-fdk-navy-dark: color-mix(in srgb, var(--color-fdk-navy), #000 60%);
-// }
+:root {
+    // Colors
+    --fdk-color-navy: #1e2b3c;
+    --fdk-color-navy-dark: color-mix(in srgb, var(--fdk-color-navy), #000 60%);
+    --fdk-color-blue: var(--ds-color-base-default);
+    --fdk-color-cyan: var(--ds-color-accent-surface-active);
+    
+    // Other variables
+    --fdk-interactive-color: var(--fdk-color-blue);
+    --fdk-interactive-color-negative: var(--fdk-color-blue);
+    --fdk-text-color: var(--fdk-color-navy);
+    --fdk-text-color--negative: white;
+    --fdk-link-color: var(--fdk-interactive-color);
+    --fdk-link-color-negative: var(--fdk-interactive-color-negative);
+}
 
-// body {
-//     font-family:
-//         system-ui,
-//         -apple-system,
-//         BlinkMacSystemFont,
-//         'Segoe UI',
-//         Roboto,
-//         'Helvetica Neue',
-//         Arial,
-//         sans-serif;
-//     background: var(--color-fdk-navy-dark);
-//     color: var(--color-text);
+/*
+Needed for sticky header:
+    When scrolling to an element (e.g. via anchor links or element.scrollIntoView()),
+    leave 5 rem of space between the top of the viewport and the target element.
+*/
+html {
+    scroll-padding-top: 5rem;
+}
 
-//     main {
-//         background: white;
-//     }
-// }
+html, body {
+    font-size: 16px;
+
+    @media (max-width: 650px) {
+        font-size: 14px;
+    }
+}
+
+body {
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        'Helvetica Neue',
+        Arial,
+        sans-serif;
+    background: var(--fdk-color-navy-dark);
+    color: var(--fdk-text-color);
+
+    main {
+        background: white;
+    }
+}
 
 /*
 @use '../box-list/styles.module' as box-list;
@@ -87,15 +114,6 @@ code {
         white-space: break-spaces;
         border-radius: 6px;
         color: #444;
-    }
-}
-
-html {
-    font-size: 16px;
-    scroll-padding-top: 5rem;
-
-    @media (max-width: 650px) {
-        font-size: 14px;
     }
 }
 

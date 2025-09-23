@@ -60,9 +60,9 @@ const OrganizationCarousel = ({ dictionary }: Props) => {
                         {`${dictionary.shareDataBanner.doLike} ${shuffledOrganizations[currentIndex]}`}
                     </span>
                 </Popover.Trigger>
-                <Popover.Content>
+                <Popover>
                     {isPaused ? dictionary.shareDataBanner.popover.start : dictionary.shareDataBanner.popover.pause}
-                </Popover.Content>
+                </Popover>
             </Popover>
         </div>
     );

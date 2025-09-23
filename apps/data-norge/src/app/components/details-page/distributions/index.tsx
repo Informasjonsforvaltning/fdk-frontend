@@ -38,6 +38,7 @@ const Distributions = ({
     resolvedDistributionInformationModels = [],
     ...props
 }: DistributionsProps) => {
+    return false;
     return (
         <div className={cn(styles.distributions, className)}>
             <Heading
