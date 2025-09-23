@@ -82,41 +82,32 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
                     <div className={styles.headerToolbar}>
                         <Button
                             asChild
-                            size='small'
+                            data-size='sm'
                             variant='tertiary'
                             aria-label={dictionary.header.findDataButton}
                         >
                             <Link href={`/search-all`}>
-                                <MagnifyingGlassIcon
-                                    aria-hidden
-                                    fontSize='1.5em'
-                                />
+                                <MagnifyingGlassIcon aria-hidden />
                                 <span>{dictionary.header.findDataButton}</span>
                             </Link>
                         </Button>
                         <Button
-                            size='small'
+                            data-size='sm'
                             variant={showMenu ? 'secondary' : 'tertiary'}
                             onClick={() => setShowMenu(!showMenu)}
                             aria-label={dictionary.header.menuButton}
                             aria-pressed={showMenu}
                         >
                             {showMenu ? (
-                                <XMarkIcon
-                                    aria-hidden
-                                    fontSize='1.5em'
-                                />
+                                <XMarkIcon aria-hidden />
                             ) : (
-                                <MenuHamburgerIcon
-                                    aria-hidden
-                                    fontSize='1.5em'
-                                />
+                                <MenuHamburgerIcon aria-hidden />
                             )}
                             <span>{dictionary.header.menuButton}</span>
                         </Button>
                         <Button
                             asChild
-                            size='small'
+                            data-size='sm'
                             variant='primary'
                         >
                             <Link href={`/publishing`}>

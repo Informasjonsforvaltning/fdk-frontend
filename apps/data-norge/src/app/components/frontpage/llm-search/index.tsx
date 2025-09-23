@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Textfield, Button, Spinner, ErrorMessage } from '@digdir/designsystemet-react';
+import { Textfield, Button, Spinner, ValidationMessage } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
@@ -123,21 +123,22 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                         className={styles.llmInputTextfield}
                         label={<span className={styles.llmInputLabel}>{dictionary.aiBanner.prompt.label}</span>}
                         placeholder={dictionary.aiBanner.prompt.placeholder}
-                        size='large'
+                        data-size='lg'
                         value={query}
-                        error={error}
+                        error={error !== undefined}
                         onChange={(e) => setQuery(e.target.value)}
                         autoComplete='off'
+                        aria-describedby='my-id'
                     />
                     <Button
                         className={styles.llmSearchButton}
                         type='submit'
-                        size='sm'
+                        data-size='sm'
                     >
                         {loading ? (
                             <Spinner
                                 title={dictionary.aiBanner.prompt.loading}
-                                size='xsmall'
+                                data-size='xs'
                                 variant='inverted'
                             />
                         ) : (
@@ -162,13 +163,13 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
             )}
             {error && !loading && (
                 <div className={styles.status}>
-                    <ErrorMessage
+                    <ValidationMessage
                         aria-hidden
-                        className={styles.errorMessage}
-                        size='sm'
+                        className={styles.ValidationMessage}
+                        data-size='sm'
                     >
                         {error}
-                    </ErrorMessage>
+                    </ValidationMessage>
                 </div>
             )}
             {results && !loading && (

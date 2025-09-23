@@ -4,8 +4,12 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    color: var(--fds-semantic-border-action-first-subtle);
+    color: var(--fdk-color-cyan);
     margin-top: 1rem;
+
+    :global(.ds-link) {
+        color: white;
+    }
 }
 
 .helptext {
@@ -24,7 +28,7 @@
         gap: 0.5rem;
         padding: 1rem;
         font-size: 1rem;
-        color: var(--color-text);
+        color: var(--fdk-color-text);
 
         a {
             width: 100%;
