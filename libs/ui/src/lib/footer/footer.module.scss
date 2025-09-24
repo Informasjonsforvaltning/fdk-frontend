@@ -19,24 +19,26 @@
             color: white;
         }
 
-        // :global(.fds-link) {
-        //     &, &:visited {
-        //         color: var(--color-link-negative);
-        //     }
+        :global(.ds-link) {
+            &, &:visited {
+                &:not(:hover):not(:focus-visible) {
+                    color: var(--fdk-link-color-negative);
+                }
+            }
 
-        //     svg {
-        //         fill: var(--color-link-negative);
-        //     }
+            svg {
+                fill: var(--color-link-negative);
+            }
 
-        //     &:hover {
-        //         color: white;
-        //         background: var(--color-fdk-navy);
+            &:hover {
+                color: white;
+                background: var(--color-fdk-navy);
 
-        //         svg {
-        //             fill: white;
-        //         }
-        //     }
-        // }
+                svg {
+                    fill: white;
+                }
+            }
+        }
     }
 
     .bottom {
