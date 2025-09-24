@@ -55,7 +55,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {}, ...rest }: 
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        size='sm'
+                        data-size='sm'
                         id='mainMenu.catalogs.heading'
                     >
                         {dictionary.mainMenu.catalogs.heading}
@@ -81,7 +81,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {}, ...rest }: 
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        size='sm'
+                        data-size='sm'
                         id='mainMenu.help.heading'
                     >
                         {dictionary.mainMenu.help.heading}
@@ -102,7 +102,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {}, ...rest }: 
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        size='sm'
+                        data-size='sm'
                         id='mainMenu.tools.heading'
                     >
                         {dictionary.mainMenu.tools.heading}
@@ -123,7 +123,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {}, ...rest }: 
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        size='sm'
+                        data-size='sm'
                         id='mainMenu.about.heading'
                     >
                         {dictionary.mainMenu.about.heading}

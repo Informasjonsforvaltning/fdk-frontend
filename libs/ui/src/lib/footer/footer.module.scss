@@ -27,12 +27,12 @@
             }
 
             svg {
-                fill: var(--color-link-negative);
+                fill: var(--fdk-link-color-negative);
             }
 
             &:hover {
                 color: white;
-                background: var(--color-fdk-navy);
+                background: var(--fdk-color-navy);
 
                 svg {
                     fill: white;
@@ -62,16 +62,6 @@
                 }
             }
         }
-
-        // a {
-        //     &:not(:hover):not(:focus-visible) {
-        //         color: white;
-
-        //         svg {
-        //             fill: white;
-        //         }
-        //     }
-        // }
 
         .digdirCredit {
             display: flex;
