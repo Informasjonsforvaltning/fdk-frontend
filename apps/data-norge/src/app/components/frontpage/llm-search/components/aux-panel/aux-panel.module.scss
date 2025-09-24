@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .auxPanel {
     display: flex;
@@ -37,7 +37,7 @@
     }
 
     &:focus-visible {
-        @include fds-focus-visible-block();
+        @include core-mixins.focus-visible-block();
 
         svg {
             color: var(--fds-semantic-border-focus-outline);

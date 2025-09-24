@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .sidebar {
     h2 {
@@ -13,7 +13,7 @@
             }
 
             &:focus-visible {
-                @include fds-focus-visible-block();
+                @include core-mixins.focus-visible-block();
             }
         }
     }
@@ -89,7 +89,7 @@
             }
 
             &:focus-visible {
-                @include fds-focus-visible-block();
+                @include core-mixins.focus-visible-block();
             }
         }
     }

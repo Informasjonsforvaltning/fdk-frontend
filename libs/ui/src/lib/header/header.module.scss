@@ -21,6 +21,9 @@
                 background: transparent;
 
                 .headerLogo {
+                    // &:focus-visible {
+                    //     background:transparent;
+                    // }
                     &:not(:focus-visible):not(:hover) {
                         color: white;
                     }
@@ -29,6 +32,10 @@
                 .headerToolbar {
                     a,
                     button {
+                        &:focus-visible {
+                            color: white !important;
+                            background:transparent;
+                        }
                         &:not(:hover):not(:focus-visible) {
                             color: white;
                         }
@@ -46,7 +53,7 @@
     width: 100%;
     padding: 1rem;
     border: 0;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid white;
     text-align: center;
     text-decoration: none;
     box-shadow: none;
@@ -91,17 +98,17 @@
         }
 
         .headerLogo {
-            &:not(:focus-visible):not(:hover) {
-                color: var(--color-text);
-            }
+            // &:not(:focus-visible):not(:hover) {
+            //     color: var(--color-text);
+            // }
         }
 
         a,
         button {
-            &:focus-visible {
-                color: white !important;
-                background:transparent;
-            }
+            // &:focus-visible {
+            //     color: white !important;
+            //     background:transparent;
+            // }
         }
 
         .headerToolbar {

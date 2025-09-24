@@ -129,6 +129,7 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                         onChange={(e) => setQuery(e.target.value)}
                         autoComplete='off'
                         aria-describedby='my-id'
+                        data-color-scheme="dark"
                     />
                     <Button
                         className={styles.llmSearchButton}

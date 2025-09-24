@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .digdirLogoLink,
 .logo {
@@ -45,14 +45,14 @@
         }
     }
 
-    &:active {
-        span {
-            opacity: 0.75;
-        }
-    }
+    // &:active {
+    //     span {
+    //         opacity: 0.75;
+    //     }
+    // }
 
     &:focus-visible {
-        @include fds-focus-visible-block();
-        background: var(--fds-semantic-border-focus-outline);
+        @include core-mixins.focus-visible-block();
+        // background: var(--fds-semantic-border-focus-outline);
     }
 }
