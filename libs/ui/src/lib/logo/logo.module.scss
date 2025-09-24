@@ -32,27 +32,37 @@
     padding: 0.5rem;
     margin: -0.5rem;
     border-radius: 0.25rem;
+    color: var(--fdk-text-color);
+
+    svg {
+        fill: var(--fdk-text-color);
+    }
 
     &:hover {
         background-color: var(--fds-semantic-surface-action-first-no_fill-hover);
         background-color: var(--fdk-color-cyan);
 
-        span {
-            color: var(--color-text);
-        }
-        svg {
-            fill: var(--color-text);
-        }
+        // span {
+        //     color: var(--fdk-text-color);
+        // }
+        // svg {
+        //     fill: var(--fdk-text-color);
+        // }
     }
-
-    // &:active {
-    //     span {
-    //         opacity: 0.75;
-    //     }
-    // }
 
     &:focus-visible {
         @include core-mixins.focus-visible-block();
         // background: var(--fds-semantic-border-focus-outline);
+    }
+
+    &[data-color-scheme="dark"] {
+        &:not(:hover):not(:focus-visible) {
+            background:transparent;
+            color: white;
+            
+            svg {
+                fill: white;
+            }
+        }
     }
 }

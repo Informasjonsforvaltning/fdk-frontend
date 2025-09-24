@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .header {
     + main {
@@ -20,21 +20,22 @@
             &:not(.headerSticky) {
                 background: transparent;
 
-                .headerLogo {
-                    // &:focus-visible {
-                    //     background:transparent;
-                    // }
-                    &:not(:focus-visible):not(:hover) {
-                        color: white;
-                    }
-                }
+                // .headerLogo {
+                //     &:focus-visible {
+                //         background:transparent;
+                //     }
+                //     &:not(:focus-visible):not(:hover) {
+                //         color: white;
+                //     }
+                // }
 
                 .headerToolbar {
                     a,
                     button {
                         &:focus-visible {
-                            color: white !important;
-                            background:transparent;
+                            // color: white !important;
+                            // background:transparent;
+                            // @include core-mixins.focus-visible-block-dark();
                         }
                         &:not(:hover):not(:focus-visible) {
                             color: white;
@@ -53,13 +54,13 @@
     width: 100%;
     padding: 1rem;
     border: 0;
-    border-bottom: 2px solid white;
+    // border-bottom: 2px solid white;
     text-align: center;
     text-decoration: none;
     box-shadow: none;
 
     &:not(:focus) {
-        @include sr-only();
+        @include core-mixins.sr-only();
     }
 }
 
@@ -97,11 +98,11 @@
             padding: 2rem 4rem;
         }
 
-        .headerLogo {
-            // &:not(:focus-visible):not(:hover) {
-            //     color: var(--color-text);
-            // }
-        }
+        // .headerLogo {
+        //     &:not(:focus-visible):not(:hover) {
+        //         color: var(--color-text);
+        //     }
+        // }
 
         a,
         button {
@@ -119,10 +120,18 @@
             button {
                 text-decoration: none;
 
+                /*
+                    Make "Find data" link button have white text 
+                    instead of purple visited link style
+                */
                 &:not(:hover) {
                     color: var(--fdk-interactive-color);
                 }
 
+                /*
+                    Make "Share data" link button have white text
+                    instead of purple visited link style
+                */
                 &:last-child:not(:focus-visible) {
                     color: white;
                 }

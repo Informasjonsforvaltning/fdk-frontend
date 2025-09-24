@@ -27,7 +27,6 @@ const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps)
             <span>{dictionary.aiBanner.suggestions.prefix}</span>&nbsp;
             <Link
                 onClick={handleClick}
-                inverted
                 href='#'
             >
                 {suggestion}

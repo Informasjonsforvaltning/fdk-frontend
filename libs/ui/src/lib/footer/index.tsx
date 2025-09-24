@@ -14,6 +14,7 @@ const Footer = ({ dictionary, locale }: FooterProps) => {
         <footer
             className={styles.footer}
             aria-label='Footer'
+            data-color-scheme="dark"
         >
             <div className={styles.inner}>
                 <MainMenu
@@ -28,10 +29,16 @@ const Footer = ({ dictionary, locale }: FooterProps) => {
             </div>
             <div className={styles.bottom}>
                 <div className={styles.bottomInner}>
-                    <LogoLink href={`/${locale}`} />
+                    <LogoLink
+                        href={`/${locale}`}
+                        data-color-scheme='dark'
+                    />
                     <div className={styles.digdirCredit}>
                         <span>{dictionary.footer.digdirCredit}</span>
-                        <DigdirLogoLink href={`https://www.digdir.no/`} />
+                        <DigdirLogoLink
+                            href={`https://www.digdir.no/`}
+                            data-color-scheme='dark'
+                        />
                     </div>
                 </div>
             </div>

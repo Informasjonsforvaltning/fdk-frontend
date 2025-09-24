@@ -18,7 +18,7 @@ type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
-const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuProps) => {
+const MainMenu = ({ className, dictionary, locale, motionProps = {}, ...rest }: MainMenuProps) => {
     const data = getMainMenuData(dictionary, locale);
     const animations = {
         links: {
@@ -44,6 +44,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
             animate='show'
             aria-label={dictionary.mainMenu.label}
             {...motionProps}
+            {...rest}
         >
             <div className={styles.links}>
                 <MotionNav
