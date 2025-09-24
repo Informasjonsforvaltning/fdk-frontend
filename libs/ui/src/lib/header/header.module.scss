@@ -41,7 +41,7 @@
 
 .skipToMain {
     position: fixed;
-    z-index: 200;
+    z-index: 1700;
     display: block;
     width: 100%;
     padding: 1rem;
@@ -99,9 +99,8 @@
         a,
         button {
             &:focus-visible {
-                @include fds-focus-visible-block();
-                background: var(--fds-semantic-border-focus-outline);
-                color: black !important;
+                color: white !important;
+                background:transparent;
             }
         }
 
@@ -114,7 +113,7 @@
                 text-decoration: none;
 
                 &:not(:hover) {
-                    color: var(--fds-semantic-surface-action-first-default);
+                    color: var(--fdk-interactive-color);
                 }
 
                 &:last-child:not(:focus-visible) {
