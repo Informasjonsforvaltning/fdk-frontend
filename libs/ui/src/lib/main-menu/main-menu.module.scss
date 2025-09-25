@@ -28,22 +28,26 @@
             margin: 0 0 0 -1rem;
             border-radius: 0.25rem;
 
-            &:hover {
-                background: var(--fds-semantic-surface-action-first-no_fill-hover);
-            }
-
-            svg {
-                fill: var(--color-link);
-            }
-
             &:focus-visible {
                 @include core-mixins.focus-visible-block();
-                color: black;
-
-                svg {
-                    fill: black;
-                }
             }
+
+            // &:hover {
+            //     background: var(--fds-semantic-surface-action-first-no_fill-hover);
+            // }
+
+            // svg {
+            //     fill: var(--color-link);
+            // }
+
+            // &:focus-visible {
+            //     @include core-mixins.focus-visible-block();
+            //     color: black;
+
+            //     svg {
+            //         fill: black;
+            //     }
+            // }
         }
 
         .footerCatalogSymbol {

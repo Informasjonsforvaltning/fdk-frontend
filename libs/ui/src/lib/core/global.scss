@@ -62,12 +62,12 @@ body {
 */
 .ds-link {
     &:not(.ds-button) {
-        &:visited:not(:hover):not(:focus):not(:active) {
+        &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
             color: var(--ds-color-text-subtle);
         }
     }
     &.ds-button {
-        &:visited:not(:hover):not(:focus):not(:active) {
+        &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
             color: var(--dsc-button-color);
         }
     }
