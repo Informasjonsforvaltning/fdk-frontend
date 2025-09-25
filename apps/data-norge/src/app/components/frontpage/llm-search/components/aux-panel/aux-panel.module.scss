@@ -4,11 +4,14 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    color: white;
     color: var(--fdk-color-cyan);
     margin-top: 1rem;
 
     :global(.ds-link) {
-        color: white;
+        &:not(:visited):not(:focus):not(:focus-visible) {
+            color: white;
+        }
     }
 }
 

@@ -125,7 +125,7 @@
                     instead of purple visited link style
                 */
                 &:not(:hover) {
-                    color: var(--fdk-interactive-color);
+                    // color: var(--fdk-interactive-color);
                 }
 
                 /*
@@ -133,7 +133,7 @@
                     instead of purple visited link style
                 */
                 &:last-child:not(:focus-visible) {
-                    color: white;
+                    // color: white;
                 }
             }
 

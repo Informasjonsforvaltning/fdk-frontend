@@ -4,12 +4,15 @@
 .logo {
     display: flex;
     justify-content: center;
+    color: var(--ds-color-link-default);
+    // color:red;
 
     svg {
         width: 1.5rem;
         height: 1.5rem;
         margin-right: 0.75rem;
         fill: currentcolor;
+        // fill:red;
     }
 
     span {
@@ -32,15 +35,16 @@
     padding: 0.5rem;
     margin: -0.5rem;
     border-radius: 0.25rem;
-    color: var(--fdk-text-color);
+    // color: var(--fdk-text-color);
 
-    svg {
-        fill: var(--fdk-text-color);
-    }
+    // svg {
+    //     fill: var(--fdk-text-color);
+    // }
 
     &:hover {
         background-color: var(--fds-semantic-surface-action-first-no_fill-hover);
         background-color: var(--fdk-color-cyan);
+        background-color: var(--ds-color-surface-hover);
 
         // span {
         //     color: var(--fdk-text-color);
@@ -55,14 +59,14 @@
         // background: var(--fds-semantic-border-focus-outline);
     }
 
-    &[data-color-scheme="dark"] {
-        &:not(:hover):not(:focus-visible) {
-            background:transparent;
-            color: white;
-            
-            svg {
-                fill: white;
-            }
-        }
-    }
+    // &[data-color-scheme="dark"] {
+    //     &:not(:hover):not(:focus-visible) {
+    //         background:transparent;
+    //         color: white;
+
+    //         svg {
+    //             fill: white;
+    //         }
+    //     }
+    // }
 }

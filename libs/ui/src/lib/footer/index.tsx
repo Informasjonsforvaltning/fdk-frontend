@@ -14,7 +14,7 @@ const Footer = ({ dictionary, locale }: FooterProps) => {
         <footer
             className={styles.footer}
             aria-label='Footer'
-            data-color-scheme="dark"
+            data-color-scheme='dark'
         >
             <div className={styles.inner}>
                 <MainMenu
