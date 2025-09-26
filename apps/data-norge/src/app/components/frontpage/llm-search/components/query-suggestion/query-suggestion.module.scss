@@ -4,6 +4,7 @@
     :global(.ds-link) {
         &:not(:hover):not(:focus):not(:active):not(:focus-visible) {
             color:white;
+            color:yellow;
         }
     }
 }

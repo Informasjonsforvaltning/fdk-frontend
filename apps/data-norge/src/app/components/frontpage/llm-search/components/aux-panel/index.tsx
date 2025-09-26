@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-import { Link, Paragraph, HelpText, Button } from '@digdir/designsystemet-react';
+import { Link, Paragraph, Button } from '@digdir/designsystemet-react';
 
 import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
 

@@ -4,7 +4,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { CopyButton, InputWithCopyButton, Hstack } from '@fdk-frontend/ui';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { ToggleGroup, Heading, Spinner, HelpText, Paragraph, Link } from '@digdir/designsystemet-react';
+import { ToggleGroup, Heading, Spinner, Paragraph, Link } from '@digdir/designsystemet-react';
 
 import styles from './metadata-tab.module.scss';
 
@@ -73,7 +73,8 @@ const MetadataTab = ({
                 >
                     <Hstack>
                         Resource Description Framework (RDF)
-                        <HelpText
+                        {/* TODO: Replace with appropriate component after design system migration */}
+                        {/* <HelpText
                             title={dictionary.rdf.titleHelpTextTitle}
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
@@ -84,7 +85,7 @@ const MetadataTab = ({
                                     {dictionary.rdf.titleHelpTextLink}
                                 </Link>
                             </Paragraph>
-                        </HelpText>
+                        </HelpText> */}
                     </Hstack>
                 </Heading>
                 {loading && (

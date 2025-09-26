@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { Prism as SyntaxHighlighter, type SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import {
-    Ingress,
-    type IngressProps,
     Alert,
     type AlertProps,
     Button,
@@ -123,14 +121,14 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
                 size='sm'
             />
         ),
-        Ingress: ({ children, ...props }: IngressProps) => (
-            <Ingress
-                asChild
+        Ingress: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+            // TODO: Replace with appropriate component after design system migration
+            <Paragraph
                 {...props}
-                size={'md'}
+                size='md'
             >
-                <div>{children}</div>
-            </Ingress>
+                {children}
+            </Paragraph>
         ),
         a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
             if (rest.href?.startsWith('http')) {

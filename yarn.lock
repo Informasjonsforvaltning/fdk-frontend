@@ -4864,7 +4864,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^7.29.1, @navikt/aksel-icons@npm:^7.30.0":
+"@navikt/aksel-icons@npm:^7.29.1":
+  version: 7.31.0
+  resolution: "@navikt/aksel-icons@npm:7.31.0"
+  checksum: 10c0/10488569dec7c49ace82eab9684f122ccfded18fc99f290ea62589d52dc2b63c6c0be8f524308a63cf36cb235b827d2eab96f3079c65643fd34ff9e93552177a
+  languageName: node
+  linkType: hard
+
+"@navikt/aksel-icons@npm:^7.30.0":
   version: 7.30.1
   resolution: "@navikt/aksel-icons@npm:7.30.1"
   checksum: 10c0/0efcb981a9a57250d6484909b89b3f3ec94a96b445d651f52de2b3ec5b4120bd21a58e585e33502e5ffaeee6d6645251906c4102d5bae893e179c05623f0c61f

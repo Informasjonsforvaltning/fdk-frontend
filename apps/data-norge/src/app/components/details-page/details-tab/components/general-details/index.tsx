@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Heading, Link, Tag, type TagProps, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import { Heading, Link, Tag, type TagProps, Paragraph } from '@digdir/designsystemet-react';
 import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, CopyButton } from '@fdk-frontend/ui';
 import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
 import { type DatasetType } from '@fellesdatakatalog/types';
@@ -51,7 +51,8 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 <dt>
                     <Hstack>
                         <span>{dictionary.details.general.firstHarvested}:</span>
-                        <HelpText
+                        {/* TODO: Replace with appropriate component after design system migration */}
+                        {/* <HelpText
                             title={dictionary.details.general.firstHarvestedHelpTextTitle}
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
@@ -62,7 +63,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                     {dictionary.details.general.firstHarvestedHelpTextLink}
                                 </Link>
                             </Paragraph>
-                        </HelpText>
+                        </HelpText> */}
                     </Hstack>
                 </dt>
                 <dd>
@@ -143,7 +144,8 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 <dt>
                     <Hstack>
                         {dictionary.details.general.metadataQuality.title}:
-                        <HelpText
+                        {/* TODO: Replace with appropriate component after design system migration */}
+                        {/* <HelpText
                             title={dictionary.details.general.metadataQuality.helpTextTitle}
                             size='sm'
                             style={{ transform: 'scale(0.75)' }}
@@ -154,7 +156,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                                     {dictionary.details.general.metadataQuality.helpTextLink}
                                 </Link>
                             </Paragraph>
-                        </HelpText>
+                        </HelpText> */}
                     </Hstack>
                 </dt>
                 <dd>

@@ -7,7 +7,7 @@ import Badge from '../badge';
 import PlaceholderBox from '../placeholder-box';
 import DownloadButton from '../download-button';
 import ActionButton from '../action-button';
-import { Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
+import { Tabs, TabsList, TabsTab, TabsPanel } from '@digdir/designsystemet-react';
 import ApiTags from '../api-tags';
 import DistributionTags from '../distribution-tags';
 import ScrollShadows from '../scroll-shadows';
@@ -61,17 +61,17 @@ const UseDatasetPopover = ({
                     setActiveTab(value);
                 }}
             >
-                <TabList>
-                    <Tab value='dist'>
+                <TabsList>
+                    <TabsTab value='dist'>
                         {dictionary.useDatasetPopover.distributions}&nbsp;
                         <Badge>{[...(dataset.distribution ?? []), ...(dataset.sample ?? [])].length}</Badge>
-                    </Tab>
-                    <Tab value='apis'>
+                    </TabsTab>
+                    <TabsTab value='apis'>
                         {dictionary.useDatasetPopover.apis}&nbsp;
                         <Badge>{apis.length}</Badge>
-                    </Tab>
-                </TabList>
-                <TabContent value='dist'>
+                    </TabsTab>
+                </TabsList>
+                <TabsPanel value='dist'>
                     {distributions.length ? (
                         <ScrollShadows className={styles.popoverScroller}>
                             <ul className='fdk-box-list'>
@@ -109,8 +109,8 @@ const UseDatasetPopover = ({
                     ) : (
                         <PlaceholderBox>{dictionary.distributions.placeholder}</PlaceholderBox>
                     )}
-                </TabContent>
-                <TabContent value='apis'>
+                </TabsPanel>
+                <TabsPanel value='apis'>
                     {apis.length ? (
                         <ul className='fdk-box-list'>
                             {apis.map((api, index) => (
@@ -142,7 +142,7 @@ const UseDatasetPopover = ({
                     ) : (
                         <PlaceholderBox>{dictionary.apis.placeholder}</PlaceholderBox>
                     )}
-                </TabContent>
+                </TabsPanel>
             </Tabs>
         </div>
     );
