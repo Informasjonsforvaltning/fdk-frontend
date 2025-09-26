@@ -30,7 +30,7 @@ const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps)
                 href='#'
                 data-color-scheme='dark'
             >
-                {suggestion}
+                {suggestion}hello
             </Link>
         </div>
     );

@@ -20,21 +20,33 @@ const nextConfig = {
     sassOptions: {
         silenceDeprecations: ['legacy-js-api', 'import'],
     },
+    // Ensure CSS HMR works properly
+    compiler: {
+        // Remove console logs in production
+        removeConsole: process.env.NODE_ENV === 'production',
+    },
+    // Force CSS modules to work with HMR
+    cssModules: {
+        // Use a more unique naming pattern for CSS modules
+        localIdentName: '[local]_[hash:base64:5]_[path]',
+    },
     // Add experimental features for better compatibility
     experimental: {
         // Disable React Compiler to prevent hanging issues
         reactCompiler: false,
         // Optimize for development
         optimizePackageImports: ['@digdir/designsystemet-react'],
-        // Enable Turbopack for better HMR
-        turbo: {
-            rules: {
-                '*.scss': {
-                    loaders: ['sass-loader'],
-                    as: '*.css',
-                },
-            },
-        },
+        // Enable CSS modules with better HMR support
+        cssChunking: 'strict',
+        // Disable Turbopack for now to fix CSS HMR issues
+        // turbo: {
+        //     rules: {
+        //         '*.scss': {
+        //             loaders: ['sass-loader'],
+        //             as: '*.css',
+        //         },
+        //     },
+        // },
     },
     // Add timeout configuration
     serverExternalPackages: ['@fellesdatakatalog/types'],
@@ -43,11 +55,6 @@ const nextConfig = {
         unoptimized: process.env.NODE_ENV === 'development',
     },
     webpack: (config) => {
-        // Enable memory caching for better HMR performance
-        config.cache = {
-            type: 'memory',
-        };
-
         // Ignore problematic native dependencies
         config.resolve = {
             ...config.resolve,
@@ -66,20 +73,20 @@ const nextConfig = {
 
         // Optimize for development with HMR-friendly settings
         if (process.env.NODE_ENV === 'development') {
+            // Disable caching completely to prevent CSS HMR issues
+            config.cache = false;
+            
             config.optimization = {
                 ...config.optimization,
                 removeAvailableModules: false,
                 removeEmptyChunks: false,
                 splitChunks: false,
             };
-
-            // Enable source maps for better debugging
-            config.devtool = 'eval-cheap-module-source-map';
             
-            // Improve HMR performance
+            // Improve HMR performance with better file watching
             config.watchOptions = {
                 poll: 1000,
-                aggregateTimeout: 300,
+                aggregateTimeout: 50,
                 ignored: /node_modules/,
             };
         }
