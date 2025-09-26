@@ -57,6 +57,6 @@
     }
 
     &:focus-visible {
-        @include core-mixins.focus-visible-block();
+        @include core-mixins.focus-block();
     }
 }

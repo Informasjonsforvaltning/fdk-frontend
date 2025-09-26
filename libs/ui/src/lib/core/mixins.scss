@@ -9,13 +9,13 @@
     width: 1px;
 }
 
-@mixin focus-visible-inline {
+@mixin focus-inline {
     background: var(--dsc-link-background--focus);
     color: var(--dsc-link-color--focus);
     outline: 2px solid transparent;
 }
 
-@mixin focus-visible-block {
+@mixin focus-block {
     // background: var(--dsc-link-background--focus);
     box-shadow: var(--_ds--focus, var(--dsc-focus-boxShadow));
     outline: var(--_ds--focus, var(--dsc-focus-outline));
@@ -26,7 +26,7 @@
     // }
 }
 
-@mixin focus-visible-block-dark {
+@mixin focus-block-dark {
     // color: var(--fdk-text-color);
     // outline: 2px solid white;
     // outline-offset: 2px;

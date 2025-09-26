@@ -28,6 +28,7 @@ const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps)
             <Link
                 onClick={handleClick}
                 href='#'
+                data-color-scheme='dark'
             >
                 {suggestion}
             </Link>

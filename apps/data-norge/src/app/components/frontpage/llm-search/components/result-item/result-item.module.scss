@@ -1,3 +1,5 @@
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
+
 .link {
     display: flex;
     gap: 0.75rem;
@@ -21,7 +23,7 @@
 
         .publisher {
             font-size: 0.9em;
-            color: var(--fds-semantic-border-action-first-subtle);
+            color: var(--fdk-color-cyan);
         }
     }
 
@@ -33,7 +35,12 @@
         }
     }
 
+    &:focus {
+        @include core-mixins.focus-block();
+        background: rgba(0, 0, 0, 0.3333);
+    }
+
     .description {
-        color: var(--fds-semantic-border-action-first-subtle);
+        color: var(--fdk-color-cyan);
     }
 }

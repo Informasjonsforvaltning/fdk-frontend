@@ -1,13 +1,9 @@
 @use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .querySuggestion {
-    background:red !important;
-
-    :global(.ds-link){
-        color:red !important;
-        &:focus-visible {
-            @include core-mixins.focus-visible-block();
-            color:red;
+    :global(.ds-link) {
+        &:not(:hover):not(:focus):not(:active):not(:focus-visible) {
+            color:white;
         }
     }
 }
