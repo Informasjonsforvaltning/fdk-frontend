@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ReactNode, useRef } from 'react';
-import { Alert, Modal, Button, Tag, Link, Paragraph } from '@digdir/designsystemet-react';
+import { Alert, Dialog, Button, Tag, Link, Paragraph } from '@digdir/designsystemet-react';
 import { DownloadIcon, ArrowDownRightIcon } from '@navikt/aksel-icons';
 import styles from './styles.module.scss';
 import DatasetPreviewTable from '../dataset-preview-table/';
@@ -27,14 +27,14 @@ const DatasetPreviewModal = ({
     const modalRef = useRef<HTMLDialogElement>(null);
 
     return (
-        <Modal.Root>
-            <Modal.Trigger asChild>{trigger}</Modal.Trigger>
-            <Modal.Dialog
+        <Dialog.Root>
+            <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+            <Dialog.Dialog
                 ref={modalRef}
                 className={styles.dialog}
                 onInteractOutside={() => modalRef.current?.close()}
             >
-                <Modal.Header closeButton={true}>
+                <Dialog.Header closeButton={true}>
                     <div className={styles.headerWrapper}>
                         {title}
                         <Tag
@@ -51,8 +51,8 @@ const DatasetPreviewModal = ({
                             <code>{downloadUrl}</code>
                         </Paragraph>
                     </div>
-                </Modal.Header>
-                <Modal.Content className={styles.content}>
+                </Dialog.Header>
+                <Dialog.Content className={styles.content}>
                     <div className={styles.inner}>
                         {data.table ? (
                             <DatasetPreviewTable tableData={data.table} />
@@ -60,8 +60,8 @@ const DatasetPreviewModal = ({
                             <Alert size='sm'>{dictionary.datasetPreview.noTableData}</Alert>
                         )}
                     </div>
-                </Modal.Content>
-                <Modal.Footer>
+                </Dialog.Content>
+                <Dialog.Footer>
                     <Button
                         size='sm'
                         variant='secondary'
@@ -79,9 +79,9 @@ const DatasetPreviewModal = ({
                             {dictionary.datasetPreview.downloadButton}
                         </Link>
                     </Button>
-                </Modal.Footer>
-            </Modal.Dialog>
-        </Modal.Root>
+                </Dialog.Footer>
+            </Dialog.Dialog>
+        </Dialog.Root>
     );
 };
 

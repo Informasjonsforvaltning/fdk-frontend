@@ -1,6 +1,6 @@
 'use client';
 
-import { SkeletonRectangle } from '@digdir/designsystemet-react';
+import { Skeleton } from '@digdir/designsystemet-react';
 import React from 'react';
 import '@zazuko/yasgui/build/yasgui.min.css';
 
@@ -35,7 +35,7 @@ export const SparqlEditor = ({ endpoint, className }: SparqlEditorProps) => {
 
     return (
         <>
-            {!isLoaded && <SkeletonRectangle title="Loading SPARQL editor..." height={400} />}
+            {!isLoaded && <Skeleton title="Loading SPARQL editor..." height={400} />}
             <div ref={containerRef} className={className} />
         </>
     );

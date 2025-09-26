@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import cn from 'classnames';
-import { Button, type ButtonProps, Modal } from '@digdir/designsystemet-react';
+import { Button, type ButtonProps, Dialog } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import Badge from '../badge';
@@ -55,8 +55,8 @@ const DownloadButton = ({
     }
 
     return (
-        <Modal.Root>
-            <Modal.Trigger asChild>
+        <Dialog.Root>
+            <Dialog.Trigger asChild>
                 <Button
                     size='sm'
                     variant='secondary'
@@ -69,14 +69,14 @@ const DownloadButton = ({
                     {children}
                     <Badge>{uris.length}</Badge>
                 </Button>
-            </Modal.Trigger>
-            <Modal.Dialog
+            </Dialog.Trigger>
+            <Dialog.Dialog
                 ref={modalRef}
                 className={styles.dialog}
                 onInteractOutside={() => modalRef.current?.close()}
             >
-                <Modal.Header closeButton={true}>{modalTitle}</Modal.Header>
-                <Modal.Content className={styles.content}>
+                <Dialog.Header closeButton={true}>{modalTitle}</Dialog.Header>
+                <Dialog.Content className={styles.content}>
                     {dictionary.distributions.downloadModal.header}
                     <ul className='fdk-box-list'>
                         {uris?.map((uri: string, index: number) => (
@@ -97,8 +97,8 @@ const DownloadButton = ({
                             </li>
                         ))}
                     </ul>
-                </Modal.Content>
-                <Modal.Footer>
+                </Dialog.Content>
+                <Dialog.Footer>
                     <Button
                         size='sm'
                         variant='secondary'
@@ -106,9 +106,9 @@ const DownloadButton = ({
                     >
                         {dictionary.distributions.downloadModal.closeBtn}
                     </Button>
-                </Modal.Footer>
-            </Modal.Dialog>
-        </Modal.Root>
+                </Dialog.Footer>
+            </Dialog.Dialog>
+        </Dialog.Root>
     );
 };
 

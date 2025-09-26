@@ -72,14 +72,14 @@ const DatasetHeader = ({
                     placement='bottom-end'
                 >
                     <Popover.Trigger size='sm'>{dictionaries.detailsPage.header.useDatasetButton}</Popover.Trigger>
-                    <Popover.Content style={{ maxWidth: 350 }}>
+                    <Popover style={{ maxWidth: 350 }}>
                         <UseDatasetPopover
                             dataset={dataset}
                             apis={apis}
                             dictionary={dictionaries.detailsPage}
                             locale={locale}
                         />
-                    </Popover.Content>
+                    </Popover>
                 </Popover>
             </div>
             <TagList className={styles.headerTags}>

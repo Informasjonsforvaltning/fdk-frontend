@@ -2,7 +2,7 @@ import React from 'react';
 import { type Dataset } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { ChipGroup, ChipToggle, Link } from '@digdir/designsystemet-react';
+import { Tag, Link } from '@digdir/designsystemet-react';
 
 type DatasetTagsProps = {
     locale: LocaleCodes;
@@ -11,13 +11,13 @@ type DatasetTagsProps = {
 
 const DatasetTags = ({ locale, dataset }: DatasetTagsProps & React.HTMLAttributes<HTMLDivElement>) => {
     return (
-        <ChipGroup size='sm'>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {dataset.theme?.map((theme: any) => (
                 <Link
                     key={theme.code}
                     href={`/datasets?theme=${theme.code}`}
                 >
-                    <ChipToggle>{printLocaleValue(locale, theme.title) || theme.code}</ChipToggle>
+                    <Tag size='sm'>{printLocaleValue(locale, theme.title) || theme.code}</Tag>
                 </Link>
             ))}
             {dataset.losTheme?.map((theme: any) => (
@@ -25,10 +25,10 @@ const DatasetTags = ({ locale, dataset }: DatasetTagsProps & React.HTMLAttribute
                     key={theme.code}
                     href={`/datasets?losTheme=${theme.code}`}
                 >
-                    <ChipToggle>{printLocaleValue(locale, theme.name) || theme.code}</ChipToggle>
+                    <Tag size='sm'>{printLocaleValue(locale, theme.name) || theme.code}</Tag>
                 </Link>
             ))}
-        </ChipGroup>
+        </div>
     );
 };
 

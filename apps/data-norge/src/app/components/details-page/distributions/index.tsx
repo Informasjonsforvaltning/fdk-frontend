@@ -1,6 +1,6 @@
 'use client';
 import cn from 'classnames';
-import { Accordion, Heading } from '@digdir/designsystemet-react';
+import { Details, Heading } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
@@ -51,13 +51,13 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {sumArrayLengths(datasets, exampleData) > 0 ? (
-                <Accordion border>
+                <Details border>
                     {datasets && datasets.map((distribution, index) => (
-                        <Accordion.Item
+                        <Details.Item
                             className={styles.accordionItem}
                             key={`${distribution.accessURL}-${index}`}
                         >
-                            <Accordion.Header
+                            <Details.Header
                                 level={3}
                                 className={styles.header}
                             >
@@ -66,7 +66,7 @@ const Distributions = ({
                                     locale={locale}
                                     dictionary={dictionaries.detailsPage}
                                 />
-                            </Accordion.Header>
+                            </Details.Header>
                             {distribution.accessURL && (
                                 <DownloadButton
                                     uris={distribution.accessURL}
@@ -81,7 +81,7 @@ const Distributions = ({
                                     {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
                                 </DownloadButton>
                             )}
-                            <Accordion.Content className={styles.content}>
+                            <Details.Content className={styles.content}>
                                 <DistributionDetails
                                     distribution={distribution}
                                     locale={locale}
@@ -89,16 +89,16 @@ const Distributions = ({
                                     resolvedDistributionDataServices={resolvedDistributionDataServices}
                                     resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                                 />
-                            </Accordion.Content>
-                        </Accordion.Item>
+                            </Details.Content>
+                        </Details.Item>
                     ))}
                     {exampleData &&
                         exampleData.map((example, index) => (
-                            <Accordion.Item
+                            <Details.Item
                                 className={styles.accordionItem}
                                 key={example.accessURL}
                             >
-                                <Accordion.Header
+                                <Details.Header
                                     level={3}
                                     className={styles.header}
                                 >
@@ -108,7 +108,7 @@ const Distributions = ({
                                         dictionary={dictionaries.detailsPage}
                                         exampleData={true}
                                     />
-                                </Accordion.Header>
+                                </Details.Header>
                                 <DownloadButton
                                     uris={example.accessURL}
                                     className={styles.actionButton}
@@ -121,7 +121,7 @@ const Distributions = ({
                                 >
                                     {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
                                 </DownloadButton>
-                                <Accordion.Content className={styles.content}>
+                                <Details.Content className={styles.content}>
                                     <DistributionDetails
                                         distribution={example}
                                         locale={locale}
@@ -129,10 +129,10 @@ const Distributions = ({
                                         resolvedDistributionDataServices={resolvedDistributionDataServices}
                                         resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                                     />
-                                </Accordion.Content>
-                            </Accordion.Item>
+                                </Details.Content>
+                            </Details.Item>
                         ))}
-                </Accordion>
+                </Details>
             ) : (
                 <PlaceholderBox>{dictionaries.detailsPage.distributions.placeholder}</PlaceholderBox>
             )}
@@ -146,13 +146,13 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {apis && apis.length ? (
-                <Accordion border>
+                <Details border>
                     {apis.map((api, index) => (
-                        <Accordion.Item
+                        <Details.Item
                             className={styles.accordionItem}
                             key={api.id}
                         >
-                            <Accordion.Header
+                            <Details.Header
                                 level={3}
                                 className={styles.header}
                             >
@@ -161,7 +161,7 @@ const Distributions = ({
                                     locale={locale}
                                     dictionary={dictionaries.detailsPage}
                                 />
-                            </Accordion.Header>
+                            </Details.Header>
                             <ActionButton
                                 uri={`/data-services/${api.id}`}
                                 className={styles.actionButton}
@@ -172,16 +172,16 @@ const Distributions = ({
                                     fontSize='1.2em'
                                 />
                             </ActionButton>
-                            <Accordion.Content className={styles.content}>
+                            <Details.Content className={styles.content}>
                                 <ApiDetails
                                     api={api}
                                     locale={locale}
                                     dictionary={dictionaries.detailsPage}
                                 />
-                            </Accordion.Content>
-                        </Accordion.Item>
+                            </Details.Content>
+                        </Details.Item>
                     ))}
-                </Accordion>
+                </Details>
             ) : (
                 <PlaceholderBox>{dictionaries.detailsPage.apis.placeholder}</PlaceholderBox>
             )}

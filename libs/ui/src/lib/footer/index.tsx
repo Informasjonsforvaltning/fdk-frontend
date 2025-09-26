@@ -25,7 +25,7 @@ const Footer = ({ dictionary, locale }: FooterProps) => {
                         initial: 'show',
                     }}
                 />
-                <LanguageSwitcher inverted />
+                <LanguageSwitcher />
             </div>
             <div className={styles.bottom}>
                 <div className={styles.bottomInner}>

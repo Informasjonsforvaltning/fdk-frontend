@@ -1,5 +1,5 @@
 import { useState, createContext } from 'react';
-import { Heading, Link, ChipGroup, ChipToggle, Button } from '@digdir/designsystemet-react';
+import { Heading, Link, Tag, Button } from '@digdir/designsystemet-react';
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
 import { type DatasetWithIdentifier, type DatasetScore, type SearchObject } from '@fellesdatakatalog/types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
@@ -134,7 +134,7 @@ const DatasetDetailsTab = ({
                             {dictionary.details.keywords}
                         </Heading>
                         {dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? (
-                            <ChipGroup size='sm'>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {dataset.keyword
                                     .filter((keyword: any) => keyword[locale])
                                     .map((keyword: any, i: number) => (
@@ -142,10 +142,10 @@ const DatasetDetailsTab = ({
                                             key={`keyword-${i}`}
                                             href={`/datasets?q=${keyword[locale]}`}
                                         >
-                                            <ChipToggle>{keyword[locale]}</ChipToggle>
+                                            <Tag size='sm'>{keyword[locale]}</Tag>
                                         </Link>
                                     ))}
-                            </ChipGroup>
+                            </div>
                         ) : (
                             <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                         )}
