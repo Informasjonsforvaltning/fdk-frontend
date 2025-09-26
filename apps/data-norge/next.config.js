@@ -26,6 +26,15 @@ const nextConfig = {
         reactCompiler: false,
         // Optimize for development
         optimizePackageImports: ['@digdir/designsystemet-react'],
+        // Enable Turbopack for better HMR
+        turbo: {
+            rules: {
+                '*.scss': {
+                    loaders: ['sass-loader'],
+                    as: '*.css',
+                },
+            },
+        },
     },
     // Add timeout configuration
     serverExternalPackages: ['@fellesdatakatalog/types'],
@@ -34,13 +43,10 @@ const nextConfig = {
         unoptimized: process.env.NODE_ENV === 'development',
     },
     webpack: (config) => {
-        // Completely disable all caching mechanisms
-        config.cache = false;
-
-        // Disable persistent caching
-        if (config.cache && typeof config.cache === 'object') {
-            config.cache = false;
-        }
+        // Enable memory caching for better HMR performance
+        config.cache = {
+            type: 'memory',
+        };
 
         // Ignore problematic native dependencies
         config.resolve = {
@@ -58,7 +64,7 @@ const nextConfig = {
             },
         };
 
-        // Optimize for development
+        // Optimize for development with HMR-friendly settings
         if (process.env.NODE_ENV === 'development') {
             config.optimization = {
                 ...config.optimization,
@@ -67,8 +73,15 @@ const nextConfig = {
                 splitChunks: false,
             };
 
-            // Disable source maps in development to speed up builds
-            config.devtool = false;
+            // Enable source maps for better debugging
+            config.devtool = 'eval-cheap-module-source-map';
+            
+            // Improve HMR performance
+            config.watchOptions = {
+                poll: 1000,
+                aggregateTimeout: 300,
+                ignored: /node_modules/,
+            };
         }
 
         return config;

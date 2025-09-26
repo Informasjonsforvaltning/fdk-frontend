@@ -25,6 +25,7 @@
         "nx": "nx",
         "build": "nx run-many --target=build --all",
         "dev": "nx run-many --target=dev --all --turbopack",
+        "dev:webpack": "nx run-many --target=dev --all",
         "lint": "nx run-many --target=lint --all --no-error-on-unmatched-pattern",
         "test": "nx run-many --target=test --all",
         "e2e": "nx run-many --target=e2e --all",
