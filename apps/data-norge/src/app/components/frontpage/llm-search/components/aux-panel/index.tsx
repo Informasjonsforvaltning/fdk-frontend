@@ -1,12 +1,7 @@
-import dynamic from 'next/dynamic';
-
 import { Link, Paragraph, Button } from '@digdir/designsystemet-react';
 
 import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
-
-const DynamicQuerySuggestion = dynamic(() => import('../query-suggestion'), {
-    ssr: false,
-});
+import QuerySuggestion from '../query-suggestion';
 
 import styles from './aux-panel.module.scss';
 
@@ -27,7 +22,7 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
         <div className={styles.auxPanel}>
             <div>
                 {numResults === undefined ? (
-                    <DynamicQuerySuggestion
+                    <QuerySuggestion
                         dictionary={dictionary}
                         onClick={onRequestSearch}
                     />
