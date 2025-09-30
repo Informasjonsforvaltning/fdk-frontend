@@ -1,13 +1,10 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .querySuggestion {
     // Direct styling of the custom link class
     .customLink {
         &:not(:hover):not(:focus):not(:active):not(:focus-visible) {
-            color: blue !important;
-            background: #00ff00 !important;
-            border: 3px solid #ff0000 !important;
-            color: red !important;
+            color:white;
         }
     }
 }

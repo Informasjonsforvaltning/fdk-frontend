@@ -19,10 +19,6 @@ const nextConfig = {
     assetPrefix: '/nb',
     sassOptions: {
         silenceDeprecations: ['legacy-js-api', 'import'],
-        // Enable source maps for better debugging
-        sourceMap: process.env.NODE_ENV === 'development',
-        // Additional options for better HMR
-        includePaths: ['node_modules'],
     },
     // Ensure CSS HMR works properly
     compiler: {
@@ -31,8 +27,8 @@ const nextConfig = {
     },
     // Force CSS modules to work with HMR
     cssModules: {
-        // Use a simpler naming pattern for CSS modules
-        localIdentName: '[local]_[hash:base64:5]',
+        // Use a more unique naming pattern for CSS modules
+        localIdentName: '[local]_[hash:base64:5]_[path]',
     },
     // Add experimental features for better compatibility
     experimental: {
@@ -77,34 +73,20 @@ const nextConfig = {
 
         // Optimize for development with HMR-friendly settings
         if (process.env.NODE_ENV === 'development') {
-            // Disable cache completely for CSS modules to fix HMR
+            // Disable caching completely to prevent CSS HMR issues
             config.cache = false;
             
-            // Force CSS modules to reload properly
-            config.module.rules.forEach((rule) => {
-                if (rule.test && rule.test.toString().includes('scss')) {
-                    if (rule.use && Array.isArray(rule.use)) {
-                        rule.use.forEach((use) => {
-                            if (use.loader && use.loader.includes('css-loader')) {
-                                use.options = {
-                                    ...use.options,
-                                    modules: {
-                                        ...use.options?.modules,
-                                        localIdentName: '[local]_[hash:base64:5]',
-                                        exportLocalsConvention: 'camelCase',
-                                        auto: true,
-                                    },
-                                };
-                            }
-                        });
-                    }
-                }
-            });
+            config.optimization = {
+                ...config.optimization,
+                removeAvailableModules: false,
+                removeEmptyChunks: false,
+                splitChunks: false,
+            };
             
             // Improve HMR performance with better file watching
             config.watchOptions = {
                 poll: 1000,
-                aggregateTimeout: 200,
+                aggregateTimeout: 50,
                 ignored: /node_modules/,
             };
         }
