@@ -32,14 +32,4 @@
     padding: 0.5rem;
     margin: -0.5rem;
     border-radius: 0.25rem;
-
-    &:hover {
-        background-color: var(--ds-color-surface-hover);
-    }
-
-    &:focus-visible {
-        @include core-mixins.focus-block();
-        background:transparent;
-        color: var(--fdk-link-color-negative);
-    }
 }
