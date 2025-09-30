@@ -4,15 +4,12 @@
 .logo {
     display: flex;
     justify-content: center;
-    // color: var(--ds-color-link-default);
-    // color:red;
 
     svg {
         width: 1.5rem;
         height: 1.5rem;
         margin-right: 0.75rem;
         fill: currentcolor;
-        // fill:red;
     }
 
     span {
@@ -42,6 +39,7 @@
 
     &:focus-visible {
         @include core-mixins.focus-block();
-        // background: var(--fds-semantic-border-focus-outline);
+        background:transparent;
+        color: var(--fdk-link-color-negative);
     }
 }

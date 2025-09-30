@@ -61,6 +61,7 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
             aria-label='Header'
             className={cn(styles.header, { [styles.frontpageHeader]: frontpage })}
             ref={headerRef}
+            data-color-scheme={ (!sticky && frontpage) ? 'dark' : 'light' }
         >
             <div
                 className={cn(styles.headerOuter, {

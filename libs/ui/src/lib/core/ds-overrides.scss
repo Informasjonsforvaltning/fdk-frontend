@@ -1,0 +1,18 @@
+/*
+    Remove dark link focus style on link button focus
+*/
+.ds-link {
+    &.ds-button {
+        &:focus-visible {
+            // Set appropriate background on various buttons
+            &[data-variant='primary'] {
+                background:var(--ds-color-accent-base-default);
+            }
+            &[data-variant='secondary'],
+            &[data-variant='tertiary'] {
+                background:transparent;
+                color:var(--ds-color-accent-text-subtle);
+            }
+        }
+    }
+}

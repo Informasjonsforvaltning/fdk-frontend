@@ -1,8 +1,11 @@
+@use './mixins' as core-mixins;
+
 @layer reset, fds;
 
 @import './reset.css';
 @import '@digdir/designsystemet-css';
 @import '@digdir/designsystemet-theme';
+@import './ds-overrides.scss';
 
 :root {
     // Colors
@@ -11,7 +14,6 @@
     --fdk-color-blue-light: #1e98f5;
     --fdk-color-blue: #0062BA;
     --fdk-color-cyan: #8eaacb;
-    // --fdk-color-cyan: #b3d0ea;
     --fdk-color-orange: var(--ds-color-brand2-base-default);
     
     // Other variables
@@ -63,15 +65,20 @@ body {
 */
 .ds-link {
     &:not(.ds-button) {
+        // Target only passive state
         &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
             color: var(--ds-color-text-subtle);
         }
     }
     &.ds-button {
+        // Target only passive state
         &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
             color: var(--dsc-button-color);
         }
     }
+    // &:focus-visible {
+    //     @include core-mixins.focus-block();
+    // }
 }
 
 /*

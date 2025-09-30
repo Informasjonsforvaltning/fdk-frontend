@@ -30,24 +30,9 @@
 
             &:focus-visible {
                 @include core-mixins.focus-block();
+                background:transparent;
+                color: var(--fdk-link-color);
             }
-
-            // &:hover {
-            //     background: var(--fds-semantic-surface-action-first-no_fill-hover);
-            // }
-
-            // svg {
-            //     fill: var(--color-link);
-            // }
-
-            // &:focus-visible {
-            //     @include core-mixins.focus-visible-block();
-            //     color: black;
-
-            //     svg {
-            //         fill: black;
-            //     }
-            // }
         }
 
         .footerCatalogSymbol {
@@ -68,5 +53,11 @@
                 margin: 0 -1rem;
             }
         }
+    }
+}
+
+[data-color-scheme='dark'] {
+    .links a:focus-visible {
+        color: var(--fdk-link-color-negative);
     }
 }
