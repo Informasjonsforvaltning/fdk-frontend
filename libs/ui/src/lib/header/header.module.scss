@@ -26,15 +26,21 @@
                     }
                 }
 
+                /*
+                    Override dark mode styles for passive header buttons on frontpage
+                */
                 .headerToolbar {
-                    a,
-                    button {
-                        &:focus-visible {
-                            // color: white;
-                            // background:var(--ds-color-focus-outer);
-                        }
-                        &:not(:hover):not(:focus-visible) {
-                            color: white;
+                    :global(.ds-button) {
+                        color: white !important;
+
+                        &:last-child {
+                            &:focus-visible,
+                            &:not(:hover):not(:active) {
+                                background:var(--fdk-color-blue);
+                            }
+                            &:hover {
+                                background: var(--fdk-color-blue-dark);
+                            }
                         }
                     }
                 }
