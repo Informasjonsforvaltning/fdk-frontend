@@ -62,27 +62,6 @@ body {
 }
 
 /*
-    DS override: Disable :visited link styling for links and link buttons
-*/
-.ds-link {
-    &:not(.ds-button) {
-        // Target only passive state
-        &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
-            color: var(--ds-color-text-subtle);
-        }
-    }
-    &.ds-button {
-        // Target only passive state
-        &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
-            color: var(--dsc-button-color);
-        }
-    }
-    // &:focus-visible {
-    //     @include core-mixins.focus-block();
-    // }
-}
-
-/*
 @use '../box-list/styles.module' as box-list;
 @use '../box-link/styles.module' as box-link;
 @use './mixins' as core-mixins;

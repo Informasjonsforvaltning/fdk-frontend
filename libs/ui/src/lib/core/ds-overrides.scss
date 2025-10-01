@@ -16,3 +16,30 @@
         }
     }
 }
+
+/*
+    DS override: Disable :visited link styling for links and link buttons
+*/
+.ds-link {
+    &:not(.ds-button) {
+        // Target only passive state
+        &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
+            color: var(--ds-color-text-subtle);
+        }
+    }
+    &.ds-button {
+        // Target only passive state
+        &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
+            color: var(--dsc-button-color);
+        }
+    }
+}
+
+/*
+    Make icons in links have same color as text
+*/
+.ds-link {
+    svg {
+        fill: currentColor;
+    }
+}
