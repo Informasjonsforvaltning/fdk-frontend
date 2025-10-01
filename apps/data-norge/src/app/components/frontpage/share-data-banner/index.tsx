@@ -17,7 +17,7 @@ const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
             level={2}
             className={styles.headline}
         >
-            {/* <OrganizationCarousel dictionary={dictionary} /> */}
+            <OrganizationCarousel dictionary={dictionary} />
         </HeadingWithDivider>
         <Paragraph>
             {interpolate(dictionary.shareDataBanner.content, {
