@@ -33,6 +33,10 @@
                 background:transparent;
                 color: var(--fdk-link-color);
             }
+
+            &:hover {
+                background:var(--ds-color-surface-hover);
+            }
         }
 
         .footerCatalogSymbol {

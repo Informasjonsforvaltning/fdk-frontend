@@ -29,9 +29,8 @@
                 inset: 0;
                 left: -0.5rem;
                 width: 2px;
-                background: var(--fds-semantic-surface-action-first-no_fill-hover);
+                background: var(--ds-color-surface-hover);
             }
-            // border-left: 2px solid var(--fds-semantic-surface-action-first-no_fill-hover);
         }
     }
 }
@@ -84,8 +83,7 @@
             color: var(--color-link);
 
             &:hover {
-                background: #f4f4f4;
-                background: var(--fds-semantic-surface-action-first-no_fill-hover);
+                background:var(--ds-color-surface-hover);
             }
 
             &:focus-visible {
