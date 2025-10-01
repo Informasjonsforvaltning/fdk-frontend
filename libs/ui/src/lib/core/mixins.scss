@@ -26,7 +26,7 @@
     so that focus-block color tokens are correct.
 */
 @mixin focus-block-dark {
-    @include core-mixins.focus-block();
+    @include focus-block();
     background:transparent;
     color: var(--fdk-link-color-negative);
 }

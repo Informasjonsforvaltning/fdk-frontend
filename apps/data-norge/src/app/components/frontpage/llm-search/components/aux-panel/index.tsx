@@ -1,7 +1,13 @@
+import dynamic from 'next/dynamic';
+
 import { Link, Paragraph, Button } from '@digdir/designsystemet-react';
 
 import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
+
 import QuerySuggestion from '../query-suggestion';
+// const QuerySuggestion = dynamic(() => import('../query-suggestion'), {
+//     ssr: false,
+// });
 
 import styles from './aux-panel.module.scss';
 

@@ -1,6 +1,7 @@
 @use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .querySuggestion {
+    background:transparent;
     // Direct styling of the custom link class
     .customLink {
         &:not(:hover):not(:focus):not(:active):not(:focus-visible) {

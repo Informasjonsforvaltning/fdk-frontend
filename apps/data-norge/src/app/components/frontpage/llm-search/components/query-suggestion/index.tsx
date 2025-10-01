@@ -23,15 +23,14 @@ const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps)
     };
 
     return (
-        <div className={styles.querySuggestion}>
+        <div className={styles.querySuggestion} data-color-scheme='dark'>
             <span>{dictionary.aiBanner.suggestions.prefix}</span>&nbsp;
             <Link
                 onClick={handleClick}
                 href='#'
-                data-color-scheme='dark'
                 className={styles.customLink}
             >
-                {suggestion}hello
+                {suggestion}
             </Link>
         </div>
     );
