@@ -117,4 +117,27 @@
         border: 0;
         background: var(--fds-semantic-border-neutral-subtle);
     }
+
+    img {
+        max-width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #eee;
+    }
+
+    code {
+        &:not([class]) {
+            background: rgba(0, 0, 0, 0.05);
+            font-size: 0.85em;
+            padding: 0.2em 0.4em;
+            white-space: break-spaces;
+            border-radius: 6px;
+            color: #444;
+        }
+    }
+
+    pre {
+        > div:focus-visible {
+            @include focus-block();
+        }
+    }
 }

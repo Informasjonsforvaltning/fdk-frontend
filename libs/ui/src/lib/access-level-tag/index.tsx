@@ -21,8 +21,8 @@ const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, locale, ...pro
 
     return (
         <Tag
-            color={color as TagProps['color']}
-            size='sm'
+            data-color={color as TagProps['color']}
+            data-size='sm'
         >
             {nonInteractive ? (
                 label

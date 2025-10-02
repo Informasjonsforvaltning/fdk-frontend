@@ -4,8 +4,8 @@ import { type Dictionary } from '@fdk-frontend/dictionaries';
 const OpenDataTag = ({ dictionary }: { dictionary: Dictionary }) => {
     return (
         <Tag
-            color='success'
-            size='sm'
+            data-color='success'
+            data-size='sm'
             style={{ display: 'inline-flex' }}
         >
             {dictionary.openDataTag.label}

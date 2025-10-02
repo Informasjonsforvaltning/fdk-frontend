@@ -45,7 +45,7 @@ const DatasetDetailsTab = ({
                 <Button
                     className={styles.toggleButton}
                     variant='tertiary'
-                    size='sm'
+                    data-size='sm'
                     onClick={() => setShowEmptyRows(!showEmptyRows)}
                 >
                     {showEmptyRows ? (

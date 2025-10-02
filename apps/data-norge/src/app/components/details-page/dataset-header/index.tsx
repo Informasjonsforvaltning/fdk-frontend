@@ -68,10 +68,10 @@ const DatasetHeader = ({
                     />
                 )}
                 <Popover
-                    size='sm'
+                    data-size='sm'
                     placement='bottom-end'
                 >
-                    <Popover.Trigger size='sm'>{dictionaries.detailsPage.header.useDatasetButton}</Popover.Trigger>
+                    <Popover.Trigger data-size='sm'>{dictionaries.detailsPage.header.useDatasetButton}</Popover.Trigger>
                     <Popover style={{ maxWidth: 350 }}>
                         <UseDatasetPopover
                             dataset={dataset}
@@ -85,7 +85,7 @@ const DatasetHeader = ({
             <TagList className={styles.headerTags}>
                 <Tag
                     color='info'
-                    size='sm'
+                    data-size='sm'
                 >
                     <Link href='/datasets'>{dictionaries.detailsPage.header.datasetsTagLink}</Link>
                 </Tag>

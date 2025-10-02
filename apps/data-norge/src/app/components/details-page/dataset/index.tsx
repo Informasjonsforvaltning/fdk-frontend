@@ -13,8 +13,8 @@ import {
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import {
-    Breadcrumbs,
     Badge,
+    Breadcrumbs,
     BrandDivider,
     Markdown,
     Article,
@@ -160,7 +160,10 @@ export default function DatasetDetailsPage({
                             </TabsTab>
                         </TabsList>
                     </ScrollShadows>
-                    <TabsPanel value='overview'>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='overview'
+                    >
                         <section className={styles.section}>
                             <Heading
                                 level={2}
@@ -169,7 +172,7 @@ export default function DatasetDetailsPage({
                                 {dictionaries.detailsPage.overview.description.title}
                             </Heading>
                             {resource.description ? (
-                                <div className={styles.box}>
+                                <div className={styles.box} data-color='neutral'>
                                     <ExpandableContent>
                                         <Article>
                                             <Markdown
@@ -257,7 +260,10 @@ export default function DatasetDetailsPage({
                             </section>
                         )}
                     </TabsPanel>
-                    <TabsPanel value='distributions'>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='distributions'
+                    >
                         {!isAvailable && accessRequestDemo ? (
                             <ResourceNotAvailableNotice
                                 kind='datasets'
@@ -277,7 +283,10 @@ export default function DatasetDetailsPage({
                             />
                         )}
                     </TabsPanel>
-                    <TabsPanel value='details'>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='details'
+                    >
                         <DatasetDetailsTab
                             dataset={resource}
                             internalRelatedDatasets={internalRelatedDatasets}
@@ -288,7 +297,10 @@ export default function DatasetDetailsPage({
                             dictionary={dictionaries.detailsPage}
                         />
                     </TabsPanel>
-                    <TabsPanel value='community'>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='community'
+                    >
                         <CommunityTab
                             topics={communityTopics}
                             communityBaseUri={communityBaseUri}
@@ -296,7 +308,10 @@ export default function DatasetDetailsPage({
                             locale={locale}
                         />
                     </TabsPanel>
-                    <TabsPanel value='rdf'>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='rdf'
+                    >
                         <MetadataTab
                             uri={`${baseUri}/datasets/${resource.id}`}
                             dictionary={dictionaries.detailsPage}
