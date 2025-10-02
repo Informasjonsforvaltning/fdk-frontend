@@ -56,6 +56,15 @@
             border-color: rgba(255, 255, 255, 0.75);
             box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.75);
         }
+
+        &[aria-invalid] {
+            border-color: var(--fdk-color-red);
+
+            &:focus,
+            &:hover {
+                box-shadow: inset 0 0 0 1px var(--fdk-color-red);
+            }
+        }
     }
 
     > label + div + div {
