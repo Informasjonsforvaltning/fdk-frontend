@@ -43,3 +43,12 @@
         fill: currentColor;
     }
 }
+
+/*
+    Disable pointer events on SVG icons inside buttons to prevent click interference
+*/
+.ds-button {
+    svg {
+        pointer-events: none;
+    }
+}
