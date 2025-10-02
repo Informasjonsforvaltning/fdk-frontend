@@ -18,6 +18,7 @@ const CatalogPromo = ({ text, button, link }: CatalogPromoProps) => {
             <div className={styles.content}>
                 <Paragraph size='md'>{text}</Paragraph>
                 <Button
+                    className={styles.button}
                     asChild
                     size='small'
                     variant='primary'
