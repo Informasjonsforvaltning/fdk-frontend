@@ -44,17 +44,25 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
         }
     };
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && showMenu) {
+            setShowMenu(false);
+        }
+    };
+
     useEffect(() => {
         toggleSticky();
 
         window.addEventListener('scroll', toggleSticky);
         window.addEventListener('click', handleClick);
+        window.addEventListener('keydown', handleKeyDown);
 
         return () => {
             window.removeEventListener('scroll', toggleSticky);
             window.removeEventListener('click', handleClick);
+            window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [frontpage, sticky]);
+    }, [frontpage, sticky, showMenu]);
 
     return (
         <header
