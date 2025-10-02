@@ -1,4 +1,4 @@
-.catalogPromo {
+.alertWithLinkButton {
     container-type: inline-size;
 
     .content {
@@ -7,7 +7,7 @@
         align-items: center;
 
         .button {
-            margin:-0.75rem;
+            margin: -0.75rem;
         }
 
         @container (max-width:500px) {

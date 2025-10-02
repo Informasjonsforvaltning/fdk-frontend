@@ -27,12 +27,8 @@
             text-decoration: none;
             margin: 0 0 0 -1rem;
             border-radius: 0.25rem;
-
-            &:focus-visible {
-                @include core-mixins.focus-block();
-                background:transparent;
-                color: var(--fdk-link-color);
-            }
+            align-items:center;
+            gap:0.25rem;
 
             &:hover {
                 background:var(--ds-color-surface-hover);
@@ -57,11 +53,5 @@
                 margin: 0 -1rem;
             }
         }
-    }
-}
-
-[data-color-scheme='dark'] {
-    .links a:focus-visible {
-        color: var(--fdk-link-color-negative);
     }
 }

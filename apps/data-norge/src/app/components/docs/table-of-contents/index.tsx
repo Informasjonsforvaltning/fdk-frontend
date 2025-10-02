@@ -1,7 +1,7 @@
 import slugify from 'slugify';
 import cn from 'classnames';
 
-import { Heading } from '@digdir/designsystemet-react';
+import { Heading, Link } from '@digdir/designsystemet-react';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 import { type MdxHeadlineObjectNode } from '../mdx-page/utils';
@@ -16,7 +16,7 @@ const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
                 const slug = slugify(headline.text, { lower: true, strict: true });
                 return (
                     <li key={index}>
-                        <a href={`#${slug}`}>{headline.text}</a>
+                        <Link href={`#${slug}`}>{headline.text}</Link>
                         <TocList headlines={headline.children} />
                     </li>
                 );

@@ -6,14 +6,13 @@
 
         a {
             text-decoration: none;
-            color: var(--color-text);
+
+            &:not(:hover):not(:focus-visible) {
+                color: var(--fdk-text-color) !important;
+            }
 
             &:hover {
                 text-decoration: underline;
-            }
-
-            &:focus-visible {
-                @include core-mixins.focus-block();
             }
         }
     }
@@ -80,14 +79,8 @@
             background: #f8f8f8;
         }
         a {
-            color: var(--color-link);
-
-            &:hover {
+            &:hover:not(:focus-visible) {
                 background:var(--ds-color-surface-hover);
-            }
-
-            &:focus-visible {
-                @include core-mixins.focus-block();
             }
         }
     }

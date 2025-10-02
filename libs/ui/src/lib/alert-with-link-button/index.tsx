@@ -1,33 +1,32 @@
 import { Alert, Button, Link, Paragraph } from '@digdir/designsystemet-react';
 
-import styles from './catalog-promo.module.scss';
+import styles from './alert-with-link-button.module.scss';
 
-export type CatalogPromoProps = {
+export type AlertWithLinkButtonProps = {
     text: string;
     button: string;
     link: string;
 };
 
-const CatalogPromo = ({ text, button, link }: CatalogPromoProps) => {
+const AlertWithLinkButton = ({ text, button, link }: AlertWithLinkButtonProps) => {
     return (
         <Alert
             severity='info'
             size='sm'
-            className={styles.catalogPromo}
+            className={styles.alertWithLinkButton}
         >
             <div className={styles.content}>
                 <Paragraph size='md'>{text}</Paragraph>
                 <Button
-                    className={styles.button}
                     asChild
-                    size='small'
+                    data-size='sm'
                     variant='primary'
                 >
-                    <Link href={link}>{button}</Link>
+                    <Link className={styles.button} href={link}>{button}</Link>
                 </Button>
             </div>
         </Alert>
     );
 };
 
-export default CatalogPromo;
+export default AlertWithLinkButton;
