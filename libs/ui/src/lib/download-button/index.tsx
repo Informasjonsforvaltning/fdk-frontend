@@ -32,7 +32,7 @@ const DownloadButton = ({
         return (
             <Button
                 asChild
-                size='sm'
+                data-size='sm'
                 variant='secondary'
                 onClick={(e) => {
                     e.stopPropagation();

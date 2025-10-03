@@ -62,21 +62,21 @@ const Distributions = ({
                                     locale={locale}
                                     dictionary={dictionaries.detailsPage}
                                 />
+                                {distribution.accessURL && (
+                                    <DownloadButton
+                                        uris={distribution.accessURL}
+                                        className={styles.actionButton}
+                                        modalTitle={
+                                            printLocaleValue(locale, distribution.title) ||
+                                            dictionaries.detailsPage.distributions.header.nameless
+                                        }
+                                        dictionary={dictionaries.detailsPage}
+                                        locale={locale}
+                                    >
+                                        {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
+                                    </DownloadButton>
+                                )}
                             </Details.Summary>
-                            {distribution.accessURL && (
-                                <DownloadButton
-                                    uris={distribution.accessURL}
-                                    className={styles.actionButton}
-                                    modalTitle={
-                                        printLocaleValue(locale, distribution.title) ||
-                                        dictionaries.detailsPage.distributions.header.nameless
-                                    }
-                                    dictionary={dictionaries.detailsPage}
-                                    locale={locale}
-                                >
-                                    {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
-                                </DownloadButton>
-                            )}
                             <Details.Content className={styles.content}>
                                 <DistributionDetails
                                     distribution={distribution}
@@ -101,19 +101,19 @@ const Distributions = ({
                                         dictionary={dictionaries.detailsPage}
                                         exampleData={true}
                                     />
+                                    <DownloadButton
+                                        uris={example.accessURL}
+                                        className={styles.actionButton}
+                                        modalTitle={
+                                            printLocaleValue(locale, example.title) ||
+                                            dictionaries.detailsPage.distributions.header.nameless
+                                        }
+                                        dictionary={dictionaries.detailsPage}
+                                        locale={locale}
+                                    >
+                                        {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
+                                    </DownloadButton>
                                 </Details.Summary>
-                                <DownloadButton
-                                    uris={example.accessURL}
-                                    className={styles.actionButton}
-                                    modalTitle={
-                                        printLocaleValue(locale, example.title) ||
-                                        dictionaries.detailsPage.distributions.header.nameless
-                                    }
-                                    dictionary={dictionaries.detailsPage}
-                                    locale={locale}
-                                >
-                                    {dictionaries.detailsPage.distributions.header.downloadBtnLabel}
-                                </DownloadButton>
                                 <Details.Content className={styles.content}>
                                     <DistributionDetails
                                         distribution={example}
@@ -151,17 +151,17 @@ const Distributions = ({
                                     locale={locale}
                                     dictionary={dictionaries.detailsPage}
                                 />
+                                <ActionButton
+                                    uri={`/data-services/${api.id}`}
+                                    className={styles.actionButton}
+                                >
+                                    {dictionaries.detailsPage.apis.header.gotoBtn}
+                                    <ArrowRightIcon
+                                        aria-hidden
+                                        fontSize='1.2em'
+                                    />
+                                </ActionButton>
                             </Details.Summary>
-                            <ActionButton
-                                uri={`/data-services/${api.id}`}
-                                className={styles.actionButton}
-                            >
-                                {dictionaries.detailsPage.apis.header.gotoBtn}
-                                <ArrowRightIcon
-                                    aria-hidden
-                                    fontSize='1.2em'
-                                />
-                            </ActionButton>
                             <Details.Content className={styles.content}>
                                 <ApiDetails
                                     api={api}

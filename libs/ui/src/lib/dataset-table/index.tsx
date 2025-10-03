@@ -21,7 +21,11 @@ const DatasetTable = ({
     ...props
 }: DatasetTableProps & React.HTMLAttributes<HTMLDivElement>) => {
     return (
-        <Table className={cn('table', styles.table)}>
+        <Table 
+            className={cn('table', styles.table)}
+            data-size='md'
+            border
+        >
             <tbody>
                 {datasets &&
                     datasets.map((dataset: any, index: number) => (

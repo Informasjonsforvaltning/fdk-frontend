@@ -77,7 +77,7 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         Heading: (props: HeadingProps) => <Heading {...props} />,
         Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => (
             <Alert
-                size={size}
+                data-size={size}
                 iconTitle={iconTitle}
                 {...props}
             />

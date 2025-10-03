@@ -41,7 +41,12 @@
 }
 
 .content {
+    background:var(--ds-color-surface-tinted);
+    background:var(--fdk-color-blue-lightest);
+    // background:var(--dsc-details-summary-background--open);
     margin-top:var(--ds-size-5);
+    margin:0;
+    padding:var(--ds-size-5);
 
     table {
         width: 100%;
