@@ -38,7 +38,6 @@ const Distributions = ({
     resolvedDistributionInformationModels = [],
     ...props
 }: DistributionsProps) => {
-    return false;
     return (
         <div className={cn(styles.distributions, className)}>
             <Heading
@@ -51,13 +50,13 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {sumArrayLengths(datasets, exampleData) > 0 ? (
-                <Details border>
+                <>
                     {datasets && datasets.map((distribution, index) => (
-                        <Details.Item
+                        <Details
                             className={styles.accordionItem}
                             key={`${distribution.accessURL}-${index}`}
                         >
-                            <Details.Header
+                            <Details.Summary
                                 level={3}
                                 className={styles.header}
                             >
@@ -66,7 +65,7 @@ const Distributions = ({
                                     locale={locale}
                                     dictionary={dictionaries.detailsPage}
                                 />
-                            </Details.Header>
+                            </Details.Summary>
                             {distribution.accessURL && (
                                 <DownloadButton
                                     uris={distribution.accessURL}
@@ -90,15 +89,15 @@ const Distributions = ({
                                     resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                                 />
                             </Details.Content>
-                        </Details.Item>
+                        </Details>
                     ))}
                     {exampleData &&
                         exampleData.map((example, index) => (
-                            <Details.Item
+                            <Details
                                 className={styles.accordionItem}
                                 key={example.accessURL}
                             >
-                                <Details.Header
+                                <Details.Summary
                                     level={3}
                                     className={styles.header}
                                 >
@@ -108,7 +107,7 @@ const Distributions = ({
                                         dictionary={dictionaries.detailsPage}
                                         exampleData={true}
                                     />
-                                </Details.Header>
+                                </Details.Summary>
                                 <DownloadButton
                                     uris={example.accessURL}
                                     className={styles.actionButton}
@@ -130,9 +129,9 @@ const Distributions = ({
                                         resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                                     />
                                 </Details.Content>
-                            </Details.Item>
+                            </Details>
                         ))}
-                </Details>
+                </>
             ) : (
                 <PlaceholderBox>{dictionaries.detailsPage.distributions.placeholder}</PlaceholderBox>
             )}
@@ -146,13 +145,13 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {apis && apis.length ? (
-                <Details border>
+                <>
                     {apis.map((api, index) => (
-                        <Details.Item
+                        <Details
                             className={styles.accordionItem}
                             key={api.id}
                         >
-                            <Details.Header
+                            <Details.Summary
                                 level={3}
                                 className={styles.header}
                             >
@@ -161,7 +160,7 @@ const Distributions = ({
                                     locale={locale}
                                     dictionary={dictionaries.detailsPage}
                                 />
-                            </Details.Header>
+                            </Details.Summary>
                             <ActionButton
                                 uri={`/data-services/${api.id}`}
                                 className={styles.actionButton}
@@ -179,9 +178,9 @@ const Distributions = ({
                                     dictionary={dictionaries.detailsPage}
                                 />
                             </Details.Content>
-                        </Details.Item>
+                        </Details>
                     ))}
-                </Details>
+                </>
             ) : (
                 <PlaceholderBox>{dictionaries.detailsPage.apis.placeholder}</PlaceholderBox>
             )}
