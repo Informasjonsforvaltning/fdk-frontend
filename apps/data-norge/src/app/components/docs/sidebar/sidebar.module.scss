@@ -82,6 +82,11 @@
             &:hover:not(:focus-visible) {
                 background:var(--ds-color-surface-hover);
             }
+            &:focus-visible {
+                + button {
+                    color: var(--ds-color-focus-inner);
+                }
+            }
         }
     }
 
