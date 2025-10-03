@@ -56,10 +56,7 @@ const Distributions = ({
                             className={styles.accordionItem}
                             key={`${distribution.accessURL}-${index}`}
                         >
-                            <Details.Summary
-                                level={3}
-                                className={styles.header}
-                            >
+                            <Details.Summary>
                                 <DistributionHeader
                                     distribution={distribution}
                                     locale={locale}
@@ -97,10 +94,7 @@ const Distributions = ({
                                 className={styles.accordionItem}
                                 key={example.accessURL}
                             >
-                                <Details.Summary
-                                    level={3}
-                                    className={styles.header}
-                                >
+                                <Details.Summary>
                                     <DistributionHeader
                                         distribution={example}
                                         locale={locale}
@@ -151,10 +145,7 @@ const Distributions = ({
                             className={styles.accordionItem}
                             key={api.id}
                         >
-                            <Details.Summary
-                                level={3}
-                                className={styles.header}
-                            >
+                            <Details.Summary>
                                 <ApiHeader
                                     api={api}
                                     locale={locale}
