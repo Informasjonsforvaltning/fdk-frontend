@@ -26,7 +26,7 @@ import {
     ExternalLink,
 } from '@fdk-frontend/ui';
 import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel } from '@digdir/designsystemet-react';
+import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel } from '@digdir/designsystemet-react';
 import Distributions from '../distributions';
 import DatasetDetailsTab from '../details-tab';
 import MetadataTab from '../metadata-tab';
@@ -167,12 +167,12 @@ export default function DatasetDetailsPage({
                         <section className={styles.section}>
                             <Heading
                                 level={2}
-                                size='xxsmall'
+                                data-size='2xs'
                             >
                                 {dictionaries.detailsPage.overview.description.title}
                             </Heading>
                             {resource.description ? (
-                                <div className={styles.box} data-color='neutral'>
+                                <Card>
                                     <ExpandableContent>
                                         <Article>
                                             <Markdown
@@ -191,7 +191,7 @@ export default function DatasetDetailsPage({
                                             </Markdown>
                                         </Article>
                                     </ExpandableContent>
-                                </div>
+                                </Card>
                             ) : (
                                 <PlaceholderBox>
                                     {dictionaries.detailsPage.overview.description.placeholder}

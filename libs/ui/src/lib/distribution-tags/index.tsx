@@ -28,7 +28,7 @@ const DistributionTags = ({
             {hasOpenLicense && (
                 <Tag
                     color='success'
-                    size='sm'
+                    data-size='sm'
                 >
                     {dictionary.distributions.header.openLicense}
                 </Tag>
@@ -36,7 +36,7 @@ const DistributionTags = ({
             {hasApi && (
                 <Tag
                     color='success'
-                    size='sm'
+                    data-size='sm'
                 >
                     {dictionary.distributions.header.hasApi}
                 </Tag>
@@ -44,7 +44,7 @@ const DistributionTags = ({
             {exampleData && (
                 <Tag
                     color='neutral'
-                    size='sm'
+                    data-size='sm'
                 >
                     {dictionary.distributions.header.exampleData}
                 </Tag>
@@ -54,7 +54,7 @@ const DistributionTags = ({
                 .map((format: any) => (
                     <Tag
                         color='info'
-                        size='sm'
+                        data-size='sm'
                         key={format.code}
                     >
                         {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}

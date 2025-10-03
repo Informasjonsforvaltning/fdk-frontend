@@ -1,6 +1,6 @@
 'use client';
 import cn from 'classnames';
-import { Details, Heading } from '@digdir/designsystemet-react';
+import { Card, Details, Heading } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
@@ -42,7 +42,7 @@ const Distributions = ({
         <div className={cn(styles.distributions, className)}>
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='2xs'
             >
                 <Hstack>
                     <div>{dictionaries.detailsPage.distributions.title}</div>
@@ -50,7 +50,7 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {sumArrayLengths(datasets, exampleData) > 0 ? (
-                <>
+                <Card>
                     {datasets && datasets.map((distribution, index) => (
                         <Details
                             className={styles.accordionItem}
@@ -131,13 +131,13 @@ const Distributions = ({
                                 </Details.Content>
                             </Details>
                         ))}
-                </>
+                </Card>
             ) : (
                 <PlaceholderBox>{dictionaries.detailsPage.distributions.placeholder}</PlaceholderBox>
             )}
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='2xs'
             >
                 <Hstack>
                     <div>{dictionaries.detailsPage.apis.title}</div>
@@ -145,7 +145,7 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {apis && apis.length ? (
-                <>
+                <Card>
                     {apis.map((api, index) => (
                         <Details
                             className={styles.accordionItem}
@@ -180,7 +180,7 @@ const Distributions = ({
                             </Details.Content>
                         </Details>
                     ))}
-                </>
+                </Card>
             ) : (
                 <PlaceholderBox>{dictionaries.detailsPage.apis.placeholder}</PlaceholderBox>
             )}

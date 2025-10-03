@@ -18,7 +18,7 @@ const ApiTags = ({ children, api, dictionary, ...props }: ApiTagsProps & React.H
                 .map((format: any, i: number) => (
                     <Tag
                         color='info'
-                        size='sm'
+                        data-size='sm'
                         key={format.code}
                     >
                         {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}
