@@ -17,7 +17,7 @@ const ResourceNotAvailableNotice = ({
     return (
         <div className={className}>
             <Alert
-                severity='warning'
+                data-color='warning'
                 {...props}
             >
                 <VStack style={{ marginBottom: '0.66666rem', gap: '0.5rem' }}>

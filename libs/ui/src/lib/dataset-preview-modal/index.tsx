@@ -27,19 +27,18 @@ const DatasetPreviewModal = ({
     const modalRef = useRef<HTMLDialogElement>(null);
 
     return (
-        <Dialog.Root>
+        <Dialog.TriggerContext>
             <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
-            <Dialog.Dialog
+            <Dialog
                 ref={modalRef}
                 className={styles.dialog}
-                onInteractOutside={() => modalRef.current?.close()}
             >
-                <Dialog.Header closeButton={true}>
+                <Dialog.Block>
                     <div className={styles.headerWrapper}>
                         {title}
                         <Tag
                             className={styles.maxRowsNotice}
-                            size='sm'
+                            data-size='sm'
                             color='warning'
                         >
                             {dictionary.datasetPreview.showingMaxRows}
@@ -47,23 +46,23 @@ const DatasetPreviewModal = ({
                     </div>
                     <div>
                         <ArrowDownRightIcon className={styles.arrowIcon} />
-                        <Paragraph size='sm'>
+                        <Paragraph data-size='sm'>
                             <code>{downloadUrl}</code>
                         </Paragraph>
                     </div>
-                </Dialog.Header>
-                <Dialog.Content className={styles.content}>
+                </Dialog.Block>
+                <Dialog.Block className={styles.content}>
                     <div className={styles.inner}>
                         {data.table ? (
                             <DatasetPreviewTable tableData={data.table} />
                         ) : (
-                            <Alert size='sm'>{dictionary.datasetPreview.noTableData}</Alert>
+                            <Alert data-size='sm'>{dictionary.datasetPreview.noTableData}</Alert>
                         )}
                     </div>
-                </Dialog.Content>
-                <Dialog.Footer>
+                </Dialog.Block>
+                <Dialog.Block>
                     <Button
-                        size='sm'
+                        data-size='sm'
                         variant='secondary'
                         onClick={() => modalRef.current?.close()}
                     >
@@ -71,7 +70,7 @@ const DatasetPreviewModal = ({
                     </Button>
                     <Button
                         asChild
-                        size='sm'
+                        data-size='sm'
                         variant='secondary'
                     >
                         <Link href={downloadUrl}>
@@ -79,9 +78,9 @@ const DatasetPreviewModal = ({
                             {dictionary.datasetPreview.downloadButton}
                         </Link>
                     </Button>
-                </Dialog.Footer>
-            </Dialog.Dialog>
-        </Dialog.Root>
+                </Dialog.Block>
+            </Dialog>
+        </Dialog.TriggerContext>
     );
 };
 

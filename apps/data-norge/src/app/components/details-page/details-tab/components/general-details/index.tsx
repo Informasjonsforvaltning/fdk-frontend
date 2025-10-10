@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Heading, Link, Tag, type TagProps, Paragraph } from '@digdir/designsystemet-react';
-import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
+import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, InputWithCopyButton } from '@fdk-frontend/ui';
 import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
 import { type DatasetType } from '@fellesdatakatalog/types';
 import { CopyButton, HelpText } from '@fellesdatakatalog/ui';
@@ -33,7 +33,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
         <section>
             <Heading
                 level={2}
-                data-size='2xs'
+                data-size='xs'
             >
                 {dictionary.details.general.title}
             </Heading>
@@ -52,7 +52,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 <dt>
                     <Hstack>
                         <span>{dictionary.details.general.firstHarvested}:</span>
-                        <HelpText>
+                        <HelpText aria-label={dictionary.details.general.firstHarvestedHelpTextTitle}>
                             <div style={{whiteSpace:'normal'}}>
                                 <Paragraph data-size='sm'>{dictionary.details.general.firstHarvestedHelpText}</Paragraph>
                                 <Paragraph data-size='sm'>
@@ -142,7 +142,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 <dt>
                     <Hstack>
                         {dictionary.details.general.metadataQuality.title}:
-                        <HelpText>
+                        <HelpText aria-label={dictionary.details.general.metadataQuality.helpTextTitle}>
                             <div style={{whiteSpace:'normal'}}>
                                 <Paragraph data-size='sm'>{dictionary.details.general.metadataQuality.helpText}</Paragraph>
                                 <Paragraph data-size='sm'>
@@ -165,14 +165,11 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 <dt>UID:</dt>
                 <dd>
                     <Hstack>
-                        {dataset.id}
-                        <CopyButton
+                        <InputWithCopyButton
+                            value={dataset.id}
+                            inputLabel={'uid'}
                             copyLabel={dictionary.details.general.copyButton[0]}
                             copiedLabel={dictionary.details.general.copyButton[1]}
-                            copyOnClick={dataset.id}
-                            buttonProps={{
-                                style: { margin: '-0.25rem 0' }
-                            }}
                         />
                     </Hstack>
                 </dd>

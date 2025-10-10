@@ -11,7 +11,7 @@ const OpenDataTag = ({ dictionary }: { dictionary: Dictionary }) => {
         >
             {dictionary.openDataTag.label}
             &nbsp;
-            <HelpText>
+            <HelpText aria-label={dictionary.openDataTag.helpTextTitle}>
                 <Paragraph data-size='md'>{dictionary.openDataTag.helpText}</Paragraph>
                 <Paragraph data-size='md'>
                     <Link href='/docs/finding-data/access-data'>{dictionary.openDataTag.linkText}</Link>

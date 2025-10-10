@@ -60,9 +60,8 @@ const DatasetPreviewWidget = ({
                 <div className={styles.loading}>
                     {dictionary.datasetPreview.generatingPreview}
                     <Spinner
-                        title={'loading'}
+                        aria-label={'loading'}
                         data-size='xs'
-                        variant='interaction'
                         aria-hidden={true}
                     />
                 </div>

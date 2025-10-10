@@ -111,7 +111,7 @@ const DatasetDetailsTab = ({
                     <section>
                         <Heading
                             level={2}
-                            data-size='2xs'
+                            data-size='xs'
                         >
                             {dictionary.details.themes}
                         </Heading>
@@ -129,7 +129,7 @@ const DatasetDetailsTab = ({
                     <section>
                         <Heading
                             level={2}
-                            data-size='2xs'
+                            data-size='xs'
                         >
                             {dictionary.details.keywords}
                         </Heading>

@@ -8,7 +8,7 @@ import { i18n, LocaleCodes } from '@fdk-frontend/dictionaries';
 
 import styles from './language-switcher.module.scss';
 
-const LanguageSwitcher = (props: HTMLNavElement) => {
+const LanguageSwitcher = (props: React.HTMLAttributes<HTMLElement>) => {
     const router = useRouter();
     const pathName = usePathname();
 

@@ -167,7 +167,7 @@ export default function DatasetDetailsPage({
                         <section className={styles.section}>
                             <Heading
                                 level={2}
-                                data-size='2xs'
+                                data-size='xs'
                             >
                                 {dictionaries.detailsPage.overview.description.title}
                             </Heading>
@@ -229,7 +229,7 @@ export default function DatasetDetailsPage({
                             >
                                 <Heading
                                     level={2}
-                                    data-size='2xs'
+                                    data-size='xs'
                                 >
                                     {dictionaries.detailsPage.internalRelations}
                                 </Heading>
@@ -246,7 +246,7 @@ export default function DatasetDetailsPage({
                             <section className={styles.section}>
                                 <Heading
                                     level={2}
-                                    data-size='2xs'
+                                    data-size='xs'
                                 >
                                     {dictionaries.detailsPage.similarDatasets}
                                 </Heading>

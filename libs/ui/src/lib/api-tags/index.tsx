@@ -17,7 +17,6 @@ const ApiTags = ({ children, api, dictionary, ...props }: ApiTagsProps & React.H
                 ?.filter((format: any) => format?.code)
                 .map((format: any, i: number) => (
                     <Tag
-                        color='info'
                         data-size='sm'
                         key={format.code}
                     >

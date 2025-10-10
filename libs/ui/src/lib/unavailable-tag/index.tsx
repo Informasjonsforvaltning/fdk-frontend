@@ -1,26 +1,22 @@
 import { Link, Tag, Paragraph } from '@digdir/designsystemet-react';
+import { HelpText } from '@fellesdatakatalog/ui';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 const UnavailableTag = ({ dictionary }: { dictionary: Dictionary }) => {
     return (
         <Tag
-            color='warning'
-            size='sm'
+            data-color='warning'
+            data-size='sm'
             style={{ display: 'inline-flex' }}
         >
             {dictionary.unavailableTag.label}
             &nbsp;
-            {/* TODO: Replace with appropriate component after design system migration */}
-            {/* <HelpText
-                title={dictionary.unavailableTag.helpTextTitle}
-                size='sm'
-                style={{ transform: 'scale(0.75)' }}
-            >
-                <Paragraph size='sm'>{dictionary.unavailableTag.helpText}</Paragraph>
-                <Paragraph size='sm'>
+            <HelpText aria-label={dictionary.unavailableTag.helpTextTitle}>
+                <Paragraph>{dictionary.unavailableTag.helpText}</Paragraph>
+                <Paragraph>
                     <Link href='/docs/finding-data/access-data'>{dictionary.unavailableTag.linkText}</Link>
                 </Paragraph>
-            </HelpText> */}
+            </HelpText>
         </Tag>
     );
 };

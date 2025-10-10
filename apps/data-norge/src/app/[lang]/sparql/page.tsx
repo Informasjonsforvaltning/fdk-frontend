@@ -38,16 +38,10 @@ const SparqlPage = async (props: SparqlPageProps) => {
                 />
             </div>
             <div className={styles.contentContainer}>
-                <Heading
-                    data-size='xl'
-                    spacing
-                >
+                <Heading data-size='xl'>
                     {dictionary.title}
                 </Heading>
-                <Paragraph
-                    data-size='lg'
-                    spacing
-                >
+                <Paragraph data-size='lg'>
                     {dictionary.description}
                 </Paragraph>
                 {FDK_SPARQL_ENDPOINT && (

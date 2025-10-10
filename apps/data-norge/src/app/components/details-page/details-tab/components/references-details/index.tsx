@@ -13,7 +13,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
         <section>
             <Heading
                 level={2}
-                data-size='2xs'
+                data-size='xs'
             >
                 {dictionary.details.references.title}
             </Heading>

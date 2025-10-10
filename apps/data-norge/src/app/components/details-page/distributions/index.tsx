@@ -42,7 +42,7 @@ const Distributions = ({
         <div className={cn(styles.distributions, className)}>
             <Heading
                 level={2}
-                data-size='2xs'
+                data-size='xs'
             >
                 <Hstack>
                     <div>{dictionaries.detailsPage.distributions.title}</div>
@@ -135,7 +135,7 @@ const Distributions = ({
             )}
             <Heading
                 level={2}
-                data-size='2xs'
+                data-size='xs'
             >
                 <Hstack>
                     <div>{dictionaries.detailsPage.apis.title}</div>

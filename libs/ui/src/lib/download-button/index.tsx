@@ -55,10 +55,10 @@ const DownloadButton = ({
     }
 
     return (
-        <Dialog.Root>
+        <Dialog.TriggerContext>
             <Dialog.Trigger asChild>
                 <Button
-                    size='sm'
+                    data-size='sm'
                     variant='secondary'
                     {...props}
                 >
@@ -70,13 +70,12 @@ const DownloadButton = ({
                     <Badge>{uris.length}</Badge>
                 </Button>
             </Dialog.Trigger>
-            <Dialog.Dialog
+            <Dialog
                 ref={modalRef}
                 className={styles.dialog}
-                onInteractOutside={() => modalRef.current?.close()}
             >
-                <Dialog.Header closeButton={true}>{modalTitle}</Dialog.Header>
-                <Dialog.Content className={styles.content}>
+                <Dialog.Block>{modalTitle}</Dialog.Block>
+                <Dialog.Block className={styles.content}>
                     {dictionary.distributions.downloadModal.header}
                     <ul className='fdk-box-list'>
                         {uris?.map((uri: string, index: number) => (
@@ -97,18 +96,17 @@ const DownloadButton = ({
                             </li>
                         ))}
                     </ul>
-                </Dialog.Content>
-                <Dialog.Footer>
+                </Dialog.Block>
+                <Dialog.Block>
                     <Button
-                        size='sm'
+                        data-size='sm'
                         variant='secondary'
-                        onClick={() => modalRef.current?.close()}
                     >
                         {dictionary.distributions.downloadModal.closeBtn}
                     </Button>
-                </Dialog.Footer>
-            </Dialog.Dialog>
-        </Dialog.Root>
+                </Dialog.Block>
+            </Dialog>
+        </Dialog.TriggerContext>
     );
 };
 

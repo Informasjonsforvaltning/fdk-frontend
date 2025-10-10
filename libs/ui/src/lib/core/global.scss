@@ -65,6 +65,10 @@ body {
     }
 }
 
+.sr-only {
+    @include core-mixins.sr-only();
+}
+
 /*
 @use '../box-list/styles.module' as box-list;
 @use '../box-link/styles.module' as box-link;

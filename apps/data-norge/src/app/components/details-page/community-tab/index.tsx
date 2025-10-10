@@ -18,7 +18,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
         <section className={styles.section}>
             <Heading
                 level={2}
-                data-size='2xs'
+                data-size='xs'
                 className={styles.heading}
             >
                 <Hstack>
@@ -53,7 +53,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
                 <VStack>
                     <Heading
                         level={2}
-                        data-size='2xs'
+                        data-size='xs'
                     >
                         {dictionary.community.notice.title}
                     </Heading>

@@ -11,7 +11,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
         <section>
             <Heading
                 level={2}
-                data-size='2xs'
+                data-size='xs'
             >
                 {dictionary.details.content.title}
             </Heading>

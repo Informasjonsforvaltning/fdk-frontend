@@ -70,11 +70,11 @@ const MetadataTab = ({
             <div className={styles.header}>
                 <Heading
                     level={2}
-                    data-size='2xs'
+                    data-size='xs'
                 >
                     <Hstack>
                         Resource Description Framework (RDF)
-                        <HelpText>
+                        <HelpText aria-label={dictionary.rdf.titleHelpTextTitle}>
                             <Paragraph data-size='md'>{dictionary.rdf.titleHelpText}</Paragraph>
                             <Paragraph data-size='md'>
                                 <Link href={`/${locale}/docs/sharing-data/rdf`}>

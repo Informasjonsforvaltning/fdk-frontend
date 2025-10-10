@@ -30,7 +30,7 @@ const TopicRow = ({
                 <div className={styles.threadTeaser}>
                     <Heading
                         level={3}
-                        data-size='2xs'
+                        data-size='xs'
                     >
                         <ExternalLink
                             href={`${communityBaseUri}/topic/${topic.slug}`}

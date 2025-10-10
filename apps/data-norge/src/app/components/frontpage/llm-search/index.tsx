@@ -138,9 +138,8 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                     >
                         {loading ? (
                             <Spinner
-                                title={dictionary.aiBanner.prompt.loading}
+                                aria-label={dictionary.aiBanner.prompt.loading}
                                 data-size='xs'
-                                variant='inverted'
                             />
                         ) : (
                             <>

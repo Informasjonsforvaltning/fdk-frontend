@@ -9,7 +9,7 @@ const RelatedDetails = ({ related, locale, dictionary }: Omit<DatasetDetailsProp
         <section>
             <Heading
                 level={2}
-                data-size='2xs'
+                data-size='xs'
             >
                 {dictionary.details.related.title}
             </Heading>

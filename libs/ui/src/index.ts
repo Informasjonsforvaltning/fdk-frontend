@@ -31,8 +31,6 @@ export { default as ConceptPreview } from './lib/concept-preview';
 export * from './lib/concept-preview';
 export { default as ConceptPreviewBase } from './lib/concept-preview-base';
 export * from './lib/concept-preview-base';
-export { default as CopyButton } from './lib/copy-button';
-export * from './lib/copy-button';
 export { default as DatasetPreviewModal } from './lib/dataset-preview-modal';
 export * from './lib/dataset-preview-modal';
 export { default as DatasetPreviewTable } from './lib/dataset-preview-table';

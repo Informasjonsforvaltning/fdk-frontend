@@ -4,8 +4,8 @@ import { type Dictionary } from '@fdk-frontend/dictionaries';
 const OpenLicenseTag = ({ dictionary, ...rest }: { dictionary: Dictionary } & TagProps) => {
     return (
         <Tag
-            color='success'
-            size='sm'
+            data-color='success'
+            data-size='sm'
             {...rest}
         >
             {dictionary.openLicenseTag.label}

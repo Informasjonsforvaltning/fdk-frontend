@@ -24,7 +24,7 @@ const TagList = ({ children, className, maxTags, ...props }: TagListProps & Reac
             {maxTags && maxTags < childArray.length && (
                 <li>
                     <Tag
-                        size='sm'
+                        data-size='sm'
                         className={styles.tagsOmitted}
                     >
                         <span>+{childArray.length - maxTags}</span>
