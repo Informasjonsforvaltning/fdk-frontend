@@ -1,4 +1,4 @@
-import { Link, Tag, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import { Link, Tag, Paragraph } from '@digdir/designsystemet-react';
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 
 const UnavailableTag = ({ dictionary }: { dictionary: Dictionary }) => {
@@ -10,7 +10,8 @@ const UnavailableTag = ({ dictionary }: { dictionary: Dictionary }) => {
         >
             {dictionary.unavailableTag.label}
             &nbsp;
-            <HelpText
+            {/* TODO: Replace with appropriate component after design system migration */}
+            {/* <HelpText
                 title={dictionary.unavailableTag.helpTextTitle}
                 size='sm'
                 style={{ transform: 'scale(0.75)' }}
@@ -19,7 +20,7 @@ const UnavailableTag = ({ dictionary }: { dictionary: Dictionary }) => {
                 <Paragraph size='sm'>
                     <Link href='/docs/finding-data/access-data'>{dictionary.unavailableTag.linkText}</Link>
                 </Paragraph>
-            </HelpText>
+            </HelpText> */}
         </Tag>
     );
 };

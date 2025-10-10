@@ -18,7 +18,7 @@ type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
-const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuProps) => {
+const MainMenu = ({ className, dictionary, locale, motionProps = {}, ...rest }: MainMenuProps) => {
     const data = getMainMenuData(dictionary, locale);
     const animations = {
         links: {
@@ -44,6 +44,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
             animate='show'
             aria-label={dictionary.mainMenu.label}
             {...motionProps}
+            {...rest}
         >
             <div className={styles.links}>
                 <MotionNav
@@ -54,7 +55,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        size='sm'
+                        data-size='sm'
                         id='mainMenu.catalogs.heading'
                     >
                         {dictionary.mainMenu.catalogs.heading}
@@ -80,7 +81,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        size='sm'
+                        data-size='sm'
                         id='mainMenu.help.heading'
                     >
                         {dictionary.mainMenu.help.heading}
@@ -101,7 +102,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        size='sm'
+                        data-size='sm'
                         id='mainMenu.tools.heading'
                     >
                         {dictionary.mainMenu.tools.heading}
@@ -122,7 +123,7 @@ const MainMenu = ({ className, dictionary, locale, motionProps = {} }: MainMenuP
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        size='sm'
+                        data-size='sm'
                         id='mainMenu.about.heading'
                     >
                         {dictionary.mainMenu.about.heading}

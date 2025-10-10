@@ -39,13 +39,13 @@ const SparqlPage = async (props: SparqlPageProps) => {
             </div>
             <div className={styles.contentContainer}>
                 <Heading
-                    size='xlarge'
+                    data-size='xl'
                     spacing
                 >
                     {dictionary.title}
                 </Heading>
                 <Paragraph
-                    size='large'
+                    data-size='lg'
                     spacing
                 >
                     {dictionary.description}

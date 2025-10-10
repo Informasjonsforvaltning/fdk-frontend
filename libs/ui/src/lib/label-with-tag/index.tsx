@@ -15,7 +15,7 @@ const LabelWithTag = ({ labelText, tagText, ...rest }: LabelWithTagProps) => (
         <Label>{labelText}</Label>
         {tagText && (
             <Tag
-                size='small'
+                data-size='sm'
                 color='second'
                 className={styles.tag}
             >

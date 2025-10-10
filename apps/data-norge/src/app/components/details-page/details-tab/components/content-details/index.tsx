@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Heading, HelpText, Paragraph } from '@digdir/designsystemet-react';
+import { Heading, Paragraph } from '@digdir/designsystemet-react';
 import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
@@ -11,7 +11,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
         <section>
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='2xs'
             >
                 {dictionary.details.content.title}
             </Heading>
@@ -88,13 +88,14 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>
                             <Hstack>
                                 <span>{dictionary.details.content.issued}:</span>
-                                <HelpText
+                                {/* TODO: Replace with appropriate component after design system migration */}
+                                {/* <HelpText
                                     title={dictionary.details.general.firstHarvestedHelpTextTitle}
-                                    size='sm'
+                                    data-size='sm'
                                     style={{ transform: 'scale(0.75)' }}
                                 >
-                                    <Paragraph size='sm'>{dictionary.details.content.issuedHelpText}</Paragraph>
-                                </HelpText>
+                                    <Paragraph data-size='sm'>{dictionary.details.content.issuedHelpText}</Paragraph>
+                                </HelpText> */}
                             </Hstack>
                         </dt>
                         <dd>
@@ -252,13 +253,14 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>
                             <Hstack>
                                 {dictionary.details.content.conformsTo}:
-                                <HelpText
+                                {/* TODO: Replace with appropriate component after design system migration */}
+                                {/* <HelpText
                                     title={dictionary.details.content.conformsToHelpText}
-                                    size='sm'
+                                    data-size='sm'
                                     style={{ transform: 'scale(0.75)' }}
                                 >
-                                    <Paragraph size='sm'>{dictionary.details.content.conformsToHelpText}</Paragraph>
-                                </HelpText>
+                                    <Paragraph data-size='sm'>{dictionary.details.content.conformsToHelpText}</Paragraph>
+                                </HelpText> */}
                             </Hstack>
                         </dt>
                         <dd className='article'>

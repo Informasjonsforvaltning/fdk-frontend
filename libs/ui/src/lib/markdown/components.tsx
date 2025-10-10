@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { Prism as SyntaxHighlighter, type SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import {
-    Ingress,
-    type IngressProps,
     Alert,
     type AlertProps,
     Button,
@@ -71,16 +69,15 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         ),
         p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
             <Paragraph
-                size='sm'
                 {...props}
             />
         ),
         Paragraph: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
         Heading: (props: HeadingProps) => <Heading {...props} />,
-        Alert: ({ size = 'sm', iconTitle = ' ', ...props }: AlertProps) => (
+        Alert: ({ 'data-size': dataSize = 'sm', 'data-color': dataColor, ...props }: AlertProps) => (
             <Alert
-                size={size}
-                iconTitle={iconTitle}
+                data-size={dataSize}
+                data-color={dataColor}
                 {...props}
             />
         ),
@@ -97,7 +94,6 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
             <Table
                 {...(props as any)}
-                size='sm'
             >
                 {children}
             </Table>
@@ -119,18 +115,18 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         ) => <TableCell {...props}>{children}</TableCell>,
         Tag: (props: TagProps) => (
             <Tag
+                data-size='sm'
                 {...props}
-                size='sm'
             />
         ),
-        Ingress: ({ children, ...props }: IngressProps) => (
-            <Ingress
-                asChild
+        Ingress: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+            // TODO: Replace with appropriate component after design system migration
+            <Paragraph
+                data-size='md'
                 {...props}
-                size={'md'}
             >
-                <div>{children}</div>
-            </Ingress>
+                {children}
+            </Paragraph>
         ),
         a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
             if (rest.href?.startsWith('http')) {

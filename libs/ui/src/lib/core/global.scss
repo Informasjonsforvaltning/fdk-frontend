@@ -1,8 +1,75 @@
+@use './mixins' as core-mixins;
+
+@layer reset, fds;
+
+@import './reset.css';
+@import '@digdir/designsystemet-css';
+@import '@digdir/designsystemet-theme';
+@import '@fellesdatakatalog/ui/dist/styles.css';
+@import './ds-overrides.scss';
+
+:root {
+    // Colors
+    --fdk-color-navy: #1e2b3c;
+    --fdk-color-navy-dark: color-mix(in srgb, var(--fdk-color-navy), #000 60%);
+    --fdk-color-blue-lightest: #ddeaf6;
+    --fdk-color-blue-light: #1e98f5;
+    --fdk-color-blue: #0062BA;
+    --fdk-color-blue-dark: #004f96;
+    --fdk-color-cyan: #8eaacb;
+    --fdk-color-orange: var(--ds-color-brand2-base-default);
+    --fdk-color-red: #b81a1a;
+    
+    // Other variables
+    --fdk-interactive-color: var(--fdk-color-blue);
+    --fdk-interactive-color-negative: var(--fdk-color-cyan);
+    --fdk-text-color: var(--fdk-color-navy);
+    --fdk-text-color--negative: white;
+    --fdk-link-color: var(--fdk-interactive-color);
+    --fdk-link-color-negative: var(--fdk-interactive-color-negative);
+    --custom-helptext-size: 1.25rem;
+}
+
+/*
+Needed for sticky header:
+    When scrolling to an element (e.g. via anchor links or element.scrollIntoView()),
+    leave 5 rem of space between the top of the viewport and the target element.
+*/
+html {
+    scroll-padding-top: 5rem;
+}
+
+html, body {
+    font-size: 16px;
+
+    @media (max-width: 650px) {
+        font-size: 14px;
+    }
+}
+
+body {
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        'Helvetica Neue',
+        Arial,
+        sans-serif;
+    background: var(--fdk-color-navy-dark);
+    color: var(--fdk-text-color);
+
+    main {
+        background: white;
+    }
+}
+
+/*
 @use '../box-list/styles.module' as box-list;
 @use '../box-link/styles.module' as box-link;
 @use './mixins' as core-mixins;
 
-/* Define layers in specific order */
 @layer reset, fds;
 
 // This must be imported before designsystem styles below
@@ -15,9 +82,6 @@
 @import './fds-overrides';
 @import './table';
 
-/* Small devices such as large phones (640px and up) */
-
-/* breakpoints based on bootstrap's breakpoints */
 :root {
     --breakpoint-small: 640px;
     --breakpoint-medium: 768px;
@@ -63,15 +127,6 @@ code {
     }
 }
 
-html {
-    font-size: 16px;
-    scroll-padding-top: 5rem;
-
-    @media (max-width: 650px) {
-        font-size: 14px;
-    }
-}
-
 .sr-only {
     @include sr-only();
 }
@@ -99,3 +154,4 @@ table.fdk-box-list-table {
 .article {
     @include core-mixins.article();
 }
+*/

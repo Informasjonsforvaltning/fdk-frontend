@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .detailsPage {
     margin: 0 2rem 3rem;
@@ -6,12 +6,6 @@
 
     @media (max-width: 400px) {
         margin: 0 1.5rem 3rem;
-    }
-
-    a {
-        &:visited {
-            color: var(--color-link);
-        }
     }
 
     .mainContent {
@@ -30,6 +24,7 @@
                 padding: 0;
                 border-bottom: 1px solid #ddd;
 
+                // TODO: responsive tablist
                 :global(.fds-tabs__tablist) {
                     margin: 0 2rem;
                     border-bottom: 0;
@@ -46,12 +41,7 @@
         }
 
         .tabs {
-            :global(.fds-tabs__tab) {
-                padding: 0.75rem 1rem;
-                white-space: nowrap;
-            }
-
-            :global(.fds-tabs__content) {
+            [role='tabpanel'] {
                 padding: 1.5rem 0;
 
                 > * + * {
@@ -61,19 +51,13 @@
         }
 
         .article {
-            @include article();
+            @include core-mixins.article();
         }
 
         .section {
-            > :global(.fds-heading) {
+            > :global(.ds-heading) {
                 margin-bottom: 1em;
             }
-        }
-
-        .box {
-            padding: 1rem 1.5rem;
-            border-radius: 0.25rem;
-            border: 1px solid var(--fds-semantic-border-neutral-subtle);
         }
 
         .related {

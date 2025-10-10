@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .digdirLogoLink,
 .logo {
@@ -32,26 +32,4 @@
     padding: 0.5rem;
     margin: -0.5rem;
     border-radius: 0.25rem;
-
-    &:hover {
-        background-color: var(--fds-semantic-surface-action-first-no_fill-hover);
-
-        span {
-            color: var(--color-text);
-        }
-        svg {
-            fill: var(--color-text);
-        }
-    }
-
-    &:active {
-        span {
-            opacity: 0.75;
-        }
-    }
-
-    &:focus-visible {
-        @include fds-focus-visible-block();
-        background: var(--fds-semantic-border-focus-outline);
-    }
 }
