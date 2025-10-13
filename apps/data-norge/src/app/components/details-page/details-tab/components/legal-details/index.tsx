@@ -32,7 +32,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
         <section>
             <Heading
                 level={2}
-                size='xxsmall'
+                data-size='xs'
             >
                 {dictionary.details.legal.title}
             </Heading>

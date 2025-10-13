@@ -20,12 +20,33 @@ const nextConfig = {
     sassOptions: {
         silenceDeprecations: ['legacy-js-api', 'import'],
     },
+    // Ensure CSS HMR works properly
+    compiler: {
+        // Remove console logs in production
+        removeConsole: process.env.NODE_ENV === 'production',
+    },
+    // Force CSS modules to work with HMR
+    cssModules: {
+        // Use a more unique naming pattern for CSS modules
+        localIdentName: '[local]_[hash:base64:5]_[path]',
+    },
     // Add experimental features for better compatibility
     experimental: {
         // Disable React Compiler to prevent hanging issues
         reactCompiler: false,
         // Optimize for development
         optimizePackageImports: ['@digdir/designsystemet-react'],
+        // Enable CSS modules with better HMR support
+        cssChunking: 'strict',
+        // Disable Turbopack for now to fix CSS HMR issues
+        // turbo: {
+        //     rules: {
+        //         '*.scss': {
+        //             loaders: ['sass-loader'],
+        //             as: '*.css',
+        //         },
+        //     },
+        // },
     },
     // Add timeout configuration
     serverExternalPackages: ['@fellesdatakatalog/types'],
@@ -34,14 +55,6 @@ const nextConfig = {
         unoptimized: process.env.NODE_ENV === 'development',
     },
     webpack: (config) => {
-        // Completely disable all caching mechanisms
-        config.cache = false;
-
-        // Disable persistent caching
-        if (config.cache && typeof config.cache === 'object') {
-            config.cache = false;
-        }
-
         // Ignore problematic native dependencies
         config.resolve = {
             ...config.resolve,
@@ -58,17 +71,24 @@ const nextConfig = {
             },
         };
 
-        // Optimize for development
+        // Optimize for development with HMR-friendly settings
         if (process.env.NODE_ENV === 'development') {
+            // Disable caching completely to prevent CSS HMR issues
+            config.cache = false;
+            
             config.optimization = {
                 ...config.optimization,
                 removeAvailableModules: false,
                 removeEmptyChunks: false,
                 splitChunks: false,
             };
-
-            // Disable source maps in development to speed up builds
-            config.devtool = false;
+            
+            // Improve HMR performance with better file watching
+            config.watchOptions = {
+                poll: 1000,
+                aggregateTimeout: 50,
+                ignored: /node_modules/,
+            };
         }
 
         return config;

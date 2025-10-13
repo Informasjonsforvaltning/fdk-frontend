@@ -13,7 +13,7 @@ const OrgButton = ({ children, className, href, orgLogoSrc, ...props }: OrgButto
     return (
         <Button
             asChild
-            size='sm'
+            data-size='sm'
             variant='tertiary'
             className={cn(styles.wrapper, className)}
             {...props}

@@ -13,8 +13,8 @@ import {
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import {
-    Breadcrumbs,
     Badge,
+    Breadcrumbs,
     BrandDivider,
     Markdown,
     Article,
@@ -26,7 +26,7 @@ import {
     ExternalLink,
 } from '@fdk-frontend/ui';
 import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
-import { Heading, Tabs, TabList, Tab, TabContent } from '@digdir/designsystemet-react';
+import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel } from '@digdir/designsystemet-react';
 import Distributions from '../distributions';
 import DatasetDetailsTab from '../details-tab';
 import MetadataTab from '../metadata-tab';
@@ -118,58 +118,61 @@ export default function DatasetDetailsPage({
                 <Tabs
                     className={styles.tabs}
                     defaultValue='overview'
-                    size='sm'
+                    data-size='sm'
                     value={activeTab}
                     onChange={(value) => {
                         setActiveTab(value);
                     }}
                 >
                     <ScrollShadows className={styles.tabsScrollShadows}>
-                        <TabList>
-                            <Tab
+                        <TabsList>
+                            <TabsTab
                                 value='overview'
                                 onClick={() => updateUri('overview')}
                             >
                                 {dictionaries.detailsPage.tabs.overview}
-                            </Tab>
-                            <Tab
+                            </TabsTab>
+                            <TabsTab
                                 value='distributions'
                                 onClick={() => updateUri('distributions')}
                             >
                                 {dictionaries.detailsPage.tabs.distributions}&nbsp;
                                 <Badge>{sumArrayLengths(resource.distribution, resource.sample, apis)}</Badge>
-                            </Tab>
-                            <Tab
+                            </TabsTab>
+                            <TabsTab
                                 value='details'
                                 onClick={() => updateUri('details')}
                             >
                                 {dictionaries.detailsPage.tabs.details}
-                            </Tab>
-                            <Tab
+                            </TabsTab>
+                            <TabsTab
                                 value='community'
                                 onClick={() => updateUri('community')}
                             >
                                 {dictionaries.detailsPage.tabs.community}
                                 &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
-                            </Tab>
-                            <Tab
+                            </TabsTab>
+                            <TabsTab
                                 value='rdf'
                                 onClick={() => updateUri('rdf')}
                             >
                                 {dictionaries.detailsPage.tabs.rdf}
-                            </Tab>
-                        </TabList>
+                            </TabsTab>
+                        </TabsList>
                     </ScrollShadows>
-                    <TabContent value='overview'>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='overview'
+                    >
                         <section className={styles.section}>
                             <Heading
                                 level={2}
-                                size='xxsmall'
+                                data-size='xs'
                             >
                                 {dictionaries.detailsPage.overview.description.title}
                             </Heading>
                             {resource.description ? (
-                                <div className={styles.box}>
+                                <Card>
                                     <ExpandableContent>
                                         <Article>
                                             <Markdown
@@ -188,7 +191,7 @@ export default function DatasetDetailsPage({
                                             </Markdown>
                                         </Article>
                                     </ExpandableContent>
-                                </div>
+                                </Card>
                             ) : (
                                 <PlaceholderBox>
                                     {dictionaries.detailsPage.overview.description.placeholder}
@@ -226,7 +229,7 @@ export default function DatasetDetailsPage({
                             >
                                 <Heading
                                     level={2}
-                                    size='xxsmall'
+                                    data-size='xs'
                                 >
                                     {dictionaries.detailsPage.internalRelations}
                                 </Heading>
@@ -243,7 +246,7 @@ export default function DatasetDetailsPage({
                             <section className={styles.section}>
                                 <Heading
                                     level={2}
-                                    size='xxsmall'
+                                    data-size='xs'
                                 >
                                     {dictionaries.detailsPage.similarDatasets}
                                 </Heading>
@@ -256,8 +259,11 @@ export default function DatasetDetailsPage({
                                 </ScrollShadows>
                             </section>
                         )}
-                    </TabContent>
-                    <TabContent value='distributions'>
+                    </TabsPanel>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='distributions'
+                    >
                         {!isAvailable && accessRequestDemo ? (
                             <ResourceNotAvailableNotice
                                 kind='datasets'
@@ -276,8 +282,11 @@ export default function DatasetDetailsPage({
                                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                             />
                         )}
-                    </TabContent>
-                    <TabContent value='details'>
+                    </TabsPanel>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='details'
+                    >
                         <DatasetDetailsTab
                             dataset={resource}
                             internalRelatedDatasets={internalRelatedDatasets}
@@ -287,22 +296,28 @@ export default function DatasetDetailsPage({
                             metadataScore={metadataScore}
                             dictionary={dictionaries.detailsPage}
                         />
-                    </TabContent>
-                    <TabContent value='community'>
+                    </TabsPanel>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='community'
+                    >
                         <CommunityTab
                             topics={communityTopics}
                             communityBaseUri={communityBaseUri}
                             dictionary={dictionaries.detailsPage}
                             locale={locale}
                         />
-                    </TabContent>
-                    <TabContent value='rdf'>
+                    </TabsPanel>
+                    <TabsPanel
+                        className={styles.tabPanel}
+                        value='rdf'
+                    >
                         <MetadataTab
                             uri={`${baseUri}/datasets/${resource.id}`}
                             dictionary={dictionaries.detailsPage}
                             locale={locale}
                         />
-                    </TabContent>
+                    </TabsPanel>
                 </Tabs>
             </div>
         </div>

@@ -9,7 +9,7 @@ const ActionButton = ({ children, uri, ...props }: ActionButtonProps & ButtonPro
     return (
         <Button
             asChild
-            size='sm'
+            data-size='sm'
             variant='secondary'
             onClick={(e) => {
                 e.stopPropagation();

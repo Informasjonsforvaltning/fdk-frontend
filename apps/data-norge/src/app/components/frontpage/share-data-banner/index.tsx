@@ -27,10 +27,7 @@ const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
         <div>
             <div className={styles.buttons}>
                 <Button asChild>
-                    <Link
-                        href={`/publishing`}
-                        inverted
-                    >
+                    <Link href={`/publishing`}>
                         {dictionary.shareDataBanner.shareDataLinkText}
                     </Link>
                 </Button>

@@ -33,9 +33,8 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
         <div className={styles.wrapper}>
             <div style={{ textAlign: 'center' }}>
                 <Spinner
-                    title={dictionary.general.redirecting}
-                    size='md'
-                    variant='interaction'
+                    aria-label={dictionary.general.redirecting}
+                    data-size='md'
                     aria-hidden
                 />
                 <Paragraph>{dictionary.general.redirecting}</Paragraph>

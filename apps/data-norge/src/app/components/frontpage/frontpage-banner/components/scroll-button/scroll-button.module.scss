@@ -1,3 +1,5 @@
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
+
 .scrollButton {
     content: '';
     display: block;
@@ -21,10 +23,8 @@
         border: 2px solid white;
     }
 
-    &:focus {
-        outline: 4px solid var(--fds-semantic-surface-focus-default);
-        opacity: 1;
-        border: 2px solid transparent;
+    &:focus-visible {
+        @include core-mixins.focus-block();
     }
 
     .arrow {

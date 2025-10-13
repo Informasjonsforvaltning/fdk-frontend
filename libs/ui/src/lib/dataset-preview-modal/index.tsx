@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ReactNode, useRef } from 'react';
-import { Alert, Modal, Button, Tag, Link, Paragraph } from '@digdir/designsystemet-react';
+import { Alert, Dialog, Button, Tag, Link, Paragraph } from '@digdir/designsystemet-react';
 import { DownloadIcon, ArrowDownRightIcon } from '@navikt/aksel-icons';
 import styles from './styles.module.scss';
 import DatasetPreviewTable from '../dataset-preview-table/';
@@ -27,19 +27,18 @@ const DatasetPreviewModal = ({
     const modalRef = useRef<HTMLDialogElement>(null);
 
     return (
-        <Modal.Root>
-            <Modal.Trigger asChild>{trigger}</Modal.Trigger>
-            <Modal.Dialog
+        <Dialog.TriggerContext>
+            <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+            <Dialog
                 ref={modalRef}
                 className={styles.dialog}
-                onInteractOutside={() => modalRef.current?.close()}
             >
-                <Modal.Header closeButton={true}>
+                <Dialog.Block>
                     <div className={styles.headerWrapper}>
                         {title}
                         <Tag
                             className={styles.maxRowsNotice}
-                            size='sm'
+                            data-size='sm'
                             color='warning'
                         >
                             {dictionary.datasetPreview.showingMaxRows}
@@ -47,23 +46,23 @@ const DatasetPreviewModal = ({
                     </div>
                     <div>
                         <ArrowDownRightIcon className={styles.arrowIcon} />
-                        <Paragraph size='sm'>
+                        <Paragraph data-size='sm'>
                             <code>{downloadUrl}</code>
                         </Paragraph>
                     </div>
-                </Modal.Header>
-                <Modal.Content className={styles.content}>
+                </Dialog.Block>
+                <Dialog.Block className={styles.content}>
                     <div className={styles.inner}>
                         {data.table ? (
                             <DatasetPreviewTable tableData={data.table} />
                         ) : (
-                            <Alert size='sm'>{dictionary.datasetPreview.noTableData}</Alert>
+                            <Alert data-size='sm'>{dictionary.datasetPreview.noTableData}</Alert>
                         )}
                     </div>
-                </Modal.Content>
-                <Modal.Footer>
+                </Dialog.Block>
+                <Dialog.Block>
                     <Button
-                        size='sm'
+                        data-size='sm'
                         variant='secondary'
                         onClick={() => modalRef.current?.close()}
                     >
@@ -71,7 +70,7 @@ const DatasetPreviewModal = ({
                     </Button>
                     <Button
                         asChild
-                        size='sm'
+                        data-size='sm'
                         variant='secondary'
                     >
                         <Link href={downloadUrl}>
@@ -79,9 +78,9 @@ const DatasetPreviewModal = ({
                             {dictionary.datasetPreview.downloadButton}
                         </Link>
                     </Button>
-                </Modal.Footer>
-            </Modal.Dialog>
-        </Modal.Root>
+                </Dialog.Block>
+            </Dialog>
+        </Dialog.TriggerContext>
     );
 };
 

@@ -18,13 +18,13 @@
     // border-bottom:1px solid #eee;
 
     a {
-        color: var(--color-link);
-        border-bottom: 3px solid transparent;
+        // color: var(--color-link);
+        // border-bottom: 3px solid transparent;
 
-        &:focus-visible {
-            color: black;
-            border-bottom: 3px solid black;
-        }
+        // &:focus-visible {
+            // color: black;
+            // border-bottom: 3px solid black;
+        // }
     }
 
     @media (max-width: 865px) {

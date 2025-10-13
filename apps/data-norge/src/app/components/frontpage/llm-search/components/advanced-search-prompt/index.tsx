@@ -16,7 +16,7 @@ const AdvancedSearchPrompt = ({ dictionary, locale }: AdvancedSearchPromptProps)
             <Button
                 className={styles.searchAlertButton}
                 asChild
-                size='small'
+                data-size='sm'
                 variant='primary'
             >
                 <Link href={`/search-all`}>
