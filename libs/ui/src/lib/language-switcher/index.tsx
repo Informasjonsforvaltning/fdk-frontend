@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import cn from 'classnames';
+import React from 'react';
 import { ToggleGroup } from '@digdir/designsystemet-react';
 
 import { i18n, LocaleCodes } from '@fdk-frontend/dictionaries';

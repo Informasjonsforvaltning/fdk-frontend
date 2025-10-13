@@ -12,7 +12,7 @@ import {
     UseDatasetPopover,
     TagList,
 } from '@fdk-frontend/ui';
-import { Heading, Link, Tag, Popover } from '@digdir/designsystemet-react';
+import { Heading, Link, Tag } from '@digdir/designsystemet-react';
 import styles from './dataset-header.module.scss';
 
 type DatasetHeaderProps = {

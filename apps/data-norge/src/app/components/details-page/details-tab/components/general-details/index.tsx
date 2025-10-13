@@ -3,7 +3,7 @@ import { Heading, Link, Tag, type TagProps, Paragraph } from '@digdir/designsyst
 import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, InputWithCopyButton } from '@fdk-frontend/ui';
 import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
 import { type DatasetType } from '@fellesdatakatalog/types';
-import { CopyButton, HelpText } from '@fellesdatakatalog/ui';
+import { HelpText } from '@fellesdatakatalog/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/dictionaries';
 

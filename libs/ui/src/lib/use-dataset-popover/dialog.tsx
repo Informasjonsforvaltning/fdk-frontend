@@ -7,7 +7,7 @@ import Badge from '../badge';
 import PlaceholderBox from '../placeholder-box';
 import DownloadButton from '../download-button';
 import ActionButton from '../action-button';
-import { Tabs, TabsList, TabsTab, TabsPanel, Popover } from '@digdir/designsystemet-react';
+import { Tabs, TabsList, TabsTab, TabsPanel } from '@digdir/designsystemet-react';
 import ApiTags from '../api-tags';
 import DistributionTags from '../distribution-tags';
 import ScrollShadows from '../scroll-shadows';

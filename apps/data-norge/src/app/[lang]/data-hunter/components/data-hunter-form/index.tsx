@@ -1,7 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
-import { Paragraph, Textarea, Textfield, Button } from '@digdir/designsystemet-react';
+import { Paragraph, Textfield, Button } from '@digdir/designsystemet-react';
 
 import { LabelWithTag, SubmitStatusAlert } from '@fdk-frontend/ui';
 

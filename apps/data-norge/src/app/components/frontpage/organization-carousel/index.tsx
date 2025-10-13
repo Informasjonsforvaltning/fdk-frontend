@@ -18,7 +18,6 @@ const OrganizationCarousel = ({ dictionary }: Props) => {
     const [currentIndex, setCurrentIndex] = useState<number>(INITIAL_INDEX);
     const [fade, setFade] = useState<boolean>(true);
     const [isPaused, setIsPaused] = useState<boolean>(false);
-    const [open, setOpen] = useState<boolean>(false);
     const [shuffledOrganizations, setShuffledOrganizations] = useState<string[]>([]);
 
     useEffect(() => {
@@ -54,8 +53,6 @@ const OrganizationCarousel = ({ dictionary }: Props) => {
                     <span
                         role='button'
                         tabIndex={0}
-                        onMouseEnter={() => setOpen(true)}
-                        onMouseLeave={() => setOpen(false)}
                         onClick={() => setIsPaused((prevState) => !prevState)}
                         onKeyDown={(e) => e.key === 'Enter' && setIsPaused((prevState) => !prevState)}
                         className={`${fade ? styles['fade-in'] : styles['fade-out']}`}

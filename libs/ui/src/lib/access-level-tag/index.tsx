@@ -1,4 +1,4 @@
-import { Link, Tag, TagProps, Paragraph } from '@digdir/designsystemet-react';
+import { Link, Tag, TagProps } from '@digdir/designsystemet-react';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { AccessRightsCodes } from '@fellesdatakatalog/types';
 
@@ -13,7 +13,6 @@ const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, locale, ...pro
     let color = 'neutral';
 
     const label = accessCode ? dictionary.accessRights.codes[accessCode]?.label : dictionary.accessRights.unknownLabel;
-    const helpText = accessCode ? dictionary.accessRights.codes[accessCode]?.helpText : '';
 
     if (accessCode === AccessRightsCodes.NON_PUBLIC) color = 'danger';
     if (accessCode === AccessRightsCodes.RESTRICTED) color = 'warning';

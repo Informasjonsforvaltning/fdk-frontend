@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, Heading, Card, Paragraph } from '@digdir/designsystemet-react';
+import { Heading, Card, Paragraph } from '@digdir/designsystemet-react';
 import { Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import getMainMenuData from '../main-menu/data';
 

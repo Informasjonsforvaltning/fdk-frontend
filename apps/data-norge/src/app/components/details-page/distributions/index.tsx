@@ -52,7 +52,7 @@ const Distributions = ({
             {sumArrayLengths(datasets, exampleData) > 0 ? (
                 <Card>
                     {datasets && datasets.map((distribution, index) => (
-                        <div className={styles.accordionWrapper}>
+                        <div key={`distribution-${index}`} className={styles.accordionWrapper}>
                             <Details
                                 className={styles.accordionItem}
                                 key={`${distribution.accessURL}-${index}`}
@@ -92,7 +92,7 @@ const Distributions = ({
                     ))}
                     {exampleData &&
                         exampleData.map((example, index) => (
-                            <div className={styles.accordionWrapper}>
+                            <div key={`example-${index}`} className={styles.accordionWrapper}>
                                 <Details
                                     className={styles.accordionItem}
                                     key={example.accessURL}
@@ -145,7 +145,7 @@ const Distributions = ({
             {apis && apis.length ? (
                 <Card>
                     {apis.map((api, index) => (
-                        <div className={styles.accordionWrapper}>
+                        <div key={`api-${index}`} className={styles.accordionWrapper}>
                             <Details
                                 className={styles.accordionItem}
                                 key={api.id}

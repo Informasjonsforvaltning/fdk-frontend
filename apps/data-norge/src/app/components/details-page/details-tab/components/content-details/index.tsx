@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Heading, Paragraph } from '@digdir/designsystemet-react';
+import { Heading } from '@digdir/designsystemet-react';
 import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { printLocaleValue } from '@fdk-frontend/utils';
