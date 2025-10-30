@@ -53,9 +53,9 @@
     Remove link styling for links missing href attribute
 */
 .ds-link {
-    &:not([href]){
+    &:not([href]) {
         color: var(--fdk-text-color);
-        text-decoration:none;
+        text-decoration: none;
     }
 }
 
