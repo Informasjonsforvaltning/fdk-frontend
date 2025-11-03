@@ -126,7 +126,7 @@
         },
         "contactPoint": {
             "title": "Kontaktinformasjon",
-            "organizationUnit": "Kontaktpunkt",
+            "formattedName": "Kontaktpunkt",
             "uri": "Nettside",
             "email": "E-post",
             "telephone": "Telefon"

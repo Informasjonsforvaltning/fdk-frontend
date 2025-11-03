@@ -126,7 +126,7 @@
         },
         "contactPoint": {
             "title": "Contact information",
-            "organizationUnit": "Contact point",
+            "formattedName": "Contact point",
             "uri": "Website",
             "email": "Email",
             "telephone": "Telephone"
