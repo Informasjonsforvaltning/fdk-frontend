@@ -7,10 +7,8 @@ import { i18n } from '@fdk-frontend/dictionaries';
 const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
-    const printContactPointOrgUnit = (contactPoint: any) => {
-        return contactPoint.hasURL
-            ? contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale]
-            : contactPoint.organizationUnit?.[locale] || contactPoint.organizationUnit?.[i18n.defaultLocale];
+    const printContactPointName = (contactPoint: any) => {
+        return contactPoint.formattedName?.[locale] || contactPoint.formattedName?.[i18n.defaultLocale];
     };
 
     return (
@@ -24,12 +22,12 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
             {dataset.contactPoint && dataset.contactPoint.length > 0 ? (
                 dataset.contactPoint.map((contactPoint: any, i: number) => (
                     <Dlist key={`contactPoint-${i}`}>
-                        {!contactPoint.organizationUnit && !showEmptyRows ? null : (
+                        {!contactPoint.formattedName && !showEmptyRows ? null : (
                             <>
-                                <dt>{dictionary.details.contactPoint.organizationUnit}:</dt>
+                                <dt>{dictionary.details.contactPoint.formattedName}:</dt>
                                 <dd>
-                                    {contactPoint.organizationUnit ? (
-                                        printContactPointOrgUnit(contactPoint)
+                                    {contactPoint.formattedName ? (
+                                        printContactPointName(contactPoint)
                                     ) : (
                                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                     )}
