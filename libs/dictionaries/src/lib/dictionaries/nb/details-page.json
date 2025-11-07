@@ -1,12 +1,14 @@
 {
     "breadcrumbs": {
-        "datasets": "Datasett"
+        "datasets": "Datasett",
+        "services": "Tjenester"
     },
     "header": {
         "namelessOrganization": "Navnløs virksomhet",
         "namelessDataset": "Navnløst datasett",
         "useDatasetButton": "Bruk datasett",
         "datasetsTagLink": "Datasett",
+        "serviceTagLink": "Tjeneste",
         "published": "Publisert",
         "requestAccessButton": "Be om tilgang",
         "showInterestButton": "Meld interesse"
@@ -76,6 +78,9 @@
             "header": "Denne distribusjonen er tilgjengelig på følgende URL-er:",
             "closeBtn": "Lukk vindu"
         }
+    },
+    "produces": {
+        "title": "Tjenesteresultat"
     },
     "apis": {
         "title": "API-er som tilgjengeliggjør dette datasettet",

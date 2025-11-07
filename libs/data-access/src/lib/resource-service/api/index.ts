@@ -34,3 +34,8 @@ export const getApis = async (apiIds: string[]) => {
 
     return apis?.filter((api: any) => api !== null) || [];
 };
+
+export const getService = async (serviceId: string) => {
+    const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/services/${serviceId}`;
+    return getResource(uri);
+};
