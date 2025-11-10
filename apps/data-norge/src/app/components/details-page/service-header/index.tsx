@@ -1,69 +1,61 @@
 'use client';
 
 import React from 'react';
-import { type DatasetWithIdentifier, type DataService, PublicService } from '@fellesdatakatalog/types';
+import { PublicService, Organization, TextLanguage, PublicServiceLanguage } from '@fellesdatakatalog/types';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import { OrgButton, OpenDataTag, AccessRequestButton, StatusTag, UseDatasetPopover, TagList } from '@fdk-frontend/ui';
+import { OrgButton, TagList } from '@fdk-frontend/ui';
 import { Heading, Link, Tag } from '@digdir/designsystemet-react';
-import styles from './dataset-header.module.scss';
+import styles from './service-header.module.scss';
+import StatusTag from '../status-tag';
 
 type ServiceHeaderProps = {
-    service: PublicService;
+    admsStatus?: PublicServiceLanguage;
     dictionaries: {
         common: Dictionary;
         detailsPage: Dictionary;
     };
     locale: LocaleCodes;
     orgLogo?: string | null;
+    publisher?: Organization;
+    title: Partial<TextLanguage> | string;
 };
 
-const ServiceHeader = ({
-    service,
-    dictionaries,
-    orgLogo,
-    locale,
-}: ServiceHeaderProps & React.HTMLAttributes<HTMLDivElement>) => {
+const ServiceHeader = (props: ServiceHeaderProps) => {
+    const { admsStatus, dictionaries, locale, orgLogo, publisher, title } = props;
     return (
         <div className={styles.header}>
-            <OrgButton
-                href={`/organizations/${(service as any)?.catalog?.publisher.id}`} // service is not of type PublicService?
-                orgLogoSrc={orgLogo}
-                className={styles.orgBtn}
-            >
-                {printLocaleValue(
-                    locale,
-                    (service as any)?.catalog?.publisher.prefLabel, // service is not of type PublicService?
-                ) ?? dictionaries.detailsPage.header.namelessOrganization}
-            </OrgButton>
+            {publisher && (
+                <OrgButton
+                    href={`/organizations/${publisher.id}`}
+                    orgLogoSrc={orgLogo}
+                    className={styles.orgBtn}
+                >
+                    {printLocaleValue(locale, publisher.prefLabel) ??
+                        dictionaries.detailsPage.header.namelessOrganization}
+                </OrgButton>
+            )}
             <Heading
                 level={1}
                 data-size='lg'
                 className={styles.title}
             >
-                {printLocaleValue(locale, service.title)}
+                {printLocaleValue(locale, title)}
             </Heading>
-            <div className={styles.headerToolbar}></div>
+            <div className={styles.headerToolbar} />
             <TagList className={styles.headerTags}>
                 <Tag
                     data-color='info'
                     data-size='md'
                 >
-                    <Link href='/datasets'>{dictionaries.detailsPage.header.serviceTagLink}</Link>
+                    <Link href='/todo'>{dictionaries.detailsPage.header.serviceTagLink}</Link>
                 </Tag>
-                <StatusTag
-                    locale={locale}
-                    dictionary={dictionaries.detailsPage}
-                    data-size='md'
-                    status={service.admsStatus}
-                />
-                {/*<AccessLevelTag
-                    accessCode={dataset.accessRights?.code}
-                    locale={locale}
-                    dictionary={dictionaries.detailsPage}
-                    data-size='md'
-                />
-                {dataset.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}*/}
+                {admsStatus && (
+                    <StatusTag
+                        locale={locale}
+                        status={admsStatus}
+                    />
+                )}
             </TagList>
         </div>
     );

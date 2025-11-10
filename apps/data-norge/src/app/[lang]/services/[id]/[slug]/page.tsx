@@ -42,49 +42,29 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const canonicalSlug = getDatasetSlug(service, locale); // todo: getServiceSlug
     if (params.slug !== canonicalSlug) {
         // Preserve query parameters
-        const queryString = new URLSearchParams(searchParams as Record<string, string>).toString();
-        const redirectUrl = queryString
-            ? `/${locale}/services/${params.id}/${canonicalSlug}?${queryString}`
-            : `/${locale}/services/${params.id}/${canonicalSlug}`;
-
+        const queryString = new URLSearchParams(searchParams).toString();
+        const redirectUrl = `/${locale}/services/${params.id}/${canonicalSlug}${queryString ? `?${queryString}` : ''}`;
         redirect(redirectUrl);
     }
 
-    // Fetch publisher logo
     try {
         orgLogo = await getOrgLogo((service as any)?.catalog.publisher.id);
-        console.log(orgLogo);
-    } catch {
-        // Do nothing
-    }
+    } catch {}
 
-    // Fetch community posts
     try {
         communityTopics = await getAllCommunityTopics(service.id);
-    } catch {
-        // Do nothing
-    }
-
-    console.log(service);
+    } catch {}
 
     return (
         <ServiceDetailsPage
             baseUri={FDK_BASE_URI as string}
             resource={service}
             orgLogo={orgLogo}
-            // apis={apis}
-            // concepts={concepts}
-            // metadataScore={metadataScore}
-            // similarDatasets={similarDatasets}
-            // populatedReferences={populatedReferences}
-            // internalRelatedDatasets={internalRelatedDatasets}
             communityTopics={communityTopics}
             communityBaseUri={FDK_COMMUNITY_BASE_URI as string}
             locale={locale}
             dictionaries={dictionaries}
             defaultActiveTab={activeTab}
-            // resolvedDistributionDataServices={resolvedDistributionDataServices}
-            // resolvedDistributionInformationModels={resolvedDistributionInformationModels}
         />
     );
 };

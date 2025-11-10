@@ -77,6 +77,10 @@
             "closeBtn": "Lukk vindu"
         }
     },
+    "produces": {
+        "title": "Tenesteresultat",
+        "placeholder": "Denne tenesta har inga tenesteresultat."
+    },
     "apis": {
         "title": "API-ar som tilbyr dette datasettet",
         "placeholder": "Ingen registrerte API-ar tilbyr dette datasettet.",
@@ -101,6 +105,7 @@
         "noData": "Ikkje oppgitt",
         "general": {
             "title": "Om datasettet",
+            "serviceTitle": "Om tenesta",
             "publisher": "Utgjevar",
             "firstHarvested": "Publisert",
             "firstHarvestedHelpText": "Denne datoen viser når datasettet vart henta inn av data.norge.no. Det kan ha vore tilgjengeleg tidlegare andre stader.",
@@ -110,6 +115,7 @@
             "page": "Dokumentasjon",
             "type": "Datasettype",
             "landingPage": "Landingsside",
+            "homepage": "Hjemmeside",
             "metadataQuality": {
                 "title": "Metadatakvalitet",
                 "helpText": "Metadatakvalitet er ein indikator på kor godt datasettene er beskrive ved hjelp av metadata.",

@@ -1,52 +1,36 @@
 'use client';
 
 import React, { useState } from 'react';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import DatasetStructuredData from '../../structured-data/dataset-structured-data';
-import {
-    type DatasetWithIdentifier,
-    type DataService,
-    type DatasetScore,
-    type CommunityTopic,
-    type SearchObject,
-    type PublicService,
-} from '@fellesdatakatalog/types';
-import { type PopulatedDatasetReference } from '@fdk-frontend/types';
-import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
+import { i18n, type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type DatasetWithIdentifier, type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
+import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     Badge,
     Breadcrumbs,
-    BrandDivider,
     Markdown,
     Article,
     ScrollShadows,
     ExpandableContent,
     PlaceholderBox,
-    DatasetTable,
-    ResourceNotAvailableNotice,
     ExternalLink,
+    PlaceholderText,
+    Dlist,
+    Hstack,
+    InputWithCopyButton,
+    SmartList,
 } from '@fdk-frontend/ui';
-import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
-import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel } from '@digdir/designsystemet-react';
-import Distributions from '../distributions';
-import DatasetDetailsTab from '../details-tab';
+import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel, Button, Link, Tag } from '@digdir/designsystemet-react';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
-import DatasetHeader from '../dataset-header';
 import styles from '../details-page.module.scss';
 import ServiceHeader from '../service-header';
 import Produces from '../produces';
+import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
 
 export type ServiceDetailsPageType = {
     baseUri: string;
     resource: PublicService;
-    // apis?: DataService[];
-    // concepts?: SearchObject[];
-    // populatedReferences?: PopulatedDatasetReference[];
-    // similarDatasets?: DatasetWithIdentifier[];
-    // internalRelatedDatasets?: DatasetWithIdentifier[];
     orgDatasets?: DatasetWithIdentifier[];
-    // metadataScore?: DatasetScore;
     communityTopics?: CommunityTopic[];
     communityBaseUri: string;
     defaultActiveTab?: string;
@@ -56,32 +40,21 @@ export type ServiceDetailsPageType = {
         common: Dictionary;
         detailsPage: Dictionary;
     };
-    // resolvedDistributionDataServices?: SearchObject[];
-    // resolvedDistributionInformationModels?: SearchObject[];
 };
 
-export default function ServiceDetailsPage({
-    baseUri,
-    resource,
-    // apis,
-    // concepts,
-    // populatedReferences,
-    // similarDatasets,
-    // internalRelatedDatasets,
-    orgDatasets,
-    // metadataScore,
-    communityTopics,
-    communityBaseUri,
-    orgLogo,
-    defaultActiveTab = 'overview',
-    locale,
-    dictionaries,
-    // resolvedDistributionDataServices,
-    // resolvedDistributionInformationModels,
-}: ServiceDetailsPageType) {
+export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
+    const {
+        baseUri,
+        resource,
+        communityTopics,
+        communityBaseUri,
+        orgLogo,
+        defaultActiveTab = 'overview',
+        locale,
+        dictionaries,
+    } = props;
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
-    const isAvailable = true; // !!sumArrayLengths(resource.distribution, resource.sample, apis);
-    const accessRequestDemo = accessRequestWhiteList.some((i) => i.id === resource.id);
+    const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     const breadcrumbList = [
         {
@@ -110,12 +83,12 @@ export default function ServiceDetailsPage({
             />
             <div className={styles.mainContent}>
                 <ServiceHeader
-                    service={resource}
                     dictionaries={dictionaries}
                     locale={locale}
                     orgLogo={orgLogo}
-                    accessRequestDemo={accessRequestDemo}
-                    isAvailable={isAvailable}
+                    publisher={(resource as any)?.catalog?.publisher}
+                    title={resource.title}
+                    admsStatus={resource.admsStatus}
                 />
                 <Tabs
                     className={styles.tabs}
@@ -194,93 +167,207 @@ export default function ServiceDetailsPage({
                             )}
                         </section>
                         <section className={styles.section}>
-                            {!isAvailable && accessRequestDemo ? (
-                                <ResourceNotAvailableNotice
-                                    kind='services-events'
-                                    id={resource.id}
-                                    dictionary={dictionaries.detailsPage}
-                                    locale={locale}
-                                />
-                            ) : (
-                                <Produces
-                                    produces={resource.produces}
-                                    // exampleData={resource.sample}
-                                    // apis={apis}
-                                    locale={locale}
-                                    dictionaries={dictionaries}
-                                />
-                            )}
-                        </section>
-                        {/*((internalRelatedDatasets && internalRelatedDatasets.length > 0) ||
-                            (similarDatasets && similarDatasets.length > 0)) && (
-                            <BrandDivider className={styles.divider} />
-                        )*/}
-                        {/*internalRelatedDatasets && internalRelatedDatasets.length > 0 && (
-                            <section
-                                className={styles.section}
-                                style={{ marginBottom: '3rem' }}
-                            >
-                                <Heading
-                                    level={2}
-                                    data-size='xs'
-                                >
-                                    {dictionaries.detailsPage.internalRelations}
-                                </Heading>
-                                <ScrollShadows className={styles.tableScroller}>
-                                    <DatasetTable
-                                        datasets={internalRelatedDatasets}
-                                        locale={locale}
-                                        dictionary={dictionaries.detailsPage}
-                                    />
-                                </ScrollShadows>
-                            </section>
-                        )*/}
-                        {/*similarDatasets && similarDatasets.length > 0 && (
-                            <section className={styles.section}>
-                                <Heading
-                                    level={2}
-                                    data-size='xs'
-                                >
-                                    {dictionaries.detailsPage.similarDatasets}
-                                </Heading>
-                                <ScrollShadows className={styles.tableScroller}>
-                                    <DatasetTable
-                                        datasets={similarDatasets}
-                                        locale={locale}
-                                        dictionary={dictionaries.detailsPage}
-                                    />
-                                </ScrollShadows>
-                            </section>
-                        )*/}
-                    </TabsPanel>
-                    <TabsPanel
-                        className={styles.tabPanel}
-                        value='distributions'
-                    >
-                        {!isAvailable && accessRequestDemo ? (
-                            <ResourceNotAvailableNotice
-                                kind='datasets'
-                                id={resource.id}
-                                dictionary={dictionaries.detailsPage}
+                            <Produces
+                                produces={resource.produces}
                                 locale={locale}
+                                dictionaries={dictionaries}
                             />
-                        ) : (
-                            <span>heyllo</span>
-                        )}
+                        </section>
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
                         value='details'
                     >
-                        {/*<DatasetDetailsTab
-                            dataset={resource}
-                            internalRelatedDatasets={internalRelatedDatasets}
-                            populatedReferences={populatedReferences}
-                            concepts={concepts}
-                            locale={locale}
-                            metadataScore={metadataScore}
-                            dictionary={dictionaries.detailsPage}
-                        />*/}
+                        <div className={styles.details}>
+                            <Button
+                                className={styles.toggleButton}
+                                variant='tertiary'
+                                data-size='sm'
+                                onClick={() => setShowEmptyRows(!showEmptyRows)}
+                            >
+                                {showEmptyRows ? (
+                                    <>
+                                        <EyeSlashIcon aria-hidden />
+                                        {dictionaries.detailsPage.details.hideEmptyRows}
+                                    </>
+                                ) : (
+                                    <>
+                                        <EyeIcon aria-hidden />
+                                        {dictionaries.detailsPage.details.showEmptyRows}
+                                    </>
+                                )}
+                            </Button>
+                            {!resource.contactPoint && !showEmptyRows ? null : (
+                                <section>
+                                    <Heading
+                                        level={2}
+                                        data-size='xs'
+                                    >
+                                        {dictionaries.detailsPage.details.contactPoint.title}
+                                    </Heading>
+                                    {resource.contactPoint && resource.contactPoint.length > 0 ? (
+                                        resource.contactPoint.map((contactPoint, index) => (
+                                            <Dlist key={index}>
+                                                {!contactPoint.contactPage && !showEmptyRows ? null : (
+                                                    <>
+                                                        <dt>
+                                                            {
+                                                                dictionaries.detailsPage.details.contactPoint
+                                                                    .formattedName
+                                                            }
+                                                            :
+                                                        </dt>
+                                                        <dd>
+                                                            {contactPoint.contactPage ? (
+                                                                contactPoint.contactPage
+                                                            ) : (
+                                                                <PlaceholderText>
+                                                                    {dictionaries.detailsPage.details.noData}
+                                                                </PlaceholderText>
+                                                            )}
+                                                        </dd>
+                                                    </>
+                                                )}
+                                                {!contactPoint.contactPage && !showEmptyRows ? null : (
+                                                    <>
+                                                        <dt>{dictionaries.detailsPage.details.contactPoint.uri}:</dt>
+                                                        <dd>
+                                                            {contactPoint.contactPage ? (
+                                                                <ExternalLink
+                                                                    href={contactPoint.contactPage}
+                                                                    locale={locale}
+                                                                    gateway
+                                                                >
+                                                                    {contactPoint.contactPage}
+                                                                </ExternalLink>
+                                                            ) : (
+                                                                <PlaceholderText>
+                                                                    {dictionaries.detailsPage.details.noData}
+                                                                </PlaceholderText>
+                                                            )}
+                                                        </dd>
+                                                    </>
+                                                )}
+                                                {!contactPoint.email && !showEmptyRows ? null : (
+                                                    <>
+                                                        <dt>{dictionaries.detailsPage.details.contactPoint.email}:</dt>
+                                                        <dd>
+                                                            {contactPoint.email ? (
+                                                                <Link href={`mailto:${contactPoint.email}`}>
+                                                                    {contactPoint.email}
+                                                                </Link>
+                                                            ) : (
+                                                                <PlaceholderText>
+                                                                    {dictionaries.detailsPage.details.noData}
+                                                                </PlaceholderText>
+                                                            )}
+                                                        </dd>
+                                                    </>
+                                                )}
+                                                {!contactPoint.telephone && !showEmptyRows ? null : (
+                                                    <>
+                                                        <dt>
+                                                            {dictionaries.detailsPage.details.contactPoint.telephone}:
+                                                        </dt>
+                                                        <dd>
+                                                            {contactPoint.telephone || (
+                                                                <PlaceholderText>
+                                                                    {dictionaries.detailsPage.details.noData}
+                                                                </PlaceholderText>
+                                                            )}
+                                                        </dd>
+                                                    </>
+                                                )}
+                                            </Dlist>
+                                        ))
+                                    ) : (
+                                        <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                                    )}
+                                </section>
+                            )}
+
+                            <section>
+                                <Heading
+                                    level={2}
+                                    data-size='xs'
+                                >
+                                    {dictionaries.detailsPage.details.general.serviceTitle}
+                                </Heading>
+                                <Dlist>
+                                    <dt>{dictionaries.detailsPage.details.general.publisher}:</dt>
+                                    <dd>
+                                        {(resource as any).catalog?.publisher ? (
+                                            <Link href={`/organizations/${(resource as any).catalog.publisher?.id}`}>
+                                                {(resource as any).catalog.publisher?.prefLabel?.[locale] ||
+                                                    (resource as any).catalog.publisher?.prefLabel?.[
+                                                        i18n.defaultLocale
+                                                    ]}
+                                            </Link>
+                                        ) : (
+                                            <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
+                                        )}
+                                    </dd>
+                                    <dt>{dictionaries.detailsPage.details.general.firstHarvested}:</dt>
+                                    <dd>
+                                        {resource.harvest?.firstHarvested ? (
+                                            new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
+                                                dateStyle: 'long',
+                                            })
+                                        ) : (
+                                            <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
+                                        )}
+                                    </dd>
+                                    <dt>
+                                        <span>{dictionaries.detailsPage.details.general.modified}:</span>
+                                    </dt>
+                                    <dd>
+                                        {resource.harvest?.modified ? (
+                                            new Date(resource.harvest.modified).toLocaleString(locale, {
+                                                dateStyle: 'long',
+                                            })
+                                        ) : (
+                                            <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
+                                        )}
+                                    </dd>
+                                    {!resource.homepage && !showEmptyRows ? null : (
+                                        <>
+                                            <dt>{dictionaries.detailsPage.details.general.landingPage}:</dt>
+                                            <dd className='article'>
+                                                {resource.homepage?.length ? (
+                                                    <SmartList
+                                                        items={resource.homepage}
+                                                        renderItem={(page) => (
+                                                            <ExternalLink
+                                                                href={page}
+                                                                locale={locale}
+                                                                gateway
+                                                            >
+                                                                {page}
+                                                            </ExternalLink>
+                                                        )}
+                                                    />
+                                                ) : (
+                                                    <PlaceholderText>
+                                                        {dictionaries.detailsPage.details.noData}
+                                                    </PlaceholderText>
+                                                )}
+                                            </dd>
+                                        </>
+                                    )}
+                                    <dt>UID:</dt>
+                                    <dd>
+                                        <Hstack>
+                                            <InputWithCopyButton
+                                                value={resource.id}
+                                                inputLabel='uid'
+                                                copyLabel={dictionaries.detailsPage.details.general.copyButton[0]}
+                                                copiedLabel={dictionaries.detailsPage.details.general.copyButton[1]}
+                                            />
+                                        </Hstack>
+                                    </dd>
+                                </Dlist>
+                            </section>
+                        </div>
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}

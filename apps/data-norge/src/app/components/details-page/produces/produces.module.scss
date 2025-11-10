@@ -25,22 +25,6 @@
     }
 }
 
-.actionButton {
-    margin: 0.5rem 1rem 1rem;
-
-    &:not(:hover):not(:focus-visible):not(:active) {
-        background: white;
-    }
-
-    @media (min-width: 500px) {
-        margin: 0;
-        position: absolute;
-        top: 0.9rem;
-        right: 1rem;
-        z-index: 1;
-    }
-}
-
 .accordionItem {
     u-summary {
         min-height: 4.5rem;
@@ -72,35 +56,4 @@
     margin-top: var(--ds-size-5);
     margin: 0;
     padding: var(--ds-size-5);
-
-    table {
-        width: 100%;
-
-        td,
-        th {
-            background: transparent;
-        }
-    }
-}
-
-.descBox {
-    &[className] {
-        border: 0;
-        padding: 0;
-
-        > div {
-            &[data-overflow='true'] {
-                border: 1px solid #ddd;
-                border-radius: 0.25rem;
-                padding: 1rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            > div[data-overflow] {
-                border: 0;
-                padding: 0;
-            }
-        }
-    }
 }
