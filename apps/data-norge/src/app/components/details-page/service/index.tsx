@@ -86,7 +86,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     dictionaries={dictionaries}
                     locale={locale}
                     orgLogo={orgLogo}
-                    publisher={(resource as any)?.catalog?.publisher}
+                    publisher={resource?.catalog?.publisher}
                     title={resource.title}
                     admsStatus={resource.admsStatus}
                 />
@@ -296,12 +296,10 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                 <Dlist>
                                     <dt>{dictionaries.detailsPage.details.general.publisher}:</dt>
                                     <dd>
-                                        {(resource as any).catalog?.publisher ? (
-                                            <Link href={`/organizations/${(resource as any).catalog.publisher?.id}`}>
-                                                {(resource as any).catalog.publisher?.prefLabel?.[locale] ||
-                                                    (resource as any).catalog.publisher?.prefLabel?.[
-                                                        i18n.defaultLocale
-                                                    ]}
+                                        {resource.catalog?.publisher ? (
+                                            <Link href={`/organizations/${resource.catalog.publisher?.id}`}>
+                                                {resource.catalog.publisher?.prefLabel?.[locale] ||
+                                                    resource.catalog.publisher?.prefLabel?.[i18n.defaultLocale]}
                                             </Link>
                                         ) : (
                                             <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>

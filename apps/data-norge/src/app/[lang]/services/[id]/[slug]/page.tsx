@@ -39,7 +39,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     }
 
     // Redirect to canonical slug if needed
-    const canonicalSlug = getDatasetSlug(service, locale); // todo: getServiceSlug
+    const canonicalSlug = getDatasetSlug(service, locale);
     if (params.slug !== canonicalSlug) {
         // Preserve query parameters
         const queryString = new URLSearchParams(searchParams).toString();
@@ -47,9 +47,11 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         redirect(redirectUrl);
     }
 
-    try {
-        orgLogo = await getOrgLogo((service as any)?.catalog.publisher.id);
-    } catch {}
+    if (service.catalog?.publisher?.id) {
+        try {
+            orgLogo = await getOrgLogo(service.catalog.publisher.id);
+        } catch {}
+    }
 
     try {
         communityTopics = await getAllCommunityTopics(service.id);

@@ -1,4 +1,5 @@
 'use client';
+
 import { Card, Details, Heading } from '@digdir/designsystemet-react';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
