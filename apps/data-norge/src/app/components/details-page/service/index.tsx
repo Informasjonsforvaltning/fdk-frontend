@@ -26,6 +26,7 @@ import styles from '../details-page.module.scss';
 import ServiceHeader from '../service-header';
 import Produces from '../produces';
 import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
+import ServiceStructuredData from '../../structured-data/service-structured-data';
 
 export type ServiceDetailsPageType = {
     baseUri: string;
@@ -72,11 +73,11 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
 
     return (
         <div className={styles.detailsPage}>
-            {/*<DatasetStructuredData
-                dataset={resource}
+            <ServiceStructuredData
+                service={resource}
                 locale={locale}
                 baseUri={baseUri}
-            />*/}
+            />
             <Breadcrumbs
                 dictionary={dictionaries.common}
                 breadcrumbList={breadcrumbList}
@@ -95,9 +96,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     defaultValue='overview'
                     data-size='sm'
                     value={activeTab}
-                    onChange={(value) => {
-                        setActiveTab(value);
-                    }}
+                    onChange={setActiveTab}
                 >
                     <ScrollShadows className={styles.tabsScrollShadows}>
                         <TabsList>
@@ -329,8 +328,8 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                     </dd>
                                     {!resource.homepage && !showEmptyRows ? null : (
                                         <>
-                                            <dt>{dictionaries.detailsPage.details.general.landingPage}:</dt>
-                                            <dd className='article'>
+                                            <dt>{dictionaries.detailsPage.details.general.homepage}:</dt>
+                                            <dd>
                                                 {resource.homepage?.length ? (
                                                     <SmartList
                                                         items={resource.homepage}
