@@ -132,3 +132,12 @@ export const getAllDatasets = async (page = 1, size = 1000) => {
         },
     });
 };
+
+export const getAllServices = async (page = 1, size = 1000) => {
+    return await searchApi('/search/services', {
+        pagination: {
+            size,
+            page,
+        },
+    });
+};

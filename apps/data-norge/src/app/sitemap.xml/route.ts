@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MetadataRoute } from 'next';
 import { i18n } from '@fdk-frontend/dictionaries';
-import { getAllDatasets } from '@fdk-frontend/data-access/server';
+import { getAllDatasets, getAllServices } from '@fdk-frontend/data-access/server';
 import { readdir, stat } from 'fs/promises';
 import { join } from 'path';
 import { getDatasetSlug } from '@fdk-frontend/utils';
@@ -177,25 +177,42 @@ const generateContentPages = async (baseUrl: string): Promise<MetadataRoute.Site
 const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://data.norge.no';
 
-    // Fetch all datasets with pagination - using a more efficient approach
+    // Fetch all datasets and services with pagination - using a more efficient approach
     const allDatasets: any[] = [];
+    const allServices: any[] = [];
     const size = 1000;
 
     // First, get the first page (page 0) to determine total count
-    const firstPageResponse = await getAllDatasets(0, size);
-    const totalPages = firstPageResponse.page.totalPages || 0;
+    const [datasets, services] = await Promise.all([getAllDatasets(0, size), getAllServices(0, size)]);
+    const datasetsTotalPages = datasets.page.totalPages || 0;
+    const servicesTotalPages = services.page.totalPages || 0;
 
     // Add first page results
-    allDatasets.push(...(firstPageResponse.hits || []));
+    allDatasets.push(...(datasets.hits || []));
+    allServices.push(...(services.hits || []));
 
     // Process remaining pages sequentially
-    if (totalPages > 1) {
-        for (let page = 1; page < totalPages; page++) {
+    if (datasetsTotalPages > 1) {
+        for (let page = 1; page < datasetsTotalPages; page++) {
             try {
                 // eslint-disable-next-line no-await-in-loop
                 const result = await getAllDatasets(page, size);
                 allDatasets.push(...(result.hits || []));
-                console.log(`Processed page ${page}/${totalPages - 1}`);
+                console.log(`Processed dataset page ${page}/${datasetsTotalPages - 1}`);
+            } catch (error) {
+                console.error(`Failed to fetch page ${page}:`, error);
+                // Continue with other pages
+            }
+        }
+    }
+
+    if (servicesTotalPages > 1) {
+        for (let page = 1; page < servicesTotalPages; page++) {
+            try {
+                // eslint-disable-next-line no-await-in-loop
+                const result = await getAllServices(page, size);
+                allServices.push(...(result.hits || []));
+                console.log(`Processed service page ${page}/${servicesTotalPages - 1}`);
             } catch (error) {
                 console.error(`Failed to fetch page ${page}:`, error);
                 // Continue with other pages
@@ -354,7 +371,21 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
         });
     });
 
-    return [...coreStaticPages, ...contentPages, ...specificationPages, ...datasetPages];
+    // Generate service pages for all supported locales
+    const servicePages = allServices.flatMap((service: any) => {
+        const lastModified = service.harvest?.modified ? new Date(service.harvest.modified) : new Date();
+        return i18n.locales.map((locale) => {
+            const slug = getDatasetSlug(service, locale.code);
+            return {
+                url: `${baseUrl}/${locale.code}/services/${service.id}/${slug}`,
+                lastModified,
+                changeFrequency: 'weekly' as const,
+                priority: 0.6,
+            };
+        });
+    });
+
+    return [...coreStaticPages, ...contentPages, ...specificationPages, ...datasetPages, ...servicePages];
 };
 
 // Export the sitemap generation function for use in route handler
