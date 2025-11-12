@@ -1,6 +1,6 @@
 import { getAllCommunityTopics, getOrgLogo, getService } from '@fdk-frontend/data-access/server';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { getDatasetSlug, printLocaleValue } from '@fdk-frontend/utils';
+import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
 import { type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
 import ServiceDetailsPage from '../../../../components/details-page/service';
 import { notFound, redirect } from 'next/navigation';
@@ -32,7 +32,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     }
 
     // Redirect to canonical slug if needed
-    const canonicalSlug = getDatasetSlug(service, lang);
+    const canonicalSlug = getSlug(service, lang);
     if (slug !== canonicalSlug) {
         redirect(`/${lang}/services/${id}/${canonicalSlug}${tab ? `?tab=${tab}` : ''}`);
     }
@@ -87,7 +87,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             '@type': 'Service',
             name: title,
             description: description,
-            url: `https://data.norge.no/${lang}/services/${service.id}/${getDatasetSlug(service, lang)}`,
+            url: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
             identifier: service.id,
             ...(publisher && {
                 publisher: {
@@ -108,7 +108,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
                 title: title,
                 description: description,
                 type: 'website',
-                url: `https://data.norge.no/${lang}/services/${service.id}/${getDatasetSlug(service, lang)}`,
+                url: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
                 siteName: 'data.norge.no',
                 locale: lang,
             },
@@ -118,11 +118,11 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
                 description: description,
             },
             alternates: {
-                canonical: `https://data.norge.no/${lang}/services/${service.id}/${getDatasetSlug(service, lang)}`,
+                canonical: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
                 languages: {
-                    nb: `https://data.norge.no/nb/services/${service.id}/${getDatasetSlug(service, 'nb')}`,
-                    en: `https://data.norge.no/en/services/${service.id}/${getDatasetSlug(service, 'en')}`,
-                    nn: `https://data.norge.no/nn/services/${service.id}/${getDatasetSlug(service, 'nn')}`,
+                    nb: `https://data.norge.no/nb/services/${service.id}/${getSlug(service, 'nb')}`,
+                    en: `https://data.norge.no/en/services/${service.id}/${getSlug(service, 'en')}`,
+                    nn: `https://data.norge.no/nn/services/${service.id}/${getSlug(service, 'nn')}`,
                 },
             },
             other: {

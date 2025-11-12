@@ -1,6 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { getDatasetSlug } from '@fdk-frontend/utils';
+import { getSlug } from '@fdk-frontend/utils';
 import { getService } from '@fdk-frontend/data-access/server';
 
 export type DetailsPageWrapperProps = {
@@ -20,7 +20,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fetch dataset to get the canonical slug
     try {
         const dataset = await getService(params.id);
-        const canonicalSlug = getDatasetSlug(dataset, locale);
+        const canonicalSlug = getSlug(dataset, locale);
 
         // Preserve query parameters
         const queryString = searchParams ? new URLSearchParams(searchParams as Record<string, string>).toString() : '';

@@ -4,7 +4,7 @@ import { i18n } from '@fdk-frontend/dictionaries';
 import { getAllDatasets, getAllServices } from '@fdk-frontend/data-access/server';
 import { readdir, stat } from 'fs/promises';
 import { join } from 'path';
-import { getDatasetSlug } from '@fdk-frontend/utils';
+import { getSlug } from '@fdk-frontend/utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -361,7 +361,7 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
     const datasetPages = allDatasets.flatMap((dataset: any) => {
         const lastModified = dataset.modified ? new Date(dataset.modified) : new Date();
         return i18n.locales.map((locale) => {
-            const slug = getDatasetSlug(dataset, locale.code);
+            const slug = getSlug(dataset, locale.code);
             return {
                 url: `${baseUrl}/${locale.code}/datasets/${dataset.id}/${slug}`,
                 lastModified,
@@ -375,7 +375,7 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
     const servicePages = allServices.flatMap((service: any) => {
         const lastModified = service.harvest?.modified ? new Date(service.harvest.modified) : new Date();
         return i18n.locales.map((locale) => {
-            const slug = getDatasetSlug(service, locale.code);
+            const slug = getSlug(service, locale.code);
             return {
                 url: `${baseUrl}/${locale.code}/services/${service.id}/${slug}`,
                 lastModified,

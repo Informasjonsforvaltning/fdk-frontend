@@ -1,6 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { getDatasetSlug, printLocaleValue } from '@fdk-frontend/utils';
+import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import {
     type DatasetWithIdentifier,
@@ -77,7 +77,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     }
 
     // Redirect to canonical slug if needed
-    const canonicalSlug = getDatasetSlug(dataset, locale);
+    const canonicalSlug = getSlug(dataset, locale);
     if (params.slug !== canonicalSlug) {
         // Preserve query parameters
         const queryString = new URLSearchParams(searchParams as Record<string, string>).toString();
@@ -260,7 +260,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             '@type': 'Dataset',
             name: title,
             description: description,
-            url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
+            url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
             identifier: dataset.id,
             ...(publisher && {
                 publisher: {
@@ -290,7 +290,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
                 title: title,
                 description: description,
                 type: 'website',
-                url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
+                url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
                 siteName: 'data.norge.no',
                 locale: locale,
             },
@@ -300,11 +300,11 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
                 description: description,
             },
             alternates: {
-                canonical: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
+                canonical: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
                 languages: {
-                    nb: `https://data.norge.no/nb/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nb')}`,
-                    en: `https://data.norge.no/en/datasets/${dataset.id}/${getDatasetSlug(dataset, 'en')}`,
-                    nn: `https://data.norge.no/nn/datasets/${dataset.id}/${getDatasetSlug(dataset, 'nn')}`,
+                    nb: `https://data.norge.no/nb/datasets/${dataset.id}/${getSlug(dataset, 'nb')}`,
+                    en: `https://data.norge.no/en/datasets/${dataset.id}/${getSlug(dataset, 'en')}`,
+                    nn: `https://data.norge.no/nn/datasets/${dataset.id}/${getSlug(dataset, 'nn')}`,
                 },
             },
             other: {

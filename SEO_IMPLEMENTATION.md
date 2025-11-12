@@ -21,7 +21,7 @@ With over 9000 datasets that are dynamically generated, we've implemented a comp
 - **URL Pattern**: `/{locale}/datasets/{id}/{slug}`
 - **Example**: `/nb/datasets/123/my-dataset-title`
 - **Features**:
-    - **Automatic slug generation**: Uses `getDatasetSlug()` utility function
+    - **Automatic slug generation**: Uses `getSlug()` utility function
     - **Locale-specific slugs**: Different slugs for different languages
     - **Backward compatibility**: Old URLs redirect to new SEO-friendly URLs
     - **Query parameter preservation**: All query parameters preserved during redirects
@@ -44,7 +44,7 @@ With over 9000 datasets that are dynamically generated, we've implemented a comp
 
 ```typescript
 // Uses slugify and printLocaleValue for clean, readable URLs
-const slug = getDatasetSlug(dataset, locale);
+const slug = getSlug(dataset, locale);
 // Example: "My Dataset Title" → "my-dataset-title"
 ```
 
@@ -52,7 +52,7 @@ const slug = getDatasetSlug(dataset, locale);
 
 ```typescript
 // Old route redirects to canonical slug
-const canonicalSlug = getDatasetSlug(dataset, locale);
+const canonicalSlug = getSlug(dataset, locale);
 const queryString = new URLSearchParams(searchParams).toString();
 const redirectUrl = queryString
     ? `/${locale}/datasets/${params.id}/${canonicalSlug}?${queryString}`
@@ -64,7 +64,7 @@ redirect(redirectUrl);
 
 ```typescript
 // New route validates slug and redirects if incorrect
-const canonicalSlug = getDatasetSlug(dataset, locale);
+const canonicalSlug = getSlug(dataset, locale);
 if (params.slug !== canonicalSlug) {
     // Preserve query parameters during redirect
     const queryString = new URLSearchParams(searchParams).toString();

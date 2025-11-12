@@ -3,7 +3,7 @@
 import Script from 'next/script';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type PublicService } from '@fellesdatakatalog/types';
-import { printLocaleValue, getDatasetSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
+import { printLocaleValue, getSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
 
 export type ServiceStructuredDataProps = {
     service: PublicService;
@@ -17,7 +17,7 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
         '@type': 'Service',
         name: sanitizeString(printLocaleValue(locale, service.title)),
         description: sanitizeString(printLocaleValue(locale, service.description)),
-        url: `${baseUri}/${locale}/services/${service.id}/${getDatasetSlug(service, locale)}`,
+        url: `${baseUri}/${locale}/services/${service.id}/${getSlug(service, locale)}`,
         identifier: service.id,
         ...(service.catalog?.publisher?.prefLabel && {
             publisher: {
@@ -68,7 +68,7 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
                 '@type': 'ListItem',
                 position: 3,
                 name: sanitizeString(printLocaleValue(locale, service.title)),
-                item: `${baseUri}/${locale}/services/${service.id}/${getDatasetSlug(service, locale)}`,
+                item: `${baseUri}/${locale}/services/${service.id}/${getSlug(service, locale)}`,
             },
         ],
     };

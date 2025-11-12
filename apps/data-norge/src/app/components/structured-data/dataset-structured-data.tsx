@@ -3,7 +3,7 @@
 import Script from 'next/script';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type DatasetWithIdentifier } from '@fellesdatakatalog/types';
-import { printLocaleValue, getDatasetSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
+import { printLocaleValue, getSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
 
 export type DatasetStructuredDataProps = {
     dataset: DatasetWithIdentifier;
@@ -26,7 +26,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         '@type': 'Dataset',
         name: sanitizeString(printLocaleValue(locale, dataset.title)),
         description: sanitizeString(printLocaleValue(locale, dataset.description)),
-        url: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
+        url: `${baseUri}/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
         identifier: dataset.id,
         ...(dataset.publisher?.prefLabel && {
             publisher: {
@@ -102,7 +102,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
                 '@type': 'ListItem',
                 position: 3,
                 name: sanitizeString(printLocaleValue(locale, dataset.title)),
-                item: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
+                item: `${baseUri}/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
             },
         ],
     };
