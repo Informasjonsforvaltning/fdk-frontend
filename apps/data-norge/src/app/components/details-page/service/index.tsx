@@ -212,11 +212,8 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                         {sumArrayLengths(service.produces) > 0 ? (
                             <Card>
                                 {service.produces?.map((output, index) => (
-                                    <Details
-                                        key={`${output.identifier}-${index}`}
-                                        className={styles.accordionItem}
-                                    >
-                                        <Details.Summary className={styles.summary}>
+                                    <Details key={`${output.identifier}-${index}`}>
+                                        <Details.Summary>
                                             {printLocaleValue(locale, output.name) ||
                                                 dictionaries.detailsPage.produces.header.nameless}
                                         </Details.Summary>
@@ -232,7 +229,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                         )}
                     </TabsPanel>
                     <TabsPanel
-                        className={styles.tabPanel}
+                        className={styles.tabsPanel}
                         value='details'
                     >
                         <Button

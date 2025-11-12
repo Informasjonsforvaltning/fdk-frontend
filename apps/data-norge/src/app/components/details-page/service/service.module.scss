@@ -23,7 +23,7 @@
     }
 }
 
-.tabPanel {
+.tabsPanel {
     padding: 0;
     margin-top: 1.5rem;
 }
@@ -41,22 +41,4 @@
 
 .dlist {
     clear: both; // for toggleButton
-}
-
-.accordionWrapper {
-    margin: 0;
-
-    &:last-child {
-        .accordionItem {
-            border-bottom: 0;
-        }
-    }
-}
-
-.accordionItem {
-    border-top: 0;
-
-    u-summary {
-        min-height: 4.5rem;
-    }
 }
