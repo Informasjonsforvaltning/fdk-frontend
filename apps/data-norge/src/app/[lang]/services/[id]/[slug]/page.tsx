@@ -1,5 +1,5 @@
 import { getAllCommunityTopics, getOrgLogo, getService } from '@fdk-frontend/data-access/server';
-import { getDictionary, i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { getDatasetSlug } from '@fdk-frontend/utils';
 import { type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
 import ServiceDetailsPage from 'apps/data-norge/src/app/components/details-page/service';
@@ -11,40 +11,30 @@ export type DetailsPageWrapperProps = {
         id: string;
         slug: string;
     }>;
-    searchParams: Promise<any>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
-    const { FDK_BASE_URI, FDK_COMMUNITY_BASE_URI } = process.env;
-
-    const params = await props.params;
-    const searchParams = await props.searchParams;
-    const locale = params.lang ?? i18n.defaultLocale;
-    const activeTab = searchParams?.tab ?? 'overview';
-
+    const { id, lang, slug } = await props.params;
+    const { tab } = await props.searchParams;
     const dictionaries = {
-        common: await getDictionary(locale, 'common'),
-        detailsPage: await getDictionary(locale, 'details-page'),
+        common: await getDictionary(lang, 'common'),
+        detailsPage: await getDictionary(lang, 'details-page'),
     };
-
     let service: PublicService;
     let orgLogo: string | null = null;
     let communityTopics: CommunityTopic[] = [];
 
     try {
-        service = await getService(params.id);
+        service = await getService(id);
     } catch (err) {
-        console.error(`Failed to get service with ID ${params.id}`, JSON.stringify(err));
         notFound();
     }
 
     // Redirect to canonical slug if needed
-    const canonicalSlug = getDatasetSlug(service, locale);
-    if (params.slug !== canonicalSlug) {
-        // Preserve query parameters
-        const queryString = new URLSearchParams(searchParams).toString();
-        const redirectUrl = `/${locale}/services/${params.id}/${canonicalSlug}${queryString ? `?${queryString}` : ''}`;
-        redirect(redirectUrl);
+    const canonicalSlug = getDatasetSlug(service, lang);
+    if (slug !== canonicalSlug) {
+        redirect(`/${lang}/services/${id}/${canonicalSlug}${tab ? `?tab=${tab}` : ''}`);
     }
 
     if (service.catalog?.publisher?.id) {
@@ -59,14 +49,14 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     return (
         <ServiceDetailsPage
-            baseUri={FDK_BASE_URI as string}
-            resource={service}
+            baseUri={process.env.FDK_BASE_URI as string}
+            service={service}
             orgLogo={orgLogo}
             communityTopics={communityTopics}
-            communityBaseUri={FDK_COMMUNITY_BASE_URI as string}
-            locale={locale}
+            communityBaseUri={process.env.FDK_COMMUNITY_BASE_URI as string}
+            locale={lang}
             dictionaries={dictionaries}
-            defaultActiveTab={activeTab}
+            defaultActiveTab={tab?.toString() ?? 'overview'}
         />
     );
 };

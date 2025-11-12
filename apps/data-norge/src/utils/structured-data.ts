@@ -1,4 +1,3 @@
-// Safely sanitize and prepare structured data
 export const sanitizeString = (str?: string): string | undefined => {
     if (!str) return undefined;
     // Remove any potentially dangerous characters

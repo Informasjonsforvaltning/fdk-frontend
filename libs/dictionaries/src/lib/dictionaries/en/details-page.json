@@ -1,12 +1,15 @@
 {
     "breadcrumbs": {
-        "datasets": "Datasets"
+        "datasets": "Datasets",
+        "services": "Services"
     },
     "header": {
         "namelessOrganization": "Nameless organization",
         "namelessDataset": "Nameless dataset",
+        "namelessService": "Nameless service",
         "useDatasetButton": "Use dataset",
         "datasetsTagLink": "Datasets",
+        "servicesTagLink": "Services",
         "published": "Published",
         "requestAccessButton": "Request access",
         "showInterestButton": "Report interest"
@@ -241,5 +244,12 @@
         "closeButton": "Close window",
         "downloadButton": "Download full dataset",
         "noTableData": "No table data available"
+    },
+    "statusCodes": {
+        "Completed": "Completed",
+        "UnderDevelopment": "Under development",
+        "Withdrawn": "Withdrawn",
+        "Deprecated": "Deprecated",
+        "Discontinued": "Discontinued"
     }
 }

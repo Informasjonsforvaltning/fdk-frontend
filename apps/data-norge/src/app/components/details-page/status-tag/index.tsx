@@ -18,7 +18,8 @@ type StatusTagProps = {
     status: PublicServiceLanguage;
 };
 
-const StatusTag = ({ locale, status }: StatusTagProps) => {
+const StatusTag = (props: StatusTagProps) => {
+    const { locale, status } = props;
     const color = statusColorMap?.[status.code as StatusCode] || 'neutral';
     return <Tag data-color={color}>{printLocaleValue(locale, status.prefLabel)}</Tag>;
 };

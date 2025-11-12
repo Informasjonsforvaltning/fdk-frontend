@@ -6,9 +6,10 @@
     "header": {
         "namelessOrganization": "Navnløs virksomhet",
         "namelessDataset": "Navnløst datasett",
+        "namelessService": "Navnløs tjeneste",
         "useDatasetButton": "Bruk datasett",
         "datasetsTagLink": "Datasett",
-        "serviceTagLink": "Tjeneste",
+        "servicesTagLink": "Tjenester",
         "published": "Publisert",
         "requestAccessButton": "Be om tilgang",
         "showInterestButton": "Meld interesse"

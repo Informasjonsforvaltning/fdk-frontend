@@ -1,12 +1,15 @@
 {
     "breadcrumbs": {
-        "datasets": "Datasett"
+        "datasets": "Datasett",
+        "services": "Tenester"
     },
     "header": {
         "namelessOrganization": "Namnlaus verksemd",
         "namelessDataset": "Namnlaust datasett",
+        "namelessService": "Namnlaust teneste",
         "useDatasetButton": "Bruk datasett",
         "datasetsTagLink": "Datasett",
+        "servicesTagLink": "Tenester",
         "published": "Publisert",
         "requestAccessButton": "Be om tilgong",
         "showInterestButton": "Meld interesse"
@@ -241,5 +244,12 @@
         "closeButton": "Lukk vindauge",
         "downloadButton": "Last ned heile datasettet",
         "noTableData": "Ingen tabelldata tilgjengeleg"
+    },
+    "statusCodes": {
+        "Completed": "Godkjent",
+        "UnderDevelopment": "Under utvikling",
+        "Withdrawn": "Trukket",
+        "Deprecated": "Utgått",
+        "Discontinued": "Avsluttet"
     }
 }

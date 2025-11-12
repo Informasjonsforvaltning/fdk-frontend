@@ -1,5 +1,3 @@
-'use client';
-
 import Script from 'next/script';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type PublicService } from '@fellesdatakatalog/types';
@@ -13,7 +11,6 @@ export type ServiceStructuredDataProps = {
 };
 
 export default function ServiceStructuredData({ service, locale, baseUri }: ServiceStructuredDataProps) {
-    // Create comprehensive structured data for SEO
     const structuredData = {
         '@context': 'https://schema.org',
         '@type': 'Service',
@@ -34,7 +31,6 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
             ?.map((k) => sanitizeString(printLocaleValue(locale, k)))
             .filter(Boolean)
             .join(', '),
-        isAccessibleForFree: undefined,
         spatialCoverage:
             service.spatial && service.spatial.length > 0
                 ? sanitizeArray(
@@ -44,8 +40,6 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
                       })),
                   )
                 : undefined,
-        temporalCoverage: undefined,
-        // Additional properties for better SEO
         mainEntity: {
             '@type': 'Service',
             name: sanitizeString(printLocaleValue(locale, service.title)),
@@ -53,7 +47,6 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
         },
     };
 
-    // Create breadcrumb structured data
     const breadcrumbData = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -67,8 +60,8 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
             {
                 '@type': 'ListItem',
                 position: 2,
-                name: 'Datasets',
-                item: `${baseUri}/${locale}/datasets`,
+                name: 'Services',
+                item: `${baseUri}/${locale}/services`,
             },
             {
                 '@type': 'ListItem',
