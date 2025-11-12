@@ -1,6 +1,6 @@
 import { getAllCommunityTopics, getOrgLogo, getService } from '@fdk-frontend/data-access/server';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { getDatasetSlug } from '@fdk-frontend/utils';
+import { getDatasetSlug, printLocaleValue } from '@fdk-frontend/utils';
 import { type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
 import ServiceDetailsPage from '../../../../components/details-page/service';
 import { notFound, redirect } from 'next/navigation';
@@ -66,3 +66,71 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 };
 
 export default DetailsPageWrapper;
+
+export const generateMetadata = async (props: DetailsPageWrapperProps) => {
+    const { id, lang } = await props.params;
+    const dictionary = await getDictionary(lang, 'details-page');
+
+    try {
+        const service = await getService(id);
+        const title = printLocaleValue(lang, service.title) || dictionary.header.namelessService;
+        const description = printLocaleValue(lang, service.description) ?? dictionary.breadcrumbs.services;
+        const publisher = printLocaleValue(lang, service.catalog?.publisher?.prefLabel);
+        const keywords = service.keyword
+            ?.map((k: any) => printLocaleValue(lang, k))
+            .filter(Boolean)
+            .join(', ');
+
+        // Create structured data for better SEO
+        const structuredData = {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: title,
+            description: description,
+            url: `https://data.norge.no/${lang}/services/${service.id}/${getDatasetSlug(service, lang)}`,
+            identifier: service.id,
+            ...(publisher && {
+                publisher: {
+                    '@type': 'Organization',
+                    name: publisher,
+                },
+            }),
+            dateModified: service.harvest?.modified,
+            datePublished: service.harvest?.firstHarvested,
+            keywords: keywords,
+        };
+
+        return {
+            title: `${title} - ${dictionary.breadcrumbs.services} - data.norge.no`,
+            description: description,
+            keywords: keywords,
+            openGraph: {
+                title: title,
+                description: description,
+                type: 'website',
+                url: `https://data.norge.no/${lang}/services/${service.id}/${getDatasetSlug(service, lang)}`,
+                siteName: 'data.norge.no',
+                locale: lang,
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: title,
+                description: description,
+            },
+            alternates: {
+                canonical: `https://data.norge.no/${lang}/services/${service.id}/${getDatasetSlug(service, lang)}`,
+                languages: {
+                    nb: `https://data.norge.no/nb/services/${service.id}/${getDatasetSlug(service, 'nb')}`,
+                    en: `https://data.norge.no/en/services/${service.id}/${getDatasetSlug(service, 'en')}`,
+                    nn: `https://data.norge.no/nn/services/${service.id}/${getDatasetSlug(service, 'nn')}`,
+                },
+            },
+            other: {
+                'structured-data': JSON.stringify(structuredData),
+            },
+        };
+    } catch (err) {
+        console.error(`Failed generate metadata for service with ID ${id}`, JSON.stringify(err));
+        notFound();
+    }
+};

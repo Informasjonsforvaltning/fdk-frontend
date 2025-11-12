@@ -1,3 +1,5 @@
+import { PublicService } from '@fellesdatakatalog/types';
+
 const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
 
 export const getResource = async (uri: string) => {
@@ -35,7 +37,7 @@ export const getApis = async (apiIds: string[]) => {
     return apis?.filter((api: any) => api !== null) || [];
 };
 
-export const getService = async (serviceId: string) => {
+export const getService = async (serviceId: string): Promise<PublicService> => {
     const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/services/${serviceId}`;
     return getResource(uri);
 };
