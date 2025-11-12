@@ -3,8 +3,7 @@
 import Script from 'next/script';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type DatasetWithIdentifier } from '@fellesdatakatalog/types';
-import { printLocaleValue, getDatasetSlug } from '@fdk-frontend/utils';
-import { safeStringify, sanitizeArray, sanitizeString } from 'apps/data-norge/src/utils/structured-data';
+import { printLocaleValue, getDatasetSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
 
 export type DatasetStructuredDataProps = {
     dataset: DatasetWithIdentifier;
