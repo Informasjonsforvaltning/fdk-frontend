@@ -1,3 +1,5 @@
+'use client';
+
 import Script from 'next/script';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type PublicService } from '@fellesdatakatalog/types';
