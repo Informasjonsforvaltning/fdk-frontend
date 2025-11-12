@@ -181,9 +181,9 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                         <Markdown
                                             locale={locale}
                                             components={{
-                                                a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+                                                a: (anchorProps: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
                                                     <ExternalLink
-                                                        {...props}
+                                                        {...anchorProps}
                                                         locale={locale}
                                                         gateway
                                                     />
