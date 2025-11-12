@@ -2,7 +2,7 @@ import { getAllCommunityTopics, getOrgLogo, getService } from '@fdk-frontend/dat
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { getDatasetSlug } from '@fdk-frontend/utils';
 import { type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
-import ServiceDetailsPage from 'apps/data-norge/src/app/components/details-page/service';
+import ServiceDetailsPage from '../../../../components/details-page/service';
 import { notFound, redirect } from 'next/navigation';
 
 export type DetailsPageWrapperProps = {
@@ -27,7 +27,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 
     try {
         service = await getService(id);
-    } catch (err) {
+    } catch {
         notFound();
     }
 
@@ -40,12 +40,16 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     if (service.catalog?.publisher?.id) {
         try {
             orgLogo = await getOrgLogo(service.catalog.publisher.id);
-        } catch {}
+        } catch {
+            // Fail silently
+        }
     }
 
     try {
         communityTopics = await getAllCommunityTopics(service.id);
-    } catch {}
+    } catch {
+        // Fail silently
+    }
 
     return (
         <ServiceDetailsPage
