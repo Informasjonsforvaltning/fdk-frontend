@@ -20,6 +20,7 @@ import {
     SmartList,
     OrgButton,
     TagList,
+    StatusTag,
 } from '@fdk-frontend/ui';
 import {
     Card,
@@ -38,7 +39,6 @@ import CommunityTab from '../community-tab';
 import styles from './service.module.scss';
 import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
 import ServiceStructuredData from '../../structured-data/service-structured-data';
-import StatusTag from '../status-tag';
 
 export type ServiceDetailsPageType = {
     baseUri: string;
@@ -70,7 +70,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
 
     const breadcrumbList = [
         {
-            href: `/services`,
+            href: '/services',
             text: dictionaries.detailsPage.breadcrumbs.services,
         },
         {
