@@ -42,7 +42,7 @@
         line-height: 2em;
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 400px) {
         grid-template-areas: 'a a' 'b c' 'd d' 'e e';
 
         .orgBtn {

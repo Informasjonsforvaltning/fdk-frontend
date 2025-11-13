@@ -16,7 +16,9 @@ const ActionButton = ({ children, uri, ...props }: ActionButtonProps & ButtonPro
             }}
             {...props}
         >
-            <Link href={uri}>{children}</Link>
+            <span>
+                <Link href={uri}>{children}</Link>
+            </span>
         </Button>
     );
 };
