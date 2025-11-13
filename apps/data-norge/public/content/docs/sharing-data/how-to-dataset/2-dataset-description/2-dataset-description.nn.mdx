@@ -10,8 +10,8 @@ No er du klar til å lage beskrivinga i rett format, slik at ho kan publiserast 
 <Alert>
     **Nyttig å vite**: Vi må lage beskrivinga i eit strukturert dataformat som data.norge.no sitt system kan forstå.
     Dette formatet heiter RDF (Resource Description Framework) og er i bruk òg blant andre europeiske dataportalar og i
-    fleire private verksemder sine datakatalogar. RDF kan skrivast på fleire ulike måtar – i døma under bruker vi
-    RDF-formatet som heiter Turtle – men du vel sjølv kva for eitt du vil bruke. [Du kan lese meir om RDF
+    fleire private verksemder sine datakatalogar. RDF kan skrivast på fleire ulike måtar – i døma under brukar vi
+    RDF-formatet som heiter Turtle – men du vel sjølv kva for eitt du vil bruka. [Du kan lese meir om RDF
     her](/docs/sharing-data/rdf)
 </Alert>
 
@@ -32,7 +32,7 @@ Denne identifikatoren kan no brukast av alle system overalt for å peike til nø
 
 ## Tittel og beskriving
 
-Vi vil no leggje til tittelen vi har førebudd, både på bokmål, nynorsk og engelsk. Då bruker vi eigenskapen `dct:title`, og kan angi språket for teksten med `@nb` for bokmål, `@nn` for nynorsk og `@en` for engelsk. Resultatet blir slik:
+Vi vil no leggje til tittelen vi har førebudd, både på bokmål, nynorsk og engelsk. Då brukar vi eigenskapen `dct:title`, og kan angi språket for teksten med `@nb` for bokmål, `@nn` for nynorsk og `@en` for engelsk. Resultatet blir slik:
 
 ```turtle
 <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
@@ -42,7 +42,7 @@ Vi vil no leggje til tittelen vi har førebudd, både på bokmål, nynorsk og en
   .
 ```
 
-Og tilsvarande vil vi leggje til ei tekstleg beskriving på bokmål, nynorsk og engelsk. Til det bruker vi eigenskapen `dct:description`
+Og tilsvarande vil vi leggje til ei tekstleg beskriving på bokmål, nynorsk og engelsk. Til det brukar vi eigenskapen `dct:description`
 
 ```turtle
 <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
@@ -76,7 +76,7 @@ Og tilsvarande vil vi leggje til ei tekstleg beskriving på bokmål, nynorsk og 
 
 ## Utgjevar og kontaktpunkt for datasett
 
-Vi vil no seie at Digitaliseringsdirektoratet, med organisasjonsnummer 991825827 er utgjevar av datasettet. Vi bruker då eigenskapen `dct:publisher` og peiker til ein URI som representerer Digdir: https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827.
+Vi vil no seie at Digitaliseringsdirektoratet, med organisasjonsnummer 991825827 er utgjevar av datasettet. Vi brukar då eigenskapen `dct:publisher` og peiker til ein URI som representerer Digdir: https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827.
 Denne URI-utforminga følgjer konvensjonen blant datasettbeskrivingar i Noreg. Publiserer du for ei anna verksemd kan du berre byte ut dei siste ni siffera i URI-en med organisasjonsnummeret til verksemda som er ansvarleg for datasettet du skildrar.
 
 I tillegg vil vi leggje til informasjon om kven i Digdir som kan kontaktast angåande dette spesifikke datasettet. Det gjer vi ved hjelp av eit kontaktkort `vcard:Organization`, og der vil vi oppgi namn og e-post med eigenskapane `vcard:fn` og `vcard:hasEmail`.
@@ -120,7 +120,7 @@ Dette seier nøyaktig det same som skildringa over, men her slepp vi å lage ein
 
 ## Nøkkelord og tema
 
-Datasettet kan knytast til nokre nøkkelord, for eksempel "kunstig intelligens" og "offentleg sektor". Vi bruker eigenskapen `dct:keyword` og lagar tekstar både på bokmål, nynorsk og engelsk.
+Datasettet kan knytast til nokre nøkkelord, for eksempel "kunstig intelligens" og "offentleg sektor". Vi brukar eigenskapen `dct:keyword` og lagar tekstar både på bokmål, nynorsk og engelsk.
 
 ```turtle
 <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
@@ -168,7 +168,7 @@ Ved hjelp av eigenskapen `dct:spatial` og ein eksisterande kode som representere
 
 ## Dataopphav og tilgang
 
-Vi vil seie at datasettet er basert på innsamling frå tredjepartar, og at datasettet har open tilgang. For å beskrive datasettet sitt opphav bruker vi eigenskapen `prov:wasGeneratedBy` og peiker til ein kode som representerer "Innsamla frå tredjepartar". For å uttrykke at datasettet er ope bruker vi eigenskapen `dct:accessRights` og peiker til eksisterande koder som representerer "Open data".
+Vi vil seie at datasettet er basert på innsamling frå tredjepartar, og at datasettet har open tilgang. For å beskrive datasettet sitt opphav brukar vi eigenskapen `prov:wasGeneratedBy` og peiker til ein kode som representerer "Innsamla frå tredjepartar". For å uttrykke at datasettet er ope brukar vi eigenskapen `dct:accessRights` og peiker til eksisterande koder som representerer "Open data".
 
 ```turtle
 <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
