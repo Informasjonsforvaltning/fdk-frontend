@@ -32,14 +32,16 @@ const CodeBlockWrapper = ({ locale, children, ...rest }: CodeBlockWrapperProps) 
                     icon
                 />
             </div>
-            <SyntaxHighlighter
-                style={vscDarkPlus as any}
-                PreTag='div'
-                tabIndex={0}
-                {...rest}
-            >
-                {codeString}
-            </SyntaxHighlighter>
+            <div className={styles.scrollContainer}>
+                <SyntaxHighlighter
+                    style={vscDarkPlus as any}
+                    PreTag='div'
+                    tabIndex={0}
+                    {...rest}
+                >
+                    {codeString}
+                </SyntaxHighlighter>
+            </div>
         </div>
     );
 };
