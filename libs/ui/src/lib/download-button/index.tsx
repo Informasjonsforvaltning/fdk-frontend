@@ -48,7 +48,7 @@ const DownloadButton = ({
                         aria-hidden
                         fontSize='1.2em'
                     />
-                    {children}
+                    <span>{children}</span>
                 </ExternalLink>
             </Button>
         );
@@ -66,7 +66,7 @@ const DownloadButton = ({
                         aria-hidden
                         fontSize='1.2em'
                     />
-                    {children}
+                    <span>{children}</span>
                     <Badge>{uris.length}</Badge>
                 </Button>
             </Dialog.Trigger>
