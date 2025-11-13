@@ -22,14 +22,29 @@ description: Søkeendepunktet lar deg søke i data på data.norge.no med Elastic
 
 ## Dokumentasjon
 
-[OpenAPI-spesifikasjon for søkeendepunktet (Github)](https://search.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+[OpenAPI-spesifikasjon for søkeendepunktet (Swagger)](https://search.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+
+## Slik får du tilgang
+
+API-et er åpent for offentlig bruk og krever ingen autentisering. Du kan begynne å bruke endepunktet umiddelbart.
+
+### Hastighetsbegrensning
+
+API-et har hastighetsbegrensning (rate limiting) konfigurert for å sikre stabil drift. Begrensningene er:
+
+- **10 forespørsler per minutt** (requests per minute)
+- **Burst-grense på 20 forespørsler** (2x multiplikator)
+
+Hvis du overskrider disse grensene, vil du motta en HTTP 429 (Too Many Requests) respons.
 
 ## Utforming av spørringer
 
 Du kan søke mot endepunktet med helt enkle spørringer. I eksempelet under har vi søkt på test. Denne spørringen vil gi treff på alle ressurser som har ordet test i tittel, beskrivelse eller søkeord.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test"}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test"}'
 ```
 
 ### Søkbare felt
@@ -40,7 +55,9 @@ Søket vil som utgangspunkt prøve å finne treff på spørringen i alle tre fel
 I eksempelet nedenfor har vi avgrenset søket til å kun søke i feltet 'description'(beskrivelse).
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search -H 'Content-type: application/json' -d '{"query":"test, "fields": {"title":false, "description":true, "keyword":false}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test", "fields": {"title":false, "description":true, "keyword":false}}'
 ```
 
 ### Vekting av søketreff
@@ -73,7 +90,9 @@ Hver ressurstype som er tilgjengelige på data.norge.no har sitt eget endepunkt.
 I dette eksempelet går spørringen vår mot endepunktet for datasett i demomiljøet.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search/datasets' -H 'Content-Type: application/json' -d '{"query":"test"}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search/datasets' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test"}'
 ```
 
 ### Paginering
@@ -83,7 +102,9 @@ Alle søkeresultat vil være paginert, det er mulig å tilpasse antall treff og 
 Eksempel på bruk av pagineringsfelt, med gjeldende side satt til nummer 5 og hvor det er 10 treff på siden:
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","pagination":{"size":10,"page":5}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","pagination":{"size":10,"page":5}}'
 ```
 
 ### Filtrering
@@ -93,19 +114,25 @@ Det er mulig å filtrere på søkeresultatet. Du finner en oversikt over mulige 
 Her har vi filtrert på feltet datatema, med verdien for miljø.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"dataTheme":{value":["ENVI"]}}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","filters":{"dataTheme":{"value":["ENVI"]}}}'
 ```
 
 I dette eksempelet filtrerer vi på åpne data.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"openData":{value":true}}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","filters":{"openData":{"value":true}}}'
 ```
 
 Og her bruker vi format-filteret for å få treff som inneholder mediatypen JSON.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"formats":{value":["MEDIA_TYPE application/json"]}}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","filters":{"formats":{"value":["MEDIA_TYPE application/json"]}}}'
 ```
 
 ### Aggregering
@@ -116,7 +143,9 @@ dette er en liste over filtreringsmulighetene representert i det totale søkeres
 Gitt at dette søket:
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test"}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test"}'
 ```
 
 Gir følgende agreggering i resultatet:
@@ -129,5 +158,7 @@ Så vil det neste eksempelet gi fem treff i sitt resultat, fordi de aggregerte v
 og 16 hvor verdien er RESTRICTED (begrenset).
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"accessRights":{value":["PUBLIC"]}}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","filters":{"accessRights":{"value":["PUBLIC"]}}}'
 ```
