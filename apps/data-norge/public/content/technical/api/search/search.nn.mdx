@@ -1,12 +1,12 @@
 ---
 title: Søk API - data.norge.no
-description: Søkeendepunktet lar deg søke på data.norge.no med Elastic search.
+description: Søkjeendepunktet lar deg søkje på data.norge.no med Elastic search.
 ---
 
 # Søk API
 
 <Ingress>
-    Søkeendepunktet lar deg søke på data.norge.no med Elastic search. Tenesten som er ansvarleg for å handtere søk er
+    Søkjeendepunktet lar deg søkje på data.norge.no med Elastic search. Tenesten som er ansvarleg for å handtere søk er
     [fdk-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-search-service).
 </Ingress>
 
@@ -22,7 +22,7 @@ description: Søkeendepunktet lar deg søke på data.norge.no med Elastic search
 
 ## Dokumentasjon
 
-[OpenAPI-spesifikasjon for søkeendepunktet (Swagger)](https://search.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+[OpenAPI-spesifikasjon for søkjeendepunktet (Swagger)](https://search.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
 
 ## Slik får du tilgang
 
@@ -39,7 +39,7 @@ Viss du overskrid desse grensene, vil du motta ein HTTP 429 (Too Many Requests) 
 
 ## Utforming av spørjingar
 
-Du kan søke mot endepunktet med heilt enkle spørjingar. I eksempelet under har vi søkt på test. Denne spørjinga vil gje treff på alle ressursar som har ordet test i tittel, beskriving eller søkeord.
+Du kan søkje mot endepunktet med heilt enkle spørjingar. I eksempelet under har vi søkt på test. Denne spørjinga vil gje treff på alle ressursar som har ordet test i tittel, beskriving eller søkeord.
 
 ```Shell
 curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
@@ -49,10 +49,10 @@ curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
 
 ### Søkbare felt
 
-Det er tre søkbare felt du kan søke på gjennom søketenesten. Desse er 'title'(tittel), 'description'(beskriving) og 'keyword'(søkeord).
+Det er tre søkbare felt du kan søkje på gjennom søkjetenesta. Desse er 'title'(tittel), 'description'(beskriving) og 'keyword'(søkeord).
 Søket vil som utgangspunkt prøve å finne treff på spørjinga i alle tre feltane, men det er mogleg å definere kva for eit felt det skal inkludere i søket.
 
-I eksempelet nedanfor har vi avgrensa søket til å berre søke i feltet 'description'(beskriving).
+I eksempelet nedanfor har vi avgrensa søket til å berre søkje i feltet 'description'(beskriving).
 
 ```Shell
 curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
@@ -71,8 +71,8 @@ Treff i enkelte felt vert prioritert over andre, til dømes vil eit treff på ti
 | søkeord                         | 5       |
 | beskriving                      | 1       |
 
-La oss nytte tittelen "test søkendepunkt demo " og dei to spørjingane "test demo" og "søkeendepunkt demo". Den fyrste spørjinga vil ha to delvise treff, "test" og "demo", med ein kombinert søkeverdi på 15 + 15 = 30.
-Den andre spørjinga vil ha tre treff, hvor to er delvise treff, "søkeendepunkt" og "demo", og eit er eit nøyaktig treff på frase, "søkeendepunkt demo", med ein kombinert søkeverdi på 15 + 15 + 30 = 60.
+La oss nytte tittelen "test søkjeendepunkt demo " og dei to spørjingane "test demo" og "søkjeendepunkt demo". Den fyrste spørjinga vil ha to delvise treff, "test" og "demo", med ein kombinert søkeverdi på 15 + 15 = 30.
+Den andre spørjinga vil ha tre treff, hvor to er delvise treff, "søkjeendepunkt" og "demo", og eit er eit nøyaktig treff på frase, "søkjeendepunkt demo", med ein kombinert søkeverdi på 15 + 15 + 30 = 60.
 
 ### Spesifikke ressurstypar
 
@@ -109,7 +109,7 @@ curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
 
 ### Filtrering
 
-Det er mogleg å filtrere på søkeresultatet. Du finn ei oversikt over moglege søkefiltre og kva type verdiar dei godtek i OpenAPI-spesifikasjonen for søketenesten.
+Det er mogleg å filtrere på søkeresultatet. Du finn ei oversikt over moglege søkefiltre og kva type verdiar dei godtek i OpenAPI-spesifikasjonen for søkjetenesta.
 
 Her har vi filtrert på feltet datatema, med verdien for miljø.
 
@@ -127,7 +127,7 @@ curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
   -d '{"query":"test","filters":{"openData":{"value":true}}}'
 ```
 
-Og her bruker vi format-filteret for å få treff som inneheld mediatypen JSON.
+Og her brukar vi format-filteret for å få treff som inneheld mediatypen JSON.
 
 ```Shell
 curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \

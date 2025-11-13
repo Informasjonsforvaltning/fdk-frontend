@@ -13,7 +13,7 @@ No har vi oppgitt ganske mykje informasjon _om_ datasettet, men vi har framleis 
     filene og endepunkta du kan hente dataen frå kallast for distribusjon og datatjeneste.
 </Alert>
 
-Vi må fyrst seie at datasettet **har** ei distribusjon, til det bruker vi `dcat:distribution` som skal peike til ein Distribusjonsressurs vi beskriver under.
+Vi må fyrst seie at datasettet **har** ei distribusjon, til det brukar vi `dcat:distribution` som skal peike til ein Distribusjonsressurs vi beskriver under.
 
 ```turtle
 <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
@@ -41,7 +41,7 @@ Men vi vil også leggje til noko meir informasjon, til dømes direktelenka til f
 
 ## Tekstlig beskriving og utgivingsdato
 
-Vi leggjer til ei tekstleg beskrivning av distribusjonen, og når den blei utgitt, og bruker felta `dct:description` og `dct:issued` til det:
+Vi leggjer til ei tekstleg beskrivning av distribusjonen, og når den blei utgitt, og brukar felta `dct:description` og `dct:issued` til det:
 
 ```turtle
 <https://data.digdir.no/datasets/ai_projects_norwegian_state_distribution> rdf:type dcat:Distribution ;
@@ -68,7 +68,7 @@ Døme på nokre andre lisenser frå EUs kodeliste er:
 
 ## Format og språk
 
-Vi vil oppgi formatet til fila, som i vårt tilfelle er ei CSV-fil; til det bruker vi eigenskapen `dct:format` og peiker til ein kode i EU sitt vokabular "File Type" som representerer CSV.
+Vi vil oppgi formatet til fila, som i vårt tilfelle er ei CSV-fil; til det brukar vi eigenskapen `dct:format` og peiker til ein kode i EU sitt vokabular "File Type" som representerer CSV.
 I tillegg er innhaldet i datasett på norsk - bokmål. Vi angir det med eigenskapen `dct:language` og peiker til koden frå EU sitt vokabular som angir norsk - bokmål:
 
 ```turtle

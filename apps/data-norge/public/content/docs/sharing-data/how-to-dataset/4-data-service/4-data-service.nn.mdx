@@ -11,12 +11,12 @@ description: Beskrive tilgjengeleggjering via datatjeneste/API
     illustrere korleis ein API-beskriving ser ut.
 </Alert>
 
-For å beskrive at datasettet er tilgjengeliggjort over eit API bruker vi Datatjeneste-klassen `dcat:DataService`.
+For å beskrive at datasettet er tilgjengeliggjort over eit API brukar vi Datatjeneste-klassen `dcat:DataService`.
 Mye av informasjonen er tilsvarande som for Distribusjonen, men Datatjeneste har i tillegg nokre fleire obligatoriske felt.
 
 ## Knytte API-et til datasettet
 
-For å seie at datatjenesten tilbyr dataen for datasettet vi har beskrive bruker vi eigenskapen `dcat:servesDataset`. Merk at denne peiker _frå_ Datatjenesten _til_ Datasettet:
+For å seie at datatjenesten tilbyr dataen for datasettet vi har beskrive brukar vi eigenskapen `dcat:servesDataset`. Merk at denne peiker _frå_ Datatjenesten _til_ Datasettet:
 
 ```turtle
 <https://data.digdir.no/datasets/ai_projects_norwegian_state_dataset> rdf:type dcat:Dataset ;
