@@ -1,0 +1,65 @@
+---
+title: KI-søk API - data.norge.no
+description: KI-søkeendepunktet lar deg søke i data på data.norge.no ved hjelp av kunstig intelligens.
+---
+
+# KI-søk API
+
+<Ingress>
+    KI-søket bruker metadata frå Data.norge.no og hjelper deg med å finne datasett ved hjelp av kunstig intelligens.
+    Tenesta som er ansvarleg for å handtere KI-søk er
+    [fdk-llm-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-llm-search-service).
+</Ingress>
+
+<Alert data-color='warning'>
+    **Viktig**: Dette API-et vert nytta internt i tenesteutviklinga på data.norge.no, og kan av den grunn bli endra over
+    tid. Vi anbefaler ikkje å nytte dette API-et om ein er avhengig av stabilitet og konsistens.
+</Alert>
+
+<Alert>Tenesta støttar for augneblinken berre datasettressursar.</Alert>
+
+## Endepunkt i ulike miljø
+
+- Produksjonsmiljø: https://aisearch.api.fellesdatakatalog.digdir.no
+- Demomiljø: https://aisearch.api.demo.fellesdatakatalog.digdir.no
+
+## Dokumentasjon
+
+[OpenAPI-spesifikasjon for KI-søkeendepunktet (Swagger)](https://aisearch.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+
+## Slik får du tilgang
+
+API-et er ope for offentleg bruk og krev ingen autentisering. Du kan byrje å nytte endepunktet med ein gong.
+
+### Hastigheitsavgrensing
+
+API-et har hastigheitsavgrensing (rate limiting) konfigurert for å sikre stabil drift. Avgrensningane er:
+
+- **10 førespurnader per minutt** (requests per minute)
+- **Burst-grense på 20 førespurnader** (2x multiplikator)
+
+Viss du overskrid desse grensene, vil du motta ein HTTP 429 (Too Many Requests) respons.
+
+## Utforming av spørjingar
+
+KI-søket let deg stille spurnader i naturleg språk. I eksempelet under har vi stilt spurnaden "Kva område i Noreg er verna?". KI-søket vil tolke spurnaden og finne relevante datasett basert på metadata.
+
+```Shell
+curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"Kva område i Noreg er verna?"}'
+```
+
+### Naturleg språk
+
+I motsetning til standard søk, kan du bruke naturleg språk i KI-søket. Du treng ikkje kjenne til spesifikke datasettnamn, fagomgrep eller tekniske format. Døme på spurnader:
+
+- "Kva datasett handlar om miljøvern?"
+- "Finn data om sjukefråvær i offentleg sektor"
+- "Vis meg datasett om vegtrafikk i Oslo"
+
+```Shell
+curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"Finn data om sjukefråvær i offentleg sektor"}'
+```
