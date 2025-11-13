@@ -82,6 +82,7 @@
     },
     "produces": {
         "title": "Tenesteresultat",
+        "nameless": "Namnlaust tenesteresultat",
         "placeholder": "Denne tenesta har inga tenesteresultat."
     },
     "apis": {

@@ -218,8 +218,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                                 dictionaries.detailsPage.produces.header.nameless}
                                         </Details.Summary>
                                         <Details.Content>
-                                            {printLocaleValue(locale, output.description) ||
-                                                dictionaries.detailsPage.produces.header.nameless}
+                                            {printLocaleValue(locale, output.description)}
                                         </Details.Content>
                                     </Details>
                                 ))}

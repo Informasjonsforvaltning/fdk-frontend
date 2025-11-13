@@ -82,6 +82,7 @@
     },
     "produces": {
         "title": "Service results",
+        "nameless": "Nameless service result",
         "placeholder": "This service has no service results."
     },
     "apis": {
