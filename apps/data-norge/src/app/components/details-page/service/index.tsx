@@ -164,7 +164,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                         </TabsList>
                     </ScrollShadows>
                     <TabsPanel
-                        className={styles.tabPanel}
+                        className={styles.tabsPanel}
                         value='overview'
                     >
                         <Heading
@@ -414,7 +414,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                         </Dlist>
                     </TabsPanel>
                     <TabsPanel
-                        className={styles.tabPanel}
+                        className={styles.tabsPanel}
                         value='community'
                     >
                         <CommunityTab
@@ -425,7 +425,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                         />
                     </TabsPanel>
                     <TabsPanel
-                        className={styles.tabPanel}
+                        className={styles.tabsPanel}
                         value='rdf'
                     >
                         <MetadataTab
