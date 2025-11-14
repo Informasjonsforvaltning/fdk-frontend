@@ -176,6 +176,10 @@
             "namelessDataset": "Nameless dataset",
             "namelessOrganization": "Nameless organization"
         },
+        "requires": {
+            "title": "Requires",
+            "placeholder": "This service does not require any other services."
+        },
         "references": {
             "title": "References",
             "relatedResources": "Related resources",

@@ -176,6 +176,10 @@
             "namelessDataset": "Navnløst datasett",
             "namelessOrganization": "Navnløs virksomhet"
         },
+        "requires": {
+            "title": "Krever",
+            "placeholder": "Denne tjenesten krever ingen andre tjenester."
+        },
         "references": {
             "title": "Referanser",
             "relatedResources": "Relaterte ressurser",

@@ -176,6 +176,10 @@
             "namelessDataset": "Namnlaust datasett",
             "namelessOrganization": "Namnlaus verksemd"
         },
+        "requires": {
+            "title": "Krev",
+            "placeholder": "Denne tenesta krev ingen andre tenester."
+        },
         "references": {
             "title": "Referansar",
             "relatedResources": "Relaterte ressursar",

@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { i18n, type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
-import { printLocaleValue, sumArrayLengths } from '@fdk-frontend/utils';
+import { getSlug, printLocaleValue, sumArrayLengths } from '@fdk-frontend/utils';
 import {
     Badge,
     Breadcrumbs,
@@ -22,18 +22,7 @@ import {
     TagList,
     StatusTag,
 } from '@fdk-frontend/ui';
-import {
-    Card,
-    Heading,
-    Tabs,
-    TabsList,
-    TabsTab,
-    TabsPanel,
-    Button,
-    Link,
-    Tag,
-    Details,
-} from '@digdir/designsystemet-react';
+import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel, Button, Link, Tag } from '@digdir/designsystemet-react';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
 import styles from './service.module.scss';
@@ -55,22 +44,14 @@ export type ServiceDetailsPageType = {
 };
 
 export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
-    const {
-        baseUri,
-        communityTopics,
-        communityBaseUri,
-        defaultActiveTab = 'overview',
-        dictionaries,
-        locale,
-        orgLogo,
-        service,
-    } = props;
+    const { baseUri, communityTopics, communityBaseUri, defaultActiveTab, dictionaries, locale, orgLogo, service } =
+        props;
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     const breadcrumbList = [
         {
-            href: '/services',
+            href: '/public-services-and-events',
             text: dictionaries.detailsPage.breadcrumbs.services,
         },
         {
@@ -117,7 +98,9 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             data-color='info'
                             data-size='md'
                         >
-                            <Link href='/services'>{dictionaries.detailsPage.header.servicesTagLink}</Link>
+                            <Link href='/public-services-and-events'>
+                                {dictionaries.detailsPage.header.servicesTagLink}
+                            </Link>
                         </Tag>
                         {service.admsStatus && (
                             <StatusTag
@@ -210,21 +193,47 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             </Hstack>
                         </Heading>
                         {sumArrayLengths(service.produces) > 0 ? (
-                            <Card>
+                            <Dlist>
                                 {service.produces?.map((output, index) => (
-                                    <Details key={`${output.identifier}-${index}`}>
-                                        <Details.Summary>
+                                    <Fragment key={`${output.identifier}-${index}`}>
+                                        <dt>
                                             {printLocaleValue(locale, output.name) ||
                                                 dictionaries.detailsPage.produces.header.nameless}
-                                        </Details.Summary>
-                                        <Details.Content>
-                                            {printLocaleValue(locale, output.description)}
-                                        </Details.Content>
-                                    </Details>
+                                        </dt>
+                                        <dd>{printLocaleValue(locale, output.description)}</dd>
+                                    </Fragment>
                                 ))}
-                            </Card>
+                            </Dlist>
                         ) : (
                             <PlaceholderBox>{dictionaries.detailsPage.produces.placeholder}</PlaceholderBox>
+                        )}
+
+                        <Heading
+                            level={2}
+                            data-size='xs'
+                            className={styles.heading}
+                        >
+                            <Hstack>
+                                <span>{dictionaries.detailsPage.details.requires.title}</span>
+                                <Badge>{sumArrayLengths(service.requires)}</Badge>
+                            </Hstack>
+                        </Heading>
+                        {sumArrayLengths(service.requires) > 0 ? (
+                            <Dlist>
+                                {service.requires?.map((item) => (
+                                    <Fragment key={item.id}>
+                                        <dt>
+                                            <Link href={`/${locale}/services/${item.id}/${getSlug(item, locale)}`}>
+                                                {printLocaleValue(locale, item.title) ||
+                                                    dictionaries.detailsPage.header.namelessService}
+                                            </Link>
+                                        </dt>
+                                        <dd>{printLocaleValue(locale, item.description)}</dd>
+                                    </Fragment>
+                                ))}
+                            </Dlist>
+                        ) : (
+                            <PlaceholderBox>{dictionaries.detailsPage.details.requires.placeholder}</PlaceholderBox>
                         )}
                     </TabsPanel>
                     <TabsPanel

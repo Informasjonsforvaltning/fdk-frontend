@@ -60,7 +60,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             communityBaseUri={process.env.FDK_COMMUNITY_BASE_URI as string}
             locale={lang}
             dictionaries={dictionaries}
-            defaultActiveTab={tab?.toString() ?? 'overview'}
+            defaultActiveTab={tab?.toString() || 'overview'}
         />
     );
 };
