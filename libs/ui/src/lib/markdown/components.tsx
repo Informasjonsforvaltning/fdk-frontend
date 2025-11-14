@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Prism as SyntaxHighlighter, type SyntaxHighlighterProps } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { type SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import {
     Alert,
     type AlertProps,
@@ -24,6 +23,7 @@ import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import ExternalLink from '../external-link';
 import MdxHeading from '../mdx-heading';
 import ConceptPreview, { type ConceptPreviewProps } from '../concept-preview';
+import CodeBlockWrapper from './code-block-wrapper';
 
 type MdxComponentMapProps = {
     locale: LocaleCodes;
@@ -109,9 +109,12 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         Ingress: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
             <Paragraph
                 data-size='md'
+                asChild={true}
                 {...props}
             >
-                {children}
+                <div>
+                    {children}
+                </div>
             </Paragraph>
         ),
         a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
@@ -137,20 +140,20 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
 
             if (isBlock) {
                 return match ? (
-                    <SyntaxHighlighter
-                        style={vscDarkPlus as any}
+                    <CodeBlockWrapper
+                        locale={locale}
                         language={match[1]}
-                        PreTag='div'
-                        tabIndex={0}
                         {...rest}
-                    />
+                    >
+                        {children}
+                    </CodeBlockWrapper>
                 ) : (
-                    <SyntaxHighlighter
-                        style={vscDarkPlus as any}
-                        PreTag='div'
-                        tabIndex={0}
+                    <CodeBlockWrapper
+                        locale={locale}
                         {...rest}
-                    />
+                    >
+                        {children}
+                    </CodeBlockWrapper>
                 );
             }
 

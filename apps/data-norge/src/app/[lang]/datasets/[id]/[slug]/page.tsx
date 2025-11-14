@@ -176,7 +176,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         externalRelatedAPIs = hits.filter((r: SearchObject) => r.searchType === 'DATA_SERVICE');
         externalRelatedDatasets = hits.filter((r: SearchObject) => r.searchType === 'DATASET');
 
-        apis = await getApis(externalRelatedAPIs.map((api) => api.id).filter((id): id is string => id !== undefined));
+        apis = (await getApis(externalRelatedAPIs.map((api) => api.id).filter((id): id is string => id !== undefined))) as DataService[];
     } catch {
         // Do nothing
     }

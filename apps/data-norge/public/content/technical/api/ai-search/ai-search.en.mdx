@@ -1,0 +1,66 @@
+---
+title: AI Search API - data.norge.no
+description: The AI search endpoint allows you to search data on data.norge.no using artificial intelligence.
+---
+
+# AI Search API
+
+<Ingress>
+    The AI search uses metadata from Data.norge.no and helps you find datasets using artificial intelligence. The service that is responsible for handling AI searches is [fdk-llm-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-llm-search-service).
+</Ingress>
+
+<Alert data-color='warning'>
+    **Important**: This API is used internally in the service development on data.norge.no, and may therefore be altered
+    over time. We do not recommend using this API if you are dependent on stability and consistency.
+</Alert>
+
+<Alert>
+    The service currently only supports dataset resources.
+</Alert>
+
+## Endpoints to different environments
+
+- Production environment: https://aisearch.api.fellesdatakatalog.digdir.no
+- Demo environment: https://aisearch.api.demo.fellesdatakatalog.digdir.no
+
+## Documentation
+
+[OpenAPI-specification for the AI search endpoint (Swagger)](https://aisearch.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+
+## How to gain access
+
+The API is open for public use and requires no authentication. You can start using the endpoint immediately.
+
+### Rate limiting
+
+The API has rate limiting configured to ensure stable operation. The limits are:
+
+- **10 requests per minute** (requests per minute)
+- **Burst limit of 20 requests** (2x multiplier)
+
+If you exceed these limits, you will receive an HTTP 429 (Too Many Requests) response.
+
+## Design queries
+
+The AI search allows you to ask questions in natural language. In the example below, we have asked "Which areas in Norway are protected?". The AI search will interpret the question and find relevant datasets based on metadata.
+
+```Shell
+curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"Which areas in Norway are protected?"}'
+```
+
+### Natural language
+
+Unlike standard search, you can use natural language in AI search. You don't need to know specific dataset names, technical terms, or formats. Examples of questions:
+
+- "Which datasets are about environmental protection?"
+- "Find data about sick leave in the public sector"
+- "Show me datasets about road traffic in Oslo"
+
+```Shell
+curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"Find data about sick leave in the public sector"}'
+```
+

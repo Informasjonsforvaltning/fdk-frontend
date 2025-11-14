@@ -1,0 +1,17 @@
+@use '@fdk-frontend/ui/core/mixins' as core-mixins;
+
+.wrapper {
+    position: relative;
+
+    .copyButton {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 1;
+
+        button span {
+            @include core-mixins.sr-only();
+        }
+    }
+}
+
