@@ -1,22 +1,22 @@
 ---
-title: AI Search API - data.norge.no
-description: The AI search endpoint allows you to search data on data.norge.no using artificial intelligence.
+title: AI Search API - Data.norge.no
+description: The AI search endpoint allows you to search data on Data.norge.no using artificial intelligence.
 ---
 
 # AI Search API
 
 <Ingress>
-    The AI search uses metadata from Data.norge.no and helps you find datasets using artificial intelligence. The service that is responsible for handling AI searches is [fdk-llm-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-llm-search-service).
+    The AI search uses metadata from Data.norge.no and helps you find datasets using artificial intelligence. The
+    service that is responsible for handling AI searches is
+    [fdk-llm-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-llm-search-service).
 </Ingress>
 
 <Alert data-color='warning'>
-    **Important**: This API is used internally in the service development on data.norge.no, and may therefore be altered
+    **Important**: This API is used internally in the service development on Data.norge.no, and may therefore be altered
     over time. We do not recommend using this API if you are dependent on stability and consistency.
 </Alert>
 
-<Alert>
-    The service currently only supports dataset resources.
-</Alert>
+<Alert>The service currently only supports dataset resources.</Alert>
 
 ## Endpoints to different environments
 
@@ -63,4 +63,3 @@ curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
   -H 'Content-Type: application/json' \
   -d '{"query":"Find data about sick leave in the public sector"}'
 ```
-

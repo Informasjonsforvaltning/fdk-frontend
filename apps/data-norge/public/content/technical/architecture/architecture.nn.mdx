@@ -1,11 +1,11 @@
 ---
-title: Arkitektur - data.norge.no
-description: Her finn du informasjon om den overordna arkitekturen bak data.norge.no
+title: Arkitektur - Data.norge.no
+description: Her finn du informasjon om den overordna arkitekturen bak Data.norge.no
 ---
 
 # Arkitektur
 
-<Ingress>Her finn du informasjon om den overordna arkitekturen bak data.norge.no.</Ingress>
+<Ingress>Her finn du informasjon om den overordna arkitekturen bak Data.norge.no.</Ingress>
 
 ## Rammeverk:
 
@@ -17,13 +17,13 @@ Vi nyttar [C4-modellen](https://c4model.com/) som rammeverk for å teikne system
 
 Samanhengen mellom komponentane vert illustrert i følgjande diagram:
 
-![Diagram som beskriv samanhengen mellom komponentane på data.norge.no](https://raw.githubusercontent.com/Informasjonsforvaltning/architecture-documentation/refs/heads/main/generated/system.svg)
+![Diagram som beskriv samanhengen mellom komponentane på Data.norge.no](https://raw.githubusercontent.com/Informasjonsforvaltning/architecture-documentation/refs/heads/main/generated/system.svg)
 Ein datatilbydar som er tilsett i ei verksemd i offentleg sektor registrerer og deler beskrivingar av data som verksemda forvaltar.
-Desse kan registrerast i Registrering, ein datakatalog som vert forvalta av data.norge.no, eller gjennom verksemda eller sektoren sin eigen datakatalog.
+Desse kan registrerast i Registrering, ein datakatalog som vert forvalta av Data.norge.no, eller gjennom verksemda eller sektoren sin eigen datakatalog.
 
 Registrering nyttar ei identitets- og tilgangsløysing som snakkar med ein ekstern identitetstilbydar (som t.d. ID-porten) for å autorisere brukarar. Registreringsløysinga søkjer etter data i portal.
 
-Haustaren haustar datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar frå datakatalogar automatisk, både lokale og den data.norge.no forvaltar.
+Haustaren haustar datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar frå datakatalogar automatisk, både lokale og den Data.norge.no forvaltar.
 
 Portalen lyttar til datahendingar frå haustaren og tilbyr søk og oversikt over datasett, omgrep, API-ar, informasjonsmodellar, tenester og hendingar.
 
@@ -32,6 +32,6 @@ Portalen får ein datasettkvalitetsscore frå metadatakvalitet.
 
 Ein datakonsument som representerer ei verksemd, ein forsker eller sivilsamfunnet finn, forstår og nyttar data frå offentleg sektor gjennom portalen.
 
-Du kan lese meir om arkitekturen bak data.norge.no på [Arkitekturdokumentasjonen på Github (på engelsk)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation)
+Du kan lese meir om arkitekturen bak Data.norge.no på [Arkitekturdokumentasjonen på Github (på engelsk)](https://github.com/Informasjonsforvaltning/architecture-documentation/wiki/Architecture-documentation)
 
 Tenestene er under stadig utvikling, av den grunn kan detaljane i arkitekturen endre seg over tid.

@@ -1,13 +1,14 @@
 ---
-title: SPARQL API - data.norge.no
-description: The SPARQL endepoint is the most powerful search tool on data.norge.no.
+title: SPARQL API - Data.norge.no
+description: The SPARQL endepoint is the most powerful search tool on Data.norge.no.
 ---
 
 # SPARQL API
 
 <Ingress>
-    The SPARQL endepoint is the most powerful search tool on data.norge.no, and allows you to search for all properties
-    that exists in the catalogs, as long as you master the syntax. The service that is responsible for handling SPARQL is [fdk-sparql-service(Github)](https://github.com/Informasjonsforvaltning/fdk-sparql-service).
+    The SPARQL endepoint is the most powerful search tool on Data.norge.no, and allows you to search for all properties
+    that exists in the catalogs, as long as you master the syntax. The service that is responsible for handling SPARQL
+    is [fdk-sparql-service(Github)](https://github.com/Informasjonsforvaltning/fdk-sparql-service).
 </Ingress>
 
 ## Endpoints in different environments
@@ -36,19 +37,43 @@ The API is open for public use and requires no authentication. You can start usi
 
 The API has rate limiting configured to ensure stable operation. If you exceed the limits, you will receive an HTTP 429 (Too Many Requests) response.
 
+## How to execute a SPARQL query
+
+You can execute SPARQL queries by sending a GET request with the query as a URL-encoded query parameter. Here is an example using curl:
+
+```bash
+curl "https://sparql.demo.fellesdatakatalog.digdir.no?query=\
+PREFIX%20dcat%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Fdcat%23%3E%0A\
+SELECT%20*%0AWHERE%20%7B%0A%20%20%3Fdataset%20a%20dcat%3ADataset%20.%0A%7D%0A\
+LIMIT%2010"
+```
+
+In the example above, the SPARQL query is URL-encoded. The decoded query is:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT *
+WHERE {
+  ?dataset a dcat:Dataset .
+}
+LIMIT 10
+```
+
+You can also use POST requests with the query in the request body to avoid URL length limitations for complex queries.
+
 ## Resource types
 
 The following resource types are available in the catalog:
 
-- `dcat:Dataset` (`<http://www.w3.org/ns/dcat#Dataset>`) - Datasets
-- `dcat:DataService` (`<http://www.w3.org/ns/dcat#DataService>`) - Data services
-- `skos:Concept` (`<http://www.w3.org/2004/02/skos/core#Concept>`) - Concepts
-- `modelldcatno:InformationModel` (`<https://data.norge.no/vocabulary/modelldcatno#InformationModel>`) - Information models
-- `cpsv:PublicService` (`<http://purl.org/vocab/cpsv#PublicService>`) - Public services
-- `cpsvno:Service` (`<https://data.norge.no/vocabulary/cpsvno#Service>`) - Public services (CPSV-AP-NO)
-- `cv:Event` (`<http://data.europa.eu/m8g/Event>`) - Events
-- `cv:LifeEvent` (`<http://data.europa.eu/m8g/LifeEvent>`) - Life events
-- `cv:BusinessEvent` (`<http://data.europa.eu/m8g/BusinessEvent>`) - Business events
+- `dcat:Dataset` (`<http://www.w3.org/ns/dcat#Dataset>`) - Dataset
+- `dcat:DataService` (`<http://www.w3.org/ns/dcat#DataService>`) - Data service
+- `skos:Concept` (`<http://www.w3.org/2004/02/skos/core#Concept>`) - Concept
+- `modelldcatno:InformationModel` (`<https://data.norge.no/vocabulary/modelldcatno#InformationModel>`) - Information model
+- `cpsv:PublicService` (`<http://purl.org/vocab/cpsv#PublicService>`) - Public service
+- `cpsvno:Service` (`<https://data.norge.no/vocabulary/cpsvno#Service>`) - Service (CPSV-AP-NO)
+- `cv:Event` (`<http://data.europa.eu/m8g/Event>`) - Event
+- `cv:LifeEvent` (`<http://data.europa.eu/m8g/LifeEvent>`) - Life event
+- `cv:BusinessEvent` (`<http://data.europa.eu/m8g/BusinessEvent>`) - Business event
 
 ## SPARQL query types and response formats
 
@@ -113,7 +138,7 @@ WHERE {
 
 ### Searching for data services
 
-Retrieve all data services with their descriptions:
+Retrieve data services with their descriptions:
 
 ```sparql
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
@@ -180,7 +205,7 @@ LIMIT 10
 
 ### Searching for events
 
-Retrieve all types of events:
+Retrieve types of events:
 
 ```sparql
 PREFIX cv: <http://data.europa.eu/m8g/>

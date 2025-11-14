@@ -1,0 +1,160 @@
+---
+title: Ressurtjeneste API - Data.norge.no
+description: Ressurtjenesten gir deg direkte tilgang til ressurser fra Data.norge.no gjennom REST API.
+---
+
+# Ressurtjeneste API
+
+<Ingress>
+    Ressurtjenesten gir deg direkte tilgang til ressurser fra Data.norge.no gjennom REST API. Du kan hente ut datasett,
+    begreper, datatjenester, informasjonsmodeller, tjenester og hendelser, både som JSON og RDF-grafer. Tjenesten som er
+    ansvarlig for å håndtere ressurtjenesten er
+    [fdk-resource-service(Github)](https://github.com/Informasjonsforvaltning/fdk-resource-service).
+</Ingress>
+
+## Endepunkt i ulike miljøer
+
+- **Ressurtjeneste (produksjon)**: https://resource.api.fellesdatakatalog.digdir.no - Produksjons-endepunkt
+- **Ressurtjeneste (demo)**: https://resource.api.demo.fellesdatakatalog.digdir.no - Demo-endepunkt
+
+## Dokumentasjon
+
+[OpenAPI-spesifikasjon for ressurtjeneste-endepunktet (Swagger)](https://resource.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+
+## Slik får du tilgang
+
+API-et er åpent for offentlig bruk og krever ingen autentisering. Du kan begynne å bruke endepunktet umiddelbart.
+
+### Hastighetsbegrensning
+
+API-et har hastighetsbegrensning (rate limiting) konfigurert for å sikre stabil drift. Begrensningene er:
+
+- **5 forespørsler per sekund** (requests per second)
+- **Burst-grense på 10 forespørsler** (2x multiplikator)
+
+Hvis du overskrider disse grensene, vil du motta en HTTP 429 (Too Many Requests) respons.
+
+## Tilgjengelige ressurser
+
+Ressurtjenesten støtter følgende ressurser. Alle endepunktene er for å hente spesifikke ressurser, ikke samlinger:
+
+- **Begreper** (`/v1/concepts/{id}`) - Hent et spesifikt begrep fra katalogen
+- **Datasett** (`/v1/datasets/{id}`) - Hent et spesifikt datasett fra katalogen
+- **Datatjenester** (`/v1/data-services/{id}`) - Hent en spesifikk datatjeneste fra katalogen
+- **Hendelser** (`/v1/events/{id}`) - Hent en spesifikk hendelse fra katalogen
+- **Tjenester** (`/v1/services/{id}`) - Hent en spesifikk (offentlig) tjeneste fra katalogen
+- **Informasjonsmodeller** (`/v1/information-models/{id}`) - Hent en spesifikk informasjonsmodell fra katalogen
+
+## Hente ressurser ved ID eller URI
+
+Ressurser kan hentes på to måter:
+
+1. **Ved intern FDK-ID**: Bruk endepunktene `/v1/{type}/{id}` hvor `{id}` er den interne ID-en til ressursen. ID-en er en identifikator som kun er kjent på Data.norge.no og kan finnes ved å bruke [søkeendepunktet](/nb/technical/api/search) eller [KI-søkeendepunktet](/nb/technical/api/ai-search).
+
+2. **Ved RDF URI**: Bruk endepunktene `/v1/{type}/by-uri?uri={uri}` eller `/v1/{type}/by-uri/graph?uri={uri}` hvor `{uri}` er RDF-URI-en til ressursens subjekt. URI-en er en global identifikator som er unik og kan brukes på tvers av systemer. URI-en finner du i RDF-grafen til ressursen.
+
+### Finne URI i RDF-graf
+
+URI-en til en ressurs finner du ved å se etter triplen som definerer ressurstypen. Ressurstypene er de samme som beskrevet på [SPARQL-siden](/nb/technical/api/sparql#ressurstyper). Her er et eksempel på en datasett-graf i Turtle-format:
+
+```Turtle
+<https://data.norge.no/datasets/12345> a dcat:Dataset ;
+    dct:title "Eksempel datasett"@nb ;
+    dct:description "Dette er et eksempel på et datasett"@nb ;
+    dct:publisher <https://data.norge.no/organizations/example-org> ;
+    dcat:keyword "eksempel"@nb, "data"@nb .
+```
+
+I eksemplet over er `<https://data.norge.no/datasets/12345> a dcat:Dataset` triplen som definerer at ressursen er et datasett. URI-en er `<https://data.norge.no/datasets/12345>` (subjektet i triplen). Denne URI-en kan brukes med `/v1/datasets/by-uri/graph?uri=https://data.norge.no/datasets/12345` for å hente grafen.
+
+For andre ressurstyper, se etter tripler som `?uri a dcat:DataService`, `?uri a skos:Concept`, `?uri a modelldcatno:InformationModel`, osv.
+
+## Eksempler på forespørsler
+
+### Hente et spesifikt datasett ved ID
+
+```bash
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/{id}' \
+  -H 'Accept: application/json'
+```
+
+### Hente et spesifikt datasett ved URI
+
+```bash
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/by-uri?uri='\
+'https://data.norge.no/datasets/12345' \
+  -H 'Accept: application/json'
+```
+
+### Hente datasett som RDF-graf
+
+Ressurtjenesten støtter flere RDF-formater gjennom content negotiation:
+
+```bash
+# Hent som JSON-LD (standard)
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/{id}/graph' \
+  -H 'Accept: application/ld+json'
+```
+
+```bash
+# Hent som Turtle
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/{id}/graph' \
+  -H 'Accept: text/turtle'
+```
+
+```bash
+# Hent som RDF/XML
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/{id}/graph' \
+  -H 'Accept: application/rdf+xml'
+```
+
+### Hente RDF-graf ved URI
+
+Du kan hente RDF-grafen til en ressurs ved å bruke dens URI:
+
+```bash
+# Hent datasett-graf ved URI
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/by-uri/graph?uri={uri}' \
+  -H 'Accept: application/ld+json'
+```
+
+```bash
+# Hent begrep-graf ved URI
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/concepts/by-uri/graph?uri={uri}' \
+  -H 'Accept: text/turtle'
+```
+
+### Hente begrep
+
+```bash
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/concepts/{id}' \
+  -H 'Accept: application/json'
+```
+
+### Støttede RDF-formater
+
+Ressurtjenesten støtter følgende RDF-formater for `/graph`-endepunktene:
+
+- **JSON-LD** (`application/ld+json`) - Standard format
+- **Turtle** (`text/turtle`)
+- **RDF/XML** (`application/rdf+xml`)
+- **N-Triples** (`application/n-triples`)
+- **N-Quads** (`application/n-quads`)
+
+Bruk `Accept`-headeren for å spesifisere ønsket format. Hvis ingen `Accept`-header er oppgitt, returneres JSON-LD som standard.

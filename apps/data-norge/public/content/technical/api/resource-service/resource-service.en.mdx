@@ -1,0 +1,160 @@
+---
+title: Resource Service API - Data.norge.no
+description: The resource service gives you direct access to resources from Data.norge.no through a REST API.
+---
+
+# Resource Service API
+
+<Ingress>
+    The resource service gives you direct access to resources from Data.norge.no through a REST API. You can retrieve
+    datasets, concepts, data services, information models, services, and events, both as JSON and RDF graphs. The
+    service that is responsible for handling the resource service is
+    [fdk-resource-service(Github)](https://github.com/Informasjonsforvaltning/fdk-resource-service).
+</Ingress>
+
+## Endpoints in different environments
+
+- **Resource service (production)**: https://resource.api.fellesdatakatalog.digdir.no - Production endpoint
+- **Resource service (demo)**: https://resource.api.demo.fellesdatakatalog.digdir.no - Demo endpoint
+
+## Documentation
+
+[OpenAPI-specification for the resource service endpoint (Swagger)](https://resource.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+
+## How to gain access
+
+The API is open for public use and requires no authentication. You can start using the endpoint immediately.
+
+### Rate limiting
+
+The API has rate limiting configured to ensure stable operation. The limits are:
+
+- **5 requests per second** (requests per second)
+- **Burst limit of 10 requests** (2x multiplier)
+
+If you exceed these limits, you will receive an HTTP 429 (Too Many Requests) response.
+
+## Available resources
+
+The resource service supports the following resources. All endpoints are for retrieving specific resources, not collections:
+
+- **Concepts** (`/v1/concepts/{id}`) - Retrieve a specific concept from the catalog
+- **Datasets** (`/v1/datasets/{id}`) - Retrieve a specific dataset from the catalog
+- **Data Services** (`/v1/data-services/{id}`) - Retrieve a specific data service from the catalog
+- **Events** (`/v1/events/{id}`) - Retrieve a specific event from the catalog
+- **Services** (`/v1/services/{id}`) - Retrieve a specific (public) service from the catalog
+- **Information Models** (`/v1/information-models/{id}`) - Retrieve a specific information model from the catalog
+
+## Retrieving resources by ID or URI
+
+Resources can be retrieved in two ways:
+
+1. **By internal FDK ID**: Use the endpoints `/v1/{type}/{id}` where `{id}` is the internal ID of the resource. The ID is an identifier that is only known on Data.norge.no and can be found by using the [search endpoint](/en/technical/api/search) or the [AI search endpoint](/en/technical/api/ai-search).
+
+2. **By RDF URI**: Use the endpoints `/v1/{type}/by-uri?uri={uri}` or `/v1/{type}/by-uri/graph?uri={uri}` where `{uri}` is the RDF URI of the resource's subject. The URI is a global identifier that is unique and can be used across systems. You can find the URI in the resource's RDF graph.
+
+### Finding the URI in an RDF graph
+
+To find the URI of a resource, look for the triple that defines the resource type. The resource types are the same as described on the [SPARQL page](/en/technical/api/sparql#resource-types). Here is an example of a dataset graph in Turtle format:
+
+```Turtle
+<https://data.norge.no/datasets/12345> a dcat:Dataset ;
+    dct:title "Example dataset"@en ;
+    dct:description "This is an example dataset"@en ;
+    dct:publisher <https://data.norge.no/organizations/example-org> ;
+    dcat:keyword "example"@en, "data"@en .
+```
+
+In the example above, `<https://data.norge.no/datasets/12345> a dcat:Dataset` is the triple that defines the resource as a dataset. The URI is `<https://data.norge.no/datasets/12345>` (the subject of the triple). This URI can be used with `/v1/datasets/by-uri/graph?uri=https://data.norge.no/datasets/12345` to retrieve the graph.
+
+For other resource types, look for triples such as `?uri a dcat:DataService`, `?uri a skos:Concept`, `?uri a modelldcatno:InformationModel`, etc.
+
+## Example requests
+
+### Retrieve a specific dataset by ID
+
+```bash
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/{id}' \
+  -H 'Accept: application/json'
+```
+
+### Retrieve a specific dataset by URI
+
+```bash
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/by-uri?uri='\
+'https://data.norge.no/datasets/12345' \
+  -H 'Accept: application/json'
+```
+
+### Retrieve dataset as RDF graph
+
+The resource service supports multiple RDF formats through content negotiation:
+
+```bash
+# Get as JSON-LD (default)
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/{id}/graph' \
+  -H 'Accept: application/ld+json'
+```
+
+```bash
+# Get as Turtle
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/{id}/graph' \
+  -H 'Accept: text/turtle'
+```
+
+```bash
+# Get as RDF/XML
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/{id}/graph' \
+  -H 'Accept: application/rdf+xml'
+```
+
+### Retrieve RDF graph by URI
+
+You can retrieve the RDF graph of a resource by using its URI:
+
+```bash
+# Get dataset graph by URI
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/datasets/by-uri/graph?uri={uri}' \
+  -H 'Accept: application/ld+json'
+```
+
+```bash
+# Get concept graph by URI
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/concepts/by-uri/graph?uri={uri}' \
+  -H 'Accept: text/turtle'
+```
+
+### Retrieve concept
+
+```bash
+curl -X GET \
+  'https://resource.api.demo.fellesdatakatalog.digdir.no'\
+'/v1/concepts/{id}' \
+  -H 'Accept: application/json'
+```
+
+### Supported RDF formats
+
+The resource service supports the following RDF formats for `/graph` endpoints:
+
+- **JSON-LD** (`application/ld+json`) - Default format
+- **Turtle** (`text/turtle`)
+- **RDF/XML** (`application/rdf+xml`)
+- **N-Triples** (`application/n-triples`)
+- **N-Quads** (`application/n-quads`)
+
+Use the `Accept` header to specify the desired format. If no `Accept` header is provided, JSON-LD is returned by default.

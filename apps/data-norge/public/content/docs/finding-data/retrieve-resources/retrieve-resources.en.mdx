@@ -1,0 +1,45 @@
+---
+title: Retrieve resources
+description: Retrieve resources gives you direct access to specific resources from Data.norge.no, such as datasets, concepts, data services, and more.
+---
+
+# Retrieve resources
+
+If you already know which resource you need, you can retrieve it directly from Data.norge.no without searching. This is useful when you have an ID or URI to a specific resource, such as a dataset, a concept, a data service, an information model, a service, or an event.
+
+## What can you retrieve?
+
+You can retrieve different types of resources:
+
+- **Datasets**: Descriptions of datasets with metadata, distributions, and related resources
+- **Concepts**: Definitions and descriptions of terms from the public sector
+- **Data services**: APIs and services that provide access to data
+- **Information models**: Models that describe the structure of data
+- **Services**: (Public) services described in the catalog
+- **Events**: Life events and business events
+
+## How does it work?
+
+When you have an ID or URI to a resource, you can retrieve it directly. This is particularly useful when you:
+
+- Build applications that need to retrieve specific resources
+- Integrate data from Data.norge.no into other systems
+- Need machine-readable data in different formats (JSON or RDF)
+
+### ID vs URI
+
+Resources can be retrieved in two ways:
+
+- **ID**: An internal identifier that is only known on Data.norge.no. The ID can be found by using the [search endpoint](/en/technical/api/search) or the [AI search endpoint](/en/technical/api/ai-search).
+
+- **URI**: A global identifier that is the URI of the RDF resource's subject. The URI is unique and can be used across systems. It can be found in the resource's RDF graph.
+
+## Formats
+
+Resources can be retrieved in different formats depending on what you need:
+
+- **JSON**: Structured data that is easy to use in applications
+- **RDF graphs**: Semantic descriptions that can be used for further processing
+
+[Read more about the resource service endpoint](/en/technical/api/resource-service)
+

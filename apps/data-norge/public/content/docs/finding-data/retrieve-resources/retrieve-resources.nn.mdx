@@ -1,0 +1,45 @@
+---
+title: Hente ressursar
+description: Hente ressursar gjev deg direkte tilgang til spesifikke ressursar frå Data.norge.no, som datasett, omgrep, datatenester og meir.
+---
+
+# Hente ressursar
+
+Om du allereie veit kva ressurs du treng, kan du hente han direkte frå Data.norge.no utan å søkje. Dette er nyttig når du har ein ID eller URI til ein spesifikk ressurs, til dømes eit datasett, eit omgrep, ei datateneste, ein informasjonsmodell, ei teneste eller ei hending.
+
+## Kva kan du hente?
+
+Du kan hente ut ulike typar ressursar:
+
+- **Datasett**: Skildringar av datasett med metadata, distribusjonar og tilknytte ressursar
+- **Omgrep**: Definisjonar og skildringar av fagomgrep frå offentleg sektor
+- **Datatenester**: API-ar og tenester som gjev tilgang til data
+- **Informasjonsmodellar**: Modellar som skildrar strukturen på data
+- **Tenester**: (Offentlege) tenester som er skildra i katalogen
+- **Hendingar**: Livshendingar og verksemdshendingar
+
+## Korleis fungerer det?
+
+Når du har ein ID eller URI til ein ressurs, kan du hente han direkte. Dette er særleg nyttig når du:
+
+- Byggjer applikasjonar som treng å hente spesifikke ressursar
+- Integrerer data frå Data.norge.no i andre system
+- Treng maskinlesbare data i ulike format (JSON eller RDF)
+
+### ID vs URI
+
+Ressursar kan hentast på to måtar:
+
+- **ID**: Ein intern identifikator som berre er kjend på Data.norge.no. ID-en kan finnast ved å bruka [søkjeendepunktet](/nn/technical/api/search) eller [KI-søkjeendepunktet](/nn/technical/api/ai-search).
+
+- **URI**: Ein global identifikator som er URI-en til RDF-ressursen sitt subjekt. URI-en er unik og kan brukast på tvers av system. Han finst i RDF-grafen til ressursen.
+
+## Format
+
+Ressursane kan hentast i ulike format avhengig av kva du treng:
+
+- **JSON**: Strukturerte data som er enkle å bruka i applikasjonar
+- **RDF-grafer**: Semantiske skildringar som kan brukast for vidare prosessering
+
+[Les meir om ressursteneste-endepunktet](/nn/technical/api/resource-service)
+
