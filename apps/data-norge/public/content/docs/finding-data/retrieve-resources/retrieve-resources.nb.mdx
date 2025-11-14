@@ -1,0 +1,45 @@
+---
+title: Hente ressurser
+description: Hente ressurser gir deg direkte tilgang til spesifikke ressurser fra Data.norge.no, som datasett, begreper, datatjenester og mer.
+---
+
+# Hente ressurser
+
+Hvis du allerede vet hvilken ressurs du trenger, kan du hente den direkte fra Data.norge.no uten å søke. Dette er nyttig når du har en ID eller URI til en spesifikk ressurs, for eksempel et datasett, et begrep, en datatjeneste, en informasjonsmodell, en tjeneste eller en hendelse.
+
+## Hva kan du hente?
+
+Du kan hente ut ulike typer ressurser:
+
+- **Datasett**: Beskrivelser av datasett med metadata, distribusjoner og tilknyttede ressurser
+- **Begreper**: Definisjoner og beskrivelser av fagbegreper fra offentlig sektor
+- **Datatjenester**: API-er og tjenester som gir tilgang til data
+- **Informasjonsmodeller**: Modeller som beskriver strukturen på data
+- **Tjenester**: (Offentlige) tjenester som er beskrevet i katalogen
+- **Hendelser**: Livshendelser og virksomhetshendelser
+
+## Hvordan fungerer det?
+
+Når du har en ID eller URI til en ressurs, kan du hente den direkte. Dette er spesielt nyttig når du:
+
+- Bygger applikasjoner som trenger å hente spesifikke ressurser
+- Integrerer data fra Data.norge.no i andre systemer
+- Trenger maskinlesbare data i ulike formater (JSON eller RDF)
+
+### ID vs URI
+
+Ressurser kan hentes på to måter:
+
+- **ID**: En intern identifikator som kun er kjent på Data.norge.no. ID-en kan finnes ved å bruke [søkeendepunktet](/nb/technical/api/search) eller [KI-søkeendepunktet](/nb/technical/api/ai-search).
+
+- **URI**: En global identifikator som er URI-en til RDF-ressursens subjekt. URI-en er unik og kan brukes på tvers av systemer. Den finnes i RDF-grafen til ressursen.
+
+## Formater
+
+Ressursene kan hentes i ulike formater avhengig av hva du trenger:
+
+- **JSON**: Strukturerte data som er enkle å bruke i applikasjoner
+- **RDF-grafer**: Semantiske beskrivelser som kan brukes for videre prosessering
+
+[Les mer om ressurtjeneste-endepunktet](/nb/technical/api/resource-service)
+

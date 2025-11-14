@@ -1,22 +1,22 @@
 ---
-title: KI-søk API - data.norge.no
-description: KI-søkeendepunktet lar deg søke i data på data.norge.no ved hjelp av kunstig intelligens.
+title: KI-søk API - Data.norge.no
+description: KI-søkeendepunktet lar deg søke i data på Data.norge.no ved hjelp av kunstig intelligens.
 ---
 
 # KI-søk API
 
 <Ingress>
-    KI-søket bruker metadata fra Data.norge.no og hjelper deg med å finne datasett ved hjelp av kunstig intelligens. Tjenesten som er ansvarlig for å håndtere KI-søk er [fdk-llm-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-llm-search-service).
+    KI-søket bruker metadata fra Data.norge.no og hjelper deg med å finne datasett ved hjelp av kunstig intelligens.
+    Tjenesten som er ansvarlig for å håndtere KI-søk er
+    [fdk-llm-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-llm-search-service).
 </Ingress>
-
+Data.norge.no
 <Alert data-color='warning'>
-    **Viktig**: Dette API-et brukes internt i tjenesteutviklingen på data.norge.no, og kan derfor endres over tid. Vi
+    **Viktig**: Dette API-et brukes internt i tjenesteutviklingen på Data.norge.no, og kan derfor endres over tid. Vi
     anbefaler ikke å bruke dette API-et hvis man er avhengig av stabilitet og konsistens.
 </Alert>
 
-<Alert>
-    Tjenesten støtter for øyeblikket kun datasettressurser.
-</Alert>
+<Alert>Tjenesten støtter for øyeblikket kun datasettressurser.</Alert>
 
 ## Endepunkt i ulike miljøer
 
@@ -63,4 +63,3 @@ curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
   -H 'Content-Type: application/json' \
   -d '{"query":"Finn data om sykefravær i offentlig sektor"}'
 ```
-

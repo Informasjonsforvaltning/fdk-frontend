@@ -1,13 +1,14 @@
 ---
-title: SPARQL API - data.norge.no
-description: SPARQL-endepunktet er det kraftigste søkeverktøyet på data.norge.no.
+title: SPARQL API - Data.norge.no
+description: SPARQL-endepunktet er det kraftigste søkeverktøyet på Data.norge.no.
 ---
 
 # SPARQL API
 
 <Ingress>
-    SPARQL-endepunktet er det kraftigste søkeverktøyet på data.norge.no og gir deg mulighet til å søke på alle
-    egenskaper som finnes i katalogene, så lenge du behersker syntaksen. Tjenesten som er ansvarlig for å håndtere SPARQL er [fdk-sparql-service(Github)](https://github.com/Informasjonsforvaltning/fdk-sparql-service).
+    SPARQL-endepunktet er det kraftigste søkeverktøyet på Data.norge.no og gir deg mulighet til å søke på alle
+    egenskaper som finnes i katalogene, så lenge du behersker syntaksen. Tjenesten som er ansvarlig for å håndtere
+    SPARQL er [fdk-sparql-service(Github)](https://github.com/Informasjonsforvaltning/fdk-sparql-service).
 </Ingress>
 
 ## Endepunkt i ulike miljøer
@@ -36,19 +37,43 @@ API-et er åpent for offentlig bruk og krever ingen autentisering. Du kan begynn
 
 API-et har hastighetsbegrensning (rate limiting) konfigurert for å sikre stabil drift. Hvis du overskrider grensene, vil du motta en HTTP 429 (Too Many Requests) respons.
 
+## Hvordan utføre en SPARQL-spørring
+
+Du kan utføre SPARQL-spørringer ved å sende en GET-forespørsel med spørringen som en URL-kodet query-parameter. Her er et eksempel med curl:
+
+```bash
+curl "https://sparql.demo.fellesdatakatalog.digdir.no?query=\
+PREFIX%20dcat%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Fdcat%23%3E%0A\
+SELECT%20*%0AWHERE%20%7B%0A%20%20%3Fdataset%20a%20dcat%3ADataset%20.%0A%7D%0A\
+LIMIT%2010"
+```
+
+I eksemplet over er SPARQL-spørringen URL-kodet. Den dekodede spørringen er:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT *
+WHERE {
+  ?dataset a dcat:Dataset .
+}
+LIMIT 10
+```
+
+Du kan også bruke POST-forespørsel med spørringen i request body for å unngå URL-lengdebegrensninger ved komplekse spørringer.
+
 ## Ressurstyper
 
 Følgende ressurstyper er tilgjengelige i katalogen:
 
 - `dcat:Dataset` (`<http://www.w3.org/ns/dcat#Dataset>`) - Datasett
-- `dcat:DataService` (`<http://www.w3.org/ns/dcat#DataService>`) - Datatjenester
-- `skos:Concept` (`<http://www.w3.org/2004/02/skos/core#Concept>`) - Begreper
-- `modelldcatno:InformationModel` (`<https://data.norge.no/vocabulary/modelldcatno#InformationModel>`) - Informasjonsmodeller
-- `cpsv:PublicService` (`<http://purl.org/vocab/cpsv#PublicService>`) - Offentlige tjenester
-- `cpsvno:Service` (`<https://data.norge.no/vocabulary/cpsvno#Service>`) - Offentlige tjenester (CPSV-AP-NO)
-- `cv:Event` (`<http://data.europa.eu/m8g/Event>`) - Hendelser
-- `cv:LifeEvent` (`<http://data.europa.eu/m8g/LifeEvent>`) - Livshendelser
-- `cv:BusinessEvent` (`<http://data.europa.eu/m8g/BusinessEvent>`) - Næringshendelser
+- `dcat:DataService` (`<http://www.w3.org/ns/dcat#DataService>`) - Datatjeneste
+- `skos:Concept` (`<http://www.w3.org/2004/02/skos/core#Concept>`) - Begrep
+- `modelldcatno:InformationModel` (`<https://data.norge.no/vocabulary/modelldcatno#InformationModel>`) - Informasjonsmodell
+- `cpsv:PublicService` (`<http://purl.org/vocab/cpsv#PublicService>`) - Offentlige tjeneste
+- `cpsvno:Service` (`<https://data.norge.no/vocabulary/cpsvno#Service>`) - Tjeneste (CPSV-AP-NO)
+- `cv:Event` (`<http://data.europa.eu/m8g/Event>`) - Hendelse
+- `cv:LifeEvent` (`<http://data.europa.eu/m8g/LifeEvent>`) - Livshendelse
+- `cv:BusinessEvent` (`<http://data.europa.eu/m8g/BusinessEvent>`) - Virksomhetshendelse
 
 ## SPARQL-spørringstyper og responsformater
 
@@ -113,7 +138,7 @@ WHERE {
 
 ### Søke etter datatjenester
 
-Hent alle datatjenester med deres beskrivelser:
+Hent datatjenester med deres beskrivelser:
 
 ```sparql
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
@@ -180,7 +205,7 @@ LIMIT 10
 
 ### Søke etter hendelser
 
-Hent alle typer hendelser:
+Hent typer hendelser:
 
 ```sparql
 PREFIX cv: <http://data.europa.eu/m8g/>

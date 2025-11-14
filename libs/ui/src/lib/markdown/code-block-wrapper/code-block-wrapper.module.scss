@@ -2,12 +2,55 @@
 
 .wrapper {
     position: relative;
+    width: 100%;
+
+    .scrollContainer {
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+
+        // Custom scrollbar styling for better visibility
+        &::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.7);
+            }
+        }
+
+        // Firefox scrollbar styling
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.15);
+
+        // Target the SyntaxHighlighter div (PreTag='div') and any pre elements
+        // These should NOT have overflow, just allow content to overflow naturally
+        :global(div),
+        :global(pre) {
+            white-space: pre;
+            word-wrap: normal;
+            word-break: normal;
+            margin: 0;
+            min-width: min-content;
+        }
+    }
 
     .copyButton {
         position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        z-index: 1;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 10;
+        pointer-events: auto;
 
         button span {
             @include core-mixins.sr-only();
