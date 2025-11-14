@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import { Markdown } from '@fdk-frontend/ui';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { getDatasetSlug } from '@fdk-frontend/utils';
+import { getSlug } from '@fdk-frontend/utils';
 
 import styles from './result-item.module.scss';
 
@@ -22,7 +22,7 @@ type ResultItemProps = {
 
 const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
     // Generate slug for the dataset
-    const slug = getDatasetSlug(item, locale);
+    const slug = getSlug(item, locale);
 
     return (
         <Link

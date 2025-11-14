@@ -1,12 +1,15 @@
 {
     "breadcrumbs": {
-        "datasets": "Datasett"
+        "datasets": "Datasett",
+        "services": "Tenester"
     },
     "header": {
         "namelessOrganization": "Namnlaus verksemd",
         "namelessDataset": "Namnlaust datasett",
+        "namelessService": "Namnlaust teneste",
         "useDatasetButton": "Bruk datasett",
         "datasetsTagLink": "Datasett",
+        "servicesTagLink": "Tenester",
         "published": "Publisert",
         "requestAccessButton": "Be om tilgong",
         "showInterestButton": "Meld interesse"
@@ -77,6 +80,11 @@
             "closeBtn": "Lukk vindu"
         }
     },
+    "produces": {
+        "title": "Tenesteresultat",
+        "nameless": "Namnlaust tenesteresultat",
+        "placeholder": "Denne tenesta har inga tenesteresultat."
+    },
     "apis": {
         "title": "API-ar som tilbyr dette datasettet",
         "placeholder": "Ingen registrerte API-ar tilbyr dette datasettet.",
@@ -101,6 +109,7 @@
         "noData": "Ikkje oppgitt",
         "general": {
             "title": "Om datasettet",
+            "serviceTitle": "Om tenesta",
             "publisher": "Utgjevar",
             "firstHarvested": "Publisert",
             "firstHarvestedHelpText": "Denne datoen viser når datasettet vart henta inn av data.norge.no. Det kan ha vore tilgjengeleg tidlegare andre stader.",
@@ -110,6 +119,7 @@
             "page": "Dokumentasjon",
             "type": "Datasettype",
             "landingPage": "Landingsside",
+            "homepage": "Hjemmeside",
             "metadataQuality": {
                 "title": "Metadatakvalitet",
                 "helpText": "Metadatakvalitet er ein indikator på kor godt datasettene er beskrive ved hjelp av metadata.",
@@ -165,6 +175,10 @@
             "title": "Relasjonar til andre ressursar",
             "namelessDataset": "Namnlaust datasett",
             "namelessOrganization": "Namnlaus verksemd"
+        },
+        "requires": {
+            "title": "Krev",
+            "placeholder": "Denne tenesta krev ingen andre tenester."
         },
         "references": {
             "title": "Referansar",
@@ -235,5 +249,12 @@
         "closeButton": "Lukk vindauge",
         "downloadButton": "Last ned heile datasettet",
         "noTableData": "Ingen tabelldata tilgjengeleg"
+    },
+    "statusCodes": {
+        "Completed": "Godkjent",
+        "UnderDevelopment": "Under utvikling",
+        "Withdrawn": "Trukket",
+        "Deprecated": "Utgått",
+        "Discontinued": "Avsluttet"
     }
 }

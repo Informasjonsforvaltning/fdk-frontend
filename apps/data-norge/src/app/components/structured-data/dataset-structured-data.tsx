@@ -3,7 +3,7 @@
 import Script from 'next/script';
 import { type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { type DatasetWithIdentifier } from '@fellesdatakatalog/types';
-import { printLocaleValue, getDatasetSlug } from '@fdk-frontend/utils';
+import { printLocaleValue, getSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
 
 export type DatasetStructuredDataProps = {
     dataset: DatasetWithIdentifier;
@@ -12,36 +12,6 @@ export type DatasetStructuredDataProps = {
 };
 
 export default function DatasetStructuredData({ dataset, locale, baseUri }: DatasetStructuredDataProps) {
-    // Safely sanitize and prepare structured data
-    const sanitizeString = (str: string | undefined): string | undefined => {
-        if (!str) return undefined;
-        // Remove any potentially dangerous characters
-        return str.replace(/[<>]/g, '').trim();
-    };
-
-    const sanitizeArray = (arr: any[] | undefined): any[] | undefined => {
-        if (!arr || !Array.isArray(arr)) return undefined;
-        return arr.map((item) => {
-            if (typeof item === 'string') {
-                return sanitizeString(item);
-            }
-            if (typeof item === 'object' && item !== null) {
-                return Object.keys(item).reduce((acc, key) => {
-                    const value = item[key];
-                    if (typeof value === 'string') {
-                        acc[key] = sanitizeString(value);
-                    } else if (Array.isArray(value)) {
-                        acc[key] = sanitizeArray(value);
-                    } else {
-                        acc[key] = value;
-                    }
-                    return acc;
-                }, {} as any);
-            }
-            return item;
-        });
-    };
-
     // Get the first available license URL from distributions
     const getFirstLicenseUrl = () => {
         const firstDistributionWithLicense = dataset.distribution?.find((dist) => dist.license?.length > 0);
@@ -56,7 +26,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         '@type': 'Dataset',
         name: sanitizeString(printLocaleValue(locale, dataset.title)),
         description: sanitizeString(printLocaleValue(locale, dataset.description)),
-        url: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
+        url: `${baseUri}/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
         identifier: dataset.id,
         ...(dataset.publisher?.prefLabel && {
             publisher: {
@@ -132,23 +102,9 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
                 '@type': 'ListItem',
                 position: 3,
                 name: sanitizeString(printLocaleValue(locale, dataset.title)),
-                item: `${baseUri}/${locale}/datasets/${dataset.id}/${getDatasetSlug(dataset, locale)}`,
+                item: `${baseUri}/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
             },
         ],
-    };
-
-    // Safely stringify with error handling
-    const safeStringify = (obj: any): string => {
-        try {
-            return JSON.stringify(obj, (key, value) => {
-                // Remove any undefined values to prevent JSON injection
-                if (value === undefined) return undefined;
-                return value;
-            });
-        } catch (error) {
-            console.error('Error stringifying structured data:', error);
-            return '{}';
-        }
     };
 
     return (

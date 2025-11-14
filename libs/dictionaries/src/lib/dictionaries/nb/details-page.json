@@ -1,12 +1,15 @@
 {
     "breadcrumbs": {
-        "datasets": "Datasett"
+        "datasets": "Datasett",
+        "services": "Tjenester"
     },
     "header": {
         "namelessOrganization": "Navnløs virksomhet",
         "namelessDataset": "Navnløst datasett",
+        "namelessService": "Navnløs tjeneste",
         "useDatasetButton": "Bruk datasett",
         "datasetsTagLink": "Datasett",
+        "servicesTagLink": "Tjenester",
         "published": "Publisert",
         "requestAccessButton": "Be om tilgang",
         "showInterestButton": "Meld interesse"
@@ -77,6 +80,11 @@
             "closeBtn": "Lukk vindu"
         }
     },
+    "produces": {
+        "title": "Tjenesteresultat",
+        "nameless": "Navnløst tjenesteresultat",
+        "placeholder": "Denne tjenesten har ingen tjenesteresultat."
+    },
     "apis": {
         "title": "API-er som tilgjengeliggjør dette datasettet",
         "placeholder": "Ingen registrerte API-er tilgjengeliggjør dette datasettet.",
@@ -101,6 +109,7 @@
         "noData": "Ikke oppgitt",
         "general": {
             "title": "Om datasettet",
+            "serviceTitle": "Om tjenesten",
             "publisher": "Utgiver",
             "firstHarvested": "Publisert",
             "firstHarvestedHelpText": "Denne datoen sier når datasettet ble høstet av data.norge.no. Det kan ha vært tilgjengelig tidligere andre steder.",
@@ -110,6 +119,7 @@
             "page": "Dokumentasjon",
             "type": "Datasettype",
             "landingPage": "Landingsside",
+            "homepage": "Hjemmeside",
             "metadataQuality": {
                 "title": "Metadatakvalitet",
                 "helpText": "Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp avmetadata.",
@@ -165,6 +175,10 @@
             "title": "Relasjoner til andre ressurser",
             "namelessDataset": "Navnløst datasett",
             "namelessOrganization": "Navnløs virksomhet"
+        },
+        "requires": {
+            "title": "Krever",
+            "placeholder": "Denne tjenesten krever ingen andre tjenester."
         },
         "references": {
             "title": "Referanser",
@@ -235,5 +249,12 @@
         "closeButton": "Lukk vindu",
         "downloadButton": "Last ned hele datasettet",
         "noTableData": "Ingen tabelldata tilgjengelig"
+    },
+    "statusCodes": {
+        "Completed": "Godkjent",
+        "UnderDevelopment": "Under utvikling",
+        "Withdrawn": "Trukket",
+        "Deprecated": "Utgått",
+        "Discontinued": "Avsluttet"
     }
 }
