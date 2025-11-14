@@ -1,7 +1,7 @@
 const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
 
-export const getResource = async (uri: string) => {
-    return await fetch(uri, {
+export const getResource = async (uri: string) =>
+    fetch(uri, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -11,7 +11,6 @@ export const getResource = async (uri: string) => {
         if (!response.ok) throw new Error('resource not found');
         return response.json();
     });
-};
 
 export const getDataset = async (datasetId: string) => {
     const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${datasetId}`;
@@ -23,14 +22,17 @@ export const getApi = async (apiId: string) => {
     return getResource(uri);
 };
 
-export const getApis = async (apiIds: string[]) => {
+export const getApis = async (apiIds: string[]): Promise<unknown[]> => {
     const apis = await Promise.all(
         apiIds?.map(async (id: string) => {
-            return await getApi(id);
+            try {
+                return await getApi(id);
+            } catch {
+                return null;
+            }
         }),
     );
 
     // Filter out failed requests (null values)
-
-    return apis?.filter((api: any) => api !== null) || [];
+    return apis.filter((api) => api !== null);
 };

@@ -22,14 +22,29 @@ description: The search endpoint allows you to search data.norge.no using Elasti
 
 ## Documentation
 
-[OpenAPI-specification for the search endpoint (Github)](https://search.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+[OpenAPI-specification for the search endpoint (Swagger)](https://search.api.fellesdatakatalog.digdir.no/swagger-ui/index.html)
+
+## How to gain access
+
+The API is open for public use and requires no authentication. You can start using the endpoint immediately.
+
+### Rate limiting
+
+The API has rate limiting configured to ensure stable operation. The limits are:
+
+- **10 requests per minute** (requests per minute)
+- **Burst limit of 20 requests** (2x multiplier)
+
+If you exceed these limits, you will receive an HTTP 429 (Too Many Requests) response.
 
 ## Design queries
 
 You may search the endepoint med simple queries. In the exampe below, we have searched for 'test'. This query will find matches on all resources that has the word test in title, description or keyword.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test"}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test"}'
 ```
 
 ### Searchable fields
@@ -40,7 +55,9 @@ The service will by default try to find matches for the query in all three field
 In the example below, we have narrowed the search to only search in the field 'description'.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search -H 'Content-type: application/json' -d '{"query":"test, "fields": {"title":false, "description":true, "keyword":false}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test", "fields": {"title":false, "description":true, "keyword":false}}'
 ```
 
 ### Boosting of hits
@@ -73,7 +90,9 @@ Each resource type has it’s own endpoint.
 In this example our query goes to the endpoint for datasets in the demo environment.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search/datasets' -H 'Content-Type: application/json' -d '{"query":"test"}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search/datasets' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test"}'
 ```
 
 ### Pagination
@@ -83,7 +102,9 @@ All search results will be paginated, it is possible to customize the size and p
 Example using the pagination field, with current page set to number 5 and there are 10 hits per page:
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","pagination":{"size":10,"page":5}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","pagination":{"size":10,"page":5}}'
 ```
 
 ### Filtering
@@ -93,19 +114,25 @@ It’s possible to filter the search result, see SearchFilters in the OpenAPI sp
 In the axample below, we have filtrated on the fielt data theme with the value for environment.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"dataTheme":{value":["ENVI"]}}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","filters":{"dataTheme":{"value":["ENVI"]}}}'
 ```
 
 In this eksempelet, we filtrate on open data.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"openData":{value":true}}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","filters":{"openData":{"value":true}}}'
 ```
 
 Og here we use the vi format filter to get hits that contain the mediatype JSON.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"formats":{value":["MEDIA_TYPE application/json"]}}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","filters":{"formats":{"value":["MEDIA_TYPE application/json"]}}}'
 ```
 
 ### Aggregations
@@ -116,7 +143,9 @@ There are always included a value for each filter, it’s a list of the filter o
 Given that this search:
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test"}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test"}'
 ```
 
 Has this as the aggregation in the result:
@@ -129,5 +158,7 @@ Then the next example would therefore have five hits in its result, since the ag
 and sixteen where the value is RESTRICTED.
 
 ```Shell
-curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' -H 'Content-Type: application/json' -d '{"query":"test","filters":{"accessRights":{value":["PUBLIC"]}}}'
+curl -X POST 'https://search.api.demo.fellesdatakatalog.digdir.no/search' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"test","filters":{"accessRights":{"value":["PUBLIC"]}}}'
 ```

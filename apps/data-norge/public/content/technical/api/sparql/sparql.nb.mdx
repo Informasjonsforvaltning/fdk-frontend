@@ -7,10 +7,17 @@ description: SPARQL-endepunktet er det kraftigste søkeverktøyet på data.norge
 
 <Ingress>
     SPARQL-endepunktet er det kraftigste søkeverktøyet på data.norge.no og gir deg mulighet til å søke på alle
-    egenskaper som finnes i katalogene, så lenge du behersker syntaksen.
+    egenskaper som finnes i katalogene, så lenge du behersker syntaksen. Tjenesten som er ansvarlig for å håndtere SPARQL er [fdk-sparql-service(Github)](https://github.com/Informasjonsforvaltning/fdk-sparql-service).
 </Ingress>
 
 ## Endepunkt i ulike miljøer
+
+- **SPARQL backend service (produksjon)**: https://sparql.fellesdatakatalog.digdir.no - Produksjons-SPARQL-endepunkt
+- **SPARQL backend service (demo)**: https://sparql.demo.fellesdatakatalog.digdir.no - Demo-SPARQL-endepunkt
+
+### GUI-verktøy
+
+Du kan også bruke SPARQL gjennom våre grafiske brukergrensesnitt:
 
 - Produksjonsmiljø: https://data.norge.no/nb/sparql
 - Demomiljø: https://demo.fellesdatakatalog.digdir.no/sparql
@@ -20,3 +27,214 @@ description: SPARQL-endepunktet er det kraftigste søkeverktøyet på data.norge
 [Her kan du lese mer om SPARQL(W3C)](https://www.w3.org/TR/sparql11-overview/)
 
 Hvis rdf er nytt for deg, anbefaler vi deg å lese [RDF: hva og hvorfor](/docs/sharing-data/rdf)
+
+## Slik får du tilgang
+
+API-et er åpent for offentlig bruk og krever ingen autentisering. Du kan begynne å bruke endepunktet umiddelbart.
+
+### Hastighetsbegrensning
+
+API-et har hastighetsbegrensning (rate limiting) konfigurert for å sikre stabil drift. Hvis du overskrider grensene, vil du motta en HTTP 429 (Too Many Requests) respons.
+
+## Ressurstyper
+
+Følgende ressurstyper er tilgjengelige i katalogen:
+
+- `dcat:Dataset` (`<http://www.w3.org/ns/dcat#Dataset>`) - Datasett
+- `dcat:DataService` (`<http://www.w3.org/ns/dcat#DataService>`) - Datatjenester
+- `skos:Concept` (`<http://www.w3.org/2004/02/skos/core#Concept>`) - Begreper
+- `modelldcatno:InformationModel` (`<https://data.norge.no/vocabulary/modelldcatno#InformationModel>`) - Informasjonsmodeller
+- `cpsv:PublicService` (`<http://purl.org/vocab/cpsv#PublicService>`) - Offentlige tjenester
+- `cpsvno:Service` (`<https://data.norge.no/vocabulary/cpsvno#Service>`) - Offentlige tjenester (CPSV-AP-NO)
+- `cv:Event` (`<http://data.europa.eu/m8g/Event>`) - Hendelser
+- `cv:LifeEvent` (`<http://data.europa.eu/m8g/LifeEvent>`) - Livshendelser
+- `cv:BusinessEvent` (`<http://data.europa.eu/m8g/BusinessEvent>`) - Næringshendelser
+
+## SPARQL-spørringstyper og responsformater
+
+SPARQL støtter flere typer spørringer, hver med sitt eget formål og responsformat:
+
+- **SELECT**: Returnerer resultater som en tabell med variabler og verdier. Dette er den mest brukte spørringstypen. Responsen returneres som JSON eller XML.
+- **ASK**: Returnerer en boolsk verdi (true/false) som svarer på om spørringen finner noen treff. Responsen returneres som JSON eller XML.
+- **CONSTRUCT**: Konstruerer en RDF-graf basert på spørringen. Responsen returneres som RDF (Turtle, RDF/XML, eller JSON-LD).
+- **DESCRIBE**: Returnerer en RDF-graf som beskriver ressursene som matcher spørringen. Responsen returneres som RDF (Turtle, RDF/XML, eller JSON-LD).
+
+Du kan spesifisere responsformatet ved å bruke HTTP Accept-header eller format-parameter. Standard format for SELECT og ASK er JSON, mens CONSTRUCT og DESCRIBE returnerer RDF.
+
+For mer informasjon om SPARQL-spørringstyper og responsformater, se [W3C SPARQL 1.1 Query Language spesifikasjonen](https://www.w3.org/TR/sparql11-query/) og [SPARQL 1.1 Protocol spesifikasjonen](https://www.w3.org/TR/sparql11-protocol/).
+
+## Eksempler på SPARQL-spørringer
+
+### Grunnleggende eksempler
+
+Få oversikt over hvilke egenskaper som finnes:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT *
+WHERE {
+	?dataset a dcat:Dataset.
+    ?dataset ?prop ?value.
+}
+```
+
+Deretter plukke og velge egenskaper:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT *
+WHERE {
+ ?dataset a dcat:Dataset .
+ ?dataset dct:title ?title.
+ ?dataset rdf:type ?type.
+# Velg nye egenskaper ved: ?dataset <ønsket egenskap> ?egenskapsverdi
+}
+```
+
+### Søke etter datasett med filtrering
+
+Finn datasett publisert av en spesifikk organisasjon:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?dataset ?title ?publisher
+WHERE {
+ ?dataset a dcat:Dataset .
+ ?dataset dct:title ?title .
+ ?dataset dct:publisher ?publisher .
+ ?publisher foaf:name ?publisherName .
+ FILTER(CONTAINS(LCASE(?publisherName), "statistisk"))
+}
+```
+
+### Søke etter datatjenester
+
+Hent alle datatjenester med deres beskrivelser:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?service ?title ?description
+WHERE {
+ ?service a dcat:DataService .
+ ?service dct:title ?title .
+ OPTIONAL { ?service dct:description ?description }
+}
+LIMIT 10
+```
+
+### Søke etter begreper
+
+Finn begreper relatert til et spesifikt emne:
+
+```sparql
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?concept ?prefLabel ?definition
+WHERE {
+ ?concept a skos:Concept .
+ ?concept skos:prefLabel ?prefLabel .
+ OPTIONAL { ?concept skos:definition ?definition }
+ FILTER(CONTAINS(LCASE(?prefLabel), "miljø"))
+}
+LIMIT 20
+```
+
+### Søke etter informasjonsmodeller
+
+Hent informasjonsmodeller med metadata:
+
+```sparql
+PREFIX modelldcatno: <https://data.norge.no/vocabulary/modelldcatno#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?model ?title ?description ?version
+WHERE {
+ ?model a modelldcatno:InformationModel .
+ ?model dct:title ?title .
+ OPTIONAL { ?model dct:description ?description }
+ OPTIONAL { ?model dct:hasVersion ?version }
+}
+ORDER BY ?title
+```
+
+### Søke etter offentlige tjenester (PublicService)
+
+Finn offentlige tjenester med detaljer:
+
+```sparql
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?service ?title ?description ?identifier
+WHERE {
+ ?service a cpsv:PublicService .
+ ?service dct:title ?title .
+ OPTIONAL { ?service dct:description ?description }
+ OPTIONAL { ?service dct:identifier ?identifier }
+}
+LIMIT 10
+```
+
+### Søke etter hendelser
+
+Hent alle typer hendelser:
+
+```sparql
+PREFIX cv: <http://data.europa.eu/m8g/>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?event ?title ?type
+WHERE {
+ ?event a ?type .
+ ?event dct:title ?title .
+ FILTER(?type IN (cv:Event, cv:LifeEvent, cv:BusinessEvent))
+}
+LIMIT 20
+```
+
+### Avansert: Søke med aggregering og telling
+
+Tell antall ressurser per type:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX modelldcatno: <https://data.norge.no/vocabulary/modelldcatno#>
+PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+PREFIX cv: <http://data.europa.eu/m8g/>
+SELECT ?type (COUNT(?resource) AS ?count)
+WHERE {
+ ?resource a ?type .
+ FILTER(?type IN (
+   dcat:Dataset,
+   dcat:DataService,
+   skos:Concept,
+   modelldcatno:InformationModel,
+   cpsv:PublicService,
+   cv:Event,
+   cv:LifeEvent,
+   cv:BusinessEvent
+ ))
+}
+GROUP BY ?type
+ORDER BY DESC(?count)
+```
+
+### Avansert: Søke med relasjoner mellom ressurser
+
+Finn datasett med deres distribusjoner og formater:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+SELECT ?dataset ?title ?distribution ?format
+WHERE {
+ ?dataset a dcat:Dataset .
+ ?dataset dct:title ?title .
+ ?dataset dcat:distribution ?distribution .
+ ?distribution dct:format ?format .
+}
+LIMIT 50
+```
