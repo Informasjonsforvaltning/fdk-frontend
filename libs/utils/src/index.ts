@@ -3,3 +3,4 @@ export * from './lib/paths';
 export * from './lib/form-utils';
 export * from './lib/common';
 export * from './lib/context/env';
+export * from './lib/structured-data';

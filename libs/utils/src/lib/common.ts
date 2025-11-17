@@ -1,3 +1,4 @@
+import { TextLanguage } from '@fellesdatakatalog/types';
 import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import slugify from 'slugify';
 
@@ -44,7 +45,10 @@ export const guid = () => {
     return 'guid-' + Math.random().toString(36).substr(2, 9);
 };
 
-export const getDatasetSlug = (dataset: any, locale: LocaleCodes) => {
-    const title = printLocaleValue(locale, dataset.title) || '';
-    return slugify(title, { lower: true, strict: true }) || dataset.id;
+export const getSlug = (
+    { id, title }: { title?: string | Partial<TextLanguage>; id: string },
+    locale: LocaleCodes,
+): string => {
+    const stitle = printLocaleValue(locale, title) || '';
+    return slugify(stitle, { lower: true, strict: true }) || id;
 };

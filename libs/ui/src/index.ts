@@ -105,4 +105,5 @@ export { default as UseDatasetPopover } from './lib/use-dataset-popover';
 export * from './lib/use-dataset-popover';
 export { default as VStack } from './lib/vstack';
 export * from './lib/vstack';
+export { default as StatusTag } from './lib/status-tag';
 export * from './lib/layouts';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import { PlaceholderBox, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
-import { printLocaleValue, getDatasetSlug } from '@fdk-frontend/utils';
+import { printLocaleValue, getSlug } from '@fdk-frontend/utils';
 import { DatasetDetailsProps } from '../../';
 
 const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<DatasetDetailsProps, 'dataset'>) => {
@@ -28,9 +28,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                             </dt>
                             <dd>
                                 {r.resource ? (
-                                    <Link
-                                        href={`/${locale}/datasets/${r.resource?.id}/${getDatasetSlug(r.resource, locale)}`}
-                                    >
+                                    <Link href={`/${locale}/datasets/${r.resource?.id}/${getSlug(r.resource, locale)}`}>
                                         {printLocaleValue(locale, r.resource?.title)}
                                     </Link>
                                 ) : (
@@ -55,7 +53,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                                     <Link
                                         href={
                                             r.resource
-                                                ? `/${locale}/datasets/${r.resource.id}/${getDatasetSlug(r.resource, locale)}`
+                                                ? `/${locale}/datasets/${r.resource.id}/${getSlug(r.resource, locale)}`
                                                 : r.reference.source?.uri
                                         }
                                     >
