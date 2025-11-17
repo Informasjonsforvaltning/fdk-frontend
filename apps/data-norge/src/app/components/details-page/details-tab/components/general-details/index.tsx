@@ -166,12 +166,12 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         {metadataQuality.label}
                     </Tag>
                 </dd>
-                <dt>UID:</dt>
+                <dt>URI:</dt>
                 <dd>
                     <Hstack>
                         <InputWithCopyButton
-                            value={dataset.id}
-                            inputLabel={'uid'}
+                            value={dataset.uri}
+                            inputLabel='uri'
                             copyLabel={dictionary.details.general.copyButton[0]}
                             copiedLabel={dictionary.details.general.copyButton[1]}
                         />

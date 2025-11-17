@@ -409,12 +409,12 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                     </dd>
                                 </>
                             )}
-                            <dt>UID:</dt>
+                            <dt>URI:</dt>
                             <dd>
                                 <Hstack>
                                     <InputWithCopyButton
-                                        value={service.id}
-                                        inputLabel='uid'
+                                        value={service.uri}
+                                        inputLabel='uri'
                                         copyLabel={dictionaries.detailsPage.details.general.copyButton[0]}
                                         copiedLabel={dictionaries.detailsPage.details.general.copyButton[1]}
                                     />
