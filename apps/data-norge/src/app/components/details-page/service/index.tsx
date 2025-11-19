@@ -76,7 +76,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    {service?.catalog?.publisher && (
+                    {service.catalog?.publisher?.id && (
                         <div>
                             <OrgButton
                                 href={`/organizations/${service.catalog.publisher.id}`}
@@ -355,8 +355,8 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                         <Dlist className={styles.dlist}>
                             <dt>{dictionaries.detailsPage.details.general.publisher}:</dt>
                             <dd>
-                                {service.catalog?.publisher ? (
-                                    <Link href={`/organizations/${service.catalog.publisher?.id}`}>
+                                {service.catalog?.publisher?.id ? (
+                                    <Link href={`/organizations/${service.catalog.publisher.id}`}>
                                         {service.catalog.publisher?.prefLabel?.[locale] ||
                                             service.catalog.publisher?.prefLabel?.[i18n.defaultLocale]}
                                     </Link>
