@@ -37,9 +37,15 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         redirect(`/${lang}/services/${id}/${canonicalSlug}${tab ? `?tab=${tab}` : ''}`);
     }
 
-    if (service.catalog?.publisher?.id) {
+    // Find publisher: one of competent authority, owner, or catalog publisher
+    const publisher =
+        service.hasCompetentAuthority?.find((org) => org.id || org.identifier) ||
+        service.ownedBy?.find((org) => org.id || org.identifier) ||
+        service.catalog?.publisher;
+
+    if (publisher?.id || publisher?.identifier) {
         try {
-            orgLogo = await getOrgLogo(service.catalog.publisher.id);
+            orgLogo = await getOrgLogo(publisher?.id || publisher?.identifier);
         } catch {
             // Fail silently
         }
@@ -61,6 +67,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             locale={lang}
             dictionaries={dictionaries}
             defaultActiveTab={tab?.toString() || 'overview'}
+            publisher={publisher}
         />
     );
 };

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { Fragment, useState } from 'react';
-import { i18n, type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
+import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Organization, type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
 import { getSlug, printLocaleValue, sumArrayLengths } from '@fdk-frontend/utils';
 import {
     Badge,
@@ -40,14 +40,27 @@ export type ServiceDetailsPageType = {
     };
     locale: LocaleCodes;
     orgLogo?: string | null;
+    publisher?: Partial<Organization>;
     service: PublicService;
 };
 
 export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
-    const { baseUri, communityTopics, communityBaseUri, defaultActiveTab, dictionaries, locale, orgLogo, service } =
-        props;
+    const {
+        baseUri,
+        communityTopics,
+        communityBaseUri,
+        defaultActiveTab,
+        dictionaries,
+        locale,
+        orgLogo,
+        publisher,
+        service,
+    } = props;
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
+
+    const publisherId = publisher?.id || publisher?.identifier;
+    const publisherLabel = printLocaleValue(locale, publisher?.prefLabel || publisher?.title || publisher?.name);
 
     const breadcrumbList = [
         {
@@ -76,14 +89,13 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
             />
             <div className={styles.mainContent}>
                 <div className={styles.header}>
-                    {service.catalog?.publisher?.id && (
+                    {publisherId && (
                         <div>
                             <OrgButton
-                                href={`/organizations/${service.catalog.publisher.id}`}
+                                href={`/organizations/${publisherId}`}
                                 orgLogoSrc={orgLogo}
                             >
-                                {printLocaleValue(locale, service.catalog.publisher.prefLabel) ??
-                                    dictionaries.detailsPage.header.namelessOrganization}
+                                {publisherLabel}
                             </OrgButton>
                         </div>
                     )}
@@ -355,13 +367,14 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                         <Dlist className={styles.dlist}>
                             <dt>{dictionaries.detailsPage.details.general.publisher}:</dt>
                             <dd>
-                                {service.catalog?.publisher?.id ? (
-                                    <Link href={`/organizations/${service.catalog.publisher.id}`}>
-                                        {service.catalog.publisher?.prefLabel?.[locale] ||
-                                            service.catalog.publisher?.prefLabel?.[i18n.defaultLocale]}
+                                {publisherId ? (
+                                    <Link href={`/organizations/${publisherId}`}>
+                                        {publisherLabel || dictionaries.detailsPage.header.namelessOrganization}
                                     </Link>
                                 ) : (
-                                    <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
+                                    publisherLabel || (
+                                        <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
+                                    )
                                 )}
                             </dd>
                             <dt>{dictionaries.detailsPage.details.general.firstHarvested}:</dt>
