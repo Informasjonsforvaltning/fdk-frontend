@@ -208,7 +208,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             <Dlist>
                                 {service.produces?.map((output, index) => (
                                     <Fragment key={`${output.identifier}-${index}`}>
-                                        <dt>
+                                        <dt className={styles.producesDt}>
                                             {printLocaleValue(locale, output.name) ||
                                                 dictionaries.detailsPage.produces.header.nameless}
                                         </dt>
