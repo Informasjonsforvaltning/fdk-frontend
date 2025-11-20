@@ -60,9 +60,5 @@ export const fetchDatasetPreview = async ({
         }),
     });
 
-    if (!response.ok) {
-        throw new Error(`Fetch failed: ${response.status} ${response.statusText}`);
-    }
-
-    return response.json();
+    return response;
 };

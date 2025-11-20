@@ -18,7 +18,7 @@ export const POST = async function (request: Request) {
 
         const { token } = await csrfResponse.json();
         const cookies = csrfResponse.headers.getSetCookie();
-        const previewData = await fetchDatasetPreview({
+        const previewResponse = await fetchDatasetPreview({
             baseUri: `${baseUri}`,
             apiKey: `${FDK_DATASET_PREVIEW_API_KEY}`,
             url: downloadUrl,
@@ -27,6 +27,10 @@ export const POST = async function (request: Request) {
             cookies,
             referer,
         });
+        if (!previewResponse.ok) {
+            return new Response('Failed to get dataset preview', { status: previewResponse.status });
+        }
+        const previewData = await previewResponse.json();
         return new Response(JSON.stringify(previewData), { status: 200 });
     } catch (err) {
         console.error('Failed to get dataset preview', JSON.stringify(err));
