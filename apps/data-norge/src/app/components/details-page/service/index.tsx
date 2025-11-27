@@ -435,7 +435,10 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             </dd>
                         </Dlist>
 
-                        {!service.losThemes?.length && !showEmptyRows ? null : (
+                        {!service.euDataThemes?.length &&
+                        !service.eurovocThemes?.length &&
+                        !service.losThemes?.length &&
+                        !showEmptyRows ? null : (
                             <>
                                 <Heading
                                     level={2}
@@ -444,9 +447,33 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                 >
                                     {dictionaries.detailsPage.details.themes}
                                 </Heading>
-                                {service.losThemes?.length ? (
+                                {service.euDataThemes?.length ||
+                                service.eurovocThemes?.length ||
+                                service.losThemes?.length ? (
                                     <TagList>
-                                        {service.losThemes.map((theme) => (
+                                        {service.euDataThemes?.map((theme) => (
+                                            <Link
+                                                key={theme.code}
+                                                href={`/public-services-and-events?euDataTheme=${theme.code}`}
+                                            >
+                                                <Tag data-size='sm'>
+                                                    {printLocaleValue(locale, theme.title) || theme.code}
+                                                </Tag>
+                                            </Link>
+                                        ))}
+
+                                        {service.eurovocThemes?.map((theme) => (
+                                            <Link
+                                                key={theme.code}
+                                                href={`/public-services-and-events?eurovocTheme=${theme.code}`}
+                                            >
+                                                <Tag data-size='sm'>
+                                                    {printLocaleValue(locale, theme.label) || theme.code}
+                                                </Tag>
+                                            </Link>
+                                        ))}
+
+                                        {service.losThemes?.map((theme) => (
                                             <Link
                                                 key={theme.code}
                                                 href={`/public-services-and-events?losTheme=${theme.code}`}
