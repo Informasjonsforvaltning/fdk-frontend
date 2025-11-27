@@ -446,7 +446,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                 </Heading>
                                 {service.losThemes?.length ? (
                                     <TagList>
-                                        {service.losThemes.map((theme: any) => (
+                                        {service.losThemes.map((theme) => (
                                             <Link
                                                 key={theme.code}
                                                 href={`/public-services-and-events?losTheme=${theme.code}`}
@@ -458,7 +458,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                         ))}
                                     </TagList>
                                 ) : (
-                                    <PlaceholderBox>{dictionaries.detailsPage.noData}</PlaceholderBox>
+                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
                                 )}
                             </>
                         )}
