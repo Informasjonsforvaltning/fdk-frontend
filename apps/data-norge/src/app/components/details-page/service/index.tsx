@@ -434,6 +434,34 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                 </Hstack>
                             </dd>
                         </Dlist>
+
+                        {!service.losThemes?.length && !showEmptyRows ? null : (
+                            <>
+                                <Heading
+                                    level={2}
+                                    data-size='xs'
+                                    className={styles.heading}
+                                >
+                                    {dictionaries.detailsPage.details.themes}
+                                </Heading>
+                                {service.losThemes?.length ? (
+                                    <TagList>
+                                        {service.losThemes.map((theme: any) => (
+                                            <Link
+                                                key={theme.code}
+                                                href={`/public-services-and-events?losTheme=${theme.code}`}
+                                            >
+                                                <Tag data-size='sm'>
+                                                    {printLocaleValue(locale, theme.name) || theme.code}
+                                                </Tag>
+                                            </Link>
+                                        ))}
+                                    </TagList>
+                                ) : (
+                                    <PlaceholderBox>{dictionaries.detailsPage.noData}</PlaceholderBox>
+                                )}
+                            </>
+                        )}
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabsPanel}
