@@ -214,6 +214,7 @@
             }
         },
         "themes": "Tema",
+        "thematicArea": "Temaområde",
         "keywords": "Søkord"
     },
     "community": {

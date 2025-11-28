@@ -434,6 +434,45 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                 </Hstack>
                             </dd>
                         </Dlist>
+
+                        {!service.eurovocThemes?.length && !service.losThemes?.length && !showEmptyRows ? null : (
+                            <>
+                                <Heading
+                                    level={2}
+                                    data-size='xs'
+                                    className={styles.heading}
+                                >
+                                    {dictionaries.detailsPage.details.thematicArea}
+                                </Heading>
+                                {service.eurovocThemes?.length || service.losThemes?.length ? (
+                                    <TagList>
+                                        {service.eurovocThemes?.map((theme) => (
+                                            <Link
+                                                key={theme.code}
+                                                href={`/public-services-and-events?eurovocTheme=${theme.code}`}
+                                            >
+                                                <Tag data-size='sm'>
+                                                    {printLocaleValue(locale, theme.label) || theme.code}
+                                                </Tag>
+                                            </Link>
+                                        ))}
+
+                                        {service.losThemes?.map((theme) => (
+                                            <Link
+                                                key={theme.code}
+                                                href={`/public-services-and-events?losTheme=${theme.code}`}
+                                            >
+                                                <Tag data-size='sm'>
+                                                    {printLocaleValue(locale, theme.name) || theme.code}
+                                                </Tag>
+                                            </Link>
+                                        ))}
+                                    </TagList>
+                                ) : (
+                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                                )}
+                            </>
+                        )}
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabsPanel}
