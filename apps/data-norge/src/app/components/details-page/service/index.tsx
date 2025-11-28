@@ -435,33 +435,17 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             </dd>
                         </Dlist>
 
-                        {!service.euDataThemes?.length &&
-                        !service.eurovocThemes?.length &&
-                        !service.losThemes?.length &&
-                        !showEmptyRows ? null : (
+                        {!service.eurovocThemes?.length && !service.losThemes?.length && !showEmptyRows ? null : (
                             <>
                                 <Heading
                                     level={2}
                                     data-size='xs'
                                     className={styles.heading}
                                 >
-                                    {dictionaries.detailsPage.details.themes}
+                                    {dictionaries.detailsPage.details.thematicArea}
                                 </Heading>
-                                {service.euDataThemes?.length ||
-                                service.eurovocThemes?.length ||
-                                service.losThemes?.length ? (
+                                {service.eurovocThemes?.length || service.losThemes?.length ? (
                                     <TagList>
-                                        {service.euDataThemes?.map((theme) => (
-                                            <Link
-                                                key={theme.code}
-                                                href={`/public-services-and-events?euDataTheme=${theme.code}`}
-                                            >
-                                                <Tag data-size='sm'>
-                                                    {printLocaleValue(locale, theme.title) || theme.code}
-                                                </Tag>
-                                            </Link>
-                                        ))}
-
                                         {service.eurovocThemes?.map((theme) => (
                                             <Link
                                                 key={theme.code}
