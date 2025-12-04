@@ -36,7 +36,7 @@ jobs:
               run: corepack enable
 
             - name: Use Node.js 22.14.0
-              uses: actions/setup-node@v5
+              uses: actions/setup-node@v6
               with:
                   node-version: 22.14.0
                   cache: 'yarn'
@@ -80,7 +80,7 @@ jobs:
               run: corepack enable
 
             - name: Use Node.js 22.14.0
-              uses: actions/setup-node@v5
+              uses: actions/setup-node@v6
               with:
                   node-version: 22.14.0
                   cache: 'yarn'
