@@ -9,6 +9,7 @@
     "resolutions": {
         "@types/react": "^19.1.5",
         "@types/react-dom": "^19.1.5",
+        "glob": "^10.5.0",
         "prismjs": "^1.30.0",
         "koa": "^3.0.3",
         "react": "^19.1.0",
