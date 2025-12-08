@@ -1,10 +1,17 @@
+import { LocaleCodes } from '@fdk-frontend/dictionaries';
 import DocsPage, { generateMetadata as docsPageMetadata } from '../../../components/docs/docs-page';
 
-export const generateMetadata = async (props: any) => {
+interface Props {
+    params: Promise<{
+        lang: LocaleCodes;
+    }>;
+}
+
+export const generateMetadata = async (props: Props) => {
     return await docsPageMetadata({ rootContentDirectory: 'catalogs', ...props });
 };
 
-export default async function Page(props: any) {
+export default async function Page(props: Props) {
     return (
         <DocsPage
             {...props}

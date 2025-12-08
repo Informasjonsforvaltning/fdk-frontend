@@ -17,7 +17,7 @@ export type DocsPageProps = {
     rootContentDirectory: string;
     params: Promise<{
         lang: LocaleCodes;
-        slug: string[];
+        slug?: string[];
     }>;
 };
 
