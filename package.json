@@ -10,6 +10,7 @@
         "@types/react": "^19.1.5",
         "@types/react-dom": "^19.1.5",
         "prismjs": "^1.30.0",
+        "koa": "^3.0.1",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "tmp": "^0.2.5"
