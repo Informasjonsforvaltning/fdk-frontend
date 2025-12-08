@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 'use server';
 
 import { revalidatePath } from 'next/cache';

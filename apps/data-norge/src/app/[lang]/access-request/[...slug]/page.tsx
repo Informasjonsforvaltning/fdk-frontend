@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import { redirect, notFound } from 'next/navigation';
 import { Spinner, Paragraph } from '@digdir/designsystemet-react';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
     displayName: 'data-norge',
     preset: '../../jest.preset.js',

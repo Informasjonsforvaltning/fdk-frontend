@@ -20,7 +20,6 @@ type SiteImproveEventProps = {
 
 export const trackSiteImproveEvent = ({ category, action, label }: SiteImproveEventProps) => {
     if ((window as any)._sz === undefined) {
-        // eslint-disable-next-line no-console
         console.error('Unable to find Site Improve event library.');
     } else if (label) {
         (window as any)._sz.push(['event', category, action, label]);

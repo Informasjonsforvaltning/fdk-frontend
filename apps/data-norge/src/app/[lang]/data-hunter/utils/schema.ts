@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-magic-numbers */
 import { z } from 'zod';
 
 /**

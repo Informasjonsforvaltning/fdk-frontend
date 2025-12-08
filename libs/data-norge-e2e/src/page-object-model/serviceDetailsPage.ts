@@ -11,7 +11,6 @@ export default class ServiceDetailsPage {
     accessibilityBuilder;
 
     constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
-        // eslint-disable-next-line no-undef
         this.url = `/nb/services/${process.env.E2E_SERVICE_ID}`;
         this.dictionary = dictionary;
         this.page = page;
@@ -27,7 +26,6 @@ export default class ServiceDetailsPage {
         });
         await this.page.waitForFunction(
             () => {
-                // eslint-disable-next-line no-undef
                 const urlObj = new URL(window.location.href);
                 return urlObj.pathname.includes('/services/') && urlObj.pathname.split('/').length >= 4;
             },

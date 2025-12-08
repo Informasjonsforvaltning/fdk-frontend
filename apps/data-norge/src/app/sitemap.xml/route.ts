@@ -195,7 +195,6 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
     if (datasetsTotalPages > 1) {
         for (let page = 1; page < datasetsTotalPages; page++) {
             try {
-                // eslint-disable-next-line no-await-in-loop
                 const result = await getAllDatasets(page, size);
                 allDatasets.push(...(result.hits || []));
                 console.log(`Processed dataset page ${page}/${datasetsTotalPages - 1}`);
@@ -209,7 +208,6 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
     if (servicesTotalPages > 1) {
         for (let page = 1; page < servicesTotalPages; page++) {
             try {
-                // eslint-disable-next-line no-await-in-loop
                 const result = await getAllServices(page, size);
                 allServices.push(...(result.hits || []));
                 console.log(`Processed service page ${page}/${servicesTotalPages - 1}`);

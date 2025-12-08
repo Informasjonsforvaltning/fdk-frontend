@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 export const getPaths = (baseUri: string) => {
     const baseUriWithoutSlash = baseUri.endsWith('/') ? baseUri.slice(0, -1) : baseUri;
     return {

@@ -99,12 +99,12 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         tr: ({ children, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
             <TableRow {...props}>{children}</TableRow>
         ),
-        th: (
-            { children, ...props }: React.ThHTMLAttributes<HTMLTableHeaderCellElement>, // eslint-disable-line
-        ) => <TableHeaderCell {...props}>{children}</TableHeaderCell>,
-        td: (
-            { children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>, // eslint-disable-line
-        ) => <TableCell {...props}>{children}</TableCell>,
+        th: ({ children, ...props }: React.ThHTMLAttributes<HTMLTableHeaderCellElement>) => (
+            <TableHeaderCell {...props}>{children}</TableHeaderCell>
+        ),
+        td: ({ children, ...props }: React.TdHTMLAttributes<HTMLTableDataCellElement>) => (
+            <TableCell {...props}>{children}</TableCell>
+        ),
         Tag: (props: TagProps) => <Tag {...props} />,
         Ingress: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
             <Paragraph
@@ -112,9 +112,7 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
                 asChild={true}
                 {...props}
             >
-                <div>
-                    {children}
-                </div>
+                <div>{children}</div>
             </Paragraph>
         ),
         a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {

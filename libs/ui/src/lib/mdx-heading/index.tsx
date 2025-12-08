@@ -24,7 +24,7 @@ export type MdxHeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
 const MdxHeading = ({ level, children }: MdxHeadingProps) => {
     const textContent = extractText(children);
     const slug = slugify(textContent, { lower: true, strict: true });
-    const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements; // eslint-disable-line
+    const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
 
     return (
         <HeadingTag

@@ -383,7 +383,6 @@ test.describe('SEO Tests', () => {
                 .first();
             await expect(jsonLdScript).toHaveText(/.*/);
             const jsonLdContent = await jsonLdScript.textContent();
-            // eslint-disable-next-line playwright/prefer-web-first-assertions
             expect(jsonLdContent).toBeTruthy();
 
             // Parse and validate JSON-LD structure
@@ -484,7 +483,6 @@ test.describe('SEO Tests', () => {
                 .first();
             await expect(breadcrumbScript).toHaveText(/.*/);
             const breadcrumbContent = await breadcrumbScript.textContent();
-            // eslint-disable-next-line playwright/prefer-web-first-assertions
             expect(breadcrumbContent).toBeTruthy();
 
             // Parse and validate breadcrumb structure
@@ -537,7 +535,6 @@ test.describe('SEO Tests', () => {
 
             const descriptionLocator = page.locator('meta[name="description"]');
             await expect(descriptionLocator).toHaveAttribute('content');
-            // eslint-disable-next-line playwright/prefer-web-first-assertions
             await expect(descriptionLocator.getAttribute('content')).toBeTruthy();
 
             // Check for Open Graph tags
@@ -594,7 +591,6 @@ test.describe('SEO Tests', () => {
             // Wait for redirect to complete with retry logic
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -624,7 +620,6 @@ test.describe('SEO Tests', () => {
             // Wait for redirect to complete with retry logic
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -655,7 +650,6 @@ test.describe('SEO Tests', () => {
             // Wait for redirect to complete with retry logic
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -685,7 +679,6 @@ test.describe('SEO Tests', () => {
             // Wait for redirect to complete with retry logic
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -748,7 +741,6 @@ test.describe('SEO Tests', () => {
             });
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -770,7 +762,6 @@ test.describe('SEO Tests', () => {
             });
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -792,7 +783,6 @@ test.describe('SEO Tests', () => {
             });
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -869,7 +859,6 @@ test.describe('SEO Tests', () => {
 
             // Get all href attributes concurrently
             const hrefPromises = (await hreflangLocator.all()).map(async (tag) => {
-                // eslint-disable-next-line playwright/prefer-web-first-assertions
                 return await tag.getAttribute('href');
             });
             const hrefs = await Promise.all(hrefPromises);
@@ -965,7 +954,6 @@ test.describe('SEO Tests', () => {
             });
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -1000,7 +988,6 @@ test.describe('SEO Tests', () => {
             });
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
@@ -1035,7 +1022,6 @@ test.describe('SEO Tests', () => {
             });
             await page.waitForFunction(
                 () => {
-                    // eslint-disable-next-line no-undef
                     const url = window.location.href;
                     const urlObj = new URL(url);
                     return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;

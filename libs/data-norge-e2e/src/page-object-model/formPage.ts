@@ -54,7 +54,6 @@ export default class FormPage {
         await this.form().evaluate((node) =>
             node.addEventListener('submit', async (event) => {
                 event.preventDefault();
-                // eslint-disable-next-line no-undef
                 const formData = Array.from(new FormData(event.target as HTMLFormElement).entries()).reduce(
                     (data, [key, value]) => (!key.startsWith('$') ? { ...data, [key]: value } : data),
                     {},

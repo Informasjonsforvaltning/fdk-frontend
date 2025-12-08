@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import { Paragraph, Heading, Alert, Link, Button } from '@digdir/designsystemet-react';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { Hstack, VStack, BackButton, Markdown } from '@fdk-frontend/ui';

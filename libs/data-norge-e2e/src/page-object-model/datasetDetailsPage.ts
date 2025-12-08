@@ -11,7 +11,6 @@ export default class DatasetDetailsPage {
     accessibilityBuilder;
 
     constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
-        // eslint-disable-next-line no-undef
         this.url = `/nb/datasets/${process.env.E2E_DATASET_ID}`;
         this.dictionary = dictionary;
         this.page = page;
@@ -29,7 +28,6 @@ export default class DatasetDetailsPage {
         });
         await this.page.waitForFunction(
             () => {
-                // eslint-disable-next-line no-undef
                 const urlObj = new URL(window.location.href);
                 return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
             },
