@@ -2,13 +2,18 @@
     "compileOnSave": false,
     "compilerOptions": {
         "baseUrl": ".",
+        "composite": false,
         "declaration": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "importHelpers": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
         "lib": ["es2020", "dom", "dom.iterable"],
         "module": "esnext",
         "moduleResolution": "bundler",
+        "outDir": "./dist/out-tsc",
         "paths": {
             "@fdk-frontend/data-access": ["libs/data-access/src/index.ts"],
             "@fdk-frontend/data-access/server": ["libs/data-access/src/server.ts"],
@@ -31,6 +36,5 @@
         "strict": true,
         "target": "es2015",
         "jsx": "react"
-    },
-    "exclude": ["node_modules", "tmp", "**/*.stories.tsx"]
+    }
 }

@@ -88,6 +88,18 @@
                 "watchDepsTargetName": "watch-deps",
                 "serveStaticTargetName": "serve-static"
             }
+        },
+        {
+            "plugin": "@nx/js/typescript",
+            "options": {
+                "typecheck": {
+                    "targetName": "typecheck"
+                },
+                "build": {
+                    "targetName": "build",
+                    "configName": "tsconfig.lib.json"
+                }
+            }
         }
     ],
     "targetDefaults": {

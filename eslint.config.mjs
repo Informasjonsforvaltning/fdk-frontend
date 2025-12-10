@@ -2,7 +2,8 @@ import { FlatCompat } from '@eslint/eslintrc';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import js from '@eslint/js';
-import nxEslintPlugin from '@nx/eslint-plugin';
+import nxPlugin from '@nx/eslint-plugin';
+import nextPlugin from 'eslint-config-next';
 
 const compat = new FlatCompat({
     baseDirectory: dirname(fileURLToPath(import.meta.url)),
@@ -10,161 +11,18 @@ const compat = new FlatCompat({
 });
 
 export default [
-    {
-        ignores: ['**/dist'],
-    },
-    { plugins: { '@nx': nxEslintPlugin } },
+    ...nextPlugin,
+    { ignores: ['!**/*'] },
     {
         files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-        rules: {
-            '@nx/enforce-module-boundaries': [
-                'error',
-                {
-                    allow: [],
-                    depConstraints: [
-                        {
-                            onlyDependOnLibsWithTags: ['*'],
-                            sourceTag: '*',
-                        },
-                    ],
-                    enforceBuildableLibDependency: true,
-                },
-            ],
-        },
+        rules: {},
     },
-    ...compat
-        .config({
-            extends: [
-                'plugin:import/recommended',
-                'plugin:@nx/typescript',
-                'plugin:@typescript-eslint/eslint-plugin/recommended',
-                'eslint:recommended',
-                'plugin:react/recommended',
-                'plugin:jsx-a11y/recommended',
-                'prettier',
-            ],
-        })
-        .map((config) => ({
-            ...config,
-            files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
-            rules: {
-                ...config.rules,
-                '@typescript-eslint/no-explicit-any': 'warn',
-                '@typescript-eslint/no-shadow': 'error',
-                '@typescript-eslint/no-unused-vars': 'error',
-                'arrow-body-style': ['warn', 'as-needed'],
-                camelcase: 'error',
-                complexity: ['warn', 10],
-                'consistent-return': 'warn',
-                curly: 'off',
-                'default-case': 'warn',
-                'default-case-last': 'error',
-                'default-param-last': 'error',
-                'eol-last': ['warn', 'always'],
-                eqeqeq: ['error', 'smart'],
-                'func-style': [
-                    'error',
-                    'expression',
-                    {
-                        allowArrowFunctions: true,
-                    },
-                ],
-                'import/named': 'warn',
-                'import/no-unresolved': 'off',
-                'max-depth': ['warn', 4],
-                'max-lines': ['warn', 300],
-                'no-alert': 'warn',
-                'no-await-in-loop': 'error',
-                'no-console': 'off',
-                'no-duplicate-imports': 'error',
-                'no-empty-function': 'warn',
-                'no-eq-null': 'error',
-                'no-implicit-coercion': 'warn',
-                'no-magic-numbers': [
-                    'warn',
-                    {
-                        ignoreArrayIndexes: true,
-                    },
-                ],
-                'no-param-reassign': 'error',
-                'no-promise-executor-return': 'error',
-                'no-restricted-syntax': [
-                    'warn',
-                    {
-                        message: 'Unexpected property on console object was called',
-                        selector: "CallExpression[callee.object.name='console'][callee.property.name!=/^(error)$/]",
-                    },
-                ],
-                'no-shadow': 'off',
-                'no-unmodified-loop-condition': 'error',
-                'no-unreachable-loop': 'error',
-                'no-unused-vars': 'off',
-                'no-use-before-define': 'error',
-                'prefer-const': 'error',
-                'react/prop-types': 'off',
-                'react/react-in-jsx-scope': 'off',
-                'require-atomic-updates': 'error',
-            },
-        })),
-    ...compat
-        .config({
-            extends: [
-                'plugin:import/recommended',
-                'plugin:@nx/javascript',
-                'eslint:recommended',
-                'plugin:react/recommended',
-                'plugin:jsx-a11y/recommended',
-                'prettier',
-            ],
-        })
-        .map((config) => ({
-            ...config,
-            files: ['**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
-            rules: {
-                ...config.rules,
-                'arrow-body-style': ['warn', 'as-needed'],
-                camelcase: 'error',
-                complexity: ['warn', 10],
-                'consistent-return': 'warn',
-                curly: 'warn',
-                'default-case': 'error',
-                'default-case-last': 'error',
-                'default-param-last': 'error',
-                eqeqeq: ['error', 'smart'],
-                'func-style': [
-                    'error',
-                    'expression',
-                    {
-                        allowArrowFunctions: true,
-                    },
-                ],
-                'max-depth': ['warn', 4],
-                'max-lines': ['warn', 300],
-                'no-alert': 'warn',
-                'no-await-in-loop': 'error',
-                'no-console': 'warn',
-                'no-duplicate-imports': 'error',
-                'no-empty-function': 'warn',
-                'no-eq-null': 'error',
-                'no-implicit-coercion': 'warn',
-                'no-magic-numbers': [
-                    'warn',
-                    {
-                        ignoreArrayIndexes: true,
-                    },
-                ],
-                'no-param-reassign': 'error',
-                'no-promise-executor-return': 'error',
-                'no-shadow': 'error',
-                'no-unmodified-loop-condition': 'error',
-                'no-unreachable-loop': 'error',
-                'no-use-before-define': 'error',
-                'prefer-const': 'error',
-                'react/react-in-jsx-scope': 'off',
-                'require-atomic-updates': 'error',
-            },
-        })),
     {
-        ignores: ['libs/storybook-app', 'libs/data-norge-e2e'],
+        files: ['**/*.ts', '**/*.tsx'],
+        rules: {},
+    },
+    {
+        files: ['**/*.js', '**/*.jsx'],
+        rules: {},
     },
 ];
