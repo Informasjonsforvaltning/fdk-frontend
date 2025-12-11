@@ -73,6 +73,9 @@
             "page": "Dokumentasjon",
             "license": "Lisens",
             "conformsTo": "I samsvar med",
+            "status": "Status",
+            "rightsType": "Rettigheter for bruk",
+            "mobilityDataStandard": "Mobility-standard",
             "noData": "Ikke oppgitt"
         },
         "downloadModal": {
@@ -214,6 +217,7 @@
             }
         },
         "themes": "Tema",
+        "mobilityThemes": "Mobility-tema",
         "thematicArea": "Temaområde",
         "keywords": "Søkord"
     },

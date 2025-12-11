@@ -25,6 +25,7 @@ type DistributionDetailsProps = {
         common: Dictionary;
         detailsPage: Dictionary;
     };
+    isRelatedToTransportportal?: boolean;
     resolvedDistributionDataServices?: SearchObject[];
     resolvedDistributionInformationModels?: SearchObject[];
 };
@@ -33,6 +34,7 @@ const DistributionDetails = ({
     distribution,
     locale,
     dictionaries,
+    isRelatedToTransportportal,
     resolvedDistributionDataServices = [],
     resolvedDistributionInformationModels = [],
 }: DistributionDetailsProps) => {
@@ -85,6 +87,14 @@ const DistributionDetails = ({
                                 </ExternalLink>
                             )}
                         />
+                    ) : (
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
+                    )}
+                </dd>
+                <dt>{dictionaries.detailsPage.distributions.details.status}:</dt>
+                <dd>
+                    {distribution?.status?.prefLabel ? (
+                        <span>{printLocaleValue(locale, distribution.status.prefLabel)}</span>
                     ) : (
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
@@ -231,6 +241,28 @@ const DistributionDetails = ({
                         <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
                     )}
                 </dd>
+                <dt>{dictionaries.detailsPage.distributions.details.rightsType}:</dt>
+                <dd>
+                    {distribution?.rights?.type?.prefLabel ? (
+                        <span>{printLocaleValue(locale, distribution?.rights?.type?.prefLabel)}</span>
+                    ) : (
+                        <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
+                    )}
+                </dd>
+                {!isRelatedToTransportportal ? null : (
+                    <>
+                        <dt>{dictionaries.detailsPage.distributions.details.mobilityDataStandard}:</dt>
+                        <dd>
+                            {distribution?.mobilityDataStandard?.prefLabel ? (
+                                <span>{printLocaleValue(locale, distribution.mobilityDataStandard.prefLabel)}</span>
+                            ) : (
+                                <PlaceholderText>
+                                    {dictionaries.detailsPage.distributions.details.noData}
+                                </PlaceholderText>
+                            )}
+                        </dd>
+                    </>
+                )}
             </Dlist>
         </>
     );

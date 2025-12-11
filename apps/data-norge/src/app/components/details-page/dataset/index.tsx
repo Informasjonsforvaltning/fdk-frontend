@@ -213,6 +213,7 @@ export default function DatasetDetailsPage({
                                     apis={apis}
                                     locale={locale}
                                     dictionaries={dictionaries}
+                                    isRelatedToTransportportal={resource?.isRelatedToTransportportal}
                                     resolvedDistributionDataServices={resolvedDistributionDataServices}
                                     resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                                 />
@@ -278,6 +279,7 @@ export default function DatasetDetailsPage({
                                 apis={apis}
                                 locale={locale}
                                 dictionaries={dictionaries}
+                                isRelatedToTransportportal={resource?.isRelatedToTransportportal}
                                 resolvedDistributionDataServices={resolvedDistributionDataServices}
                                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                             />
