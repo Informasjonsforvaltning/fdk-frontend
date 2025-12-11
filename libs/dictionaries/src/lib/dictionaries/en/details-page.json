@@ -73,6 +73,9 @@
             "page": "Documentation",
             "license": "License",
             "conformsTo": "Conforms to",
+            "status": "Status",
+            "rightsType": "Conditions for access and usage",
+            "mobilityDataStandard": "Mobility data standard",
             "noData": "Not provided"
         },
         "downloadModal": {
@@ -214,6 +217,7 @@
             }
         },
         "themes": "Themes",
+        "mobilityThemes": "Mobility themes",
         "thematicArea": "Thematic area",
         "keywords": "Keywords"
     },

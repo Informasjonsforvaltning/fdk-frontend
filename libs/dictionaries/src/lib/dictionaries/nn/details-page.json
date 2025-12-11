@@ -73,6 +73,9 @@
             "page": "Dokumentasjon",
             "license": "Lisens",
             "conformsTo": "I samsvar med",
+            "status": "Status",
+            "rightsType": "Vilkår for tilgang og bruk",
+            "mobilityDataStandard": "Transportdatastandard",
             "noData": "Ikkje oppgitt"
         },
         "downloadModal": {
@@ -214,6 +217,7 @@
             }
         },
         "themes": "Tema",
+        "mobilityThemes": "Transporttema",
         "thematicArea": "Temaområde",
         "keywords": "Nøkkelord"
     },
