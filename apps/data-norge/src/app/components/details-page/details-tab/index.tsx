@@ -1,10 +1,15 @@
-import { useState, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { Heading, Link, Tag, Button } from '@digdir/designsystemet-react';
 import { EyeSlashIcon, EyeIcon } from '@navikt/aksel-icons';
-import { type DatasetWithIdentifier, type DatasetScore, type SearchObject } from '@fellesdatakatalog/types';
+import {
+    type DatasetWithIdentifier,
+    type DatasetScore,
+    type SearchObject,
+    type ReferenceDataCode,
+} from '@fellesdatakatalog/types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
-import { PlaceholderBox, PlaceholderText } from '@fdk-frontend/ui';
+import { PlaceholderBox, PlaceholderText, TagList } from '@fdk-frontend/ui';
 import GeneralDetails from './components/general-details';
 import ContactDetails from './components/contact-details';
 import ContentDetails from './components/content-details';
@@ -13,6 +18,7 @@ import ConceptDetails from './components/concept-details';
 import ReferencesDetails from './components/references-details';
 import DatasetTags from '../dataset-tags';
 import styles from './details-tab.module.scss';
+import { printLocaleValue } from '@fdk-frontend/utils';
 
 const DatasetDetailsTabContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
 
@@ -123,6 +129,26 @@ const DatasetDetailsTab = ({
                         ) : (
                             <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
                         )}
+                    </section>
+                )}
+                {!dataset.isRelatedToTransportportal ? null : (
+                    <section>
+                        <Heading
+                            level={2}
+                            data-size='xs'
+                        >
+                            {dictionary.details.mobilityThemes}
+                        </Heading>
+                        <TagList>
+                            {dataset.mobilityTheme?.map((theme: ReferenceDataCode) => (
+                                <Tag
+                                    key={theme.code}
+                                    data-size='sm'
+                                >
+                                    {printLocaleValue(locale, theme.prefLabel) || theme.code}
+                                </Tag>
+                            ))}
+                        </TagList>
                     </section>
                 )}
                 {!dataset.keyword?.length && !showEmptyRows ? null : (

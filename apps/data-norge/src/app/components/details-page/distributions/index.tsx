@@ -17,6 +17,7 @@ export type DistributionsProps = {
     datasets?: JSONValue[];
     exampleData?: JSONValue[];
     apis?: DataService[];
+    isRelatedToTransportportal?: boolean;
     className?: string;
     locale: LocaleCodes;
     dictionaries: {
@@ -31,6 +32,7 @@ const Distributions = ({
     exampleData = [],
     datasets = [],
     apis = [],
+    isRelatedToTransportportal = false,
     className,
     locale,
     dictionaries,
@@ -73,6 +75,7 @@ const Distributions = ({
                                             distribution={distribution}
                                             locale={locale}
                                             dictionaries={dictionaries}
+                                            isRelatedToTransportportal={isRelatedToTransportportal}
                                             resolvedDistributionDataServices={resolvedDistributionDataServices}
                                             resolvedDistributionInformationModels={
                                                 resolvedDistributionInformationModels
@@ -119,6 +122,7 @@ const Distributions = ({
                                             distribution={example}
                                             locale={locale}
                                             dictionaries={dictionaries}
+                                            isRelatedToTransportportal={isRelatedToTransportportal}
                                             resolvedDistributionDataServices={resolvedDistributionDataServices}
                                             resolvedDistributionInformationModels={
                                                 resolvedDistributionInformationModels
