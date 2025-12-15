@@ -12405,7 +12405,7 @@ __metadata:
     lodash: "npm:^4.17.21"
     marked: "npm:^15.0.12"
     mime-types: "npm:^3.0.1"
-    next: "npm:^15.5.8"
+    next: "npm:^15.5.9"
     next-mdx-remote: "npm:^5.0.0"
     normalize.css: "npm:^8.0.1"
     nx: "npm:^21.6.4"
@@ -17056,7 +17056,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^15.5.8":
+"next@npm:^15.5.9":
   version: 15.5.9
   resolution: "next@npm:15.5.9"
   dependencies:
