@@ -1,20 +1,5 @@
 {
-    "compilerOptions": {
-        "jsx": "react-jsx",
-        "allowJs": false,
-        "esModuleInterop": false,
-        "allowSyntheticDefaultImports": true,
-        "strict": true
-    },
+    "extends": "../tsconfig.base.json",
     "files": [],
-    "include": [],
-    "references": [
-        {
-            "path": "./tsconfig.app.json"
-        },
-        {
-            "path": "./tsconfig.storybook.json"
-        }
-    ],
-    "extends": "../tsconfig.base.json"
+    "references": []
 }

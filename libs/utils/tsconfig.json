@@ -1,21 +1,5 @@
 {
-    "compilerOptions": {
-        "allowJs": false,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": false,
-        "strict": true
-    },
     "extends": "../../tsconfig.base.json",
     "files": [],
-    "include": [],
-    "lib": [],
-    "references": [
-        {
-            "composite": true,
-            "path": "./tsconfig.lib.json"
-        },
-        {
-            "path": "./tsconfig.spec.json"
-        }
-    ]
+    "references": []
 }
