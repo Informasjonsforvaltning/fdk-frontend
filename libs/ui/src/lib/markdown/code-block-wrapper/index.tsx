@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Prism as SyntaxHighlighter, type SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { CopyButton } from '@fellesdatakatalog/ui';
@@ -34,7 +33,7 @@ const CodeBlockWrapper = ({ locale, children, ...rest }: CodeBlockWrapperProps) 
             </div>
             <div className={styles.scrollContainer}>
                 <SyntaxHighlighter
-                    style={vscDarkPlus as any}
+                    style={vscDarkPlus}
                     PreTag='div'
                     tabIndex={0}
                     {...rest}
@@ -47,4 +46,3 @@ const CodeBlockWrapper = ({ locale, children, ...rest }: CodeBlockWrapperProps) 
 };
 
 export default CodeBlockWrapper;
-
