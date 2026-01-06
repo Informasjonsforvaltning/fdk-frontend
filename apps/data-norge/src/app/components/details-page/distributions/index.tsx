@@ -5,7 +5,7 @@ import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { type SearchObject } from '@fellesdatakatalog/types';
+import { type SearchObject, type DataService, type Distribution } from '@fellesdatakatalog/types';
 import { Badge, Hstack, PlaceholderBox, ActionButton, DownloadButton } from '@fdk-frontend/ui';
 import styles from './distributions.module.scss';
 import DistributionDetails from './components/distribution-details';
@@ -16,7 +16,7 @@ import ApiDetails from './components/api-details';
 export type DistributionsProps = {
     datasets?: JSONValue[];
     exampleData?: JSONValue[];
-    apis?: JSONValue[];
+    apis?: DataService[];
     className?: string;
     locale: LocaleCodes;
     dictionaries: {
@@ -52,7 +52,7 @@ const Distributions = ({
             {sumArrayLengths(datasets, exampleData) > 0 ? (
                 <Card>
                     {datasets &&
-                        datasets.map((distribution, index) => (
+                        datasets.map((distribution: Distribution, index) => (
                             <div
                                 key={`distribution-${index}`}
                                 className={styles.accordionWrapper}
@@ -155,7 +155,7 @@ const Distributions = ({
             </Heading>
             {apis && apis.length ? (
                 <Card>
-                    {apis.map((api, index) => (
+                    {apis.map((api: DataService, index) => (
                         <div
                             key={`api-${index}`}
                             className={styles.accordionWrapper}
