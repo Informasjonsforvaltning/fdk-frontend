@@ -422,6 +422,22 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                     </dd>
                                 </>
                             )}
+                            {!service.spatial && !showEmptyRows ? null : (
+                                <>
+                                    <dt>{dictionaries.detailsPage.details.content.spatial}:</dt>
+                                    <dd className='article'>
+                                        {service.spatial ? (
+                                            <SmartList
+                                                listType='ol'
+                                                items={service.spatial}
+                                                renderItem={(spatial) => spatial}
+                                            />
+                                        ) : (
+                                            <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
+                                        )}
+                                    </dd>
+                                </>
+                            )}
                             <dt>URI:</dt>
                             <dd>
                                 <Hstack>
