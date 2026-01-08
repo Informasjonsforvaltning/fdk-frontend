@@ -34,6 +34,30 @@ export const defaultAllowedElements = [
     'span',
 ];
 
+export const noHeadings = [
+    'p',
+    'blockquote',
+    'pre',
+    'code',
+    'ul',
+    'ol',
+    'li',
+    'hr',
+    'table',
+    'thead',
+    'tbody',
+    'tr',
+    'th',
+    'td',
+    'a',
+    'strong',
+    'em',
+    'img',
+    'br',
+    'del',
+    'span',
+];
+
 export type MarkdownProps = {
     locale?: LocaleCodes;
     className?: string;
