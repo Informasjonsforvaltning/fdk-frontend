@@ -191,7 +191,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                                 gateway
                                             >
                                                 {spatial.prefLabel
-                                                    ? printLocaleValue(locale, spatial?.prefLabel)
+                                                    ? printLocaleValue(locale, spatial.prefLabel)
                                                     : spatial.uri}
                                             </ExternalLink>
                                         ) : (
