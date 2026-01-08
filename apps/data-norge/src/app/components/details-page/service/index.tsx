@@ -430,7 +430,21 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                             <SmartList
                                                 listType='ol'
                                                 items={service.spatial}
-                                                renderItem={(spatial) => spatial}
+                                                renderItem={(spatial) =>
+                                                    spatial.uri ? (
+                                                        <ExternalLink
+                                                            href={spatial.uri}
+                                                            locale={locale}
+                                                            gateway
+                                                        >
+                                                            {spatial.prefLabel
+                                                                ? printLocaleValue(locale, spatial?.prefLabel)
+                                                                : spatial.uri}
+                                                        </ExternalLink>
+                                                    ) : (
+                                                        printLocaleValue(locale, spatial?.prefLabel)
+                                                    )
+                                                }
                                             />
                                         ) : (
                                             <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
