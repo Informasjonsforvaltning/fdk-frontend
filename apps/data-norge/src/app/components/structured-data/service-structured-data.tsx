@@ -37,7 +37,7 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
                 ? sanitizeArray(
                       service.spatial.map((spatial) => ({
                           '@type': 'Place',
-                          name: sanitizeString(spatial),
+                          name: sanitizeString(printLocaleValue(locale, spatial.prefLabel)),
                       })),
                   )
                 : undefined,

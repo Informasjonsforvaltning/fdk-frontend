@@ -422,6 +422,36 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                     </dd>
                                 </>
                             )}
+                            {!service.spatial && !showEmptyRows ? null : (
+                                <>
+                                    <dt>{dictionaries.detailsPage.details.content.spatial}:</dt>
+                                    <dd className='article'>
+                                        {service.spatial ? (
+                                            <SmartList
+                                                listType='ol'
+                                                items={service.spatial}
+                                                renderItem={(spatial) =>
+                                                    spatial.uri ? (
+                                                        <ExternalLink
+                                                            href={spatial.uri}
+                                                            locale={locale}
+                                                            gateway
+                                                        >
+                                                            {spatial.prefLabel
+                                                                ? printLocaleValue(locale, spatial?.prefLabel)
+                                                                : spatial.uri}
+                                                        </ExternalLink>
+                                                    ) : (
+                                                        printLocaleValue(locale, spatial?.prefLabel)
+                                                    )
+                                                }
+                                            />
+                                        ) : (
+                                            <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
+                                        )}
+                                    </dd>
+                                </>
+                            )}
                             <dt>URI:</dt>
                             <dd>
                                 <Hstack>
