@@ -14,6 +14,7 @@ import {
     Dlist,
     Article,
     DownloadDistributionWidget,
+    noHeadings,
 } from '@fdk-frontend/ui';
 import distStyles from '../../distributions.module.scss';
 
@@ -46,6 +47,7 @@ const DistributionDetails = ({
                                 <Article>
                                     <Markdown
                                         locale={locale}
+                                        allowedElements={noHeadings}
                                         components={{
                                             a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
                                                 <ExternalLink

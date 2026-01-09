@@ -10,6 +10,7 @@ import {
     SmartList,
     Dlist,
     Article,
+    noHeadings,
 } from '@fdk-frontend/ui';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import detailsPageStyles from '../../../details-page.module.scss';
@@ -33,6 +34,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                                 <Article>
                                     <Markdown
                                         locale={locale}
+                                        allowedElements={noHeadings}
                                         components={{
                                             a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
                                                 <ExternalLink
