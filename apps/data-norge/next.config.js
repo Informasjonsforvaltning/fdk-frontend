@@ -5,9 +5,7 @@ const { composePlugins, withNx } = require('@nx/next');
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const createMDX = require('@next/mdx');
 
-/**
- * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
- **/
+/** @type {import('next').NextConfig} */
 const nextConfig = {
     // Configure `pageExtensions` to include markdown and MDX files
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
@@ -20,21 +18,16 @@ const nextConfig = {
         // Remove console logs in production
         removeConsole: process.env.NODE_ENV === 'production',
     },
-    // Force CSS modules to work with HMR
-    cssModules: {
-        // Use a more unique naming pattern for CSS modules
-        localIdentName: '[local]_[hash:base64:5]_[path]',
-    },
+    reactStrictMode: true,
+    // React Compiler configuration (moved from experimental in Next.js 16)
+    reactCompiler: false,
     // Add experimental features for better compatibility
     experimental: {
-        // Disable React Compiler to prevent hanging issues
-        reactCompiler: false,
         // Optimize for development
         optimizePackageImports: ['@digdir/designsystemet-react'],
         // Enable CSS modules with better HMR support
         cssChunking: 'strict',
     },
-    // Add timeout configuration
     serverExternalPackages: ['@fellesdatakatalog/types'],
     // Optimize images
     images: {

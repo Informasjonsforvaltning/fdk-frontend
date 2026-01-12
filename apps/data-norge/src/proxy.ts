@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { i18n, Locale } from '@fdk-frontend/dictionaries';
 import { isCanonicalDomain } from './utils/domain';
 
-export const middleware = (request: NextRequest) => {
+export const proxy = (request: NextRequest) => {
     // Get the pathname and remove basePath
     const basePath = '/';
     const pathname = request.nextUrl.pathname;
@@ -48,7 +48,7 @@ export const middleware = (request: NextRequest) => {
     }
 
     return response;
-};
+}
 
 export const config = {
     // Matcher ignoring `/_next/` and `/api/`
@@ -61,3 +61,4 @@ export const config = {
         { type: 'header', key: 'purpose', value: 'prefetch' },
     ],
 };
+
