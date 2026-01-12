@@ -28,7 +28,7 @@
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
         "production": [
             "default",
-            "!{projectRoot}/.eslintrc.json",
+            "!{projectRoot}/eslint.config.mjs",
             "!{projectRoot}/eslint.config.js",
             "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
             "!{projectRoot}/tsconfig.spec.json",
@@ -87,6 +87,18 @@
                 "buildDepsTargetName": "build-deps",
                 "watchDepsTargetName": "watch-deps",
                 "serveStaticTargetName": "serve-static"
+            }
+        },
+        {
+            "plugin": "@nx/js/typescript",
+            "options": {
+                "typecheck": {
+                    "targetName": "typecheck"
+                },
+                "build": {
+                    "targetName": "build",
+                    "configName": "tsconfig.lib.json"
+                }
             }
         }
     ],

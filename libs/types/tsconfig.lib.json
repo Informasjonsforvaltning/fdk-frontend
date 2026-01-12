@@ -1,14 +1,6 @@
 {
-    "compilerOptions": {
-        "outDir": "../../dist/out-tsc",
-        "types": [
-            "node",
-            "@nx/react/typings/cssmodule.d.ts",
-            "@nx/react/typings/image.d.ts",
-            "next",
-            "@nx/next/typings/image.d.ts"
-        ]
-    },
+    "extends": "../../tsconfig.base.json",
+    "references": [],
     "exclude": [
         "jest.config.ts",
         "src/**/*.spec.ts",
@@ -20,6 +12,5 @@
         "src/**/*.spec.jsx",
         "src/**/*.test.jsx"
     ],
-    "extends": "./tsconfig.json",
-    "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+    "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "src/**/*.json", "src/**/*.d.ts"]
 }
