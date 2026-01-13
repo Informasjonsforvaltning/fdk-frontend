@@ -1,5 +1,5 @@
 @use '@fdk-frontend/ui/box/box.module' as box;
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
 
 .wrapper {
     position: absolute;
@@ -9,7 +9,7 @@
     place-items: center;
 
     .inner {
-        @include article();
+        @include core-mixins.article();
         max-width: 600px;
         padding: 1rem;
     }

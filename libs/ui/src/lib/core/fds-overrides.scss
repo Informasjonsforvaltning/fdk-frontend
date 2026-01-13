@@ -1,4 +1,4 @@
-@import './mixins';
+@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
 
 .fds-heading {
     font-weight: 500;
@@ -47,7 +47,7 @@
     }
 
     &:focus-visible {
-        @include fds-focus-visible-block();
+        @include core-mixins.focus-block();
 
         &.fds-link {
             color: black;
@@ -110,7 +110,7 @@ Fix for weird code block inside Alert overflow bug.
 https://data.norge.no/nb/docs/sharing-data/how-to-dataset/2-dataset-description
 */
 .fds-alert__content {
-    @include article();
+    @include core-mixins.article();
     overflow: hidden;
     display: block;
 }

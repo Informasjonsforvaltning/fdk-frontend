@@ -1,4 +1,4 @@
-@import '@fdk-frontend/ui/core/mixins';
+@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
 
 .details {
     > section {
@@ -19,7 +19,7 @@
 }
 
 .article {
-    @include article();
+    @include core-mixins.article();
 }
 
 .placeholderText {
