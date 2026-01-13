@@ -1,36 +1,13 @@
 @use '../box-list/styles.module' as box-list;
 @use '../box-link/styles.module' as box-link;
-@use './mixins' as core-mixins;
+@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
 
 @layer reset, fds;
 
-@import './reset.css';
-@import '@digdir/designsystemet-css';
-@import '@digdir/designsystemet-theme';
+// Import fdk-ui styles
 @import '@fellesdatakatalog/ui/dist/styles.css';
-@import './ds-overrides.scss';
-
-:root {
-    // Colors
-    --fdk-color-navy: #1e2b3c;
-    --fdk-color-navy-dark: color-mix(in srgb, var(--fdk-color-navy), #000 60%);
-    --fdk-color-blue-lightest: #ddeaf6;
-    --fdk-color-blue-light: #1e98f5;
-    --fdk-color-blue: #0062ba;
-    --fdk-color-blue-dark: #004f96;
-    --fdk-color-cyan: #8eaacb;
-    --fdk-color-orange: var(--ds-color-brand2-base-default);
-    --fdk-color-red: #b81a1a;
-
-    // Other variables
-    --fdk-interactive-color: var(--fdk-color-blue);
-    --fdk-interactive-color-negative: var(--fdk-color-cyan);
-    --fdk-text-color: var(--fdk-color-navy);
-    --fdk-text-color--negative: white;
-    --fdk-link-color: var(--fdk-interactive-color);
-    --fdk-link-color-negative: var(--fdk-interactive-color-negative);
-    --custom-helptext-size: 1.25rem;
-}
+@import '@fellesdatakatalog/ui/src/components/core/reset.css';
+@import '@fellesdatakatalog/ui/src/components/core/tokens.scss';
 
 /*
     Needed for sticky header:
@@ -61,7 +38,7 @@ body {
         Arial,
         sans-serif;
     background: var(--fdk-color-navy-dark);
-    color: var(--fdk-text-color);
+    color: var(--fdk-color-text);
 
     main {
         background: white;

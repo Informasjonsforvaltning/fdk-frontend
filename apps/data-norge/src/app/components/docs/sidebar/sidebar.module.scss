@@ -1,4 +1,4 @@
-@use '@fdk-frontend/ui/core/mixins' as core-mixins;
+@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
 
 .sidebar {
     h2 {
@@ -8,7 +8,7 @@
             text-decoration: none;
 
             &:not(:hover):not(:focus-visible) {
-                color: var(--fdk-text-color) !important;
+                color: var(--fdk-color-text) !important;
             }
 
             &:hover {
