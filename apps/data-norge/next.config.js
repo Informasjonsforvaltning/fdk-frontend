@@ -11,6 +11,8 @@ const path = require('path');
 const nextConfig = {
     // Configure `pageExtensions` to include markdown and MDX files
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    // Force bundling to avoid Turbopack external module hash issues in Docker
+    transpilePackages: ['next-mdx-remote'],
     assetPrefix: '/nb',
     sassOptions: {
         silenceDeprecations: ['legacy-js-api', 'import'],
