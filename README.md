@@ -81,6 +81,15 @@ Run the container:
 docker run -p 8080:8080 fdk-frontend
 ```
 
+### Podman
+
+Alternative to Docker for users who prefer Podman:
+
+```bash
+podman build -f apps/data-norge/Dockerfile -t fdk-frontend .
+podman run -p 8080:8080 fdk-frontend
+```
+
 ## Troubleshooting
 
 ### Frontpage Hanging/Performance Issues
