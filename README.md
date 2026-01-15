@@ -52,11 +52,13 @@ yarn nx run data-norge:build
 ### Testing
 
 Unit tests (Jest):
+
 ```bash
 yarn nx run data-norge:test
 ```
 
 End-to-end tests (Playwright):
+
 ```bash
 yarn nx run data-norge-e2e:e2e
 ```
@@ -81,9 +83,9 @@ Run the container:
 docker run -p 8080:8080 fdk-frontend
 ```
 
-### Podman
+### Podman (Recommended)
 
-Alternative to Docker for users who prefer Podman:
+We recommend using Podman:
 
 ```bash
 podman build -f apps/data-norge/Dockerfile -t fdk-frontend .
