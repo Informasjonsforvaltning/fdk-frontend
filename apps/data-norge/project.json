@@ -9,8 +9,7 @@
             "defaultConfiguration": "production",
             "executor": "@nx/next:build",
             "options": {
-                "outputPath": "dist/apps/data-norge",
-                "webpack": true
+                "outputPath": "dist/apps/data-norge"
             },
             "outputs": ["{options.outputPath}"]
         },

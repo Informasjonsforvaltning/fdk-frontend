@@ -4,11 +4,15 @@
 const { composePlugins, withNx } = require('@nx/next');
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const createMDX = require('@next/mdx');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // Configure `pageExtensions` to include markdown and MDX files
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    // Force bundling to avoid Turbopack external module hash issues in Docker
+    transpilePackages: ['next-mdx-remote'],
     assetPrefix: '/nb',
     sassOptions: {
         silenceDeprecations: ['legacy-js-api', 'import'],
@@ -28,49 +32,14 @@ const nextConfig = {
         // Enable CSS modules with better HMR support
         cssChunking: 'strict',
     },
-    serverExternalPackages: ['@fellesdatakatalog/types'],
+    // Note: serverExternalPackages removed - Turbopack bundles server dependencies differently
+    // Turbopack configuration - set root to monorepo root
+    turbopack: {
+        root: path.join(__dirname, '../..'),
+    },
     // Optimize images
     images: {
         unoptimized: process.env.NODE_ENV === 'development',
-    },
-    webpack: (config) => {
-        // Ignore problematic native dependencies
-        config.resolve = {
-            ...config.resolve,
-            alias: {
-                ...config.resolve?.alias,
-                'rdf-canonize-native': false,
-            },
-            fallback: {
-                ...config.resolve?.fallback,
-                'rdf-canonize-native': false,
-                crypto: false,
-                stream: false,
-                util: false,
-            },
-        };
-
-        // Optimize for development with HMR-friendly settings
-        if (process.env.NODE_ENV === 'development') {
-            // Disable caching completely to prevent CSS HMR issues
-            config.cache = false;
-
-            config.optimization = {
-                ...config.optimization,
-                removeAvailableModules: false,
-                removeEmptyChunks: false,
-                splitChunks: false,
-            };
-
-            // Improve HMR performance with better file watching
-            config.watchOptions = {
-                poll: 1000,
-                aggregateTimeout: 50,
-                ignored: /node_modules/,
-            };
-        }
-
-        return config;
     },
     async redirects() {
         return [
