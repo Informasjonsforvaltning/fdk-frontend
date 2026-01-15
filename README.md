@@ -46,7 +46,25 @@ Go to http://localhost:3000
 ### Build
 
 ```bash
-nx run data-norge:build
+yarn nx run data-norge:build
+```
+
+### Testing
+
+Unit tests (Jest):
+```bash
+yarn nx run data-norge:test
+```
+
+End-to-end tests (Playwright):
+```bash
+yarn nx run data-norge-e2e:e2e
+```
+
+### Linting
+
+```bash
+yarn nx run data-norge:lint
 ```
 
 ### Docker
