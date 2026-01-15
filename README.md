@@ -38,10 +38,30 @@ yarn
 Start the development server for data-norge app:
 
 ```bash
-nx run data-norge:dev
+yarn nx run data-norge:dev
 ```
 
 Go to http://localhost:3000
+
+### Build
+
+```bash
+nx run data-norge:build
+```
+
+### Docker
+
+Build the image:
+
+```bash
+docker build -f apps/data-norge/Dockerfile -t fdk-frontend .
+```
+
+Run the container:
+
+```bash
+docker run -p 8080:8080 fdk-frontend
+```
 
 ## Troubleshooting
 
