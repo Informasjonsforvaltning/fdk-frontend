@@ -362,6 +362,30 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             data-size='xs'
                             className={styles.heading}
                         >
+                            {dictionaries.detailsPage.details.subject.title}
+                        </Heading>
+                        {service.subject && service.subject.length ? (
+                            <Dlist className={styles.dlist}>
+                                {service.subject.map((concept) => (
+                                    <React.Fragment key={concept.uri}>
+                                        <dt>
+                                            <Link href={`/concepts/${concept.id}`}>
+                                                {printLocaleValue(locale, concept.prefLabel) || concept.uri}
+                                            </Link>
+                                        </dt>
+                                        <dd>{printLocaleValue(locale, concept.definition)}</dd>
+                                    </React.Fragment>
+                                ))}
+                            </Dlist>
+                        ) : (
+                            <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                        )}
+
+                        <Heading
+                            level={2}
+                            data-size='xs'
+                            className={styles.heading}
+                        >
                             {dictionaries.detailsPage.details.general.serviceTitle}
                         </Heading>
                         <Dlist className={styles.dlist}>
