@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { mdxComponents } from './components';
 import remarkGfm from 'remark-gfm';
+import { mdxComponents } from './components';
 
 export const defaultAllowedElements = [
     'p',
@@ -86,4 +86,3 @@ const Markdown = ({
 };
 
 export default Markdown;
-export * from './components';
