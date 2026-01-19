@@ -1,8 +1,18 @@
 {
-    "ignorePatterns": ["node_modules", "**/*", "libs/storybook-app", "libs/data-norge-e2e"],
+    "ignorePatterns": [
+        "node_modules",
+        "**/*",
+        "libs/storybook-app",
+        "libs/data-norge-e2e"
+    ],
     "overrides": [
         {
-            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+            "files": [
+                "*.ts",
+                "*.tsx",
+                "*.js",
+                "*.jsx"
+            ],
             "rules": {
                 "@nx/enforce-module-boundaries": [
                     "error",
@@ -10,7 +20,9 @@
                         "allow": [],
                         "depConstraints": [
                             {
-                                "onlyDependOnLibsWithTags": ["*"],
+                                "onlyDependOnLibsWithTags": [
+                                    "*"
+                                ],
                                 "sourceTag": "*"
                             }
                         ],
@@ -29,26 +41,53 @@
                 "plugin:jsx-a11y/recommended",
                 "prettier"
             ],
-            "files": ["*.ts", "*.tsx"],
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
             "rules": {
                 "@typescript-eslint/no-explicit-any": "warn",
                 "@typescript-eslint/no-shadow": "error",
                 "@typescript-eslint/no-unused-vars": "error",
-                "arrow-body-style": ["warn", "as-needed"],
+                "arrow-body-style": [
+                    "warn",
+                    "as-needed"
+                ],
                 "camelcase": "error",
-                "complexity": ["warn", 10],
+                "complexity": [
+                    "warn",
+                    10
+                ],
                 "consistent-return": "warn",
                 "curly": "off",
                 "default-case": "warn",
                 "default-case-last": "error",
                 "default-param-last": "error",
-                "eol-last": ["warn", "always"],
-                "eqeqeq": ["error", "smart"],
-                "func-style": ["error", "expression", { "allowArrowFunctions": true }],
+                "eol-last": [
+                    "warn",
+                    "always"
+                ],
+                "eqeqeq": [
+                    "error",
+                    "smart"
+                ],
+                "func-style": [
+                    "error",
+                    "expression",
+                    {
+                        "allowArrowFunctions": true
+                    }
+                ],
                 "import/named": "warn",
                 "import/no-unresolved": "off",
-                "max-depth": ["warn", 4],
-                "max-lines": ["warn", 300],
+                "max-depth": [
+                    "warn",
+                    4
+                ],
+                "max-lines": [
+                    "warn",
+                    300
+                ],
                 "no-alert": "warn",
                 "no-await-in-loop": "error",
                 "no-console": "off",
@@ -56,7 +95,12 @@
                 "no-empty-function": "warn",
                 "no-eq-null": "error",
                 "no-implicit-coercion": "warn",
-                "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true }],
+                "no-magic-numbers": [
+                    "warn",
+                    {
+                        "ignoreArrayIndexes": true
+                    }
+                ],
                 "no-param-reassign": "error",
                 "no-promise-executor-return": "error",
                 "no-restricted-syntax": [
@@ -86,20 +130,44 @@
                 "plugin:jsx-a11y/recommended",
                 "prettier"
             ],
-            "files": ["*.js", "*.jsx"],
+            "files": [
+                "*.js",
+                "*.jsx"
+            ],
             "rules": {
-                "arrow-body-style": ["warn", "as-needed"],
+                "arrow-body-style": [
+                    "warn",
+                    "as-needed"
+                ],
                 "camelcase": "error",
-                "complexity": ["warn", 10],
+                "complexity": [
+                    "warn",
+                    10
+                ],
                 "consistent-return": "warn",
                 "curly": "warn",
                 "default-case": "error",
                 "default-case-last": "error",
                 "default-param-last": "error",
-                "eqeqeq": ["error", "smart"],
-                "func-style": ["error", "expression", { "allowArrowFunctions": true }],
-                "max-depth": ["warn", 4],
-                "max-lines": ["warn", 300],
+                "eqeqeq": [
+                    "error",
+                    "smart"
+                ],
+                "func-style": [
+                    "error",
+                    "expression",
+                    {
+                        "allowArrowFunctions": true
+                    }
+                ],
+                "max-depth": [
+                    "warn",
+                    4
+                ],
+                "max-lines": [
+                    "warn",
+                    300
+                ],
                 "no-alert": "warn",
                 "no-await-in-loop": "error",
                 "no-console": "warn",
@@ -107,7 +175,12 @@
                 "no-empty-function": "warn",
                 "no-eq-null": "error",
                 "no-implicit-coercion": "warn",
-                "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true }],
+                "no-magic-numbers": [
+                    "warn",
+                    {
+                        "ignoreArrayIndexes": true
+                    }
+                ],
                 "no-param-reassign": "error",
                 "no-promise-executor-return": "error",
                 "no-shadow": "error",
@@ -120,6 +193,11 @@
             }
         }
     ],
-    "plugins": ["@nx"],
-    "root": true
+    "plugins": [
+        "@nx"
+    ],
+    "root": true,
+    "extends": [
+        "plugin:storybook/recommended"
+    ]
 }
