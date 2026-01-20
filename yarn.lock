@@ -11730,7 +11730,7 @@ __metadata:
     leaflet: "npm:^1.9.4"
     lint-staged: "npm:^16.2.7"
     lodash: "npm:^4.17.21"
-    marked: "npm:^15.0.12"
+    marked: "npm:^17.0.1"
     mime-types: "npm:^3.0.2"
     next: "npm:^16.1.1"
     next-mdx-remote: "npm:^5.0.0"
@@ -15084,12 +15084,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^15.0.12":
-  version: 15.0.12
-  resolution: "marked@npm:15.0.12"
+"marked@npm:^17.0.1":
+  version: 17.0.1
+  resolution: "marked@npm:17.0.1"
   bin:
     marked: bin/marked.js
-  checksum: 10c0/e09da211544b787ecfb25fed07af206060bf7cd6d9de6cb123f15c496a57f83b7aabea93340aaa94dae9c94e097ae129377cad6310abc16009590972e85f4212
+  checksum: 10c0/0197337aad33882308cea52d2c86d7b830a89be729a4010a26a488ae1c224cdc7520b8cce056832a81a127fc39a3827f45e3865c1ff257324cb553cb06ce0e57
   languageName: node
   linkType: hard
 
