@@ -5,7 +5,7 @@ import { i18n, type Locale } from '@fdk-frontend/dictionaries';
 
 export type RootLayoutProps = {
     params: Promise<{
-        lang: Locale['code'];
+        lang: string;
     }>;
 };
 
