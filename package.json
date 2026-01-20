@@ -24,7 +24,6 @@
     "nx": "nx",
     "build": "nx run-many --target=build --all",
     "dev": "NEXT_IGNORE_INCORRECT_LOCKFILE=true nx run-many --target=dev --all --turbopack",
-    "dev:webpack": "NEXT_IGNORE_INCORRECT_LOCKFILE=true nx run-many --target=dev --all",
     "lint": "nx run-many --target=lint --all --no-error-on-unmatched-pattern",
     "test": "nx run-many --target=test --all",
     "e2e": "nx run-many --target=e2e --all",
@@ -95,13 +94,10 @@
     "@nx/storybook": "22.3.3",
     "@nx/vite": "22.3.3",
     "@nx/web": "^22.3.3",
-    "@nx/webpack": "22.3.3",
     "@nx/workspace": "^22.3.3",
     "@playwright/test": "^1.57.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.17",
     "@storybook/addon-docs": "9.1.17",
     "@storybook/react-vite": "9.1.17",
-    "@svgr/webpack": "^8.1.0",
     "@swc-node/register": "^1.11.1",
     "@swc/cli": "^0.7.10",
     "@swc/core": "^1.15.8",
@@ -156,7 +152,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.0",
-    "vite": "^6.4.1",
-    "webpack-cli": "^5.1.4"
+    "vite": "^6.4.1"
   }
 }

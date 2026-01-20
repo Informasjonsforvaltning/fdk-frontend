@@ -17,7 +17,7 @@
                 "babel": true,
                 "style": "scss",
                 "linter": "none",
-                "bundler": "webpack"
+                "bundler": "vite"
             },
             "component": {
                 "style": "scss"
@@ -77,17 +77,6 @@
                 "testStorybookTargetName": "test-storybook"
             },
             "plugin": "@nx/storybook/plugin"
-        },
-        {
-            "plugin": "@nx/webpack/plugin",
-            "options": {
-                "buildTargetName": "build",
-                "serveTargetName": "serve",
-                "previewTargetName": "preview",
-                "buildDepsTargetName": "build-deps",
-                "watchDepsTargetName": "watch-deps",
-                "serveStaticTargetName": "serve-static"
-            }
         }
     ],
     "targetDefaults": {
