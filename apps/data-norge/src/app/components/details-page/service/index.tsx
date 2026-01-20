@@ -369,11 +369,11 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                 {service.subject.map((concept) => (
                                     <React.Fragment key={concept.uri}>
                                         <dt>
-                                            <Link href={`/concepts/${concept.id}`}>
-                                                {printLocaleValue(locale, concept.prefLabel) || concept.uri}
+                                            <Link href={`/concepts/${concept.uri}`}>
+                                                {printLocaleValue(locale, concept.label) || concept.uri}
                                             </Link>
                                         </dt>
-                                        <dd>{printLocaleValue(locale, concept.definition)}</dd>
+                                        <dd>{printLocaleValue(locale, concept.code)}</dd>
                                     </React.Fragment>
                                 ))}
                             </Dlist>
