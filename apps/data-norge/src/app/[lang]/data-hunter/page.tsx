@@ -3,7 +3,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getDictionary, LocaleCodes } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs } from '@fdk-frontend/ui';
 import DataHunterForm from './components/data-hunter-form';
 import styles from './page.module.css';
@@ -13,7 +13,7 @@ type DataHunterPageProps = PageProps<'/[lang]/data-hunter'>;
 const DataHunterPage = async (props: DataHunterPageProps) => {
     const params = await props.params;
     const { lang } = params;
-    const locale = lang as Locale['code'];
+    const locale = lang as LocaleCodes;
     // Opt-in dynamic rendering
     await noStore();
 
@@ -46,7 +46,7 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
 
 export const generateMetadata = async (props: DataHunterPageProps): Promise<Metadata> => {
     const params = await props.params;
-    const locale = params.lang as Locale['code'];
+    const locale = params.lang as LocaleCodes;
     const dictionary = await getDictionary(locale, 'data-hunter-page');
 
     return {

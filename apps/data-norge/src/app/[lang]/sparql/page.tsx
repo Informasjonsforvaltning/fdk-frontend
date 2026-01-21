@@ -2,7 +2,7 @@ import 'server-only';
 import React from 'react';
 import type { Metadata } from 'next';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getDictionary, LocaleCodes } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs } from '@fdk-frontend/ui';
 import styles from './page.module.css';
 import { SparqlEditor } from './components/sparql-editor';
@@ -11,7 +11,7 @@ type SparqlPageProps = PageProps<'/[lang]/sparql'>;
 
 const SparqlPage = async (props: SparqlPageProps) => {
     const { lang } = await props.params;
-    const locale = lang as Locale['code'];
+    const locale = lang as LocaleCodes;
 
     const { FDK_SPARQL_ENDPOINT } = process.env;
 
@@ -49,7 +49,7 @@ const SparqlPage = async (props: SparqlPageProps) => {
 
 export const generateMetadata = async (props: SparqlPageProps): Promise<Metadata> => {
     const params = await props.params;
-    const locale = params.lang as Locale['code'];
+    const locale = params.lang as LocaleCodes;
     const dictionary = await getDictionary(locale, 'sparql-sandbox-page');
 
     return {

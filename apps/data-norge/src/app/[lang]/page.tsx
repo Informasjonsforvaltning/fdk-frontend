@@ -1,7 +1,7 @@
 import 'server-only';
 import { type Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
-import { type Locale, getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
+import { LocaleCodes, getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
 import { Header, Footer } from '@fdk-frontend/ui';
 import { FrontpageBanner } from '../components/frontpage/frontpage-banner';
 import { ShareDataBanner } from '../components/frontpage/share-data-banner';
@@ -11,7 +11,7 @@ type FrontpageProps = PageProps<'/[lang]'>;
 
 const Frontpage = async (props: FrontpageProps) => {
     const params = await props.params;
-    const locale = params.lang as Locale['code'];
+    const locale = params.lang as LocaleCodes;
 
     // Opt-in dynamic rendering
     await noStore();
@@ -57,7 +57,7 @@ const Frontpage = async (props: FrontpageProps) => {
 
 export const generateMetadata = async (props: FrontpageProps): Promise<Metadata> => {
     const params = await props.params;
-    const locale = params.lang as Locale['code'];
+    const locale = params.lang as LocaleCodes;
     const frontpageDictionary = await getDictionary(locale, 'frontpage');
 
     return {
