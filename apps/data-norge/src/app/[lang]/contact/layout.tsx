@@ -1,5 +1,4 @@
 import { NormalLayout } from '@fdk-frontend/ui';
-import { LocaleCodes } from '@fdk-frontend/dictionaries';
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';

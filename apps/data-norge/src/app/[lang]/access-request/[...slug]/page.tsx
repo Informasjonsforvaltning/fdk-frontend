@@ -4,7 +4,7 @@ import { Spinner, Paragraph } from '@digdir/designsystemet-react';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { getAccessRequestDestination } from '@fdk-frontend/data-access/server';
 import styles from './access-request-page.module.scss';
-import { CatalogTypes } from '@fdk-frontend/libs/types/src';
+import { CatalogTypes } from '@fdk-frontend/types';
 
 type AccessRequestPageProps = PageProps<'/[lang]/access-request/[...slug]'>;
 
