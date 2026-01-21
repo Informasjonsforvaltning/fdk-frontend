@@ -1,4 +1,5 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite';
+import { mergeConfig } from 'vite';
 import * as path from 'path';
 
 const config: StorybookConfig = {
@@ -7,25 +8,94 @@ const config: StorybookConfig = {
         '../../libs/ui/src/**/*.stories.@(js|jsx|ts|tsx)',
         '../../apps/data-norge/src/**/*.stories.@(js|jsx|ts|tsx)',
     ],
-    addons: ['@storybook/addon-essentials', '@storybook/addon-interactions', '@nx/react/plugins/storybook'],
+    addons: ['@storybook/addon-essentials', '@storybook/addon-docs'],
     framework: {
-        name: '@storybook/react-webpack5',
+        name: '@storybook/react-vite',
         options: {},
     },
-    webpackFinal(baseConfig) {
-        baseConfig.resolve = {
-            ...(baseConfig.resolve ?? {}),
-            alias: {
-                ...(baseConfig.resolve?.alias ?? {}),
-                '@fdk-frontend/ui/core': path.resolve(__dirname, '../../libs/ui/src/lib/core'),
+    async viteFinal(config) {
+        return mergeConfig(config, {
+            define: {
+                'process.env': '{}',
+                'process.platform': JSON.stringify('browser'),
+                'process.version': JSON.stringify(''),
             },
-        };
-        return baseConfig;
+            optimizeDeps: {
+                include: ['react', 'react-dom', 'react/jsx-runtime', 'react-markdown'],
+                esbuildOptions: {
+                    // Handle circular dependencies
+                    legalComments: 'none',
+                    jsx: 'automatic',
+                },
+            },
+            esbuild: {
+                jsx: 'automatic',
+                jsxImportSource: 'react',
+            },
+            build: {
+                commonjsOptions: {
+                    // Handle circular dependencies in CommonJS modules
+                    transformMixedEsModules: true,
+                },
+            },
+            resolve: {
+                alias: [
+                    {
+                        find: '@fdk-frontend/ui/core',
+                        replacement: path.resolve(__dirname, '../../libs/ui/src/lib/core'),
+                    },
+                    {
+                        find: '@fdk-frontend/data-access/server',
+                        replacement: path.resolve(__dirname, '../../libs/data-access/src/server.ts'),
+                    },
+                    {
+                        find: '@fdk-frontend/data-access',
+                        replacement: path.resolve(__dirname, '../../libs/data-access/src/index.ts'),
+                    },
+                    {
+                        find: '@fdk-frontend/dictionaries',
+                        replacement: path.resolve(__dirname, '../../libs/dictionaries/src/index.ts'),
+                    },
+                    {
+                        find: /^@fdk-frontend\/libs\/(.+)$/,
+                        replacement: path.resolve(__dirname, '../../libs/$1'),
+                    },
+                    {
+                        find: '@fdk-frontend/types/server',
+                        replacement: path.resolve(__dirname, '../../libs/types/src/server.ts'),
+                    },
+                    {
+                        find: '@fdk-frontend/types',
+                        replacement: path.resolve(__dirname, '../../libs/types/src/index.ts'),
+                    },
+                    {
+                        find: /^@fdk-frontend\/ui\/(.+)$/,
+                        replacement: path.resolve(__dirname, '../../libs/ui/src/lib/$1'),
+                    },
+                    {
+                        find: '@fdk-frontend/ui',
+                        replacement: path.resolve(__dirname, '../../libs/ui/src/index.ts'),
+                    },
+                    {
+                        find: '@fdk-frontend/utils/server',
+                        replacement: path.resolve(__dirname, '../../libs/utils/src/server.ts'),
+                    },
+                    {
+                        find: /^@fdk-frontend\/utils\/(.+)$/,
+                        replacement: path.resolve(__dirname, '../../libs/utils/src/lib/$1'),
+                    },
+                    {
+                        find: '@fdk-frontend/utils',
+                        replacement: path.resolve(__dirname, '../../libs/utils/src/index.ts'),
+                    },
+                    {
+                        find: 'next/navigation',
+                        replacement: path.resolve(__dirname, './mocks/next-navigation.ts'),
+                    },
+                ],
+            },
+        });
     },
 };
 
 export default config;
-
-// To customize your webpack configuration you can use the webpackFinal field.
-// Check https://storybook.js.org/docs/react/builders/webpack#extending-storybooks-webpack-config
-// and https://nx.dev/recipes/storybook/custom-builder-configs
