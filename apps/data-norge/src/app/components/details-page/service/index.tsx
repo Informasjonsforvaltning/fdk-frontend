@@ -2,7 +2,7 @@
 
 import React, { Fragment, useState } from 'react';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { type Organization, type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
+import { type Organization, type CommunityTopic, type PublicService, SearchObject } from '@fellesdatakatalog/types';
 import { getSlug, printLocaleValue, sumArrayLengths } from '@fdk-frontend/utils';
 import {
     Badge,
@@ -33,6 +33,7 @@ export type ServiceDetailsPageType = {
     baseUri: string;
     communityTopics?: CommunityTopic[];
     communityBaseUri: string;
+    concepts: SearchObject[];
     defaultActiveTab?: string;
     dictionaries: {
         common: Dictionary;
@@ -49,6 +50,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
         baseUri,
         communityTopics,
         communityBaseUri,
+        concepts,
         defaultActiveTab,
         dictionaries,
         locale,
@@ -351,6 +353,34 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                             )}
                                         </Dlist>
                                     ))
+                                ) : (
+                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                                )}
+                            </>
+                        )}
+
+                        {!concepts.length && !showEmptyRows ? null : (
+                            <>
+                                <Heading
+                                    level={2}
+                                    data-size='xs'
+                                    className={styles.heading}
+                                >
+                                    {dictionaries.detailsPage.details.subject.title}
+                                </Heading>
+                                {concepts.length ? (
+                                    <Dlist className={styles.dlist}>
+                                        {concepts.map((concept) => (
+                                            <React.Fragment key={concept.uri}>
+                                                <dt>
+                                                    <Link href={`/concepts/${concept.id}`}>
+                                                        {printLocaleValue(locale, concept.title) || concept.uri}
+                                                    </Link>
+                                                </dt>
+                                                <dd>{printLocaleValue(locale, concept.description)}</dd>
+                                            </React.Fragment>
+                                        ))}
+                                    </Dlist>
                                 ) : (
                                     <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
                                 )}

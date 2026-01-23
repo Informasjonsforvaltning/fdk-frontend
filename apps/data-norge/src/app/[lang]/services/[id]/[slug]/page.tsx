@@ -1,7 +1,7 @@
-import { getAllCommunityTopics, getOrgLogo, getService } from '@fdk-frontend/data-access/server';
+import { getAllCommunityTopics, getOrgLogo, getService, searchConcepts } from '@fdk-frontend/data-access/server';
 import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
-import { type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
+import { SearchObject, type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
 import ServiceDetailsPage from '../../../../components/details-page/service';
 import { notFound, redirect } from 'next/navigation';
 
@@ -24,6 +24,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     let service: PublicService;
     let orgLogo: string | null = null;
     let communityTopics: CommunityTopic[] = [];
+    let concepts: SearchObject[] = [];
 
     try {
         service = await getService(id);
@@ -52,6 +53,15 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     }
 
     try {
+        const results = await searchConcepts(
+            service.subject?.map((concept) => concept.uri).filter((uri) => uri !== undefined),
+        );
+        concepts = results?.hits ?? [];
+    } catch {
+        // Fail silently
+    }
+
+    try {
         communityTopics = await getAllCommunityTopics(service.id);
     } catch {
         // Fail silently
@@ -60,6 +70,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     return (
         <ServiceDetailsPage
             baseUri={process.env.FDK_BASE_URI as string}
+            concepts={concepts}
             service={service}
             orgLogo={orgLogo}
             communityTopics={communityTopics}
