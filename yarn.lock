@@ -11694,7 +11694,6 @@ __metadata:
     react: "npm:^19.2.3"
     react-dom: "npm:^19.2.3"
     react-markdown: "npm:^10.1.0"
-    react-refresh: "npm:^0.10.0"
     react-syntax-highlighter: "npm:^15.6.6"
     remark-gfm: "npm:^4.0.1"
     sass: "npm:^1.97.2"
@@ -18681,13 +18680,6 @@ __metadata:
     "@types/react": ">=18"
     react: ">=18"
   checksum: 10c0/4a5dc7d15ca6d05e9ee95318c1904f83b111a76f7588c44f50f1d54d4c97193b84e4f64c4b592057c989228238a2590306cedd0c4d398e75da49262b2b5ae1bf
-  languageName: node
-  linkType: hard
-
-"react-refresh@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "react-refresh@npm:0.10.0"
-  checksum: 10c0/616e82bed3787bf4e55dcc1c9836f251b93523dd4b0ffb1c24c2dcf5d09f686fbf3cffc7d489cd7f12429f76ddf66eb431748fc07df56b18a888a7705cbc079e
   languageName: node
   linkType: hard
 
