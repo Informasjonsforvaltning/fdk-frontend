@@ -2,25 +2,21 @@ import 'server-only';
 import React from 'react';
 import type { Metadata } from 'next';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getDictionary, LocaleCodes } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs } from '@fdk-frontend/ui';
 import styles from './page.module.css';
 import { SparqlEditor } from './components/sparql-editor';
 
-type SparqlPageProps = {
-    params: Promise<{
-        lang: Locale['code'];
-    }>;
-};
+type SparqlPageProps = PageProps<'/[lang]/sparql'>;
 
 const SparqlPage = async (props: SparqlPageProps) => {
-    const params = await props.params;
-    const { lang } = params;
+    const { lang } = await props.params;
+    const locale = lang as LocaleCodes;
 
     const { FDK_SPARQL_ENDPOINT } = process.env;
 
-    const dictionary = await getDictionary(lang, 'sparql-sandbox-page');
-    const commonDictionary = await getDictionary(lang, 'common');
+    const dictionary = await getDictionary(locale, 'sparql-sandbox-page');
+    const commonDictionary = await getDictionary(locale, 'common');
 
     const breadcrumbList = [
         {
@@ -53,13 +49,14 @@ const SparqlPage = async (props: SparqlPageProps) => {
 
 export const generateMetadata = async (props: SparqlPageProps): Promise<Metadata> => {
     const params = await props.params;
-    const dictionary = await getDictionary(params.lang, 'sparql-sandbox-page');
+    const locale = params.lang as LocaleCodes;
+    const dictionary = await getDictionary(locale, 'sparql-sandbox-page');
 
     return {
         title: dictionary.metadata.title,
         description: dictionary.metadata.description,
         alternates: {
-            canonical: `https://data.norge.no/${params.lang}/sparql-sandbox`,
+            canonical: `https://data.norge.no/${locale}/sparql-sandbox`,
         },
     };
 };
