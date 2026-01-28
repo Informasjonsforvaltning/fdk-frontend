@@ -4,6 +4,7 @@ import { Link, type LinkProps } from '@digdir/designsystemet-react';
 
 import DigdirEmblem from '../core/svg/digdir-emblem';
 import DigdirLogo from '../core/svg/digdir-logo';
+import DpgBadge from '../core/svg/dpg-badge';
 
 import styles from './logo.module.scss';
 
@@ -29,6 +30,17 @@ const LogoLink = ({ className, ...rest }: LogoLinkProps & Omit<LinkProps, 'child
     </Link>
 );
 
+const DpgLink = ({ className, ...props }: Omit<LinkProps, 'children'>) => (
+    <Link
+        className={cn(styles.dpgLink, 'ds-button', className)}
+        data-size='sm'
+        data-variant='tertiary'
+        {...props}
+    >
+        <DpgBadge />
+    </Link>
+);
+
 const DigdirLogoLink = ({ className, ...props }: Omit<LinkProps, 'children'>) => (
     <Link
         className={cn(styles.digdirLogoLink, 'ds-button', className)}
@@ -40,4 +52,4 @@ const DigdirLogoLink = ({ className, ...props }: Omit<LinkProps, 'children'>) =>
     </Link>
 );
 
-export { Logo, LogoLink, DigdirLogoLink };
+export { Logo, LogoLink, DpgLink, DigdirLogoLink };
