@@ -51,7 +51,7 @@
         "@digdir/designsystemet-react": "^1.11.0",
         "@digdir/designsystemet-theme": "^1.11.0",
         "@fellesdatakatalog/types": "^1.0.12",
-        "@fellesdatakatalog/ui": "^1.0.18",
+        "@fellesdatakatalog/ui": "^1.0.19",
         "@mdx-js/loader": "^3.1.1",
         "@mdx-js/react": "^3.1.1",
         "@navikt/aksel-icons": "^7.40.0",
