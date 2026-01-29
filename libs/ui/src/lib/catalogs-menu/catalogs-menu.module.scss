@@ -12,7 +12,7 @@
     }
 
     @container (max-width: 500px) {
-        ul {
+        .menuList {
             grid-template-columns: 1fr;
         }
     }
