@@ -1,7 +1,7 @@
 @use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
 
 .details {
-    position:relative;
+    position: relative;
 
     > section {
         &:not(:last-child) {
@@ -16,7 +16,7 @@
     .toggleButton {
         position: absolute;
         top: -0.75rem;
-        right:0;
+        right: 0;
     }
 }
 
