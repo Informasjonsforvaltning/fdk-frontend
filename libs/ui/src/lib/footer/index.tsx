@@ -36,7 +36,8 @@ const Footer = ({ dictionary, locale }: FooterProps) => {
                             data-color-scheme='dark'
                         />
                         <DpgLink
-                            href='https://digitalpublicgoods.net/'
+                            title=''
+                            href='https://www.digitalpublicgoods.net/r/data-norge'
                             data-color-scheme='dark'
                         />
                     </HStack>
