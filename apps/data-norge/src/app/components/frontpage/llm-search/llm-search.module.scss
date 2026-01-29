@@ -31,8 +31,8 @@
 
 .llmInputTextfield {
     position: relative;
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     gap: 0.5rem;
 
     :global(.ds-field-affixes) {

@@ -34,8 +34,7 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
                     getResultsText()
                 )}
             </div>
-            {
-                !numResults &&
+            {!numResults && (
                 <div className={styles.helptextWrapper}>
                     <Popover.TriggerContext>
                         <Popover.Trigger
@@ -63,7 +62,7 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
                         </Popover>
                     </Popover.TriggerContext>
                 </div>
-            }
+            )}
         </div>
     );
 };
