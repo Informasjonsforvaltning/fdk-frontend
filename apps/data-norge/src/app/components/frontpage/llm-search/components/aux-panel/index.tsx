@@ -34,33 +34,36 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
                     getResultsText()
                 )}
             </div>
-            <div className={styles.helptextWrapper}>
-                <Popover.TriggerContext>
-                    <Popover.Trigger
-                        variant='tertiary'
-                        data-size='sm'
-                        data-color-scheme='dark'
-                    >
-                        {dictionary.aiBanner.tooltip.label}
-                    </Popover.Trigger>
-                    <Popover placement='right'>
-                        <Paragraph>{dictionary.aiBanner.tooltip.text}</Paragraph>
-                        <Paragraph>
-                            <b>{dictionary.aiBanner.tooltip.disclaimer}</b>
-                        </Paragraph>
-                        <Paragraph>
-                            <Button
-                                data-size='sm'
-                                asChild
-                            >
-                                <Link href={`/${locale}/docs/finding-data/ai-search`}>
-                                    {dictionary.aiBanner.tooltip.readMoreLinkText}
-                                </Link>
-                            </Button>
-                        </Paragraph>
-                    </Popover>
-                </Popover.TriggerContext>
-            </div>
+            {
+                !numResults &&
+                <div className={styles.helptextWrapper}>
+                    <Popover.TriggerContext>
+                        <Popover.Trigger
+                            variant='tertiary'
+                            data-size='sm'
+                            data-color-scheme='dark'
+                        >
+                            {dictionary.aiBanner.tooltip.label}
+                        </Popover.Trigger>
+                        <Popover placement='right'>
+                            <Paragraph>{dictionary.aiBanner.tooltip.text}</Paragraph>
+                            <Paragraph>
+                                <b>{dictionary.aiBanner.tooltip.disclaimer}</b>
+                            </Paragraph>
+                            <Paragraph>
+                                <Button
+                                    data-size='sm'
+                                    asChild
+                                >
+                                    <Link href={`/${locale}/docs/finding-data/ai-search`}>
+                                        {dictionary.aiBanner.tooltip.readMoreLinkText}
+                                    </Link>
+                                </Button>
+                            </Paragraph>
+                        </Popover>
+                    </Popover.TriggerContext>
+                </div>
+            }
         </div>
     );
 };
