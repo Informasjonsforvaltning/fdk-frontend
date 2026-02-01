@@ -99,7 +99,7 @@
         "@nx/workspace": "^22.4.2",
         "@playwright/test": "^1.58.0",
         "@storybook/addon-docs": "9.1.17",
-        "@storybook/react-vite": "9.1.17",
+        "@storybook/react-vite": "10.2.3",
         "@swc-node/register": "^1.11.1",
         "@swc/cli": "^0.7.10",
         "@swc/core": "^1.15.11",
