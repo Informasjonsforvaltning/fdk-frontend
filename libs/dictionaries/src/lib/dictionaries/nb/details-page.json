@@ -219,6 +219,7 @@
                 "unknown": "Ukjent relasjon"
             }
         },
+        "dctType": "Hovedformål",
         "themes": "Tema",
         "mobilityThemes": "Mobility-tema",
         "thematicArea": "Temaområde",

@@ -495,6 +495,34 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             </dd>
                         </Dlist>
 
+                        {!service.dctType?.length && !showEmptyRows ? null : (
+                            <>
+                                <Heading
+                                    level={2}
+                                    data-size='xs'
+                                    className={styles.heading}
+                                >
+                                    {dictionaries.detailsPage.details.dctType}
+                                </Heading>
+                                {service.dctType?.length ? (
+                                    <TagList>
+                                        {service.dctType.map((theme) => (
+                                            <Link
+                                                key={theme.code}
+                                                href={`/public-services-and-events?mainActivities=${theme.code}`}
+                                            >
+                                                <Tag data-size='sm'>
+                                                    {printLocaleValue(locale, theme.prefLabel) || theme.code}
+                                                </Tag>
+                                            </Link>
+                                        ))}
+                                    </TagList>
+                                ) : (
+                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                                )}
+                            </>
+                        )}
+
                         {!service.eurovocThemes?.length && !service.losThemes?.length && !showEmptyRows ? null : (
                             <>
                                 <Heading

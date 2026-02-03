@@ -216,6 +216,7 @@
                 "unknown": "Unknown relation"
             }
         },
+        "dctType": "Main activities",
         "themes": "Themes",
         "mobilityThemes": "Mobility themes",
         "thematicArea": "Thematic area",
