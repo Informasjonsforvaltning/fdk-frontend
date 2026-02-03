@@ -52,7 +52,7 @@
         "@digdir/designsystemet-css": "^1.11.0",
         "@digdir/designsystemet-react": "^1.11.0",
         "@digdir/designsystemet-theme": "^1.11.0",
-        "@fellesdatakatalog/types": "^1.0.12",
+        "@fellesdatakatalog/types": "^1.0.14",
         "@fellesdatakatalog/ui": "^1.0.19",
         "@mdx-js/loader": "^3.1.1",
         "@mdx-js/react": "^3.1.1",
