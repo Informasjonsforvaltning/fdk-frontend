@@ -14,6 +14,7 @@ type QuerySuggestionProps = {
 
 const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps) => {
     const suggestions = dictionary.aiBanner.suggestions.list;
+    // eslint-disable-next-line react-hooks/purity
     const randomIndex = Math.floor(Math.random() * suggestions.length);
     const [suggestion] = useState(suggestions[randomIndex]);
 

@@ -67,6 +67,7 @@ export default async function DocsPage(pageProps: DocsPageProps) {
 
         // Render page
         return (
+            // eslint-disable-next-line react-hooks/error-boundaries
             <MdxPage
                 sidebars={frontmatter.sidebars as boolean | undefined}
                 currentPath={[rootContentDirectory, ...slug]}
