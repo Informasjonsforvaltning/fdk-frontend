@@ -17,30 +17,35 @@ export const test = base.extend<{
         const accessibilityBuilder = await generateAccessibilityBuilder(page);
         const dataHunterFormPage = new FormPage(page, context, accessibilityBuilder);
         await dataHunterFormPage.goto();
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         await use(dataHunterFormPage);
     },
     frontpage: async ({ page, context }, use) => {
         const accessibilityBuilder = await generateAccessibilityBuilder(page);
         const frontpage = new Frontpage(page, context, accessibilityBuilder);
         await frontpage.goto();
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         await use(frontpage);
     },
     docsPage: async ({ page, context }, use) => {
         const accessibilityBuilder = await generateAccessibilityBuilder(page);
         const docsPage = new DocsPage(page, context, accessibilityBuilder);
         await docsPage.goto();
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         await use(docsPage);
     },
     datasetDetailsPage: async ({ page, context }, use) => {
         const accessibilityBuilder = await generateAccessibilityBuilder(page);
         const datasetDetailsPage = new DatasetDetailsPage(page, context, accessibilityBuilder);
         await datasetDetailsPage.goto();
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         await use(datasetDetailsPage);
     },
     serviceDetailsPage: async ({ page, context }, use) => {
         const accessibilityBuilder = await generateAccessibilityBuilder(page);
         const datasetDetailsPage = new DatasetDetailsPage(page, context, accessibilityBuilder);
         await datasetDetailsPage.goto();
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         await use(datasetDetailsPage);
     },
 });

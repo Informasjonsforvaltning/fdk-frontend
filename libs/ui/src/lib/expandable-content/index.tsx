@@ -16,6 +16,7 @@ const ExpandableContent = ({ children, maxHeight, ...props }: { maxHeight?: numb
     useEffect(() => {
         const container = containerRef.current;
         if (container && maxHeight) {
+            // eslint-disable-next-line react-hooks/immutability
             observer = new ResizeObserver(() => {
                 if (overflow === undefined && container.offsetHeight > maxHeight) {
                     setOverflow((prev) => {

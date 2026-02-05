@@ -31,6 +31,7 @@ const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway
         const isSameHostname = destination.hostname === current.hostname;
 
         if (gateway && !isSameHostname) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setTarget(gatewayLink);
         }
     }, []);

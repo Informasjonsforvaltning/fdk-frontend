@@ -51,6 +51,7 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
     };
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         toggleSticky();
 
         window.addEventListener('scroll', toggleSticky);

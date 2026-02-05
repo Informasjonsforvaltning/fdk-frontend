@@ -22,6 +22,7 @@ const OrganizationCarousel = ({ dictionary }: Props) => {
 
     useEffect(() => {
         const shuffled = [...organizations].sort(() => Math.random() - 0.5);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setShuffledOrganizations(shuffled);
     }, []);
 
