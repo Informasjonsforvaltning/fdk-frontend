@@ -36,6 +36,10 @@
             padding-top: 0;
         }
 
+        .headerSearchInput {
+            display:none;
+        }
+
         .headerOuter {
             position: absolute;
 
@@ -114,6 +118,7 @@
         position: relative;
         z-index: 1601;
         container-type: inline-size;
+        gap: 4rem;
 
         &.full {
             max-width: none;
@@ -126,9 +131,16 @@
             }
         }
 
+        .headerSearchInput {
+            flex-grow: 1;
+            max-width: 600px;
+            // align-self: flex-start;
+        }
+
         .headerToolbar {
             display: flex;
             gap: 1rem;
+            // align-self: flex-end;
 
             @container (max-width: 500px) {
                 gap: 0.5rem;

@@ -1,13 +1,16 @@
 import { fileURLToPath } from 'node:url';
+import path from 'path';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
-import { dirname, resolve } from 'path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function getAbsolutePath(value: string): string {
-    return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+    return path.dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }
+
+// Resolve from workspace root (storybook runs with cwd = storybook-app)
+const root = path.resolve(process.cwd(), '..');
 
 const config: StorybookConfig = {
     stories: [
@@ -49,55 +52,55 @@ const config: StorybookConfig = {
                 alias: [
                     {
                         find: '@fdk-frontend/ui/core',
-                        replacement: resolve(__dirname, '../../libs/ui/src/lib/core'),
+                        replacement: path.join(root, 'libs/ui/src/lib/core'),
                     },
                     {
                         find: '@fdk-frontend/data-access/server',
-                        replacement: resolve(__dirname, '../../libs/data-access/src/server.ts'),
+                        replacement: path.join(root, 'libs/data-access/src/server.ts'),
                     },
                     {
                         find: '@fdk-frontend/data-access',
-                        replacement: resolve(__dirname, '../../libs/data-access/src/index.ts'),
+                        replacement: path.join(root, 'libs/data-access/src/index.ts'),
                     },
                     {
                         find: '@fdk-frontend/localization',
-                        replacement: resolve(__dirname, '../../libs/localization/src/index.ts'),
+                        replacement: path.join(root, 'libs/localization/src/index.ts'),
                     },
                     {
                         find: /^@fdk-frontend\/libs\/(.+)$/,
-                        replacement: resolve(__dirname, '../../libs/$1'),
+                        replacement: path.join(root, 'libs/$1'),
                     },
                     {
                         find: '@fdk-frontend/types/server',
-                        replacement: resolve(__dirname, '../../libs/types/src/server.ts'),
+                        replacement: path.join(root, 'libs/types/src/server.ts'),
                     },
                     {
                         find: '@fdk-frontend/types',
-                        replacement: resolve(__dirname, '../../libs/types/src/index.ts'),
+                        replacement: path.join(root, 'libs/types/src/index.ts'),
                     },
                     {
                         find: /^@fdk-frontend\/ui\/(.+)$/,
-                        replacement: resolve(__dirname, '../../libs/ui/src/lib/$1'),
+                        replacement: path.join(root, 'libs/ui/src/lib/$1'),
                     },
                     {
                         find: '@fdk-frontend/ui',
-                        replacement: resolve(__dirname, '../../libs/ui/src/index.ts'),
+                        replacement: path.join(root, 'libs/ui/src/index.ts'),
                     },
                     {
                         find: '@fdk-frontend/utils/server',
-                        replacement: resolve(__dirname, '../../libs/utils/src/server.ts'),
+                        replacement: path.join(root, 'libs/utils/src/server.ts'),
                     },
                     {
                         find: /^@fdk-frontend\/utils\/(.+)$/,
-                        replacement: resolve(__dirname, '../../libs/utils/src/lib/$1'),
+                        replacement: path.join(root, 'libs/utils/src/lib/$1'),
                     },
                     {
                         find: '@fdk-frontend/utils',
-                        replacement: resolve(__dirname, '../../libs/utils/src/index.ts'),
+                        replacement: path.join(root, 'libs/utils/src/index.ts'),
                     },
                     {
                         find: 'next/navigation',
-                        replacement: resolve(__dirname, './mocks/next-navigation.ts'),
+                        replacement: path.join(process.cwd(), '.storybook', 'mocks', 'next-navigation.ts'),
                     },
                 ],
             },
