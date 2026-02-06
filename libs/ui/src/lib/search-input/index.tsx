@@ -1,7 +1,7 @@
 'use client';
 import cn from 'classnames';
 import { Input, Button } from '@digdir/designsystemet-react';
-import { HStack } from '@fellesdatakatalog/ui';
+// import { HStack } from '@fellesdatakatalog/ui';
 import { MagnifyingGlassIcon, SparklesFillIcon } from '@navikt/aksel-icons';
 
 import styles from './search-input.module.scss';
@@ -16,7 +16,7 @@ export type SearchInputProps = {
 
 const SearchInput = ({ value, onChange, searchLabel = 'Søk', placeholder = 'Hva leter du etter?', className }: SearchInputProps) => {
     return (
-        <HStack className={cn(styles.container, className)}>
+        <form className={cn(styles.container, className)}>
             <SparklesFillIcon
                 className={styles.searchIcon}
             />
@@ -35,7 +35,7 @@ const SearchInput = ({ value, onChange, searchLabel = 'Søk', placeholder = 'Hva
             >
                 {searchLabel}
             </Button> */}
-        </HStack>
+        </form>
     );
 };
 

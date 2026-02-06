@@ -55,9 +55,6 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                         </Button>
                     </HStack>
                 </VStack>
-                <div>
-                    Search results here
-                </div>
             </VStack>
         </form>
     );

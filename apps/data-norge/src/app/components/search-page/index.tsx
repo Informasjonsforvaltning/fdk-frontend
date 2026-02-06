@@ -24,6 +24,9 @@ const SearchPage = ({ dictionaries }: SearchPageProps) => {
             />
             <div className={styles.mainContent}>
                 <SearchForm />
+                <div>
+                    Search results here
+                </div>
             </div>
         </div>
     );
