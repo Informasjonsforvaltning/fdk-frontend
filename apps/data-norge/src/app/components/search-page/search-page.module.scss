@@ -1,0 +1,17 @@
+.searchPage {
+    margin: 0 2rem 3rem;
+    container-type: inline-size;
+
+    @media (max-width: 500px) {
+        margin: 0 1.5rem 1rem;
+    }
+
+    .mainContent {
+        max-width: 1000px;
+        margin: 2rem auto 0;
+
+        @media (max-width: 650px) {
+            margin-top: 1rem;
+        }
+    }
+}

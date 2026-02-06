@@ -93,6 +93,10 @@ export { default as ResourceNotAvailableNotice } from './lib/resource-not-availa
 export * from './lib/resource-not-available-notice';
 export { default as ScrollShadows } from './lib/scroll-shadows';
 export * from './lib/scroll-shadows';
+export { default as SearchForm } from './lib/search-form';
+export * from './lib/search-form';
+export { default as SearchTabs } from './lib/search-tabs';
+export * from './lib/search-tabs';
 export { default as SmartList } from './lib/smart-list';
 export * from './lib/smart-list';
 export { default as StarButton } from './lib/star-button';
