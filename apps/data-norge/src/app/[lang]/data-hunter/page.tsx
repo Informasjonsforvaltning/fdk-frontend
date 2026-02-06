@@ -3,25 +3,22 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getDictionary, LocaleCodes } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs } from '@fdk-frontend/ui';
 import DataHunterForm from './components/data-hunter-form';
 import styles from './page.module.css';
 
-type DataHunterPageProps = {
-    params: Promise<{
-        lang: Locale['code'];
-    }>;
-};
+type DataHunterPageProps = PageProps<'/[lang]/data-hunter'>;
 
 const DataHunterPage = async (props: DataHunterPageProps) => {
     const params = await props.params;
     const { lang } = params;
+    const locale = lang as LocaleCodes;
     // Opt-in dynamic rendering
     await noStore();
 
-    const dictionary = await getDictionary(lang, 'data-hunter-page');
-    const commonDictionary = await getDictionary(lang, 'common');
+    const dictionary = await getDictionary(locale, 'data-hunter-page');
+    const commonDictionary = await getDictionary(locale, 'common');
 
     const breadcrumbList = [
         {
@@ -49,13 +46,14 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
 
 export const generateMetadata = async (props: DataHunterPageProps): Promise<Metadata> => {
     const params = await props.params;
-    const dictionary = await getDictionary(params.lang, 'data-hunter-page');
+    const locale = params.lang as LocaleCodes;
+    const dictionary = await getDictionary(locale, 'data-hunter-page');
 
     return {
         title: dictionary.metadata.title,
         description: dictionary.metadata.description,
         alternates: {
-            canonical: `https://data.norge.no/${params.lang}/data-hunter`,
+            canonical: `https://data.norge.no/${locale}/data-hunter`,
         },
     };
 };

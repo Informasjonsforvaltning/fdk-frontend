@@ -4,20 +4,13 @@ import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { Hstack, VStack, BackButton, Markdown } from '@fdk-frontend/ui';
 import styles from './styles.module.scss';
 
-export type LeavingGatewayPageProps = {
-    params: Promise<{
-        lang: LocaleCodes;
-    }>;
-    searchParams?: Promise<{
-        url: string;
-    }>;
-};
+export type LeavingGatewayPageProps = PageProps<'/[lang]/leaving-gateway'>;
 
 const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
     const { lang } = await props.params;
-    const { url } = (await props.searchParams) || {};
-
-    const dictionary = await getDictionary(lang, 'common');
+    const { url } = await props.searchParams;
+    const locale = lang as LocaleCodes;
+    const dictionary = await getDictionary(locale, 'common');
 
     return (
         <div className={styles.wrapper}>
@@ -31,7 +24,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
                 <VStack>
                     <Paragraph data-size='sm'>{dictionary.leavingGateway.linkLabel}</Paragraph>
                     <div className={styles.urlBox}>
-                        <Link href={url}>{url}</Link>
+                        <Link href={url?.toString()}>{url}</Link>
                     </div>
                 </VStack>
                 <Alert data-size='sm'>
@@ -49,7 +42,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
                         data-size='sm'
                         variant='primary'
                     >
-                        <Link href={url}>{dictionary.leavingGateway.continueButton}</Link>
+                        <Link href={url?.toString()}>{dictionary.leavingGateway.continueButton}</Link>
                     </Button>
                 </Hstack>
             </div>
@@ -59,7 +52,8 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
 
 export const generateMetadata = async (props: LeavingGatewayPageProps) => {
     const params = await props.params;
-    const dictionary = await getDictionary(params.lang, 'common');
+    const locale = params.lang as LocaleCodes;
+    const dictionary = await getDictionary(locale, 'common');
 
     return {
         title: `${dictionary.leavingGateway.heading} - data.norge.no`,
