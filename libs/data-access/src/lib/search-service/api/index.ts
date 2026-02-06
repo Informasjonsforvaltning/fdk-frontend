@@ -1,8 +1,15 @@
-import { type DatasetReference } from '@fellesdatakatalog/types';
+import { type DatasetReference, type SearchObject } from '@fellesdatakatalog/types';
 import { getResource } from '../../resource-service/api';
+
+// todo: move to fdk-types
+export interface SearchApiResponse {
+    hits?: SearchObject[];
+    [key: string]: unknown;
+}
 
 export const searchApi = async (path: string, body: any) => {
     const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}${path}`;
+    console.log('search', uri);
     const options = {
         method: 'POST',
         headers: {
@@ -18,6 +25,16 @@ export const searchApi = async (path: string, body: any) => {
         }
         return response.json();
     });
+};
+
+export const searchAllEntities = async (body: {
+    query?: string;
+    pagination?: { size?: number; page?: number };
+    filters?: Record<string, unknown>;
+    sort?: { field?: string; direction?: 'ASC' | 'DESC' };
+    [key: string]: unknown;
+}) => {
+    return await searchApi('/search', body);
 };
 
 export const searchRelations = async (uri: string) => {
@@ -139,5 +156,18 @@ export const getAllServices = async (page = 1, size = 1000) => {
             size,
             page,
         },
+    });
+};
+
+/**
+ * Fetch one page of results for an entity-type path (no query).
+ * Matches fdk-search-service: POST /search/{path} with body { pagination }.
+ */
+export const searchEntitiesByPath = async (
+    path: string,
+    options: { pagination?: { size?: number; page?: number } } = {}
+) => {
+    return await searchApi(`/search/${path}`, {
+        pagination: options.pagination ?? {},
     });
 };
