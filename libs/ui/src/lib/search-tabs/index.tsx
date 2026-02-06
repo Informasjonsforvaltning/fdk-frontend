@@ -2,6 +2,7 @@
 
 import { ToggleGroup, Badge, Link } from '@digdir/designsystemet-react';
 import { SparklesFillIcon } from '@navikt/aksel-icons';
+import { type ReactNode } from 'react';
 
 export type SearchTabsValue = 'ki' | 'datasett' | 'api' | 'begrep' | 'infomodels' | 'tjenester' | 'docs';
 
@@ -10,45 +11,68 @@ export type SearchTabsProps = {
     onChange?: (value: SearchTabsValue) => void;
 };
 
+type SearchTabItem = {
+    value: SearchTabsValue;
+    label: string;
+    icon?: ReactNode;
+    badgeCount: number;
+};
+
+const searchTabItems: SearchTabItem[] = [
+    {
+        value: 'ki',
+        label: 'KI-søk',
+        icon: <SparklesFillIcon />,
+        badgeCount: 6,
+    },
+    {
+        value: 'datasett',
+        label: 'Datasett',
+        badgeCount: 614,
+    },
+    {
+        value: 'api',
+        label: 'API-er',
+        badgeCount: 19,
+    },
+    {
+        value: 'begrep',
+        label: 'Begreper',
+        badgeCount: 588,
+    },
+    {
+        value: 'infomodels',
+        label: 'Informasjonsmodeller',
+        badgeCount: 0,
+    },
+    {
+        value: 'tjenester',
+        label: 'Tjenester og hendelser',
+        badgeCount: 31,
+    },
+    {
+        value: 'docs',
+        label: 'Dokumentasjon',
+        badgeCount: 4,
+    },
+];
+
 const SearchTabs = ({ defaultValue = 'ki', onChange }: SearchTabsProps) => (
     <ToggleGroup
         defaultValue={defaultValue}
         onChange={(value) => onChange?.(value as SearchTabsValue)}
         // data-size='sm'
     >
-        <ToggleGroup.Item value='ki'>
-            <SparklesFillIcon />
-            KI-søk
-            <Badge count={6} />
-        </ToggleGroup.Item>
-        {/* <ToggleGroup.Item value='all'>
-            Alle ressurser
-            <Badge count={1252} />
-        </ToggleGroup.Item> */}
-        <ToggleGroup.Item value='datasett'>
-            Datasett
-            <Badge count={614} />
-        </ToggleGroup.Item>
-        <ToggleGroup.Item value='api'>
-            API-er
-            <Badge count={19} />
-        </ToggleGroup.Item>
-        <ToggleGroup.Item value='begrep'>
-            Begreper
-            <Badge count={588} />
-        </ToggleGroup.Item>
-        <ToggleGroup.Item value='infomodels'>
-            Informasjonsmodeller
-            <Badge count={0} />
-        </ToggleGroup.Item>
-        <ToggleGroup.Item value='tjenester'>
-            Tjenester og hendelser
-            <Badge count={31} />
-        </ToggleGroup.Item>
-        <ToggleGroup.Item value='docs'>
-            Dokumentasjon
-            <Badge count={4} />
-        </ToggleGroup.Item>
+        {searchTabItems.map((item) => (
+            <ToggleGroup.Item
+                key={item.value}
+                value={item.value}
+            >
+                {item.icon}
+                {item.label}
+                <Badge count={item.badgeCount} variant='tinted' />
+            </ToggleGroup.Item>
+        ))}
     </ToggleGroup>
 );
 

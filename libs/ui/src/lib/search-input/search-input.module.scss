@@ -1,7 +1,37 @@
-.input {
-    flex-grow: 1;
-}
+.container {
+    position:relative;
+    flex-grow:1;
 
-.btn {
-    flex: 0 0 auto;
+    .btn {
+        position:absolute;
+        right:0.25rem;
+        // display:none;
+    }
+
+    .searchIcon {
+        position:absolute;
+        left:1rem;
+        font-size:1.25rem;
+        // display:none;
+        z-index:1;
+        opacity:0.5;
+    }
+
+    .input {
+        padding-left:3rem;
+        font-size:1.25em;
+        &:hover,
+        &:active {
+            & + .btn {
+                display:flex;
+                z-index:2;
+            }
+        }
+
+        &:not(:focus) {
+            // border:0;
+            // border-color:#ddd;
+            // background:#f8f8f8;
+        }
+    }
 }
