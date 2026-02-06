@@ -7,6 +7,7 @@ import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
 import { LogoLink } from '../logo';
 import MainMenu from '../main-menu';
+import SearchInput from '../search-input';
 import styles from './header.module.scss';
 
 export type HeaderProps = {
@@ -21,6 +22,7 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const animations = {
         drawerInner: {
@@ -88,8 +90,13 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
                         className={styles.headerLogo}
                         href={`/${locale}`}
                     />
+                    <SearchInput
+                        value={searchQuery}
+                        onChange={setSearchQuery}
+                        className={styles.headerSearchInput}
+                    />
                     <div className={styles.headerToolbar}>
-                        <Button
+                        {/* <Button
                             asChild
                             data-size='sm'
                             variant='tertiary'
@@ -99,7 +106,7 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
                                 <MagnifyingGlassIcon aria-hidden />
                                 <span>{dictionary.header.findDataButton}</span>
                             </Link>
-                        </Button>
+                        </Button> */}
                         <Button
                             data-size='sm'
                             variant={showMenu ? 'secondary' : 'tertiary'}

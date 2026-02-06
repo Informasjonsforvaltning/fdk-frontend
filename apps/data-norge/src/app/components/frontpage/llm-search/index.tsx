@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 import { Textfield, Button, Spinner, ValidationMessage } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { llmSearch, type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
 
-import { ResultItem, ItemObjectType } from './components/result-item';
+import { ResultItem, type ItemObjectType } from './components/result-item';
 import AuxPanel from './components/aux-panel';
 
 import styles from './llm-search.module.scss';
@@ -24,7 +25,7 @@ const MotionUl = motion.ul;
 const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [query, setQuery] = useState<string>('');
-    const [results, setResults] = useState<any>(undefined);
+    const [results, setResults] = useState<LlmSearchResponse<ItemObjectType> | undefined>(undefined);
     const [error, setError] = useState<string | undefined>(undefined);
 
     const animations = {
@@ -65,48 +66,26 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
     const submitQuery = async (e: any, overrideStateQuery?: string) => {
         if (e) e.preventDefault();
 
-        let queryToSubmit = overrideStateQuery || query;
-
-        // temp bugfix: strip "?" from query
-        queryToSubmit = queryToSubmit.replace(/\?/g, '');
+        const queryToSubmit = overrideStateQuery || query;
 
         if (!validate(queryToSubmit)) return;
 
         setLoading(true);
 
         try {
-            // Add timeout to prevent hanging
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
-
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ query: queryToSubmit }),
-                signal: controller.signal,
-            });
-
-            clearTimeout(timeoutId);
-            setLoading(false);
-
-            if (response.status === 200) {
-                const json = await response.json();
-                setResults(json);
-            } else {
-                setError(dictionary.aiBanner.prompt.errors.generic);
-            }
+            const response = await llmSearch<ItemObjectType>(endpoint, queryToSubmit);
+            setResults(response);
+            setError(undefined);
         } catch (err) {
-            setLoading(false);
-            if (err instanceof Error && err.name === 'AbortError') {
+            if (err instanceof Error && err.message === 'Request timed out') {
                 setError('Request timed out');
             } else {
                 // Log the error for debugging
                 console.warn('LLM search error:', err);
                 setError(dictionary.aiBanner.prompt.errors.generic);
             }
+        } finally {
+            setLoading(false);
         }
     };
 

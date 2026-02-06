@@ -2497,18 +2497,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fellesdatakatalog/types@npm:^1.0.12":
-  version: 1.0.12
-  resolution: "@fellesdatakatalog/types@npm:1.0.12"
+"@fellesdatakatalog/types@npm:^1.0.14":
+  version: 1.0.14
+  resolution: "@fellesdatakatalog/types@npm:1.0.14"
   dependencies:
     typescript: "npm:^5.8.2"
-  checksum: 10c0/65e151faf9f416618bb269ab6b4e9d9eef786bd67a80040a379df5c1927cbabbf4445aadc1965e614f720e7986fce522b339163c3dc948523e53f6cbc86afcca
+  checksum: 10c0/42fac500017b775768a1c4c618aae650de68a077c72dd4a80fa97653288aa176beb1cbf1904f6823077a8bc4e5b8caf90a680be2fc295484015e27f35f120bfe
   languageName: node
   linkType: hard
 
-"@fellesdatakatalog/ui@npm:^1.0.19":
-  version: 1.0.19
-  resolution: "@fellesdatakatalog/ui@npm:1.0.19"
+"@fellesdatakatalog/ui@npm:^1.0.20":
+  version: 1.0.20
+  resolution: "@fellesdatakatalog/ui@npm:1.0.20"
   dependencies:
     "@navikt/aksel-icons": "npm:^7.39.0"
     classnames: "npm:^2.5.1"
@@ -2516,7 +2516,7 @@ __metadata:
     "@digdir/designsystemet-react": ^1.1.9
     react: ^19.1.1
     react-dom: ^19.1.1
-  checksum: 10c0/bc5eb1361dbb9e59587fdf01001d45f670c94cbec77045dcffac99339a44dbcf316f13d4c4129dbba7d89bd69e1e196cb4a2308d355b055f1bfb880c5c121a33
+  checksum: 10c0/3db448a893dba9db043d9ac22b5649a9addcf95a3d0d86e2045547ad84f88fce050a8ddcb73edf6c9fd0b8e817ae6d084f50f68130f79e7977f15d2e0b2dc9bf
   languageName: node
   linkType: hard
 
@@ -11609,8 +11609,8 @@ __metadata:
     "@digdir/designsystemet-theme": "npm:^1.11.0"
     "@emotion/is-prop-valid": "npm:^1.4.0"
     "@eslint/js": "npm:^9.39.2"
-    "@fellesdatakatalog/types": "npm:^1.0.12"
-    "@fellesdatakatalog/ui": "npm:^1.0.19"
+    "@fellesdatakatalog/types": "npm:^1.0.14"
+    "@fellesdatakatalog/ui": "npm:^1.0.20"
     "@mdx-js/loader": "npm:^3.1.1"
     "@mdx-js/react": "npm:^3.1.1"
     "@navikt/aksel-icons": "npm:^7.40.0"
