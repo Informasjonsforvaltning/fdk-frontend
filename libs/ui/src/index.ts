@@ -1,4 +1,6 @@
 export { default as AccessLevelTag } from './lib/access-level-tag';
+export { default as AiPromoSplash } from './lib/ai-promo-splash';
+export * from './lib/ai-promo-splash';
 export * from './lib/access-level-tag';
 export { default as AccessRequestButton } from './lib/access-request-button';
 export * from './lib/access-request-button';
@@ -52,6 +54,8 @@ export { default as DownloadDistributionWidget } from './lib/download-distributi
 export * from './lib/download-distribution-widget';
 export { default as DynamicBreadcrumbs } from './lib/dynamic-breadcrumbs';
 export * from './lib/dynamic-breadcrumbs';
+export { default as EntityTeaser } from './lib/entity-teaser';
+export * from './lib/entity-teaser';
 export { default as ExpandableContent } from './lib/expandable-content';
 export * from './lib/expandable-content';
 export { default as ExternalLink } from './lib/external-link';
@@ -85,6 +89,8 @@ export { default as OpenDataTag } from './lib/open-data-tag';
 export * from './lib/open-data-tag';
 export { default as OrgButton } from './lib/org-button';
 export * from './lib/org-button';
+export { default as OrgLogo } from './lib/org-logo';
+export * from './lib/org-logo';
 export { default as PlaceholderBox } from './lib/placeholder-box';
 export * from './lib/placeholder-box';
 export { default as PlaceholderText } from './lib/placeholder-text';
@@ -93,6 +99,12 @@ export { default as ResourceNotAvailableNotice } from './lib/resource-not-availa
 export * from './lib/resource-not-available-notice';
 export { default as ScrollShadows } from './lib/scroll-shadows';
 export * from './lib/scroll-shadows';
+export { default as SearchForm } from './lib/search-form';
+export * from './lib/search-form';
+export { default as SearchInput } from './lib/search-input';
+export * from './lib/search-input';
+export { default as SearchTabs } from './lib/search-tabs';
+export * from './lib/search-tabs';
 export { default as SmartList } from './lib/smart-list';
 export * from './lib/smart-list';
 export { default as StarButton } from './lib/star-button';

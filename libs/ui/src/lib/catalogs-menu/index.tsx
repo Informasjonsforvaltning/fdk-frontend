@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading, Card, Paragraph } from '@digdir/designsystemet-react';
+import { Heading, Card, CardBlock, Paragraph } from '@digdir/designsystemet-react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import getMainMenuData from '../main-menu/data';
 
@@ -23,7 +23,7 @@ const CatalogsMenu = ({ dictionary, locale }: CatalogsMenuProps) => {
                     <li key={item.key}>
                         <Card asChild>
                             <a href={`${item.href}`}>
-                                <Card.Block>
+                                <CardBlock>
                                     <Heading
                                         className={styles.catalogTitle}
                                         data-size='2xs'
@@ -32,7 +32,7 @@ const CatalogsMenu = ({ dictionary, locale }: CatalogsMenuProps) => {
                                         <span>{item.title}</span>
                                     </Heading>
                                     <Paragraph data-size='sm'>{item.description}</Paragraph>
-                                </Card.Block>
+                                </CardBlock>
                             </a>
                         </Card>
                     </li>

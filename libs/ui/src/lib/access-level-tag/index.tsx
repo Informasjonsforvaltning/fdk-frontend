@@ -9,7 +9,7 @@ type AccessLevelTagProps = {
     locale: LocaleCodes;
 };
 
-const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: AccessLevelTagProps) => {
+const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: AccessLevelTagProps & TagProps) => {
     const dictionary = getLocalization(locale).detailsPage;
     let color = 'neutral';
 
@@ -21,7 +21,7 @@ const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: Access
     if (accessCode === AccessRightsCodes.PUBLIC) color = 'success';
 
     return (
-        <Tag data-color={color as TagProps['color']}>
+        <Tag data-color={color as TagProps['color']} {...props}>
             {nonInteractive ? (
                 label
             ) : (
