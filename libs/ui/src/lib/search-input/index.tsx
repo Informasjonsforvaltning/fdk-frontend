@@ -1,8 +1,9 @@
 'use client';
+import { useRouter, usePathname } from 'next/navigation';
 import cn from 'classnames';
 import { Input, Button } from '@digdir/designsystemet-react';
-// import { HStack } from '@fellesdatakatalog/ui';
-import { MagnifyingGlassIcon, SparklesFillIcon } from '@navikt/aksel-icons';
+import { SparklesFillIcon } from '@navikt/aksel-icons';
+import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 
 import styles from './search-input.module.scss';
 
@@ -12,11 +13,29 @@ export type SearchInputProps = {
     searchLabel?: string;
     placeholder?: string;
     className?: string;
+    locale?: LocaleCodes;
 };
 
-const SearchInput = ({ value, onChange, searchLabel = 'Søk', placeholder = 'Hva leter du etter?', className }: SearchInputProps) => {
+const SearchInput = ({ value, onChange, searchLabel = 'Søk', placeholder = 'Hva leter du etter?', className, locale }: SearchInputProps) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    
+    // Extract locale from pathname if not provided
+    const currentLocale = locale || (pathname.split('/')[1] as LocaleCodes) || i18n.defaultLocale;
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (value.trim()) {
+            const searchUrl = `/${currentLocale}/search?query=${encodeURIComponent(value.trim())}`;
+            router.push(searchUrl);
+        }
+    };
+
     return (
-        <form className={cn(styles.container, className)}>
+        <form 
+            className={cn(styles.container, className)}
+            onSubmit={handleSubmit}
+        >
             <SparklesFillIcon
                 className={styles.searchIcon}
             />
