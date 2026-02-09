@@ -1,6 +1,9 @@
 import { type Metadata } from 'next';
 import { getDictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import SearchPage from '../../components/search-page';
+
+import type { ItemObjectType } from '../../components/search-page';
 
 interface Props {
     params: Promise<{
@@ -11,12 +14,43 @@ interface Props {
 
 export default async function Page(props: Props) {
     const params = await props.params;
+    const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
     const dictionary = await getDictionary(locale, 'common');
+    const query = typeof searchParams.query === 'string' ? searchParams.query : undefined;
+
+    const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
+    const endpoint = llmSearchBaseUri ? `${llmSearchBaseUri}/llm` : '';
+
+    let results: LlmSearchResponse<ItemObjectType> | undefined = undefined;
+
+    if (query && endpoint) {
+        try {
+            // Strip "?" from query (temp bugfix)
+            const cleanedQuery = query.replace(/\?/g, '');
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query: cleanedQuery }),
+            });
+
+            if (response.ok) {
+                results = await response.json();
+            }
+        } catch (err) {
+            console.warn('LLM search error:', err);
+        }
+    }
 
     return (
         <SearchPage
             dictionaries={{ common: dictionary }}
+            query={query}
+            results={results}
         />
     );
 };
