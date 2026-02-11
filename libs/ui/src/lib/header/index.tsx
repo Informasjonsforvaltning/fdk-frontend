@@ -95,6 +95,7 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
                         onChange={setSearchQuery}
                         className={styles.headerSearchInput}
                     />
+                    {/* <div style={{flexGrow:1}} /> */}
                     <div className={styles.headerToolbar}>
                         {/* <Button
                             asChild

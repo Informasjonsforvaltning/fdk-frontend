@@ -31,9 +31,6 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
             className={className}
         >
             <VStack className={styles.searchForm}>
-                <Heading data-size='md'>
-                    1288 resultater for 'Hei på deg'
-                </Heading>
                 <VStack className={styles.searchControls}>
                     <SearchTabs
                         defaultValue={defaultValue}

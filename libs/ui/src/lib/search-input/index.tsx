@@ -2,7 +2,7 @@
 import { useRouter, usePathname } from 'next/navigation';
 import cn from 'classnames';
 import { Input, Button } from '@digdir/designsystemet-react';
-import { SparklesFillIcon } from '@navikt/aksel-icons';
+import { SparklesFillIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 
 import styles from './search-input.module.scss';
@@ -36,7 +36,7 @@ const SearchInput = ({ value, onChange, searchLabel = 'Søk', placeholder = 'Hva
             className={cn(styles.container, className)}
             onSubmit={handleSubmit}
         >
-            <SparklesFillIcon
+            <MagnifyingGlassIcon
                 className={styles.searchIcon}
             />
             <Input
