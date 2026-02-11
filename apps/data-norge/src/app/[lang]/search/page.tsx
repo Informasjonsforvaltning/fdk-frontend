@@ -1,6 +1,6 @@
 import { type Metadata } from 'next';
 import { getDictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
-import { type LlmSearchResponse } from '@fdk-frontend/data-access';
+import { llmSearch, type LlmSearchResponse } from '@fdk-frontend/data-access';
 import SearchPage from '../../components/search-page';
 
 import type { ItemObjectType } from '../../components/search-page';
@@ -26,21 +26,7 @@ export default async function Page(props: Props) {
 
     if (query && endpoint) {
         try {
-            // Strip "?" from query (temp bugfix)
-            const cleanedQuery = query.replace(/\?/g, '');
-
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ query: cleanedQuery }),
-            });
-
-            if (response.ok) {
-                results = await response.json();
-            }
+            results = await llmSearch<ItemObjectType>(endpoint, query);
         } catch (err) {
             console.warn('LLM search error:', err);
         }

@@ -1,5 +1,6 @@
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
+import { Heading } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 
 import styles from './search-page.module.scss';
@@ -35,6 +36,9 @@ const SearchPage = ({ dictionaries, query, results }: SearchPageProps) => {
                 breadcrumbList={breadcrumbList}
             />
             <div className={styles.mainContent}>
+                <Heading data-size='md'>
+                    {`${results.hits.length} resultater for '${query}'`}
+                </Heading>
                 <SearchForm />
                 <div>
                     {results && results.hits && (
