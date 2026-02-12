@@ -244,7 +244,11 @@
         "titleHelpTextTitle": "Omgrep",
         "inputLabel": "Ressurs URI",
         "copyButton": ["Kopier", "Kopiert!"],
-        "loading": "Lastar"
+        "loading": "Lastar",
+        "openInNewTab": "Opne i ny fane",
+        "openInNewTabErrorTitle": "Feil",
+        "openInNewTabMissingUri": "Manglar ressurs-URI.",
+        "openInNewTabFetchError": "Kunne ikkje laste ressursen."
     },
     "datasetPreview": {
         "generatingPreview": "Genererer førehandsvising...",
