@@ -1,6 +1,6 @@
 const DEFAULT_FORMAT = 'text/turtle';
 
-async function fetchRdf(uri: string, accept: string): Promise<string> {
+const fetchRdf = async (uri: string, accept: string): Promise<string> => {
     const res = await fetch(uri, {
         headers: { Accept: accept },
         next: { revalidate: 0 },
@@ -19,7 +19,7 @@ async function fetchRdf(uri: string, accept: string): Promise<string> {
         }
     }
     return text;
-}
+};
 
 export const GET = async (request: Request) => {
     const url = new URL(request.url);
