@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /// <reference types="react" />
 
 declare module 'react-syntax-highlighter-virtualized-renderer' {
