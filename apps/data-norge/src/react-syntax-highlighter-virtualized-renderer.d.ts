@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+/// <reference types="react" />
 
 declare module 'react-syntax-highlighter-virtualized-renderer' {
     type VirtualizedRendererOptions = {
@@ -9,8 +9,8 @@ declare module 'react-syntax-highlighter-virtualized-renderer' {
         options?: VirtualizedRendererOptions,
     ): (props: {
         rows: unknown[];
-        stylesheet: Record<string, CSSProperties>;
+        stylesheet: Record<string, React.CSSProperties>;
         useInlineStyles: boolean;
-    }) => ReactNode;
+    }) => React.ReactNode;
     export default createVirtualizedRenderer;
 }
