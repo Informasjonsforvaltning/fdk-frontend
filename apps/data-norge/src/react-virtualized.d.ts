@@ -1,5 +1,5 @@
 declare module 'react-virtualized' {
-    import type { ComponentType, CSSProperties } from 'react';
+    import type { ComponentType, CSSProperties, ReactNode } from 'react';
 
     export const WindowScroller: ComponentType<{
         children: (params: {
@@ -10,7 +10,7 @@ declare module 'react-virtualized' {
             isScrolling: boolean;
             registerChild: (element: HTMLElement | null) => void;
             onChildScroll?: (params: { scrollTop: number }) => void;
-        }) => React.ReactNode;
+        }) => ReactNode;
         scrollElement?: Window | Element | null;
     }>;
 
@@ -27,7 +27,7 @@ declare module 'react-virtualized' {
         scrollTop?: number;
         rowCount: number;
         rowHeight: number;
-        rowRenderer: (params: ListRowRendererParams) => React.ReactNode;
+        rowRenderer: (params: ListRowRendererParams) => ReactNode;
         overscanRowCount?: number;
     }>;
 }

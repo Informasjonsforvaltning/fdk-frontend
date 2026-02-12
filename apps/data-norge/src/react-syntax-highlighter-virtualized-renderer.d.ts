@@ -1,3 +1,5 @@
+import type { CSSProperties, ReactNode } from 'react';
+
 declare module 'react-syntax-highlighter-virtualized-renderer' {
     type VirtualizedRendererOptions = {
         overscanRowCount?: number;
@@ -7,8 +9,8 @@ declare module 'react-syntax-highlighter-virtualized-renderer' {
         options?: VirtualizedRendererOptions,
     ): (props: {
         rows: unknown[];
-        stylesheet: Record<string, React.CSSProperties>;
+        stylesheet: Record<string, CSSProperties>;
         useInlineStyles: boolean;
-    }) => React.ReactNode;
+    }) => ReactNode;
     export default createVirtualizedRenderer;
 }
