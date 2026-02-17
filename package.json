@@ -92,7 +92,7 @@
         "@nx/playwright": "^22.5.1",
         "@nx/react": "^22.5.1",
         "@nx/storybook": "^22.5.1",
-        "@nx/vite": "22.5.1",
+        "@nx/vite": "^22.5.1",
         "@nx/web": "^22.5.1",
         "@nx/workspace": "^22.5.1",
         "@playwright/test": "^1.58.2",
