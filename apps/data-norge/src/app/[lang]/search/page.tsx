@@ -1,6 +1,7 @@
 import { type Metadata } from 'next';
 import { getDictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import { llmSearch, type LlmSearchResponse } from '@fdk-frontend/data-access';
+import { searchAllEntities } from '@fdk-frontend/data-access/server';
 import SearchPage from '../../components/search-page';
 
 import type { ItemObjectType } from '../../components/search-page';
@@ -22,13 +23,30 @@ export default async function Page(props: Props) {
     const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
     const endpoint = llmSearchBaseUri ? `${llmSearchBaseUri}/llm` : '';
 
-    let results: LlmSearchResponse<ItemObjectType> | undefined = undefined;
+    let llmResults: LlmSearchResponse<ItemObjectType> | undefined = undefined;
+    let searchResults: { hits?: unknown[]; [key: string]: unknown } | undefined = undefined;
 
-    if (query && endpoint) {
+    if (query) {
+        // LLM search
+        if (endpoint) {
+            try {
+                llmResults = await llmSearch<ItemObjectType>(endpoint, query);
+            } catch (err) {
+                console.warn('LLM search error:', err);
+            }
+        }
+
+        // Regular search API
         try {
-            results = await llmSearch<ItemObjectType>(endpoint, query);
+            searchResults = await searchAllEntities({
+                query,
+                pagination: {
+                    size: 20,
+                    page: 0,
+                },
+            });
         } catch (err) {
-            console.warn('LLM search error:', err);
+            console.warn('Search API error:', err);
         }
     }
 
@@ -36,7 +54,8 @@ export default async function Page(props: Props) {
         <SearchPage
             dictionaries={{ common: dictionary }}
             query={query}
-            results={results}
+            llmResults={llmResults}
+            searchResults={searchResults}
         />
     );
 };

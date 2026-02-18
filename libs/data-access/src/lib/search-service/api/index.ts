@@ -20,6 +20,16 @@ export const searchApi = async (path: string, body: any) => {
     });
 };
 
+export const searchAllEntities = async (body: {
+    query?: string;
+    pagination?: { size?: number; page?: number };
+    filters?: Record<string, unknown>;
+    sort?: { field?: string; direction?: 'ASC' | 'DESC' };
+    [key: string]: unknown;
+}) => {
+    return await searchApi('/search', body);
+};
+
 export const searchRelations = async (uri: string) => {
     if (!uri) throw new Error('missing uri');
     return await searchApi('/search', {

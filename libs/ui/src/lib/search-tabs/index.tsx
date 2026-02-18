@@ -21,7 +21,7 @@ type SearchTabItem = {
 const searchTabItems: SearchTabItem[] = [
     {
         value: 'ki',
-        label: 'KI-søk',
+        label: 'KI',
         icon: <SparklesFillIcon />,
         badgeCount: 6,
     },
@@ -32,12 +32,12 @@ const searchTabItems: SearchTabItem[] = [
     },
     {
         value: 'api',
-        label: 'API-er',
+        label: 'API',
         badgeCount: 19,
     },
     {
         value: 'begrep',
-        label: 'Begreper',
+        label: 'Begrep',
         badgeCount: 588,
     },
     {
