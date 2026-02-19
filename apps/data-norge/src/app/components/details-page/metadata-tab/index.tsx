@@ -5,7 +5,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import createVirtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
 import { InputWithCopyButton, Hstack } from '@fdk-frontend/ui';
 import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { ToggleGroup, Heading, Spinner, Paragraph, Link, Button } from '@digdir/designsystemet-react';
+import { ToggleGroup, Heading, Spinner, Paragraph, Link, Button, Table } from '@digdir/designsystemet-react';
 import { CopyButton, HelpText } from '@fellesdatakatalog/ui';
 
 import styles from './metadata-tab.module.scss';
@@ -132,7 +132,7 @@ const MetadataTab = ({
                     copyLabel={dictionary.rdf.copyButton.at(0)}
                     copiedLabel={dictionary.rdf.copyButton.at(1)}
                 />
-                <div className={styles.toolbar}>
+                {/* <div className={styles.toolbar}>
                     <ToggleGroup
                         defaultValue={contentType}
                         data-size='sm'
@@ -161,10 +161,10 @@ const MetadataTab = ({
                             </Link>
                         </Button>
                     </span>
-                </div>
+                </div> */}
             </div>
             <div className={cn(styles.content, styles.article)}>
-                <div className={styles.copyButton}>
+                {/* <div className={styles.copyButton}>
                     <CopyButton
                         copyLabel={dictionary.rdf.copyButton.at(0)}
                         copiedLabel={dictionary.rdf.copyButton.at(1)}
@@ -214,7 +214,69 @@ const MetadataTab = ({
                             {loading && !source.length ? `${dictionary.rdf.loading}...` : source}
                         </SyntaxHighlighter>
                     </div>
-                </div>
+                </div> */}
+                <Table border hover>
+                    <Table.Head>
+                        <Table.Row>
+                            <Table.HeaderCell>Format</Table.HeaderCell>
+                            <Table.HeaderCell>Accept header</Table.HeaderCell>
+                            <Table.HeaderCell width='1px'></Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Head>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>
+                                Turtle
+                            </Table.Cell>
+                            <Table.Cell><code>text/turtle</code></Table.Cell>
+                            <Table.Cell>
+                                <Button
+                                    asChild
+                                    data-size='sm'
+                                    variant='secondary'
+                                >
+                                    <Link href={uri}>
+                                        Åpne
+                                    </Link>
+                                </Button>
+                            </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>
+                                RDF/XML
+                            </Table.Cell>
+                            <Table.Cell><code>application/rdf+xml</code></Table.Cell>
+                            <Table.Cell>
+                                <Button
+                                    asChild
+                                    data-size='sm'
+                                    variant='secondary'
+                                >
+                                    <Link href={uri}>
+                                        Åpne
+                                    </Link>
+                                </Button>
+                            </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>
+                                JSON-LD
+                            </Table.Cell>
+                            <Table.Cell><code>application/ld+json</code></Table.Cell>
+                            <Table.Cell>
+                                <Button
+                                    asChild
+                                    data-size='sm'
+                                    variant='secondary'
+                                >
+                                    <Link href={uri}>
+                                        Åpne
+                                    </Link>
+                                </Button>
+                            </Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
+                </Table>
             </div>
         </div>
     );
