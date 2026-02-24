@@ -1930,9 +1930,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fellesdatakatalog/ui@file:../fdk-ui::locator=fdk-frontend%40workspace%3A.":
-  version: 1.0.21
-  resolution: "@fellesdatakatalog/ui@file:../fdk-ui#../fdk-ui::hash=5c45b4&locator=fdk-frontend%40workspace%3A."
+"@fellesdatakatalog/ui@portal:../fdk-ui::locator=fdk-frontend%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@fellesdatakatalog/ui@portal:../fdk-ui::locator=fdk-frontend%40workspace%3A."
   dependencies:
     "@navikt/aksel-icons": "npm:^7.40.0"
     classnames: "npm:^2.5.1"
@@ -1940,9 +1940,8 @@ __metadata:
     "@digdir/designsystemet-react": ^1.1.9
     react: ^19.1.1
     react-dom: ^19.1.1
-  checksum: 10c0/b33446e193424e48211dfd889127a512c51438d74c118b4a1bba3f6d3a8d594ffc65caacd628e516fe6d896453c551ef7761d522331959f25fc3c1db096a3968
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@floating-ui/core@npm:^1.7.4":
   version: 1.7.4
@@ -10490,7 +10489,7 @@ __metadata:
     "@digdir/designsystemet-theme": "npm:^1.11.0"
     "@eslint/js": "npm:^9.39.2"
     "@fellesdatakatalog/types": "npm:^1.0.14"
-    "@fellesdatakatalog/ui": "file:../fdk-ui"
+    "@fellesdatakatalog/ui": "portal:../fdk-ui"
     "@mdx-js/loader": "npm:^3.1.1"
     "@mdx-js/react": "npm:^3.1.1"
     "@navikt/aksel-icons": "npm:^7.40.0"
