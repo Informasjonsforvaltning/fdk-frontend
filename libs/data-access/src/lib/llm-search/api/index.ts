@@ -1,7 +1,17 @@
-export type LlmSearchResponse<T = unknown> = {
-    hits?: T[];
-    [key: string]: unknown;
-};
+// todo: move to fdk-types
+export interface LlmSearchResult {
+    id: string;
+    title: string;
+    description: string;
+    type: string;
+    publisher: string;
+    publisherId: string;
+}
+
+// todo: move to fdk-types
+export interface LlmSearchResponse {
+    hits: LlmSearchResult[];
+}
 
 export type LlmSearchOptions = {
     timeout?: number;
@@ -21,7 +31,7 @@ export const llmSearch = async <T = unknown>(
     endpoint: string,
     query: string,
     options: LlmSearchOptions = {},
-): Promise<LlmSearchResponse<T>> => {
+): Promise<LlmSearchResponse> => {
     const { timeout = 30000 } = options;
 
     // Strip "?" from query (temp bugfix)

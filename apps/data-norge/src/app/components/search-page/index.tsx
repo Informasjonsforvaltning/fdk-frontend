@@ -3,6 +3,7 @@ import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Badge } from '@digdir/designsystemet-react';
 import { SparklesFillIcon } from '@navikt/aksel-icons';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
+import { type SearchApiResponse } from '@fdk-frontend/data-access/server';
 
 import styles from './search-page.module.scss';
 
@@ -45,22 +46,13 @@ const searchTabItems: any[] = [
     },
 ];
 
-export type ItemObjectType = {
-    id: string;
-    title: string;
-    description: string;
-    type: string;
-    publisher: string;
-    publisherId: string;
-};
-
 export type SearchPageProps = {
     dictionaries: {
         common: Dictionary;
     };
     query?: string;
-    llmResults?: LlmSearchResponse<ItemObjectType>;
-    searchResults?: { hits?: unknown[]; [key: string]: unknown };
+    llmResults?: LlmSearchResponse;
+    searchResults?: SearchApiResponse;
 };
 
 const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPageProps) => {

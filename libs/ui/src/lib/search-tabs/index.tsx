@@ -11,14 +11,14 @@ export type SearchTabsProps = {
     onChange?: (value: SearchTabsValue) => void;
 };
 
-type SearchTabItem = {
+export type SearchTabItem = {
     value: SearchTabsValue;
     label: string;
     icon?: ReactNode;
     badgeCount: number;
 };
 
-const searchTabItems: SearchTabItem[] = [
+export const searchTabItems: SearchTabItem[] = [
     {
         value: 'ki',
         label: 'KI',

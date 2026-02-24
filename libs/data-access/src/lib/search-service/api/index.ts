@@ -1,5 +1,11 @@
-import { type DatasetReference } from '@fellesdatakatalog/types';
+import { type DatasetReference, type SearchObject } from '@fellesdatakatalog/types';
 import { getResource } from '../../resource-service/api';
+
+// todo: move to fdk-types
+export interface SearchApiResponse {
+    hits?: SearchObject[];
+    [key: string]: unknown;
+};
 
 export const searchApi = async (path: string, body: any) => {
     const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}${path}`;
