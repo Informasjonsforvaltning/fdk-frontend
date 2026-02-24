@@ -1930,17 +1930,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fellesdatakatalog/ui@npm:^1.0.20":
+"@fellesdatakatalog/ui@file:../fdk-ui::locator=fdk-frontend%40workspace%3A.":
   version: 1.0.21
-  resolution: "@fellesdatakatalog/ui@npm:1.0.21"
+  resolution: "@fellesdatakatalog/ui@file:../fdk-ui#../fdk-ui::hash=5c45b4&locator=fdk-frontend%40workspace%3A."
   dependencies:
-    "@navikt/aksel-icons": "npm:^7.39.0"
+    "@navikt/aksel-icons": "npm:^7.40.0"
     classnames: "npm:^2.5.1"
   peerDependencies:
     "@digdir/designsystemet-react": ^1.1.9
     react: ^19.1.1
     react-dom: ^19.1.1
-  checksum: 10c0/b60e9fac606ab05cbb1db393d0508e53829b995d12dfac9d0f2c7d269238cacb63c535f21d97e89331686f80c6861056424635703105fab61268a3d101932585
+  checksum: 10c0/b33446e193424e48211dfd889127a512c51438d74c118b4a1bba3f6d3a8d594ffc65caacd628e516fe6d896453c551ef7761d522331959f25fc3c1db096a3968
   languageName: node
   linkType: hard
 
@@ -3562,7 +3562,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^7.39.0, @navikt/aksel-icons@npm:^7.40.0":
+"@navikt/aksel-icons@npm:^7.40.0":
   version: 7.40.0
   resolution: "@navikt/aksel-icons@npm:7.40.0"
   checksum: 10c0/2c5466d6a101e4192eeb68c0247327881ccc546402179bff3029de1ef1646d1a407ce3666dd9d02a13ebe7f82d6833704ec62494ec923a1de543029e0bc705d7
@@ -10490,7 +10490,7 @@ __metadata:
     "@digdir/designsystemet-theme": "npm:^1.11.0"
     "@eslint/js": "npm:^9.39.2"
     "@fellesdatakatalog/types": "npm:^1.0.14"
-    "@fellesdatakatalog/ui": "npm:^1.0.20"
+    "@fellesdatakatalog/ui": "file:../fdk-ui"
     "@mdx-js/loader": "npm:^3.1.1"
     "@mdx-js/react": "npm:^3.1.1"
     "@navikt/aksel-icons": "npm:^7.40.0"
