@@ -1,10 +1,9 @@
 import { type Metadata } from 'next';
 import { getDictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
 import { llmSearch, type LlmSearchResponse } from '@fdk-frontend/data-access';
+import { type SearchApiResponse } from '@fdk-frontend/data-access/server';
 import { searchAllEntities } from '@fdk-frontend/data-access/server';
 import SearchPage from '../../components/search-page';
-
-import type { LlmSearchHit } from '../../components/search-page';
 
 interface Props {
     params: Promise<{
@@ -23,14 +22,14 @@ export default async function Page(props: Props) {
     const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
     const endpoint = llmSearchBaseUri ? `${llmSearchBaseUri}/llm` : '';
 
-    let llmResults: LlmSearchResponse<LlmSearchHit> | undefined = undefined;
-    let searchResults: { hits?: unknown[]; [key: string]: unknown } | undefined = undefined;
+    let llmResults: LlmSearchResponse | undefined = undefined;
+    let searchResults: SearchApiResponse | undefined = undefined;
 
     if (query) {
         // LLM search
         if (endpoint) {
             try {
-                llmResults = await llmSearch<LlmSearchHit>(endpoint, query);
+                llmResults = await llmSearch(endpoint, query);
             } catch (err) {
                 console.warn('LLM search error:', err);
             }

@@ -1,9 +1,12 @@
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
+import { type SearchObject } from '@fellesdatakatalog/types';
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Badge } from '@digdir/designsystemet-react';
 import { SparklesFillIcon } from '@navikt/aksel-icons';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { type SearchApiResponse } from '@fdk-frontend/data-access/server';
+import { EntityTeaser } from '@fdk-frontend/ui';
+import { printLocaleValue } from '@fdk-frontend/utils';
 
 import styles from './search-page.module.scss';
 
@@ -103,7 +106,7 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                 </Tabs>
                 <div>
                     {/* LLM Results */}
-                    {llmResults && llmResults.hits && llmResults.hits.length > 0 && (
+                    {/*llmResults && llmResults.hits && llmResults.hits.length > 0 && (
                         <div className={styles.resultsSection}>
                             <Heading
                                 data-size='sm'
@@ -120,7 +123,7 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                                 ))}
                             </ul>
                         </div>
-                    )}
+                    )*/}
 
                     {/* Regular Search Results */}
                     {searchResults && searchResults.hits && searchResults.hits.length > 0 && (
@@ -132,36 +135,16 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                                 Søkeresultater ({searchHitsCount})
                             </Heading>
                             <ul>
-                                {searchResults.hits.map((hit: unknown, i: number) => {
-                                    const item = hit as {
-                                        id?: string;
-                                        uri?: string;
-                                        title?: { [key: string]: string } | string;
-                                        description?: { [key: string]: string } | string;
-                                        searchType?: string;
-                                    };
-                                    const title =
-                                        typeof item.title === 'string'
-                                            ? item.title
-                                            : item.title?.nb ||
-                                              item.title?.en ||
-                                              item.title?.[Object.keys(item.title)[0]] ||
-                                              'Untitled';
-                                    const description =
-                                        typeof item.description === 'string'
-                                            ? item.description
-                                            : item.description?.nb ||
-                                              item.description?.en ||
-                                              item.description?.[Object.keys(item.description || {})[0]] ||
-                                              '';
-
-                                    return (
-                                        <li key={item.id || item.uri || i}>
-                                            <h3>{title}</h3>
-                                            <p>{description}</p>
-                                            {item.searchType && <span className={styles.type}>{item.searchType}</span>}
-                                        </li>
-                                    );
+                                {searchResults.hits.map((hit: SearchObject, i: number) => {
+                                    console.log(hit);
+                                    return <EntityTeaser key={hit.id} entity={hit} />
+                                    // return (
+                                    //     <li key={hit.id || hit.uri || i}>
+                                    //         <h3>{printLoc}</h3>
+                                    //         <p>{description}</p>
+                                    //         {item.searchType && <span className={styles.type}>{item.searchType}</span>}
+                                    //     </li>
+                                    // );
                                 })}
                             </ul>
                         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { Card, type CardProps, Heading, Link, Paragraph, Tag } from '@digdir/designsystemet-react';
+import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag } from '@digdir/designsystemet-react';
 import { TagList } from '@fellesdatakatalog/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
@@ -12,17 +12,17 @@ export type EntityTeaserProps = {
     entity: SearchObject;
 };
 
-const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & CardProps) => {
+const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
     return (
         <Card
             className={cn(styles.container, className)}
             {...rest}
         >
-            <Card.Block>
+            <CardBlock>
                 <div>
                     <OrgLogo
                         className={styles.orgLogo}
-                        orgNr={entity.publisher?.id}
+                        orgNr={entity.organization?.id}
                     />
                     <Heading>
                         <Link
@@ -61,7 +61,7 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & CardPr
                 >
                     {entity.keyword?.join(', ')}
                 </Paragraph>
-            </Card.Block>
+            </CardBlock>
         </Card>
     );
 };

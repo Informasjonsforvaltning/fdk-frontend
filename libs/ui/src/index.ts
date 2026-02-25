@@ -52,6 +52,8 @@ export { default as DownloadDistributionWidget } from './lib/download-distributi
 export * from './lib/download-distribution-widget';
 export { default as DynamicBreadcrumbs } from './lib/dynamic-breadcrumbs';
 export * from './lib/dynamic-breadcrumbs';
+export { default as EntityTeaser } from './lib/entity-teaser';
+export * from './lib/entity-teaser';
 export { default as ExpandableContent } from './lib/expandable-content';
 export * from './lib/expandable-content';
 export { default as ExternalLink } from './lib/external-link';
