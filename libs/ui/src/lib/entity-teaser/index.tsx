@@ -41,18 +41,27 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                     >
                         <Link href='/datasets'>{entity.searchType}</Link>
                     </Tag>
-                    <Tag
+                    {
+                        entity.accessRights?.code &&
+                        <AccessLevelTag
+                            accessCode={entity.accessRights?.code}
+                        />
+                    }
+                    {/* <Tag
                         data-color='success'
                         data-size='sm'
                     >
                         Allmenn tilgang
-                    </Tag>
-                    <Tag
-                        data-color='success'
-                        data-size='sm'
-                    >
-                        Åpne data
-                    </Tag>
+                    </Tag> */}
+                    {
+                        entity.isOpenData &&
+                        <Tag
+                            data-color='success'
+                            data-size='sm'
+                        >
+                            Åpne data
+                        </Tag>
+                    }
                 </TagList>
                 <Paragraph>{printLocaleValue('nb', entity.description)}</Paragraph>
                 <Paragraph
