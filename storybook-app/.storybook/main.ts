@@ -32,8 +32,6 @@ const config: StorybookConfig = {
             },
             optimizeDeps: {
                 include: ['react', 'react-dom', 'react/jsx-runtime', 'react-markdown'],
-                // Don't pre-bundle the local fdk-ui link so Storybook picks up live changes
-                exclude: ['@fellesdatakatalog/ui'],
                 esbuildOptions: {
                     // Handle circular dependencies
                     legalComments: 'none',
@@ -48,12 +46,6 @@ const config: StorybookConfig = {
                 commonjsOptions: {
                     // Handle circular dependencies in CommonJS modules
                     transformMixedEsModules: true,
-                },
-            },
-            server: {
-                watch: {
-                    // Watch linked fdk-ui so Storybook picks up changes when the sibling repo is rebuilt
-                    ignored: [`!**/node_modules/@fellesdatakatalog/ui/**`],
                 },
             },
             resolve: {

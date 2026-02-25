@@ -85,6 +85,8 @@ export { default as OpenDataTag } from './lib/open-data-tag';
 export * from './lib/open-data-tag';
 export { default as OrgButton } from './lib/org-button';
 export * from './lib/org-button';
+export { default as OrgLogo } from './lib/org-logo';
+export * from './lib/org-logo';
 export { default as PlaceholderBox } from './lib/placeholder-box';
 export * from './lib/placeholder-box';
 export { default as PlaceholderText } from './lib/placeholder-text';

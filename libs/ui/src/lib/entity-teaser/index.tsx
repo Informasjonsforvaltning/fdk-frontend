@@ -1,16 +1,19 @@
 import React from 'react';
-import { Card, Heading, Link, Paragraph } from '@digdir/designsystemet-react';
-import { OrgLogo } from '@fellesdatakatalog/ui';
+import cn from 'classnames';
+import { Card, type CardProps, Heading, Link, Paragraph, Tag } from '@digdir/designsystemet-react';
+import { TagList } from '@fellesdatakatalog/ui';
+import { type SearchObject } from '@fellesdatakatalog/types';
+import AccessLevelTag from '../access-level-tag';
+import { OrgLogo } from '../org-logo';
 import styles from './styles.module.scss';
 
-const EntityTeaser = () => {
+export type EntityTeaserProps = {
+    entity: SearchObject;
+}
+
+const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & CardProps) => {
     return (
-        // <Card>
-            
-        //     <OrgLogo orgLogoSrc='https://orglogo.digdir.no/api/emblem/svg/991825827' />
-        //     Hello im an entity teaser
-        // </Card>
-        <Card>
+        <Card className={cn(styles.container, className)} {...rest}>
             <Card.Block>
                 <div>
                     <OrgLogo className={styles.orgLogo} orgNr="991825827" />
@@ -20,17 +23,37 @@ const EntityTeaser = () => {
                             target='_blank'
                             rel='noopener noreferrer'
                         >
-                            Myrkheim Museum
+                            {entity.title}
                         </Link>
                     </Heading>
                 </div>
+                <TagList>
+                    <Tag
+                        data-color='info'
+                        data-size='md'
+                    >
+                        <Link href='/datasets'>Datasett</Link>
+                    </Tag>
+                    <Tag
+                        data-color='success'
+                        data-size='md'
+                    >
+                        Allmenn tilgang
+                    </Tag>
+                    <Tag
+                        data-color='success'
+                        data-size='md'
+                    >
+                        Åpne data
+                    </Tag>
+                </TagList>
             <Paragraph>
                 Myrkheim Museum ligg i dalen mellom dei gamle fjelltoppane og viser
                 utstillingar frå tida då dei fyrste reisefølgja kryssa landet. Her kan
                 du utforske eldgamle kart, reiskapar frå dei store vandringane og
                 forteljingar bevart av skogvaktarane.
             </Paragraph>
-            <Paragraph data-size='sm'>Myrkheim Kulturvernråd</Paragraph>
+            <Paragraph data-size='sm'>Fisk og skogbruk, Landbruk, Industri</Paragraph>
             </Card.Block>
         </Card>
     );
