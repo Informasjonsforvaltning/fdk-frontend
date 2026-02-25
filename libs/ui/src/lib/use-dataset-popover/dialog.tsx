@@ -120,10 +120,7 @@ const UseDatasetPopoverDialog = ({
                                             <span className={styles.itemTitle}>
                                                 {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
                                             </span>
-                                            <ApiTags
-                                                api={api}
-                                                dictionary={dictionary}
-                                            />
+                                            <ApiTags api={api} />
                                         </div>
                                         <ActionButton
                                             uri={`/data-services/${api.id}`}

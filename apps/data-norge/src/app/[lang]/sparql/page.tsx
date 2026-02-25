@@ -21,7 +21,6 @@ const SparqlPage = async (props: SparqlPageProps) => {
 
     const loc = getLocalization(lang);
     const dictionary = loc.sparqlSandboxPage;
-    const commonDictionary = loc.common;
 
     const breadcrumbList = [
         {
@@ -35,7 +34,7 @@ const SparqlPage = async (props: SparqlPageProps) => {
             <div style={{ margin: '0 2rem' }}>
                 <Breadcrumbs
                     breadcrumbList={breadcrumbList}
-                    dictionary={commonDictionary}
+                    locale={lang}
                 />
             </div>
             <div className={styles.contentContainer}>

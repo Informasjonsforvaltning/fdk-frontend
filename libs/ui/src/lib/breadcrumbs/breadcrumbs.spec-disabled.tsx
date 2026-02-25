@@ -1,23 +1,17 @@
 import { screen, render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { getLocalization, type Localization } from '@fdk-frontend/localization';
+import { getLocalization } from '@fdk-frontend/localization';
 
 import Breadcrumbs from '.';
 
 expect.extend(toHaveNoViolations);
 
 describe('Breadcrumbs', () => {
-    let dictionary: Localization;
-
-    beforeEach(async () => {
-        dictionary = getLocalization('en').dataHunterPage;
-    });
-
     it('should render successfully', () => {
+        const homeText = getLocalization('en').common.breadcrumbs.home;
         render(
             <Breadcrumbs
-                baseUri='/'
-                dictionary={dictionary}
+                locale='en'
                 breadcrumbList={[
                     {
                         href: '#',
@@ -27,7 +21,7 @@ describe('Breadcrumbs', () => {
             />,
         );
 
-        const homeLinkElement = screen.getByText(dictionary.homePage, { selector: 'a' });
+        const homeLinkElement = screen.getByText(homeText, { selector: 'a' });
         expect(homeLinkElement).toBeInTheDocument();
 
         const currentPageELement = screen.getByText('test', { selector: 'span' });
@@ -38,8 +32,7 @@ describe('Breadcrumbs', () => {
         const { baseElement } = render(
             <main>
                 <Breadcrumbs
-                    baseUri='/'
-                    dictionary={dictionary}
+                    locale='en'
                     breadcrumbList={[
                         {
                             href: '#',

@@ -1,14 +1,15 @@
 import { Alert } from '@digdir/designsystemet-react';
-import { type Localization } from '@fdk-frontend/localization';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { FormStatusEnum } from '@fdk-frontend/utils';
 import styles from './submit-status-alert.module.css';
 
 type SubmitStatusAlertProps = {
+    locale: LocaleCodes;
     formStatus?: FormStatusEnum;
-    dictionary: Localization;
 };
 
-const SubmitStatusAlert = ({ dictionary, formStatus = FormStatusEnum.UNSET }: SubmitStatusAlertProps) => {
+const SubmitStatusAlert = ({ locale, formStatus = FormStatusEnum.UNSET }: SubmitStatusAlertProps) => {
+    const dictionary = getLocalization(locale).dataHunterPage;
     switch (formStatus) {
         case FormStatusEnum.SUCCESS:
             return (

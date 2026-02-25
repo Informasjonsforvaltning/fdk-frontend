@@ -1,7 +1,7 @@
 import 'server-only';
 import { type Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
-import { type Locale, getLocalization, getSafeSection } from '@fdk-frontend/localization';
+import { type Locale, getLocalization } from '@fdk-frontend/localization';
 import { Header, Footer } from '@fdk-frontend/ui';
 import { FrontpageBanner } from '../components/frontpage/frontpage-banner';
 import { ShareDataBanner } from '../components/frontpage/share-data-banner';
@@ -22,13 +22,11 @@ const Frontpage = async (props: FrontpageProps) => {
     const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
 
     const loc = getLocalization(params.lang);
-    const commonDictionaryForHeader = getSafeSection(params.lang, 'common');
     const frontpageDictionary = loc.frontpage;
 
     return (
         <>
             <Header
-                dictionary={commonDictionaryForHeader}
                 locale={params.lang}
                 frontpage
             />
@@ -50,10 +48,7 @@ const Frontpage = async (props: FrontpageProps) => {
                     />
                 </div>
             </main>
-            <Footer
-                dictionary={loc.common}
-                locale={params.lang}
-            />
+            <Footer locale={params.lang} />
         </>
     );
 };

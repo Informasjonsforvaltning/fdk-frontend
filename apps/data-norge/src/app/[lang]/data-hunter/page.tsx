@@ -22,7 +22,6 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
 
     const loc = getLocalization(lang);
     const dictionary = loc.dataHunterPage;
-    const commonDictionary = loc.common;
 
     const breadcrumbList = [
         {
@@ -36,13 +35,13 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
             <div style={{ margin: '0 2rem' }}>
                 <Breadcrumbs
                     breadcrumbList={breadcrumbList}
-                    dictionary={commonDictionary}
+                    locale={lang}
                 />
             </div>
             <div className={styles.contentContainer}>
                 <Heading data-size='xl'>{dictionary.dataHunterForm.title}</Heading>
                 <Paragraph data-size='lg'>{dictionary.dataHunterForm.description}</Paragraph>
-                <DataHunterForm dictionary={dictionary} />
+                <DataHunterForm dictionary={dictionary} locale={lang} />
             </div>
         </>
     );
