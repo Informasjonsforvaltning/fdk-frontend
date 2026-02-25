@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import cn from 'classnames';
 import { Heading, Button, type ButtonProps, Dialog } from '@digdir/designsystemet-react';
 import { DownloadIcon } from '@navikt/aksel-icons';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import Badge from '../badge';
 import ExternalLink from '../external-link';
 import styles from './styles.module.scss';
@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 type DownloadButtonProps = {
     modalTitle: string;
     uris?: string[];
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

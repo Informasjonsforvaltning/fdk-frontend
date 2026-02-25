@@ -1,0 +1,273 @@
+const detailsPage = {
+  breadcrumbs: {
+    datasets: "Datasett",
+    services: "Tenester"
+  },
+  header: {
+    namelessOrganization: "Namnlaus verksemd",
+    namelessDataset: "Namnlaust datasett",
+    namelessService: "Namnlaust teneste",
+    useDatasetButton: "Bruk datasett",
+    datasetsTagLink: "Datasett",
+    servicesTagLink: "Tenester",
+    published: "Publisert",
+    requestAccessButton: "Be om tilgong",
+    showInterestButton: "Meld interesse"
+  },
+  useDatasetPopover: {
+    distributions: "Distribusjonar",
+    apis: "API-ar"
+  },
+  resourceNotAvailableNotice: {
+    title: "Dette datasettet er ikkje tilgjengeleg enno",
+    body: "Dette datasettet har ingen distribusjonar. Det betyr at berre skildringa av datasettet er tilgjengeleg, medan sjølve innhaldet og dataa ikkje er publiserte enno. Du kan melde di interesse for datasettet til den ansvarlege verksemda ved å klikke på knappen nedanfor. Jo fleire som viser interesse, dess større er sjansen for at dataa blir gjorde tilgjengelege.",
+    moreInfoLink: "Meir informasjon"
+  },
+  accessRights: {
+    helpTextTitle: "Omgrep",
+    unknownLabel: "Ukjend tilgangsnivå",
+    readMoreLinkText: "Les meir om tilgangsnivå her",
+    codes: {
+      NON_PUBLIC: {
+        label: "Ikkje-allmenn tilgang",
+        helpText: "Ikkje offentleg tilgjengeleg grunna personvern, tryggleik eller andre årsaker. Denne kategorien kan omfatte ressursar som inneheld sensitiv eller personleg informasjon."
+      },
+      RESTRICTED: {
+        label: "Avgrensa tilgang",
+        helpText: "Berre tilgjengeleg under visse vilkår. Kan inkludere ressursar som krev betaling, ressursar delt under teiepliktsavtalar, eller ressursar der utgjevar eller eigar ikkje har avgjort om dei kan offentleggjerast."
+      },
+      PUBLIC: {
+        label: "Allmenn tilgang",
+        helpText: "Tilgjengeleg for alle. Tilgang kan likevel krevje registrering og førespurnad om API-nøklar, så lenge kven som helst kan be om slik registrering og/eller API-nøklar."
+      }
+    }
+  },
+  tabs: {
+    overview: "Oversikt",
+    distributions: "Distribusjonar og API-ar",
+    details: "Detaljar",
+    community: "Diskusjonar",
+    rdf: "RDF"
+  },
+  overview: {
+    description: {
+      title: "Skildring",
+      placeholder: "Dette datasettet har inga skildring"
+    }
+  },
+  distributions: {
+    title: "Distribusjonar",
+    placeholder: "Dette datasettet har ingen distribusjonar.",
+    header: {
+      nameless: "Namnlaus distribusjon",
+      openLicense: "Open lisens",
+      hasApi: "API",
+      exampleData: "Eksempeldata",
+      downloadBtnLabel: "Last ned"
+    },
+    details: {
+      description: "Skildring",
+      accessURL: "Tilgjengeleg URL",
+      downloadURL: "Direkte nedlasting",
+      accessService: "API",
+      page: "Dokumentasjon",
+      license: "Lisens",
+      conformsTo: "I samsvar med",
+      status: "Status",
+      rightsType: "Rettigheter for bruk",
+      mobilityDataStandard: "Mobility-standard",
+      noData: "Ikkje oppgitt"
+    },
+    downloadModal: {
+      header: "Denne distribusjonen er tilgjengeleg på følgjande URL-ar:",
+      closeBtn: "Lukk vindu"
+    }
+  },
+  produces: {
+    title: "Tenesteresultat",
+    nameless: "Namnlaust tenesteresultat",
+    placeholder: "Denne tenesta har inga tenesteresultat."
+  },
+  apis: {
+    title: "API-ar som tilbyr dette datasettet",
+    placeholder: "Ingen registrerte API-ar tilbyr dette datasettet.",
+    header: {
+      nameless: "Namnlaust API",
+      gotoBtn: "Gå til API"
+    },
+    details: {
+      noData: "Ikkje oppgitt",
+      description: "Skildring",
+      endpoint: "Endepunkt",
+      url: "URL",
+      page: "Dokumentasjon"
+    }
+  },
+  similarDatasets: "Liknande datasett",
+  internalRelations: "Relasjonar til andre ressursar",
+  externalRelations: "Relasjonar fra andre ressursar",
+  details: {
+    showEmptyRows: "Vis tomme rader",
+    hideEmptyRows: "Gøym tomme rader",
+    noData: "Ikkje oppgitt",
+    general: {
+      title: "Om datasettet",
+      serviceTitle: "Om tenesta",
+      publisher: "Utgjevar",
+      firstHarvested: "Publisert",
+      firstHarvestedHelpText: "Denne datoen viser når datasettet vart henta inn av data.norge.no. Det kan ha vore tilgjengeleg tidlegare andre stader.",
+      firstHarvestedHelpTextTitle: "Omgrep",
+      firstHarvestedHelpTextLink: "Les meir om innhenting her",
+      modified: "Sist oppdatert",
+      page: "Dokumentasjon",
+      type: "Datasettype",
+      landingPage: "Landingsside",
+      homepage: "Hjemmeside",
+      metadataQuality: {
+        title: "Metadatakvalitet",
+        helpText: "Metadatakvalitet er ein indikator på kor godt datasettene er beskrive ved hjelp av metadata.",
+        helpTextTitle: "Omgrep",
+        helpTextLink: "Les meir om metadatakvalitet her",
+        labels: {
+          excellent: "Utmerket",
+          good: "God",
+          sufficient: "Tilstrekkeleg",
+          poor: "Dårleg"
+        }
+      },
+      copyButton: [
+        "Kopier",
+        "Kopiert!"
+      ]
+    },
+    contactPoint: {
+      title: "Kontaktinformasjon",
+      formattedName: "Kontaktpunkt",
+      uri: "Nettside",
+      email: "E-post",
+      telephone: "Telefon"
+    },
+    content: {
+      title: "Om dataane",
+      language: "Språk",
+      qualifiedAttributions: "Innhaldsleverandørar",
+      provenance: "Opphav",
+      accrualPeriodicity: "Oppdateringsfrekvens",
+      issued: "Først utgjeve",
+      issuedHelpText: "Denne datoen seier når dataa i dette datasettet først blei utgitt. Det kan ha skjedd før datasettet blei publisert på data.norge.no.",
+      modified: "Sist oppdatert",
+      accuracyAnnotation: "Nøyaktigheit",
+      availabilityAnnotation: "Tilgjenge",
+      completenessAnnotation: "Fullstendigheit",
+      currentnessAnnotation: "Aktualitet",
+      relevanceAnnotation: "Relevans",
+      spatial: "Geografisk område",
+      temporal: "Tidsrom",
+      temporalFrom: "Frå",
+      temporalTo: "Til",
+      conformsTo: "I samsvar med",
+      conformsToHelpText: "Referanse til ei implementeringsregel eller anna spesifikasjon som ligg til grunn for datasettet."
+    },
+    legal: {
+      title: "Lovheimler",
+      legalBasisForAccess: "Utleveringsheimel",
+      legalBasisForProcessing: "Handsamingsgrunnlag",
+      legalBasisForRestriction: "Skjermingsheimel"
+    },
+    concepts: {
+      title: "Omgrep brukte i datasettet"
+    },
+    related: {
+      title: "Relasjonar til andre ressursar",
+      namelessDataset: "Namnlaust datasett",
+      namelessOrganization: "Namnlaus verksemd"
+    },
+    requires: {
+      title: "Krev",
+      placeholder: "Denne tenesta krev ingen andre tenester."
+    },
+    references: {
+      title: "Referansar",
+      relatedResources: "Relaterte ressursar",
+      relationLabels: {
+        "http://purl.org/dc/terms/associativeRelation": "Assosiert relasjon",
+        "http://purl.org/dc/terms/closeMatch": "Nær match",
+        "http://purl.org/dc/terms/exactMatch": "Eksakt match",
+        "http://purl.org/dc/terms/generalizes": "Generalisert",
+        "http://purl.org/dc/terms/specializes": "Spesialisert",
+        "http://purl.org/dc/terms/memberOf": "Medlem av",
+        "http://purl.org/dc/terms/replaces": "Erstattar",
+        "http://purl.org/dc/terms/isReplacedBy": "Erstatta av",
+        "http://purl.org/dc/terms/seeAlso": "Sjå òg",
+        "http://purl.org/dc/terms/conformsTo": "Overheld",
+        "http://purl.org/dc/terms/servesDataset": "Tenar datasett",
+        "http://purl.org/dc/terms/inSeries": "I serie",
+        "http://purl.org/dc/terms/subject": "Emne",
+        "http://purl.org/dc/terms/hasPart": "Har del av",
+        "http://purl.org/dc/terms/isPartOf": "Er del av",
+        "http://purl.org/dc/terms/isGroupedBy": "Er gruppert av",
+        "http://purl.org/dc/terms/isClassifiedBy": "Er klassifisert av",
+        "http://purl.org/dc/terms/isDescribedAt": "Er beskreven på",
+        "http://purl.org/dc/terms/relation": "Relasjon",
+        "http://purl.org/dc/terms/hasVersion": "Har versjon",
+        "http://purl.org/dc/terms/isVersionOf": "Er versjon av",
+        "http://purl.org/dc/terms/references": "Refererer til",
+        "http://purl.org/dc/terms/isReferencedBy": "Er referert til",
+        "http://purl.org/dc/terms/requires": "Krev",
+        "http://purl.org/dc/terms/isRequiredBy": "Krevst av",
+        "http://purl.org/dc/terms/source": "Kjelde",
+        unknown: "Ukjend relasjon"
+      }
+    },
+    themes: "Tema",
+    mobilityThemes: "Mobility-tema",
+    thematicArea: "Temaområde",
+    keywords: "Nøkkelord"
+  },
+  community: {
+    title: "Diskusjonar på Datalandsbyen",
+    noData: "Ingen diskusjonar funne",
+    notice: {
+      title: "Kva er Datalandsbyen?",
+      body: "Datalandsbyen er vårt nettforum der du kan be om data, dele erfaringar og spørje om råd som gjeld deling av data og informasjonsforvalting.",
+      gotoLink: "Gå til Datalandsbyen",
+      moreInfo: "Meir informasjon"
+    },
+    topicRow: {
+      postedBy: "Posta av",
+      votes: "Stemmer",
+      posts: "Innlegg",
+      views: "Visingar"
+    }
+  },
+  rdf: {
+    titleHelpText: "Alle URL-ar til ressursar på data.norge.no kan levere RDF-metadata i fleire ulike format, avhengig av kva for ein Accept-header som blir sendt med.",
+    titleHelpTextLink: "Les meir om RDF og kva format vi støttar her",
+    titleHelpTextTitle: "Omgrep",
+    inputLabel: "Ressurs URI",
+    copyButton: [
+      "Kopier",
+      "Kopiert!"
+    ],
+    loading: "Lastar"
+  },
+  datasetPreview: {
+    generatingPreview: "Genererer førehandsvising...",
+    previewNotAvailable: "Førehandsvising ikkje tilgjengeleg",
+    previewNotAvailableHelpText: "Førehandsvising er berre tilgjengeleg for datakjelder med CSV og XLS/XLSX-format.",
+    showPreviewButton: "Vis førehandsvising",
+    showingMaxRows: "Viser maks 100 rader",
+    closeButton: "Lukk vindauge",
+    downloadButton: "Last ned heile datasettet",
+    noTableData: "Ingen tabelldata tilgjengeleg"
+  },
+  statusCodes: {
+    Completed: "Godkjent",
+    UnderDevelopment: "Under utvikling",
+    Withdrawn: "Trukket",
+    Deprecated: "Utgått",
+    Discontinued: "Avsluttet"
+  }
+};
+
+export default detailsPage;

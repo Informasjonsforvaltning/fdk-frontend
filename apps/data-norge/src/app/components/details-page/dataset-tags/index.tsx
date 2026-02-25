@@ -1,7 +1,7 @@
 import React from 'react';
 import { type Dataset } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import { Tag, Link } from '@digdir/designsystemet-react';
 import { TagList } from '@fdk-frontend/ui';
 

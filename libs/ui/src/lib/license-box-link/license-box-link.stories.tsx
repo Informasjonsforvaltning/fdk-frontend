@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization } from '@fdk-frontend/localization';
 
 import LicenseBoxLink from '.';
 
-const dictionary = await getDictionary('nb', 'common');
+const dictionary = getLocalization('nb').common;
 
 const meta: Meta<typeof LicenseBoxLink> = {
     component: LicenseBoxLink,

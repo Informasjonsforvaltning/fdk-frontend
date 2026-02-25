@@ -3,7 +3,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getLocalization, type Locale } from '@fdk-frontend/localization';
 import { Breadcrumbs } from '@fdk-frontend/ui';
 import DataHunterForm from './components/data-hunter-form';
 import styles from './page.module.css';
@@ -20,8 +20,9 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
     // Opt-in dynamic rendering
     await noStore();
 
-    const dictionary = await getDictionary(lang, 'data-hunter-page');
-    const commonDictionary = await getDictionary(lang, 'common');
+    const loc = getLocalization(lang);
+    const dictionary = loc.dataHunterPage;
+    const commonDictionary = loc.common;
 
     const breadcrumbList = [
         {
@@ -49,7 +50,7 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
 
 export const generateMetadata = async (props: DataHunterPageProps): Promise<Metadata> => {
     const params = await props.params;
-    const dictionary = await getDictionary(params.lang, 'data-hunter-page');
+    const dictionary = getLocalization(params.lang).dataHunterPage;
 
     return {
         title: dictionary.metadata.title,

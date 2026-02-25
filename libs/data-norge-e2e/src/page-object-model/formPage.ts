@@ -1,13 +1,14 @@
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization, type Localization } from '@fdk-frontend/localization';
 import { expect, Page, BrowserContext } from '@playwright/test';
 import * as mockData from '../data/inputData.json';
 import type AxeBuilder from '@axe-core/playwright';
-import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/en/data-hunter-page.json';
+
+const dictionary = getLocalization('en').dataHunterPage;
 
 export default class FormPage {
     page: Page;
     context: BrowserContext;
-    dictionary: Dictionary;
+    dictionary: Localization;
     accessibilityBuilder;
     formData = {};
 

@@ -1,6 +1,6 @@
 import { NormalLayout } from '@fdk-frontend/ui';
 import { PropsWithChildren } from 'react';
-import { LocaleCodes } from '@fdk-frontend/dictionaries';
+import { LocaleCodes } from '@fdk-frontend/localization';
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';

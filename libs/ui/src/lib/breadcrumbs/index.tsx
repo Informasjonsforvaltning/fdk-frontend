@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 import { Link } from '@digdir/designsystemet-react';
 
 import ScrollShadows from '../scroll-shadows';
@@ -14,7 +14,7 @@ export type BreadcrumbType = {
 
 export type BreadcrumbsProps = {
     breadcrumbList?: BreadcrumbType[];
-    dictionary: Dictionary;
+    dictionary: Localization;
 };
 
 const BreadcrumbsContainer = ({ children }: React.PropsWithChildren) => (

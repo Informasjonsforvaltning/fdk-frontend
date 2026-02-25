@@ -1,7 +1,7 @@
 'use client';
 import cn from 'classnames';
 import { Card, Details, Heading } from '@digdir/designsystemet-react';
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
 import { type JSONValue } from '@fdk-frontend/types';
 import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
@@ -21,8 +21,8 @@ export type DistributionsProps = {
     className?: string;
     locale: LocaleCodes;
     dictionaries: {
-        common: Dictionary;
-        detailsPage: Dictionary;
+        common: Localization;
+        detailsPage: Localization;
     };
     resolvedDistributionDataServices?: SearchObject[];
     resolvedDistributionInformationModels?: SearchObject[];

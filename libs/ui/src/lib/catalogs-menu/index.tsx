@@ -1,13 +1,13 @@
 'use client';
 
 import { Heading, Card, Paragraph } from '@digdir/designsystemet-react';
-import { Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import getMainMenuData from '../main-menu/data';
 
 import styles from './catalogs-menu.module.scss';
 
 type CatalogsMenuProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

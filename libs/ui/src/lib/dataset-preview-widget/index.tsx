@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { Spinner, Button } from '@digdir/designsystemet-react';
 import { EyeIcon } from '@navikt/aksel-icons';
 import DatasetPreviewModal from '../dataset-preview-modal/';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 import {
     trackSiteImproveEvent,
     EventCategory,
@@ -17,7 +17,7 @@ import styles from './styles.module.scss';
 type DatasetPreviewWidgetProps = {
     downloadUrl: string;
     title: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
     triggerBtnClass?: string;
 };
 

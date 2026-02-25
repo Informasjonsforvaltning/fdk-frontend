@@ -1,5 +1,5 @@
 import { TextLanguage } from '@fellesdatakatalog/types';
-import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
 import slugify from 'slugify';
 
 export const print = (str?: string) => {

@@ -1,16 +1,16 @@
 import { screen, render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { getDictionary, type Dictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization, type Localization } from '@fdk-frontend/localization';
 
 import Breadcrumbs from '.';
 
 expect.extend(toHaveNoViolations);
 
 describe('Breadcrumbs', () => {
-    let dictionary: Dictionary;
+    let dictionary: Localization;
 
     beforeEach(async () => {
-        dictionary = await getDictionary('en', 'data-hunter-page');
+        dictionary = getLocalization('en').dataHunterPage;
     });
 
     it('should render successfully', () => {

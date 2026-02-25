@@ -1,5 +1,5 @@
 import { notFound, redirect } from 'next/navigation';
-import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { i18n, type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug } from '@fdk-frontend/utils';
 import { getDataset } from '@fdk-frontend/data-access/server';
 

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization } from '@fdk-frontend/localization';
 
 import { FrontpageBanner } from '.';
 
-const dictionary = await getDictionary('nb', 'frontpage');
+const dictionary = getLocalization('nb').frontpage;
 
 const meta: Meta<typeof FrontpageBanner> = {
     component: FrontpageBanner,

@@ -1,5 +1,5 @@
 import { notFound, redirect } from 'next/navigation';
-import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { i18n, getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import {
@@ -46,9 +46,10 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const activeTab = searchParams?.tab ?? 'overview';
     const similarItemsLimit = 5;
 
+    const loc = getLocalization(locale);
     const dictionaries = {
-        common: await getDictionary(locale, 'common'),
-        detailsPage: await getDictionary(locale, 'details-page'),
+        common: loc.common,
+        detailsPage: loc.detailsPage,
     };
 
     let dataset: DatasetWithIdentifier;
@@ -234,7 +235,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
 export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     const params = await props.params;
     const locale = params.lang ?? i18n.defaultLocale;
-    const dictionary = await getDictionary(locale, 'details-page');
+    const dictionary = getLocalization(locale).detailsPage;
 
     try {
         const dataset = await getDataset(params.id);

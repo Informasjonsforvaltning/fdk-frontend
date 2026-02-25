@@ -1,6 +1,6 @@
 import { RootLayout as RootLayoutBase, generateStaticParams } from '@fdk-frontend/ui';
 import { PropsWithChildren } from 'react';
-import { LocaleCodes } from '@fdk-frontend/dictionaries';
+import { LocaleCodes } from '@fdk-frontend/localization';
 
 const RootLayout = async ({
     children,

@@ -46,7 +46,7 @@ Defined in `tsconfig.base.json`:
 - `@fdk-frontend/ui` → UI components
 - `@fdk-frontend/data-access` → Client-side data access
 - `@fdk-frontend/data-access/server` → Server-side API clients
-- `@fdk-frontend/dictionaries` → i18n functions and types
+- `@fdk-frontend/localization` → i18n functions and types
 - `@fdk-frontend/types` → Shared types
 - `@fdk-frontend/types/server` → Server-side types
 - `@fdk-frontend/utils` → Utility functions
@@ -57,10 +57,10 @@ Defined in `tsconfig.base.json`:
 Routes use `[lang]` dynamic segment. Supported locales: `nb`, `nn`, `en`
 
 ```typescript
-import { getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization, getSafeSection } from '@fdk-frontend/localization';
 
-const dictionary = await getDictionary(params.lang, 'common');
-const headerDict = getSafeDictionary(dictionary); // For passing to multiple components
+const loc = getLocalization(params.lang);
+const headerDict = getSafeSection(params.lang, 'common'); // For passing to multiple components
 ```
 
 ## Design System

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { type DatasetWithIdentifier, type DataService } from '@fellesdatakatalog/types';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     OrgButton,
@@ -19,8 +19,8 @@ type DatasetHeaderProps = {
     dataset: DatasetWithIdentifier;
     apis?: DataService[];
     dictionaries: {
-        common: Dictionary;
-        detailsPage: Dictionary;
+        common: Localization;
+        detailsPage: Localization;
     };
     locale: LocaleCodes;
     orgLogo?: string | null;

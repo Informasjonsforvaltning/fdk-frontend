@@ -1,7 +1,7 @@
 import '../../core/global.scss';
 import { PropsWithChildren } from 'react';
 import Script from 'next/script';
-import { i18n, type Locale } from '@fdk-frontend/dictionaries';
+import { i18n, type Locale } from '@fdk-frontend/localization';
 
 export type RootLayoutProps = {
     params: Promise<{

@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react';
 import { Header } from '@fdk-frontend/ui';
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization } from '@fdk-frontend/localization';
 import styles from './error-page.module.scss';
 
 export default async function ErrorPage({ children }: PropsWithChildren) {
     const lang = 'nb';
-    const commonDictionary = await getDictionary(lang, 'common');
+    const commonDictionary = getLocalization(lang).common;
     return (
         <>
             <Header

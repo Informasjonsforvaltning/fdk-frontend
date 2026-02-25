@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { Link, Paragraph, Button, Popover } from '@digdir/designsystemet-react';
-import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes, interpolate } from '@fdk-frontend/localization';
 
 // import QuerySuggestion from '../query-suggestion';
 const QuerySuggestion = dynamic(() => import('../query-suggestion'), {
@@ -10,7 +10,7 @@ const QuerySuggestion = dynamic(() => import('../query-suggestion'), {
 import styles from './aux-panel.module.scss';
 
 export type AuxPanelProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     onRequestSearch: (query: string) => void;
     locale: LocaleCodes;
     numResults?: number;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
 import { type DataService } from '@fellesdatakatalog/types';
 import {
     Markdown,
@@ -19,7 +19,7 @@ import distStyles from '../../distributions.module.scss';
 type ApiDetailsProps = {
     api: DataService;
     locale: LocaleCodes;
-    dictionary: Dictionary;
+    dictionary: Localization;
 };
 
 const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {

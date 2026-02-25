@@ -60,8 +60,8 @@ const config: StorybookConfig = {
                         replacement: resolve(__dirname, '../../libs/data-access/src/index.ts'),
                     },
                     {
-                        find: '@fdk-frontend/dictionaries',
-                        replacement: resolve(__dirname, '../../libs/dictionaries/src/index.ts'),
+                        find: '@fdk-frontend/localization',
+                        replacement: resolve(__dirname, '../../libs/localization/src/index.ts'),
                     },
                     {
                         find: /^@fdk-frontend\/libs\/(.+)$/,

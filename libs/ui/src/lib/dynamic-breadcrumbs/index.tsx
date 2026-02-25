@@ -2,13 +2,13 @@
 
 import { usePathname } from 'next/navigation';
 
-import { Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 
 import Breadcrumbs from '../breadcrumbs';
 
 type DynamicBreadcrumbsProps = {
-    commonDictionary: Dictionary;
-    docsDictionary: Dictionary;
+    commonDictionary: Localization;
+    docsDictionary: Localization;
     locale: LocaleCodes;
 };
 

@@ -1,4 +1,4 @@
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { LogoLink, DpgLink, DigdirLogoLink } from '../logo';
 import LanguageSwitcher from '../language-switcher';
 import MainMenu from '../main-menu';
@@ -6,7 +6,7 @@ import styles from './footer.module.scss';
 import { HStack } from '@fellesdatakatalog/ui';
 
 export type FooterProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

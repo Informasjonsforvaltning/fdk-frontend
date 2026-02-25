@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import { Paragraph, Heading, Alert, Link, Button } from '@digdir/designsystemet-react';
-import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { Hstack, VStack, BackButton, Markdown } from '@fdk-frontend/ui';
 import styles from './styles.module.scss';
 
@@ -17,7 +17,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
     const { lang } = await props.params;
     const { url } = (await props.searchParams) || {};
 
-    const dictionary = await getDictionary(lang, 'common');
+    const dictionary = getLocalization(lang).common;
 
     return (
         <div className={styles.wrapper}>
@@ -59,7 +59,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
 
 export const generateMetadata = async (props: LeavingGatewayPageProps) => {
     const params = await props.params;
-    const dictionary = await getDictionary(params.lang, 'common');
+    const dictionary = getLocalization(params.lang).common;
 
     return {
         title: `${dictionary.leavingGateway.heading} - data.norge.no`,

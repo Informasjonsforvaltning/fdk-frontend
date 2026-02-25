@@ -4,12 +4,12 @@ import { Link, Table } from '@digdir/designsystemet-react';
 import AccessLevelTag from '../access-level-tag';
 import HStack from '../hstack';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import styles from './dataset-table.module.scss';
 
 type DatasetTableProps = {
     locale: LocaleCodes;
-    dictionary: Dictionary;
+    dictionary: Localization;
     datasets: any[];
 };
 
