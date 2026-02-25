@@ -5,6 +5,7 @@ import { TagList } from '@fellesdatakatalog/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
 import { OrgLogo } from '../org-logo';
+import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './styles.module.scss';
 
 export type EntityTeaserProps = {
@@ -16,44 +17,43 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & CardPr
         <Card className={cn(styles.container, className)} {...rest}>
             <Card.Block>
                 <div>
-                    <OrgLogo className={styles.orgLogo} orgNr="991825827" />
+                    <OrgLogo className={styles.orgLogo} orgNr={entity.publisher?.id} />
                     <Heading>
                         <Link
                             href='https://designsystemet.no'
                             target='_blank'
                             rel='noopener noreferrer'
                         >
-                            {entity.title}
+                            {printLocaleValue('nb', entity.title)}
                         </Link>
                     </Heading>
                 </div>
                 <TagList>
                     <Tag
                         data-color='info'
-                        data-size='md'
+                        data-size='sm'
                     >
-                        <Link href='/datasets'>Datasett</Link>
+                        <Link href='/datasets'>{entity.searchType}</Link>
                     </Tag>
                     <Tag
                         data-color='success'
-                        data-size='md'
+                        data-size='sm'
                     >
                         Allmenn tilgang
                     </Tag>
                     <Tag
                         data-color='success'
-                        data-size='md'
+                        data-size='sm'
                     >
                         Åpne data
                     </Tag>
                 </TagList>
             <Paragraph>
-                Myrkheim Museum ligg i dalen mellom dei gamle fjelltoppane og viser
-                utstillingar frå tida då dei fyrste reisefølgja kryssa landet. Her kan
-                du utforske eldgamle kart, reiskapar frå dei store vandringane og
-                forteljingar bevart av skogvaktarane.
+                {printLocaleValue('nb', entity.description)}
             </Paragraph>
-            <Paragraph data-size='sm'>Fisk og skogbruk, Landbruk, Industri</Paragraph>
+            <Paragraph data-size='sm' className={styles.keywords}>
+                {entity.keyword?.join(', ')}
+            </Paragraph>
             </Card.Block>
         </Card>
     );
