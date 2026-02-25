@@ -1,12 +1,12 @@
 import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import ExternalLink from '../external-link';
-import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes, interpolate } from '@fdk-frontend/localization';
 import styles from './feedback-banner.module.scss';
 
 type FeedbackBannerProps = {
     locale: LocaleCodes;
-    dictionary: Dictionary;
+    dictionary: Localization;
     communityBaseUri: string;
 };
 

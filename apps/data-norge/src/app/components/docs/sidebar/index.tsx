@@ -7,12 +7,12 @@ import cn from 'classnames';
 import { Heading, Button, Link } from '@digdir/designsystemet-react';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
 
 import styles from './sidebar.module.scss';
 
 export type SidebarProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     currentPath: string[];
     locale: LocaleCodes;
 };
@@ -28,10 +28,10 @@ type NestedListProps = {
     items: SidebarItemObject[];
     locale: LocaleCodes;
     pathname: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
 };
 
-const buildNestedStructure = (data: Dictionary, basePath: string, locale: LocaleCodes): SidebarItemObject[] => {
+const buildNestedStructure = (data: Localization, basePath: string, locale: LocaleCodes): SidebarItemObject[] => {
     const items: SidebarItemObject[] = Object.entries(data)
         .filter(([path]) => path.startsWith(basePath))
         .map(([path, title]) => ({

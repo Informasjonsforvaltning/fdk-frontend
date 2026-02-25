@@ -2,14 +2,14 @@ import React from 'react';
 import mime from 'mime-types';
 import { type Distribution } from '@fellesdatakatalog/types';
 import { isOpenLicense } from '@fdk-frontend/utils';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 import { Tag } from '@digdir/designsystemet-react';
 import TagList, { type TagListProps } from '../tag-list';
 
 type DistributionTagsProps = TagListProps & {
     distribution: Distribution;
     exampleData?: boolean;
-    dictionary: Dictionary;
+    dictionary: Localization;
     hasApi?: boolean;
 };
 

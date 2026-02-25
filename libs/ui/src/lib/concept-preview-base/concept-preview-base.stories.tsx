@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization } from '@fdk-frontend/localization';
 
 import ConceptPreviewBase from '.';
 
-const dictionary = await getDictionary('en', 'docs');
+const dictionary = getLocalization('en').docs;
 
 const meta: Meta<typeof ConceptPreviewBase> = {
     component: ConceptPreviewBase,

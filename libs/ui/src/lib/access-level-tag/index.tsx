@@ -1,11 +1,11 @@
 import { Link, Tag, TagProps, Paragraph } from '@digdir/designsystemet-react';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { AccessRightsCodes } from '@fellesdatakatalog/types';
 import { HelpText } from '@fellesdatakatalog/ui';
 
 type AccessLevelTagProps = {
     accessCode?: AccessRightsCodes;
-    dictionary: Dictionary;
+    dictionary: Localization;
     nonInteractive?: boolean;
     locale: LocaleCodes;
 };

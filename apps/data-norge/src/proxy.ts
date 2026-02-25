@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { i18n, Locale } from '@fdk-frontend/dictionaries';
+import { i18n, Locale } from '@fdk-frontend/localization';
 import { isCanonicalDomain } from './utils/domain';
 
 export const proxy = (request: NextRequest) => {

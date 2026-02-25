@@ -1,5 +1,5 @@
 import { Button, Paragraph, Link } from '@digdir/designsystemet-react';
-import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes, interpolate } from '@fdk-frontend/localization';
 
 import { HeadingWithDivider } from '@fdk-frontend/ui';
 
@@ -7,7 +7,7 @@ import styles from './share-data-banner.module.scss';
 import OrganizationCarousel from '../organization-carousel';
 
 type ShareDataBannerProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

@@ -112,20 +112,19 @@ When multiple components (Header, Footer, CatalogsBanner) share the same diction
 
 #### Solution:
 
-Use the `getSafeDictionary()` utility function to create isolated dictionary copies for each component:
+Use the `getSafeSection()` utility function to create isolated copies for each component:
 
 ```typescript
-import { getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization, getSafeSection } from '@fdk-frontend/localization';
 
 // ❌ Problematic - shared reference
-const commonDictionary = await getDictionary(params.lang, 'common');
-<Header dictionary={commonDictionary} />
-<Footer dictionary={commonDictionary} />
+const loc = getLocalization(params.lang);
+<Header dictionary={loc.common} />
+<Footer dictionary={loc.common} />
 
 // ✅ Fixed - isolated copies
-const commonDictionary = await getDictionary(params.lang, 'common');
-const headerDictionary = getSafeDictionary(commonDictionary);
-const footerDictionary = getSafeDictionary(commonDictionary);
+const headerDictionary = getSafeSection(params.lang, 'common');
+const footerDictionary = getSafeSection(params.lang, 'common');
 <Header dictionary={headerDictionary} />
 <Footer dictionary={footerDictionary} />
 ```

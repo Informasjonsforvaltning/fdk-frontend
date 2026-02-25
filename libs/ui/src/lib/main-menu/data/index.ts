@@ -1,6 +1,6 @@
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 
-const getMainMenuData = (dictionary: Dictionary, locale: string) => ({
+const getMainMenuData = (dictionary: Localization, locale: string) => ({
     catalogs: [
         {
             key: 'datasets',

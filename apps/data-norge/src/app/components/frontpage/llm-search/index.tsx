@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Textfield, Button, Spinner, ValidationMessage } from '@digdir/designsystemet-react';
 import { SparklesIcon } from '@navikt/aksel-icons';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
 
 import { ResultItem, ItemObjectType } from './components/result-item';
@@ -14,7 +14,7 @@ import styles from './llm-search.module.scss';
 
 type LlmSearchProps = {
     endpoint: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

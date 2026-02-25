@@ -1,13 +1,13 @@
 import React from 'react';
 import mime from 'mime-types';
 import { type DataService } from '@fellesdatakatalog/types';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 import { Tag } from '@digdir/designsystemet-react';
 import TagList, { type TagListProps } from '../tag-list';
 
 type ApiTagsProps = TagListProps & {
     api: DataService;
-    dictionary: Dictionary;
+    dictionary: Localization;
 };
 
 const ApiTags = ({ children, api, dictionary, ...props }: ApiTagsProps & React.HTMLAttributes<HTMLUListElement>) => {

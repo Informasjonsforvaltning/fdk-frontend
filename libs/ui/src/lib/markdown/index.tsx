@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { i18n, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { i18n, type LocaleCodes } from '@fdk-frontend/localization';
 import remarkGfm from 'remark-gfm';
 import { mdxComponents } from './components';
 

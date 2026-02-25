@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { InputWithCopyButton, Hstack } from '@fdk-frontend/ui';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { ToggleGroup, Heading, Spinner, Paragraph, Link } from '@digdir/designsystemet-react';
 import { CopyButton, HelpText } from '@fellesdatakatalog/ui';
 
@@ -11,7 +11,7 @@ import styles from './metadata-tab.module.scss';
 
 export type MetadataTabProps = {
     uri: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

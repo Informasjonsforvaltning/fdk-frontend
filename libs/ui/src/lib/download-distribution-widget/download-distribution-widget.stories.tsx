@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization } from '@fdk-frontend/localization';
 
 import DownloadDistributionWidget from '.';
 
-const dictionary = await getDictionary('nb', 'details-page');
+const dictionary = getLocalization('nb').detailsPage;
 
 const meta: Meta<typeof DownloadDistributionWidget> = {
     component: DownloadDistributionWidget,

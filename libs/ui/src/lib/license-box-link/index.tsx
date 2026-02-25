@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import { isOpenLicense } from '@fdk-frontend/utils';
 import Box from '../box';
 import ExternalLink from '../external-link';

@@ -1,0 +1,65 @@
+const docs = {
+  titles: {
+    "/about": "About us",
+    "/catalogs": "Data catalogs",
+    "/catalogs/datasets": "Datasets",
+    "/catalogs/data-services": "APIs",
+    "/catalogs/information-models": "Information models",
+    "/catalogs/concepts": "Concepts",
+    "/catalogs/public-services-and-events": "Services and events",
+    "/contact": "Contact us",
+    "/docs": "User guide",
+    "/docs/finding-data": "Finding data",
+    "/docs/finding-data/standard-search": "Standard search",
+    "/docs/finding-data/ai-search": "AI search",
+    "/docs/finding-data/sparql": "SPARQL search",
+    "/docs/finding-data/retrieve-resources": "Retrieve resources",
+    "/docs/finding-data/assisted-search": "Assisted data search",
+    "/docs/finding-data/access-data": "Access data",
+    "/docs/sharing-data": "Sharing data",
+    "/docs/sharing-data/login-and-access": "Access and login",
+    "/docs/sharing-data/how-to-dataset": "Dataset description from A to Z",
+    "/docs/sharing-data/how-to-dataset/1-preparations": "1. Preparations",
+    "/docs/sharing-data/how-to-dataset/2-dataset-description": "2. Describe dataset",
+    "/docs/sharing-data/how-to-dataset/3-distribution": "3. Add distribution",
+    "/docs/sharing-data/how-to-dataset/4-data-service": "4. Add data service",
+    "/docs/sharing-data/how-to-dataset/5-catalog-and-complete-description": "5. Catalog and complete description",
+    "/docs/sharing-data/how-to-dataset/6-harvesting": "6. Publish the description",
+    "/docs/sharing-data/how-to-dataset/7-extras-code-lists": "Extra: Code lists",
+    "/docs/sharing-data/publishing-data-descriptions": "Publishing dataset descriptions",
+    "/docs/sharing-data/publishing-data-descriptions/1-creating-descriptions-self": "Create dataset description yourself",
+    "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration": "Create dataset description in the registration solution",
+    "/docs/sharing-data/publishing-data-descriptions/3-publishing-descriptions": "Publish the description",
+    "/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest": "Start harvesting",
+    "/docs/sharing-data/rdf": "RDF: what and why",
+    "/docs/sharing-data/rdf/rdf-crash-course": "RDF crash course",
+    "/docs/metadata-quality": "Metadata quality",
+    "/technical": "Technical documentation",
+    "/technical/architecture": "Architecture",
+    "/technical/infrastructure": "Infrastructure",
+    "/technical/api": "APIs",
+    "/technical/api/search": "Search",
+    "/technical/api/ai-search": "AI Search",
+    "/technical/api/sparql": "SPARQL Search",
+    "/technical/api/resource-service": "Resource Service",
+    "/technical/api/catalog-view": "Catalog View",
+    "/technical/follow-our-work": "Follow our work",
+    "/docs/community": "Community",
+    "/docs/resources": "Resources",
+    "/validator": "Validation tool"
+  },
+  tableOfContents: {
+    onThisPage: "On this page:"
+  },
+  conceptPreview: {
+    labelMissing: "Label is missing",
+    descriptionMissing: "Description is missing",
+    goToDatanorge: "Go to description at data.norge.no"
+  },
+  general: {
+    expand: "Expand",
+    collapse: "Collapse"
+  }
+};
+
+export default docs;

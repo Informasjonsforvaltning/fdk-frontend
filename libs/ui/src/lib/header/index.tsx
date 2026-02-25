@@ -4,13 +4,13 @@ import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Button } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { LogoLink } from '../logo';
 import MainMenu from '../main-menu';
 import styles from './header.module.scss';
 
 export type HeaderProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
     frontpage?: boolean;
 };

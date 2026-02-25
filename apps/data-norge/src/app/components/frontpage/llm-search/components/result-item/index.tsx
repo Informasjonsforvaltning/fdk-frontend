@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import { Markdown } from '@fdk-frontend/ui';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug } from '@fdk-frontend/utils';
 
 import styles from './result-item.module.scss';

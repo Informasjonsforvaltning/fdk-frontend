@@ -1,11 +1,11 @@
 import { Button, Alert, Link } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 
 import styles from './advanced-search-prompt.module.scss';
 
 type AdvancedSearchPromptProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

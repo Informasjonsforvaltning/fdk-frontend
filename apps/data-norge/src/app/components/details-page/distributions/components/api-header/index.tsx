@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { type DataService } from '@fellesdatakatalog/types';
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
 import { ApiTags } from '@fdk-frontend/ui';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from '../distribution-header/distribution-header.module.scss';
@@ -8,7 +8,7 @@ import styles from '../distribution-header/distribution-header.module.scss';
 type ApiHeaderProps = {
     api: DataService;
     locale: LocaleCodes;
-    dictionary: Dictionary;
+    dictionary: Localization;
 };
 
 const ApiHeader = ({ api, locale, dictionary, ...props }: ApiHeaderProps & PropsWithChildren) => {

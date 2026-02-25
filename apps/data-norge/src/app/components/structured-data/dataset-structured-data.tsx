@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import { type DatasetWithIdentifier } from '@fellesdatakatalog/types';
 import { printLocaleValue, getSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 
 type DatasetRelationLabelProps = {
     relationUri: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
 };
 
 const DatasetRelationLabel = ({

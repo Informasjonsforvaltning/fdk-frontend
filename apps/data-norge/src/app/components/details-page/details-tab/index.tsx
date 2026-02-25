@@ -8,7 +8,7 @@ import {
     type ReferenceDataCode,
 } from '@fellesdatakatalog/types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
 import { PlaceholderBox, PlaceholderText, TagList } from '@fdk-frontend/ui';
 import GeneralDetails from './components/general-details';
 import ContactDetails from './components/contact-details';
@@ -25,7 +25,7 @@ const DatasetDetailsTabContext = createContext<{ showEmptyRows: boolean }>({ sho
 export type DatasetDetailsProps = {
     dataset: DatasetWithIdentifier;
     locale: LocaleCodes;
-    dictionary: Dictionary;
+    dictionary: Localization;
     metadataScore?: DatasetScore;
     related?: DatasetWithIdentifier[];
     concepts?: SearchObject[];

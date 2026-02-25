@@ -1,7 +1,7 @@
 import 'server-only';
 import { type Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
-import { type Locale, getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
+import { type Locale, getLocalization, getSafeSection } from '@fdk-frontend/localization';
 import { Header, Footer } from '@fdk-frontend/ui';
 import { FrontpageBanner } from '../components/frontpage/frontpage-banner';
 import { ShareDataBanner } from '../components/frontpage/share-data-banner';
@@ -21,9 +21,9 @@ const Frontpage = async (props: FrontpageProps) => {
 
     const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
 
-    const commonDictionary = await getDictionary(params.lang, 'common');
-    const commonDictionaryForHeader = getSafeDictionary(commonDictionary);
-    const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
+    const loc = getLocalization(params.lang);
+    const commonDictionaryForHeader = getSafeSection(params.lang, 'common');
+    const frontpageDictionary = loc.frontpage;
 
     return (
         <>
@@ -45,13 +45,13 @@ const Frontpage = async (props: FrontpageProps) => {
                     />
                     <CatalogsBanner
                         frontpageDictionary={frontpageDictionary}
-                        commonDictionary={commonDictionary}
+                        commonDictionary={loc.common}
                         locale={params.lang}
                     />
                 </div>
             </main>
             <Footer
-                dictionary={commonDictionary}
+                dictionary={loc.common}
                 locale={params.lang}
             />
         </>
@@ -60,7 +60,7 @@ const Frontpage = async (props: FrontpageProps) => {
 
 export const generateMetadata = async (props: FrontpageProps): Promise<Metadata> => {
     const params = await props.params;
-    const frontpageDictionary = await getDictionary(params.lang, 'frontpage');
+    const frontpageDictionary = getLocalization(params.lang).frontpage;
 
     return {
         title: `${frontpageDictionary.metadata.title} - data.norge.no`,

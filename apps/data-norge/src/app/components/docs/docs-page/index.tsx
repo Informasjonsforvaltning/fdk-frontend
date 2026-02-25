@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
-import { i18n, getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { i18n, getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { mdxComponents, CatalogsMenu, AlertWithLinkButton } from '@fdk-frontend/ui';
 import MdxPage from '../mdx-page';
 
@@ -32,7 +32,7 @@ export default async function DocsPage(pageProps: DocsPageProps) {
     const contentDirectory = getContentDirectory(rootContentDirectory);
     const filePath = path.resolve(process.cwd(), contentDirectory, ...slug, `${pageName}.${locale}.mdx`);
 
-    const dictionary = await getDictionary(locale, 'common');
+    const dictionary = getLocalization(locale).common;
 
     try {
         // Get raw MDX source
