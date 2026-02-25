@@ -4,20 +4,20 @@ import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Button } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { LogoLink } from '../logo';
 import MainMenu from '../main-menu';
 import styles from './header.module.scss';
 
 export type HeaderProps = {
-    dictionary: Localization;
     locale: LocaleCodes;
     frontpage?: boolean;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
+const Header = ({ locale, frontpage }: HeaderProps) => {
+    const dictionary = getLocalization(locale).common;
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -129,10 +129,7 @@ const Header = ({ dictionary, locale, frontpage }: HeaderProps) => {
                             initial='hidden'
                             animate='show'
                         >
-                            <MainMenu
-                                dictionary={dictionary}
-                                locale={locale}
-                            />
+                            <MainMenu locale={locale} />
                         </MotionDiv>
                     </div>
                 )}

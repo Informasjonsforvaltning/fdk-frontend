@@ -16,10 +16,7 @@ const ApiHeader = ({ api, locale, dictionary, ...props }: ApiHeaderProps & Props
         <div className={styles.headerContent}>
             <span className={styles.title}>
                 {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
-                <ApiTags
-                    api={api}
-                    dictionary={dictionary}
-                />
+                <ApiTags api={api} />
             </span>
         </div>
     );

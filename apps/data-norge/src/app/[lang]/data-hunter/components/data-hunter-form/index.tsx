@@ -5,7 +5,7 @@ import { Paragraph, Textfield, Button } from '@digdir/designsystemet-react';
 
 import { LabelWithTag, SubmitStatusAlert } from '@fdk-frontend/ui';
 
-import { type Localization } from '@fdk-frontend/localization';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { useFormStatus } from 'react-dom';
 import { sendEmailAction } from '../../utils/actions';
 import { EMPTY_FORM_STATE, extractErrorMessages } from '@fdk-frontend/utils';
@@ -13,9 +13,10 @@ import styles from './data-hunter-form.module.css';
 
 type DataHunterFormProps = {
     dictionary: Localization;
+    locale: LocaleCodes;
 };
 
-const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
+const DataHunterForm = ({ dictionary, locale }: DataHunterFormProps) => {
     const [state, formAction] = useActionState(sendEmailAction, EMPTY_FORM_STATE);
     const { pending } = useFormStatus();
     const textAreaCols = 100;
@@ -115,7 +116,7 @@ const DataHunterForm = ({ dictionary }: DataHunterFormProps) => {
                 </Button>
             </form>
             <SubmitStatusAlert
-                dictionary={dictionary}
+                locale={locale}
                 formStatus={state?.status}
             />
         </>

@@ -86,7 +86,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 baseUri={baseUri}
             />
             <Breadcrumbs
-                dictionary={dictionaries.common}
+                locale={locale}
                 breadcrumbList={breadcrumbList}
             />
             <div className={styles.mainContent}>

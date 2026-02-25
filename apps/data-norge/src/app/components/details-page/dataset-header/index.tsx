@@ -83,10 +83,9 @@ const DatasetHeader = ({
                 <AccessLevelTag
                     accessCode={dataset.accessRights?.code}
                     locale={locale}
-                    dictionary={dictionaries.detailsPage}
                     data-size='md'
                 />
-                {dataset.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}
+                {dataset.isOpenData && <OpenDataTag locale={locale} />}
             </TagList>
         </div>
     );

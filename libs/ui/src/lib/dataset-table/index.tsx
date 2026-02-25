@@ -57,7 +57,6 @@ const DatasetTable = ({
                                 >
                                     <AccessLevelTag
                                         accessCode={dataset.accessRights?.code}
-                                        dictionary={dictionary}
                                         locale={locale}
                                         nonInteractive
                                     />

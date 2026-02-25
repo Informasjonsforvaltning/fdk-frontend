@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getLocalization } from '@fdk-frontend/localization';
 
 import Footer from '.';
-
-const dictionary = getLocalization('en').common;
 
 const meta: Meta<typeof Footer> = {
     component: Footer,
@@ -20,9 +17,6 @@ export const Primary: Story = {
         },
     },
     render: () => (
-        <Footer
-            baseUri='/'
-            dictionary={dictionary}
-        />
+        <Footer locale='en' />
     ),
 };
