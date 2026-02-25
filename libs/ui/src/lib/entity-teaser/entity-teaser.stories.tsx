@@ -19,7 +19,7 @@ const datasetEntity: SearchObject = {
     searchType: 'DATASET',
     description: 'Åpne data fra Riksantikvaren med kulturminner og fornminner.',
     publisher: { id: '991825827', prefLabel: { nb: 'Kulturrådet' } },
-    keyword: ['Skog og landbruk', 'Jordbruk', 'Industri']
+    keyword: ['Skog og landbruk', 'Jordbruk', 'Industri'],
 } as SearchObject;
 
 const dataServiceEntity: SearchObject = {

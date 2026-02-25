@@ -58,7 +58,7 @@ export default async function Page(props: Props) {
             searchResults={searchResults}
         />
     );
-};
+}
 
 export const generateMetadata = async (props: Props): Promise<Metadata> => {
     const params = await props.params;

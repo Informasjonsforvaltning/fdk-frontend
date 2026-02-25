@@ -12,8 +12,7 @@ export type OrgLogoProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const OrgLogo = ({ className, orgLogoSrc, orgNr, ...props }: OrgLogoProps) => {
-    const imgSrc =
-        orgLogoSrc ?? (orgNr ? `https://orglogo.digdir.no/api/emblem/svg/${orgNr}` : null);
+    const imgSrc = orgLogoSrc ?? (orgNr ? `https://orglogo.digdir.no/api/emblem/svg/${orgNr}` : null);
     const [imageError, setImageError] = useState(false);
 
     useEffect(() => {
@@ -23,7 +22,10 @@ const OrgLogo = ({ className, orgLogoSrc, orgNr, ...props }: OrgLogoProps) => {
     const showFallback = !imgSrc || imageError;
 
     return (
-        <div className={cn(styles.orgLogo, className)} {...props}>
+        <div
+            className={cn(styles.orgLogo, className)}
+            {...props}
+        >
             {showFallback ? (
                 <Buildings3Icon aria-hidden />
             ) : (

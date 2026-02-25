@@ -38,14 +38,20 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                     />
                     <HStack className={styles.searchToolbar}>
                         <HStack>
-                            <Button data-size='sm' variant='tertiary'>
+                            <Button
+                                data-size='sm'
+                                variant='tertiary'
+                            >
                                 <FilterIcon />
                                 Filter
                                 {/* <ChevronDownIcon /> */}
                             </Button>
                             <Chip.Removable>Hello</Chip.Removable>
                         </HStack>
-                        <Button data-size='sm' variant='tertiary'>
+                        <Button
+                            data-size='sm'
+                            variant='tertiary'
+                        >
                             <SortDownIcon />
                             Relevans
                             {/* <ChevronDownIcon /> */}

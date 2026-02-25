@@ -70,7 +70,10 @@ const SearchTabs = ({ defaultValue = 'ki', onChange }: SearchTabsProps) => (
             >
                 {item.icon}
                 {item.label}
-                <Badge count={item.badgeCount} variant='tinted' />
+                <Badge
+                    count={item.badgeCount}
+                    variant='tinted'
+                />
             </ToggleGroup.Item>
         ))}
     </ToggleGroup>

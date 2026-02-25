@@ -16,10 +16,17 @@ export type SearchInputProps = {
     locale?: LocaleCodes;
 };
 
-const SearchInput = ({ value, onChange, searchLabel = 'Søk', placeholder = 'Hva leter du etter?', className, locale }: SearchInputProps) => {
+const SearchInput = ({
+    value,
+    onChange,
+    searchLabel = 'Søk',
+    placeholder = 'Hva leter du etter?',
+    className,
+    locale,
+}: SearchInputProps) => {
     const router = useRouter();
     const pathname = usePathname();
-    
+
     // Extract locale from pathname if not provided
     const currentLocale = locale || (pathname.split('/')[1] as LocaleCodes) || i18n.defaultLocale;
 
@@ -32,13 +39,11 @@ const SearchInput = ({ value, onChange, searchLabel = 'Søk', placeholder = 'Hva
     };
 
     return (
-        <form 
+        <form
             className={cn(styles.container, className)}
             onSubmit={handleSubmit}
         >
-            <MagnifyingGlassIcon
-                className={styles.searchIcon}
-            />
+            <MagnifyingGlassIcon className={styles.searchIcon} />
             <Input
                 value={value}
                 onChange={(e) => onChange(e.target.value)}

@@ -1,11 +1,5 @@
 // todo: move to fdk-types
-export type LlmSearchHitType =
-  | 'dataset'
-  | 'dataservice'
-  | 'concept'
-  | 'informationmodel'
-  | 'service'
-  | 'event';
+export type LlmSearchHitType = 'dataset' | 'dataservice' | 'concept' | 'informationmodel' | 'service' | 'event';
 
 // todo: move to fdk-types
 export interface LlmSearchResult {

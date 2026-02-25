@@ -10,14 +10,20 @@ import styles from './styles.module.scss';
 
 export type EntityTeaserProps = {
     entity: SearchObject;
-}
+};
 
 const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & CardProps) => {
     return (
-        <Card className={cn(styles.container, className)} {...rest}>
+        <Card
+            className={cn(styles.container, className)}
+            {...rest}
+        >
             <Card.Block>
                 <div>
-                    <OrgLogo className={styles.orgLogo} orgNr={entity.publisher?.id} />
+                    <OrgLogo
+                        className={styles.orgLogo}
+                        orgNr={entity.publisher?.id}
+                    />
                     <Heading>
                         <Link
                             href='https://designsystemet.no'
@@ -48,15 +54,16 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & CardPr
                         Åpne data
                     </Tag>
                 </TagList>
-            <Paragraph>
-                {printLocaleValue('nb', entity.description)}
-            </Paragraph>
-            <Paragraph data-size='sm' className={styles.keywords}>
-                {entity.keyword?.join(', ')}
-            </Paragraph>
+                <Paragraph>{printLocaleValue('nb', entity.description)}</Paragraph>
+                <Paragraph
+                    data-size='sm'
+                    className={styles.keywords}
+                >
+                    {entity.keyword?.join(', ')}
+                </Paragraph>
             </Card.Block>
         </Card>
     );
-}
+};
 
 export default EntityTeaser;

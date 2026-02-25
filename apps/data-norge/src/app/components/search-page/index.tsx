@@ -76,33 +76,39 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                 breadcrumbList={breadcrumbList}
             />
             <div className={styles.mainContent}>
-                {query && (
-                    <Heading data-size='md'>
-                        {`${totalResults} resultater for '${query}'`}
-                    </Heading>
-                )}
+                {query && <Heading data-size='md'>{`${totalResults} resultater for '${query}'`}</Heading>}
                 {/* <SearchForm /> */}
                 <Tabs defaultValue={searchTabItems[0]?.value || 'ki'}>
                     <TabsList>
                         {searchTabItems.map((tab) => (
-                            <TabsTab key={tab.value} value={tab.value}>
+                            <TabsTab
+                                key={tab.value}
+                                value={tab.value}
+                            >
                                 {tab.icon}
                                 {tab.label}
-                                <Badge count={tab.badgeCount} variant='tinted' />
+                                <Badge
+                                    count={tab.badgeCount}
+                                    variant='tinted'
+                                />
                             </TabsTab>
                         ))}
                     </TabsList>
                     {searchTabItems.map((tab) => (
-                        <TabsPanel key={tab.value} value={tab.value}>
-                            
-                        </TabsPanel>
+                        <TabsPanel
+                            key={tab.value}
+                            value={tab.value}
+                        ></TabsPanel>
                     ))}
                 </Tabs>
                 <div>
                     {/* LLM Results */}
                     {llmResults && llmResults.hits && llmResults.hits.length > 0 && (
                         <div className={styles.resultsSection}>
-                            <Heading data-size='sm' className={styles.sectionHeading}>
+                            <Heading
+                                data-size='sm'
+                                className={styles.sectionHeading}
+                            >
                                 AI-søkeresultater ({llmHitsCount})
                             </Heading>
                             <ul>
@@ -119,7 +125,10 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                     {/* Regular Search Results */}
                     {searchResults && searchResults.hits && searchResults.hits.length > 0 && (
                         <div className={styles.resultsSection}>
-                            <Heading data-size='sm' className={styles.sectionHeading}>
+                            <Heading
+                                data-size='sm'
+                                className={styles.sectionHeading}
+                            >
                                 Søkeresultater ({searchHitsCount})
                             </Heading>
                             <ul>
@@ -134,7 +143,10 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                                     const title =
                                         typeof item.title === 'string'
                                             ? item.title
-                                            : item.title?.nb || item.title?.en || item.title?.[Object.keys(item.title)[0]] || 'Untitled';
+                                            : item.title?.nb ||
+                                              item.title?.en ||
+                                              item.title?.[Object.keys(item.title)[0]] ||
+                                              'Untitled';
                                     const description =
                                         typeof item.description === 'string'
                                             ? item.description

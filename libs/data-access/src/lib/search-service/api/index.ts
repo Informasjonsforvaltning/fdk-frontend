@@ -5,7 +5,7 @@ import { getResource } from '../../resource-service/api';
 export interface SearchApiResponse {
     hits?: SearchObject[];
     [key: string]: unknown;
-};
+}
 
 export const searchApi = async (path: string, body: any) => {
     const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}${path}`;
