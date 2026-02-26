@@ -3,6 +3,7 @@
 import { ToggleGroup, Badge, Link } from '@digdir/designsystemet-react';
 import { SparklesFillIcon } from '@navikt/aksel-icons';
 import { type ReactNode } from 'react';
+import styles from './styles.module.scss';
 
 export type SearchTabsValue = 'ki' | 'datasett' | 'api' | 'begrep' | 'infomodels' | 'tjenester' | 'docs';
 
@@ -62,7 +63,7 @@ const SearchTabs = ({ defaultValue = 'ki', onChange }: SearchTabsProps) => (
         defaultValue={defaultValue}
         onChange={(value) => onChange?.(value as SearchTabsValue)}
         // data-size='sm'
-        style={{minWidth:0}}
+        className={styles.tabs}
         variant='secondary'
     >
         {searchTabItems.map((item) => (

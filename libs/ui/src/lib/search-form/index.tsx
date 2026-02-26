@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Chip, Heading } from '@digdir/designsystemet-react';
-import { HStack, VStack } from '@fellesdatakatalog/ui';
-import { FilterIcon, SortDownIcon, ChevronDownIcon } from '@navikt/aksel-icons';
+import { Button, Chip, Heading, Popover, Input, Checkbox, Dropdown } from '@digdir/designsystemet-react';
+import { HStack, VStack, CheckboxGroup } from '@fellesdatakatalog/ui';
+import { Box } from '@fdk-frontend/ui';
+import { FilterIcon, SortDownIcon, ChevronDownIcon, CheckmarkIcon } from '@navikt/aksel-icons';
 
 import SearchTabs, { type SearchTabsValue } from '../search-tabs';
 import SearchInput from '../search-input';
@@ -38,14 +39,35 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                     />
                     <HStack className={styles.searchToolbar}>
                         <HStack>
-                            <Button
+                            {/* <Button
                                 data-size='sm'
                                 variant='secondary'
                             >
-                                {/* <FilterIcon /> */}
-                                Utgiver
-                                <ChevronDownIcon />
-                            </Button>
+                                <FilterIcon />
+                                
+                            </Button>*/}
+                            <Dropdown.TriggerContext>
+                                <Dropdown.Trigger
+                                    data-size='sm'
+                                    variant='secondary'
+                                >
+                                    Utgiver
+                                    <ChevronDownIcon />
+                                </Dropdown.Trigger>
+                                <Dropdown placement='bottom' data-size='sm'>
+                                        <VStack>
+                                            <Input placeholder='Søk etter utgiver' />
+                                            <Box>
+                                                <CheckboxGroup
+                                                    options={[
+                                                        { label: 'Kommune', value: 0 },
+                                                        { label: 'Stat', value: 0 },
+                                                    ]}
+                                                />
+                                            </Box>
+                                        </VStack>
+                                </Dropdown>
+                            </Dropdown.TriggerContext>
                             <Button
                                 data-size='sm'
                                 variant='secondary'
@@ -63,14 +85,35 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                                 <ChevronDownIcon />
                             </Button>
                         </HStack>
-                        <Button
+                        {/* <Button
                             data-size='sm'
                             variant='tertiary'
                         >
                             <SortDownIcon />
                             Relevans
-                            {/* <ChevronDownIcon /> */}
-                        </Button>
+                        </Button> */}
+                        <Dropdown.TriggerContext>
+                            <Dropdown.Trigger
+                                data-size='sm'
+                                variant='tertiary'
+                            >
+                                <SortDownIcon />
+                                Relevans
+                            </Dropdown.Trigger>
+                            <Dropdown placement='bottom-end' data-size='sm'>
+                                <Dropdown.List>
+                                    <Dropdown.Item>
+                                        <Dropdown.Button aria-pressed>
+                                            <CheckmarkIcon />
+                                            Relevans
+                                        </Dropdown.Button>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item>
+                                        <Dropdown.Button>Sist publisert</Dropdown.Button>
+                                    </Dropdown.Item>
+                                </Dropdown.List>
+                            </Dropdown>
+                        </Dropdown.TriggerContext>
                     </HStack>
                     {/* <HStack>
                         <Chip.Removable>Utgiver: Digitaliseringsdirektoratet</Chip.Removable>
