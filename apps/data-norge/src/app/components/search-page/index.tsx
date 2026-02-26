@@ -80,6 +80,9 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                 breadcrumbList={breadcrumbList}
             />
             <div className={styles.mainContent}>
+                {/* <Heading data-size='md'>
+                    Søk
+                </Heading> */}
                 {query && <Heading data-size='md'>{`${totalResults} resultater for '${query}'`}</Heading>}
                 {/* <SearchTabs /> */}
                 <SearchForm />

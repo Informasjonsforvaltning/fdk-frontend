@@ -56,7 +56,9 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                     {
                         entity.accessRights?.code &&
                         <AccessLevelTag
+                            data-size='sm'
                             accessCode={entity.accessRights?.code}
+                            nonInteractive
                         />
                     }
                     {/* <Tag
@@ -76,12 +78,15 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                     }
                 </TagList>
                 <Paragraph>{printLocaleValue('nb', entity.description)}</Paragraph>
-                <Paragraph
+                {/* <Paragraph
                     data-size='sm'
                     className={styles.keywords}
                 >
                     {entity.keyword?.join(', ')}
-                </Paragraph>
+                </Paragraph> */}
+                <div className={styles.orgName}>
+                    {printLocaleValue('nb', entity.organization?.prefLabel)}
+                </div>
             </CardBlock>
         </Card>
     );

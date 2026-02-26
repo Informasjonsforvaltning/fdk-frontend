@@ -40,14 +40,28 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                         <HStack>
                             <Button
                                 data-size='sm'
-                                variant='tertiary'
+                                variant='secondary'
                             >
-                                <FilterIcon />
-                                Filter
-                                {/* <ChevronDownIcon /> */}
+                                {/* <FilterIcon /> */}
+                                Utgiver
+                                <ChevronDownIcon />
                             </Button>
-                            <Chip.Removable>Utgiver: Digitaliseringsdirektoratet</Chip.Removable>
-                            <Chip.Removable>Tema: Transport</Chip.Removable>
+                            <Button
+                                data-size='sm'
+                                variant='secondary'
+                            >
+                                {/* <FilterIcon /> */}
+                                Tema
+                                <ChevronDownIcon />
+                            </Button>
+                            <Button
+                                data-size='sm'
+                                variant='secondary'
+                            >
+                                {/* <FilterIcon /> */}
+                                EU-tema
+                                <ChevronDownIcon />
+                            </Button>
                         </HStack>
                         <Button
                             data-size='sm'
@@ -58,6 +72,10 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                             {/* <ChevronDownIcon /> */}
                         </Button>
                     </HStack>
+                    {/* <HStack>
+                        <Chip.Removable>Utgiver: Digitaliseringsdirektoratet</Chip.Removable>
+                        <Chip.Removable>Tema: Transport</Chip.Removable>
+                    </HStack> */}
                 </VStack>
             </VStack>
         </form>
