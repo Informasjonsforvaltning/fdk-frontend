@@ -6,9 +6,23 @@
 
 .orgLogo {
     float: left;
+    width:1.5rem;
+    height:1.5rem;
     margin-right: 0.5em;
-    width: 1.5rem;
-    height: 1.5rem;
+    // flex-direction:row-reverse;
+}
+
+.orgName {
+    float: right;
+    margin-left: 0.5em;
+    font-size:0.9em;
+    opacity:0.75;
+}
+
+.orgButton {
+    float: right;
+    margin-left: 0.5em;
+    // flex-direction:row-reverse;
 }
 
 .keywords {

@@ -5,6 +5,7 @@ import { TagList } from '@fellesdatakatalog/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
 import { OrgLogo } from '../org-logo';
+import OrgButton from '../org-button';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './styles.module.scss';
 
@@ -20,6 +21,16 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
         >
             <CardBlock>
                 <div>
+                    {/* <OrgButton
+                        className={styles.orgButton}
+                        orgNr={entity.organization?.id}
+                        reverse
+                    >
+                        {printLocaleValue('nb', entity.organization?.prefLabel)}
+                    </OrgButton> */}
+                    {/* <div className={styles.orgName}>
+                        {printLocaleValue('nb', entity.organization?.prefLabel)}
+                    </div> */}
                     <OrgLogo
                         className={styles.orgLogo}
                         orgNr={entity.organization?.id}
