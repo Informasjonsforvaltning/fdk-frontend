@@ -54,36 +54,93 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                                     Utgiver
                                     <ChevronDownIcon />
                                 </Dropdown.Trigger>
-                                <Dropdown placement='bottom' data-size='sm'>
-                                        <VStack>
-                                            <Input placeholder='Søk etter utgiver' />
-                                            <Box>
-                                                <CheckboxGroup
-                                                    options={[
-                                                        { label: 'Kommune', value: 0 },
-                                                        { label: 'Stat', value: 0 },
-                                                    ]}
-                                                />
-                                            </Box>
-                                        </VStack>
+                                <Dropdown
+                                    className={styles.filterDropdown}
+                                    placement='bottom-start'
+                                    data-size='sm'
+                                >
+                                    <VStack>
+                                        <Input placeholder='Søk etter utgiver' />
+                                        <Box>
+                                            <CheckboxGroup
+                                                options={[
+                                                    { label: 'Kommune', value: '0' },
+                                                    { label: 'Stat', value: '1' },
+                                                ]}
+                                            />
+                                        </Box>
+                                    </VStack>
                                 </Dropdown>
                             </Dropdown.TriggerContext>
-                            <Button
-                                data-size='sm'
-                                variant='secondary'
-                            >
-                                {/* <FilterIcon /> */}
-                                Tema
-                                <ChevronDownIcon />
-                            </Button>
-                            <Button
-                                data-size='sm'
-                                variant='secondary'
-                            >
-                                {/* <FilterIcon /> */}
-                                EU-tema
-                                <ChevronDownIcon />
-                            </Button>
+                            <Dropdown.TriggerContext>
+                                <Dropdown.Trigger
+                                    data-size='sm'
+                                    variant='secondary'
+                                >
+                                    Tema
+                                    <ChevronDownIcon />
+                                </Dropdown.Trigger>
+                                <Dropdown
+                                    className={styles.filterDropdown}
+                                    placement='bottom-start'
+                                    data-size='sm'
+                                >
+                                    <Box>
+                                        <CheckboxGroup
+                                            options={[
+                                                { label: 'Næring (182)', value: 'naring' },
+                                                { label: 'Natur, klima og miljø (169)', value: 'natur-klima-miljo' },
+                                                { label: 'Helse og omsorg (125)', value: 'helse-omsorg' },
+                                                { label: 'Trafikk og transport (100)', value: 'trafikk-transport' },
+                                                { label: 'Bygg og eiendom (99)', value: 'bygg-eiendom' },
+                                                { label: 'Familie og barn (98)', value: 'familie-barn' },
+                                                { label: 'Skatt og avgift (32)', value: 'skatt-avgift' },
+                                                { label: 'Skole og utdanning (28)', value: 'skole-utdanning' },
+                                                { label: 'Arbeid (24)', value: 'arbeid' },
+                                                { label: 'Demokrati og innbyggerrettigheter (18)', value: 'demokrati-innbyggerrettigheter' },
+                                                { label: 'Kultur, idrett og fritid (13)', value: 'kultur-idrett-fritid' },
+                                                { label: 'Lov og rett (8)', value: 'lov-rett' },
+                                                { label: 'Sosiale tjenester (8)', value: 'sosiale-tjenester' },
+                                                { label: 'Samfunnssikkerhet og beredskap (6)', value: 'samfunnssikkerhet-beredskap' },
+                                            ]}
+                                        />
+                                    </Box>
+                                </Dropdown>
+                            </Dropdown.TriggerContext>
+                            <Dropdown.TriggerContext>
+                                <Dropdown.Trigger
+                                    data-size='sm'
+                                    variant='secondary'
+                                >
+                                    EU-tema
+                                    <ChevronDownIcon />
+                                </Dropdown.Trigger>
+                                <Dropdown
+                                    className={styles.filterDropdown}
+                                    placement='bottom-start'
+                                    data-size='sm'
+                                >
+                                    <Box>
+                                        <CheckboxGroup
+                                            options={[
+                                                { label: 'Regioner og byer (6695)', value: 'regioner-byer' },
+                                                { label: 'Miljø (763)', value: 'miljo' },
+                                                { label: 'Forvaltning og offentlig sektor (524)', value: 'forvaltning-offentlig-sektor' },
+                                                { label: 'Befolkning og samfunn (407)', value: 'befolkning-samfunn' },
+                                                { label: 'Jordbruk, fiskeri, skogbruk og mat (364)', value: 'jordbruk-fiskeri-skogbruk-mat' },
+                                                { label: 'Utdanning, kultur og sport (204)', value: 'utdanning-kultur-sport' },
+                                                { label: 'Transport (159)', value: 'transport' },
+                                                { label: 'Helse (143)', value: 'helse' },
+                                                { label: 'Vitenskap og teknologi (121)', value: 'vitenskap-teknologi' },
+                                                { label: 'Justis, rettssystem og allmenn sikkerhet (111)', value: 'justis-rettssystem-sikkerhet' },
+                                                { label: 'Økonomi og finans (102)', value: 'okonomi-finans' },
+                                                { label: 'Energi (71)', value: 'energi' },
+                                                { label: 'Internasjonale temaer (25)', value: 'internasjonale-temaer' },
+                                            ]}
+                                        />
+                                    </Box>
+                                </Dropdown>
+                            </Dropdown.TriggerContext>
                         </HStack>
                         {/* <Button
                             data-size='sm'
