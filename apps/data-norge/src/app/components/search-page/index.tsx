@@ -1,12 +1,13 @@
 import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Badge } from '@digdir/designsystemet-react';
+import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Badge, ToggleGroup } from '@digdir/designsystemet-react';
 import { SparklesFillIcon } from '@navikt/aksel-icons';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { type SearchApiResponse } from '@fdk-frontend/data-access/server';
 import { EntityTeaser } from '@fdk-frontend/ui';
 import { printLocaleValue } from '@fdk-frontend/utils';
+import { SearchTabs } from '@fdk-frontend/ui';
 
 import styles from './search-page.module.scss';
 
@@ -80,8 +81,9 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
             />
             <div className={styles.mainContent}>
                 {query && <Heading data-size='md'>{`${totalResults} resultater for '${query}'`}</Heading>}
-                {/* <SearchForm /> */}
-                <Tabs defaultValue={searchTabItems[0]?.value || 'ki'}>
+                {/* <SearchTabs /> */}
+                <SearchForm />
+                {/* <Tabs defaultValue={searchTabItems[0]?.value || 'ki'}>
                     <TabsList>
                         {searchTabItems.map((tab) => (
                             <TabsTab
@@ -103,7 +105,7 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                             value={tab.value}
                         ></TabsPanel>
                     ))}
-                </Tabs>
+                </Tabs> */}
                 <div>
                     {/* LLM Results */}
                     {/*llmResults && llmResults.hits && llmResults.hits.length > 0 && (

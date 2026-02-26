@@ -34,6 +34,7 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                     <OrgLogo
                         className={styles.orgLogo}
                         orgNr={entity.organization?.id}
+                        title={printLocaleValue('nb', entity.organization?.prefLabel)}
                     />
                     <Heading>
                         <Link

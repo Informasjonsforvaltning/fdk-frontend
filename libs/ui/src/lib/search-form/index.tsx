@@ -46,7 +46,8 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                                 Filter
                                 {/* <ChevronDownIcon /> */}
                             </Button>
-                            <Chip.Removable>Hello</Chip.Removable>
+                            <Chip.Removable>Utgiver: Digitaliseringsdirektoratet</Chip.Removable>
+                            <Chip.Removable>Tema: Transport</Chip.Removable>
                         </HStack>
                         <Button
                             data-size='sm'

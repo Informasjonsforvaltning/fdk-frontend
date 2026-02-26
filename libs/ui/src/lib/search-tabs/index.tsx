@@ -62,6 +62,8 @@ const SearchTabs = ({ defaultValue = 'ki', onChange }: SearchTabsProps) => (
         defaultValue={defaultValue}
         onChange={(value) => onChange?.(value as SearchTabsValue)}
         // data-size='sm'
+        style={{minWidth:0}}
+        variant='secondary'
     >
         {searchTabItems.map((item) => (
             <ToggleGroup.Item
