@@ -11,14 +11,25 @@
 }
 
 .filterDropdown {
-    width:300px;
-    padding:1rem;
+    width:350px;
+    max-width:350px;
+    padding:0.6rem;
     
-    > div {
+    .box {
         background:#fafafa;
+        // padding:0;
+
+        // :global(.ds-field){
+        //     margin:0;
+        //     padding:0.5rem;
+        // }
+    }
+
+    > div {
+        padding:0.5rem;
         max-height:400px;
         overflow-y:auto;
-
+        
         :global(.ds-field) {
             width:100%;
 
@@ -27,4 +38,9 @@
             }
         }
     }
+}
+
+.orderbyDropdown {
+    width:200px;
+    min-width:auto;
 }

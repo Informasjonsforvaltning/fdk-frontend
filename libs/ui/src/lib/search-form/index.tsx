@@ -61,7 +61,7 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                                 >
                                     <VStack>
                                         <Input placeholder='Søk etter utgiver' />
-                                        <Box>
+                                        <Box className={styles.box}>
                                             <CheckboxGroup
                                                 options={[
                                                     { label: 'Kommune', value: '0' },
@@ -85,7 +85,7 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                                     placement='bottom-start'
                                     data-size='sm'
                                 >
-                                    <Box>
+                                    <Box className={styles.box}>
                                         <CheckboxGroup
                                             options={[
                                                 { label: 'Næring (182)', value: 'naring' },
@@ -120,7 +120,7 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                                     placement='bottom-start'
                                     data-size='sm'
                                 >
-                                    <Box>
+                                    <Box className={styles.box}>
                                         <CheckboxGroup
                                             options={[
                                                 { label: 'Regioner og byer (6695)', value: 'regioner-byer' },
@@ -157,7 +157,11 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
                                 <SortDownIcon />
                                 Relevans
                             </Dropdown.Trigger>
-                            <Dropdown placement='bottom-end' data-size='sm'>
+                            <Dropdown
+                                className={styles.orderbyDropdown}
+                                placement='bottom-end'
+                                data-size='sm'
+                            >
                                 <Dropdown.List>
                                     <Dropdown.Item>
                                         <Dropdown.Button aria-pressed>
