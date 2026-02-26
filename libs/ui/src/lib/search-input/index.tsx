@@ -1,7 +1,8 @@
 'use client';
 import { useRouter, usePathname } from 'next/navigation';
+import { useRef, useEffect, useState } from 'react';
 import cn from 'classnames';
-import { Input, Button } from '@digdir/designsystemet-react';
+import { Input, Button, Tag } from '@digdir/designsystemet-react';
 import { SparklesFillIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
 
@@ -26,9 +27,29 @@ const SearchInput = ({
 }: SearchInputProps) => {
     const router = useRouter();
     const pathname = usePathname();
+    const inputRef = useRef<HTMLInputElement>(null);
+    const [isMac, setIsMac] = useState(false);
 
     // Extract locale from pathname if not provided
     const currentLocale = locale || (pathname.split('/')[1] as LocaleCodes) || i18n.defaultLocale;
+
+    useEffect(() => {
+        setIsMac(
+            typeof navigator !== 'undefined' &&
+                /Mac|iPod|iPhone|iPad/.test(navigator.platform)
+        );
+    }, []);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                inputRef.current?.focus();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,6 +66,7 @@ const SearchInput = ({
         >
             <MagnifyingGlassIcon className={styles.searchIcon} />
             <Input
+                ref={inputRef}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 className={styles.input}
@@ -59,6 +81,13 @@ const SearchInput = ({
             >
                 {searchLabel}
             </Button> */}
+            <Tag
+                className={styles.hotkeyTag}
+                data-size='sm'
+                data-color='neutral'
+            >
+                {isMac ? '⌘ + K' : 'Ctrl + K'}
+            </Tag>
         </form>
     );
 };

@@ -36,4 +36,12 @@
             // background:#f8f8f8;
         }
     }
+
+    .hotkeyTag {
+        white-space: nowrap;
+        position: absolute;
+        right: 1rem;
+        pointer-events: none;
+        opacity:0.5;
+    }
 }
