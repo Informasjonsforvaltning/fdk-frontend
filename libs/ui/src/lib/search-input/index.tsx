@@ -3,7 +3,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import cn from 'classnames';
 import { Input, Button } from '@digdir/designsystemet-react';
 import { SparklesFillIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
 
 import styles from './search-input.module.scss';
 

@@ -27,14 +27,14 @@ const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: Access
             ) : (
                 <>
                     <Link href={`/datasets?accessrights=${accessCode}`}>{label}</Link>&nbsp;
-                    <HelpText aria-label={dictionary.accessRights.helpTextTitle}>
+                    {/* <HelpText aria-label={dictionary.accessRights.helpTextTitle}>
                         <Paragraph data-size='sm'>{helpText}</Paragraph>
                         <Paragraph data-size='sm'>
                             <Link href={`/${locale}/docs/finding-data/access-data`}>
                                 {dictionary.accessRights.readMoreLinkText}
                             </Link>
                         </Paragraph>
-                    </HelpText>
+                    </HelpText> */}
                 </>
             )}
         </Tag>

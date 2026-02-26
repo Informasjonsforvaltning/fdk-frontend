@@ -1,5 +1,5 @@
 import { type Metadata } from 'next';
-import { getDictionary, type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { getLocalization, type LocaleCodes, i18n } from '@fdk-frontend/localization';
 import { llmSearch, type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { type SearchApiResponse } from '@fdk-frontend/data-access/server';
 import { searchAllEntities } from '@fdk-frontend/data-access/server';
@@ -16,7 +16,7 @@ export default async function Page(props: Props) {
     const params = await props.params;
     const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
-    const dictionary = await getDictionary(locale, 'common');
+    const dictionary = getLocalization(locale).common;
     const query = typeof searchParams.query === 'string' ? searchParams.query : undefined;
 
     const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
@@ -62,7 +62,7 @@ export default async function Page(props: Props) {
 export const generateMetadata = async (props: Props): Promise<Metadata> => {
     const params = await props.params;
     const locale = params.lang ?? i18n.defaultLocale;
-    const dictionary = await getDictionary(locale, 'common');
+    const dictionary = getLocalization(locale).common;
 
     return {
         title: `${dictionary.header.findDataButton || 'Search'} - data.norge.no`,
