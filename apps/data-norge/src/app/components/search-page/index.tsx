@@ -134,10 +134,10 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                             >
                                 Søkeresultater ({searchHitsCount})
                             </Heading>
-                            <ul>
+                            <ul className='fdk-box-list'>
                                 {searchResults.hits.map((hit: SearchObject, i: number) => {
                                     console.log(hit);
-                                    return <EntityTeaser key={hit.id} entity={hit} />
+                                    return <li><EntityTeaser key={hit.id} entity={hit} /></li>
                                     // return (
                                     //     <li key={hit.id || hit.uri || i}>
                                     //         <h3>{printLoc}</h3>
