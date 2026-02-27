@@ -70,8 +70,8 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
     const searchHitsCount = searchResults?.hits?.length ?? 0;
     const totalResults = llmHitsCount + searchHitsCount;
 
-    console.log('llmResults', llmResults);
-    console.log('searchResults', searchResults);
+    // console.log('llmResults', llmResults);
+    // console.log('searchResults', searchResults);
 
     return (
         <div className={styles.searchPage}>

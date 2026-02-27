@@ -17,6 +17,8 @@
     
     .box {
         background:#fafafa;
+        max-height:350px;
+        overflow-y:auto;
         // padding:0;
 
         // :global(.ds-field){
@@ -27,8 +29,6 @@
 
     > div {
         padding:0.5rem;
-        max-height:400px;
-        overflow-y:auto;
         
         :global(.ds-field) {
             width:100%;

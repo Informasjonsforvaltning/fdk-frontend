@@ -43,6 +43,8 @@ export const llmSearch = async <T = unknown>(
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeout);
 
+    console.log('llm', endpoint);
+
     try {
         const response = await fetch(endpoint, {
             method: 'POST',

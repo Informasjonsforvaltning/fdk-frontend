@@ -37,11 +37,7 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                         title={printLocaleValue('nb', entity.organization?.prefLabel)}
                     />
                     <Heading>
-                        <Link
-                            href='https://designsystemet.no'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                        >
+                        <Link href={`datasets/${entity.id}`}>
                             {printLocaleValue('nb', entity.title)}
                         </Link>
                     </Heading>
