@@ -64,7 +64,7 @@
         "@fellesdatakatalog/ui": "^1.0.19",
         "@mdx-js/loader": "^3.1.1",
         "@mdx-js/react": "^3.1.1",
-        "@navikt/aksel-icons": "^7.40.0",
+        "@navikt/aksel-icons": "^8.5.2",
         "@next/mdx": "16.1.6",
         "@types/mdx": "^2.0.13",
         "@types/react-syntax-highlighter": "^15.5.13",

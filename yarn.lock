@@ -3468,7 +3468,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^7.39.0, @navikt/aksel-icons@npm:^7.40.0":
+"@navikt/aksel-icons@npm:^7.39.0":
   version: 7.40.0
   resolution: "@navikt/aksel-icons@npm:7.40.0"
   checksum: 10c0/2c5466d6a101e4192eeb68c0247327881ccc546402179bff3029de1ef1646d1a407ce3666dd9d02a13ebe7f82d6833704ec62494ec923a1de543029e0bc705d7
@@ -3479,6 +3479,13 @@ __metadata:
   version: 8.4.1
   resolution: "@navikt/aksel-icons@npm:8.4.1"
   checksum: 10c0/aa489075409aa0ebad73d0956330ccdf632e4e7171d6ba143e24ec77b9b8a49ee794b6860824862e1d91c5abf208ccb0bd40406636d8ee750c4c5751685d8e5b
+  languageName: node
+  linkType: hard
+
+"@navikt/aksel-icons@npm:^8.5.2":
+  version: 8.5.2
+  resolution: "@navikt/aksel-icons@npm:8.5.2"
+  checksum: 10c0/53f229d7328c923397d8e142cba5f9be992ac38f77537e49a39259b74778f070894c94d4f89cf696a45697b36774bbb25f8bf36785e729fa5ae3b4de1cdf9029
   languageName: node
   linkType: hard
 
@@ -10428,7 +10435,7 @@ __metadata:
     "@fellesdatakatalog/ui": "npm:^1.0.19"
     "@mdx-js/loader": "npm:^3.1.1"
     "@mdx-js/react": "npm:^3.1.1"
-    "@navikt/aksel-icons": "npm:^7.40.0"
+    "@navikt/aksel-icons": "npm:^8.5.2"
     "@next/mdx": "npm:16.1.6"
     "@nx/devkit": "npm:^22.5.3"
     "@nx/eslint": "npm:^22.5.3"
