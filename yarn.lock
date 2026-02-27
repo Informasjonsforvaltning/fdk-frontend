@@ -1507,6 +1507,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.7":
+  version: 7.28.6
+  resolution: "@babel/runtime@npm:7.28.6"
+  checksum: 10c0/358cf2429992ac1c466df1a21c1601d595c46930a13c1d4662fde908d44ee78ec3c183aaff513ecb01ef8c55c3624afe0309eeeb34715672dbfadb7feedb2c0d
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.27.1, @babel/template@npm:^7.27.2, @babel/template@npm:^7.28.6":
   version: 7.28.6
   resolution: "@babel/template@npm:7.28.6"
@@ -7573,6 +7580,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-runtime@npm:^6.18.0":
+  version: 6.26.0
+  resolution: "babel-runtime@npm:6.26.0"
+  dependencies:
+    core-js: "npm:^2.4.0"
+    regenerator-runtime: "npm:^0.11.0"
+  checksum: 10c0/caa752004936b1463765ed3199c52f6a55d0613b9bed108743d6f13ca532b821d4ea9decc4be1b583193164462b1e3e7eefdfa36b15c72e7daac58dd72c1772f
+  languageName: node
+  linkType: hard
+
 "bail@npm:^2.0.0":
   version: 2.0.2
   resolution: "bail@npm:2.0.2"
@@ -8187,6 +8204,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^1.0.4":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 10c0/34dead8bee24f5e96f6e7937d711978380647e936a22e76380290e35486afd8634966ce300fc4b74a32f3762c7d4c0303f442c3e259f4ce02374eb0c82834f27
+  languageName: node
+  linkType: hard
+
 "clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
@@ -8485,6 +8509,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js@npm:^2.4.0":
+  version: 2.6.12
+  resolution: "core-js@npm:2.6.12"
+  checksum: 10c0/00128efe427789120a06b819adc94cc72b96955acb331cb71d09287baf9bd37bebd191d91f1ee4939c893a050307ead4faea08876f09115112612b6a05684b63
+  languageName: node
+  linkType: hard
+
 "core-util-is@npm:~1.0.0":
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
@@ -8754,7 +8785,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.2.2":
+"csstype@npm:^3.0.2, csstype@npm:^3.2.2":
   version: 3.2.3
   resolution: "csstype@npm:3.2.3"
   checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
@@ -9147,6 +9178,16 @@ __metadata:
   version: 0.6.3
   resolution: "dom-accessibility-api@npm:0.6.3"
   checksum: 10c0/10bee5aa514b2a9a37c87cd81268db607a2e933a050074abc2f6fa3da9080ebed206a320cbc123567f2c3087d22292853bdfdceaffdd4334ffe2af9510b29360
+  languageName: node
+  linkType: hard
+
+"dom-helpers@npm:^5.1.3":
+  version: 5.2.1
+  resolution: "dom-helpers@npm:5.2.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.8.7"
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/f735074d66dd759b36b158fa26e9d00c9388ee0e8c9b16af941c38f014a37fc80782de83afefd621681b19ac0501034b4f1c4a3bff5caa1b8667f0212b5e124c
   languageName: node
   linkType: hard
 
@@ -10374,7 +10415,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fault@npm:^1.0.0":
+"fault@npm:^1.0.0, fault@npm:^1.0.2":
   version: 1.0.4
   resolution: "fault@npm:1.0.4"
   dependencies:
@@ -10499,6 +10540,8 @@ __metadata:
     react-dom: "npm:^19.2.4"
     react-markdown: "npm:^10.1.0"
     react-syntax-highlighter: "npm:^15.6.6"
+    react-syntax-highlighter-virtualized-renderer: "npm:^1.0.0"
+    react-virtualized: "npm:^9.22.5"
     remark-gfm: "npm:^4.0.1"
     sass: "npm:^1.97.3"
     sass-loader: "npm:^16.0.7"
@@ -11338,6 +11381,13 @@ __metadata:
   version: 10.7.3
   resolution: "highlight.js@npm:10.7.3"
   checksum: 10c0/073837eaf816922427a9005c56c42ad8786473dc042332dfe7901aa065e92bc3d94ebf704975257526482066abb2c8677cc0326559bb8621e046c21c5991c434
+  languageName: node
+  linkType: hard
+
+"highlight.js@npm:~9.12.0":
+  version: 9.12.0
+  resolution: "highlight.js@npm:9.12.0"
+  checksum: 10c0/8e310eaf66d7f347f2a92e2017a114e5e8c2e38cc313e57bbd1c4d169f6217daffdbba5c52a76013db2232c8c519672a4f6aa5ebc1841b2a69e75a2c422ffbcf
   languageName: node
   linkType: hard
 
@@ -13546,6 +13596,16 @@ __metadata:
     fault: "npm:^1.0.0"
     highlight.js: "npm:~10.7.0"
   checksum: 10c0/728bce6f6fe8b157f48d3324e597f452ce0eed2ccff1c0f41a9047380f944e971eb45bceb31f08fbb64d8f338dabb166f10049b35b92c7ec5cf0241d6adb3dea
+  languageName: node
+  linkType: hard
+
+"lowlight@npm:~1.9.1":
+  version: 1.9.2
+  resolution: "lowlight@npm:1.9.2"
+  dependencies:
+    fault: "npm:^1.0.2"
+    highlight.js: "npm:~9.12.0"
+  checksum: 10c0/e9f5182ff5196905b3ac6ed5f74f92078eb60f17a5dcb08cbdc83aa21903d59416876dafd77995f9e3d7780b390d3df378aed9f9404dfc81fe83237d0fbef952
   languageName: node
   linkType: hard
 
@@ -16252,7 +16312,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.8.1":
+"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -16448,6 +16508,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-lifecycles-compat@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "react-lifecycles-compat@npm:3.0.4"
+  checksum: 10c0/1d0df3c85af79df720524780f00c064d53a9dd1899d785eddb7264b378026979acbddb58a4b7e06e7d0d12aa1494fd5754562ee55d32907b15601068dae82c27
+  languageName: node
+  linkType: hard
+
 "react-markdown@npm:^10.1.0":
   version: 10.1.0
   resolution: "react-markdown@npm:10.1.0"
@@ -16477,6 +16544,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-syntax-highlighter-virtualized-renderer@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "react-syntax-highlighter-virtualized-renderer@npm:1.1.0"
+  dependencies:
+    react-syntax-highlighter: "npm:^5.1.2"
+    react-virtualized: "npm:^9.3.0"
+  peerDependencies:
+    react: ">= 0.14.0"
+    react-dom: ">= 0.14.0"
+  checksum: 10c0/5688914aed31f9e0755c5e4ca7fd465cd1cdd781971922bd51833cbb854d2d4315a7d97972f6b020d6d8c7a0744dfe01925fb1957c37730c00ca0b0c0bd0913b
+  languageName: node
+  linkType: hard
+
 "react-syntax-highlighter@npm:^15.6.6":
   version: 15.6.6
   resolution: "react-syntax-highlighter@npm:15.6.6"
@@ -16490,6 +16570,36 @@ __metadata:
   peerDependencies:
     react: ">= 0.14.0"
   checksum: 10c0/894f8b7c79ed40866c0fc542ad0a2040128a8c7e6e6decfd06ef092d8af9c63788ecdd911ea9b2b433e361a4a33a14f721bcec81fd59f1e7394442ade4e7ea46
+  languageName: node
+  linkType: hard
+
+"react-syntax-highlighter@npm:^5.1.2":
+  version: 5.8.0
+  resolution: "react-syntax-highlighter@npm:5.8.0"
+  dependencies:
+    babel-runtime: "npm:^6.18.0"
+    highlight.js: "npm:~9.12.0"
+    lowlight: "npm:~1.9.1"
+  peerDependencies:
+    react: ">= 0.14.0"
+  checksum: 10c0/9ba7c9ab25d916687677236c38a2aec430caf1bd8ca856bcbb99de9b19f13e29c4a7b09ffd6927246fd11504abe3a44429a32791bfef2239eade7147d8b9e124
+  languageName: node
+  linkType: hard
+
+"react-virtualized@npm:^9.22.5, react-virtualized@npm:^9.3.0":
+  version: 9.22.6
+  resolution: "react-virtualized@npm:9.22.6"
+  dependencies:
+    "@babel/runtime": "npm:^7.7.2"
+    clsx: "npm:^1.0.4"
+    dom-helpers: "npm:^5.1.3"
+    loose-envify: "npm:^1.4.0"
+    prop-types: "npm:^15.7.2"
+    react-lifecycles-compat: "npm:^3.0.4"
+  peerDependencies:
+    react: ^16.3.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/0c4fbe86e0c121adcdb7a3f322601eee4661afe65e31ef767c6d876016b1e7043fdad7998b4fa0252eaf73ffb6c14effcf0f729d154cd15304a8b15ad42b7b06
   languageName: node
   linkType: hard
 
@@ -16686,6 +16796,13 @@ __metadata:
   version: 1.4.2
   resolution: "regenerate@npm:1.4.2"
   checksum: 10c0/f73c9eba5d398c818edc71d1c6979eaa05af7a808682749dd079f8df2a6d91a9b913db216c2c9b03e0a8ba2bba8701244a93f45211afbff691c32c7b275db1b8
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.11.0":
+  version: 0.11.1
+  resolution: "regenerator-runtime@npm:0.11.1"
+  checksum: 10c0/69cfa839efcf2d627fe358bf302ab8b24e5f182cb69f13e66f0612d3640d7838aad1e55662135e3ef2c1cc4322315b757626094fab13a48f9a64ab4bdeb8795b
   languageName: node
   linkType: hard
 

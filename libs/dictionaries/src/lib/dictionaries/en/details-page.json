@@ -244,7 +244,11 @@
         "titleHelpTextTitle": "Explanation",
         "inputLabel": "Resource URI",
         "copyButton": ["Copy", "Copied!"],
-        "loading": "Loading"
+        "loading": "Loading",
+        "openInNewTab": "Open in new tab",
+        "openInNewTabErrorTitle": "Error",
+        "openInNewTabMissingUri": "Missing resource URI.",
+        "openInNewTabFetchError": "Could not load the resource."
     },
     "datasetPreview": {
         "generatingPreview": "Generating preview...",

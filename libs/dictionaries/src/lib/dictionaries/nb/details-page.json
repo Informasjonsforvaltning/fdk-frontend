@@ -247,7 +247,11 @@
         "titleHelpTextTitle": "Begrepsforklaring",
         "inputLabel": "Ressurs URI",
         "copyButton": ["Kopier", "Kopiert!"],
-        "loading": "Laster"
+        "loading": "Laster",
+        "openInNewTab": "Åpne i ny fane",
+        "openInNewTabErrorTitle": "Feil",
+        "openInNewTabMissingUri": "Mangler ressurs-URI.",
+        "openInNewTabFetchError": "Kunne ikke laste ressursen."
     },
     "datasetPreview": {
         "generatingPreview": "Genererer forhåndsvisning...",

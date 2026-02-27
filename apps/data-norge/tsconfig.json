@@ -23,6 +23,7 @@
         "**/*.jsx",
         "**/*.ts",
         "**/*.tsx",
+        "**/*.d.ts",
         "../../dist/apps/data.norge.no/.next/types/**/*.ts",
         ".next/types/**/*.ts",
         "next-env.d.ts",
