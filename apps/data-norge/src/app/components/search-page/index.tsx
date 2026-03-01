@@ -142,7 +142,7 @@ const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPa
                             <ul className='fdk-box-list'>
                                 {searchResults.hits.map((hit: SearchObject, i: number) => {
                                     console.log(hit);
-                                    return <li><EntityTeaser key={hit.id} entity={hit} /></li>
+                                    return <li><EntityTeaser locale='nb' key={hit.id} entity={hit} /></li>
                                     // return (
                                     //     <li key={hit.id || hit.uri || i}>
                                     //         <h3>{printLoc}</h3>

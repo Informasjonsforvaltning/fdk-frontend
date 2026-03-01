@@ -110,6 +110,14 @@ const common = {
     alertText: "Vær obs på følgende:\n- Destinasjonen er ikke en del av data.norge.no\n- Vi har ingen kontroll over innholdet på destinasjonen\n- Meld fra om brutte lenker til den ansvarlige virksomheten",
     abortButton: "Bli på data.norge.no",
     continueButton: "Fortsett"
+  },
+  entities: {
+    DATASET: 'Datasett',
+    DATA_SERVICE: 'API',
+    CONCEPT: 'Begrep',
+    INFORMATION_MODEL: 'Informasjonsmodell',
+    PUBLIC_SERVICE: 'Tjenester',
+    EVENT: 'Hendelser'
   }
 };
 

@@ -8,17 +8,30 @@
 
 .searchToolbar {
     justify-content: space-between;
+
+    :global(.ds-button) {
+        flex-shrink:0;
+    }
+}
+
+.filterToolbar {
+    overflow-x:auto;
+
+    :global(.ds-button) {
+        white-space: nowrap;
+    }
 }
 
 .filterDropdown {
     width:350px;
     max-width:350px;
-    padding:0.6rem;
+    padding:1rem;
     
     .box {
         background:#fafafa;
         max-height:350px;
         overflow-y:auto;
+        overflow-x:hidden;
         // padding:0;
 
         // :global(.ds-field){
@@ -28,7 +41,7 @@
     }
 
     > div {
-        padding:0.5rem;
+        // padding:0.5rem;
         
         :global(.ds-field) {
             width:100%;
@@ -37,6 +50,13 @@
                 background:#eee;
             }
         }
+    }
+}
+
+.filterTabs {
+    margin-top:-0.5rem;
+    ds-tab {
+        width:50%;
     }
 }
 

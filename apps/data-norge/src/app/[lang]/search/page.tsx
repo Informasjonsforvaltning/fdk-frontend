@@ -17,7 +17,7 @@ export default async function Page(props: Props) {
     const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
     const dictionary = getLocalization(locale).common;
-    const query = typeof searchParams.query === 'string' ? searchParams.query : undefined;
+    const query = typeof searchParams.q === 'string' ? searchParams.q : undefined;
 
     const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
     const endpoint = llmSearchBaseUri ? `${llmSearchBaseUri}/llm` : '';

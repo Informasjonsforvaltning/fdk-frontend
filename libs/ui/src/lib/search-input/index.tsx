@@ -54,7 +54,7 @@ const SearchInput = ({
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (value.trim()) {
-            const searchUrl = `/${currentLocale}/search?query=${encodeURIComponent(value.trim())}`;
+            const searchUrl = `/${currentLocale}/search?q=${encodeURIComponent(value.trim())}`;
             router.push(searchUrl);
         }
     };

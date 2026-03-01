@@ -8,12 +8,16 @@ import { OrgLogo } from '../org-logo';
 import OrgButton from '../org-button';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './styles.module.scss';
+import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 
 export type EntityTeaserProps = {
     entity: SearchObject;
+    locale: LocaleCodes;
 };
 
 const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
+    const desc = printLocaleValue('nb', entity.description);
+    const localization = getLocalization('nb').common;
     return (
         <Card
             className={cn(styles.container, className)}
@@ -47,7 +51,9 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                         data-color='info'
                         data-size='sm'
                     >
-                        <Link href='/datasets'>{entity.searchType}</Link>
+                        <Link href='/datasets'>
+                            {localization.entities[entity.searchType]}
+                        </Link>
                     </Tag>
                     {
                         entity.accessRights?.code &&
@@ -73,7 +79,13 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                         </Tag>
                     }
                 </TagList>
-                <Paragraph>{printLocaleValue('nb', entity.description)}</Paragraph>
+                <Paragraph>
+                    {
+                        desc.length > 500 ?
+                        `${desc.slice(0, 500)}...` :
+                        desc
+                    }
+                </Paragraph>
                 {/* <Paragraph
                     data-size='sm'
                     className={styles.keywords}
