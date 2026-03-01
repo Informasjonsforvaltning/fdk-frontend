@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Button, Chip, Heading, Popover, Input, Checkbox, Dropdown, ToggleGroup, Tabs, Tag } from '@digdir/designsystemet-react';
 import { HStack, VStack, CheckboxGroup } from '@fellesdatakatalog/ui';
 import { Box } from '@fdk-frontend/ui';
@@ -135,20 +136,83 @@ const geography = [
 ];
 
 export type SearchFormProps = {
+    /** When provided with lang, form is URL-driven: tabs navigate, submit navigates to current path with q. */
+    lang?: string;
+    /** Current set from URL (undefined = KI, no segment). */
+    currentSet?: string;
+    /** Initial query from URL (for display and for building URLs). */
+    defaultQuery?: string;
+    /** Badge counts per tab value (from search results). */
+    badgeCounts?: Record<string, number>;
     defaultValue?: SearchTabsValue;
     searchLabel?: string;
     onSearch?: (query: string, type: SearchTabsValue) => void;
     className?: string;
 };
 
-const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, className }: SearchFormProps) => {
+const SearchForm = ({
+    lang,
+    currentSet,
+    defaultQuery = '',
+    badgeCounts,
+    defaultValue = 'ki',
+    searchLabel = 'Søk',
+    onSearch,
+    className,
+}: SearchFormProps) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
     const [searchType, setSearchType] = useState<SearchTabsValue>(defaultValue);
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState(defaultQuery);
+
+    const isUrlDriven = lang != null;
+
+    const buildSearchUrl = useCallback(
+        (setValue: SearchTabsValue, q: string) => {
+            const locale = lang ?? pathname.split('/')[1] ?? 'nb';
+            const base = `/${locale}/search`;
+            const path = setValue === 'ki' ? base : `${base}/${setValue}`;
+            const params = new URLSearchParams();
+            if (q.trim()) params.set('q', q.trim());
+            const queryString = params.toString();
+            return queryString ? `${path}?${queryString}` : path;
+        },
+        [lang, pathname]
+    );
+
+    const handleTabChange = useCallback(
+        (value: SearchTabsValue) => {
+            if (isUrlDriven) {
+                const q = searchParams.get('q') ?? defaultQuery ?? '';
+                const url = buildSearchUrl(value, q);
+                router.replace(url);
+            } else {
+                setSearchType(value);
+            }
+        },
+        [isUrlDriven, searchParams, defaultQuery, buildSearchUrl, router]
+    );
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSearch?.(query, searchType);
+        if (isUrlDriven) {
+            const q = query.trim() || (searchParams.get('q') ?? defaultQuery ?? '');
+            const setValue = (currentSet ?? 'ki') as SearchTabsValue;
+            const url = buildSearchUrl(setValue, q);
+            router.replace(url);
+        } else {
+            onSearch?.(query, searchType);
+        }
     };
+
+    const tabValue = (isUrlDriven ? (currentSet ?? 'ki') : searchType) as SearchTabsValue;
+
+    useEffect(() => {
+        if (isUrlDriven && defaultQuery !== undefined) {
+            setQuery(defaultQuery);
+        }
+    }, [isUrlDriven, defaultQuery]);
 
     return (
         <form
@@ -158,8 +222,10 @@ const SearchForm = ({ defaultValue = 'ki', searchLabel = 'Søk', onSearch, class
             <VStack className={styles.searchForm}>
                 <VStack className={styles.searchControls}>
                     <SearchTabs
+                        value={tabValue}
                         defaultValue={defaultValue}
-                        onChange={setSearchType}
+                        onChange={handleTabChange}
+                        badgeCounts={badgeCounts}
                     />
                     <HStack className={styles.searchToolbar}>
                         <HStack className={styles.filterToolbar}>

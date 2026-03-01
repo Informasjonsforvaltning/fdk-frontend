@@ -10,14 +10,22 @@
 
 ---
 
-## Current state
+## Current implementation
 
-- **Routes:** Single search route: `[lang]/search` with `searchParams`. Query param is **`q`** (already shortened from `query`).
-- **Search page** (`apps/data-norge/src/app/[lang]/search/page.tsx`): Fetches both LLM results and `searchAllEntities()`; passes all to `SearchPage`.
-- **SearchPage** (`apps/data-norge/src/app/components/search-page/index.tsx`): Renders `SearchForm` (which contains `SearchTabs`). Tabs are local state only; no URL, no filtering of displayed results by tab.
-- **SearchForm** (`libs/ui/src/lib/search-form/index.tsx`): `SearchTabs` with `defaultValue` and `onChange`; `searchType` is in React state and passed to `onSearch`. No navigation on tab change.
-- **Language switcher** (`libs/ui/src/lib/language-switcher/index.tsx`): Uses `useRouter()` + `usePathname()`, builds new URL by replacing the `[lang]` segment, then `router.replace(url.toString())` — full navigation, no query params for locale (locale is in path).
-- **Search API** (`libs/data-access`): `searchAllEntities` accepts `query`, `pagination`, `filters`, `sort`. Backend has entity-specific endpoints (`/search/datasets`, `/search/data-services`, `/search/concepts`, etc.); type filtering on the generic `/search` (if supported) would be via `filters`.
+The plan below has been implemented. Summary of how it works today:
+
+- **Routes:** Optional catch-all **`[lang]/search/[[...set]]/page.tsx`**. Query param **`q`**.  
+  - `/[lang]/search` or `/[lang]/search?q=...` → KI view (no set segment).  
+  - `/[lang]/search/datasets?q=...` etc. → filtered view. Invalid set segment → redirect to `/[lang]/search?q=...`.
+- **Page** (`apps/data-norge/src/app/[lang]/search/[[...set]]/page.tsx`): Async Server Component; validates `params.set`, then awaits `getSearchPageData(props)` and renders `SearchPageHandlerContent`.
+- **Data fetching** (`apps/data-norge/src/app/[lang]/search/search-page-handler.tsx`): `getSearchPageData()` reads `params.set` and `searchParams.q`, derives **currentSet** (first segment or undefined for KI). When there is a query, it runs **LLM search** (`llmSearch`) and **searchAllEntities** (sequentially), then returns `locale`, `query`, `currentSet`, `llmResults`, `searchResults`. Both requests run on every navigation when `q` is set; display is filtered by **currentSet** in the UI.
+- **SearchPage** (`apps/data-norge/src/app/components/search-page/index.tsx`): Receives `currentSet`, `llmResults`, `searchResults`, `query`, `lang`. Renders `SearchForm` with `lang`, `currentSet`, `defaultQuery`, `badgeCounts`. Shows KI results when `currentSet === undefined`, filtered regular-search hits when `currentSet` is e.g. `datasets` (via `filterHitsBySet`), and a docs placeholder when `currentSet === 'docs'`. Badge counts from `getBadgeCounts(allSearchHits, llmHitsCount)`.
+- **SearchForm** (`libs/ui/src/lib/search-form/index.tsx`): When `lang` is passed (search page), **URL-driven**: tab value = `currentSet ?? 'ki'` from props; `handleTabChange` builds URL with `buildSearchUrl(value, q)` and calls **`router.replace(url)`**. Submit navigates to current path with updated `q`. So tab clicks trigger full Next.js navigation (server re-render).
+- **SearchTabs** (`libs/ui/src/lib/search-tabs/index.tsx`): Controlled by `value` (from SearchForm); `onChange` fires on tab click; no direct URL logic (handled in SearchForm).
+- **Metadata:** `getSearchPageMetadata` in search-page-handler sets title, description, and `alternates.canonical` / `alternates.languages` including the set segment and `q`.
+- **Set config** (`apps/data-norge/src/app/[lang]/search/search-set-config.ts`): Defines valid set segments, `getSearchTypesForSet`, `getBadgeCounts`, etc.
+
+**UX note:** Because tab change is `router.replace(url)` and the page is a Server Component that awaits both LLM and search API, the **view (including the active tab) only updates after both backend calls complete**. There is no optimistic tab switch.
 
 ---
 
@@ -120,22 +128,20 @@
 
 - Because we always run both LLM search and `searchAllEntities` (see §3), we have full result counts per type. Use these to drive the **toggle group option badges** (e.g. count for datasets, apis, concepts, etc.) so users see how many results each tab has before switching.
 
-### 7. Summary of files to touch (when implementing)
+### 7. Implemented files
 
-- **Routing:** Add optional segment under `[lang]/search` (e.g. `[[...set]]/page.tsx` or move/duplicate page into `[set]`).
-- **Search page (server):** Read `set` and `q`; compute currentSet; always fetch both LLM search and searchAllEntities; pass currentSet and data to `SearchPage`.
-- **SearchPage component:** Accept `currentSet`; render only the result section that matches currentSet (KI vs filtered list).
-- **SearchTabs (or search-page-specific wrapper):** Controlled by URL; on change, build path + query and call `router.replace(...)`.
-- **SearchForm:** Sync with URL (currentSet and q from URL); on submit, navigate to current path with new `q`.
-- **Canonical / metadata:** Consider canonical URL for the current set (e.g. `/[lang]/search/datasets?q=...`) in `generateMetadata`.
+- **Routing:** `apps/data-norge/src/app/[lang]/search/[[...set]]/page.tsx` — optional catch-all; redirects invalid set.
+- **Search page (server):** Same page awaits `getSearchPageData(props)` in `search-page-handler.tsx`; reads `set` and `q`, computes currentSet; fetches both LLM search and searchAllEntities when `q` is set; passes currentSet and data to `SearchPage` via `SearchPageHandlerContent`.
+- **SearchPage component:** Accepts `currentSet`, `llmResults`, `searchResults`; renders only the result section that matches currentSet (KI vs filtered list via `filterHitsBySet`); uses `search-set-config` for types and badge counts.
+- **SearchForm:** URL-driven when `lang` is passed; receives `currentSet` and builds URL on tab change with `router.replace(buildSearchUrl(...))`; on submit, navigates to current path with new `q`.
+- **SearchTabs:** Controlled by `value` from SearchForm; `onChange` triggers `handleTabChange` in SearchForm (no URL logic in SearchTabs itself).
+- **Metadata:** `getSearchPageMetadata` in search-page-handler; canonical and language alternates include set segment and `q`.
 
 ---
 
-## Recommendation (short)
+## Recommendation (short) — implemented
 
-- Use **path-based sets:** **`/[lang]/search`** with no segment = KI (LLM); **`/[lang]/search/[set]`** with segments: `datasets`, `apis`, `concepts`, `information-models`, `services-and-events`, `docs` — with **`?q=...`**. KI has no segment in the URL.
-- One **optional dynamic segment** under `search` (e.g. `[[...set]]`) and a single page that reads `set` and `q`, fetches accordingly, and renders one result view.
-- Make **SearchTabs** drive and reflect the URL: on tab click, **navigate** (like the language switcher) to the corresponding path, preserving `q`.
-- Map set segments to **searchType**: `datasets`→DATASET, `apis`→DATA_SERVICE, `concepts`→CONCEPT, `information-models`→INFORMATION_MODEL, `services-and-events`→PUBLIC_SERVICE+EVENT; show only that subset of regular search results.
-
-No code changes are made in this repo yet; this document is the plan only.
+- **Path-based sets:** **`/[lang]/search`** with no segment = KI (LLM); **`/[lang]/search/[set]`** with segments: `datasets`, `apis`, `concepts`, `information-models`, `services-and-events`, `docs` — with **`?q=...`**. KI has no segment in the URL.
+- One **optional dynamic segment** under `search` (`[[...set]]`) and a single page that reads `set` and `q`, fetches both LLM and searchAllEntities when `q` is set, and renders one result view filtered by currentSet.
+- **SearchTabs** drive and reflect the URL: on tab click, **navigate** via `router.replace(...)` (language-switcher style), preserving `q`.
+- Set segments map to **searchType** as in the table above; display shows only that subset of regular search results (client-side filter on full `searchAllEntities` result).

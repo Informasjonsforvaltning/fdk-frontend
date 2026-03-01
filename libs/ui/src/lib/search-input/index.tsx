@@ -53,9 +53,18 @@ const SearchInput = ({
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (value.trim()) {
-            const searchUrl = `/${currentLocale}/search?q=${encodeURIComponent(value.trim())}`;
-            router.push(searchUrl);
+        if (!value.trim()) return;
+        const q = encodeURIComponent(value.trim());
+        const segments = pathname.split('/').filter(Boolean);
+        const isOnSearchPage =
+            segments.length >= 2 &&
+            segments[0] === currentLocale &&
+            segments[1] === 'search';
+        if (isOnSearchPage) {
+            const path = pathname.split('?')[0];
+            router.push(`${path}?q=${q}`);
+        } else {
+            router.push(`/${currentLocale}/search?q=${q}`);
         }
     };
 

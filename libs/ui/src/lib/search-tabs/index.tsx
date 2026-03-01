@@ -1,86 +1,105 @@
 'use client';
 
-import { ToggleGroup, Badge, Link } from '@digdir/designsystemet-react';
+import { ToggleGroup, Badge } from '@digdir/designsystemet-react';
 import { SparklesFillIcon } from '@navikt/aksel-icons';
 import { type ReactNode } from 'react';
 import styles from './styles.module.scss';
 
-export type SearchTabsValue = 'ki' | 'datasett' | 'api' | 'begrep' | 'infomodels' | 'tjenester' | 'docs';
+/** KI has no URL segment; other values match the path segment. */
+export type SearchTabsValue =
+  | 'ki'
+  | 'datasets'
+  | 'apis'
+  | 'concepts'
+  | 'information-models'
+  | 'services-and-events'
+  | 'docs';
 
 export type SearchTabsProps = {
-    defaultValue?: SearchTabsValue;
-    onChange?: (value: SearchTabsValue) => void;
+  /** Controlled value (current set from URL). Use 'ki' when no segment. */
+  value?: SearchTabsValue;
+  defaultValue?: SearchTabsValue;
+  onChange?: (value: SearchTabsValue) => void;
+  /** Badge counts per tab value (from search results). */
+  badgeCounts?: Record<string, number>;
 };
 
 export type SearchTabItem = {
-    value: SearchTabsValue;
-    label: string;
-    icon?: ReactNode;
-    badgeCount: number;
+  value: SearchTabsValue;
+  label: string;
+  icon?: ReactNode;
+  badgeCount?: number;
 };
 
 export const searchTabItems: SearchTabItem[] = [
-    {
-        value: 'ki',
-        label: 'KI',
-        icon: <SparklesFillIcon />,
-        badgeCount: 6,
-    },
-    {
-        value: 'datasett',
-        label: 'Datasett',
-        badgeCount: 614,
-    },
-    {
-        value: 'api',
-        label: 'API',
-        badgeCount: 19,
-    },
-    {
-        value: 'begrep',
-        label: 'Begrep',
-        badgeCount: 588,
-    },
-    {
-        value: 'infomodels',
-        label: 'Informasjonsmodeller',
-        badgeCount: 0,
-    },
-    {
-        value: 'tjenester',
-        label: 'Tjenester og hendelser',
-        badgeCount: 31,
-    },
-    {
-        value: 'docs',
-        label: 'Dokumentasjon',
-        badgeCount: 4,
-    },
+  {
+    value: 'ki',
+    label: 'KI',
+    icon: <SparklesFillIcon />,
+    badgeCount: 0,
+  },
+  {
+    value: 'datasets',
+    label: 'Datasett',
+    badgeCount: 0,
+  },
+  {
+    value: 'apis',
+    label: 'API',
+    badgeCount: 0,
+  },
+  {
+    value: 'concepts',
+    label: 'Begrep',
+    badgeCount: 0,
+  },
+  {
+    value: 'information-models',
+    label: 'Informasjonsmodeller',
+    badgeCount: 0,
+  },
+  {
+    value: 'services-and-events',
+    label: 'Tjenester og hendelser',
+    badgeCount: 0,
+  },
+  {
+    value: 'docs',
+    label: 'Dokumentasjon',
+    badgeCount: 0,
+  },
 ];
 
-const SearchTabs = ({ defaultValue = 'ki', onChange }: SearchTabsProps) => (
+const SearchTabs = ({
+  value,
+  defaultValue = 'ki',
+  onChange,
+  badgeCounts = {},
+}: SearchTabsProps) => {
+  const isControlled = value !== undefined;
+  const toggleValue = isControlled ? value : defaultValue;
+
+  return (
     <ToggleGroup
-        defaultValue={defaultValue}
-        onChange={(value) => onChange?.(value as SearchTabsValue)}
-        // data-size='sm'
-        className={styles.tabs}
-        variant='secondary'
+      value={toggleValue}
+      defaultValue={defaultValue}
+      onChange={(v) => onChange?.(v as SearchTabsValue)}
+      className={styles.tabs}
+      variant="secondary"
     >
-        {searchTabItems.map((item) => (
-            <ToggleGroup.Item
-                key={item.value}
-                value={item.value}
-            >
-                {item.icon}
-                {item.label}
-                <Badge
-                    count={item.badgeCount}
-                    variant='tinted'
-                />
-            </ToggleGroup.Item>
-        ))}
+      {searchTabItems.map((item) => {
+        const count = badgeCounts[item.value] ?? item.badgeCount ?? 0;
+        return (
+          <ToggleGroup.Item key={item.value} value={item.value}>
+            {item.icon}
+            {item.label}
+            <Badge count={count} variant="tinted" />
+          </ToggleGroup.Item>
+        );
+      })}
     </ToggleGroup>
-);
+  );
+};
 
 export default SearchTabs;
 export { SearchTabs };

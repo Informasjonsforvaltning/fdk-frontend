@@ -25,7 +25,7 @@ const MotionUl = motion.ul;
 const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [query, setQuery] = useState<string>('');
-    const [results, setResults] = useState<LlmSearchResponse<ItemObjectType> | undefined>(undefined);
+    const [results, setResults] = useState<LlmSearchResponse | undefined>(undefined);
     const [error, setError] = useState<string | undefined>(undefined);
 
     const animations = {

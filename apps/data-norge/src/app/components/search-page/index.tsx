@@ -1,163 +1,136 @@
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Badge, ToggleGroup } from '@digdir/designsystemet-react';
-import { SparklesFillIcon } from '@navikt/aksel-icons';
+import { Heading } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { type SearchApiResponse } from '@fdk-frontend/data-access/server';
 import { EntityTeaser } from '@fdk-frontend/ui';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import { SearchTabs } from '@fdk-frontend/ui';
+import {
+  getBadgeCounts,
+  getSearchTypesForSet,
+  type SearchSetSegment,
+} from '../../[lang]/search/search-set-config';
 
 import styles from './search-page.module.scss';
 
-const searchTabItems: any[] = [
-    {
-        value: 'ki',
-        label: 'KI',
-        icon: <SparklesFillIcon />,
-        badgeCount: 6,
-    },
-    {
-        value: 'datasett',
-        label: 'Datasett',
-        badgeCount: 614,
-    },
-    {
-        value: 'api',
-        label: 'API',
-        badgeCount: 19,
-    },
-    {
-        value: 'begrep',
-        label: 'Begrep',
-        badgeCount: 588,
-    },
-    {
-        value: 'infomodels',
-        label: 'Informasjonsmodeller',
-        badgeCount: 0,
-    },
-    {
-        value: 'tjenester',
-        label: 'Tjenester og hendelser',
-        badgeCount: 31,
-    },
-    {
-        value: 'docs',
-        label: 'Dokumentasjon',
-        badgeCount: 4,
-    },
-];
-
 export type SearchPageProps = {
-    dictionaries: {
-        common: Dictionary;
-    };
-    query?: string;
-    llmResults?: LlmSearchResponse;
-    searchResults?: SearchApiResponse;
+  lang: LocaleCodes;
+  query?: string;
+  currentSet?: SearchSetSegment;
+  llmResults?: LlmSearchResponse;
+  searchResults?: SearchApiResponse;
 };
 
-const SearchPage = ({ dictionaries, query, llmResults, searchResults }: SearchPageProps) => {
-    const breadcrumbList = [
-        {
-            text: query ? `Søk etter "${query}"` : 'Søk',
-        },
-    ];
+function filterHitsBySet(
+  hits: SearchObject[] | undefined,
+  set: SearchSetSegment
+): SearchObject[] {
+  if (!hits?.length) return [];
+  const types = getSearchTypesForSet(set);
+  if (!types) return [];
+  const setTypes = new Set(types);
+  return hits.filter(
+    (h) => h.searchType && setTypes.has(h.searchType)
+  );
+}
 
-    const llmHitsCount = llmResults?.hits?.length ?? 0;
-    const searchHitsCount = searchResults?.hits?.length ?? 0;
-    const totalResults = llmHitsCount + searchHitsCount;
+const SearchPage = ({
+  lang,
+  query,
+  currentSet,
+  llmResults,
+  searchResults,
+}: SearchPageProps) => {
+  const breadcrumbList = [
+    {
+      text: query ? `Søk etter "${query}"` : 'Søk',
+    },
+  ];
 
-    // console.log('llmResults', llmResults);
-    // console.log('searchResults', searchResults);
+  const llmHitsCount = llmResults?.hits?.length ?? 0;
+  const allSearchHits = searchResults?.hits ?? [];
+  const badgeCounts = getBadgeCounts(allSearchHits, llmHitsCount);
 
-    return (
-        <div className={styles.searchPage}>
+  const showLlm = currentSet === undefined;
+  const filteredHits =
+    currentSet && currentSet !== 'docs'
+      ? filterHitsBySet(allSearchHits, currentSet)
+      : [];
+  const displayCount = showLlm ? llmHitsCount : filteredHits.length;
+  const totalResults = llmHitsCount + allSearchHits.length;
+
+  return (
+    <div className={styles.searchPage}>
             <Breadcrumbs
-                dictionary={dictionaries.common}
+                locale={lang}
                 breadcrumbList={breadcrumbList}
             />
-            <div className={styles.mainContent}>
-                {/* <Heading data-size='md'>
-                    Søk
-                </Heading> */}
-                {query && <Heading data-size='md'>{`${totalResults} resultater for '${query}'`}</Heading>}
-                {/* <SearchTabs /> */}
-                <SearchForm />
-                {/* <Tabs defaultValue={searchTabItems[0]?.value || 'ki'}>
-                    <TabsList>
-                        {searchTabItems.map((tab) => (
-                            <TabsTab
-                                key={tab.value}
-                                value={tab.value}
-                            >
-                                {tab.icon}
-                                {tab.label}
-                                <Badge
-                                    count={tab.badgeCount}
-                                    variant='tinted'
-                                />
-                            </TabsTab>
-                        ))}
-                    </TabsList>
-                    {searchTabItems.map((tab) => (
-                        <TabsPanel
-                            key={tab.value}
-                            value={tab.value}
-                        ></TabsPanel>
-                    ))}
-                </Tabs> */}
-                <div>
-                    {/* LLM Results */}
-                    {/*llmResults && llmResults.hits && llmResults.hits.length > 0 && (
-                        <div className={styles.resultsSection}>
-                            <Heading
-                                data-size='sm'
-                                className={styles.sectionHeading}
-                            >
-                                AI-søkeresultater ({llmHitsCount})
-                            </Heading>
-                            <ul>
-                                {llmResults.hits.map((item, i) => (
-                                    <li key={item.id || i}>
-                                        <h3>{item.title}</h3>
-                                        <p>{item.description}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )*/}
-
-                    {/* Regular Search Results */}
-                    {searchResults && searchResults.hits && searchResults.hits.length > 0 && (
-                        <div className={styles.resultsSection}>
-                            <Heading
-                                data-size='sm'
-                                className={styles.sectionHeading}
-                            >
-                                Søkeresultater ({searchHitsCount})
-                            </Heading>
-                            <ul className='fdk-box-list'>
-                                {searchResults.hits.map((hit: SearchObject, i: number) => {
-                                    console.log(hit);
-                                    return <li><EntityTeaser locale='nb' key={hit.id} entity={hit} /></li>
-                                    // return (
-                                    //     <li key={hit.id || hit.uri || i}>
-                                    //         <h3>{printLoc}</h3>
-                                    //         <p>{description}</p>
-                                    //         {item.searchType && <span className={styles.type}>{item.searchType}</span>}
-                                    //     </li>
-                                    // );
-                                })}
-                            </ul>
-                        </div>
-                    )}
-                </div>
+      <div className={styles.mainContent}>
+        {query && (
+          <Heading data-size="md">{`${totalResults} resultater for '${query}'`}</Heading>
+        )}
+        <SearchForm
+          lang={lang}
+          currentSet={currentSet}
+          defaultQuery={query ?? ''}
+          badgeCounts={badgeCounts}
+        />
+        <div>
+          {showLlm && llmResults?.hits && llmResults.hits.length > 0 && (
+            <div className={styles.resultsSection}>
+              <Heading
+                data-size="sm"
+                className={styles.sectionHeading}
+              >
+                {`KI-resultater (${llmHitsCount})`}
+              </Heading>
+              <ul className="fdk-box-list">
+                {llmResults.hits.map((item, i) => (
+                  <li key={item.id ?? i}>
+                    <EntityTeaser locale={lang} entity={{
+                        ...item,
+                        searchType: item.type,
+                        organization: {
+                            id: item.publisherId,
+                            prefLabel: item.publisher
+                        }
+                    }} />
+                  </li>
+                ))}
+              </ul>
             </div>
+          )}
+
+          {!showLlm && currentSet !== 'docs' && filteredHits.length > 0 && (
+            <div className={styles.resultsSection}>
+              <Heading
+                data-size="sm"
+                className={styles.sectionHeading}
+              >
+                {currentSet} ({displayCount})
+              </Heading>
+              <ul className="fdk-box-list">
+                {filteredHits.map((hit: SearchObject, i: number) => (
+                  <li key={hit.id ?? hit.uri ?? i}>
+                    <EntityTeaser locale={lang} entity={hit} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {currentSet === 'docs' && (
+            <div className={styles.resultsSection}>
+              <Heading data-size="sm" className={styles.sectionHeading}>
+                Dokumentasjon
+              </Heading>
+              <p>Dokumentasjonssøk kommer snart.</p>
+            </div>
+          )}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default SearchPage;
