@@ -1998,12 +1998,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fellesdatakatalog/types@npm:^1.0.14":
-  version: 1.0.14
-  resolution: "@fellesdatakatalog/types@npm:1.0.14"
+"@fellesdatakatalog/types@npm:^1.0.15":
+  version: 1.0.15
+  resolution: "@fellesdatakatalog/types@npm:1.0.15"
   dependencies:
-    typescript: "npm:^5.8.2"
-  checksum: 10c0/42fac500017b775768a1c4c618aae650de68a077c72dd4a80fa97653288aa176beb1cbf1904f6823077a8bc4e5b8caf90a680be2fc295484015e27f35f120bfe
+    typescript: "npm:^5.9.3"
+  checksum: 10c0/fc8eb2c004745c011a3e7f3a5384c3ee1a57ab40e7d80b2c528a0b606cf047e74c8fee344d7d6d9c1d824728f423607ba60bdf5ca791f0b12c64971e08f0fef2
   languageName: node
   linkType: hard
 
@@ -10424,7 +10424,7 @@ __metadata:
     "@digdir/designsystemet-react": "npm:^1.11.1"
     "@digdir/designsystemet-theme": "npm:^1.11.0"
     "@eslint/js": "npm:^9.39.2"
-    "@fellesdatakatalog/types": "npm:^1.0.14"
+    "@fellesdatakatalog/types": "npm:^1.0.15"
     "@fellesdatakatalog/ui": "npm:^1.0.19"
     "@mdx-js/loader": "npm:^3.1.1"
     "@mdx-js/react": "npm:^3.1.1"
@@ -19105,7 +19105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.8.2, typescript@npm:^5.9.3, typescript@npm:~5.9.2":
+"typescript@npm:^5.9.3, typescript@npm:~5.9.2":
   version: 5.9.3
   resolution: "typescript@npm:5.9.3"
   bin:
@@ -19115,7 +19115,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.8.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.9.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.9.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.9.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.9.2#optional!builtin<compat/typescript>":
   version: 5.9.3
   resolution: "typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"
   bin:
