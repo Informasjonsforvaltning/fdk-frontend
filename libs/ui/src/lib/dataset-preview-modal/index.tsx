@@ -5,7 +5,7 @@ import { Alert, Dialog, Button, Tag, Link, Paragraph, Heading } from '@digdir/de
 import { DownloadIcon, ArrowDownRightIcon } from '@navikt/aksel-icons';
 import styles from './styles.module.scss';
 import DatasetPreviewTable from '../dataset-preview-table/';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 import { HStack } from '@fellesdatakatalog/ui';
 
 type DatasetPreviewModalProps = {
@@ -13,7 +13,7 @@ type DatasetPreviewModalProps = {
     title: string;
     data: any;
     downloadUrl: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
 };
 
 const DatasetPreviewModal = ({

@@ -1,4 +1,4 @@
-import { LocaleCodes } from '@fdk-frontend/dictionaries';
+import { LocaleCodes } from '@fdk-frontend/localization';
 import DocsPage, { generateMetadata as docsPageMetadata } from '../../../components/docs/docs-page';
 
 interface Props {

@@ -1,5 +1,5 @@
 import { getAllCommunityTopics, getOrgLogo, getService, searchConcepts } from '@fdk-frontend/data-access/server';
-import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
 import { SearchObject, type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
 import ServiceDetailsPage from '../../../../components/details-page/service';
@@ -17,9 +17,10 @@ export type DetailsPageWrapperProps = {
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const { id, lang, slug } = await props.params;
     const { tab } = await props.searchParams;
+    const loc = getLocalization(lang);
     const dictionaries = {
-        common: await getDictionary(lang, 'common'),
-        detailsPage: await getDictionary(lang, 'details-page'),
+        common: loc.common,
+        detailsPage: loc.detailsPage,
     };
     let service: PublicService;
     let orgLogo: string | null = null;
@@ -87,7 +88,7 @@ export default DetailsPageWrapper;
 
 export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     const { id, lang } = await props.params;
-    const dictionary = await getDictionary(lang, 'details-page');
+    const dictionary = getLocalization(lang).detailsPage;
 
     try {
         const service = await getService(id);

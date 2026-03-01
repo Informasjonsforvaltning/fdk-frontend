@@ -1,7 +1,7 @@
 'use client';
 
 import React, { Fragment, useState } from 'react';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { type Organization, type CommunityTopic, type PublicService, SearchObject } from '@fellesdatakatalog/types';
 import { getSlug, printLocaleValue, sumArrayLengths } from '@fdk-frontend/utils';
 import {
@@ -36,8 +36,8 @@ export type ServiceDetailsPageType = {
     concepts: SearchObject[];
     defaultActiveTab?: string;
     dictionaries: {
-        common: Dictionary;
-        detailsPage: Dictionary;
+        common: Localization;
+        detailsPage: Localization;
     };
     locale: LocaleCodes;
     orgLogo?: string | null;
@@ -86,7 +86,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 baseUri={baseUri}
             />
             <Breadcrumbs
-                dictionary={dictionaries.common}
+                locale={locale}
                 breadcrumbList={breadcrumbList}
             />
             <div className={styles.mainContent}>

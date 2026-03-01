@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { PropsWithChildren } from 'react';
 
 import { DynamicBreadcrumbs } from '@fdk-frontend/ui';
-import { type LocaleCodes, getDictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 
 import Sidebar from '../sidebar';
 import TableOfContents from '../table-of-contents';
@@ -20,8 +20,8 @@ export type MdxPageProps = PropsWithChildren & {
 };
 
 const MdxPage = async ({ children, sidebars = true, currentPath, locale, source }: MdxPageProps) => {
-    const docsDictionary = await getDictionary(locale, 'docs');
-    const commonDictionary = await getDictionary(locale, 'common');
+    const loc = getLocalization(locale);
+    const docsDictionary = loc.docs;
 
     const headlines: MdxHeadlineObjectNode[] = extractHeadlines(source);
 
@@ -29,7 +29,6 @@ const MdxPage = async ({ children, sidebars = true, currentPath, locale, source 
         <div className={pageStyles.mdxPage}>
             <DynamicBreadcrumbs
                 docsDictionary={docsDictionary}
-                commonDictionary={commonDictionary}
                 locale={locale}
             />
             <div className={cn(pageStyles.content, { [pageStyles.noSidebars]: !sidebars })}>

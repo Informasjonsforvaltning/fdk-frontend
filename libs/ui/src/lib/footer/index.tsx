@@ -1,4 +1,4 @@
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { LogoLink, DpgLink, DigdirLogoLink } from '../logo';
 import LanguageSwitcher from '../language-switcher';
 import MainMenu from '../main-menu';
@@ -6,11 +6,11 @@ import styles from './footer.module.scss';
 import { HStack } from '@fellesdatakatalog/ui';
 
 export type FooterProps = {
-    dictionary: Dictionary;
     locale: LocaleCodes;
 };
 
-const Footer = ({ dictionary, locale }: FooterProps) => {
+const Footer = ({ locale }: FooterProps) => {
+    const dictionary = getLocalization(locale).common;
     return (
         <footer
             className={styles.footer}
@@ -20,7 +20,6 @@ const Footer = ({ dictionary, locale }: FooterProps) => {
             <div className={styles.inner}>
                 <MainMenu
                     className={styles.footerNav}
-                    dictionary={dictionary}
                     locale={locale}
                     motionProps={{
                         initial: 'show',

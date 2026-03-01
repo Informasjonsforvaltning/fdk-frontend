@@ -1,4 +1,4 @@
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 import { FormState } from './types';
 
 /**
@@ -11,7 +11,7 @@ import { FormState } from './types';
 export const extractErrorMessages = (
     fieldName: string,
     state: FormState | undefined,
-    dictionary: Dictionary,
+    dictionary: Localization,
 ): string[] | string => {
     if (!state?.fieldErrors) {
         return '';

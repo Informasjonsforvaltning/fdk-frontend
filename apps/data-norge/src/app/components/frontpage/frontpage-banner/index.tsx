@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { HeadingWithDivider } from '@fdk-frontend/ui';
 
 import LlmSearch from '../llm-search';
@@ -10,7 +10,7 @@ import ScrollButton from './components/scroll-button';
 import styles from './frontpage-banner.module.scss';
 
 type FrontpageBannerProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
     endpoint: string;
 };

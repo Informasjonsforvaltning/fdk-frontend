@@ -4,21 +4,21 @@ import React from 'react';
 import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Heading } from '@digdir/designsystemet-react';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import ExternalLink from '../external-link';
 import styles from './main-menu.module.scss';
 import GithubLogo from './images/github-logo';
 import getMainMenuData from './data';
 
 type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
-    dictionary: Dictionary;
     locale: LocaleCodes;
     motionProps?: any;
 };
 
 const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
-const MainMenu = ({ className, dictionary, locale, motionProps = {}, ...rest }: MainMenuProps) => {
+const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProps) => {
+    const dictionary = getLocalization(locale).common;
     const data = getMainMenuData(dictionary, locale);
     const animations = {
         links: {

@@ -2,7 +2,7 @@ import 'server-only';
 import React from 'react';
 import type { Metadata } from 'next';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getLocalization, type Locale } from '@fdk-frontend/localization';
 import { Breadcrumbs } from '@fdk-frontend/ui';
 import styles from './page.module.css';
 import { SparqlEditor } from './components/sparql-editor';
@@ -19,8 +19,8 @@ const SparqlPage = async (props: SparqlPageProps) => {
 
     const { FDK_SPARQL_ENDPOINT } = process.env;
 
-    const dictionary = await getDictionary(lang, 'sparql-sandbox-page');
-    const commonDictionary = await getDictionary(lang, 'common');
+    const loc = getLocalization(lang);
+    const dictionary = loc.sparqlSandboxPage;
 
     const breadcrumbList = [
         {
@@ -34,7 +34,7 @@ const SparqlPage = async (props: SparqlPageProps) => {
             <div style={{ margin: '0 2rem' }}>
                 <Breadcrumbs
                     breadcrumbList={breadcrumbList}
-                    dictionary={commonDictionary}
+                    locale={lang}
                 />
             </div>
             <div className={styles.contentContainer}>
@@ -53,7 +53,7 @@ const SparqlPage = async (props: SparqlPageProps) => {
 
 export const generateMetadata = async (props: SparqlPageProps): Promise<Metadata> => {
     const params = await props.params;
-    const dictionary = await getDictionary(params.lang, 'sparql-sandbox-page');
+    const dictionary = getLocalization(params.lang).sparqlSandboxPage;
 
     return {
         title: dictionary.metadata.title,

@@ -2,17 +2,16 @@
 
 import { usePathname } from 'next/navigation';
 
-import { Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 
 import Breadcrumbs from '../breadcrumbs';
 
 type DynamicBreadcrumbsProps = {
-    commonDictionary: Dictionary;
-    docsDictionary: Dictionary;
+    docsDictionary: Localization;
     locale: LocaleCodes;
 };
 
-const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, locale }: DynamicBreadcrumbsProps) => {
+const DynamicBreadcrumbs = ({ docsDictionary, locale }: DynamicBreadcrumbsProps) => {
     const pathname = usePathname();
 
     const createBreadcrumbPaths = function (pname: string) {
@@ -40,7 +39,7 @@ const DynamicBreadcrumbs = ({ commonDictionary, docsDictionary, locale }: Dynami
     return (
         <Breadcrumbs
             breadcrumbList={textedItems}
-            dictionary={commonDictionary}
+            locale={locale}
         />
     );
 };

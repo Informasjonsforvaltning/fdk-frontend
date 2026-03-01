@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import { PlaceholderText, PlaceholderBox, ExternalLink, Dlist } from '@fdk-frontend/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
-import { i18n } from '@fdk-frontend/dictionaries';
+import { i18n } from '@fdk-frontend/localization';
 
 const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);

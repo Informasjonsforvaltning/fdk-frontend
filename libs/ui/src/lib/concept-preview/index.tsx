@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { getDictionary, type Locale } from '@fdk-frontend/dictionaries';
+import { getLocalization, type Locale } from '@fdk-frontend/localization';
 import { getSkosLabel, getSkosDefinition } from '@fdk-frontend/utils/concept-preview-utils';
 import { getConceptAsJsonLd } from '@fdk-frontend/data-access/server';
 import ConceptPreviewBase from '../concept-preview-base';
@@ -11,7 +11,7 @@ export type ConceptPreviewProps = PropsWithChildren & {
 };
 
 const ConceptPreview = async ({ uri, lang, children }: ConceptPreviewProps) => {
-    const docsDictionary = await getDictionary(lang, 'docs');
+    const docsDictionary = getLocalization(lang).docs;
     const concept = await getConceptAsJsonLd(uri).catch((error) => {
         console.error('Error getting concept as JSON-LD:', error);
     });
@@ -20,7 +20,7 @@ const ConceptPreview = async ({ uri, lang, children }: ConceptPreviewProps) => {
     return (
         <ConceptPreviewBase
             label={conceptLabel || docsDictionary.conceptPreview.labelMissing}
-            definition={conceptDefinition || docsDictionary.conceptPreview.definitionMissing}
+            definition={conceptDefinition || docsDictionary.conceptPreview.descriptionMissing}
             uri={uri}
             goToDataNorgeText={docsDictionary.conceptPreview.goToDatanorge}
         >

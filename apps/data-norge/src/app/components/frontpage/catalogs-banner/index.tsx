@@ -1,11 +1,11 @@
-import { Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { CatalogsMenu, HeadingWithDivider } from '@fdk-frontend/ui';
 
 import styles from './catalogs-banner.module.scss';
 
 type CatalogsBannerProps = {
-    commonDictionary: Dictionary;
-    frontpageDictionary: Dictionary;
+    commonDictionary: Localization;
+    frontpageDictionary: Localization;
     locale: LocaleCodes;
 };
 

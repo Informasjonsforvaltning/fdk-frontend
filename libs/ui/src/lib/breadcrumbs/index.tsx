@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { Link } from '@digdir/designsystemet-react';
 
 import ScrollShadows from '../scroll-shadows';
@@ -14,27 +14,29 @@ export type BreadcrumbType = {
 
 export type BreadcrumbsProps = {
     breadcrumbList?: BreadcrumbType[];
-    dictionary: Dictionary;
+    locale: LocaleCodes;
 };
 
 const BreadcrumbsContainer = ({ children }: React.PropsWithChildren) => (
     <div className={styles.container}>{children}</div>
 );
 
-const Breadcrumbs = ({ breadcrumbList, dictionary }: BreadcrumbsProps) => (
-    <div className={styles.container}>
-        <ScrollShadows>
-            <nav
-                className={styles.breadcrumbs}
-                aria-label={dictionary.breadcrumbs.label}
-            >
-                <Link
-                    className={styles.link}
-                    aria-label={dictionary.breadcrumbs.home}
-                    href={'/'}
+const Breadcrumbs = ({ breadcrumbList, locale }: BreadcrumbsProps) => {
+    const dictionary = getLocalization(locale).common;
+    return (
+        <div className={styles.container}>
+            <ScrollShadows>
+                <nav
+                    className={styles.breadcrumbs}
+                    aria-label={dictionary.breadcrumbs.label}
                 >
-                    {dictionary.breadcrumbs.home}
-                </Link>
+                    <Link
+                        className={styles.link}
+                        aria-label={dictionary.breadcrumbs.home}
+                        href={'/'}
+                    >
+                        {dictionary.breadcrumbs.home}
+                    </Link>
                 {breadcrumbList?.map((breadcrumb, i) => (
                     <div
                         className={styles.crumb}
@@ -57,10 +59,11 @@ const Breadcrumbs = ({ breadcrumbList, dictionary }: BreadcrumbsProps) => (
                         )}
                     </div>
                 ))}
-            </nav>
-        </ScrollShadows>
-    </div>
-);
+                </nav>
+            </ScrollShadows>
+        </div>
+    );
+};
 
 export default Breadcrumbs;
 export { BreadcrumbsContainer };

@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { Heading, Button, Link, Paragraph, Alert, Table } from '@digdir/designsystemet-react';
 import { type JSONValue } from '@fdk-frontend/types';
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
 import { Badge, ExternalLink, Hstack, VStack, ScrollShadows, PlaceholderBox } from '@fdk-frontend/ui';
 import styles from './community-tab.module.scss';
 import TopicRow from './components/topic-row';
@@ -9,7 +9,7 @@ import TopicRow from './components/topic-row';
 export type CommunityTabProps = {
     communityBaseUri: string;
     topics?: JSONValue;
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

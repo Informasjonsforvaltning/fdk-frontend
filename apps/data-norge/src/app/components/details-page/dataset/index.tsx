@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import DatasetStructuredData from '../../structured-data/dataset-structured-data';
 import {
     type DatasetWithIdentifier,
@@ -50,8 +50,8 @@ export type DatasetDetailsPageType = {
     orgLogo?: string | null;
     locale: LocaleCodes;
     dictionaries: {
-        common: Dictionary;
-        detailsPage: Dictionary;
+        common: Localization;
+        detailsPage: Localization;
     };
     resolvedDistributionDataServices?: SearchObject[];
     resolvedDistributionInformationModels?: SearchObject[];
@@ -102,7 +102,7 @@ export default function DatasetDetailsPage({
                 baseUri={baseUri}
             />
             <Breadcrumbs
-                dictionary={dictionaries.common}
+                locale={locale}
                 breadcrumbList={breadcrumbList}
             />
             <div className={styles.mainContent}>

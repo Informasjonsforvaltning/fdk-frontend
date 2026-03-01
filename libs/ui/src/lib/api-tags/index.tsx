@@ -1,16 +1,14 @@
 import React from 'react';
 import mime from 'mime-types';
 import { type DataService } from '@fellesdatakatalog/types';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
 import { Tag } from '@digdir/designsystemet-react';
 import TagList, { type TagListProps } from '../tag-list';
 
 type ApiTagsProps = TagListProps & {
     api: DataService;
-    dictionary: Dictionary;
 };
 
-const ApiTags = ({ children, api, dictionary, ...props }: ApiTagsProps & React.HTMLAttributes<HTMLUListElement>) => {
+const ApiTags = ({ children, api, ...props }: ApiTagsProps & React.HTMLAttributes<HTMLUListElement>) => {
     return (
         <TagList {...props}>
             {api.fdkFormat

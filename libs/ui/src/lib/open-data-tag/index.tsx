@@ -1,8 +1,9 @@
 import { Link, Tag, Paragraph } from '@digdir/designsystemet-react';
 import { HelpText } from '@fellesdatakatalog/ui';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 
-const OpenDataTag = ({ dictionary }: { dictionary: Dictionary }) => {
+const OpenDataTag = ({ locale }: { locale: LocaleCodes }) => {
+    const dictionary = getLocalization(locale).common;
     return (
         <Tag
             data-color='success'

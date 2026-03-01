@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import Breadcrumbs from '.';
 
-import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/nb/common.json';
-
 const meta: Meta<typeof Breadcrumbs> = {
     component: Breadcrumbs,
     title: 'Breadcrumbs',
@@ -26,8 +24,7 @@ const breadcrumbList = [
 export const Primary: Story = {
     render: () => (
         <Breadcrumbs
-            baseUri='/'
-            dictionary={dictionary}
+            locale='nb'
             breadcrumbList={breadcrumbList}
         />
     ),

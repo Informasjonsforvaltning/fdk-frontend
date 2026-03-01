@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { type DatasetWithIdentifier, type DataService } from '@fellesdatakatalog/types';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     OrgButton,
@@ -19,8 +19,8 @@ type DatasetHeaderProps = {
     dataset: DatasetWithIdentifier;
     apis?: DataService[];
     dictionaries: {
-        common: Dictionary;
-        detailsPage: Dictionary;
+        common: Localization;
+        detailsPage: Localization;
     };
     locale: LocaleCodes;
     orgLogo?: string | null;
@@ -83,10 +83,9 @@ const DatasetHeader = ({
                 <AccessLevelTag
                     accessCode={dataset.accessRights?.code}
                     locale={locale}
-                    dictionary={dictionaries.detailsPage}
                     data-size='md'
                 />
-                {dataset.isOpenData && <OpenDataTag dictionary={dictionaries.common} />}
+                {dataset.isOpenData && <OpenDataTag locale={locale} />}
             </TagList>
         </div>
     );

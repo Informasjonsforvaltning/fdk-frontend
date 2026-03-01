@@ -1,12 +1,13 @@
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization, type Localization } from '@fdk-frontend/localization';
 import { expect, Page, BrowserContext } from '@playwright/test';
 import type AxeBuilder from '@axe-core/playwright';
-import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/en/docs.json';
+
+const dictionary = getLocalization('en').docs;
 
 export default class DocsPage {
     page: Page;
     context: BrowserContext;
-    dictionary: Dictionary;
+    dictionary: Localization;
     accessibilityBuilder;
 
     constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
