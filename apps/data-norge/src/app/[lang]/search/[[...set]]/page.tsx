@@ -4,9 +4,8 @@ import {
   type SearchPageHandlerProps,
 } from '../search-page-handler';
 import { isValidSetSegment } from '../search-set-config';
-import SearchPageClient from '../../../components/search-page/search-page-client';
 
-/** Handles /[lang]/search (set undefined = KI) and /[lang]/search/[set]. Data is fetched client-side; no server data loading. */
+/** Validates set segment and redirects if invalid. Search UI is rendered by the search layout (SearchPageClient) so it does not remount on tab change. */
 export default async function Page(props: SearchPageHandlerProps) {
   const params = await props.params;
   const searchParams = await props.searchParams;
@@ -20,7 +19,7 @@ export default async function Page(props: SearchPageHandlerProps) {
     redirect(`${base}${qs}`);
   }
 
-  return <SearchPageClient lang={locale} />;
+  return null;
 }
 
 export const generateMetadata = (props: SearchPageHandlerProps) =>
