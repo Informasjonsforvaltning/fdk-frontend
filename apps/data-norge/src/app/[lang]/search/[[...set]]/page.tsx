@@ -1,13 +1,12 @@
 import { redirect } from 'next/navigation';
 import {
-  getSearchPageData,
-  SearchPageHandlerContent,
   getSearchPageMetadata,
   type SearchPageHandlerProps,
 } from '../search-page-handler';
 import { isValidSetSegment } from '../search-set-config';
+import SearchPageClient from '../../../components/search-page/search-page-client';
 
-/** Handles /[lang]/search (set undefined = KI) and /[lang]/search/[set] (e.g. /nb/search/datasets). */
+/** Handles /[lang]/search (set undefined = KI) and /[lang]/search/[set]. Data is fetched client-side; no server data loading. */
 export default async function Page(props: SearchPageHandlerProps) {
   const params = await props.params;
   const searchParams = await props.searchParams;
@@ -21,8 +20,7 @@ export default async function Page(props: SearchPageHandlerProps) {
     redirect(`${base}${qs}`);
   }
 
-  const data = await getSearchPageData(props);
-  return <SearchPageHandlerContent {...data} />;
+  return <SearchPageClient lang={locale} />;
 }
 
 export const generateMetadata = (props: SearchPageHandlerProps) =>

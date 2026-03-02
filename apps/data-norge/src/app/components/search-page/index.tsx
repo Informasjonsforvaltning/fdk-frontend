@@ -3,7 +3,6 @@ import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
 import { Heading } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
-import { type SearchApiResponse } from '@fdk-frontend/data-access/server';
 import { EntityTeaser } from '@fdk-frontend/ui';
 import {
   getBadgeCounts,
@@ -13,12 +12,17 @@ import {
 
 import styles from './search-page.module.scss';
 
+/** Client-safe shape for entity search results (no server-only import). */
+export type SearchResultsProp = { hits?: SearchObject[]; [key: string]: unknown };
+
 export type SearchPageProps = {
   lang: LocaleCodes;
   query?: string;
   currentSet?: SearchSetSegment;
   llmResults?: LlmSearchResponse;
-  searchResults?: SearchApiResponse;
+  searchResults?: SearchResultsProp;
+  /** When true, results area shows simple "loading" text (client-side fetch in progress). */
+  loading?: boolean;
 };
 
 function filterHitsBySet(
@@ -34,12 +38,40 @@ function filterHitsBySet(
   );
 }
 
+const LLM_TYPE_TO_SEARCH_TYPE: Record<string, string> = {
+  dataset: 'DATASET',
+  dataservice: 'DATA_SERVICE',
+  concept: 'CONCEPT',
+  informationmodel: 'INFORMATION_MODEL',
+  service: 'PUBLIC_SERVICE',
+  event: 'EVENT',
+};
+
+/** Adapt LLM hit (lowercase type, flat publisher) to SearchObject for EntityTeaser. Trusted boundary: API shape → UI type. */
+function llmHitToEntity(
+  item: LlmSearchResponse['hits'][number]
+): SearchObject {
+  const searchType = LLM_TYPE_TO_SEARCH_TYPE[item.type] ?? item.type;
+  return {
+    id: item.id,
+    uri: item.id,
+    title: item.title,
+    description: item.description,
+    searchType: searchType as SearchObject['searchType'],
+    organization: {
+      id: item.publisherId,
+      prefLabel: { nb: item.publisher },
+    } as SearchObject['organization'],
+  } as SearchObject;
+}
+
 const SearchPage = ({
   lang,
   query,
   currentSet,
   llmResults,
   searchResults,
+  loading = false,
 }: SearchPageProps) => {
   const breadcrumbList = [
     {
@@ -76,7 +108,8 @@ const SearchPage = ({
           badgeCounts={badgeCounts}
         />
         <div>
-          {showLlm && llmResults?.hits && llmResults.hits.length > 0 && (
+          {loading && <p>loading</p>}
+          {!loading && showLlm && llmResults?.hits && llmResults.hits.length > 0 && (
             <div className={styles.resultsSection}>
               <Heading
                 data-size="sm"
@@ -87,21 +120,14 @@ const SearchPage = ({
               <ul className="fdk-box-list">
                 {llmResults.hits.map((item, i) => (
                   <li key={item.id ?? i}>
-                    <EntityTeaser locale={lang} entity={{
-                        ...item,
-                        searchType: item.type,
-                        organization: {
-                            id: item.publisherId,
-                            prefLabel: item.publisher
-                        }
-                    }} />
+                    <EntityTeaser locale={lang} entity={llmHitToEntity(item)} />
                   </li>
                 ))}
               </ul>
             </div>
           )}
 
-          {!showLlm && currentSet !== 'docs' && filteredHits.length > 0 && (
+          {!loading && !showLlm && currentSet !== 'docs' && filteredHits.length > 0 && (
             <div className={styles.resultsSection}>
               <Heading
                 data-size="sm"
@@ -119,7 +145,7 @@ const SearchPage = ({
             </div>
           )}
 
-          {currentSet === 'docs' && (
+          {!loading && currentSet === 'docs' && (
             <div className={styles.resultsSection}>
               <Heading data-size="sm" className={styles.sectionHeading}>
                 Dokumentasjon
