@@ -9,7 +9,7 @@
     "resolutions": {
         "glob": "^10.5.0",
         "prismjs": "^1.30.0",
-        "koa": "^3.0.3",
+        "koa": "^3.1.2",
         "tmp": "^0.2.5",
         "qs": "^6.14.1",
         "tar": "^7.5.8",
@@ -21,7 +21,7 @@
         "minimatch@^5.0.1": "^5.1.7",
         "minimatch@^9.0.4": "^9.0.6",
         "minimatch@^9.0.5": "^9.0.6",
-        "minimatch@10.1.1": "^10.2.1"
+        "minimatch@10.1.1": "^10.2.3"
     },
     "packageManager": "yarn@4.11.0",
     "lint-staged": {
@@ -107,7 +107,7 @@
         "@storybook/addon-docs": "10.2.13",
         "@storybook/react-vite": "10.2.13",
         "@swc-node/register": "^1.11.1",
-        "@swc/core": "^1.15.17",
+        "@swc/core": "^1.15.18",
         "@swc/helpers": "^0.5.19",
         "@testing-library/dom": "^10.4.1",
         "@testing-library/jest-dom": "^6.9.1",
@@ -131,14 +131,13 @@
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-import": "^2.32.0",
         "eslint-plugin-jsx-a11y": "^6.10.2",
-        "eslint-plugin-playwright": "^2.7.1",
+        "eslint-plugin-playwright": "^2.9.0",
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-storybook": "10.2.13",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^30.2.0",
         "jest-axe": "^10.0.0",
         "jest-environment-jsdom": "^30.2.0",
-        "lint-staged": "^16.2.7",
         "lodash": "^4.17.23",
         "nx": "^22.5.3",
         "playwright-core": "^1.58.2",
