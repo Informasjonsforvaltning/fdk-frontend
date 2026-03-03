@@ -1,5 +1,5 @@
 'use client';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useRef, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { Input, Button, Tag } from '@digdir/designsystemet-react';
@@ -19,6 +19,16 @@ export type SearchInputProps = {
     locale?: LocaleCodes;
 };
 
+function getInitialQFromUrl(searchParams: URLSearchParams): string {
+    const q = searchParams.get('q');
+    if (q == null || q === '') return '';
+    try {
+        return decodeURIComponent(q);
+    } catch {
+        return q;
+    }
+}
+
 const SearchInput = ({
     value: controlledValue,
     onChange: controlledOnChange,
@@ -30,9 +40,19 @@ const SearchInput = ({
 }: SearchInputProps) => {
     const router = useRouter();
     const pathname = usePathname();
+    const searchParams = useSearchParams();
     const inputRef = useRef<HTMLInputElement>(null);
     const [isMac, setIsMac] = useState(false);
-    const [internalValue, setInternalValue] = useState('');
+    const [internalValue, setInternalValue] = useState(() =>
+        getInitialQFromUrl(searchParams)
+    );
+
+    // Keep uncontrolled value in sync when URL q param changes (e.g. back/forward)
+    useEffect(() => {
+        if (controlledValue === undefined) {
+            setInternalValue(getInitialQFromUrl(searchParams));
+        }
+    }, [searchParams, controlledValue]);
 
     const isControlled = controlledValue !== undefined;
     const value = isControlled ? controlledValue : internalValue;
