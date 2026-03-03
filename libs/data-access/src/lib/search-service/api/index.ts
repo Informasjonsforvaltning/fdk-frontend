@@ -158,12 +158,3 @@ export const getAllServices = async (page = 1, size = 1000) => {
         },
     });
 };
-
-export const searchEntitiesByPath = async (
-    path: string,
-    options: { pagination?: { size?: number; page?: number } } = {}
-) => {
-    return await searchApi(`/search/${path}`, {
-        pagination: options.pagination ?? {},
-    });
-};

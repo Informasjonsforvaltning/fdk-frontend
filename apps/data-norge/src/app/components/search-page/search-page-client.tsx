@@ -23,33 +23,6 @@ const deriveCurrentSetFromPathname = function (pathname: string): SearchSetSegme
   return undefined;
 };
 
-const PAGINATION = { size: 20, page: 0 };
-
-/** Fetch all results: either for a set (e.g. datasets, apis) or generic (no set). No LLM. */
-const fetchEntitiesOnly = async function (
-  set: SearchSetSegment | undefined
-): Promise<SearchResultsProp | undefined> {
-  const body: { query?: string; set?: string; pagination: { size: number; page: number } } = {
-    pagination: PAGINATION,
-  };
-  if (set !== undefined) {
-    body.set = set;
-  } else {
-    body.query = '';
-  }
-  const res = await fetch('/api/search/entities', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) return undefined;
-  try {
-    return (await res.json()) as SearchResultsProp;
-  } catch {
-    return undefined;
-  }
-};
-
 const fetchSearchData = async function (query: string): Promise<{
   llmResults: LlmSearchResponse | undefined;
   searchResults: SearchResultsProp | undefined;
@@ -65,7 +38,7 @@ const fetchSearchData = async function (query: string): Promise<{
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         query: query.trim(),
-        pagination: PAGINATION,
+        pagination: { size: 20, page: 0 },
       }),
     }),
   ]);
@@ -107,42 +80,34 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
 
   useEffect(() => {
     const q = query?.trim() ?? '';
-    let cancelled = false;
-    setLoading(true);
     if (!q) {
       setLlmResults(undefined);
-      fetchEntitiesOnly(currentSet)
-        .then((entities) => {
-          if (!cancelled) setSearchResults(entities);
-        })
-        .catch(() => {
-          if (!cancelled) setSearchResults(undefined);
-        })
-        .finally(() => {
-          if (!cancelled) setLoading(false);
-        });
-    } else {
-      fetchSearchData(q)
-        .then(({ llmResults: llm, searchResults: entities }) => {
-          if (!cancelled) {
-            setLlmResults(llm);
-            setSearchResults(entities);
-          }
-        })
-        .catch(() => {
-          if (!cancelled) {
-            setLlmResults(undefined);
-            setSearchResults(undefined);
-          }
-        })
-        .finally(() => {
-          if (!cancelled) setLoading(false);
-        });
+      setSearchResults(undefined);
+      setLoading(false);
+      return;
     }
+    let cancelled = false;
+    setLoading(true);
+    fetchSearchData(q)
+      .then(({ llmResults: llm, searchResults: entities }) => {
+        if (!cancelled) {
+          setLlmResults(llm);
+          setSearchResults(entities);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setLlmResults(undefined);
+          setSearchResults(undefined);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
     return () => {
       cancelled = true;
     };
-  }, [query, currentSet]);
+  }, [query]);
 
   const displayLang = lang ?? langFromUrl;
 

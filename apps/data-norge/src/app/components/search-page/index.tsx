@@ -98,18 +98,13 @@ const SearchPage = ({
       />
       <div className={styles.mainContent}>
         {
-          loading
-            ? (
-                <Heading data-size="md">
-                  {query ? `Søker etter '${query}'...` : 'Laster...'}
-                </Heading>
-              )
-            : (
-                <Heading data-size="md">
-                  {query ? `${totalResults} resultater for '${query}'` : `${totalResults} resultater`}
-                </Heading>
-              )
+          loading ?
+          <Heading data-size="md">{`Søker etter '${query}'...`}</Heading> :
+          <Heading data-size="md">{`${totalResults} resultater for '${query}'`}</Heading>
         }
+        {/*query && (
+          <Heading data-size="md">{`${totalResults} resultater for '${query}'`}</Heading>
+        )*/}
         <SearchForm
           lang={lang}
           currentSet={currentSet}
