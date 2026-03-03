@@ -9,8 +9,10 @@ import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
 import styles from './search-input.module.scss';
 
 export type SearchInputProps = {
-    value: string;
-    onChange: (value: string) => void;
+    /** Controlled value. Omit to use internal state (uncontrolled). */
+    value?: string;
+    /** Controlled change handler. Omit when using internal state. */
+    onChange?: (value: string) => void;
     searchLabel?: string;
     placeholder?: string;
     className?: string;
@@ -18,17 +20,25 @@ export type SearchInputProps = {
 };
 
 const SearchInput = ({
-    value,
-    onChange,
+    value: controlledValue,
+    onChange: controlledOnChange,
     searchLabel = 'Søk',
     placeholder = 'Hva leter du etter?',
     className,
     locale,
+    ...rest
 }: SearchInputProps) => {
     const router = useRouter();
     const pathname = usePathname();
     const inputRef = useRef<HTMLInputElement>(null);
     const [isMac, setIsMac] = useState(false);
+    const [internalValue, setInternalValue] = useState('');
+
+    const isControlled = controlledValue !== undefined;
+    const value = isControlled ? controlledValue : internalValue;
+    const setValue = isControlled
+        ? (controlledOnChange ?? (() => {}))
+        : setInternalValue;
 
     // Extract locale from pathname if not provided
     const currentLocale = locale || (pathname.split('/')[1] as LocaleCodes) || i18n.defaultLocale;
@@ -53,8 +63,9 @@ const SearchInput = ({
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!value.trim()) return;
-        const q = encodeURIComponent(value.trim());
+        const trimmed = value.trim();
+        if (!trimmed) return;
+        const q = encodeURIComponent(trimmed);
         const segments = pathname.split('/').filter(Boolean);
         const isOnSearchPage =
             segments.length >= 2 &&
@@ -72,12 +83,13 @@ const SearchInput = ({
         <form
             className={cn(styles.container, className)}
             onSubmit={handleSubmit}
+            {...rest}
         >
             <MagnifyingGlassIcon className={styles.searchIcon} />
             <Input
                 ref={inputRef}
                 value={value}
-                onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => setValue(e.target.value)}
                 className={styles.input}
                 placeholder={placeholder}
                 // data-size='lg'

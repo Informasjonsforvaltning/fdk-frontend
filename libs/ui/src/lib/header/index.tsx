@@ -22,7 +22,6 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
 
     const animations = {
         drawerInner: {
@@ -90,11 +89,7 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
                         className={styles.headerLogo}
                         href={`/${locale}`}
                     />
-                    <SearchInput
-                        value={searchQuery}
-                        onChange={setSearchQuery}
-                        className={styles.headerSearchInput}
-                    />
+                    <SearchInput className={styles.headerSearchInput} />
                     {/* <div style={{flexGrow:1}} /> */}
                     <div className={styles.headerToolbar}>
                         {/* <Button

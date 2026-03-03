@@ -2,8 +2,10 @@ import React from 'react';
 
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { HeadingWithDivider } from '@fdk-frontend/ui';
+import { Heading } from '@digdir/designsystemet-react';
 
 import LlmSearch from '../llm-search';
+import { SearchInput } from '@fdk-frontend/ui';
 import Norgeskart from './components/norgeskart';
 import ScrollButton from './components/scroll-button';
 
@@ -27,11 +29,19 @@ const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps)
             >
                 {dictionary.aiBanner.title}
             </HeadingWithDivider>
-            <LlmSearch
+            <Heading>
+                Søk blant over 8000 datasett fra 125 virksomheter
+            </Heading>
+            <SearchInput
+                data-color-scheme='dark'
+                data-size='lg'
+                className={styles.searchInput}
+            />
+            {/* <LlmSearch
                 dictionary={dictionary}
                 locale={locale}
                 endpoint={endpoint}
-            />
+            /> */}
         </div>
         <div className={styles.gradient} />
         <Norgeskart />

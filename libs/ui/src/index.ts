@@ -99,6 +99,8 @@ export { default as ScrollShadows } from './lib/scroll-shadows';
 export * from './lib/scroll-shadows';
 export { default as SearchForm } from './lib/search-form';
 export * from './lib/search-form';
+export { default as SearchInput } from './lib/search-input';
+export * from './lib/search-input';
 export { default as SearchTabs } from './lib/search-tabs';
 export * from './lib/search-tabs';
 export { default as SmartList } from './lib/smart-list';

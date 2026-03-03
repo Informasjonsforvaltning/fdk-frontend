@@ -59,3 +59,13 @@
     z-index: 1;
     width: 100%;
 }
+
+.searchInput {
+    width:750px;
+    background:transparent;
+    flex-grow:0;
+    
+    :global(.ds-input){
+        background:rgba(0,0,0,0.5);
+    }
+}
