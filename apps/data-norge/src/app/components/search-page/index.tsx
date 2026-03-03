@@ -1,7 +1,7 @@
 import { type LocaleCodes } from '@fdk-frontend/localization';
 import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import { Heading, Alert } from '@digdir/designsystemet-react';
+import { Heading, Alert, Paragraph, Link } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { EntityTeaser } from '@fdk-frontend/ui';
 import {
@@ -141,6 +141,14 @@ const SearchPage = ({
                   >
                     {`KI-resultater (${llmHitsCount})`}
                   </Heading>
+                  {/* <Alert data-size='sm'>
+                    <Paragraph>
+                      Vårt KI-søk gjør det enkelt å finne datasett ved å bruke naturlig språk uten at du trenger å kjenne til spesifikke datasettnavn, fagtermer eller tekniske formater. Vær obs på at KI-søket kan være både ufullstendig og inneholde feil. <strong>Ikke skriv inn personopplysninger i søkefeltet.</strong>
+                    </Paragraph>
+                    <Paragraph>
+                      <Link href="#">Les mer om KI-søket her</Link>
+                    </Paragraph>
+                  </Alert> */}
                   <ul className="fdk-box-list">
                     {llmResults.hits.map((item, i) => (
                       <li key={item.id ?? i}>
