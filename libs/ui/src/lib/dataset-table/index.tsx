@@ -5,6 +5,7 @@ import AccessLevelTag from '../access-level-tag';
 import HStack from '../hstack';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
+import { AccessRightsCodes } from '@fellesdatakatalog/types';
 import styles from './dataset-table.module.scss';
 
 type DatasetTableProps = {
@@ -56,7 +57,7 @@ const DatasetTable = ({
                                     }}
                                 >
                                     <AccessLevelTag
-                                        accessCode={dataset.accessRights?.code}
+                                        accessCode={dataset.accessRights?.code as AccessRightsCodes}
                                         locale={locale}
                                         nonInteractive
                                     />

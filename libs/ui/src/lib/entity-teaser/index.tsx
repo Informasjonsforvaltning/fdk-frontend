@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag, Skeleton } from '@digdir/designsystemet-react';
 import { TagList, VStack, HStack } from '@fellesdatakatalog/ui';
-import { type SearchObject } from '@fellesdatakatalog/types';
+import { AccessRightsCodes, type SearchObject } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
 import { OrgLogo } from '../org-logo';
 import OrgButton from '../org-button';
@@ -15,9 +15,9 @@ export type EntityTeaserProps = {
     locale: LocaleCodes;
 };
 
-const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
-    const desc = entity && printLocaleValue('nb', entity.description);
-    const localization = getLocalization('nb').common;
+const EntityTeaser = ({ entity, className, locale, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
+    const desc = entity && printLocaleValue(locale, entity.description);
+    const localization = getLocalization(locale).common;
     return (
         <Card
             className={cn(styles.container, className)}
@@ -40,11 +40,11 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                         <OrgLogo
                             className={styles.orgLogo}
                             orgNr={entity.organization?.id}
-                            title={printLocaleValue('nb', entity.organization?.prefLabel)}
+                            title={printLocaleValue(locale, entity.organization?.prefLabel)}
                         />
                         <Heading>
                             <Link href={`datasets/${entity.id}`}>
-                                {printLocaleValue('nb', entity.title)}
+                                {printLocaleValue(locale, entity.title)}
                             </Link>
                         </Heading>
                     </div> : 
@@ -78,8 +78,9 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                             entity.accessRights?.code &&
                             <AccessLevelTag
                                 data-size='sm'
-                                accessCode={entity.accessRights?.code}
+                                accessCode={entity.accessRights?.code as AccessRightsCodes}
                                 nonInteractive
+                                locale={locale}
                             />
                         }
                         {/* <Tag
@@ -126,7 +127,7 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                 {
                     entity &&
                     <div className={styles.orgName}>
-                        {printLocaleValue('nb', entity.organization?.prefLabel)}
+                        {printLocaleValue(locale, entity.organization?.prefLabel)}
                     </div>
                 }
             </CardBlock>
