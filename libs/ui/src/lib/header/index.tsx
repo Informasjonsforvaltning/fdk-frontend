@@ -16,13 +16,17 @@ export type HeaderProps = {
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
+const HEADER_MESSAGE_DISMISSED_KEY = 'fdk-header-message-dismissed';
+
 const Header = ({ locale, frontpage }: HeaderProps) => {
     const dictionary = getLocalization(locale).common;
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const dismissed = localStorage.getItem('fdk-header-message-dismissed');
-    const [showHeaderMessage, setShowHeaderMessage] = useState(true && !dismissed);
+    const [showHeaderMessage, setShowHeaderMessage] = useState(() => {
+        if (typeof window === 'undefined') return true;
+        return localStorage.getItem(HEADER_MESSAGE_DISMISSED_KEY) !== 'true';
+    });
 
     const animations = {
         drawerInner: {
@@ -53,8 +57,12 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
     };
 
     const disableHeaderMessage = () => {
+        try {
+            localStorage.setItem(HEADER_MESSAGE_DISMISSED_KEY, 'true');
+        } catch {
+            // localStorage unavailable (e.g. private mode)
+        }
         setShowHeaderMessage(false);
-        localStorage.setItem('fdk-header-message-dismissed', 'true');
     };
 
     useEffect(() => {
