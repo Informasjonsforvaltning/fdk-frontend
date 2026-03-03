@@ -52,7 +52,10 @@ export const llmSearch = async <T = unknown>(
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ query: cleanedQuery }),
+            body: JSON.stringify({
+                query: cleanedQuery,
+                type: 'ALL'
+            }),
             signal: controller.signal,
         });
 
