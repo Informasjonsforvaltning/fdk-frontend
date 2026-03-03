@@ -10,6 +10,7 @@ type DownloadDistributionWidgetProps = {
     downloadUrl: string;
     dictionary: Localization;
     locale: LocaleCodes;
+    hasBeenOpened: boolean;
 };
 
 const DownloadDistributionWidget = ({
@@ -17,6 +18,7 @@ const DownloadDistributionWidget = ({
     downloadUrl,
     dictionary,
     locale,
+    hasBeenOpened,
     ...props
 }: DownloadDistributionWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
     const datasetPreviewTitle = title || downloadUrl || dictionary.distributions.header.nameless;
@@ -40,6 +42,7 @@ const DownloadDistributionWidget = ({
                     dictionary={dictionary}
                     title={datasetPreviewTitle}
                     triggerBtnClass={styles.previewTriggerBtn}
+                    hasBeenOpened={hasBeenOpened}
                 />
             </div>
         </Box>
