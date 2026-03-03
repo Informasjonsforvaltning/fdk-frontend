@@ -1,7 +1,7 @@
 import { type LocaleCodes } from '@fdk-frontend/localization';
 import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import { Heading } from '@digdir/designsystemet-react';
+import { Heading, Alert } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { EntityTeaser } from '@fdk-frontend/ui';
 import {
@@ -93,14 +93,19 @@ const SearchPage = ({
 
   return (
     <div className={styles.searchPage}>
-            <Breadcrumbs
-                locale={lang}
-                breadcrumbList={breadcrumbList}
-            />
+      <Breadcrumbs
+          locale={lang}
+          breadcrumbList={breadcrumbList}
+      />
       <div className={styles.mainContent}>
-        {query && (
+        {
+          loading ?
+          <Heading data-size="md">{`Søker etter '${query}'...`}</Heading> :
           <Heading data-size="md">{`${totalResults} resultater for '${query}'`}</Heading>
-        )}
+        }
+        {/*query && (
+          <Heading data-size="md">{`${totalResults} resultater for '${query}'`}</Heading>
+        )*/}
         <SearchForm
           lang={lang}
           currentSet={currentSet}
@@ -108,40 +113,68 @@ const SearchPage = ({
           badgeCounts={badgeCounts}
         />
         <div>
-          {loading && <p>loading</p>}
-          {!loading && showLlm && llmResults?.hits && llmResults.hits.length > 0 && (
+          {
+            loading &&
             <div className={styles.resultsSection}>
               <Heading
                 data-size="sm"
                 className={styles.sectionHeading}
               >
-                {`KI-resultater (${llmHitsCount})`}
+                Laster...
               </Heading>
               <ul className="fdk-box-list">
-                {llmResults.hits.map((item, i) => (
-                  <li key={item.id ?? i}>
-                    <EntityTeaser locale={lang} entity={llmHitToEntity(item)} />
-                  </li>
-                ))}
+                <li><EntityTeaser locale={lang} /></li>
+                <li><EntityTeaser locale={lang} /></li>
+                <li><EntityTeaser locale={lang} /></li>
               </ul>
+            </div>
+          }
+
+          {!loading && showLlm && (
+            <div className={styles.resultsSection}>
+              {
+                llmResults?.hits && llmResults.hits.length > 0 ?
+                <>
+                  <Heading
+                    data-size="sm"
+                    className={styles.sectionHeading}
+                  >
+                    {`KI-resultater (${llmHitsCount})`}
+                  </Heading>
+                  <ul className="fdk-box-list">
+                    {llmResults.hits.map((item, i) => (
+                      <li key={item.id ?? i}>
+                        <EntityTeaser locale={lang} entity={llmHitToEntity(item)} />
+                      </li>
+                    ))}
+                  </ul>
+                </> :
+                <Alert>Ingen resultater</Alert>
+              }
             </div>
           )}
 
-          {!loading && !showLlm && currentSet !== 'docs' && filteredHits.length > 0 && (
+          {!loading && !showLlm && currentSet !== 'docs' && (
             <div className={styles.resultsSection}>
-              <Heading
-                data-size="sm"
-                className={styles.sectionHeading}
-              >
-                {currentSet} ({displayCount})
-              </Heading>
-              <ul className="fdk-box-list">
-                {filteredHits.map((hit: SearchObject, i: number) => (
-                  <li key={hit.id ?? hit.uri ?? i}>
-                    <EntityTeaser locale={lang} entity={hit} />
-                  </li>
-                ))}
-              </ul>
+              {
+                filteredHits.length > 0 ?
+                <>
+                  <Heading
+                    data-size="sm"
+                    className={styles.sectionHeading}
+                  >
+                    {currentSet} ({displayCount})
+                  </Heading>
+                  <ul className="fdk-box-list">
+                    {filteredHits.map((hit: SearchObject, i: number) => (
+                      <li key={hit.id ?? hit.uri ?? i}>
+                        <EntityTeaser locale={lang} entity={hit} />
+                      </li>
+                    ))}
+                  </ul>
+                </> :
+                <Alert>Ingen resultater</Alert>
+              }
             </div>
           )}
 
