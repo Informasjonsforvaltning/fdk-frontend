@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag, Skeleton } from '@digdir/designsystemet-react';
 import { TagList, VStack, HStack } from '@fellesdatakatalog/ui';
-import { type SearchObject } from '@fellesdatakatalog/types';
+import { type SearchObject, AccessRightsCodes } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
 import { OrgLogo } from '../org-logo';
 import OrgButton from '../org-button';
@@ -10,12 +10,16 @@ import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './styles.module.scss';
 import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 
+function isAccessRightsCode(value: string): value is AccessRightsCodes {
+    return Object.values(AccessRightsCodes).includes(value as AccessRightsCodes);
+}
+
 export type EntityTeaserProps = {
     entity?: SearchObject;
     locale: LocaleCodes;
 };
 
-const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
+const EntityTeaser = ({ entity, className, locale, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
     const desc = entity && printLocaleValue('nb', entity.description);
     const localization = getLocalization('nb').common;
     return (
@@ -75,12 +79,17 @@ const EntityTeaser = ({ entity, className, ...rest }: EntityTeaserProps & Partia
                             </Link>
                         </Tag>
                         {
-                            entity.accessRights?.code &&
-                            <AccessLevelTag
-                                data-size='sm'
-                                accessCode={entity.accessRights?.code}
-                                nonInteractive
-                            />
+                            (() => {
+                                const code = entity.accessRights?.code;
+                                return code && isAccessRightsCode(code) ? (
+                                    <AccessLevelTag
+                                        data-size='sm'
+                                        accessCode={code}
+                                        locale={locale}
+                                        nonInteractive
+                                    />
+                                ) : null;
+                            })()
                         }
                         {/* <Tag
                             data-color='success'

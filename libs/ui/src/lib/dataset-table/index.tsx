@@ -1,11 +1,16 @@
 import React from 'react';
 import cn from 'classnames';
 import { Link, Table } from '@digdir/designsystemet-react';
+import { AccessRightsCodes } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
 import HStack from '../hstack';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import styles from './dataset-table.module.scss';
+
+function isAccessRightsCode(value: string): value is AccessRightsCodes {
+    return Object.values(AccessRightsCodes).includes(value as AccessRightsCodes);
+}
 
 type DatasetTableProps = {
     locale: LocaleCodes;
@@ -55,11 +60,16 @@ const DatasetTable = ({
                                         gap: '0.5rem',
                                     }}
                                 >
-                                    <AccessLevelTag
-                                        accessCode={dataset.accessRights?.code}
-                                        locale={locale}
-                                        nonInteractive
-                                    />
+                                    {(() => {
+                                        const code = dataset.accessRights?.code;
+                                        return code && isAccessRightsCode(code) ? (
+                                            <AccessLevelTag
+                                                accessCode={code}
+                                                locale={locale}
+                                                nonInteractive
+                                            />
+                                        ) : null;
+                                    })()}
                                 </HStack>
                             </td>
                         </tr>
