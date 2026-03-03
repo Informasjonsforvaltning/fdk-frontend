@@ -10,7 +10,11 @@ const common = {
     findDataButton: "Finn data",
     menuButton: "Meny",
     shareDataButton: "Del data",
-    skipToMain: "Hopp til hovedinnhold"
+    skipToMain: "Hopp til hovedinnhold",
+    alert: {
+      message: "Planlagt vedlikehold tirsdag kl. 18:00–23:00.",
+      linkText: "Les mer på Datalandsbyen"
+    }
   },
   mainMenu: {
     label: "Hovedmeny",

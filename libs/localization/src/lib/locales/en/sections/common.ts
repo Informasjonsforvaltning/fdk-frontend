@@ -10,7 +10,11 @@ const common = {
     findDataButton: "Find data",
     menuButton: "Menu",
     shareDataButton: "Share data",
-    skipToMain: "Skip to main content"
+    skipToMain: "Skip to main content",
+    alert: {
+      message: "Planned maintenance Tuesday 6PM to 11PM.",
+      linkText: "Read more at Datalandsbyen"
+    }
   },
   mainMenu: {
     label: "Main menu",
