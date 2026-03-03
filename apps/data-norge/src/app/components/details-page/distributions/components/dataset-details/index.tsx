@@ -33,7 +33,7 @@ const DatasetDetails = ({
     const [hasBeenOpened, setHasBeenOpened] = useState(false);
 
     const handleToggle = (event: Event) => {
-        if ((event.currentTarget as HTMLDetailsElement).open) {
+        if (event.currentTarget instanceof HTMLDetailsElement && event.currentTarget.open) {
             setHasBeenOpened(true);
         }
     };
