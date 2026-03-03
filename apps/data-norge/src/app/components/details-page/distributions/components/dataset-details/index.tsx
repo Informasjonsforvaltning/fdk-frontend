@@ -10,7 +10,7 @@ import styles from '../../distributions.module.scss';
 import DistributionDetails from '../distribution-details';
 import DistributionHeader from '../distribution-header';
 
-type DatasetDetailsProps = {
+type DistributionListProps = {
     distribution: Distribution;
     locale: LocaleCodes;
     dictionaries: {
@@ -22,14 +22,14 @@ type DatasetDetailsProps = {
     resolvedDistributionInformationModels: SearchObject[];
 };
 
-const DatasetDetails = ({
+const DistributionList = ({
     distribution,
     locale,
     dictionaries,
     isRelatedToTransportportal,
     resolvedDistributionDataServices,
     resolvedDistributionInformationModels,
-}: DatasetDetailsProps) => {
+}: DistributionListProps) => {
     const [hasBeenOpened, setHasBeenOpened] = useState(false);
 
     const handleToggle = (event: Event) => {
@@ -81,4 +81,4 @@ const DatasetDetails = ({
     );
 };
 
-export default DatasetDetails;
+export default DistributionList;

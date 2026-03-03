@@ -8,7 +8,7 @@ import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { type SearchObject, type DataService, type Distribution } from '@fellesdatakatalog/types';
 import { Badge, Hstack, PlaceholderBox, ActionButton } from '@fdk-frontend/ui';
 import styles from './distributions.module.scss';
-import DatasetDetails from './components/dataset-details';
+import DistributionList from './components/dataset-details';
 import ExampleDataDetails from './components/example-data-details';
 import ApiHeader from './components/api-header';
 import ApiDetails from './components/api-details';
@@ -54,7 +54,7 @@ const Distributions = ({
                 <Card>
                     {datasets &&
                         datasets.map((distribution: Distribution, index) => (
-                            <DatasetDetails
+                            <DistributionList
                                 key={`distribution-${index}`}
                                 distribution={distribution}
                                 locale={locale}
