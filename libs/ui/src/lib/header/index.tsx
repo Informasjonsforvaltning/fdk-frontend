@@ -21,9 +21,7 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const dismissed = localStorage.getItem('fdk-header-message-dismissed');
-    // eslint-disable-next-line
-    const [showHeaderMessage, setShowHeaderMessage] = useState(true && !dismissed);
+    const [showHeaderMessage, setShowHeaderMessage] = useState(false);
 
     const animations = {
         drawerInner: {
@@ -59,6 +57,12 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
     };
 
     useEffect(() => {
+        if (!localStorage.getItem('fdk-header-message-dismissed')) {
+            setShowHeaderMessage(true);
+        }
+    }, []);
+
+    useEffect(() => {
         toggleSticky();
 
         window.addEventListener('scroll', toggleSticky);
@@ -77,7 +81,7 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
             aria-label='Header'
             className={cn(styles.header, {
                 [styles.frontpageHeader]: frontpage,
-                [styles.showHeaderMessage]: showHeaderMessage
+                [styles.showHeaderMessage]: showHeaderMessage,
             })}
             ref={headerRef}
             data-color-scheme={!showMenu && frontpage ? 'dark' : 'light'}
@@ -94,12 +98,14 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
                 >
                     {dictionary.header.skipToMain}
                 </Link>
-                {
-                    showHeaderMessage &&
-                    <Alert data-color='info' className={styles.headerMessage}>
+                {showHeaderMessage && (
+                    <Alert
+                        data-color='info'
+                        className={styles.headerMessage}
+                    >
                         <Paragraph>
                             {dictionary.header.alert.message}&nbsp;
-                            <Link href="https://datalandsbyen.norge.no/topic/736/planlagt-vedlikehold-tirsdag-03.03.2026-kl-18-00-23-00">
+                            <Link href='https://datalandsbyen.norge.no/topic/736/planlagt-vedlikehold-tirsdag-03.03.2026-kl-18-00-23-00'>
                                 {dictionary.header.alert.linkText}
                             </Link>
                         </Paragraph>
@@ -111,7 +117,7 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
                             <XMarkIcon />
                         </Button>
                     </Alert>
-                }
+                )}
                 <div className={styles.headerInner}>
                     <LogoLink
                         className={styles.headerLogo}
