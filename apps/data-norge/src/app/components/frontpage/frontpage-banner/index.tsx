@@ -29,19 +29,19 @@ const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps)
             >
                 {dictionary.aiBanner.title}
             </HeadingWithDivider>
-            <Heading>
+            {/* <Heading>
                 Søk blant over 8000 datasett fra 125 virksomheter
-            </Heading>
-            <SearchInput
+            </Heading> */}
+            {/* <SearchInput
                 data-color-scheme='dark'
                 data-size='lg'
                 className={styles.searchInput}
-            />
-            {/* <LlmSearch
+            /> */}
+            <LlmSearch
                 dictionary={dictionary}
                 locale={locale}
                 endpoint={endpoint}
-            /> */}
+            />
         </div>
         <div className={styles.gradient} />
         <Norgeskart />
