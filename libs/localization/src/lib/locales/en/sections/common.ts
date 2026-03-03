@@ -110,6 +110,14 @@ const common = {
     alertText: "Please be aware of the following:\n- The destination is not part of data.norge.no\n- We have no control over the content at the destination\n- Report broken links to the responsible organization",
     abortButton: "Stay on data.norge.no",
     continueButton: "Continue"
+  },
+  entities: {
+    DATASET: 'Dataset',
+    DATA_SERVICE: 'API',
+    CONCEPT: 'Concept',
+    INFORMATION_MODEL: 'Information model',
+    PUBLIC_SERVICE: 'Service',
+    EVENT: 'Event'
   }
 };
 

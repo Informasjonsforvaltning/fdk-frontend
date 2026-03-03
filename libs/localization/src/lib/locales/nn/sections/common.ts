@@ -110,6 +110,14 @@ const common = {
     alertText: "Vær merksam på følgjande:\n- Destinasjonen er ikkje ein del av data.norge.no\n- Vi har ingen kontroll over innhaldet på destinasjonen\n- Melde frå om brotne lenker til det ansvarlege organet",
     abortButton: "Bli på data.norge.no",
     continueButton: "Fortsett"
+  },
+  entities: {
+    DATASET: 'Datasett',
+    DATA_SERVICE: 'API',
+    CONCEPT: 'Begrep',
+    INFORMATION_MODEL: 'Informasjonsmodell',
+    PUBLIC_SERVICE: 'Tjenestar',
+    EVENT: 'Hendelsar'
   }
 };
 
