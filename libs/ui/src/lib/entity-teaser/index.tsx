@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag, Skeleton } from '@digdir/designsystemet-react';
 import { TagList, VStack, HStack } from '@fellesdatakatalog/ui';
-import { AccessRightsCodes, type SearchObject } from '@fellesdatakatalog/types';
+import { AccessRightsCodes, EntityType, type SearchObject } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
 import { OrgLogo } from '../org-logo';
 import OrgButton from '../org-button';
@@ -13,6 +13,15 @@ import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 export type EntityTeaserProps = {
     entity?: SearchObject;
     locale: LocaleCodes;
+};
+
+const setFragments: Record<EntityType, string> = {
+    [EntityType.DATASET]: 'datasets',
+    [EntityType.DATA_SERVICE]: 'apis',
+    [EntityType.CONCEPT]: 'concepts',
+    [EntityType.INFORMATION_MODEL]: 'information-models',
+    [EntityType.PUBLIC_SERVICE]: 'services-and-events',
+    [EntityType.EVENT]: 'services-and-events',
 };
 
 const EntityTeaser = ({ entity, className, locale, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
@@ -43,7 +52,7 @@ const EntityTeaser = ({ entity, className, locale, ...rest }: EntityTeaserProps 
                             title={printLocaleValue(locale, entity.organization?.prefLabel)}
                         />
                         <Heading>
-                            <Link href={`datasets/${entity.id}`}>
+                            <Link href={`/${locale}/datasets/${entity.id}`}>
                                 {printLocaleValue(locale, entity.title)}
                             </Link>
                         </Heading>
@@ -70,7 +79,7 @@ const EntityTeaser = ({ entity, className, locale, ...rest }: EntityTeaserProps 
                             data-color='info'
                             data-size='sm'
                         >
-                            <Link href='/datasets'>
+                            <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
                                 {localization.entities[entity.searchType]}
                             </Link>
                         </Tag>
