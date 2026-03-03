@@ -12,6 +12,10 @@
     &.showHeaderMessage {
         + main {
             padding-top: 132px;
+
+            @media (max-width: 650px) {
+                padding-top: 121px;
+            }
         }
     }
 
