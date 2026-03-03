@@ -30,7 +30,7 @@ const DatasetPreviewWidget = ({
     hasBeenOpened,
     ...props
 }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
     const [data, setData] = useState<any>(undefined);
 
@@ -40,6 +40,7 @@ const DatasetPreviewWidget = ({
                 return;
             }
 
+            setIsLoading(true);
             try {
                 const response = await fetch('/api/dataset-preview', {
                     method: 'POST',
@@ -53,7 +54,7 @@ const DatasetPreviewWidget = ({
             } catch {
                 setError(true);
             } finally {
-                setLoading(false);
+                setIsLoading(false);
             }
         };
 
@@ -62,7 +63,7 @@ const DatasetPreviewWidget = ({
 
     return (
         <div {...props}>
-            {loading && (
+            {isLoading && (
                 <div className={styles.loading}>
                     {dictionary.datasetPreview.generatingPreview}
                     <Spinner
