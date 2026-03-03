@@ -30,18 +30,18 @@ export const SET_TO_SEARCH_TYPES: Record<
   docs: null,
 };
 
-export function isValidSetSegment(
+export const isValidSetSegment = function (
   segment: string | undefined
 ): segment is SearchSetSegment {
-  if (segment == null) return false;
+  if (segment === null || segment === undefined) return false;
   return (VALID_SET_SEGMENTS as readonly string[]).includes(segment);
-}
+};
 
-export function getSearchTypesForSet(
+export const getSearchTypesForSet = function (
   set: SearchSetSegment
 ): readonly string[] | null {
   return SET_TO_SEARCH_TYPES[set];
-}
+};
 
 /** Hit with optional searchType (from SearchObject). */
 type HitWithType = { searchType?: string };
@@ -49,7 +49,7 @@ type HitWithType = { searchType?: string };
 /**
  * Returns count of hits that belong to the given set (by searchType).
  */
-export function countHitsForSet(
+export const countHitsForSet = function (
   hits: HitWithType[] | undefined,
   set: SearchSetSegment
 ): number {
@@ -58,13 +58,13 @@ export function countHitsForSet(
   if (!types) return 0;
   const setTypes = new Set(types);
   return hits.filter((h) => h.searchType && setTypes.has(h.searchType)).length;
-}
+};
 
 /**
  * Returns badge counts for each set (and KI) from search results.
  * KI count is from llmHitsCount; entity sets from searchResults.hits by searchType.
  */
-export function getBadgeCounts(
+export const getBadgeCounts = function (
   searchHits: HitWithType[] | undefined,
   llmHitsCount: number
 ): Record<string, number> {
@@ -75,4 +75,4 @@ export function getBadgeCounts(
     counts[set] = countHitsForSet(searchHits, set);
   }
   return counts;
-}
+};

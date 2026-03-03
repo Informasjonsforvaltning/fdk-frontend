@@ -8,23 +8,22 @@ import {
   isValidSetSegment,
   type SearchSetSegment,
 } from '../../[lang]/search/search-set-config';
-import SearchPage, { type SearchResultsProp } from './index';
-import type { SearchPageProps } from './index';
+import SearchPage, { type SearchPageProps, type SearchResultsProp } from './index';
 
-function deriveLangFromPathname(pathname: string): LocaleCodes {
+const deriveLangFromPathname = function (pathname: string): LocaleCodes {
   const segment = pathname.split('/').filter(Boolean)[0];
   if (segment === 'nb' || segment === 'nn' || segment === 'en') return segment;
   return 'nb';
-}
+};
 
-function deriveCurrentSetFromPathname(pathname: string): SearchSetSegment | undefined {
+const deriveCurrentSetFromPathname = function (pathname: string): SearchSetSegment | undefined {
   const segments = pathname.split('/').filter(Boolean);
   const afterSearch = segments[2];
   if (afterSearch !== undefined && isValidSetSegment(afterSearch)) return afterSearch;
   return undefined;
-}
+};
 
-async function fetchSearchData(query: string): Promise<{
+const fetchSearchData = async function (query: string): Promise<{
   llmResults: LlmSearchResponse | undefined;
   searchResults: SearchResultsProp | undefined;
 }> {
@@ -63,11 +62,11 @@ async function fetchSearchData(query: string): Promise<{
   }
 
   return { llmResults, searchResults };
-}
+};
 
 export type SearchPageClientProps = Pick<SearchPageProps, 'lang'>;
 
-export default function SearchPageClient({ lang }: SearchPageClientProps) {
+const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -134,4 +133,6 @@ export default function SearchPageClient({ lang }: SearchPageClientProps) {
       searchResults={searchResults}
     />
   );
-}
+};
+
+export default SearchPageClient;

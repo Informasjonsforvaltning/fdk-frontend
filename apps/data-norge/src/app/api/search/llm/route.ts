@@ -2,7 +2,7 @@ import { llmSearch } from '@fdk-frontend/data-access';
 
 const LLM_TIMEOUT_MS = 30000;
 
-export async function POST(request: Request) {
+export const POST = async function (request: Request) {
   const { FDK_LLM_SEARCH_BASE_URI: baseUri = '' } = process.env;
   const endpoint = baseUri ? `${baseUri}/llm` : '';
 
@@ -35,4 +35,4 @@ export async function POST(request: Request) {
       { status: 502, headers: { 'Content-Type': 'application/json' } }
     );
   }
-}
+};

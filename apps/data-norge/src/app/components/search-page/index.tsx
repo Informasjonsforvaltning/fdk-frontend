@@ -1,9 +1,8 @@
 import { type LocaleCodes } from '@fdk-frontend/localization';
-import { Breadcrumbs, SearchForm } from '@fdk-frontend/ui';
+import { Breadcrumbs, EntityTeaser, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import { Heading, Alert, Paragraph, Link } from '@digdir/designsystemet-react';
+import { Alert, Heading } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
-import { EntityTeaser } from '@fdk-frontend/ui';
 import {
   getBadgeCounts,
   getSearchTypesForSet,
@@ -25,7 +24,7 @@ export type SearchPageProps = {
   loading?: boolean;
 };
 
-function filterHitsBySet(
+const filterHitsBySet = function (
   hits: SearchObject[] | undefined,
   set: SearchSetSegment
 ): SearchObject[] {
@@ -36,7 +35,7 @@ function filterHitsBySet(
   return hits.filter(
     (h) => h.searchType && setTypes.has(h.searchType)
   );
-}
+};
 
 const LLM_TYPE_TO_SEARCH_TYPE: Record<string, string> = {
   dataset: 'DATASET',
@@ -48,7 +47,7 @@ const LLM_TYPE_TO_SEARCH_TYPE: Record<string, string> = {
 };
 
 /** Adapt LLM hit (lowercase type, flat publisher) to SearchObject for EntityTeaser. Trusted boundary: API shape → UI type. */
-function llmHitToEntity(
+const llmHitToEntity = function (
   item: LlmSearchResponse['hits'][number]
 ): SearchObject {
   const searchType = LLM_TYPE_TO_SEARCH_TYPE[item.type] ?? item.type;
@@ -63,7 +62,7 @@ function llmHitToEntity(
       prefLabel: { nb: item.publisher },
     } as SearchObject['organization'],
   } as SearchObject;
-}
+};
 
 const SearchPage = ({
   lang,

@@ -12,7 +12,7 @@ export type SearchPageHandlerProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export async function getSearchPageMetadata(props: SearchPageHandlerProps): Promise<Metadata> {
+export const getSearchPageMetadata = async function (props: SearchPageHandlerProps): Promise<Metadata> {
   const params = await props.params;
   const searchParams = await props.searchParams;
   const locale = params.lang ?? i18n.defaultLocale;
@@ -35,4 +35,4 @@ export async function getSearchPageMetadata(props: SearchPageHandlerProps): Prom
       },
     },
   };
-}
+};

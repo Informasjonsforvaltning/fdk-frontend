@@ -1,6 +1,6 @@
 import { searchAllEntities } from '@fdk-frontend/data-access/server';
 
-export async function POST(request: Request) {
+export const POST = async function (request: Request) {
   try {
     const body = await request.json();
     const result = await searchAllEntities({
@@ -21,4 +21,4 @@ export async function POST(request: Request) {
       { status: 502, headers: { 'Content-Type': 'application/json' } }
     );
   }
-}
+};
