@@ -28,6 +28,7 @@ type DistributionDetailsProps = {
     isRelatedToTransportportal?: boolean;
     resolvedDistributionDataServices?: SearchObject[];
     resolvedDistributionInformationModels?: SearchObject[];
+    hasBeenOpened: boolean;
 };
 
 const DistributionDetails = ({
@@ -37,6 +38,7 @@ const DistributionDetails = ({
     isRelatedToTransportportal,
     resolvedDistributionDataServices = [],
     resolvedDistributionInformationModels = [],
+    hasBeenOpened,
 }: DistributionDetailsProps) => {
     return (
         <>
@@ -112,6 +114,7 @@ const DistributionDetails = ({
                                     downloadUrl={url}
                                     dictionary={dictionaries.detailsPage}
                                     locale={locale}
+                                    hasBeenOpened={hasBeenOpened}
                                 />
                             )}
                         />

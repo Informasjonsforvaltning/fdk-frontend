@@ -26,6 +26,8 @@ export const Primary: Story = {
                     dictionary={dictionary}
                     locale='nb'
                     downloadUrl='https://www.example.com/'
+                    title='Example distribution'
+                    hasBeenOpened={true}
                 />
             </div>
             In LinkList:
@@ -36,6 +38,8 @@ export const Primary: Story = {
                             dictionary={dictionary}
                             locale='nb'
                             downloadUrl='https://www.example.com/'
+                            title='Example distribution'
+                            hasBeenOpened={true}
                         />
                     </li>
                     <li>
@@ -43,6 +47,8 @@ export const Primary: Story = {
                             dictionary={dictionary}
                             locale='nb'
                             downloadUrl='https://www.example.com/'
+                            title='Example distribution'
+                            hasBeenOpened={true}
                         />
                     </li>
                 </ul>

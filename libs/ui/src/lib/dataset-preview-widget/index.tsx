@@ -19,6 +19,7 @@ type DatasetPreviewWidgetProps = {
     title: string;
     dictionary: Localization;
     triggerBtnClass?: string;
+    hasBeenOpened: boolean;
 };
 
 const DatasetPreviewWidget = ({
@@ -26,6 +27,7 @@ const DatasetPreviewWidget = ({
     title,
     dictionary,
     triggerBtnClass,
+    hasBeenOpened,
     ...props
 }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
     const [loading, setLoading] = useState(true);
@@ -34,6 +36,10 @@ const DatasetPreviewWidget = ({
 
     useEffect(() => {
         const getDatasetPreview = async () => {
+            if (!hasBeenOpened) {
+                return;
+            }
+
             try {
                 const response = await fetch('/api/dataset-preview', {
                     method: 'POST',
@@ -52,7 +58,7 @@ const DatasetPreviewWidget = ({
         };
 
         getDatasetPreview();
-    }, []);
+    }, [hasBeenOpened]);
 
     return (
         <div {...props}>
