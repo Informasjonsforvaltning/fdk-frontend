@@ -22,6 +22,7 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const dismissed = localStorage.getItem('fdk-header-message-dismissed');
+    // eslint-disable-next-line
     const [showHeaderMessage, setShowHeaderMessage] = useState(true && !dismissed);
 
     const animations = {
