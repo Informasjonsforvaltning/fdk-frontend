@@ -6,6 +6,7 @@ import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import {
   getBadgeCounts,
   getSearchTypesForSet,
+  KI_TOGGLE_VALUE,
   type SearchSetSegment,
 } from '../../[lang]/search/search-set-config';
 
@@ -92,7 +93,13 @@ const SearchPage = ({
       ? filterHitsBySet(allSearchHits, currentSet)
       : [];
   const displayCount = showLlm ? llmHitsCount : filteredHits.length;
-  const totalResults = llmHitsCount + allSearchHits.length;
+  const totalResults =
+    !query && badgeCountsOverride
+      ? Object.entries(badgeCountsOverride).reduce((sum, [key, value]) => {
+          if (key === KI_TOGGLE_VALUE || key === 'docs') return sum;
+          return sum + value;
+        }, 0)
+      : llmHitsCount + allSearchHits.length;
 
   return (
     <div className={styles.searchPage}>

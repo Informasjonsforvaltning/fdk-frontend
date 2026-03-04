@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { type SearchObject } from '@fellesdatakatalog/types';
+import { type SearchObject, AccessRightsCodes } from '@fellesdatakatalog/types';
 import EntityTeaser from './index';
 
 const meta: Meta<typeof EntityTeaser> = {
@@ -20,6 +20,10 @@ const datasetEntity: SearchObject = {
     description: 'Åpne data fra Riksantikvaren med kulturminner og fornminner.',
     publisher: { id: '991825827', prefLabel: { nb: 'Kulturrådet' } },
     keyword: ['Skog og landbruk', 'Jordbruk', 'Industri'],
+    accessRights: {
+        code: AccessRightsCodes.PUBLIC,
+    },
+    isOpenData: true,
 } as SearchObject;
 
 const dataServiceEntity: SearchObject = {
@@ -29,6 +33,9 @@ const dataServiceEntity: SearchObject = {
     searchType: 'DATA_SERVICE',
     description: 'Søk og hent stedsnavn fra Norges offisielle stedsnavnregister.',
     publisher: { id: '889640782', prefLabel: { nb: 'Kartverket' } },
+    accessRights: {
+        code: AccessRightsCodes.RESTRICTED,
+    },
 } as SearchObject;
 
 const conceptEntity: SearchObject = {
@@ -54,5 +61,11 @@ export const DataService: Story = {
 export const Concept: Story = {
     args: {
         entity: conceptEntity,
+    },
+};
+
+export const Loading: Story = {
+    args: {
+        locale: 'nb',
     },
 };
