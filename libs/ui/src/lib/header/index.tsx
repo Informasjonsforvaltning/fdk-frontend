@@ -56,11 +56,11 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
         localStorage.setItem('fdk-header-message-dismissed', 'true');
     };
 
-    useEffect(() => {
-        if (!localStorage.getItem('fdk-header-message-dismissed')) {
-            setShowHeaderMessage(true);
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (!localStorage.getItem('fdk-header-message-dismissed')) {
+    //         setShowHeaderMessage(true);
+    //     }
+    // }, []);
 
     useEffect(() => {
         toggleSticky();
