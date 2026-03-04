@@ -158,3 +158,16 @@ export const getAllServices = async (page = 1, size = 1000) => {
         },
     });
 };
+
+/**
+ * Fetch one page of results for an entity-type path (no query).
+ * Matches fdk-search-service: POST /search/{path} with body { pagination }.
+ */
+export const searchEntitiesByPath = async (
+    path: string,
+    options: { pagination?: { size?: number; page?: number } } = {}
+) => {
+    return await searchApi(`/search/${path}`, {
+        pagination: options.pagination ?? {},
+    });
+};

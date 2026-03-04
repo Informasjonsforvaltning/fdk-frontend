@@ -20,6 +20,8 @@ export type SearchPageProps = {
   currentSet?: SearchSetSegment;
   llmResults?: LlmSearchResponse;
   searchResults?: SearchResultsProp;
+  /** When set (e.g. from summary totalElements), used instead of getBadgeCounts(hits, llm). */
+  badgeCountsOverride?: Record<string, number>;
   /** When true, results area shows simple "loading" text (client-side fetch in progress). */
   loading?: boolean;
 };
@@ -70,6 +72,7 @@ const SearchPage = ({
   currentSet,
   llmResults,
   searchResults,
+  badgeCountsOverride,
   loading = false,
 }: SearchPageProps) => {
   const breadcrumbList = [
@@ -80,7 +83,8 @@ const SearchPage = ({
 
   const llmHitsCount = llmResults?.hits?.length ?? 0;
   const allSearchHits = searchResults?.hits ?? [];
-  const badgeCounts = getBadgeCounts(allSearchHits, llmHitsCount);
+  const badgeCounts =
+    badgeCountsOverride ?? getBadgeCounts(allSearchHits, llmHitsCount);
 
   const showLlm = currentSet === undefined;
   const filteredHits =
@@ -98,13 +102,20 @@ const SearchPage = ({
       />
       <div className={styles.mainContent}>
         {
-          loading ?
-          <Heading data-size="md">{`Søker etter '${query}'...`}</Heading> :
-          <Heading data-size="md">{`${totalResults} resultater for '${query}'`}</Heading>
+          loading
+            ? (
+                <Heading data-size="md">
+                  {query ? `Søker etter '${query}'...` : 'Laster...'}
+                </Heading>
+              )
+            : (
+                <Heading data-size="md">
+                  {query
+                    ? `${totalResults} resultater for '${query}'`
+                    : `${totalResults} resultater`}
+                </Heading>
+              )
         }
-        {/*query && (
-          <Heading data-size="md">{`${totalResults} resultater for '${query}'`}</Heading>
-        )*/}
         <SearchForm
           lang={lang}
           currentSet={currentSet}
