@@ -1,0 +1,34 @@
+.aiPromoSplash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align:center;
+  gap: 1rem;
+  padding: 4rem 4rem;
+  border-radius: 0.5rem;
+  // background:var(--ds-color-accent-surface-tinted);
+  border: 1px solid #ddd;
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  :global(.ds-button){
+    width:100%;
+  }
+}
+
+.aiPromoHeading {
+  font-size: 1.5rem;
+}
+
+.aiPromoText {
+  font-size: 1.125rem;
+}
+
+.aiAboutLink {
+  // Link styling as needed; design system Link is used
+}

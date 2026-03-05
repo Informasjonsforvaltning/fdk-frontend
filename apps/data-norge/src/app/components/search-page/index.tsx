@@ -1,18 +1,18 @@
-import { type LocaleCodes } from '@fdk-frontend/localization';
-import { Breadcrumbs, EntityTeaser, SearchForm } from '@fdk-frontend/ui';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
+import { AiPromoSplash, Breadcrumbs, EntityTeaser, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
 import { HStack } from '@fellesdatakatalog/ui';
-import { Alert, Heading, Paragraph, Link, Switch } from '@digdir/designsystemet-react';
+import { Alert, Heading, Switch } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import {
   getBadgeCounts,
   getSearchTypesForSet,
   KI_TOGGLE_VALUE,
   type SearchSetSegment,
+  SET_TO_SEARCH_TYPES
 } from '../../[lang]/search/search-set-config';
 
 import styles from './search-page.module.scss';
-import { SparklesFillIcon } from '@navikt/aksel-icons';
 
 /** Client-safe shape for entity search results (no server-only import). */
 export type SearchResultsProp = { hits?: SearchObject[]; [key: string]: unknown };
@@ -110,6 +110,7 @@ const SearchPage = ({
   badgeCountsOverride,
   loading = false,
 }: SearchPageProps) => {
+  const dictionary = getLocalization(lang).common;
   const breadcrumbList = [
     {
       text: query ? `Søk etter "${query}"` : 'Søk',
@@ -208,19 +209,7 @@ const SearchPage = ({
                     ))}
                   </ul>
                 </> :
-                <div className={styles.aiPromoSplash}>
-                  <div>
-                    <Heading className={styles.aiPromoHeading}>
-                      Spør vårt KI-søk med naturlig språk ✨
-                    </Heading>
-                    <Paragraph className={styles.aiPromoText}>
-                      Prøv f.eks. <Link href="#">Hvor mye skog har Norge?</Link>
-                    </Paragraph>
-                  </div>
-                  <Link href="#" className={styles.aiAboutLink}>
-                    Les mer om vårt KI-søk her
-                  </Link>
-                </div>
+                <AiPromoSplash locale={lang} />
               }
             </div>
           )}
@@ -235,7 +224,7 @@ const SearchPage = ({
                       data-size="sm"
                       className={styles.sectionHeading}
                     >
-                      {currentSet} ({displayCount})
+                      {dictionary.entities[(SET_TO_SEARCH_TYPES[currentSet as Exclude<SearchSetSegment, 'docs'>] ?? [])[0] ?? '']} ({displayCount})
                     </Heading>
                     <Switch
                       className={styles.showAiResultsSwitch}

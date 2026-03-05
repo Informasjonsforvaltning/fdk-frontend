@@ -1,4 +1,6 @@
 export { default as AccessLevelTag } from './lib/access-level-tag';
+export { default as AiPromoSplash } from './lib/ai-promo-splash';
+export * from './lib/ai-promo-splash';
 export * from './lib/access-level-tag';
 export { default as AccessRequestButton } from './lib/access-request-button';
 export * from './lib/access-request-button';

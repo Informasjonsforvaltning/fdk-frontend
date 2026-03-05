@@ -84,7 +84,7 @@ const SearchInput = ({
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const trimmed = value.trim();
-        if (!trimmed) return;
+        // if (!trimmed) return;
         const q = encodeURIComponent(trimmed);
         const segments = pathname.split('/').filter(Boolean);
         const isOnSearchPage =

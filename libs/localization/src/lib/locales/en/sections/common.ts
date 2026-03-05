@@ -111,6 +111,12 @@ const common = {
     abortButton: "Stay on data.norge.no",
     continueButton: "Continue"
   },
+  aiPromoSplash: {
+    heading: 'Ask our AI search using natural language ✨',
+    examplePrefix: 'Try e.g. ',
+    exampleLinkText: 'How much forest does Norway have?',
+    aboutLinkText: 'Read more about our AI search here',
+  },
   entities: {
     DATASET: 'Dataset',
     DATA_SERVICE: 'API',

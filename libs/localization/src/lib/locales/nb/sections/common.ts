@@ -111,11 +111,17 @@ const common = {
     abortButton: "Bli på data.norge.no",
     continueButton: "Fortsett"
   },
+  aiPromoSplash: {
+    heading: 'Spør vårt KI-søk med naturlig språk ✨',
+    examplePrefix: 'Prøv f.eks. ',
+    exampleLinkText: 'Hvor mye skog har Norge?',
+    aboutLinkText: 'Les mer om vårt KI-søk her',
+  },
   entities: {
     DATASET: 'Datasett',
     DATA_SERVICE: 'API',
     CONCEPT: 'Begrep',
-    INFORMATION_MODEL: 'Informasjonsmodell',
+    INFORMATION_MODEL: 'Informasjonsmodeller',
     SERVICE: 'Tjenester',
     EVENT: 'Hendelser'
   }
