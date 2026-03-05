@@ -1,7 +1,7 @@
-import { getAllCommunityTopics, getOrgLogo, getService } from '@fdk-frontend/data-access/server';
-import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { getAllCommunityTopics, getOrgLogo, getService, searchConcepts } from '@fdk-frontend/data-access/server';
+import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
-import { type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
+import { SearchObject, type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
 import ServiceDetailsPage from '../../../../components/details-page/service';
 import { notFound, redirect } from 'next/navigation';
 
@@ -17,13 +17,15 @@ export type DetailsPageWrapperProps = {
 const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const { id, lang, slug } = await props.params;
     const { tab } = await props.searchParams;
+    const loc = getLocalization(lang);
     const dictionaries = {
-        common: await getDictionary(lang, 'common'),
-        detailsPage: await getDictionary(lang, 'details-page'),
+        common: loc.common,
+        detailsPage: loc.detailsPage,
     };
     let service: PublicService;
     let orgLogo: string | null = null;
     let communityTopics: CommunityTopic[] = [];
+    let concepts: SearchObject[] = [];
 
     try {
         service = await getService(id);
@@ -52,6 +54,15 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     }
 
     try {
+        const results = await searchConcepts(
+            service.subject?.map((concept) => concept.uri).filter((uri) => uri !== undefined),
+        );
+        concepts = results?.hits ?? [];
+    } catch {
+        // Fail silently
+    }
+
+    try {
         communityTopics = await getAllCommunityTopics(service.id);
     } catch {
         // Fail silently
@@ -60,6 +71,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     return (
         <ServiceDetailsPage
             baseUri={process.env.FDK_BASE_URI as string}
+            concepts={concepts}
             service={service}
             orgLogo={orgLogo}
             communityTopics={communityTopics}
@@ -76,7 +88,7 @@ export default DetailsPageWrapper;
 
 export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     const { id, lang } = await props.params;
-    const dictionary = await getDictionary(lang, 'details-page');
+    const dictionary = getLocalization(lang).detailsPage;
 
     try {
         const service = await getService(id);

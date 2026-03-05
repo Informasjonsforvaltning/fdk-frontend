@@ -1,4 +1,4 @@
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import { type CatalogTypes } from '@fdk-frontend/types';
 
 export const getAccessRequestDestination = async (params: { lang: LocaleCodes; kind: CatalogTypes; id: string }) => {

@@ -3,7 +3,7 @@
 import { Prism as SyntaxHighlighter, type SyntaxHighlighterProps } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { CopyButton } from '@fellesdatakatalog/ui';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import styles from './code-block-wrapper.module.scss';
 
 type CodeBlockWrapperProps = SyntaxHighlighterProps & {

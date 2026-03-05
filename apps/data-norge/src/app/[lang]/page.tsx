@@ -1,7 +1,7 @@
 import 'server-only';
 import { type Metadata } from 'next';
 import { unstable_noStore as noStore } from 'next/cache';
-import { LocaleCodes, getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
+import { LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { Header, Footer } from '@fdk-frontend/ui';
 import { FrontpageBanner } from '../components/frontpage/frontpage-banner';
 import { ShareDataBanner } from '../components/frontpage/share-data-banner';
@@ -18,14 +18,12 @@ const Frontpage = async (props: FrontpageProps) => {
 
     const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = '' } = process.env;
 
-    const commonDictionary = await getDictionary(locale, 'common');
-    const commonDictionaryForHeader = getSafeDictionary(commonDictionary);
-    const frontpageDictionary = await getDictionary(locale, 'frontpage');
+    const loc = getLocalization(locale);
+    const frontpageDictionary = loc.frontpage;
 
     return (
         <>
             <Header
-                dictionary={commonDictionaryForHeader}
                 locale={locale}
                 frontpage
             />
@@ -42,15 +40,12 @@ const Frontpage = async (props: FrontpageProps) => {
                     />
                     <CatalogsBanner
                         frontpageDictionary={frontpageDictionary}
-                        commonDictionary={commonDictionary}
+                        commonDictionary={loc.common}
                         locale={locale}
                     />
                 </div>
             </main>
-            <Footer
-                dictionary={commonDictionary}
-                locale={locale}
-            />
+            <Footer locale={locale} />
         </>
     );
 };
@@ -58,7 +53,7 @@ const Frontpage = async (props: FrontpageProps) => {
 export const generateMetadata = async (props: FrontpageProps): Promise<Metadata> => {
     const params = await props.params;
     const locale = params.lang as LocaleCodes;
-    const frontpageDictionary = await getDictionary(locale, 'frontpage');
+    const frontpageDictionary = getLocalization(locale).frontpage;
 
     return {
         title: `${frontpageDictionary.metadata.title} - data.norge.no`,

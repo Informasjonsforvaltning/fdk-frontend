@@ -15,7 +15,7 @@ const ConceptDetails = ({ dataset, locale, dictionary, concepts }: DatasetDetail
             </Heading>
             {concepts && concepts.length ? (
                 <Dlist>
-                    {concepts.map((concept: any) => {
+                    {concepts.map((concept) => {
                         return (
                             <React.Fragment key={concept.uri}>
                                 <dt>

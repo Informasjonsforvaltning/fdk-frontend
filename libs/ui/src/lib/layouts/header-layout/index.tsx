@@ -2,12 +2,10 @@ import { PropsWithChildren } from 'react';
 
 import Header, { type HeaderProps } from '../../header';
 
-const HeaderLayout = ({ children, ...props }: HeaderProps & PropsWithChildren) => {
-    const { dictionary, locale, frontpage } = props;
+const HeaderLayout = ({ children, locale, frontpage }: HeaderProps & PropsWithChildren) => {
     return (
         <>
             <Header
-                dictionary={dictionary}
                 locale={locale}
                 frontpage={frontpage}
             />

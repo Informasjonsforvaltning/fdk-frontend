@@ -1,8 +1,9 @@
 import { Link, Tag, Paragraph } from '@digdir/designsystemet-react';
 import { HelpText } from '@fellesdatakatalog/ui';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 
-const UnavailableTag = ({ dictionary }: { dictionary: Dictionary }) => {
+const UnavailableTag = ({ locale }: { locale: LocaleCodes }) => {
+    const dictionary = getLocalization(locale).common;
     return (
         <Tag
             data-color='warning'

@@ -1,5 +1,5 @@
 import { Tag } from '@digdir/designsystemet-react';
-import { type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import { PublicServiceLanguage } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 

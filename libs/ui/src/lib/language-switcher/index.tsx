@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import React from 'react';
 import { ToggleGroup } from '@digdir/designsystemet-react';
 
-import { i18n, LocaleCodes } from '@fdk-frontend/dictionaries';
+import { i18n, LocaleCodes } from '@fdk-frontend/localization';
 
 import styles from './language-switcher.module.scss';
 

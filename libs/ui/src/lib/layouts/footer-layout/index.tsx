@@ -2,16 +2,11 @@ import { PropsWithChildren } from 'react';
 
 import Footer, { type FooterProps } from '../../footer';
 
-const FooterLayout = ({ children, ...props }: FooterProps & PropsWithChildren) => {
-    const { dictionary, locale } = props;
-
+const FooterLayout = ({ children, locale }: FooterProps & PropsWithChildren) => {
     return (
         <>
             {children}
-            <Footer
-                dictionary={dictionary}
-                locale={locale}
-            />
+            <Footer locale={locale} />
         </>
     );
 };

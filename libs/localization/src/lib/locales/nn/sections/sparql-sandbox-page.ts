@@ -1,0 +1,10 @@
+const sparqlSandboxPage = {
+  metadata: {
+    title: "data.norge.no - SPARQL-sandkasse",
+    description: "Utforsk og spør etter norske offentlege data ved hjelp av SPARQL. Utfør egendefinerte spørjingar på datasett, omgrep, API-ar og informasjonsmodellar frå over 125 organisasjonar. Test dine SPARQL-spørjingar i vårt interaktive sandbox-miljø."
+  },
+  title: "SPARQL-sandkasse",
+  description: "Utfør SPARQL-spørjingar for å søke og utforske norske offentlege data. Spør etter datasett, omgrep, API-ar og informasjonsmodellar frå over 125 organisasjonar. Test og finjuster dine spørjingar i dette interaktive miljøet."
+};
+
+export default sparqlSandboxPage;

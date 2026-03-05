@@ -1,16 +1,16 @@
 import { Link, Tag, TagProps, Paragraph } from '@digdir/designsystemet-react';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { AccessRightsCodes } from '@fellesdatakatalog/types';
 import { HelpText } from '@fellesdatakatalog/ui';
 
 type AccessLevelTagProps = {
     accessCode?: AccessRightsCodes;
-    dictionary: Dictionary;
     nonInteractive?: boolean;
     locale: LocaleCodes;
 };
 
-const AccessLevelTag = ({ accessCode, dictionary, nonInteractive, locale, ...props }: AccessLevelTagProps) => {
+const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: AccessLevelTagProps) => {
+    const dictionary = getLocalization(locale).detailsPage;
     let color = 'neutral';
 
     const label = accessCode ? dictionary.accessRights.codes[accessCode]?.label : dictionary.accessRights.unknownLabel;

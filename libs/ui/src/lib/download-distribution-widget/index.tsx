@@ -1,5 +1,5 @@
 import React from 'react';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import Box from '../box';
 import ExternalLink from '../external-link';
 import DatasetPreviewWidget from '../dataset-preview-widget/';
@@ -8,8 +8,9 @@ import styles from './styles.module.scss';
 type DownloadDistributionWidgetProps = {
     title: string;
     downloadUrl: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
+    hasBeenOpened: boolean;
 };
 
 const DownloadDistributionWidget = ({
@@ -17,6 +18,7 @@ const DownloadDistributionWidget = ({
     downloadUrl,
     dictionary,
     locale,
+    hasBeenOpened,
     ...props
 }: DownloadDistributionWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
     const datasetPreviewTitle = title || downloadUrl || dictionary.distributions.header.nameless;
@@ -40,6 +42,7 @@ const DownloadDistributionWidget = ({
                     dictionary={dictionary}
                     title={datasetPreviewTitle}
                     triggerBtnClass={styles.previewTriggerBtn}
+                    hasBeenOpened={hasBeenOpened}
                 />
             </div>
         </Box>

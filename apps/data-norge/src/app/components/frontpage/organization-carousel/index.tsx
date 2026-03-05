@@ -4,10 +4,10 @@ import organizations from './organizations.json';
 import styles from './organization-carousel.module.scss';
 import React, { useEffect, useState } from 'react';
 import { Tooltip } from '@digdir/designsystemet-react';
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 
 type Props = {
-    dictionary: Dictionary;
+    dictionary: Localization;
 };
 
 const OrganizationCarousel = ({ dictionary }: Props) => {

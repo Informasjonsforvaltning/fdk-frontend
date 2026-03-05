@@ -18,13 +18,13 @@ import {
     EventLabel,
 } from '@fdk-frontend/utils/siteimprove-analytics';
 import { type DatasetWithIdentifier, type DataService } from '@fellesdatakatalog/types';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import styles from './styles.module.scss';
 
 export type UseDatasetPopoverDialogProps = {
     dataset: DatasetWithIdentifier;
     apis?: DataService[];
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 
@@ -120,10 +120,7 @@ const UseDatasetPopoverDialog = ({
                                             <span className={styles.itemTitle}>
                                                 {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
                                             </span>
-                                            <ApiTags
-                                                api={api}
-                                                dictionary={dictionary}
-                                            />
+                                            <ApiTags api={api} />
                                         </div>
                                         <ActionButton
                                             uri={`/data-services/${api.id}`}

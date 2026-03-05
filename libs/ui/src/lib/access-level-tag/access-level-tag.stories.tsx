@@ -3,8 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import AccessLevelTag from '.';
 import VStack from '../vstack';
 
-import dictionary from '@fdk-frontend/libs/dictionaries/src/lib/dictionaries/nb/details-page.json';
-
 const meta: Meta<typeof AccessLevelTag> = {
     component: AccessLevelTag,
     title: 'AccessLevelTag',
@@ -25,15 +23,15 @@ export const Primary: Story = {
                 <VStack>
                     <AccessLevelTag
                         accessCode='PUBLIC'
-                        dictionary={dictionary}
+                        locale='nb'
                     />
                     <AccessLevelTag
                         accessCode='RESTRICTED'
-                        dictionary={dictionary}
+                        locale='nb'
                     />
                     <AccessLevelTag
                         accessCode='NON_PUBLIC'
-                        dictionary={dictionary}
+                        locale='nb'
                     />
                 </VStack>
             </div>

@@ -1,0 +1,68 @@
+const docs = {
+  titles: {
+    "/about": "Om oss",
+    "/catalogs": "Datakatalogar",
+    "/catalogs/datasets": "Datasett",
+    "/catalogs/data-services": "API-ar",
+    "/catalogs/information-models": "Informasjonsmodellar",
+    "/catalogs/concepts": "Omgrep",
+    "/catalogs/public-services-and-events": "Tenester og hendingar",
+    "/contact": "Kontakt oss",
+    "/docs": "Brukarrettleiing",
+    "/docs/finding-data": "Finne data",
+    "/docs/finding-data/standard-search": "Standard søk",
+    "/docs/finding-data/ai-search": "KI-søk",
+    "/docs/finding-data/sparql": "SPARQL-søk",
+    "/docs/finding-data/retrieve-resources": "Hente ressursar",
+    "/docs/finding-data/assisted-search": "Hjelp til å finne data",
+    "/docs/finding-data/access-data": "Tilgang til data",
+    "/docs/sharing-data": "Dele data",
+    "/docs/sharing-data/login-and-access": "Få tilgang og logge inn",
+    "/docs/sharing-data/how-to-dataset": "Datasettbeskriving frå A-Å",
+    "/docs/sharing-data/how-to-dataset/1-preparations": "1. Førebuingar",
+    "/docs/sharing-data/how-to-dataset/2-dataset-description": "2. Beskrive datasett",
+    "/docs/sharing-data/how-to-dataset/3-distribution": "3. Leggje til distribusjon",
+    "/docs/sharing-data/how-to-dataset/4-data-service": "4. Leggje til datateneste",
+    "/docs/sharing-data/how-to-dataset/5-catalog-and-complete-description": "5. Katalog og komplett beskriving",
+    "/docs/sharing-data/how-to-dataset/6-harvesting": "6. Publisere beskrivinga",
+    "/docs/sharing-data/how-to-dataset/7-extras-code-lists": "Ekstra: Kodelister",
+    "/docs/sharing-data/publishing-data-descriptions": "Publisere datasettbeskrivingar",
+    "/docs/sharing-data/publishing-data-descriptions/1-creating-descriptions-self": "Lage datasettbeskriving sjølv",
+    "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration": "Lage datasettbeskriving i registreringsløysinga",
+    "/docs/sharing-data/publishing-data-descriptions/3-publishing-descriptions": "Publisere beskrivinga",
+    "/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest": "Starte hausting",
+    "/docs/sharing-data/rdf": "RDF: kva og kvifor",
+    "/docs/sharing-data/rdf/rdf-crash-course": "Kræsjkurs i RDF",
+    "/docs/metadata-quality": "Metadatakvalitet",
+    "/docs/records-of-processing-activities": "Behandlingsoversikt",
+    "/docs/records-of-processing-activities/how-to-login": "Korleis logge inn",
+    "/docs/records-of-processing-activities/how-to-export-data": "Korleis hente ut dine data",
+    "/technical": "Teknisk dokumentasjon",
+    "/technical/architecture": "Arkitektur",
+    "/technical/infrastructure": "Infrastruktur",
+    "/technical/api": "API",
+    "/technical/api/search": "Søk",
+    "/technical/api/ai-search": "KI-søk",
+    "/technical/api/sparql": "SPARQL-søk",
+    "/technical/api/resource-service": "Ressursteneste",
+    "/technical/api/catalog-view": "Katalogvisning",
+    "/technical/follow-our-work": "Følg arbeidet vårt",
+    "/docs/community": "Datalandsbyen",
+    "/docs/resources": "Ressursar",
+    "/validator": "Valideringsverktøy"
+  },
+  tableOfContents: {
+    onThisPage: "På denne sida:"
+  },
+  conceptPreview: {
+    labelMissing: "Manglar term",
+    descriptionMissing: "Beskriving manglar",
+    goToDatanorge: "Gå til beskrivinga på data.norge.no"
+  },
+  general: {
+    expand: "Utvid",
+    collapse: "Kollaps"
+  }
+};
+
+export default docs;

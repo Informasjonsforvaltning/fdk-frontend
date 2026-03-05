@@ -2,7 +2,7 @@ import slugify from 'slugify';
 import cn from 'classnames';
 
 import { Heading, Link } from '@digdir/designsystemet-react';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 
 import { type MdxHeadlineObjectNode } from '../mdx-page/utils';
 
@@ -26,7 +26,7 @@ const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
 };
 
 type TableOfContentsProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     headlines?: MdxHeadlineObjectNode[];
 };
 

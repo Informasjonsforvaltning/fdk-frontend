@@ -5,7 +5,7 @@ import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
 import { type DatasetType } from '@fellesdatakatalog/types';
 import { HelpText } from '@fellesdatakatalog/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
-import { i18n } from '@fdk-frontend/dictionaries';
+import { i18n } from '@fdk-frontend/localization';
 
 const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);

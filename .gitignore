@@ -42,6 +42,7 @@ Thumbs.db
 .vercel
 .next
 out
+next-env.d.ts
 
 # local env files
 .env*

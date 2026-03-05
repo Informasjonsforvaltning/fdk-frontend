@@ -1,0 +1,63 @@
+const frontpage = {
+  metadata: {
+    title: "Where Norway shares data",
+    description: "data.norge.no is Norway's official portal for sharing data from Norwegian organizations that you can use for innovation and research."
+  },
+  aiBanner: {
+    advancedSearchPrompt: {
+      link: "Find data",
+      text: "Not finding what you're looking for?"
+    },
+    prompt: {
+      button: "Ask",
+      errors: {
+        generic: "An error occurred. Please try again later.",
+        queryTooShort: "The query must have at least three characters. Please try again.",
+        queryTooLong: "The query cannot have more than 255 characters. Please try again."
+      },
+      label: "Ask our AI about data from over 125 organizations and 8000 datasets:",
+      loading: "Loading",
+      placeholder: "What are you looking for?",
+      responses: {
+        noResults: "Unfortunately, I didn't find any relevant datasets. Please try another query.",
+        resultsFound: "I found {{num}} datasets that might be relevant:"
+      }
+    },
+    suggestions: {
+      list: [
+        "Number of Teslas sold in Norway in 2022",
+        "Which areas in Norway are protected?",
+        "Which goods does Norway export the most?",
+        "What do traffic patterns look like in Oslo?",
+        "How do Norwegian schools perform?",
+        "How much forest does Norway have?",
+        "How is digitalization progressing in Norway?",
+        "Which technologies are most used in Norway?"
+      ],
+      prefix: "Try for example:"
+    },
+    title: "Where Norway shares data",
+    tooltip: {
+      disclaimer: "Do not enter personal information in the search field.",
+      label: "About AI Search",
+      readMoreLinkText: "Read more about the AI Search here",
+      text: "Our AI Search makes it easy to find datasets using natural language without needing to know specific dataset names, technical terms, or formats. Please note that the AI Search may be both incomplete and contain errors."
+    }
+  },
+  catalogsBanner: {
+    title: "Our data catalogs"
+  },
+  shareDataBanner: {
+    content: "...and {{link}} - share your data with the rest of the country.",
+    shareDataLinkText: "Share data",
+    documentationLinkText: "Help and guidance",
+    organizationsLinkText: "125 other organizations",
+    doLike: "Do like",
+    popover: {
+      start: "Click to start the animation",
+      pause: "Click to pause the animation"
+    }
+  }
+};
+
+export default frontpage;

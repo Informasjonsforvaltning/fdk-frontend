@@ -112,20 +112,19 @@ When multiple components (Header, Footer, CatalogsBanner) share the same diction
 
 #### Solution:
 
-Use the `getSafeDictionary()` utility function to create isolated dictionary copies for each component:
+Use the `getSafeSection()` utility function to create isolated copies for each component:
 
 ```typescript
-import { getDictionary, getSafeDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization, getSafeSection } from '@fdk-frontend/localization';
 
 // ❌ Problematic - shared reference
-const commonDictionary = await getDictionary(params.lang, 'common');
-<Header dictionary={commonDictionary} />
-<Footer dictionary={commonDictionary} />
+const loc = getLocalization(params.lang);
+<Header dictionary={loc.common} />
+<Footer dictionary={loc.common} />
 
 // ✅ Fixed - isolated copies
-const commonDictionary = await getDictionary(params.lang, 'common');
-const headerDictionary = getSafeDictionary(commonDictionary);
-const footerDictionary = getSafeDictionary(commonDictionary);
+const headerDictionary = getSafeSection(params.lang, 'common');
+const footerDictionary = getSafeSection(params.lang, 'common');
 <Header dictionary={headerDictionary} />
 <Footer dictionary={footerDictionary} />
 ```
@@ -139,3 +138,12 @@ const footerDictionary = getSafeDictionary(commonDictionary);
 #### Prevention:
 
 Always create separate dictionary instances when passing the same dictionary to multiple components to avoid shared reference issues.
+
+## AI Agent Instructions
+
+This repository includes instruction files for AI coding assistants:
+
+- **CLAUDE.md** - Instructions for Claude Code (claude.ai/code)
+- **AGENTS.md** - Instructions for other AI agents (Copilot, Cursor, etc.)
+
+These files contain project structure, commands, architecture patterns, and coding conventions. Keep them updated when the project evolves.

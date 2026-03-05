@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MetadataRoute } from 'next';
-import { i18n } from '@fdk-frontend/dictionaries';
+import { i18n } from '@fdk-frontend/localization';
 import { getAllDatasets, getAllServices } from '@fdk-frontend/data-access/server';
 import { readdir, stat } from 'fs/promises';
 import { join } from 'path';

@@ -1,22 +1,20 @@
 import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
 import ExternalLink from '../external-link';
-import { type Dictionary, type LocaleCodes, interpolate } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, getLocalization, interpolate } from '@fdk-frontend/localization';
 import styles from './feedback-banner.module.scss';
 
 type FeedbackBannerProps = {
     locale: LocaleCodes;
-    dictionary: Dictionary;
     communityBaseUri: string;
 };
 
 const FeedbackBanner = ({
-    children,
     locale,
-    dictionary,
     communityBaseUri,
     ...props
 }: FeedbackBannerProps & React.HTMLAttributes<HTMLDivElement>) => {
+    const dictionary = getLocalization(locale).common;
     return (
         <div className={styles.feedbackBanner}>
             <div className={styles.feedbackBannerInner}>

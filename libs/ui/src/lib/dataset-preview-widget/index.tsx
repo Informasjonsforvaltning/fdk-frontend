@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { Spinner, Button } from '@digdir/designsystemet-react';
 import { EyeIcon } from '@navikt/aksel-icons';
 import DatasetPreviewModal from '../dataset-preview-modal/';
-import { type Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 import {
     trackSiteImproveEvent,
     EventCategory,
@@ -17,8 +17,9 @@ import styles from './styles.module.scss';
 type DatasetPreviewWidgetProps = {
     downloadUrl: string;
     title: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
     triggerBtnClass?: string;
+    hasBeenOpened: boolean;
 };
 
 const DatasetPreviewWidget = ({
@@ -26,14 +27,20 @@ const DatasetPreviewWidget = ({
     title,
     dictionary,
     triggerBtnClass,
+    hasBeenOpened,
     ...props
 }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
     const [data, setData] = useState<any>(undefined);
 
     useEffect(() => {
         const getDatasetPreview = async () => {
+            if (!hasBeenOpened) {
+                return;
+            }
+
+            setIsLoading(true);
             try {
                 const response = await fetch('/api/dataset-preview', {
                     method: 'POST',
@@ -47,16 +54,16 @@ const DatasetPreviewWidget = ({
             } catch {
                 setError(true);
             } finally {
-                setLoading(false);
+                setIsLoading(false);
             }
         };
 
         getDatasetPreview();
-    }, []);
+    }, [hasBeenOpened]);
 
     return (
         <div {...props}>
-            {loading && (
+            {isLoading && (
                 <div className={styles.loading}>
                     {dictionary.datasetPreview.generatingPreview}
                     <Spinner

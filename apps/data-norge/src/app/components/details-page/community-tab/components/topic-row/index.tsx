@@ -2,14 +2,14 @@ import React from 'react';
 import { Link, Tag, Heading } from '@digdir/designsystemet-react';
 import { Chat2Icon } from '@navikt/aksel-icons';
 import { type JSONValue } from '@fdk-frontend/types';
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
 import { Hstack, Subtext, IconBadge, ExternalLink } from '@fdk-frontend/ui';
 import styles from '../../community-tab.module.scss';
 
 export type TopicRowProps = {
     communityBaseUri: string;
     topic: JSONValue;
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
 };
 

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { Fragment, useState } from 'react';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
-import { type Organization, type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
+import { type Organization, type CommunityTopic, type PublicService, SearchObject } from '@fellesdatakatalog/types';
 import { getSlug, printLocaleValue, sumArrayLengths } from '@fdk-frontend/utils';
 import {
     Badge,
@@ -33,10 +33,11 @@ export type ServiceDetailsPageType = {
     baseUri: string;
     communityTopics?: CommunityTopic[];
     communityBaseUri: string;
+    concepts: SearchObject[];
     defaultActiveTab?: string;
     dictionaries: {
-        common: Dictionary;
-        detailsPage: Dictionary;
+        common: Localization;
+        detailsPage: Localization;
     };
     locale: LocaleCodes;
     orgLogo?: string | null;
@@ -49,6 +50,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
         baseUri,
         communityTopics,
         communityBaseUri,
+        concepts,
         defaultActiveTab,
         dictionaries,
         locale,
@@ -84,7 +86,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 baseUri={baseUri}
             />
             <Breadcrumbs
-                dictionary={dictionaries.common}
+                locale={locale}
                 breadcrumbList={breadcrumbList}
             />
             <div className={styles.mainContent}>
@@ -357,6 +359,34 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             </>
                         )}
 
+                        {!concepts.length && !showEmptyRows ? null : (
+                            <>
+                                <Heading
+                                    level={2}
+                                    data-size='xs'
+                                    className={styles.heading}
+                                >
+                                    {dictionaries.detailsPage.details.subject.title}
+                                </Heading>
+                                {concepts.length ? (
+                                    <Dlist className={styles.dlist}>
+                                        {concepts.map((concept) => (
+                                            <React.Fragment key={concept.uri}>
+                                                <dt>
+                                                    <Link href={`/concepts/${concept.id}`}>
+                                                        {printLocaleValue(locale, concept.title) || concept.uri}
+                                                    </Link>
+                                                </dt>
+                                                <dd>{printLocaleValue(locale, concept.description)}</dd>
+                                            </React.Fragment>
+                                        ))}
+                                    </Dlist>
+                                ) : (
+                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                                )}
+                            </>
+                        )}
+
                         <Heading
                             level={2}
                             data-size='xs'
@@ -464,6 +494,34 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                 </Hstack>
                             </dd>
                         </Dlist>
+
+                        {!service.dctType?.length && !showEmptyRows ? null : (
+                            <>
+                                <Heading
+                                    level={2}
+                                    data-size='xs'
+                                    className={styles.heading}
+                                >
+                                    {dictionaries.detailsPage.details.dctType}
+                                </Heading>
+                                {service.dctType?.length ? (
+                                    <TagList>
+                                        {service.dctType.map((theme) => (
+                                            <Link
+                                                key={theme.code}
+                                                href={`/public-services-and-events?mainActivities=${theme.code}`}
+                                            >
+                                                <Tag data-size='sm'>
+                                                    {printLocaleValue(locale, theme.prefLabel) || theme.code}
+                                                </Tag>
+                                            </Link>
+                                        ))}
+                                    </TagList>
+                                ) : (
+                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                                )}
+                            </>
+                        )}
 
                         {!service.eurovocThemes?.length && !service.losThemes?.length && !showEmptyRows ? null : (
                             <>

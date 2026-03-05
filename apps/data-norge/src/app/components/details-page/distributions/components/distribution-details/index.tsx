@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@digdir/designsystemet-react';
-import { type LocaleCodes, type Dictionary } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import { type Distribution, type SearchObject } from '@fellesdatakatalog/types';
 import {
@@ -22,12 +22,13 @@ type DistributionDetailsProps = {
     distribution: Distribution;
     locale: LocaleCodes;
     dictionaries: {
-        common: Dictionary;
-        detailsPage: Dictionary;
+        common: Localization;
+        detailsPage: Localization;
     };
     isRelatedToTransportportal?: boolean;
     resolvedDistributionDataServices?: SearchObject[];
     resolvedDistributionInformationModels?: SearchObject[];
+    hasBeenOpened: boolean;
 };
 
 const DistributionDetails = ({
@@ -37,6 +38,7 @@ const DistributionDetails = ({
     isRelatedToTransportportal,
     resolvedDistributionDataServices = [],
     resolvedDistributionInformationModels = [],
+    hasBeenOpened,
 }: DistributionDetailsProps) => {
     return (
         <>
@@ -112,6 +114,7 @@ const DistributionDetails = ({
                                     downloadUrl={url}
                                     dictionary={dictionaries.detailsPage}
                                     locale={locale}
+                                    hasBeenOpened={hasBeenOpened}
                                 />
                             )}
                         />

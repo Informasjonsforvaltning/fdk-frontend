@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getDictionary } from '@fdk-frontend/dictionaries';
 
 import Header from '.';
-
-const dictionary = await getDictionary('en', 'common');
 
 const meta: Meta<typeof Header> = {
     component: Header,
@@ -21,8 +18,7 @@ export const Primary: Story = {
     },
     render: () => (
         <Header
-            baseUri='/'
-            dictionary={dictionary}
+            locale='en'
         />
     ),
 };

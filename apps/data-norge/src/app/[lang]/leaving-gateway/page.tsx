@@ -1,8 +1,9 @@
 // eslint-disable-next-line
 import { Paragraph, Heading, Alert, Link, Button } from '@digdir/designsystemet-react';
-import { getDictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { Hstack, VStack, BackButton, Markdown } from '@fdk-frontend/ui';
 import styles from './styles.module.scss';
+import { notFound } from 'next/navigation';
 
 export type LeavingGatewayPageProps = PageProps<'/[lang]/leaving-gateway'>;
 
@@ -10,7 +11,13 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
     const { lang } = await props.params;
     const { url } = await props.searchParams;
     const locale = lang as LocaleCodes;
-    const dictionary = await getDictionary(locale, 'common');
+
+    const dictionary = getLocalization(locale).common;
+
+    if (typeof url !== 'string') {
+        // reject url typeof undefined | string[]
+        notFound();
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -24,7 +31,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
                 <VStack>
                     <Paragraph data-size='sm'>{dictionary.leavingGateway.linkLabel}</Paragraph>
                     <div className={styles.urlBox}>
-                        <Link href={url?.toString()}>{url}</Link>
+                        <Link href={url}>{url}</Link>
                     </div>
                 </VStack>
                 <Alert data-size='sm'>
@@ -42,7 +49,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
                         data-size='sm'
                         variant='primary'
                     >
-                        <Link href={url?.toString()}>{dictionary.leavingGateway.continueButton}</Link>
+                        <Link href={url}>{dictionary.leavingGateway.continueButton}</Link>
                     </Button>
                 </Hstack>
             </div>
@@ -53,7 +60,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
 export const generateMetadata = async (props: LeavingGatewayPageProps) => {
     const params = await props.params;
     const locale = params.lang as LocaleCodes;
-    const dictionary = await getDictionary(locale, 'common');
+    const dictionary = getLocalization(locale).common;
 
     return {
         title: `${dictionary.leavingGateway.heading} - data.norge.no`,

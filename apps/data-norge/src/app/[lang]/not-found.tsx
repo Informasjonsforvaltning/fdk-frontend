@@ -1,10 +1,10 @@
-import { getDictionary } from '@fdk-frontend/dictionaries';
+import { getLocalization } from '@fdk-frontend/localization';
 import { Link, Button, Heading } from '@digdir/designsystemet-react';
 
 import ErrorPage from '../components/error-page';
 
 export default async function NotFound() {
-    const dictionary = await getDictionary('en', 'common');
+    const dictionary = getLocalization('en').common;
     return (
         <ErrorPage>
             <Heading
@@ -26,7 +26,7 @@ export default async function NotFound() {
 }
 
 export const generateMetadata = async () => {
-    const dictionary = await getDictionary('en', 'common');
+    const dictionary = getLocalization('en').common;
     return {
         title: `${dictionary.notFound.title} - data.norge.no`,
         description: dictionary.notFound.message,

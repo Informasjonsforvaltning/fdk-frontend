@@ -1,6 +1,6 @@
 import jsonld, { expand, frame } from 'jsonld';
 import { Frame } from 'jsonld/jsonld-spec';
-import { type Locale } from '@fdk-frontend/dictionaries';
+import { type Locale } from '@fdk-frontend/localization';
 import { conceptFrame, xlNoteFrame } from './jsonld-frames';
 
 type LangMap = {

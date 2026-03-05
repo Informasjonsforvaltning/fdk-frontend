@@ -19,7 +19,7 @@ import {
     Tag,
     type TagProps,
 } from '@digdir/designsystemet-react';
-import { type LocaleCodes, i18n } from '@fdk-frontend/dictionaries';
+import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
 import ExternalLink from '../external-link';
 import MdxHeading from '../mdx-heading';
 import ConceptPreview, { type ConceptPreviewProps } from '../concept-preview';

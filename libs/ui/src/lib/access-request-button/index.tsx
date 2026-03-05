@@ -9,12 +9,12 @@ import {
     EventLabel,
 } from '@fdk-frontend/utils/siteimprove-analytics';
 import { type CatalogTypes } from '@fdk-frontend/types';
-import { type Dictionary, type LocaleCodes } from '@fdk-frontend/dictionaries';
+import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 
 export type AccessRequestButtonProps = {
     kind: CatalogTypes;
     id: string;
-    dictionary: Dictionary;
+    dictionary: Localization;
     locale: LocaleCodes;
     isAvailable?: boolean;
 };

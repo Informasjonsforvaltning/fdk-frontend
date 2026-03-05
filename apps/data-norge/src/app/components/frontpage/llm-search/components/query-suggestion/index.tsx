@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 
 import { Link } from '@digdir/designsystemet-react';
-import { Dictionary } from '@fdk-frontend/dictionaries';
+import { type Localization } from '@fdk-frontend/localization';
 
 import styles from './query-suggestion.module.scss';
 
 type QuerySuggestionProps = {
-    dictionary: Dictionary;
+    dictionary: Localization;
     onClick: (query: string) => void;
 };
 
