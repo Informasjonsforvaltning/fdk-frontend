@@ -116,7 +116,7 @@ const common = {
     DATA_SERVICE: 'API',
     CONCEPT: 'Begrep',
     INFORMATION_MODEL: 'Informasjonsmodell',
-    PUBLIC_SERVICE: 'Tjenester',
+    SERVICE: 'Tjenester',
     EVENT: 'Hendelser'
   }
 };

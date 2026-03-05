@@ -26,7 +26,7 @@ export const SET_TO_SEARCH_TYPES: Record<
   apis: ['DATA_SERVICE'],
   concepts: ['CONCEPT'],
   'information-models': ['INFORMATION_MODEL'],
-  'services-and-events': ['PUBLIC_SERVICE', 'EVENT'],
+  'services-and-events': ['SERVICE', 'EVENT'],
   docs: null,
 };
 

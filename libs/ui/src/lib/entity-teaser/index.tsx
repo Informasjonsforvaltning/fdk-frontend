@@ -143,7 +143,7 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 }
                 {
                     (entity && llm) &&
-                    <Tooltip content='Resultat fra KI-søk' placement='top'>
+                    <Tooltip content='Treff fra KI-søk' placement='top'>
                         <SparklesFillIcon className={styles.llmIcon} />
                     </Tooltip>
                 }

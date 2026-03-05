@@ -64,7 +64,7 @@ const SUMMARY_SET_TO_SEARCH_TYPE: Record<string, string> = {
   apis: 'DATA_SERVICE',
   concepts: 'CONCEPT',
   informationModels: 'INFORMATION_MODEL',
-  services: 'PUBLIC_SERVICE',
+  services: 'SERVICE',
   events: 'EVENT',
 };
 

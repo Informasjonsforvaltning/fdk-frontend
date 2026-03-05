@@ -47,7 +47,7 @@ const LLM_TYPE_TO_SEARCH_TYPE: Record<string, string> = {
   dataservice: 'DATA_SERVICE',
   concept: 'CONCEPT',
   informationmodel: 'INFORMATION_MODEL',
-  service: 'PUBLIC_SERVICE',
+  service: 'SERVICE',
   event: 'EVENT',
 };
 
@@ -134,7 +134,7 @@ const SearchPage = ({
           return sum + value;
         }, 0)
       : mergedHits.length;
-
+  
   return (
     <div className={styles.searchPage}>
       <Breadcrumbs
@@ -152,8 +152,8 @@ const SearchPage = ({
             : (
                 <Heading data-size="md">
                   {query
-                    ? `${totalResults} resultater for '${query}'`
-                    : `${totalResults} resultater`}
+                    ? `${totalResults} treff for '${query}'`
+                    : `${totalResults} treff`}
                 </Heading>
               )
         }
@@ -190,7 +190,7 @@ const SearchPage = ({
                     data-size="sm"
                     className={styles.sectionHeading}
                   >
-                    {`KI-resultater (${llmHitsCount})`}
+                    {`KI-treff (${llmHitsCount})`}
                   </Heading>
                   {/* <Alert data-size='sm'>
                     <Paragraph>
@@ -239,7 +239,7 @@ const SearchPage = ({
                     </Heading>
                     <Switch
                       className={styles.showAiResultsSwitch}
-                      label='Vis KI-resultater'
+                      label='Vis KI-treff'
                       defaultChecked
                     />
                   </HStack>
@@ -259,7 +259,7 @@ const SearchPage = ({
                     })}
                   </ul>
                 </> :
-                <Alert>Ingen resultater</Alert>
+                <Alert>Ingen treff</Alert>
               }
             </div>
           )}
