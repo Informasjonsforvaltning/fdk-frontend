@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag, Skeleton } from '@digdir/designsystemet-react';
+import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag, Skeleton, Tooltip } from '@digdir/designsystemet-react';
 import { TagList, VStack, HStack } from '@fellesdatakatalog/ui';
 import { AccessRightsCodes, EntityType, type SearchObject } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
@@ -9,10 +9,12 @@ import OrgButton from '../org-button';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './styles.module.scss';
 import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
+import { SparklesFillIcon } from '@navikt/aksel-icons';
 
 export type EntityTeaserProps = {
-    entity?: SearchObject;
     locale: LocaleCodes;
+    entity?: SearchObject;
+    llm?: boolean;
 };
 
 const setFragments: Record<EntityType, string> = {
@@ -24,12 +26,12 @@ const setFragments: Record<EntityType, string> = {
     [EntityType.EVENT]: 'services-and-events',
 };
 
-const EntityTeaser = ({ entity, className, locale, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
+const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
     const desc = entity && printLocaleValue(locale, entity.description);
     const localization = getLocalization(locale).common;
     return (
         <Card
-            className={cn(styles.container, className)}
+            className={cn(styles.container, className, {[styles.llm]: llm})}
             {...rest}
         >
             <CardBlock>
@@ -138,6 +140,12 @@ const EntityTeaser = ({ entity, className, locale, ...rest }: EntityTeaserProps 
                     <div className={styles.orgName}>
                         {printLocaleValue(locale, entity.organization?.prefLabel)}
                     </div>
+                }
+                {
+                    (entity && llm) &&
+                    <Tooltip content='Resultat fra KI-søk' placement='top'>
+                        <SparklesFillIcon className={styles.llmIcon} />
+                    </Tooltip>
                 }
             </CardBlock>
         </Card>

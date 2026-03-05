@@ -1,7 +1,8 @@
 import { type LocaleCodes } from '@fdk-frontend/localization';
 import { Breadcrumbs, EntityTeaser, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import { Alert, Heading, Paragraph, Link } from '@digdir/designsystemet-react';
+import { HStack } from '@fellesdatakatalog/ui';
+import { Alert, Heading, Paragraph, Link, Switch } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import {
   getBadgeCounts,
@@ -11,6 +12,7 @@ import {
 } from '../../[lang]/search/search-set-config';
 
 import styles from './search-page.module.scss';
+import { SparklesFillIcon } from '@navikt/aksel-icons';
 
 /** Client-safe shape for entity search results (no server-only import). */
 export type SearchResultsProp = { hits?: SearchObject[]; [key: string]: unknown };
@@ -67,6 +69,38 @@ const llmHitToEntity = function (
   } as SearchObject;
 };
 
+export type MergeResult = {
+  mergedHits: SearchObject[];
+  llmOriginIds: Set<string>;
+};
+
+/** Merge search hits with LLM hits (converted to SearchObject), deduplicated by id/uri. Tracks which ids came from LLM for UI markers. */
+function mergeSearchAndLlmHits(
+  searchResults: SearchResultsProp | undefined,
+  llmResults: LlmSearchResponse | undefined
+): MergeResult {
+  const searchHits = searchResults?.hits ?? [];
+  const seenIds = new Set<string>(
+    searchHits.map((h) => h.id ?? h.uri).filter(Boolean) as string[]
+  );
+  const llmOriginIds = new Set<string>();
+  const merged: SearchObject[] = [...searchHits];
+
+  if (!llmResults?.hits?.length) {
+    return { mergedHits: merged, llmOriginIds };
+  }
+
+  for (const item of llmResults.hits) {
+    const id = item.id ?? '';
+    if (!id || seenIds.has(id)) continue;
+    seenIds.add(id);
+    llmOriginIds.add(id);
+    merged.unshift(llmHitToEntity(item));
+  }
+
+  return { mergedHits: merged, llmOriginIds };
+}
+
 const SearchPage = ({
   lang,
   query,
@@ -83,14 +117,14 @@ const SearchPage = ({
   ];
 
   const llmHitsCount = llmResults?.hits?.length ?? 0;
-  const allSearchHits = searchResults?.hits ?? [];
+  const { mergedHits, llmOriginIds } = mergeSearchAndLlmHits(searchResults, llmResults);
   const badgeCounts =
-    badgeCountsOverride ?? getBadgeCounts(allSearchHits, llmHitsCount);
+    badgeCountsOverride ?? getBadgeCounts(mergedHits, llmHitsCount);
 
   const showLlm = currentSet === undefined;
   const filteredHits =
     currentSet && currentSet !== 'docs'
-      ? filterHitsBySet(allSearchHits, currentSet)
+      ? filterHitsBySet(mergedHits, currentSet)
       : [];
   const displayCount = showLlm ? llmHitsCount : filteredHits.length;
   const totalResults =
@@ -99,7 +133,7 @@ const SearchPage = ({
           if (key === KI_TOGGLE_VALUE || key === 'docs') return sum;
           return sum + value;
         }, 0)
-      : llmHitsCount + allSearchHits.length;
+      : mergedHits.length;
 
   return (
     <div className={styles.searchPage}>
@@ -169,7 +203,7 @@ const SearchPage = ({
                   <ul className="fdk-box-list">
                     {llmResults.hits.map((item, i) => (
                       <li key={item.id ?? i}>
-                        <EntityTeaser locale={lang} entity={llmHitToEntity(item)} />
+                        <EntityTeaser locale={lang} entity={llmHitToEntity(item)} llm />
                       </li>
                     ))}
                   </ul>
@@ -196,18 +230,33 @@ const SearchPage = ({
               {
                 filteredHits.length > 0 ?
                 <>
-                  <Heading
-                    data-size="sm"
-                    className={styles.sectionHeading}
-                  >
-                    {currentSet} ({displayCount})
-                  </Heading>
+                  <HStack style={{justifyContent:'space-between'}}>
+                    <Heading
+                      data-size="sm"
+                      className={styles.sectionHeading}
+                    >
+                      {currentSet} ({displayCount})
+                    </Heading>
+                    <Switch
+                      className={styles.showAiResultsSwitch}
+                      label='Vis KI-resultater'
+                      defaultChecked
+                    />
+                  </HStack>
                   <ul className="fdk-box-list">
-                    {filteredHits.map((hit: SearchObject, i: number) => (
-                      <li key={hit.id ?? hit.uri ?? i}>
-                        <EntityTeaser locale={lang} entity={hit} />
-                      </li>
-                    ))}
+                    {filteredHits.map((hit: SearchObject, i: number) => {
+                      const hitId = hit.id ?? hit.uri ?? '';
+                      const fromLlm = typeof hitId === 'string' && hitId.length > 0 && llmOriginIds.has(hitId);
+                      return (
+                        <li
+                          key={hitId || i}
+                          // className={fromLlm ? styles.resultFromLlm : undefined}
+                          data-from-llm={fromLlm ? 'true' : undefined}
+                        >
+                          <EntityTeaser locale={lang} entity={hit} llm={fromLlm} />
+                        </li>
+                      );
+                    })}
                   </ul>
                 </> :
                 <Alert>Ingen resultater</Alert>
