@@ -1,7 +1,7 @@
 import { type LocaleCodes } from '@fdk-frontend/localization';
 import { Breadcrumbs, EntityTeaser, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import { Alert, Heading } from '@digdir/designsystemet-react';
+import { Alert, Heading, Paragraph, Link } from '@digdir/designsystemet-react';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import {
   getBadgeCounts,
@@ -174,7 +174,19 @@ const SearchPage = ({
                     ))}
                   </ul>
                 </> :
-                <Alert>Ingen resultater</Alert>
+                <div className={styles.aiPromoSplash}>
+                  <div>
+                    <Heading className={styles.aiPromoHeading}>
+                      Spør vårt KI-søk med naturlig språk ✨
+                    </Heading>
+                    <Paragraph className={styles.aiPromoText}>
+                      Prøv f.eks. <Link href="#">Hvor mye skog har Norge?</Link>
+                    </Paragraph>
+                  </div>
+                  <Link href="#" className={styles.aiAboutLink}>
+                    Les mer om vårt KI-søk her
+                  </Link>
+                </div>
               }
             </div>
           )}
