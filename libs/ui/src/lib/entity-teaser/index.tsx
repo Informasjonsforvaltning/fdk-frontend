@@ -119,7 +119,7 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 }
                 {
                     entity &&
-                    <Paragraph>
+                    <Paragraph className={styles.description}>
                         {
                             desc ?
                             desc.length > 500 ?

@@ -191,7 +191,7 @@ const SearchPage = ({
                     data-size="sm"
                     className={styles.sectionHeading}
                   >
-                    {`KI-søk fant ${llmHitsCount} treff`}
+                    {`KI-søk (${llmHitsCount} treff)`}
                   </Heading>
                   {/* <Alert data-size='sm'>
                     <Paragraph>
@@ -224,7 +224,7 @@ const SearchPage = ({
                       data-size="sm"
                       className={styles.sectionHeading}
                     >
-                      {dictionary.entities[(SET_TO_SEARCH_TYPES[currentSet as Exclude<SearchSetSegment, 'docs'>] ?? [])[0] ?? '']} ({displayCount})
+                      {dictionary.entities[(SET_TO_SEARCH_TYPES[currentSet as Exclude<SearchSetSegment, 'docs'>] ?? [])[0] ?? '']} ({displayCount} treff)
                     </Heading>
                     <Switch
                       className={styles.showAiResultsSwitch}

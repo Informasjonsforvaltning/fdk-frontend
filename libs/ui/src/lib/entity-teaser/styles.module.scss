@@ -22,11 +22,14 @@
         }
     }
 
-    // &.llm {
-    //     &:not(:hover):not(:active):not(:focus) {
-    //         background:var(--ds-color-background-tinted);
-    //     }
-    // }
+    &.llm {
+        // .description {
+        //     font-style:italic;
+        //     display:block;
+        //     padding-left:1rem;
+        //     border-left:2px solid var(--ds-color-accent-surface-tinted);
+        // }
+    }
 }
 
 .orgLogo {
