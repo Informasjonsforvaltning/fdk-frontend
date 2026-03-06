@@ -1,11 +1,10 @@
 import React from 'react';
 import cn from 'classnames';
 import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag, Skeleton, Tooltip } from '@digdir/designsystemet-react';
-import { TagList, VStack, HStack } from '@fellesdatakatalog/ui';
+import { TagList, HStack } from '@fellesdatakatalog/ui';
 import { AccessRightsCodes, EntityType, type SearchObject } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
 import { OrgLogo } from '../org-logo';
-import OrgButton from '../org-button';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import styles from './styles.module.scss';
 import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';

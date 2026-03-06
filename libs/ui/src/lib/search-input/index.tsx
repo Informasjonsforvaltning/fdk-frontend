@@ -1,9 +1,9 @@
 'use client';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, type FormEvent } from 'react';
 import cn from 'classnames';
-import { Input, Button, Tag } from '@digdir/designsystemet-react';
-import { SparklesFillIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
+import { Input, Tag } from '@digdir/designsystemet-react';
+import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
 
 import styles from './search-input.module.scss';
@@ -19,15 +19,15 @@ export type SearchInputProps = {
     locale?: LocaleCodes;
 };
 
-function getInitialQFromUrl(searchParams: URLSearchParams): string {
+const getInitialQFromUrl = function getInitialQFromUrl(searchParams: URLSearchParams): string {
     const q = searchParams.get('q');
-    if (q == null || q === '') return '';
+    if (q === null || q === '') return '';
     try {
         return decodeURIComponent(q);
     } catch {
         return q;
     }
-}
+};
 
 const SearchInput = ({
     value: controlledValue,
@@ -57,7 +57,7 @@ const SearchInput = ({
     const isControlled = controlledValue !== undefined;
     const value = isControlled ? controlledValue : internalValue;
     const setValue = isControlled
-        ? (controlledOnChange ?? (() => {}))
+        ? (controlledOnChange ?? (() => undefined))
         : setInternalValue;
 
     // Extract locale from pathname if not provided
@@ -81,7 +81,7 @@ const SearchInput = ({
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const trimmed = value.trim();
         // if (!trimmed) return;
@@ -112,6 +112,7 @@ const SearchInput = ({
                 onChange={(e) => setValue(e.target.value)}
                 className={styles.input}
                 placeholder={placeholder}
+                aria-label={searchLabel}
                 // data-size='lg'
             />
             {/* <Button
