@@ -41,7 +41,7 @@ type SummaryPayload = {
   };
 };
 
-function computeBadgeCountsFromSummary(summary: SummaryPayload['summary']): Record<string, number> {
+const computeBadgeCountsFromSummary = function computeBadgeCountsFromSummary(summary: SummaryPayload['summary']): Record<string, number> {
   const datasets = summary.datasets?.page?.totalElements ?? 0;
   const apis = summary.apis?.page?.totalElements ?? 0;
   const concepts = summary.concepts?.page?.totalElements ?? 0;
@@ -57,7 +57,7 @@ function computeBadgeCountsFromSummary(summary: SummaryPayload['summary']): Reco
     'services-and-events': services + events,
     docs: 0,
   };
-}
+};
 
 const SUMMARY_SET_TO_SEARCH_TYPE: Record<string, string> = {
   datasets: 'DATASET',
@@ -68,7 +68,7 @@ const SUMMARY_SET_TO_SEARCH_TYPE: Record<string, string> = {
   events: 'EVENT',
 };
 
-function flattenSummaryHits(summary: SummaryPayload['summary']): SearchObject[] {
+const flattenSummaryHits = function flattenSummaryHits(summary: SummaryPayload['summary']): SearchObject[] {
   const hits: SearchObject[] = [];
   const entries: (keyof SummaryPayload['summary'])[] = [
     'datasets', 'apis', 'concepts', 'informationModels', 'services', 'events',
@@ -83,7 +83,7 @@ function flattenSummaryHits(summary: SummaryPayload['summary']): SearchObject[] 
     }
   }
   return hits;
-}
+};
 
 const fetchSearchData = async function (query: string): Promise<{
   llmResults: LlmSearchResponse | undefined;

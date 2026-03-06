@@ -38,7 +38,7 @@ const AiPromoSplash = ({
       </Paragraph>
       <div className={styles.suggestions}>
           {
-            dictionary.frontpage.aiBanner.suggestions.list.slice(0, 3).map(suggestion =>
+            dictionary.frontpage.aiBanner.suggestions.list.slice(0, 3).map((suggestion: string) =>
               <Button
                 data-size='sm'
                 variant='secondary'

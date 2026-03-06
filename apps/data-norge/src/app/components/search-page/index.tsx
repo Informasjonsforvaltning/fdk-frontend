@@ -75,7 +75,7 @@ export type MergeResult = {
 };
 
 /** Merge search hits with LLM hits (converted to SearchObject), deduplicated by id/uri. Tracks which ids came from LLM for UI markers. */
-function mergeSearchAndLlmHits(
+const mergeSearchAndLlmHits = function mergeSearchAndLlmHits(
   searchResults: SearchResultsProp | undefined,
   llmResults: LlmSearchResponse | undefined
 ): MergeResult {
@@ -99,7 +99,7 @@ function mergeSearchAndLlmHits(
   }
 
   return { mergedHits: merged, llmOriginIds };
-}
+};
 
 const SearchPage = ({
   lang,
@@ -191,7 +191,7 @@ const SearchPage = ({
                     data-size="sm"
                     className={styles.sectionHeading}
                   >
-                    {`KI-treff (${llmHitsCount})`}
+                    {`KI-søk fant ${llmHitsCount} treff`}
                   </Heading>
                   {/* <Alert data-size='sm'>
                     <Paragraph>
