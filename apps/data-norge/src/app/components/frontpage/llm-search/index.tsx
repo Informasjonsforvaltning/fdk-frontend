@@ -73,7 +73,7 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
         setLoading(true);
 
         try {
-            const response = await llmSearch<ItemObjectType>(endpoint, queryToSubmit);
+            const response = await llmSearch(endpoint, queryToSubmit);
             setResults(response);
             setError(undefined);
         } catch (err) {

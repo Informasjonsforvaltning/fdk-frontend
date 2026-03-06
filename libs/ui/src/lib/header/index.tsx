@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Button, Alert, Paragraph } from '@digdir/designsystemet-react';
-import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { LogoLink } from '../logo';
 import MainMenu from '../main-menu';
