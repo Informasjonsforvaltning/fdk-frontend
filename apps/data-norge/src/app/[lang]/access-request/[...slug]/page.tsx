@@ -3,25 +3,21 @@ import { redirect, notFound } from 'next/navigation';
 import { Spinner, Paragraph } from '@digdir/designsystemet-react';
 import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { getAccessRequestDestination } from '@fdk-frontend/data-access/server';
-import { type CatalogTypes } from '@fdk-frontend/types';
 import styles from './access-request-page.module.scss';
+import { CatalogTypes } from '@fdk-frontend/types';
 
-export type AccessRequestPageProps = {
-    params: Promise<{
-        lang: LocaleCodes;
-        slug: [CatalogTypes, string];
-    }>;
-};
+type AccessRequestPageProps = PageProps<'/[lang]/access-request/[...slug]'>;
 
 const AccessRequestPage = async (props: AccessRequestPageProps) => {
     const { lang, slug } = await props.params;
+    const locale = lang as LocaleCodes;
     const [kind, id] = slug;
 
-    const dictionary = getLocalization(lang).common;
+    const dictionary = getLocalization(locale).common;
     let destination;
 
     try {
-        destination = await getAccessRequestDestination({ lang, kind, id });
+        destination = await getAccessRequestDestination({ lang: locale, kind: kind as CatalogTypes, id });
     } catch (err) {
         console.error(`Failed to get access request destination`, JSON.stringify(err));
         notFound();
@@ -45,7 +41,7 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
 
 export const generateMetadata = async (props: AccessRequestPageProps) => {
     const params = await props.params;
-    const dictionary = getLocalization(params.lang).common;
+    const dictionary = getLocalization(params.lang as LocaleCodes).common;
 
     return {
         title: `${dictionary.general.redirecting} - data.norge.no`,

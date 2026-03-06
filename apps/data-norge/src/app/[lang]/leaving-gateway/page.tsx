@@ -3,21 +3,21 @@ import { Paragraph, Heading, Alert, Link, Button } from '@digdir/designsystemet-
 import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { Hstack, VStack, BackButton, Markdown } from '@fdk-frontend/ui';
 import styles from './styles.module.scss';
+import { notFound } from 'next/navigation';
 
-export type LeavingGatewayPageProps = {
-    params: Promise<{
-        lang: LocaleCodes;
-    }>;
-    searchParams?: Promise<{
-        url: string;
-    }>;
-};
+export type LeavingGatewayPageProps = PageProps<'/[lang]/leaving-gateway'>;
 
 const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
     const { lang } = await props.params;
-    const { url } = (await props.searchParams) || {};
+    const { url } = await props.searchParams;
+    const locale = lang as LocaleCodes;
 
-    const dictionary = getLocalization(lang).common;
+    const dictionary = getLocalization(locale).common;
+
+    if (typeof url !== 'string') {
+        // reject url typeof undefined | string[]
+        notFound();
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -59,7 +59,8 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
 
 export const generateMetadata = async (props: LeavingGatewayPageProps) => {
     const params = await props.params;
-    const dictionary = getLocalization(params.lang).common;
+    const locale = params.lang as LocaleCodes;
+    const dictionary = getLocalization(locale).common;
 
     return {
         title: `${dictionary.leavingGateway.heading} - data.norge.no`,
