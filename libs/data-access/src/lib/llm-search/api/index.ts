@@ -12,8 +12,8 @@ export interface LlmSearchResult {
 }
 
 // todo: move to fdk-types
-export interface LlmSearchResponse {
-    hits: LlmSearchResult[];
+export interface LlmSearchResponse<THit = LlmSearchResult> {
+    hits: THit[];
 }
 
 export type LlmSearchOptions = {
@@ -30,11 +30,17 @@ export type LlmSearchOptions = {
  * @returns Promise resolving to the search response JSON
  * @throws Error if the request fails, times out, or returns a non-200 status
  */
-export const llmSearch = async <T = unknown>(
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+    typeof value === 'object' && value !== null;
+
+const isLlmSearchResponseShape = (value: unknown): value is { hits: unknown[] } =>
+    isRecord(value) && Array.isArray(value.hits);
+
+export const llmSearch = async <THit = LlmSearchResult>(
     endpoint: string,
     query: string,
     options: LlmSearchOptions = {},
-): Promise<LlmSearchResponse> => {
+): Promise<LlmSearchResponse<THit>> => {
     const { timeout = 30000 } = options;
 
     // Strip "?" from query (temp bugfix)
@@ -65,7 +71,13 @@ export const llmSearch = async <T = unknown>(
             throw new Error(`LLM search failed with status ${response.status}`);
         }
 
-        return await response.json();
+        const json: unknown = await response.json();
+        if (!isLlmSearchResponseShape(json)) {
+            throw new Error('LLM search returned unexpected payload');
+        }
+
+        // Trusted boundary: `THit` is chosen by the caller; we only validate the outer envelope here.
+        return { hits: json.hits as THit[] };
     } catch (err) {
         clearTimeout(timeoutId);
         if (err instanceof Error && err.name === 'AbortError') {

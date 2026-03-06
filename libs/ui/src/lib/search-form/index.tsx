@@ -1,14 +1,13 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, type FormEvent } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import { Button, Chip, Heading, Popover, Input, Checkbox, Dropdown, ToggleGroup, Tabs, Tag } from '@digdir/designsystemet-react';
+import { Input, Dropdown, Tabs } from '@digdir/designsystemet-react';
 import { HStack, VStack, CheckboxGroup } from '@fellesdatakatalog/ui';
-import { Box } from '@fdk-frontend/ui';
-import { FilterIcon, SortDownIcon, ChevronDownIcon, CheckmarkIcon } from '@navikt/aksel-icons';
+import { SortDownIcon, ChevronDownIcon, CheckmarkIcon } from '@navikt/aksel-icons';
 
+import Box from '../box';
 import SearchTabs, { type SearchTabsValue } from '../search-tabs';
-import SearchInput from '../search-input';
 import styles from './search-form.module.scss';
 
 const temaOptions = [
@@ -166,7 +165,7 @@ const SearchForm = ({
     const [searchType, setSearchType] = useState<SearchTabsValue>(defaultValue);
     const [query, setQuery] = useState(defaultQuery);
 
-    const isUrlDriven = lang != null;
+    const isUrlDriven = lang !== undefined;
 
     const buildSearchUrl = useCallback(
         (setValue: SearchTabsValue, q: string) => {
@@ -194,7 +193,7 @@ const SearchForm = ({
         [isUrlDriven, searchParams, defaultQuery, buildSearchUrl, router]
     );
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (isUrlDriven) {
             const q = query.trim() || (searchParams.get('q') ?? defaultQuery ?? '');
