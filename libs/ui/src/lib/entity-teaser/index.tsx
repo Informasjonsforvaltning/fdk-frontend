@@ -53,7 +53,7 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                             title={printLocaleValue(locale, entity.organization?.prefLabel)}
                         />
                         <Heading>
-                            <Link href={`/${locale}/datasets/${entity.id}`}>
+                            <Link href={`/${locale}/${setFragments[entity.searchType]}/${entity.id}`}>
                                 {printLocaleValue(locale, entity.title)}
                             </Link>
                         </Heading>
