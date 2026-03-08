@@ -10453,7 +10453,7 @@ __metadata:
     sass: "npm:^1.97.3"
     sass-loader: "npm:^16.0.7"
     slugify: "npm:^1.6.6"
-    storybook: "npm:10.2.15"
+    storybook: "npm:10.2.16"
     ts-jest: "npm:^29.4.6"
     ts-node: "npm:^10.9.2"
     tslib: "npm:^2.8.1"
@@ -18001,9 +18001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:10.2.15":
-  version: 10.2.15
-  resolution: "storybook@npm:10.2.15"
+"storybook@npm:10.2.16":
+  version: 10.2.16
+  resolution: "storybook@npm:10.2.16"
   dependencies:
     "@storybook/global": "npm:^5.0.0"
     "@storybook/icons": "npm:^2.0.1"
@@ -18024,7 +18024,7 @@ __metadata:
       optional: true
   bin:
     storybook: ./dist/bin/dispatcher.js
-  checksum: 10c0/eeab16bb284332c1a43865bf3ed77cf2a09cae096eabcd705dcb5333b5cb1b378dae2f028a2753f1edb65b4ea5bba9f3724a7682e74a46663e53fc1aed09eaa1
+  checksum: 10c0/2c2738a36f0bbe69ed8ba8fc90a439bcea397350f777b9dd8f15371b5a72042475f54b026b046623e28d71f70a709e3b066e39a7c4795fb75a7a594792d60921
   languageName: node
   linkType: hard
 
