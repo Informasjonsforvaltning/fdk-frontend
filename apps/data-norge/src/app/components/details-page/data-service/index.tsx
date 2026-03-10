@@ -4,7 +4,16 @@ import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { type DataService, type CommunityTopic } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import { Breadcrumbs, Markdown, Article, ScrollShadows, PlaceholderBox, OrgButton, TagList } from '@fdk-frontend/ui';
+import {
+    Breadcrumbs,
+    Markdown,
+    Article,
+    ScrollShadows,
+    PlaceholderBox,
+    OrgButton,
+    TagList,
+    noHeadings,
+} from '@fdk-frontend/ui';
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link, Card } from '@digdir/designsystemet-react';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
@@ -143,9 +152,12 @@ export default function DataServiceDetailsPage({
                                 {dictionaries.detailsPage.overview.description.title}
                             </Heading>
                             {resource.description ? (
-                                <Card>
+                                <Card className={styles.descriptionCard}>
                                     <Article>
-                                        <Markdown locale={locale}>
+                                        <Markdown
+                                            locale={locale}
+                                            allowedElements={noHeadings}
+                                        >
                                             {printLocaleValue(locale, resource.description)}
                                         </Markdown>
                                     </Article>
