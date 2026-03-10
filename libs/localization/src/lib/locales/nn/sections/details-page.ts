@@ -1,14 +1,17 @@
 const detailsPage = {
   breadcrumbs: {
     datasets: "Datasett",
+    dataServices: "Datatenester",
     services: "Tenester"
   },
   header: {
     namelessOrganization: "Namnlaus verksemd",
     namelessDataset: "Namnlaust datasett",
+    namelessDataService: "Namnlaus datateneste",
     namelessService: "Namnlaust teneste",
     useDatasetButton: "Bruk datasett",
     datasetsTagLink: "Datasett",
+    dataServicesTagLink: "Datatenester",
     servicesTagLink: "Tenester",
     published: "Publisert",
     requestAccessButton: "Be om tilgong",
