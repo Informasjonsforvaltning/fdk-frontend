@@ -73,14 +73,11 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     let orgLogo: string | null = null;
     let communityTopics: CommunityTopic[] = [];
 
-    // Fetch data service
     try {
         dataService = await getApi(params.id);
-        console.info('🚀 ~ DetailsPageWrapper ~ dataService:', dataService);
     } catch (err) {
         console.error(`Failed to get data service with ID ${params.id}`, JSON.stringify(err));
         notFound();
-        throw err;
     }
 
     // Redirect to canonical slug if needed
