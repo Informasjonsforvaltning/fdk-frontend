@@ -3,10 +3,11 @@ import { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Button, Alert, Paragraph } from '@digdir/designsystemet-react';
-import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { LogoLink } from '../logo';
 import MainMenu from '../main-menu';
+import SearchInput from '../search-input';
 import styles from './header.module.scss';
 
 export type HeaderProps = {
@@ -123,8 +124,10 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
                         className={styles.headerLogo}
                         href={`/${locale}`}
                     />
+                    <SearchInput className={styles.headerSearchInput} />
+                    {/* <div style={{flexGrow:1}} /> */}
                     <div className={styles.headerToolbar}>
-                        <Button
+                        {/* <Button
                             asChild
                             data-size='sm'
                             variant='tertiary'
@@ -134,7 +137,7 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
                                 <MagnifyingGlassIcon aria-hidden />
                                 <span>{dictionary.header.findDataButton}</span>
                             </Link>
-                        </Button>
+                        </Button> */}
                         <Button
                             data-size='sm'
                             variant={showMenu ? 'secondary' : 'tertiary'}
