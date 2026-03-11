@@ -75,7 +75,7 @@ const dataHunterPage = {
   searchInAllCatalogs: "Search in all catalogs",
   searchInCatalogs: "Search in catalogs",
   searchInConcepts: "Search in concepts",
-  searchInDataServices: "Search in dataservices",
+  searchInDataServices: "Search in APIs",
   searchInDatasets: "Search in datasets",
   searchInInformationModels: "Search in information models",
   searchOrganizations: "Search organizations",

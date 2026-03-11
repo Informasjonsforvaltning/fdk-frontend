@@ -17,6 +17,7 @@ import {
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link, Card } from '@digdir/designsystemet-react';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
+import DataServiceDetailsTab from './data-service-details-tab';
 import styles from '../details-page.module.scss';
 import headerStyles from '../dataset-header/dataset-header.module.scss';
 
@@ -167,7 +168,11 @@ export default function DataServiceDetailsPage({
                         className={styles.tabPanel}
                         value='details'
                     >
-                        <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                        <DataServiceDetailsTab
+                            resource={resource}
+                            locale={locale}
+                            dictionary={dictionaries.detailsPage}
+                        />
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}

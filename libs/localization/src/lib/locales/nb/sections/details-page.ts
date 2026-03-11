@@ -1,17 +1,17 @@
 const detailsPage = {
   breadcrumbs: {
     datasets: "Datasett",
-    dataServices: "Datatjenester",
+    dataServices: "API",
     services: "Tjenester"
   },
   header: {
     namelessOrganization: "Navnløs virksomhet",
     namelessDataset: "Navnløst datasett",
-    namelessDataService: "Navnløs datatjeneste",
+    namelessDataService: "Navnløst API",
     namelessService: "Navnløs tjeneste",
     useDatasetButton: "Bruk datasett",
     datasetsTagLink: "Datasett",
-    dataServicesTagLink: "Datatjenester",
+    dataServicesTagLink: "API",
     servicesTagLink: "Tjenester",
     published: "Publisert",
     requestAccessButton: "Be om tilgang",
@@ -116,6 +116,7 @@ const detailsPage = {
     general: {
       title: "Om datasettet",
       serviceTitle: "Om tjenesten",
+      dataServiceTitle: "Om API-et",
       publisher: "Utgiver",
       firstHarvested: "Publisert",
       firstHarvestedHelpText: "Denne datoen sier når datasettet ble høstet av data.norge.no. Det kan ha vært tilgjengelig tidligere andre steder.",
@@ -126,6 +127,16 @@ const detailsPage = {
       type: "Datasettype",
       landingPage: "Landingsside",
       homepage: "Hjemmeside",
+      endpointURL: "Endepunkt-URL",
+      endpointDescription: "Endepunktbeskrivelse",
+      format: "Format",
+      servesDataset: "Tilhørende datasett",
+      openAccess: "Åpen tilgang",
+      openLicense: "Åpen lisens",
+      free: "Gratis",
+      nationalComponent: "Nasjonal komponent",
+      yes: "Ja",
+      no: "Nei",
       metadataQuality: {
         title: "Metadatakvalitet",
         helpText: "Metadatakvalitet er en indikator på hvor godt datasettene er beskrevet ved hjelp avmetadata.",

@@ -1,17 +1,17 @@
 const detailsPage = {
   breadcrumbs: {
     datasets: "Datasett",
-    dataServices: "Datatenester",
+    dataServices: "API",
     services: "Tenester"
   },
   header: {
     namelessOrganization: "Namnlaus verksemd",
     namelessDataset: "Namnlaust datasett",
-    namelessDataService: "Namnlaus datateneste",
+    namelessDataService: "Namnlaust API",
     namelessService: "Namnlaust teneste",
     useDatasetButton: "Bruk datasett",
     datasetsTagLink: "Datasett",
-    dataServicesTagLink: "Datatenester",
+    dataServicesTagLink: "API",
     servicesTagLink: "Tenester",
     published: "Publisert",
     requestAccessButton: "Be om tilgong",
@@ -116,6 +116,7 @@ const detailsPage = {
     general: {
       title: "Om datasettet",
       serviceTitle: "Om tenesta",
+      dataServiceTitle: "Om API-et",
       publisher: "Utgjevar",
       firstHarvested: "Publisert",
       firstHarvestedHelpText: "Denne datoen viser når datasettet vart henta inn av data.norge.no. Det kan ha vore tilgjengeleg tidlegare andre stader.",
@@ -126,6 +127,16 @@ const detailsPage = {
       type: "Datasettype",
       landingPage: "Landingsside",
       homepage: "Hjemmeside",
+      endpointURL: "Endepunkt-URL",
+      endpointDescription: "Endepunktskildring",
+      format: "Format",
+      servesDataset: "Tilhøyrande datasett",
+      openAccess: "Open tilgang",
+      openLicense: "Open lisens",
+      free: "Gratis",
+      nationalComponent: "Nasjonal komponent",
+      yes: "Ja",
+      no: "Nei",
       metadataQuality: {
         title: "Metadatakvalitet",
         helpText: "Metadatakvalitet er ein indikator på kor godt datasettene er beskrive ved hjelp av metadata.",
@@ -179,6 +190,9 @@ const detailsPage = {
     },
     concepts: {
       title: "Omgrep brukte i datasettet"
+    },
+    subject: {
+      title: "Omgrep brukte i tenesta"
     },
     related: {
       title: "Relasjonar til andre ressursar",
