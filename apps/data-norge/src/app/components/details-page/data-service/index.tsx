@@ -5,6 +5,7 @@ import { type Localization, type LocaleCodes } from '@fdk-frontend/localization'
 import { type DataService, type CommunityTopic } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
+    Badge,
     Breadcrumbs,
     Markdown,
     Article,
@@ -122,10 +123,7 @@ export default function DataServiceDetailsPage({
                                 onClick={() => updateUri('community')}
                             >
                                 {dictionaries.detailsPage.tabs.community}
-                                &nbsp;
-                                {communityTopics && communityTopics.length > 0 && (
-                                    <span>({communityTopics.length})</span>
-                                )}
+                                &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
                             </TabsTab>
                             <TabsTab
                                 value='rdf'
