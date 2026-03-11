@@ -129,10 +129,10 @@ test.describe('SEO Tests', () => {
             expect(content).toContain('<loc>https://data.norge.no/en/contact</loc>');
             expect(content).toContain('<loc>https://data.norge.no/nn/contact</loc>');
 
-            // Check for catalogs pages in all locales
-            expect(content).toContain('<loc>https://data.norge.no/nb/catalogs</loc>');
-            expect(content).toContain('<loc>https://data.norge.no/en/catalogs</loc>');
-            expect(content).toContain('<loc>https://data.norge.no/nn/catalogs</loc>');
+            // Check for docs/catalogs pages in all locales
+            expect(content).toContain('<loc>https://data.norge.no/nb/docs/catalogs</loc>');
+            expect(content).toContain('<loc>https://data.norge.no/en/docs/catalogs</loc>');
+            expect(content).toContain('<loc>https://data.norge.no/nn/docs/catalogs</loc>');
 
             // Check for docs pages in all locales
             expect(content).toContain('<loc>https://data.norge.no/nb/docs</loc>');
@@ -183,7 +183,7 @@ test.describe('SEO Tests', () => {
             const { content } = await fetchSitemap(page);
 
             // Test main content sections
-            const contentSections = ['about', 'contact', 'catalogs', 'docs', 'technical'];
+            const contentSections = ['about', 'contact', 'docs', 'technical'];
 
             for (const section of contentSections) {
                 ['nb', 'en', 'nn'].forEach((locale) => {
@@ -197,11 +197,12 @@ test.describe('SEO Tests', () => {
 
             // Test some key subpages that should exist
             const subpages = [
-                'catalogs/information-models',
-                'catalogs/concepts',
-                'catalogs/data-services',
-                'catalogs/datasets',
-                'catalogs/public-services-and-events',
+                'docs/catalogs',
+                'docs/catalogs/information-models',
+                'docs/catalogs/concepts',
+                'docs/catalogs/data-services',
+                'docs/catalogs/datasets',
+                'docs/catalogs/public-services-and-events',
                 'docs/community',
                 'docs/resources',
                 'docs/records-of-processing-activities',
@@ -253,7 +254,6 @@ test.describe('SEO Tests', () => {
 
             // Test priority values for different content types
             const priorityTests = [
-                { path: 'catalogs', expectedPriority: '0.8' },
                 { path: 'docs', expectedPriority: '0.7' },
                 { path: 'technical', expectedPriority: '0.6' },
                 { path: 'about', expectedPriority: '0.6' },
@@ -278,7 +278,7 @@ test.describe('SEO Tests', () => {
 
             // Test priority values for subpages (should be lower than main pages)
             const subpagePriorityTests = [
-                { path: 'catalogs/information-models', expectedPriority: '0.5' },
+                { path: 'docs/catalogs/information-models', expectedPriority: '0.4' },
                 { path: 'docs/community', expectedPriority: '0.5' },
                 { path: 'technical/architecture', expectedPriority: '0.5' },
                 { path: 'docs/finding-data/assisted-search', expectedPriority: '0.4' },
@@ -313,7 +313,7 @@ test.describe('SEO Tests', () => {
             const { content } = await fetchSitemap(page);
 
             // Test that content pages have weekly change frequency
-            const contentSections = ['about', 'contact', 'catalogs', 'docs', 'technical'];
+            const contentSections = ['about', 'contact', 'docs', 'technical'];
 
             for (const section of contentSections) {
                 const localeChecks = ['nb', 'en', 'nn'].map((locale) => {
@@ -332,7 +332,7 @@ test.describe('SEO Tests', () => {
             const { content } = await fetchSitemap(page);
 
             // Test that content pages have valid lastmod dates
-            const contentSections = ['about', 'contact', 'catalogs', 'docs', 'technical'];
+            const contentSections = ['about', 'contact', 'docs', 'technical'];
 
             for (const section of contentSections) {
                 const localeChecks = ['nb', 'en', 'nn'].map((locale) => {

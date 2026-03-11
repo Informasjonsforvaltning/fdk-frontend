@@ -130,7 +130,6 @@ const generateContentPages = async (baseUrl: string): Promise<MetadataRoute.Site
         const priorityMap: Record<string, number> = {
             about: 0.6,
             contact: 0.5,
-            catalogs: 0.8,
             docs: 0.7,
             technical: 0.6,
         };
