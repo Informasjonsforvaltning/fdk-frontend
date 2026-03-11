@@ -111,12 +111,6 @@ export default function DataServiceDetailsPage({
                                 {dictionaries.detailsPage.tabs.overview}
                             </TabsTab>
                             <TabsTab
-                                value='distributions'
-                                onClick={() => updateUri('distributions')}
-                            >
-                                {dictionaries.detailsPage.tabs.distributions}
-                            </TabsTab>
-                            <TabsTab
                                 value='details'
                                 onClick={() => updateUri('details')}
                             >
@@ -168,12 +162,6 @@ export default function DataServiceDetailsPage({
                                 </PlaceholderBox>
                             )}
                         </section>
-                    </TabsPanel>
-                    <TabsPanel
-                        className={styles.tabPanel}
-                        value='distributions'
-                    >
-                        <PlaceholderBox>{dictionaries.detailsPage.distributions.placeholder}</PlaceholderBox>
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
