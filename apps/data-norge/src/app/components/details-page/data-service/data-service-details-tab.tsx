@@ -284,37 +284,6 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                             </dd>
                         </>
                     )}
-                    {!resource.conformsTo?.length && !showEmptyRows ? null : (
-                        <>
-                            <dt>{dictionary.details.content.conformsTo}:</dt>
-                            <dd>
-                                {resource.conformsTo?.length ? (
-                                    <SmartList
-                                        items={resource.conformsTo}
-                                        renderItem={(item) =>
-                                            item.uri ? (
-                                                <ExternalLink
-                                                    href={item.uri}
-                                                    locale={locale}
-                                                    gateway
-                                                >
-                                                    {printLocaleValue(locale, item.prefLabel) || item.uri}
-                                                </ExternalLink>
-                                            ) : (
-                                                <span>
-                                                    {printLocaleValue(locale, item.prefLabel) || item.uri}
-                                                </span>
-                                            )
-                                        }
-                                    />
-                                ) : (
-                                    <PlaceholderText>
-                                        {dictionary.details.noData}
-                                    </PlaceholderText>
-                                )}
-                            </dd>
-                        </>
-                    )}
                     {!resource.servesDataset?.length && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.general.servesDataset}:</dt>
@@ -340,30 +309,6 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                             </dd>
                         </>
                     )}
-                    <dt>{dictionary.details.general.openAccess}:</dt>
-                    <dd>
-                        {resource.isOpenAccess
-                            ? dictionary.details.general.yes
-                            : dictionary.details.general.no}
-                    </dd>
-                    <dt>{dictionary.details.general.openLicense}:</dt>
-                    <dd>
-                        {resource.isOpenLicense
-                            ? dictionary.details.general.yes
-                            : dictionary.details.general.no}
-                    </dd>
-                    <dt>{dictionary.details.general.free}:</dt>
-                    <dd>
-                        {resource.isFree
-                            ? dictionary.details.general.yes
-                            : dictionary.details.general.no}
-                    </dd>
-                    <dt>{dictionary.details.general.nationalComponent}:</dt>
-                    <dd>
-                        {resource.nationalComponent
-                            ? dictionary.details.general.yes
-                            : dictionary.details.general.no}
-                    </dd>
                     <dt>URI:</dt>
                     <dd>
                         <Hstack>
