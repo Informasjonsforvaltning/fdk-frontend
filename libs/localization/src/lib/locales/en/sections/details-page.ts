@@ -130,7 +130,7 @@ const detailsPage = {
       endpointURL: "Endpoint URL",
       endpointDescription: "Endpoint description",
       format: "Format",
-      servesDataset: "Datasets served",
+      servesDataset: "Datasets served by this API",
       openAccess: "Open access",
       openLicense: "Open license",
       free: "Free of charge",
