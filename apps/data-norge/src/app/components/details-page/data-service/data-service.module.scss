@@ -1,0 +1,19 @@
+.details {
+    position: relative;
+
+    > section {
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+
+        > :global(.ds-heading) {
+            margin-bottom: 1em;
+        }
+    }
+
+    .toggleButton {
+        position: absolute;
+        top: -0.75rem;
+        right: 0;
+    }
+}

@@ -1,14 +1,17 @@
 const detailsPage = {
   breadcrumbs: {
     datasets: "Datasets",
+    dataServices: "APIs",
     services: "Services"
   },
   header: {
     namelessOrganization: "Nameless organization",
     namelessDataset: "Nameless dataset",
+    namelessDataService: "Nameless API",
     namelessService: "Nameless service",
     useDatasetButton: "Use dataset",
     datasetsTagLink: "Datasets",
+    dataServicesTagLink: "APIs",
     servicesTagLink: "Services",
     published: "Published",
     requestAccessButton: "Request access",
@@ -113,6 +116,7 @@ const detailsPage = {
     general: {
       title: "About this dataset",
       serviceTitle: "About this service",
+      dataServiceTitle: "About this API",
       publisher: "Publisher",
       firstHarvested: "Published",
       firstHarvestedHelpText: "This date indicates when the dataset was harvested by data.norge.no. It may have been available earlier elsewhere.",
@@ -123,6 +127,16 @@ const detailsPage = {
       type: "Dataset type",
       landingPage: "Landing page",
       homepage: "Homepage",
+      endpointURL: "Endpoint URL",
+      endpointDescription: "Endpoint description",
+      format: "Format",
+      servesDataset: "Datasets served by this API",
+      openAccess: "Open access",
+      openLicense: "Open license",
+      free: "Free of charge",
+      nationalComponent: "National component",
+      yes: "Yes",
+      no: "No",
       metadataQuality: {
         title: "Metadata Quality",
         helpText: "Metadata quality is an indicator of how well the datasets are described using metadata.",
@@ -176,6 +190,9 @@ const detailsPage = {
     },
     concepts: {
       title: "Concepts used in the dataset"
+    },
+    subject: {
+      title: "Concepts used in this service"
     },
     related: {
       title: "Relation to other resources",

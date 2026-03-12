@@ -94,6 +94,20 @@
     }
 }
 
+.descriptionCard {
+    &:global(.ds-card) {
+        cursor: default;
+    }
+
+    &:global(.ds-card):hover {
+        background: var(--dsc-card-background);
+    }
+
+    &:global(.ds-card):active {
+        background: var(--dsc-card-background);
+    }
+}
+
 .relatedTable {
     td,
     th {
