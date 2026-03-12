@@ -61,9 +61,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                             <Dlist key={index}>
                                 {!contactPoint.formattedName && !contactPoint.hasURL && !showEmptyRows ? null : (
                                     <>
-                                        <dt>
-                                            {dictionary.details.contactPoint.formattedName}:
-                                        </dt>
+                                        <dt>{dictionary.details.contactPoint.formattedName}:</dt>
                                         <dd>
                                             {contactPoint.hasURL ? (
                                                 <ExternalLink
@@ -77,9 +75,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                             ) : printLocaleValue(locale, contactPoint.formattedName) ? (
                                                 printLocaleValue(locale, contactPoint.formattedName)
                                             ) : (
-                                                <PlaceholderText>
-                                                    {dictionary.details.noData}
-                                                </PlaceholderText>
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                             )}
                                         </dd>
                                     </>
@@ -89,13 +85,9 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                         <dt>{dictionary.details.contactPoint.email}:</dt>
                                         <dd>
                                             {contactPoint.email ? (
-                                                <Link href={`mailto:${contactPoint.email}`}>
-                                                    {contactPoint.email}
-                                                </Link>
+                                                <Link href={`mailto:${contactPoint.email}`}>{contactPoint.email}</Link>
                                             ) : (
-                                                <PlaceholderText>
-                                                    {dictionary.details.noData}
-                                                </PlaceholderText>
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                             )}
                                         </dd>
                                     </>
@@ -105,9 +97,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                         <dt>{dictionary.details.contactPoint.telephone}:</dt>
                                         <dd>
                                             {contactPoint.hasTelephone || (
-                                                <PlaceholderText>
-                                                    {dictionary.details.noData}
-                                                </PlaceholderText>
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                             )}
                                         </dd>
                                     </>
@@ -141,26 +131,6 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                             )
                         )}
                     </dd>
-                    <dt>{dictionary.details.general.firstHarvested}:</dt>
-                    <dd>
-                        {resource.harvest?.firstHarvested ? (
-                            new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
-                                dateStyle: 'long',
-                            })
-                        ) : (
-                            <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                        )}
-                    </dd>
-                    <dt>{dictionary.details.general.modified}:</dt>
-                    <dd>
-                        {resource.harvest?.modified ? (
-                            new Date(resource.harvest.modified).toLocaleString(locale, {
-                                dateStyle: 'long',
-                            })
-                        ) : (
-                            <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                        )}
-                    </dd>
                     {!resource.endpointURL?.length && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.general.endpointURL}:</dt>
@@ -179,9 +149,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                         )}
                                     />
                                 ) : (
-                                    <PlaceholderText>
-                                        {dictionary.details.noData}
-                                    </PlaceholderText>
+                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
                             </dd>
                         </>
@@ -204,9 +172,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                         )}
                                     />
                                 ) : (
-                                    <PlaceholderText>
-                                        {dictionary.details.noData}
-                                    </PlaceholderText>
+                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
                             </dd>
                         </>
@@ -229,9 +195,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                         )}
                                     />
                                 ) : (
-                                    <PlaceholderText>
-                                        {dictionary.details.noData}
-                                    </PlaceholderText>
+                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
                             </dd>
                         </>
@@ -254,9 +218,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                         )}
                                     />
                                 ) : (
-                                    <PlaceholderText>
-                                        {dictionary.details.noData}
-                                    </PlaceholderText>
+                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
                             </dd>
                         </>
@@ -277,38 +239,31 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                         ))}
                                     </TagList>
                                 ) : (
-                                    <PlaceholderText>
-                                        {dictionary.details.noData}
-                                    </PlaceholderText>
+                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
                             </dd>
                         </>
                     )}
-                    {!resource.servesDataset?.length && !showEmptyRows ? null : (
-                        <>
-                            <dt>{dictionary.details.general.servesDataset}:</dt>
-                            <dd>
-                                {resource.servesDataset?.length ? (
-                                    <SmartList
-                                        items={resource.servesDataset}
-                                        renderItem={(datasetUri) => (
-                                            <ExternalLink
-                                                href={datasetUri}
-                                                locale={locale}
-                                                gateway
-                                            >
-                                                {datasetUri}
-                                            </ExternalLink>
-                                        )}
-                                    />
-                                ) : (
-                                    <PlaceholderText>
-                                        {dictionary.details.noData}
-                                    </PlaceholderText>
-                                )}
-                            </dd>
-                        </>
-                    )}
+                    <dt>{dictionary.details.general.firstHarvested}:</dt>
+                    <dd>
+                        {resource.harvest?.firstHarvested ? (
+                            new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
+                                dateStyle: 'long',
+                            })
+                        ) : (
+                            <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                        )}
+                    </dd>
+                    <dt>{dictionary.details.general.modified}:</dt>
+                    <dd>
+                        {resource.harvest?.modified ? (
+                            new Date(resource.harvest.modified).toLocaleString(locale, {
+                                dateStyle: 'long',
+                            })
+                        ) : (
+                            <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                        )}
+                    </dd>
                     <dt>URI:</dt>
                     <dd>
                         <Hstack>
@@ -322,6 +277,39 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                     </dd>
                 </Dlist>
             </section>
+
+            {!resource.servesDataset?.length && !showEmptyRows ? null : (
+                <section>
+                    <Heading
+                        level={2}
+                        data-size='xs'
+                    >
+                        {dictionary.details.general.servesDataset}
+                    </Heading>
+                    <Dlist>
+                        <dt>URI:</dt>
+                        <dd>
+                            {resource.servesDataset?.length ? (
+                                <SmartList
+                                    items={resource.servesDataset}
+                                    renderItem={(datasetUri) => (
+                                        <Hstack>
+                                            <InputWithCopyButton
+                                                value={datasetUri}
+                                                inputLabel='uri'
+                                                copyLabel={dictionary.details.general.copyButton[0]}
+                                                copiedLabel={dictionary.details.general.copyButton[1]}
+                                            />
+                                        </Hstack>
+                                    )}
+                                />
+                            ) : (
+                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                            )}
+                        </dd>
+                    </Dlist>
+                </section>
+            )}
         </div>
     );
 }
