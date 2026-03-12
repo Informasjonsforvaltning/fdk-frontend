@@ -7,18 +7,15 @@ import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     Badge,
     Breadcrumbs,
-    Markdown,
-    Article,
     ScrollShadows,
-    PlaceholderBox,
     OrgButton,
     TagList,
-    noHeadings,
 } from '@fdk-frontend/ui';
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link, Card } from '@digdir/designsystemet-react';
+import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link } from '@digdir/designsystemet-react';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
 import DataServiceDetailsTab from './data-service-details-tab';
+import DataServiceOverviewTab from './data-service-overview-tab';
 import styles from '../details-page.module.scss';
 import headerStyles from '../dataset-header/dataset-header.module.scss';
 
@@ -137,30 +134,11 @@ export default function DataServiceDetailsPage({
                         className={styles.tabPanel}
                         value='overview'
                     >
-                        <section className={styles.section}>
-                            <Heading
-                                level={2}
-                                data-size='xs'
-                            >
-                                {dictionaries.detailsPage.overview.description.title}
-                            </Heading>
-                            {resource.description ? (
-                                <Card className={styles.descriptionCard}>
-                                    <Article>
-                                        <Markdown
-                                            locale={locale}
-                                            allowedElements={noHeadings}
-                                        >
-                                            {printLocaleValue(locale, resource.description)}
-                                        </Markdown>
-                                    </Article>
-                                </Card>
-                            ) : (
-                                <PlaceholderBox>
-                                    {dictionaries.detailsPage.overview.description.placeholder}
-                                </PlaceholderBox>
-                            )}
-                        </section>
+                        <DataServiceOverviewTab
+                            resource={resource}
+                            locale={locale}
+                            dictionary={dictionaries.detailsPage}
+                        />
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
