@@ -164,6 +164,12 @@ const detailsPage = {
             email: 'E-post',
             telephone: 'Telefon',
         },
+        costs: {
+            title: 'Gebyr',
+            value: 'Beløp',
+            description: 'Skildring',
+            documentation: 'Dokumentasjon',
+        },
         content: {
             title: 'Om dataane',
             language: 'Språk',

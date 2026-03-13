@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService } from '@fellesdatakatalog/types';
+import { type DataService, type TextLanguage } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     PlaceholderText,
@@ -18,8 +18,23 @@ import { Heading, Tag, Link, Button } from '@digdir/designsystemet-react';
 import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
 import styles from './data-service.module.scss';
 
+type Cost = {
+    currency?: {
+        code?: string | null;
+        prefLabel?: Partial<TextLanguage> | null;
+        uri?: string;
+    };
+    description?: Partial<TextLanguage>;
+    documentation?: string[];
+    hasValue?: string;
+};
+
+type DataServiceWithCosts = DataService & {
+    costs?: Cost[];
+};
+
 type DataServiceDetailsTabProps = {
-    resource: DataService;
+    resource: DataServiceWithCosts;
     locale: LocaleCodes;
     dictionary: Localization;
 };
@@ -294,6 +309,70 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                     </dd>
                 </Dlist>
             </section>
+
+            {!resource.costs?.length && !showEmptyRows ? null : (
+                <section>
+                    <Heading
+                        level={2}
+                        data-size='xs'
+                    >
+                        {dictionary.details.costs.title}
+                    </Heading>
+                    {resource.costs && resource.costs.length > 0 ? (
+                        resource.costs.map((cost, index) => (
+                            <Dlist key={index}>
+                                {!cost.hasValue && !showEmptyRows ? null : (
+                                    <>
+                                        <dt>{dictionary.details.costs.value}:</dt>
+                                        <dd>
+                                            {cost.hasValue ? (
+                                                `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split('/').pop() || ''}`
+                                            ) : (
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                            )}
+                                        </dd>
+                                    </>
+                                )}
+                                {!printLocaleValue(locale, cost.description) && !showEmptyRows ? null : (
+                                    <>
+                                        <dt>{dictionary.details.costs.description}:</dt>
+                                        <dd>
+                                            {printLocaleValue(locale, cost.description) || (
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                            )}
+                                        </dd>
+                                    </>
+                                )}
+                                {!cost.documentation?.length && !showEmptyRows ? null : (
+                                    <>
+                                        <dt>{dictionary.details.costs.documentation}:</dt>
+                                        <dd>
+                                            {cost.documentation?.length ? (
+                                                <SmartList
+                                                    items={cost.documentation}
+                                                    renderItem={(url) => (
+                                                        <ExternalLink
+                                                            href={url}
+                                                            locale={locale}
+                                                            gateway
+                                                        >
+                                                            {url}
+                                                        </ExternalLink>
+                                                    )}
+                                                />
+                                            ) : (
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                            )}
+                                        </dd>
+                                    </>
+                                )}
+                            </Dlist>
+                        ))
+                    ) : (
+                        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                    )}
+                </section>
+            )}
 
             {!resource.servesDataset?.length && !showEmptyRows ? null : (
                 <section>
