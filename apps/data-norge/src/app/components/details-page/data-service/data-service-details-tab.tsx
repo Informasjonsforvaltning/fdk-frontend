@@ -261,6 +261,29 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                             </dd>
                         </>
                     )}
+                    {!resource.keyword?.length && !showEmptyRows ? null : (
+                        <>
+                            <dt>{dictionary.details.general.keyword}:</dt>
+                            <dd>
+                                {resource.keyword?.filter((keyword) => keyword[locale]).length ? (
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                        {resource.keyword
+                                            .filter((keyword) => keyword[locale])
+                                            .map((keyword, i) => (
+                                                <Tag
+                                                    key={`keyword-${i}`}
+                                                    data-size='sm'
+                                                >
+                                                    {keyword[locale]}
+                                                </Tag>
+                                            ))}
+                                    </div>
+                                ) : (
+                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                )}
+                            </dd>
+                        </>
+                    )}
                     <dt>{dictionary.details.general.firstHarvested}:</dt>
                     <dd>
                         {resource.harvest?.firstHarvested ? (

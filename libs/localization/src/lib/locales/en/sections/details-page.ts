@@ -131,6 +131,7 @@ const detailsPage = {
       endpointDescription: "Endpoint description",
       format: "Format",
       version: "Version",
+      keyword: "Keywords",
       servesDataset: "Datasets served by this API",
       openAccess: "Open access",
       openLicense: "Open license",
