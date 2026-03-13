@@ -56,6 +56,8 @@ export { default as DynamicBreadcrumbs } from './lib/dynamic-breadcrumbs';
 export * from './lib/dynamic-breadcrumbs';
 export { default as EntityTeaser } from './lib/entity-teaser';
 export * from './lib/entity-teaser';
+export { default as DocsTeaser } from './lib/docs-teaser';
+export * from './lib/docs-teaser';
 export { default as ExpandableContent } from './lib/expandable-content';
 export * from './lib/expandable-content';
 export { default as ExternalLink } from './lib/external-link';
