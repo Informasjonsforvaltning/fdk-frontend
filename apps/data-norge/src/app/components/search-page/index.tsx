@@ -1,5 +1,5 @@
 import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
-import { AiPromoSplash, Breadcrumbs, EntityTeaser, SearchForm } from '@fdk-frontend/ui';
+import { AiPromoSplash, Breadcrumbs, DocsTeaser, EntityTeaser, SearchForm } from '@fdk-frontend/ui';
 import { type SearchObject } from '@fellesdatakatalog/types';
 import { HStack } from '@fellesdatakatalog/ui';
 import { Alert, Heading, Switch } from '@digdir/designsystemet-react';
@@ -17,12 +17,22 @@ import styles from './search-page.module.scss';
 /** Client-safe shape for entity search results (no server-only import). */
 export type SearchResultsProp = { hits?: SearchObject[]; [key: string]: unknown };
 
+export type DocsSearchResult = {
+  id: string;
+  title: string;
+  summary: string;
+  url: string;
+  locale: LocaleCodes;
+  updated?: string;
+};
+
 export type SearchPageProps = {
   lang: LocaleCodes;
   query?: string;
   currentSet?: SearchSetSegment;
   llmResults?: LlmSearchResponse;
   searchResults?: SearchResultsProp;
+  docsResults?: DocsSearchResult[];
   /** When set (e.g. from summary totalElements), used instead of getBadgeCounts(hits, llm). */
   badgeCountsOverride?: Record<string, number>;
   /** When true, results area shows simple "loading" text (client-side fetch in progress). */
@@ -107,6 +117,7 @@ const SearchPage = ({
   currentSet,
   llmResults,
   searchResults,
+  docsResults,
   badgeCountsOverride,
   loading = false,
 }: SearchPageProps) => {
@@ -258,7 +269,24 @@ const SearchPage = ({
               <Heading data-size="sm" className={styles.sectionHeading}>
                 Dokumentasjon
               </Heading>
-              <p>Dokumentasjonssøk kommer snart.</p>
+              {docsResults && docsResults.length > 0 ? (
+                <ul className="fdk-box-list">
+                  {docsResults.map((doc) => (
+                    <li key={doc.id}>
+                      <DocsTeaser
+                        locale={lang}
+                        title={doc.title}
+                        desc={doc.summary}
+                        href={doc.url}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              ) : query ? (
+                <Alert>Ingen treff i dokumentasjon</Alert>
+              ) : (
+                <Alert>Ingen dokumentasjon funnet.</Alert>
+              )}
             </div>
           )}
         </div>

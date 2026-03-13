@@ -14,9 +14,10 @@ export type DocsTeaserProps = {
     locale: LocaleCodes;
     title?: string;
     desc?: string;
+    href?: string;
 };
 
-const DocsTeaser = ({ className, locale, title, desc, ...rest }: DocsTeaserProps & Partial<CardProps>) => {
+const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTeaserProps & Partial<CardProps>) => {
     const localization = getLocalization(locale).common;
     return (
         <Card
@@ -28,7 +29,7 @@ const DocsTeaser = ({ className, locale, title, desc, ...rest }: DocsTeaserProps
                     title ?
                     <div>
                         <Heading>
-                            <Link href={`/${locale}/docs`}>
+                            <Link href={href ?? `/${locale}/docs`}>
                                 {title}
                             </Link>
                         </Heading>

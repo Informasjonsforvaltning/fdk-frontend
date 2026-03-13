@@ -10,7 +10,11 @@ import {
   KI_TOGGLE_VALUE,
   type SearchSetSegment,
 } from '../../[lang]/search/search-set-config';
-import SearchPage, { type SearchPageProps, type SearchResultsProp } from './index';
+import SearchPage, {
+  type DocsSearchResult,
+  type SearchPageProps,
+  type SearchResultsProp,
+} from './index';
 
 const deriveLangFromPathname = function (pathname: string): LocaleCodes {
   const segment = pathname.split('/').filter(Boolean)[0];
@@ -138,6 +142,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
 
   const [llmResults, setLlmResults] = useState<LlmSearchResponse | undefined>(undefined);
   const [searchResults, setSearchResults] = useState<SearchResultsProp | undefined>(undefined);
+  const [docsResults, setDocsResults] = useState<DocsSearchResult[] | undefined>(undefined);
   const [badgeCountsOverride, setBadgeCountsOverride] = useState<Record<string, number> | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -148,6 +153,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     if (!q) {
       setLlmResults(undefined);
       setBadgeCountsOverride(undefined);
+      setDocsResults(undefined);
       setLoading(true);
       fetch('/api/search/summary', {
         method: 'POST',
@@ -177,18 +183,38 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     }
 
     setBadgeCountsOverride(undefined);
+    setDocsResults(undefined);
     setLoading(true);
-    fetchSearchData(q)
-      .then(({ llmResults: llm, searchResults: entities }) => {
+    const localeForDocs = (lang ?? langFromUrl) as LocaleCodes;
+    Promise.all([
+      fetchSearchData(q),
+      fetch(
+        `/api/docs-search?q=${encodeURIComponent(q)}&lang=${encodeURIComponent(localeForDocs)}`,
+        {
+          method: 'GET',
+        },
+      ).then(async (res) => {
+        if (!res.ok) return [] as DocsSearchResult[];
+        try {
+          const json = (await res.json()) as { results?: DocsSearchResult[] };
+          return json.results ?? [];
+        } catch {
+          return [] as DocsSearchResult[];
+        }
+      }),
+    ])
+      .then(([{ llmResults: llm, searchResults: entities }, docs]) => {
         if (!cancelled) {
           setLlmResults(llm);
           setSearchResults(entities);
+          setDocsResults(docs);
         }
       })
       .catch(() => {
         if (!cancelled) {
           setLlmResults(undefined);
           setSearchResults(undefined);
+          setDocsResults(undefined);
         }
       })
       .finally(() => {
@@ -209,6 +235,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
         currentSet={currentSet}
         llmResults={undefined}
         searchResults={undefined}
+        docsResults={undefined}
         badgeCountsOverride={undefined}
         loading
       />
@@ -222,6 +249,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       currentSet={currentSet}
       llmResults={llmResults}
       searchResults={searchResults}
+      docsResults={docsResults}
       badgeCountsOverride={badgeCountsOverride}
     />
   );
