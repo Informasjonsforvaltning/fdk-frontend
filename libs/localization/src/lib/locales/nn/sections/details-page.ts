@@ -134,6 +134,7 @@ const detailsPage = {
             endpointURL: 'Endepunkt-URL',
             endpointDescription: 'Endepunktskildring',
             format: 'Format',
+            version: 'Versjon',
             servesDataset: 'Datasett som dette API-et tilgjengeleggjer',
             openAccess: 'Open tilgang',
             openLicense: 'Open lisens',

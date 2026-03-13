@@ -50,7 +50,7 @@ export default function DataServiceOverviewTab({ resource, locale, dictionary }:
                     >
                         Ta i bruk API-et
                     </Heading>
-                    <Dlist>
+                    <Dlist className={styles.dlistWhiteBg}>
                         {hasEndpointURL && (
                             <>
                                 <dt>{dictionary.details.general.endpointURL}:</dt>

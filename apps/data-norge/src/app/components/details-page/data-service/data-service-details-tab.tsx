@@ -184,6 +184,16 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                             </dd>
                         </>
                     )}
+                    {!resource.version && !showEmptyRows ? null : (
+                        <>
+                            <dt>{dictionary.details.general.version}:</dt>
+                            <dd>
+                                {resource.version || (
+                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                )}
+                            </dd>
+                        </>
+                    )}
                     {!resource.landingPage?.length && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.general.landingPage}:</dt>
