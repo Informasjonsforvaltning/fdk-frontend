@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type TextLanguage } from '@fellesdatakatalog/types';
+import { type DataService } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     PlaceholderText,
@@ -18,23 +18,8 @@ import { Heading, Tag, Link, Button } from '@digdir/designsystemet-react';
 import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
 import styles from './data-service.module.scss';
 
-type Cost = {
-    currency?: {
-        code?: string | null;
-        prefLabel?: Partial<TextLanguage> | null;
-        uri?: string;
-    };
-    description?: Partial<TextLanguage>;
-    documentation?: string[];
-    hasValue?: string;
-};
-
-type DataServiceWithCosts = DataService & {
-    costs?: Cost[];
-};
-
 type DataServiceDetailsTabProps = {
-    resource: DataServiceWithCosts;
+    resource: DataService;
     locale: LocaleCodes;
     dictionary: Localization;
 };
