@@ -59,9 +59,19 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                     {resource.contactPoint && resource.contactPoint.length > 0 ? (
                         resource.contactPoint.map((contactPoint, index) => (
                             <Dlist key={index}>
-                                {!contactPoint.formattedName && !contactPoint.hasURL && !showEmptyRows ? null : (
+                                {!contactPoint.formattedName && !showEmptyRows ? null : (
                                     <>
                                         <dt>{dictionary.details.contactPoint.formattedName}:</dt>
+                                        <dd>
+                                            {printLocaleValue(locale, contactPoint.formattedName) || (
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                            )}
+                                        </dd>
+                                    </>
+                                )}
+                                {!contactPoint.hasURL && !showEmptyRows ? null : (
+                                    <>
+                                        <dt>{dictionary.details.contactPoint.uri}:</dt>
                                         <dd>
                                             {contactPoint.hasURL ? (
                                                 <ExternalLink
@@ -69,11 +79,8 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                                                     locale={locale}
                                                     gateway
                                                 >
-                                                    {printLocaleValue(locale, contactPoint.formattedName) ||
-                                                        contactPoint.hasURL}
+                                                    {contactPoint.hasURL}
                                                 </ExternalLink>
-                                            ) : printLocaleValue(locale, contactPoint.formattedName) ? (
-                                                printLocaleValue(locale, contactPoint.formattedName)
                                             ) : (
                                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                             )}
