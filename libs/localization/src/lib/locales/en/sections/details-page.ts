@@ -162,6 +162,12 @@ const detailsPage = {
       email: "Email",
       telephone: "Telephone"
     },
+    costs: {
+      title: "Fees",
+      value: "Amount",
+      description: "Description",
+      documentation: "Documentation"
+    },
     content: {
       title: "About the data",
       language: "Language",
