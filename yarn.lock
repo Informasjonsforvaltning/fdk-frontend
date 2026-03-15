@@ -10064,14 +10064,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-playwright@npm:^2.9.0":
-  version: 2.9.0
-  resolution: "eslint-plugin-playwright@npm:2.9.0"
+"eslint-plugin-playwright@npm:^2.10.0":
+  version: 2.10.0
+  resolution: "eslint-plugin-playwright@npm:2.10.0"
   dependencies:
     globals: "npm:^17.3.0"
   peerDependencies:
     eslint: ">=8.40.0"
-  checksum: 10c0/8f5528547c7d731b9ff4afad7a8b98ede86d93342842be9f06a5428358180c17f7b7624e4dcaae331f211345bcecf9f3cc48f8a995549f30dfd633b8300e5a08
+  checksum: 10c0/ca68b0587b99a5f4021c5df2138ec4a71dc5205e9f4b01a9d961ee5b6c4f2e4c398a5fc22b5d9efaed547a021292950a78e723696cd9f5b4ef004a7521c621cd
   languageName: node
   linkType: hard
 
@@ -10665,7 +10665,7 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-import: "npm:^2.32.0"
     eslint-plugin-jsx-a11y: "npm:^6.10.2"
-    eslint-plugin-playwright: "npm:^2.9.0"
+    eslint-plugin-playwright: "npm:^2.10.0"
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-storybook: "npm:10.2.17"
     framer-motion: "npm:^12.29.2"
