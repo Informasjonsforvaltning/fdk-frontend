@@ -391,27 +391,22 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                     >
                         {dictionary.details.general.servesDataset}
                     </Heading>
-                    <Dlist>
-                        <dt>{dictionary.details.general.servesDataset}:</dt>
-                        <dd>
-                            {resource.servesDataset?.length ? (
-                                <SmartList
-                                    items={resource.servesDataset}
-                                    renderItem={(datasetUri) => {
-                                        const resolvedDataset = resolvedDatasets.find(
-                                            (dataset) => dataset.uri === datasetUri,
-                                        );
+                    {resource.servesDataset && resource.servesDataset.length > 0 ? (
+                        resource.servesDataset.map((datasetUri, index) => {
+                            const resolvedDataset = resolvedDatasets.find(
+                                (dataset) => dataset.uri === datasetUri,
+                            );
 
-                                        if (resolvedDataset) {
-                                            return (
-                                                <Link href={`/datasets/${resolvedDataset.id}`}>
-                                                    {printLocaleValue(locale, resolvedDataset.title) ||
-                                                        resolvedDataset.uri}
-                                                </Link>
-                                            );
-                                        }
-
-                                        return (
+                            return (
+                                <Dlist key={index}>
+                                    <dt>{dictionary.details.general.servesDatasetLabel}:</dt>
+                                    <dd>
+                                        {resolvedDataset ? (
+                                            <Link href={`/datasets/${resolvedDataset.id}`}>
+                                                {printLocaleValue(locale, resolvedDataset.title) ||
+                                                    resolvedDataset.uri}
+                                            </Link>
+                                        ) : (
                                             <ExternalLink
                                                 href={datasetUri}
                                                 locale={locale}
@@ -419,14 +414,14 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                                             >
                                                 {datasetUri}
                                             </ExternalLink>
-                                        );
-                                    }}
-                                />
-                            ) : (
-                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                            )}
-                        </dd>
-                    </Dlist>
+                                        )}
+                                    </dd>
+                                </Dlist>
+                            );
+                        })
+                    ) : (
+                        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                    )}
                 </section>
             )}
         </div>
