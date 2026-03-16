@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type CommunityTopic } from '@fellesdatakatalog/types';
+import { type DataService, type CommunityTopic, type SearchObject } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     Badge,
@@ -27,6 +27,7 @@ export type DataServiceDetailsPageType = {
     defaultActiveTab?: string;
     orgLogo?: string | null;
     locale: LocaleCodes;
+    resolvedDatasets?: SearchObject[];
     dictionaries: {
         common: Localization;
         detailsPage: Localization;
@@ -41,6 +42,7 @@ export default function DataServiceDetailsPage({
     orgLogo,
     defaultActiveTab = 'overview',
     locale,
+    resolvedDatasets,
     dictionaries,
 }: DataServiceDetailsPageType) {
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
@@ -148,6 +150,7 @@ export default function DataServiceDetailsPage({
                             resource={resource}
                             locale={locale}
                             dictionary={dictionaries.detailsPage}
+                            resolvedDatasets={resolvedDatasets}
                         />
                     </TabsPanel>
                     <TabsPanel

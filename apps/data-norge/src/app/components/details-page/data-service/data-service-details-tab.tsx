@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService } from '@fellesdatakatalog/types';
+import { type DataService, type SearchObject } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     PlaceholderText,
@@ -22,9 +22,10 @@ type DataServiceDetailsTabProps = {
     resource: DataService;
     locale: LocaleCodes;
     dictionary: Localization;
+    resolvedDatasets?: SearchObject[];
 };
 
-export default function DataServiceDetailsTab({ resource, locale, dictionary }: DataServiceDetailsTabProps) {
+export default function DataServiceDetailsTab({ resource, locale, dictionary, resolvedDatasets = [] }: DataServiceDetailsTabProps) {
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     return (
@@ -391,21 +392,35 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                         {dictionary.details.general.servesDataset}
                     </Heading>
                     <Dlist>
-                        <dt>URI:</dt>
+                        <dt>{dictionary.details.general.servesDataset}:</dt>
                         <dd>
                             {resource.servesDataset?.length ? (
                                 <SmartList
                                     items={resource.servesDataset}
-                                    renderItem={(datasetUri) => (
-                                        <Hstack>
-                                            <InputWithCopyButton
-                                                value={datasetUri}
-                                                inputLabel='uri'
-                                                copyLabel={dictionary.details.general.copyButton[0]}
-                                                copiedLabel={dictionary.details.general.copyButton[1]}
-                                            />
-                                        </Hstack>
-                                    )}
+                                    renderItem={(datasetUri) => {
+                                        const resolvedDataset = resolvedDatasets.find(
+                                            (dataset) => dataset.uri === datasetUri,
+                                        );
+
+                                        if (resolvedDataset) {
+                                            return (
+                                                <Link href={`/datasets/${resolvedDataset.id}`}>
+                                                    {printLocaleValue(locale, resolvedDataset.title) ||
+                                                        resolvedDataset.uri}
+                                                </Link>
+                                            );
+                                        }
+
+                                        return (
+                                            <ExternalLink
+                                                href={datasetUri}
+                                                locale={locale}
+                                                gateway
+                                            >
+                                                {datasetUri}
+                                            </ExternalLink>
+                                        );
+                                    }}
                                 />
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
