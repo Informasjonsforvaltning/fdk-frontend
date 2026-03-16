@@ -1,9 +1,9 @@
 import { notFound, redirect } from 'next/navigation';
 import { i18n, getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
-import { type DataService, type CommunityTopic } from '@fellesdatakatalog/types';
+import { type DataService, type CommunityTopic, type SearchObject } from '@fellesdatakatalog/types';
 import DataServiceDetailsPage from '../../../../components/details-page/data-service';
-import { getOrgLogo, getApi, getAllCommunityTopics } from '@fdk-frontend/data-access/server';
+import { getOrgLogo, getApi, getAllCommunityTopics, searchDatasets } from '@fdk-frontend/data-access/server';
 
 export type DetailsPageWrapperProps = {
     params: Promise<{
@@ -72,6 +72,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     let dataService: DataService;
     let orgLogo: string | null = null;
     let communityTopics: CommunityTopic[] = [];
+    let resolvedDatasets: SearchObject[] = [];
 
     try {
         dataService = await getApi(params.id);
@@ -91,19 +92,14 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         redirect(redirectUrl);
     }
 
-    // Fetch publisher logo
-    try {
-        orgLogo = await getOrgLogo(dataService.publisher?.id);
-    } catch {
-        // Do nothing
-    }
-
-    // Fetch community posts
-    try {
-        communityTopics = await getAllCommunityTopics(dataService.id);
-    } catch {
-        // Do nothing
-    }
+    // Fetch publisher logo, community topics, and resolved datasets
+    [orgLogo, communityTopics, resolvedDatasets] = await Promise.all([
+        getOrgLogo(dataService.publisher?.id).catch(() => null),
+        getAllCommunityTopics(dataService.id).catch((): CommunityTopic[] => []),
+        searchDatasets(dataService.servesDataset)
+            .then(({ hits = [] }) => hits)
+            .catch((): SearchObject[] => []),
+    ]);
 
     return (
         <DataServiceDetailsPage
@@ -115,6 +111,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             locale={locale}
             dictionaries={dictionaries}
             defaultActiveTab={activeTab}
+            resolvedDatasets={resolvedDatasets}
         />
     );
 };

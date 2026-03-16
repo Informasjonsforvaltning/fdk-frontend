@@ -133,6 +133,7 @@ const detailsPage = {
       version: "Version",
       keyword: "Keywords",
       servesDataset: "Datasets served by this API",
+      servesDatasetLabel: "Title",
       openAccess: "Open access",
       openLicense: "Open license",
       free: "Free of charge",

@@ -137,6 +137,7 @@ const detailsPage = {
             version: 'Versjon',
             keyword: 'Emneord',
             servesDataset: 'Datasett som dette API-et tilgjengeliggjør',
+            servesDatasetLabel: 'Tittel',
             openAccess: 'Åpen tilgang',
             openLicense: 'Åpen lisens',
             free: 'Gratis',
