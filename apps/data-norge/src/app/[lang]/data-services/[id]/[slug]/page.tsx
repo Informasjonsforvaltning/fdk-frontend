@@ -92,27 +92,14 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         redirect(redirectUrl);
     }
 
-    // Fetch publisher logo
-    try {
-        orgLogo = await getOrgLogo(dataService.publisher?.id);
-    } catch {
-        // Do nothing
-    }
-
-    // Fetch community posts
-    try {
-        communityTopics = await getAllCommunityTopics(dataService.id);
-    } catch {
-        // Do nothing
-    }
-
-    // Resolve servesDataset URIs to searchable datasets
-    try {
-        const { hits = [] } = await searchDatasets(dataService.servesDataset);
-        resolvedDatasets = hits;
-    } catch {
-        // Do nothing
-    }
+    // Fetch non-critical supplementary data in parallel (graceful degradation on failure)
+    [orgLogo, communityTopics, resolvedDatasets] = await Promise.all([
+        getOrgLogo(dataService.publisher?.id).catch(() => null),
+        getAllCommunityTopics(dataService.id).catch((): CommunityTopic[] => []),
+        searchDatasets(dataService.servesDataset)
+            .then(({ hits = [] }) => hits)
+            .catch((): SearchObject[] => []),
+    ]);
 
     return (
         <DataServiceDetailsPage
