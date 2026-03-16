@@ -92,7 +92,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         redirect(redirectUrl);
     }
 
-    // Fetch non-critical supplementary data in parallel (graceful degradation on failure)
+    // Fetch publisher logo, community topics, and resolved datasets
     [orgLogo, communityTopics, resolvedDatasets] = await Promise.all([
         getOrgLogo(dataService.publisher?.id).catch(() => null),
         getAllCommunityTopics(dataService.id).catch((): CommunityTopic[] => []),
