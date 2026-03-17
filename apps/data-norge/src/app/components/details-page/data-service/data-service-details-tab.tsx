@@ -13,6 +13,7 @@ import {
     InputWithCopyButton,
     SmartList,
     TagList,
+    LicenseBoxLink,
 } from '@fdk-frontend/ui';
 import { Heading, Tag, Link, Button } from '@digdir/designsystemet-react';
 import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
@@ -262,23 +263,24 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                             </dd>
                         </>
                     )}
-                    {!resource.keyword?.length && !showEmptyRows ? null : (
+                    {!resource.license?.length && !showEmptyRows ? null : (
                         <>
-                            <dt>{dictionary.details.general.keyword}:</dt>
+                            <dt>{dictionary.details.general.license}:</dt>
                             <dd>
-                                {resource.keyword?.filter((keyword) => keyword[locale]).length ? (
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                        {resource.keyword
-                                            .filter((keyword) => keyword[locale])
-                                            .map((keyword, i) => (
-                                                <Tag
-                                                    key={`keyword-${i}`}
-                                                    data-size='sm'
-                                                >
-                                                    {keyword[locale]}
-                                                </Tag>
-                                            ))}
-                                    </div>
+                                {resource.license?.length ? (
+                                    <SmartList
+                                        listType='ol'
+                                        items={resource.license}
+                                        renderItem={(license) => (
+                                            <LicenseBoxLink
+                                                uri={license.uri ?? ''}
+                                                openLicenseLabel={dictionary.details.general.openLicense}
+                                                locale={locale}
+                                            >
+                                                {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
+                                            </LicenseBoxLink>
+                                        )}
+                                    />
                                 ) : (
                                     <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
@@ -421,6 +423,33 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                         })
                     ) : (
                         <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                    )}
+                </section>
+            )}
+
+            {!resource.keyword?.length && !showEmptyRows ? null : (
+                <section>
+                    <Heading
+                        level={2}
+                        data-size='xs'
+                    >
+                        {dictionary.details.keywords}
+                    </Heading>
+                    {resource.keyword?.filter((keyword) => keyword[locale]).length ? (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                            {resource.keyword
+                                .filter((keyword) => keyword[locale])
+                                .map((keyword, i) => (
+                                    <Tag
+                                        key={`keyword-${i}`}
+                                        data-size='sm'
+                                    >
+                                        {keyword[locale]}
+                                    </Tag>
+                                ))}
+                        </div>
+                    ) : (
+                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                     )}
                 </section>
             )}
