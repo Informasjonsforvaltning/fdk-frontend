@@ -192,7 +192,7 @@ const DistributionDetails = ({
                             items={distribution.license}
                             renderItem={(license) => (
                                 <LicenseBoxLink
-                                    uri={license.uri}
+                                    uri={license.uri ?? ''}
                                     openLicenseLabel={dictionaries.detailsPage.distributions.header.openLicense}
                                     locale={locale}
                                 >

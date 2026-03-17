@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type SearchObject, type License } from '@fellesdatakatalog/types';
+import { type DataService, type SearchObject } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     PlaceholderText,
@@ -20,7 +20,7 @@ import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
 import styles from './data-service.module.scss';
 
 type DataServiceDetailsTabProps = {
-    resource: DataService & { license?: License };
+    resource: DataService;
     locale: LocaleCodes;
     dictionary: Localization;
     resolvedDatasets?: SearchObject[];
@@ -263,20 +263,24 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                             </dd>
                         </>
                     )}
-                    {!resource.license?.uri && !showEmptyRows ? null : (
+                    {!resource.license?.length && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.general.license}:</dt>
                             <dd>
-                                {resource.license?.uri ? (
-                                    <LicenseBoxLink
-                                        uri={resource.license.uri}
-                                        openLicenseLabel={dictionary.details.general.openLicense}
-                                        locale={locale}
-                                    >
-                                        {resource.license.prefLabel
-                                            ? printLocaleValue(locale, resource.license.prefLabel)
-                                            : resource.license.uri}
-                                    </LicenseBoxLink>
+                                {resource.license?.length ? (
+                                    <SmartList
+                                        listType='ol'
+                                        items={resource.license}
+                                        renderItem={(license) => (
+                                            <LicenseBoxLink
+                                                uri={license.uri ?? ''}
+                                                openLicenseLabel={dictionary.details.general.openLicense}
+                                                locale={locale}
+                                            >
+                                                {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
+                                            </LicenseBoxLink>
+                                        )}
+                                    />
                                 ) : (
                                     <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
