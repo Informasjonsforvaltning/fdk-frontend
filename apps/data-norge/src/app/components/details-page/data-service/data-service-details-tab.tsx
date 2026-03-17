@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type SearchObject } from '@fellesdatakatalog/types';
+import { type DataService, type SearchObject, type License } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     PlaceholderText,
@@ -13,13 +13,14 @@ import {
     InputWithCopyButton,
     SmartList,
     TagList,
+    LicenseBoxLink,
 } from '@fdk-frontend/ui';
 import { Heading, Tag, Link, Button } from '@digdir/designsystemet-react';
 import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
 import styles from './data-service.module.scss';
 
 type DataServiceDetailsTabProps = {
-    resource: DataService;
+    resource: DataService & { license?: License };
     locale: LocaleCodes;
     dictionary: Localization;
     resolvedDatasets?: SearchObject[];
@@ -262,23 +263,20 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                             </dd>
                         </>
                     )}
-                    {!resource.keyword?.length && !showEmptyRows ? null : (
+                    {!resource.license?.uri && !showEmptyRows ? null : (
                         <>
-                            <dt>{dictionary.details.general.keyword}:</dt>
+                            <dt>{dictionary.details.general.license}:</dt>
                             <dd>
-                                {resource.keyword?.filter((keyword) => keyword[locale]).length ? (
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                        {resource.keyword
-                                            .filter((keyword) => keyword[locale])
-                                            .map((keyword, i) => (
-                                                <Tag
-                                                    key={`keyword-${i}`}
-                                                    data-size='sm'
-                                                >
-                                                    {keyword[locale]}
-                                                </Tag>
-                                            ))}
-                                    </div>
+                                {resource.license?.uri ? (
+                                    <LicenseBoxLink
+                                        uri={resource.license.uri}
+                                        openLicenseLabel={dictionary.details.general.openLicense}
+                                        locale={locale}
+                                    >
+                                        {resource.license.prefLabel
+                                            ? printLocaleValue(locale, resource.license.prefLabel)
+                                            : resource.license.uri}
+                                    </LicenseBoxLink>
                                 ) : (
                                     <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
@@ -421,6 +419,33 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                         })
                     ) : (
                         <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                    )}
+                </section>
+            )}
+
+            {!resource.keyword?.length && !showEmptyRows ? null : (
+                <section>
+                    <Heading
+                        level={2}
+                        data-size='xs'
+                    >
+                        {dictionary.details.keywords}
+                    </Heading>
+                    {resource.keyword?.filter((keyword) => keyword[locale]).length ? (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                            {resource.keyword
+                                .filter((keyword) => keyword[locale])
+                                .map((keyword, i) => (
+                                    <Tag
+                                        key={`keyword-${i}`}
+                                        data-size='sm'
+                                    >
+                                        {keyword[locale]}
+                                    </Tag>
+                                ))}
+                        </div>
+                    ) : (
+                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                     )}
                 </section>
             )}

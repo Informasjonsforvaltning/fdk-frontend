@@ -135,7 +135,7 @@ const detailsPage = {
             endpointDescription: 'Endepunktskildring',
             format: 'Format',
             version: 'Versjon',
-            keyword: 'Emneord',
+            license: 'Lisens',
             servesDataset: 'Datasett som dette API-et tilgjengeleggjer',
             servesDatasetLabel: 'Tittel',
             openAccess: 'Open tilgang',

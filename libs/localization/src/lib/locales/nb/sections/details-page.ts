@@ -135,7 +135,7 @@ const detailsPage = {
             endpointDescription: 'Endepunktbeskrivelse',
             format: 'Format',
             version: 'Versjon',
-            keyword: 'Emneord',
+            license: 'Lisens',
             servesDataset: 'Datasett som dette API-et tilgjengeliggjør',
             servesDatasetLabel: 'Tittel',
             openAccess: 'Åpen tilgang',
@@ -252,7 +252,7 @@ const detailsPage = {
         themes: 'Tema',
         mobilityThemes: 'Mobility-tema',
         thematicArea: 'Temaområde',
-        keywords: 'Søkord',
+        keywords: 'Nøkkelord',
     },
     community: {
         title: 'Diskusjoner på Datalandsbyen',
