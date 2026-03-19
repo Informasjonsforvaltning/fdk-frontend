@@ -130,8 +130,13 @@ const SearchPage = ({
 
   const llmHitsCount = llmResults?.hits?.length ?? 0;
   const { mergedHits, llmOriginIds } = mergeSearchAndLlmHits(searchResults, llmResults);
-  const badgeCounts =
+  const baseBadgeCounts =
     badgeCountsOverride ?? getBadgeCounts(mergedHits, llmHitsCount);
+  const docsHitsCount = docsResults?.length ?? 0;
+  const badgeCounts = {
+    ...baseBadgeCounts,
+    docs: docsHitsCount,
+  };
 
   const showLlm = currentSet === undefined;
   const filteredHits =
@@ -267,7 +272,7 @@ const SearchPage = ({
           {!loading && currentSet === 'docs' && (
             <div className={styles.resultsSection}>
               <Heading data-size="sm" className={styles.sectionHeading}>
-                Dokumentasjon
+                {`Dokumentasjon${query ? ` (${docsHitsCount} treff)` : ''}`}
               </Heading>
               {docsResults && docsResults.length > 0 ? (
                 <ul className="fdk-box-list">
