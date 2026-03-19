@@ -1,14 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
-import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag, Skeleton, Tooltip } from '@digdir/designsystemet-react';
-import { TagList, HStack } from '@fellesdatakatalog/ui';
-import { AccessRightsCodes, EntityType, type SearchObject } from '@fellesdatakatalog/types';
-import AccessLevelTag from '../access-level-tag';
-import { OrgLogo } from '../org-logo';
-import { printLocaleValue } from '@fdk-frontend/utils';
+import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Skeleton } from '@digdir/designsystemet-react';
 import styles from './styles.module.scss';
 import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
-import { SparklesFillIcon } from '@navikt/aksel-icons';
 
 export type DocsTeaserProps = {
     locale: LocaleCodes;
@@ -18,7 +12,11 @@ export type DocsTeaserProps = {
 };
 
 const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTeaserProps & Partial<CardProps>) => {
-    const localization = getLocalization(locale).common;
+    const docsTitles = getLocalization(locale).docs?.titles;
+    const firstSegment = href?.split('/')[2];
+    const sectionTitle =
+        firstSegment && docsTitles ? docsTitles[`/${firstSegment}`] : undefined;
+
     return (
         <Card
             className={cn(styles.container, className)}
@@ -42,25 +40,6 @@ const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTease
                         />
                     </Heading>
                 }
-                {/*
-                    entity ?
-                    <TagList>
-                        <Tag
-                            data-color='neutral'
-                            data-size='sm'
-                        >
-                            <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
-                                {localization.entities[entity.searchType]}
-                            </Link>
-                        </Tag>
-                    </TagList> :
-                    <div style={{marginTop:'0.5rem',lineHeight:'1.75rem'}}>
-                        <Skeleton
-                            variant='text'
-                            width={300}
-                        />
-                    </div>
-                */}
                 {
                     desc ?
                     <Paragraph className={styles.description}>
@@ -77,6 +56,12 @@ const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTease
                             variant='text'
                             width={300}
                         />
+                    </div>
+                }
+                {
+                    href &&
+                    <div className={styles.orgName}>
+                        {sectionTitle ?? firstSegment}
                     </div>
                 }
             </CardBlock>
