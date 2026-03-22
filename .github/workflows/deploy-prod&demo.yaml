@@ -30,7 +30,7 @@ jobs:
                   git submodule foreach --recursive git checkout origin/main
 
             - name: Set SHAs
-              uses: nrwl/nx-set-shas@v4
+              uses: nrwl/nx-set-shas@v5
 
             - name: Enable corepack
               run: corepack enable
@@ -74,7 +74,7 @@ jobs:
                   git submodule foreach --recursive git checkout origin/main
 
             - name: Set SHAs
-              uses: nrwl/nx-set-shas@v4
+              uses: nrwl/nx-set-shas@v5
 
             - name: Enable corepack
               run: corepack enable
