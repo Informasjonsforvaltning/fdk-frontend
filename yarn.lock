@@ -3893,7 +3893,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/devkit@npm:22.6.0, @nx/devkit@npm:^22.6.0":
+"@nx/devkit@npm:22.6.0":
   version: 22.6.0
   resolution: "@nx/devkit@npm:22.6.0"
   dependencies:
@@ -3907,6 +3907,23 @@ __metadata:
   peerDependencies:
     nx: ">= 21 <= 23 || ^22.0.0-0"
   checksum: 10c0/0567f9d60a039bc59ecf5376c07d8b1c18296825cde6dcae8f411af0a458abc411d6d603efd28820b033721a7a1d3b45c8d1d951963e13c2f0b0c0774b5c828d
+  languageName: node
+  linkType: hard
+
+"@nx/devkit@npm:^22.6.1":
+  version: 22.6.1
+  resolution: "@nx/devkit@npm:22.6.1"
+  dependencies:
+    "@zkochan/js-yaml": "npm:0.0.7"
+    ejs: "npm:^3.1.7"
+    enquirer: "npm:~2.3.6"
+    minimatch: "npm:10.2.4"
+    semver: "npm:^7.6.3"
+    tslib: "npm:^2.3.0"
+    yargs-parser: "npm:21.1.1"
+  peerDependencies:
+    nx: ">= 21 <= 23 || ^22.0.0-0"
+  checksum: 10c0/f469beb58ebcdcd27db088a0dbd0dcf796796a349db61902eaa202a6e28f2c1dee51ac24cf44f180d162403974f1c1cd6497a05552dfd6ebea19ab4d396f8fe1
   languageName: node
   linkType: hard
 
@@ -10653,7 +10670,7 @@ __metadata:
     "@mdx-js/react": "npm:^3.1.1"
     "@navikt/aksel-icons": "npm:^7.40.0"
     "@next/mdx": "npm:16.2.0"
-    "@nx/devkit": "npm:^22.6.0"
+    "@nx/devkit": "npm:^22.6.1"
     "@nx/eslint": "npm:^22.6.0"
     "@nx/eslint-plugin": "npm:^22.6.0"
     "@nx/jest": "npm:^22.6.0"
