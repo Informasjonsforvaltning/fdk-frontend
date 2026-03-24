@@ -65,6 +65,9 @@ const detailsPage = {
             title: 'Beskrivelse',
             placeholder: 'Dette datasettet har ingen beskrivelse',
         },
+        servesDataset: {
+            title: 'Tilgjengeliggjør datasett',
+        },
     },
     distributions: {
         title: 'Distribusjoner',
@@ -141,8 +144,6 @@ const detailsPage = {
             format: 'Format',
             version: 'Versjon',
             license: 'Lisens',
-            servesDataset: 'Datasett som dette API-et tilgjengeliggjør',
-            servesDatasetLabel: 'Tittel',
             openAccess: 'Åpen tilgang',
             openLicense: 'Åpen lisens',
             free: 'Gratis',

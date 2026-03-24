@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type SearchObject } from '@fellesdatakatalog/types';
+import { type DataService } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
     PlaceholderText,
@@ -23,14 +23,12 @@ type DataServiceDetailsTabProps = {
     resource: DataService;
     locale: LocaleCodes;
     dictionary: Localization;
-    resolvedDatasets?: SearchObject[];
 };
 
 export default function DataServiceDetailsTab({
     resource,
     locale,
     dictionary,
-    resolvedDatasets = [],
 }: DataServiceDetailsTabProps) {
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
@@ -378,45 +376,6 @@ export default function DataServiceDetailsTab({
                                 )}
                             </Dlist>
                         ))
-                    ) : (
-                        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-                    )}
-                </section>
-            )}
-
-            {!resource.servesDataset?.length && !showEmptyRows ? null : (
-                <section>
-                    <Heading
-                        level={2}
-                        data-size='xs'
-                    >
-                        {dictionary.details.general.servesDataset}
-                    </Heading>
-                    {resource.servesDataset && resource.servesDataset.length > 0 ? (
-                        resource.servesDataset.map((datasetUri, index) => {
-                            const resolvedDataset = resolvedDatasets.find((dataset) => dataset.uri === datasetUri);
-
-                            return (
-                                <Dlist key={index}>
-                                    <dt>{dictionary.details.general.servesDatasetLabel}:</dt>
-                                    <dd>
-                                        {resolvedDataset ? (
-                                            <Link href={`/datasets/${resolvedDataset.id}`}>
-                                                {printLocaleValue(locale, resolvedDataset.title) || resolvedDataset.uri}
-                                            </Link>
-                                        ) : (
-                                            <ExternalLink
-                                                href={datasetUri}
-                                                locale={locale}
-                                                gateway
-                                            >
-                                                {datasetUri}
-                                            </ExternalLink>
-                                        )}
-                                    </dd>
-                                </Dlist>
-                            );
-                        })
                     ) : (
                         <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
                     )}

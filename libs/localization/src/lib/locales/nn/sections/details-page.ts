@@ -65,6 +65,9 @@ const detailsPage = {
             title: 'Skildring',
             placeholder: 'Dette datasettet har inga skildring',
         },
+        servesDataset: {
+            title: 'Tilgjengeleggjer datasett',
+        },
     },
     distributions: {
         title: 'Distribusjonar',
@@ -141,8 +144,6 @@ const detailsPage = {
             format: 'Format',
             version: 'Versjon',
             license: 'Lisens',
-            servesDataset: 'Datasett som dette API-et tilgjengeleggjer',
-            servesDatasetLabel: 'Tittel',
             openAccess: 'Open tilgang',
             openLicense: 'Open lisens',
             free: 'Gratis',

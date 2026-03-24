@@ -148,6 +148,7 @@ export default function DataServiceDetailsPage({
                             resource={resource}
                             locale={locale}
                             dictionary={dictionaries.detailsPage}
+                            resolvedDatasets={resolvedDatasets}
                         />
                     </TabsPanel>
                     <TabsPanel
@@ -158,7 +159,6 @@ export default function DataServiceDetailsPage({
                             resource={resource}
                             locale={locale}
                             dictionary={dictionaries.detailsPage}
-                            resolvedDatasets={resolvedDatasets}
                         />
                     </TabsPanel>
                     <TabsPanel
