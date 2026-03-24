@@ -58,13 +58,13 @@ const UseApiPopoverContent = ({
                             >
                                 {url}
                             </ExternalLink>
+                            {hasFormats && <ApiTags api={dataService} />}
                         </li>
                     ))}
                 </ul>
             ) : (
                 <PlaceholderBox>{dictionary.useApiPopover.noEndpoints}</PlaceholderBox>
             )}
-            {hasFormats && <ApiTags api={dataService} />}
         </div>
     );
 };

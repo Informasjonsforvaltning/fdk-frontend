@@ -1,3 +1,5 @@
+@use '../box/box.module' as box;
+
 .popover {
     padding: 0;
 }
@@ -8,6 +10,7 @@
     gap: 0.75rem;
     width: 400px;
     padding: 0.75rem;
+    box-sizing: border-box;
 
     @media (max-width: 400px) {
         width: auto;
@@ -24,6 +27,7 @@
 }
 
 .endpointItem {
+    @include box.grey-box-mixin();
     display: flex;
     flex-direction: column;
     gap: 0.125rem;
@@ -33,6 +37,10 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+
+    > ul {
+        margin-top: 0.25rem;
     }
 }
 
