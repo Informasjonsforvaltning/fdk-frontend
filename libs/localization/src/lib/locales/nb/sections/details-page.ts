@@ -10,6 +10,7 @@ const detailsPage = {
         namelessDataService: 'Navnløst API',
         namelessService: 'Navnløs tjeneste',
         useDatasetButton: 'Bruk datasett',
+        useApiButton: 'Bruk API',
         datasetsTagLink: 'Datasett',
         dataServicesTagLink: 'API',
         servicesTagLink: 'Tjenester',
@@ -20,6 +21,10 @@ const detailsPage = {
     useDatasetPopover: {
         distributions: 'Distribusjoner',
         apis: 'API-er',
+    },
+    useApiPopover: {
+        endpointLabel: 'Endepunkt',
+        noEndpoints: 'Ingen endepunkt registrert.',
     },
     resourceNotAvailableNotice: {
         title: 'Dette datasettet er enda ikke tilgjengelig',

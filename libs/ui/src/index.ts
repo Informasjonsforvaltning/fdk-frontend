@@ -102,6 +102,8 @@ export * from './lib/tag-list';
 export * from './lib/typography';
 export { default as UnavailableTag } from './lib/unavailable-tag';
 export * from './lib/unavailable-tag';
+export { default as UseApiPopover } from './lib/use-api-popover';
+export * from './lib/use-api-popover';
 export { default as UseDatasetPopover } from './lib/use-dataset-popover';
 export * from './lib/use-dataset-popover';
 export { default as VStack } from './lib/vstack';

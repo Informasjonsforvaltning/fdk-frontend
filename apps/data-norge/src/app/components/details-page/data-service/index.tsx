@@ -10,6 +10,7 @@ import {
     ScrollShadows,
     OrgButton,
     TagList,
+    UseApiPopover,
 } from '@fdk-frontend/ui';
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link } from '@digdir/designsystemet-react';
 import MetadataTab from '../metadata-tab';
@@ -85,6 +86,13 @@ export default function DataServiceDetailsPage({
                         {printLocaleValue(locale, resource.title) ||
                             dictionaries.detailsPage.header.namelessDataService}
                     </Heading>
+                    <div className={headerStyles.headerToolbar}>
+                        <UseApiPopover
+                            dataService={resource}
+                            dictionary={dictionaries.detailsPage}
+                            locale={locale}
+                        />
+                    </div>
                     <TagList className={headerStyles.headerTags}>
                         <Tag
                             data-color='info'

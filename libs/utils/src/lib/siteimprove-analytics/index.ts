@@ -10,6 +10,7 @@ export enum EventLabel {
     REQUEST_ACCESS_BUTTON = 'Request access button',
     SHOW_DATASET_PREVIEW_BUTTON = 'Show dataset preview button',
     USE_DATASET_BUTTON = 'Use dataset button',
+    USE_API_BUTTON = 'Use API button',
 }
 
 type SiteImproveEventProps = {
