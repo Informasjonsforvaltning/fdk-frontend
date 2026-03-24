@@ -2,17 +2,9 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type CommunityTopic, type SearchObject, type AccessRightsCodes } from '@fellesdatakatalog/types';
+import { type DataService, type CommunityTopic, type SearchObject } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import {
-    AccessLevelTag,
-    Badge,
-    Breadcrumbs,
-    ScrollShadows,
-    OrgButton,
-    TagList,
-    UseApiPopover,
-} from '@fdk-frontend/ui';
+import { AccessLevelTag, Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, UseApiPopover } from '@fdk-frontend/ui';
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link } from '@digdir/designsystemet-react';
 import MetadataTab from '../metadata-tab';
 import CommunityTab from '../community-tab';
