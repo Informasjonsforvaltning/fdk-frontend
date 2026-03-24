@@ -91,7 +91,11 @@ const buildUrlFromFile = (publicDir: string, filePath: string, locale: LocaleCod
   if (!rootContentDirectory) return undefined;
 
   const slugSegments = segments.slice(1);
-  if (pageName !== rootContentDirectory) {
+  const lastSlugSegment = slugSegments.at(-1);
+  if (
+    pageName !== rootContentDirectory &&
+    pageName !== lastSlugSegment
+  ) {
     slugSegments.push(pageName);
   }
 
