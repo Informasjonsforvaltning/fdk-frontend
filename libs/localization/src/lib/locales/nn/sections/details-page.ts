@@ -128,6 +128,7 @@ const detailsPage = {
             title: 'Om datasettet',
             serviceTitle: 'Om tenesta',
             dataServiceTitle: 'Om API-et',
+            endpointTitle: 'Endepunkt',
             publisher: 'Utgjevar',
             firstHarvested: 'Publisert',
             firstHarvestedHelpText:
