@@ -9,7 +9,7 @@ const NormalLayout = async ({ children, params }: PropsWithChildren & RootLayout
     const { FDK_COMMUNITY_BASE_URI: communityBaseUri } = process.env;
 
     return (
-        <HeaderLayout locale={lang}>
+        <HeaderLayout locale={lang} showSearchInput>
             <FooterLayout locale={lang}>
                 <main id='main'>
                     {children}
