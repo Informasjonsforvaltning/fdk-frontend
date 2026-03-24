@@ -41,7 +41,7 @@ const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTease
                     </Heading>
                 }
                 {
-                    desc ?
+                    href ?
                     <Paragraph className={styles.description}>
                         {
                             desc ?
