@@ -1998,12 +1998,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fellesdatakatalog/types@npm:^1.0.21":
-  version: 1.0.21
-  resolution: "@fellesdatakatalog/types@npm:1.0.21"
+"@fellesdatakatalog/types@npm:^1.0.22":
+  version: 1.0.22
+  resolution: "@fellesdatakatalog/types@npm:1.0.22"
   dependencies:
     typescript: "npm:^5.9.3"
-  checksum: 10c0/b6a25d786dffa9cecbb082ccda4693b2be60672d2a60223c38650bb6ad0151ca3d5cfb0ba39c0fb6d81a0cbdd4fed6f5e94ce56d2f3c30778c32c2d39c94f220
+  checksum: 10c0/d86752400b2bcfa699574436ac656d162ffbaa5b3a8f27822ea29e8b1184c499df1c571e8eef2713123e85f380526a4df89aa7cd9a22641a11916d82312697eb
   languageName: node
   linkType: hard
 
@@ -10667,7 +10667,7 @@ __metadata:
     "@digdir/designsystemet-react": "npm:^1.11.1"
     "@digdir/designsystemet-theme": "npm:^1.11.0"
     "@eslint/js": "npm:^9.39.2"
-    "@fellesdatakatalog/types": "npm:^1.0.21"
+    "@fellesdatakatalog/types": "npm:^1.0.22"
     "@fellesdatakatalog/ui": "npm:^1.0.19"
     "@mdx-js/loader": "npm:^3.1.1"
     "@mdx-js/react": "npm:^3.1.1"

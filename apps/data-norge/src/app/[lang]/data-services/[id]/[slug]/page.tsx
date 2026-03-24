@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import { i18n, getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
-import { type DataService, type CommunityTopic, type SearchObject } from '@fellesdatakatalog/types';
+import { type DataService, type CommunityTopic, type SearchObject, type AccessRightsCodes } from '@fellesdatakatalog/types';
 import DataServiceDetailsPage from '../../../../components/details-page/data-service';
 import { getOrgLogo, getApi, getAllCommunityTopics, searchDatasets } from '@fdk-frontend/data-access/server';
 

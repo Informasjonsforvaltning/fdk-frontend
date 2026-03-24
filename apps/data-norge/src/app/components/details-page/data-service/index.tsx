@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type CommunityTopic, type SearchObject } from '@fellesdatakatalog/types';
+import { type DataService, type CommunityTopic, type SearchObject, type AccessRightsCodes } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
 import {
+    AccessLevelTag,
     Badge,
     Breadcrumbs,
     ScrollShadows,
@@ -100,6 +101,11 @@ export default function DataServiceDetailsPage({
                         >
                             <Link href='/data-services'>{dictionaries.detailsPage.header.dataServicesTagLink}</Link>
                         </Tag>
+                        <AccessLevelTag
+                            accessCode={resource.accessRights?.code}
+                            locale={locale}
+                            data-size='md'
+                        />
                     </TagList>
                 </div>
                 <Tabs
