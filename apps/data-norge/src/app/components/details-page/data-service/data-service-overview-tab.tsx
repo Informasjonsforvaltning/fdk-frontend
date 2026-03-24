@@ -1,7 +1,7 @@
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService } from '@fellesdatakatalog/types';
+import { type DataService, type SearchObject } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import { Markdown, Article, PlaceholderBox, noHeadings, Dlist, SmartList, ExternalLink } from '@fdk-frontend/ui';
+import { Markdown, Article, PlaceholderBox, noHeadings, Dlist, SmartList, ExternalLink, ScrollShadows, DatasetTable } from '@fdk-frontend/ui';
 import { Heading, Card } from '@digdir/designsystemet-react';
 import styles from '../details-page.module.scss';
 
@@ -9,9 +9,10 @@ type DataServiceOverviewTabProps = {
     resource: DataService;
     locale: LocaleCodes;
     dictionary: Localization;
+    resolvedDatasets?: SearchObject[];
 };
 
-export default function DataServiceOverviewTab({ resource, locale, dictionary }: DataServiceOverviewTabProps) {
+export default function DataServiceOverviewTab({ resource, locale, dictionary, resolvedDatasets = [] }: DataServiceOverviewTabProps) {
     const hasEndpointURL = !!resource.endpointURL?.length;
     const hasEndpointDescription = !!resource.endpointDescription?.length;
     const hasEndpointData = hasEndpointURL || hasEndpointDescription;
@@ -90,6 +91,23 @@ export default function DataServiceOverviewTab({ resource, locale, dictionary }:
                             </>
                         )}
                     </Dlist>
+                </section>
+            )}
+            {resolvedDatasets.length > 0 && (
+                <section className={styles.section}>
+                    <Heading
+                        level={2}
+                        data-size='xs'
+                    >
+                        {dictionary.overview.servesDataset.title}
+                    </Heading>
+                    <ScrollShadows className={styles.tableScroller}>
+                        <DatasetTable
+                            datasets={resolvedDatasets}
+                            locale={locale}
+                            dictionary={dictionary}
+                        />
+                    </ScrollShadows>
                 </section>
             )}
         </>

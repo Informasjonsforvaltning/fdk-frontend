@@ -61,6 +61,9 @@ const detailsPage = {
     description: {
       title: "Description",
       placeholder: "This dataset has no description"
+    },
+    servesDataset: {
+      title: "Serves datasets"
     }
   },
   distributions: {
@@ -137,8 +140,6 @@ const detailsPage = {
       format: "Format",
       version: "Version",
       license: "License",
-      servesDataset: "Datasets served by this API",
-      servesDatasetLabel: "Title",
       openAccess: "Open access",
       openLicense: "Open license",
       free: "Free of charge",
