@@ -10,6 +10,7 @@ const detailsPage = {
     namelessDataService: "Nameless API",
     namelessService: "Nameless service",
     useDatasetButton: "Use dataset",
+    useApiButton: "Use API",
     datasetsTagLink: "Datasets",
     dataServicesTagLink: "APIs",
     servicesTagLink: "Services",
@@ -20,6 +21,10 @@ const detailsPage = {
   useDatasetPopover: {
     distributions: "Distributions",
     apis: "APIs"
+  },
+  useApiPopover: {
+    endpointLabel: "Endpoint",
+    noEndpoints: "No endpoints registered."
   },
   resourceNotAvailableNotice: {
     title: "This dataset is not yet available",
