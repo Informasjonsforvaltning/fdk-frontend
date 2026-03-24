@@ -26,7 +26,12 @@ type DataServiceDetailsTabProps = {
     resolvedDatasets?: SearchObject[];
 };
 
-export default function DataServiceDetailsTab({ resource, locale, dictionary, resolvedDatasets = [] }: DataServiceDetailsTabProps) {
+export default function DataServiceDetailsTab({
+    resource,
+    locale,
+    dictionary,
+    resolvedDatasets = [],
+}: DataServiceDetailsTabProps) {
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     return (
@@ -190,9 +195,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                         <>
                             <dt>{dictionary.details.general.version}:</dt>
                             <dd>
-                                {resource.version || (
-                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                )}
+                                {resource.version || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}
                             </dd>
                         </>
                     )}
@@ -263,24 +266,20 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                             </dd>
                         </>
                     )}
-                    {!resource.license?.length && !showEmptyRows ? null : (
+                    {!resource.license?.uri && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.general.license}:</dt>
                             <dd>
-                                {resource.license?.length ? (
-                                    <SmartList
-                                        listType='ol'
-                                        items={resource.license}
-                                        renderItem={(license) => (
-                                            <LicenseBoxLink
-                                                uri={license.uri ?? ''}
-                                                openLicenseLabel={dictionary.details.general.openLicense}
-                                                locale={locale}
-                                            >
-                                                {license.prefLabel ? printLocaleValue(locale, license.prefLabel) : license.uri}
-                                            </LicenseBoxLink>
-                                        )}
-                                    />
+                                {resource.license?.uri ? (
+                                    <LicenseBoxLink
+                                        uri={resource.license.uri}
+                                        openLicenseLabel={dictionary.details.general.openLicense}
+                                        locale={locale}
+                                    >
+                                        {resource.license.prefLabel
+                                            ? printLocaleValue(locale, resource.license.prefLabel)
+                                            : resource.license.uri}
+                                    </LicenseBoxLink>
                                 ) : (
                                     <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}
@@ -395,9 +394,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                     </Heading>
                     {resource.servesDataset && resource.servesDataset.length > 0 ? (
                         resource.servesDataset.map((datasetUri, index) => {
-                            const resolvedDataset = resolvedDatasets.find(
-                                (dataset) => dataset.uri === datasetUri,
-                            );
+                            const resolvedDataset = resolvedDatasets.find((dataset) => dataset.uri === datasetUri);
 
                             return (
                                 <Dlist key={index}>
@@ -405,8 +402,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary, re
                                     <dd>
                                         {resolvedDataset ? (
                                             <Link href={`/datasets/${resolvedDataset.id}`}>
-                                                {printLocaleValue(locale, resolvedDataset.title) ||
-                                                    resolvedDataset.uri}
+                                                {printLocaleValue(locale, resolvedDataset.title) || resolvedDataset.uri}
                                             </Link>
                                         ) : (
                                             <ExternalLink
