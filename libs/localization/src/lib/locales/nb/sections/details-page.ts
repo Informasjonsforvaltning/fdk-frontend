@@ -128,6 +128,7 @@ const detailsPage = {
             title: 'Om datasettet',
             serviceTitle: 'Om tjenesten',
             dataServiceTitle: 'Om API-et',
+            endpointTitle: 'Endepunkt',
             publisher: 'Utgiver',
             firstHarvested: 'Publisert',
             firstHarvestedHelpText:

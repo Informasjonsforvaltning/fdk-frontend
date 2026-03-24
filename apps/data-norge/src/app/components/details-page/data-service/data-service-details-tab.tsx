@@ -12,7 +12,6 @@ import {
     Hstack,
     InputWithCopyButton,
     SmartList,
-    TagList,
     LicenseBoxLink,
 } from '@fdk-frontend/ui';
 import { Heading, Tag, Link, Button } from '@digdir/designsystemet-react';
@@ -143,52 +142,6 @@ export default function DataServiceDetailsTab({
                             )
                         )}
                     </dd>
-                    {!resource.endpointURL?.length && !showEmptyRows ? null : (
-                        <>
-                            <dt>{dictionary.details.general.endpointURL}:</dt>
-                            <dd>
-                                {resource.endpointURL?.length ? (
-                                    <SmartList
-                                        items={resource.endpointURL}
-                                        renderItem={(url) => (
-                                            <ExternalLink
-                                                href={url}
-                                                locale={locale}
-                                                gateway
-                                            >
-                                                {url}
-                                            </ExternalLink>
-                                        )}
-                                    />
-                                ) : (
-                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                )}
-                            </dd>
-                        </>
-                    )}
-                    {!resource.endpointDescription?.length && !showEmptyRows ? null : (
-                        <>
-                            <dt>{dictionary.details.general.endpointDescription}:</dt>
-                            <dd>
-                                {resource.endpointDescription?.length ? (
-                                    <SmartList
-                                        items={resource.endpointDescription}
-                                        renderItem={(url) => (
-                                            <ExternalLink
-                                                href={url}
-                                                locale={locale}
-                                                gateway
-                                            >
-                                                {url}
-                                            </ExternalLink>
-                                        )}
-                                    />
-                                ) : (
-                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                )}
-                            </dd>
-                        </>
-                    )}
                     {!resource.version && !showEmptyRows ? null : (
                         <>
                             <dt>{dictionary.details.general.version}:</dt>
@@ -214,50 +167,6 @@ export default function DataServiceDetailsTab({
                                             </ExternalLink>
                                         )}
                                     />
-                                ) : (
-                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                )}
-                            </dd>
-                        </>
-                    )}
-                    {!resource.page?.length && !showEmptyRows ? null : (
-                        <>
-                            <dt>{dictionary.details.general.page}:</dt>
-                            <dd>
-                                {resource.page?.length ? (
-                                    <SmartList
-                                        items={resource.page}
-                                        renderItem={(url) => (
-                                            <ExternalLink
-                                                href={url}
-                                                locale={locale}
-                                                gateway
-                                            >
-                                                {url}
-                                            </ExternalLink>
-                                        )}
-                                    />
-                                ) : (
-                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                )}
-                            </dd>
-                        </>
-                    )}
-                    {!resource.fdkFormat?.length && !showEmptyRows ? null : (
-                        <>
-                            <dt>{dictionary.details.general.format}:</dt>
-                            <dd>
-                                {resource.fdkFormat?.length ? (
-                                    <TagList>
-                                        {resource.fdkFormat.map((format) => (
-                                            <Tag
-                                                key={format.code}
-                                                data-size='sm'
-                                            >
-                                                {format.name || format.code}
-                                            </Tag>
-                                        ))}
-                                    </TagList>
                                 ) : (
                                     <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                 )}

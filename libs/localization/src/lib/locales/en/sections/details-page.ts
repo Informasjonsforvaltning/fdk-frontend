@@ -125,6 +125,7 @@ const detailsPage = {
       title: "About this dataset",
       serviceTitle: "About this service",
       dataServiceTitle: "About this API",
+      endpointTitle: "Endpoint",
       publisher: "Publisher",
       firstHarvested: "Published",
       firstHarvestedHelpText: "This date indicates when the dataset was harvested by data.norge.no. It may have been available earlier elsewhere.",
