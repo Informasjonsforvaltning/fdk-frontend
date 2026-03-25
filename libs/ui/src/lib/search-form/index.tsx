@@ -228,13 +228,6 @@ const SearchForm = ({
                     />
                     <HStack className={styles.searchToolbar}>
                         <HStack className={styles.filterToolbar}>
-                            {/* <Button
-                                data-size='sm'
-                                variant='secondary'
-                            >
-                                <FilterIcon />
-                                
-                            </Button>*/}
                             <Dropdown.TriggerContext>
                                 <Dropdown.Trigger
                                     data-size='sm'
@@ -305,12 +298,6 @@ const SearchForm = ({
                                                 { label: 'Ikke-allmen tilgang', value: 'ikke-allmen-tilgang' },
                                                 { label: 'Åpne data', value: 'open-data' },
                                             ]}
-                                            // options={[
-                                            //     { label: <Tag data-color='success'>Allmenn tilgang</Tag>, value: 'allmenn-tilgang' },
-                                            //     { label: <Tag data-color='warning'>Begrenset tilgang</Tag>, value: 'begrenset-tilgang' },
-                                            //     { label: <Tag data-color='danger'>Ikke-allmen tilgang</Tag>, value: 'ikke-allmen-tilgang' },
-                                            //     { label: <Tag data-color='success'>Åpne data</Tag>, value: 'open-data' },
-                                            // ]}
                                         />
                                     </Box>
                                 </Dropdown>
@@ -405,13 +392,6 @@ const SearchForm = ({
                                 </Dropdown>
                             </Dropdown.TriggerContext>
                         </HStack>
-                        {/* <Button
-                            data-size='sm'
-                            variant='tertiary'
-                        >
-                            <SortDownIcon />
-                            Relevans
-                        </Button> */}
                         <Dropdown.TriggerContext>
                             <Dropdown.Trigger
                                 data-size='sm'
@@ -439,10 +419,6 @@ const SearchForm = ({
                             </Dropdown>
                         </Dropdown.TriggerContext>
                     </HStack>
-                    {/* <HStack>
-                        <Chip.Removable>Utgiver: Digitaliseringsdirektoratet</Chip.Removable>
-                        <Chip.Removable>Tema: Transport</Chip.Removable>
-                    </HStack> */}
                 </VStack>
             </VStack>
         </form>

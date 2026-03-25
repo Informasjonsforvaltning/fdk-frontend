@@ -21,40 +21,10 @@
             color: var(--ds-color-accent-base-hover);
         }
     }
-
-    &.llm {
-        // .description {
-        //     font-style:italic;
-        //     display:block;
-        //     padding-left:1rem;
-        //     border-left:2px solid var(--ds-color-accent-surface-tinted);
-        // }
-    }
-}
-
-.orgLogo {
-    float: left;
-    width:1.5rem;
-    height:1.5rem;
-    margin-right: 0.5em;
-    // flex-direction:row-reverse;
 }
 
 .orgName {
-    // float: right;
-    // margin-left: 0.5em;
     font-size:0.9em;
     opacity:0.75;
-}
-
-.orgButton {
-    float: right;
-    margin-left: 0.5em;
-    // flex-direction:row-reverse;
-}
-
-.keywords {
-    font-size: 0.9em;
-    opacity: 0.75;
 }
 

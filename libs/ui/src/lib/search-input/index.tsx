@@ -84,7 +84,6 @@ const SearchInput = ({
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const trimmed = value.trim();
-        // if (!trimmed) return;
         const q = encodeURIComponent(trimmed);
         const segments = pathname.split('/').filter(Boolean);
         const isOnSearchPage =
@@ -113,16 +112,7 @@ const SearchInput = ({
                 className={styles.input}
                 placeholder={placeholder}
                 aria-label={searchLabel}
-                // data-size='lg'
             />
-            {/* <Button
-                type='submit'
-                data-size='sm'
-                className={styles.btn}
-                variant='tertiary'
-            >
-                {searchLabel}
-            </Button> */}
             <Tag
                 className={styles.hotkeyTag}
                 data-size='sm'

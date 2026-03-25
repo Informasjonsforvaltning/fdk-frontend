@@ -37,16 +37,6 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 {
                     entity ?
                     <div>
-                        {/* <OrgButton
-                            className={styles.orgButton}
-                            orgNr={entity.organization?.id}
-                            reverse
-                        >
-                            {printLocaleValue('nb', entity.organization?.prefLabel)}
-                        </OrgButton> */}
-                        {/* <div className={styles.orgName}>
-                            {printLocaleValue('nb', entity.organization?.prefLabel)}
-                        </div> */}
                         <OrgLogo
                             className={styles.orgLogo}
                             orgNr={entity.organization?.id}
@@ -93,12 +83,6 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                                 locale={locale}
                             />
                         }
-                        {/* <Tag
-                            data-color='success'
-                            data-size='sm'
-                        >
-                            Allmenn tilgang
-                        </Tag> */}
                         {
                             entity.isOpenData &&
                             <Tag
@@ -128,12 +112,6 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                         }
                     </Paragraph>
                 }
-                {/* <Paragraph
-                    data-size='sm'
-                    className={styles.keywords}
-                >
-                    {entity.keyword?.join(', ')}
-                </Paragraph> */}
                 {
                     entity &&
                     <div className={styles.orgName}>

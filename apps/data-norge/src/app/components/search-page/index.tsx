@@ -209,14 +209,6 @@ const SearchPage = ({
                   >
                     {`KI-søk (${llmHitsCount} treff)`}
                   </Heading>
-                  {/* <Alert data-size='sm'>
-                    <Paragraph>
-                      Vårt KI-søk gjør det enkelt å finne datasett ved å bruke naturlig språk uten at du trenger å kjenne til spesifikke datasettnavn, fagtermer eller tekniske formater. Vær obs på at KI-søket kan være både ufullstendig og inneholde feil. <strong>Ikke skriv inn personopplysninger i søkefeltet.</strong>
-                    </Paragraph>
-                    <Paragraph>
-                      <Link href="#">Les mer om KI-søket her</Link>
-                    </Paragraph>
-                  </Alert> */}
                   <ul className="fdk-box-list">
                     {llmResults.hits.map((item, i) => (
                       <li key={item.id ?? i}>
@@ -255,7 +247,6 @@ const SearchPage = ({
                       return (
                         <li
                           key={hitId || i}
-                          // className={fromLlm ? styles.resultFromLlm : undefined}
                           data-from-llm={fromLlm ? 'true' : undefined}
                         >
                           <EntityTeaser locale={lang} entity={hit} llm={fromLlm} />

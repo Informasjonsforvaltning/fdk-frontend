@@ -15,9 +15,6 @@
 }
 
 .filterToolbar {
-    // overflow-x:auto;
-    // overflow-y:visible;
-
     :global(.ds-button) {
         white-space: nowrap;
     }
@@ -33,17 +30,9 @@
         max-height:350px;
         overflow-y:auto;
         overflow-x:hidden;
-        // padding:0;
-
-        // :global(.ds-field){
-        //     margin:0;
-        //     padding:0.5rem;
-        // }
     }
 
     > div {
-        // padding:0.5rem;
-        
         :global(.ds-field) {
             width:100%;
 

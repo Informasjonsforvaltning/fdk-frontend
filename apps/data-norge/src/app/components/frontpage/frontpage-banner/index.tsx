@@ -27,14 +27,6 @@ const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps)
             >
                 {dictionary.aiBanner.title}
             </HeadingWithDivider>
-            {/* <Heading>
-                Søk blant over 8000 datasett fra 125 virksomheter
-            </Heading> */}
-            {/* <SearchInput
-                data-color-scheme='dark'
-                data-size='lg'
-                className={styles.searchInput}
-            /> */}
             <LlmSearch
                 dictionary={dictionary}
                 locale={locale}

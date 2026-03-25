@@ -9,7 +9,6 @@ export interface SearchApiResponse {
 
 export const searchApi = async (path: string, body: any) => {
     const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}${path}`;
-    console.log('search', uri);
     const options = {
         method: 'POST',
         headers: {
