@@ -4,7 +4,7 @@ import { AccessRightsCodes } from '@fellesdatakatalog/types';
 import { HelpText } from '@fellesdatakatalog/ui';
 
 type AccessLevelTagProps = {
-    accessCode?: AccessRightsCodes;
+    accessCode?: AccessRightsCodes | string;
     nonInteractive?: boolean;
     locale: LocaleCodes;
 };

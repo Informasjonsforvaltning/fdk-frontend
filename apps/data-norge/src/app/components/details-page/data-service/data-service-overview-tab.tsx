@@ -47,7 +47,7 @@ export default function DataServiceOverviewTab({ resource, locale, dictionary, r
                     {dictionary.details.general.endpointTitle}
                 </Heading>
                 <Dlist>
-                    <dt>{dictionary.details.general.endpointURL}:</dt>
+                    <dt>{dictionary.details.general.endpointTitle}:</dt>
                     <dd>
                         {resource.endpointURL?.length ? (
                             <SmartList
