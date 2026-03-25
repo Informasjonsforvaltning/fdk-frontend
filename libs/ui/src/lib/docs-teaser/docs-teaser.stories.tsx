@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { type SearchObject, AccessRightsCodes } from '@fellesdatakatalog/types';
 import DocsTeaser from './index';
 
 const meta: Meta<typeof DocsTeaser> = {

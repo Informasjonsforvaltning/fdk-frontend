@@ -21,24 +21,28 @@ let docsIndexPromise: Promise<DocsIndexEntry[]> | null = null;
 
 const SUPPORTED_LOCALES: LocaleCodes[] = ['nb', 'nn', 'en'];
 
+const isNonNullable = <T,>(value: T | null | undefined): value is T => value !== null && value !== undefined;
+
 const isSupportedLocale = (value: string | null): value is LocaleCodes => {
   return SUPPORTED_LOCALES.includes(value as LocaleCodes);
 };
 
 const collectMdxFiles = async (directory: string): Promise<string[]> => {
   const entries = await fs.readdir(directory, { withFileTypes: true });
-  const files: string[] = [];
+  const collected = await Promise.all(
+    entries.map(async (entry) => {
+      const fullPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        return await collectMdxFiles(fullPath);
+      }
+      if (entry.isFile() && entry.name.endsWith('.mdx')) {
+        return [fullPath];
+      }
+      return [];
+    })
+  );
 
-  for (const entry of entries) {
-    const fullPath = path.join(directory, entry.name);
-    if (entry.isDirectory()) {
-      files.push(...(await collectMdxFiles(fullPath)));
-    } else if (entry.isFile() && entry.name.endsWith('.mdx')) {
-      files.push(fullPath);
-    }
-  }
-
-  return files;
+  return collected.flat();
 };
 
 const extractFrontmatterBlock = (source: string): string | undefined => {
@@ -107,41 +111,46 @@ const buildDocsIndex = async (): Promise<DocsIndexEntry[]> => {
   const publicDir = path.join(process.cwd(), 'public');
   const allMdxFiles = await collectMdxFiles(publicDir);
 
-  const entries: DocsIndexEntry[] = [];
+  const entries = await Promise.all(
+    allMdxFiles.map(async (filePath) => {
+      const fileName = path.basename(filePath);
+      const locale = extractLocaleFromFilename(fileName);
+      if (!locale) return null;
 
-  for (const filePath of allMdxFiles) {
-    const fileName = path.basename(filePath);
-    const locale = extractLocaleFromFilename(fileName);
-    if (!locale) continue;
+      const url = buildUrlFromFile(publicDir, filePath, locale);
+      if (!url) return null;
 
-    const url = buildUrlFromFile(publicDir, filePath, locale);
-    if (!url) continue;
+      const [source, stat] = await Promise.all([
+        fs.readFile(filePath, 'utf8'),
+        fs.stat(filePath),
+      ]);
 
-    const source = await fs.readFile(filePath, 'utf8');
-    const frontmatterBlock = extractFrontmatterBlock(source);
+      const frontmatterBlock = extractFrontmatterBlock(source);
 
-    const titleFromFrontmatter = extractFrontmatterField(frontmatterBlock, 'title');
-    const descriptionFromFrontmatter = extractFrontmatterField(frontmatterBlock, 'description');
-    const ingress = extractIngress(source);
+      const titleFromFrontmatter = extractFrontmatterField(frontmatterBlock, 'title');
+      const descriptionFromFrontmatter = extractFrontmatterField(frontmatterBlock, 'description');
+      const ingress = extractIngress(source);
 
-    const title = titleFromFrontmatter ?? path.parse(fileName).name;
-    const summary = ingress ?? descriptionFromFrontmatter ?? '';
+      const title = titleFromFrontmatter ?? path.parse(fileName).name;
+      const summary = ingress ?? descriptionFromFrontmatter ?? '';
 
-    const stat = await fs.stat(filePath);
-    const updated = stat.mtime.toISOString();
+      const updated = stat.mtime.toISOString();
 
-    entries.push({
-      id: url,
-      title,
-      summary,
-      url,
-      locale,
-      updated,
-      content: stripTagsAndWhitespace(source),
-    });
-  }
+      const entry: DocsIndexEntry = {
+        id: url,
+        title,
+        summary,
+        url,
+        locale,
+        updated,
+        content: stripTagsAndWhitespace(source),
+      };
 
-  return entries;
+      return entry;
+    })
+  );
+
+  return entries.filter(isNonNullable);
 };
 
 const getDocsIndex = async (): Promise<DocsIndexEntry[]> => {
