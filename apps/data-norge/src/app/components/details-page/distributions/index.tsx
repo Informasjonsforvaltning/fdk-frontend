@@ -116,7 +116,7 @@ const Distributions = ({
                                 </Details.Content>
                             </Details>
                             <ActionButton
-                                uri={`/data-services/${api.id}`}
+                                uri={`/${locale}/data-services/${api.id}`}
                                 className={styles.actionButton}
                             >
                                 {dictionaries.detailsPage.apis.header.gotoBtn}
