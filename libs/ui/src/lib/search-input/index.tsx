@@ -99,28 +99,35 @@ const SearchInput = ({
     };
 
     return (
-        <form
-            className={cn(styles.container, className)}
-            onSubmit={handleSubmit}
-            {...rest}
-        >
-            <MagnifyingGlassIcon className={styles.searchIcon} />
-            <Input
-                ref={inputRef}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                className={styles.input}
-                placeholder={placeholder}
-                aria-label={searchLabel}
-            />
-            <Tag
-                className={styles.hotkeyTag}
-                data-size='sm'
-                data-color='neutral'
+        <div className={cn(styles.container, className)}>
+            <form
+                className={styles.form}
+                onSubmit={handleSubmit}
+                {...rest}
             >
-                {isMac ? '⌘ + K' : 'Ctrl + K'}
-            </Tag>
-        </form>
+                <MagnifyingGlassIcon className={styles.searchIcon} />
+                <Input
+                    ref={inputRef}
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    className={styles.input}
+                    placeholder={placeholder}
+                    aria-label={searchLabel}
+                />
+                <Tag
+                    className={styles.hotkeyTag}
+                    data-size='sm'
+                    data-color='neutral'
+                >
+                    {isMac ? '⌘ + K' : 'Ctrl + K'}
+                </Tag>
+            </form>
+            <div className={styles.tray}>
+                <div className={styles.trayContent}>
+                    Hello
+                </div>
+            </div>
+        </div>
     );
 };
 

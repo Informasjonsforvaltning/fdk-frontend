@@ -1,8 +1,32 @@
 .container {
+    position:relative;
+
+    .tray {
+        position:absolute;
+        inset:-0.75rem;
+        bottom:auto;
+        box-shadow: var(--ds-shadow-md);
+        border-radius:0.5rem;
+        background:white;
+        display:none;
+
+        &.visible {
+            display:block;
+        }
+
+        .trayContent {
+            margin-top:4rem;
+            padding:0.75rem;
+        }
+    }
+}
+
+.form {
     display: flex;
     align-items: center;
     position: relative;
     flex-grow: 1;
+    z-index:2;
 
     .btn {
         position: absolute;
