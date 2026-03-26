@@ -75,7 +75,7 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                             </Link>
                         </Tag>
                         {
-                            entity.accessRights?.code &&
+                            (entity.searchType === 'DATASET' || entity.searchType === 'DATA_SERVICE') &&
                             <AccessLevelTag
                                 data-size='sm'
                                 accessCode={entity.accessRights?.code as AccessRightsCodes}
