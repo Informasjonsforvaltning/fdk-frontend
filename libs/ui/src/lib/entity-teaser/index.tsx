@@ -18,7 +18,7 @@ export type EntityTeaserProps = {
 
 const setFragments: Record<EntityType, string> = {
     [EntityType.DATASET]: 'datasets',
-    [EntityType.DATA_SERVICE]: 'apis',
+    [EntityType.DATA_SERVICE]: 'data-services',
     [EntityType.CONCEPT]: 'concepts',
     [EntityType.INFORMATION_MODEL]: 'information-models',
     [EntityType.PUBLIC_SERVICE]: 'services-and-events',

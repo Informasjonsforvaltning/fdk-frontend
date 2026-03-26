@@ -5,7 +5,7 @@
 
 export const VALID_SET_SEGMENTS = [
   'datasets',
-  'apis',
+  'data-services',
   'concepts',
   'information-models',
   'services-and-events',
@@ -23,7 +23,7 @@ export const SET_TO_SEARCH_TYPES: Record<
   readonly string[] | null
 > = {
   datasets: ['DATASET'],
-  apis: ['DATA_SERVICE'],
+  'data-services': ['DATA_SERVICE'],
   concepts: ['CONCEPT'],
   'information-models': ['INFORMATION_MODEL'],
   'services-and-events': ['SERVICE', 'EVENT'],

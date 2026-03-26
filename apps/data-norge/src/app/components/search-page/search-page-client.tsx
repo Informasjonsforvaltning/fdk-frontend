@@ -55,7 +55,7 @@ const computeBadgeCountsFromSummary = function computeBadgeCountsFromSummary(sum
   return {
     [KI_TOGGLE_VALUE]: 0,
     datasets,
-    apis,
+    'data-services': apis,
     concepts,
     'information-models': informationModels,
     'services-and-events': services + events,

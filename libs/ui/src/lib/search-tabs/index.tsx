@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 export type SearchTabsValue =
   | 'ki'
   | 'datasets'
-  | 'apis'
+  | 'data-services'
   | 'concepts'
   | 'information-models'
   | 'services-and-events'
@@ -44,7 +44,7 @@ export const searchTabItems: SearchTabItem[] = [
     badgeCount: 0,
   },
   {
-    value: 'apis',
+    value: 'data-services',
     label: 'API',
     badgeCount: 0,
   },
