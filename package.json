@@ -76,7 +76,6 @@
         "@zazuko/yasgui": "^4.6.1",
         "classnames": "^2.5.1",
         "framer-motion": "^12.29.2",
-        "js-cookie": "^3.0.5",
         "jsonld": "^9.0.0",
         "leaflet": "^1.9.4",
         "marked": "^15.0.12",
@@ -95,7 +94,6 @@
         "@axe-core/playwright": "^4.11.1",
         "@babel/core": "^7.29.0",
         "@babel/preset-react": "^7.28.5",
-        "@eslint/js": "^9.39.2",
         "@nx/devkit": "^22.6.1",
         "@nx/eslint": "^22.6.1",
         "@nx/eslint-plugin": "^22.6.1",
@@ -119,7 +117,6 @@
         "@testing-library/react": "^16.3.2",
         "@types/jest": "^30.0.0",
         "@types/jest-axe": "^3.5.9",
-        "@types/js-cookie": "^3.0.6",
         "@types/jsonld": "^1.5.15",
         "@types/leaflet": "^1.9.21",
         "@types/lodash": "^4.17.24",
@@ -147,7 +144,6 @@
         "nx": "^22.6.1",
         "playwright-core": "^1.58.2",
         "prettier": "^3.8.1",
-        "prettier-plugin-sort-json": "^4.2.0",
         "react-markdown": "^10.1.0",
         "sass": "^1.98.0",
         "sass-loader": "^16.0.7",
@@ -155,7 +151,6 @@
         "ts-jest": "^29.4.6",
         "ts-node": "^10.9.2",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.57.2",
         "vite": "^7.3.1"
     }
 }
