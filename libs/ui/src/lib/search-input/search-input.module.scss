@@ -6,7 +6,9 @@
         inset:-0.75rem;
         bottom:auto;
         box-shadow: var(--ds-shadow-md);
-        border-radius:0.5rem;
+        border-radius:1rem;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
         background:white;
         display:none;
 

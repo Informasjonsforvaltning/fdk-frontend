@@ -41,8 +41,10 @@ const SearchInput = ({
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+    const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [isMac, setIsMac] = useState(false);
+    const [isTrayVisible, setIsTrayVisible] = useState(false);
     const [internalValue, setInternalValue] = useState(() =>
         getInitialQFromUrl(searchParams)
     );
@@ -81,6 +83,31 @@ const SearchInput = ({
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
+    useEffect(() => {
+        const handlePointerDown = (e: PointerEvent) => {
+            const target = e.target;
+            if (!(target instanceof Node)) return;
+            if (!containerRef.current?.contains(target)) {
+                setIsTrayVisible(false);
+            }
+        };
+
+        const handleFocusIn = (e: FocusEvent) => {
+            const target = e.target;
+            if (!(target instanceof Node)) return;
+            if (!containerRef.current?.contains(target)) {
+                setIsTrayVisible(false);
+            }
+        };
+
+        document.addEventListener('pointerdown', handlePointerDown, true);
+        document.addEventListener('focusin', handleFocusIn, true);
+        return () => {
+            document.removeEventListener('pointerdown', handlePointerDown, true);
+            document.removeEventListener('focusin', handleFocusIn, true);
+        };
+    }, []);
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const trimmed = value.trim();
@@ -99,7 +126,10 @@ const SearchInput = ({
     };
 
     return (
-        <div className={cn(styles.container, className)}>
+        <div
+            ref={containerRef}
+            className={cn(styles.container, className)}
+        >
             <form
                 className={styles.form}
                 onSubmit={handleSubmit}
@@ -110,6 +140,7 @@ const SearchInput = ({
                     ref={inputRef}
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
+                    onFocus={() => setIsTrayVisible(true)}
                     className={styles.input}
                     placeholder={placeholder}
                     aria-label={searchLabel}
@@ -122,7 +153,7 @@ const SearchInput = ({
                     {isMac ? '⌘ + K' : 'Ctrl + K'}
                 </Tag>
             </form>
-            <div className={styles.tray}>
+            <div className={cn(styles.tray, { [styles.visible]: isTrayVisible })}>
                 <div className={styles.trayContent}>
                     Hello
                 </div>
