@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import DocsTeaser from './index';
 
 const meta: Meta<typeof DocsTeaser> = {
-    title: 'Components/DocsTeaser',
+    title: 'DocsTeaser',
     component: DocsTeaser,
     tags: ['autodocs'],
 };

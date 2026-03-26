@@ -3,7 +3,7 @@ import { type SearchObject, AccessRightsCodes } from '@fellesdatakatalog/types';
 import EntityTeaser from './index';
 
 const meta: Meta<typeof EntityTeaser> = {
-    title: 'Components/EntityTeaser',
+    title: 'EntityTeaser',
     component: EntityTeaser,
     tags: ['autodocs'],
 };
