@@ -2,12 +2,15 @@ import cn from 'classnames';
 import { type HTMLAttributes } from 'react';
 
 import { Card, CardBlock } from '@digdir/designsystemet-react';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 import { searchTabItems } from '../search-tabs';
 import styles from './search-tray-nav.module.scss';
 
-export type SearchTrayNavProps = HTMLAttributes<HTMLUListElement>;
+export type SearchTrayNavProps = HTMLAttributes<HTMLUListElement> & {
+    locale: LocaleCodes;
+};
 
-const SearchTrayNav = ({ className, ...props }: SearchTrayNavProps) => {
+const SearchTrayNav = ({ className, locale, ...props }: SearchTrayNavProps) => {
     return (
         <ul
             className={cn(styles.container, className)}
@@ -20,7 +23,7 @@ const SearchTrayNav = ({ className, ...props }: SearchTrayNavProps) => {
                         data-size='sm'
                         asChild
                     >
-                        <a href={`/search/${value}`}>
+                        <a href={`/${locale}/search/${value}`}>
                             <CardBlock>
                                 {icon}
                                 <span>{label}</span>

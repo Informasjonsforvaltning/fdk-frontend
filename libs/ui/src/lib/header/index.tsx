@@ -127,7 +127,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                     />
                     {
                         showSearchInput ?
-                        <SearchInput className={styles.headerSearchInput} /> :
+                        <SearchInput locale={locale} className={styles.headerSearchInput} /> :
                         <div style={{flexGrow:1}} />
                     }
                     <div className={styles.headerToolbar}>

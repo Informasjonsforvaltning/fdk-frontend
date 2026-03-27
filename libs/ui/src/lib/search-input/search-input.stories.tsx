@@ -12,6 +12,7 @@ const meta: Meta<typeof SearchInput> = {
         },
     },
     args: {
+        locale: 'nb',
         searchLabel: 'Search',
         placeholder: 'What are you looking for?',
     },

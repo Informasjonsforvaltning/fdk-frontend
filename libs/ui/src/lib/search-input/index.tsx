@@ -4,7 +4,7 @@ import { useRef, useEffect, useState, type FormEvent } from 'react';
 import cn from 'classnames';
 import { Input, Tag } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
+import { type LocaleCodes } from '@fdk-frontend/localization';
 
 import SearchInputTray from '../search-input-tray';
 import styles from './search-input.module.scss';
@@ -17,7 +17,7 @@ export type SearchInputProps = {
     searchLabel?: string;
     placeholder?: string;
     className?: string;
-    locale?: LocaleCodes;
+    locale: LocaleCodes;
     loading?: boolean;
 };
 
@@ -65,9 +65,6 @@ const SearchInput = ({
     const setValue = isControlled
         ? (controlledOnChange ?? (() => undefined))
         : setInternalValue;
-
-    // Extract locale from pathname if not provided
-    const currentLocale = locale || (pathname.split('/')[1] as LocaleCodes) || i18n.defaultLocale;
 
     useEffect(() => {
         setIsMac(
@@ -119,13 +116,13 @@ const SearchInput = ({
         const segments = pathname.split('/').filter(Boolean);
         const isOnSearchPage =
             segments.length >= 2 &&
-            segments[0] === currentLocale &&
+            segments[0] === locale &&
             segments[1] === 'search';
         if (isOnSearchPage) {
             const path = pathname.split('?')[0];
             router.push(`${path}?q=${q}`);
         } else {
-            router.push(`/${currentLocale}/search?q=${q}`);
+            router.push(`/${locale}/search?q=${q}`);
         }
     };
 
@@ -160,6 +157,7 @@ const SearchInput = ({
             <SearchInputTray
                 isVisible={isTrayVisible}
                 loading={loading}
+                locale={locale}
             />
         </div>
     );
