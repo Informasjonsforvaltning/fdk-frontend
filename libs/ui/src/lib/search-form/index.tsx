@@ -10,6 +10,12 @@ import Box from '../box';
 import SearchTabs, { type SearchTabsValue } from '../search-tabs';
 import styles from './search-form.module.scss';
 
+/*
+    TODO: These options are all hardcoded to showcase the design in
+    the prototype.
+    
+    Filter functionality remains to be implemented (see issue #806).
+*/
 const temaOptions = [
     { label: 'Næring (182)', value: 'naring' },
     { label: 'Natur, klima og miljø (169)', value: 'natur-klima-miljo' },
@@ -242,6 +248,7 @@ const SearchForm = ({
                                     data-size='sm'
                                 >
                                     <VStack>
+                                        {/* TODO: localization remains to be implemented */}
                                         <Input placeholder='Søk etter utgiver' />
                                         <Box className={styles.box}>
                                             <CheckboxGroup
@@ -268,6 +275,7 @@ const SearchForm = ({
                                     data-size='sm'
                                 >
                                     <VStack>
+                                        {/* TODO: localization remains to be implemented */}
                                         <Input placeholder='Søk etter tema' />
                                         <Box className={styles.box}>
                                             <CheckboxGroup
@@ -307,6 +315,7 @@ const SearchForm = ({
                                     data-size='sm'
                                     variant='secondary'
                                 >
+                                    {/* TODO: localization remains to be implemented */}
                                     Data-format
                                     <ChevronDownIcon />
                                 </Dropdown.Trigger>
@@ -317,11 +326,13 @@ const SearchForm = ({
                                 >
                                     <Tabs defaultValue='value1' className={styles.filterTabs}>
                                         <Tabs.List>
+                                            {/* TODO: localization remains to be implemented */}
                                             <Tabs.Tab value='value1'>Medieformat</Tabs.Tab>
                                             <Tabs.Tab value='value2'>Filtype</Tabs.Tab>
                                         </Tabs.List>
                                         <Tabs.Panel value='value1' style={{padding:0,paddingTop:'0.5rem'}}>
                                             <VStack>
+                                                {/* TODO: localization remains to be implemented */}
                                                 <Input placeholder='Søk etter medieformat' />
                                                 <Box className={styles.box}>
                                                     <CheckboxGroup
@@ -332,6 +343,7 @@ const SearchForm = ({
                                         </Tabs.Panel>
                                         <Tabs.Panel value='value2' style={{padding:0,paddingTop:'0.5rem'}}>
                                             <VStack>
+                                                {/* TODO: localization remains to be implemented */}
                                                 <Input placeholder='Søk etter filtype' />
                                                 <Box className={styles.box}>
                                                     <CheckboxGroup
@@ -348,6 +360,7 @@ const SearchForm = ({
                                     data-size='sm'
                                     variant='secondary'
                                 >
+                                    {/* TODO: localization remains to be implemented */}
                                     Geografi
                                     <ChevronDownIcon />
                                 </Dropdown.Trigger>
@@ -357,6 +370,7 @@ const SearchForm = ({
                                     data-size='sm'
                                 >
                                     <VStack>
+                                        {/* TODO: localization remains to be implemented */}
                                         <Input placeholder='Søk etter geografi' />
                                         <Box className={styles.box}>
                                             <CheckboxGroup
@@ -371,6 +385,7 @@ const SearchForm = ({
                                     data-size='sm'
                                     variant='secondary'
                                 >
+                                    {/* TODO: localization remains to be implemented */}
                                     Opphav
                                     <ChevronDownIcon />
                                 </Dropdown.Trigger>
@@ -398,6 +413,7 @@ const SearchForm = ({
                                 variant='tertiary'
                             >
                                 <SortDownIcon />
+                                {/* TODO: localization remains to be implemented */}
                                 Relevans
                             </Dropdown.Trigger>
                             <Dropdown

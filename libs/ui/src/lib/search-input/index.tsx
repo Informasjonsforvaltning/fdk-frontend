@@ -34,11 +34,12 @@ const getInitialQFromUrl = function getInitialQFromUrl(searchParams: URLSearchPa
 const SearchInput = ({
     value: controlledValue,
     onChange: controlledOnChange,
+    // TODO: localization remains to be implemented
     searchLabel = 'Søk',
     placeholder = 'Hva leter du etter?',
     className,
     locale,
-    loading = true,
+    loading,
     ...rest
 }: SearchInputProps) => {
     const router = useRouter();

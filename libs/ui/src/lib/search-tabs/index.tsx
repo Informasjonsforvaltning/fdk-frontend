@@ -31,6 +31,7 @@ export type SearchTabItem = {
   badgeCount?: number;
 };
 
+// TODO: localization remains to be implemented
 export const searchTabItems: SearchTabItem[] = [
   {
     value: 'ki',

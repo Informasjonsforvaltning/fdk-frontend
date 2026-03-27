@@ -124,6 +124,7 @@ const SearchPage = ({
   const dictionary = getLocalization(lang).common;
   const breadcrumbList = [
     {
+       // TODO: localization remains to be implemented
       text: query ? `Søk etter "${query}"` : 'Søk',
     },
   ];
@@ -163,11 +164,13 @@ const SearchPage = ({
           loading
             ? (
                 <Heading data-size="md">
+                  {/* TODO: localization remains to be implemented */}
                   {query ? `Søker etter '${query}'...` : 'Laster...'}
                 </Heading>
               )
             : (
                 <Heading data-size="md">
+                  {/* TODO: localization remains to be implemented */}
                   {query
                     ? `${totalResults} treff for '${query}'`
                     : `${totalResults} treff`}
@@ -188,6 +191,7 @@ const SearchPage = ({
                 data-size="sm"
                 className={styles.sectionHeading}
               >
+                {/* TODO: localization remains to be implemented */}
                 Laster...
               </Heading>
               <ul className="fdk-box-list">
@@ -207,6 +211,7 @@ const SearchPage = ({
                     data-size="sm"
                     className={styles.sectionHeading}
                   >
+                    {/* TODO: localization remains to be implemented */}
                     {`KI-søk (${llmHitsCount} treff)`}
                   </Heading>
                   <ul className="fdk-box-list">
@@ -236,7 +241,7 @@ const SearchPage = ({
                     </Heading>
                     <Switch
                       className={styles.showAiResultsSwitch}
-                      label='Vis KI-treff'
+                      label='Vis KI-treff' // TODO: localization remains to be implemented
                       defaultChecked
                     />
                   </HStack>
@@ -255,7 +260,7 @@ const SearchPage = ({
                     })}
                   </ul>
                 </> :
-                <Alert>Ingen treff</Alert>
+                <Alert>Ingen treff</Alert> // TODO: localization remains to be implemented
               }
             </div>
           )}
@@ -263,6 +268,7 @@ const SearchPage = ({
           {!loading && currentSet === 'docs' && (
             <div className={styles.resultsSection}>
               <Heading data-size="sm" className={styles.sectionHeading}>
+                {/* TODO: localization remains to be implemented */}
                 {`Dokumentasjon${query ? ` (${docsHitsCount} treff)` : ''}`}
               </Heading>
               {docsResults && docsResults.length > 0 ? (
@@ -279,9 +285,9 @@ const SearchPage = ({
                   ))}
                 </ul>
               ) : query ? (
-                <Alert>Ingen treff i dokumentasjon</Alert>
+                <Alert>Ingen treff i dokumentasjon</Alert> // TODO: localization remains to be implemented
               ) : (
-                <Alert>Ingen dokumentasjon funnet.</Alert>
+                <Alert>Ingen dokumentasjon funnet.</Alert> // TODO: localization remains to be implemented
               )}
             </div>
           )}

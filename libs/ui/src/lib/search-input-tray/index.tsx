@@ -14,7 +14,7 @@ export type SearchInputTrayProps = HTMLAttributes<HTMLDivElement> & {
 const SearchInputTray = ({
     className,
     isVisible,
-    loading = true,
+    loading,
     ...props
 }: SearchInputTrayProps) => {
     return (
