@@ -1,26 +1,5 @@
 .container {
-    position:relative;
-
-    .tray {
-        position:absolute;
-        inset:-1rem;
-        bottom:auto;
-        box-shadow: var(--ds-shadow-md);
-        border-radius:1rem;
-        border-bottom-left-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
-        background:white;
-        display:none;
-
-        &.visible {
-            display:block;
-        }
-
-        .trayContent {
-            margin-top:4rem;
-            padding:1rem;
-        }
-    }
+    position: relative;
 }
 
 .form {

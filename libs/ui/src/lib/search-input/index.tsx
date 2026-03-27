@@ -6,7 +6,7 @@ import { Input, Tag } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
 
-import SearchTrayNav from '../search-tray-nav';
+import SearchInputTray from '../search-input-tray';
 import styles from './search-input.module.scss';
 
 export type SearchInputProps = {
@@ -18,6 +18,7 @@ export type SearchInputProps = {
     placeholder?: string;
     className?: string;
     locale?: LocaleCodes;
+    loading?: boolean;
 };
 
 const getInitialQFromUrl = function getInitialQFromUrl(searchParams: URLSearchParams): string {
@@ -37,6 +38,7 @@ const SearchInput = ({
     placeholder = 'Hva leter du etter?',
     className,
     locale,
+    loading = true,
     ...rest
 }: SearchInputProps) => {
     const router = useRouter();
@@ -154,11 +156,10 @@ const SearchInput = ({
                     {isMac ? '⌘ + K' : 'Ctrl + K'}
                 </Tag>
             </form>
-            <div className={cn(styles.tray, { [styles.visible]: isTrayVisible })}>
-                <div className={styles.trayContent}>
-                    <SearchTrayNav />
-                </div>
-            </div>
+            <SearchInputTray
+                isVisible={isTrayVisible}
+                loading={loading}
+            />
         </div>
     );
 };
