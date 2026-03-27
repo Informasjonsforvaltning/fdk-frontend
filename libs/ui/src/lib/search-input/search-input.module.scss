@@ -3,7 +3,7 @@
 
     .tray {
         position:absolute;
-        inset:-0.75rem;
+        inset:-1rem;
         bottom:auto;
         box-shadow: var(--ds-shadow-md);
         border-radius:1rem;
@@ -18,7 +18,7 @@
 
         .trayContent {
             margin-top:4rem;
-            padding:0.75rem;
+            padding:1rem;
         }
     }
 }

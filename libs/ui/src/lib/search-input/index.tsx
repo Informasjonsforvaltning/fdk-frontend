@@ -6,6 +6,7 @@ import { Input, Tag } from '@digdir/designsystemet-react';
 import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
 
+import SearchTrayNav from '../search-tray-nav';
 import styles from './search-input.module.scss';
 
 export type SearchInputProps = {
@@ -155,7 +156,7 @@ const SearchInput = ({
             </form>
             <div className={cn(styles.tray, { [styles.visible]: isTrayVisible })}>
                 <div className={styles.trayContent}>
-                    Hello
+                    <SearchTrayNav />
                 </div>
             </div>
         </div>
