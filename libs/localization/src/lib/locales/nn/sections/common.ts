@@ -114,6 +114,20 @@ const common = {
     alertText: "Vær merksam på følgjande:\n- Destinasjonen er ikkje ein del av data.norge.no\n- Vi har ingen kontroll over innhaldet på destinasjonen\n- Melde frå om brotne lenker til det ansvarlege organet",
     abortButton: "Bli på data.norge.no",
     continueButton: "Fortsett"
+  },
+  aiPromoSplash: {
+    heading: 'Spør KI-søket vårt med naturleg språk ✨',
+    examplePrefix: 'Prøv t.d. ',
+    exampleLinkText: 'Kor mykje skog har Noreg?',
+    aboutLinkText: 'Les meir om KI-søket vårt her',
+  },
+  entities: {
+    DATASET: 'Datasett',
+    DATA_SERVICE: 'API',
+    CONCEPT: 'Begrep',
+    INFORMATION_MODEL: 'Informasjonsmodell',
+    SERVICE: 'Tjenestar',
+    EVENT: 'Hendelsar'
   }
 };
 

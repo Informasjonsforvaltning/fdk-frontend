@@ -114,6 +114,7 @@
         position: relative;
         z-index: 1601;
         container-type: inline-size;
+        gap: 4rem;
 
         &.full {
             max-width: none;
@@ -124,6 +125,11 @@
             &:not(:hover) {
                 color: var(--fdk-color-text) !important;
             }
+        }
+
+        .headerSearchInput {
+            flex-grow: 1;
+            max-width: 600px;
         }
 
         .headerToolbar {

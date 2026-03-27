@@ -1,0 +1,23 @@
+.tabs {
+    min-width:0;
+
+    svg {
+        color:var(--fdk-color-interactive);
+    }
+
+    :global(.ds-badge) {
+        &:before {
+            background:rgba(255,255,255,0.75);
+        }
+    }
+
+    label {
+        &:has(input:checked) {
+            :global(.ds-badge) {
+                &:before {
+                    background:var(--ds-color-surface-tinted);
+                }
+            }
+        }
+    }
+}

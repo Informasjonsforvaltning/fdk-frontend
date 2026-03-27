@@ -3,17 +3,11 @@ import { Heading, Link } from '@digdir/designsystemet-react';
 import { Markdown } from '@fdk-frontend/ui';
 import { type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug } from '@fdk-frontend/utils';
+import { type LlmSearchResult } from '@fdk-frontend/data-access';
 
 import styles from './result-item.module.scss';
 
-export type ItemObjectType = {
-    id: string;
-    title: string;
-    description: string;
-    type: string;
-    publisher: string;
-    publisherId: string;
-};
+export type ItemObjectType = LlmSearchResult;
 
 type ResultItemProps = {
     item: ItemObjectType;
