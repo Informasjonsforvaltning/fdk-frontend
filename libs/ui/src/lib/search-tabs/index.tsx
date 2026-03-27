@@ -56,7 +56,7 @@ export const searchTabItems: SearchTabItem[] = [
   },
   {
     value: 'information-models',
-    label: <>Informasjons&shy;modeller</>,
+    label: 'Informasjons\u00admodeller',
     badgeCount: 0,
   },
   {

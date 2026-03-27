@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { type HTMLAttributes } from 'react';
 
-import { Card, CardBlock, Spinner } from '@digdir/designsystemet-react';
+import { Card, CardBlock } from '@digdir/designsystemet-react';
 import { searchTabItems } from '../search-tabs';
 import styles from './search-tray-nav.module.scss';
 

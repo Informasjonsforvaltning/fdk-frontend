@@ -26,7 +26,7 @@ const SearchInputTray = ({
                 {
                     loading &&
                     <div className={styles.spinnerContainer}>
-                        <Spinner data-size='sm' />
+                        <Spinner data-size='sm' aria-hidden='true' />
                     </div>
                 }
                 {!loading && <SearchTrayNav />}

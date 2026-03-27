@@ -5,3 +5,5 @@ export {
     type LlmSearchResponse,
     type LlmSearchOptions,
 } from './lib/llm-search/api';
+
+export type { LlmSearchResult } from '@fellesdatakatalog/types';
