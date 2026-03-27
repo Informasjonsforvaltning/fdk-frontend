@@ -1,17 +1,5 @@
-// todo: move to fdk-types
-export type LlmSearchHitType = 'dataset' | 'dataservice' | 'concept' | 'informationmodel' | 'service' | 'event';
+import { type LlmSearchResult } from "@fellesdatakatalog/types";
 
-// todo: move to fdk-types
-export interface LlmSearchResult {
-    id: string;
-    title: string;
-    description: string;
-    type: LlmSearchHitType;
-    publisher: string;
-    publisherId: string;
-}
-
-// todo: move to fdk-types
 export interface LlmSearchResponse<THit = LlmSearchResult> {
     hits: THit[];
 }

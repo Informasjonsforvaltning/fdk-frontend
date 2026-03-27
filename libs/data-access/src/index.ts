@@ -4,6 +4,4 @@ export {
     llmSearch,
     type LlmSearchResponse,
     type LlmSearchOptions,
-    type LlmSearchResult,
-    type LlmSearchHitType,
 } from './lib/llm-search/api';
