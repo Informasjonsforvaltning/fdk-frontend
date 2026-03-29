@@ -63,7 +63,7 @@
     },
     "dependencies": {
         "@digdir/designsystemet-css": "^1.11.1",
-        "@digdir/designsystemet-react": "^1.11.1",
+        "@digdir/designsystemet-react": "^1.13.1",
         "@digdir/designsystemet-theme": "^1.11.0",
         "@fellesdatakatalog/types": "^1.0.22",
         "@fellesdatakatalog/ui": "^1.0.19",
