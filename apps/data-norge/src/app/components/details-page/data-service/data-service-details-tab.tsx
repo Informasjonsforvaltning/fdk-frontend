@@ -121,6 +121,70 @@ export default function DataServiceDetailsTab({
                 </section>
             )}
 
+            {!resource.costs?.length && !showEmptyRows ? null : (
+                <section>
+                    <Heading
+                        level={2}
+                        data-size='xs'
+                    >
+                        {dictionary.details.costs.title}
+                    </Heading>
+                    {resource.costs && resource.costs.length > 0 ? (
+                        resource.costs.map((cost, index) => (
+                            <Dlist key={index}>
+                                {!cost.hasValue && !showEmptyRows ? null : (
+                                    <>
+                                        <dt>{dictionary.details.costs.value}:</dt>
+                                        <dd>
+                                            {cost.hasValue ? (
+                                                `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split('/').pop() || ''}`
+                                            ) : (
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                            )}
+                                        </dd>
+                                    </>
+                                )}
+                                {!printLocaleValue(locale, cost.description) && !showEmptyRows ? null : (
+                                    <>
+                                        <dt>{dictionary.details.costs.description}:</dt>
+                                        <dd>
+                                            {printLocaleValue(locale, cost.description) || (
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                            )}
+                                        </dd>
+                                    </>
+                                )}
+                                {!cost.documentation?.length && !showEmptyRows ? null : (
+                                    <>
+                                        <dt>{dictionary.details.costs.documentation}:</dt>
+                                        <dd>
+                                            {cost.documentation?.length ? (
+                                                <SmartList
+                                                    items={cost.documentation}
+                                                    renderItem={(url) => (
+                                                        <ExternalLink
+                                                            href={url}
+                                                            locale={locale}
+                                                            gateway
+                                                        >
+                                                            {url}
+                                                        </ExternalLink>
+                                                    )}
+                                                />
+                                            ) : (
+                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                            )}
+                                        </dd>
+                                    </>
+                                )}
+                            </Dlist>
+                        ))
+                    ) : (
+                        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                    )}
+                </section>
+            )}
+
             <section>
                 <Heading
                     level={2}
@@ -226,70 +290,6 @@ export default function DataServiceDetailsTab({
                     </dd>
                 </Dlist>
             </section>
-
-            {!resource.costs?.length && !showEmptyRows ? null : (
-                <section>
-                    <Heading
-                        level={2}
-                        data-size='xs'
-                    >
-                        {dictionary.details.costs.title}
-                    </Heading>
-                    {resource.costs && resource.costs.length > 0 ? (
-                        resource.costs.map((cost, index) => (
-                            <Dlist key={index}>
-                                {!cost.hasValue && !showEmptyRows ? null : (
-                                    <>
-                                        <dt>{dictionary.details.costs.value}:</dt>
-                                        <dd>
-                                            {cost.hasValue ? (
-                                                `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split('/').pop() || ''}`
-                                            ) : (
-                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                            )}
-                                        </dd>
-                                    </>
-                                )}
-                                {!printLocaleValue(locale, cost.description) && !showEmptyRows ? null : (
-                                    <>
-                                        <dt>{dictionary.details.costs.description}:</dt>
-                                        <dd>
-                                            {printLocaleValue(locale, cost.description) || (
-                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                            )}
-                                        </dd>
-                                    </>
-                                )}
-                                {!cost.documentation?.length && !showEmptyRows ? null : (
-                                    <>
-                                        <dt>{dictionary.details.costs.documentation}:</dt>
-                                        <dd>
-                                            {cost.documentation?.length ? (
-                                                <SmartList
-                                                    items={cost.documentation}
-                                                    renderItem={(url) => (
-                                                        <ExternalLink
-                                                            href={url}
-                                                            locale={locale}
-                                                            gateway
-                                                        >
-                                                            {url}
-                                                        </ExternalLink>
-                                                    )}
-                                                />
-                                            ) : (
-                                                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                            )}
-                                        </dd>
-                                    </>
-                                )}
-                            </Dlist>
-                        ))
-                    ) : (
-                        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-                    )}
-                </section>
-            )}
 
             {!resource.keyword?.length && !showEmptyRows ? null : (
                 <section>
