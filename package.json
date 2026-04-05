@@ -95,7 +95,7 @@
         "@nx/playwright": "^22.6.3",
         "@nx/react": "^22.6.3",
         "@nx/storybook": "^22.6.3",
-        "@nx/vite": "^22.6.3",
+        "@nx/vite": "^22.6.4",
         "@nx/web": "^22.6.3",
         "@nx/workspace": "^22.6.3",
         "@playwright/test": "^1.59.0",
