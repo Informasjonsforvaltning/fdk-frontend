@@ -13,12 +13,9 @@
         "svgo": "^3.3.3",
         "qs": "^6.15.0",
         "serialize-javascript": "^7.0.5",
-        "handlebars": "^4.7.9",
-        "node-forge": "^1.4.0",
         "path-to-regexp@0.1.12": "0.1.13",
-        "picomatch@^2": "^2.3.2",
-        "picomatch@^4": "^4.0.4",
-        "picomatch@4.0.2": "4.0.4"
+        "axios": "^1.14.0",
+        "lodash-es": "^4.18.1"
     },
     "packageManager": "yarn@4.11.0",
     "lint-staged": {
@@ -143,6 +140,6 @@
         "ts-jest": "^29.4.9",
         "ts-node": "^10.9.2",
         "typescript": "~6.0.2",
-        "vite": "^7.3.1"
+        "vite": "^7.3.2"
     }
 }
