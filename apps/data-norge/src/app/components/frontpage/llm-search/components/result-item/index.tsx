@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heading, Link } from '@digdir/designsystemet-react';
+import { EntityType } from '@fellesdatakatalog/types';
 import { Markdown } from '@fdk-frontend/ui';
 import { type LocaleCodes } from '@fdk-frontend/localization';
 import { getSlug } from '@fdk-frontend/utils';
@@ -10,7 +11,7 @@ export type ItemObjectType = {
     id: string;
     title: string;
     description: string;
-    type: string;
+    type: EntityType;
     publisher: string;
     publisherId: string;
 };
@@ -21,12 +22,15 @@ type ResultItemProps = {
 };
 
 const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-    // Generate slug for the dataset
     const slug = getSlug(item, locale);
+    const href =
+        item.type === EntityType.DATA_SERVICE
+            ? `/${locale}/data-services/${item.id}/${slug}`
+            : `/${locale}/datasets/${item.id}/${slug}`;
 
     return (
         <Link
-            href={`/${locale}/datasets/${item.id}/${slug}`}
+            href={href}
             className={styles.link}
             data-color-scheme='dark'
             {...rest}
