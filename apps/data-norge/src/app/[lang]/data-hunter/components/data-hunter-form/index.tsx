@@ -31,6 +31,7 @@ const DataHunterForm = ({ dictionary, locale }: DataHunterFormProps) => {
                 className={styles.form}
             >
                 <Textfield
+                    id='dataset'
                     multiline={true}
                     name='dataset'
                     className={styles.textArea}
@@ -47,6 +48,7 @@ const DataHunterForm = ({ dictionary, locale }: DataHunterFormProps) => {
                     error={extractErrorMessages('dataset', state, dictionary)}
                 />
                 <Textfield
+                    id='location'
                     multiline={true}
                     name='location'
                     className={styles.textArea}
@@ -56,6 +58,7 @@ const DataHunterForm = ({ dictionary, locale }: DataHunterFormProps) => {
                     description={<Paragraph>{dictionary.dataHunterForm.location.description}</Paragraph>}
                 />
                 <Textfield
+                    id='efforts'
                     multiline={true}
                     name='efforts'
                     className={styles.textArea}
@@ -65,6 +68,7 @@ const DataHunterForm = ({ dictionary, locale }: DataHunterFormProps) => {
                     description={<Paragraph>{dictionary.dataHunterForm.efforts.description}</Paragraph>}
                 />
                 <Textfield
+                    id='name'
                     name='name'
                     required
                     className={styles.textField}
@@ -77,6 +81,7 @@ const DataHunterForm = ({ dictionary, locale }: DataHunterFormProps) => {
                     }
                 />
                 <Textfield
+                    id='email'
                     name='email'
                     required
                     className={styles.textField}
@@ -90,6 +95,7 @@ const DataHunterForm = ({ dictionary, locale }: DataHunterFormProps) => {
                     }
                 />
                 <Textfield
+                    id='organizationNumber'
                     name='organizationNumber'
                     required
                     type='number'
@@ -103,9 +109,10 @@ const DataHunterForm = ({ dictionary, locale }: DataHunterFormProps) => {
                     }
                 />
                 <Textfield
+                    id='phoneNumber'
                     name='phoneNumber'
                     className={styles.textFieldHalfWidth}
-                    label={dictionary.phoneNumber}
+                    label={<LabelWithTag labelText={dictionary.phoneNumber} />}
                 />
                 <Button
                     type='submit'
