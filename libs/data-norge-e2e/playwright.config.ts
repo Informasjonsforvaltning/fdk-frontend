@@ -11,7 +11,7 @@ import * as dotenv from 'dotenv';
  */
 dotenv.config({ path: path.resolve(__dirname, '.env.test') });
 
-const baseURL = 'http://127.0.0.1:3000';
+const baseURL = 'http://localhost:3000';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -35,7 +35,7 @@ export default defineConfig({
     /* Run your local dev server before starting the tests */
     webServer: {
         command: 'yarn nx dev data-norge --configuration=e2e',
-        url: 'http://127.0.0.1:3000',
+        url: 'http://localhost:3000',
         reuseExistingServer: !process.env.CI,
         cwd: workspaceRoot,
     },

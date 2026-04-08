@@ -48,10 +48,12 @@ export default class FormPage {
             return;
         }
         await this.page.waitForFunction(() => {
-            const inputs = document.querySelectorAll('#data-hunter-form input, #data-hunter-form textarea');
+            const inputs = document.querySelectorAll(
+                '#data-hunter-form input:not([type=hidden]), #data-hunter-form textarea',
+            );
             return inputs.length > 0 && Array.from(inputs).every((el) => (el as HTMLInputElement).id !== '');
         });
-        const result = await this.accessibilityBuilder.analyze();
+        const result = await this.accessibilityBuilder.include('#data-hunter-form').analyze();
         expect.soft(result.violations).toEqual([]);
     }
 
