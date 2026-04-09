@@ -1,4 +1,4 @@
-import { Tag } from '@digdir/designsystemet-react';
+import { Label, Tag } from '@digdir/designsystemet-react';
 import { HTMLAttributes } from 'react';
 import styles from './label-with-tag.module.css';
 
@@ -12,7 +12,7 @@ const LabelWithTag = ({ labelText, tagText, ...rest }: LabelWithTagProps) => (
         {...rest}
         className={styles.contentContainer}
     >
-        <span>{labelText}</span>
+        <Label>{labelText}</Label>
         {tagText && (
             <Tag
                 data-size='sm'
