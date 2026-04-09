@@ -96,9 +96,8 @@ jobs:
                   path: node_modules/.cache
                   key: cache-nx-${{ hashFiles('yarn.lock') }}
 
-            # TODO: Enable e2e tests https://github.com/Informasjonsforvaltning/fdk-frontend/issues/821
-            # - run: yarn playwright install
-            # - run: yarn nx e2e data-norge-e2e --configuration=ci
+            - run: yarn playwright install
+            - run: yarn nx e2e data-norge-e2e --configuration=ci
             - run: yarn nx build data-norge --configuration=ci
 
             - name: Caching Dist Folder

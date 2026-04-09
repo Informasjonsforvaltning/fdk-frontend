@@ -1,6 +1,9 @@
 {
     "extends": ["plugin:playwright/recommended", "../../.eslintrc.json"],
     "ignorePatterns": ["!**/*", "playwright.config.ts"],
+    "env": {
+        "browser": true
+    },
     "overrides": [
         {
             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],

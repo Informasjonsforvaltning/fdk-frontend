@@ -38,11 +38,22 @@ export default class DatasetDetailsPage {
         );
     }
 
-    public async checkAccessibility(tab: string) {
+    public async checkAccessibility(tab?: string) {
         if (tab) await this.goto(`${this.url}?tab=${tab}`);
         if (!this.accessibilityBuilder) {
             return;
         }
+
+        // Expand collapsed <u-details> accordions sequentially before axe;
+        // zero-rect collapsed children cause color-contrast/target-size
+        // false positives, and parallel clicks race React's onToggle commit.
+        const visibleClosed = this.page.locator('u-details:not([open]) > u-summary').filter({ visible: true });
+        const count = await visibleClosed.count();
+        for (let i = 0; i < count; i++) {
+            // eslint-disable-next-line no-await-in-loop
+            await visibleClosed.first().click();
+        }
+        await expect(this.page.locator('u-details:not([open])').filter({ visible: true })).toHaveCount(0);
         const result = await this.accessibilityBuilder.analyze();
         expect.soft(result.violations).toEqual([]);
     }
