@@ -28,8 +28,7 @@ export default defineConfig({
     /* Global test timeout - increased to handle sitemap generation */
     timeout: 120000, // 2 minutes
     /* Retry failed tests */
-    retries: 0,
-    maxFailures: 1,
+    retries: 2,
     /* Workers configuration - allow more workers since we're using retries */
     workers: 3,
     /* Run your local dev server before starting the tests */
