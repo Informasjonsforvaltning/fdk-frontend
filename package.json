@@ -88,7 +88,7 @@
         "@nx/eslint-plugin": "^22.6.4",
         "@nx/jest": "^22.6.4",
         "@nx/js": "^22.6.4",
-        "@nx/next": "^22.6.4",
+        "@nx/next": "^22.6.5",
         "@nx/playwright": "^22.6.4",
         "@nx/react": "^22.6.4",
         "@nx/storybook": "^22.6.4",
