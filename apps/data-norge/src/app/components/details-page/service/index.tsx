@@ -287,14 +287,14 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                             className={styles.dlist}
                                             key={index}
                                         >
-                                            {!contactPoint.contactPage && !showEmptyRows ? null : (
+                                            {!contactPoint.contactType && !showEmptyRows ? null : (
                                                 <>
                                                     <dt>
                                                         {dictionaries.detailsPage.details.contactPoint.formattedName}:
                                                     </dt>
                                                     <dd>
-                                                        {contactPoint.contactPage ? (
-                                                            contactPoint.contactPage
+                                                        {contactPoint.contactType ? (
+                                                            printLocaleValue(locale, contactPoint.contactType)
                                                         ) : (
                                                             <PlaceholderText>
                                                                 {dictionaries.detailsPage.details.noData}
