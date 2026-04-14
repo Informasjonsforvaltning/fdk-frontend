@@ -578,7 +578,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                         value='rdf'
                     >
                         <MetadataTab
-                            uri={`${baseUri}/public-services/${service.id}`}
+                            uri={`${baseUri}/services/${service.id}`}
                             dictionary={dictionaries.detailsPage}
                             locale={locale}
                         />
