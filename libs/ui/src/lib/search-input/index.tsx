@@ -136,7 +136,7 @@ const SearchInput = ({
                 onSubmit={handleSubmit}
                 {...rest}
             >
-                <MagnifyingGlassIcon className={styles.searchIcon} />
+                <MagnifyingGlassIcon aria-hidden className={styles.searchIcon} />
                 <Input
                     ref={inputRef}
                     value={value}
