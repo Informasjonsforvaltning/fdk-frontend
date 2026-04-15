@@ -4,7 +4,8 @@
         "module": "commonjs",
         "outDir": "../../dist/out-tsc",
         "resolveJsonModule": true,
-        "sourceMap": false
+        "sourceMap": false,
+        "types": ["node"]
     },
     "extends": "../../tsconfig.base.json",
     "include": [

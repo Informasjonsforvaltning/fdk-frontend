@@ -1,8 +1,8 @@
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { type DataService, type SearchObject } from '@fellesdatakatalog/types';
 import { printLocaleValue } from '@fdk-frontend/utils';
-import { Markdown, Article, PlaceholderBox, PlaceholderText, noHeadings, Dlist, SmartList, ExternalLink, TagList, ScrollShadows, DatasetTable } from '@fdk-frontend/ui';
-import { Heading, Card, Tag } from '@digdir/designsystemet-react';
+import { Markdown, Article, PlaceholderBox, PlaceholderText, noHeadings, Dlist, SmartList, ExternalLink, ApiTags, ScrollShadows, DatasetTable } from '@fdk-frontend/ui';
+import { Heading, Card } from '@digdir/designsystemet-react';
 import styles from '../details-page.module.scss';
 
 type DataServiceOverviewTabProps = {
@@ -106,17 +106,8 @@ export default function DataServiceOverviewTab({ resource, locale, dictionary, r
                     </dd>
                     <dt>{dictionary.details.general.format}:</dt>
                     <dd>
-                        {resource.fdkFormat?.length ? (
-                            <TagList>
-                                {resource.fdkFormat.map((format) => (
-                                    <Tag
-                                        key={format.code}
-                                        data-size='sm'
-                                    >
-                                        {format.name || format.code}
-                                    </Tag>
-                                ))}
-                            </TagList>
+                        {resource.fdkFormat?.some((f) => f?.code) ? (
+                            <ApiTags api={resource} />
                         ) : (
                             <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                         )}

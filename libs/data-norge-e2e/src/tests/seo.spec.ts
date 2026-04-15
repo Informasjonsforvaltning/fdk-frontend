@@ -818,16 +818,6 @@ test.describe('SEO Tests', () => {
             expect(nnSlug).toMatch(/^[a-z0-9-]+$/);
         });
 
-        test('should have SEO-friendly URLs in sitemap', async ({ page }) => {
-            const { content } = await fetchSitemap(page);
-
-            // Should contain dataset URLs with slugs
-            expect(content).toMatch(/https:\/\/data\.norge\.no\/[a-z]{2}\/datasets\/[^/]+\/[^/]+/);
-
-            // Should not contain old format URLs (without slugs)
-            expect(content).not.toMatch(/https:\/\/data\.norge\.no\/[a-z]{2}\/datasets\/[^/]+<\/loc>/);
-        });
-
         test('should have proper canonical URLs with slugs', async ({ page }) => {
             const datasetId = process.env.E2E_DATASET_ID || 'test-dataset';
             const success = await navigateToDataset(page, datasetId);

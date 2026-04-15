@@ -35,7 +35,6 @@ const Footer = ({ locale }: FooterProps) => {
                             data-color-scheme='dark'
                         />
                         <DpgLink
-                            title=''
                             href='https://www.digitalpublicgoods.net/r/data-norge'
                             data-color-scheme='dark'
                         />

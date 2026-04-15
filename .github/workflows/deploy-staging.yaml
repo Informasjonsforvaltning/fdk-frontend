@@ -97,7 +97,7 @@ jobs:
                   key: cache-nx-${{ hashFiles('yarn.lock') }}
 
             - run: yarn playwright install
-            #- run: yarn nx e2e data-norge-e2e --configuration=ci
+            - run: yarn nx e2e data-norge-e2e --configuration=ci
             - run: yarn nx build data-norge --configuration=ci
 
             - name: Caching Dist Folder

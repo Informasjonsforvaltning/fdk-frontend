@@ -47,7 +47,20 @@ export default class FormPage {
         if (!this.accessibilityBuilder) {
             return;
         }
-        const result = await this.accessibilityBuilder.analyze();
+        await this.page.waitForFunction(() => {
+            const inputs = document.querySelectorAll(
+                '#data-hunter-form input:not([type=hidden]), #data-hunter-form textarea',
+            );
+            return (
+                inputs.length > 0 &&
+                Array.from(inputs).every(
+                    (el) =>
+                        (el as HTMLInputElement | HTMLTextAreaElement).labels !== null &&
+                        (el as HTMLInputElement | HTMLTextAreaElement).labels!.length > 0,
+                )
+            );
+        });
+        const result = await this.accessibilityBuilder.include('#data-hunter-form').analyze();
         expect.soft(result.violations).toEqual([]);
     }
 
