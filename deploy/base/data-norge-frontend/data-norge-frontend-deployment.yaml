@@ -122,3 +122,5 @@ spec:
                             secretKeyRef:
                                 name: commonurl
                                 key: FDK_SPARQL_API_BASE_URI
+                      - name: SEARCH_PROTOTYPE_ENABLED
+                        value: "false"

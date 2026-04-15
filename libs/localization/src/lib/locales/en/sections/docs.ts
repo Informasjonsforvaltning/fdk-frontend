@@ -1,12 +1,12 @@
 const docs = {
   titles: {
     "/about": "About us",
-    "/catalogs": "Data catalogs",
-    "/catalogs/datasets": "Datasets",
-    "/catalogs/data-services": "APIs",
-    "/catalogs/information-models": "Information models",
-    "/catalogs/concepts": "Concepts",
-    "/catalogs/public-services-and-events": "Services and events",
+    "/docs/catalogs": "Data catalogs",
+    "/docs/catalogs/datasets": "Datasets",
+    "/docs/catalogs/data-services": "APIs",
+    "/docs/catalogs/information-models": "Information models",
+    "/docs/catalogs/concepts": "Concepts",
+    "/docs/catalogs/public-services-and-events": "Services and events",
     "/contact": "Contact us",
     "/docs": "User guide",
     "/docs/finding-data": "Finding data",

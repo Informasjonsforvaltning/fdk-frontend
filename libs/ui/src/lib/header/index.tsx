@@ -3,20 +3,22 @@ import { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Button, Alert, Paragraph } from '@digdir/designsystemet-react';
-import { MagnifyingGlassIcon, MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { MenuHamburgerIcon, XMarkIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { LogoLink } from '../logo';
 import MainMenu from '../main-menu';
+import SearchInput from '../search-input';
 import styles from './header.module.scss';
 
 export type HeaderProps = {
     locale: LocaleCodes;
     frontpage?: boolean;
+    showSearchInput?: boolean;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ locale, frontpage }: HeaderProps) => {
+const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
     const dictionary = getLocalization(locale).common;
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
@@ -123,18 +125,26 @@ const Header = ({ locale, frontpage }: HeaderProps) => {
                         className={styles.headerLogo}
                         href={`/${locale}`}
                     />
+                    {
+                        showSearchInput ?
+                        <SearchInput locale={locale} className={styles.headerSearchInput} /> :
+                        <div style={{flexGrow:1}} />
+                    }
                     <div className={styles.headerToolbar}>
-                        <Button
-                            asChild
-                            data-size='sm'
-                            variant='tertiary'
-                            aria-label={dictionary.header.findDataButton}
-                        >
-                            <Link href={`/search-all`}>
-                                <MagnifyingGlassIcon aria-hidden />
-                                <span>{dictionary.header.findDataButton}</span>
-                            </Link>
-                        </Button>
+                        {
+                            !showSearchInput &&
+                            <Button
+                                asChild
+                                data-size='sm'
+                                variant='tertiary'
+                                aria-label={dictionary.header.findDataButton}
+                            >
+                                <Link href={`/search-all`}>
+                                    <MagnifyingGlassIcon aria-hidden />
+                                    <span>{dictionary.header.findDataButton}</span>
+                                </Link>
+                            </Button>
+                        }
                         <Button
                             data-size='sm'
                             variant={showMenu ? 'secondary' : 'tertiary'}

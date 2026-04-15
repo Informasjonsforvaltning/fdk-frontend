@@ -10,3 +10,5 @@ export const useRouter = () => ({
 
 export const usePathname = () => '/en';
 
+export const useSearchParams = () => new URLSearchParams('');
+

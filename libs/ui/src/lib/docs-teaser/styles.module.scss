@@ -1,0 +1,30 @@
+.container {
+    position:relative;
+
+    :global(.ds-link) {
+        text-decoration: none;
+    }
+
+    .llmIcon {
+        position:absolute;
+        top:1rem;
+        right:1rem;
+        width:1.5rem;
+        height:1.5rem;
+        color: var(--ds-color-accent-border-default);
+        color: var(--ds-color-neutral-border-subtle);
+        margin:0;
+    }
+
+    &:hover {
+        .llmIcon {
+            color: var(--ds-color-accent-base-hover);
+        }
+    }
+}
+
+.orgName {
+    font-size:0.9em;
+    opacity:0.75;
+}
+
