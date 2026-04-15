@@ -6,10 +6,14 @@ import FeedbackBanner from '../../feedback-banner';
 
 const NormalLayout = async ({ children, params }: PropsWithChildren & RootLayoutProps) => {
     const { lang } = await params;
-    const { FDK_COMMUNITY_BASE_URI: communityBaseUri } = process.env;
+    const communityBaseUri = process.env.FDK_COMMUNITY_BASE_URI;
+    const showSearchInput = process.env.SEARCH_PROTOTYPE_ENABLED === 'true';
 
     return (
-        <HeaderLayout locale={lang} showSearchInput={true}>
+        <HeaderLayout
+            locale={lang}
+            showSearchInput={showSearchInput}
+        >
             <FooterLayout locale={lang}>
                 <main id='main'>
                     {children}

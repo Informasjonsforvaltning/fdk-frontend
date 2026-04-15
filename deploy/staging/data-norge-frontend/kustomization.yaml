@@ -4,3 +4,20 @@ kind: Kustomization
 namespace: staging
 resources:
     - ../../base/data-norge-frontend
+patches:
+    - target:
+          kind: Deployment
+          name: data-norge-frontend
+      patch: |-
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+              name: data-norge-frontend
+          spec:
+              template:
+                  spec:
+                      containers:
+                          - name: data-norge-frontend
+                            env:
+                                - name: SEARCH_PROTOTYPE_ENABLED
+                                  value: "true"
