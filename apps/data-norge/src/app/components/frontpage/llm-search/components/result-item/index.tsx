@@ -18,9 +18,19 @@ const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTM
     // Generate slug for the dataset
     const slug = getSlug(item, locale);
 
+    const catalogTypeToStr = new Map<string, string>([
+      ["DATASET", `${locale}/datasets`],
+      ["DATA_SERVICE", `${locale}/data-services`],
+      ["CONCEPT", "concepts"],
+      ["INFORMATION_MODEL", "information_models"],
+      ["SERVICE", "services"]
+    ])
+
+    const urlStr: string = `/${catalogTypeToStr.get(item.type)}/${item.id}/${slug}`;
+
     return (
         <Link
-            href={`/${locale}/datasets/${item.id}/${slug}`}
+            href={urlStr}
             className={styles.link}
             data-color-scheme='dark'
             {...rest}
