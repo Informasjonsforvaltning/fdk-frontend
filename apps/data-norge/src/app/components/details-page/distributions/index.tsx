@@ -51,7 +51,7 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {sumArrayLengths(datasets, exampleData) > 0 ? (
-                <Card>
+                <Card className={styles.listContainer}>
                     {datasets &&
                         datasets.map((distribution: Distribution, index) => (
                             <DistributionList
@@ -90,7 +90,7 @@ const Distributions = ({
                 </Hstack>
             </Heading>
             {apis && apis.length ? (
-                <Card>
+                <Card className={styles.listContainer}>
                     {apis.map((api: DataService, index) => (
                         <div
                             key={`api-${index}`}

@@ -1,0 +1,58 @@
+.searchForm[class] {
+    gap: 2rem;
+}
+
+.searchControls[class] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.searchToolbar {
+    justify-content: space-between;
+
+    :global(.ds-button) {
+        flex-shrink:0;
+    }
+}
+
+.filterToolbar {
+    :global(.ds-button) {
+        white-space: nowrap;
+    }
+}
+
+.filterDropdown {
+    width:350px;
+    max-width:350px;
+    padding:1rem;
+    
+    .box {
+        background:#fafafa;
+        max-height:350px;
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+
+    > div {
+        :global(.ds-field) {
+            width:100%;
+
+            &:hover {
+                background:#eee;
+            }
+        }
+    }
+}
+
+.filterTabs {
+    margin-top:-0.5rem;
+    ds-tab {
+        width:50%;
+    }
+}
+
+.orderbyDropdown {
+    width:200px;
+    min-width:auto;
+}

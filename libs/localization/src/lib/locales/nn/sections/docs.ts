@@ -1,12 +1,12 @@
 const docs = {
   titles: {
     "/about": "Om oss",
-    "/catalogs": "Datakatalogar",
-    "/catalogs/datasets": "Datasett",
-    "/catalogs/data-services": "API-ar",
-    "/catalogs/information-models": "Informasjonsmodellar",
-    "/catalogs/concepts": "Omgrep",
-    "/catalogs/public-services-and-events": "Tenester og hendingar",
+    "/docs/catalogs": "Datakatalogar",
+    "/docs/catalogs/datasets": "Datasett",
+    "/docs/catalogs/data-services": "API-ar",
+    "/docs/catalogs/information-models": "Informasjonsmodellar",
+    "/docs/catalogs/concepts": "Omgrep",
+    "/docs/catalogs/public-services-and-events": "Tenester og hendingar",
     "/contact": "Kontakt oss",
     "/docs": "Brukarrettleiing",
     "/docs/finding-data": "Finne data",

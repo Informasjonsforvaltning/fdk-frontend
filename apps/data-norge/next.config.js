@@ -6,6 +6,13 @@ const { composePlugins, withNx } = require('@nx/next');
 const createMDX = require('@next/mdx');
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
+const dotenv = require('dotenv');
+
+// Load .env and .env.local from workspace root (Next.js only loads from app dir by default)
+const rootDir = path.join(__dirname, '../..');
+dotenv.config({ path: path.join(rootDir, '.env') });
+dotenv.config({ path: path.join(rootDir, '.env.local'), override: true });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

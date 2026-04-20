@@ -5,6 +5,8 @@ const config: Config = {
     preset: './jest.preset.js',
     coverageDirectory: '../../coverage/libs/ui',
     moduleNameMapper: {
+        '^invokers-polyfill$': '<rootDir>/src/test/invokers-polyfill.ts',
+        '^invokers-polyfill/fn$': '<rootDir>/src/test/invokers-polyfill.ts',
         '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
             '<rootDir>/../../__mocks__/fileMock.js',
         '\\.module.css$': 'identity-obj-proxy',

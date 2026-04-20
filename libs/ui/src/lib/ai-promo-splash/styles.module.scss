@@ -1,0 +1,46 @@
+.aiPromoSplash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align:center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+
+  :global(.ds-paragraph){
+    max-width:600px;
+  }
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border:1px solid var(--ds-color-accent-border-subtle);
+  background:var(--ds-color-neutral-background-tinted);
+  background:#f8f8f8;
+  padding:1.5rem 2rem 2rem;
+  border-radius:0.25rem;
+
+  :global(.ds-button){
+    width:100%;
+    margin-block:0;
+  }
+
+  legend {
+    width:auto;
+    margin: auto;
+    padding: 0 1rem;
+    text-align:center;
+  }
+}
+
+.aiPromoHeading {
+  font-size: 1.5rem;
+}
+
+.aiPromoText {
+  font-size: 1.125rem;
+}
