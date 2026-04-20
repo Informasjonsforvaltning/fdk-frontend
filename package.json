@@ -73,7 +73,7 @@
         "next-mdx-remote": "^6.0.0",
         "react": "^19.2.5",
         "react-dom": "^19.2.5",
-        "react-syntax-highlighter": "^15.6.6",
+        "react-syntax-highlighter": "^16.1.1",
         "remark-gfm": "^4.0.1",
         "slugify": "^1.6.9",
         "tslib": "^2.8.1",
