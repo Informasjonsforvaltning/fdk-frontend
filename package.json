@@ -17,7 +17,7 @@
         "axios": "^1.15.0",
         "lodash-es": "^4.18.1"
     },
-    "packageManager": "yarn@4.11.0",
+    "packageManager": "yarn@4.14.1",
     "lint-staged": {
         "*.tsx": [
             "eslint --cache --fix",

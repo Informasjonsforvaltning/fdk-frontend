@@ -44,7 +44,6 @@ jobs:
 
             - name: Yarn install
               run: |
-                  yarn set version stable
                   yarn install --no-immutable
 
             - name: Caching Nx
@@ -87,7 +86,6 @@ jobs:
 
             - name: Yarn install
               run: |
-                  yarn set version stable
                   yarn install --no-immutable
 
             - name: Caching Nx
