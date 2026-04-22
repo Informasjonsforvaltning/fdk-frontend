@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Heading, Paragraph } from '@digdir/designsystemet-react';
 import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
-import { printLocaleValue } from '@fdk-frontend/utils';
+import { formatTemporalDate, printLocaleValue } from '@fdk-frontend/utils';
 import { HelpText } from '@fellesdatakatalog/ui';
 
 const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
@@ -218,21 +218,13 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                             {temporal.startDate && (
                                                 <>
                                                     <dt>{dictionary.details.content.temporalFrom}:</dt>
-                                                    <dd>
-                                                        {new Date(temporal.startDate).toLocaleString(locale, {
-                                                            dateStyle: 'long',
-                                                        })}
-                                                    </dd>
+                                                    <dd>{formatTemporalDate(temporal.startDate, locale)}</dd>
                                                 </>
                                             )}
                                             {temporal.endDate && (
                                                 <>
                                                     <dt>{dictionary.details.content.temporalTo}:</dt>
-                                                    <dd>
-                                                        {new Date(temporal.endDate).toLocaleString(locale, {
-                                                            dateStyle: 'long',
-                                                        })}
-                                                    </dd>
+                                                    <dd>{formatTemporalDate(temporal.endDate, locale)}</dd>
                                                 </>
                                             )}
                                         </Dlist>
