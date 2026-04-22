@@ -30,6 +30,18 @@ const common = {
         githubFollow: "Følg oss på Github"
       }
     },
+    transport: {
+      heading: "Transportportal",
+      links: {
+        searchHere: "Søk her",
+        generalInformation: "Generell informasjon",
+        rolesAndResponsibilities: "Roller og ansvar",
+        itsDirective: "ITS direktiv og forbedringer",
+        news: "Nyheter",
+        offerData: "Tilby data",
+        cooperationDeclaration: "Samværserklæring"
+      }
+    },
     catalogs: {
       label: "Kataloger",
       ai: {

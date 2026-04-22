@@ -130,6 +130,7 @@ const SearchInput = ({
         <div
             ref={containerRef}
             className={cn(styles.container, className)}
+            data-color-scheme='light'
         >
             <form
                 className={styles.form}

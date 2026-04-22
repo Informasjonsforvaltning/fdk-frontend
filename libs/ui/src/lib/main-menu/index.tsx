@@ -148,6 +148,27 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
                         ))}
                     </ul>
                 </MotionNav>
+                <MotionNav
+                    className={styles.linkSection}
+                    variants={animations.section}
+                    aria-labelledby='mainMenu.transport.heading'
+                >
+                    <Heading
+                        className={styles.linkSectionHeader}
+                        level={2}
+                        data-size='sm'
+                        id='mainMenu.transport.heading'
+                    >
+                        {dictionary.mainMenu.transport.heading}
+                    </Heading>
+                    <ul>
+                        {data.transport.map((item) => (
+                            <li key={item.title}>
+                                <Link href={item.href}>{item.title}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </MotionNav>
             </div>
         </MotionNav>
     );

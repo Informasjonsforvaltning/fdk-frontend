@@ -69,6 +69,30 @@
             }
         }
     }
+
+    &.transportHeader {
+        .headerOuter {
+            background: #525E66;
+
+            &.headerSticky {
+                background: #525E66;
+            }
+
+            .headerLogo {
+                &:not(:hover) {
+                    color: white !important;
+                }
+            }
+
+            .headerToolbar {
+                :global(.ds-button) {
+                    &:not([data-variant='primary']):not(:hover) {
+                        color: white !important;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .skipToMain {
