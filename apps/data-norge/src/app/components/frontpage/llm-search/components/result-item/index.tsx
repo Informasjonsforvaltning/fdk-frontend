@@ -26,7 +26,7 @@ const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTM
       ["SERVICE", "services"]
     ])
 
-    const urlStr: string = `/${catalogTypeToStr.get(item.type)}/${item.id}/${slug}`;
+    const urlStr = `/${catalogTypeToStr.get(item.type)}/${item.id}/${slug}`;
 
     return (
         <Link
