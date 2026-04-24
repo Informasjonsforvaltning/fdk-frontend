@@ -22,8 +22,9 @@ const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTM
       ["DATASET", `${locale}/datasets`],
       ["DATA_SERVICE", `${locale}/data-services`],
       ["CONCEPT", "concepts"],
-      ["INFORMATION_MODEL", "information_models"],
-      ["SERVICE", `${locale}/services`]
+      ["INFORMATION_MODEL", "information-models"],
+      ["SERVICE", `${locale}/services`],
+      ["EVENT", "events"]
     ])
 
     const urlStr = `/${catalogTypeToStr.get(item.type)}/${item.id}/${slug}`;
