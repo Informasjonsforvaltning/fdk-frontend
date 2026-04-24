@@ -16,7 +16,7 @@ type ResultItemProps = {
 
 const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {    
   // Generate slug for resources displayed in fdk-frontend (not used in fdk-portal)
-    const slug = item.type.toLowerCase() === "dataset" ||item.type.toLowerCase() === "concept" ? getSlug(item, locale) : "";
+    const slug = item.type.toLowerCase() === "dataset" ||item.type.toLowerCase().replace("_","") === "dataservice" ? getSlug(item, locale) : "";
 
     const catalogTypeToStr = new Map<string, string>([
       ["DATASET", `${locale}/datasets`],
