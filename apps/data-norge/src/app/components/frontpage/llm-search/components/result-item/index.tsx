@@ -15,15 +15,15 @@ type ResultItemProps = {
 };
 
 const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {    
-  // Generate slug for resources displayed in fdk-frontend (not used in fdk-portal)
-    const slug = item.type.toLowerCase() === "dataset" ||item.type.toLowerCase().replace("_","") === "dataservice" ? getSlug(item, locale) : "";
+    // Generate slug for resources displayed in fdk-frontend (not used in fdk-portal)
+    const slug = item.type.toLowerCase() === "dataset" ||item.type.toLowerCase().replace("_","") === "dataservice" ||item.type.toLowerCase() === "service" ? getSlug(item, locale) : "";
 
     const catalogTypeToStr = new Map<string, string>([
       ["DATASET", `${locale}/datasets`],
       ["DATA_SERVICE", `${locale}/data-services`],
       ["CONCEPT", "concepts"],
       ["INFORMATION_MODEL", "information_models"],
-      ["SERVICE", "services"]
+      ["SERVICE", `${locale}/services`]
     ])
 
     const urlStr = `/${catalogTypeToStr.get(item.type)}/${item.id}/${slug}`;
