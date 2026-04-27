@@ -103,6 +103,15 @@ const getMainMenuData = (dictionary: Localization, locale: string) => ({
             external: true,
         },
     ],
+    transport: [
+        { title: dictionary.mainMenu.transport.links.searchHere, href: `/${locale}/search?profile=transport` },
+        { title: dictionary.mainMenu.transport.links.generalInformation, href: '#' },
+        { title: dictionary.mainMenu.transport.links.rolesAndResponsibilities, href: '#' },
+        { title: dictionary.mainMenu.transport.links.itsDirective, href: '#' },
+        { title: dictionary.mainMenu.transport.links.news, href: '#' },
+        { title: dictionary.mainMenu.transport.links.offerData, href: '#' },
+        { title: dictionary.mainMenu.transport.links.cooperationDeclaration, href: '#' },
+    ],
 });
 
 export default getMainMenuData;

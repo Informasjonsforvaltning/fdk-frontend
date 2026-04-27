@@ -30,6 +30,18 @@ const common = {
         githubFollow: "Follow us on Github"
       }
     },
+    transport: {
+      heading: "Transport portal",
+      links: {
+        searchHere: "Search here",
+        generalInformation: "General information",
+        rolesAndResponsibilities: "Roles and responsibilities",
+        itsDirective: "ITS Directive and improvements",
+        news: "News",
+        offerData: "Offer data",
+        cooperationDeclaration: "Cooperation declaration"
+      }
+    },
     catalogs: {
       label: "Catalogs menu",
       ai: {
