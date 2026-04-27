@@ -14,13 +14,24 @@ type ResultItemProps = {
     locale: LocaleCodes;
 };
 
-const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-    // Generate slug for the dataset
-    const slug = getSlug(item, locale);
+const ResultItem = ({ item, locale, ...rest }: ResultItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {    
+    // Generate slug for resources displayed in fdk-frontend (not used in fdk-portal)
+    const slug = item.type.toLowerCase() === "dataset" ||item.type.toLowerCase().replace("_","") === "dataservice" ||item.type.toLowerCase() === "service" ? getSlug(item, locale) : "";
+
+    const catalogTypeToStr = new Map<string, string>([
+      ["DATASET", `${locale}/datasets`],
+      ["DATA_SERVICE", `${locale}/data-services`],
+      ["CONCEPT", "concepts"],
+      ["INFORMATION_MODEL", "information-models"],
+      ["SERVICE", `${locale}/services`],
+      ["EVENT", "events"]
+    ])
+
+    const urlStr = `/${catalogTypeToStr.get(item.type)}/${item.id}/${slug}`;
 
     return (
         <Link
-            href={`/${locale}/datasets/${item.id}/${slug}`}
+            href={urlStr}
             className={styles.link}
             data-color-scheme='dark'
             {...rest}
