@@ -1,6 +1,16 @@
 import React from 'react';
 import cn from 'classnames';
-import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Tag, Skeleton, Tooltip } from '@digdir/designsystemet-react';
+import {
+    Card,
+    CardBlock,
+    type CardProps,
+    Heading,
+    Link,
+    Paragraph,
+    Tag,
+    Skeleton,
+    Tooltip,
+} from '@digdir/designsystemet-react';
 import { TagList, HStack } from '@fellesdatakatalog/ui';
 import { AccessRightsCodes, EntityType, type SearchObject } from '@fellesdatakatalog/types';
 import AccessLevelTag from '../access-level-tag';
@@ -30,12 +40,11 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
     const localization = getLocalization(locale).common;
     return (
         <Card
-            className={cn(styles.container, className, {[styles.llm]: llm})}
+            className={cn(styles.container, className, { [styles.llm]: llm })}
             {...rest}
         >
             <CardBlock>
-                {
-                    entity ?
+                {entity ? (
                     <div>
                         <OrgLogo
                             className={styles.orgLogo}
@@ -47,7 +56,8 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                                 {printLocaleValue(locale, entity.title)}
                             </Link>
                         </Heading>
-                    </div> : 
+                    </div>
+                ) : (
                     <HStack>
                         <Skeleton
                             width='1.5rem'
@@ -62,74 +72,61 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                             />
                         </Heading>
                     </HStack>
-                }
-                {
-                    entity ?
+                )}
+                {entity ? (
                     <TagList>
                         <Tag
                             data-color='info'
                             data-size='sm'
                         >
                             <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
-                                {
-                                    // FDK search API may return specializedType values ("service", "publicService") outside the SDK enum union.
-                                    entity.searchType === EntityType.PUBLIC_SERVICE &&
-                                    (entity.specializedType as string | undefined | null) === 'publicService'
-                                        ? localization.specializedServices.publicService
-                                        : localization.entities[entity.searchType]
-                                }
+                                {entity.searchType === EntityType.PUBLIC_SERVICE &&
+                                (entity.specializedType as string | undefined | null) === 'publicService'
+                                    ? localization.specializedServices.publicService
+                                    : localization.entities[entity.searchType]}
                             </Link>
                         </Tag>
-                        {
-                            (entity.searchType === 'DATASET' || entity.searchType === 'DATA_SERVICE') &&
+                        {(entity.searchType === 'DATASET' || entity.searchType === 'DATA_SERVICE') && (
                             <AccessLevelTag
                                 data-size='sm'
                                 accessCode={entity.accessRights?.code as AccessRightsCodes}
                                 nonInteractive
                                 locale={locale}
                             />
-                        }
-                        {
-                            entity.isOpenData &&
+                        )}
+                        {entity.isOpenData && (
                             <Tag
                                 data-color='success'
                                 data-size='sm'
                             >
                                 Åpne data
                             </Tag>
-                        }
-                    </TagList> :
-                    <div style={{marginTop:'0.5rem',lineHeight:'1.75rem'}}>
+                        )}
+                    </TagList>
+                ) : (
+                    <div style={{ marginTop: '0.5rem', lineHeight: '1.75rem' }}>
                         <Skeleton
                             variant='text'
                             width={300}
                         />
                     </div>
-                }
-                {
-                    entity &&
+                )}
+                {entity && (
                     <Paragraph className={styles.description}>
-                        {
-                            desc ?
-                            desc.length > 500 ?
-                            `${desc.slice(0, 500)}...` :
-                            desc :
-                            'Mangler beskrivelse'
-                        }
+                        {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : 'Mangler beskrivelse'}
                     </Paragraph>
-                }
-                {
-                    entity &&
-                    <div className={styles.orgName}>
-                        {printLocaleValue(locale, entity.organization?.prefLabel)}
-                    </div>
-                }
-                {
-                    (entity && llm) &&
-                    <Tooltip content='Treff fra KI-søk' placement='top'>
+                )}
+                {entity && (
+                    <div className={styles.orgName}>{printLocaleValue(locale, entity.organization?.prefLabel)}</div>
+                )}
+                {entity && llm && (
+                    <Tooltip
+                        content='Treff fra KI-søk'
+                        placement='top'
+                    >
                         <SparklesFillIcon className={styles.llmIcon} />
                     </Tooltip>
-                }
+                )}
             </CardBlock>
         </Card>
     );
