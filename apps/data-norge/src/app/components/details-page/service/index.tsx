@@ -113,9 +113,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             data-size='md'
                         >
                             <Link href='/public-services-and-events'>
-                                {service.specializedType === 'publicService'
-                                    ? dictionaries.common.specializedServices.publicService
-                                    : dictionaries.common.specializedServices.service}
+                                {dictionaries.detailsPage.header.servicesTagLink}
                             </Link>
                         </Tag>
                         {service.admsStatus && (
