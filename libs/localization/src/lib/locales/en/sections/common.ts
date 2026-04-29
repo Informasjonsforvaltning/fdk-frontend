@@ -128,6 +128,10 @@ const common = {
     INFORMATION_MODEL: 'Information model',
     SERVICE: 'Service',
     EVENT: 'Event'
+  },
+  specializedServices: {
+    service: 'Service',
+    publicService: 'Public service',
   }
 };
 
