@@ -128,6 +128,10 @@ const common = {
     INFORMATION_MODEL: 'Informasjonsmodeller',
     SERVICE: 'Tjenester',
     EVENT: 'Hendelser'
+  },
+  specializedServices: {
+    service: 'Tjenester',
+    publicService: 'Offentlig tjenester',
   }
 };
 

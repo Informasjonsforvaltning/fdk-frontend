@@ -71,7 +71,13 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                             data-size='sm'
                         >
                             <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
-                                {localization.entities[entity.searchType]}
+                                {
+                                    // FDK search API may return specializedType values ("service", "publicService") outside the SDK enum union.
+                                    entity.searchType === EntityType.PUBLIC_SERVICE &&
+                                    (entity.specializedType as string | undefined | null) === 'publicService'
+                                        ? localization.specializedServices.publicService
+                                        : localization.entities[entity.searchType]
+                                }
                             </Link>
                         </Tag>
                         {
