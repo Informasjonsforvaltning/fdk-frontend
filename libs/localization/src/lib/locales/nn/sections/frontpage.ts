@@ -42,7 +42,7 @@ const frontpage = {
             disclaimer: "Ikkje skriv inn personopplysningar i søkjefeltet.",
             label: "Om KI-søket",
             readMoreLinkText: "Les meir om KI-søket her",
-            text: "Vårt KI-søk gjer det enkelt å finne datasett ved å bruke naturleg språk utan at du treng å kjenne til spesifikke datasettnamn, fagomgrep eller tekniske format. Ver obs på at KI-søket kan vere både ufullstendig og innehalde feil.",
+            text: "Vårt KI-søk gjer det enkelt å finne data ved å bruke naturleg språk utan at du treng å kjenne til spesifikke namn, fagomgrep eller tekniske format. Ver obs på at KI-søket kan vere både ufullstendig og innehalde feil.",
         },
     },
     catalogsBanner: {

@@ -42,7 +42,7 @@ const frontpage = {
             disclaimer: "Do not enter personal information in the search field.",
             label: "About AI Search",
             readMoreLinkText: "Read more about the AI Search here",
-            text: "Our AI Search makes it easy to find datasets using natural language without needing to know specific dataset names, technical terms, or formats. Please note that the AI Search may be both incomplete and contain errors.",
+            text: "Our AI Search makes it easy to find data using natural language without needing to know specific names, technical terms, or formats. Please note that the AI Search may be both incomplete and contain errors.",
         },
     },
     catalogsBanner: {
