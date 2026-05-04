@@ -81,8 +81,8 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                         >
                             <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
                                 {entity.searchType === EntityType.PUBLIC_SERVICE &&
-                                (entity.specializedType as string | undefined | null) === 'publicService'
-                                    ? localization.specializedServices.publicService
+                                (entity.specializedType as string | undefined | null) === 'PUBLIC_SERVICE'
+                                    ? localization.specializedServices.PUBLIC_SERVICE
                                     : localization.entities[entity.searchType]}
                             </Link>
                         </Tag>

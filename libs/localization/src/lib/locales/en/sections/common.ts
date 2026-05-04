@@ -130,8 +130,8 @@ const common = {
     EVENT: 'Event'
   },
   specializedServices: {
-    service: 'Service',
-    publicService: 'Public service',
+    SERVICE: 'Service',
+    PUBLIC_SERVICE: 'Public service',
   }
 };
 
