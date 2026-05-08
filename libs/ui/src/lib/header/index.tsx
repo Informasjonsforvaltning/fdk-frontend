@@ -28,6 +28,8 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
     const [showMenu, setShowMenu] = useState(false);
     const [showHeaderMessage, setShowHeaderMessage] = useState(false);
 
+    if (isTransportProfile) showSearchInput = true;
+
     const animations = {
         drawerInner: {
             hidden: { height: 0 },
@@ -130,14 +132,16 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                         href={`/${locale}`}
                         variant={isTransportProfile ? 'transport' : undefined}
                     />
-                    {
-                        showSearchInput ?
-                        <SearchInput locale={locale} className={styles.headerSearchInput} /> :
-                        <div style={{flexGrow:1}} />
-                    }
+                    {showSearchInput ? (
+                        <SearchInput
+                            locale={locale}
+                            className={styles.headerSearchInput}
+                        />
+                    ) : (
+                        <div style={{ flexGrow: 1 }} />
+                    )}
                     <div className={styles.headerToolbar}>
-                        {
-                            !showSearchInput &&
+                        {!showSearchInput && (
                             <Button
                                 asChild
                                 data-size='sm'
@@ -149,7 +153,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                                     <span>{dictionary.header.findDataButton}</span>
                                 </Link>
                             </Button>
-                        }
+                        )}
                         <Button
                             data-size='sm'
                             variant={showMenu ? 'secondary' : 'tertiary'}

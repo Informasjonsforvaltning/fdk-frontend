@@ -5,16 +5,8 @@ import { useEffect, useState } from 'react';
 import { type LocaleCodes } from '@fdk-frontend/localization';
 import { type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { type SearchObject } from '@fellesdatakatalog/types';
-import {
-  isValidSetSegment,
-  KI_TOGGLE_VALUE,
-  type SearchSetSegment,
-} from '../../[lang]/search/search-set-config';
-import SearchPage, {
-  type DocsSearchResult,
-  type SearchPageProps,
-  type SearchResultsProp,
-} from './index';
+import { isValidSetSegment, KI_TOGGLE_VALUE, type SearchSetSegment } from '../../[lang]/search/search-set-config';
+import SearchPage, { type DocsSearchResult, type SearchPageProps, type SearchResultsProp } from './index';
 
 const deriveLangFromPathname = function (pathname: string): LocaleCodes {
   const segment = pathname.split('/').filter(Boolean)[0];
@@ -45,7 +37,11 @@ type SummaryPayload = {
   };
 };
 
-const computeBadgeCountsFromSummary = function computeBadgeCountsFromSummary(summary: SummaryPayload['summary']): Record<string, number> {
+const isTranportPortal: boolean = true;
+
+const computeBadgeCountsFromSummary = function computeBadgeCountsFromSummary(
+  summary: SummaryPayload['summary'],
+): Record<string, number> {
   const datasets = summary.datasets?.page?.totalElements ?? 0;
   const apis = summary.apis?.page?.totalElements ?? 0;
   const concepts = summary.concepts?.page?.totalElements ?? 0;
@@ -75,7 +71,12 @@ const SUMMARY_SET_TO_SEARCH_TYPE: Record<string, string> = {
 const flattenSummaryHits = function flattenSummaryHits(summary: SummaryPayload['summary']): SearchObject[] {
   const hits: SearchObject[] = [];
   const entries: (keyof SummaryPayload['summary'])[] = [
-    'datasets', 'apis', 'concepts', 'informationModels', 'services', 'events',
+    'datasets',
+    'apis',
+    'concepts',
+    'informationModels',
+    'services',
+    'events',
   ];
   for (const key of entries) {
     const slice = summary[key];
@@ -101,7 +102,7 @@ const fetchSearchData = async function (query: string): Promise<{
     }),
     fetch('/api/search/entities', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', profile: 'TRANSPORT' },
       body: JSON.stringify({
         query: query.trim(),
         pagination: { size: 20, page: 0 },
@@ -188,12 +189,9 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     const localeForDocs = (lang ?? langFromUrl) as LocaleCodes;
     Promise.all([
       fetchSearchData(q),
-      fetch(
-        `/api/docs-search?q=${encodeURIComponent(q)}&lang=${encodeURIComponent(localeForDocs)}`,
-        {
-          method: 'GET',
-        },
-      ).then(async (res) => {
+      fetch(`/api/docs-search?q=${encodeURIComponent(q)}&lang=${encodeURIComponent(localeForDocs)}`, {
+        method: 'GET',
+      }).then(async (res) => {
         if (!res.ok) return [] as DocsSearchResult[];
         try {
           const json = (await res.json()) as { results?: DocsSearchResult[] };

@@ -32,51 +32,47 @@ export type SearchTabItem = {
 };
 
 // TODO: localization remains to be implemented
+// TODO: only show tab if the catalog has any results
 export const searchTabItems: SearchTabItem[] = [
-  {
-    value: 'ki',
-    label: 'KI',
-    icon: <SparklesFillIcon />,
-    badgeCount: 0,
-  },
+  // {
+  //     value: 'ki',
+  //     label: 'KI',
+  //     icon: <SparklesFillIcon />,
+  //     badgeCount: 0,
+  // },
   {
     value: 'datasets',
     label: 'Datasett',
     badgeCount: 0,
   },
-  {
-    value: 'data-services',
-    label: 'API',
-    badgeCount: 0,
-  },
-  {
-    value: 'concepts',
-    label: 'Begrep',
-    badgeCount: 0,
-  },
-  {
-    value: 'information-models',
-    label: 'Informasjons\u00admodeller',
-    badgeCount: 0,
-  },
-  {
-    value: 'services-and-events',
-    label: 'Tjenester og hendelser',
-    badgeCount: 0,
-  },
-  {
-    value: 'docs',
-    label: 'Dokumentasjon',
-    badgeCount: 0,
-  },
+  // {
+  //     value: 'data-services',
+  //     label: 'API',
+  //     badgeCount: 0,
+  // },
+  // {
+  //     value: 'concepts',
+  //     label: 'Begrep',
+  //     badgeCount: 0,
+  // },
+  // {
+  //     value: 'information-models',
+  //     label: 'Informasjons\u00admodeller',
+  //     badgeCount: 0,
+  // },
+  // {
+  //     value: 'services-and-events',
+  //     label: 'Tjenester og hendelser',
+  //     badgeCount: 0,
+  // },
+  // {
+  //     value: 'docs',
+  //     label: 'Dokumentasjon',
+  //     badgeCount: 0,
+  // },
 ];
 
-const SearchTabs = ({
-  value,
-  defaultValue = 'ki',
-  onChange,
-  badgeCounts = {},
-}: SearchTabsProps) => {
+const SearchTabs = ({ value, defaultValue = 'datasets', onChange, badgeCounts = {} }: SearchTabsProps) => {
   const isControlled = value !== undefined;
   const toggleValue = isControlled ? value : defaultValue;
 
@@ -86,15 +82,21 @@ const SearchTabs = ({
       defaultValue={defaultValue}
       onChange={(v) => onChange?.(v as SearchTabsValue)}
       className={styles.tabs}
-      variant="secondary"
+      variant='secondary'
     >
       {searchTabItems.map((item) => {
         const count = badgeCounts[item.value] ?? item.badgeCount ?? 0;
         return (
-          <ToggleGroup.Item key={item.value} value={item.value}>
+          <ToggleGroup.Item
+            key={item.value}
+            value={item.value}
+          >
             {item.icon}
             {item.label}
-            <Badge count={count} variant="tinted" />
+            <Badge
+              count={count}
+              variant='tinted'
+            />
           </ToggleGroup.Item>
         );
       })}
