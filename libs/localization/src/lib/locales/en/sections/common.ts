@@ -4,7 +4,17 @@ const common = {
     home: "Home"
   },
   footer: {
-    digdirCredit: "a service from"
+    digdirCredit: "a service from",
+    transport: {
+      informationTextNap: "This is a collaboration between the Norwegian Public Roads Administration, the Norwegian Railway Directorate, Entur and the Norwegian Digitalisation Agency.",
+      searchDatasets: "Search datasets",
+      aboutNap: "About Transportportal.no",
+      guideToRegister: "Guide to register",
+      privacyStatement: "Privacy statement",
+      informationCookies: "Cookies",
+      accessibility: "Accessibility statement",
+      contactEmail: "transportportal@vegvesen.no"
+    }
   },
   header: {
     findDataButton: "Find data",

@@ -4,7 +4,17 @@ const common = {
     home: "Heim"
   },
   footer: {
-    digdirCredit: "ei teneste frå"
+    digdirCredit: "ei teneste frå",
+    transport: {
+      informationTextNap: "Dette er eit samarbeid mellom Statens vegvesen, Jernbanedirektoratet, Entur og Digitaliseringsdirektoratet.",
+      searchDatasets: "Søk i datasett",
+      aboutNap: "Om Transportportal.no",
+      guideToRegister: "Hjelp til å registrere",
+      privacyStatement: "Personvernerklæring",
+      informationCookies: "Informasjonskapslar",
+      accessibility: "Tilgjengelegheitserklæring",
+      contactEmail: "transportportal@vegvesen.no"
+    }
   },
   header: {
     findDataButton: "Finn data",
