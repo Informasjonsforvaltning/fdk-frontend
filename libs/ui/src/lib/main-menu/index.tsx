@@ -13,11 +13,12 @@ import getMainMenuData from './data';
 type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
     locale: LocaleCodes;
     motionProps?: any;
+    profile?: 'transport';
 };
 
 const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
-const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProps) => {
+const MainMenu = ({ className, locale, motionProps = {}, profile, ...rest }: MainMenuProps) => {
     const dictionary = getLocalization(locale).common;
     const data = getMainMenuData(dictionary, locale);
     const animations = {
@@ -47,107 +48,111 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
             {...rest}
         >
             <div className={styles.links}>
-                <MotionNav
-                    className={styles.linkSection}
-                    variants={animations.section}
-                    aria-labelledby='mainMenu.catalogs.heading'
-                >
-                    <Heading
-                        className={styles.linkSectionHeader}
-                        level={2}
-                        data-size='sm'
-                        id='mainMenu.catalogs.heading'
-                    >
-                        {dictionary.mainMenu.catalogs.heading}
-                    </Heading>
-                    <ul>
-                        {data.catalogs.map((item) => (
-                            <li key={item.key}>
-                                <Link
-                                    className={styles.iconLink}
-                                    href={item.href}
-                                >
-                                    {item.title}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </MotionNav>
-                <MotionNav
-                    className={styles.linkSection}
-                    variants={animations.section}
-                    aria-labelledby='mainMenu.help.heading'
-                >
-                    <Heading
-                        className={styles.linkSectionHeader}
-                        level={2}
-                        data-size='sm'
-                        id='mainMenu.help.heading'
-                    >
-                        {dictionary.mainMenu.help.heading}
-                    </Heading>
-                    <ul>
-                        {data.help.map((item) => (
-                            <li key={item.href}>
-                                <Link href={item.href}>{item.title}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </MotionNav>
-                <MotionNav
-                    className={styles.linkSection}
-                    variants={animations.section}
-                    aria-labelledby='mainMenu.tools.heading'
-                >
-                    <Heading
-                        className={styles.linkSectionHeader}
-                        level={2}
-                        data-size='sm'
-                        id='mainMenu.tools.heading'
-                    >
-                        {dictionary.mainMenu.tools.heading}
-                    </Heading>
-                    <ul>
-                        {data.tools.map((item) => (
-                            <li key={item.href}>
-                                <Link href={item.href}>{item.title}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </MotionNav>
-                <MotionNav
-                    className={styles.linkSection}
-                    variants={animations.section}
-                    aria-labelledby='mainMenu.about.heading'
-                >
-                    <Heading
-                        className={styles.linkSectionHeader}
-                        level={2}
-                        data-size='sm'
-                        id='mainMenu.about.heading'
-                    >
-                        {dictionary.mainMenu.about.heading}
-                    </Heading>
-                    <ul>
-                        {data.about.map((item) => (
-                            <li key={item.href}>
-                                {item.external ? (
-                                    <ExternalLink
-                                        href={item.href}
-                                        locale={locale}
-                                    >
-                                        {item.href.startsWith('https://github.com') && (
-                                            <GithubLogo style={{ marginRight: '0.125em' }} />
+                {profile !== 'transport' && (
+                    <>
+                        <MotionNav
+                            className={styles.linkSection}
+                            variants={animations.section}
+                            aria-labelledby='mainMenu.catalogs.heading'
+                        >
+                            <Heading
+                                className={styles.linkSectionHeader}
+                                level={2}
+                                data-size='sm'
+                                id='mainMenu.catalogs.heading'
+                            >
+                                {dictionary.mainMenu.catalogs.heading}
+                            </Heading>
+                            <ul>
+                                {data.catalogs.map((item) => (
+                                    <li key={item.key}>
+                                        <Link
+                                            className={styles.iconLink}
+                                            href={item.href}
+                                        >
+                                            {item.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </MotionNav>
+                        <MotionNav
+                            className={styles.linkSection}
+                            variants={animations.section}
+                            aria-labelledby='mainMenu.help.heading'
+                        >
+                            <Heading
+                                className={styles.linkSectionHeader}
+                                level={2}
+                                data-size='sm'
+                                id='mainMenu.help.heading'
+                            >
+                                {dictionary.mainMenu.help.heading}
+                            </Heading>
+                            <ul>
+                                {data.help.map((item) => (
+                                    <li key={item.href}>
+                                        <Link href={item.href}>{item.title}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </MotionNav>
+                        <MotionNav
+                            className={styles.linkSection}
+                            variants={animations.section}
+                            aria-labelledby='mainMenu.tools.heading'
+                        >
+                            <Heading
+                                className={styles.linkSectionHeader}
+                                level={2}
+                                data-size='sm'
+                                id='mainMenu.tools.heading'
+                            >
+                                {dictionary.mainMenu.tools.heading}
+                            </Heading>
+                            <ul>
+                                {data.tools.map((item) => (
+                                    <li key={item.href}>
+                                        <Link href={item.href}>{item.title}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </MotionNav>
+                        <MotionNav
+                            className={styles.linkSection}
+                            variants={animations.section}
+                            aria-labelledby='mainMenu.about.heading'
+                        >
+                            <Heading
+                                className={styles.linkSectionHeader}
+                                level={2}
+                                data-size='sm'
+                                id='mainMenu.about.heading'
+                            >
+                                {dictionary.mainMenu.about.heading}
+                            </Heading>
+                            <ul>
+                                {data.about.map((item) => (
+                                    <li key={item.href}>
+                                        {item.external ? (
+                                            <ExternalLink
+                                                href={item.href}
+                                                locale={locale}
+                                            >
+                                                {item.href.startsWith('https://github.com') && (
+                                                    <GithubLogo style={{ marginRight: '0.125em' }} />
+                                                )}
+                                                {item.title}
+                                            </ExternalLink>
+                                        ) : (
+                                            <Link href={item.href}>{item.title}</Link>
                                         )}
-                                        {item.title}
-                                    </ExternalLink>
-                                ) : (
-                                    <Link href={item.href}>{item.title}</Link>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-                </MotionNav>
+                                    </li>
+                                ))}
+                            </ul>
+                        </MotionNav>
+                    </>
+                )}
                 <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}

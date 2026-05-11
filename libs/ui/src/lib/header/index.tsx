@@ -184,7 +184,10 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                             initial='hidden'
                             animate='show'
                         >
-                            <MainMenu locale={locale} />
+                            <MainMenu
+                                locale={locale}
+                                profile={isTransportProfile ? 'transport' : undefined}
+                            />
                         </MotionDiv>
                     </div>
                 )}
