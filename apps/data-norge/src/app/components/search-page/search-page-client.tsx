@@ -94,12 +94,13 @@ const fetchSearchData = async function (query: string): Promise<{
     llmResults: LlmSearchResponse | undefined;
     searchResults: SearchResultsProp | undefined;
 }> {
-    const [llmRes, entitiesRes] = await Promise.all([
-        fetch('/api/search/llm', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: query.trim() }),
-        }),
+    // const [llmRes, entitiesRes] = await Promise.all([
+    const [entitiesRes] = await Promise.all([
+        // fetch('/api/search/llm', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ query: query.trim() }),
+        // }),
         fetch('/api/search/entities', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', profile: 'TRANSPORT' },
@@ -111,13 +112,13 @@ const fetchSearchData = async function (query: string): Promise<{
     ]);
 
     let llmResults: LlmSearchResponse | undefined;
-    if (llmRes.ok) {
-        try {
-            llmResults = (await llmRes.json()) as LlmSearchResponse;
-        } catch {
-            // ignore
-        }
-    }
+    // if (llmRes.ok) {
+    //     try {
+    //         llmResults = (await llmRes.json()) as LlmSearchResponse;
+    //     } catch {
+    //         // ignore
+    //     }
+    // }
 
     let searchResults: SearchResultsProp | undefined;
     if (entitiesRes.ok) {

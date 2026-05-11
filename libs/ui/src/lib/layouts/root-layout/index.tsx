@@ -2,7 +2,7 @@ import '../../core/global.scss';
 import { PropsWithChildren } from 'react';
 import Script from 'next/script';
 import { i18n, type Locale } from '@fdk-frontend/localization';
-import '../../design-tokens/design-tokens-build/transportportal.css';
+// import '../../design-tokens/design-tokens-build/transportportal.css';
 
 export type RootLayoutProps = {
     params: Promise<{
