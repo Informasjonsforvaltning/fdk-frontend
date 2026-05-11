@@ -4,7 +4,17 @@ const common = {
     home: "Hjem"
   },
   footer: {
-    digdirCredit: "en tjeneste fra"
+    digdirCredit: "en tjeneste fra",
+    transport: {
+      informationTextNap: "Dette er et samarbeid mellom Statens vegvesen, Jernbanedirektoratet, Entur og Digitaliseringsdirektoratet.",
+      searchDatasets: "Søk i datasett",
+      aboutNap: "Om Transportportal.no",
+      guideToRegister: "Hjelp til å registrere",
+      privacyStatement: "Personvernerklæring",
+      informationCookies: "Informasjonskapsler",
+      accessibility: "Tilgjengelighetserklæring",
+      contactEmail: "transportportal@vegvesen.no"
+    }
   },
   header: {
     findDataButton: "Finn data",
@@ -28,6 +38,18 @@ const common = {
         cookiePolicy: "Informasjonskapsler",
         privacyPolicy: "Personvernerklæring",
         githubFollow: "Følg oss på Github"
+      }
+    },
+    transport: {
+      heading: "Transportportal",
+      links: {
+        searchHere: "Søk her",
+        generalInformation: "Generell informasjon",
+        rolesAndResponsibilities: "Roller og ansvar",
+        itsDirective: "ITS direktiv og forbedringer",
+        news: "Nyheter",
+        offerData: "Tilby data",
+        cooperationDeclaration: "Samværserklæring"
       }
     },
     catalogs: {

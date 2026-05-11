@@ -1,0 +1,123 @@
+.footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-height: 350px;
+    padding: 3rem 0;
+    background-color: #2d3741;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 40%;
+    color: white;
+
+    @media (min-width: 1200px) {
+        background-image: url('./images/illustration-footer-portal.svg');
+    }
+
+    a {
+        color: white;
+    }
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1140px;
+
+    @media (max-width: 1199px) {
+        padding: 0 3rem;
+        max-width: 100%;
+    }
+}
+
+.logos {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    margin-bottom: 2.5rem;
+    gap: 0.5rem;
+
+    @media (min-width: 1200px) {
+        justify-content: flex-start;
+    }
+
+    img {
+        height: 55px;
+        width: auto;
+    }
+
+    @media (max-width: 900px) {
+        img {
+            height: 40px;
+        }
+    }
+}
+
+.logoJernbane {
+    height: 45px !important;
+
+    @media (max-width: 900px) {
+        height: 35px !important;
+    }
+}
+
+.logoDigdir {
+    height: 37px !important;
+
+    @media (max-width: 900px) {
+        height: 23px !important;
+    }
+}
+
+.logoEntur {
+    height: 55px !important;
+
+    @media (max-width: 900px) {
+        height: 32px !important;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (min-width: 1200px) {
+        flex-direction: row;
+
+        .column:first-of-type {
+            width: 40%;
+        }
+
+        .column:last-of-type {
+            margin-right: 1.5rem;
+        }
+    }
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & > * {
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 1199px) {
+        align-items: center;
+        margin-top: 2rem;
+
+        & > span {
+            text-align: center;
+        }
+    }
+}
+
+.emailLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}

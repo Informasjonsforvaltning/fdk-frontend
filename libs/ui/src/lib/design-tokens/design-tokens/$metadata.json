@@ -1,0 +1,25 @@
+{
+  "tokenSetOrder": [
+    "primitives/globals",
+    "primitives/modes/size/small",
+    "primitives/modes/size/medium",
+    "primitives/modes/size/large",
+    "primitives/modes/size/global",
+    "primitives/modes/typography/size/small",
+    "primitives/modes/typography/size/medium",
+    "primitives/modes/typography/size/large",
+    "primitives/modes/typography/primary/datanorge",
+    "primitives/modes/typography/primary/transportportal",
+    "primitives/modes/typography/secondary/datanorge",
+    "primitives/modes/typography/secondary/transportportal",
+    "primitives/modes/color-scheme/dark/datanorge",
+    "primitives/modes/color-scheme/dark/transportportal",
+    "primitives/modes/color-scheme/light/datanorge",
+    "primitives/modes/color-scheme/light/transportportal",
+    "themes/datanorge",
+    "themes/transportportal",
+    "semantic/color",
+    "semantic/modes/main-color/farge1",
+    "semantic/style"
+  ]
+}
