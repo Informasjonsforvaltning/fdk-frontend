@@ -28,7 +28,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
     const [showMenu, setShowMenu] = useState(false);
     const [showHeaderMessage, setShowHeaderMessage] = useState(false);
 
-    if (isTransportProfile) showSearchInput = true;
+    const shouldShowSearchInput = showSearchInput || isTransportProfile;
 
     const animations = {
         drawerInner: {
@@ -132,7 +132,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                         href={`/${locale}`}
                         variant={isTransportProfile ? 'transport' : undefined}
                     />
-                    {showSearchInput ? (
+                    {shouldShowSearchInput ? (
                         <SearchInput
                             locale={locale}
                             className={styles.headerSearchInput}
@@ -141,7 +141,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                         <div style={{ flexGrow: 1 }} />
                     )}
                     <div className={styles.headerToolbar}>
-                        {!showSearchInput && (
+                        {!shouldShowSearchInput && (
                             <Button
                                 asChild
                                 data-size='sm'

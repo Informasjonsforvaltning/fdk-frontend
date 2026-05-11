@@ -1,0 +1,25 @@
+{
+    "$schema": "https://designsystemet.no/schemas/cli/1.12.1.json",
+    "outDir": "./design-tokens",
+    "clean": true,
+    "themes": {
+        "datanorge": {
+            "colors": {
+                "main": {
+                    "farge1": "#0062ba"
+                },
+                "support": {},
+                "neutral": "#24272B"
+            }
+        },
+        "transportportal": {
+            "colors": {
+                "main": {
+                    "farge1": "#58b02c"
+                },
+                "support": {},
+                "neutral": "#24272B"
+            }
+        }
+    }
+}
