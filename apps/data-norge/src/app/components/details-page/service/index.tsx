@@ -359,6 +359,80 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             </>
                         )}
 
+                        {!service.costs?.length && !showEmptyRows ? null : (
+                            <>
+                                <Heading
+                                    level={2}
+                                    data-size='xs'
+                                    className={styles.heading}
+                                >
+                                    {dictionaries.detailsPage.details.costs.title}
+                                </Heading>
+                                {service.costs && service.costs.length > 0 ? (
+                                    service.costs.map((cost, index) => (
+                                        <Dlist
+                                            className={styles.dlist}
+                                            key={index}
+                                        >
+                                            {!cost.hasValue && !showEmptyRows ? null : (
+                                                <>
+                                                    <dt>{dictionaries.detailsPage.details.costs.value}:</dt>
+                                                    <dd>
+                                                        {cost.hasValue ? (
+                                                            `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split('/').pop() || ''}`
+                                                        ) : (
+                                                            <PlaceholderText>
+                                                                {dictionaries.detailsPage.details.noData}
+                                                            </PlaceholderText>
+                                                        )}
+                                                    </dd>
+                                                </>
+                                            )}
+                                            {!printLocaleValue(locale, cost.description) && !showEmptyRows ? null : (
+                                                <>
+                                                    <dt>{dictionaries.detailsPage.details.costs.description}:</dt>
+                                                    <dd>
+                                                        {printLocaleValue(locale, cost.description) || (
+                                                            <PlaceholderText>
+                                                                {dictionaries.detailsPage.details.noData}
+                                                            </PlaceholderText>
+                                                        )}
+                                                    </dd>
+                                                </>
+                                            )}
+                                            {!cost.documentation?.length && !showEmptyRows ? null : (
+                                                <>
+                                                    <dt>{dictionaries.detailsPage.details.costs.documentation}:</dt>
+                                                    <dd>
+                                                        {cost.documentation?.length ? (
+                                                            <SmartList
+                                                                items={cost.documentation}
+                                                                renderItem={(url) => (
+                                                                    <ExternalLink
+                                                                        href={url}
+                                                                        locale={locale}
+                                                                        gateway
+                                                                    >
+                                                                        {url}
+                                                                    </ExternalLink>
+                                                                )}
+                                                            />
+                                                        ) : (
+                                                            <PlaceholderText>
+                                                                {dictionaries.detailsPage.details.noData}
+                                                            </PlaceholderText>
+                                                        )}
+                                                    </dd>
+                                                </>
+                                            )}
+                                        </Dlist>
+                                    ))
+                                ) : (
+                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                                )}
+                            </>
+                        )}
+
                         {!concepts.length && !showEmptyRows ? null : (
                             <>
                                 <Heading
