@@ -9,7 +9,7 @@ import {
 } from '@fellesdatakatalog/types';
 import { type PopulatedDatasetReference } from '@fdk-frontend/types';
 import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
-import { PlaceholderBox, PlaceholderText, TagList } from '@fdk-frontend/ui';
+import { PlaceholderBox, PlaceholderText, TagList, Dlist, ExternalLink, SmartList } from '@fdk-frontend/ui';
 import GeneralDetails from './components/general-details';
 import ContactDetails from './components/contact-details';
 import ContentDetails from './components/content-details';
@@ -72,6 +72,69 @@ const DatasetDetailsTab = ({
                         locale={locale}
                         dictionary={dictionary}
                     />
+                )}
+                {!dataset.costs?.length && !showEmptyRows ? null : (
+                    <section>
+                        <Heading
+                            level={2}
+                            data-size='xs'
+                        >
+                            {dictionary.details.costs.title}
+                        </Heading>
+                        {dataset.costs && dataset.costs.length > 0 ? (
+                            dataset.costs.map((cost, index) => (
+                                <Dlist key={index}>
+                                    {!cost.hasValue && !showEmptyRows ? null : (
+                                        <>
+                                            <dt>{dictionary.details.costs.value}:</dt>
+                                            <dd>
+                                                {cost.hasValue ? (
+                                                    `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split('/').pop() || ''}`
+                                                ) : (
+                                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                                )}
+                                            </dd>
+                                        </>
+                                    )}
+                                    {!printLocaleValue(locale, cost.description) && !showEmptyRows ? null : (
+                                        <>
+                                            <dt>{dictionary.details.costs.description}:</dt>
+                                            <dd>
+                                                {printLocaleValue(locale, cost.description) || (
+                                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                                )}
+                                            </dd>
+                                        </>
+                                    )}
+                                    {!cost.documentation?.length && !showEmptyRows ? null : (
+                                        <>
+                                            <dt>{dictionary.details.costs.documentation}:</dt>
+                                            <dd>
+                                                {cost.documentation?.length ? (
+                                                    <SmartList
+                                                        items={cost.documentation}
+                                                        renderItem={(url) => (
+                                                            <ExternalLink
+                                                                href={url}
+                                                                locale={locale}
+                                                                gateway
+                                                            >
+                                                                {url}
+                                                            </ExternalLink>
+                                                        )}
+                                                    />
+                                                ) : (
+                                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                                                )}
+                                            </dd>
+                                        </>
+                                    )}
+                                </Dlist>
+                            ))
+                        ) : (
+                            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                        )}
+                    </section>
                 )}
                 <ContentDetails
                     dataset={dataset}
