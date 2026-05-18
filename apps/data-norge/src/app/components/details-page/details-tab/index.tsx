@@ -50,8 +50,8 @@ const DatasetDetailsTab = ({
             <div className={styles.details}>
                 <Button
                     className={styles.toggleButton}
-                    variant='tertiary'
-                    data-size='sm'
+                    variant="tertiary"
+                    data-size="sm"
                     onClick={() => setShowEmptyRows(!showEmptyRows)}
                 >
                     {showEmptyRows ? (
@@ -73,11 +73,38 @@ const DatasetDetailsTab = ({
                         dictionary={dictionary}
                     />
                 )}
+                <ContentDetails
+                    dataset={dataset}
+                    locale={locale}
+                    dictionary={dictionary}
+                />
+                {!hasLegalBasis(dataset) && !showEmptyRows ? null : (
+                    <LegalDetails
+                        dataset={dataset}
+                        locale={locale}
+                        dictionary={dictionary}
+                    />
+                )}
+                {!dataset.subject && !showEmptyRows ? null : (
+                    <ConceptDetails
+                        dataset={dataset}
+                        concepts={concepts}
+                        locale={locale}
+                        dictionary={dictionary}
+                    />
+                )}
+                {!populatedReferences?.length && !showEmptyRows ? null : (
+                    <ReferencesDetails
+                        populatedReferences={populatedReferences}
+                        locale={locale}
+                        dictionary={dictionary}
+                    />
+                )}
                 {!dataset.costs?.length && !showEmptyRows ? null : (
                     <section>
                         <Heading
                             level={2}
-                            data-size='xs'
+                            data-size="xs"
                         >
                             {dictionary.details.costs.title}
                         </Heading>
@@ -89,7 +116,7 @@ const DatasetDetailsTab = ({
                                             <dt>{dictionary.details.costs.value}:</dt>
                                             <dd>
                                                 {cost.hasValue ? (
-                                                    `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split('/').pop() || ''}`
+                                                    `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split("/").pop() || ""}`
                                                 ) : (
                                                     <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                                 )}
@@ -136,40 +163,6 @@ const DatasetDetailsTab = ({
                         )}
                     </section>
                 )}
-                <ContentDetails
-                    dataset={dataset}
-                    locale={locale}
-                    dictionary={dictionary}
-                />
-                {!hasLegalBasis(dataset) && !showEmptyRows ? null : (
-                    <LegalDetails
-                        dataset={dataset}
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                )}
-                {!dataset.subject && !showEmptyRows ? null : (
-                    <ConceptDetails
-                        dataset={dataset}
-                        concepts={concepts}
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                )}
-                {!populatedReferences?.length && !showEmptyRows ? null : (
-                    <ReferencesDetails
-                        populatedReferences={populatedReferences}
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                )}
-                {/*{!internalRelatedDatasets?.length && !showEmptyRows ? null : (
-                    <RelatedDetails
-                        related={internalRelatedDatasets}
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                )}*/}
                 <GeneralDetails
                     dataset={dataset}
                     locale={locale}
@@ -180,7 +173,7 @@ const DatasetDetailsTab = ({
                     <section>
                         <Heading
                             level={2}
-                            data-size='xs'
+                            data-size="xs"
                         >
                             {dictionary.details.themes}
                         </Heading>
@@ -198,7 +191,7 @@ const DatasetDetailsTab = ({
                     <section>
                         <Heading
                             level={2}
-                            data-size='xs'
+                            data-size="xs"
                         >
                             {dictionary.details.mobilityThemes}
                         </Heading>
@@ -206,7 +199,7 @@ const DatasetDetailsTab = ({
                             {dataset.mobilityTheme?.map((theme: ReferenceDataCode) => (
                                 <Tag
                                     key={theme.code}
-                                    data-size='sm'
+                                    data-size="sm"
                                 >
                                     {printLocaleValue(locale, theme.prefLabel) || theme.code}
                                 </Tag>
@@ -218,12 +211,12 @@ const DatasetDetailsTab = ({
                     <section>
                         <Heading
                             level={2}
-                            data-size='xs'
+                            data-size="xs"
                         >
                             {dictionary.details.keywords}
                         </Heading>
                         {dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? (
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                                 {dataset.keyword
                                     .filter((keyword: any) => keyword[locale])
                                     .map((keyword: any, i: number) => (
@@ -231,7 +224,7 @@ const DatasetDetailsTab = ({
                                             key={`keyword-${i}`}
                                             href={`/datasets?q=${keyword[locale]}`}
                                         >
-                                            <Tag data-size='sm'>{keyword[locale]}</Tag>
+                                            <Tag data-size="sm">{keyword[locale]}</Tag>
                                         </Link>
                                     ))}
                             </div>

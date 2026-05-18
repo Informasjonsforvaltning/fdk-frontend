@@ -103,16 +103,16 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     )}
                     <Heading
                         level={1}
-                        data-size='lg'
+                        data-size="lg"
                     >
                         {printLocaleValue(locale, service.title) || dictionaries.detailsPage.header.namelessService}
                     </Heading>
                     <TagList>
                         <Tag
-                            data-color='info'
-                            data-size='md'
+                            data-color="info"
+                            data-size="md"
                         >
-                            <Link href='/public-services-and-events'>
+                            <Link href="/public-services-and-events">
                                 {dictionaries.detailsPage.header.servicesTagLink}
                             </Link>
                         </Tag>
@@ -126,35 +126,35 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 </div>
                 <Tabs
                     className={styles.tabs}
-                    defaultValue='overview'
-                    data-size='sm'
+                    defaultValue="overview"
+                    data-size="sm"
                     value={activeTab}
                     onChange={setActiveTab}
                 >
                     <ScrollShadows>
                         <TabsList>
                             <TabsTab
-                                value='overview'
-                                onClick={() => updateUri('overview')}
+                                value="overview"
+                                onClick={() => updateUri("overview")}
                             >
                                 {dictionaries.detailsPage.tabs.overview}
                             </TabsTab>
                             <TabsTab
-                                value='details'
-                                onClick={() => updateUri('details')}
+                                value="details"
+                                onClick={() => updateUri("details")}
                             >
                                 {dictionaries.detailsPage.tabs.details}
                             </TabsTab>
                             <TabsTab
-                                value='community'
-                                onClick={() => updateUri('community')}
+                                value="community"
+                                onClick={() => updateUri("community")}
                             >
                                 {dictionaries.detailsPage.tabs.community}
                                 &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
                             </TabsTab>
                             <TabsTab
-                                value='rdf'
-                                onClick={() => updateUri('rdf')}
+                                value="rdf"
+                                onClick={() => updateUri("rdf")}
                             >
                                 {dictionaries.detailsPage.tabs.rdf}
                             </TabsTab>
@@ -162,11 +162,11 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     </ScrollShadows>
                     <TabsPanel
                         className={styles.tabsPanel}
-                        value='overview'
+                        value="overview"
                     >
                         <Heading
                             level={2}
-                            data-size='xs'
+                            data-size="xs"
                             className={styles.heading}
                         >
                             {dictionaries.detailsPage.overview.description.title}
@@ -198,7 +198,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
 
                         <Heading
                             level={2}
-                            data-size='xs'
+                            data-size="xs"
                             className={styles.heading}
                         >
                             <Hstack>
@@ -224,7 +224,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
 
                         <Heading
                             level={2}
-                            data-size='xs'
+                            data-size="xs"
                             className={styles.heading}
                         >
                             <Hstack>
@@ -252,12 +252,12 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabsPanel}
-                        value='details'
+                        value="details"
                     >
                         <Button
                             className={styles.toggleButton}
-                            variant='tertiary'
-                            data-size='sm'
+                            variant="tertiary"
+                            data-size="sm"
                             onClick={() => setShowEmptyRows(!showEmptyRows)}
                         >
                             {showEmptyRows ? (
@@ -276,7 +276,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             <>
                                 <Heading
                                     level={2}
-                                    data-size='xs'
+                                    data-size="xs"
                                     className={styles.heading}
                                 >
                                     {dictionaries.detailsPage.details.contactPoint.title}
@@ -359,11 +359,39 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             </>
                         )}
 
+                        {!concepts.length && !showEmptyRows ? null : (
+                            <>
+                                <Heading
+                                    level={2}
+                                    data-size="xs"
+                                    className={styles.heading}
+                                >
+                                    {dictionaries.detailsPage.details.subject.title}
+                                </Heading>
+                                {concepts.length ? (
+                                    <Dlist className={styles.dlist}>
+                                        {concepts.map((concept) => (
+                                            <React.Fragment key={concept.uri}>
+                                                <dt>
+                                                    <Link href={`/concepts/${concept.id}`}>
+                                                        {printLocaleValue(locale, concept.title) || concept.uri}
+                                                    </Link>
+                                                </dt>
+                                                <dd>{printLocaleValue(locale, concept.description)}</dd>
+                                            </React.Fragment>
+                                        ))}
+                                    </Dlist>
+                                ) : (
+                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
+                                )}
+                            </>
+                        )}
+
                         {!service.costs?.length && !showEmptyRows ? null : (
                             <>
                                 <Heading
                                     level={2}
-                                    data-size='xs'
+                                    data-size="xs"
                                     className={styles.heading}
                                 >
                                     {dictionaries.detailsPage.details.costs.title}
@@ -379,7 +407,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                                     <dt>{dictionaries.detailsPage.details.costs.value}:</dt>
                                                     <dd>
                                                         {cost.hasValue ? (
-                                                            `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split('/').pop() || ''}`
+                                                            `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split("/").pop() || ""}`
                                                         ) : (
                                                             <PlaceholderText>
                                                                 {dictionaries.detailsPage.details.noData}
@@ -433,37 +461,9 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             </>
                         )}
 
-                        {!concepts.length && !showEmptyRows ? null : (
-                            <>
-                                <Heading
-                                    level={2}
-                                    data-size='xs'
-                                    className={styles.heading}
-                                >
-                                    {dictionaries.detailsPage.details.subject.title}
-                                </Heading>
-                                {concepts.length ? (
-                                    <Dlist className={styles.dlist}>
-                                        {concepts.map((concept) => (
-                                            <React.Fragment key={concept.uri}>
-                                                <dt>
-                                                    <Link href={`/concepts/${concept.id}`}>
-                                                        {printLocaleValue(locale, concept.title) || concept.uri}
-                                                    </Link>
-                                                </dt>
-                                                <dd>{printLocaleValue(locale, concept.description)}</dd>
-                                            </React.Fragment>
-                                        ))}
-                                    </Dlist>
-                                ) : (
-                                    <PlaceholderBox>{dictionaries.detailsPage.details.noData}</PlaceholderBox>
-                                )}
-                            </>
-                        )}
-
                         <Heading
                             level={2}
-                            data-size='xs'
+                            data-size="xs"
                             className={styles.heading}
                         >
                             {dictionaries.detailsPage.details.general.serviceTitle}
@@ -485,7 +485,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             <dd>
                                 {service.harvest?.firstHarvested ? (
                                     new Date(service.harvest.firstHarvested).toLocaleString(locale, {
-                                        dateStyle: 'long',
+                                        dateStyle: "long",
                                     })
                                 ) : (
                                     <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
@@ -497,7 +497,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             <dd>
                                 {service.harvest?.modified ? (
                                     new Date(service.harvest.modified).toLocaleString(locale, {
-                                        dateStyle: 'long',
+                                        dateStyle: "long",
                                     })
                                 ) : (
                                     <PlaceholderText>{dictionaries.detailsPage.details.noData}</PlaceholderText>
@@ -529,10 +529,10 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             {!service.spatial && !showEmptyRows ? null : (
                                 <>
                                     <dt>{dictionaries.detailsPage.details.content.spatial}:</dt>
-                                    <dd className='article'>
+                                    <dd className="article">
                                         {service.spatial ? (
                                             <SmartList
-                                                listType='ol'
+                                                listType="ol"
                                                 items={service.spatial}
                                                 renderItem={(spatial) =>
                                                     spatial.uri ? (
@@ -561,7 +561,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                 <Hstack>
                                     <InputWithCopyButton
                                         value={service.uri}
-                                        inputLabel='uri'
+                                        inputLabel="uri"
                                         copyLabel={dictionaries.detailsPage.details.general.copyButton[0]}
                                         copiedLabel={dictionaries.detailsPage.details.general.copyButton[1]}
                                     />
@@ -573,7 +573,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             <>
                                 <Heading
                                     level={2}
-                                    data-size='xs'
+                                    data-size="xs"
                                     className={styles.heading}
                                 >
                                     {dictionaries.detailsPage.details.dctType}
@@ -585,7 +585,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                                 key={theme.code}
                                                 href={`/public-services-and-events?mainActivities=${theme.code}`}
                                             >
-                                                <Tag data-size='sm'>
+                                                <Tag data-size="sm">
                                                     {printLocaleValue(locale, theme.prefLabel) || theme.code}
                                                 </Tag>
                                             </Link>
@@ -601,7 +601,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                             <>
                                 <Heading
                                     level={2}
-                                    data-size='xs'
+                                    data-size="xs"
                                     className={styles.heading}
                                 >
                                     {dictionaries.detailsPage.details.thematicArea}
@@ -613,7 +613,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                                 key={theme.code}
                                                 href={`/public-services-and-events?eurovocTheme=${theme.code}`}
                                             >
-                                                <Tag data-size='sm'>
+                                                <Tag data-size="sm">
                                                     {printLocaleValue(locale, theme.label) || theme.code}
                                                 </Tag>
                                             </Link>
@@ -624,7 +624,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                                 key={theme.code}
                                                 href={`/public-services-and-events?losTheme=${theme.code}`}
                                             >
-                                                <Tag data-size='sm'>
+                                                <Tag data-size="sm">
                                                     {printLocaleValue(locale, theme.name) || theme.code}
                                                 </Tag>
                                             </Link>
@@ -638,7 +638,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabsPanel}
-                        value='community'
+                        value="community"
                     >
                         <CommunityTab
                             topics={communityTopics}
@@ -649,7 +649,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabsPanel}
-                        value='rdf'
+                        value="rdf"
                     >
                         <MetadataTab
                             uri={`${baseUri}/services/${service.id}`}
