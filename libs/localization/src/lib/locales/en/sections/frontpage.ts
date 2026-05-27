@@ -11,6 +11,7 @@ const frontpage = {
         },
         prompt: {
             button: "Ask",
+            disclaimer: "Do not enter personal or other sensitive information.",
             errors: {
                 generic: "An error occurred. Please try again later.",
                 queryTooShort: "The query must have at least three characters. Please try again.",

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Textfield, Button, Spinner, ValidationMessage } from '@digdir/designsystemet-react';
-import { SparklesIcon } from '@navikt/aksel-icons';
+import { ShieldLockIcon, SparklesIcon } from '@navikt/aksel-icons';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { llmSearch, type LlmSearchResponse } from '@fdk-frontend/data-access';
 import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
@@ -97,38 +97,55 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
     return (
         <div className={styles.llmSearch}>
             <form onSubmit={submitQuery}>
+                <label
+                    htmlFor='llm-search-input'
+                    id='llm-search-label'
+                    className={styles.llmInputLabel}
+                >
+                    {dictionary.aiBanner.prompt.label}
+                </label>
                 <div className={styles.llmSearchBox}>
-                    <Textfield
-                        className={styles.llmInputTextfield}
-                        label={<span className={styles.llmInputLabel}>{dictionary.aiBanner.prompt.label}</span>}
-                        placeholder={dictionary.aiBanner.prompt.placeholder}
-                        data-size='lg'
-                        value={query}
-                        error={error !== undefined}
-                        onChange={(e) => setQuery(e.target.value)}
-                        autoComplete='off'
-                        data-color-scheme='dark'
-                    />
-                    <Button
-                        className={styles.llmSearchButton}
-                        type='submit'
-                        data-size='sm'
-                    >
-                        {loading ? (
-                            <Spinner
-                                aria-label={dictionary.aiBanner.prompt.loading}
-                                data-size='xs'
-                            />
-                        ) : (
-                            <>
-                                <SparklesIcon
-                                    className={styles.llmSearchIcon}
-                                    aria-hidden
+                    <div className={styles.inputRow}>
+                        <Textfield
+                            id='llm-search-input'
+                            aria-labelledby='llm-search-label'
+                            className={styles.llmInputTextfield}
+                            placeholder={dictionary.aiBanner.prompt.placeholder}
+                            data-size='lg'
+                            value={query}
+                            error={error !== undefined}
+                            onChange={(e) => setQuery(e.target.value)}
+                            autoComplete='off'
+                            data-color-scheme='dark'
+                        />
+                        <Button
+                            className={styles.llmSearchButton}
+                            type='submit'
+                            data-size='sm'
+                        >
+                            {loading ? (
+                                <Spinner
+                                    aria-label={dictionary.aiBanner.prompt.loading}
+                                    data-size='xs'
                                 />
-                                <span>{dictionary.aiBanner.prompt.button}</span>
-                            </>
-                        )}
-                    </Button>
+                            ) : (
+                                <>
+                                    <SparklesIcon
+                                        className={styles.llmSearchIcon}
+                                        aria-hidden
+                                    />
+                                    <span>{dictionary.aiBanner.prompt.button}</span>
+                                </>
+                            )}
+                        </Button>
+                    </div>
+                    <p className={styles.disclaimer}>
+                        <ShieldLockIcon
+                            className={styles.disclaimerIcon}
+                            aria-hidden
+                        />
+                        {dictionary.aiBanner.prompt.disclaimer}
+                    </p>
                 </div>
             </form>
             {!error && !loading && (

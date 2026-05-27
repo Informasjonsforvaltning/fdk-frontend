@@ -11,6 +11,7 @@ const frontpage = {
         },
         prompt: {
             button: "Spør",
+            disclaimer: "Ikkje legg inn personopplysningar eller anna sensitiv informasjon.",
             errors: {
                 generic: "Ein feil oppstod. Ver venleg å prøv igjen seinare.",
                 queryTooShort: "Spurnaden må innehalde minst tre teikn. Prøv igjen.",
