@@ -61,9 +61,7 @@
             linear-gradient(black, black);
         mask-composite: exclude;
         pointer-events: none;
-        animation:
-            spinAngle 3s linear infinite,
-            ringBreathe 2.4s ease-in-out infinite;
+        animation: spinAngle 3s linear infinite;
     }
 
     &::after {
@@ -94,17 +92,6 @@
 @keyframes spinAngle {
     to {
         --angle: 360deg;
-    }
-}
-
-@keyframes ringBreathe {
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.015);
     }
 }
 
