@@ -1,5 +1,6 @@
 .llmSearch {
     // margin-bottom:4rem;
+    width: 100%;
     max-width: 640px;
 }
 
@@ -20,6 +21,97 @@
         &:focus-within {
             box-shadow: inset 0 0 0 1px var(--fdk-color-red);
         }
+    }
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.loading {
+    border-color: transparent;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        padding: 2px;
+        border-radius: inherit;
+        background: conic-gradient(
+            from var(--angle),
+            #0044bb,
+            #0088ff,
+            #00ccff,
+            #88e8ff,
+            #ffffff,
+            #88e8ff,
+            #00ccff,
+            #0088ff,
+            #0044bb
+        );
+        -webkit-mask:
+            linear-gradient(black, black) content-box,
+            linear-gradient(black, black);
+        -webkit-mask-composite: xor;
+        mask:
+            linear-gradient(black, black) content-box,
+            linear-gradient(black, black);
+        mask-composite: exclude;
+        pointer-events: none;
+        animation:
+            spinAngle 3s linear infinite,
+            ringBreathe 2.4s ease-in-out infinite;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: -6px;
+        border-radius: 0.75rem;
+        background: conic-gradient(
+            from var(--angle),
+            #ffffff,
+            #88e8ff,
+            #00ccff,
+            #0088ff,
+            #0044bb,
+            #0088ff,
+            #00ccff,
+            #88e8ff,
+            #ffffff
+        );
+        filter: blur(16px);
+        opacity: 0.55;
+        z-index: -1;
+        pointer-events: none;
+        animation: spinAngle 6s linear infinite reverse;
+    }
+}
+
+@keyframes spinAngle {
+    to {
+        --angle: 360deg;
+    }
+}
+
+@keyframes ringBreathe {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.015);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .loading::before,
+    .loading::after {
+        animation: none;
     }
 }
 
@@ -108,6 +200,18 @@
 .disclaimerIcon {
     font-size: 1rem;
     flex-shrink: 0;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .llmResults {
