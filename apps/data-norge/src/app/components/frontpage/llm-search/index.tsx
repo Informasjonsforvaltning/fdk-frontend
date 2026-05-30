@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Textfield, Button, Spinner, ValidationMessage } from '@digdir/designsystemet-react';
+import { Textfield, Button, ValidationMessage } from '@digdir/designsystemet-react';
 import { ShieldLockIcon, SparklesIcon } from '@navikt/aksel-icons';
 import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
 import { llmSearch, type LlmSearchResponse } from '@fdk-frontend/data-access';
@@ -104,7 +104,7 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                 >
                     {dictionary.aiBanner.prompt.label}
                 </label>
-                <div className={styles.llmSearchBox}>
+                <div className={`${styles.llmSearchBox} ${loading ? styles.loading : ''}`}>
                     <div className={styles.inputRow}>
                         <Textfield
                             id='llm-search-input'
@@ -122,22 +122,21 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                             className={styles.llmSearchButton}
                             type='submit'
                             data-size='sm'
+                            disabled={loading}
                         >
-                            {loading ? (
-                                <Spinner
-                                    aria-label={dictionary.aiBanner.prompt.loading}
-                                    data-size='xs'
-                                />
-                            ) : (
-                                <>
-                                    <SparklesIcon
-                                        className={styles.llmSearchIcon}
-                                        aria-hidden
-                                    />
-                                    <span>{dictionary.aiBanner.prompt.button}</span>
-                                </>
-                            )}
+                            <SparklesIcon
+                                className={styles.llmSearchIcon}
+                                aria-hidden
+                            />
+                            <span>{dictionary.aiBanner.prompt.button}</span>
                         </Button>
+                        <span
+                            role='status'
+                            aria-live='polite'
+                            className={styles.srOnly}
+                        >
+                            {loading ? dictionary.aiBanner.prompt.loading : ''}
+                        </span>
                     </div>
                     <p className={styles.disclaimer}>
                         <ShieldLockIcon

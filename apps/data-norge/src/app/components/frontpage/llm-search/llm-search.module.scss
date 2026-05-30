@@ -1,5 +1,7 @@
+@use "./loadingAnimations";
+
 .llmSearch {
-    // margin-bottom:4rem;
+    width: 100%;
     max-width: 640px;
 }
 
@@ -28,24 +30,29 @@
 }
 
 .llmSearchButton {
+    --dsc-button-size: 2rem;
+    --dsc-button-padding: 0 0.875rem;
+    --dsc-button-gap: 0.375rem;
+    --dsc-button-background: white;
+    --dsc-button-background--hover: rgba(255, 255, 255, 0.85);
+    --dsc-button-color: var(--fdk-color-navy-dark);
+    --dsc-button-color--hover: var(--fdk-color-navy-dark);
+
     position: absolute;
-    right: calc(0.5rem - 1px);
-    bottom: calc(0.5rem - 1px);
-    font-size: medium;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    font-size: 0.875rem;
 
     title + circle {
         display: none;
     }
-
-    @media (max-width: 650px) {
-        right: 0.44444rem;
-        bottom: 0.44444rem;
-    }
 }
 
 .llmSearchIcon {
-    transform: scale(1.25);
-    margin-right: 0.25rem;
+    margin: 0;
+    transform: translateY(1px);
 }
 
 .llmInputTextfield {
@@ -66,7 +73,7 @@
         background-color: transparent;
         border-color: transparent;
         color: white;
-        padding-right: 7rem;
+        padding-right: 6rem;
         font-size: 1.25rem;
 
         &:focus,
@@ -108,6 +115,18 @@
 .disclaimerIcon {
     font-size: 1rem;
     flex-shrink: 0;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .llmResults {
