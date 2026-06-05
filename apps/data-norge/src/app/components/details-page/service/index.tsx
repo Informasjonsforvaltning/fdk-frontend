@@ -79,37 +79,37 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
         window.history.pushState(null, "", `?tab=${tab}`);
     };
 
-    const requiredEvidenceList2: SingleDetailsEntry[] = [];
+    const requiredEvidenceList: SingleDetailsEntry[] = [];
     service.hasInput?.forEach((evidence) => {
         const requiredEvidenceArray: SingleRow[] = [];
-        !evidence.description && !showEmptyRows
-            ? null
-            : requiredEvidenceArray.push({
-                  label: dictionaries.detailsPage.details.requiredEvidence.description,
-                  value: printLocaleValue(locale, evidence.description),
-              });
-        !evidence.language?.length && !showEmptyRows
-            ? null
-            : requiredEvidenceArray.push({
-                  label: dictionaries.detailsPage.details.requiredEvidence.language,
-                  value: evidence.language
-                      ?.map((language: any) => printLocaleValue(locale, language.prefLabel))
-                      .join(", "),
-              });
-        !evidence.page?.length && !showEmptyRows
-            ? null
-            : requiredEvidenceArray.push({
-                  label: dictionaries.detailsPage.details.requiredEvidence.page,
-                  value: evidence.page?.map((page) => printLocaleValue(locale, page)).join(", "),
-              });
-        !evidence.dctType?.length && !showEmptyRows
-            ? null
-            : requiredEvidenceArray.push({
-                  label: dictionaries.detailsPage.details.requiredEvidence.dctType,
-                  value: evidence.dctType?.map((dctType) => printLocaleValue(locale, dctType)).join(", "),
-              });
+        if (!evidence.description?.[""] || showEmptyRows) {
+            requiredEvidenceArray.push({
+                label: dictionaries.detailsPage.details.requiredEvidence.description,
+                value: printLocaleValue(locale, evidence.description),
+            });
+        }
+        if (evidence.language?.length || showEmptyRows) {
+            requiredEvidenceArray.push({
+                label: dictionaries.detailsPage.details.requiredEvidence.language,
+                value: evidence.language
+                    ?.map((language: any) => printLocaleValue(locale, language.prefLabel))
+                    .join(", "),
+            });
+        }
+        if (evidence.page?.length || showEmptyRows) {
+            requiredEvidenceArray.push({
+                label: dictionaries.detailsPage.details.requiredEvidence.page,
+                value: evidence.page?.map((page) => printLocaleValue(locale, page)).join(", "),
+            });
+        }
+        if (evidence.dctType?.length || showEmptyRows) {
+            requiredEvidenceArray.push({
+                label: dictionaries.detailsPage.details.requiredEvidence.dctType,
+                value: evidence.dctType?.map((dctType) => printLocaleValue(locale, dctType)).join(", "),
+            });
+        }
 
-        requiredEvidenceList2.push({
+        requiredEvidenceList.push({
             title: printLocaleValue(locale, evidence.name) || evidence.uri || evidence.identifier,
             content: requiredEvidenceArray,
         });
@@ -405,7 +405,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                                     {dictionaries.detailsPage.details.requiredEvidence.title}
                                 </Heading>
                                 <AccordionList
-                                    entries={requiredEvidenceList2}
+                                    entries={requiredEvidenceList}
                                     noDataText={dictionaries.detailsPage.details.noData}
                                 />
                             </>
