@@ -3,13 +3,18 @@ import { Dlist, PlaceholderText, PlaceholderBox } from "@fdk-frontend/ui";
 import styles from "./accordion-list.module.scss";
 import { Fragment } from "react";
 
-export type SingleEntry = {
+export type SingleRow = {
+    label: string;
+    value?: string;
+};
+
+export type SingleDetailsEntry = {
     title: string;
-    contentsMap: Map<string, string>;
+    content: SingleRow[];
 };
 type AccordionListProps = {
     noDataText?: string;
-    entries: SingleEntry[];
+    entries: SingleDetailsEntry[];
 };
 
 export const AccordionList = ({ noDataText = "-", entries }: AccordionListProps) => {
@@ -23,13 +28,13 @@ export const AccordionList = ({ noDataText = "-", entries }: AccordionListProps)
 
                             <Details.Content className={styles.noMargin}>
                                 <Dlist>
-                                    {entry.contentsMap.size > 0 ? (
-                                        Array.from(entry.contentsMap.entries()).map(([heading, content]) => (
-                                            <Fragment key={heading}>
-                                                <dt>{heading}:</dt>
+                                    {entry.content.length > 0 ? (
+                                        entry.content.map((contentEntry) => (
+                                            <Fragment key={contentEntry.label}>
+                                                <dt>{contentEntry.label}:</dt>
                                                 <dd>
-                                                    {content.length ? (
-                                                        content
+                                                    {contentEntry.value ? (
+                                                        contentEntry.value
                                                     ) : (
                                                         <PlaceholderText>{noDataText}</PlaceholderText>
                                                     )}
