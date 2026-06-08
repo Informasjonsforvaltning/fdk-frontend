@@ -35,3 +35,18 @@
     padding: 0.75rem 0.75rem;
     background: #fafafa;
 }
+
+.metadataQualityLink {
+    :global(a) {
+        :global(button),
+        :global(span) {
+            border: 2px solid currentColor !important;
+            padding: 2px 4px !important;
+            border-radius: 3px !important;
+        }
+    }
+
+    :global(a:hover) {
+        opacity: 0.85;
+    }
+}

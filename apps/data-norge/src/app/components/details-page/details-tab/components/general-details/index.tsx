@@ -6,6 +6,7 @@ import { type DatasetType } from '@fellesdatakatalog/types';
 import { HelpText } from '@fellesdatakatalog/ui';
 import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
 import { i18n } from '@fdk-frontend/localization';
+import styles from '../../details-tab.module.scss';
 
 const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
@@ -158,13 +159,15 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                         </HelpText>
                     </Hstack>
                 </dt>
-                <dd>
-                    <Tag
-                        data-size='sm'
-                        data-color={metadataQuality.color as TagProps['color']}
-                    >
-                        {metadataQuality.label}
-                    </Tag>
+                <dd className={styles.metadataQualityLink}>
+                    <Link href={`/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`}>
+                        <Tag
+                            data-size='sm'
+                            data-color={metadataQuality.color as TagProps['color']}
+                        >
+                            {metadataQuality.label}
+                        </Tag>
+                    </Link>
                 </dd>
                 <dt>URI:</dt>
                 <dd>
