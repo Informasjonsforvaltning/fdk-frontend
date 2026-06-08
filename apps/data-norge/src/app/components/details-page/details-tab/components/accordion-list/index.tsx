@@ -3,18 +3,19 @@ import { Dlist, PlaceholderText, PlaceholderBox } from "@fdk-frontend/ui";
 import styles from "./accordion-list.module.scss";
 import { Fragment } from "react";
 
-export type SingleRow = {
+export type ContentRow = {
     label: string;
     value?: string;
 };
 
-export type SingleDetailsEntry = {
+export type DetailsEntry = {
     title: string;
-    content: SingleRow[];
+    content: ContentRow[];
 };
+
 type AccordionListProps = {
     noDataText?: string;
-    entries: SingleDetailsEntry[];
+    entries: DetailsEntry[];
 };
 
 export const AccordionList = ({ noDataText = "-", entries }: AccordionListProps) => {

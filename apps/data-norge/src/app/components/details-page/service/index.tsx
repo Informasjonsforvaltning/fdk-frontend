@@ -28,7 +28,7 @@ import CommunityTab from "../community-tab";
 import styles from "./service.module.scss";
 import { EyeIcon, EyeSlashIcon } from "@navikt/aksel-icons";
 import ServiceStructuredData from "../../structured-data/service-structured-data";
-import { AccordionList, type SingleDetailsEntry, type SingleRow } from "../details-tab/components/accordion-list";
+import { AccordionList, type DetailsEntry, type ContentRow } from "../details-tab/components/accordion-list";
 
 export type ServiceDetailsPageType = {
     baseUri: string;
@@ -79,41 +79,41 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
         window.history.pushState(null, "", `?tab=${tab}`);
     };
 
-    const requiredEvidenceList: SingleDetailsEntry[] = [];
-    service.hasInput?.forEach((evidence) => {
-        const requiredEvidenceArray: SingleRow[] = [];
-        if (!evidence.description?.[""] || showEmptyRows) {
-            requiredEvidenceArray.push({
-                label: dictionaries.detailsPage.details.requiredEvidence.description,
-                value: printLocaleValue(locale, evidence.description),
-            });
-        }
-        if (evidence.language?.length || showEmptyRows) {
-            requiredEvidenceArray.push({
-                label: dictionaries.detailsPage.details.requiredEvidence.language,
-                value: evidence.language
-                    ?.map((language: any) => printLocaleValue(locale, language.prefLabel))
-                    .join(", "),
-            });
-        }
-        if (evidence.page?.length || showEmptyRows) {
-            requiredEvidenceArray.push({
-                label: dictionaries.detailsPage.details.requiredEvidence.page,
-                value: evidence.page?.map((page) => printLocaleValue(locale, page)).join(", "),
-            });
-        }
-        if (evidence.dctType?.length || showEmptyRows) {
-            requiredEvidenceArray.push({
-                label: dictionaries.detailsPage.details.requiredEvidence.dctType,
-                value: evidence.dctType?.map((dctType) => printLocaleValue(locale, dctType)).join(", "),
-            });
-        }
+    const requiredEvidenceList: DetailsEntry[] =
+        service.hasInput?.map((evidence) => {
+            const contents: ContentRow[] = [];
+            if (!evidence.description?.[""] || showEmptyRows) {
+                contents.push({
+                    label: dictionaries.detailsPage.details.requiredEvidence.description,
+                    value: printLocaleValue(locale, evidence.description),
+                });
+            }
+            if (evidence.language?.length || showEmptyRows) {
+                contents.push({
+                    label: dictionaries.detailsPage.details.requiredEvidence.language,
+                    value: evidence.language
+                        ?.map((language: any) => printLocaleValue(locale, language.prefLabel))
+                        .join(", "),
+                });
+            }
+            if (evidence.page?.length || showEmptyRows) {
+                contents.push({
+                    label: dictionaries.detailsPage.details.requiredEvidence.page,
+                    value: evidence.page?.map((page) => printLocaleValue(locale, page)).join(", "),
+                });
+            }
+            if (evidence.dctType?.length || showEmptyRows) {
+                contents.push({
+                    label: dictionaries.detailsPage.details.requiredEvidence.dctType,
+                    value: evidence.dctType?.map((dctType) => printLocaleValue(locale, dctType)).join(", "),
+                });
+            }
 
-        requiredEvidenceList.push({
-            title: printLocaleValue(locale, evidence.name) || evidence.uri || evidence.identifier,
-            content: requiredEvidenceArray,
-        });
-    });
+            return {
+                title: printLocaleValue(locale, evidence.name) || evidence.uri || evidence.identifier,
+                content: contents,
+            };
+        }) || [];
 
     return (
         <div className={styles.detailsPage}>
