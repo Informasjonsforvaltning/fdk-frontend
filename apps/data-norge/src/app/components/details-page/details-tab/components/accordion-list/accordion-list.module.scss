@@ -1,0 +1,14 @@
+.dlist {
+    clear: both; // for toggleButton
+    summary {
+        font-weight: 600;
+    }
+    dl {
+        border-width: 0;
+        border-radius: 0;
+    }
+}
+
+.noMargin {
+    margin: 0;
+}
