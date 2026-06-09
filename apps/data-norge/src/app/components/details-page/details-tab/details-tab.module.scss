@@ -38,15 +38,23 @@
 
 .metadataQualityLink {
     :global(a) {
+        text-decoration: none;
+
         :global(button),
         :global(span) {
-            border: 2px solid currentColor !important;
-            padding: 2px 4px !important;
-            border-radius: 3px !important;
+            outline: 2px solid transparent;
+            outline-offset: 1px;
+            transition: outline-color 0.1s;
         }
     }
 
-    :global(a:hover) {
+    :global(a:hover),
+    :global(a:focus-visible) {
         opacity: 0.85;
+
+        :global(button),
+        :global(span) {
+            outline-color: currentColor;
+        }
     }
 }
