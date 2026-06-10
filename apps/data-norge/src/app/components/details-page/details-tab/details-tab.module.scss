@@ -35,3 +35,26 @@
     padding: 0.75rem 0.75rem;
     background: #fafafa;
 }
+
+.metadataQualityLink {
+    :global(a) {
+        text-decoration: none;
+
+        :global(button),
+        :global(span) {
+            outline: 2px solid transparent;
+            outline-offset: 1px;
+            transition: outline-color 0.1s;
+        }
+    }
+
+    :global(a:hover),
+    :global(a:focus-visible) {
+        opacity: 0.85;
+
+        :global(button),
+        :global(span) {
+            outline-color: currentColor;
+        }
+    }
+}
