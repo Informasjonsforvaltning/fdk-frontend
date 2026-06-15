@@ -7,6 +7,7 @@
         "node": ">=20.11.1"
     },
     "resolutions": {
+        "esbuild": "^0.28.1",
         "shell-quote": "^1.8.4",
         "glob": "^10.5.0",
         "prismjs": "^1.30.0",
