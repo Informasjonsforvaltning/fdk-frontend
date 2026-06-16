@@ -45,13 +45,12 @@ const SearchInput = ({
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+    const isTransportProfile = searchParams.get('profile') === 'transport';
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [isMac, setIsMac] = useState(false);
     const [isTrayVisible, setIsTrayVisible] = useState(false);
-    const [internalValue, setInternalValue] = useState(() =>
-        getInitialQFromUrl(searchParams)
-    );
+    const [internalValue, setInternalValue] = useState(() => getInitialQFromUrl(searchParams));
 
     // Keep uncontrolled value in sync when URL q param changes (e.g. back/forward)
     useEffect(() => {
@@ -62,15 +61,10 @@ const SearchInput = ({
 
     const isControlled = controlledValue !== undefined;
     const value = isControlled ? controlledValue : internalValue;
-    const setValue = isControlled
-        ? (controlledOnChange ?? (() => undefined))
-        : setInternalValue;
+    const setValue = isControlled ? (controlledOnChange ?? (() => undefined)) : setInternalValue;
 
     useEffect(() => {
-        setIsMac(
-            typeof navigator !== 'undefined' &&
-                /Mac|iPod|iPhone|iPad/.test(navigator.platform)
-        );
+        setIsMac(typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.platform));
     }, []);
 
     useEffect(() => {
@@ -114,15 +108,20 @@ const SearchInput = ({
         const trimmed = value.trim();
         const q = encodeURIComponent(trimmed);
         const segments = pathname.split('/').filter(Boolean);
-        const isOnSearchPage =
-            segments.length >= 2 &&
-            segments[0] === locale &&
-            segments[1] === 'search';
+        const isOnSearchPage = segments.length >= 2 && segments[0] === locale && segments[1] === 'search';
         if (isOnSearchPage) {
             const path = pathname.split('?')[0];
-            router.push(`${path}?q=${q}`);
+            if (isTransportProfile) {
+                router.push(`${path}?q=${q}&profile=transport`);
+            } else {
+                router.push(`${path}?q=${q}`);
+            }
         } else {
-            router.push(`/${locale}/search?q=${q}`);
+            if (isTransportProfile) {
+                router.push(`/${locale}/search?q=${q}&profile=transport`);
+            } else {
+                router.push(`/${locale}/search?q=${q}`);
+            }
         }
     };
 
@@ -130,13 +129,17 @@ const SearchInput = ({
         <div
             ref={containerRef}
             className={cn(styles.container, className)}
+            data-color-scheme='light'
         >
             <form
                 className={styles.form}
                 onSubmit={handleSubmit}
                 {...rest}
             >
-                <MagnifyingGlassIcon aria-hidden className={styles.searchIcon} />
+                <MagnifyingGlassIcon
+                    aria-hidden
+                    className={styles.searchIcon}
+                />
                 <Input
                     ref={inputRef}
                     value={value}

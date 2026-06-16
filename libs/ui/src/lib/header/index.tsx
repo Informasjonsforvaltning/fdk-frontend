@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
+import { useSearchParams } from 'next/navigation';
 import { ForwardRefComponent, motion } from 'framer-motion';
 import { Link, Button, Alert, Paragraph } from '@digdir/designsystemet-react';
 import { MenuHamburgerIcon, XMarkIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
@@ -20,10 +21,14 @@ const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
 const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
     const dictionary = getLocalization(locale).common;
+    const searchParams = useSearchParams();
+    const isTransportProfile = searchParams.get('profile') === 'transport';
     const headerRef = useRef<HTMLDivElement>(null);
     const [sticky, setSticky] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [showHeaderMessage, setShowHeaderMessage] = useState(false);
+
+    const shouldShowSearchInput = showSearchInput || isTransportProfile;
 
     const animations = {
         drawerInner: {
@@ -83,10 +88,11 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
             aria-label='Header'
             className={cn(styles.header, {
                 [styles.frontpageHeader]: frontpage,
+                [styles.transportHeader]: isTransportProfile,
                 [styles.showHeaderMessage]: showHeaderMessage,
             })}
             ref={headerRef}
-            data-color-scheme={!showMenu && frontpage ? 'dark' : 'light'}
+            data-color-scheme={isTransportProfile || (!showMenu && frontpage) ? 'dark' : 'light'}
         >
             <div
                 className={cn(styles.headerOuter, {
@@ -124,15 +130,18 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                     <LogoLink
                         className={styles.headerLogo}
                         href={`/${locale}`}
+                        variant={isTransportProfile ? 'transport' : undefined}
                     />
-                    {
-                        showSearchInput ?
-                        <SearchInput locale={locale} className={styles.headerSearchInput} /> :
-                        <div style={{flexGrow:1}} />
-                    }
+                    {shouldShowSearchInput ? (
+                        <SearchInput
+                            locale={locale}
+                            className={styles.headerSearchInput}
+                        />
+                    ) : (
+                        <div style={{ flexGrow: 1 }} />
+                    )}
                     <div className={styles.headerToolbar}>
-                        {
-                            !showSearchInput &&
+                        {!shouldShowSearchInput && (
                             <Button
                                 asChild
                                 data-size='sm'
@@ -144,7 +153,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                                     <span>{dictionary.header.findDataButton}</span>
                                 </Link>
                             </Button>
-                        }
+                        )}
                         <Button
                             data-size='sm'
                             variant={showMenu ? 'secondary' : 'tertiary'}
@@ -159,6 +168,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                             asChild
                             data-size='sm'
                             variant='primary'
+                            data-color-scheme='light'
                         >
                             <Link href={`/publishing`}>
                                 <span>{dictionary.header.shareDataButton}</span>
@@ -174,7 +184,10 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                             initial='hidden'
                             animate='show'
                         >
-                            <MainMenu locale={locale} />
+                            <MainMenu
+                                locale={locale}
+                                profile={isTransportProfile ? 'transport' : undefined}
+                            />
                         </MotionDiv>
                     </div>
                 )}

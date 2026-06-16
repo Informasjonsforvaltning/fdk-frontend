@@ -1,0 +1,468 @@
+{
+  "color": {
+    "farge1": {
+      "1": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{transportportal.farge1.16}"
+      }
+    },
+    "neutral": {
+      "1": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{transportportal.neutral.16}"
+      }
+    },
+    "info": {
+      "1": {
+        "$type": "color",
+        "$value": "{transportportal.info.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{transportportal.info.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{transportportal.info.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{transportportal.info.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{transportportal.info.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{transportportal.info.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{transportportal.info.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{transportportal.info.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{transportportal.info.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{transportportal.info.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{transportportal.info.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{transportportal.info.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{transportportal.info.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{transportportal.info.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{transportportal.info.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{transportportal.info.16}"
+      }
+    },
+    "success": {
+      "1": {
+        "$type": "color",
+        "$value": "{transportportal.success.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{transportportal.success.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{transportportal.success.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{transportportal.success.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{transportportal.success.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{transportportal.success.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{transportportal.success.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{transportportal.success.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{transportportal.success.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{transportportal.success.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{transportportal.success.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{transportportal.success.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{transportportal.success.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{transportportal.success.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{transportportal.success.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{transportportal.success.16}"
+      }
+    },
+    "warning": {
+      "1": {
+        "$type": "color",
+        "$value": "{transportportal.warning.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{transportportal.warning.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{transportportal.warning.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{transportportal.warning.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{transportportal.warning.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{transportportal.warning.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{transportportal.warning.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{transportportal.warning.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{transportportal.warning.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{transportportal.warning.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{transportportal.warning.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{transportportal.warning.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{transportportal.warning.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{transportportal.warning.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{transportportal.warning.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{transportportal.warning.16}"
+      }
+    },
+    "danger": {
+      "1": {
+        "$type": "color",
+        "$value": "{transportportal.danger.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{transportportal.danger.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{transportportal.danger.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{transportportal.danger.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{transportportal.danger.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{transportportal.danger.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{transportportal.danger.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{transportportal.danger.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{transportportal.danger.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{transportportal.danger.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{transportportal.danger.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{transportportal.danger.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{transportportal.danger.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{transportportal.danger.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{transportportal.danger.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{transportportal.danger.16}"
+      }
+    },
+    "link": {
+      "visited": {
+        "$type": "color",
+        "$value": "{transportportal.link.visited}"
+      }
+    },
+    "focus": {
+      "inner-color": {
+        "$type": "color",
+        "$value": "{transportportal.focus.inner}"
+      },
+      "outer-color": {
+        "$type": "color",
+        "$value": "{transportportal.focus.outer}"
+      }
+    }
+  },
+  "font-family": {
+    "$type": "fontFamilies",
+    "$value": "{transportportal.font-family}"
+  },
+  "font-weight": {
+    "medium": {
+      "$type": "fontWeights",
+      "$value": "{transportportal.font-weight.medium}"
+    },
+    "semibold": {
+      "$type": "fontWeights",
+      "$value": "{transportportal.font-weight.semibold}"
+    },
+    "regular": {
+      "$type": "fontWeights",
+      "$value": "{transportportal.font-weight.regular}"
+    }
+  },
+  "border-radius": {
+    "1": {
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*0.5,{border-radius.scale})"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "min({border-radius.base},{border-radius.scale}*2)"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*2,{border-radius.scale}*5)"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*3,{border-radius.scale}*7)"
+    },
+    "5": {
+      "$type": "dimension",
+      "$value": "{border-radius.base}"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "9999"
+    },
+    "base": {
+      "$type": "dimension",
+      "$value": "4"
+    },
+    "scale": {
+      "$type": "dimension",
+      "$value": "4"
+    }
+  }
+}

@@ -1,7 +1,10 @@
+'use client';
+import { useSearchParams } from 'next/navigation';
 import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
 import { LogoLink, DpgLink, DigdirLogoLink } from '../logo';
 import LanguageSwitcher from '../language-switcher';
 import MainMenu from '../main-menu';
+import TransportFooter from './transport-footer';
 import styles from './footer.module.scss';
 import { HStack } from '@fellesdatakatalog/ui';
 
@@ -10,6 +13,13 @@ export type FooterProps = {
 };
 
 const Footer = ({ locale }: FooterProps) => {
+    const searchParams = useSearchParams();
+    const isTransportProfile = searchParams.get('profile') === 'transport';
+
+    if (isTransportProfile) {
+        return <TransportFooter locale={locale} />;
+    }
+
     const dictionary = getLocalization(locale).common;
     return (
         <footer
