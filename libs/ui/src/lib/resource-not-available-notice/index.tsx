@@ -6,50 +6,50 @@ import AccessRequestButton, { type AccessRequestButtonProps } from "../access-re
 // import styles from './resource-not-available-notice.module.scss';
 
 const ResourceNotAvailableNotice = ({
-    children,
-    className,
-    kind,
-    id,
-    dictionary,
-    locale,
-    ...props
+  children,
+  className,
+  kind,
+  id,
+  dictionary,
+  locale,
+  ...props
 }: AccessRequestButtonProps & AlertProps) => {
-    return (
-        <div className={className}>
-            <Alert
-                data-color="warning"
-                {...props}
+  return (
+    <div className={className}>
+      <Alert
+        data-color="warning"
+        {...props}
+      >
+        <VStack style={{ marginBottom: "0.66666rem", gap: "0.5rem" }}>
+          <Heading
+            level={2}
+            data-size="2xs"
+          >
+            {dictionary.resourceNotAvailableNotice.title}
+          </Heading>
+          <Paragraph data-size="sm">{dictionary.resourceNotAvailableNotice.body}</Paragraph>
+          <HStack>
+            <AccessRequestButton
+              kind={kind}
+              id={id}
+              dictionary={dictionary}
+              isAvailable={false}
+              locale={locale}
+            />
+            <Button
+              variant="tertiary"
+              data-size="sm"
+              asChild
             >
-                <VStack style={{ marginBottom: "0.66666rem", gap: "0.5rem" }}>
-                    <Heading
-                        level={2}
-                        data-size="2xs"
-                    >
-                        {dictionary.resourceNotAvailableNotice.title}
-                    </Heading>
-                    <Paragraph data-size="sm">{dictionary.resourceNotAvailableNotice.body}</Paragraph>
-                    <HStack>
-                        <AccessRequestButton
-                            kind={kind}
-                            id={id}
-                            dictionary={dictionary}
-                            isAvailable={false}
-                            locale={locale}
-                        />
-                        <Button
-                            variant="tertiary"
-                            data-size="sm"
-                            asChild
-                        >
-                            <Link href="/docs/finding-data/access-data#nasjonal-soknadslosning">
-                                {dictionary.resourceNotAvailableNotice.moreInfoLink}
-                            </Link>
-                        </Button>
-                    </HStack>
-                </VStack>
-            </Alert>
-        </div>
-    );
+              <Link href="/docs/finding-data/access-data#nasjonal-soknadslosning">
+                {dictionary.resourceNotAvailableNotice.moreInfoLink}
+              </Link>
+            </Button>
+          </HStack>
+        </VStack>
+      </Alert>
+    </div>
+  );
 };
 
 export default ResourceNotAvailableNotice;

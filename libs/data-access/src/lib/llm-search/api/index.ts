@@ -1,11 +1,11 @@
 import { type LlmSearchResult } from "@fellesdatakatalog/types";
 
 export interface LlmSearchResponse<THit = LlmSearchResult> {
-    hits: THit[];
+  hits: THit[];
 }
 
 export type LlmSearchOptions = {
-    timeout?: number;
+  timeout?: number;
 };
 
 /**
@@ -21,53 +21,53 @@ export type LlmSearchOptions = {
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null;
 
 const isLlmSearchResponseShape = (value: unknown): value is { hits: unknown[] } =>
-    isRecord(value) && Array.isArray(value.hits);
+  isRecord(value) && Array.isArray(value.hits);
 
 export const llmSearch = async <THit = LlmSearchResult>(
-    endpoint: string,
-    query: string,
-    options: LlmSearchOptions = {},
+  endpoint: string,
+  query: string,
+  options: LlmSearchOptions = {},
 ): Promise<LlmSearchResponse<THit>> => {
-    const { timeout = 30000 } = options;
+  const { timeout = 30000 } = options;
 
-    // Strip "?" from query (temp bugfix)
-    const cleanedQuery = query.replace(/\?/g, "");
+  // Strip "?" from query (temp bugfix)
+  const cleanedQuery = query.replace(/\?/g, "");
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeout);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-    try {
-        const response = await fetch(endpoint, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                query: cleanedQuery,
-                type: "ALL",
-            }),
-            signal: controller.signal,
-        });
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: cleanedQuery,
+        type: "ALL",
+      }),
+      signal: controller.signal,
+    });
 
-        clearTimeout(timeoutId);
+    clearTimeout(timeoutId);
 
-        if (!response.ok) {
-            throw new Error(`LLM search failed with status ${response.status}`);
-        }
-
-        const json: unknown = await response.json();
-        if (!isLlmSearchResponseShape(json)) {
-            throw new Error("LLM search returned unexpected payload");
-        }
-
-        // Trusted boundary: `THit` is chosen by the caller; we only validate the outer envelope here.
-        return { hits: json.hits as THit[] };
-    } catch (err) {
-        clearTimeout(timeoutId);
-        if (err instanceof Error && err.name === "AbortError") {
-            throw new Error("Request timed out");
-        }
-        throw err;
+    if (!response.ok) {
+      throw new Error(`LLM search failed with status ${response.status}`);
     }
+
+    const json: unknown = await response.json();
+    if (!isLlmSearchResponseShape(json)) {
+      throw new Error("LLM search returned unexpected payload");
+    }
+
+    // Trusted boundary: `THit` is chosen by the caller; we only validate the outer envelope here.
+    return { hits: json.hits as THit[] };
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (err instanceof Error && err.name === "AbortError") {
+      throw new Error("Request timed out");
+    }
+    throw err;
+  }
 };

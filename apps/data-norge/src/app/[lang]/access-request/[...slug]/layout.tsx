@@ -6,13 +6,13 @@ export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
 const AccessRequestLayout = async ({
-    children,
-    params,
+  children,
+  params,
 }: PropsWithChildren & {
-    params: Promise<{ lang: string; slug: string[] }>;
+  params: Promise<{ lang: string; slug: string[] }>;
 }) => {
-    const typedParams = params as Promise<{ lang: LocaleCodes; slug: string[] }>;
-    return <BlankLayout params={typedParams}>{children}</BlankLayout>;
+  const typedParams = params as Promise<{ lang: LocaleCodes; slug: string[] }>;
+  return <BlankLayout params={typedParams}>{children}</BlankLayout>;
 };
 
 export default AccessRequestLayout;

@@ -1,108 +1,108 @@
 @use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .fds-heading {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .fds-ingress {
-    font-size: 1.1rem;
-    line-height: 1.5em;
+  font-size: 1.1rem;
+  line-height: 1.5em;
 }
 
 .fds-link {
-    &:not(.fds-btn, .fds-card) {
-        display: inline;
+  &:not(.fds-btn, .fds-card) {
+    display: inline;
 
-        svg {
-            // margin-top:-1em;
-            vertical-align: middle;
+    svg {
+      // margin-top:-1em;
+      vertical-align: middle;
 
-            &:last-child {
-                margin-left: 0.125rem;
-            }
-        }
+      &:last-child {
+        margin-left: 0.125rem;
+      }
     }
+  }
 
-    &:visited {
-        &:not(:focus-visible) {
-            color: var(--color-link);
-        }
+  &:visited {
+    &:not(:focus-visible) {
+      color: var(--color-link);
     }
+  }
 }
 
 .fds-btn {
+  &.fds-link {
+    &:not(:focus-visible) {
+      color: var(--color-link);
+    }
+
+    & {
+      text-decoration: none;
+    }
+  }
+  &.fds-btn--primary {
     &.fds-link {
-        &:not(:focus-visible) {
-            color: var(--color-link);
-        }
-
-        & {
-            text-decoration: none;
-        }
+      color: white;
     }
-    &.fds-btn--primary {
-        &.fds-link {
-            color: white;
-        }
-    }
+  }
 
-    &:focus-visible {
-        @include core-mixins.focus-block();
+  &:focus-visible {
+    @include core-mixins.focus-block();
 
-        &.fds-link {
-            color: black;
-        }
+    &.fds-link {
+      color: black;
     }
+  }
 }
 
 .fds-table {
-    width: 100%;
+  width: 100%;
 
-    td,
-    th {
-        padding: 0.5rem 0.75rem;
-        border-color: var(--fds-semantic-border-neutral-subtle);
+  td,
+  th {
+    padding: 0.5rem 0.75rem;
+    border-color: var(--fds-semantic-border-neutral-subtle);
+  }
+
+  tr {
+    &:hover {
+      td,
+      th {
+        background: #fafafa;
+      }
     }
+  }
 
-    tr {
-        &:hover {
-            td,
-            th {
-                background: #fafafa;
-            }
-        }
-    }
-
-    tbody {
+  tbody {
+    &:first-child {
+      tr {
         &:first-child {
-            tr {
-                &:first-child {
-                    td {
-                        border-top: 1px solid var(--fds-semantic-border-neutral-subtle);
-                    }
-                }
-            }
+          td {
+            border-top: 1px solid var(--fds-semantic-border-neutral-subtle);
+          }
         }
+      }
     }
+  }
 }
 
 .fds-accordion__item {
-    > h3 button:hover {
-        background: rgba(0, 0, 0, 0.05);
-    }
+  > h3 button:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
 }
 .fds-accordion__item--open {
-    > h3 button {
-        background: white;
+  > h3 button {
+    background: white;
 
-        &:hover {
-            background: rgba(0, 0, 0, 0.025);
-        }
+    &:hover {
+      background: rgba(0, 0, 0, 0.025);
     }
+  }
 }
 
 .fds-accordion__expand-icon {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 /*
@@ -110,26 +110,26 @@ Fix for weird code block inside Alert overflow bug.
 https://data.norge.no/nb/docs/sharing-data/how-to-dataset/2-dataset-description
 */
 .fds-alert__content {
-    @include core-mixins.article();
-    overflow: hidden;
-    display: block;
+  @include core-mixins.article();
+  overflow: hidden;
+  display: block;
 }
 
 /*
 Fix for bug where items doesnt wrap
 */
 .fds-chip--group-container {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .fds-paragraph {
-    color: currentColor;
+  color: currentColor;
 }
 
 .fds-popover {
-    box-shadow: var(--fds-shadow-medium);
+  box-shadow: var(--fds-shadow-medium);
 
-    &:not(.fds-popover--info) {
-        border-color: var(--fds-semantic-border-neutral-subtle);
-    }
+  &:not(.fds-popover--info) {
+    border-color: var(--fds-semantic-border-neutral-subtle);
+  }
 }

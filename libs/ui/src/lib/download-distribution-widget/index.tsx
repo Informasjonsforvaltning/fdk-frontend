@@ -6,47 +6,47 @@ import DatasetPreviewWidget from "../dataset-preview-widget/";
 import styles from "./styles.module.scss";
 
 type DownloadDistributionWidgetProps = {
-    title: string;
-    downloadUrl: string;
-    dictionary: Localization;
-    locale: LocaleCodes;
-    hasBeenOpened: boolean;
+  title: string;
+  downloadUrl: string;
+  dictionary: Localization;
+  locale: LocaleCodes;
+  hasBeenOpened: boolean;
 };
 
 const DownloadDistributionWidget = ({
-    title,
-    downloadUrl,
-    dictionary,
-    locale,
-    hasBeenOpened,
-    ...props
+  title,
+  downloadUrl,
+  dictionary,
+  locale,
+  hasBeenOpened,
+  ...props
 }: DownloadDistributionWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
-    const datasetPreviewTitle = title || downloadUrl || dictionary.distributions.header.nameless;
-    return (
-        <Box
-            className={styles.wrapper}
-            {...props}
-        >
-            <ExternalLink
-                className="fdk-box-link"
-                href={downloadUrl}
-                locale={locale}
-                gateway
-            >
-                {downloadUrl}
-            </ExternalLink>
-            <div className={styles.previewWidgetContainer}>
-                <DatasetPreviewWidget
-                    className={styles.previewWidget}
-                    downloadUrl={downloadUrl}
-                    dictionary={dictionary}
-                    title={datasetPreviewTitle}
-                    triggerBtnClass={styles.previewTriggerBtn}
-                    hasBeenOpened={hasBeenOpened}
-                />
-            </div>
-        </Box>
-    );
+  const datasetPreviewTitle = title || downloadUrl || dictionary.distributions.header.nameless;
+  return (
+    <Box
+      className={styles.wrapper}
+      {...props}
+    >
+      <ExternalLink
+        className="fdk-box-link"
+        href={downloadUrl}
+        locale={locale}
+        gateway
+      >
+        {downloadUrl}
+      </ExternalLink>
+      <div className={styles.previewWidgetContainer}>
+        <DatasetPreviewWidget
+          className={styles.previewWidget}
+          downloadUrl={downloadUrl}
+          dictionary={dictionary}
+          title={datasetPreviewTitle}
+          triggerBtnClass={styles.previewTriggerBtn}
+          hasBeenOpened={hasBeenOpened}
+        />
+      </div>
+    </Box>
+  );
 };
 
 export default DownloadDistributionWidget;

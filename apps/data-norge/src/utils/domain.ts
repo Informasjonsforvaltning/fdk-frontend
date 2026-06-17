@@ -4,6 +4,6 @@
  * @returns true if the domain is canonical (production), false otherwise (staging, demo, development)
  */
 export const isCanonicalDomain = (): boolean => {
-    const { FDK_BASE_URI } = process.env;
-    return !FDK_BASE_URI?.match(/^https:\/\/(staging|demo)\./);
+  const { FDK_BASE_URI } = process.env;
+  return !FDK_BASE_URI?.match(/^https:\/\/(staging|demo)\./);
 };

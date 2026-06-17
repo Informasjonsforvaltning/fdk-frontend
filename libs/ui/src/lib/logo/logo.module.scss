@@ -3,36 +3,36 @@
 .digdirLogoLink,
 .logo,
 .dpgLink {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    svg {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-right: 0.75rem;
-        fill: currentcolor;
-    }
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.75rem;
+    fill: currentcolor;
+  }
 
-    span {
-        font-size: 1.33333rem;
-        color: currentcolor;
-        line-height: 1.33333rem;
-    }
+  span {
+    font-size: 1.33333rem;
+    color: currentcolor;
+    line-height: 1.33333rem;
+  }
 }
 
 .digdirLogoLink,
 .dpgLink {
-    svg {
-        width: auto;
-        margin-right: 0;
-    }
+  svg {
+    width: auto;
+    margin-right: 0;
+  }
 }
 
 .digdirLogoLink,
 .logoLink,
 .dpgLink {
-    text-decoration: none;
-    padding: 0.5rem;
-    margin: -0.5rem;
-    border-radius: 0.25rem;
+  text-decoration: none;
+  padding: 0.5rem;
+  margin: -0.5rem;
+  border-radius: 0.25rem;
 }

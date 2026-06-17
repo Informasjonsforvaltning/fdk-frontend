@@ -5,9 +5,9 @@ import nn from "./locales/nn";
 import en from "./locales/en";
 
 const locales: Record<LocaleCodes, Localization> = {
-    nb,
-    nn,
-    en,
+  nb,
+  nn,
+  en,
 };
 
 /**
@@ -15,6 +15,6 @@ const locales: Record<LocaleCodes, Localization> = {
  * Falls back to default locale (nb) if the locale is invalid.
  */
 export function getLocalization(localeCode: LocaleCodes): Localization {
-    const locale = locales[localeCode] ?? locales[i18n.defaultLocale];
-    return locale;
+  const locale = locales[localeCode] ?? locales[i18n.defaultLocale];
+  return locale;
 }

@@ -5,26 +5,26 @@ import FooterLayout from "../footer-layout";
 import FeedbackBanner from "../../feedback-banner";
 
 const NormalLayout = async ({ children, params }: PropsWithChildren & RootLayoutProps) => {
-    const { lang } = await params;
-    const communityBaseUri = process.env.FDK_COMMUNITY_BASE_URI;
-    const showSearchInput = process.env.SEARCH_PROTOTYPE_ENABLED === "true";
+  const { lang } = await params;
+  const communityBaseUri = process.env.FDK_COMMUNITY_BASE_URI;
+  const showSearchInput = process.env.SEARCH_PROTOTYPE_ENABLED === "true";
 
-    return (
-        <HeaderLayout
+  return (
+    <HeaderLayout
+      locale={lang}
+      showSearchInput={showSearchInput}
+    >
+      <FooterLayout locale={lang}>
+        <main id="main">
+          {children}
+          <FeedbackBanner
             locale={lang}
-            showSearchInput={showSearchInput}
-        >
-            <FooterLayout locale={lang}>
-                <main id="main">
-                    {children}
-                    <FeedbackBanner
-                        locale={lang}
-                        communityBaseUri={communityBaseUri as string}
-                    />
-                </main>
-            </FooterLayout>
-        </HeaderLayout>
-    );
+            communityBaseUri={communityBaseUri as string}
+          />
+        </main>
+      </FooterLayout>
+    </HeaderLayout>
+  );
 };
 
 export default NormalLayout;

@@ -10,76 +10,76 @@ import { mdxComponents, CatalogsMenu, AlertWithLinkButton } from "@fdk-frontend/
 import MdxPage from "../mdx-page";
 
 const getContentDirectory = (rootContentDirectory: string) => {
-    return path.join(process.cwd(), "public", "content", rootContentDirectory);
+  return path.join(process.cwd(), "public", "content", rootContentDirectory);
 };
 
 export type DocsPageProps = {
-    rootContentDirectory: string;
-    params: Promise<{
-        lang: LocaleCodes;
-        slug?: string[];
-    }>;
+  rootContentDirectory: string;
+  params: Promise<{
+    lang: LocaleCodes;
+    slug?: string[];
+  }>;
 };
 
 export default async function DocsPage(pageProps: DocsPageProps) {
-    const params = await pageProps.params;
-    const rootContentDirectory = pageProps.rootContentDirectory;
-    const locale = params.lang ?? i18n.defaultLocale;
-    const slug = params.slug ?? [];
-    const pageName = slug.length ? slug.at(-1) : rootContentDirectory;
+  const params = await pageProps.params;
+  const rootContentDirectory = pageProps.rootContentDirectory;
+  const locale = params.lang ?? i18n.defaultLocale;
+  const slug = params.slug ?? [];
+  const pageName = slug.length ? slug.at(-1) : rootContentDirectory;
 
-    // Construct .mdx filepath based on URL slug and locale
-    const contentDirectory = getContentDirectory(rootContentDirectory);
-    const filePath = path.resolve(process.cwd(), contentDirectory, ...slug, `${pageName}.${locale}.mdx`);
+  // Construct .mdx filepath based on URL slug and locale
+  const contentDirectory = getContentDirectory(rootContentDirectory);
+  const filePath = path.resolve(process.cwd(), contentDirectory, ...slug, `${pageName}.${locale}.mdx`);
 
-    const dictionary = getLocalization(locale).common;
+  const dictionary = getLocalization(locale).common;
 
-    try {
-        // Get raw MDX source
-        const source = await fs.readFile(filePath, "utf8");
+  try {
+    // Get raw MDX source
+    const source = await fs.readFile(filePath, "utf8");
 
-        // Compile MDX and extract content
-        const { content, frontmatter } = await compileMDX({
-            source,
-            options: {
-                mdxOptions: {
-                    remarkPlugins: [remarkGfm],
-                },
-                parseFrontmatter: true,
-            },
-            components: {
-                ...mdxComponents({ locale }),
-                AlertWithLinkButton,
-                CatalogsMenu: () => (
-                    <CatalogsMenu
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                ),
-                NegativeMargin: (props: React.HTMLAttributes<HTMLDivElement>) => (
-                    <div
-                        style={{ marginLeft: "-1rem", marginRight: "-1rem" }}
-                        {...props}
-                    />
-                ),
-            },
-        });
+    // Compile MDX and extract content
+    const { content, frontmatter } = await compileMDX({
+      source,
+      options: {
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
+        parseFrontmatter: true,
+      },
+      components: {
+        ...mdxComponents({ locale }),
+        AlertWithLinkButton,
+        CatalogsMenu: () => (
+          <CatalogsMenu
+            locale={locale}
+            dictionary={dictionary}
+          />
+        ),
+        NegativeMargin: (props: React.HTMLAttributes<HTMLDivElement>) => (
+          <div
+            style={{ marginLeft: "-1rem", marginRight: "-1rem" }}
+            {...props}
+          />
+        ),
+      },
+    });
 
-        // Render page
-        return (
-            <MdxPage
-                sidebars={frontmatter.sidebars as boolean | undefined}
-                currentPath={[rootContentDirectory, ...slug]}
-                locale={locale}
-                source={source}
-            >
-                {content}
-            </MdxPage>
-        );
-    } catch (err) {
-        console.error(`Failed to compile MDX page for filePath ${filePath}`, JSON.stringify(err));
-        notFound();
-    }
+    // Render page
+    return (
+      <MdxPage
+        sidebars={frontmatter.sidebars as boolean | undefined}
+        currentPath={[rootContentDirectory, ...slug]}
+        locale={locale}
+        source={source}
+      >
+        {content}
+      </MdxPage>
+    );
+  } catch (err) {
+    console.error(`Failed to compile MDX page for filePath ${filePath}`, JSON.stringify(err));
+    notFound();
+  }
 }
 
 /**
@@ -87,41 +87,41 @@ export default async function DocsPage(pageProps: DocsPageProps) {
  * except we extract frontmatter instead of content from MDX compilation
  */
 export const generateMetadata = async function (pageProps: DocsPageProps): Promise<Metadata> {
-    const params = await pageProps.params;
-    const rootContentDirectory = pageProps.rootContentDirectory;
-    const locale = params.lang ?? i18n.defaultLocale;
-    const slug = params.slug ?? [];
+  const params = await pageProps.params;
+  const rootContentDirectory = pageProps.rootContentDirectory;
+  const locale = params.lang ?? i18n.defaultLocale;
+  const slug = params.slug ?? [];
 
-    const pageName = slug.length ? slug.at(-1) : rootContentDirectory;
+  const pageName = slug.length ? slug.at(-1) : rootContentDirectory;
 
-    const contentDirectory = getContentDirectory(rootContentDirectory);
+  const contentDirectory = getContentDirectory(rootContentDirectory);
 
-    // Construct .mdx filepath based on URL slug and locale
-    const filePath = path.resolve(process.cwd(), contentDirectory, ...slug, `${pageName}.${locale}.mdx`);
+  // Construct .mdx filepath based on URL slug and locale
+  const filePath = path.resolve(process.cwd(), contentDirectory, ...slug, `${pageName}.${locale}.mdx`);
 
-    try {
-        const source = await fs.readFile(filePath, "utf8");
+  try {
+    const source = await fs.readFile(filePath, "utf8");
 
-        const { frontmatter } = await compileMDX({
-            source,
-            options: { parseFrontmatter: true },
-        });
+    const { frontmatter } = await compileMDX({
+      source,
+      options: { parseFrontmatter: true },
+    });
 
-        const title = frontmatter.title ? `${frontmatter.title} - data.norge.no` : `data.norge.no`;
-        const description = frontmatter.description as string | undefined;
+    const title = frontmatter.title ? `${frontmatter.title} - data.norge.no` : `data.norge.no`;
+    const description = frontmatter.description as string | undefined;
 
-        // Construct canonical URL based on current path
-        const canonicalPath = [rootContentDirectory, ...slug].join("/");
-        const canonicalUrl = `https://data.norge.no/${locale}/${canonicalPath}`;
+    // Construct canonical URL based on current path
+    const canonicalPath = [rootContentDirectory, ...slug].join("/");
+    const canonicalUrl = `https://data.norge.no/${locale}/${canonicalPath}`;
 
-        return {
-            title,
-            description,
-            alternates: {
-                canonical: canonicalUrl,
-            },
-        };
-    } catch {
-        return notFound();
-    }
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+    };
+  } catch {
+    return notFound();
+  }
 };

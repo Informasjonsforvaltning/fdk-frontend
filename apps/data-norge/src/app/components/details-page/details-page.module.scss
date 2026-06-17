@@ -1,125 +1,125 @@
 @use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .detailsPage {
-    margin: 0 2rem 3rem;
-    container-type: inline-size;
+  margin: 0 2rem 3rem;
+  container-type: inline-size;
 
-    @media (max-width: 500px) {
-        margin: 0 1.5rem 1rem;
+  @media (max-width: 500px) {
+    margin: 0 1.5rem 1rem;
+  }
+
+  .mainContent {
+    max-width: 1000px;
+    margin: 2rem auto 0;
+
+    @media (max-width: 650px) {
+      margin-top: 1rem;
     }
 
-    .mainContent {
-        max-width: 1000px;
-        margin: 2rem auto 0;
+    .tabsScrollShadows {
+      margin: 0 -2rem;
+      padding: 0 2rem;
 
-        @media (max-width: 650px) {
-            margin-top: 1rem;
+      @media (max-width: 1000px) {
+        padding: 0;
+        border-bottom: 1px solid #ddd;
+
+        // TODO: responsive tablist
+        :global(.fds-tabs__tablist) {
+          margin: 0 2rem;
+          border-bottom: 0;
         }
+      }
 
-        .tabsScrollShadows {
-            margin: 0 -2rem;
-            padding: 0 2rem;
+      @media (max-width: 400px) {
+        margin: 0 -1.5rem;
 
-            @media (max-width: 1000px) {
-                padding: 0;
-                border-bottom: 1px solid #ddd;
-
-                // TODO: responsive tablist
-                :global(.fds-tabs__tablist) {
-                    margin: 0 2rem;
-                    border-bottom: 0;
-                }
-            }
-
-            @media (max-width: 400px) {
-                margin: 0 -1.5rem;
-
-                :global(.fds-tabs__tablist) {
-                    margin: 0 1.5rem;
-                }
-            }
+        :global(.fds-tabs__tablist) {
+          margin: 0 1.5rem;
         }
-
-        .tabs {
-            [role="tabpanel"] {
-                padding: 1.5rem 0;
-
-                > * + * {
-                    margin-top: 1.5rem;
-                }
-            }
-        }
-
-        .article {
-            @include core-mixins.article();
-        }
-
-        .section {
-            > :global(.ds-heading) {
-                margin-bottom: 1em;
-            }
-        }
-
-        .related {
-            :global(.fds-link) {
-                display: flex;
-                justify-content: space-between;
-                text-decoration: none;
-            }
-        }
-
-        .divider {
-            margin: 3rem auto 2rem !important;
-        }
-
-        .scrollContainer {
-            overflow-x: auto;
-        }
+      }
     }
 
-    .tableScroller {
-        margin: 1rem -1.95rem;
+    .tabs {
+      [role="tabpanel"] {
+        padding: 1.5rem 0;
 
-        > div {
-            padding: 0 2rem;
+        > * + * {
+          margin-top: 1.5rem;
         }
-
-        @media (max-width: 400px) {
-            margin: 1rem -1.5rem;
-
-            > div {
-                padding: 0 1.5rem;
-            }
-        }
+      }
     }
+
+    .article {
+      @include core-mixins.article();
+    }
+
+    .section {
+      > :global(.ds-heading) {
+        margin-bottom: 1em;
+      }
+    }
+
+    .related {
+      :global(.fds-link) {
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+      }
+    }
+
+    .divider {
+      margin: 3rem auto 2rem !important;
+    }
+
+    .scrollContainer {
+      overflow-x: auto;
+    }
+  }
+
+  .tableScroller {
+    margin: 1rem -1.95rem;
+
+    > div {
+      padding: 0 2rem;
+    }
+
+    @media (max-width: 400px) {
+      margin: 1rem -1.5rem;
+
+      > div {
+        padding: 0 1.5rem;
+      }
+    }
+  }
 }
 
 .descriptionCard {
-    &:global(.ds-card) {
-        cursor: default;
-    }
+  &:global(.ds-card) {
+    cursor: default;
+  }
 
-    &:global(.ds-card):hover {
-        background: var(--dsc-card-background);
-    }
+  &:global(.ds-card):hover {
+    background: var(--dsc-card-background);
+  }
 
-    &:global(.ds-card):active {
-        background: var(--dsc-card-background);
-    }
+  &:global(.ds-card):active {
+    background: var(--dsc-card-background);
+  }
 }
 
 .relatedTable {
-    td,
-    th {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 400px; /* Adjust as needed */
-    }
+  td,
+  th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px; /* Adjust as needed */
+  }
 }
 
 .dlistWhiteBg {
-    dl {
-        background: white;
-    }
+  dl {
+    background: white;
+  }
 }

@@ -6,20 +6,20 @@ import { printLocaleValue } from "@fdk-frontend/utils";
 import styles from "../distribution-header/distribution-header.module.scss";
 
 type ApiHeaderProps = {
-    api: DataService;
-    locale: LocaleCodes;
-    dictionary: Localization;
+  api: DataService;
+  locale: LocaleCodes;
+  dictionary: Localization;
 };
 
 const ApiHeader = ({ api, locale, dictionary, ...props }: ApiHeaderProps & PropsWithChildren) => {
-    return (
-        <div className={styles.headerContent}>
-            <span className={styles.title}>
-                {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
-                <ApiTags api={api} />
-            </span>
-        </div>
-    );
+  return (
+    <div className={styles.headerContent}>
+      <span className={styles.title}>
+        {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
+        <ApiTags api={api} />
+      </span>
+    </div>
+  );
 };
 
 export default ApiHeader;

@@ -1,19 +1,19 @@
 .wrapper {
-    position: relative;
-    flex-grow: 1;
+  position: relative;
+  flex-grow: 1;
 
-    .input {
-        color: #666;
+  .input {
+    color: #666;
+  }
+
+  :global(.ds-button) {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    z-index: 1;
+
+    &:not(:hover):not(:active) {
+      background: white;
     }
-
-    :global(.ds-button) {
-        position: absolute;
-        top: 3px;
-        right: 3px;
-        z-index: 1;
-
-        &:not(:hover):not(:active) {
-            background: white;
-        }
-    }
+  }
 }

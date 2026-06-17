@@ -1,25 +1,25 @@
 @use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .auxPanel {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--fdk-color-cyan);
-    margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--fdk-color-cyan);
+  margin-top: 0.5rem;
 
-    @media (max-width: 480px) {
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-top: 1.5rem;
-    }
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
 }
 
 .helptextWrapper {
-    > :global(.ds-button) {
-        font-size: 0.9rem;
-        white-space: nowrap;
-    }
-    :global(.ds-popover) {
-        @include core-mixins.article();
-    }
+  > :global(.ds-button) {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  :global(.ds-popover) {
+    @include core-mixins.article();
+  }
 }

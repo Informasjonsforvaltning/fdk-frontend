@@ -1,62 +1,62 @@
 // @use '@fdk-frontend/ui/core/mixins' as core-mixins;
 
 .footer {
-    background: var(--color-fdk-navy-dark);
+  background: var(--color-fdk-navy-dark);
 
-    .inner {
-        max-width: 1000px;
-        margin: auto;
-        padding: 4rem 2rem;
-        container-type: inline-size;
+  .inner {
+    max-width: 1000px;
+    margin: auto;
+    padding: 4rem 2rem;
+    container-type: inline-size;
 
-        @media (max-width: 400px) {
-            padding: 3rem 1.5rem;
-        }
+    @media (max-width: 400px) {
+      padding: 3rem 1.5rem;
     }
+  }
 
-    .footerNav {
-        :global(.fds-heading) {
-            color: white;
-        }
+  .footerNav {
+    :global(.fds-heading) {
+      color: white;
     }
+  }
 
-    .bottom {
-        border-top: 1px solid var(--fdk-color-navy);
-        color: white;
-        container-type: inline-size;
+  .bottom {
+    border-top: 1px solid var(--fdk-color-navy);
+    color: white;
+    container-type: inline-size;
 
-        .bottomInner {
-            display: flex;
-            justify-content: space-between;
-            padding: 2rem;
-            margin: auto;
+    .bottomInner {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      margin: auto;
 
-            @container (max-width: 500px) {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 2rem 1.5rem;
-
-                .digdirCredit {
-                    justify-content: flex-end;
-                }
-            }
-        }
-
-        .leftLogos {
-            gap: 1.5rem;
-        }
+      @container (max-width: 500px) {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
 
         .digdirCredit {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            text-align: right;
+          justify-content: flex-end;
         }
+      }
     }
+
+    .leftLogos {
+      gap: 1.5rem;
+    }
+
+    .digdirCredit {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      text-align: right;
+    }
+  }
 }
 
 .iconLink {
-    svg {
-        fill: var(--ds-color-neutral-text-default);
-    }
+  svg {
+    fill: var(--ds-color-neutral-text-default);
+  }
 }

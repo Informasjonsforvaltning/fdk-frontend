@@ -9,41 +9,41 @@ import { type MdxHeadlineObjectNode } from "../mdx-page/utils";
 import styles from "../sidebar/sidebar.module.scss";
 
 const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
-    if (!headlines || headlines.length === 0) return null;
-    return (
-        <ul className={cn(styles.sidebarList, styles.sidebarListFlat)}>
-            {headlines.map((headline, index) => {
-                const slug = slugify(headline.text, { lower: true, strict: true });
-                return (
-                    <li key={index}>
-                        <Link href={`#${slug}`}>{headline.text}</Link>
-                        <TocList headlines={headline.children} />
-                    </li>
-                );
-            })}
-        </ul>
-    );
+  if (!headlines || headlines.length === 0) return null;
+  return (
+    <ul className={cn(styles.sidebarList, styles.sidebarListFlat)}>
+      {headlines.map((headline, index) => {
+        const slug = slugify(headline.text, { lower: true, strict: true });
+        return (
+          <li key={index}>
+            <Link href={`#${slug}`}>{headline.text}</Link>
+            <TocList headlines={headline.children} />
+          </li>
+        );
+      })}
+    </ul>
+  );
 };
 
 type TableOfContentsProps = {
-    dictionary: Localization;
-    headlines?: MdxHeadlineObjectNode[];
+  dictionary: Localization;
+  headlines?: MdxHeadlineObjectNode[];
 };
 
 const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
-    <aside
-        className={styles.sidebar}
-        aria-labelledby="tableOfContents.onThisPage"
+  <aside
+    className={styles.sidebar}
+    aria-labelledby="tableOfContents.onThisPage"
+  >
+    <Heading
+      id="tableOfContents.onThisPage"
+      level={2}
+      data-size="xs"
     >
-        <Heading
-            id="tableOfContents.onThisPage"
-            level={2}
-            data-size="xs"
-        >
-            {dictionary.tableOfContents.onThisPage}
-        </Heading>
-        <TocList headlines={headlines} />
-    </aside>
+      {dictionary.tableOfContents.onThisPage}
+    </Heading>
+    <TocList headlines={headlines} />
+  </aside>
 );
 
 export default TableOfContents;

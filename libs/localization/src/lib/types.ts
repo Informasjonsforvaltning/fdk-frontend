@@ -11,12 +11,12 @@ export type LocaleCodes = "nb" | "nn" | "en";
 export type Localization = Record<string, any>;
 
 export const i18n = {
-    defaultLocale: "nb" as const,
-    locales: [
-        { code: "nb", name: "Bokmål" },
-        { code: "nn", name: "Nynorsk" },
-        { code: "en", name: "English" },
-    ],
+  defaultLocale: "nb" as const,
+  locales: [
+    { code: "nb", name: "Bokmål" },
+    { code: "nn", name: "Nynorsk" },
+    { code: "en", name: "English" },
+  ],
 } as const;
 
 export type Locale = (typeof i18n)["locales"][number];

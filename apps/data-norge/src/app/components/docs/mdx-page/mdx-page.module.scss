@@ -1,102 +1,102 @@
 @use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .mdxPage {
-    margin: 0 2rem 3rem;
-    container-type: inline-size;
+  margin: 0 2rem 3rem;
+  container-type: inline-size;
 
-    .content {
-        align-items: start;
-        display: grid;
-        grid-template-columns: calc(25% - 0.5rem) calc(50% - 2rem) calc(25% - 0.5rem);
-        grid-template-areas: ". article .";
-        gap: 2rem;
+  .content {
+    align-items: start;
+    display: grid;
+    grid-template-columns: calc(25% - 0.5rem) calc(50% - 2rem) calc(25% - 0.5rem);
+    grid-template-areas: ". article .";
+    gap: 2rem;
+    margin-top: 2rem;
+
+    &.noSidebars {
+      grid-template-columns: 100%;
+      grid-template-areas: "article";
+    }
+
+    .mainColumn {
+      grid-area: article;
+    }
+
+    .rightColumn {
+      display: flex;
+      justify-content: flex-end;
+
+      .asideContent {
+        width: 350px;
+        min-width: 0;
+        max-width: 350px;
+      }
+    }
+
+    .leftColumn,
+    .rightColumn {
+      position: sticky;
+      top: 88px;
+    }
+
+    .asideContent {
+      max-width: 350px;
+    }
+
+    .article {
+      @include core-mixins.article();
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    @container (max-width: 900px) {
+      grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
+      grid-template-areas: ". article";
+
+      .rightColumn {
+        display: none;
+      }
+    }
+
+    @container (max-width: 800px) {
+      display: block;
+      margin-top: 0;
+
+      .mainColumn {
         margin-top: 2rem;
+      }
 
-        &.noSidebars {
-            grid-template-columns: 100%;
-            grid-template-areas: "article";
-        }
+      .leftColumn {
+        position: static;
+      }
 
-        .mainColumn {
-            grid-area: article;
-        }
+      .rightColumn {
+        display: none;
+      }
 
-        .rightColumn {
-            display: flex;
-            justify-content: flex-end;
-
-            .asideContent {
-                width: 350px;
-                min-width: 0;
-                max-width: 350px;
-            }
-        }
-
-        .leftColumn,
-        .rightColumn {
-            position: sticky;
-            top: 88px;
-        }
+      .asideContent {
+        max-width: inherit;
+        margin: 0 -2rem;
+        padding: 1rem 2rem;
+        border-radius: 0.25rem;
+        background: var(--fds-brand-alt2-200);
+        background: #f8f8f8;
 
         .asideContent {
-            max-width: 350px;
+          max-width: 700px;
+          margin: 0 auto;
         }
-
-        .article {
-            @include core-mixins.article();
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        @container (max-width: 900px) {
-            grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
-            grid-template-areas: ". article";
-
-            .rightColumn {
-                display: none;
-            }
-        }
-
-        @container (max-width: 800px) {
-            display: block;
-            margin-top: 0;
-
-            .mainColumn {
-                margin-top: 2rem;
-            }
-
-            .leftColumn {
-                position: static;
-            }
-
-            .rightColumn {
-                display: none;
-            }
-
-            .asideContent {
-                max-width: inherit;
-                margin: 0 -2rem;
-                padding: 1rem 2rem;
-                border-radius: 0.25rem;
-                background: var(--fds-brand-alt2-200);
-                background: #f8f8f8;
-
-                .asideContent {
-                    max-width: 700px;
-                    margin: 0 auto;
-                }
-            }
-        }
+      }
     }
+  }
 
-    @media (max-width: 400px) {
-        margin: 0 1.5rem 3rem;
+  @media (max-width: 400px) {
+    margin: 0 1.5rem 3rem;
 
-        .content {
-            .asideContent {
-                margin: 0 -1.5rem;
-                padding: 1rem 1.5rem;
-            }
-        }
+    .content {
+      .asideContent {
+        margin: 0 -1.5rem;
+        padding: 1rem 1.5rem;
+      }
     }
+  }
 }

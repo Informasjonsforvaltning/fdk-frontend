@@ -1,20 +1,20 @@
 .dialog {
-    animation: none;
-    max-width: 650px;
+  animation: none;
+  max-width: 650px;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-    ul,
-    ol {
-        background: #fafafa;
-    }
+  ul,
+  ol {
+    background: #fafafa;
+  }
 }
 
 .downloadLink {
-    display: flex;
-    gap: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }

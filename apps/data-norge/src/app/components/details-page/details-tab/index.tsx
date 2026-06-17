@@ -2,10 +2,10 @@ import React, { useState, createContext } from "react";
 import { Heading, Link, Tag, Button } from "@digdir/designsystemet-react";
 import { EyeSlashIcon, EyeIcon } from "@navikt/aksel-icons";
 import {
-    type DatasetWithIdentifier,
-    type DatasetScore,
-    type SearchObject,
-    type ReferenceDataCode,
+  type DatasetWithIdentifier,
+  type DatasetScore,
+  type SearchObject,
+  type ReferenceDataCode,
 } from "@fellesdatakatalog/types";
 import { type PopulatedDatasetReference } from "@fdk-frontend/types";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
@@ -23,219 +23,219 @@ import { printLocaleValue } from "@fdk-frontend/utils";
 const DatasetDetailsTabContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
 
 export type DatasetDetailsProps = {
-    dataset: DatasetWithIdentifier;
-    locale: LocaleCodes;
-    dictionary: Localization;
-    metadataScore?: DatasetScore;
-    related?: DatasetWithIdentifier[];
-    concepts?: SearchObject[];
-    populatedReferences?: PopulatedDatasetReference[];
-    internalRelatedDatasets?: DatasetWithIdentifier[];
+  dataset: DatasetWithIdentifier;
+  locale: LocaleCodes;
+  dictionary: Localization;
+  metadataScore?: DatasetScore;
+  related?: DatasetWithIdentifier[];
+  concepts?: SearchObject[];
+  populatedReferences?: PopulatedDatasetReference[];
+  internalRelatedDatasets?: DatasetWithIdentifier[];
 };
 
 const DatasetDetailsTab = ({
-    dataset,
-    related,
-    locale,
-    dictionary,
-    metadataScore,
-    concepts,
-    populatedReferences,
-    internalRelatedDatasets,
+  dataset,
+  related,
+  locale,
+  dictionary,
+  metadataScore,
+  concepts,
+  populatedReferences,
+  internalRelatedDatasets,
 }: DatasetDetailsProps) => {
-    const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
+  const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
-    return (
-        <DatasetDetailsTabContext.Provider value={{ showEmptyRows }}>
-            <div className={styles.details}>
-                <Button
-                    className={styles.toggleButton}
-                    variant="tertiary"
-                    data-size="sm"
-                    onClick={() => setShowEmptyRows(!showEmptyRows)}
-                >
-                    {showEmptyRows ? (
-                        <>
-                            <EyeSlashIcon aria-hidden />
-                            {dictionary.details.hideEmptyRows}
-                        </>
-                    ) : (
-                        <>
-                            <EyeIcon aria-hidden />
-                            {dictionary.details.showEmptyRows}
-                        </>
-                    )}
-                </Button>
-                {!dataset.contactPoint && !showEmptyRows ? null : (
-                    <ContactDetails
-                        dataset={dataset}
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                )}
-                <ContentDetails
-                    dataset={dataset}
-                    locale={locale}
-                    dictionary={dictionary}
-                />
-                {!hasLegalBasis(dataset) && !showEmptyRows ? null : (
-                    <LegalDetails
-                        dataset={dataset}
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                )}
-                {!dataset.subject && !showEmptyRows ? null : (
-                    <ConceptDetails
-                        dataset={dataset}
-                        concepts={concepts}
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                )}
-                {!populatedReferences?.length && !showEmptyRows ? null : (
-                    <ReferencesDetails
-                        populatedReferences={populatedReferences}
-                        locale={locale}
-                        dictionary={dictionary}
-                    />
-                )}
-                {!dataset.costs?.length && !showEmptyRows ? null : (
-                    <section>
-                        <Heading
-                            level={2}
-                            data-size="xs"
-                        >
-                            {dictionary.details.costs.title}
-                        </Heading>
-                        {dataset.costs && dataset.costs.length > 0 ? (
-                            dataset.costs.map((cost, index) => (
-                                <Dlist key={index}>
-                                    {!cost.hasValue && !showEmptyRows ? null : (
-                                        <>
-                                            <dt>{dictionary.details.costs.value}:</dt>
-                                            <dd>
-                                                {cost.hasValue ? (
-                                                    `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split("/").pop() || ""}`
-                                                ) : (
-                                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                                )}
-                                            </dd>
-                                        </>
-                                    )}
-                                    {!printLocaleValue(locale, cost.description) && !showEmptyRows ? null : (
-                                        <>
-                                            <dt>{dictionary.details.costs.description}:</dt>
-                                            <dd>
-                                                {printLocaleValue(locale, cost.description) || (
-                                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                                )}
-                                            </dd>
-                                        </>
-                                    )}
-                                    {!cost.documentation?.length && !showEmptyRows ? null : (
-                                        <>
-                                            <dt>{dictionary.details.costs.documentation}:</dt>
-                                            <dd>
-                                                {cost.documentation?.length ? (
-                                                    <SmartList
-                                                        items={cost.documentation}
-                                                        renderItem={(url) => (
-                                                            <ExternalLink
-                                                                href={url}
-                                                                locale={locale}
-                                                                gateway
-                                                            >
-                                                                {url}
-                                                            </ExternalLink>
-                                                        )}
-                                                    />
-                                                ) : (
-                                                    <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                                                )}
-                                            </dd>
-                                        </>
-                                    )}
-                                </Dlist>
-                            ))
+  return (
+    <DatasetDetailsTabContext.Provider value={{ showEmptyRows }}>
+      <div className={styles.details}>
+        <Button
+          className={styles.toggleButton}
+          variant="tertiary"
+          data-size="sm"
+          onClick={() => setShowEmptyRows(!showEmptyRows)}
+        >
+          {showEmptyRows ? (
+            <>
+              <EyeSlashIcon aria-hidden />
+              {dictionary.details.hideEmptyRows}
+            </>
+          ) : (
+            <>
+              <EyeIcon aria-hidden />
+              {dictionary.details.showEmptyRows}
+            </>
+          )}
+        </Button>
+        {!dataset.contactPoint && !showEmptyRows ? null : (
+          <ContactDetails
+            dataset={dataset}
+            locale={locale}
+            dictionary={dictionary}
+          />
+        )}
+        <ContentDetails
+          dataset={dataset}
+          locale={locale}
+          dictionary={dictionary}
+        />
+        {!hasLegalBasis(dataset) && !showEmptyRows ? null : (
+          <LegalDetails
+            dataset={dataset}
+            locale={locale}
+            dictionary={dictionary}
+          />
+        )}
+        {!dataset.subject && !showEmptyRows ? null : (
+          <ConceptDetails
+            dataset={dataset}
+            concepts={concepts}
+            locale={locale}
+            dictionary={dictionary}
+          />
+        )}
+        {!populatedReferences?.length && !showEmptyRows ? null : (
+          <ReferencesDetails
+            populatedReferences={populatedReferences}
+            locale={locale}
+            dictionary={dictionary}
+          />
+        )}
+        {!dataset.costs?.length && !showEmptyRows ? null : (
+          <section>
+            <Heading
+              level={2}
+              data-size="xs"
+            >
+              {dictionary.details.costs.title}
+            </Heading>
+            {dataset.costs && dataset.costs.length > 0 ? (
+              dataset.costs.map((cost, index) => (
+                <Dlist key={index}>
+                  {!cost.hasValue && !showEmptyRows ? null : (
+                    <>
+                      <dt>{dictionary.details.costs.value}:</dt>
+                      <dd>
+                        {cost.hasValue ? (
+                          `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split("/").pop() || ""}`
                         ) : (
-                            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                          <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                         )}
-                    </section>
-                )}
-                <GeneralDetails
-                    dataset={dataset}
-                    locale={locale}
-                    dictionary={dictionary}
-                    metadataScore={metadataScore}
-                />
-                {!dataset.theme?.length && !showEmptyRows ? null : (
-                    <section>
-                        <Heading
-                            level={2}
-                            data-size="xs"
-                        >
-                            {dictionary.details.themes}
-                        </Heading>
-                        {[...(dataset.theme ?? []), ...(dataset.losTheme ?? [])].length ? (
-                            <DatasetTags
-                                dataset={dataset}
+                      </dd>
+                    </>
+                  )}
+                  {!printLocaleValue(locale, cost.description) && !showEmptyRows ? null : (
+                    <>
+                      <dt>{dictionary.details.costs.description}:</dt>
+                      <dd>
+                        {printLocaleValue(locale, cost.description) || (
+                          <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                        )}
+                      </dd>
+                    </>
+                  )}
+                  {!cost.documentation?.length && !showEmptyRows ? null : (
+                    <>
+                      <dt>{dictionary.details.costs.documentation}:</dt>
+                      <dd>
+                        {cost.documentation?.length ? (
+                          <SmartList
+                            items={cost.documentation}
+                            renderItem={(url) => (
+                              <ExternalLink
+                                href={url}
                                 locale={locale}
-                            />
+                                gateway
+                              >
+                                {url}
+                              </ExternalLink>
+                            )}
+                          />
                         ) : (
-                            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+                          <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                         )}
-                    </section>
-                )}
-                {!dataset.isRelatedToTransportportal ? null : (
-                    <section>
-                        <Heading
-                            level={2}
-                            data-size="xs"
-                        >
-                            {dictionary.details.mobilityThemes}
-                        </Heading>
-                        <TagList>
-                            {dataset.mobilityTheme?.map((theme: ReferenceDataCode) => (
-                                <Tag
-                                    key={theme.code}
-                                    data-size="sm"
-                                >
-                                    {printLocaleValue(locale, theme.prefLabel) || theme.code}
-                                </Tag>
-                            ))}
-                        </TagList>
-                    </section>
-                )}
-                {!dataset.keyword?.length && !showEmptyRows ? null : (
-                    <section>
-                        <Heading
-                            level={2}
-                            data-size="xs"
-                        >
-                            {dictionary.details.keywords}
-                        </Heading>
-                        {dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? (
-                            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                                {dataset.keyword
-                                    .filter((keyword: any) => keyword[locale])
-                                    .map((keyword: any, i: number) => (
-                                        <Link
-                                            key={`keyword-${i}`}
-                                            href={`/datasets?q=${keyword[locale]}`}
-                                        >
-                                            <Tag data-size="sm">{keyword[locale]}</Tag>
-                                        </Link>
-                                    ))}
-                            </div>
-                        ) : (
-                            <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                        )}
-                    </section>
-                )}
-            </div>
-        </DatasetDetailsTabContext.Provider>
-    );
+                      </dd>
+                    </>
+                  )}
+                </Dlist>
+              ))
+            ) : (
+              <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+            )}
+          </section>
+        )}
+        <GeneralDetails
+          dataset={dataset}
+          locale={locale}
+          dictionary={dictionary}
+          metadataScore={metadataScore}
+        />
+        {!dataset.theme?.length && !showEmptyRows ? null : (
+          <section>
+            <Heading
+              level={2}
+              data-size="xs"
+            >
+              {dictionary.details.themes}
+            </Heading>
+            {[...(dataset.theme ?? []), ...(dataset.losTheme ?? [])].length ? (
+              <DatasetTags
+                dataset={dataset}
+                locale={locale}
+              />
+            ) : (
+              <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+            )}
+          </section>
+        )}
+        {!dataset.isRelatedToTransportportal ? null : (
+          <section>
+            <Heading
+              level={2}
+              data-size="xs"
+            >
+              {dictionary.details.mobilityThemes}
+            </Heading>
+            <TagList>
+              {dataset.mobilityTheme?.map((theme: ReferenceDataCode) => (
+                <Tag
+                  key={theme.code}
+                  data-size="sm"
+                >
+                  {printLocaleValue(locale, theme.prefLabel) || theme.code}
+                </Tag>
+              ))}
+            </TagList>
+          </section>
+        )}
+        {!dataset.keyword?.length && !showEmptyRows ? null : (
+          <section>
+            <Heading
+              level={2}
+              data-size="xs"
+            >
+              {dictionary.details.keywords}
+            </Heading>
+            {dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? (
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                {dataset.keyword
+                  .filter((keyword: any) => keyword[locale])
+                  .map((keyword: any, i: number) => (
+                    <Link
+                      key={`keyword-${i}`}
+                      href={`/datasets?q=${keyword[locale]}`}
+                    >
+                      <Tag data-size="sm">{keyword[locale]}</Tag>
+                    </Link>
+                  ))}
+              </div>
+            ) : (
+              <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+            )}
+          </section>
+        )}
+      </div>
+    </DatasetDetailsTabContext.Provider>
+  );
 };
 
 export default DatasetDetailsTab;

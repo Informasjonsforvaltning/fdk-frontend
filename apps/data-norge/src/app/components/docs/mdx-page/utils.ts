@@ -3,12 +3,12 @@ import { marked } from "marked";
 const stripFrontmatter = (str: string) => str.replace(/^---[\s\S]*?---\s*/, "");
 
 export type MdxHeadlineObject = {
-    level: number;
-    text: string;
+  level: number;
+  text: string;
 };
 
 export type MdxHeadlineObjectNode = MdxHeadlineObject & {
-    children?: MdxHeadlineObjectNode[];
+  children?: MdxHeadlineObjectNode[];
 };
 
 /**
@@ -17,15 +17,15 @@ export type MdxHeadlineObjectNode = MdxHeadlineObject & {
  * @returns {string} - The extracted text.
  */
 const extractHeadingText = function (token: any) {
-    // Check if the heading token has nested tokens and if it's a link
-    if (token.tokens && token.tokens.length > 0) {
-        const linkToken = token.tokens.find((t: any) => t.type === "link");
-        if (linkToken) {
-            return linkToken.text; // Return the text of the nested link token
-        }
+  // Check if the heading token has nested tokens and if it's a link
+  if (token.tokens && token.tokens.length > 0) {
+    const linkToken = token.tokens.find((t: any) => t.type === "link");
+    if (linkToken) {
+      return linkToken.text; // Return the text of the nested link token
     }
-    // Fallback to the heading's text if no nested link is found
-    return token.text;
+  }
+  // Fallback to the heading's text if no nested link is found
+  return token.text;
 };
 
 /**
@@ -34,28 +34,28 @@ const extractHeadingText = function (token: any) {
  * @returns {Array} - A nested array of headlines.
  */
 const buildNestedHeadlines = function (headlines: MdxHeadlineObject[]) {
-    const stack: any[] = [];
-    const nestedHeadlines: any[] = [];
+  const stack: any[] = [];
+  const nestedHeadlines: any[] = [];
 
-    headlines.forEach((headline) => {
-        const { level, text } = headline;
-        const node = { level, text, children: [] };
+  headlines.forEach((headline) => {
+    const { level, text } = headline;
+    const node = { level, text, children: [] };
 
-        // Maintain the stack to build a nested structure
-        while (stack.length && stack[stack.length - 1].level >= level) {
-            stack.pop();
-        }
+    // Maintain the stack to build a nested structure
+    while (stack.length && stack[stack.length - 1].level >= level) {
+      stack.pop();
+    }
 
-        if (stack.length === 0) {
-            nestedHeadlines.push(node);
-        } else {
-            stack[stack.length - 1].children.push(node);
-        }
+    if (stack.length === 0) {
+      nestedHeadlines.push(node);
+    } else {
+      stack[stack.length - 1].children.push(node);
+    }
 
-        stack.push(node);
-    });
+    stack.push(node);
+  });
 
-    return nestedHeadlines;
+  return nestedHeadlines;
 };
 
 /**
@@ -64,18 +64,18 @@ const buildNestedHeadlines = function (headlines: MdxHeadlineObject[]) {
  * @returns {Array} - A nested array of headlines with their levels.
  */
 const extractHeadlines = function (markdown: string) {
-    const markdownWithoutFrontmatter = stripFrontmatter(markdown);
-    const tokens = marked.lexer(markdownWithoutFrontmatter);
-    const headlines: { level: number; text: string }[] = [];
+  const markdownWithoutFrontmatter = stripFrontmatter(markdown);
+  const tokens = marked.lexer(markdownWithoutFrontmatter);
+  const headlines: { level: number; text: string }[] = [];
 
-    tokens.forEach((token) => {
-        if (token.type === "heading") {
-            const text = extractHeadingText(token);
-            headlines.push({ level: token.depth, text });
-        }
-    });
+  tokens.forEach((token) => {
+    if (token.type === "heading") {
+      const text = extractHeadingText(token);
+      headlines.push({ level: token.depth, text });
+    }
+  });
 
-    return buildNestedHeadlines(headlines);
+  return buildNestedHeadlines(headlines);
 };
 
 export { extractHeadlines };

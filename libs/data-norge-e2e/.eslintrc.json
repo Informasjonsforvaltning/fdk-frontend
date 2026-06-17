@@ -1,27 +1,27 @@
 {
-    "extends": ["plugin:playwright/recommended", "../../.eslintrc.json"],
-    "ignorePatterns": ["!**/*", "playwright.config.ts"],
-    "env": {
-        "browser": true
+  "extends": ["plugin:playwright/recommended", "../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*", "playwright.config.ts"],
+  "env": {
+    "browser": true
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {}
     },
-    "overrides": [
-        {
-            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-            "rules": {}
-        },
-        {
-            "files": ["*.ts", "*.tsx"],
-            "rules": {}
-        },
-        {
-            "files": ["*.js", "*.jsx"],
-            "rules": {}
-        },
-        {
-            "files": ["src/**/*.{ts,js,tsx,jsx}"],
-            "rules": {
-                "playwright/expect-expect": "off"
-            }
-        }
-    ]
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["src/**/*.{ts,js,tsx,jsx}"],
+      "rules": {
+        "playwright/expect-expect": "off"
+      }
+    }
+  ]
 }

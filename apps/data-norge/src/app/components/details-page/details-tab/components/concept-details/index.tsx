@@ -5,34 +5,32 @@ import { DatasetDetailsProps } from "../../";
 import { printLocaleValue } from "@fdk-frontend/utils";
 
 const ConceptDetails = ({ dataset, locale, dictionary, concepts }: DatasetDetailsProps) => {
-    return (
-        <section>
-            <Heading
-                level={2}
-                data-size="xs"
-            >
-                {dictionary.details.concepts.title}
-            </Heading>
-            {concepts && concepts.length ? (
-                <Dlist>
-                    {concepts.map((concept) => {
-                        return (
-                            <React.Fragment key={concept.uri}>
-                                <dt>
-                                    <Link href={`/concepts/${concept.id}`}>
-                                        {printLocaleValue(locale, concept.title) || concept.uri}
-                                    </Link>
-                                </dt>
-                                <dd>{printLocaleValue(locale, concept.description)}</dd>
-                            </React.Fragment>
-                        );
-                    })}
-                </Dlist>
-            ) : (
-                <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-            )}
-        </section>
-    );
+  return (
+    <section>
+      <Heading
+        level={2}
+        data-size="xs"
+      >
+        {dictionary.details.concepts.title}
+      </Heading>
+      {concepts && concepts.length ? (
+        <Dlist>
+          {concepts.map((concept) => {
+            return (
+              <React.Fragment key={concept.uri}>
+                <dt>
+                  <Link href={`/concepts/${concept.id}`}>{printLocaleValue(locale, concept.title) || concept.uri}</Link>
+                </dt>
+                <dd>{printLocaleValue(locale, concept.description)}</dd>
+              </React.Fragment>
+            );
+          })}
+        </Dlist>
+      ) : (
+        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+      )}
+    </section>
+  );
 };
 
 export default ConceptDetails;

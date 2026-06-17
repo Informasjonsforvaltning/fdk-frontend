@@ -5,37 +5,37 @@ import { OrgLogo, type OrgLogoProps } from "../org-logo";
 import styles from "./org-button.module.scss";
 
 export type OrgButtonProps = {
-    href?: string;
-    reverse?: boolean;
+  href?: string;
+  reverse?: boolean;
 } & OrgLogoProps;
 
 const OrgButton = ({
-    children,
-    className,
-    href,
-    orgLogoSrc,
-    orgNr,
-    reverse,
-    ...props
+  children,
+  className,
+  href,
+  orgLogoSrc,
+  orgNr,
+  reverse,
+  ...props
 }: OrgButtonProps & ButtonProps) => {
-    return (
-        <Button
-            asChild
-            data-size="sm"
-            variant="tertiary"
-            className={cn(styles.wrapper, className, { [styles.reverse]: reverse })}
-            {...props}
-        >
-            <Link href={href}>
-                <OrgLogo
-                    className={styles.orgLogo}
-                    orgLogoSrc={orgLogoSrc}
-                    orgNr={orgNr}
-                />
-                {children}
-            </Link>
-        </Button>
-    );
+  return (
+    <Button
+      asChild
+      data-size="sm"
+      variant="tertiary"
+      className={cn(styles.wrapper, className, { [styles.reverse]: reverse })}
+      {...props}
+    >
+      <Link href={href}>
+        <OrgLogo
+          className={styles.orgLogo}
+          orgLogoSrc={orgLogoSrc}
+          orgNr={orgNr}
+        />
+        {children}
+      </Link>
+    </Button>
+  );
 };
 
 export default OrgButton;

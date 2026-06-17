@@ -6,7 +6,7 @@ import { getLocalization } from "./get-localization";
  * Use when passing the same localization to multiple components that may mutate it.
  */
 export function getSafeLocalization(localization: Localization): Localization {
-    return JSON.parse(JSON.stringify(localization)) as Localization;
+  return JSON.parse(JSON.stringify(localization)) as Localization;
 }
 
 /**
@@ -14,7 +14,7 @@ export function getSafeLocalization(localization: Localization): Localization {
  * Use when only one section is passed to children and you need an isolated copy.
  */
 export function getSafeSection(localeCode: LocaleCodes, section: string): Localization {
-    const localization = getLocalization(localeCode);
-    const sectionData = localization[section];
-    return JSON.parse(JSON.stringify(sectionData)) as Localization;
+  const localization = getLocalization(localeCode);
+  const sectionData = localization[section];
+  return JSON.parse(JSON.stringify(sectionData)) as Localization;
 }

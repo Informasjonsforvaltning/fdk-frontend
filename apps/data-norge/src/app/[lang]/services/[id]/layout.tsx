@@ -6,13 +6,13 @@ export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
 const ServiceLayout = async ({
-    children,
-    params,
+  children,
+  params,
 }: PropsWithChildren & {
-    params: Promise<{ lang: string; id: string }>;
+  params: Promise<{ lang: string; id: string }>;
 }) => {
-    const typedParams = params as Promise<{ lang: LocaleCodes; id: string }>;
-    return <NormalLayout params={typedParams}>{children}</NormalLayout>;
+  const typedParams = params as Promise<{ lang: LocaleCodes; id: string }>;
+  return <NormalLayout params={typedParams}>{children}</NormalLayout>;
 };
 
 export default ServiceLayout;

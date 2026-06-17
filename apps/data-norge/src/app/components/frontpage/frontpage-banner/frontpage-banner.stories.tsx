@@ -6,18 +6,18 @@ import { FrontpageBanner } from ".";
 const dictionary = getLocalization("nb").frontpage;
 
 const meta: Meta<typeof FrontpageBanner> = {
-    component: FrontpageBanner,
-    title: "FrontpageBanner",
+  component: FrontpageBanner,
+  title: "FrontpageBanner",
 };
 
 export default meta;
 type Story = StoryObj<typeof FrontpageBanner>;
 
 export const Primary: Story = {
-    render: () => <FrontpageBanner dictionary={dictionary} />,
-    parameters: {
-        nextjs: {
-            appDirectory: true,
-        },
+  render: () => <FrontpageBanner dictionary={dictionary} />,
+  parameters: {
+    nextjs: {
+      appDirectory: true,
     },
+  },
 };

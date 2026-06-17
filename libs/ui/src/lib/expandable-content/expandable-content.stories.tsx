@@ -52,28 +52,28 @@ A <span style="color: red;">red span</span> (if HTML is supported).
 `;
 
 const meta: Meta<typeof ExpandableContent> = {
-    component: ExpandableContent,
-    title: "ExpandableContent",
+  component: ExpandableContent,
+  title: "ExpandableContent",
 };
 
 export default meta;
 type Story = StoryObj<typeof ExpandableContent>;
 
 export const Primary: Story = {
-    parameters: {
-        nextjs: {
-            appDirectory: true,
-        },
+  parameters: {
+    nextjs: {
+      appDirectory: true,
     },
-    render: () => (
-        <>
-            <div style={{ padding: "1rem" }}>
-                <Box>
-                    <ExpandableContent maxHeight={100}>
-                        <Markdown>{markdown}</Markdown>
-                    </ExpandableContent>
-                </Box>
-            </div>
-        </>
-    ),
+  },
+  render: () => (
+    <>
+      <div style={{ padding: "1rem" }}>
+        <Box>
+          <ExpandableContent maxHeight={100}>
+            <Markdown>{markdown}</Markdown>
+          </ExpandableContent>
+        </Box>
+      </div>
+    </>
+  ),
 };

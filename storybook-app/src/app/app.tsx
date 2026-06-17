@@ -3,11 +3,11 @@
 import NxWelcome from "./nx-welcome";
 
 export function App() {
-    return (
-        <div>
-            <NxWelcome title="storybook-app" />
-        </div>
-    );
+  return (
+    <div>
+      <NxWelcome title="storybook-app" />
+    </div>
+  );
 }
 
 export default App;

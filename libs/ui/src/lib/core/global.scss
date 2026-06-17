@@ -16,56 +16,56 @@
     leave 5 rem of space between the top of the viewport and the target element.
 */
 html {
-    scroll-padding-top: 5rem;
+  scroll-padding-top: 5rem;
 }
 
 html,
 body {
-    font-size: 16px;
+  font-size: 16px;
 
-    @media (max-width: 650px) {
-        font-size: 14px;
-    }
+  @media (max-width: 650px) {
+    font-size: 14px;
+  }
 }
 
 body {
-    font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        "Helvetica Neue",
-        Arial,
-        sans-serif;
-    background: var(--fdk-color-navy-dark);
-    color: var(--fdk-color-text);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  background: var(--fdk-color-navy-dark);
+  color: var(--fdk-color-text);
 
-    main {
-        background: white;
-    }
+  main {
+    background: white;
+  }
 }
 
 .sr-only {
-    @include core-mixins.sr-only();
+  @include core-mixins.sr-only();
 }
 
 .article {
-    @include core-mixins.article();
+  @include core-mixins.article();
 }
 
 ol,
 ul {
-    &.fdk-list-no-style {
-        list-style: none !important;
-        margin-left: 0 !important;
-    }
+  &.fdk-list-no-style {
+    list-style: none !important;
+    margin-left: 0 !important;
+  }
 
-    &.fdk-box-list {
-        @include box-list.box-list-mixin();
-    }
+  &.fdk-box-list {
+    @include box-list.box-list-mixin();
+  }
 }
 
 a.fdk-box-link {
-    @include box-link.box-link-mixin();
+  @include box-link.box-link-mixin();
 }

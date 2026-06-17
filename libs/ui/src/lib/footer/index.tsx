@@ -6,50 +6,50 @@ import styles from "./footer.module.scss";
 import { HStack } from "@fellesdatakatalog/ui";
 
 export type FooterProps = {
-    locale: LocaleCodes;
+  locale: LocaleCodes;
 };
 
 const Footer = ({ locale }: FooterProps) => {
-    const dictionary = getLocalization(locale).common;
-    return (
-        <footer
-            className={styles.footer}
-            aria-label="Footer"
-            data-color-scheme="dark"
-        >
-            <div className={styles.inner}>
-                <MainMenu
-                    className={styles.footerNav}
-                    locale={locale}
-                    motionProps={{
-                        initial: "show",
-                    }}
-                />
-                <LanguageSwitcher />
-            </div>
-            <div className={styles.bottom}>
-                <div className={styles.bottomInner}>
-                    <HStack className={styles.leftLogos}>
-                        <LogoLink
-                            href={`/${locale}`}
-                            data-color-scheme="dark"
-                        />
-                        <DpgLink
-                            href="https://www.digitalpublicgoods.net/r/data-norge"
-                            data-color-scheme="dark"
-                        />
-                    </HStack>
-                    <div className={styles.digdirCredit}>
-                        <span>{dictionary.footer.digdirCredit}</span>
-                        <DigdirLogoLink
-                            href={`https://www.digdir.no/`}
-                            data-color-scheme="dark"
-                        />
-                    </div>
-                </div>
-            </div>
-        </footer>
-    );
+  const dictionary = getLocalization(locale).common;
+  return (
+    <footer
+      className={styles.footer}
+      aria-label="Footer"
+      data-color-scheme="dark"
+    >
+      <div className={styles.inner}>
+        <MainMenu
+          className={styles.footerNav}
+          locale={locale}
+          motionProps={{
+            initial: "show",
+          }}
+        />
+        <LanguageSwitcher />
+      </div>
+      <div className={styles.bottom}>
+        <div className={styles.bottomInner}>
+          <HStack className={styles.leftLogos}>
+            <LogoLink
+              href={`/${locale}`}
+              data-color-scheme="dark"
+            />
+            <DpgLink
+              href="https://www.digitalpublicgoods.net/r/data-norge"
+              data-color-scheme="dark"
+            />
+          </HStack>
+          <div className={styles.digdirCredit}>
+            <span>{dictionary.footer.digdirCredit}</span>
+            <DigdirLogoLink
+              href={`https://www.digdir.no/`}
+              data-color-scheme="dark"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

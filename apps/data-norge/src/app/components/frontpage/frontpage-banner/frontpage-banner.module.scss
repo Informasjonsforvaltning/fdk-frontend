@@ -1,71 +1,71 @@
 .outer {
-    color: white;
-    position: relative;
-    min-height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    color: white;
-    container-type: inline-size;
-    background: var(--fdk-color-navy-dark);
+  color: white;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  color: white;
+  container-type: inline-size;
+  background: var(--fdk-color-navy-dark);
 
-    .gradient {
-        content: "";
-        display: block;
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        background: radial-gradient(circle, var(--fdk-color-navy), var(--fdk-color-navy-dark));
-        mix-blend-mode: hard-light;
-    }
+  .gradient {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(circle, var(--fdk-color-navy), var(--fdk-color-navy-dark));
+    mix-blend-mode: hard-light;
+  }
 }
 
 .inner {
-    position: relative;
-    z-index: 2;
-    margin-top: 15vh;
-    margin-bottom: 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+  margin-top: 15vh;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
 }
 
 .headline {
-    font-size: 5rem;
-    line-height: 1em;
-    font-weight: bold;
-    text-align: center;
-    margin: 6rem 0 1rem;
-    color: white;
-    pointer-events: none;
+  font-size: 5rem;
+  line-height: 1em;
+  font-weight: bold;
+  text-align: center;
+  margin: 6rem 0 1rem;
+  color: white;
+  pointer-events: none;
 
-    @container (max-width: 960px) {
-        margin-top: 4rem;
-        font-size: 4rem;
-    }
+  @container (max-width: 960px) {
+    margin-top: 4rem;
+    font-size: 4rem;
+  }
 
-    @container (max-width: 500px) {
-        margin-top: 2rem;
-        font-size: 3rem;
-    }
+  @container (max-width: 500px) {
+    margin-top: 2rem;
+    font-size: 3rem;
+  }
 }
 
 .bannerNotice {
-    position: absolute;
-    bottom: 0rem;
-    left: 0;
-    z-index: 1;
-    width: 100%;
+  position: absolute;
+  bottom: 0rem;
+  left: 0;
+  z-index: 1;
+  width: 100%;
 }
 
 .searchInput {
-    width: 650px;
-    background: transparent;
-    flex-grow: 0;
+  width: 650px;
+  background: transparent;
+  flex-grow: 0;
 
-    :global(.ds-input) {
-        background: rgba(0, 0, 0, 0.5);
-    }
+  :global(.ds-input) {
+    background: rgba(0, 0, 0, 0.5);
+  }
 }

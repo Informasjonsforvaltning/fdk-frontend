@@ -14,174 +14,173 @@ import styles from "../details-page.module.scss";
 import headerStyles from "../dataset-header/dataset-header.module.scss";
 
 export type DataServiceDetailsPageType = {
-    baseUri: string;
-    resource: DataService;
-    communityTopics?: CommunityTopic[];
-    communityBaseUri: string;
-    defaultActiveTab?: string;
-    orgLogo?: string | null;
-    locale: LocaleCodes;
-    resolvedDatasets?: SearchObject[];
-    dictionaries: {
-        common: Localization;
-        detailsPage: Localization;
-    };
+  baseUri: string;
+  resource: DataService;
+  communityTopics?: CommunityTopic[];
+  communityBaseUri: string;
+  defaultActiveTab?: string;
+  orgLogo?: string | null;
+  locale: LocaleCodes;
+  resolvedDatasets?: SearchObject[];
+  dictionaries: {
+    common: Localization;
+    detailsPage: Localization;
+  };
 };
 
 export default function DataServiceDetailsPage({
-    baseUri,
-    resource,
-    communityTopics,
-    communityBaseUri,
-    orgLogo,
-    defaultActiveTab = "overview",
-    locale,
-    resolvedDatasets,
-    dictionaries,
+  baseUri,
+  resource,
+  communityTopics,
+  communityBaseUri,
+  orgLogo,
+  defaultActiveTab = "overview",
+  locale,
+  resolvedDatasets,
+  dictionaries,
 }: DataServiceDetailsPageType) {
-    const [activeTab, setActiveTab] = useState(defaultActiveTab);
+  const [activeTab, setActiveTab] = useState(defaultActiveTab);
 
-    const breadcrumbList = [
-        {
-            href: `/data-services`,
-            text: dictionaries.detailsPage.breadcrumbs.dataServices,
-        },
-        {
-            text: printLocaleValue(locale, resource.title),
-        },
-    ];
+  const breadcrumbList = [
+    {
+      href: `/data-services`,
+      text: dictionaries.detailsPage.breadcrumbs.dataServices,
+    },
+    {
+      text: printLocaleValue(locale, resource.title),
+    },
+  ];
 
-    const updateUri = (tab: string) => {
-        window.history.pushState(null, "", `?tab=${tab}`);
-    };
+  const updateUri = (tab: string) => {
+    window.history.pushState(null, "", `?tab=${tab}`);
+  };
 
-    return (
-        <div className={styles.detailsPage}>
-            <Breadcrumbs
-                locale={locale}
-                breadcrumbList={breadcrumbList}
+  return (
+    <div className={styles.detailsPage}>
+      <Breadcrumbs
+        locale={locale}
+        breadcrumbList={breadcrumbList}
+      />
+      <div className={styles.mainContent}>
+        <div className={headerStyles.header}>
+          <OrgButton
+            href={`/organizations/${resource.publisher?.id}`}
+            orgLogoSrc={orgLogo}
+            className={headerStyles.orgBtn}
+          >
+            {printLocaleValue(locale, resource.publisher?.prefLabel) ??
+              dictionaries.detailsPage.header.namelessOrganization}
+          </OrgButton>
+          <Heading
+            level={1}
+            data-size="lg"
+            className={headerStyles.title}
+          >
+            {printLocaleValue(locale, resource.title) || dictionaries.detailsPage.header.namelessDataService}
+          </Heading>
+          <div className={headerStyles.headerToolbar}>
+            <UseApiPopover
+              dataService={resource}
+              dictionary={dictionaries.detailsPage}
+              locale={locale}
             />
-            <div className={styles.mainContent}>
-                <div className={headerStyles.header}>
-                    <OrgButton
-                        href={`/organizations/${resource.publisher?.id}`}
-                        orgLogoSrc={orgLogo}
-                        className={headerStyles.orgBtn}
-                    >
-                        {printLocaleValue(locale, resource.publisher?.prefLabel) ??
-                            dictionaries.detailsPage.header.namelessOrganization}
-                    </OrgButton>
-                    <Heading
-                        level={1}
-                        data-size="lg"
-                        className={headerStyles.title}
-                    >
-                        {printLocaleValue(locale, resource.title) ||
-                            dictionaries.detailsPage.header.namelessDataService}
-                    </Heading>
-                    <div className={headerStyles.headerToolbar}>
-                        <UseApiPopover
-                            dataService={resource}
-                            dictionary={dictionaries.detailsPage}
-                            locale={locale}
-                        />
-                    </div>
-                    <TagList className={headerStyles.headerTags}>
-                        <Tag
-                            data-color="info"
-                            data-size="md"
-                        >
-                            <Link href="/data-services">{dictionaries.detailsPage.header.dataServicesTagLink}</Link>
-                        </Tag>
-                        <AccessLevelTag
-                            accessCode={resource.accessRights?.code}
-                            locale={locale}
-                            data-size="md"
-                        />
-                    </TagList>
-                </div>
-                <Tabs
-                    className={styles.tabs}
-                    defaultValue="overview"
-                    data-size="sm"
-                    value={activeTab}
-                    onChange={(value) => {
-                        setActiveTab(value);
-                    }}
-                >
-                    <ScrollShadows className={styles.tabsScrollShadows}>
-                        <TabsList>
-                            <TabsTab
-                                value="overview"
-                                onClick={() => updateUri("overview")}
-                            >
-                                {dictionaries.detailsPage.tabs.overview}
-                            </TabsTab>
-                            <TabsTab
-                                value="details"
-                                onClick={() => updateUri("details")}
-                            >
-                                {dictionaries.detailsPage.tabs.details}
-                            </TabsTab>
-                            <TabsTab
-                                value="community"
-                                onClick={() => updateUri("community")}
-                            >
-                                {dictionaries.detailsPage.tabs.community}
-                                &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
-                            </TabsTab>
-                            <TabsTab
-                                value="rdf"
-                                onClick={() => updateUri("rdf")}
-                            >
-                                {dictionaries.detailsPage.tabs.rdf}
-                            </TabsTab>
-                        </TabsList>
-                    </ScrollShadows>
-                    <TabsPanel
-                        className={styles.tabPanel}
-                        value="overview"
-                    >
-                        <DataServiceOverviewTab
-                            resource={resource}
-                            locale={locale}
-                            dictionary={dictionaries.detailsPage}
-                            resolvedDatasets={resolvedDatasets}
-                        />
-                    </TabsPanel>
-                    <TabsPanel
-                        className={styles.tabPanel}
-                        value="details"
-                    >
-                        <DataServiceDetailsTab
-                            resource={resource}
-                            locale={locale}
-                            dictionary={dictionaries.detailsPage}
-                        />
-                    </TabsPanel>
-                    <TabsPanel
-                        className={styles.tabPanel}
-                        value="community"
-                    >
-                        <CommunityTab
-                            topics={communityTopics}
-                            communityBaseUri={communityBaseUri}
-                            dictionary={dictionaries.detailsPage}
-                            locale={locale}
-                        />
-                    </TabsPanel>
-                    <TabsPanel
-                        className={styles.tabPanel}
-                        value="rdf"
-                    >
-                        <MetadataTab
-                            uri={`${baseUri}/data-services/${resource.id}`}
-                            dictionary={dictionaries.detailsPage}
-                            locale={locale}
-                        />
-                    </TabsPanel>
-                </Tabs>
-            </div>
+          </div>
+          <TagList className={headerStyles.headerTags}>
+            <Tag
+              data-color="info"
+              data-size="md"
+            >
+              <Link href="/data-services">{dictionaries.detailsPage.header.dataServicesTagLink}</Link>
+            </Tag>
+            <AccessLevelTag
+              accessCode={resource.accessRights?.code}
+              locale={locale}
+              data-size="md"
+            />
+          </TagList>
         </div>
-    );
+        <Tabs
+          className={styles.tabs}
+          defaultValue="overview"
+          data-size="sm"
+          value={activeTab}
+          onChange={(value) => {
+            setActiveTab(value);
+          }}
+        >
+          <ScrollShadows className={styles.tabsScrollShadows}>
+            <TabsList>
+              <TabsTab
+                value="overview"
+                onClick={() => updateUri("overview")}
+              >
+                {dictionaries.detailsPage.tabs.overview}
+              </TabsTab>
+              <TabsTab
+                value="details"
+                onClick={() => updateUri("details")}
+              >
+                {dictionaries.detailsPage.tabs.details}
+              </TabsTab>
+              <TabsTab
+                value="community"
+                onClick={() => updateUri("community")}
+              >
+                {dictionaries.detailsPage.tabs.community}
+                &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
+              </TabsTab>
+              <TabsTab
+                value="rdf"
+                onClick={() => updateUri("rdf")}
+              >
+                {dictionaries.detailsPage.tabs.rdf}
+              </TabsTab>
+            </TabsList>
+          </ScrollShadows>
+          <TabsPanel
+            className={styles.tabPanel}
+            value="overview"
+          >
+            <DataServiceOverviewTab
+              resource={resource}
+              locale={locale}
+              dictionary={dictionaries.detailsPage}
+              resolvedDatasets={resolvedDatasets}
+            />
+          </TabsPanel>
+          <TabsPanel
+            className={styles.tabPanel}
+            value="details"
+          >
+            <DataServiceDetailsTab
+              resource={resource}
+              locale={locale}
+              dictionary={dictionaries.detailsPage}
+            />
+          </TabsPanel>
+          <TabsPanel
+            className={styles.tabPanel}
+            value="community"
+          >
+            <CommunityTab
+              topics={communityTopics}
+              communityBaseUri={communityBaseUri}
+              dictionary={dictionaries.detailsPage}
+              locale={locale}
+            />
+          </TabsPanel>
+          <TabsPanel
+            className={styles.tabPanel}
+            value="rdf"
+          >
+            <MetadataTab
+              uri={`${baseUri}/data-services/${resource.id}`}
+              dictionary={dictionaries.detailsPage}
+              locale={locale}
+            />
+          </TabsPanel>
+        </Tabs>
+      </div>
+    </div>
+  );
 }

@@ -6,114 +6,114 @@ import type AxeBuilder from "@axe-core/playwright";
 const dictionary = getLocalization("en").dataHunterPage;
 
 export default class FormPage {
-    page: Page;
-    context: BrowserContext;
-    dictionary: Localization;
-    accessibilityBuilder;
-    formData = {};
+  page: Page;
+  context: BrowserContext;
+  dictionary: Localization;
+  accessibilityBuilder;
+  formData = {};
 
-    constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
-        this.url = "/en/data-hunter";
-        this.dictionary = dictionary;
-        this.page = page;
-        this.context = context;
-        this.accessibilityBuilder = accessibilityBuilder;
-        this.init();
+  constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
+    this.url = "/en/data-hunter";
+    this.dictionary = dictionary;
+    this.page = page;
+    this.context = context;
+    this.accessibilityBuilder = accessibilityBuilder;
+    this.init();
+  }
+
+  async init() {
+    await this.addSubmitListener();
+  }
+
+  // Locators
+  pageTitle = () => this.page.getByRole("heading", { name: this.dictionary.dataHunterForm.title });
+  pageDescription = () => this.page.getByText(this.dictionary.dataHunterForm.description);
+  datasetInput = () => this.page.getByLabel(this.dictionary.dataHunterForm.dataset.label);
+  locationInput = () => this.page.getByLabel(this.dictionary.dataHunterForm.location.label);
+  attemptsInput = () => this.page.getByLabel(this.dictionary.dataHunterForm.efforts.label);
+  nameInput = () => this.page.getByLabel(this.dictionary.name);
+  emailInput = () => this.page.getByLabel(this.dictionary.email);
+  organizationNumberInput = () => this.page.getByLabel(this.dictionary.organizationNumber);
+  phoneNumberInput = () => this.page.getByLabel(this.dictionary.phoneNumber);
+  submitButton = () => this.page.getByRole("button", { name: this.dictionary.submitRequest });
+  form = () => this.page.locator('[id="data-hunter-form"]');
+
+  // Helpers
+  public async goto(url: string = this.url) {
+    await this.page.goto(url);
+  }
+
+  public async checkAccessibility() {
+    if (!this.accessibilityBuilder) {
+      return;
     }
+    await this.page.waitForFunction(() => {
+      const inputs = document.querySelectorAll(
+        "#data-hunter-form input:not([type=hidden]), #data-hunter-form textarea",
+      );
+      return (
+        inputs.length > 0 &&
+        Array.from(inputs).every(
+          (el) =>
+            (el as HTMLInputElement | HTMLTextAreaElement).labels !== null &&
+            (el as HTMLInputElement | HTMLTextAreaElement).labels!.length > 0,
+        )
+      );
+    });
+    const result = await this.accessibilityBuilder.include("#data-hunter-form").analyze();
+    expect.soft(result.violations).toEqual([]);
+  }
 
-    async init() {
-        await this.addSubmitListener();
-    }
-
-    // Locators
-    pageTitle = () => this.page.getByRole("heading", { name: this.dictionary.dataHunterForm.title });
-    pageDescription = () => this.page.getByText(this.dictionary.dataHunterForm.description);
-    datasetInput = () => this.page.getByLabel(this.dictionary.dataHunterForm.dataset.label);
-    locationInput = () => this.page.getByLabel(this.dictionary.dataHunterForm.location.label);
-    attemptsInput = () => this.page.getByLabel(this.dictionary.dataHunterForm.efforts.label);
-    nameInput = () => this.page.getByLabel(this.dictionary.name);
-    emailInput = () => this.page.getByLabel(this.dictionary.email);
-    organizationNumberInput = () => this.page.getByLabel(this.dictionary.organizationNumber);
-    phoneNumberInput = () => this.page.getByLabel(this.dictionary.phoneNumber);
-    submitButton = () => this.page.getByRole("button", { name: this.dictionary.submitRequest });
-    form = () => this.page.locator('[id="data-hunter-form"]');
-
-    // Helpers
-    public async goto(url: string = this.url) {
-        await this.page.goto(url);
-    }
-
-    public async checkAccessibility() {
-        if (!this.accessibilityBuilder) {
-            return;
-        }
-        await this.page.waitForFunction(() => {
-            const inputs = document.querySelectorAll(
-                "#data-hunter-form input:not([type=hidden]), #data-hunter-form textarea",
-            );
-            return (
-                inputs.length > 0 &&
-                Array.from(inputs).every(
-                    (el) =>
-                        (el as HTMLInputElement | HTMLTextAreaElement).labels !== null &&
-                        (el as HTMLInputElement | HTMLTextAreaElement).labels!.length > 0,
-                )
-            );
-        });
-        const result = await this.accessibilityBuilder.include("#data-hunter-form").analyze();
-        expect.soft(result.violations).toEqual([]);
-    }
-
-    private async addSubmitListener() {
-        await this.form().evaluate((node) =>
-            node.addEventListener("submit", async (event) => {
-                event.preventDefault();
-                // eslint-disable-next-line no-undef
-                const formData = Array.from(new FormData(event.target as HTMLFormElement).entries()).reduce(
-                    (data, [key, value]) => (!key.startsWith("$") ? { ...data, [key]: value } : data),
-                    {},
-                );
-                node.setAttribute("submitted-form-data", JSON.stringify(formData));
-            }),
+  private async addSubmitListener() {
+    await this.form().evaluate((node) =>
+      node.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        // eslint-disable-next-line no-undef
+        const formData = Array.from(new FormData(event.target as HTMLFormElement).entries()).reduce(
+          (data, [key, value]) => (!key.startsWith("$") ? { ...data, [key]: value } : data),
+          {},
         );
-    }
+        node.setAttribute("submitted-form-data", JSON.stringify(formData));
+      }),
+    );
+  }
 
-    /**
-     * Validate form values after form submission, by checking the result of the new FormData()
-     */
-    private async validateFormSubmission() {
-        const formData = await this.form().getAttribute("submitted-form-data");
-        if (!formData) {
-            throw new Error("Form submission failed");
-        }
-        this.formData = JSON.parse(formData);
-
-        for await (const [key, value] of Object.entries(this.formData)) {
-            expect(mockData[key as keyof typeof mockData]).toStrictEqual(value);
-        }
+  /**
+   * Validate form values after form submission, by checking the result of the new FormData()
+   */
+  private async validateFormSubmission() {
+    const formData = await this.form().getAttribute("submitted-form-data");
+    if (!formData) {
+      throw new Error("Form submission failed");
     }
+    this.formData = JSON.parse(formData);
 
-    // Actions
-    public async checkPageTitleText() {
-        await expect(this.pageTitle()).toHaveText(this.dictionary.dataHunterForm.title);
+    for await (const [key, value] of Object.entries(this.formData)) {
+      expect(mockData[key as keyof typeof mockData]).toStrictEqual(value);
     }
+  }
 
-    public async checkPageDescriptionText() {
-        await expect(this.pageDescription()).toHaveText(this.dictionary.dataHunterForm.description);
-    }
+  // Actions
+  public async checkPageTitleText() {
+    await expect(this.pageTitle()).toHaveText(this.dictionary.dataHunterForm.title);
+  }
 
-    public async fillForm() {
-        await this.datasetInput().fill(mockData.dataset);
-        await this.locationInput().fill(mockData.location);
-        await this.attemptsInput().fill(mockData.efforts);
-        await this.nameInput().fill(mockData.name);
-        await this.emailInput().fill(mockData.email);
-        await this.organizationNumberInput().fill(mockData.organizationNumber);
-        await this.phoneNumberInput().fill(mockData.phoneNumber);
-    }
+  public async checkPageDescriptionText() {
+    await expect(this.pageDescription()).toHaveText(this.dictionary.dataHunterForm.description);
+  }
 
-    public async submitForm() {
-        await this.submitButton().click();
-        await this.validateFormSubmission();
-    }
+  public async fillForm() {
+    await this.datasetInput().fill(mockData.dataset);
+    await this.locationInput().fill(mockData.location);
+    await this.attemptsInput().fill(mockData.efforts);
+    await this.nameInput().fill(mockData.name);
+    await this.emailInput().fill(mockData.email);
+    await this.organizationNumberInput().fill(mockData.organizationNumber);
+    await this.phoneNumberInput().fill(mockData.phoneNumber);
+  }
+
+  public async submitForm() {
+    await this.submitButton().click();
+    await this.validateFormSubmission();
+  }
 }

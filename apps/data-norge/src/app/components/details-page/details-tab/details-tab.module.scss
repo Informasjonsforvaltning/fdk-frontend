@@ -1,60 +1,60 @@
 @use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .details {
-    position: relative;
+  position: relative;
 
-    > section {
-        &:not(:last-child) {
-            margin-bottom: 2rem;
-        }
-
-        > :global(.ds-heading) {
-            margin-bottom: 1em;
-        }
+  > section {
+    &:not(:last-child) {
+      margin-bottom: 2rem;
     }
 
-    .toggleButton {
-        position: absolute;
-        top: -0.75rem;
-        right: 0;
+    > :global(.ds-heading) {
+      margin-bottom: 1em;
     }
+  }
+
+  .toggleButton {
+    position: absolute;
+    top: -0.75rem;
+    right: 0;
+  }
 }
 
 .article {
-    @include core-mixins.article();
+  @include core-mixins.article();
 }
 
 .placeholderText {
-    opacity: 0.5;
-    font-style: italic;
+  opacity: 0.5;
+  font-style: italic;
 }
 
 .greyBox {
-    border: 1px solid #ddd;
-    border-radius: 0.25rem;
-    padding: 0.75rem 0.75rem;
-    background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  padding: 0.75rem 0.75rem;
+  background: #fafafa;
 }
 
 .metadataQualityLink {
-    :global(a) {
-        text-decoration: none;
+  :global(a) {
+    text-decoration: none;
 
-        :global(button),
-        :global(span) {
-            outline: 2px solid transparent;
-            outline-offset: 1px;
-            transition: outline-color 0.1s;
-        }
+    :global(button),
+    :global(span) {
+      outline: 2px solid transparent;
+      outline-offset: 1px;
+      transition: outline-color 0.1s;
     }
+  }
 
-    :global(a:hover),
-    :global(a:focus-visible) {
-        opacity: 0.85;
+  :global(a:hover),
+  :global(a:focus-visible) {
+    opacity: 0.85;
 
-        :global(button),
-        :global(span) {
-            outline-color: currentColor;
-        }
+    :global(button),
+    :global(span) {
+      outline-color: currentColor;
     }
+  }
 }
