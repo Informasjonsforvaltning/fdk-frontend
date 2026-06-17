@@ -1,11 +1,11 @@
 import { type Metadata } from "next";
 import { getLocalization, type LocaleCodes, i18n } from "@fdk-frontend/localization";
-import { isValidSetSegment } from "./search-set-config";
+import { isValidEntityTab } from "@fdk-frontend/ui/search-tabs/search-tab-config";
 
 export type SearchPageHandlerProps = {
   params: Promise<{
     lang: LocaleCodes;
-    set?: string[];
+    tab?: string[];
   }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
@@ -15,8 +15,8 @@ export const getSearchPageMetadata = async function (props: SearchPageHandlerPro
   const searchParams = await props.searchParams;
   const locale = params.lang ?? i18n.defaultLocale;
   const dictionary = getLocalization(locale).common;
-  const firstSegment = params.set?.[0];
-  const segmentPath = firstSegment && isValidSetSegment(firstSegment) ? `/${firstSegment}` : "";
+  const firstSegment = params.tab?.[0];
+  const segmentPath = firstSegment && isValidEntityTab(firstSegment) ? `/${firstSegment}` : "";
   const query = typeof searchParams.q === "string" ? searchParams.q : undefined;
   const qs = query ? `?q=${encodeURIComponent(query)}` : "";
 

@@ -11,6 +11,16 @@
     }
   }
 
+  .badgeLoading {
+    display: inline-block;
+    width: 1.75rem;
+    height: 1.25rem;
+    border-radius: var(--ds-border-radius-full, 999px);
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.75);
+    animation: search-tab-badge-loading 1.2s ease-in-out infinite;
+  }
+
   label {
     &:has(input:checked) {
       :global(.ds-badge) {
@@ -18,6 +28,16 @@
           background: var(--ds-color-surface-tinted);
         }
       }
+
+      .badgeLoading {
+        background: var(--ds-color-surface-tinted);
+      }
     }
+  }
+}
+
+@keyframes search-tab-badge-loading {
+  50% {
+    opacity: 0.55;
   }
 }
