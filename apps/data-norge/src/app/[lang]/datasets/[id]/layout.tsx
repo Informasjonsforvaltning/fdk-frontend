@@ -1,18 +1,18 @@
-import { NormalLayout } from '@fdk-frontend/ui';
-import { PropsWithChildren } from 'react';
-import { LocaleCodes } from '@fdk-frontend/localization';
+import { NormalLayout } from "@fdk-frontend/ui";
+import { PropsWithChildren } from "react";
+import { LocaleCodes } from "@fdk-frontend/localization";
 
 export const revalidate = 0;
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 const DatasetLayout = async ({
-    children,
-    params,
+  children,
+  params,
 }: PropsWithChildren & {
-    params: Promise<{ lang: string; id: string }>;
+  params: Promise<{ lang: string; id: string }>;
 }) => {
-    const typedParams = params as Promise<{ lang: LocaleCodes; id: string }>;
-    return <NormalLayout params={typedParams}>{children}</NormalLayout>;
+  const typedParams = params as Promise<{ lang: LocaleCodes; id: string }>;
+  return <NormalLayout params={typedParams}>{children}</NormalLayout>;
 };
 
 export default DatasetLayout;

@@ -1,57 +1,57 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .mainMenu {
-    container-type: inline-size;
+  container-type: inline-size;
 
-    @media (max-width: 800px) {
-        padding-bottom: 2rem;
-    }
+  @media (max-width: 800px) {
+    padding-bottom: 2rem;
+  }
 }
 
 .links {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .linkSection {
     margin-bottom: 1rem;
 
+    .linkSectionHeader {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      display: flex;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      margin: 0 0 0 -1rem;
+      border-radius: 0.25rem;
+      align-items: center;
+      gap: 0.25rem;
+
+      &:hover {
+        background: var(--ds-color-surface-hover);
+      }
+    }
+
+    .footerCatalogSymbol {
+      background: transparent;
+      padding: 0;
+    }
+  }
+
+  @container (max-width: 810px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @container (max-width: 400px) {
+    grid-template-columns: 1fr;
+
     .linkSection {
-        margin-bottom: 1rem;
-
-        .linkSectionHeader {
-            margin-bottom: 1rem;
-        }
-
-        a {
-            display: flex;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            margin: 0 0 0 -1rem;
-            border-radius: 0.25rem;
-            align-items: center;
-            gap: 0.25rem;
-
-            &:hover {
-                background: var(--ds-color-surface-hover);
-            }
-        }
-
-        .footerCatalogSymbol {
-            background: transparent;
-            padding: 0;
-        }
+      a {
+        margin: 0 -1rem;
+      }
     }
-
-    @container (max-width: 810px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    @container (max-width: 400px) {
-        grid-template-columns: 1fr;
-
-        .linkSection {
-            a {
-                margin: 0 -1rem;
-            }
-        }
-    }
+  }
 }

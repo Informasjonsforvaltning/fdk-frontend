@@ -3,5 +3,6 @@
 /coverage
 /.nx
 /node_modules
-
+/.github
+/deploy
 /.nx/cache

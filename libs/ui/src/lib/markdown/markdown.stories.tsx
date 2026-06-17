@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import Markdown from '.';
-import Article from '../article';
-import Box from '../box';
+import Markdown from ".";
+import Article from "../article";
+import Box from "../box";
 
 const meta: Meta<typeof Markdown> = {
-    component: Markdown,
-    title: 'Markdown',
+  component: Markdown,
+  title: "Markdown",
 };
 
 const markdown = `
@@ -60,20 +60,20 @@ export default meta;
 type Story = StoryObj<typeof Markdown>;
 
 export const Primary: Story = {
-    parameters: {
-        nextjs: {
-            appDirectory: true,
-        },
+  parameters: {
+    nextjs: {
+      appDirectory: true,
     },
-    render: () => (
-        <>
-            <div style={{ padding: '1rem' }}>
-                <Box>
-                    <Article>
-                        <Markdown>{markdown}</Markdown>
-                    </Article>
-                </Box>
-            </div>
-        </>
-    ),
+  },
+  render: () => (
+    <>
+      <div style={{ padding: "1rem" }}>
+        <Box>
+          <Article>
+            <Markdown>{markdown}</Markdown>
+          </Article>
+        </Box>
+      </div>
+    </>
+  ),
 };

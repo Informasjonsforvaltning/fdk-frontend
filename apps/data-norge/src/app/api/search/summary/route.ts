@@ -1,16 +1,9 @@
-import { searchEntitiesByPath } from '@fdk-frontend/data-access/server';
+import { searchEntitiesByPath } from "@fdk-frontend/data-access/server";
 
 const SUMMARY_PAGE_SIZE = 10;
 const SUMMARY_PAGE = 0;
 
-const ENTITY_PATHS = [
-  'datasets',
-  'data-services',
-  'concepts',
-  'information-models',
-  'services',
-  'events',
-] as const;
+const ENTITY_PATHS = ["datasets", "data-services", "concepts", "information-models", "services", "events"] as const;
 
 type PagedResult = {
   hits?: unknown[];
@@ -57,7 +50,7 @@ export const POST = async function (request: Request) {
           console.warn(`Search summary failed for /search/${path}:`, err);
           return emptyResult();
         }
-      })
+      }),
     );
 
     const [datasets, apis, concepts, informationModels, services, events] = results;
@@ -75,13 +68,13 @@ export const POST = async function (request: Request) {
 
     return Response.json(response, {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
-    console.warn('Search summary route error:', err);
+    console.warn("Search summary route error:", err);
     return Response.json(
-      { error: 'Search summary failed' },
-      { status: 502, headers: { 'Content-Type': 'application/json' } }
+      { error: "Search summary failed" },
+      { status: 502, headers: { "Content-Type": "application/json" } },
     );
   }
 };

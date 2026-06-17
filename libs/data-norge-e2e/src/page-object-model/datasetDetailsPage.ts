@@ -1,60 +1,60 @@
-import { getLocalization, type Localization } from '@fdk-frontend/localization';
-import { expect, Page, BrowserContext } from '@playwright/test';
-import type AxeBuilder from '@axe-core/playwright';
+import { getLocalization, type Localization } from "@fdk-frontend/localization";
+import { expect, Page, BrowserContext } from "@playwright/test";
+import type AxeBuilder from "@axe-core/playwright";
 
-const dictionary = getLocalization('en').detailsPage;
+const dictionary = getLocalization("en").detailsPage;
 
 export default class DatasetDetailsPage {
-    url: string;
-    page: Page;
-    context: BrowserContext;
-    dictionary: Localization;
-    accessibilityBuilder;
+  url: string;
+  page: Page;
+  context: BrowserContext;
+  dictionary: Localization;
+  accessibilityBuilder;
 
-    constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
+  constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
+    // eslint-disable-next-line no-undef
+    this.url = `/nb/datasets/${process.env.E2E_DATASET_ID}`;
+    this.dictionary = dictionary;
+    this.page = page;
+    this.context = context;
+    this.accessibilityBuilder = accessibilityBuilder;
+  }
+
+  // Locators
+
+  // Helpers
+  public async goto(url: string = this.url) {
+    await this.page.goto(url, {
+      waitUntil: "load",
+      timeout: 30000,
+    });
+    await this.page.waitForFunction(
+      () => {
         // eslint-disable-next-line no-undef
-        this.url = `/nb/datasets/${process.env.E2E_DATASET_ID}`;
-        this.dictionary = dictionary;
-        this.page = page;
-        this.context = context;
-        this.accessibilityBuilder = accessibilityBuilder;
+        const urlObj = new URL(window.location.href);
+        return urlObj.pathname.includes("/datasets/") && urlObj.pathname.split("/").length >= 4;
+      },
+      { timeout: 10000 },
+    );
+  }
+
+  public async checkAccessibility(tab?: string) {
+    if (tab) await this.goto(`${this.url}?tab=${tab}`);
+    if (!this.accessibilityBuilder) {
+      return;
     }
 
-    // Locators
-
-    // Helpers
-    public async goto(url: string = this.url) {
-        await this.page.goto(url, {
-            waitUntil: 'load',
-            timeout: 30000,
-        });
-        await this.page.waitForFunction(
-            () => {
-                // eslint-disable-next-line no-undef
-                const urlObj = new URL(window.location.href);
-                return urlObj.pathname.includes('/datasets/') && urlObj.pathname.split('/').length >= 4;
-            },
-            { timeout: 10000 },
-        );
+    // Expand collapsed <u-details> accordions sequentially before axe;
+    // zero-rect collapsed children cause color-contrast/target-size
+    // false positives, and parallel clicks race React's onToggle commit.
+    const visibleClosed = this.page.locator("u-details:not([open]) > u-summary").filter({ visible: true });
+    const count = await visibleClosed.count();
+    for (let i = 0; i < count; i++) {
+      // eslint-disable-next-line no-await-in-loop
+      await visibleClosed.first().click();
     }
-
-    public async checkAccessibility(tab?: string) {
-        if (tab) await this.goto(`${this.url}?tab=${tab}`);
-        if (!this.accessibilityBuilder) {
-            return;
-        }
-
-        // Expand collapsed <u-details> accordions sequentially before axe;
-        // zero-rect collapsed children cause color-contrast/target-size
-        // false positives, and parallel clicks race React's onToggle commit.
-        const visibleClosed = this.page.locator('u-details:not([open]) > u-summary').filter({ visible: true });
-        const count = await visibleClosed.count();
-        for (let i = 0; i < count; i++) {
-            // eslint-disable-next-line no-await-in-loop
-            await visibleClosed.first().click();
-        }
-        await expect(this.page.locator('u-details:not([open])').filter({ visible: true })).toHaveCount(0);
-        const result = await this.accessibilityBuilder.analyze();
-        expect.soft(result.violations).toEqual([]);
-    }
+    await expect(this.page.locator("u-details:not([open])").filter({ visible: true })).toHaveCount(0);
+    const result = await this.accessibilityBuilder.analyze();
+    expect.soft(result.violations).toEqual([]);
+  }
 }

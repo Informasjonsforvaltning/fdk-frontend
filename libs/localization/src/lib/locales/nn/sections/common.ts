@@ -1,10 +1,10 @@
 const common = {
   breadcrumbs: {
     label: "Brødsmulesti",
-    home: "Heim"
+    home: "Heim",
   },
   footer: {
-    digdirCredit: "ei teneste frå"
+    digdirCredit: "ei teneste frå",
   },
   header: {
     findDataButton: "Finn data",
@@ -13,8 +13,8 @@ const common = {
     skipToMain: "Hopp til hovudinnhald",
     alert: {
       message: "Planlagt vedlikehald tysdag kl. 18:00–23:00.",
-      linkText: "Les meir på Datalandsbyen"
-    }
+      linkText: "Les meir på Datalandsbyen",
+    },
   },
   mainMenu: {
     label: "Hovudmeny",
@@ -27,44 +27,45 @@ const common = {
         a11yStatement: "Tilgjengeerklæring",
         cookiePolicy: "Informasjonskapslar",
         privacyPolicy: "Personvernerklæring",
-        githubFollow: "Følg oss på Github"
-      }
+        githubFollow: "Følg oss på Github",
+      },
     },
     catalogs: {
       label: "Katalogar",
       ai: {
         description: "KI-prosjekt i offentleg sektor",
-        title: "Kunstig intelligens"
+        title: "Kunstig intelligens",
       },
       apis: {
         description: "Protokollar for å kommunisere med datasystem med dynamiske data og data i sanntid",
-        title: "API"
+        title: "API",
       },
       datasets: {
         description: "Samlingar av strukturert data som kan lastast ned eller aksesserast via APIar",
-        title: "Datasett"
+        title: "Datasett",
       },
       heading: "Datakatalogar",
       informationModels: {
         description: "Strukturerte representasjonar av informasjon og data for datasett og APIar",
-        title: "Informasjonsmodellar"
+        title: "Informasjonsmodellar",
       },
       servicesEvents: {
-        description: "Tenester som blir tilbodne av eller på vegne av offentleg sektor, og hendingar som kan utløyse slike tenester",
-        title: "Tenester og hendingar"
+        description:
+          "Tenester som blir tilbodne av eller på vegne av offentleg sektor, og hendingar som kan utløyse slike tenester",
+        title: "Tenester og hendingar",
       },
       terms: {
         description: "Definisjonar av omgrep som verksemda brukar i sine data",
-        title: "Omgrep"
-      }
+        title: "Omgrep",
+      },
     },
     help: {
       heading: "Hjelp og rettleiing",
       links: {
         community: "Datafellesskapet",
         technical: "Teknisk dokumentasjon",
-        userGuide: "Brukerveileiing"
-      }
+        userGuide: "Brukerveileiing",
+      },
     },
     tools: {
       heading: "Verktøy",
@@ -72,67 +73,70 @@ const common = {
         dataHunter: "Datajegeren",
         organizations: "Verksemdsoversikt",
         requestData: "Etterspør data",
-        sparqlSandbox: "SPARQL-sandkasse"
-      }
-    }
+        sparqlSandbox: "SPARQL-sandkasse",
+      },
+    },
   },
   notFound: {
     title: "404: Sida vart ikkje funnen ☹️",
     message: "Vi klarte dessverre ikkje å finne sida du bad om.",
-    button: "Gå til framsida"
+    button: "Gå til framsida",
   },
   openDataTag: {
     label: "Opne data",
     helpTextTitle: "Omgrep",
     helpText: "Datasettet er klassifisert som allmenn tilgang og har minst éi distribuering med godkjend open lisens.",
-    readMoreLinkText: "Les meir om lisensar her"
+    readMoreLinkText: "Les meir om lisensar her",
   },
   openLicenseTag: {
     label: "Open lisens",
     helpTextTitle: "Omgrep",
-    helpText: "Dette er ein godkjend open lisens som tillèt fri bruk, deling og gjenbruk av data i samsvar med prinsippa for opne data. Desse lisensane er anerkjende for bruk i offentlege og private datasett, både nasjonalt og internasjonalt.",
-    linkText: "Les meir om lisensar her"
+    helpText:
+      "Dette er ein godkjend open lisens som tillèt fri bruk, deling og gjenbruk av data i samsvar med prinsippa for opne data. Desse lisensane er anerkjende for bruk i offentlege og private datasett, både nasjonalt og internasjonalt.",
+    linkText: "Les meir om lisensar her",
   },
   unavailableTag: {
     label: "Ingen distribusjonar",
     helpTextTitle: "Omgrep",
-    helpText: "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert."
+    helpText:
+      "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert.",
   },
   general: {
     loading: "Lastar...",
-    redirecting: "Videresendar..."
+    redirecting: "Videresendar...",
   },
   feedbackBanner: {
     heading: "Fann du det du leitte etter?",
     text: "{{contactLink}} med oss her, eller spør om hjelp i {{communityLink}}.",
     contactLinkText: "Ta kontakt",
-    communityLinkText: "Datalandsbyen"
+    communityLinkText: "Datalandsbyen",
   },
   leavingGateway: {
     heading: "Obs! Du forlet no data.norge.no...",
     linkLabel: "Lenka du har klikka på peikar til følgjande adresse:",
-    alertText: "Vær merksam på følgjande:\n- Destinasjonen er ikkje ein del av data.norge.no\n- Vi har ingen kontroll over innhaldet på destinasjonen\n- Melde frå om brotne lenker til det ansvarlege organet",
+    alertText:
+      "Vær merksam på følgjande:\n- Destinasjonen er ikkje ein del av data.norge.no\n- Vi har ingen kontroll over innhaldet på destinasjonen\n- Melde frå om brotne lenker til det ansvarlege organet",
     abortButton: "Bli på data.norge.no",
-    continueButton: "Fortsett"
+    continueButton: "Fortsett",
   },
   aiPromoSplash: {
-    heading: 'Spør KI-søket vårt med naturleg språk ✨',
-    examplePrefix: 'Prøv t.d. ',
-    exampleLinkText: 'Kor mykje skog har Noreg?',
-    aboutLinkText: 'Les meir om KI-søket vårt her',
+    heading: "Spør KI-søket vårt med naturleg språk ✨",
+    examplePrefix: "Prøv t.d. ",
+    exampleLinkText: "Kor mykje skog har Noreg?",
+    aboutLinkText: "Les meir om KI-søket vårt her",
   },
   entities: {
-    DATASET: 'Datasett',
-    DATA_SERVICE: 'API',
-    CONCEPT: 'Begrep',
-    INFORMATION_MODEL: 'Informasjonsmodell',
-    SERVICE: 'Tjenestar',
-    EVENT: 'Hendelsar'
+    DATASET: "Datasett",
+    DATA_SERVICE: "API",
+    CONCEPT: "Begrep",
+    INFORMATION_MODEL: "Informasjonsmodell",
+    SERVICE: "Tjenestar",
+    EVENT: "Hendelsar",
   },
   specializedServices: {
-    service: 'Tjenestar',
-    publicService: 'Offentlege tenester',
-  }
+    service: "Tjenestar",
+    publicService: "Offentlege tenester",
+  },
 };
 
 export default common;

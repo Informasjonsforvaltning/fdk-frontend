@@ -2,116 +2,116 @@
 // Inlined into llm-search.module.scss via @use, so all class names land in the same CSS Module scope.
 
 @property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 // Apple Intelligence-style spinning border + halo on .llmSearchBox during loading
 .llmSearchBox.loading {
-    border-color: transparent;
-    background-color: rgba(0, 0, 0, 0.9);
+  border-color: transparent;
+  background-color: rgba(0, 0, 0, 0.9);
 
-    // Sharp gradient border ring
-    &::before {
-        content: "";
-        position: absolute;
-        inset: -1px;
-        padding: 2px;
-        border-radius: inherit;
-        background: conic-gradient(
-            from var(--angle),
-            #0044bb,
-            #0088ff,
-            #00ccff,
-            #88e8ff,
-            #ffffff,
-            #88e8ff,
-            #00ccff,
-            #0088ff,
-            #0044bb
-        );
-        -webkit-mask:
-            linear-gradient(black, black) content-box,
-            linear-gradient(black, black);
-        -webkit-mask-composite: xor;
-        mask:
-            linear-gradient(black, black) content-box,
-            linear-gradient(black, black);
-        mask-composite: exclude;
-        pointer-events: none;
-        animation: spinAngle 2s linear infinite;
-    }
+  // Sharp gradient border ring
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--angle),
+      #0044bb,
+      #0088ff,
+      #00ccff,
+      #88e8ff,
+      #ffffff,
+      #88e8ff,
+      #00ccff,
+      #0088ff,
+      #0044bb
+    );
+    -webkit-mask:
+      linear-gradient(black, black) content-box,
+      linear-gradient(black, black);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(black, black) content-box,
+      linear-gradient(black, black);
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: spinAngle 2s linear infinite;
+  }
 
-    // Soft chromatic halo bleeding outward from the box.
-    // Uses box-shadow rather than a blurred gradient: box-shadow respects
-    // border-radius and bleeds strictly outward in every browser, avoiding the
-    // WebKit bug where filter: blur() is clipped to a sharp rectangular border-box.
-    &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        pointer-events: none;
-        animation: glowPulse 3s ease-in-out infinite;
-    }
+  // Soft chromatic halo bleeding outward from the box.
+  // Uses box-shadow rather than a blurred gradient: box-shadow respects
+  // border-radius and bleeds strictly outward in every browser, avoiding the
+  // WebKit bug where filter: blur() is clipped to a sharp rectangular border-box.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
 }
 
 @keyframes spinAngle {
-    to {
-        --angle: 360deg;
-    }
+  to {
+    --angle: 360deg;
+  }
 }
 
 // Pulsing chromatic glow, cycling blue -> cyan -> ice
 @keyframes glowPulse {
-    0%,
-    100% {
-        box-shadow:
-            0 0 18px 2px rgba(0, 136, 255, 0.45),
-            0 0 34px 6px rgba(0, 204, 255, 0.3);
-    }
+  0%,
+  100% {
+    box-shadow:
+      0 0 18px 2px rgba(0, 136, 255, 0.45),
+      0 0 34px 6px rgba(0, 204, 255, 0.3);
+  }
 
-    50% {
-        box-shadow:
-            0 0 24px 4px rgba(0, 204, 255, 0.55),
-            0 0 46px 10px rgba(136, 232, 255, 0.4);
-    }
+  50% {
+    box-shadow:
+      0 0 24px 4px rgba(0, 204, 255, 0.55),
+      0 0 46px 10px rgba(136, 232, 255, 0.4);
+  }
 }
 
 // Sparkles icon rotates and twinkles inside the search button while loading
 .llmSearchBox.loading .llmSearchIcon {
-    animation: sparkleTwinkle 1.8s ease-in-out infinite;
+  animation: sparkleTwinkle 1.8s ease-in-out infinite;
 }
 
 @keyframes sparkleTwinkle {
-    0% {
-        transform: translateY(1px) rotate(0deg) scale(1);
-        opacity: 1;
-    }
+  0% {
+    transform: translateY(1px) rotate(0deg) scale(1);
+    opacity: 1;
+  }
 
-    50% {
-        transform: translateY(1px) rotate(180deg) scale(1.3);
-        opacity: 0.65;
-    }
+  50% {
+    transform: translateY(1px) rotate(180deg) scale(1.3);
+    opacity: 0.65;
+  }
 
-    100% {
-        transform: translateY(1px) rotate(360deg) scale(1);
-        opacity: 1;
-    }
+  100% {
+    transform: translateY(1px) rotate(360deg) scale(1);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .llmSearchBox.loading::before,
-    .llmSearchBox.loading::after,
-    .llmSearchBox.loading .llmSearchIcon {
-        animation: none;
-    }
+  .llmSearchBox.loading::before,
+  .llmSearchBox.loading::after,
+  .llmSearchBox.loading .llmSearchIcon {
+    animation: none;
+  }
 
-    // Keep a static glow visible since the pulse animation is disabled
-    .llmSearchBox.loading::after {
-        box-shadow:
-            0 0 20px 3px rgba(0, 136, 255, 0.45),
-            0 0 38px 8px rgba(0, 204, 255, 0.32);
-    }
+  // Keep a static glow visible since the pulse animation is disabled
+  .llmSearchBox.loading::after {
+    box-shadow:
+      0 0 20px 3px rgba(0, 136, 255, 0.45),
+      0 0 38px 8px rgba(0, 204, 255, 0.32);
+  }
 }

@@ -28,7 +28,8 @@ const docs = {
     "/docs/sharing-data/how-to-dataset/7-extras-code-lists": "Ekstra: Kodelister",
     "/docs/sharing-data/publishing-data-descriptions": "Publisere datasettbeskrivelser",
     "/docs/sharing-data/publishing-data-descriptions/1-creating-descriptions-self": "Lage datasettbeskrivelse selv",
-    "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration": "Lage datasettbeskrivelse i registreringsløsningen",
+    "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration":
+      "Lage datasettbeskrivelse i registreringsløsningen",
     "/docs/sharing-data/publishing-data-descriptions/3-publishing-descriptions": "Publisere beskrivelsen",
     "/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest": "Starte høsting",
     "/docs/sharing-data/rdf": "RDF: hva og hvorfor",
@@ -49,20 +50,20 @@ const docs = {
     "/technical/follow-our-work": "Følg arbeidet vårt",
     "/docs/resources": "Ressurser",
     "/docs/community": "Datalandsbyen",
-    "/validator": "Valideringsverktøy"
+    "/validator": "Valideringsverktøy",
   },
   tableOfContents: {
-    onThisPage: "På denne siden:"
+    onThisPage: "På denne siden:",
   },
   conceptPreview: {
     labelMissing: "Mangler term",
     descriptionMissing: "Beskrivelse mangler",
-    goToDatanorge: "Gå til beskrivelsen på data.norge.no"
+    goToDatanorge: "Gå til beskrivelsen på data.norge.no",
   },
   general: {
     expand: "Utvid",
-    collapse: "Kollaps"
-  }
+    collapse: "Kollaps",
+  },
 };
 
 export default docs;

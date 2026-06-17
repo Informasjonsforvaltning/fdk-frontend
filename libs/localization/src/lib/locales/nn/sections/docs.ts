@@ -28,7 +28,8 @@ const docs = {
     "/docs/sharing-data/how-to-dataset/7-extras-code-lists": "Ekstra: Kodelister",
     "/docs/sharing-data/publishing-data-descriptions": "Publisere datasettbeskrivingar",
     "/docs/sharing-data/publishing-data-descriptions/1-creating-descriptions-self": "Lage datasettbeskriving sjølv",
-    "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration": "Lage datasettbeskriving i registreringsløysinga",
+    "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration":
+      "Lage datasettbeskriving i registreringsløysinga",
     "/docs/sharing-data/publishing-data-descriptions/3-publishing-descriptions": "Publisere beskrivinga",
     "/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest": "Starte hausting",
     "/docs/sharing-data/rdf": "RDF: kva og kvifor",
@@ -49,20 +50,20 @@ const docs = {
     "/technical/follow-our-work": "Følg arbeidet vårt",
     "/docs/community": "Datalandsbyen",
     "/docs/resources": "Ressursar",
-    "/validator": "Valideringsverktøy"
+    "/validator": "Valideringsverktøy",
   },
   tableOfContents: {
-    onThisPage: "På denne sida:"
+    onThisPage: "På denne sida:",
   },
   conceptPreview: {
     labelMissing: "Manglar term",
     descriptionMissing: "Beskriving manglar",
-    goToDatanorge: "Gå til beskrivinga på data.norge.no"
+    goToDatanorge: "Gå til beskrivinga på data.norge.no",
   },
   general: {
     expand: "Utvid",
-    collapse: "Kollaps"
-  }
+    collapse: "Kollaps",
+  },
 };
 
 export default docs;

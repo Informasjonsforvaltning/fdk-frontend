@@ -1,7 +1,8 @@
 const dataHunterPage = {
   metadata: {
     title: "data.norge.no - Data Hunter",
-    description: "Data Hunter is a free service where you can get help finding the data you need. Fill out the form, and we will get in touch."
+    description:
+      "Data Hunter is a free service where you can get help finding the data you need. Fill out the form, and we will get in touch.",
   },
   aboutConceptCatalog: "About Concept catalog",
   aboutDataServiceCatalog: "About API catalog",
@@ -19,18 +20,21 @@ const dataHunterPage = {
   dataHunterForm: {
     dataset: {
       description: "Create as clear a description as possible, e.g. fields, time period, desired update frequency.",
-      label: "Which dataset do you need?"
+      label: "Which dataset do you need?",
     },
-    description: "Can't find the data set you need? Many data sets from the public sector are available via our data catalogue, but this is not complete. The data hunter helps companies find and access data sets from the public sector.",
+    description:
+      "Can't find the data set you need? Many data sets from the public sector are available via our data catalogue, but this is not complete. The data hunter helps companies find and access data sets from the public sector.",
     efforts: {
-      description: "If you have attempted to obtain the data set yourself, state where you searched and possibly who you have spoken to. Feel free to include why you are not successful if you have been in direct contact with someone in the public sector.",
-      label: "Have you tried to get hold of this data set yourself?"
+      description:
+        "If you have attempted to obtain the data set yourself, state where you searched and possibly who you have spoken to. Feel free to include why you are not successful if you have been in direct contact with someone in the public sector.",
+      label: "Have you tried to get hold of this data set yourself?",
     },
     location: {
-      description: "If you have information about where you think we can find the data set, e.g. at which public agency or municipality, this can be of great help to the data hunter.",
-      label: "Do you know where the dataset is located?"
+      description:
+        "If you have information about where you think we can find the data set, e.g. at which public agency or municipality, this can be of great help to the data hunter.",
+      label: "Do you know where the dataset is located?",
     },
-    title: "The data hunter helps you find data"
+    title: "The data hunter helps you find data",
   },
   email: "Email",
   english: "English",
@@ -40,14 +44,14 @@ const dataHunterPage = {
     invalidEmail: "Invalid email address",
     invalidOrganizationNumber: "Invalid organization number",
     minimumLength: "Minimum length is",
-    required: "This field is required"
+    required: "This field is required",
   },
   fdkLogoAlt: "Felles datakatalog logo",
   fillTheFormUnder: "Fill out the form below",
   footer: {
     aboutWebsite: {
-      nationalDataCatalogManager: "The digitalization agency manages "
-    }
+      nationalDataCatalogManager: "The digitalization agency manages ",
+    },
   },
   forms: "Forms",
   goToMainPageAriaLabel: "Go to main page",
@@ -85,9 +89,9 @@ const dataHunterPage = {
   sparqlQuery: "SPARQL query",
   submitRequest: "Submit request",
   success: {
-    formSubmit: "The form has been submitted successfully!"
+    formSubmit: "The form has been submitted successfully!",
   },
-  tools: "Tools"
+  tools: "Tools",
 };
 
 export default dataHunterPage;

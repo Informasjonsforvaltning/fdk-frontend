@@ -1,21 +1,21 @@
 .headingWithDivider {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  gap: 1rem;
 
-    &:after {
-        content: '';
-        display: block;
-        margin: auto;
-        width: 2.5rem;
-        height: 4px;
-        background: var(--fdk-color-blue-light);
-        border-radius: 0.25rem;
-    }
+  &:after {
+    content: "";
+    display: block;
+    margin: auto;
+    width: 2.5rem;
+    height: 4px;
+    background: var(--fdk-color-blue-light);
+    border-radius: 0.25rem;
+  }
 }
 
 .subtext {
-    font-size: 0.9rem;
-    color: rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5);
 }

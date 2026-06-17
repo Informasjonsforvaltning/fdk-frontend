@@ -1,7 +1,8 @@
 const dataHunterPage = {
   metadata: {
     title: "data.norge.no - Datajegeren",
-    description: "Datajegeren er ein gratis teneste der du kan få hjelp til å finne den dataen du treng. Fyll ut skjemaet, så tek vi kontakt."
+    description:
+      "Datajegeren er ein gratis teneste der du kan få hjelp til å finne den dataen du treng. Fyll ut skjemaet, så tek vi kontakt.",
   },
   aboutConceptCatalog: "Om begrepskatalogen",
   aboutDataServiceCatalog: "Om API-katalogen",
@@ -18,19 +19,23 @@ const dataHunterPage = {
   dataHunter: "Datajegeren",
   dataHunterForm: {
     dataset: {
-      description: "Lag ei så tydeleg skildring som mogeleg. Til dømes felter, tidsperiode, ønskja oppdateringsfrekvens.",
-      label: "Kva datasett treng du?"
+      description:
+        "Lag ei så tydeleg skildring som mogeleg. Til dømes felter, tidsperiode, ønskja oppdateringsfrekvens.",
+      label: "Kva datasett treng du?",
     },
-    description: "Finn du ikkje datasettet du treng? Mange datasett frå offentleg sektor er tilgjengelege via vår datakatalog, men denne er ikkje komplett. Datajegeren hjelper bedrifter med å finne og få tilgang til datasett frå offentleg sektor.",
+    description:
+      "Finn du ikkje datasettet du treng? Mange datasett frå offentleg sektor er tilgjengelege via vår datakatalog, men denne er ikkje komplett. Datajegeren hjelper bedrifter med å finne og få tilgang til datasett frå offentleg sektor.",
     efforts: {
-      description: "Dersom du har prøvd å få tak i datasettet sjølv, fortel kvar du har søkt og ev. kven du har snakka med. Ta gjern med kvifor du ikkje lukkast dersom du har vore i direkte kontakt med nokon i offentleg sektor.",
-      label: "Har du prøvd å få tak i dette datasettet sjølv?"
+      description:
+        "Dersom du har prøvd å få tak i datasettet sjølv, fortel kvar du har søkt og ev. kven du har snakka med. Ta gjern med kvifor du ikkje lukkast dersom du har vore i direkte kontakt med nokon i offentleg sektor.",
+      label: "Har du prøvd å få tak i dette datasettet sjølv?",
     },
     location: {
-      description: "Dersom du har informasjon om kvar du trur vi kan finne datasettet, til dømes hos kva offentleg etat eller kommune, kan dette vere til stor hjelp for Datajegeren.",
-      label: "Veit du kvar datasettet er?"
+      description:
+        "Dersom du har informasjon om kvar du trur vi kan finne datasettet, til dømes hos kva offentleg etat eller kommune, kan dette vere til stor hjelp for Datajegeren.",
+      label: "Veit du kvar datasettet er?",
     },
-    title: "Datajegeren hjelper deg å finne data"
+    title: "Datajegeren hjelper deg å finne data",
   },
   email: "E-post",
   english: "English",
@@ -40,14 +45,14 @@ const dataHunterPage = {
     invalidEmail: "Ugyldig e-postadresse",
     invalidOrganizationNumber: "Ugyldig organisasjonsnummer",
     minimumLength: "Må være minst {length} tegn",
-    required: "Dette feltet er påkrevd"
+    required: "Dette feltet er påkrevd",
   },
   fdkLogoAlt: "Felles datakatalog logo",
   fillTheFormUnder: "Fyll ut skjemaet under",
   footer: {
     aboutWebsite: {
-      nationalDataCatalogManager: "Digitaliseringsdirektoratet forvalter "
-    }
+      nationalDataCatalogManager: "Digitaliseringsdirektoratet forvalter ",
+    },
   },
   forms: "Skjemaer",
   goToMainPageAriaLabel: "Gå til hovudsida",
@@ -85,9 +90,9 @@ const dataHunterPage = {
   sparqlQuery: "SPARQL-spørring",
   submitRequest: "Send forespørsel",
   success: {
-    formSubmit: "Skjema er sendt inn!"
+    formSubmit: "Skjema er sendt inn!",
   },
-  tools: "Verktøy"
+  tools: "Verktøy",
 };
 
 export default dataHunterPage;

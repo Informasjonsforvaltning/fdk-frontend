@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: data-norge-frontend
+  name: data-norge-frontend
 spec:
-    selector:
-        app: data-norge-frontend
-    ports:
-        - name: http
-          protocol: TCP
-          port: 8080
-          targetPort: 8080
-    type: NodePort
+  selector:
+    app: data-norge-frontend
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort

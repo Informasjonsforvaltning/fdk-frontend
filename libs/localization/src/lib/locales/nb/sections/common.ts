@@ -1,10 +1,10 @@
 const common = {
   breadcrumbs: {
     label: "Brødsmulesti",
-    home: "Hjem"
+    home: "Hjem",
   },
   footer: {
-    digdirCredit: "en tjeneste fra"
+    digdirCredit: "en tjeneste fra",
   },
   header: {
     findDataButton: "Finn data",
@@ -13,8 +13,8 @@ const common = {
     skipToMain: "Hopp til hovedinnhold",
     alert: {
       message: "Planlagt vedlikehold tirsdag kl. 18:00–23:00.",
-      linkText: "Les mer på Datalandsbyen"
-    }
+      linkText: "Les mer på Datalandsbyen",
+    },
   },
   mainMenu: {
     label: "Hovedmeny",
@@ -27,44 +27,45 @@ const common = {
         a11yStatement: "Tilgjengelighetserklæring",
         cookiePolicy: "Informasjonskapsler",
         privacyPolicy: "Personvernerklæring",
-        githubFollow: "Følg oss på Github"
-      }
+        githubFollow: "Følg oss på Github",
+      },
     },
     catalogs: {
       label: "Kataloger",
       ai: {
         description: "KI-prosjekter i offentlig sektor",
-        title: "Kunstig intelligens"
+        title: "Kunstig intelligens",
       },
       apis: {
         description: "Protokoller for å kommunisere med datasystemer med dynamisk data og data i sanntid",
-        title: "API-er"
+        title: "API-er",
       },
       datasets: {
         description: "Samlinger av strukturert data som kan lastes ned eller aksesseres via APIer",
-        title: "Datasett"
+        title: "Datasett",
       },
       heading: "Datakataloger",
       informationModels: {
         description: "Strukturerte representasjoner av informasjon og data for datasett og APIer",
-        title: "Informasjonsmodeller"
+        title: "Informasjonsmodeller",
       },
       servicesEvents: {
-        description: "Tjenester som tilbys av eller på vegne av offentlig sektor, og hendelser som kan utløse slike tjenester",
-        title: "Tjenester og hendelser"
+        description:
+          "Tjenester som tilbys av eller på vegne av offentlig sektor, og hendelser som kan utløse slike tjenester",
+        title: "Tjenester og hendelser",
       },
       terms: {
         description: "Definisjoner av begreper som virksomheten bruker i sine data",
-        title: "Begreper"
-      }
+        title: "Begreper",
+      },
     },
     help: {
       heading: "Hjelp og veiledning",
       links: {
         community: "Datalandsbyen",
         technical: "Teknisk dokumentasjon",
-        userGuide: "Brukerveiledning"
-      }
+        userGuide: "Brukerveiledning",
+      },
     },
     tools: {
       heading: "Verktøy",
@@ -72,67 +73,70 @@ const common = {
         dataHunter: "Datajegeren",
         organizations: "Virksomhetsoversikt",
         requestData: "Etterspør data",
-        sparqlSandbox: "SPARQL-sandkasse"
-      }
-    }
+        sparqlSandbox: "SPARQL-sandkasse",
+      },
+    },
   },
   notFound: {
     title: "404: Siden ble ikke funnet ☹️",
     message: "Vi klarte dessverre ikke å finne siden du ba om.",
-    button: "Gå til forsiden"
+    button: "Gå til forsiden",
   },
   openDataTag: {
     label: "Åpne data",
     helpTextTitle: "Begrepsforklaring",
     helpText: "Datasettet er klassifisert som allmenn tilgang og har minst 1 distribusjon med godkjent åpen lisens.",
-    readMoreLinkText: "Les mer om lisenser her"
+    readMoreLinkText: "Les mer om lisenser her",
   },
   openLicenseTag: {
     label: "Åpen lisens",
     helpTextTitle: "Begrepsforklaring",
-    helpText: "Dette er en godkjent åpen lisens som tillater fri bruk, deling og gjenbruk av data i samsvar med åpne data-prinsipper. Disse lisensene er anerkjent for bruk i offentlige og private datasett, både nasjonalt og internasjonalt.",
-    linkText: "Les mer om lisenser her"
+    helpText:
+      "Dette er en godkjent åpen lisens som tillater fri bruk, deling og gjenbruk av data i samsvar med åpne data-prinsipper. Disse lisensene er anerkjent for bruk i offentlige og private datasett, både nasjonalt og internasjonalt.",
+    linkText: "Les mer om lisenser her",
   },
   unavailableTag: {
     label: "Ingen distribusjoner",
     helpTextTitle: "Begrepsforklaring",
-    helpText: "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert."
+    helpText:
+      "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert.",
   },
   general: {
     loading: "Laster...",
-    redirecting: "Videresender..."
+    redirecting: "Videresender...",
   },
   feedbackBanner: {
     heading: "Finner du det du leter etter?",
     text: "{{contactLink}} med oss her, eller spør om hjelp i {{communityLink}}.",
     contactLinkText: "Ta kontakt",
-    communityLinkText: "Datalandsbyen"
+    communityLinkText: "Datalandsbyen",
   },
   leavingGateway: {
     heading: "Obs! Du forlater nå data.norge.no...",
     linkLabel: "Lenken du har klikket på peker til følgende adresse:",
-    alertText: "Vær obs på følgende:\n- Destinasjonen er ikke en del av data.norge.no\n- Vi har ingen kontroll over innholdet på destinasjonen\n- Meld fra om brutte lenker til den ansvarlige virksomheten",
+    alertText:
+      "Vær obs på følgende:\n- Destinasjonen er ikke en del av data.norge.no\n- Vi har ingen kontroll over innholdet på destinasjonen\n- Meld fra om brutte lenker til den ansvarlige virksomheten",
     abortButton: "Bli på data.norge.no",
-    continueButton: "Fortsett"
+    continueButton: "Fortsett",
   },
   aiPromoSplash: {
-    heading: 'Spør vårt KI-søk med naturlig språk ✨',
-    examplePrefix: 'Prøv f.eks. ',
-    exampleLinkText: 'Hvor mye skog har Norge?',
-    aboutLinkText: 'Les mer om vårt KI-søk her',
+    heading: "Spør vårt KI-søk med naturlig språk ✨",
+    examplePrefix: "Prøv f.eks. ",
+    exampleLinkText: "Hvor mye skog har Norge?",
+    aboutLinkText: "Les mer om vårt KI-søk her",
   },
   entities: {
-    DATASET: 'Datasett',
-    DATA_SERVICE: 'API',
-    CONCEPT: 'Begrep',
-    INFORMATION_MODEL: 'Informasjonsmodeller',
-    SERVICE: 'Tjenester',
-    EVENT: 'Hendelser'
+    DATASET: "Datasett",
+    DATA_SERVICE: "API",
+    CONCEPT: "Begrep",
+    INFORMATION_MODEL: "Informasjonsmodeller",
+    SERVICE: "Tjenester",
+    EVENT: "Hendelser",
   },
   specializedServices: {
-    service: 'Tjenester',
-    publicService: 'Offentlig tjenester',
-  }
+    service: "Tjenester",
+    publicService: "Offentlig tjenester",
+  },
 };
 
 export default common;

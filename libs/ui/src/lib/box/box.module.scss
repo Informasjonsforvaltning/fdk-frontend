@@ -1,14 +1,14 @@
 @mixin box-mixin {
-    border: 1px solid var(--ds-color-border-subtle);
-    border-radius: 0.25rem;
-    padding: 0.75rem;
+  border: 1px solid var(--ds-color-border-subtle);
+  border-radius: 0.25rem;
+  padding: 0.75rem;
 }
 
 @mixin grey-box-mixin {
-    @include box-mixin();
-    background: #fafafa;
+  @include box-mixin();
+  background: #fafafa;
 }
 
 .box {
-    @include box-mixin();
+  @include box-mixin();
 }

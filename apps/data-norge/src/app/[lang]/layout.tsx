@@ -1,15 +1,15 @@
-import { RootLayout as RootLayoutBase, generateStaticParams } from '@fdk-frontend/ui';
-import { PropsWithChildren } from 'react';
-import { LocaleCodes } from '@fdk-frontend/localization';
+import { RootLayout as RootLayoutBase, generateStaticParams } from "@fdk-frontend/ui";
+import { PropsWithChildren } from "react";
+import { LocaleCodes } from "@fdk-frontend/localization";
 
 const RootLayout = async ({
-    children,
-    params,
+  children,
+  params,
 }: PropsWithChildren & {
-    params: Promise<{ lang: string }>;
+  params: Promise<{ lang: string }>;
 }) => {
-    const typedParams = params as Promise<{ lang: LocaleCodes }>;
-    return <RootLayoutBase params={typedParams}>{children}</RootLayoutBase>;
+  const typedParams = params as Promise<{ lang: LocaleCodes }>;
+  return <RootLayoutBase params={typedParams}>{children}</RootLayoutBase>;
 };
 
 export default RootLayout;

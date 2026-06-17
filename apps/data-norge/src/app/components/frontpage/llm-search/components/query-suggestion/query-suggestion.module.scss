@@ -1,10 +1,10 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .querySuggestion {
-    background: transparent;
-    .customLink {
-        &:not(:hover):not(:focus):not(:active):not(:focus-visible) {
-            color: white;
-        }
+  background: transparent;
+  .customLink {
+    &:not(:hover):not(:focus):not(:active):not(:focus-visible) {
+      color: white;
     }
+  }
 }

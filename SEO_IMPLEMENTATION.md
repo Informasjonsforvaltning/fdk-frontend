@@ -21,12 +21,12 @@ With over 9000 datasets that are dynamically generated, we've implemented a comp
 - **URL Pattern**: `/{locale}/datasets/{id}/{slug}`
 - **Example**: `/nb/datasets/123/my-dataset-title`
 - **Features**:
-    - **Automatic slug generation**: Uses `getSlug()` utility function
-    - **Locale-specific slugs**: Different slugs for different languages
-    - **Backward compatibility**: Old URLs redirect to new SEO-friendly URLs
-    - **Query parameter preservation**: All query parameters preserved during redirects
-    - **Canonical URLs**: Ensures consistent URL structure across the site
-    - **Internal link updates**: All internal links use the new URL format
+  - **Automatic slug generation**: Uses `getSlug()` utility function
+  - **Locale-specific slugs**: Different slugs for different languages
+  - **Backward compatibility**: Old URLs redirect to new SEO-friendly URLs
+  - **Query parameter preservation**: All query parameters preserved during redirects
+  - **Canonical URLs**: Ensures consistent URL structure across the site
+  - **Internal link updates**: All internal links use the new URL format
 
 #### **URL Structure**
 
@@ -55,8 +55,8 @@ const slug = getSlug(dataset, locale);
 const canonicalSlug = getSlug(dataset, locale);
 const queryString = new URLSearchParams(searchParams).toString();
 const redirectUrl = queryString
-    ? `/${locale}/datasets/${params.id}/${canonicalSlug}?${queryString}`
-    : `/${locale}/datasets/${params.id}/${canonicalSlug}`;
+  ? `/${locale}/datasets/${params.id}/${canonicalSlug}?${queryString}`
+  : `/${locale}/datasets/${params.id}/${canonicalSlug}`;
 redirect(redirectUrl);
 ```
 
@@ -66,12 +66,12 @@ redirect(redirectUrl);
 // New route validates slug and redirects if incorrect
 const canonicalSlug = getSlug(dataset, locale);
 if (params.slug !== canonicalSlug) {
-    // Preserve query parameters during redirect
-    const queryString = new URLSearchParams(searchParams).toString();
-    const redirectUrl = queryString
-        ? `/${locale}/datasets/${params.id}/${canonicalSlug}?${queryString}`
-        : `/${locale}/datasets/${params.id}/${canonicalSlug}`;
-    redirect(redirectUrl);
+  // Preserve query parameters during redirect
+  const queryString = new URLSearchParams(searchParams).toString();
+  const redirectUrl = queryString
+    ? `/${locale}/datasets/${params.id}/${canonicalSlug}?${queryString}`
+    : `/${locale}/datasets/${params.id}/${canonicalSlug}`;
+  redirect(redirectUrl);
 }
 ```
 
@@ -98,37 +98,37 @@ All internal links have been updated to use the new URL format:
 - **Location**: `apps/data-norge/src/app/sitemap.xml/route.ts`
 - **Function**: Automatically generates a sitemap with all dataset pages and content pages
 - **Features**:
-    - **Concurrent pagination**: Efficiently fetches all datasets using `Promise.all()`
-    - **Batch processing**: Handles 1000 datasets per request for optimal performance
-    - **Dynamic content scanning**: Automatically discovers content pages from folder structure
-    - **Server-side caching**: 5-minute in-memory cache for improved performance
-    - **Route handler approach**: Uses Next.js API route for better control over headers and caching
-    - **Comprehensive coverage**: Includes all static pages, content pages, and dataset pages for all locales
+  - **Concurrent pagination**: Efficiently fetches all datasets using `Promise.all()`
+  - **Batch processing**: Handles 1000 datasets per request for optimal performance
+  - **Dynamic content scanning**: Automatically discovers content pages from folder structure
+  - **Server-side caching**: 5-minute in-memory cache for improved performance
+  - **Route handler approach**: Uses Next.js API route for better control over headers and caching
+  - **Comprehensive coverage**: Includes all static pages, content pages, and dataset pages for all locales
 - **SEO-friendly URLs**: All dataset entries use the new slug-based URLs
-    - **Smart prioritization**: Sets appropriate `changeFrequency` and `priority` values based on content type and depth
-    - **Internationalization**: Generates URLs for all supported languages (nb, en, nn)
-    - **Automatic maintenance**: New content pages are automatically included when folders are added
+  - **Smart prioritization**: Sets appropriate `changeFrequency` and `priority` values based on content type and depth
+  - **Internationalization**: Generates URLs for all supported languages (nb, en, nn)
+  - **Automatic maintenance**: New content pages are automatically included when folders are added
 
 ### 2. Enhanced Metadata Generation
 
 - **Location**: `apps/data-norge/src/app/[lang]/datasets/[id]/page.tsx`
 - **Features**:
-    - Dynamic title and description based on dataset content
-    - Open Graph tags for social media sharing
-    - Twitter Card support
-    - Canonical URLs and language alternates
-    - Structured data in metadata
+  - Dynamic title and description based on dataset content
+  - Open Graph tags for social media sharing
+  - Twitter Card support
+  - Canonical URLs and language alternates
+  - Structured data in metadata
 
 ### 3. Structured Data Implementation
 
 - **Location**: `apps/data-norge/src/app/components/details-page/dataset/index.tsx`
 - **Schema**: Uses Schema.org Dataset markup
 - **Features**:
-    - **Dataset structured data**: Complete Schema.org Dataset markup with sanitization
-    - **Breadcrumb structured data**: Schema.org BreadcrumbList for navigation
-    - **Safe JSON serialization**: XSS-protected structured data generation
-    - **Comprehensive metadata**: Publisher, dates, keywords, accessibility, distributions
-    - **Multiple structured data types**: Both dataset and breadcrumb JSON-LD scripts
+  - **Dataset structured data**: Complete Schema.org Dataset markup with sanitization
+  - **Breadcrumb structured data**: Schema.org BreadcrumbList for navigation
+  - **Safe JSON serialization**: XSS-protected structured data generation
+  - **Comprehensive metadata**: Publisher, dates, keywords, accessibility, distributions
+  - **Multiple structured data types**: Both dataset and breadcrumb JSON-LD scripts
 
 #### Structured Data Components
 
@@ -151,10 +151,10 @@ The sitemap uses a Next.js API route handler (`/sitemap.xml/route.ts`) instead o
 
 - **Location**: `apps/data-norge/public/robots.txt`
 - **Features**:
-    - Allows crawling of all public pages
-    - References sitemap location
-    - Blocks admin and internal pages
-    - Includes crawl delay for server protection
+  - Allows crawling of all public pages
+  - References sitemap location
+  - Blocks admin and internal pages
+  - Includes crawl delay for server protection
 
 ## Environment Variables
 
@@ -190,10 +190,10 @@ allDatasets.push(...(firstPageResponse.hits || []));
 
 // Process remaining pages sequentially to avoid "all shards failed"
 if (totalPages > 1) {
-    for (let page = 1; page < totalPages; page++) {
-        const result = await getAllDatasets(page, size);
-        allDatasets.push(...(result.hits || []));
-    }
+  for (let page = 1; page < totalPages; page++) {
+    const result = await getAllDatasets(page, size);
+    allDatasets.push(...(result.hits || []));
+  }
 }
 ```
 
@@ -201,32 +201,32 @@ if (totalPages > 1) {
 
 ```typescript
 // Recursively scan content directories
-async function scanContentDirectory(dirPath: string, basePath: string = ''): Promise<string[]> {
-    const paths: string[] = [];
+async function scanContentDirectory(dirPath: string, basePath: string = ""): Promise<string[]> {
+  const paths: string[] = [];
 
-    try {
-        const items = await readdir(dirPath);
+  try {
+    const items = await readdir(dirPath);
 
-        for (const item of items) {
-            const fullPath = join(dirPath, item);
-            const relativePath = basePath ? `${basePath}/${item}` : item;
-            const stats = await stat(fullPath);
+    for (const item of items) {
+      const fullPath = join(dirPath, item);
+      const relativePath = basePath ? `${basePath}/${item}` : item;
+      const stats = await stat(fullPath);
 
-            if (stats.isDirectory()) {
-                // Add the directory path itself
-                paths.push(relativePath);
+      if (stats.isDirectory()) {
+        // Add the directory path itself
+        paths.push(relativePath);
 
-                // Recursively scan subdirectories
-                const subPaths = await scanContentDirectory(fullPath, relativePath);
-                paths.push(...subPaths);
-            }
-            // Skip .mdx files - only include directory paths
-        }
-    } catch (error) {
-        console.warn(`Could not read directory ${dirPath}:`, error);
+        // Recursively scan subdirectories
+        const subPaths = await scanContentDirectory(fullPath, relativePath);
+        paths.push(...subPaths);
+      }
+      // Skip .mdx files - only include directory paths
     }
+  } catch (error) {
+    console.warn(`Could not read directory ${dirPath}:`, error);
+  }
 
-    return paths;
+  return paths;
 }
 ```
 
@@ -326,58 +326,58 @@ The sitemap implements server-side caching for improved performance:
 ```typescript
 // Server-side caching implementation with atomic updates
 const SITEMAP_CACHE = {
-    sitemap: null as string | null,
-    timestamp: 0,
-    duration: 5 * 60 * 1000, // 5 minutes
+  sitemap: null as string | null,
+  timestamp: 0,
+  duration: 5 * 60 * 1000, // 5 minutes
 };
 
 const atomicUpdateSitemapCache = (newSitemap: string): boolean => {
-    const now = Date.now();
-    if (!SITEMAP_CACHE.sitemap || now - SITEMAP_CACHE.timestamp >= SITEMAP_CACHE.duration) {
-        SITEMAP_CACHE.sitemap = newSitemap;
-        SITEMAP_CACHE.timestamp = now;
-        return true; // Updated
-    }
-    return false; // Not updated
+  const now = Date.now();
+  if (!SITEMAP_CACHE.sitemap || now - SITEMAP_CACHE.timestamp >= SITEMAP_CACHE.duration) {
+    SITEMAP_CACHE.sitemap = newSitemap;
+    SITEMAP_CACHE.timestamp = now;
+    return true; // Updated
+  }
+  return false; // Not updated
 };
 
 export async function GET(request: NextRequest) {
-    const now = Date.now();
+  const now = Date.now();
 
-    // Return cached version if still valid
-    if (SITEMAP_CACHE.sitemap && now - SITEMAP_CACHE.timestamp < SITEMAP_CACHE.duration) {
-        return new NextResponse(SITEMAP_CACHE.sitemap, {
-            status: 200,
-            headers: {
-                'Content-Type': 'application/xml',
-                'Cache-Control': 'public, max-age=300, s-maxage=600',
-                ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
-            },
-        });
+  // Return cached version if still valid
+  if (SITEMAP_CACHE.sitemap && now - SITEMAP_CACHE.timestamp < SITEMAP_CACHE.duration) {
+    return new NextResponse(SITEMAP_CACHE.sitemap, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, max-age=300, s-maxage=600",
+        ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
+      },
+    });
+  }
+
+  try {
+    // Generate fresh sitemap
+    const sitemap = await generateSitemap();
+
+    // Atomic update
+    const wasUpdated = atomicUpdateSitemapCache(sitemap);
+    if (wasUpdated) {
+      console.log("Sitemap cache updated");
     }
 
-    try {
-        // Generate fresh sitemap
-        const sitemap = await generateSitemap();
-
-        // Atomic update
-        const wasUpdated = atomicUpdateSitemapCache(sitemap);
-        if (wasUpdated) {
-            console.log('Sitemap cache updated');
-        }
-
-        return new NextResponse(sitemap, {
-            status: 200,
-            headers: {
-                'Content-Type': 'application/xml',
-                'Cache-Control': 'public, max-age=300, s-maxage=600',
-                ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
-            },
-        });
-    } catch (error) {
-        console.error('Error generating sitemap:', error);
-        return new NextResponse('Error generating sitemap', { status: 500 });
-    }
+    return new NextResponse(sitemap, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, max-age=300, s-maxage=600",
+        ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
+      },
+    });
+  } catch (error) {
+    console.error("Error generating sitemap:", error);
+    return new NextResponse("Error generating sitemap", { status: 500 });
+  }
 }
 ```
 
@@ -445,18 +445,18 @@ The e2e tests have been optimized to work with the caching system:
 
 - **Location**: `libs/data-norge-e2e/src/tests/seo.spec.ts`
 - **Coverage**: Comprehensive SEO testing including:
-    - **Robots.txt validation and content**
-    - **Sitemap.xml structure and dataset inclusion**
-    - **Content pages validation** (main sections, subpages, deep subpages)
-    - **Priority value validation** for all content types and depths
-    - **JSON-LD structured data validation**
-    - **Meta tags and Open Graph tags**
-    - **Language alternates (hreflang)**
-    - **Twitter Card metadata**
-    - **Breadcrumb structured data**
-    - **Content file exclusion** (ensures no .mdx files in sitemap)
-    - **Change frequency validation** for content pages
-    - **Last modified date validation** for all pages
+  - **Robots.txt validation and content**
+  - **Sitemap.xml structure and dataset inclusion**
+  - **Content pages validation** (main sections, subpages, deep subpages)
+  - **Priority value validation** for all content types and depths
+  - **JSON-LD structured data validation**
+  - **Meta tags and Open Graph tags**
+  - **Language alternates (hreflang)**
+  - **Twitter Card metadata**
+  - **Breadcrumb structured data**
+  - **Content file exclusion** (ensures no .mdx files in sitemap)
+  - **Change frequency validation** for content pages
+  - **Last modified date validation** for all pages
 
 #### **Content Pages Test Suite**
 

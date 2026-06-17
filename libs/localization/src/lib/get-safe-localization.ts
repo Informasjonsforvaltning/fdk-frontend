@@ -1,5 +1,5 @@
-import type { Localization, LocaleCodes } from './types';
-import { getLocalization } from './get-localization';
+import type { Localization, LocaleCodes } from "./types";
+import { getLocalization } from "./get-localization";
 
 /**
  * Returns a deep clone of the full localization object.

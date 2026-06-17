@@ -1,56 +1,56 @@
 .container {
-    container-type: inline-size;
+  container-type: inline-size;
 }
 
 .dlist {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-columns: minmax(100px, 1fr) minmax(200px, 3fr);
-    border: 1px solid var(--ds-color-border-subtle);
-    border-radius: 0.25rem;
-    background: rgba(0, 0, 0, 0.025);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-columns: minmax(100px, 1fr) minmax(200px, 3fr);
+  border: 1px solid var(--ds-color-border-subtle);
+  border-radius: 0.25rem;
+  background: rgba(0, 0, 0, 0.025);
+  overflow: hidden;
+
+  dt {
+    font-weight: 500;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+
+    :global(.ds-popover) {
+      white-space: wrap;
+    }
+  }
+
+  dt,
+  dd {
+    padding: 0.75rem 0.75rem;
+    border-top: 1px solid var(--ds-color-border-subtle);
+
+    &:not(:first-child) {
+      margin-top: 0.25rem;
+    }
+
+    &:first-child + dd {
+      margin-top: 0;
+    }
+  }
+
+  dt:first-child,
+  dt:first-child + dd {
+    border-top: 0;
+  }
+
+  @container (max-width: 600px) {
+    display: block;
 
     dt {
-        font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        :global(.ds-popover) {
-            white-space: wrap;
-        }
+      padding-bottom: 0.25rem;
     }
 
-    dt,
     dd {
-        padding: 0.75rem 0.75rem;
-        border-top: 1px solid var(--ds-color-border-subtle);
-
-        &:not(:first-child) {
-            margin-top: 0.25rem;
-        }
-
-        &:first-child + dd {
-            margin-top: 0;
-        }
+      border-top: 0;
+      padding-top: 0.25rem;
     }
-
-    dt:first-child,
-    dt:first-child + dd {
-        border-top: 0;
-    }
-
-    @container (max-width: 600px) {
-        display: block;
-
-        dt {
-            padding-bottom: 0.25rem;
-        }
-
-        dd {
-            border-top: 0;
-            padding-top: 0.25rem;
-        }
-    }
+  }
 }

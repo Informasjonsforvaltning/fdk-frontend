@@ -27,8 +27,10 @@ const docs = {
     "/docs/sharing-data/how-to-dataset/6-harvesting": "6. Publish the description",
     "/docs/sharing-data/how-to-dataset/7-extras-code-lists": "Extra: Code lists",
     "/docs/sharing-data/publishing-data-descriptions": "Publishing dataset descriptions",
-    "/docs/sharing-data/publishing-data-descriptions/1-creating-descriptions-self": "Create dataset description yourself",
-    "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration": "Create dataset description in the registration solution",
+    "/docs/sharing-data/publishing-data-descriptions/1-creating-descriptions-self":
+      "Create dataset description yourself",
+    "/docs/sharing-data/publishing-data-descriptions/2-creating-descriptions-registration":
+      "Create dataset description in the registration solution",
     "/docs/sharing-data/publishing-data-descriptions/3-publishing-descriptions": "Publish the description",
     "/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest": "Start harvesting",
     "/docs/sharing-data/rdf": "RDF: what and why",
@@ -46,20 +48,20 @@ const docs = {
     "/technical/follow-our-work": "Follow our work",
     "/docs/community": "Community",
     "/docs/resources": "Resources",
-    "/validator": "Validation tool"
+    "/validator": "Validation tool",
   },
   tableOfContents: {
-    onThisPage: "On this page:"
+    onThisPage: "On this page:",
   },
   conceptPreview: {
     labelMissing: "Label is missing",
     descriptionMissing: "Description is missing",
-    goToDatanorge: "Go to description at data.norge.no"
+    goToDatanorge: "Go to description at data.norge.no",
   },
   general: {
     expand: "Expand",
-    collapse: "Collapse"
-  }
+    collapse: "Collapse",
+  },
 };
 
 export default docs;

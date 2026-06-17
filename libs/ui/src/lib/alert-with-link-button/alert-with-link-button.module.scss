@@ -1,24 +1,24 @@
 .alertWithLinkButton {
-    container-type: inline-size;
+  container-type: inline-size;
 
-    .content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        .button {
-            margin: -0.75rem;
-        }
-
-        @container (max-width:500px) {
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: flex-start;
-
-            .button {
-                width: 100%;
-                margin: 0;
-            }
-        }
+    .button {
+      margin: -0.75rem;
     }
+
+    @container (max-width:500px) {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+
+      .button {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
 }

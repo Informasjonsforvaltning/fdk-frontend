@@ -1,7 +1,7 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import { NextResponse, type NextRequest } from 'next/server';
-import type { LocaleCodes } from '@fdk-frontend/localization';
+import fs from "node:fs/promises";
+import path from "node:path";
+import { NextResponse, type NextRequest } from "next/server";
+import type { LocaleCodes } from "@fdk-frontend/localization";
 
 type DocsSearchResult = {
   id: string;
@@ -19,9 +19,9 @@ type DocsIndexEntry = DocsSearchResult & {
 let docsIndex: DocsIndexEntry[] | null = null;
 let docsIndexPromise: Promise<DocsIndexEntry[]> | null = null;
 
-const SUPPORTED_LOCALES: LocaleCodes[] = ['nb', 'nn', 'en'];
+const SUPPORTED_LOCALES: LocaleCodes[] = ["nb", "nn", "en"];
 
-const isNonNullable = <T,>(value: T | null | undefined): value is T => value !== null && value !== undefined;
+const isNonNullable = <T>(value: T | null | undefined): value is T => value !== null && value !== undefined;
 
 const isSupportedLocale = (value: string | null): value is LocaleCodes => {
   return SUPPORTED_LOCALES.includes(value as LocaleCodes);
@@ -35,32 +35,35 @@ const collectMdxFiles = async (directory: string): Promise<string[]> => {
       if (entry.isDirectory()) {
         return await collectMdxFiles(fullPath);
       }
-      if (entry.isFile() && entry.name.endsWith('.mdx')) {
+      if (entry.isFile() && entry.name.endsWith(".mdx")) {
         return [fullPath];
       }
       return [];
-    })
+    }),
   );
 
   return collected.flat();
 };
 
 const extractFrontmatterBlock = (source: string): string | undefined => {
-  if (!source.startsWith('---')) return undefined;
-  const end = source.indexOf('\n---', 3);
+  if (!source.startsWith("---")) return undefined;
+  const end = source.indexOf("\n---", 3);
   if (end === -1) return undefined;
   return source.slice(3, end).trim();
 };
 
 const extractFrontmatterField = (frontmatter: string | undefined, field: string): string | undefined => {
   if (!frontmatter) return undefined;
-  const regex = new RegExp(`^${field}:\\s*["']?(.+?)["']?\\s*$`, 'm');
+  const regex = new RegExp(`^${field}:\\s*["']?(.+?)["']?\\s*$`, "m");
   const match = frontmatter.match(regex);
   return match?.[1]?.trim();
 };
 
 const stripTagsAndWhitespace = (value: string): string => {
-  return value.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  return value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 };
 
 const extractIngress = (source: string): string | undefined => {
@@ -77,7 +80,7 @@ const extractLocaleFromFilename = (filename: string): LocaleCodes | undefined =>
 };
 
 const buildUrlFromFile = (publicDir: string, filePath: string, locale: LocaleCodes): string | undefined => {
-  const contentRoot = path.join(publicDir, 'content');
+  const contentRoot = path.join(publicDir, "content");
   if (!filePath.startsWith(contentRoot)) {
     return undefined;
   }
@@ -96,19 +99,16 @@ const buildUrlFromFile = (publicDir: string, filePath: string, locale: LocaleCod
 
   const slugSegments = segments.slice(1);
   const lastSlugSegment = slugSegments.at(-1);
-  if (
-    pageName !== rootContentDirectory &&
-    pageName !== lastSlugSegment
-  ) {
+  if (pageName !== rootContentDirectory && pageName !== lastSlugSegment) {
     slugSegments.push(pageName);
   }
 
   const urlPathSegments = [rootContentDirectory, ...slugSegments];
-  return `/${locale}/${urlPathSegments.join('/')}`;
+  return `/${locale}/${urlPathSegments.join("/")}`;
 };
 
 const buildDocsIndex = async (): Promise<DocsIndexEntry[]> => {
-  const publicDir = path.join(process.cwd(), 'public');
+  const publicDir = path.join(process.cwd(), "public");
   const allMdxFiles = await collectMdxFiles(publicDir);
 
   const entries = await Promise.all(
@@ -120,19 +120,16 @@ const buildDocsIndex = async (): Promise<DocsIndexEntry[]> => {
       const url = buildUrlFromFile(publicDir, filePath, locale);
       if (!url) return null;
 
-      const [source, stat] = await Promise.all([
-        fs.readFile(filePath, 'utf8'),
-        fs.stat(filePath),
-      ]);
+      const [source, stat] = await Promise.all([fs.readFile(filePath, "utf8"), fs.stat(filePath)]);
 
       const frontmatterBlock = extractFrontmatterBlock(source);
 
-      const titleFromFrontmatter = extractFrontmatterField(frontmatterBlock, 'title');
-      const descriptionFromFrontmatter = extractFrontmatterField(frontmatterBlock, 'description');
+      const titleFromFrontmatter = extractFrontmatterField(frontmatterBlock, "title");
+      const descriptionFromFrontmatter = extractFrontmatterField(frontmatterBlock, "description");
       const ingress = extractIngress(source);
 
       const title = titleFromFrontmatter ?? path.parse(fileName).name;
-      const summary = ingress ?? descriptionFromFrontmatter ?? '';
+      const summary = ingress ?? descriptionFromFrontmatter ?? "";
 
       const updated = stat.mtime.toISOString();
 
@@ -147,7 +144,7 @@ const buildDocsIndex = async (): Promise<DocsIndexEntry[]> => {
       };
 
       return entry;
-    })
+    }),
   );
 
   return entries.filter(isNonNullable);
@@ -166,17 +163,17 @@ const getDocsIndex = async (): Promise<DocsIndexEntry[]> => {
 
 export const GET = async (request: NextRequest) => {
   const { searchParams } = new URL(request.url);
-  const rawQuery = searchParams.get('q') ?? '';
-  const rawLang = searchParams.get('lang');
-  const page = Number.parseInt(searchParams.get('page') ?? '0', 10);
-  const size = Number.parseInt(searchParams.get('size') ?? '10', 10);
+  const rawQuery = searchParams.get("q") ?? "";
+  const rawLang = searchParams.get("lang");
+  const page = Number.parseInt(searchParams.get("page") ?? "0", 10);
+  const size = Number.parseInt(searchParams.get("size") ?? "10", 10);
 
   const query = rawQuery.trim();
   if (!query) {
     return NextResponse.json({ results: [] });
   }
 
-  const locale: LocaleCodes = isSupportedLocale(rawLang) ? rawLang : 'nb';
+  const locale: LocaleCodes = isSupportedLocale(rawLang) ? rawLang : "nb";
 
   const index = await getDocsIndex();
   const qLower = query.toLowerCase();
@@ -193,4 +190,3 @@ export const GET = async (request: NextRequest) => {
 
   return NextResponse.json({ results: pageOfResults });
 };
-

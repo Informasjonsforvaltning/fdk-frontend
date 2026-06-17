@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
 type DatasetRelationLabelProps = {
-    relationUri: string;
+  relationUri: string;
 };
 
 const DatasetRelationLabel = ({
-    relationUri,
-    ...props
+  relationUri,
+  ...props
 }: DatasetRelationLabelProps & React.HTMLAttributes<HTMLDivElement>) => {
-    return relationUri;
+  return relationUri;
 };
 
 export default DatasetRelationLabel;

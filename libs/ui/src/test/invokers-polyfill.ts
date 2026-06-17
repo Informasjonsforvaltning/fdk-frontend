@@ -5,4 +5,3 @@ export const isPolyfilled = (): boolean => true;
 export const apply = (): void => {
   // no-op for Jest environment
 };
-

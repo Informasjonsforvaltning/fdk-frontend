@@ -1,8 +1,8 @@
 ---
 name: Feature forespørsel
 about: Forespør en ny feature
-title: '[Feat]: kort beskrivelse av feature'
-type: 'Feature'
+title: "[Feat]: kort beskrivelse av feature"
+type: "Feature"
 ---
 
 ## 🚀 Feature forespørsel
