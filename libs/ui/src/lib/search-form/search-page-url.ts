@@ -1,0 +1,50 @@
+import { type SearchTabsValue } from "../search-tabs/search-tab-config";
+import { orgPathKeysToQueryParam } from "./org-path";
+
+export type BuildSearchPageUrlOptions = {
+  locale: string;
+  tab: SearchTabsValue;
+  query: string;
+  orgPaths?: string[];
+};
+
+export const buildSearchPageUrl = function ({ locale, tab, query, orgPaths = [] }: BuildSearchPageUrlOptions): string {
+  const base = `/${locale}/search`;
+  const path = tab === "ki" ? base : `${base}/${tab}`;
+  const params = new URLSearchParams();
+  const trimmedQuery = query.trim();
+
+  if (trimmedQuery) params.set("q", trimmedQuery);
+  if (orgPaths.length > 0) params.set("orgPath", orgPathKeysToQueryParam(orgPaths));
+
+  const queryString = params.toString();
+  return queryString ? `${path}?${queryString}` : path;
+};
+
+export const buildSearchPageQueryUrl = function (options: {
+  pathname: string;
+  locale: string;
+  searchParams: URLSearchParams;
+  query: string;
+}): string {
+  const path = options.pathname.split("?")[0];
+  const segments = path.split("/").filter(Boolean);
+  const isOnSearchPage = segments.length >= 2 && segments[0] === options.locale && segments[1] === "search";
+
+  if (isOnSearchPage) {
+    const params = new URLSearchParams(options.searchParams.toString());
+    const trimmedQuery = options.query.trim();
+
+    if (trimmedQuery) params.set("q", trimmedQuery);
+    else params.delete("q");
+
+    const queryString = params.toString();
+    return queryString ? `${path}?${queryString}` : path;
+  }
+
+  return buildSearchPageUrl({
+    locale: options.locale,
+    tab: "ki",
+    query: options.query,
+  });
+};

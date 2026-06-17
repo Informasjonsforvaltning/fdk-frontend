@@ -2,26 +2,18 @@
 
 import { ToggleGroup, Badge } from "@digdir/designsystemet-react";
 import { SparklesFillIcon } from "@navikt/aksel-icons";
-import { type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import styles from "./styles.module.scss";
 
-/** KI has no URL segment; other values match the path segment. */
-export type SearchTabsValue =
-  | "ki"
-  | "datasets"
-  | "data-services"
-  | "concepts"
-  | "information-models"
-  | "services-and-events"
-  | "docs";
+import { KI_TOGGLE_VALUE, SEARCH_TAB_DEFINITIONS, type SearchTabsValue } from "./search-tab-config";
 
 export type SearchTabsProps = {
   /** Controlled value (current set from URL). Use 'ki' when no segment. */
   value?: SearchTabsValue;
   defaultValue?: SearchTabsValue;
   onChange?: (value: SearchTabsValue) => void;
-  /** Badge counts per tab value (from search results). */
-  badgeCounts?: Record<string, number>;
+  /** Badge counts per tab value. `undefined` renders a loading placeholder. */
+  badgeCounts?: Record<string, number | undefined>;
 };
 
 export type SearchTabItem = {
@@ -32,59 +24,61 @@ export type SearchTabItem = {
 };
 
 // TODO: localization remains to be implemented
-export const searchTabItems: SearchTabItem[] = [
-  {
-    value: "ki",
-    label: "KI",
-    icon: <SparklesFillIcon />,
-    badgeCount: 0,
-  },
-  {
-    value: "datasets",
-    label: "Datasett",
-    badgeCount: 0,
-  },
-  {
-    value: "data-services",
-    label: "API",
-    badgeCount: 0,
-  },
-  {
-    value: "concepts",
-    label: "Begrep",
-    badgeCount: 0,
-  },
-  {
-    value: "information-models",
-    label: "Informasjons\u00admodeller",
-    badgeCount: 0,
-  },
-  {
-    value: "services-and-events",
-    label: "Tjenester og hendelser",
-    badgeCount: 0,
-  },
-  {
-    value: "docs",
-    label: "Dokumentasjon",
-    badgeCount: 0,
-  },
-];
+export const searchTabItems: SearchTabItem[] = SEARCH_TAB_DEFINITIONS.map((tab) => ({
+  value: tab.tab,
+  label: tab.label,
+  ...(tab.tab === KI_TOGGLE_VALUE ? { icon: <SparklesFillIcon /> } : {}),
+  badgeCount: 0,
+}));
+
+export { deriveSearchTabValueFromPathname } from "./search-tab-route";
+
+const SearchTabBadge = ({ count }: { count: number | undefined }) => {
+  if (count === undefined) {
+    return (
+      <span
+        className={styles.badgeLoading}
+        aria-busy="true"
+        aria-label="Laster antall treff"
+      />
+    );
+  }
+
+  return (
+    <Badge
+      count={count}
+      variant="tinted"
+    />
+  );
+};
 
 const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {} }: SearchTabsProps) => {
   const isControlled = value !== undefined;
   const toggleValue = isControlled ? value : defaultValue;
+  const userInitiatedChangeRef = useRef(false);
 
   return (
     <ToggleGroup
       value={toggleValue}
-      defaultValue={defaultValue}
-      onChange={(v) => onChange?.(v as SearchTabsValue)}
+      {...(isControlled ? {} : { defaultValue })}
+      onPointerDown={() => {
+        userInitiatedChangeRef.current = true;
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          userInitiatedChangeRef.current = true;
+        }
+      }}
+      onChange={(v) => {
+        if (!userInitiatedChangeRef.current) return;
+        userInitiatedChangeRef.current = false;
+        onChange?.(v as SearchTabsValue);
+      }}
       className={styles.tabs}
       variant="secondary"
     >
       {searchTabItems.map((item) => {
-        const count = badgeCounts[item.value] ?? item.badgeCount ?? 0;
+        const count = badgeCounts[item.value];
         return (
           <ToggleGroup.Item
             key={item.value}
@@ -92,10 +86,7 @@ const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {} }: 
           >
             {item.icon}
             {item.label}
-            <Badge
-              count={count}
-              variant="tinted"
-            />
+            <SearchTabBadge count={count} />
           </ToggleGroup.Item>
         );
       })}

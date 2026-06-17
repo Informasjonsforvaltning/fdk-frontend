@@ -7,6 +7,7 @@ import { MagnifyingGlassIcon } from "@navikt/aksel-icons";
 import { type LocaleCodes } from "@fdk-frontend/localization";
 
 import SearchInputTray from "../search-input-tray";
+import { buildSearchPageQueryUrl } from "../search-form/search-page-url";
 import styles from "./search-input.module.scss";
 
 export type SearchInputProps = {
@@ -104,16 +105,14 @@ const SearchInput = ({
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const trimmed = value.trim();
-    const q = encodeURIComponent(trimmed);
-    const segments = pathname.split("/").filter(Boolean);
-    const isOnSearchPage = segments.length >= 2 && segments[0] === locale && segments[1] === "search";
-    if (isOnSearchPage) {
-      const path = pathname.split("?")[0];
-      router.push(`${path}?q=${q}`);
-    } else {
-      router.push(`/${locale}/search?q=${q}`);
-    }
+    router.push(
+      buildSearchPageQueryUrl({
+        pathname,
+        locale,
+        searchParams,
+        query: value,
+      }),
+    );
   };
 
   return (

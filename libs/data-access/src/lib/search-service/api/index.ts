@@ -159,14 +159,23 @@ export const getAllServices = async (page = 1, size = 1000) => {
 };
 
 /**
- * Fetch one page of results for an entity-type path (no query).
- * Matches fdk-search-service: POST /search/{path} with body { pagination }.
+ * Fetch one page of results for an entity-type path.
+ * Matches fdk-search-service: POST /search/{path} with body { pagination, query?, filters? }.
  */
 export const searchEntitiesByPath = async (
   path: string,
-  options: { pagination?: { size?: number; page?: number } } = {},
+  options: {
+    pagination?: { size?: number; page?: number };
+    query?: string;
+    filters?: Record<string, unknown>;
+    sort?: { field?: string; direction?: "ASC" | "DESC" };
+  } = {},
 ) => {
+  const { pagination, query, filters, sort } = options;
   return await searchApi(`/search/${path}`, {
-    pagination: options.pagination ?? {},
+    pagination: pagination ?? {},
+    ...(query !== undefined ? { query } : {}),
+    ...(filters ? { filters } : {}),
+    ...(sort ? { sort } : {}),
   });
 };

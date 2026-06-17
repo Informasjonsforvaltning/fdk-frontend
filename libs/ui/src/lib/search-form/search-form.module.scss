@@ -56,3 +56,22 @@
   width: 200px;
   min-width: auto;
 }
+
+.sortToolbar {
+  margin-left: auto;
+}
+
+.orgPathLevel {
+  gap: 0;
+}
+
+.orgPathItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.orgPathNested {
+  padding-left: 1rem;
+  border-left: 1px solid #e5e5e5;
+  margin-top: 0.25rem;
+}
