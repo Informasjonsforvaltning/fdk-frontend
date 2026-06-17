@@ -1,16 +1,16 @@
-import { PublicService } from '@fellesdatakatalog/types';
+import { PublicService } from "@fellesdatakatalog/types";
 
 const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
 
 export const getResource = async (uri: string) =>
     fetch(uri, {
-        method: 'GET',
+        method: "GET",
         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
+            Accept: "application/json",
+            "Content-Type": "application/json",
         },
     }).then((response) => {
-        if (!response.ok) throw new Error('resource not found');
+        if (!response.ok) throw new Error("resource not found");
         return response.json();
     });
 

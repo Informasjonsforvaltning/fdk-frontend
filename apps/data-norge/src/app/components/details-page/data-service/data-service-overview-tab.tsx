@@ -1,9 +1,21 @@
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type SearchObject } from '@fellesdatakatalog/types';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import { Markdown, Article, PlaceholderBox, PlaceholderText, noHeadings, Dlist, SmartList, ExternalLink, ApiTags, ScrollShadows, DatasetTable } from '@fdk-frontend/ui';
-import { Heading, Card } from '@digdir/designsystemet-react';
-import styles from '../details-page.module.scss';
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { type DataService, type SearchObject } from "@fellesdatakatalog/types";
+import { printLocaleValue } from "@fdk-frontend/utils";
+import {
+    Markdown,
+    Article,
+    PlaceholderBox,
+    PlaceholderText,
+    noHeadings,
+    Dlist,
+    SmartList,
+    ExternalLink,
+    ApiTags,
+    ScrollShadows,
+    DatasetTable,
+} from "@fdk-frontend/ui";
+import { Heading, Card } from "@digdir/designsystemet-react";
+import styles from "../details-page.module.scss";
 
 type DataServiceOverviewTabProps = {
     resource: DataService;
@@ -12,13 +24,18 @@ type DataServiceOverviewTabProps = {
     resolvedDatasets?: SearchObject[];
 };
 
-export default function DataServiceOverviewTab({ resource, locale, dictionary, resolvedDatasets = [] }: DataServiceOverviewTabProps) {
+export default function DataServiceOverviewTab({
+    resource,
+    locale,
+    dictionary,
+    resolvedDatasets = [],
+}: DataServiceOverviewTabProps) {
     return (
         <>
             <section className={styles.section}>
                 <Heading
                     level={2}
-                    data-size='xs'
+                    data-size="xs"
                 >
                     {dictionary.overview.description.title}
                 </Heading>
@@ -34,15 +51,13 @@ export default function DataServiceOverviewTab({ resource, locale, dictionary, r
                         </Article>
                     </Card>
                 ) : (
-                    <PlaceholderBox>
-                        {dictionary.overview.description.placeholder}
-                    </PlaceholderBox>
+                    <PlaceholderBox>{dictionary.overview.description.placeholder}</PlaceholderBox>
                 )}
             </section>
             <section className={styles.section}>
                 <Heading
                     level={2}
-                    data-size='xs'
+                    data-size="xs"
                 >
                     {dictionary.details.general.endpointTitle}
                 </Heading>
@@ -118,7 +133,7 @@ export default function DataServiceOverviewTab({ resource, locale, dictionary, r
                 <section className={styles.section}>
                     <Heading
                         level={2}
-                        data-size='xs'
+                        data-size="xs"
                     >
                         {dictionary.overview.servesDataset.title}
                     </Heading>

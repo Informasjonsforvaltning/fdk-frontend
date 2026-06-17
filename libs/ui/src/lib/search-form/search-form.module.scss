@@ -12,7 +12,7 @@
     justify-content: space-between;
 
     :global(.ds-button) {
-        flex-shrink:0;
+        flex-shrink: 0;
     }
 }
 
@@ -23,36 +23,36 @@
 }
 
 .filterDropdown {
-    width:350px;
-    max-width:350px;
-    padding:1rem;
-    
+    width: 350px;
+    max-width: 350px;
+    padding: 1rem;
+
     .box {
-        background:#fafafa;
-        max-height:350px;
-        overflow-y:auto;
-        overflow-x:hidden;
+        background: #fafafa;
+        max-height: 350px;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     > div {
         :global(.ds-field) {
-            width:100%;
+            width: 100%;
 
             &:hover {
-                background:#eee;
+                background: #eee;
             }
         }
     }
 }
 
 .filterTabs {
-    margin-top:-0.5rem;
+    margin-top: -0.5rem;
     ds-tab {
-        width:50%;
+        width: 50%;
     }
 }
 
 .orderbyDropdown {
-    width:200px;
-    min-width:auto;
+    width: 200px;
+    min-width: auto;
 }

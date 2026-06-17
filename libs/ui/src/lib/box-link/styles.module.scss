@@ -1,4 +1,4 @@
-@use '../box/box.module' as box;
+@use "../box/box.module" as box;
 
 @mixin box-link-mixin {
     @include box.box-mixin();

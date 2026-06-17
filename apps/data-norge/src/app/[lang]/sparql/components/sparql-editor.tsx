@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Skeleton } from '@digdir/designsystemet-react';
-import React from 'react';
-import '@zazuko/yasgui/build/yasgui.min.css';
+import { Skeleton } from "@digdir/designsystemet-react";
+import React from "react";
+import "@zazuko/yasgui/build/yasgui.min.css";
 
 interface SparqlEditorProps {
     endpoint: string;
@@ -14,8 +14,8 @@ export const SparqlEditor = ({ endpoint, className }: SparqlEditorProps) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
-        if (containerRef.current && typeof window !== 'undefined') {
-            import('@zazuko/yasgui').then((Yasgui) => {
+        if (containerRef.current && typeof window !== "undefined") {
+            import("@zazuko/yasgui").then((Yasgui) => {
                 new Yasgui.default(containerRef.current as HTMLElement, {
                     autofocus: true,
                     requestConfig: { endpoint: endpoint },
@@ -37,7 +37,7 @@ export const SparqlEditor = ({ endpoint, className }: SparqlEditorProps) => {
         <>
             {!isLoaded && (
                 <Skeleton
-                    title='Loading SPARQL editor...'
+                    title="Loading SPARQL editor..."
                     height={400}
                 />
             )}

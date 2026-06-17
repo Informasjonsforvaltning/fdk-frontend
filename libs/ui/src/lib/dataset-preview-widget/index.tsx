@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import cn from 'classnames';
-import { Spinner, Button } from '@digdir/designsystemet-react';
-import { EyeIcon } from '@navikt/aksel-icons';
-import DatasetPreviewModal from '../dataset-preview-modal/';
-import { type Localization } from '@fdk-frontend/localization';
+import React, { useState, useEffect } from "react";
+import cn from "classnames";
+import { Spinner, Button } from "@digdir/designsystemet-react";
+import { EyeIcon } from "@navikt/aksel-icons";
+import DatasetPreviewModal from "../dataset-preview-modal/";
+import { type Localization } from "@fdk-frontend/localization";
 import {
     trackSiteImproveEvent,
     EventCategory,
     EventAction,
     EventLabel,
-} from '@fdk-frontend/utils/siteimprove-analytics';
-import styles from './styles.module.scss';
+} from "@fdk-frontend/utils/siteimprove-analytics";
+import styles from "./styles.module.scss";
 
 type DatasetPreviewWidgetProps = {
     downloadUrl: string;
@@ -42,12 +42,12 @@ const DatasetPreviewWidget = ({
 
             setIsLoading(true);
             try {
-                const response = await fetch('/api/dataset-preview', {
-                    method: 'POST',
+                const response = await fetch("/api/dataset-preview", {
+                    method: "POST",
                     body: JSON.stringify({ downloadUrl }),
                 });
 
-                if (!response.ok) throw new Error('Request failed');
+                if (!response.ok) throw new Error("Request failed");
 
                 const json = await response.json();
                 setData(json);
@@ -67,8 +67,8 @@ const DatasetPreviewWidget = ({
                 <div className={styles.loading}>
                     {dictionary.datasetPreview.generatingPreview}
                     <Spinner
-                        aria-label={'loading'}
-                        data-size='xs'
+                        aria-label={"loading"}
+                        data-size="xs"
                         aria-hidden={true}
                     />
                 </div>
@@ -80,8 +80,8 @@ const DatasetPreviewWidget = ({
                     downloadUrl={downloadUrl}
                     trigger={
                         <Button
-                            data-size='sm'
-                            variant='secondary'
+                            data-size="sm"
+                            variant="secondary"
                             className={cn(styles.previewBtn, triggerBtnClass)}
                             aria-label={dictionary.datasetPreview.showPreviewButton}
                             onClick={() =>
@@ -92,7 +92,7 @@ const DatasetPreviewWidget = ({
                                 })
                             }
                         >
-                            <EyeIcon fontSize='1.2em' />
+                            <EyeIcon fontSize="1.2em" />
                             <span>{dictionary.datasetPreview.showPreviewButton}</span>
                         </Button>
                     }

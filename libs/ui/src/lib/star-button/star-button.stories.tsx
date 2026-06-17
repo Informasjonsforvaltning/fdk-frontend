@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import StarButton from '.';
-import HStack from '../hstack';
+import StarButton from ".";
+import HStack from "../hstack";
 
 const meta: Meta<typeof StarButton> = {
     component: StarButton,
-    title: 'StarButton',
+    title: "StarButton",
 };
 
 export default meta;
@@ -19,9 +19,9 @@ export const Primary: Story = {
     },
     render: () => (
         <>
-            <div style={{ padding: '1rem' }}>
+            <div style={{ padding: "1rem" }}>
                 <HStack>
-                    <StarButton labels={['Kopier', 'Kopiert!']} />
+                    <StarButton labels={["Kopier", "Kopiert!"]} />
                 </HStack>
             </div>
         </>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, type ButtonProps, Link } from '@digdir/designsystemet-react';
+import React from "react";
+import { Button, type ButtonProps, Link } from "@digdir/designsystemet-react";
 
 type ActionButtonProps = {
     uri: string;
@@ -9,8 +9,8 @@ const ActionButton = ({ children, uri, ...props }: ActionButtonProps & ButtonPro
     return (
         <Button
             asChild
-            data-size='sm'
-            variant='secondary'
+            data-size="sm"
+            variant="secondary"
             onClick={(e) => {
                 e.stopPropagation();
             }}

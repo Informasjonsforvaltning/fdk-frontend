@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import AccessLevelTag from '.';
-import VStack from '../vstack';
+import AccessLevelTag from ".";
+import VStack from "../vstack";
 
 const meta: Meta<typeof AccessLevelTag> = {
     component: AccessLevelTag,
-    title: 'AccessLevelTag',
+    title: "AccessLevelTag",
 };
 
 export default meta;
@@ -19,19 +19,19 @@ export const Primary: Story = {
     },
     render: () => (
         <>
-            <div style={{ padding: '1rem' }}>
+            <div style={{ padding: "1rem" }}>
                 <VStack>
                     <AccessLevelTag
-                        accessCode='PUBLIC'
-                        locale='nb'
+                        accessCode="PUBLIC"
+                        locale="nb"
                     />
                     <AccessLevelTag
-                        accessCode='RESTRICTED'
-                        locale='nb'
+                        accessCode="RESTRICTED"
+                        locale="nb"
                     />
                     <AccessLevelTag
-                        accessCode='NON_PUBLIC'
-                        locale='nb'
+                        accessCode="NON_PUBLIC"
+                        locale="nb"
                     />
                 </VStack>
             </div>

@@ -1,4 +1,4 @@
-import { type DatasetReference, type Dataset } from '@fellesdatakatalog/types';
+import { type DatasetReference, type Dataset } from "@fellesdatakatalog/types";
 
 export type LinkObjectType = {
     href?: string;
@@ -8,7 +8,7 @@ export type LinkObjectType = {
     undecoratedText?: string;
 };
 
-export type CatalogTypes = 'datasets' | 'apis' | 'terms' | 'information-models' | 'services-events' | 'ai';
+export type CatalogTypes = "datasets" | "apis" | "terms" | "information-models" | "services-events" | "ai";
 
 export type JSONValue = any;
 

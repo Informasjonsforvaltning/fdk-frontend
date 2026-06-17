@@ -1,18 +1,8 @@
 {
-    "ignorePatterns": [
-        "node_modules",
-        "**/*",
-        "libs/storybook-app",
-        "libs/data-norge-e2e"
-    ],
+    "ignorePatterns": ["node_modules", "**/*", "libs/storybook-app", "libs/data-norge-e2e"],
     "overrides": [
         {
-            "files": [
-                "*.ts",
-                "*.tsx",
-                "*.js",
-                "*.jsx"
-            ],
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
             "rules": {
                 "@nx/enforce-module-boundaries": [
                     "error",
@@ -20,9 +10,7 @@
                         "allow": [],
                         "depConstraints": [
                             {
-                                "onlyDependOnLibsWithTags": [
-                                    "*"
-                                ],
+                                "onlyDependOnLibsWithTags": ["*"],
                                 "sourceTag": "*"
                             }
                         ],
@@ -41,36 +29,21 @@
                 "plugin:jsx-a11y/recommended",
                 "prettier"
             ],
-            "files": [
-                "*.ts",
-                "*.tsx"
-            ],
+            "files": ["*.ts", "*.tsx"],
             "rules": {
                 "@typescript-eslint/no-explicit-any": "warn",
                 "@typescript-eslint/no-shadow": "error",
                 "@typescript-eslint/no-unused-vars": "error",
-                "arrow-body-style": [
-                    "warn",
-                    "as-needed"
-                ],
+                "arrow-body-style": ["warn", "as-needed"],
                 "camelcase": "error",
-                "complexity": [
-                    "warn",
-                    10
-                ],
+                "complexity": ["warn", 10],
                 "consistent-return": "warn",
                 "curly": "off",
                 "default-case": "warn",
                 "default-case-last": "error",
                 "default-param-last": "error",
-                "eol-last": [
-                    "warn",
-                    "always"
-                ],
-                "eqeqeq": [
-                    "error",
-                    "smart"
-                ],
+                "eol-last": ["warn", "always"],
+                "eqeqeq": ["error", "smart"],
                 "func-style": [
                     "error",
                     "expression",
@@ -80,14 +53,8 @@
                 ],
                 "import/named": "warn",
                 "import/no-unresolved": "off",
-                "max-depth": [
-                    "warn",
-                    4
-                ],
-                "max-lines": [
-                    "warn",
-                    300
-                ],
+                "max-depth": ["warn", 4],
+                "max-lines": ["warn", 300],
                 "no-alert": "warn",
                 "no-await-in-loop": "error",
                 "no-console": "off",
@@ -130,29 +97,17 @@
                 "plugin:jsx-a11y/recommended",
                 "prettier"
             ],
-            "files": [
-                "*.js",
-                "*.jsx"
-            ],
+            "files": ["*.js", "*.jsx"],
             "rules": {
-                "arrow-body-style": [
-                    "warn",
-                    "as-needed"
-                ],
+                "arrow-body-style": ["warn", "as-needed"],
                 "camelcase": "error",
-                "complexity": [
-                    "warn",
-                    10
-                ],
+                "complexity": ["warn", 10],
                 "consistent-return": "warn",
                 "curly": "warn",
                 "default-case": "error",
                 "default-case-last": "error",
                 "default-param-last": "error",
-                "eqeqeq": [
-                    "error",
-                    "smart"
-                ],
+                "eqeqeq": ["error", "smart"],
                 "func-style": [
                     "error",
                     "expression",
@@ -160,14 +115,8 @@
                         "allowArrowFunctions": true
                     }
                 ],
-                "max-depth": [
-                    "warn",
-                    4
-                ],
-                "max-lines": [
-                    "warn",
-                    300
-                ],
+                "max-depth": ["warn", 4],
+                "max-lines": ["warn", 300],
                 "no-alert": "warn",
                 "no-await-in-loop": "error",
                 "no-console": "warn",
@@ -193,11 +142,7 @@
             }
         }
     ],
-    "plugins": [
-        "@nx"
-    ],
+    "plugins": ["@nx"],
     "root": true,
-    "extends": [
-        "plugin:storybook/recommended"
-    ]
+    "extends": ["plugin:storybook/recommended"]
 }

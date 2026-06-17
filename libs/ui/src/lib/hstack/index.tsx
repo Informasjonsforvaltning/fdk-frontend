@@ -1,7 +1,7 @@
-import React from 'react';
-import cn from 'classnames';
+import React from "react";
+import cn from "classnames";
 
-import styles from './hstack.module.scss';
+import styles from "./hstack.module.scss";
 
 const HStack = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (

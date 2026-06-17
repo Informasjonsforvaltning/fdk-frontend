@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService, type CommunityTopic, type SearchObject } from '@fellesdatakatalog/types';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import { AccessLevelTag, Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, UseApiPopover } from '@fdk-frontend/ui';
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link } from '@digdir/designsystemet-react';
-import MetadataTab from '../metadata-tab';
-import CommunityTab from '../community-tab';
-import DataServiceDetailsTab from './data-service-details-tab';
-import DataServiceOverviewTab from './data-service-overview-tab';
-import styles from '../details-page.module.scss';
-import headerStyles from '../dataset-header/dataset-header.module.scss';
+import { useState } from "react";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { type DataService, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
+import { printLocaleValue } from "@fdk-frontend/utils";
+import { AccessLevelTag, Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, UseApiPopover } from "@fdk-frontend/ui";
+import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link } from "@digdir/designsystemet-react";
+import MetadataTab from "../metadata-tab";
+import CommunityTab from "../community-tab";
+import DataServiceDetailsTab from "./data-service-details-tab";
+import DataServiceOverviewTab from "./data-service-overview-tab";
+import styles from "../details-page.module.scss";
+import headerStyles from "../dataset-header/dataset-header.module.scss";
 
 export type DataServiceDetailsPageType = {
     baseUri: string;
@@ -34,7 +34,7 @@ export default function DataServiceDetailsPage({
     communityTopics,
     communityBaseUri,
     orgLogo,
-    defaultActiveTab = 'overview',
+    defaultActiveTab = "overview",
     locale,
     resolvedDatasets,
     dictionaries,
@@ -52,7 +52,7 @@ export default function DataServiceDetailsPage({
     ];
 
     const updateUri = (tab: string) => {
-        window.history.pushState(null, '', `?tab=${tab}`);
+        window.history.pushState(null, "", `?tab=${tab}`);
     };
 
     return (
@@ -73,7 +73,7 @@ export default function DataServiceDetailsPage({
                     </OrgButton>
                     <Heading
                         level={1}
-                        data-size='lg'
+                        data-size="lg"
                         className={headerStyles.title}
                     >
                         {printLocaleValue(locale, resource.title) ||
@@ -88,22 +88,22 @@ export default function DataServiceDetailsPage({
                     </div>
                     <TagList className={headerStyles.headerTags}>
                         <Tag
-                            data-color='info'
-                            data-size='md'
+                            data-color="info"
+                            data-size="md"
                         >
-                            <Link href='/data-services'>{dictionaries.detailsPage.header.dataServicesTagLink}</Link>
+                            <Link href="/data-services">{dictionaries.detailsPage.header.dataServicesTagLink}</Link>
                         </Tag>
                         <AccessLevelTag
                             accessCode={resource.accessRights?.code}
                             locale={locale}
-                            data-size='md'
+                            data-size="md"
                         />
                     </TagList>
                 </div>
                 <Tabs
                     className={styles.tabs}
-                    defaultValue='overview'
-                    data-size='sm'
+                    defaultValue="overview"
+                    data-size="sm"
                     value={activeTab}
                     onChange={(value) => {
                         setActiveTab(value);
@@ -112,27 +112,27 @@ export default function DataServiceDetailsPage({
                     <ScrollShadows className={styles.tabsScrollShadows}>
                         <TabsList>
                             <TabsTab
-                                value='overview'
-                                onClick={() => updateUri('overview')}
+                                value="overview"
+                                onClick={() => updateUri("overview")}
                             >
                                 {dictionaries.detailsPage.tabs.overview}
                             </TabsTab>
                             <TabsTab
-                                value='details'
-                                onClick={() => updateUri('details')}
+                                value="details"
+                                onClick={() => updateUri("details")}
                             >
                                 {dictionaries.detailsPage.tabs.details}
                             </TabsTab>
                             <TabsTab
-                                value='community'
-                                onClick={() => updateUri('community')}
+                                value="community"
+                                onClick={() => updateUri("community")}
                             >
                                 {dictionaries.detailsPage.tabs.community}
                                 &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
                             </TabsTab>
                             <TabsTab
-                                value='rdf'
-                                onClick={() => updateUri('rdf')}
+                                value="rdf"
+                                onClick={() => updateUri("rdf")}
                             >
                                 {dictionaries.detailsPage.tabs.rdf}
                             </TabsTab>
@@ -140,7 +140,7 @@ export default function DataServiceDetailsPage({
                     </ScrollShadows>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='overview'
+                        value="overview"
                     >
                         <DataServiceOverviewTab
                             resource={resource}
@@ -151,7 +151,7 @@ export default function DataServiceDetailsPage({
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='details'
+                        value="details"
                     >
                         <DataServiceDetailsTab
                             resource={resource}
@@ -161,7 +161,7 @@ export default function DataServiceDetailsPage({
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='community'
+                        value="community"
                     >
                         <CommunityTab
                             topics={communityTopics}
@@ -172,7 +172,7 @@ export default function DataServiceDetailsPage({
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='rdf'
+                        value="rdf"
                     >
                         <MetadataTab
                             uri={`${baseUri}/data-services/${resource.id}`}

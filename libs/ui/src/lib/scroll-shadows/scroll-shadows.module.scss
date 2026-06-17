@@ -6,7 +6,7 @@
 
         &:before,
         &:after {
-            content: '';
+            content: "";
             position: absolute;
             pointer-events: none;
             z-index: 1;
@@ -32,7 +32,7 @@
 
     &:before,
     &:after {
-        content: '';
+        content: "";
         position: absolute;
         pointer-events: none;
         z-index: 1;

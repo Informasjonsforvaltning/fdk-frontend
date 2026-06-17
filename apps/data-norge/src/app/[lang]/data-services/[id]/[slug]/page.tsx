@@ -1,9 +1,9 @@
-import { notFound, redirect } from 'next/navigation';
-import { i18n, getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
-import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
-import { type DataService, type CommunityTopic, type SearchObject } from '@fellesdatakatalog/types';
-import DataServiceDetailsPage from '../../../../components/details-page/data-service';
-import { getOrgLogo, getApi, getAllCommunityTopics, searchDatasets } from '@fdk-frontend/data-access/server';
+import { notFound, redirect } from "next/navigation";
+import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
+import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
+import { type DataService, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
+import DataServiceDetailsPage from "../../../../components/details-page/data-service";
+import { getOrgLogo, getApi, getAllCommunityTopics, searchDatasets } from "@fdk-frontend/data-access/server";
 
 export type DetailsPageWrapperProps = {
     params: Promise<{
@@ -30,22 +30,22 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             openGraph: {
                 title: title,
                 description: description,
-                type: 'website',
+                type: "website",
                 url: `https://data.norge.no/${locale}/data-services/${dataService.id}/${getSlug(dataService, locale)}`,
-                siteName: 'data.norge.no',
+                siteName: "data.norge.no",
                 locale: locale,
             },
             twitter: {
-                card: 'summary_large_image',
+                card: "summary_large_image",
                 title: title,
                 description: description,
             },
             alternates: {
                 canonical: `https://data.norge.no/${locale}/data-services/${dataService.id}/${getSlug(dataService, locale)}`,
                 languages: {
-                    nb: `https://data.norge.no/nb/data-services/${dataService.id}/${getSlug(dataService, 'nb')}`,
-                    en: `https://data.norge.no/en/data-services/${dataService.id}/${getSlug(dataService, 'en')}`,
-                    nn: `https://data.norge.no/nn/data-services/${dataService.id}/${getSlug(dataService, 'nn')}`,
+                    nb: `https://data.norge.no/nb/data-services/${dataService.id}/${getSlug(dataService, "nb")}`,
+                    en: `https://data.norge.no/en/data-services/${dataService.id}/${getSlug(dataService, "en")}`,
+                    nn: `https://data.norge.no/nn/data-services/${dataService.id}/${getSlug(dataService, "nn")}`,
                 },
             },
         };
@@ -61,7 +61,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const params = await props.params;
     const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
-    const activeTab = searchParams?.tab ?? 'overview';
+    const activeTab = searchParams?.tab ?? "overview";
 
     const loc = getLocalization(locale);
     const dictionaries = {

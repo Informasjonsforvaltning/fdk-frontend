@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Textfield, Button, ValidationMessage } from '@digdir/designsystemet-react';
-import { ShieldLockIcon, SparklesIcon } from '@navikt/aksel-icons';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { llmSearch, type LlmSearchResponse } from '@fdk-frontend/data-access';
-import { AdvancedSearchPrompt } from './components/advanced-search-prompt';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Textfield, Button, ValidationMessage } from "@digdir/designsystemet-react";
+import { ShieldLockIcon, SparklesIcon } from "@navikt/aksel-icons";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { llmSearch, type LlmSearchResponse } from "@fdk-frontend/data-access";
+import { AdvancedSearchPrompt } from "./components/advanced-search-prompt";
 
-import { ResultItem, type ItemObjectType } from './components/result-item';
-import AuxPanel from './components/aux-panel';
+import { ResultItem, type ItemObjectType } from "./components/result-item";
+import AuxPanel from "./components/aux-panel";
 
-import styles from './llm-search.module.scss';
+import styles from "./llm-search.module.scss";
 
 type LlmSearchProps = {
     endpoint: string;
@@ -24,14 +24,14 @@ const MotionUl = motion.ul;
 
 const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
     const [loading, setLoading] = useState<boolean>(false);
-    const [query, setQuery] = useState<string>('');
+    const [query, setQuery] = useState<string>("");
     const [results, setResults] = useState<LlmSearchResponse | undefined>(undefined);
     const [error, setError] = useState<string | undefined>(undefined);
 
     const animations = {
         resultsContainer: {
             hidden: { height: 0 },
-            show: { height: 'auto', transition: { duration: 0.15 } },
+            show: { height: "auto", transition: { duration: 0.15 } },
         },
         resultsList: {
             hidden: { opacity: 0 },
@@ -77,11 +77,11 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
             setResults(response);
             setError(undefined);
         } catch (err) {
-            if (err instanceof Error && err.message === 'Request timed out') {
-                setError('Request timed out');
+            if (err instanceof Error && err.message === "Request timed out") {
+                setError("Request timed out");
             } else {
                 // Log the error for debugging
-                console.warn('LLM search error:', err);
+                console.warn("LLM search error:", err);
                 setError(dictionary.aiBanner.prompt.errors.generic);
             }
         } finally {
@@ -98,30 +98,30 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
         <div className={styles.llmSearch}>
             <form onSubmit={submitQuery}>
                 <label
-                    htmlFor='llm-search-input'
-                    id='llm-search-label'
+                    htmlFor="llm-search-input"
+                    id="llm-search-label"
                     className={styles.llmInputLabel}
                 >
                     {dictionary.aiBanner.prompt.label}
                 </label>
-                <div className={`${styles.llmSearchBox} ${loading ? styles.loading : ''}`}>
+                <div className={`${styles.llmSearchBox} ${loading ? styles.loading : ""}`}>
                     <div className={styles.inputRow}>
                         <Textfield
-                            id='llm-search-input'
-                            aria-labelledby='llm-search-label'
+                            id="llm-search-input"
+                            aria-labelledby="llm-search-label"
                             className={styles.llmInputTextfield}
                             placeholder={dictionary.aiBanner.prompt.placeholder}
-                            data-size='lg'
+                            data-size="lg"
                             value={query}
                             error={error !== undefined}
                             onChange={(e) => setQuery(e.target.value)}
-                            autoComplete='off'
-                            data-color-scheme='dark'
+                            autoComplete="off"
+                            data-color-scheme="dark"
                         />
                         <Button
                             className={styles.llmSearchButton}
-                            type='submit'
-                            data-size='sm'
+                            type="submit"
+                            data-size="sm"
                             disabled={loading}
                         >
                             <SparklesIcon
@@ -131,11 +131,11 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                             <span>{dictionary.aiBanner.prompt.button}</span>
                         </Button>
                         <span
-                            role='status'
-                            aria-live='polite'
+                            role="status"
+                            aria-live="polite"
                             className={styles.srOnly}
                         >
-                            {loading ? dictionary.aiBanner.prompt.loading : ''}
+                            {loading ? dictionary.aiBanner.prompt.loading : ""}
                         </span>
                     </div>
                     <p className={styles.disclaimer}>
@@ -160,7 +160,7 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                     <ValidationMessage
                         aria-hidden
                         className={styles.ValidationMessage}
-                        data-size='sm'
+                        data-size="sm"
                     >
                         {error}
                     </ValidationMessage>
@@ -170,14 +170,14 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
                 <MotionDiv
                     className={styles.llmResults as string}
                     variants={animations.resultsContainer}
-                    initial='hidden'
-                    animate='show'
+                    initial="hidden"
+                    animate="show"
                 >
                     <MotionUl
                         className={styles.llmResultsList}
                         variants={animations.resultsList}
-                        initial='hidden'
-                        animate='show'
+                        initial="hidden"
+                        animate="show"
                     >
                         {results.hits &&
                             results.hits.map((item: ItemObjectType, i: number) => (

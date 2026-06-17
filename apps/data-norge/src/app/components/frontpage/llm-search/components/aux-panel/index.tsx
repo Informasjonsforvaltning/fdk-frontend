@@ -1,13 +1,13 @@
-import dynamic from 'next/dynamic';
-import { Link, Paragraph, Button, Popover } from '@digdir/designsystemet-react';
-import { type Localization, type LocaleCodes, interpolate } from '@fdk-frontend/localization';
+import dynamic from "next/dynamic";
+import { Link, Paragraph, Button, Popover } from "@digdir/designsystemet-react";
+import { type Localization, type LocaleCodes, interpolate } from "@fdk-frontend/localization";
 
 // import QuerySuggestion from '../query-suggestion';
-const QuerySuggestion = dynamic(() => import('../query-suggestion'), {
+const QuerySuggestion = dynamic(() => import("../query-suggestion"), {
     ssr: false,
 });
 
-import styles from './aux-panel.module.scss';
+import styles from "./aux-panel.module.scss";
 
 export type AuxPanelProps = {
     dictionary: Localization;
@@ -38,20 +38,20 @@ const AuxPanel = ({ dictionary, onRequestSearch, locale, numResults }: AuxPanelP
                 <div className={styles.helptextWrapper}>
                     <Popover.TriggerContext>
                         <Popover.Trigger
-                            variant='tertiary'
-                            data-size='sm'
-                            data-color-scheme='dark'
+                            variant="tertiary"
+                            data-size="sm"
+                            data-color-scheme="dark"
                         >
                             {dictionary.aiBanner.tooltip.label}
                         </Popover.Trigger>
-                        <Popover placement='right'>
+                        <Popover placement="right">
                             <Paragraph>{dictionary.aiBanner.tooltip.text}</Paragraph>
                             <Paragraph>
                                 <b>{dictionary.aiBanner.tooltip.disclaimer}</b>
                             </Paragraph>
                             <Paragraph>
                                 <Button
-                                    data-size='sm'
+                                    data-size="sm"
                                     asChild
                                 >
                                     <Link href={`/${locale}/docs/finding-data/ai-search`}>

@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import Box from '.';
+import Box from ".";
 
 const meta: Meta<typeof Box> = {
     component: Box,
-    title: 'Box',
+    title: "Box",
 };
 
 export default meta;
@@ -18,7 +18,7 @@ export const Primary: Story = {
     },
     render: () => (
         <>
-            <div style={{ padding: '1rem' }}>
+            <div style={{ padding: "1rem" }}>
                 <Box>This is a box</Box>
             </div>
         </>

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from '@digdir/designsystemet-react';
-import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import { type Distribution, type SearchObject } from '@fellesdatakatalog/types';
+import React from "react";
+import { Link } from "@digdir/designsystemet-react";
+import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
+import { printLocaleValue } from "@fdk-frontend/utils";
+import { type Distribution, type SearchObject } from "@fellesdatakatalog/types";
 import {
     Markdown,
     Box,
@@ -15,8 +15,8 @@ import {
     Article,
     DownloadDistributionWidget,
     noHeadings,
-} from '@fdk-frontend/ui';
-import distStyles from '../../distributions.module.scss';
+} from "@fdk-frontend/ui";
+import distStyles from "../../distributions.module.scss";
 
 type DistributionDetailsProps = {
     distribution: Distribution;
@@ -75,15 +75,15 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.accessURL?.length ? (
                         <SmartList
-                            className='fdk-box-list'
-                            listType='ol'
+                            className="fdk-box-list"
+                            listType="ol"
                             items={distribution.accessURL}
                             renderItem={(url) => (
                                 <ExternalLink
                                     href={url}
                                     locale={locale}
                                     gateway
-                                    className='fdk-box-link'
+                                    className="fdk-box-link"
                                 >
                                     {url}
                                 </ExternalLink>
@@ -105,8 +105,8 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.downloadURL?.length ? (
                         <SmartList
-                            className='fdk-box-list'
-                            listType='ol'
+                            className="fdk-box-list"
+                            listType="ol"
                             items={distribution.downloadURL}
                             renderItem={(url) => (
                                 <DownloadDistributionWidget
@@ -126,8 +126,8 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.accessService?.length ? (
                         <SmartList
-                            className='fdk-box-list'
-                            listType='ol'
+                            className="fdk-box-list"
+                            listType="ol"
                             items={distribution.accessService}
                             renderItem={(api) => {
                                 const resolvedDataService = resolvedDistributionDataServices.find(
@@ -138,7 +138,7 @@ const DistributionDetails = ({
                                     return (
                                         <Link
                                             href={`/data-services/${resolvedDataService.id}`}
-                                            className='fdk-box-link'
+                                            className="fdk-box-link"
                                         >
                                             {printLocaleValue(locale, resolvedDataService.title) ||
                                                 resolvedDataService.uri}
@@ -151,7 +151,7 @@ const DistributionDetails = ({
                                         href={api.uri}
                                         locale={locale}
                                         gateway
-                                        className='fdk-box-link'
+                                        className="fdk-box-link"
                                     >
                                         {printLocaleValue(locale, api.title) || api.uri}
                                     </ExternalLink>
@@ -166,15 +166,15 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.page ? (
                         <SmartList
-                            className='fdk-box-list'
-                            listType='ol'
+                            className="fdk-box-list"
+                            listType="ol"
                             items={distribution.page}
                             renderItem={(page) => (
                                 <ExternalLink
                                     href={page.uri}
                                     locale={locale}
                                     gateway
-                                    className='fdk-box-link'
+                                    className="fdk-box-link"
                                 >
                                     {page.uri}
                                 </ExternalLink>
@@ -188,11 +188,11 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.license ? (
                         <SmartList
-                            listType='ol'
+                            listType="ol"
                             items={distribution.license}
                             renderItem={(license) => (
                                 <LicenseBoxLink
-                                    uri={license.uri ?? ''}
+                                    uri={license.uri ?? ""}
                                     openLicenseLabel={dictionaries.detailsPage.distributions.header.openLicense}
                                     locale={locale}
                                 >
@@ -208,8 +208,8 @@ const DistributionDetails = ({
                 <dd>
                     {distribution.conformsTo ? (
                         <SmartList
-                            className='fdk-box-list'
-                            listType='ol'
+                            className="fdk-box-list"
+                            listType="ol"
                             items={distribution.conformsTo}
                             renderItem={(standard) => {
                                 const resolvedInformationModel = resolvedDistributionInformationModels.find(
@@ -220,7 +220,7 @@ const DistributionDetails = ({
                                     return (
                                         <Link
                                             href={`/information-models/${resolvedInformationModel.id}`}
-                                            className='fdk-box-link'
+                                            className="fdk-box-link"
                                         >
                                             {printLocaleValue(locale, resolvedInformationModel.title) ||
                                                 resolvedInformationModel.uri}
@@ -233,7 +233,7 @@ const DistributionDetails = ({
                                         href={standard.uri}
                                         locale={locale}
                                         gateway
-                                        className='fdk-box-link'
+                                        className="fdk-box-link"
                                     >
                                         {printLocaleValue(locale, standard.prefLabel) || standard.uri}
                                     </ExternalLink>

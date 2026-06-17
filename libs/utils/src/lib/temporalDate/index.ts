@@ -1,4 +1,4 @@
-import type { LocaleCodes } from '@fdk-frontend/localization';
+import type { LocaleCodes } from "@fdk-frontend/localization";
 
 // Matches year-only values, e.g. "2024"
 const yearPattern = /^\d{4}$/;
@@ -8,7 +8,7 @@ const yearMonthPattern = /^\d{4}-\d{2}$/;
 const fullDatePattern = /^\d{4}-\d{2}-\d{2}$/;
 
 const formatYearMonth = (value: string, locale: LocaleCodes): string => {
-    const [year, month] = value.split('-').map(Number);
+    const [year, month] = value.split("-").map(Number);
     const date = new Date(Date.UTC(year, month - 1, 1));
 
     if (Number.isNaN(date.getTime())) {
@@ -16,9 +16,9 @@ const formatYearMonth = (value: string, locale: LocaleCodes): string => {
     }
 
     return new Intl.DateTimeFormat(locale, {
-        year: 'numeric',
-        month: 'long',
-        timeZone: 'UTC',
+        year: "numeric",
+        month: "long",
+        timeZone: "UTC",
     }).format(date);
 };
 
@@ -29,12 +29,12 @@ const formatFullDate = (value: string, locale: LocaleCodes): string => {
         return value;
     }
 
-    return date.toLocaleString(locale, { dateStyle: 'long' });
+    return date.toLocaleString(locale, { dateStyle: "long" });
 };
 
 export const formatTemporalDate = (value: string | undefined | null, locale: LocaleCodes): string => {
     if (!value) {
-        return '';
+        return "";
     }
 
     if (yearPattern.test(value)) {

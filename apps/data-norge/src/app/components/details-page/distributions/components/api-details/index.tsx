@@ -1,6 +1,6 @@
-import React from 'react';
-import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
-import { type DataService } from '@fellesdatakatalog/types';
+import React from "react";
+import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
+import { type DataService } from "@fellesdatakatalog/types";
 import {
     Markdown,
     Box,
@@ -11,10 +11,10 @@ import {
     Dlist,
     Article,
     noHeadings,
-} from '@fdk-frontend/ui';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import detailsPageStyles from '../../../details-page.module.scss';
-import distStyles from '../../distributions.module.scss';
+} from "@fdk-frontend/ui";
+import { printLocaleValue } from "@fdk-frontend/utils";
+import detailsPageStyles from "../../../details-page.module.scss";
+import distStyles from "../../distributions.module.scss";
 
 type ApiDetailsProps = {
     api: DataService;
@@ -58,9 +58,9 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                 <dd>
                     {api.endpointURL?.length ? (
                         <SmartList
-                            className='list-no-style'
+                            className="list-no-style"
                             items={api.endpointURL}
-                            style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+                            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
                             renderItem={(endpointURL: string, i: number) => (
                                 <Dlist key={endpointURL}>
                                     <dt>{dictionary.apis.details.url}:</dt>
@@ -111,7 +111,7 @@ const ApiDetails = ({ api, locale, dictionary }: ApiDetailsProps) => {
                 <dd>
                     {api.page?.length ? (
                         <SmartList
-                            listType='ol'
+                            listType="ol"
                             items={api.page}
                             renderItem={(page) => (
                                 <ExternalLink

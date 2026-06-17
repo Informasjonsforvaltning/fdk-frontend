@@ -1,28 +1,28 @@
-import { useContext } from 'react';
-import { Heading, Link, Tag, type TagProps, Paragraph } from '@digdir/designsystemet-react';
-import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, InputWithCopyButton } from '@fdk-frontend/ui';
-import { calculateMetadataScore, printLocaleValue } from '@fdk-frontend/utils';
-import { type DatasetType } from '@fellesdatakatalog/types';
-import { HelpText } from '@fellesdatakatalog/ui';
-import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
-import { i18n } from '@fdk-frontend/localization';
-import styles from '../../details-tab.module.scss';
+import { useContext } from "react";
+import { Heading, Link, Tag, type TagProps, Paragraph } from "@digdir/designsystemet-react";
+import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, InputWithCopyButton } from "@fdk-frontend/ui";
+import { calculateMetadataScore, printLocaleValue } from "@fdk-frontend/utils";
+import { type DatasetType } from "@fellesdatakatalog/types";
+import { HelpText } from "@fellesdatakatalog/ui";
+import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
+import { i18n } from "@fdk-frontend/localization";
+import styles from "../../details-tab.module.scss";
 
 const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
     const getMetadataQuality = (value: number) => {
         if (value < 25)
-            return { color: 'danger', label: `${dictionary.details.general.metadataQuality.labels.poor} (${value}%)` };
+            return { color: "danger", label: `${dictionary.details.general.metadataQuality.labels.poor} (${value}%)` };
         if (value < 50)
             return {
-                color: 'warning',
+                color: "warning",
                 label: `${dictionary.details.general.metadataQuality.labels.sufficient} (${value}%)`,
             };
         if (value < 75)
-            return { color: 'success', label: `${dictionary.details.general.metadataQuality.labels.good} (${value}%)` };
+            return { color: "success", label: `${dictionary.details.general.metadataQuality.labels.good} (${value}%)` };
         return {
-            color: 'success',
+            color: "success",
             label: `${dictionary.details.general.metadataQuality.labels.excellent} (${value}%)`,
         };
     };
@@ -34,7 +34,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
         <section>
             <Heading
                 level={2}
-                data-size='xs'
+                data-size="xs"
             >
                 {dictionary.details.general.title}
             </Heading>
@@ -54,12 +54,12 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     <Hstack>
                         <span>{dictionary.details.general.firstHarvested}:</span>
                         <HelpText aria-label={dictionary.details.general.firstHarvestedHelpTextTitle}>
-                            <div style={{ whiteSpace: 'normal' }}>
-                                <Paragraph data-size='sm'>
+                            <div style={{ whiteSpace: "normal" }}>
+                                <Paragraph data-size="sm">
                                     {dictionary.details.general.firstHarvestedHelpText}
                                 </Paragraph>
-                                <Paragraph data-size='sm'>
-                                    <Link href='/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest'>
+                                <Paragraph data-size="sm">
+                                    <Link href="/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest">
                                         {dictionary.details.general.firstHarvestedHelpTextLink}
                                     </Link>
                                 </Paragraph>
@@ -69,7 +69,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 </dt>
                 <dd>
                     {dataset.harvest?.firstHarvested ? (
-                        new Date(dataset.harvest.firstHarvested).toLocaleString(locale, { dateStyle: 'long' })
+                        new Date(dataset.harvest.firstHarvested).toLocaleString(locale, { dateStyle: "long" })
                     ) : (
                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                     )}
@@ -79,7 +79,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 </dt>
                 <dd>
                     {dataset.harvest?.modified ? (
-                        new Date(dataset.harvest.modified).toLocaleString(locale, { dateStyle: 'long' })
+                        new Date(dataset.harvest.modified).toLocaleString(locale, { dateStyle: "long" })
                     ) : (
                         <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                     )}
@@ -87,7 +87,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 {!dataset.landingPage && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.general.landingPage}:</dt>
-                        <dd className='article'>
+                        <dd className="article">
                             {dataset.landingPage?.length ? (
                                 <SmartList
                                     items={dataset.landingPage}
@@ -146,12 +146,12 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     <Hstack>
                         {dictionary.details.general.metadataQuality.title}:
                         <HelpText aria-label={dictionary.details.general.metadataQuality.helpTextTitle}>
-                            <div style={{ whiteSpace: 'normal' }}>
-                                <Paragraph data-size='sm'>
+                            <div style={{ whiteSpace: "normal" }}>
+                                <Paragraph data-size="sm">
                                     {dictionary.details.general.metadataQuality.helpText}
                                 </Paragraph>
-                                <Paragraph data-size='sm'>
-                                    <Link href='/nb/docs/metadata-quality'>
+                                <Paragraph data-size="sm">
+                                    <Link href="/nb/docs/metadata-quality">
                                         {dictionary.details.general.metadataQuality.helpTextLink}
                                     </Link>
                                 </Paragraph>
@@ -162,8 +162,8 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                 <dd className={styles.metadataQualityLink}>
                     <Link href={`/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`}>
                         <Tag
-                            data-size='sm'
-                            data-color={metadataQuality.color as TagProps['color']}
+                            data-size="sm"
+                            data-color={metadataQuality.color as TagProps["color"]}
                         >
                             {metadataQuality.label}
                         </Tag>
@@ -174,7 +174,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
                     <Hstack>
                         <InputWithCopyButton
                             value={dataset.uri}
-                            inputLabel='uri'
+                            inputLabel="uri"
                             copyLabel={dictionary.details.general.copyButton[0]}
                             copiedLabel={dictionary.details.general.copyButton[1]}
                         />

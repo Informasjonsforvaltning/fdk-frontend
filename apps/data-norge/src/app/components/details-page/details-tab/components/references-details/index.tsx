@@ -1,19 +1,19 @@
-import React from 'react';
-import { Heading, Link } from '@digdir/designsystemet-react';
-import { PlaceholderBox, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
-import { printLocaleValue, getSlug } from '@fdk-frontend/utils';
-import { DatasetDetailsProps } from '../../';
+import React from "react";
+import { Heading, Link } from "@digdir/designsystemet-react";
+import { PlaceholderBox, ExternalLink, SmartList, Dlist } from "@fdk-frontend/ui";
+import { printLocaleValue, getSlug } from "@fdk-frontend/utils";
+import { DatasetDetailsProps } from "../../";
 
-const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<DatasetDetailsProps, 'dataset'>) => {
+const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<DatasetDetailsProps, "dataset">) => {
     const relations =
-        populatedReferences?.filter((r) => r.reference.referenceType.uri !== 'http://purl.org/dc/terms/relation') || [];
+        populatedReferences?.filter((r) => r.reference.referenceType.uri !== "http://purl.org/dc/terms/relation") || [];
     const other = populatedReferences?.filter((r) => !relations.includes(r)) || [];
 
     return (
         <section>
             <Heading
                 level={2}
-                data-size='xs'
+                data-size="xs"
             >
                 {dictionary.details.references.title}
             </Heading>
@@ -45,7 +45,7 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
                         </React.Fragment>
                     ))}
                     <dt>{dictionary.details.references.relatedResources}:</dt>
-                    <dd className='article'>
+                    <dd className="article">
                         <SmartList
                             items={other}
                             renderItem={(r) =>

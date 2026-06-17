@@ -8,7 +8,6 @@ export const useRouter = () => ({
     refresh: () => {},
 });
 
-export const usePathname = () => '/en';
+export const usePathname = () => "/en";
 
-export const useSearchParams = () => new URLSearchParams('');
-
+export const useSearchParams = () => new URLSearchParams("");

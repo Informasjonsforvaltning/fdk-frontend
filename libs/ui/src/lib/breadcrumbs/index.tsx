@@ -1,11 +1,11 @@
-import React from 'react';
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
-import { Link } from '@digdir/designsystemet-react';
+import React from "react";
+import { ChevronRightIcon } from "@navikt/aksel-icons";
+import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
+import { Link } from "@digdir/designsystemet-react";
 
-import ScrollShadows from '../scroll-shadows';
+import ScrollShadows from "../scroll-shadows";
 
-import styles from './breadcrumbs.module.scss';
+import styles from "./breadcrumbs.module.scss";
 
 export type BreadcrumbType = {
     text: string;
@@ -33,32 +33,32 @@ const Breadcrumbs = ({ breadcrumbList, locale }: BreadcrumbsProps) => {
                     <Link
                         className={styles.link}
                         aria-label={dictionary.breadcrumbs.home}
-                        href={'/'}
+                        href={"/"}
                     >
                         {dictionary.breadcrumbs.home}
                     </Link>
-                {breadcrumbList?.map((breadcrumb, i) => (
-                    <div
-                        className={styles.crumb}
-                        key={`${breadcrumb.href}-${i}`}
-                    >
-                        <ChevronRightIcon
-                            className={styles.separator}
-                            fontSize='1.5rem'
-                            role='presentation'
-                        />
-                        {i === breadcrumbList.length - 1 ? (
-                            <span className={styles.deactiveLink}>{breadcrumb.text}</span>
-                        ) : (
-                            <Link
-                                className={styles.link}
-                                href={breadcrumb.href}
-                            >
-                                {breadcrumb.text}
-                            </Link>
-                        )}
-                    </div>
-                ))}
+                    {breadcrumbList?.map((breadcrumb, i) => (
+                        <div
+                            className={styles.crumb}
+                            key={`${breadcrumb.href}-${i}`}
+                        >
+                            <ChevronRightIcon
+                                className={styles.separator}
+                                fontSize="1.5rem"
+                                role="presentation"
+                            />
+                            {i === breadcrumbList.length - 1 ? (
+                                <span className={styles.deactiveLink}>{breadcrumb.text}</span>
+                            ) : (
+                                <Link
+                                    className={styles.link}
+                                    href={breadcrumb.href}
+                                >
+                                    {breadcrumb.text}
+                                </Link>
+                            )}
+                        </div>
+                    ))}
                 </nav>
             </ScrollShadows>
         </div>

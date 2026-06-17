@@ -1,12 +1,12 @@
-import React from 'react';
-import cn from 'classnames';
+import React from "react";
+import cn from "classnames";
 
-import styles from './icon-badge.module.scss';
+import styles from "./icon-badge.module.scss";
 
 const IconBadge = ({
     children,
     className,
-    fontSize = '1.5rem',
+    fontSize = "1.5rem",
     ...rest
 }: React.HTMLAttributes<HTMLDivElement> & { fontSize?: string }) => {
     return (

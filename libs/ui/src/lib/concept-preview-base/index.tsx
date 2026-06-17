@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { PropsWithChildren } from 'react';
-import { Divider, Popover, Link } from '@digdir/designsystemet-react';
+import { PropsWithChildren } from "react";
+import { Divider, Popover, Link } from "@digdir/designsystemet-react";
 
 type ConceptPreviewProps = PropsWithChildren & {
     label: string;
@@ -15,7 +15,7 @@ const ConceptPreviewBase = ({ label, definition, uri, goToDataNorgeText, childre
         <>
             <Popover.TriggerContext>
                 <Popover.Trigger asChild>{children}</Popover.Trigger>
-                <Popover placement='bottom'>
+                <Popover placement="bottom">
                     {label}
                     <Divider />
                     {definition}

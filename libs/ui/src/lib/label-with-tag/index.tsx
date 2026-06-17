@@ -1,6 +1,6 @@
-import { Tag } from '@digdir/designsystemet-react';
-import { HTMLAttributes } from 'react';
-import styles from './label-with-tag.module.css';
+import { Tag } from "@digdir/designsystemet-react";
+import { HTMLAttributes } from "react";
+import styles from "./label-with-tag.module.css";
 
 interface LabelWithTagProps extends HTMLAttributes<HTMLSpanElement> {
     labelText: string;
@@ -15,8 +15,8 @@ const LabelWithTag = ({ labelText, tagText, ...rest }: LabelWithTagProps) => (
         <span>{labelText}</span>
         {tagText && (
             <Tag
-                data-size='sm'
-                color='second'
+                data-size="sm"
+                color="second"
                 className={styles.tag}
             >
                 {tagText}

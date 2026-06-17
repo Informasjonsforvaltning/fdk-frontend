@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import organizations from './organizations.json';
-import styles from './organization-carousel.module.scss';
-import React, { useEffect, useState } from 'react';
-import { Tooltip } from '@digdir/designsystemet-react';
-import { type Localization } from '@fdk-frontend/localization';
+import organizations from "./organizations.json";
+import styles from "./organization-carousel.module.scss";
+import React, { useEffect, useState } from "react";
+import { Tooltip } from "@digdir/designsystemet-react";
+import { type Localization } from "@fdk-frontend/localization";
 
 type Props = {
     dictionary: Localization;
@@ -44,14 +44,14 @@ const OrganizationCarousel = ({ dictionary }: Props) => {
             <Tooltip
                 className={styles.tooltip}
                 content={isPaused ? dictionary.shareDataBanner.popover.start : dictionary.shareDataBanner.popover.pause}
-                placement='top'
+                placement="top"
             >
                 <span
-                    role='button'
+                    role="button"
                     tabIndex={0}
                     onClick={() => setIsPaused((prevState) => !prevState)}
-                    onKeyDown={(e) => e.key === 'Enter' && setIsPaused((prevState) => !prevState)}
-                    className={`${fade ? styles['fade-in'] : styles['fade-out']}`}
+                    onKeyDown={(e) => e.key === "Enter" && setIsPaused((prevState) => !prevState)}
+                    className={`${fade ? styles["fade-in"] : styles["fade-out"]}`}
                 >
                     {`${dictionary.shareDataBanner.doLike} ${shuffledOrganizations[currentIndex]}`}
                 </span>

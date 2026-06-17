@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 
-import Breadcrumbs from '../breadcrumbs';
+import Breadcrumbs from "../breadcrumbs";
 
 type DynamicBreadcrumbsProps = {
     docsDictionary: Localization;
@@ -15,11 +15,11 @@ const DynamicBreadcrumbs = ({ docsDictionary, locale }: DynamicBreadcrumbsProps)
     const pathname = usePathname();
 
     const createBreadcrumbPaths = function (pname: string) {
-        const parts = pname.split('/');
+        const parts = pname.split("/");
         parts.splice(0, 2);
 
         const paths = [];
-        let currentPath = '';
+        let currentPath = "";
 
         for (let i = 0; i < parts.length; i++) {
             currentPath += `/${parts[i]}`;

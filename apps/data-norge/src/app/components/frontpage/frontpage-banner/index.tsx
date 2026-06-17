@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { HeadingWithDivider } from '@fdk-frontend/ui';
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { HeadingWithDivider } from "@fdk-frontend/ui";
 
-import LlmSearch from '../llm-search';
-import Norgeskart from './components/norgeskart';
-import ScrollButton from './components/scroll-button';
+import LlmSearch from "../llm-search";
+import Norgeskart from "./components/norgeskart";
+import ScrollButton from "./components/scroll-button";
 
-import styles from './frontpage-banner.module.scss';
+import styles from "./frontpage-banner.module.scss";
 
 type FrontpageBannerProps = {
     dictionary: Localization;
@@ -18,7 +18,7 @@ type FrontpageBannerProps = {
 const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps) => (
     <div
         className={styles.outer}
-        id='frontpage-banner'
+        id="frontpage-banner"
     >
         <div className={styles.inner}>
             <HeadingWithDivider

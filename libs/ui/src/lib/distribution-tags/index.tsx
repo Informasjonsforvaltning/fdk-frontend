@@ -1,10 +1,10 @@
-import React from 'react';
-import mime from 'mime-types';
-import { type Distribution } from '@fellesdatakatalog/types';
-import { isOpenLicense } from '@fdk-frontend/utils';
-import { type Localization } from '@fdk-frontend/localization';
-import { Tag } from '@digdir/designsystemet-react';
-import TagList, { type TagListProps } from '../tag-list';
+import React from "react";
+import mime from "mime-types";
+import { type Distribution } from "@fellesdatakatalog/types";
+import { isOpenLicense } from "@fdk-frontend/utils";
+import { type Localization } from "@fdk-frontend/localization";
+import { Tag } from "@digdir/designsystemet-react";
+import TagList, { type TagListProps } from "../tag-list";
 
 type DistributionTagsProps = TagListProps & {
     distribution: Distribution;
@@ -27,24 +27,24 @@ const DistributionTags = ({
         <TagList {...props}>
             {hasOpenLicense && (
                 <Tag
-                    data-color='success'
-                    data-size='md'
+                    data-color="success"
+                    data-size="md"
                 >
                     {dictionary.distributions.header.openLicense}
                 </Tag>
             )}
             {hasApi && (
                 <Tag
-                    data-color='success'
-                    data-size='md'
+                    data-color="success"
+                    data-size="md"
                 >
                     {dictionary.distributions.header.hasApi}
                 </Tag>
             )}
             {exampleData && (
                 <Tag
-                    data-color='neutral'
-                    data-size='md'
+                    data-color="neutral"
+                    data-size="md"
                 >
                     {dictionary.distributions.header.exampleData}
                 </Tag>
@@ -53,8 +53,8 @@ const DistributionTags = ({
                 ?.filter((format: any) => format?.code)
                 .map((format: any) => (
                     <Tag
-                        data-color='info'
-                        data-size='md'
+                        data-color="info"
+                        data-size="md"
                         key={format.code}
                     >
                         {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}

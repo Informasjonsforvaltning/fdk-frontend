@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 // Some UI deps (Digdir designsystemet) expect the browser `CSS.supports` API.
 // Jest's jsdom environment doesn't provide it by default.
@@ -8,17 +8,17 @@ if (globalThis.CSS === undefined) {
     (globalThis as unknown as { CSS: { supports: (property: string, value?: string) => boolean } }).CSS = {
         supports: () => true,
     };
-} else if (typeof globalThis.CSS.supports !== 'function') {
+} else if (typeof globalThis.CSS.supports !== "function") {
     globalThis.CSS.supports = () => true;
 }
 
-jest.mock('next/image', () => ({
+jest.mock("next/image", () => ({
     __esModule: true,
     // eslint-disable-next-line jsx-a11y/alt-text
     default: (props: any) => <img {...props} />,
 }));
 
-jest.mock('next/navigation', () => ({
+jest.mock("next/navigation", () => ({
     useRouter() {
         return {
             push: () => jest.fn(),
@@ -26,6 +26,6 @@ jest.mock('next/navigation', () => ({
         };
     },
     usePathname() {
-        return '';
+        return "";
     },
 }));

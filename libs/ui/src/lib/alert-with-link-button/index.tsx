@@ -1,6 +1,6 @@
-import { Alert, type AlertProps, Button, Link, Paragraph } from '@digdir/designsystemet-react';
+import { Alert, type AlertProps, Button, Link, Paragraph } from "@digdir/designsystemet-react";
 
-import styles from './alert-with-link-button.module.scss';
+import styles from "./alert-with-link-button.module.scss";
 
 export type AlertWithLinkButtonProps = {
     text: string;
@@ -12,15 +12,15 @@ const AlertWithLinkButton = ({ text, button, link, ...props }: AlertWithLinkButt
     return (
         <Alert
             className={styles.alertWithLinkButton}
-            data-size='sm'
+            data-size="sm"
             {...props}
         >
             <div className={styles.content}>
                 <Paragraph>{text}</Paragraph>
                 <Button
                     asChild
-                    data-size='sm'
-                    variant='primary'
+                    data-size="sm"
+                    variant="primary"
                 >
                     <Link
                         className={styles.button}

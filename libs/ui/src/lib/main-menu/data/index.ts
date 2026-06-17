@@ -1,33 +1,33 @@
-import { type Localization } from '@fdk-frontend/localization';
+import { type Localization } from "@fdk-frontend/localization";
 
 const getMainMenuData = (dictionary: Localization, locale: string) => ({
     catalogs: [
         {
-            key: 'datasets',
+            key: "datasets",
             title: dictionary.mainMenu.catalogs.datasets.title,
             description: dictionary.mainMenu.catalogs.datasets.description,
             href: `/${locale}/docs/catalogs/datasets`,
         },
         {
-            key: 'apis',
+            key: "apis",
             title: dictionary.mainMenu.catalogs.apis.title,
             description: dictionary.mainMenu.catalogs.apis.description,
             href: `/${locale}/docs/catalogs/data-services`,
         },
         {
-            key: 'terms',
+            key: "terms",
             title: dictionary.mainMenu.catalogs.terms.title,
             description: dictionary.mainMenu.catalogs.terms.description,
             href: `/${locale}/docs/catalogs/concepts`,
         },
         {
-            key: 'information-models',
+            key: "information-models",
             title: dictionary.mainMenu.catalogs.informationModels.title,
             description: dictionary.mainMenu.catalogs.informationModels.description,
             href: `/${locale}/docs/catalogs/information-models`,
         },
         {
-            key: 'services-events',
+            key: "services-events",
             title: dictionary.mainMenu.catalogs.servicesEvents.title,
             description: dictionary.mainMenu.catalogs.servicesEvents.description,
             href: `/${locale}/docs/catalogs/public-services-and-events`,

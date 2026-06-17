@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { type DataService } from '@fellesdatakatalog/types';
-import { printLocaleValue } from '@fdk-frontend/utils';
+import { useState } from "react";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { type DataService } from "@fellesdatakatalog/types";
+import { printLocaleValue } from "@fdk-frontend/utils";
 import {
     PlaceholderText,
     PlaceholderBox,
@@ -13,10 +13,10 @@ import {
     InputWithCopyButton,
     SmartList,
     LicenseBoxLink,
-} from '@fdk-frontend/ui';
-import { Heading, Tag, Link, Button } from '@digdir/designsystemet-react';
-import { EyeIcon, EyeSlashIcon } from '@navikt/aksel-icons';
-import styles from './data-service.module.scss';
+} from "@fdk-frontend/ui";
+import { Heading, Tag, Link, Button } from "@digdir/designsystemet-react";
+import { EyeIcon, EyeSlashIcon } from "@navikt/aksel-icons";
+import styles from "./data-service.module.scss";
 
 type DataServiceDetailsTabProps = {
     resource: DataService;
@@ -24,19 +24,15 @@ type DataServiceDetailsTabProps = {
     dictionary: Localization;
 };
 
-export default function DataServiceDetailsTab({
-    resource,
-    locale,
-    dictionary,
-}: DataServiceDetailsTabProps) {
+export default function DataServiceDetailsTab({ resource, locale, dictionary }: DataServiceDetailsTabProps) {
     const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
     return (
         <div className={styles.details}>
             <Button
                 className={styles.toggleButton}
-                variant='tertiary'
-                data-size='sm'
+                variant="tertiary"
+                data-size="sm"
                 onClick={() => setShowEmptyRows(!showEmptyRows)}
             >
                 {showEmptyRows ? (
@@ -56,7 +52,7 @@ export default function DataServiceDetailsTab({
                 <section>
                     <Heading
                         level={2}
-                        data-size='xs'
+                        data-size="xs"
                     >
                         {dictionary.details.contactPoint.title}
                     </Heading>
@@ -125,7 +121,7 @@ export default function DataServiceDetailsTab({
                 <section>
                     <Heading
                         level={2}
-                        data-size='xs'
+                        data-size="xs"
                     >
                         {dictionary.details.costs.title}
                     </Heading>
@@ -137,7 +133,7 @@ export default function DataServiceDetailsTab({
                                         <dt>{dictionary.details.costs.value}:</dt>
                                         <dd>
                                             {cost.hasValue ? (
-                                                `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split('/').pop() || ''}`
+                                                `${cost.hasValue} ${cost.currency?.code || cost.currency?.uri?.split("/").pop() || ""}`
                                             ) : (
                                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                                             )}
@@ -188,7 +184,7 @@ export default function DataServiceDetailsTab({
             <section>
                 <Heading
                     level={2}
-                    data-size='xs'
+                    data-size="xs"
                 >
                     {dictionary.details.general.dataServiceTitle}
                 </Heading>
@@ -261,7 +257,7 @@ export default function DataServiceDetailsTab({
                     <dd>
                         {resource.harvest?.firstHarvested ? (
                             new Date(resource.harvest.firstHarvested).toLocaleString(locale, {
-                                dateStyle: 'long',
+                                dateStyle: "long",
                             })
                         ) : (
                             <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
@@ -271,7 +267,7 @@ export default function DataServiceDetailsTab({
                     <dd>
                         {resource.harvest?.modified ? (
                             new Date(resource.harvest.modified).toLocaleString(locale, {
-                                dateStyle: 'long',
+                                dateStyle: "long",
                             })
                         ) : (
                             <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
@@ -282,7 +278,7 @@ export default function DataServiceDetailsTab({
                         <Hstack>
                             <InputWithCopyButton
                                 value={resource.uri}
-                                inputLabel='uri'
+                                inputLabel="uri"
                                 copyLabel={dictionary.details.general.copyButton[0]}
                                 copiedLabel={dictionary.details.general.copyButton[1]}
                             />
@@ -295,18 +291,18 @@ export default function DataServiceDetailsTab({
                 <section>
                     <Heading
                         level={2}
-                        data-size='xs'
+                        data-size="xs"
                     >
                         {dictionary.details.keywords}
                     </Heading>
                     {resource.keyword?.filter((keyword) => keyword[locale]).length ? (
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                             {resource.keyword
                                 .filter((keyword) => keyword[locale])
                                 .map((keyword, i) => (
                                     <Tag
                                         key={`keyword-${i}`}
-                                        data-size='sm'
+                                        data-size="sm"
                                     >
                                         {keyword[locale]}
                                     </Tag>

@@ -1,6 +1,6 @@
-import React from 'react';
-import cn from 'classnames';
-import styles from './styles.module.scss';
+import React from "react";
+import cn from "classnames";
+import styles from "./styles.module.scss";
 
 const DList = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (

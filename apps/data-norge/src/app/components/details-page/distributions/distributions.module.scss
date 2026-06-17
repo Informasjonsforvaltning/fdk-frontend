@@ -1,4 +1,4 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .distributions {
     border-radius: 3px;
@@ -13,7 +13,7 @@
 }
 
 .listContainer {
-    padding:0;
+    padding: 0;
 }
 
 .accordionWrapper {
@@ -52,7 +52,7 @@
         min-height: 4.5rem;
 
         &:hover,
-        &[aria-expanded='true'] {
+        &[aria-expanded="true"] {
             :global(.ds-tag) {
                 background: white;
                 background: var(--ds-color-surface-hover);
@@ -95,7 +95,7 @@
         padding: 0;
 
         > div {
-            &[data-overflow='true'] {
+            &[data-overflow="true"] {
                 border: 1px solid #ddd;
                 border-radius: 0.25rem;
                 padding: 1rem;

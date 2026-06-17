@@ -1,9 +1,9 @@
-import { NormalLayout } from '@fdk-frontend/ui';
-import { PropsWithChildren } from 'react';
-import { LocaleCodes } from '@fdk-frontend/localization';
+import { NormalLayout } from "@fdk-frontend/ui";
+import { PropsWithChildren } from "react";
+import { LocaleCodes } from "@fdk-frontend/localization";
 
 export const revalidate = 0;
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 const AboutLayout = async ({
     children,

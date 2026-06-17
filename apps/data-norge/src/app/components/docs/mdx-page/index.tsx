@@ -1,16 +1,16 @@
-import cn from 'classnames';
+import cn from "classnames";
 
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 
-import { DynamicBreadcrumbs } from '@fdk-frontend/ui';
-import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
+import { DynamicBreadcrumbs } from "@fdk-frontend/ui";
+import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 
-import Sidebar from '../sidebar';
-import TableOfContents from '../table-of-contents';
+import Sidebar from "../sidebar";
+import TableOfContents from "../table-of-contents";
 
-import pageStyles from './mdx-page.module.scss';
+import pageStyles from "./mdx-page.module.scss";
 
-import { extractHeadlines, type MdxHeadlineObjectNode } from './utils';
+import { extractHeadlines, type MdxHeadlineObjectNode } from "./utils";
 
 export type MdxPageProps = PropsWithChildren & {
     currentPath: string[];

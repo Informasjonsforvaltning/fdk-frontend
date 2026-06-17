@@ -1,13 +1,13 @@
 .tabs {
-    min-width:0;
+    min-width: 0;
 
     svg {
-        color:var(--fdk-color-interactive);
+        color: var(--fdk-color-interactive);
     }
 
     :global(.ds-badge) {
         &:before {
-            background:rgba(255,255,255,0.75);
+            background: rgba(255, 255, 255, 0.75);
         }
     }
 
@@ -15,7 +15,7 @@
         &:has(input:checked) {
             :global(.ds-badge) {
                 &:before {
-                    background:var(--ds-color-surface-tinted);
+                    background: var(--ds-color-surface-tinted);
                 }
             }
         }

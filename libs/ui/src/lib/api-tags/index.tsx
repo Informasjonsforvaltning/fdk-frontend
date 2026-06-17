@@ -1,8 +1,8 @@
-import React from 'react';
-import mime from 'mime-types';
-import { type DataService } from '@fellesdatakatalog/types';
-import { Tag } from '@digdir/designsystemet-react';
-import TagList, { type TagListProps } from '../tag-list';
+import React from "react";
+import mime from "mime-types";
+import { type DataService } from "@fellesdatakatalog/types";
+import { Tag } from "@digdir/designsystemet-react";
+import TagList, { type TagListProps } from "../tag-list";
 
 type ApiTagsProps = TagListProps & {
     api: DataService;
@@ -15,7 +15,7 @@ const ApiTags = ({ children, api, ...props }: ApiTagsProps & React.HTMLAttribute
                 ?.filter((format: any) => format?.code)
                 .map((format: any, i: number) => (
                     <Tag
-                        data-size='md'
+                        data-size="md"
                         key={format.code}
                     >
                         {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}

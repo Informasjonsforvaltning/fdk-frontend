@@ -1,7 +1,7 @@
-import { notFound, redirect } from 'next/navigation';
-import { i18n, getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
-import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
-import { type PopulatedDatasetReference } from '@fdk-frontend/types';
+import { notFound, redirect } from "next/navigation";
+import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
+import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
+import { type PopulatedDatasetReference } from "@fdk-frontend/types";
 import {
     type DatasetWithIdentifier,
     type DatasetScores,
@@ -10,8 +10,8 @@ import {
     type CommunityTopic,
     type SearchObject,
     type AccessService,
-} from '@fellesdatakatalog/types';
-import DatasetDetailsPage from '../../../../components/details-page/dataset';
+} from "@fellesdatakatalog/types";
+import DatasetDetailsPage from "../../../../components/details-page/dataset";
 import {
     getOrgLogo,
     getDataset,
@@ -26,7 +26,7 @@ import {
     searchDatasets,
     searchDataServices,
     searchInformationModels,
-} from '@fdk-frontend/data-access/server';
+} from "@fdk-frontend/data-access/server";
 
 export type DetailsPageWrapperProps = {
     params: Promise<{
@@ -43,7 +43,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     const params = await props.params;
     const searchParams = await props.searchParams;
     const locale = params.lang ?? i18n.defaultLocale;
-    const activeTab = searchParams?.tab ?? 'overview';
+    const activeTab = searchParams?.tab ?? "overview";
     const similarItemsLimit = 5;
 
     const loc = getLocalization(locale);
@@ -174,10 +174,12 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         const results = await searchRelations(dataset.uri);
         const hits = results?.hits ?? [];
 
-        externalRelatedAPIs = hits.filter((r: SearchObject) => r.searchType === 'DATA_SERVICE');
-        externalRelatedDatasets = hits.filter((r: SearchObject) => r.searchType === 'DATASET');
+        externalRelatedAPIs = hits.filter((r: SearchObject) => r.searchType === "DATA_SERVICE");
+        externalRelatedDatasets = hits.filter((r: SearchObject) => r.searchType === "DATASET");
 
-        apis = (await getApis(externalRelatedAPIs.map((api) => api.id).filter((id): id is string => id !== undefined))) as DataService[];
+        apis = (await getApis(
+            externalRelatedAPIs.map((api) => api.id).filter((id): id is string => id !== undefined),
+        )) as DataService[];
     } catch {
         // Do nothing
     }
@@ -201,7 +203,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             const results = await searchOrgDatasets(dataset.publisher?.orgPath);
 
             // Filter self
-            orgDatasets = results.hits?.filter((d: any) => d.id !== dataset.id && d.searchType === 'DATASET') || [];
+            orgDatasets = results.hits?.filter((d: any) => d.id !== dataset.id && d.searchType === "DATASET") || [];
 
             // Combine and limit to 5
             similarDatasets = [...similarDatasets, ...orgDatasets].slice(0, similarItemsLimit);
@@ -245,7 +247,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         const keywords = dataset.keyword
             ?.map((k: any) => printLocaleValue(locale, k))
             .filter(Boolean)
-            .join(', ');
+            .join(", ");
 
         // Get the first available license URL from distributions
         const getFirstLicenseUrl = () => {
@@ -257,15 +259,15 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
 
         // Create structured data for better SEO
         const structuredData = {
-            '@context': 'https://schema.org',
-            '@type': 'Dataset',
+            "@context": "https://schema.org",
+            "@type": "Dataset",
             name: title,
             description: description,
             url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
             identifier: dataset.id,
             ...(publisher && {
                 publisher: {
-                    '@type': 'Organization',
+                    "@type": "Organization",
                     name: publisher,
                 },
             }),
@@ -277,7 +279,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             distribution: dataset.distribution
                 ?.filter((dist: any) => dist.accessURL || dist.downloadURL)
                 .map((dist: any) => ({
-                    '@type': 'DataDownload',
+                    "@type": "DataDownload",
                     ...(dist.fdkFormat?.uri && { encodingFormat: dist.fdkFormat.uri }),
                     contentUrl: dist.downloadURL || dist.accessURL,
                 })),
@@ -290,26 +292,26 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             openGraph: {
                 title: title,
                 description: description,
-                type: 'website',
+                type: "website",
                 url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
-                siteName: 'data.norge.no',
+                siteName: "data.norge.no",
                 locale: locale,
             },
             twitter: {
-                card: 'summary_large_image',
+                card: "summary_large_image",
                 title: title,
                 description: description,
             },
             alternates: {
                 canonical: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
                 languages: {
-                    nb: `https://data.norge.no/nb/datasets/${dataset.id}/${getSlug(dataset, 'nb')}`,
-                    en: `https://data.norge.no/en/datasets/${dataset.id}/${getSlug(dataset, 'en')}`,
-                    nn: `https://data.norge.no/nn/datasets/${dataset.id}/${getSlug(dataset, 'nn')}`,
+                    nb: `https://data.norge.no/nb/datasets/${dataset.id}/${getSlug(dataset, "nb")}`,
+                    en: `https://data.norge.no/en/datasets/${dataset.id}/${getSlug(dataset, "en")}`,
+                    nn: `https://data.norge.no/nn/datasets/${dataset.id}/${getSlug(dataset, "nn")}`,
                 },
             },
             other: {
-                'structured-data': JSON.stringify(structuredData),
+                "structured-data": JSON.stringify(structuredData),
             },
         };
     } catch (err) {

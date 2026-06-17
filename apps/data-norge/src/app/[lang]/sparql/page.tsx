@@ -1,15 +1,15 @@
-import 'server-only';
-import React from 'react';
-import type { Metadata } from 'next';
-import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { getLocalization, type Locale } from '@fdk-frontend/localization';
-import { Breadcrumbs } from '@fdk-frontend/ui';
-import styles from './page.module.css';
-import { SparqlEditor } from './components/sparql-editor';
+import "server-only";
+import React from "react";
+import type { Metadata } from "next";
+import { Heading, Paragraph } from "@digdir/designsystemet-react";
+import { getLocalization, type Locale } from "@fdk-frontend/localization";
+import { Breadcrumbs } from "@fdk-frontend/ui";
+import styles from "./page.module.css";
+import { SparqlEditor } from "./components/sparql-editor";
 
 type SparqlPageProps = {
     params: Promise<{
-        lang: Locale['code'];
+        lang: Locale["code"];
     }>;
 };
 
@@ -31,15 +31,15 @@ const SparqlPage = async (props: SparqlPageProps) => {
 
     return (
         <>
-            <div style={{ margin: '0 2rem' }}>
+            <div style={{ margin: "0 2rem" }}>
                 <Breadcrumbs
                     breadcrumbList={breadcrumbList}
                     locale={lang}
                 />
             </div>
             <div className={styles.contentContainer}>
-                <Heading data-size='xl'>{dictionary.title}</Heading>
-                <Paragraph data-size='lg'>{dictionary.description}</Paragraph>
+                <Heading data-size="xl">{dictionary.title}</Heading>
+                <Paragraph data-size="lg">{dictionary.description}</Paragraph>
                 {FDK_SPARQL_ENDPOINT && (
                     <SparqlEditor
                         endpoint={FDK_SPARQL_ENDPOINT}

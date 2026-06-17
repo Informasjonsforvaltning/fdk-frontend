@@ -1,9 +1,9 @@
-import { getAllCommunityTopics, getOrgLogo, getService, searchConcepts } from '@fdk-frontend/data-access/server';
-import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
-import { getSlug, printLocaleValue } from '@fdk-frontend/utils';
-import { SearchObject, type CommunityTopic, type PublicService } from '@fellesdatakatalog/types';
-import ServiceDetailsPage from '../../../../components/details-page/service';
-import { notFound, redirect } from 'next/navigation';
+import { getAllCommunityTopics, getOrgLogo, getService, searchConcepts } from "@fdk-frontend/data-access/server";
+import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
+import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
+import { SearchObject, type CommunityTopic, type PublicService } from "@fellesdatakatalog/types";
+import ServiceDetailsPage from "../../../../components/details-page/service";
+import { notFound, redirect } from "next/navigation";
 
 export type DetailsPageWrapperProps = {
     params: Promise<{
@@ -36,7 +36,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Redirect to canonical slug if needed
     const canonicalSlug = getSlug(service, lang);
     if (slug !== canonicalSlug) {
-        redirect(`/${lang}/services/${id}/${canonicalSlug}${tab ? `?tab=${tab}` : ''}`);
+        redirect(`/${lang}/services/${id}/${canonicalSlug}${tab ? `?tab=${tab}` : ""}`);
     }
 
     // Find publisher: one of competent authority, owner, or catalog publisher
@@ -78,7 +78,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
             communityBaseUri={process.env.FDK_COMMUNITY_BASE_URI as string}
             locale={lang}
             dictionaries={dictionaries}
-            defaultActiveTab={tab?.toString() || 'overview'}
+            defaultActiveTab={tab?.toString() || "overview"}
             publisher={publisher}
         />
     );
@@ -98,19 +98,19 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         const keywords = service.keyword
             ?.map((k: any) => printLocaleValue(lang, k))
             .filter(Boolean)
-            .join(', ');
+            .join(", ");
 
         // Create structured data for better SEO
         const structuredData = {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
+            "@context": "https://schema.org",
+            "@type": "Service",
             name: title,
             description: description,
             url: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
             identifier: service.id,
             ...(publisher && {
                 publisher: {
-                    '@type': 'Organization',
+                    "@type": "Organization",
                     name: publisher,
                 },
             }),
@@ -126,26 +126,26 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
             openGraph: {
                 title: title,
                 description: description,
-                type: 'website',
+                type: "website",
                 url: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
-                siteName: 'data.norge.no',
+                siteName: "data.norge.no",
                 locale: lang,
             },
             twitter: {
-                card: 'summary_large_image',
+                card: "summary_large_image",
                 title: title,
                 description: description,
             },
             alternates: {
                 canonical: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
                 languages: {
-                    nb: `https://data.norge.no/nb/services/${service.id}/${getSlug(service, 'nb')}`,
-                    en: `https://data.norge.no/en/services/${service.id}/${getSlug(service, 'en')}`,
-                    nn: `https://data.norge.no/nn/services/${service.id}/${getSlug(service, 'nn')}`,
+                    nb: `https://data.norge.no/nb/services/${service.id}/${getSlug(service, "nb")}`,
+                    en: `https://data.norge.no/en/services/${service.id}/${getSlug(service, "en")}`,
+                    nn: `https://data.norge.no/nn/services/${service.id}/${getSlug(service, "nn")}`,
                 },
             },
             other: {
-                'structured-data': JSON.stringify(structuredData),
+                "structured-data": JSON.stringify(structuredData),
             },
         };
     } catch (err) {

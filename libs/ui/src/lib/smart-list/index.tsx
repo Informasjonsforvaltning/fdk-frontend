@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 interface SmartListProps<T> {
     items: T[];
     renderItem: (item: T, index: number) => React.ReactNode;
-    listType?: 'ul' | 'ol';
+    listType?: "ul" | "ol";
 }
 
 const SmartList = <T,>({
     items,
     renderItem,
-    listType = 'ul',
+    listType = "ul",
     ...rest
 }: SmartListProps<T> & React.HTMLAttributes<HTMLUListElement | HTMLOListElement>) => {
     if (items.length === 0) return null;

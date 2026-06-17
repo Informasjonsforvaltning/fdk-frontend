@@ -1,10 +1,10 @@
-import { Button, Paragraph, Link } from '@digdir/designsystemet-react';
-import { type Localization, type LocaleCodes, interpolate } from '@fdk-frontend/localization';
+import { Button, Paragraph, Link } from "@digdir/designsystemet-react";
+import { type Localization, type LocaleCodes, interpolate } from "@fdk-frontend/localization";
 
-import { HeadingWithDivider } from '@fdk-frontend/ui';
+import { HeadingWithDivider } from "@fdk-frontend/ui";
 
-import styles from './share-data-banner.module.scss';
-import OrganizationCarousel from '../organization-carousel';
+import styles from "./share-data-banner.module.scss";
+import OrganizationCarousel from "../organization-carousel";
 
 type ShareDataBannerProps = {
     dictionary: Localization;
@@ -31,7 +31,7 @@ const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
                 </Button>
                 <Button
                     asChild
-                    variant='secondary'
+                    variant="secondary"
                 >
                     <Link href={`/${locale}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
                 </Button>

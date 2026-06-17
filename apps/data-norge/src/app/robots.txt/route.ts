@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { isCanonicalDomain } from '../../utils/domain';
+import { NextRequest, NextResponse } from "next/server";
+import { isCanonicalDomain } from "../../utils/domain";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export const GET = async (request: NextRequest) => {
     let robotsContent: string;
@@ -36,8 +36,8 @@ Disallow: /
     return new NextResponse(robotsContent, {
         status: 200,
         headers: {
-            'Content-Type': 'text/plain',
-            'Cache-Control': 'public, max-age=300, s-maxage=600',
+            "Content-Type": "text/plain",
+            "Cache-Control": "public, max-age=300, s-maxage=600",
         },
     });
 };

@@ -1,9 +1,9 @@
-import React from 'react';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import Box from '../box';
-import ExternalLink from '../external-link';
-import DatasetPreviewWidget from '../dataset-preview-widget/';
-import styles from './styles.module.scss';
+import React from "react";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import Box from "../box";
+import ExternalLink from "../external-link";
+import DatasetPreviewWidget from "../dataset-preview-widget/";
+import styles from "./styles.module.scss";
 
 type DownloadDistributionWidgetProps = {
     title: string;
@@ -28,7 +28,7 @@ const DownloadDistributionWidget = ({
             {...props}
         >
             <ExternalLink
-                className='fdk-box-link'
+                className="fdk-box-link"
                 href={downloadUrl}
                 locale={locale}
                 gateway

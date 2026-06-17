@@ -1,9 +1,9 @@
-import { PropsWithChildren } from 'react';
-import { type Distribution } from '@fellesdatakatalog/types';
-import { isOpenLicense, printLocaleValue } from '@fdk-frontend/utils';
-import { DistributionTags } from '@fdk-frontend/ui';
-import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
-import styles from './distribution-header.module.scss';
+import { PropsWithChildren } from "react";
+import { type Distribution } from "@fellesdatakatalog/types";
+import { isOpenLicense, printLocaleValue } from "@fdk-frontend/utils";
+import { DistributionTags } from "@fdk-frontend/ui";
+import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
+import styles from "./distribution-header.module.scss";
 
 type DistributionHeaderProps = {
     distribution: Distribution;

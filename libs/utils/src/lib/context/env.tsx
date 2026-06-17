@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, PropsWithChildren } from 'react';
+import React, { createContext, useContext, PropsWithChildren } from "react";
 
 interface ClientsideEnvironmentVariables {
     FDK_BASE_URI: string;
@@ -25,7 +25,7 @@ export const EnvironmentVariablesProvider = ({
 export const useEnvironmentVariables = (): ClientsideEnvironmentVariables => {
     const context = useContext(EnvironmentVariablesContext);
     if (context === undefined) {
-        throw new Error('useEnvironmentVariables must be used within an EnvironmentVariablesProvider');
+        throw new Error("useEnvironmentVariables must be used within an EnvironmentVariablesProvider");
     }
     return context;
 };

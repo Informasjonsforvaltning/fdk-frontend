@@ -1,6 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
-import { type SyntaxHighlighterProps } from 'react-syntax-highlighter';
+import React from "react";
+import Image from "next/image";
+import { type SyntaxHighlighterProps } from "react-syntax-highlighter";
 import {
     Alert,
     type AlertProps,
@@ -18,12 +18,12 @@ import {
     TableCell,
     Tag,
     type TagProps,
-} from '@digdir/designsystemet-react';
-import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
-import ExternalLink from '../external-link';
-import MdxHeading from '../mdx-heading';
-import ConceptPreview, { type ConceptPreviewProps } from '../concept-preview';
-import CodeBlockWrapper from './code-block-wrapper';
+} from "@digdir/designsystemet-react";
+import { type LocaleCodes, i18n } from "@fdk-frontend/localization";
+import ExternalLink from "../external-link";
+import MdxHeading from "../mdx-heading";
+import ConceptPreview, { type ConceptPreviewProps } from "../concept-preview";
+import CodeBlockWrapper from "./code-block-wrapper";
 
 type MdxComponentMapProps = {
     locale: LocaleCodes;
@@ -70,7 +70,7 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
         Paragraph: (props: React.HTMLAttributes<HTMLParagraphElement>) => <Paragraph {...props} />,
         Heading: (props: HeadingProps) => <Heading {...props} />,
-        Alert: ({ 'data-size': dataSize = 'sm', 'data-color': dataColor, ...props }: AlertProps) => (
+        Alert: ({ "data-size": dataSize = "sm", "data-color": dataColor, ...props }: AlertProps) => (
             <Alert
                 data-size={dataSize}
                 data-color={dataColor}
@@ -108,19 +108,17 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         Tag: (props: TagProps) => <Tag {...props} />,
         Ingress: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
             <Paragraph
-                data-size='md'
+                data-size="md"
                 asChild={true}
                 {...props}
             >
-                <div>
-                    {children}
-                </div>
+                <div>{children}</div>
             </Paragraph>
         ),
         a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-            if (rest.href?.startsWith('http')) {
+            if (rest.href?.startsWith("http")) {
                 return <ExternalLink {...rest}>{children}</ExternalLink>;
-            } else if (rest.href?.startsWith('/docs')) {
+            } else if (rest.href?.startsWith("/docs")) {
                 return (
                     <Link
                         {...rest}
@@ -135,8 +133,8 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         },
         code: ({ className, ...rest }: SyntaxHighlighterProps) => {
             const { children } = rest;
-            const isBlock = typeof children === 'string' && children.includes('\n');
-            const match = /language-(\w+)/.exec(className || '');
+            const isBlock = typeof children === "string" && children.includes("\n");
+            const match = /language-(\w+)/.exec(className || "");
 
             if (isBlock) {
                 return match ? (

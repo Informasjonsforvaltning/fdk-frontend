@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React from 'react';
-import cn from 'classnames';
-import { ForwardRefComponent, motion } from 'framer-motion';
-import { Link, Heading } from '@digdir/designsystemet-react';
-import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
-import ExternalLink from '../external-link';
-import styles from './main-menu.module.scss';
-import GithubLogo from './images/github-logo';
-import getMainMenuData from './data';
+import React from "react";
+import cn from "classnames";
+import { ForwardRefComponent, motion } from "framer-motion";
+import { Link, Heading } from "@digdir/designsystemet-react";
+import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
+import ExternalLink from "../external-link";
+import styles from "./main-menu.module.scss";
+import GithubLogo from "./images/github-logo";
+import getMainMenuData from "./data";
 
 type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
     locale: LocaleCodes;
@@ -40,8 +40,8 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
         <MotionNav
             className={cn(styles.mainMenu, className)}
             variants={animations.links}
-            initial='hidden'
-            animate='show'
+            initial="hidden"
+            animate="show"
             aria-label={dictionary.mainMenu.label}
             {...motionProps}
             {...rest}
@@ -50,13 +50,13 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
                 <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}
-                    aria-labelledby='mainMenu.catalogs.heading'
+                    aria-labelledby="mainMenu.catalogs.heading"
                 >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        data-size='sm'
-                        id='mainMenu.catalogs.heading'
+                        data-size="sm"
+                        id="mainMenu.catalogs.heading"
                     >
                         {dictionary.mainMenu.catalogs.heading}
                     </Heading>
@@ -76,13 +76,13 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
                 <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}
-                    aria-labelledby='mainMenu.help.heading'
+                    aria-labelledby="mainMenu.help.heading"
                 >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        data-size='sm'
-                        id='mainMenu.help.heading'
+                        data-size="sm"
+                        id="mainMenu.help.heading"
                     >
                         {dictionary.mainMenu.help.heading}
                     </Heading>
@@ -97,13 +97,13 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
                 <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}
-                    aria-labelledby='mainMenu.tools.heading'
+                    aria-labelledby="mainMenu.tools.heading"
                 >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        data-size='sm'
-                        id='mainMenu.tools.heading'
+                        data-size="sm"
+                        id="mainMenu.tools.heading"
                     >
                         {dictionary.mainMenu.tools.heading}
                     </Heading>
@@ -118,13 +118,13 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
                 <MotionNav
                     className={styles.linkSection}
                     variants={animations.section}
-                    aria-labelledby='mainMenu.about.heading'
+                    aria-labelledby="mainMenu.about.heading"
                 >
                     <Heading
                         className={styles.linkSectionHeader}
                         level={2}
-                        data-size='sm'
-                        id='mainMenu.about.heading'
+                        data-size="sm"
+                        id="mainMenu.about.heading"
                     >
                         {dictionary.mainMenu.about.heading}
                     </Heading>
@@ -136,8 +136,8 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
                                         href={item.href}
                                         locale={locale}
                                     >
-                                        {item.href.startsWith('https://github.com') && (
-                                            <GithubLogo style={{ marginRight: '0.125em' }} />
+                                        {item.href.startsWith("https://github.com") && (
+                                            <GithubLogo style={{ marginRight: "0.125em" }} />
                                         )}
                                         {item.title}
                                     </ExternalLink>

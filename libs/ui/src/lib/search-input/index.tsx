@@ -1,13 +1,13 @@
-'use client';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import { useRef, useEffect, useState, type FormEvent } from 'react';
-import cn from 'classnames';
-import { Input, Tag } from '@digdir/designsystemet-react';
-import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import { type LocaleCodes } from '@fdk-frontend/localization';
+"use client";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRef, useEffect, useState, type FormEvent } from "react";
+import cn from "classnames";
+import { Input, Tag } from "@digdir/designsystemet-react";
+import { MagnifyingGlassIcon } from "@navikt/aksel-icons";
+import { type LocaleCodes } from "@fdk-frontend/localization";
 
-import SearchInputTray from '../search-input-tray';
-import styles from './search-input.module.scss';
+import SearchInputTray from "../search-input-tray";
+import styles from "./search-input.module.scss";
 
 export type SearchInputProps = {
     /** Controlled value. Omit to use internal state (uncontrolled). */
@@ -22,8 +22,8 @@ export type SearchInputProps = {
 };
 
 const getInitialQFromUrl = function getInitialQFromUrl(searchParams: URLSearchParams): string {
-    const q = searchParams.get('q');
-    if (q === null || q === '') return '';
+    const q = searchParams.get("q");
+    if (q === null || q === "") return "";
     try {
         return decodeURIComponent(q);
     } catch {
@@ -35,8 +35,8 @@ const SearchInput = ({
     value: controlledValue,
     onChange: controlledOnChange,
     // TODO: localization remains to be implemented
-    searchLabel = 'Søk',
-    placeholder = 'Hva leter du etter?',
+    searchLabel = "Søk",
+    placeholder = "Hva leter du etter?",
     className,
     locale,
     loading,
@@ -49,9 +49,7 @@ const SearchInput = ({
     const inputRef = useRef<HTMLInputElement>(null);
     const [isMac, setIsMac] = useState(false);
     const [isTrayVisible, setIsTrayVisible] = useState(false);
-    const [internalValue, setInternalValue] = useState(() =>
-        getInitialQFromUrl(searchParams)
-    );
+    const [internalValue, setInternalValue] = useState(() => getInitialQFromUrl(searchParams));
 
     // Keep uncontrolled value in sync when URL q param changes (e.g. back/forward)
     useEffect(() => {
@@ -62,26 +60,21 @@ const SearchInput = ({
 
     const isControlled = controlledValue !== undefined;
     const value = isControlled ? controlledValue : internalValue;
-    const setValue = isControlled
-        ? (controlledOnChange ?? (() => undefined))
-        : setInternalValue;
+    const setValue = isControlled ? (controlledOnChange ?? (() => undefined)) : setInternalValue;
 
     useEffect(() => {
-        setIsMac(
-            typeof navigator !== 'undefined' &&
-                /Mac|iPod|iPhone|iPad/.test(navigator.platform)
-        );
+        setIsMac(typeof navigator !== "undefined" && /Mac|iPod|iPhone|iPad/.test(navigator.platform));
     }, []);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            if ((e.metaKey || e.ctrlKey) && e.key === "k") {
                 e.preventDefault();
                 inputRef.current?.focus();
             }
         };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
     }, []);
 
     useEffect(() => {
@@ -101,11 +94,11 @@ const SearchInput = ({
             }
         };
 
-        document.addEventListener('pointerdown', handlePointerDown, true);
-        document.addEventListener('focusin', handleFocusIn, true);
+        document.addEventListener("pointerdown", handlePointerDown, true);
+        document.addEventListener("focusin", handleFocusIn, true);
         return () => {
-            document.removeEventListener('pointerdown', handlePointerDown, true);
-            document.removeEventListener('focusin', handleFocusIn, true);
+            document.removeEventListener("pointerdown", handlePointerDown, true);
+            document.removeEventListener("focusin", handleFocusIn, true);
         };
     }, []);
 
@@ -113,13 +106,10 @@ const SearchInput = ({
         e.preventDefault();
         const trimmed = value.trim();
         const q = encodeURIComponent(trimmed);
-        const segments = pathname.split('/').filter(Boolean);
-        const isOnSearchPage =
-            segments.length >= 2 &&
-            segments[0] === locale &&
-            segments[1] === 'search';
+        const segments = pathname.split("/").filter(Boolean);
+        const isOnSearchPage = segments.length >= 2 && segments[0] === locale && segments[1] === "search";
         if (isOnSearchPage) {
-            const path = pathname.split('?')[0];
+            const path = pathname.split("?")[0];
             router.push(`${path}?q=${q}`);
         } else {
             router.push(`/${locale}/search?q=${q}`);
@@ -136,7 +126,10 @@ const SearchInput = ({
                 onSubmit={handleSubmit}
                 {...rest}
             >
-                <MagnifyingGlassIcon aria-hidden className={styles.searchIcon} />
+                <MagnifyingGlassIcon
+                    aria-hidden
+                    className={styles.searchIcon}
+                />
                 <Input
                     ref={inputRef}
                     value={value}
@@ -148,10 +141,10 @@ const SearchInput = ({
                 />
                 <Tag
                     className={styles.hotkeyTag}
-                    data-size='sm'
-                    data-color='neutral'
+                    data-size="sm"
+                    data-color="neutral"
                 >
-                    {isMac ? '⌘ + K' : 'Ctrl + K'}
+                    {isMac ? "⌘ + K" : "Ctrl + K"}
                 </Tag>
             </form>
             <SearchInputTray

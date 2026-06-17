@@ -1,12 +1,12 @@
-import slugify from 'slugify';
-import cn from 'classnames';
+import slugify from "slugify";
+import cn from "classnames";
 
-import { Heading, Link } from '@digdir/designsystemet-react';
-import { type Localization } from '@fdk-frontend/localization';
+import { Heading, Link } from "@digdir/designsystemet-react";
+import { type Localization } from "@fdk-frontend/localization";
 
-import { type MdxHeadlineObjectNode } from '../mdx-page/utils';
+import { type MdxHeadlineObjectNode } from "../mdx-page/utils";
 
-import styles from '../sidebar/sidebar.module.scss';
+import styles from "../sidebar/sidebar.module.scss";
 
 const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
     if (!headlines || headlines.length === 0) return null;
@@ -33,12 +33,12 @@ type TableOfContentsProps = {
 const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
     <aside
         className={styles.sidebar}
-        aria-labelledby='tableOfContents.onThisPage'
+        aria-labelledby="tableOfContents.onThisPage"
     >
         <Heading
-            id='tableOfContents.onThisPage'
+            id="tableOfContents.onThisPage"
             level={2}
-            data-size='xs'
+            data-size="xs"
         >
             {dictionary.tableOfContents.onThisPage}
         </Heading>

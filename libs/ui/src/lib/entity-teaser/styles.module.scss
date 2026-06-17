@@ -1,19 +1,19 @@
 .container {
-    position:relative;
+    position: relative;
 
     :global(.ds-link) {
         text-decoration: none;
     }
 
     .llmIcon {
-        position:absolute;
-        top:1rem;
-        right:1rem;
-        width:1.5rem;
-        height:1.5rem;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 1.5rem;
+        height: 1.5rem;
         color: var(--ds-color-accent-border-default);
         color: var(--ds-color-neutral-border-subtle);
-        margin:0;
+        margin: 0;
     }
 
     &:hover {
@@ -25,14 +25,14 @@
 
 .orgLogo {
     float: left;
-    width:1.5rem;
-    height:1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     margin-right: 0.5em;
 }
 
 .orgName {
-    font-size:0.9em;
-    opacity:0.75;
+    font-size: 0.9em;
+    opacity: 0.75;
 }
 
 .orgButton {

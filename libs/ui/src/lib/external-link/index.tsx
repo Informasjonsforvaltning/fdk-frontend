@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useState, useEffect, type PropsWithChildren } from 'react';
-import { Link, type LinkProps } from '@digdir/designsystemet-react';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { i18n, type LocaleCodes } from '@fdk-frontend/localization';
+import { useState, useEffect, type PropsWithChildren } from "react";
+import { Link, type LinkProps } from "@digdir/designsystemet-react";
+import { ExternalLinkIcon } from "@navikt/aksel-icons";
+import { i18n, type LocaleCodes } from "@fdk-frontend/localization";
 
 /**
  * @prop {boolean} gateway - Determines if the link should go through /leaving-gateway.
  * Will still be bypassed if link goes to same hostname as app.
  */
-export type ExternalLinkProps = Omit<LinkProps, 'children'> &
+export type ExternalLinkProps = Omit<LinkProps, "children"> &
     PropsWithChildren & {
         locale?: LocaleCodes;
         showIcon?: boolean;
@@ -17,12 +17,12 @@ export type ExternalLinkProps = Omit<LinkProps, 'children'> &
     };
 
 const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway, ...props }: ExternalLinkProps) => {
-    const { href = '' } = props;
+    const { href = "" } = props;
     const [target, setTarget] = useState(href);
 
     useEffect(() => {
         const searchParams = new URLSearchParams();
-        searchParams.set('url', href);
+        searchParams.set("url", href);
         const gatewayLink = `/${locale}/leaving-gateway?${searchParams}`;
 
         // Needed to bypass gateway where an assumed external link actually points to data.norge.no
@@ -44,8 +44,8 @@ const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway
             {showIcon && (
                 <ExternalLinkIcon
                     aria-hidden
-                    fontSize='1em'
-                    style={{ marginLeft: '0.125em' }}
+                    fontSize="1em"
+                    style={{ marginLeft: "0.125em" }}
                 />
             )}
         </Link>

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { Link } from '@digdir/designsystemet-react';
-import { type Localization } from '@fdk-frontend/localization';
+import { Link } from "@digdir/designsystemet-react";
+import { type Localization } from "@fdk-frontend/localization";
 
-import styles from './query-suggestion.module.scss';
+import styles from "./query-suggestion.module.scss";
 
 type QuerySuggestionProps = {
     dictionary: Localization;
@@ -25,12 +25,12 @@ const QuerySuggestion = ({ dictionary, onClick, ...rest }: QuerySuggestionProps)
     return (
         <div
             className={styles.querySuggestion}
-            data-color-scheme='dark'
+            data-color-scheme="dark"
         >
             <span>{dictionary.aiBanner.suggestions.prefix}</span>&nbsp;
             <Link
                 onClick={handleClick}
-                href='#'
+                href="#"
                 className={styles.customLink}
             >
                 {suggestion}

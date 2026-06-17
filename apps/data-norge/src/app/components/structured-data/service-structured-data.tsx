@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
-import { type LocaleCodes } from '@fdk-frontend/localization';
-import { type PublicService } from '@fellesdatakatalog/types';
-import { printLocaleValue, getSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
+import Script from "next/script";
+import { type LocaleCodes } from "@fdk-frontend/localization";
+import { type PublicService } from "@fellesdatakatalog/types";
+import { printLocaleValue, getSlug, safeStringify, sanitizeArray, sanitizeString } from "@fdk-frontend/utils";
 
 export type ServiceStructuredDataProps = {
     service: PublicService;
@@ -13,15 +13,15 @@ export type ServiceStructuredDataProps = {
 
 export default function ServiceStructuredData({ service, locale, baseUri }: ServiceStructuredDataProps) {
     const structuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'Service',
+        "@context": "https://schema.org",
+        "@type": "Service",
         name: sanitizeString(printLocaleValue(locale, service.title)),
         description: sanitizeString(printLocaleValue(locale, service.description)),
         url: `${baseUri}/${locale}/services/${service.id}/${getSlug(service, locale)}`,
         identifier: service.id,
         ...(service.catalog?.publisher?.prefLabel && {
             publisher: {
-                '@type': 'Organization',
+                "@type": "Organization",
                 name: sanitizeString(printLocaleValue(locale, service.catalog.publisher.prefLabel)),
                 url: service.catalog.publisher?.uri,
             },
@@ -31,41 +31,41 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
         keywords: service.keyword
             ?.map((k) => sanitizeString(printLocaleValue(locale, k)))
             .filter(Boolean)
-            .join(', '),
+            .join(", "),
         spatialCoverage:
             service.spatial && service.spatial.length > 0
                 ? sanitizeArray(
                       service.spatial.map((spatial) => ({
-                          '@type': 'Place',
+                          "@type": "Place",
                           name: sanitizeString(printLocaleValue(locale, spatial.prefLabel)),
                       })),
                   )
                 : undefined,
         mainEntity: {
-            '@type': 'Service',
+            "@type": "Service",
             name: sanitizeString(printLocaleValue(locale, service.title)),
             description: sanitizeString(printLocaleValue(locale, service.description)),
         },
     };
 
     const breadcrumbData = {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
         itemListElement: [
             {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 1,
-                name: 'Home',
+                name: "Home",
                 item: `${baseUri}/${locale}`,
             },
             {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 2,
-                name: 'Services',
+                name: "Services",
                 item: `${baseUri}/${locale}/services`,
             },
             {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 3,
                 name: sanitizeString(printLocaleValue(locale, service.title)),
                 item: `${baseUri}/${locale}/services/${service.id}/${getSlug(service, locale)}`,
@@ -76,15 +76,15 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
     return (
         <>
             <Script
-                id='service-structured-data'
-                type='application/ld+json'
+                id="service-structured-data"
+                type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: safeStringify(structuredData),
                 }}
             />
             <Script
-                id='breadcrumb-structured-data'
-                type='application/ld+json'
+                id="breadcrumb-structured-data"
+                type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: safeStringify(breadcrumbData),
                 }}

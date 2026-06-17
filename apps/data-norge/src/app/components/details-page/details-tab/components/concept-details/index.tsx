@@ -1,15 +1,15 @@
-import React from 'react';
-import { Heading, Link } from '@digdir/designsystemet-react';
-import { PlaceholderBox, Dlist } from '@fdk-frontend/ui';
-import { DatasetDetailsProps } from '../../';
-import { printLocaleValue } from '@fdk-frontend/utils';
+import React from "react";
+import { Heading, Link } from "@digdir/designsystemet-react";
+import { PlaceholderBox, Dlist } from "@fdk-frontend/ui";
+import { DatasetDetailsProps } from "../../";
+import { printLocaleValue } from "@fdk-frontend/utils";
 
 const ConceptDetails = ({ dataset, locale, dictionary, concepts }: DatasetDetailsProps) => {
     return (
         <section>
             <Heading
                 level={2}
-                data-size='xs'
+                data-size="xs"
             >
                 {dictionary.details.concepts.title}
             </Heading>

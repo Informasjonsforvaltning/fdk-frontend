@@ -1,5 +1,5 @@
-import { type Localization } from '@fdk-frontend/localization';
-import { FormState } from './types';
+import { type Localization } from "@fdk-frontend/localization";
+import { FormState } from "./types";
 
 /**
  * This method extracts error messages from the form state and returns them as a string array.
@@ -14,15 +14,15 @@ export const extractErrorMessages = (
     dictionary: Localization,
 ): string[] | string => {
     if (!state?.fieldErrors) {
-        return '';
+        return "";
     }
     const errors = state.fieldErrors[fieldName] || [];
     const errorMessages = errors.map((error) => {
-        const [message, length] = error.split(',');
+        const [message, length] = error.split(",");
         const errorMessage = dictionary.error[message as keyof typeof dictionary.error];
-        return errorMessage ? `${errorMessage}${length ? ' ' + length : ''}` : dictionary.error.default;
+        return errorMessage ? `${errorMessage}${length ? " " + length : ""}` : dictionary.error.default;
     });
-    return errorMessages.length ? errorMessages : '';
+    return errorMessages.length ? errorMessages : "";
 };
 
 /**
@@ -32,7 +32,7 @@ export const extractErrorMessages = (
  */
 export const extractFormEntries = (formData: FormData) => ({
     ...(Array.from(formData.entries())
-        .filter(([key]) => !key.startsWith('$'))
+        .filter(([key]) => !key.startsWith("$"))
         .reduce(
             (acc, [key, value]) => {
                 acc[key] = value;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import styles from './vstack.module.scss';
+import styles from "./vstack.module.scss";
 
 const VStack = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (

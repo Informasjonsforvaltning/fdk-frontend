@@ -1,23 +1,23 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { i18n, Locale } from '@fdk-frontend/localization';
-import { isCanonicalDomain } from './utils/domain';
+import { NextRequest, NextResponse } from "next/server";
+import { i18n, Locale } from "@fdk-frontend/localization";
+import { isCanonicalDomain } from "./utils/domain";
 
 export const proxy = (request: NextRequest) => {
     // Get the pathname and remove basePath
-    const basePath = '/';
+    const basePath = "/";
     const pathname = request.nextUrl.pathname;
 
     if (
         [
-            '/manifest.json',
-            '/favicon.ico',
-            '/icon0.svg',
-            '/icon1.png',
-            '/apple-icon.png',
-            '/web-app-manifest-192x192.png',
-            '/web-app-manifest-512x512.png',
-            '/robots.txt',
-            '/sitemap.xml',
+            "/manifest.json",
+            "/favicon.ico",
+            "/icon0.svg",
+            "/icon1.png",
+            "/apple-icon.png",
+            "/web-app-manifest-192x192.png",
+            "/web-app-manifest-512x512.png",
+            "/robots.txt",
+            "/sitemap.xml",
             // Your other files in `public`
         ].includes(pathname)
     ) {
@@ -32,7 +32,7 @@ export const proxy = (request: NextRequest) => {
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
         return NextResponse.redirect(
-            new URL(`${basePath}${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url),
+            new URL(`${basePath}${i18n.defaultLocale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url),
         );
     }
 
@@ -41,24 +41,23 @@ export const proxy = (request: NextRequest) => {
 
     if (isCanonicalDomain()) {
         // Allow crawling on canonical domain
-        response.headers.set('X-Robots-Tag', 'index, follow');
+        response.headers.set("X-Robots-Tag", "index, follow");
     } else {
         // Block crawling on non-canonical domains (staging, demo, development)
-        response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+        response.headers.set("X-Robots-Tag", "noindex, nofollow");
     }
 
     return response;
-}
+};
 
 export const config = {
     // Matcher ignoring `/_next/` and `/api/`
     matcher: [
-        '/((?!api|_next/static|_next/image|favicon.png|favicon-16x16.png|favicon-32x32.png|apple-touch-icon.png).*)',
-        { source: '/' },
+        "/((?!api|_next/static|_next/image|favicon.png|favicon-16x16.png|favicon-32x32.png|apple-touch-icon.png).*)",
+        { source: "/" },
     ],
     missing: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' },
+        { type: "header", key: "next-router-prefetch" },
+        { type: "header", key: "purpose", value: "prefetch" },
     ],
 };
-

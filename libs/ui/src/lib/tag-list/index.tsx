@@ -1,7 +1,7 @@
-import React from 'react';
-import cn from 'classnames';
-import { Tag } from '@digdir/designsystemet-react';
-import styles from './styles.module.scss';
+import React from "react";
+import cn from "classnames";
+import { Tag } from "@digdir/designsystemet-react";
+import styles from "./styles.module.scss";
 
 export type TagListProps = {
     maxTags?: number;

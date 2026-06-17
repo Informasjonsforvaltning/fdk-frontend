@@ -1,8 +1,8 @@
-import React from 'react';
-import cn from 'classnames';
-import styles from './badge-overlay.module.scss';
+import React from "react";
+import cn from "classnames";
+import styles from "./badge-overlay.module.scss";
 
-import Badge, { type BadgeProps } from '../badge';
+import Badge, { type BadgeProps } from "../badge";
 
 type BadgeOverlayProps = {
     badgeProps: BadgeProps;

@@ -1,20 +1,20 @@
-import React, { PropsWithChildren, type JSX } from 'react';
-import slugify from 'slugify';
+import React, { PropsWithChildren, type JSX } from "react";
+import slugify from "slugify";
 
-import styles from './mdx-heading.module.scss';
+import styles from "./mdx-heading.module.scss";
 
 const extractText = (children: React.ReactNode): string => {
     return React.Children.toArray(children)
         .map((child) => {
-            if (typeof child === 'string') {
+            if (typeof child === "string") {
                 return child;
             }
             if (React.isValidElement(child)) {
                 return extractText((child.props as PropsWithChildren).children);
             }
-            return '';
+            return "";
         })
-        .join('');
+        .join("");
 };
 
 export type MdxHeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {

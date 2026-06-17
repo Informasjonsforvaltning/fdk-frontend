@@ -201,7 +201,7 @@ if (totalPages > 1) {
 
 ```typescript
 // Recursively scan content directories
-async function scanContentDirectory(dirPath: string, basePath: string = ''): Promise<string[]> {
+async function scanContentDirectory(dirPath: string, basePath: string = ""): Promise<string[]> {
     const paths: string[] = [];
 
     try {
@@ -349,8 +349,8 @@ export async function GET(request: NextRequest) {
         return new NextResponse(SITEMAP_CACHE.sitemap, {
             status: 200,
             headers: {
-                'Content-Type': 'application/xml',
-                'Cache-Control': 'public, max-age=300, s-maxage=600',
+                "Content-Type": "application/xml",
+                "Cache-Control": "public, max-age=300, s-maxage=600",
                 ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
             },
         });
@@ -363,20 +363,20 @@ export async function GET(request: NextRequest) {
         // Atomic update
         const wasUpdated = atomicUpdateSitemapCache(sitemap);
         if (wasUpdated) {
-            console.log('Sitemap cache updated');
+            console.log("Sitemap cache updated");
         }
 
         return new NextResponse(sitemap, {
             status: 200,
             headers: {
-                'Content-Type': 'application/xml',
-                'Cache-Control': 'public, max-age=300, s-maxage=600',
+                "Content-Type": "application/xml",
+                "Cache-Control": "public, max-age=300, s-maxage=600",
                 ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
             },
         });
     } catch (error) {
-        console.error('Error generating sitemap:', error);
-        return new NextResponse('Error generating sitemap', { status: 500 });
+        console.error("Error generating sitemap:", error);
+        return new NextResponse("Error generating sitemap", { status: 500 });
     }
 }
 ```

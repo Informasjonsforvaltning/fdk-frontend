@@ -1,16 +1,16 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import React from 'react';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { compileMDX } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
-import { i18n, getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
-import { mdxComponents, CatalogsMenu, AlertWithLinkButton } from '@fdk-frontend/ui';
-import MdxPage from '../mdx-page';
+import fs from "node:fs/promises";
+import path from "node:path";
+import React from "react";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { compileMDX } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
+import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
+import { mdxComponents, CatalogsMenu, AlertWithLinkButton } from "@fdk-frontend/ui";
+import MdxPage from "../mdx-page";
 
 const getContentDirectory = (rootContentDirectory: string) => {
-    return path.join(process.cwd(), 'public', 'content', rootContentDirectory);
+    return path.join(process.cwd(), "public", "content", rootContentDirectory);
 };
 
 export type DocsPageProps = {
@@ -36,7 +36,7 @@ export default async function DocsPage(pageProps: DocsPageProps) {
 
     try {
         // Get raw MDX source
-        const source = await fs.readFile(filePath, 'utf8');
+        const source = await fs.readFile(filePath, "utf8");
 
         // Compile MDX and extract content
         const { content, frontmatter } = await compileMDX({
@@ -58,7 +58,7 @@ export default async function DocsPage(pageProps: DocsPageProps) {
                 ),
                 NegativeMargin: (props: React.HTMLAttributes<HTMLDivElement>) => (
                     <div
-                        style={{ marginLeft: '-1rem', marginRight: '-1rem' }}
+                        style={{ marginLeft: "-1rem", marginRight: "-1rem" }}
                         {...props}
                     />
                 ),
@@ -100,7 +100,7 @@ export const generateMetadata = async function (pageProps: DocsPageProps): Promi
     const filePath = path.resolve(process.cwd(), contentDirectory, ...slug, `${pageName}.${locale}.mdx`);
 
     try {
-        const source = await fs.readFile(filePath, 'utf8');
+        const source = await fs.readFile(filePath, "utf8");
 
         const { frontmatter } = await compileMDX({
             source,
@@ -111,7 +111,7 @@ export const generateMetadata = async function (pageProps: DocsPageProps): Promi
         const description = frontmatter.description as string | undefined;
 
         // Construct canonical URL based on current path
-        const canonicalPath = [rootContentDirectory, ...slug].join('/');
+        const canonicalPath = [rootContentDirectory, ...slug].join("/");
         const canonicalUrl = `https://data.norge.no/${locale}/${canonicalPath}`;
 
         return {

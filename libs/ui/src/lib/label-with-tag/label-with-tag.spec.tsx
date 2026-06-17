@@ -1,33 +1,33 @@
-import { render } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { render } from "@testing-library/react";
+import { screen } from "@testing-library/dom";
+import { axe, toHaveNoViolations } from "jest-axe";
 
-import { LabelWithTag } from '.';
-import React from 'react';
+import { LabelWithTag } from ".";
+import React from "react";
 
 expect.extend(toHaveNoViolations);
 
-describe('LabelWithTag', () => {
-    it('should render successfully', async () => {
+describe("LabelWithTag", () => {
+    it("should render successfully", async () => {
         render(
             <LabelWithTag
-                labelText='My label'
-                tagText='Is required'
+                labelText="My label"
+                tagText="Is required"
             />,
         );
-        const linkElement = screen.getByText('My label');
+        const linkElement = screen.getByText("My label");
         expect(linkElement).toBeInTheDocument();
 
-        const labelElement = screen.getByText('Is required');
+        const labelElement = screen.getByText("Is required");
         expect(labelElement).toBeInTheDocument();
     });
 
-    it('should have no a11y violations', async () => {
+    it("should have no a11y violations", async () => {
         const { baseElement } = render(
             <main>
                 <LabelWithTag
-                    labelText='My label'
-                    tagText='Is required'
+                    labelText="My label"
+                    tagText="Is required"
                 />
             </main>,
         );

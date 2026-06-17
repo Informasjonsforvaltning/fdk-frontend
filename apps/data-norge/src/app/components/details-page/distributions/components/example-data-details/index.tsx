@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Details } from '@digdir/designsystemet-react';
-import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import { type Distribution, type SearchObject } from '@fellesdatakatalog/types';
-import { DownloadButton } from '@fdk-frontend/ui';
-import styles from '../../distributions.module.scss';
-import DistributionDetails from '../distribution-details';
-import DistributionHeader from '../distribution-header';
+import { useState } from "react";
+import { Details } from "@digdir/designsystemet-react";
+import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
+import { printLocaleValue } from "@fdk-frontend/utils";
+import { type Distribution, type SearchObject } from "@fellesdatakatalog/types";
+import { DownloadButton } from "@fdk-frontend/ui";
+import styles from "../../distributions.module.scss";
+import DistributionDetails from "../distribution-details";
+import DistributionHeader from "../distribution-header";
 
 type ExampleDataDetailsProps = {
     distribution: Distribution;

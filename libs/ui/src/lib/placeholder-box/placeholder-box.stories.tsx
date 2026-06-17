@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import PlaceholderBox from '.';
+import PlaceholderBox from ".";
 
 const meta: Meta<typeof PlaceholderBox> = {
     component: PlaceholderBox,
-    title: 'PlaceholderBox',
+    title: "PlaceholderBox",
 };
 
 export default meta;
@@ -18,7 +18,7 @@ export const Primary: Story = {
     },
     render: () => (
         <>
-            <div style={{ padding: '1rem' }}>
+            <div style={{ padding: "1rem" }}>
                 <PlaceholderBox>PlaceholderBox</PlaceholderBox>
             </div>
         </>

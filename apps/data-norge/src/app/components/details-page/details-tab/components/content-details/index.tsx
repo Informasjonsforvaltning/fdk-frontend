@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from '@fdk-frontend/ui';
-import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
-import { formatTemporalDate, printLocaleValue } from '@fdk-frontend/utils';
-import { HelpText } from '@fellesdatakatalog/ui';
+import React, { useContext } from "react";
+import { Heading, Paragraph } from "@digdir/designsystemet-react";
+import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from "@fdk-frontend/ui";
+import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
+import { formatTemporalDate, printLocaleValue } from "@fdk-frontend/utils";
+import { HelpText } from "@fellesdatakatalog/ui";
 
 const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
@@ -12,7 +12,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
         <section>
             <Heading
                 level={2}
-                data-size='xs'
+                data-size="xs"
             >
                 {dictionary.details.content.title}
             </Heading>
@@ -24,7 +24,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                             {dataset.language ? (
                                 dataset.language
                                     .map((language: any) => printLocaleValue(locale, language.prefLabel))
-                                    .join(', ')
+                                    .join(", ")
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
@@ -49,7 +49,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                         ) : (
                                             printLocaleValue(locale, attribution.agent.prefLabel)
                                         )}
-                                        {index < dataset.qualifiedAttributions.length - 1 && ', '}
+                                        {index < dataset.qualifiedAttributions.length - 1 && ", "}
                                     </span>
                                 ))
                             ) : (
@@ -75,7 +75,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>{dictionary.details.content.accrualPeriodicity}:</dt>
                         <dd>
                             {dataset.accrualPeriodicity ? (
-                                <span style={{ textTransform: 'capitalize' }}>
+                                <span style={{ textTransform: "capitalize" }}>
                                     {printLocaleValue(locale, dataset.accrualPeriodicity.prefLabel)}
                                 </span>
                             ) : (
@@ -96,7 +96,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         </dt>
                         <dd>
                             {dataset.issued ? (
-                                new Date(dataset.issued).toLocaleString(locale, { dateStyle: 'long' })
+                                new Date(dataset.issued).toLocaleString(locale, { dateStyle: "long" })
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
@@ -108,7 +108,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                         <dt>{dictionary.details.content.modified}:</dt>
                         <dd>
                             {dataset?.modified ? (
-                                new Date(dataset.modified).toLocaleString(locale, { dateStyle: 'long' })
+                                new Date(dataset.modified).toLocaleString(locale, { dateStyle: "long" })
                             ) : (
                                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                             )}
@@ -178,10 +178,10 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                 {!dataset?.spatial && !showEmptyRows ? null : (
                     <>
                         <dt>{dictionary.details.content.spatial}:</dt>
-                        <dd className='article'>
+                        <dd className="article">
                             {dataset?.spatial ? (
                                 <SmartList
-                                    listType='ol'
+                                    listType="ol"
                                     items={dataset.spatial}
                                     renderItem={(spatial) =>
                                         spatial.uri ? (
@@ -212,7 +212,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                             {dataset?.temporal ? (
                                 <SmartList
                                     items={dataset.temporal}
-                                    style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+                                    style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
                                     renderItem={(temporal) => (
                                         <Dlist>
                                             {temporal.startDate && (
@@ -246,10 +246,10 @@ const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
                                 </HelpText>
                             </Hstack>
                         </dt>
-                        <dd className='article'>
+                        <dd className="article">
                             {dataset?.conformsTo ? (
                                 <SmartList
-                                    listType='ol'
+                                    listType="ol"
                                     items={dataset.conformsTo}
                                     renderItem={(item) => (
                                         <ExternalLink

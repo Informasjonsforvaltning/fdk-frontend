@@ -1,6 +1,6 @@
-import { marked } from 'marked';
+import { marked } from "marked";
 
-const stripFrontmatter = (str: string) => str.replace(/^---[\s\S]*?---\s*/, '');
+const stripFrontmatter = (str: string) => str.replace(/^---[\s\S]*?---\s*/, "");
 
 export type MdxHeadlineObject = {
     level: number;
@@ -19,7 +19,7 @@ export type MdxHeadlineObjectNode = MdxHeadlineObject & {
 const extractHeadingText = function (token: any) {
     // Check if the heading token has nested tokens and if it's a link
     if (token.tokens && token.tokens.length > 0) {
-        const linkToken = token.tokens.find((t: any) => t.type === 'link');
+        const linkToken = token.tokens.find((t: any) => t.type === "link");
         if (linkToken) {
             return linkToken.text; // Return the text of the nested link token
         }
@@ -69,7 +69,7 @@ const extractHeadlines = function (markdown: string) {
     const headlines: { level: number; text: string }[] = [];
 
     tokens.forEach((token) => {
-        if (token.type === 'heading') {
+        if (token.type === "heading") {
             const text = extractHeadingText(token);
             headlines.push({ level: token.depth, text });
         }

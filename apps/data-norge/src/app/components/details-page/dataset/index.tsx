@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import DatasetStructuredData from '../../structured-data/dataset-structured-data';
+import React, { useState } from "react";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import DatasetStructuredData from "../../structured-data/dataset-structured-data";
 import {
     type DatasetWithIdentifier,
     type DataService,
     type DatasetScore,
     type CommunityTopic,
     type SearchObject,
-} from '@fellesdatakatalog/types';
-import { type PopulatedDatasetReference } from '@fdk-frontend/types';
-import { sumArrayLengths, printLocaleValue } from '@fdk-frontend/utils';
+} from "@fellesdatakatalog/types";
+import { type PopulatedDatasetReference } from "@fdk-frontend/types";
+import { sumArrayLengths, printLocaleValue } from "@fdk-frontend/utils";
 import {
     Badge,
     Breadcrumbs,
@@ -24,15 +24,15 @@ import {
     DatasetTable,
     ResourceNotAvailableNotice,
     ExternalLink,
-} from '@fdk-frontend/ui';
-import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
-import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel } from '@digdir/designsystemet-react';
-import Distributions from '../distributions';
-import DatasetDetailsTab from '../details-tab';
-import MetadataTab from '../metadata-tab';
-import CommunityTab from '../community-tab';
-import DatasetHeader from '../dataset-header';
-import styles from '../details-page.module.scss';
+} from "@fdk-frontend/ui";
+import { accessRequestWhiteList } from "@fdk-frontend/utils/access-request";
+import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel } from "@digdir/designsystemet-react";
+import Distributions from "../distributions";
+import DatasetDetailsTab from "../details-tab";
+import MetadataTab from "../metadata-tab";
+import CommunityTab from "../community-tab";
+import DatasetHeader from "../dataset-header";
+import styles from "../details-page.module.scss";
 
 export type DatasetDetailsPageType = {
     baseUri: string;
@@ -70,7 +70,7 @@ export default function DatasetDetailsPage({
     communityTopics,
     communityBaseUri,
     orgLogo,
-    defaultActiveTab = 'overview',
+    defaultActiveTab = "overview",
     locale,
     dictionaries,
     resolvedDistributionDataServices,
@@ -91,7 +91,7 @@ export default function DatasetDetailsPage({
     ];
 
     const updateUri = (tab: string) => {
-        window.history.pushState(null, '', `?tab=${tab}`);
+        window.history.pushState(null, "", `?tab=${tab}`);
     };
 
     return (
@@ -117,8 +117,8 @@ export default function DatasetDetailsPage({
                 />
                 <Tabs
                     className={styles.tabs}
-                    defaultValue='overview'
-                    data-size='sm'
+                    defaultValue="overview"
+                    data-size="sm"
                     value={activeTab}
                     onChange={(value) => {
                         setActiveTab(value);
@@ -127,34 +127,34 @@ export default function DatasetDetailsPage({
                     <ScrollShadows className={styles.tabsScrollShadows}>
                         <TabsList>
                             <TabsTab
-                                value='overview'
-                                onClick={() => updateUri('overview')}
+                                value="overview"
+                                onClick={() => updateUri("overview")}
                             >
                                 {dictionaries.detailsPage.tabs.overview}
                             </TabsTab>
                             <TabsTab
-                                value='distributions'
-                                onClick={() => updateUri('distributions')}
+                                value="distributions"
+                                onClick={() => updateUri("distributions")}
                             >
                                 {dictionaries.detailsPage.tabs.distributions}&nbsp;
                                 <Badge>{sumArrayLengths(resource.distribution, resource.sample, apis)}</Badge>
                             </TabsTab>
                             <TabsTab
-                                value='details'
-                                onClick={() => updateUri('details')}
+                                value="details"
+                                onClick={() => updateUri("details")}
                             >
                                 {dictionaries.detailsPage.tabs.details}
                             </TabsTab>
                             <TabsTab
-                                value='community'
-                                onClick={() => updateUri('community')}
+                                value="community"
+                                onClick={() => updateUri("community")}
                             >
                                 {dictionaries.detailsPage.tabs.community}
                                 &nbsp;<Badge>{communityTopics?.length || 0}</Badge>
                             </TabsTab>
                             <TabsTab
-                                value='rdf'
-                                onClick={() => updateUri('rdf')}
+                                value="rdf"
+                                onClick={() => updateUri("rdf")}
                             >
                                 {dictionaries.detailsPage.tabs.rdf}
                             </TabsTab>
@@ -162,12 +162,12 @@ export default function DatasetDetailsPage({
                     </ScrollShadows>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='overview'
+                        value="overview"
                     >
                         <section className={styles.section}>
                             <Heading
                                 level={2}
-                                data-size='xs'
+                                data-size="xs"
                             >
                                 {dictionaries.detailsPage.overview.description.title}
                             </Heading>
@@ -201,7 +201,7 @@ export default function DatasetDetailsPage({
                         <section className={styles.section}>
                             {!isAvailable && accessRequestDemo ? (
                                 <ResourceNotAvailableNotice
-                                    kind='datasets'
+                                    kind="datasets"
                                     id={resource.id}
                                     dictionary={dictionaries.detailsPage}
                                     locale={locale}
@@ -226,11 +226,11 @@ export default function DatasetDetailsPage({
                         {internalRelatedDatasets && internalRelatedDatasets.length > 0 && (
                             <section
                                 className={styles.section}
-                                style={{ marginBottom: '3rem' }}
+                                style={{ marginBottom: "3rem" }}
                             >
                                 <Heading
                                     level={2}
-                                    data-size='xs'
+                                    data-size="xs"
                                 >
                                     {dictionaries.detailsPage.internalRelations}
                                 </Heading>
@@ -247,7 +247,7 @@ export default function DatasetDetailsPage({
                             <section className={styles.section}>
                                 <Heading
                                     level={2}
-                                    data-size='xs'
+                                    data-size="xs"
                                 >
                                     {dictionaries.detailsPage.similarDatasets}
                                 </Heading>
@@ -263,11 +263,11 @@ export default function DatasetDetailsPage({
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='distributions'
+                        value="distributions"
                     >
                         {!isAvailable && accessRequestDemo ? (
                             <ResourceNotAvailableNotice
-                                kind='datasets'
+                                kind="datasets"
                                 id={resource.id}
                                 dictionary={dictionaries.detailsPage}
                                 locale={locale}
@@ -287,7 +287,7 @@ export default function DatasetDetailsPage({
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='details'
+                        value="details"
                     >
                         <DatasetDetailsTab
                             dataset={resource}
@@ -301,7 +301,7 @@ export default function DatasetDetailsPage({
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='community'
+                        value="community"
                     >
                         <CommunityTab
                             topics={communityTopics}
@@ -312,7 +312,7 @@ export default function DatasetDetailsPage({
                     </TabsPanel>
                     <TabsPanel
                         className={styles.tabPanel}
-                        value='rdf'
+                        value="rdf"
                     >
                         <MetadataTab
                             uri={`${baseUri}/datasets/${resource.id}`}

@@ -4,7 +4,7 @@
         gap: 0.25rem;
     }
 
-    &[aria-pressed='true'] {
+    &[aria-pressed="true"] {
         font-weight: 500;
         background: var(--fds-semantic-surface-success-no_fill-hover);
 

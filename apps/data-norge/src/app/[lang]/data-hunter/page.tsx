@@ -1,16 +1,16 @@
-import 'server-only';
-import React from 'react';
-import type { Metadata } from 'next';
-import { unstable_noStore as noStore } from 'next/cache';
-import { Heading, Paragraph } from '@digdir/designsystemet-react';
-import { getLocalization, type Locale } from '@fdk-frontend/localization';
-import { Breadcrumbs } from '@fdk-frontend/ui';
-import DataHunterForm from './components/data-hunter-form';
-import styles from './page.module.css';
+import "server-only";
+import React from "react";
+import type { Metadata } from "next";
+import { unstable_noStore as noStore } from "next/cache";
+import { Heading, Paragraph } from "@digdir/designsystemet-react";
+import { getLocalization, type Locale } from "@fdk-frontend/localization";
+import { Breadcrumbs } from "@fdk-frontend/ui";
+import DataHunterForm from "./components/data-hunter-form";
+import styles from "./page.module.css";
 
 type DataHunterPageProps = {
     params: Promise<{
-        lang: Locale['code'];
+        lang: Locale["code"];
     }>;
 };
 
@@ -32,16 +32,19 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
 
     return (
         <>
-            <div style={{ margin: '0 2rem' }}>
+            <div style={{ margin: "0 2rem" }}>
                 <Breadcrumbs
                     breadcrumbList={breadcrumbList}
                     locale={lang}
                 />
             </div>
             <div className={styles.contentContainer}>
-                <Heading data-size='xl'>{dictionary.dataHunterForm.title}</Heading>
-                <Paragraph data-size='lg'>{dictionary.dataHunterForm.description}</Paragraph>
-                <DataHunterForm dictionary={dictionary} locale={lang} />
+                <Heading data-size="xl">{dictionary.dataHunterForm.title}</Heading>
+                <Paragraph data-size="lg">{dictionary.dataHunterForm.description}</Paragraph>
+                <DataHunterForm
+                    dictionary={dictionary}
+                    locale={lang}
+                />
             </div>
         </>
     );

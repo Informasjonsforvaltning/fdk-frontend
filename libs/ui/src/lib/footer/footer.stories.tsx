@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import Footer from '.';
+import Footer from ".";
 
 const meta: Meta<typeof Footer> = {
     component: Footer,
-    title: 'Footer',
+    title: "Footer",
 };
 
 export default meta;
@@ -16,7 +16,5 @@ export const Primary: Story = {
             appDirectory: true,
         },
     },
-    render: () => (
-        <Footer locale='en' />
-    ),
+    render: () => <Footer locale="en" />,
 };

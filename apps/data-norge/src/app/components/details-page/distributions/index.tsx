@@ -1,17 +1,17 @@
-'use client';
-import cn from 'classnames';
-import { Card, Details, Heading } from '@digdir/designsystemet-react';
-import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
-import { type JSONValue } from '@fdk-frontend/types';
-import { sumArrayLengths } from '@fdk-frontend/utils';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { type SearchObject, type DataService, type Distribution } from '@fellesdatakatalog/types';
-import { Badge, Hstack, PlaceholderBox, ActionButton } from '@fdk-frontend/ui';
-import styles from './distributions.module.scss';
-import DistributionList from './components/dataset-details';
-import ExampleDataDetails from './components/example-data-details';
-import ApiHeader from './components/api-header';
-import ApiDetails from './components/api-details';
+"use client";
+import cn from "classnames";
+import { Card, Details, Heading } from "@digdir/designsystemet-react";
+import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
+import { type JSONValue } from "@fdk-frontend/types";
+import { sumArrayLengths } from "@fdk-frontend/utils";
+import { ArrowRightIcon } from "@navikt/aksel-icons";
+import { type SearchObject, type DataService, type Distribution } from "@fellesdatakatalog/types";
+import { Badge, Hstack, PlaceholderBox, ActionButton } from "@fdk-frontend/ui";
+import styles from "./distributions.module.scss";
+import DistributionList from "./components/dataset-details";
+import ExampleDataDetails from "./components/example-data-details";
+import ApiHeader from "./components/api-header";
+import ApiDetails from "./components/api-details";
 
 export type DistributionsProps = {
     datasets?: JSONValue[];
@@ -43,7 +43,7 @@ const Distributions = ({
         <div className={cn(styles.distributions, className)}>
             <Heading
                 level={2}
-                data-size='xs'
+                data-size="xs"
             >
                 <Hstack>
                     <div>{dictionaries.detailsPage.distributions.title}</div>
@@ -82,7 +82,7 @@ const Distributions = ({
             )}
             <Heading
                 level={2}
-                data-size='xs'
+                data-size="xs"
             >
                 <Hstack>
                     <div>{dictionaries.detailsPage.apis.title}</div>
@@ -122,7 +122,7 @@ const Distributions = ({
                                 {dictionaries.detailsPage.apis.header.gotoBtn}
                                 <ArrowRightIcon
                                     aria-hidden
-                                    fontSize='1.2em'
+                                    fontSize="1.2em"
                                 />
                             </ActionButton>
                         </div>

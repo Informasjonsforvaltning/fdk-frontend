@@ -1,10 +1,10 @@
-import { test as base } from '@playwright/test';
-import FormPage from '../page-object-model/formPage';
-import Frontpage from '../page-object-model/frontpage';
-import DocsPage from '../page-object-model/docsPage';
-import DatasetDetailsPage from '../page-object-model/datasetDetailsPage';
-import ServiceDetailsPage from '../page-object-model/serviceDetailsPage';
-import { generateAccessibilityBuilder } from '../utils/helpers';
+import { test as base } from "@playwright/test";
+import FormPage from "../page-object-model/formPage";
+import Frontpage from "../page-object-model/frontpage";
+import DocsPage from "../page-object-model/docsPage";
+import DatasetDetailsPage from "../page-object-model/datasetDetailsPage";
+import ServiceDetailsPage from "../page-object-model/serviceDetailsPage";
+import { generateAccessibilityBuilder } from "../utils/helpers";
 
 export const test = base.extend<{
     dataHunterFormPage: FormPage;
@@ -45,4 +45,4 @@ export const test = base.extend<{
     },
 });
 
-export { expect } from '@playwright/test';
+export { expect } from "@playwright/test";

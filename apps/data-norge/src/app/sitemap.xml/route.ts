@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { MetadataRoute } from 'next';
-import { i18n } from '@fdk-frontend/localization';
-import { getAllDatasets, getAllServices } from '@fdk-frontend/data-access/server';
-import { readdir, stat } from 'fs/promises';
-import { join } from 'path';
-import { getSlug } from '@fdk-frontend/utils';
+import { NextRequest, NextResponse } from "next/server";
+import { MetadataRoute } from "next";
+import { i18n } from "@fdk-frontend/localization";
+import { getAllDatasets, getAllServices } from "@fdk-frontend/data-access/server";
+import { readdir, stat } from "fs/promises";
+import { join } from "path";
+import { getSlug } from "@fdk-frontend/utils";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 // Atomic cache for sitemap
 const SITEMAP_CACHE = {
@@ -36,7 +36,7 @@ const fetchSpecificationLinks = async (baseUrl: string): Promise<MetadataRoute.S
     try {
         const fdkBaseUri = process.env.FDK_BASE_URI;
         if (!fdkBaseUri) {
-            console.warn('FDK_BASE_URI not configured, skipping specification links');
+            console.warn("FDK_BASE_URI not configured, skipping specification links");
             return specificationPages;
         }
 
@@ -63,21 +63,21 @@ const fetchSpecificationLinks = async (baseUrl: string): Promise<MetadataRoute.S
             specificationPages.push({
                 url: `${baseUrl}/${fullPath}`,
                 lastModified: new Date(),
-                changeFrequency: 'monthly' as const,
+                changeFrequency: "monthly" as const,
                 priority: 0.5,
             });
         }
 
         console.log(`Added ${specificationPages.length} specification pages to sitemap`);
     } catch (error) {
-        console.error('Error fetching specification links:', error);
+        console.error("Error fetching specification links:", error);
     }
 
     return specificationPages;
 };
 
 // Utility function to recursively scan content directories
-const scanContentDirectory = async (dirPath: string, basePath = ''): Promise<string[]> => {
+const scanContentDirectory = async (dirPath: string, basePath = ""): Promise<string[]> => {
     const paths: string[] = [];
 
     try {
@@ -119,7 +119,7 @@ const scanContentDirectory = async (dirPath: string, basePath = ''): Promise<str
 
 // Generate sitemap entries for content pages
 const generateContentPages = async (baseUrl: string): Promise<MetadataRoute.Sitemap> => {
-    const contentDir = join(process.cwd(), 'public/content');
+    const contentDir = join(process.cwd(), "public/content");
     const pages: MetadataRoute.Sitemap = [];
 
     try {
@@ -136,7 +136,7 @@ const generateContentPages = async (baseUrl: string): Promise<MetadataRoute.Site
 
         // Generate entries for each path and locale
         for (const path of contentPaths) {
-            const pathParts = path.split('/');
+            const pathParts = path.split("/");
             const mainSection = pathParts[0];
 
             // Determine priority based on path depth and content type
@@ -160,13 +160,13 @@ const generateContentPages = async (baseUrl: string): Promise<MetadataRoute.Site
                 pages.push({
                     url: `${baseUrl}/${locale.code}/${path}`,
                     lastModified: new Date(),
-                    changeFrequency: 'weekly' as const,
+                    changeFrequency: "weekly" as const,
                     priority,
                 });
             }
         }
     } catch (error) {
-        console.error('Error generating content pages:', error);
+        console.error("Error generating content pages:", error);
     }
 
     return pages;
@@ -174,7 +174,7 @@ const generateContentPages = async (baseUrl: string): Promise<MetadataRoute.Site
 
 // Internal function to generate sitemap entries
 const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://data.norge.no';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://data.norge.no";
 
     // Fetch all datasets and services with pagination - using a more efficient approach
     const allDatasets: any[] = [];
@@ -225,19 +225,19 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
         {
             url: `${baseUrl}/nb`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 1,
         },
         {
             url: `${baseUrl}/en`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 1,
         },
         {
             url: `${baseUrl}/nn`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 1,
         },
 
@@ -245,19 +245,19 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
         {
             url: `${baseUrl}/nb/datasets`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.9,
         },
         {
             url: `${baseUrl}/en/datasets`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.9,
         },
         {
             url: `${baseUrl}/nn/datasets`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.9,
         },
 
@@ -265,19 +265,19 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
         {
             url: `${baseUrl}/nb/data-hunter`,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: "weekly" as const,
             priority: 0.7,
         },
         {
             url: `${baseUrl}/en/data-hunter`,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: "weekly" as const,
             priority: 0.7,
         },
         {
             url: `${baseUrl}/nn/data-hunter`,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: "weekly" as const,
             priority: 0.7,
         },
 
@@ -285,67 +285,67 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
         {
             url: `${baseUrl}/search-all`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.8,
         },
         {
             url: `${baseUrl}/dataservices`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.9,
         },
         {
             url: `${baseUrl}/concepts`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.9,
         },
         {
             url: `${baseUrl}/informationmodels`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.9,
         },
         {
             url: `${baseUrl}/public-services-and-events`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.9,
         },
         {
             url: `${baseUrl}/organizations`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.8,
         },
         {
             url: `${baseUrl}/reports`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.6,
         },
         {
             url: `${baseUrl}/sparql`,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: "weekly" as const,
             priority: 0.6,
         },
         {
             url: `${baseUrl}/publishing`,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: "weekly" as const,
             priority: 0.6,
         },
         {
             url: `${baseUrl}/publishing/terms-of-use`,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: "weekly" as const,
             priority: 0.6,
         },
         {
             url: `${baseUrl}/publishing/service-messages`,
             lastModified: new Date(),
-            changeFrequency: 'daily' as const,
+            changeFrequency: "daily" as const,
             priority: 0.5,
         },
     ];
@@ -364,7 +364,7 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
             return {
                 url: `${baseUrl}/${locale.code}/datasets/${dataset.id}/${slug}`,
                 lastModified,
-                changeFrequency: 'weekly' as const,
+                changeFrequency: "weekly" as const,
                 priority: 0.6,
             };
         });
@@ -378,7 +378,7 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
             return {
                 url: `${baseUrl}/${locale.code}/services/${service.id}/${slug}`,
                 lastModified,
-                changeFrequency: 'weekly' as const,
+                changeFrequency: "weekly" as const,
                 priority: 0.6,
             };
         });
@@ -408,7 +408,7 @@ ${sitemapEntries
     <priority>${entry.priority}</priority>
   </url>`;
     })
-    .join('\n')}
+    .join("\n")}
 </urlset>`;
 
     return xml;
@@ -422,8 +422,8 @@ export const GET = async (request: NextRequest) => {
         return new NextResponse(SITEMAP_CACHE.sitemap, {
             status: 200,
             headers: {
-                'Content-Type': 'application/xml',
-                'Cache-Control': 'public, max-age=300, s-maxage=600',
+                "Content-Type": "application/xml",
+                "Cache-Control": "public, max-age=300, s-maxage=600",
                 ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
             },
         });
@@ -436,19 +436,19 @@ export const GET = async (request: NextRequest) => {
         // Atomic update
         const wasUpdated = atomicUpdateSitemapCache(sitemap);
         if (wasUpdated) {
-            console.log('Sitemap cache updated');
+            console.log("Sitemap cache updated");
         }
 
         return new NextResponse(sitemap, {
             status: 200,
             headers: {
-                'Content-Type': 'application/xml',
-                'Cache-Control': 'public, max-age=300, s-maxage=600',
+                "Content-Type": "application/xml",
+                "Cache-Control": "public, max-age=300, s-maxage=600",
                 ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
             },
         });
     } catch (error) {
-        console.error('Error generating sitemap:', error);
-        return new NextResponse('Error generating sitemap', { status: 500 });
+        console.error("Error generating sitemap:", error);
+        return new NextResponse("Error generating sitemap", { status: 500 });
     }
 };

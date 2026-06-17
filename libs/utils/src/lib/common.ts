@@ -1,15 +1,15 @@
-import { TextLanguage } from '@fellesdatakatalog/types';
-import { type LocaleCodes, i18n } from '@fdk-frontend/localization';
-import slugify from 'slugify';
+import { TextLanguage } from "@fellesdatakatalog/types";
+import { type LocaleCodes, i18n } from "@fdk-frontend/localization";
+import slugify from "slugify";
 
 export const print = (str?: string) => {
-    return str || '[undefined]';
+    return str || "[undefined]";
 };
 
 export const printLocaleValue = (locale: LocaleCodes, value: any) => {
     if (!value) return;
-    if (typeof value === 'string') return value;
-    return value[locale] || value[i18n.defaultLocale] || value['no'] || value['nn'] || value['en'];
+    if (typeof value === "string") return value;
+    return value[locale] || value[i18n.defaultLocale] || value["no"] || value["nn"] || value["en"];
 };
 
 export const sumArrayLengths = (...arrays: (any[] | undefined)[]) => {
@@ -17,16 +17,16 @@ export const sumArrayLengths = (...arrays: (any[] | undefined)[]) => {
 };
 
 export const openLicenses = [
-    'creativecommons.org/licenses/by/4.0/deed.no',
-    'data.norge.no/nlod/no/1.0',
-    'creativecommons.org/publicdomain/zero/1.0',
-    'data.norge.no/nlod/no/2.0',
-    'creativecommons.org/licenses/by/4.0',
-    'data.norge.no/nlod/no',
-    'data.norge.no/nlod',
-    'publications.europa.eu/resource/authority/licence/CC0',
-    'publications.europa.eu/resource/authority/licence/NLOD_2_0',
-    'publications.europa.eu/resource/authority/licence/CC_BY_4_0',
+    "creativecommons.org/licenses/by/4.0/deed.no",
+    "data.norge.no/nlod/no/1.0",
+    "creativecommons.org/publicdomain/zero/1.0",
+    "data.norge.no/nlod/no/2.0",
+    "creativecommons.org/licenses/by/4.0",
+    "data.norge.no/nlod/no",
+    "data.norge.no/nlod",
+    "publications.europa.eu/resource/authority/licence/CC0",
+    "publications.europa.eu/resource/authority/licence/NLOD_2_0",
+    "publications.europa.eu/resource/authority/licence/CC_BY_4_0",
 ];
 
 export const isOpenLicense = (uri?: string) => {
@@ -42,13 +42,13 @@ export const calculateMetadataScore = (score: any) => {
 };
 
 export const guid = () => {
-    return 'guid-' + Math.random().toString(36).substr(2, 9);
+    return "guid-" + Math.random().toString(36).substr(2, 9);
 };
 
 export const getSlug = (
     { id, title }: { title?: string | Partial<TextLanguage>; id: string },
     locale: LocaleCodes,
 ): string => {
-    const stitle = printLocaleValue(locale, title) || '';
+    const stitle = printLocaleValue(locale, title) || "";
     return slugify(stitle, { lower: true, strict: true }) || id;
 };

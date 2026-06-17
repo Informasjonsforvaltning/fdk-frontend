@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { PropsWithChildren, useState, useEffect, useRef } from 'react';
-import cn from 'classnames';
-import { Button } from '@digdir/designsystemet-react';
-import { PlusIcon, MinusIcon } from '@navikt/aksel-icons';
-import styles from './expandable-content.module.scss';
+import { PropsWithChildren, useState, useEffect, useRef } from "react";
+import cn from "classnames";
+import { Button } from "@digdir/designsystemet-react";
+import { PlusIcon, MinusIcon } from "@navikt/aksel-icons";
+import styles from "./expandable-content.module.scss";
 
 const ExpandableContent = ({ children, maxHeight, ...props }: { maxHeight?: number } & PropsWithChildren) => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -58,8 +58,8 @@ const ExpandableContent = ({ children, maxHeight, ...props }: { maxHeight?: numb
             {overflow && (
                 <Button
                     className={styles.button}
-                    variant='tertiary'
-                    data-size='sm'
+                    variant="tertiary"
+                    data-size="sm"
                     onClick={() => setCollapsed(!collapsed)}
                     aria-expanded={!collapsed}
                 >

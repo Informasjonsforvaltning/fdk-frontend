@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import Markdown from '.';
-import Article from '../article';
-import Box from '../box';
+import Markdown from ".";
+import Article from "../article";
+import Box from "../box";
 
 const meta: Meta<typeof Markdown> = {
     component: Markdown,
-    title: 'Markdown',
+    title: "Markdown",
 };
 
 const markdown = `
@@ -67,7 +67,7 @@ export const Primary: Story = {
     },
     render: () => (
         <>
-            <div style={{ padding: '1rem' }}>
+            <div style={{ padding: "1rem" }}>
                 <Box>
                     <Article>
                         <Markdown>{markdown}</Markdown>

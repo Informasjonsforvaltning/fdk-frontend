@@ -1,8 +1,8 @@
-import { useContext } from 'react';
-import { Heading, Link } from '@digdir/designsystemet-react';
-import { PlaceholderText, PlaceholderBox, ExternalLink, Dlist } from '@fdk-frontend/ui';
-import { DatasetDetailsProps, DatasetDetailsTabContext } from '../../';
-import { i18n } from '@fdk-frontend/localization';
+import { useContext } from "react";
+import { Heading, Link } from "@digdir/designsystemet-react";
+import { PlaceholderText, PlaceholderBox, ExternalLink, Dlist } from "@fdk-frontend/ui";
+import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
+import { i18n } from "@fdk-frontend/localization";
 
 const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
     const { showEmptyRows } = useContext(DatasetDetailsTabContext);
@@ -15,7 +15,7 @@ const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) =>
         <section>
             <Heading
                 level={2}
-                data-size='xs'
+                data-size="xs"
             >
                 {dictionary.details.contactPoint.title}
             </Heading>

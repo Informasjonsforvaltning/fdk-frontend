@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import Header from '.';
+import Header from ".";
 
 const meta: Meta<typeof Header> = {
     component: Header,
-    title: 'Header',
+    title: "Header",
 };
 
 export default meta;
@@ -16,9 +16,5 @@ export const Primary: Story = {
             appDirectory: true,
         },
     },
-    render: () => (
-        <Header
-            locale='en'
-        />
-    ),
+    render: () => <Header locale="en" />,
 };

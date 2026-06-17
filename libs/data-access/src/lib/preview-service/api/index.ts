@@ -7,11 +7,11 @@ type DatasetPreviewCsrfProps = {
 export const fetchCsrfToken = async ({ baseUri, apiKey, referer }: DatasetPreviewCsrfProps) => {
     const endpoint = `${baseUri}/preview/csrf`;
     const response = await fetch(endpoint, {
-        method: 'GET',
-        credentials: 'include',
+        method: "GET",
+        credentials: "include",
         headers: {
-            Accept: 'application/json',
-            'X-API-KEY': apiKey,
+            Accept: "application/json",
+            "X-API-KEY": apiKey,
             Referer: referer,
         },
     });
@@ -44,14 +44,14 @@ export const fetchDatasetPreview = async ({
 }: DatasetPreviewOptions) => {
     const endpoint = `${baseUri}/preview`;
     const response = await fetch(endpoint, {
-        method: 'POST',
-        credentials: 'include',
+        method: "POST",
+        credentials: "include",
         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'X-XSRF-TOKEN': token,
-            'X-API-KEY': apiKey,
-            Cookie: cookies.join('; '),
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "X-XSRF-TOKEN": token,
+            "X-API-KEY": apiKey,
+            Cookie: cookies.join("; "),
             Referer: referer,
         },
         body: JSON.stringify({

@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 export const getPaths = (baseUri: string) => {
-    const baseUriWithoutSlash = baseUri.endsWith('/') ? baseUri.slice(0, -1) : baseUri;
+    const baseUriWithoutSlash = baseUri.endsWith("/") ? baseUri.slice(0, -1) : baseUri;
     return {
         root: `${baseUriWithoutSlash}`,
         organizations: `${baseUriWithoutSlash}/organizations`,
@@ -22,9 +22,9 @@ export const getPaths = (baseUri: string) => {
         aboutRegistration: `${baseUriWithoutSlash}/about-registration`,
         artificialIntelligence: `${baseUriWithoutSlash}/kunstig-intelligens`,
         requests: `${baseUriWithoutSlash}/requests`,
-        accessibilityStatement: 'https://uustatus.no/nb/erklaringer/publisert/8020b962-b706-4cdf-ab8b-cdb5f480a696',
-        privacyPolicy: 'https://www.digdir.no/digdir/personvernerklaering/706',
-        cookies: 'https://www.digdir.no/digdir/informasjonskapsler/707',
-        nationalDatacatalogEmail: 'mailto:fellesdatakatalog@digdir.no',
+        accessibilityStatement: "https://uustatus.no/nb/erklaringer/publisert/8020b962-b706-4cdf-ab8b-cdb5f480a696",
+        privacyPolicy: "https://www.digdir.no/digdir/personvernerklaering/706",
+        cookies: "https://www.digdir.no/digdir/informasjonskapsler/707",
+        nationalDatacatalogEmail: "mailto:fellesdatakatalog@digdir.no",
     };
 };

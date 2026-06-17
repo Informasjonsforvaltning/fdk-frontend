@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Tag } from '@digdir/designsystemet-react';
-import TagList from '.';
+import { Tag } from "@digdir/designsystemet-react";
+import TagList from ".";
 
 const meta: Meta<typeof TagList> = {
     component: TagList,
-    title: 'TagList',
+    title: "TagList",
 };
 
 export default meta;
@@ -19,30 +19,30 @@ export const Primary: Story = {
     },
     render: () => (
         <>
-            <div style={{ padding: '1rem' }}>
+            <div style={{ padding: "1rem" }}>
                 <TagList>
-                    <Tag size='sm'>My tag</Tag>
+                    <Tag size="sm">My tag</Tag>
                     <Tag
-                        size='sm'
-                        color='success'
+                        size="sm"
+                        color="success"
                     >
                         My tag
                     </Tag>
                     <Tag
-                        size='sm'
-                        color='neutral'
+                        size="sm"
+                        color="neutral"
                     >
                         My tag
                     </Tag>
                     <Tag
-                        size='sm'
-                        color='warning'
+                        size="sm"
+                        color="warning"
                     >
                         My tag
                     </Tag>
                     <Tag
-                        size='sm'
-                        color='danger'
+                        size="sm"
+                        color="danger"
                     >
                         My tag
                     </Tag>

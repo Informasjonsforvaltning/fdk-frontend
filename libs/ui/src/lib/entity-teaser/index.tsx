@@ -1,5 +1,5 @@
-import React from 'react';
-import cn from 'classnames';
+import React from "react";
+import cn from "classnames";
 import {
     Card,
     CardBlock,
@@ -10,15 +10,15 @@ import {
     Tag,
     Skeleton,
     Tooltip,
-} from '@digdir/designsystemet-react';
-import { TagList, HStack } from '@fellesdatakatalog/ui';
-import { AccessRightsCodes, EntityType, type SearchObject } from '@fellesdatakatalog/types';
-import AccessLevelTag from '../access-level-tag';
-import { OrgLogo } from '../org-logo';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import styles from './styles.module.scss';
-import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
-import { SparklesFillIcon } from '@navikt/aksel-icons';
+} from "@digdir/designsystemet-react";
+import { TagList, HStack } from "@fellesdatakatalog/ui";
+import { AccessRightsCodes, EntityType, type SearchObject } from "@fellesdatakatalog/types";
+import AccessLevelTag from "../access-level-tag";
+import { OrgLogo } from "../org-logo";
+import { printLocaleValue } from "@fdk-frontend/utils";
+import styles from "./styles.module.scss";
+import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
+import { SparklesFillIcon } from "@navikt/aksel-icons";
 
 export type EntityTeaserProps = {
     locale: LocaleCodes;
@@ -27,12 +27,12 @@ export type EntityTeaserProps = {
 };
 
 const setFragments: Record<EntityType, string> = {
-    [EntityType.DATASET]: 'datasets',
-    [EntityType.DATA_SERVICE]: 'data-services',
-    [EntityType.CONCEPT]: 'concepts',
-    [EntityType.INFORMATION_MODEL]: 'information-models',
-    [EntityType.PUBLIC_SERVICE]: 'services-and-events',
-    [EntityType.EVENT]: 'services-and-events',
+    [EntityType.DATASET]: "datasets",
+    [EntityType.DATA_SERVICE]: "data-services",
+    [EntityType.CONCEPT]: "concepts",
+    [EntityType.INFORMATION_MODEL]: "information-models",
+    [EntityType.PUBLIC_SERVICE]: "services-and-events",
+    [EntityType.EVENT]: "services-and-events",
 };
 
 const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
@@ -60,15 +60,15 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 ) : (
                     <HStack>
                         <Skeleton
-                            width='1.5rem'
-                            height='1.5rem'
-                            variant='circle'
+                            width="1.5rem"
+                            height="1.5rem"
+                            variant="circle"
                         />
-                        <Heading data-size='sm'>
+                        <Heading data-size="sm">
                             <Skeleton
-                                variant='rectangle'
-                                height='1.5rem'
-                                width='300px'
+                                variant="rectangle"
+                                height="1.5rem"
+                                width="300px"
                             />
                         </Heading>
                     </HStack>
@@ -76,19 +76,19 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 {entity ? (
                     <TagList>
                         <Tag
-                            data-color='info'
-                            data-size='sm'
+                            data-color="info"
+                            data-size="sm"
                         >
                             <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
                                 {entity.searchType === EntityType.PUBLIC_SERVICE &&
-                                (entity.specializedType as string | null) === 'publicService'
+                                (entity.specializedType as string | null) === "publicService"
                                     ? localization.specializedServices.publicService
                                     : localization.entities[entity.searchType]}
                             </Link>
                         </Tag>
-                        {(entity.searchType === 'DATASET' || entity.searchType === 'DATA_SERVICE') && (
+                        {(entity.searchType === "DATASET" || entity.searchType === "DATA_SERVICE") && (
                             <AccessLevelTag
-                                data-size='sm'
+                                data-size="sm"
                                 accessCode={entity.accessRights?.code as AccessRightsCodes}
                                 nonInteractive
                                 locale={locale}
@@ -96,24 +96,24 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                         )}
                         {entity.isOpenData && (
                             <Tag
-                                data-color='success'
-                                data-size='sm'
+                                data-color="success"
+                                data-size="sm"
                             >
                                 Åpne data
                             </Tag>
                         )}
                     </TagList>
                 ) : (
-                    <div style={{ marginTop: '0.5rem', lineHeight: '1.75rem' }}>
+                    <div style={{ marginTop: "0.5rem", lineHeight: "1.75rem" }}>
                         <Skeleton
-                            variant='text'
+                            variant="text"
                             width={300}
                         />
                     </div>
                 )}
                 {entity && (
                     <Paragraph className={styles.description}>
-                        {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : 'Mangler beskrivelse'}
+                        {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : "Mangler beskrivelse"}
                     </Paragraph>
                 )}
                 {entity && (
@@ -121,8 +121,8 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 )}
                 {entity && llm && (
                     <Tooltip
-                        content='Treff fra KI-søk'
-                        placement='top'
+                        content="Treff fra KI-søk"
+                        placement="top"
                     >
                         <SparklesFillIcon className={styles.llmIcon} />
                     </Tooltip>

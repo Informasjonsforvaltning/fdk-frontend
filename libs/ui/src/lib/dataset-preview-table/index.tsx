@@ -1,6 +1,6 @@
-import React from 'react';
-import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from '@digdir/designsystemet-react';
-import styles from './styles.module.scss';
+import React from "react";
+import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from "@digdir/designsystemet-react";
+import styles from "./styles.module.scss";
 
 type DatasetPreviewTableProps = {
     tableData: any;
@@ -12,7 +12,7 @@ const DatasetPreviewTable = ({
 }: DatasetPreviewTableProps & React.HTMLAttributes<HTMLTableElement>) => {
     return (
         <Table
-            data-size='sm'
+            data-size="sm"
             {...props}
         >
             <TableHead>

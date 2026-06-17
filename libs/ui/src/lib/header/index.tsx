@@ -1,14 +1,14 @@
-'use client';
-import { useState, useEffect, useRef } from 'react';
-import cn from 'classnames';
-import { ForwardRefComponent, motion } from 'framer-motion';
-import { Link, Button, Alert, Paragraph } from '@digdir/designsystemet-react';
-import { MenuHamburgerIcon, XMarkIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
-import { LogoLink } from '../logo';
-import MainMenu from '../main-menu';
-import SearchInput from '../search-input';
-import styles from './header.module.scss';
+"use client";
+import { useState, useEffect, useRef } from "react";
+import cn from "classnames";
+import { ForwardRefComponent, motion } from "framer-motion";
+import { Link, Button, Alert, Paragraph } from "@digdir/designsystemet-react";
+import { MenuHamburgerIcon, XMarkIcon, MagnifyingGlassIcon } from "@navikt/aksel-icons";
+import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
+import { LogoLink } from "../logo";
+import MainMenu from "../main-menu";
+import SearchInput from "../search-input";
+import styles from "./header.module.scss";
 
 export type HeaderProps = {
     locale: LocaleCodes;
@@ -28,7 +28,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
     const animations = {
         drawerInner: {
             hidden: { height: 0 },
-            show: { height: 'auto', transition: { duration: 0.15 } },
+            show: { height: "auto", transition: { duration: 0.15 } },
         },
     };
 
@@ -48,14 +48,14 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' && showMenu) {
+        if (e.key === "Escape" && showMenu) {
             setShowMenu(false);
         }
     };
 
     const disableHeaderMessage = () => {
         setShowHeaderMessage(false);
-        localStorage.setItem('fdk-header-message-dismissed', 'true');
+        localStorage.setItem("fdk-header-message-dismissed", "true");
     };
 
     // useEffect(() => {
@@ -67,26 +67,26 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
     useEffect(() => {
         toggleSticky();
 
-        window.addEventListener('scroll', toggleSticky);
-        window.addEventListener('click', handleClick);
-        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener("scroll", toggleSticky);
+        window.addEventListener("click", handleClick);
+        window.addEventListener("keydown", handleKeyDown);
 
         return () => {
-            window.removeEventListener('scroll', toggleSticky);
-            window.removeEventListener('click', handleClick);
-            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener("scroll", toggleSticky);
+            window.removeEventListener("click", handleClick);
+            window.removeEventListener("keydown", handleKeyDown);
         };
     }, [frontpage, sticky, showMenu]);
 
     return (
         <header
-            aria-label='Header'
+            aria-label="Header"
             className={cn(styles.header, {
                 [styles.frontpageHeader]: frontpage,
                 [styles.showHeaderMessage]: showHeaderMessage,
             })}
             ref={headerRef}
-            data-color-scheme={!showMenu && frontpage ? 'dark' : 'light'}
+            data-color-scheme={!showMenu && frontpage ? "dark" : "light"}
         >
             <div
                 className={cn(styles.headerOuter, {
@@ -96,24 +96,24 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
             >
                 <Link
                     className={styles.skipToMain}
-                    href='#main'
+                    href="#main"
                 >
                     {dictionary.header.skipToMain}
                 </Link>
                 {showHeaderMessage && (
                     <Alert
-                        data-color='info'
+                        data-color="info"
                         className={styles.headerMessage}
                     >
                         <Paragraph>
                             {dictionary.header.alert.message}&nbsp;
-                            <Link href='https://datalandsbyen.norge.no/topic/736/planlagt-vedlikehold-tirsdag-03.03.2026-kl-18-00-23-00'>
+                            <Link href="https://datalandsbyen.norge.no/topic/736/planlagt-vedlikehold-tirsdag-03.03.2026-kl-18-00-23-00">
                                 {dictionary.header.alert.linkText}
                             </Link>
                         </Paragraph>
                         <Button
-                            variant='tertiary'
-                            data-size='sm'
+                            variant="tertiary"
+                            data-size="sm"
                             onClick={() => disableHeaderMessage()}
                         >
                             <XMarkIcon />
@@ -125,18 +125,20 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                         className={styles.headerLogo}
                         href={`/${locale}`}
                     />
-                    {
-                        showSearchInput ?
-                        <SearchInput locale={locale} className={styles.headerSearchInput} /> :
-                        <div style={{flexGrow:1}} />
-                    }
+                    {showSearchInput ? (
+                        <SearchInput
+                            locale={locale}
+                            className={styles.headerSearchInput}
+                        />
+                    ) : (
+                        <div style={{ flexGrow: 1 }} />
+                    )}
                     <div className={styles.headerToolbar}>
-                        {
-                            !showSearchInput &&
+                        {!showSearchInput && (
                             <Button
                                 asChild
-                                data-size='sm'
-                                variant='tertiary'
+                                data-size="sm"
+                                variant="tertiary"
                                 aria-label={dictionary.header.findDataButton}
                             >
                                 <Link href={`/search-all`}>
@@ -144,10 +146,10 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                                     <span>{dictionary.header.findDataButton}</span>
                                 </Link>
                             </Button>
-                        }
+                        )}
                         <Button
-                            data-size='sm'
-                            variant={showMenu ? 'secondary' : 'tertiary'}
+                            data-size="sm"
+                            variant={showMenu ? "secondary" : "tertiary"}
                             onClick={() => setShowMenu(!showMenu)}
                             aria-label={dictionary.header.menuButton}
                             aria-pressed={showMenu}
@@ -157,8 +159,8 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                         </Button>
                         <Button
                             asChild
-                            data-size='sm'
-                            variant='primary'
+                            data-size="sm"
+                            variant="primary"
                         >
                             <Link href={`/publishing`}>
                                 <span>{dictionary.header.shareDataButton}</span>
@@ -171,8 +173,8 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
                         <MotionDiv
                             className={styles.drawerInner}
                             variants={animations.drawerInner}
-                            initial='hidden'
-                            animate='show'
+                            initial="hidden"
+                            animate="show"
                         >
                             <MainMenu locale={locale} />
                         </MotionDiv>

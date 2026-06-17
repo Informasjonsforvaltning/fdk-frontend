@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { usePathname } from 'next/navigation';
-import cn from 'classnames';
+import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import cn from "classnames";
 
-import { Heading, Button, Link } from '@digdir/designsystemet-react';
-import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
+import { Heading, Button, Link } from "@digdir/designsystemet-react";
+import { ChevronDownIcon, ChevronUpIcon } from "@navikt/aksel-icons";
 
-import { type LocaleCodes, type Localization } from '@fdk-frontend/localization';
+import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
 
-import styles from './sidebar.module.scss';
+import styles from "./sidebar.module.scss";
 
 export type SidebarProps = {
     dictionary: Localization;
@@ -37,7 +37,7 @@ const buildNestedStructure = (data: Localization, basePath: string, locale: Loca
         .map(([path, title]) => ({
             path,
             title,
-            level: path.replace(basePath, '').split('/').length - 1,
+            level: path.replace(basePath, "").split("/").length - 1,
         }));
 
     const nested: SidebarItemObject[] = [];
@@ -48,7 +48,7 @@ const buildNestedStructure = (data: Localization, basePath: string, locale: Loca
         if (item.level === 0) {
             nested.push(map[item.path]);
         } else {
-            const parentPath = item.path.split('/').slice(0, -1).join('/');
+            const parentPath = item.path.split("/").slice(0, -1).join("/");
             map[parentPath]?.children.push(map[item.path]);
         }
     });
@@ -76,7 +76,7 @@ const NestedList = ({ items, locale, pathname, dictionary }: NestedListProps) =>
 
     const getToggleButton = (isOpen: boolean, itemPath: string) => (
         <Button
-            variant='tertiary'
+            variant="tertiary"
             onClick={() => toggleOpen(itemPath)}
             aria-pressed={isOpen}
             aria-label={isOpen ? dictionary.general.collapse : dictionary.general.expand}
@@ -84,12 +84,12 @@ const NestedList = ({ items, locale, pathname, dictionary }: NestedListProps) =>
             {isOpen ? (
                 <ChevronUpIcon
                     aria-hidden
-                    fontSize='1.5rem'
+                    fontSize="1.5rem"
                 />
             ) : (
                 <ChevronDownIcon
                     aria-hidden
-                    fontSize='1.5rem'
+                    fontSize="1.5rem"
                 />
             )}
         </Button>
@@ -144,12 +144,12 @@ const Sidebar = ({ dictionary, currentPath, locale }: SidebarProps) => {
     return (
         <nav
             className={styles.sidebar}
-            aria-labelledby='sidebar-heading'
+            aria-labelledby="sidebar-heading"
         >
             <Heading
-                id='sidebar-heading'
+                id="sidebar-heading"
                 level={2}
-                data-size='xs'
+                data-size="xs"
             >
                 <Link href={`/${locale}${nestedData?.[0]?.path}`}>{nestedData?.[0]?.title}</Link>
             </Heading>

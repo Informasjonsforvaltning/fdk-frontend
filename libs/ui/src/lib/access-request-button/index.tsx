@@ -1,15 +1,15 @@
-import React from 'react';
-import { Button, Link } from '@digdir/designsystemet-react';
-import BadgeOverlay from '../badge-overlay';
-import { accessRequestWhiteList } from '@fdk-frontend/utils/access-request';
+import React from "react";
+import { Button, Link } from "@digdir/designsystemet-react";
+import BadgeOverlay from "../badge-overlay";
+import { accessRequestWhiteList } from "@fdk-frontend/utils/access-request";
 import {
     trackSiteImproveEvent,
     EventCategory,
     EventAction,
     EventLabel,
-} from '@fdk-frontend/utils/siteimprove-analytics';
-import { type CatalogTypes } from '@fdk-frontend/types';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
+} from "@fdk-frontend/utils/siteimprove-analytics";
+import { type CatalogTypes } from "@fdk-frontend/types";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 
 export type AccessRequestButtonProps = {
     kind: CatalogTypes;
@@ -30,15 +30,15 @@ const AccessRequestButton = ({
 }: AccessRequestButtonProps & React.HTMLAttributes<HTMLDivElement>) => {
     const demoItem = accessRequestWhiteList.find((i) => i.id === id);
     const url =
-        demoItem?.requestAddress === 'https://soknad.kudaf.no'
+        demoItem?.requestAddress === "https://soknad.kudaf.no"
             ? `/${locale}/access-request/${kind}/${id}`
             : demoItem?.requestAddress;
 
     return (
-        <BadgeOverlay badgeProps={{ children: 'beta', 'data-color': 'green-subtle' }}>
+        <BadgeOverlay badgeProps={{ children: "beta", "data-color": "green-subtle" }}>
             <Button
-                variant='secondary'
-                data-size='sm'
+                variant="secondary"
+                data-size="sm"
                 asChild
                 onClick={(e) => {
                     e.preventDefault();

@@ -1,29 +1,29 @@
-import { defineConfig, devices } from '@playwright/test';
-import { nxE2EPreset } from '@nx/playwright/preset';
+import { defineConfig, devices } from "@playwright/test";
+import { nxE2EPreset } from "@nx/playwright/preset";
 
-import { workspaceRoot } from '@nx/devkit';
-import path = require('path');
-import * as dotenv from 'dotenv';
+import { workspaceRoot } from "@nx/devkit";
+import path = require("path");
+import * as dotenv from "dotenv";
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-dotenv.config({ path: path.resolve(__dirname, '.env.test') });
+dotenv.config({ path: path.resolve(__dirname, ".env.test") });
 
-const baseURL = 'http://localhost:3000';
+const baseURL = "http://localhost:3000";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-    ...nxE2EPreset(__filename, { testDir: './src' }),
-    reporter: 'list',
+    ...nxE2EPreset(__filename, { testDir: "./src" }),
+    reporter: "list",
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions */
     use: {
         baseURL,
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-        trace: 'on-first-retry',
+        trace: "on-first-retry",
     },
     /* Global test timeout - increased to handle sitemap generation */
     timeout: 120000, // 2 minutes
@@ -33,20 +33,20 @@ export default defineConfig({
     workers: 3,
     /* Run your local dev server before starting the tests */
     webServer: {
-        command: 'yarn nx dev data-norge --configuration=e2e',
-        url: 'http://localhost:3000',
+        command: "yarn nx dev data-norge --configuration=e2e",
+        url: "http://localhost:3000",
         reuseExistingServer: !process.env.CI,
         cwd: workspaceRoot,
     },
     projects: [
         {
-            name: 'chromium',
-            use: { ...devices['Desktop Chrome'] },
+            name: "chromium",
+            use: { ...devices["Desktop Chrome"] },
         },
 
         {
-            name: 'firefox',
-            use: { ...devices['Desktop Firefox'] },
+            name: "firefox",
+            use: { ...devices["Desktop Firefox"] },
         },
 
         /*{

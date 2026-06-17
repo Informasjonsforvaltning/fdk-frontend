@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import React, { useEffect } from 'react';
-import { type DataService } from '@fellesdatakatalog/types';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import ExternalLink from '../external-link';
-import ApiTags from '../api-tags';
-import PlaceholderBox from '../placeholder-box';
+import React, { useEffect } from "react";
+import { type DataService } from "@fellesdatakatalog/types";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import ExternalLink from "../external-link";
+import ApiTags from "../api-tags";
+import PlaceholderBox from "../placeholder-box";
 import {
     trackSiteImproveEvent,
     EventCategory,
     EventAction,
     EventLabel,
-} from '@fdk-frontend/utils/siteimprove-analytics';
-import styles from './styles.module.scss';
+} from "@fdk-frontend/utils/siteimprove-analytics";
+import styles from "./styles.module.scss";
 
 export type UseApiPopoverProps = {
     dataService: DataService;

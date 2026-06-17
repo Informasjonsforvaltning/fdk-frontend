@@ -1,6 +1,6 @@
-import React from 'react';
-import { FilesIcon, CodeIcon, ChatElipsisIcon, TenancyIcon, CompassIcon, SparklesIcon } from '@navikt/aksel-icons';
-import { CatalogTypes } from '@fdk-frontend/types';
+import React from "react";
+import { FilesIcon, CodeIcon, ChatElipsisIcon, TenancyIcon, CompassIcon, SparklesIcon } from "@navikt/aksel-icons";
+import { CatalogTypes } from "@fdk-frontend/types";
 
 export type CatalogIconProps = {
     catalog: CatalogTypes;
@@ -8,17 +8,17 @@ export type CatalogIconProps = {
 
 const CatalogIcon = ({ catalog, ...rest }: CatalogIconProps & React.SVGProps<SVGSVGElement>) => {
     switch (catalog) {
-        case 'datasets':
+        case "datasets":
             return <FilesIcon {...rest} />;
-        case 'apis':
+        case "apis":
             return <CodeIcon {...rest} />;
-        case 'terms':
+        case "terms":
             return <ChatElipsisIcon {...rest} />;
-        case 'information-models':
+        case "information-models":
             return <TenancyIcon {...rest} />;
-        case 'services-events':
+        case "services-events":
             return <CompassIcon {...rest} />;
-        case 'ai':
+        case "ai":
             return <SparklesIcon {...rest} />;
     }
 };

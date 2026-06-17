@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
-import { type LocaleCodes } from '@fdk-frontend/localization';
-import { type DatasetWithIdentifier } from '@fellesdatakatalog/types';
-import { printLocaleValue, getSlug, safeStringify, sanitizeArray, sanitizeString } from '@fdk-frontend/utils';
+import Script from "next/script";
+import { type LocaleCodes } from "@fdk-frontend/localization";
+import { type DatasetWithIdentifier } from "@fellesdatakatalog/types";
+import { printLocaleValue, getSlug, safeStringify, sanitizeArray, sanitizeString } from "@fdk-frontend/utils";
 
 export type DatasetStructuredDataProps = {
     dataset: DatasetWithIdentifier;
@@ -22,15 +22,15 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
 
     // Create comprehensive structured data for SEO
     const structuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'Dataset',
+        "@context": "https://schema.org",
+        "@type": "Dataset",
         name: sanitizeString(printLocaleValue(locale, dataset.title)),
         description: sanitizeString(printLocaleValue(locale, dataset.description)),
         url: `${baseUri}/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
         identifier: dataset.id,
         ...(dataset.publisher?.prefLabel && {
             publisher: {
-                '@type': 'Organization',
+                "@type": "Organization",
                 name: sanitizeString(printLocaleValue(locale, dataset.publisher.prefLabel)),
                 url: dataset.publisher?.uri,
             },
@@ -40,14 +40,14 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         keywords: dataset.keyword
             ?.map((k) => sanitizeString(printLocaleValue(locale, k)))
             .filter(Boolean)
-            .join(', '),
+            .join(", "),
         isAccessibleForFree: dataset.isOpenData,
         ...(getFirstLicenseUrl() && { license: getFirstLicenseUrl() }),
         spatialCoverage:
             dataset.spatial && dataset.spatial.length > 0
                 ? sanitizeArray(
                       dataset.spatial.map((spatial) => ({
-                          '@type': 'Place',
+                          "@type": "Place",
                           name: sanitizeString(printLocaleValue(locale, spatial.prefLabel)),
                       })),
                   )
@@ -56,7 +56,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
             dataset.temporal && dataset.temporal.length > 0
                 ? sanitizeArray(
                       dataset.temporal.map((temporal) => ({
-                          '@type': 'TemporalCoverage',
+                          "@type": "TemporalCoverage",
                           startDate: temporal.startDate,
                           endDate: temporal.endDate,
                       })),
@@ -64,7 +64,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
                 : undefined,
         distribution: sanitizeArray(
             dataset.distribution?.map((dist) => ({
-                '@type': 'DataDownload',
+                "@type": "DataDownload",
                 ...(dist.fdkFormat?.[0]?.code || dist.fdkFormat?.[0]?.name
                     ? { encodingFormat: dist.fdkFormat?.[0]?.code || dist.fdkFormat?.[0]?.name }
                     : {}),
@@ -75,7 +75,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         ),
         // Additional properties for better SEO
         mainEntity: {
-            '@type': 'Dataset',
+            "@type": "Dataset",
             name: sanitizeString(printLocaleValue(locale, dataset.title)),
             description: sanitizeString(printLocaleValue(locale, dataset.description)),
         },
@@ -83,23 +83,23 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
 
     // Create breadcrumb structured data
     const breadcrumbData = {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
         itemListElement: [
             {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 1,
-                name: 'Home',
+                name: "Home",
                 item: `${baseUri}/${locale}`,
             },
             {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 2,
-                name: 'Datasets',
+                name: "Datasets",
                 item: `${baseUri}/${locale}/datasets`,
             },
             {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 3,
                 name: sanitizeString(printLocaleValue(locale, dataset.title)),
                 item: `${baseUri}/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
@@ -110,15 +110,15 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
     return (
         <>
             <Script
-                id='dataset-structured-data'
-                type='application/ld+json'
+                id="dataset-structured-data"
+                type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: safeStringify(structuredData),
                 }}
             />
             <Script
-                id='breadcrumb-structured-data'
-                type='application/ld+json'
+                id="breadcrumb-structured-data"
+                type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: safeStringify(breadcrumbData),
                 }}

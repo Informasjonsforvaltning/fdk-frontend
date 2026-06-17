@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
-import Badge from '../badge';
-import PlaceholderBox from '../placeholder-box';
-import DownloadButton from '../download-button';
-import ActionButton from '../action-button';
-import { Tabs, TabsList, TabsTab, TabsPanel } from '@digdir/designsystemet-react';
-import ApiTags from '../api-tags';
-import DistributionTags from '../distribution-tags';
-import ScrollShadows from '../scroll-shadows';
+import React, { useState, useEffect } from "react";
+import { printLocaleValue } from "@fdk-frontend/utils";
+import { ArrowRightIcon } from "@navikt/aksel-icons";
+import Badge from "../badge";
+import PlaceholderBox from "../placeholder-box";
+import DownloadButton from "../download-button";
+import ActionButton from "../action-button";
+import { Tabs, TabsList, TabsTab, TabsPanel } from "@digdir/designsystemet-react";
+import ApiTags from "../api-tags";
+import DistributionTags from "../distribution-tags";
+import ScrollShadows from "../scroll-shadows";
 import {
     trackSiteImproveEvent,
     EventCategory,
     EventAction,
     EventLabel,
-} from '@fdk-frontend/utils/siteimprove-analytics';
-import { type DatasetWithIdentifier, type DataService } from '@fellesdatakatalog/types';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import styles from './styles.module.scss';
+} from "@fdk-frontend/utils/siteimprove-analytics";
+import { type DatasetWithIdentifier, type DataService } from "@fellesdatakatalog/types";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import styles from "./styles.module.scss";
 
 export type UseDatasetPopoverDialogProps = {
     dataset: DatasetWithIdentifier;
@@ -37,7 +37,7 @@ const UseDatasetPopoverDialog = ({
     ...props
 }: UseDatasetPopoverDialogProps & React.HTMLAttributes<HTMLDivElement>) => {
     const distributions = [...(dataset.distribution ?? []), ...(dataset.sample ?? [])];
-    const defaultActiveTab = !distributions.length && apis.length ? 'apis' : 'dist';
+    const defaultActiveTab = !distributions.length && apis.length ? "apis" : "dist";
     const [activeTab, setActiveTab] = useState(defaultActiveTab);
 
     useEffect(() => {
@@ -54,27 +54,27 @@ const UseDatasetPopoverDialog = ({
             {...props}
         >
             <Tabs
-                defaultValue='dist'
-                data-size='sm'
+                defaultValue="dist"
+                data-size="sm"
                 value={activeTab}
                 onChange={(value) => {
                     setActiveTab(value);
                 }}
             >
                 <TabsList>
-                    <TabsTab value='dist'>
+                    <TabsTab value="dist">
                         {dictionary.useDatasetPopover.distributions}&nbsp;
                         <Badge>{distributions.length}</Badge>
                     </TabsTab>
-                    <TabsTab value='apis'>
+                    <TabsTab value="apis">
                         {dictionary.useDatasetPopover.apis}&nbsp;
                         <Badge>{apis.length}</Badge>
                     </TabsTab>
                 </TabsList>
-                <TabsPanel value='dist'>
+                <TabsPanel value="dist">
                     {distributions.length ? (
                         <ScrollShadows className={styles.popoverScroller}>
-                            <ul className='fdk-box-list'>
+                            <ul className="fdk-box-list">
                                 {distributions.map((d, index) => (
                                     <li key={`distribution-${index}`}>
                                         <div className={styles.popoverListItem}>
@@ -110,9 +110,9 @@ const UseDatasetPopoverDialog = ({
                         <PlaceholderBox>{dictionary.distributions.placeholder}</PlaceholderBox>
                     )}
                 </TabsPanel>
-                <TabsPanel value='apis'>
+                <TabsPanel value="apis">
                     {apis.length ? (
-                        <ul className='fdk-box-list'>
+                        <ul className="fdk-box-list">
                             {apis.map((api, index) => (
                                 <li key={`api-${index}`}>
                                     <div className={styles.popoverListItem}>
@@ -129,7 +129,7 @@ const UseDatasetPopoverDialog = ({
                                             {dictionary.apis.header.gotoBtn}
                                             <ArrowRightIcon
                                                 aria-hidden
-                                                fontSize='1.2em'
+                                                fontSize="1.2em"
                                             />
                                         </ActionButton>
                                     </div>

@@ -1,8 +1,8 @@
-import { getLocalization, type Localization } from '@fdk-frontend/localization';
-import { expect, Page, BrowserContext } from '@playwright/test';
-import type AxeBuilder from '@axe-core/playwright';
+import { getLocalization, type Localization } from "@fdk-frontend/localization";
+import { expect, Page, BrowserContext } from "@playwright/test";
+import type AxeBuilder from "@axe-core/playwright";
 
-const dictionary = getLocalization('en').detailsPage;
+const dictionary = getLocalization("en").detailsPage;
 
 export default class ServiceDetailsPage {
     url: string;
@@ -23,14 +23,14 @@ export default class ServiceDetailsPage {
     // Helpers
     public async goto(url: string = this.url) {
         await this.page.goto(url, {
-            waitUntil: 'load',
+            waitUntil: "load",
             timeout: 30000,
         });
         await this.page.waitForFunction(
             () => {
                 // eslint-disable-next-line no-undef
                 const urlObj = new URL(window.location.href);
-                return urlObj.pathname.includes('/services/') && urlObj.pathname.split('/').length >= 4;
+                return urlObj.pathname.includes("/services/") && urlObj.pathname.split("/").length >= 4;
             },
             { timeout: 10000 },
         );

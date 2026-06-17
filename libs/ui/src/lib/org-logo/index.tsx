@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import cn from 'classnames';
-import { Buildings3Icon } from '@navikt/aksel-icons';
-import styles from './styles.module.scss';
+import React, { useState, useEffect } from "react";
+import cn from "classnames";
+import { Buildings3Icon } from "@navikt/aksel-icons";
+import styles from "./styles.module.scss";
 
 export type OrgLogoProps = {
     orgLogoSrc?: string | null;
@@ -32,7 +32,7 @@ const OrgLogo = ({ className, orgLogoSrc, orgNr, ...props }: OrgLogoProps) => {
                 <img
                     aria-hidden
                     src={imgSrc}
-                    alt=''
+                    alt=""
                     onError={() => setImageError(true)}
                 />
             )}

@@ -1,7 +1,7 @@
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { CatalogsMenu, HeadingWithDivider } from '@fdk-frontend/ui';
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { CatalogsMenu, HeadingWithDivider } from "@fdk-frontend/ui";
 
-import styles from './catalogs-banner.module.scss';
+import styles from "./catalogs-banner.module.scss";
 
 type CatalogsBannerProps = {
     commonDictionary: Localization;
@@ -15,7 +15,7 @@ const CatalogsBanner = ({ commonDictionary, frontpageDictionary, locale }: Catal
             <HeadingWithDivider
                 className={styles.headline}
                 level={2}
-                data-size='md'
+                data-size="md"
             >
                 {frontpageDictionary.catalogsBanner.title}
             </HeadingWithDivider>

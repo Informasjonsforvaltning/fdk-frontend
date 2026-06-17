@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import cn from 'classnames';
+import React, { useState, useEffect } from "react";
+import cn from "classnames";
 
-import { ChevronDownIcon } from '@navikt/aksel-icons';
+import { ChevronDownIcon } from "@navikt/aksel-icons";
 
-import styles from './scroll-button.module.scss';
+import styles from "./scroll-button.module.scss";
 
 const ScrollButton = () => {
     const [hidden, setHidden] = useState(false);
 
     const scroll = () => {
-        const banner = document.getElementById('frontpage-banner');
+        const banner = document.getElementById("frontpage-banner");
         if (!banner) return;
 
         const scrollTo = banner.offsetHeight - window.innerHeight + 200;
@@ -20,13 +20,13 @@ const ScrollButton = () => {
             window.scrollTo({
                 top: scrollTo,
                 left: 0,
-                behavior: 'smooth',
+                behavior: "smooth",
             });
         }
     };
 
     const handleScroll = () => {
-        const banner = document.getElementById('frontpage-banner');
+        const banner = document.getElementById("frontpage-banner");
         if (!banner) return;
 
         const scrollTarget = banner.offsetHeight - window.innerHeight + 200;
@@ -37,9 +37,9 @@ const ScrollButton = () => {
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
@@ -49,7 +49,7 @@ const ScrollButton = () => {
             className={cn(styles.scrollButton, { [styles.hidden]: hidden })}
             aria-hidden={hidden}
             tabIndex={hidden ? -1 : undefined}
-            data-color-scheme='dark'
+            data-color-scheme="dark"
         >
             <ChevronDownIcon
                 aria-hidden

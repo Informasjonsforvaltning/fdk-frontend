@@ -1,7 +1,7 @@
-import { notFound, redirect } from 'next/navigation';
-import { i18n, type LocaleCodes } from '@fdk-frontend/localization';
-import { getSlug } from '@fdk-frontend/utils';
-import { getApi } from '@fdk-frontend/data-access/server';
+import { notFound, redirect } from "next/navigation";
+import { i18n, type LocaleCodes } from "@fdk-frontend/localization";
+import { getSlug } from "@fdk-frontend/utils";
+import { getApi } from "@fdk-frontend/data-access/server";
 
 export type DetailsPageWrapperProps = {
     params: Promise<{
@@ -23,7 +23,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
         const canonicalSlug = getSlug(dataService, locale);
 
         // Preserve query parameters
-        const queryString = searchParams ? new URLSearchParams(searchParams as Record<string, string>).toString() : '';
+        const queryString = searchParams ? new URLSearchParams(searchParams as Record<string, string>).toString() : "";
         redirectUrl = queryString
             ? `/${locale}/data-services/${params.id}/${canonicalSlug}?${queryString}`
             : `/${locale}/data-services/${params.id}/${canonicalSlug}`;

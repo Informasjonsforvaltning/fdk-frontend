@@ -1,13 +1,13 @@
-import { PropsWithChildren } from 'react';
-import { type RootLayoutProps } from '../root-layout';
-import HeaderLayout from '../header-layout';
-import FooterLayout from '../footer-layout';
-import FeedbackBanner from '../../feedback-banner';
+import { PropsWithChildren } from "react";
+import { type RootLayoutProps } from "../root-layout";
+import HeaderLayout from "../header-layout";
+import FooterLayout from "../footer-layout";
+import FeedbackBanner from "../../feedback-banner";
 
 const NormalLayout = async ({ children, params }: PropsWithChildren & RootLayoutProps) => {
     const { lang } = await params;
     const communityBaseUri = process.env.FDK_COMMUNITY_BASE_URI;
-    const showSearchInput = process.env.SEARCH_PROTOTYPE_ENABLED === 'true';
+    const showSearchInput = process.env.SEARCH_PROTOTYPE_ENABLED === "true";
 
     return (
         <HeaderLayout
@@ -15,7 +15,7 @@ const NormalLayout = async ({ children, params }: PropsWithChildren & RootLayout
             showSearchInput={showSearchInput}
         >
             <FooterLayout locale={lang}>
-                <main id='main'>
+                <main id="main">
                     {children}
                     <FeedbackBanner
                         locale={lang}

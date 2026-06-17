@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import Badge from '.';
-import HStack from '../hstack';
+import Badge from ".";
+import HStack from "../hstack";
 
 const meta: Meta<typeof Badge> = {
     component: Badge,
-    title: 'Badge',
+    title: "Badge",
 };
 
 export default meta;
@@ -19,7 +19,7 @@ export const Primary: Story = {
     },
     render: () => (
         <>
-            <div style={{ padding: '1rem' }}>
+            <div style={{ padding: "1rem" }}>
                 <HStack>
                     <Badge>3</Badge>
                     <Badge>333</Badge>
@@ -38,15 +38,15 @@ export const AllColors: Story = {
     },
     render: () => (
         <>
-            <div style={{ padding: '1rem' }}>
+            <div style={{ padding: "1rem" }}>
                 <HStack>
                     <Badge>Default</Badge>
-                    <Badge data-color='orange'>Orange</Badge>
-                    <Badge data-color='green'>Green</Badge>
-                    <Badge data-color='red'>Red</Badge>
-                    <Badge data-color='red-subtle'>Red Subtle</Badge>
-                    <Badge data-color='blue-subtle'>Blue Subtle</Badge>
-                    <Badge data-color='green-subtle'>Green Subtle</Badge>
+                    <Badge data-color="orange">Orange</Badge>
+                    <Badge data-color="green">Green</Badge>
+                    <Badge data-color="red">Red</Badge>
+                    <Badge data-color="red-subtle">Red Subtle</Badge>
+                    <Badge data-color="blue-subtle">Blue Subtle</Badge>
+                    <Badge data-color="green-subtle">Green Subtle</Badge>
                 </HStack>
             </div>
         </>

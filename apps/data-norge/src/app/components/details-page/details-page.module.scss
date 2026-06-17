@@ -1,4 +1,4 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .detailsPage {
     margin: 0 2rem 3rem;
@@ -41,7 +41,7 @@
         }
 
         .tabs {
-            [role='tabpanel'] {
+            [role="tabpanel"] {
                 padding: 1.5rem 0;
 
                 > * + * {

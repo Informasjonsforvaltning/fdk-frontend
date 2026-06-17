@@ -1,9 +1,9 @@
-import { getLocalization, type Localization } from '@fdk-frontend/localization';
-import { expect, Page, BrowserContext } from '@playwright/test';
-import * as mockData from '../data/inputData.json';
-import type AxeBuilder from '@axe-core/playwright';
+import { getLocalization, type Localization } from "@fdk-frontend/localization";
+import { expect, Page, BrowserContext } from "@playwright/test";
+import * as mockData from "../data/inputData.json";
+import type AxeBuilder from "@axe-core/playwright";
 
-const dictionary = getLocalization('en').dataHunterPage;
+const dictionary = getLocalization("en").dataHunterPage;
 
 export default class FormPage {
     page: Page;
@@ -13,7 +13,7 @@ export default class FormPage {
     formData = {};
 
     constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
-        this.url = '/en/data-hunter';
+        this.url = "/en/data-hunter";
         this.dictionary = dictionary;
         this.page = page;
         this.context = context;
@@ -26,7 +26,7 @@ export default class FormPage {
     }
 
     // Locators
-    pageTitle = () => this.page.getByRole('heading', { name: this.dictionary.dataHunterForm.title });
+    pageTitle = () => this.page.getByRole("heading", { name: this.dictionary.dataHunterForm.title });
     pageDescription = () => this.page.getByText(this.dictionary.dataHunterForm.description);
     datasetInput = () => this.page.getByLabel(this.dictionary.dataHunterForm.dataset.label);
     locationInput = () => this.page.getByLabel(this.dictionary.dataHunterForm.location.label);
@@ -35,7 +35,7 @@ export default class FormPage {
     emailInput = () => this.page.getByLabel(this.dictionary.email);
     organizationNumberInput = () => this.page.getByLabel(this.dictionary.organizationNumber);
     phoneNumberInput = () => this.page.getByLabel(this.dictionary.phoneNumber);
-    submitButton = () => this.page.getByRole('button', { name: this.dictionary.submitRequest });
+    submitButton = () => this.page.getByRole("button", { name: this.dictionary.submitRequest });
     form = () => this.page.locator('[id="data-hunter-form"]');
 
     // Helpers
@@ -49,7 +49,7 @@ export default class FormPage {
         }
         await this.page.waitForFunction(() => {
             const inputs = document.querySelectorAll(
-                '#data-hunter-form input:not([type=hidden]), #data-hunter-form textarea',
+                "#data-hunter-form input:not([type=hidden]), #data-hunter-form textarea",
             );
             return (
                 inputs.length > 0 &&
@@ -60,20 +60,20 @@ export default class FormPage {
                 )
             );
         });
-        const result = await this.accessibilityBuilder.include('#data-hunter-form').analyze();
+        const result = await this.accessibilityBuilder.include("#data-hunter-form").analyze();
         expect.soft(result.violations).toEqual([]);
     }
 
     private async addSubmitListener() {
         await this.form().evaluate((node) =>
-            node.addEventListener('submit', async (event) => {
+            node.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 // eslint-disable-next-line no-undef
                 const formData = Array.from(new FormData(event.target as HTMLFormElement).entries()).reduce(
-                    (data, [key, value]) => (!key.startsWith('$') ? { ...data, [key]: value } : data),
+                    (data, [key, value]) => (!key.startsWith("$") ? { ...data, [key]: value } : data),
                     {},
                 );
-                node.setAttribute('submitted-form-data', JSON.stringify(formData));
+                node.setAttribute("submitted-form-data", JSON.stringify(formData));
             }),
         );
     }
@@ -82,9 +82,9 @@ export default class FormPage {
      * Validate form values after form submission, by checking the result of the new FormData()
      */
     private async validateFormSubmission() {
-        const formData = await this.form().getAttribute('submitted-form-data');
+        const formData = await this.form().getAttribute("submitted-form-data");
         if (!formData) {
-            throw new Error('Form submission failed');
+            throw new Error("Form submission failed");
         }
         this.formData = JSON.parse(formData);
 

@@ -1,4 +1,4 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .mdxPage {
     margin: 0 2rem 3rem;
@@ -8,13 +8,13 @@
         align-items: start;
         display: grid;
         grid-template-columns: calc(25% - 0.5rem) calc(50% - 2rem) calc(25% - 0.5rem);
-        grid-template-areas: '. article .';
+        grid-template-areas: ". article .";
         gap: 2rem;
         margin-top: 2rem;
 
         &.noSidebars {
             grid-template-columns: 100%;
-            grid-template-areas: 'article';
+            grid-template-areas: "article";
         }
 
         .mainColumn {
@@ -50,7 +50,7 @@
 
         @container (max-width: 900px) {
             grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
-            grid-template-areas: '. article';
+            grid-template-areas: ". article";
 
             .rightColumn {
                 display: none;

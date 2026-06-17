@@ -1,10 +1,10 @@
 // eslint-disable-next-line
-import { redirect, notFound } from 'next/navigation';
-import { Spinner, Paragraph } from '@digdir/designsystemet-react';
-import { getLocalization, type LocaleCodes } from '@fdk-frontend/localization';
-import { getAccessRequestDestination } from '@fdk-frontend/data-access/server';
-import { type CatalogTypes } from '@fdk-frontend/types';
-import styles from './access-request-page.module.scss';
+import { redirect, notFound } from "next/navigation";
+import { Spinner, Paragraph } from "@digdir/designsystemet-react";
+import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
+import { getAccessRequestDestination } from "@fdk-frontend/data-access/server";
+import { type CatalogTypes } from "@fdk-frontend/types";
+import styles from "./access-request-page.module.scss";
 
 export type AccessRequestPageProps = {
     params: Promise<{
@@ -31,10 +31,10 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
 
     return (
         <div className={styles.wrapper}>
-            <div style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: "center" }}>
                 <Spinner
                     aria-label={dictionary.general.redirecting}
-                    data-size='md'
+                    data-size="md"
                     aria-hidden
                 />
                 <Paragraph>{dictionary.general.redirecting}</Paragraph>

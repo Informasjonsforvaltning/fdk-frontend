@@ -1,8 +1,8 @@
-import { getLocalization, type Localization } from '@fdk-frontend/localization';
-import { expect, Page, BrowserContext } from '@playwright/test';
-import type AxeBuilder from '@axe-core/playwright';
+import { getLocalization, type Localization } from "@fdk-frontend/localization";
+import { expect, Page, BrowserContext } from "@playwright/test";
+import type AxeBuilder from "@axe-core/playwright";
 
-const dictionary = getLocalization('en').docs;
+const dictionary = getLocalization("en").docs;
 
 export default class DocsPage {
     page: Page;
@@ -11,7 +11,7 @@ export default class DocsPage {
     accessibilityBuilder;
 
     constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
-        this.url = '/nb/docs';
+        this.url = "/nb/docs";
         this.dictionary = dictionary;
         this.page = page;
         this.context = context;
@@ -29,7 +29,7 @@ export default class DocsPage {
         if (!this.accessibilityBuilder) {
             return;
         }
-        const result = await this.accessibilityBuilder.disableRules(['landmark-unique']).analyze();
+        const result = await this.accessibilityBuilder.disableRules(["landmark-unique"]).analyze();
         expect.soft(result.violations).toEqual([]);
     }
 }

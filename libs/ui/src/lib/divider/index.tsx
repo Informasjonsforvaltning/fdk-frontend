@@ -1,6 +1,6 @@
-import React from 'react';
-import cn from 'classnames';
-import styles from './divider.module.scss';
+import React from "react";
+import cn from "classnames";
+import styles from "./divider.module.scss";
 
 const BrandDivider = ({ className, ...props }: React.HTMLAttributes<HTMLHRElement>) => {
     return (

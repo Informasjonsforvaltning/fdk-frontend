@@ -6,34 +6,34 @@
     border-radius: 50px;
     background: var(--ds-color-surface-tinted);
 
-    &[data-color='red'] {
+    &[data-color="red"] {
         background: var(--ds-color-danger-base-default);
         color: white;
     }
 
-    &[data-color='orange'] {
+    &[data-color="orange"] {
         background: var(--ds-color-warning-base-default);
     }
 
-    &[data-color='blue'] {
+    &[data-color="blue"] {
         background: var(--ds-color-info-base-default);
         color: white;
     }
 
-    &[data-color='green'] {
+    &[data-color="green"] {
         background: var(--ds-color-success-base-default);
         color: white;
     }
 
-    &[data-color='red-subtle'] {
+    &[data-color="red-subtle"] {
         background: var(--ds-color-danger-surface-tinted);
     }
 
-    &[data-color='blue-subtle'] {
+    &[data-color="blue-subtle"] {
         background: var(--ds-color-surface-tinted);
     }
 
-    &[data-color='green-subtle'] {
+    &[data-color="green-subtle"] {
         background: var(--ds-color-success-surface-tinted);
     }
 }

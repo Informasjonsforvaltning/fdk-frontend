@@ -1,5 +1,5 @@
-describe('Page', () => {
-    it('should render successfully', () => {
+describe("Page", () => {
+    it("should render successfully", () => {
         expect(true).toBeTruthy();
     });
 });

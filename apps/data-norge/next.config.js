@@ -1,33 +1,33 @@
 //@ts-check
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
-const { composePlugins, withNx } = require('@nx/next');
+const { composePlugins, withNx } = require("@nx/next");
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const createMDX = require('@next/mdx');
+const createMDX = require("@next/mdx");
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const path = require('path');
+const path = require("path");
 // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 // Load .env and .env.local from workspace root (Next.js only loads from app dir by default)
-const rootDir = path.join(__dirname, '../..');
-dotenv.config({ path: path.join(rootDir, '.env') });
-dotenv.config({ path: path.join(rootDir, '.env.local'), override: true });
+const rootDir = path.join(__dirname, "../..");
+dotenv.config({ path: path.join(rootDir, ".env") });
+dotenv.config({ path: path.join(rootDir, ".env.local"), override: true });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // Configure `pageExtensions` to include markdown and MDX files
-    pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    pageExtensions: ["js", "jsx", "ts", "tsx"],
     // Force bundling to avoid Turbopack external module hash issues in Docker
-    transpilePackages: ['next-mdx-remote'],
-    assetPrefix: '/nb',
+    transpilePackages: ["next-mdx-remote"],
+    assetPrefix: "/nb",
     sassOptions: {
-        silenceDeprecations: ['legacy-js-api', 'import'],
+        silenceDeprecations: ["legacy-js-api", "import"],
     },
     // Ensure CSS HMR works properly
     compiler: {
         // Remove console logs in production
-        removeConsole: process.env.NODE_ENV === 'production',
+        removeConsole: process.env.NODE_ENV === "production",
     },
     reactStrictMode: true,
     // React Compiler configuration (moved from experimental in Next.js 16)
@@ -35,45 +35,45 @@ const nextConfig = {
     // Add experimental features for better compatibility
     experimental: {
         // Optimize for development
-        optimizePackageImports: ['@digdir/designsystemet-react'],
+        optimizePackageImports: ["@digdir/designsystemet-react"],
         // Enable CSS modules with better HMR support
-        cssChunking: 'strict',
+        cssChunking: "strict",
     },
     // Note: serverExternalPackages removed - Turbopack bundles server dependencies differently
     // Turbopack configuration - set root to monorepo root
     turbopack: {
-        root: path.join(__dirname, '../..'),
+        root: path.join(__dirname, "../.."),
     },
     // Optimize images
     images: {
-        unoptimized: process.env.NODE_ENV === 'development',
+        unoptimized: process.env.NODE_ENV === "development",
     },
     async redirects() {
         return [
             // Content redirects
             {
-                source: '/:lang/docs/tutorials/:slug',
-                destination: '/:lang/docs/sharing-data/:slug',
+                source: "/:lang/docs/tutorials/:slug",
+                destination: "/:lang/docs/sharing-data/:slug",
                 permanent: true,
             },
             {
-                source: '/:lang/docs/how-to-guides/:slug',
-                destination: '/:lang/docs/sharing-data/:slug',
+                source: "/:lang/docs/how-to-guides/:slug",
+                destination: "/:lang/docs/sharing-data/:slug",
                 permanent: true,
             },
             {
-                source: '/:lang/docs/additional-resources',
-                destination: '/:lang/docs/resources',
+                source: "/:lang/docs/additional-resources",
+                destination: "/:lang/docs/resources",
                 permanent: true,
             },
             {
-                source: '/:lang/docs/rdf',
-                destination: '/:lang/docs/sharing-data/rdf',
+                source: "/:lang/docs/rdf",
+                destination: "/:lang/docs/sharing-data/rdf",
                 permanent: true,
             },
             {
-                source: '/:lang/docs/rdf-crash-course',
-                destination: '/:lang/docs/sharing-data/rdf/rdf-crash-course',
+                source: "/:lang/docs/rdf-crash-course",
+                destination: "/:lang/docs/sharing-data/rdf/rdf-crash-course",
                 permanent: true,
             },
         ];

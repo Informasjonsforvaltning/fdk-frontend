@@ -1,4 +1,4 @@
-@use '../box/box.module' as box;
+@use "../box/box.module" as box;
 
 .popover {
     padding: 0;
@@ -14,11 +14,11 @@
         width: auto;
     }
 
-    [role='tablist'] {
+    [role="tablist"] {
         display: grid;
         grid-template-columns: 1fr 1fr;
 
-        [role='tab'] {
+        [role="tab"] {
             padding: 1rem 1.25rem;
         }
     }
@@ -34,7 +34,7 @@
     .popoverListItem {
         @include box.grey-box-mixin();
         display: grid;
-        grid-template-areas: 'a b';
+        grid-template-areas: "a b";
         grid-template-columns: auto min-content;
         align-items: start;
         gap: 1rem;

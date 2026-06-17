@@ -1,12 +1,12 @@
-import React from 'react';
-import cn from 'classnames';
-import { Link, Table } from '@digdir/designsystemet-react';
-import AccessLevelTag from '../access-level-tag';
-import HStack from '../hstack';
-import { printLocaleValue } from '@fdk-frontend/utils';
-import { type Localization, type LocaleCodes } from '@fdk-frontend/localization';
-import { AccessRightsCodes } from '@fellesdatakatalog/types';
-import styles from './dataset-table.module.scss';
+import React from "react";
+import cn from "classnames";
+import { Link, Table } from "@digdir/designsystemet-react";
+import AccessLevelTag from "../access-level-tag";
+import HStack from "../hstack";
+import { printLocaleValue } from "@fdk-frontend/utils";
+import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { AccessRightsCodes } from "@fellesdatakatalog/types";
+import styles from "./dataset-table.module.scss";
 
 type DatasetTableProps = {
     locale: LocaleCodes;
@@ -23,8 +23,8 @@ const DatasetTable = ({
 }: DatasetTableProps & React.HTMLAttributes<HTMLDivElement>) => {
     return (
         <Table
-            className={cn('table', styles.table)}
-            data-size='sm'
+            className={cn("table", styles.table)}
+            data-size="sm"
             border
             hover
         >
@@ -49,11 +49,11 @@ const DatasetTable = ({
                                           : `Ukjent virksomhet`}
                                 </span>
                             </td>
-                            <td align='right'>
+                            <td align="right">
                                 <HStack
                                     style={{
-                                        justifyContent: 'flex-end',
-                                        gap: '0.5rem',
+                                        justifyContent: "flex-end",
+                                        gap: "0.5rem",
                                     }}
                                 >
                                     <AccessLevelTag

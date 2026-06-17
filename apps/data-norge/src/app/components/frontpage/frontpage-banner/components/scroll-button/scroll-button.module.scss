@@ -1,7 +1,7 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .scrollButton {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: 1.6rem;

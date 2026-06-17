@@ -1,8 +1,8 @@
-import React from 'react';
-import { Alert, type AlertProps, Heading, Paragraph, Button, Link } from '@digdir/designsystemet-react';
-import VStack from '../vstack';
-import HStack from '../hstack';
-import AccessRequestButton, { type AccessRequestButtonProps } from '../access-request-button';
+import React from "react";
+import { Alert, type AlertProps, Heading, Paragraph, Button, Link } from "@digdir/designsystemet-react";
+import VStack from "../vstack";
+import HStack from "../hstack";
+import AccessRequestButton, { type AccessRequestButtonProps } from "../access-request-button";
 // import styles from './resource-not-available-notice.module.scss';
 
 const ResourceNotAvailableNotice = ({
@@ -17,17 +17,17 @@ const ResourceNotAvailableNotice = ({
     return (
         <div className={className}>
             <Alert
-                data-color='warning'
+                data-color="warning"
                 {...props}
             >
-                <VStack style={{ marginBottom: '0.66666rem', gap: '0.5rem' }}>
+                <VStack style={{ marginBottom: "0.66666rem", gap: "0.5rem" }}>
                     <Heading
                         level={2}
-                        data-size='2xs'
+                        data-size="2xs"
                     >
                         {dictionary.resourceNotAvailableNotice.title}
                     </Heading>
-                    <Paragraph data-size='sm'>{dictionary.resourceNotAvailableNotice.body}</Paragraph>
+                    <Paragraph data-size="sm">{dictionary.resourceNotAvailableNotice.body}</Paragraph>
                     <HStack>
                         <AccessRequestButton
                             kind={kind}
@@ -37,11 +37,11 @@ const ResourceNotAvailableNotice = ({
                             locale={locale}
                         />
                         <Button
-                            variant='tertiary'
-                            data-size='sm'
+                            variant="tertiary"
+                            data-size="sm"
                             asChild
                         >
-                            <Link href='/docs/finding-data/access-data#nasjonal-soknadslosning'>
+                            <Link href="/docs/finding-data/access-data#nasjonal-soknadslosning">
                                 {dictionary.resourceNotAvailableNotice.moreInfoLink}
                             </Link>
                         </Button>

@@ -1,7 +1,7 @@
-import { Alert } from '@digdir/designsystemet-react';
-import { type LocaleCodes, getLocalization } from '@fdk-frontend/localization';
-import { FormStatusEnum } from '@fdk-frontend/utils';
-import styles from './submit-status-alert.module.css';
+import { Alert } from "@digdir/designsystemet-react";
+import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
+import { FormStatusEnum } from "@fdk-frontend/utils";
+import styles from "./submit-status-alert.module.css";
 
 type SubmitStatusAlertProps = {
     locale: LocaleCodes;
@@ -14,7 +14,7 @@ const SubmitStatusAlert = ({ locale, formStatus = FormStatusEnum.UNSET }: Submit
         case FormStatusEnum.SUCCESS:
             return (
                 <Alert
-                    data-color='success'
+                    data-color="success"
                     className={styles.alert}
                 >
                     {dictionary.success.formSubmit}
@@ -23,7 +23,7 @@ const SubmitStatusAlert = ({ locale, formStatus = FormStatusEnum.UNSET }: Submit
         case FormStatusEnum.ERROR:
             return (
                 <Alert
-                    data-color='danger'
+                    data-color="danger"
                     className={styles.alert}
                 >
                     {dictionary.error.formSubmit}

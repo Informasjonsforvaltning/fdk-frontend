@@ -1,14 +1,14 @@
-@use '../box-list/styles.module' as box-list;
-@use '../box-link/styles.module' as box-link;
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "../box-list/styles.module" as box-list;
+@use "../box-link/styles.module" as box-link;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 @layer reset, fds;
 
 // Import fdk-ui styles
-@import '@fellesdatakatalog/ui/dist/styles.css';
-@import '@fellesdatakatalog/ui/src/components/core/reset.css';
-@import '@fellesdatakatalog/ui/src/components/core/tokens.scss';
-@import '@fellesdatakatalog/ui/src/components/core/ds-overrides.scss';
+@import "@fellesdatakatalog/ui/dist/styles.css";
+@import "@fellesdatakatalog/ui/src/components/core/reset.css";
+@import "@fellesdatakatalog/ui/src/components/core/tokens.scss";
+@import "@fellesdatakatalog/ui/src/components/core/ds-overrides.scss";
 
 /*
     Needed for sticky header:
@@ -33,9 +33,9 @@ body {
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
-        'Segoe UI',
+        "Segoe UI",
         Roboto,
-        'Helvetica Neue',
+        "Helvetica Neue",
         Arial,
         sans-serif;
     background: var(--fdk-color-navy-dark);

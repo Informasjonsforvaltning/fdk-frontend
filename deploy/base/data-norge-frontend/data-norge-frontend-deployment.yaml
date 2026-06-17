@@ -17,7 +17,7 @@ spec:
             labels:
                 app: data-norge-frontend
             annotations:
-                prometheus.io/scrape: 'false'
+                prometheus.io/scrape: "false"
         spec:
             containers:
                 - name: data-norge-frontend

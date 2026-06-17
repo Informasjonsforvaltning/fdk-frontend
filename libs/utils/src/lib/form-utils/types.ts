@@ -1,7 +1,7 @@
 export enum FormStatusEnum {
-    UNSET = 'UNSET',
-    SUCCESS = 'SUCCESS',
-    ERROR = 'ERROR',
+    UNSET = "UNSET",
+    SUCCESS = "SUCCESS",
+    ERROR = "ERROR",
 }
 
 export type FormStatusType = (typeof FormStatusEnum)[keyof typeof FormStatusEnum];
@@ -16,6 +16,6 @@ export type FormState = {
 };
 
 export type GetFormStateOverload = {
-    (status: FormStatusEnum, message: FormState['message']): FormState;
+    (status: FormStatusEnum, message: FormState["message"]): FormState;
     (status: FormStatusEnum.ERROR, fieldErrors: FieldErrors): FormState;
 };
