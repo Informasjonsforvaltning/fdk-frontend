@@ -20,6 +20,16 @@ const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProps) => {
   const dictionary = getLocalization(locale).common;
   const data = getMainMenuData(dictionary, locale);
+
+  const isGithubUrl = (href: string) => {
+    try {
+      const url = new URL(href);
+      return url.protocol === "https:" && url.hostname === "github.com";
+    } catch {
+      return false;
+    }
+  };
+
   const animations = {
     links: {
       hidden: { opacity: 0 },
@@ -136,7 +146,7 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
                     href={item.href}
                     locale={locale}
                   >
-                    {item.href.startsWith("https://github.com") && <GithubLogo style={{ marginRight: "0.125em" }} />}
+                    {isGithubUrl(item.href) && <GithubLogo style={{ marginRight: "0.125em" }} />}
                     {item.title}
                   </ExternalLink>
                 ) : (
