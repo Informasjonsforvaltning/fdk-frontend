@@ -1,106 +1,106 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import cn from 'classnames';
-import { Spinner, Button } from '@digdir/designsystemet-react';
-import { EyeIcon } from '@navikt/aksel-icons';
-import DatasetPreviewModal from '../dataset-preview-modal/';
-import { type Localization } from '@fdk-frontend/localization';
+import React, { useState, useEffect } from "react";
+import cn from "classnames";
+import { Spinner, Button } from "@digdir/designsystemet-react";
+import { EyeIcon } from "@navikt/aksel-icons";
+import DatasetPreviewModal from "../dataset-preview-modal/";
+import { type Localization } from "@fdk-frontend/localization";
 import {
-    trackSiteImproveEvent,
-    EventCategory,
-    EventAction,
-    EventLabel,
-} from '@fdk-frontend/utils/siteimprove-analytics';
-import styles from './styles.module.scss';
+  trackSiteImproveEvent,
+  EventCategory,
+  EventAction,
+  EventLabel,
+} from "@fdk-frontend/utils/siteimprove-analytics";
+import styles from "./styles.module.scss";
 
 type DatasetPreviewWidgetProps = {
-    downloadUrl: string;
-    title: string;
-    dictionary: Localization;
-    triggerBtnClass?: string;
-    hasBeenOpened: boolean;
+  downloadUrl: string;
+  title: string;
+  dictionary: Localization;
+  triggerBtnClass?: string;
+  hasBeenOpened: boolean;
 };
 
 const DatasetPreviewWidget = ({
-    downloadUrl,
-    title,
-    dictionary,
-    triggerBtnClass,
-    hasBeenOpened,
-    ...props
+  downloadUrl,
+  title,
+  dictionary,
+  triggerBtnClass,
+  hasBeenOpened,
+  ...props
 }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(false);
-    const [data, setData] = useState<any>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [data, setData] = useState<any>(undefined);
 
-    useEffect(() => {
-        const getDatasetPreview = async () => {
-            if (!hasBeenOpened) {
-                return;
-            }
+  useEffect(() => {
+    const getDatasetPreview = async () => {
+      if (!hasBeenOpened) {
+        return;
+      }
 
-            setIsLoading(true);
-            try {
-                const response = await fetch('/api/dataset-preview', {
-                    method: 'POST',
-                    body: JSON.stringify({ downloadUrl }),
-                });
+      setIsLoading(true);
+      try {
+        const response = await fetch("/api/dataset-preview", {
+          method: "POST",
+          body: JSON.stringify({ downloadUrl }),
+        });
 
-                if (!response.ok) throw new Error('Request failed');
+        if (!response.ok) throw new Error("Request failed");
 
-                const json = await response.json();
-                setData(json);
-            } catch {
-                setError(true);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+        const json = await response.json();
+        setData(json);
+      } catch {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-        getDatasetPreview();
-    }, [hasBeenOpened]);
+    getDatasetPreview();
+  }, [hasBeenOpened]);
 
-    return (
-        <div {...props}>
-            {isLoading && (
-                <div className={styles.loading}>
-                    {dictionary.datasetPreview.generatingPreview}
-                    <Spinner
-                        aria-label={'loading'}
-                        data-size='xs'
-                        aria-hidden={true}
-                    />
-                </div>
-            )}
-            {!error && data?.table && (
-                <DatasetPreviewModal
-                    title={title}
-                    data={data || {}}
-                    downloadUrl={downloadUrl}
-                    trigger={
-                        <Button
-                            data-size='sm'
-                            variant='secondary'
-                            className={cn(styles.previewBtn, triggerBtnClass)}
-                            aria-label={dictionary.datasetPreview.showPreviewButton}
-                            onClick={() =>
-                                trackSiteImproveEvent({
-                                    category: EventCategory.DETAILS_PAGE,
-                                    action: EventAction.CLICK,
-                                    label: EventLabel.SHOW_DATASET_PREVIEW_BUTTON,
-                                })
-                            }
-                        >
-                            <EyeIcon fontSize='1.2em' />
-                            <span>{dictionary.datasetPreview.showPreviewButton}</span>
-                        </Button>
-                    }
-                    dictionary={dictionary}
-                />
-            )}
+  return (
+    <div {...props}>
+      {isLoading && (
+        <div className={styles.loading}>
+          {dictionary.datasetPreview.generatingPreview}
+          <Spinner
+            aria-label={"loading"}
+            data-size="xs"
+            aria-hidden={true}
+          />
         </div>
-    );
+      )}
+      {!error && data?.table && (
+        <DatasetPreviewModal
+          title={title}
+          data={data || {}}
+          downloadUrl={downloadUrl}
+          trigger={
+            <Button
+              data-size="sm"
+              variant="secondary"
+              className={cn(styles.previewBtn, triggerBtnClass)}
+              aria-label={dictionary.datasetPreview.showPreviewButton}
+              onClick={() =>
+                trackSiteImproveEvent({
+                  category: EventCategory.DETAILS_PAGE,
+                  action: EventAction.CLICK,
+                  label: EventLabel.SHOW_DATASET_PREVIEW_BUTTON,
+                })
+              }
+            >
+              <EyeIcon fontSize="1.2em" />
+              <span>{dictionary.datasetPreview.showPreviewButton}</span>
+            </Button>
+          }
+          dictionary={dictionary}
+        />
+      )}
+    </div>
+  );
 };
 
 export default DatasetPreviewWidget;

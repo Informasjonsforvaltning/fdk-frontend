@@ -1,65 +1,65 @@
 const frontpage = {
-    metadata: {
-        title: "Where Norway shares data",
-        description:
-            "data.norge.no is Norway's official portal for sharing data from Norwegian organizations that you can use for innovation and research.",
+  metadata: {
+    title: "Where Norway shares data",
+    description:
+      "data.norge.no is Norway's official portal for sharing data from Norwegian organizations that you can use for innovation and research.",
+  },
+  aiBanner: {
+    advancedSearchPrompt: {
+      link: "Find data",
+      text: "Not finding what you're looking for?",
     },
-    aiBanner: {
-        advancedSearchPrompt: {
-            link: "Find data",
-            text: "Not finding what you're looking for?",
-        },
-        prompt: {
-            button: "Ask",
-            disclaimer: "Do not enter personal or other sensitive information.",
-            errors: {
-                generic: "An error occurred. Please try again later.",
-                queryTooShort: "The query must have at least three characters. Please try again.",
-                queryTooLong: "The query cannot have more than 255 characters. Please try again.",
-            },
-            label: "Ask our AI about data from over 125 organizations:",
-            loading: "Loading",
-            placeholder: "What are you looking for?",
-            responses: {
-                noResults: "Unfortunately, I didn't find any relevant results. Please try another query.",
-                resultsFound: "I found {{num}} results that might be relevant:",
-            },
-        },
-        suggestions: {
-            list: [
-                "Number of Teslas sold in Norway in 2022",
-                "Which areas in Norway are protected?",
-                "Which goods does Norway export the most?",
-                "What do traffic patterns look like in Oslo?",
-                "How do Norwegian schools perform?",
-                "How much forest does Norway have?",
-                "How is digitalization progressing in Norway?",
-                "Which technologies are most used in Norway?",
-            ],
-            prefix: "Try for example:",
-        },
-        title: "Where Norway shares data",
-        tooltip: {
-            disclaimer: "Do not enter personal information in the search field.",
-            label: "About AI Search",
-            readMoreLinkText: "Read more about the AI Search here",
-            text: "Our AI Search makes it easy to find data using natural language without needing to know specific names, technical terms, or formats. Please note that the AI Search may be both incomplete and contain errors.",
-        },
+    prompt: {
+      button: "Ask",
+      disclaimer: "Do not enter personal or other sensitive information.",
+      errors: {
+        generic: "An error occurred. Please try again later.",
+        queryTooShort: "The query must have at least three characters. Please try again.",
+        queryTooLong: "The query cannot have more than 255 characters. Please try again.",
+      },
+      label: "Ask our AI about data from over 125 organizations:",
+      loading: "Loading",
+      placeholder: "What are you looking for?",
+      responses: {
+        noResults: "Unfortunately, I didn't find any relevant results. Please try another query.",
+        resultsFound: "I found {{num}} results that might be relevant:",
+      },
     },
-    catalogsBanner: {
-        title: "Our data catalogs",
+    suggestions: {
+      list: [
+        "Number of Teslas sold in Norway in 2022",
+        "Which areas in Norway are protected?",
+        "Which goods does Norway export the most?",
+        "What do traffic patterns look like in Oslo?",
+        "How do Norwegian schools perform?",
+        "How much forest does Norway have?",
+        "How is digitalization progressing in Norway?",
+        "Which technologies are most used in Norway?",
+      ],
+      prefix: "Try for example:",
     },
-    shareDataBanner: {
-        content: "...and {{link}} - share your data with the rest of the country.",
-        shareDataLinkText: "Share data",
-        documentationLinkText: "Help and guidance",
-        organizationsLinkText: "125 other organizations",
-        doLike: "Do like",
-        popover: {
-            start: "Click to start the animation",
-            pause: "Click to pause the animation",
-        },
+    title: "Where Norway shares data",
+    tooltip: {
+      disclaimer: "Do not enter personal information in the search field.",
+      label: "About AI Search",
+      readMoreLinkText: "Read more about the AI Search here",
+      text: "Our AI Search makes it easy to find data using natural language without needing to know specific names, technical terms, or formats. Please note that the AI Search may be both incomplete and contain errors.",
     },
+  },
+  catalogsBanner: {
+    title: "Our data catalogs",
+  },
+  shareDataBanner: {
+    content: "...and {{link}} - share your data with the rest of the country.",
+    shareDataLinkText: "Share data",
+    documentationLinkText: "Help and guidance",
+    organizationsLinkText: "125 other organizations",
+    doLike: "Do like",
+    popover: {
+      start: "Click to start the animation",
+      pause: "Click to pause the animation",
+    },
+  },
 };
 
 export default frontpage;

@@ -1,5 +1,5 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .article {
-    @include core-mixins.article();
+  @include core-mixins.article();
 }

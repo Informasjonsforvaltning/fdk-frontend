@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * Interpolates values into a string containing placeholders {{key}}.
@@ -8,10 +8,7 @@ import React from 'react';
  * @param params - Key-value pairs for interpolation (e.g. { name: <strong>World</strong> })
  * @returns React element with interpolated content
  */
-export function interpolate(
-  str: string,
-  params: Record<string, React.ReactNode>
-): React.ReactElement {
+export function interpolate(str: string, params: Record<string, React.ReactNode>): React.ReactElement {
   const regex = /{{\s*([^{}\s]+)\s*}}/g;
   const parts: React.ReactNode[] = [];
   let lastIndex = 0;

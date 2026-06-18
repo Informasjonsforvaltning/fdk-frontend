@@ -1,19 +1,19 @@
 .wrapper {
-    display: inline-flex;
-    gap: 0.5rem;
+  display: inline-flex;
+  gap: 0.5rem;
 
-    &:not(.reverse) {
-        padding-left: 0.4rem;
-    }
+  &:not(.reverse) {
+    padding-left: 0.4rem;
+  }
 
-    .orgLogo {
-        width: 1.5rem;
-        height: 1.5rem;    
-    }
+  .orgLogo {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 
-    &.reverse {
-        flex-direction:row-reverse;
-        padding-left: auto;
-        padding-right: 0.4rem;
-    }
+  &.reverse {
+    flex-direction: row-reverse;
+    padding-left: auto;
+    padding-right: 0.4rem;
+  }
 }

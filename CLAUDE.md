@@ -57,10 +57,10 @@ Defined in `tsconfig.base.json`:
 Routes use `[lang]` dynamic segment. Supported locales: `nb`, `nn`, `en`
 
 ```typescript
-import { getLocalization, getSafeSection } from '@fdk-frontend/localization';
+import { getLocalization, getSafeSection } from "@fdk-frontend/localization";
 
 const loc = getLocalization(params.lang);
-const headerDict = getSafeSection(params.lang, 'common'); // For passing to multiple components
+const headerDict = getSafeSection(params.lang, "common"); // For passing to multiple components
 ```
 
 ## Design System

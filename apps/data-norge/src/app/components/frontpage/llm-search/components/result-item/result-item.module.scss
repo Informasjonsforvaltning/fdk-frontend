@@ -1,42 +1,42 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .link {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 1rem;
-    border-radius: 0.25rem;
-    background: transparent;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background: transparent;
 
-    .heading {
-        color: white;
-        gap: 0.25rem;
+  .heading {
+    color: white;
+    gap: 0.25rem;
 
-        .title {
-            text-decoration: underline;
-        }
-
-        .publisher {
-            font-size: 0.9em;
-            color: var(--fdk-color-cyan);
-        }
+    .title {
+      text-decoration: underline;
     }
 
-    &:hover {
-        background: rgba(0, 0, 0, 0.3333);
-
-        .title {
-            text-decoration: none;
-        }
+    .publisher {
+      font-size: 0.9em;
+      color: var(--fdk-color-cyan);
     }
+  }
 
-    &:focus {
-        @include core-mixins.focus-block();
-        background: rgba(0, 0, 0, 0.3333);
-    }
+  &:hover {
+    background: rgba(0, 0, 0, 0.3333);
 
-    .description {
-        color: var(--fdk-color-cyan);
+    .title {
+      text-decoration: none;
     }
+  }
+
+  &:focus {
+    @include core-mixins.focus-block();
+    background: rgba(0, 0, 0, 0.3333);
+  }
+
+  .description {
+    color: var(--fdk-color-cyan);
+  }
 }

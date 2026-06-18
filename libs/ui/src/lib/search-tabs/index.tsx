@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { ToggleGroup, Badge } from '@digdir/designsystemet-react';
-import { SparklesFillIcon } from '@navikt/aksel-icons';
-import { type ReactNode } from 'react';
-import styles from './styles.module.scss';
+import { ToggleGroup, Badge } from "@digdir/designsystemet-react";
+import { SparklesFillIcon } from "@navikt/aksel-icons";
+import { type ReactNode } from "react";
+import styles from "./styles.module.scss";
 
 /** KI has no URL segment; other values match the path segment. */
 export type SearchTabsValue =
-  | 'ki'
-  | 'datasets'
-  | 'data-services'
-  | 'concepts'
-  | 'information-models'
-  | 'services-and-events'
-  | 'docs';
+  | "ki"
+  | "datasets"
+  | "data-services"
+  | "concepts"
+  | "information-models"
+  | "services-and-events"
+  | "docs";
 
 export type SearchTabsProps = {
   /** Controlled value (current set from URL). Use 'ki' when no segment. */
@@ -34,49 +34,44 @@ export type SearchTabItem = {
 // TODO: localization remains to be implemented
 export const searchTabItems: SearchTabItem[] = [
   {
-    value: 'ki',
-    label: 'KI',
+    value: "ki",
+    label: "KI",
     icon: <SparklesFillIcon />,
     badgeCount: 0,
   },
   {
-    value: 'datasets',
-    label: 'Datasett',
+    value: "datasets",
+    label: "Datasett",
     badgeCount: 0,
   },
   {
-    value: 'data-services',
-    label: 'API',
+    value: "data-services",
+    label: "API",
     badgeCount: 0,
   },
   {
-    value: 'concepts',
-    label: 'Begrep',
+    value: "concepts",
+    label: "Begrep",
     badgeCount: 0,
   },
   {
-    value: 'information-models',
-    label: 'Informasjons\u00admodeller',
+    value: "information-models",
+    label: "Informasjons\u00admodeller",
     badgeCount: 0,
   },
   {
-    value: 'services-and-events',
-    label: 'Tjenester og hendelser',
+    value: "services-and-events",
+    label: "Tjenester og hendelser",
     badgeCount: 0,
   },
   {
-    value: 'docs',
-    label: 'Dokumentasjon',
+    value: "docs",
+    label: "Dokumentasjon",
     badgeCount: 0,
   },
 ];
 
-const SearchTabs = ({
-  value,
-  defaultValue = 'ki',
-  onChange,
-  badgeCounts = {},
-}: SearchTabsProps) => {
+const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {} }: SearchTabsProps) => {
   const isControlled = value !== undefined;
   const toggleValue = isControlled ? value : defaultValue;
 
@@ -91,10 +86,16 @@ const SearchTabs = ({
       {searchTabItems.map((item) => {
         const count = badgeCounts[item.value] ?? item.badgeCount ?? 0;
         return (
-          <ToggleGroup.Item key={item.value} value={item.value}>
+          <ToggleGroup.Item
+            key={item.value}
+            value={item.value}
+          >
             {item.icon}
             {item.label}
-            <Badge count={count} variant="tinted" />
+            <Badge
+              count={count}
+              variant="tinted"
+            />
           </ToggleGroup.Item>
         );
       })}

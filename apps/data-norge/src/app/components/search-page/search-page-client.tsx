@@ -1,29 +1,21 @@
-'use client';
+"use client";
 
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { type LocaleCodes } from '@fdk-frontend/localization';
-import { type LlmSearchResponse } from '@fdk-frontend/data-access';
-import { type SearchObject } from '@fellesdatakatalog/types';
-import {
-  isValidSetSegment,
-  KI_TOGGLE_VALUE,
-  type SearchSetSegment,
-} from '../../[lang]/search/search-set-config';
-import SearchPage, {
-  type DocsSearchResult,
-  type SearchPageProps,
-  type SearchResultsProp,
-} from './index';
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { type LocaleCodes } from "@fdk-frontend/localization";
+import { type LlmSearchResponse } from "@fdk-frontend/data-access";
+import { type SearchObject } from "@fellesdatakatalog/types";
+import { isValidSetSegment, KI_TOGGLE_VALUE, type SearchSetSegment } from "../../[lang]/search/search-set-config";
+import SearchPage, { type DocsSearchResult, type SearchPageProps, type SearchResultsProp } from "./index";
 
 const deriveLangFromPathname = function (pathname: string): LocaleCodes {
-  const segment = pathname.split('/').filter(Boolean)[0];
-  if (segment === 'nb' || segment === 'nn' || segment === 'en') return segment;
-  return 'nb';
+  const segment = pathname.split("/").filter(Boolean)[0];
+  if (segment === "nb" || segment === "nn" || segment === "en") return segment;
+  return "nb";
 };
 
 const deriveCurrentSetFromPathname = function (pathname: string): SearchSetSegment | undefined {
-  const segments = pathname.split('/').filter(Boolean);
+  const segments = pathname.split("/").filter(Boolean);
   const afterSearch = segments[2];
   if (afterSearch !== undefined && isValidSetSegment(afterSearch)) return afterSearch;
   return undefined;
@@ -45,7 +37,9 @@ type SummaryPayload = {
   };
 };
 
-const computeBadgeCountsFromSummary = function computeBadgeCountsFromSummary(summary: SummaryPayload['summary']): Record<string, number> {
+const computeBadgeCountsFromSummary = function computeBadgeCountsFromSummary(
+  summary: SummaryPayload["summary"],
+): Record<string, number> {
   const datasets = summary.datasets?.page?.totalElements ?? 0;
   const apis = summary.apis?.page?.totalElements ?? 0;
   const concepts = summary.concepts?.page?.totalElements ?? 0;
@@ -55,34 +49,39 @@ const computeBadgeCountsFromSummary = function computeBadgeCountsFromSummary(sum
   return {
     [KI_TOGGLE_VALUE]: 0,
     datasets,
-    'data-services': apis,
+    "data-services": apis,
     concepts,
-    'information-models': informationModels,
-    'services-and-events': services + events,
+    "information-models": informationModels,
+    "services-and-events": services + events,
     docs: 0,
   };
 };
 
 const SUMMARY_SET_TO_SEARCH_TYPE: Record<string, string> = {
-  datasets: 'DATASET',
-  apis: 'DATA_SERVICE',
-  concepts: 'CONCEPT',
-  informationModels: 'INFORMATION_MODEL',
-  services: 'SERVICE',
-  events: 'EVENT',
+  datasets: "DATASET",
+  apis: "DATA_SERVICE",
+  concepts: "CONCEPT",
+  informationModels: "INFORMATION_MODEL",
+  services: "SERVICE",
+  events: "EVENT",
 };
 
-const flattenSummaryHits = function flattenSummaryHits(summary: SummaryPayload['summary']): SearchObject[] {
+const flattenSummaryHits = function flattenSummaryHits(summary: SummaryPayload["summary"]): SearchObject[] {
   const hits: SearchObject[] = [];
-  const entries: (keyof SummaryPayload['summary'])[] = [
-    'datasets', 'apis', 'concepts', 'informationModels', 'services', 'events',
+  const entries: (keyof SummaryPayload["summary"])[] = [
+    "datasets",
+    "apis",
+    "concepts",
+    "informationModels",
+    "services",
+    "events",
   ];
   for (const key of entries) {
     const slice = summary[key];
     const searchType = SUMMARY_SET_TO_SEARCH_TYPE[key];
     if (slice?.hits?.length && searchType) {
       for (const h of slice.hits as SearchObject[]) {
-        hits.push({ ...h, searchType: (h.searchType ?? searchType) as SearchObject['searchType'] });
+        hits.push({ ...h, searchType: (h.searchType ?? searchType) as SearchObject["searchType"] });
       }
     }
   }
@@ -94,14 +93,14 @@ const fetchSearchData = async function (query: string): Promise<{
   searchResults: SearchResultsProp | undefined;
 }> {
   const [llmRes, entitiesRes] = await Promise.all([
-    fetch('/api/search/llm', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("/api/search/llm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: query.trim() }),
     }),
-    fetch('/api/search/entities', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("/api/search/entities", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         query: query.trim(),
         pagination: { size: 20, page: 0 },
@@ -130,7 +129,7 @@ const fetchSearchData = async function (query: string): Promise<{
   return { llmResults, searchResults };
 };
 
-export type SearchPageClientProps = Pick<SearchPageProps, 'lang'>;
+export type SearchPageClientProps = Pick<SearchPageProps, "lang">;
 
 const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const pathname = usePathname();
@@ -138,7 +137,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
 
   const langFromUrl = deriveLangFromPathname(pathname);
   const currentSet = deriveCurrentSetFromPathname(pathname);
-  const query = searchParams.get('q') ?? '';
+  const query = searchParams.get("q") ?? "";
 
   const [llmResults, setLlmResults] = useState<LlmSearchResponse | undefined>(undefined);
   const [searchResults, setSearchResults] = useState<SearchResultsProp | undefined>(undefined);
@@ -147,7 +146,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const q = query?.trim() ?? '';
+    const q = query?.trim() ?? "";
     let cancelled = false;
 
     if (!q) {
@@ -155,13 +154,13 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       setBadgeCountsOverride(undefined);
       setDocsResults(undefined);
       setLoading(true);
-      fetch('/api/search/summary', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      fetch("/api/search/summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pagination: { size: 10, page: 0 } }),
       })
         .then(async (res) => {
-          if (!res.ok) throw new Error('Search summary failed');
+          if (!res.ok) throw new Error("Search summary failed");
           const json = (await res.json()) as SummaryPayload;
           if (cancelled) return;
           const combinedHits = flattenSummaryHits(json.summary);
@@ -188,12 +187,9 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     const localeForDocs = (lang ?? langFromUrl) as LocaleCodes;
     Promise.all([
       fetchSearchData(q),
-      fetch(
-        `/api/docs-search?q=${encodeURIComponent(q)}&lang=${encodeURIComponent(localeForDocs)}`,
-        {
-          method: 'GET',
-        },
-      ).then(async (res) => {
+      fetch(`/api/docs-search?q=${encodeURIComponent(q)}&lang=${encodeURIComponent(localeForDocs)}`, {
+        method: "GET",
+      }).then(async (res) => {
         if (!res.ok) return [] as DocsSearchResult[];
         try {
           const json = (await res.json()) as { results?: DocsSearchResult[] };

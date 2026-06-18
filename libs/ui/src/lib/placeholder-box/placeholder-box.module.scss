@@ -1,5 +1,5 @@
-@use '../box/box.module' as box;
+@use "../box/box.module" as box;
 
 .placeholderBox {
-    @include box.grey-box-mixin();
+  @include box.grey-box-mixin();
 }

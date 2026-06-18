@@ -1,94 +1,94 @@
 {
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
-    "generators": {
-        "@nx/next": {
-            "application": {
-                "linter": "eslint",
-                "style": "css"
-            }
-        },
-        "@nx/react": {
-            "library": {
-                "style": "scss",
-                "linter": "none",
-                "unitTestRunner": "none"
-            },
-            "application": {
-                "babel": true,
-                "style": "scss",
-                "linter": "none",
-                "bundler": "vite"
-            },
-            "component": {
-                "style": "scss"
-            }
-        }
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "generators": {
+    "@nx/next": {
+      "application": {
+        "linter": "eslint",
+        "style": "css"
+      }
     },
-    "namedInputs": {
-        "default": ["{projectRoot}/**/*", "sharedGlobals"],
-        "production": [
-            "default",
-            "!{projectRoot}/.eslintrc.json",
-            "!{projectRoot}/eslint.config.js",
-            "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-            "!{projectRoot}/tsconfig.spec.json",
-            "!{projectRoot}/jest.config.[jt]s",
-            "!{projectRoot}/src/test-setup.[jt]s",
-            "!{projectRoot}/test-setup.[jt]s",
-            "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-            "!{projectRoot}/.storybook/**/*",
-            "!{projectRoot}/tsconfig.storybook.json"
-        ],
-        "sharedGlobals": []
-    },
-    "plugins": [
-        {
-            "options": {
-                "buildTargetName": "build",
-                "devTargetName": "dev",
-                "serveStaticTargetName": "serve-static",
-                "startTargetName": "start"
-            },
-            "plugin": "@nx/next/plugin"
-        },
-        {
-            "options": {
-                "targetName": "e2e"
-            },
-            "plugin": "@nx/playwright/plugin"
-        },
-        {
-            "options": {
-                "targetName": "lint"
-            },
-            "plugin": "@nx/eslint/plugin"
-        },
-        {
-            "options": {
-                "targetName": "test"
-            },
-            "plugin": "@nx/jest/plugin"
-        },
-        {
-            "options": {
-                "buildStorybookTargetName": "build-storybook",
-                "serveStorybookTargetName": "storybook",
-                "staticStorybookTargetName": "static-storybook",
-                "testStorybookTargetName": "test-storybook"
-            },
-            "plugin": "@nx/storybook/plugin"
-        }
+    "@nx/react": {
+      "library": {
+        "style": "scss",
+        "linter": "none",
+        "unitTestRunner": "none"
+      },
+      "application": {
+        "babel": true,
+        "style": "scss",
+        "linter": "none",
+        "bundler": "vite"
+      },
+      "component": {
+        "style": "scss"
+      }
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json"
     ],
-    "targetDefaults": {
-        "build": {
-            "inputs": ["production", "^production"]
-        },
-        "e2e-ci--**/*": {
-            "dependsOn": ["^build"]
-        },
-        "test": {
-            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
-        }
+    "sharedGlobals": []
+  },
+  "plugins": [
+    {
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "serveStaticTargetName": "serve-static",
+        "startTargetName": "start"
+      },
+      "plugin": "@nx/next/plugin"
     },
-    "analytics": false
+    {
+      "options": {
+        "targetName": "e2e"
+      },
+      "plugin": "@nx/playwright/plugin"
+    },
+    {
+      "options": {
+        "targetName": "lint"
+      },
+      "plugin": "@nx/eslint/plugin"
+    },
+    {
+      "options": {
+        "targetName": "test"
+      },
+      "plugin": "@nx/jest/plugin"
+    },
+    {
+      "options": {
+        "buildStorybookTargetName": "build-storybook",
+        "serveStorybookTargetName": "storybook",
+        "staticStorybookTargetName": "static-storybook",
+        "testStorybookTargetName": "test-storybook"
+      },
+      "plugin": "@nx/storybook/plugin"
+    }
+  ],
+  "targetDefaults": {
+    "build": {
+      "inputs": ["production", "^production"]
+    },
+    "e2e-ci--**/*": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+    }
+  },
+  "analytics": false
 }

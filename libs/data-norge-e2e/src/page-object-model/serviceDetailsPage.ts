@@ -1,47 +1,47 @@
-import { getLocalization, type Localization } from '@fdk-frontend/localization';
-import { expect, Page, BrowserContext } from '@playwright/test';
-import type AxeBuilder from '@axe-core/playwright';
+import { getLocalization, type Localization } from "@fdk-frontend/localization";
+import { expect, Page, BrowserContext } from "@playwright/test";
+import type AxeBuilder from "@axe-core/playwright";
 
-const dictionary = getLocalization('en').detailsPage;
+const dictionary = getLocalization("en").detailsPage;
 
 export default class ServiceDetailsPage {
-    url: string;
-    page: Page;
-    context: BrowserContext;
-    dictionary: Localization;
-    accessibilityBuilder;
+  url: string;
+  page: Page;
+  context: BrowserContext;
+  dictionary: Localization;
+  accessibilityBuilder;
 
-    constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
+  constructor(page: Page, context: BrowserContext, accessibilityBuilder?: AxeBuilder) {
+    // eslint-disable-next-line no-undef
+    this.url = `/nb/services/${process.env.E2E_SERVICE_ID}`;
+    this.dictionary = dictionary;
+    this.page = page;
+    this.context = context;
+    this.accessibilityBuilder = accessibilityBuilder;
+  }
+
+  // Helpers
+  public async goto(url: string = this.url) {
+    await this.page.goto(url, {
+      waitUntil: "load",
+      timeout: 30000,
+    });
+    await this.page.waitForFunction(
+      () => {
         // eslint-disable-next-line no-undef
-        this.url = `/nb/services/${process.env.E2E_SERVICE_ID}`;
-        this.dictionary = dictionary;
-        this.page = page;
-        this.context = context;
-        this.accessibilityBuilder = accessibilityBuilder;
-    }
+        const urlObj = new URL(window.location.href);
+        return urlObj.pathname.includes("/services/") && urlObj.pathname.split("/").length >= 4;
+      },
+      { timeout: 10000 },
+    );
+  }
 
-    // Helpers
-    public async goto(url: string = this.url) {
-        await this.page.goto(url, {
-            waitUntil: 'load',
-            timeout: 30000,
-        });
-        await this.page.waitForFunction(
-            () => {
-                // eslint-disable-next-line no-undef
-                const urlObj = new URL(window.location.href);
-                return urlObj.pathname.includes('/services/') && urlObj.pathname.split('/').length >= 4;
-            },
-            { timeout: 10000 },
-        );
+  public async checkAccessibility(tab?: string) {
+    if (tab) await this.goto(`${this.url}?tab=${tab}`);
+    if (!this.accessibilityBuilder) {
+      return;
     }
-
-    public async checkAccessibility(tab?: string) {
-        if (tab) await this.goto(`${this.url}?tab=${tab}`);
-        if (!this.accessibilityBuilder) {
-            return;
-        }
-        const result = await this.accessibilityBuilder.analyze();
-        expect.soft(result.violations).toEqual([]);
-    }
+    const result = await this.accessibilityBuilder.analyze();
+    expect.soft(result.violations).toEqual([]);
+  }
 }

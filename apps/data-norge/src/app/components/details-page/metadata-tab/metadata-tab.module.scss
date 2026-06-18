@@ -1,44 +1,44 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .article {
-    @include core-mixins.article();
+  @include core-mixins.article();
 }
 
 .wrapper {
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 0 0 1rem 0;
-        gap: 1rem;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 1rem 0;
+    gap: 1rem;
 
-        @media (max-width: 500px) {
-            display: block;
+    @media (max-width: 500px) {
+      display: block;
 
-            .urlbar {
-                margin-bottom: 1rem;
-            }
-        }
+      .urlbar {
+        margin-bottom: 1rem;
+      }
     }
+  }
 
-    .toolbar {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
+  .toolbar {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .content {
+    position: relative;
+
+    .copyButton {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 1;
+
+      button span {
+        @include core-mixins.sr-only();
+      }
     }
-
-    .content {
-        position: relative;
-
-        .copyButton {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            z-index: 1;
-
-            button span {
-                @include core-mixins.sr-only();
-            }
-        }
-    }
+  }
 }

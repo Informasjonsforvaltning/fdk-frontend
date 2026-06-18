@@ -1,8 +1,8 @@
-import type { LocaleCodes, Localization } from './types';
-import { i18n } from './types';
-import nb from './locales/nb';
-import nn from './locales/nn';
-import en from './locales/en';
+import type { LocaleCodes, Localization } from "./types";
+import { i18n } from "./types";
+import nb from "./locales/nb";
+import nn from "./locales/nn";
+import en from "./locales/en";
 
 const locales: Record<LocaleCodes, Localization> = {
   nb,

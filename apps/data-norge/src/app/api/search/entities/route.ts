@@ -1,4 +1,4 @@
-import { searchAllEntities } from '@fdk-frontend/data-access/server';
+import { searchAllEntities } from "@fdk-frontend/data-access/server";
 
 export const POST = async function (request: Request) {
   try {
@@ -12,13 +12,10 @@ export const POST = async function (request: Request) {
     });
     return Response.json(result, {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
-    console.warn('Search entities proxy error:', err);
-    return Response.json(
-      { error: 'Search failed' },
-      { status: 502, headers: { 'Content-Type': 'application/json' } }
-    );
+    console.warn("Search entities proxy error:", err);
+    return Response.json({ error: "Search failed" }, { status: 502, headers: { "Content-Type": "application/json" } });
   }
 };

@@ -1,171 +1,171 @@
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .header {
+  + main {
+    padding-top: 74px;
+
+    @media (max-width: 650px) {
+      padding-top: 63px;
+    }
+  }
+
+  &.showHeaderMessage {
     + main {
-        padding-top: 74px;
+      padding-top: 132px;
 
-        @media (max-width: 650px) {
-            padding-top: 63px;
-        }
+      @media (max-width: 650px) {
+        padding-top: 121px;
+      }
+    }
+  }
+
+  .headerMessage {
+    padding: 0.5rem 2rem 0.5rem 4rem;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > * {
+      margin: 0;
+    }
+  }
+
+  &.frontpageHeader {
+    + main {
+      padding-top: 0;
     }
 
-    &.showHeaderMessage {
-        + main {
-            padding-top: 132px;
+    .headerOuter {
+      position: absolute;
 
-            @media (max-width: 650px) {
-                padding-top: 121px;
-            }
-        }
-    }
+      &:not(.headerSticky) {
+        background: transparent;
 
-    .headerMessage {
-        padding: 0.5rem 2rem 0.5rem 4rem;
-        border:0;
-        display:flex;
-        align-items: center;
-        justify-content: space-between;
-
-        > * {
-            margin:0;
-        }
-    }
-
-    &.frontpageHeader {
-        + main {
-            padding-top: 0;
+        .headerLogo {
+          &:not(:hover) {
+            color: white !important;
+          }
         }
 
-        .headerOuter {
-            position: absolute;
-
-            &:not(.headerSticky) {
-                background: transparent;
-
-                .headerLogo {
-                    &:not(:hover) {
-                        color: white !important;
-                    }
-                }
-
-                /*
+        /*
                     Override dark mode styles for passive header buttons on frontpage
                 */
-                .headerToolbar {
-                    :global(.ds-button) {
-                        color: white !important;
+        .headerToolbar {
+          :global(.ds-button) {
+            color: white !important;
 
-                        &:last-child {
-                            &:focus-visible,
-                            &:not(:hover):not(:active) {
-                                background: var(--fdk-color-blue);
-                            }
-                            &:hover {
-                                background: var(--fdk-color-blue-dark);
-                            }
-                        }
-                    }
-                }
+            &:last-child {
+              &:focus-visible,
+              &:not(:hover):not(:active) {
+                background: var(--fdk-color-blue);
+              }
+              &:hover {
+                background: var(--fdk-color-blue-dark);
+              }
             }
+          }
         }
+      }
     }
+  }
 }
 
 .skipToMain {
-    position: fixed;
-    z-index: 1700;
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    border: 0;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: none;
+  position: fixed;
+  z-index: 1700;
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border: 0;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: none;
 
-    &:not(:focus) {
-        @include core-mixins.sr-only();
-    }
+  &:not(:focus) {
+    @include core-mixins.sr-only();
+  }
 }
 
 .headerOuter {
-    position: absolute;
-    z-index: 1600;
-    width: 100%;
-    transition: all linear 200ms;
-    max-height: 100vh;
+  position: absolute;
+  z-index: 1600;
+  width: 100%;
+  transition: all linear 200ms;
+  max-height: 100vh;
+  background: white;
+
+  @media (max-width: 460px) {
+    overflow: auto;
+  }
+
+  &.headerSticky {
+    position: fixed;
     background: white;
+    box-shadow: var(--ds-shadow-md);
+  }
 
-    @media (max-width: 460px) {
-        overflow: auto;
+  .headerInner {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1601;
+    container-type: inline-size;
+    gap: 4rem;
+
+    &.full {
+      max-width: none;
+      padding: 2rem 4rem;
     }
 
-    &.headerSticky {
-        position: fixed;
-        background: white;
-        box-shadow: var(--ds-shadow-md);
+    .headerLogo {
+      &:not(:hover) {
+        color: var(--fdk-color-text) !important;
+      }
     }
 
-    .headerInner {
-        display: flex;
-        align-items: center;
-        margin: auto;
-        padding: 1rem 2rem;
-        justify-content: space-between;
-        position: relative;
-        z-index: 1601;
-        container-type: inline-size;
-        gap: 4rem;
-
-        &.full {
-            max-width: none;
-            padding: 2rem 4rem;
-        }
-
-        .headerLogo {
-            &:not(:hover) {
-                color: var(--fdk-color-text) !important;
-            }
-        }
-
-        .headerSearchInput {
-            flex-grow: 1;
-            max-width: 600px;
-        }
-
-        .headerToolbar {
-            display: flex;
-            gap: 1rem;
-
-            @container (max-width: 500px) {
-                gap: 0.5rem;
-
-                a,
-                button {
-                    svg + span {
-                        display: none;
-                    }
-                }
-            }
-        }
-
-        @media (max-width: 650px) {
-            padding: 1rem 1.5rem;
-
-            .headerToolbar {
-                a:last-child {
-                    display: none;
-                }
-            }
-        }
+    .headerSearchInput {
+      flex-grow: 1;
+      max-width: 600px;
     }
 
-    .drawerInner {
-        max-width: 1000px;
-        margin: auto;
-        padding: 1rem 2rem;
+    .headerToolbar {
+      display: flex;
+      gap: 1rem;
 
-        @media (max-width: 400px) {
-            padding: 1rem 1.5rem;
+      @container (max-width: 500px) {
+        gap: 0.5rem;
+
+        a,
+        button {
+          svg + span {
+            display: none;
+          }
         }
+      }
     }
+
+    @media (max-width: 650px) {
+      padding: 1rem 1.5rem;
+
+      .headerToolbar {
+        a:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .drawerInner {
+    max-width: 1000px;
+    margin: auto;
+    padding: 1rem 2rem;
+
+    @media (max-width: 400px) {
+      padding: 1rem 1.5rem;
+    }
+  }
 }

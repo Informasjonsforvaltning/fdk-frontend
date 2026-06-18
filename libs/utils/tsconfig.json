@@ -1,19 +1,19 @@
 {
-    "compilerOptions": {
-        "allowJs": false,
-        "strict": true
+  "compilerOptions": {
+    "allowJs": false,
+    "strict": true
+  },
+  "extends": "../../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "lib": [],
+  "references": [
+    {
+      "composite": true,
+      "path": "./tsconfig.lib.json"
     },
-    "extends": "../../tsconfig.base.json",
-    "files": [],
-    "include": [],
-    "lib": [],
-    "references": [
-        {
-            "composite": true,
-            "path": "./tsconfig.lib.json"
-        },
-        {
-            "path": "./tsconfig.spec.json"
-        }
-    ]
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }

@@ -1,25 +1,25 @@
-@use '@fdk-frontend/ui/box/box.module' as box;
-@use '@fellesdatakatalog/ui/src/components/core/mixins' as core-mixins;
+@use "@fdk-frontend/ui/box/box.module" as box;
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
 
 .wrapper {
-    position: absolute;
-    inset: 0;
-    background: white;
-    display: grid;
-    place-items: center;
+  position: absolute;
+  inset: 0;
+  background: white;
+  display: grid;
+  place-items: center;
 
-    .inner {
-        @include core-mixins.article();
-        max-width: 600px;
-        padding: 1rem;
-    }
+  .inner {
+    @include core-mixins.article();
+    max-width: 600px;
+    padding: 1rem;
+  }
 
-    .urlBox {
-        @include box.grey-box-mixin();
-    }
+  .urlBox {
+    @include box.grey-box-mixin();
+  }
 
-    .toolbar {
-        display: flex;
-        gap: 1rem;
-    }
+  .toolbar {
+    display: flex;
+    gap: 1rem;
+  }
 }
