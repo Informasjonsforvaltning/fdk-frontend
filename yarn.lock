@@ -1735,12 +1735,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digdir/designsystemet-css@npm:^1.13.0":
-  version: 1.13.1
-  resolution: "@digdir/designsystemet-css@npm:1.13.1"
+"@digdir/designsystemet-css@npm:^1.16.0":
+  version: 1.16.0
+  resolution: "@digdir/designsystemet-css@npm:1.16.0"
   dependencies:
-    "@digdir/designsystemet-types": "npm:^1.13.1"
-  checksum: 10c0/18c120d641c574fd740bb4ed051a2bb8af2f72286faec96bbe60ae4c55ea2d3473b6dacc53c9d39489e713ca3664f824139417f3135dba73d3254c55538602f4
+    "@digdir/designsystemet-types": "npm:1.16.0"
+  checksum: 10c0/ffadb577a4abe902371975f2d48f49b378105cec9a189d8e6d6c55705acac0224be1482fbffc701e931a8caafa1a737425774e1eb93a19102bbfee73d17440d9
   languageName: node
   linkType: hard
 
@@ -1769,6 +1769,13 @@ __metadata:
   dependencies:
     "@digdir/designsystemet-types": "npm:^1.11.0"
   checksum: 10c0/c94aa7eb135981a15780e3aaa2f636eb299ad1477c2a5d0e505a6b9fbe8d595afb20257f00d976d5c8000880b406f5bde29d4a20e76329f8c540580e0e16750c
+  languageName: node
+  linkType: hard
+
+"@digdir/designsystemet-types@npm:1.16.0":
+  version: 1.16.0
+  resolution: "@digdir/designsystemet-types@npm:1.16.0"
+  checksum: 10c0/e26e3d6aba18b5b9ce8cbb981c0fc93b9468b2ec81d179d1d2a6e7b8ab8f9d9b34399b688a8def0016b230fa29c3626b8726c46ad7e6b7ece5c2fa21ff86747e
   languageName: node
   linkType: hard
 
@@ -11152,7 +11159,7 @@ __metadata:
     "@axe-core/playwright": "npm:^4.11.2"
     "@babel/core": "npm:^7.29.6"
     "@babel/preset-react": "npm:^7.28.5"
-    "@digdir/designsystemet-css": "npm:^1.13.0"
+    "@digdir/designsystemet-css": "npm:^1.16.0"
     "@digdir/designsystemet-react": "npm:^1.13.0"
     "@digdir/designsystemet-theme": "npm:^1.11.0"
     "@fellesdatakatalog/types": "npm:^1.0.24"
