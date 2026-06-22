@@ -1,4 +1,4 @@
-import { type AggregationKeyCount } from "../org-path/types";
+import { type AggregationKeyCount } from "../types";
 import { formatAccessCheckboxLabel } from "./labels";
 
 export type AccessFilterOption = {

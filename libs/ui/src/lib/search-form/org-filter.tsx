@@ -10,9 +10,9 @@ import {
   getOrgPathChildren,
   isOrgPathSelected,
   MAX_ORG_PATH_DEPTH,
-  type AggregationKeyCount,
   useSyncedOrgPathSelection,
 } from "./org-path";
+import { type AggregationKeyCount } from "./types";
 import styles from "./search-form.module.scss";
 
 type OrgPathLevelProps = {

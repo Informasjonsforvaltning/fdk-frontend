@@ -1,4 +1,3 @@
-export type { AggregationKeyCount } from "./types";
 export { MAX_ORG_PATH_DEPTH, UNKNOWN_ORG_PATH_KEY } from "./types";
 
 export {

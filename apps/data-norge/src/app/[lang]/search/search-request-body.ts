@@ -1,5 +1,6 @@
 import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
+import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/provenance";
 
 type SearchPagination = {
   size: number;
@@ -7,7 +8,8 @@ type SearchPagination = {
 };
 
 export type SearchFilters = Partial<NonNullable<ReturnType<typeof buildOrgPathSearchFilter>>> &
-  Partial<NonNullable<ReturnType<typeof buildAccessSearchFilter>>>;
+  Partial<NonNullable<ReturnType<typeof buildAccessSearchFilter>>> &
+  Partial<NonNullable<ReturnType<typeof buildProvenanceSearchFilter>>>;
 
 export type SearchRequestBody = {
   pagination: SearchPagination;
@@ -18,15 +20,18 @@ export type SearchRequestBody = {
 export const buildSearchFilters = function (
   orgPathParam: string | null,
   accessParam: string | null,
+  provenanceParam: string | null,
 ): SearchFilters | undefined {
   const orgPathFilter = buildOrgPathSearchFilter(orgPathParam);
   const accessFilter = buildAccessSearchFilter(accessParam);
+  const provenanceFilter = buildProvenanceSearchFilter(provenanceParam);
 
-  if (!orgPathFilter && !accessFilter) return undefined;
+  if (!orgPathFilter && !accessFilter && !provenanceFilter) return undefined;
 
   return {
     ...orgPathFilter,
     ...accessFilter,
+    ...provenanceFilter,
   };
 };
 
@@ -34,11 +39,12 @@ export const buildSearchRequestBody = function (options: {
   query: string;
   orgPathParam: string | null;
   accessParam: string | null;
+  provenanceParam: string | null;
   pagination: SearchPagination;
   includeQueryWhenEmpty?: boolean;
 }): SearchRequestBody {
   const trimmedQuery = options.query.trim();
-  const filters = buildSearchFilters(options.orgPathParam, options.accessParam);
+  const filters = buildSearchFilters(options.orgPathParam, options.accessParam, options.provenanceParam);
   const includeQuery = options.includeQueryWhenEmpty === true || trimmedQuery.length > 0;
 
   return {

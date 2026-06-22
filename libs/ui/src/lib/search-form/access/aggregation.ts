@@ -1,4 +1,4 @@
-import { type AggregationKeyCount } from "../org-path/types";
+import { type AggregationKeyCount } from "../types";
 import { OPEN_DATA_AGGREGATION_KEY, ACCESS_KEY_ORDER } from "./types";
 
 const normalizeAccessRightsKey = (key: string | null): string => (!key || key === "null" ? "null" : key);

@@ -131,10 +131,3 @@ export const MOCK_GEOGRAPHY_OPTIONS: MockFilterOption[] = [
   { label: "Trondheim (1)", value: "trondheim" },
   { label: "Viken (1)", value: "viken" },
 ];
-
-export const MOCK_PROVENANCE_OPTIONS: MockFilterOption[] = [
-  { label: "Nasjonal", value: "nasjonal" },
-  { label: "Vedtak", value: "vedtak" },
-  { label: "Bruker", value: "bruker" },
-  { label: "Tredjepart", value: "tredjepart" },
-];

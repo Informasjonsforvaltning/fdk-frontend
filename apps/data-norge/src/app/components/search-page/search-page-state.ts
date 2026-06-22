@@ -12,6 +12,7 @@ export type SearchPageData = {
   tabBadgeCounts: Record<string, number> | undefined;
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+  provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
 };
 
 export type SearchPageReducerState = {
@@ -27,6 +28,7 @@ export const initialSearchPageData: SearchPageData = {
   tabBadgeCounts: undefined,
   orgAggregationsByTab: undefined,
   accessAggregationsByTab: undefined,
+  provenanceAggregationsByTab: undefined,
 };
 
 export const initialSearchPageState: SearchPageReducerState = {
@@ -53,6 +55,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
       tabBadgeCounts: result.tabBadgeCounts,
       orgAggregationsByTab: result.orgAggregationsByTab,
       accessAggregationsByTab: result.accessAggregationsByTab,
+      provenanceAggregationsByTab: result.provenanceAggregationsByTab,
     };
   }
 
@@ -62,6 +65,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
     tabBadgeCounts: result.tabBadgeCounts,
     orgAggregationsByTab: result.orgAggregationsByTab,
     accessAggregationsByTab: result.accessAggregationsByTab,
+    provenanceAggregationsByTab: result.provenanceAggregationsByTab,
   };
 };
 
@@ -88,6 +92,7 @@ export const searchPageReducer = function (
           tabBadgeCounts: undefined,
           orgAggregationsByTab: undefined,
           accessAggregationsByTab: undefined,
+          provenanceAggregationsByTab: undefined,
         },
       };
     case "llm_docs_fetch_started":

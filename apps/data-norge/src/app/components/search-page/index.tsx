@@ -28,6 +28,7 @@ export type SearchPageProps = {
   tabBadgeCounts?: Record<string, number>;
   orgAggregation?: AggregationKeyCount[];
   accessAggregation?: AggregationKeyCount[];
+  provenanceAggregation?: AggregationKeyCount[];
   entityLoading?: boolean;
   llmLoading?: boolean;
 };
@@ -42,6 +43,7 @@ const SearchPage = ({
   tabBadgeCounts,
   orgAggregation,
   accessAggregation,
+  provenanceAggregation,
   entityLoading = false,
   llmLoading = false,
 }: SearchPageProps) => {
@@ -100,6 +102,7 @@ const SearchPage = ({
           badgeCounts={resolvedTabBadgeCounts}
           orgAggregation={orgAggregation}
           accessAggregation={accessAggregation}
+          provenanceAggregation={provenanceAggregation}
         />
         <div>
           {entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (

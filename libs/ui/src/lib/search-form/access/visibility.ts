@@ -1,4 +1,4 @@
-import { type AggregationKeyCount } from "../org-path/types";
+import { type AggregationKeyCount } from "../types";
 
 export const shouldShowAccessFilter = (aggregation: AggregationKeyCount[]): boolean => {
   if (aggregation.length === 0) return false;

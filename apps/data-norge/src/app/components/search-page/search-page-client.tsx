@@ -19,6 +19,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const query = searchParams.get("q") ?? "";
   const orgPathParam = searchParams.get("orgPath");
   const accessParam = searchParams.get("access");
+  const provenanceParam = searchParams.get("provenance");
   const locale = (lang ?? langFromUrl) as LocaleCodes;
 
   const [{ entityLoading, llmLoading, data }, dispatch] = useReducer(searchPageReducer, initialSearchPageState);
@@ -27,12 +28,14 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     activeEntityTab && activeEntityTab !== "docs" ? data.orgAggregationsByTab?.[activeEntityTab] : undefined;
   const accessAggregation =
     activeEntityTab && activeEntityTab !== "docs" ? data.accessAggregationsByTab?.[activeEntityTab] : undefined;
+  const provenanceAggregation =
+    activeEntityTab && activeEntityTab !== "docs" ? data.provenanceAggregationsByTab?.[activeEntityTab] : undefined;
 
   useEffect(() => {
     let cancelled = false;
     dispatch({ type: "entity_fetch_started" });
 
-    loadEntitySearchState({ query, orgPathParam, accessParam })
+    loadEntitySearchState({ query, orgPathParam, accessParam, provenanceParam })
       .then((result) => {
         if (cancelled) return;
         dispatch({ type: "entity_fetch_succeeded", payload: result });
@@ -44,7 +47,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     return () => {
       cancelled = true;
     };
-  }, [query, orgPathParam, accessParam]);
+  }, [query, orgPathParam, accessParam, provenanceParam]);
 
   useEffect(() => {
     let cancelled = false;
@@ -77,6 +80,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       tabBadgeCounts={data.tabBadgeCounts}
       orgAggregation={orgAggregation}
       accessAggregation={accessAggregation}
+      provenanceAggregation={provenanceAggregation}
       entityLoading={entityLoading}
       llmLoading={llmLoading}
     />
