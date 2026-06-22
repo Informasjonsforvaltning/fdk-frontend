@@ -3,6 +3,7 @@ import {
   mergeOrgPathAggregations,
   mergeProvenanceAggregations,
   mergeSpatialAggregations,
+  mergeFormatAggregations,
   type AggregationKeyCount,
 } from "@fdk-frontend/ui";
 import {
@@ -33,6 +34,7 @@ export type SearchSummarySlice = {
     orgPath: OrgPathAggregationEntry[];
     provenance: OrgPathAggregationEntry[];
     spatial: OrgPathAggregationEntry[];
+    format: OrgPathAggregationEntry[];
     [key: string]: unknown;
   };
 };
@@ -60,6 +62,7 @@ export const createEmptySearchSummarySlice = (): SearchSummarySlice => ({
     orgPath: [],
     provenance: [],
     spatial: [],
+    format: [],
   },
 });
 
@@ -90,6 +93,7 @@ export const normalizeSearchSummarySlice = function (value: unknown): SearchSumm
       orgPath: Array.isArray(candidate.aggregations?.orgPath) ? candidate.aggregations.orgPath : [],
       provenance: Array.isArray(candidate.aggregations?.provenance) ? candidate.aggregations.provenance : [],
       spatial: Array.isArray(candidate.aggregations?.spatial) ? candidate.aggregations.spatial : [],
+      format: Array.isArray(candidate.aggregations?.format) ? candidate.aggregations.format : [],
     },
   };
 };
@@ -184,6 +188,23 @@ export const buildSpatialAggregationsByTab = function (
   summary: SearchSummary,
 ): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
   return buildAggregationsByTab(summary, extractSpatialAggregationForTab);
+};
+
+export const extractFormatAggregationForTab = function (
+  summary: SearchSummary,
+  entityTab: Exclude<SearchSetSegment, "docs">,
+): AggregationKeyCount[] {
+  return mergeFormatAggregations(
+    SUMMARY_SLICES.filter((slice) => slice.tabKey === entityTab).map(
+      (slice) => summary[slice.summaryKey]?.aggregations?.format ?? [],
+    ),
+  );
+};
+
+export const buildFormatAggregationsByTab = function (
+  summary: SearchSummary,
+): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
+  return buildAggregationsByTab(summary, extractFormatAggregationForTab);
 };
 
 export const computeBadgeCountsFromSummary = function (summary: SearchSummary): Record<string, number> {

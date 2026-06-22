@@ -2,6 +2,7 @@ import { type SearchTabsValue } from "../search-tabs/search-tab-config";
 import { accessKeysToQueryParam } from "./access";
 import { orgPathKeysToQueryParam } from "./org-path";
 import { provenanceKeysToQueryParam } from "./provenance";
+import { formatKeysToQueryParam } from "./format";
 import { spatialKeysToQueryParam } from "./spatial";
 
 export type BuildSearchPageUrlOptions = {
@@ -12,6 +13,7 @@ export type BuildSearchPageUrlOptions = {
   access?: string[];
   provenance?: string[];
   spatial?: string[];
+  formats?: string[];
 };
 
 export const buildSearchPageUrl = function ({
@@ -22,6 +24,7 @@ export const buildSearchPageUrl = function ({
   access = [],
   provenance = [],
   spatial = [],
+  formats = [],
 }: BuildSearchPageUrlOptions): string {
   const base = `/${locale}/search`;
   const path = tab === "ki" ? base : `${base}/${tab}`;
@@ -33,6 +36,7 @@ export const buildSearchPageUrl = function ({
   if (access.length > 0) params.set("access", accessKeysToQueryParam(access));
   if (provenance.length > 0) params.set("provenance", provenanceKeysToQueryParam(provenance));
   if (spatial.length > 0) params.set("spatial", spatialKeysToQueryParam(spatial));
+  if (formats.length > 0) params.set("format", formatKeysToQueryParam(formats));
 
   const queryString = params.toString();
   return queryString ? `${path}?${queryString}` : path;

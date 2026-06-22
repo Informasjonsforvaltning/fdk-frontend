@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Input, Dropdown, Tabs } from "@digdir/designsystemet-react";
+import { Input, Dropdown } from "@digdir/designsystemet-react";
 import { HStack, VStack, CheckboxGroup } from "@fellesdatakatalog/ui";
 import { SortDownIcon, CheckmarkIcon } from "@navikt/aksel-icons";
 
@@ -13,14 +13,16 @@ import OrgFilter from "./org-filter";
 import AccessFilter from "./access-filter";
 import ProvenanceFilter from "./provenance-filter";
 import SpatialFilter from "./spatial-filter";
+import FormatFilter from "./format-filter";
 import FilterDropdown from "./filter-dropdown";
 import { parseAccessQueryParam, shouldShowAccessFilter } from "./access";
 import { parseOrgPathQueryParam } from "./org-path";
 import { type AggregationKeyCount } from "./types";
 import { parseProvenanceQueryParam, shouldShowProvenanceFilter } from "./provenance";
 import { parseSpatialQueryParam, shouldShowSpatialFilter } from "./spatial";
+import { parseFormatQueryParam, shouldShowFormatFilter } from "./format";
 import { buildSearchPageUrl } from "./search-page-url";
-import { MOCK_FILETYPE_OPTIONS, MOCK_MEDIA_FORMAT_OPTIONS, MOCK_TEMA_FILTER_OPTIONS } from "./search-form-mock-filters";
+import { MOCK_TEMA_FILTER_OPTIONS } from "./search-form-mock-filters";
 import styles from "./search-form.module.scss";
 
 export type { AggregationKeyCount } from "./types";
@@ -46,6 +48,14 @@ export {
   parseSpatialQueryParam,
   shouldShowSpatialFilter,
 } from "./spatial";
+export {
+  mergeFormatAggregations,
+  buildFileTypeFilterOptions,
+  buildMediaFormatFilterOptions,
+  buildFormatSearchFilter,
+  parseFormatQueryParam,
+  shouldShowFormatFilter,
+} from "./format";
 export { buildSearchPageQueryUrl, buildSearchPageUrl } from "./search-page-url";
 
 export type SearchFormProps = {
@@ -57,6 +67,7 @@ export type SearchFormProps = {
   accessAggregation?: AggregationKeyCount[];
   provenanceAggregation?: AggregationKeyCount[];
   spatialAggregation?: AggregationKeyCount[];
+  formatAggregation?: AggregationKeyCount[];
   defaultValue?: SearchTabsValue;
   searchLabel?: string;
   onSearch?: (query: string, type: SearchTabsValue) => void;
@@ -72,6 +83,7 @@ const SearchForm = ({
   accessAggregation,
   provenanceAggregation,
   spatialAggregation,
+  formatAggregation,
   defaultValue = "ki",
   searchLabel = "Søk",
   onSearch,
@@ -88,16 +100,19 @@ const SearchForm = ({
   const accessParam = searchParams.get("access");
   const provenanceParam = searchParams.get("provenance");
   const spatialParam = searchParams.get("spatial");
+  const formatParam = searchParams.get("format");
   const selectedOrgPaths = useMemo(() => parseOrgPathQueryParam(orgPathParam), [orgPathParam]);
   const selectedAccess = useMemo(() => parseAccessQueryParam(accessParam), [accessParam]);
   const selectedProvenance = useMemo(() => parseProvenanceQueryParam(provenanceParam), [provenanceParam]);
   const selectedSpatial = useMemo(() => parseSpatialQueryParam(spatialParam), [spatialParam]);
+  const selectedFormats = useMemo(() => parseFormatQueryParam(formatParam), [formatParam]);
 
   const activeTab = (isUrlDriven ? deriveSearchTabValueFromPathname(pathname) : searchType) as SearchTabsValue;
   const showFilters = activeEntityTab !== undefined && activeEntityTab !== "docs";
   const showAccessFilter = shouldShowAccessFilter(accessAggregation ?? []);
   const showProvenanceFilter = shouldShowProvenanceFilter(provenanceAggregation ?? []);
   const showSpatialFilter = shouldShowSpatialFilter(spatialAggregation ?? []);
+  const showFormatFilter = shouldShowFormatFilter(formatAggregation ?? []);
 
   const getQueryForUrl = useCallback(
     () => query.trim() || (searchParams.get("q") ?? defaultQuery ?? ""),
@@ -112,12 +127,14 @@ const SearchForm = ({
       access = selectedAccess,
       provenance = selectedProvenance,
       spatial = selectedSpatial,
+      formats = selectedFormats,
       tab = activeTab,
     }: {
       orgPaths?: string[];
       access?: string[];
       provenance?: string[];
       spatial?: string[];
+      formats?: string[];
       tab?: SearchTabsValue;
     } = {}) => {
       router.replace(
@@ -129,10 +146,21 @@ const SearchForm = ({
           access,
           provenance,
           spatial,
+          formats,
         }),
       );
     },
-    [locale, activeTab, getQueryForUrl, router, selectedOrgPaths, selectedAccess, selectedProvenance, selectedSpatial],
+    [
+      locale,
+      activeTab,
+      getQueryForUrl,
+      router,
+      selectedOrgPaths,
+      selectedAccess,
+      selectedProvenance,
+      selectedSpatial,
+      selectedFormats,
+    ],
   );
 
   const handleTabChange = useCallback(
@@ -184,6 +212,14 @@ const SearchForm = ({
     (nextSelected: string[]) => {
       if (!isUrlDriven) return;
       navigateToSearch({ spatial: nextSelected });
+    },
+    [isUrlDriven, navigateToSearch],
+  );
+
+  const handleFormatChange = useCallback(
+    (nextSelected: string[]) => {
+      if (!isUrlDriven) return;
+      navigateToSearch({ formats: nextSelected });
     },
     [isUrlDriven, navigateToSearch],
   );
@@ -241,42 +277,15 @@ const SearchForm = ({
                     </Box>
                   </FilterDropdown>
                 )}
-                <FilterDropdown label="Data-format">
-                  <Tabs
-                    defaultValue="value1"
-                    className={styles.filterTabs}
-                  >
-                    <Tabs.List>
-                      {/* TODO: localization remains to be implemented */}
-                      <Tabs.Tab value="value1">Medieformat</Tabs.Tab>
-                      <Tabs.Tab value="value2">Filtype</Tabs.Tab>
-                    </Tabs.List>
-                    <Tabs.Panel
-                      value="value1"
-                      style={{ padding: 0, paddingTop: "0.5rem" }}
-                    >
-                      <VStack>
-                        {/* TODO: localization remains to be implemented */}
-                        <Input placeholder="Søk etter medieformat" />
-                        <Box className={styles.box}>
-                          <CheckboxGroup options={MOCK_MEDIA_FORMAT_OPTIONS} />
-                        </Box>
-                      </VStack>
-                    </Tabs.Panel>
-                    <Tabs.Panel
-                      value="value2"
-                      style={{ padding: 0, paddingTop: "0.5rem" }}
-                    >
-                      <VStack>
-                        {/* TODO: localization remains to be implemented */}
-                        <Input placeholder="Søk etter filtype" />
-                        <Box className={styles.box}>
-                          <CheckboxGroup options={MOCK_FILETYPE_OPTIONS} />
-                        </Box>
-                      </VStack>
-                    </Tabs.Panel>
-                  </Tabs>
-                </FilterDropdown>
+                {showFormatFilter && (
+                  <FilterDropdown label="Data-format">
+                    <FormatFilter
+                      aggregation={formatAggregation}
+                      value={isUrlDriven ? selectedFormats : undefined}
+                      onChange={isUrlDriven ? handleFormatChange : undefined}
+                    />
+                  </FilterDropdown>
+                )}
                 {showSpatialFilter && (
                   <FilterDropdown label="Geografi">
                     <Box className={styles.box}>
