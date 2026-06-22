@@ -4,6 +4,8 @@ import {
   mergeProvenanceAggregations,
   mergeSpatialAggregations,
   mergeFormatAggregations,
+  mergeLosThemeAggregations,
+  mergeDataThemeAggregations,
   type AggregationKeyCount,
 } from "@fdk-frontend/ui";
 import {
@@ -35,6 +37,8 @@ export type SearchSummarySlice = {
     provenance: OrgPathAggregationEntry[];
     spatial: OrgPathAggregationEntry[];
     format: OrgPathAggregationEntry[];
+    losTheme: OrgPathAggregationEntry[];
+    dataTheme: OrgPathAggregationEntry[];
     [key: string]: unknown;
   };
 };
@@ -63,6 +67,8 @@ export const createEmptySearchSummarySlice = (): SearchSummarySlice => ({
     provenance: [],
     spatial: [],
     format: [],
+    losTheme: [],
+    dataTheme: [],
   },
 });
 
@@ -94,6 +100,8 @@ export const normalizeSearchSummarySlice = function (value: unknown): SearchSumm
       provenance: Array.isArray(candidate.aggregations?.provenance) ? candidate.aggregations.provenance : [],
       spatial: Array.isArray(candidate.aggregations?.spatial) ? candidate.aggregations.spatial : [],
       format: Array.isArray(candidate.aggregations?.format) ? candidate.aggregations.format : [],
+      losTheme: Array.isArray(candidate.aggregations?.losTheme) ? candidate.aggregations.losTheme : [],
+      dataTheme: Array.isArray(candidate.aggregations?.dataTheme) ? candidate.aggregations.dataTheme : [],
     },
   };
 };
@@ -205,6 +213,40 @@ export const buildFormatAggregationsByTab = function (
   summary: SearchSummary,
 ): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
   return buildAggregationsByTab(summary, extractFormatAggregationForTab);
+};
+
+export const extractLosThemeAggregationForTab = function (
+  summary: SearchSummary,
+  entityTab: Exclude<SearchSetSegment, "docs">,
+): AggregationKeyCount[] {
+  return mergeLosThemeAggregations(
+    SUMMARY_SLICES.filter((slice) => slice.tabKey === entityTab).map(
+      (slice) => summary[slice.summaryKey]?.aggregations?.losTheme ?? [],
+    ),
+  );
+};
+
+export const buildLosThemeAggregationsByTab = function (
+  summary: SearchSummary,
+): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
+  return buildAggregationsByTab(summary, extractLosThemeAggregationForTab);
+};
+
+export const extractDataThemeAggregationForTab = function (
+  summary: SearchSummary,
+  entityTab: Exclude<SearchSetSegment, "docs">,
+): AggregationKeyCount[] {
+  return mergeDataThemeAggregations(
+    SUMMARY_SLICES.filter((slice) => slice.tabKey === entityTab).map(
+      (slice) => summary[slice.summaryKey]?.aggregations?.dataTheme ?? [],
+    ),
+  );
+};
+
+export const buildDataThemeAggregationsByTab = function (
+  summary: SearchSummary,
+): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
+  return buildAggregationsByTab(summary, extractDataThemeAggregationForTab);
 };
 
 export const computeBadgeCountsFromSummary = function (summary: SearchSummary): Record<string, number> {

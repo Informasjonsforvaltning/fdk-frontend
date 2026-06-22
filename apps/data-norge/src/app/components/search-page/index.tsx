@@ -31,6 +31,8 @@ export type SearchPageProps = {
   provenanceAggregation?: AggregationKeyCount[];
   spatialAggregation?: AggregationKeyCount[];
   formatAggregation?: AggregationKeyCount[];
+  losThemeAggregation?: AggregationKeyCount[];
+  dataThemeAggregation?: AggregationKeyCount[];
   entityLoading?: boolean;
   llmLoading?: boolean;
 };
@@ -48,6 +50,8 @@ const SearchPage = ({
   provenanceAggregation,
   spatialAggregation,
   formatAggregation,
+  losThemeAggregation,
+  dataThemeAggregation,
   entityLoading = false,
   llmLoading = false,
 }: SearchPageProps) => {
@@ -109,6 +113,8 @@ const SearchPage = ({
           provenanceAggregation={provenanceAggregation}
           spatialAggregation={spatialAggregation}
           formatAggregation={formatAggregation}
+          losThemeAggregation={losThemeAggregation}
+          dataThemeAggregation={dataThemeAggregation}
         />
         <div>
           {entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
