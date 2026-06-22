@@ -15,6 +15,7 @@ import { filterHitsForTab, mapLlmHitToSearchObject } from "../../[lang]/search/s
 
 import styles from "./search-page.module.scss";
 import { computeSearchPageDisplay, getDisplayCount, resolveSearchTabBadgeCounts } from "./search-page-display";
+import SearchResultsSkeleton from "./search-results-skeleton";
 import { type DocsSearchResult, type SearchResultsProp } from "./search-page-types";
 
 export type SearchPageProps = {
@@ -103,50 +104,14 @@ const SearchPage = ({
         <div>
           {entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
             <div className={styles.resultsSection}>
-              <Heading
-                data-size="sm"
-                className={styles.sectionHeading}
-              >
-                {/* TODO: localization remains to be implemented */}
-                Laster...
-              </Heading>
-              <ul className="fdk-box-list">
-                <li>
-                  <EntityTeaser locale={lang} />
-                </li>
-                <li>
-                  <EntityTeaser locale={lang} />
-                </li>
-                <li>
-                  <EntityTeaser locale={lang} />
-                </li>
-              </ul>
+              <SearchResultsSkeleton locale={lang} />
             </div>
           )}
 
           {!entityLoading && activeEntityTab === undefined && (
             <div className={styles.resultsSection}>
               {llmLoading ? (
-                <>
-                  <Heading
-                    data-size="sm"
-                    className={styles.sectionHeading}
-                  >
-                    {/* TODO: localization remains to be implemented */}
-                    Laster...
-                  </Heading>
-                  <ul className="fdk-box-list">
-                    <li>
-                      <EntityTeaser locale={lang} />
-                    </li>
-                    <li>
-                      <EntityTeaser locale={lang} />
-                    </li>
-                    <li>
-                      <EntityTeaser locale={lang} />
-                    </li>
-                  </ul>
-                </>
+                <SearchResultsSkeleton locale={lang} />
               ) : llmResults?.hits && llmResults.hits.length > 0 ? (
                 <>
                   <Heading

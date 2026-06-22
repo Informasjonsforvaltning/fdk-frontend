@@ -4,13 +4,14 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Input, Dropdown, Tabs } from "@digdir/designsystemet-react";
 import { HStack, VStack, CheckboxGroup } from "@fellesdatakatalog/ui";
-import { SortDownIcon, ChevronDownIcon, CheckmarkIcon } from "@navikt/aksel-icons";
+import { SortDownIcon, CheckmarkIcon } from "@navikt/aksel-icons";
 
 import Box from "../box";
 import SearchTabs, { deriveSearchTabValueFromPathname } from "../search-tabs";
 import { type SearchSetSegment, type SearchTabsValue } from "../search-tabs/search-tab-config";
 import OrgFilter from "./org-filter";
 import AccessFilter from "./access-filter";
+import FilterDropdown from "./filter-dropdown";
 import { parseAccessQueryParam, shouldShowAccessFilter } from "./access";
 import { type AggregationKeyCount, parseOrgPathQueryParam } from "./org-path";
 import { buildSearchPageUrl } from "./search-page-url";
@@ -164,168 +165,87 @@ const SearchForm = ({
           <HStack className={styles.searchToolbar}>
             {showFilters && (
               <HStack className={styles.filterToolbar}>
-                <Dropdown.TriggerContext>
-                  <Dropdown.Trigger
-                    data-size="sm"
-                    variant="secondary"
-                  >
-                    Virksomhet
-                    <ChevronDownIcon />
-                  </Dropdown.Trigger>
-                  <Dropdown
-                    className={styles.filterDropdown}
-                    placement="bottom-start"
-                    data-size="sm"
-                  >
-                    <VStack>
-                      <Box className={styles.box}>
-                        <OrgFilter
-                          aggregation={orgAggregation}
-                          value={isUrlDriven ? selectedOrgPaths : undefined}
-                          onChange={isUrlDriven ? handleOrgPathsChange : undefined}
-                        />
-                      </Box>
-                    </VStack>
-                  </Dropdown>
-                </Dropdown.TriggerContext>
-                <Dropdown.TriggerContext>
-                  <Dropdown.Trigger
-                    data-size="sm"
-                    variant="secondary"
-                  >
-                    Tema
-                    <ChevronDownIcon />
-                  </Dropdown.Trigger>
-                  <Dropdown
-                    className={styles.filterDropdown}
-                    placement="bottom-start"
-                    data-size="sm"
-                  >
-                    <VStack>
-                      {/* TODO: localization remains to be implemented */}
-                      <Input placeholder="Søk etter tema" />
-                      <Box className={styles.box}>
-                        <CheckboxGroup options={MOCK_TEMA_FILTER_OPTIONS} />
-                      </Box>
-                    </VStack>
-                  </Dropdown>
-                </Dropdown.TriggerContext>
-                {showAccessFilter && (
-                  <Dropdown.TriggerContext>
-                    <Dropdown.Trigger
-                      data-size="sm"
-                      variant="secondary"
-                    >
-                      Tilgangsnivå
-                      <ChevronDownIcon />
-                    </Dropdown.Trigger>
-                    <Dropdown
-                      className={styles.filterDropdown}
-                      placement="bottom-start"
-                      data-size="sm"
-                    >
-                      <Box className={styles.box}>
-                        <AccessFilter
-                          aggregation={accessAggregation}
-                          value={isUrlDriven ? selectedAccess : undefined}
-                          onChange={isUrlDriven ? handleAccessChange : undefined}
-                        />
-                      </Box>
-                    </Dropdown>
-                  </Dropdown.TriggerContext>
-                )}
-                <Dropdown.TriggerContext>
-                  <Dropdown.Trigger
-                    data-size="sm"
-                    variant="secondary"
-                  >
-                    {/* TODO: localization remains to be implemented */}
-                    Data-format
-                    <ChevronDownIcon />
-                  </Dropdown.Trigger>
-                  <Dropdown
-                    className={styles.filterDropdown}
-                    placement="bottom-start"
-                    data-size="sm"
-                  >
-                    <Tabs
-                      defaultValue="value1"
-                      className={styles.filterTabs}
-                    >
-                      <Tabs.List>
-                        {/* TODO: localization remains to be implemented */}
-                        <Tabs.Tab value="value1">Medieformat</Tabs.Tab>
-                        <Tabs.Tab value="value2">Filtype</Tabs.Tab>
-                      </Tabs.List>
-                      <Tabs.Panel
-                        value="value1"
-                        style={{ padding: 0, paddingTop: "0.5rem" }}
-                      >
-                        <VStack>
-                          {/* TODO: localization remains to be implemented */}
-                          <Input placeholder="Søk etter medieformat" />
-                          <Box className={styles.box}>
-                            <CheckboxGroup options={MOCK_MEDIA_FORMAT_OPTIONS} />
-                          </Box>
-                        </VStack>
-                      </Tabs.Panel>
-                      <Tabs.Panel
-                        value="value2"
-                        style={{ padding: 0, paddingTop: "0.5rem" }}
-                      >
-                        <VStack>
-                          {/* TODO: localization remains to be implemented */}
-                          <Input placeholder="Søk etter filtype" />
-                          <Box className={styles.box}>
-                            <CheckboxGroup options={MOCK_FILETYPE_OPTIONS} />
-                          </Box>
-                        </VStack>
-                      </Tabs.Panel>
-                    </Tabs>
-                  </Dropdown>
-                </Dropdown.TriggerContext>
-                <Dropdown.TriggerContext>
-                  <Dropdown.Trigger
-                    data-size="sm"
-                    variant="secondary"
-                  >
-                    {/* TODO: localization remains to be implemented */}
-                    Geografi
-                    <ChevronDownIcon />
-                  </Dropdown.Trigger>
-                  <Dropdown
-                    className={styles.filterDropdown}
-                    placement="bottom-start"
-                    data-size="sm"
-                  >
-                    <VStack>
-                      {/* TODO: localization remains to be implemented */}
-                      <Input placeholder="Søk etter geografi" />
-                      <Box className={styles.box}>
-                        <CheckboxGroup options={MOCK_GEOGRAPHY_OPTIONS} />
-                      </Box>
-                    </VStack>
-                  </Dropdown>
-                </Dropdown.TriggerContext>
-                <Dropdown.TriggerContext>
-                  <Dropdown.Trigger
-                    data-size="sm"
-                    variant="secondary"
-                  >
-                    {/* TODO: localization remains to be implemented */}
-                    Opphav
-                    <ChevronDownIcon />
-                  </Dropdown.Trigger>
-                  <Dropdown
-                    className={styles.filterDropdown}
-                    placement="bottom-start"
-                    data-size="sm"
-                  >
+                <FilterDropdown label="Virksomhet">
+                  <VStack>
                     <Box className={styles.box}>
-                      <CheckboxGroup options={MOCK_PROVENANCE_OPTIONS} />
+                      <OrgFilter
+                        aggregation={orgAggregation}
+                        value={isUrlDriven ? selectedOrgPaths : undefined}
+                        onChange={isUrlDriven ? handleOrgPathsChange : undefined}
+                      />
                     </Box>
-                  </Dropdown>
-                </Dropdown.TriggerContext>
+                  </VStack>
+                </FilterDropdown>
+                <FilterDropdown label="Tema">
+                  <VStack>
+                    {/* TODO: localization remains to be implemented */}
+                    <Input placeholder="Søk etter tema" />
+                    <Box className={styles.box}>
+                      <CheckboxGroup options={MOCK_TEMA_FILTER_OPTIONS} />
+                    </Box>
+                  </VStack>
+                </FilterDropdown>
+                {showAccessFilter && (
+                  <FilterDropdown label="Tilgangsnivå">
+                    <Box className={styles.box}>
+                      <AccessFilter
+                        aggregation={accessAggregation}
+                        value={isUrlDriven ? selectedAccess : undefined}
+                        onChange={isUrlDriven ? handleAccessChange : undefined}
+                      />
+                    </Box>
+                  </FilterDropdown>
+                )}
+                <FilterDropdown label="Data-format">
+                  <Tabs
+                    defaultValue="value1"
+                    className={styles.filterTabs}
+                  >
+                    <Tabs.List>
+                      {/* TODO: localization remains to be implemented */}
+                      <Tabs.Tab value="value1">Medieformat</Tabs.Tab>
+                      <Tabs.Tab value="value2">Filtype</Tabs.Tab>
+                    </Tabs.List>
+                    <Tabs.Panel
+                      value="value1"
+                      style={{ padding: 0, paddingTop: "0.5rem" }}
+                    >
+                      <VStack>
+                        {/* TODO: localization remains to be implemented */}
+                        <Input placeholder="Søk etter medieformat" />
+                        <Box className={styles.box}>
+                          <CheckboxGroup options={MOCK_MEDIA_FORMAT_OPTIONS} />
+                        </Box>
+                      </VStack>
+                    </Tabs.Panel>
+                    <Tabs.Panel
+                      value="value2"
+                      style={{ padding: 0, paddingTop: "0.5rem" }}
+                    >
+                      <VStack>
+                        {/* TODO: localization remains to be implemented */}
+                        <Input placeholder="Søk etter filtype" />
+                        <Box className={styles.box}>
+                          <CheckboxGroup options={MOCK_FILETYPE_OPTIONS} />
+                        </Box>
+                      </VStack>
+                    </Tabs.Panel>
+                  </Tabs>
+                </FilterDropdown>
+                <FilterDropdown label="Geografi">
+                  <VStack>
+                    {/* TODO: localization remains to be implemented */}
+                    <Input placeholder="Søk etter geografi" />
+                    <Box className={styles.box}>
+                      <CheckboxGroup options={MOCK_GEOGRAPHY_OPTIONS} />
+                    </Box>
+                  </VStack>
+                </FilterDropdown>
+                <FilterDropdown label="Opphav">
+                  <Box className={styles.box}>
+                    <CheckboxGroup options={MOCK_PROVENANCE_OPTIONS} />
+                  </Box>
+                </FilterDropdown>
               </HStack>
             )}
             <div className={styles.sortToolbar}>
