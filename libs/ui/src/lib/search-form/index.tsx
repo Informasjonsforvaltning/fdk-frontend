@@ -12,18 +12,15 @@ import { type SearchSetSegment, type SearchTabsValue } from "../search-tabs/sear
 import OrgFilter from "./org-filter";
 import AccessFilter from "./access-filter";
 import ProvenanceFilter from "./provenance-filter";
+import SpatialFilter from "./spatial-filter";
 import FilterDropdown from "./filter-dropdown";
 import { parseAccessQueryParam, shouldShowAccessFilter } from "./access";
 import { parseOrgPathQueryParam } from "./org-path";
 import { type AggregationKeyCount } from "./types";
 import { parseProvenanceQueryParam, shouldShowProvenanceFilter } from "./provenance";
+import { parseSpatialQueryParam, shouldShowSpatialFilter } from "./spatial";
 import { buildSearchPageUrl } from "./search-page-url";
-import {
-  MOCK_FILETYPE_OPTIONS,
-  MOCK_GEOGRAPHY_OPTIONS,
-  MOCK_MEDIA_FORMAT_OPTIONS,
-  MOCK_TEMA_FILTER_OPTIONS,
-} from "./search-form-mock-filters";
+import { MOCK_FILETYPE_OPTIONS, MOCK_MEDIA_FORMAT_OPTIONS, MOCK_TEMA_FILTER_OPTIONS } from "./search-form-mock-filters";
 import styles from "./search-form.module.scss";
 
 export type { AggregationKeyCount } from "./types";
@@ -42,6 +39,13 @@ export {
   parseProvenanceQueryParam,
   shouldShowProvenanceFilter,
 } from "./provenance";
+export {
+  mergeSpatialAggregations,
+  buildSpatialFilterOptions,
+  buildSpatialSearchFilter,
+  parseSpatialQueryParam,
+  shouldShowSpatialFilter,
+} from "./spatial";
 export { buildSearchPageQueryUrl, buildSearchPageUrl } from "./search-page-url";
 
 export type SearchFormProps = {
@@ -52,6 +56,7 @@ export type SearchFormProps = {
   orgAggregation?: AggregationKeyCount[];
   accessAggregation?: AggregationKeyCount[];
   provenanceAggregation?: AggregationKeyCount[];
+  spatialAggregation?: AggregationKeyCount[];
   defaultValue?: SearchTabsValue;
   searchLabel?: string;
   onSearch?: (query: string, type: SearchTabsValue) => void;
@@ -66,6 +71,7 @@ const SearchForm = ({
   orgAggregation,
   accessAggregation,
   provenanceAggregation,
+  spatialAggregation,
   defaultValue = "ki",
   searchLabel = "Søk",
   onSearch,
@@ -81,14 +87,17 @@ const SearchForm = ({
   const orgPathParam = searchParams.get("orgPath");
   const accessParam = searchParams.get("access");
   const provenanceParam = searchParams.get("provenance");
+  const spatialParam = searchParams.get("spatial");
   const selectedOrgPaths = useMemo(() => parseOrgPathQueryParam(orgPathParam), [orgPathParam]);
   const selectedAccess = useMemo(() => parseAccessQueryParam(accessParam), [accessParam]);
   const selectedProvenance = useMemo(() => parseProvenanceQueryParam(provenanceParam), [provenanceParam]);
+  const selectedSpatial = useMemo(() => parseSpatialQueryParam(spatialParam), [spatialParam]);
 
   const activeTab = (isUrlDriven ? deriveSearchTabValueFromPathname(pathname) : searchType) as SearchTabsValue;
   const showFilters = activeEntityTab !== undefined && activeEntityTab !== "docs";
   const showAccessFilter = shouldShowAccessFilter(accessAggregation ?? []);
   const showProvenanceFilter = shouldShowProvenanceFilter(provenanceAggregation ?? []);
+  const showSpatialFilter = shouldShowSpatialFilter(spatialAggregation ?? []);
 
   const getQueryForUrl = useCallback(
     () => query.trim() || (searchParams.get("q") ?? defaultQuery ?? ""),
@@ -102,11 +111,13 @@ const SearchForm = ({
       orgPaths = selectedOrgPaths,
       access = selectedAccess,
       provenance = selectedProvenance,
+      spatial = selectedSpatial,
       tab = activeTab,
     }: {
       orgPaths?: string[];
       access?: string[];
       provenance?: string[];
+      spatial?: string[];
       tab?: SearchTabsValue;
     } = {}) => {
       router.replace(
@@ -117,10 +128,11 @@ const SearchForm = ({
           orgPaths,
           access,
           provenance,
+          spatial,
         }),
       );
     },
-    [locale, activeTab, getQueryForUrl, router, selectedOrgPaths, selectedAccess, selectedProvenance],
+    [locale, activeTab, getQueryForUrl, router, selectedOrgPaths, selectedAccess, selectedProvenance, selectedSpatial],
   );
 
   const handleTabChange = useCallback(
@@ -164,6 +176,14 @@ const SearchForm = ({
     (nextSelected: string[]) => {
       if (!isUrlDriven) return;
       navigateToSearch({ provenance: nextSelected });
+    },
+    [isUrlDriven, navigateToSearch],
+  );
+
+  const handleSpatialChange = useCallback(
+    (nextSelected: string[]) => {
+      if (!isUrlDriven) return;
+      navigateToSearch({ spatial: nextSelected });
     },
     [isUrlDriven, navigateToSearch],
   );
@@ -257,15 +277,17 @@ const SearchForm = ({
                     </Tabs.Panel>
                   </Tabs>
                 </FilterDropdown>
-                <FilterDropdown label="Geografi">
-                  <VStack>
-                    {/* TODO: localization remains to be implemented */}
-                    <Input placeholder="Søk etter geografi" />
+                {showSpatialFilter && (
+                  <FilterDropdown label="Geografi">
                     <Box className={styles.box}>
-                      <CheckboxGroup options={MOCK_GEOGRAPHY_OPTIONS} />
+                      <SpatialFilter
+                        aggregation={spatialAggregation}
+                        value={isUrlDriven ? selectedSpatial : undefined}
+                        onChange={isUrlDriven ? handleSpatialChange : undefined}
+                      />
                     </Box>
-                  </VStack>
-                </FilterDropdown>
+                  </FilterDropdown>
+                )}
                 {showProvenanceFilter && (
                   <FilterDropdown label="Opphav">
                     <Box className={styles.box}>

@@ -2,6 +2,7 @@ import {
   mergeAccessAggregations,
   mergeOrgPathAggregations,
   mergeProvenanceAggregations,
+  mergeSpatialAggregations,
   type AggregationKeyCount,
 } from "@fdk-frontend/ui";
 import {
@@ -31,6 +32,7 @@ export type SearchSummarySlice = {
     openData: OrgPathAggregationEntry[];
     orgPath: OrgPathAggregationEntry[];
     provenance: OrgPathAggregationEntry[];
+    spatial: OrgPathAggregationEntry[];
     [key: string]: unknown;
   };
 };
@@ -57,6 +59,7 @@ export const createEmptySearchSummarySlice = (): SearchSummarySlice => ({
     openData: [],
     orgPath: [],
     provenance: [],
+    spatial: [],
   },
 });
 
@@ -86,6 +89,7 @@ export const normalizeSearchSummarySlice = function (value: unknown): SearchSumm
       openData: Array.isArray(candidate.aggregations?.openData) ? candidate.aggregations.openData : [],
       orgPath: Array.isArray(candidate.aggregations?.orgPath) ? candidate.aggregations.orgPath : [],
       provenance: Array.isArray(candidate.aggregations?.provenance) ? candidate.aggregations.provenance : [],
+      spatial: Array.isArray(candidate.aggregations?.spatial) ? candidate.aggregations.spatial : [],
     },
   };
 };
@@ -163,6 +167,23 @@ export const buildProvenanceAggregationsByTab = function (
   summary: SearchSummary,
 ): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
   return buildAggregationsByTab(summary, extractProvenanceAggregationForTab);
+};
+
+export const extractSpatialAggregationForTab = function (
+  summary: SearchSummary,
+  entityTab: Exclude<SearchSetSegment, "docs">,
+): AggregationKeyCount[] {
+  return mergeSpatialAggregations(
+    SUMMARY_SLICES.filter((slice) => slice.tabKey === entityTab).map(
+      (slice) => summary[slice.summaryKey]?.aggregations?.spatial ?? [],
+    ),
+  );
+};
+
+export const buildSpatialAggregationsByTab = function (
+  summary: SearchSummary,
+): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
+  return buildAggregationsByTab(summary, extractSpatialAggregationForTab);
 };
 
 export const computeBadgeCountsFromSummary = function (summary: SearchSummary): Record<string, number> {

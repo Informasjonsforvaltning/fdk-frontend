@@ -8,6 +8,7 @@ import {
   buildAccessAggregationsByTab,
   buildOrgPathAggregationsByTab,
   buildProvenanceAggregationsByTab,
+  buildSpatialAggregationsByTab,
   computeBadgeCountsFromSummary,
   flattenSummaryHits,
   SEARCH_SUMMARY_PAGE,
@@ -40,6 +41,7 @@ export type SummaryFetchResult = {
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
 };
 
 export const fetchSummary = async function (
@@ -47,6 +49,7 @@ export const fetchSummary = async function (
   orgPathParam: string | null,
   accessParam: string | null,
   provenanceParam: string | null,
+  spatialParam: string | null,
   pageSize: number = SEARCH_SUMMARY_PAGE_SIZE,
 ): Promise<SummaryFetchResult> {
   const json = await postJson<SearchSummaryResponse>(
@@ -56,6 +59,7 @@ export const fetchSummary = async function (
       orgPathParam,
       accessParam,
       provenanceParam,
+      spatialParam,
       pagination: { size: pageSize, page: SEARCH_SUMMARY_PAGE },
     }),
   );
@@ -66,6 +70,7 @@ export const fetchSummary = async function (
     orgAggregationsByTab: buildOrgPathAggregationsByTab(json.summary),
     accessAggregationsByTab: buildAccessAggregationsByTab(json.summary),
     provenanceAggregationsByTab: buildProvenanceAggregationsByTab(json.summary),
+    spatialAggregationsByTab: buildSpatialAggregationsByTab(json.summary),
   };
 };
 
