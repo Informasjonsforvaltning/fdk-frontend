@@ -38,13 +38,6 @@ export const MOCK_EU_TEMA_OPTIONS: MockFilterOption[] = [
 
 export const MOCK_TEMA_FILTER_OPTIONS: MockFilterOption[] = [...MOCK_TEMA_OPTIONS, ...MOCK_EU_TEMA_OPTIONS];
 
-export const MOCK_ACCESS_LEVEL_OPTIONS: MockFilterOption[] = [
-  { label: "Allmenn tilgang", value: "allmenn-tilgang" },
-  { label: "Begrenset tilgang", value: "begrenset-tilgang" },
-  { label: "Ikke-allmen tilgang", value: "ikke-allmen-tilgang" },
-  { label: "Åpne data", value: "open-data" },
-];
-
 export const MOCK_MEDIA_FORMAT_OPTIONS: MockFilterOption[] = [
   { label: "octet-stream (6883)", value: "octet-stream" },
   { label: "tiff (4275)", value: "tiff" },

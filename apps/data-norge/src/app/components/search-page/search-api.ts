@@ -5,6 +5,7 @@ import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-c
 
 import { buildSearchRequestBody } from "../../[lang]/search/search-request-body";
 import {
+  buildAccessAggregationsByTab,
   buildOrgPathAggregationsByTab,
   computeBadgeCountsFromSummary,
   flattenSummaryHits,
@@ -42,11 +43,13 @@ export type SummaryFetchResult = {
   searchResults: SearchResultsProp;
   tabBadgeCounts: Record<string, number>;
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
 };
 
 export const fetchSummary = async function (
   query: string,
   orgPathParam: string | null,
+  accessParam: string | null,
   pageSize: number = SEARCH_SUMMARY_PAGE_SIZE,
 ): Promise<SummaryFetchResult> {
   const json = await postJson<SearchSummaryResponse>(
@@ -54,6 +57,7 @@ export const fetchSummary = async function (
     buildSearchRequestBody({
       query,
       orgPathParam,
+      accessParam,
       pagination: { size: pageSize, page: SEARCH_SUMMARY_PAGE },
     }),
   );
@@ -62,6 +66,7 @@ export const fetchSummary = async function (
     searchResults: { hits: flattenSummaryHits(json.summary) },
     tabBadgeCounts: computeBadgeCountsFromSummary(json.summary),
     orgAggregationsByTab: buildOrgPathAggregationsByTab(json.summary),
+    accessAggregationsByTab: buildAccessAggregationsByTab(json.summary),
   };
 };
 
