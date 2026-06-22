@@ -29,6 +29,7 @@ export type SearchPageProps = {
   orgAggregation?: AggregationKeyCount[];
   accessAggregation?: AggregationKeyCount[];
   provenanceAggregation?: AggregationKeyCount[];
+  spatialAggregation?: AggregationKeyCount[];
   entityLoading?: boolean;
   llmLoading?: boolean;
 };
@@ -44,6 +45,7 @@ const SearchPage = ({
   orgAggregation,
   accessAggregation,
   provenanceAggregation,
+  spatialAggregation,
   entityLoading = false,
   llmLoading = false,
 }: SearchPageProps) => {
@@ -103,6 +105,7 @@ const SearchPage = ({
           orgAggregation={orgAggregation}
           accessAggregation={accessAggregation}
           provenanceAggregation={provenanceAggregation}
+          spatialAggregation={spatialAggregation}
         />
         <div>
           {entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (

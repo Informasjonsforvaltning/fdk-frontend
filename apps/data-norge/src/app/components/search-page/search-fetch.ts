@@ -5,6 +5,7 @@ import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-c
 import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
 import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/provenance";
+import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
 
 import { fetchDocsResults, fetchLlmResults, fetchSummary } from "./search-api";
 import { type DocsSearchResult, type SearchResultsProp } from "./search-page-types";
@@ -16,12 +17,14 @@ export const isBrowseSearch = function (
   orgPathParam: string | null,
   accessParam: string | null,
   provenanceParam: string | null,
+  spatialParam: string | null,
 ): boolean {
   const trimmedQuery = query.trim();
   const hasOrgFilter = buildOrgPathSearchFilter(orgPathParam) !== undefined;
   const hasAccessFilter = buildAccessSearchFilter(accessParam) !== undefined;
   const hasProvenanceFilter = buildProvenanceSearchFilter(provenanceParam) !== undefined;
-  return trimmedQuery.length === 0 && !hasOrgFilter && !hasAccessFilter && !hasProvenanceFilter;
+  const hasSpatialFilter = buildSpatialSearchFilter(spatialParam) !== undefined;
+  return trimmedQuery.length === 0 && !hasOrgFilter && !hasAccessFilter && !hasProvenanceFilter && !hasSpatialFilter;
 };
 
 export type BrowseSearchState = {
@@ -31,6 +34,7 @@ export type BrowseSearchState = {
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
 };
 
 export type EntitySearchState =
@@ -42,6 +46,7 @@ export type EntitySearchState =
       orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+      spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
     };
 
 export type LlmDocsSearchState = {
@@ -54,15 +59,23 @@ export const loadEntitySearchState = async function (options: {
   orgPathParam: string | null;
   accessParam: string | null;
   provenanceParam: string | null;
+  spatialParam: string | null;
 }): Promise<EntitySearchState> {
-  const browse = isBrowseSearch(options.query, options.orgPathParam, options.accessParam, options.provenanceParam);
+  const browse = isBrowseSearch(
+    options.query,
+    options.orgPathParam,
+    options.accessParam,
+    options.provenanceParam,
+    options.spatialParam,
+  );
   const summary = browse
-    ? await fetchSummary("", null, null, null)
+    ? await fetchSummary("", null, null, null, null)
     : await fetchSummary(
         options.query,
         options.orgPathParam,
         options.accessParam,
         options.provenanceParam,
+        options.spatialParam,
         ENTITIES_PAGE_SIZE,
       );
 

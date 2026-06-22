@@ -13,6 +13,7 @@ export type SearchPageData = {
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+  spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
 };
 
 export type SearchPageReducerState = {
@@ -29,6 +30,7 @@ export const initialSearchPageData: SearchPageData = {
   orgAggregationsByTab: undefined,
   accessAggregationsByTab: undefined,
   provenanceAggregationsByTab: undefined,
+  spatialAggregationsByTab: undefined,
 };
 
 export const initialSearchPageState: SearchPageReducerState = {
@@ -56,6 +58,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
       orgAggregationsByTab: result.orgAggregationsByTab,
       accessAggregationsByTab: result.accessAggregationsByTab,
       provenanceAggregationsByTab: result.provenanceAggregationsByTab,
+      spatialAggregationsByTab: result.spatialAggregationsByTab,
     };
   }
 
@@ -66,6 +69,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
     orgAggregationsByTab: result.orgAggregationsByTab,
     accessAggregationsByTab: result.accessAggregationsByTab,
     provenanceAggregationsByTab: result.provenanceAggregationsByTab,
+    spatialAggregationsByTab: result.spatialAggregationsByTab,
   };
 };
 
@@ -93,6 +97,7 @@ export const searchPageReducer = function (
           orgAggregationsByTab: undefined,
           accessAggregationsByTab: undefined,
           provenanceAggregationsByTab: undefined,
+          spatialAggregationsByTab: undefined,
         },
       };
     case "llm_docs_fetch_started":
