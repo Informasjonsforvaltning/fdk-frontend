@@ -8,9 +8,8 @@ export default async function Page(props: SearchPageHandlerProps) {
   const searchParams = await props.searchParams;
   const locale = params.lang ?? "nb";
   const query = typeof searchParams.q === "string" ? searchParams.q : undefined;
-  const firstSegment = params.tab?.[0];
 
-  if (firstSegment !== undefined && !isValidEntityTab(firstSegment)) {
+  if (!isValidEntityTab(params.tab)) {
     const base = `/${locale}/search`;
     const qs = query ? `?q=${encodeURIComponent(query)}` : "";
     redirect(`${base}${qs}`);

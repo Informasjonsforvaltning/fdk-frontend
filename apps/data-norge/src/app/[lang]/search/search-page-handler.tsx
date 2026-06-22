@@ -5,7 +5,7 @@ import { isValidEntityTab } from "@fdk-frontend/ui/search-tabs/search-tab-config
 export type SearchPageHandlerProps = {
   params: Promise<{
     lang: LocaleCodes;
-    tab?: string[];
+    tab?: string;
   }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
@@ -15,8 +15,7 @@ export const getSearchPageMetadata = async function (props: SearchPageHandlerPro
   const searchParams = await props.searchParams;
   const locale = params.lang ?? i18n.defaultLocale;
   const dictionary = getLocalization(locale).common;
-  const firstSegment = params.tab?.[0];
-  const segmentPath = firstSegment && isValidEntityTab(firstSegment) ? `/${firstSegment}` : "";
+  const segmentPath = params.tab && isValidEntityTab(params.tab) ? `/${params.tab}` : "";
   const query = typeof searchParams.q === "string" ? searchParams.q : undefined;
   const qs = query ? `?q=${encodeURIComponent(query)}` : "";
 
