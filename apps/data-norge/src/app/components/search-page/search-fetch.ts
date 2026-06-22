@@ -2,6 +2,7 @@ import { type LlmSearchResponse } from "@fdk-frontend/data-access";
 import { type LocaleCodes } from "@fdk-frontend/localization";
 import { type AggregationKeyCount } from "@fdk-frontend/ui";
 import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
 
 import { fetchDocsResults, fetchLlmResults, fetchSummary } from "./search-api";
@@ -9,10 +10,15 @@ import { type DocsSearchResult, type SearchResultsProp } from "./search-page-typ
 
 const ENTITIES_PAGE_SIZE = 20;
 
-export const isBrowseSearch = function (query: string, orgPathParam: string | null): boolean {
+export const isBrowseSearch = function (
+  query: string,
+  orgPathParam: string | null,
+  accessParam: string | null,
+): boolean {
   const trimmedQuery = query.trim();
   const hasOrgFilter = buildOrgPathSearchFilter(orgPathParam) !== undefined;
-  return trimmedQuery.length === 0 && !hasOrgFilter;
+  const hasAccessFilter = buildAccessSearchFilter(accessParam) !== undefined;
+  return trimmedQuery.length === 0 && !hasOrgFilter && !hasAccessFilter;
 };
 
 export type BrowseSearchState = {
@@ -20,6 +26,7 @@ export type BrowseSearchState = {
   searchResults: SearchResultsProp;
   tabBadgeCounts: Record<string, number>;
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
 };
 
 export type EntitySearchState =
@@ -29,6 +36,7 @@ export type EntitySearchState =
       searchResults: SearchResultsProp | undefined;
       tabBadgeCounts: Record<string, number> | undefined;
       orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+      accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
     };
 
 export type LlmDocsSearchState = {
@@ -39,24 +47,27 @@ export type LlmDocsSearchState = {
 export const loadEntitySearchState = async function (options: {
   query: string;
   orgPathParam: string | null;
+  accessParam: string | null;
 }): Promise<EntitySearchState> {
-  if (isBrowseSearch(options.query, options.orgPathParam)) {
-    const summary = await fetchSummary("", null);
+  if (isBrowseSearch(options.query, options.orgPathParam, options.accessParam)) {
+    const summary = await fetchSummary("", null, null);
     return {
       mode: "browse",
       searchResults: summary.searchResults,
       tabBadgeCounts: summary.tabBadgeCounts,
       orgAggregationsByTab: summary.orgAggregationsByTab,
+      accessAggregationsByTab: summary.accessAggregationsByTab,
     };
   }
 
-  const summary = await fetchSummary(options.query, options.orgPathParam, ENTITIES_PAGE_SIZE);
+  const summary = await fetchSummary(options.query, options.orgPathParam, options.accessParam, ENTITIES_PAGE_SIZE);
 
   return {
     mode: "search",
     searchResults: summary.searchResults,
     tabBadgeCounts: summary.tabBadgeCounts,
     orgAggregationsByTab: summary.orgAggregationsByTab,
+    accessAggregationsByTab: summary.accessAggregationsByTab,
   };
 };
 

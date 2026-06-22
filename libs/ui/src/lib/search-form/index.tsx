@@ -10,10 +10,11 @@ import Box from "../box";
 import SearchTabs, { deriveSearchTabValueFromPathname } from "../search-tabs";
 import { type SearchSetSegment, type SearchTabsValue } from "../search-tabs/search-tab-config";
 import OrgFilter from "./org-filter";
+import AccessFilter from "./access-filter";
+import { parseAccessQueryParam, shouldShowAccessFilter } from "./access";
 import { type AggregationKeyCount, parseOrgPathQueryParam } from "./org-path";
 import { buildSearchPageUrl } from "./search-page-url";
 import {
-  MOCK_ACCESS_LEVEL_OPTIONS,
   MOCK_FILETYPE_OPTIONS,
   MOCK_GEOGRAPHY_OPTIONS,
   MOCK_MEDIA_FORMAT_OPTIONS,
@@ -24,6 +25,13 @@ import styles from "./search-form.module.scss";
 
 export type { AggregationKeyCount } from "./org-path";
 export { mergeOrgPathAggregations, buildOrgPathSearchFilter } from "./org-path";
+export {
+  mergeAccessAggregations,
+  buildAccessFilterOptions,
+  buildAccessSearchFilter,
+  parseAccessQueryParam,
+  shouldShowAccessFilter,
+} from "./access";
 export { buildSearchPageQueryUrl, buildSearchPageUrl } from "./search-page-url";
 
 export type SearchFormProps = {
@@ -32,6 +40,7 @@ export type SearchFormProps = {
   defaultQuery?: string;
   badgeCounts?: Record<string, number | undefined>;
   orgAggregation?: AggregationKeyCount[];
+  accessAggregation?: AggregationKeyCount[];
   defaultValue?: SearchTabsValue;
   searchLabel?: string;
   onSearch?: (query: string, type: SearchTabsValue) => void;
@@ -44,6 +53,7 @@ const SearchForm = ({
   defaultQuery = "",
   badgeCounts,
   orgAggregation,
+  accessAggregation,
   defaultValue = "ki",
   searchLabel = "Søk",
   onSearch,
@@ -57,10 +67,13 @@ const SearchForm = ({
 
   const isUrlDriven = lang !== undefined;
   const orgPathParam = searchParams.get("orgPath");
+  const accessParam = searchParams.get("access");
   const selectedOrgPaths = useMemo(() => parseOrgPathQueryParam(orgPathParam), [orgPathParam]);
+  const selectedAccess = useMemo(() => parseAccessQueryParam(accessParam), [accessParam]);
 
   const activeTab = (isUrlDriven ? deriveSearchTabValueFromPathname(pathname) : searchType) as SearchTabsValue;
   const showFilters = activeEntityTab !== undefined && activeEntityTab !== "docs";
+  const showAccessFilter = shouldShowAccessFilter(accessAggregation ?? []);
 
   const getQueryForUrl = useCallback(
     () => query.trim() || (searchParams.get("q") ?? defaultQuery ?? ""),
@@ -70,35 +83,44 @@ const SearchForm = ({
   const locale = lang ?? pathname.split("/")[1] ?? "nb";
 
   const navigateToSearch = useCallback(
-    (orgPaths: string[], tab: SearchTabsValue = activeTab) => {
+    ({
+      orgPaths = selectedOrgPaths,
+      access = selectedAccess,
+      tab = activeTab,
+    }: {
+      orgPaths?: string[];
+      access?: string[];
+      tab?: SearchTabsValue;
+    } = {}) => {
       router.replace(
         buildSearchPageUrl({
           locale,
           tab,
           query: getQueryForUrl(),
           orgPaths,
+          access,
         }),
       );
     },
-    [locale, activeTab, getQueryForUrl, router],
+    [locale, activeTab, getQueryForUrl, router, selectedOrgPaths, selectedAccess],
   );
 
   const handleTabChange = useCallback(
     (value: SearchTabsValue) => {
       if (isUrlDriven) {
         if (value === activeTab) return;
-        navigateToSearch(selectedOrgPaths, value);
+        navigateToSearch({ tab: value });
       } else {
         setSearchType(value);
       }
     },
-    [isUrlDriven, activeTab, selectedOrgPaths, navigateToSearch],
+    [isUrlDriven, activeTab, navigateToSearch],
   );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isUrlDriven) {
-      navigateToSearch(selectedOrgPaths);
+      navigateToSearch();
     } else {
       onSearch?.(query, searchType);
     }
@@ -107,7 +129,15 @@ const SearchForm = ({
   const handleOrgPathsChange = useCallback(
     (nextSelected: string[]) => {
       if (!isUrlDriven) return;
-      navigateToSearch(nextSelected);
+      navigateToSearch({ orgPaths: nextSelected });
+    },
+    [isUrlDriven, navigateToSearch],
+  );
+
+  const handleAccessChange = useCallback(
+    (nextSelected: string[]) => {
+      if (!isUrlDriven) return;
+      navigateToSearch({ access: nextSelected });
     },
     [isUrlDriven, navigateToSearch],
   );
@@ -180,24 +210,30 @@ const SearchForm = ({
                     </VStack>
                   </Dropdown>
                 </Dropdown.TriggerContext>
-                <Dropdown.TriggerContext>
-                  <Dropdown.Trigger
-                    data-size="sm"
-                    variant="secondary"
-                  >
-                    Tilgangsnivå
-                    <ChevronDownIcon />
-                  </Dropdown.Trigger>
-                  <Dropdown
-                    className={styles.filterDropdown}
-                    placement="bottom-start"
-                    data-size="sm"
-                  >
-                    <Box className={styles.box}>
-                      <CheckboxGroup options={MOCK_ACCESS_LEVEL_OPTIONS} />
-                    </Box>
-                  </Dropdown>
-                </Dropdown.TriggerContext>
+                {showAccessFilter && (
+                  <Dropdown.TriggerContext>
+                    <Dropdown.Trigger
+                      data-size="sm"
+                      variant="secondary"
+                    >
+                      Tilgangsnivå
+                      <ChevronDownIcon />
+                    </Dropdown.Trigger>
+                    <Dropdown
+                      className={styles.filterDropdown}
+                      placement="bottom-start"
+                      data-size="sm"
+                    >
+                      <Box className={styles.box}>
+                        <AccessFilter
+                          aggregation={accessAggregation}
+                          value={isUrlDriven ? selectedAccess : undefined}
+                          onChange={isUrlDriven ? handleAccessChange : undefined}
+                        />
+                      </Box>
+                    </Dropdown>
+                  </Dropdown.TriggerContext>
+                )}
                 <Dropdown.TriggerContext>
                   <Dropdown.Trigger
                     data-size="sm"
