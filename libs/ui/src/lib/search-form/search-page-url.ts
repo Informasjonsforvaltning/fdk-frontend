@@ -1,6 +1,7 @@
 import { type SearchTabsValue } from "../search-tabs/search-tab-config";
 import { accessKeysToQueryParam } from "./access";
 import { orgPathKeysToQueryParam } from "./org-path";
+import { provenanceKeysToQueryParam } from "./provenance";
 
 export type BuildSearchPageUrlOptions = {
   locale: string;
@@ -8,6 +9,7 @@ export type BuildSearchPageUrlOptions = {
   query: string;
   orgPaths?: string[];
   access?: string[];
+  provenance?: string[];
 };
 
 export const buildSearchPageUrl = function ({
@@ -16,6 +18,7 @@ export const buildSearchPageUrl = function ({
   query,
   orgPaths = [],
   access = [],
+  provenance = [],
 }: BuildSearchPageUrlOptions): string {
   const base = `/${locale}/search`;
   const path = tab === "ki" ? base : `${base}/${tab}`;
@@ -25,6 +28,7 @@ export const buildSearchPageUrl = function ({
   if (trimmedQuery) params.set("q", trimmedQuery);
   if (orgPaths.length > 0) params.set("orgPath", orgPathKeysToQueryParam(orgPaths));
   if (access.length > 0) params.set("access", accessKeysToQueryParam(access));
+  if (provenance.length > 0) params.set("provenance", provenanceKeysToQueryParam(provenance));
 
   const queryString = params.toString();
   return queryString ? `${path}?${queryString}` : path;

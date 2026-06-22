@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { CheckboxGroup } from "@fellesdatakatalog/ui";
 
 import { buildAccessFilterOptions, shouldShowAccessFilter } from "./access";
-import { type AggregationKeyCount } from "./org-path";
+import { type AggregationKeyCount } from "./types";
 import { useSyncedAccessSelection } from "./access/use-synced-selection";
 
 export type AccessFilterProps = {

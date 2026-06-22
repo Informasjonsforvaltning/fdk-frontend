@@ -1,4 +1,9 @@
-import { mergeAccessAggregations, mergeOrgPathAggregations, type AggregationKeyCount } from "@fdk-frontend/ui";
+import {
+  mergeAccessAggregations,
+  mergeOrgPathAggregations,
+  mergeProvenanceAggregations,
+  type AggregationKeyCount,
+} from "@fdk-frontend/ui";
 import {
   ENTITY_TABS,
   KI_TOGGLE_VALUE,
@@ -25,6 +30,7 @@ export type SearchSummarySlice = {
     accessRights: OrgPathAggregationEntry[];
     openData: OrgPathAggregationEntry[];
     orgPath: OrgPathAggregationEntry[];
+    provenance: OrgPathAggregationEntry[];
     [key: string]: unknown;
   };
 };
@@ -50,6 +56,7 @@ export const createEmptySearchSummarySlice = (): SearchSummarySlice => ({
     accessRights: [],
     openData: [],
     orgPath: [],
+    provenance: [],
   },
 });
 
@@ -78,6 +85,7 @@ export const normalizeSearchSummarySlice = function (value: unknown): SearchSumm
       accessRights: Array.isArray(candidate.aggregations?.accessRights) ? candidate.aggregations.accessRights : [],
       openData: Array.isArray(candidate.aggregations?.openData) ? candidate.aggregations.openData : [],
       orgPath: Array.isArray(candidate.aggregations?.orgPath) ? candidate.aggregations.orgPath : [],
+      provenance: Array.isArray(candidate.aggregations?.provenance) ? candidate.aggregations.provenance : [],
     },
   };
 };
@@ -138,6 +146,23 @@ export const buildAccessAggregationsByTab = function (
   summary: SearchSummary,
 ): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
   return buildAggregationsByTab(summary, extractAccessAggregationForTab);
+};
+
+export const extractProvenanceAggregationForTab = function (
+  summary: SearchSummary,
+  entityTab: Exclude<SearchSetSegment, "docs">,
+): AggregationKeyCount[] {
+  return mergeProvenanceAggregations(
+    SUMMARY_SLICES.filter((slice) => slice.tabKey === entityTab).map(
+      (slice) => summary[slice.summaryKey]?.aggregations?.provenance ?? [],
+    ),
+  );
+};
+
+export const buildProvenanceAggregationsByTab = function (
+  summary: SearchSummary,
+): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
+  return buildAggregationsByTab(summary, extractProvenanceAggregationForTab);
 };
 
 export const computeBadgeCountsFromSummary = function (summary: SearchSummary): Record<string, number> {

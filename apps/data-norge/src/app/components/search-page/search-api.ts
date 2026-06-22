@@ -7,6 +7,7 @@ import { buildSearchRequestBody } from "../../[lang]/search/search-request-body"
 import {
   buildAccessAggregationsByTab,
   buildOrgPathAggregationsByTab,
+  buildProvenanceAggregationsByTab,
   computeBadgeCountsFromSummary,
   flattenSummaryHits,
   SEARCH_SUMMARY_PAGE,
@@ -38,12 +39,14 @@ export type SummaryFetchResult = {
   tabBadgeCounts: Record<string, number>;
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
 };
 
 export const fetchSummary = async function (
   query: string,
   orgPathParam: string | null,
   accessParam: string | null,
+  provenanceParam: string | null,
   pageSize: number = SEARCH_SUMMARY_PAGE_SIZE,
 ): Promise<SummaryFetchResult> {
   const json = await postJson<SearchSummaryResponse>(
@@ -52,6 +55,7 @@ export const fetchSummary = async function (
       query,
       orgPathParam,
       accessParam,
+      provenanceParam,
       pagination: { size: pageSize, page: SEARCH_SUMMARY_PAGE },
     }),
   );
@@ -61,6 +65,7 @@ export const fetchSummary = async function (
     tabBadgeCounts: computeBadgeCountsFromSummary(json.summary),
     orgAggregationsByTab: buildOrgPathAggregationsByTab(json.summary),
     accessAggregationsByTab: buildAccessAggregationsByTab(json.summary),
+    provenanceAggregationsByTab: buildProvenanceAggregationsByTab(json.summary),
   };
 };
 

@@ -1,4 +1,5 @@
-import { MAX_ORG_PATH_DEPTH, UNKNOWN_ORG_PATH_KEY, type AggregationKeyCount } from "./types";
+import { MAX_ORG_PATH_DEPTH, UNKNOWN_ORG_PATH_KEY } from "./types";
+import { type AggregationKeyCount } from "../types";
 import { ORG_PATH_URL_UNKNOWN_TOKEN } from "./encoding";
 
 const normalizeOrgPathKey = (key: string | null): string =>

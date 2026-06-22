@@ -11,20 +11,22 @@ import SearchTabs, { deriveSearchTabValueFromPathname } from "../search-tabs";
 import { type SearchSetSegment, type SearchTabsValue } from "../search-tabs/search-tab-config";
 import OrgFilter from "./org-filter";
 import AccessFilter from "./access-filter";
+import ProvenanceFilter from "./provenance-filter";
 import FilterDropdown from "./filter-dropdown";
 import { parseAccessQueryParam, shouldShowAccessFilter } from "./access";
-import { type AggregationKeyCount, parseOrgPathQueryParam } from "./org-path";
+import { parseOrgPathQueryParam } from "./org-path";
+import { type AggregationKeyCount } from "./types";
+import { parseProvenanceQueryParam, shouldShowProvenanceFilter } from "./provenance";
 import { buildSearchPageUrl } from "./search-page-url";
 import {
   MOCK_FILETYPE_OPTIONS,
   MOCK_GEOGRAPHY_OPTIONS,
   MOCK_MEDIA_FORMAT_OPTIONS,
-  MOCK_PROVENANCE_OPTIONS,
   MOCK_TEMA_FILTER_OPTIONS,
 } from "./search-form-mock-filters";
 import styles from "./search-form.module.scss";
 
-export type { AggregationKeyCount } from "./org-path";
+export type { AggregationKeyCount } from "./types";
 export { mergeOrgPathAggregations, buildOrgPathSearchFilter } from "./org-path";
 export {
   mergeAccessAggregations,
@@ -33,6 +35,13 @@ export {
   parseAccessQueryParam,
   shouldShowAccessFilter,
 } from "./access";
+export {
+  mergeProvenanceAggregations,
+  buildProvenanceFilterOptions,
+  buildProvenanceSearchFilter,
+  parseProvenanceQueryParam,
+  shouldShowProvenanceFilter,
+} from "./provenance";
 export { buildSearchPageQueryUrl, buildSearchPageUrl } from "./search-page-url";
 
 export type SearchFormProps = {
@@ -42,6 +51,7 @@ export type SearchFormProps = {
   badgeCounts?: Record<string, number | undefined>;
   orgAggregation?: AggregationKeyCount[];
   accessAggregation?: AggregationKeyCount[];
+  provenanceAggregation?: AggregationKeyCount[];
   defaultValue?: SearchTabsValue;
   searchLabel?: string;
   onSearch?: (query: string, type: SearchTabsValue) => void;
@@ -55,6 +65,7 @@ const SearchForm = ({
   badgeCounts,
   orgAggregation,
   accessAggregation,
+  provenanceAggregation,
   defaultValue = "ki",
   searchLabel = "Søk",
   onSearch,
@@ -69,12 +80,15 @@ const SearchForm = ({
   const isUrlDriven = lang !== undefined;
   const orgPathParam = searchParams.get("orgPath");
   const accessParam = searchParams.get("access");
+  const provenanceParam = searchParams.get("provenance");
   const selectedOrgPaths = useMemo(() => parseOrgPathQueryParam(orgPathParam), [orgPathParam]);
   const selectedAccess = useMemo(() => parseAccessQueryParam(accessParam), [accessParam]);
+  const selectedProvenance = useMemo(() => parseProvenanceQueryParam(provenanceParam), [provenanceParam]);
 
   const activeTab = (isUrlDriven ? deriveSearchTabValueFromPathname(pathname) : searchType) as SearchTabsValue;
   const showFilters = activeEntityTab !== undefined && activeEntityTab !== "docs";
   const showAccessFilter = shouldShowAccessFilter(accessAggregation ?? []);
+  const showProvenanceFilter = shouldShowProvenanceFilter(provenanceAggregation ?? []);
 
   const getQueryForUrl = useCallback(
     () => query.trim() || (searchParams.get("q") ?? defaultQuery ?? ""),
@@ -87,10 +101,12 @@ const SearchForm = ({
     ({
       orgPaths = selectedOrgPaths,
       access = selectedAccess,
+      provenance = selectedProvenance,
       tab = activeTab,
     }: {
       orgPaths?: string[];
       access?: string[];
+      provenance?: string[];
       tab?: SearchTabsValue;
     } = {}) => {
       router.replace(
@@ -100,10 +116,11 @@ const SearchForm = ({
           query: getQueryForUrl(),
           orgPaths,
           access,
+          provenance,
         }),
       );
     },
-    [locale, activeTab, getQueryForUrl, router, selectedOrgPaths, selectedAccess],
+    [locale, activeTab, getQueryForUrl, router, selectedOrgPaths, selectedAccess, selectedProvenance],
   );
 
   const handleTabChange = useCallback(
@@ -139,6 +156,14 @@ const SearchForm = ({
     (nextSelected: string[]) => {
       if (!isUrlDriven) return;
       navigateToSearch({ access: nextSelected });
+    },
+    [isUrlDriven, navigateToSearch],
+  );
+
+  const handleProvenanceChange = useCallback(
+    (nextSelected: string[]) => {
+      if (!isUrlDriven) return;
+      navigateToSearch({ provenance: nextSelected });
     },
     [isUrlDriven, navigateToSearch],
   );
@@ -241,11 +266,17 @@ const SearchForm = ({
                     </Box>
                   </VStack>
                 </FilterDropdown>
-                <FilterDropdown label="Opphav">
-                  <Box className={styles.box}>
-                    <CheckboxGroup options={MOCK_PROVENANCE_OPTIONS} />
-                  </Box>
-                </FilterDropdown>
+                {showProvenanceFilter && (
+                  <FilterDropdown label="Opphav">
+                    <Box className={styles.box}>
+                      <ProvenanceFilter
+                        aggregation={provenanceAggregation}
+                        value={isUrlDriven ? selectedProvenance : undefined}
+                        onChange={isUrlDriven ? handleProvenanceChange : undefined}
+                      />
+                    </Box>
+                  </FilterDropdown>
+                )}
               </HStack>
             )}
             <div className={styles.sortToolbar}>
