@@ -3,6 +3,8 @@ import { accessKeysToQueryParam } from "./access";
 import { orgPathKeysToQueryParam } from "./org-path";
 import { provenanceKeysToQueryParam } from "./provenance";
 import { formatKeysToQueryParam } from "./format";
+import { losThemeKeysToQueryParam } from "./theme/los-theme";
+import { dataThemeKeysToQueryParam } from "./theme/data-theme";
 import { spatialKeysToQueryParam } from "./spatial";
 
 export type BuildSearchPageUrlOptions = {
@@ -14,6 +16,8 @@ export type BuildSearchPageUrlOptions = {
   provenance?: string[];
   spatial?: string[];
   formats?: string[];
+  losThemes?: string[];
+  dataThemes?: string[];
 };
 
 export const buildSearchPageUrl = function ({
@@ -25,6 +29,8 @@ export const buildSearchPageUrl = function ({
   provenance = [],
   spatial = [],
   formats = [],
+  losThemes = [],
+  dataThemes = [],
 }: BuildSearchPageUrlOptions): string {
   const base = `/${locale}/search`;
   const path = tab === "ki" ? base : `${base}/${tab}`;
@@ -37,6 +43,8 @@ export const buildSearchPageUrl = function ({
   if (provenance.length > 0) params.set("provenance", provenanceKeysToQueryParam(provenance));
   if (spatial.length > 0) params.set("spatial", spatialKeysToQueryParam(spatial));
   if (formats.length > 0) params.set("format", formatKeysToQueryParam(formats));
+  if (losThemes.length > 0) params.set("losTheme", losThemeKeysToQueryParam(losThemes));
+  if (dataThemes.length > 0) params.set("dataTheme", dataThemeKeysToQueryParam(dataThemes));
 
   const queryString = params.toString();
   return queryString ? `${path}?${queryString}` : path;

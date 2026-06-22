@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Input, Dropdown } from "@digdir/designsystemet-react";
-import { HStack, VStack, CheckboxGroup } from "@fellesdatakatalog/ui";
+import { Dropdown } from "@digdir/designsystemet-react";
+import { HStack, VStack } from "@fellesdatakatalog/ui";
 import { SortDownIcon, CheckmarkIcon } from "@navikt/aksel-icons";
 
 import Box from "../box";
@@ -14,6 +14,7 @@ import AccessFilter from "./access-filter";
 import ProvenanceFilter from "./provenance-filter";
 import SpatialFilter from "./spatial-filter";
 import FormatFilter from "./format-filter";
+import ThemeFilter from "./theme-filter";
 import FilterDropdown from "./filter-dropdown";
 import { parseAccessQueryParam, shouldShowAccessFilter } from "./access";
 import { parseOrgPathQueryParam } from "./org-path";
@@ -21,8 +22,8 @@ import { type AggregationKeyCount } from "./types";
 import { parseProvenanceQueryParam, shouldShowProvenanceFilter } from "./provenance";
 import { parseSpatialQueryParam, shouldShowSpatialFilter } from "./spatial";
 import { parseFormatQueryParam, shouldShowFormatFilter } from "./format";
+import { parseLosThemeQueryParam, parseDataThemeQueryParam, shouldShowTemaFilter } from "./theme";
 import { buildSearchPageUrl } from "./search-page-url";
-import { MOCK_TEMA_FILTER_OPTIONS } from "./search-form-mock-filters";
 import styles from "./search-form.module.scss";
 
 export type { AggregationKeyCount } from "./types";
@@ -56,6 +57,16 @@ export {
   parseFormatQueryParam,
   shouldShowFormatFilter,
 } from "./format";
+export {
+  mergeLosThemeAggregations,
+  mergeDataThemeAggregations,
+  buildLosThemeSearchFilter,
+  buildDataThemeSearchFilter,
+  buildDataThemeFilterOptions,
+  parseLosThemeQueryParam,
+  parseDataThemeQueryParam,
+  shouldShowTemaFilter,
+} from "./theme";
 export { buildSearchPageQueryUrl, buildSearchPageUrl } from "./search-page-url";
 
 export type SearchFormProps = {
@@ -68,6 +79,8 @@ export type SearchFormProps = {
   provenanceAggregation?: AggregationKeyCount[];
   spatialAggregation?: AggregationKeyCount[];
   formatAggregation?: AggregationKeyCount[];
+  losThemeAggregation?: AggregationKeyCount[];
+  dataThemeAggregation?: AggregationKeyCount[];
   defaultValue?: SearchTabsValue;
   searchLabel?: string;
   onSearch?: (query: string, type: SearchTabsValue) => void;
@@ -84,6 +97,8 @@ const SearchForm = ({
   provenanceAggregation,
   spatialAggregation,
   formatAggregation,
+  losThemeAggregation,
+  dataThemeAggregation,
   defaultValue = "ki",
   searchLabel = "Søk",
   onSearch,
@@ -101,11 +116,15 @@ const SearchForm = ({
   const provenanceParam = searchParams.get("provenance");
   const spatialParam = searchParams.get("spatial");
   const formatParam = searchParams.get("format");
+  const losThemeParam = searchParams.get("losTheme");
+  const dataThemeParam = searchParams.get("dataTheme");
   const selectedOrgPaths = useMemo(() => parseOrgPathQueryParam(orgPathParam), [orgPathParam]);
   const selectedAccess = useMemo(() => parseAccessQueryParam(accessParam), [accessParam]);
   const selectedProvenance = useMemo(() => parseProvenanceQueryParam(provenanceParam), [provenanceParam]);
   const selectedSpatial = useMemo(() => parseSpatialQueryParam(spatialParam), [spatialParam]);
   const selectedFormats = useMemo(() => parseFormatQueryParam(formatParam), [formatParam]);
+  const selectedLosThemes = useMemo(() => parseLosThemeQueryParam(losThemeParam), [losThemeParam]);
+  const selectedDataThemes = useMemo(() => parseDataThemeQueryParam(dataThemeParam), [dataThemeParam]);
 
   const activeTab = (isUrlDriven ? deriveSearchTabValueFromPathname(pathname) : searchType) as SearchTabsValue;
   const showFilters = activeEntityTab !== undefined && activeEntityTab !== "docs";
@@ -113,6 +132,7 @@ const SearchForm = ({
   const showProvenanceFilter = shouldShowProvenanceFilter(provenanceAggregation ?? []);
   const showSpatialFilter = shouldShowSpatialFilter(spatialAggregation ?? []);
   const showFormatFilter = shouldShowFormatFilter(formatAggregation ?? []);
+  const showTemaFilter = shouldShowTemaFilter(losThemeAggregation ?? [], dataThemeAggregation ?? []);
 
   const getQueryForUrl = useCallback(
     () => query.trim() || (searchParams.get("q") ?? defaultQuery ?? ""),
@@ -128,6 +148,8 @@ const SearchForm = ({
       provenance = selectedProvenance,
       spatial = selectedSpatial,
       formats = selectedFormats,
+      losThemes = selectedLosThemes,
+      dataThemes = selectedDataThemes,
       tab = activeTab,
     }: {
       orgPaths?: string[];
@@ -135,6 +157,8 @@ const SearchForm = ({
       provenance?: string[];
       spatial?: string[];
       formats?: string[];
+      losThemes?: string[];
+      dataThemes?: string[];
       tab?: SearchTabsValue;
     } = {}) => {
       router.replace(
@@ -147,6 +171,8 @@ const SearchForm = ({
           provenance,
           spatial,
           formats,
+          losThemes,
+          dataThemes,
         }),
       );
     },
@@ -160,6 +186,8 @@ const SearchForm = ({
       selectedProvenance,
       selectedSpatial,
       selectedFormats,
+      selectedLosThemes,
+      selectedDataThemes,
     ],
   );
 
@@ -224,6 +252,22 @@ const SearchForm = ({
     [isUrlDriven, navigateToSearch],
   );
 
+  const handleLosThemeChange = useCallback(
+    (nextSelected: string[]) => {
+      if (!isUrlDriven) return;
+      navigateToSearch({ losThemes: nextSelected });
+    },
+    [isUrlDriven, navigateToSearch],
+  );
+
+  const handleDataThemeChange = useCallback(
+    (nextSelected: string[]) => {
+      if (!isUrlDriven) return;
+      navigateToSearch({ dataThemes: nextSelected });
+    },
+    [isUrlDriven, navigateToSearch],
+  );
+
   useEffect(() => {
     if (isUrlDriven && defaultQuery !== undefined) {
       setQuery(defaultQuery);
@@ -257,15 +301,18 @@ const SearchForm = ({
                     </Box>
                   </VStack>
                 </FilterDropdown>
-                <FilterDropdown label="Tema">
-                  <VStack>
-                    {/* TODO: localization remains to be implemented */}
-                    <Input placeholder="Søk etter tema" />
-                    <Box className={styles.box}>
-                      <CheckboxGroup options={MOCK_TEMA_FILTER_OPTIONS} />
-                    </Box>
-                  </VStack>
-                </FilterDropdown>
+                {showTemaFilter && (
+                  <FilterDropdown label="Tema">
+                    <ThemeFilter
+                      losThemeAggregation={losThemeAggregation}
+                      dataThemeAggregation={dataThemeAggregation}
+                      losThemeValue={isUrlDriven ? selectedLosThemes : undefined}
+                      dataThemeValue={isUrlDriven ? selectedDataThemes : undefined}
+                      onLosThemeChange={isUrlDriven ? handleLosThemeChange : undefined}
+                      onDataThemeChange={isUrlDriven ? handleDataThemeChange : undefined}
+                    />
+                  </FilterDropdown>
+                )}
                 {showAccessFilter && (
                   <FilterDropdown label="Tilgangsnivå">
                     <Box className={styles.box}>

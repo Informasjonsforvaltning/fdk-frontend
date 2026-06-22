@@ -15,6 +15,8 @@ export type SearchPageData = {
   provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+  losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+  dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
 };
 
 export type SearchPageReducerState = {
@@ -33,6 +35,8 @@ export const initialSearchPageData: SearchPageData = {
   provenanceAggregationsByTab: undefined,
   spatialAggregationsByTab: undefined,
   formatAggregationsByTab: undefined,
+  losThemeAggregationsByTab: undefined,
+  dataThemeAggregationsByTab: undefined,
 };
 
 export const initialSearchPageState: SearchPageReducerState = {
@@ -62,6 +66,8 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
       provenanceAggregationsByTab: result.provenanceAggregationsByTab,
       spatialAggregationsByTab: result.spatialAggregationsByTab,
       formatAggregationsByTab: result.formatAggregationsByTab,
+      losThemeAggregationsByTab: result.losThemeAggregationsByTab,
+      dataThemeAggregationsByTab: result.dataThemeAggregationsByTab,
     };
   }
 
@@ -74,6 +80,8 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
     provenanceAggregationsByTab: result.provenanceAggregationsByTab,
     spatialAggregationsByTab: result.spatialAggregationsByTab,
     formatAggregationsByTab: result.formatAggregationsByTab,
+    losThemeAggregationsByTab: result.losThemeAggregationsByTab,
+    dataThemeAggregationsByTab: result.dataThemeAggregationsByTab,
   };
 };
 
@@ -103,6 +111,8 @@ export const searchPageReducer = function (
           provenanceAggregationsByTab: undefined,
           spatialAggregationsByTab: undefined,
           formatAggregationsByTab: undefined,
+          losThemeAggregationsByTab: undefined,
+          dataThemeAggregationsByTab: undefined,
         },
       };
     case "llm_docs_fetch_started":

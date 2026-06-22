@@ -2,6 +2,7 @@ import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
 import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/provenance";
 import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
+import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
 
 type SearchPagination = {
@@ -13,7 +14,9 @@ export type SearchFilters = Partial<NonNullable<ReturnType<typeof buildOrgPathSe
   Partial<NonNullable<ReturnType<typeof buildAccessSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildProvenanceSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildSpatialSearchFilter>>> &
-  Partial<NonNullable<ReturnType<typeof buildFormatSearchFilter>>>;
+  Partial<NonNullable<ReturnType<typeof buildFormatSearchFilter>>> &
+  Partial<NonNullable<ReturnType<typeof buildLosThemeSearchFilter>>> &
+  Partial<NonNullable<ReturnType<typeof buildDataThemeSearchFilter>>>;
 
 export type SearchRequestBody = {
   pagination: SearchPagination;
@@ -27,14 +30,28 @@ export const buildSearchFilters = function (
   provenanceParam: string | null,
   spatialParam: string | null,
   formatParam: string | null,
+  losThemeParam: string | null,
+  dataThemeParam: string | null,
 ): SearchFilters | undefined {
   const orgPathFilter = buildOrgPathSearchFilter(orgPathParam);
   const accessFilter = buildAccessSearchFilter(accessParam);
   const provenanceFilter = buildProvenanceSearchFilter(provenanceParam);
   const spatialFilter = buildSpatialSearchFilter(spatialParam);
   const formatFilter = buildFormatSearchFilter(formatParam);
+  const losThemeFilter = buildLosThemeSearchFilter(losThemeParam);
+  const dataThemeFilter = buildDataThemeSearchFilter(dataThemeParam);
 
-  if (!orgPathFilter && !accessFilter && !provenanceFilter && !spatialFilter && !formatFilter) return undefined;
+  if (
+    !orgPathFilter &&
+    !accessFilter &&
+    !provenanceFilter &&
+    !spatialFilter &&
+    !formatFilter &&
+    !losThemeFilter &&
+    !dataThemeFilter
+  ) {
+    return undefined;
+  }
 
   return {
     ...orgPathFilter,
@@ -42,6 +59,8 @@ export const buildSearchFilters = function (
     ...provenanceFilter,
     ...spatialFilter,
     ...formatFilter,
+    ...losThemeFilter,
+    ...dataThemeFilter,
   };
 };
 
@@ -52,6 +71,8 @@ export const buildSearchRequestBody = function (options: {
   provenanceParam: string | null;
   spatialParam: string | null;
   formatParam: string | null;
+  losThemeParam: string | null;
+  dataThemeParam: string | null;
   pagination: SearchPagination;
   includeQueryWhenEmpty?: boolean;
 }): SearchRequestBody {
@@ -62,6 +83,8 @@ export const buildSearchRequestBody = function (options: {
     options.provenanceParam,
     options.spatialParam,
     options.formatParam,
+    options.losThemeParam,
+    options.dataThemeParam,
   );
   const includeQuery = options.includeQueryWhenEmpty === true || trimmedQuery.length > 0;
 

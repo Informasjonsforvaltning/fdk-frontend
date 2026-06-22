@@ -10,6 +10,8 @@ import {
   buildProvenanceAggregationsByTab,
   buildSpatialAggregationsByTab,
   buildFormatAggregationsByTab,
+  buildLosThemeAggregationsByTab,
+  buildDataThemeAggregationsByTab,
   computeBadgeCountsFromSummary,
   flattenSummaryHits,
   SEARCH_SUMMARY_PAGE,
@@ -44,6 +46,8 @@ export type SummaryFetchResult = {
   provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
 };
 
 export const fetchSummary = async function (
@@ -53,6 +57,8 @@ export const fetchSummary = async function (
   provenanceParam: string | null,
   spatialParam: string | null,
   formatParam: string | null,
+  losThemeParam: string | null,
+  dataThemeParam: string | null,
   pageSize: number = SEARCH_SUMMARY_PAGE_SIZE,
 ): Promise<SummaryFetchResult> {
   const json = await postJson<SearchSummaryResponse>(
@@ -64,6 +70,8 @@ export const fetchSummary = async function (
       provenanceParam,
       spatialParam,
       formatParam,
+      losThemeParam,
+      dataThemeParam,
       pagination: { size: pageSize, page: SEARCH_SUMMARY_PAGE },
     }),
   );
@@ -76,6 +84,8 @@ export const fetchSummary = async function (
     provenanceAggregationsByTab: buildProvenanceAggregationsByTab(json.summary),
     spatialAggregationsByTab: buildSpatialAggregationsByTab(json.summary),
     formatAggregationsByTab: buildFormatAggregationsByTab(json.summary),
+    losThemeAggregationsByTab: buildLosThemeAggregationsByTab(json.summary),
+    dataThemeAggregationsByTab: buildDataThemeAggregationsByTab(json.summary),
   };
 };
 

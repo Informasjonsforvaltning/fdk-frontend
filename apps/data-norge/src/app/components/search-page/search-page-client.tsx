@@ -22,6 +22,8 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const provenanceParam = searchParams.get("provenance");
   const spatialParam = searchParams.get("spatial");
   const formatParam = searchParams.get("format");
+  const losThemeParam = searchParams.get("losTheme");
+  const dataThemeParam = searchParams.get("dataTheme");
   const locale = (lang ?? langFromUrl) as LocaleCodes;
 
   const [{ entityLoading, llmLoading, data }, dispatch] = useReducer(searchPageReducer, initialSearchPageState);
@@ -36,12 +38,25 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     activeEntityTab && activeEntityTab !== "docs" ? data.spatialAggregationsByTab?.[activeEntityTab] : undefined;
   const formatAggregation =
     activeEntityTab && activeEntityTab !== "docs" ? data.formatAggregationsByTab?.[activeEntityTab] : undefined;
+  const losThemeAggregation =
+    activeEntityTab && activeEntityTab !== "docs" ? data.losThemeAggregationsByTab?.[activeEntityTab] : undefined;
+  const dataThemeAggregation =
+    activeEntityTab && activeEntityTab !== "docs" ? data.dataThemeAggregationsByTab?.[activeEntityTab] : undefined;
 
   useEffect(() => {
     let cancelled = false;
     dispatch({ type: "entity_fetch_started" });
 
-    loadEntitySearchState({ query, orgPathParam, accessParam, provenanceParam, spatialParam, formatParam })
+    loadEntitySearchState({
+      query,
+      orgPathParam,
+      accessParam,
+      provenanceParam,
+      spatialParam,
+      formatParam,
+      losThemeParam,
+      dataThemeParam,
+    })
       .then((result) => {
         if (cancelled) return;
         dispatch({ type: "entity_fetch_succeeded", payload: result });
@@ -53,7 +68,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     return () => {
       cancelled = true;
     };
-  }, [query, orgPathParam, accessParam, provenanceParam, spatialParam, formatParam]);
+  }, [query, orgPathParam, accessParam, provenanceParam, spatialParam, formatParam, losThemeParam, dataThemeParam]);
 
   useEffect(() => {
     let cancelled = false;
@@ -89,6 +104,8 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       provenanceAggregation={provenanceAggregation}
       spatialAggregation={spatialAggregation}
       formatAggregation={formatAggregation}
+      losThemeAggregation={losThemeAggregation}
+      dataThemeAggregation={dataThemeAggregation}
       entityLoading={entityLoading}
       llmLoading={llmLoading}
     />
