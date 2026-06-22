@@ -49,25 +49,14 @@ export const loadEntitySearchState = async function (options: {
   orgPathParam: string | null;
   accessParam: string | null;
 }): Promise<EntitySearchState> {
-  if (isBrowseSearch(options.query, options.orgPathParam, options.accessParam)) {
-    const summary = await fetchSummary("", null, null);
-    return {
-      mode: "browse",
-      searchResults: summary.searchResults,
-      tabBadgeCounts: summary.tabBadgeCounts,
-      orgAggregationsByTab: summary.orgAggregationsByTab,
-      accessAggregationsByTab: summary.accessAggregationsByTab,
-    };
-  }
-
-  const summary = await fetchSummary(options.query, options.orgPathParam, options.accessParam, ENTITIES_PAGE_SIZE);
+  const browse = isBrowseSearch(options.query, options.orgPathParam, options.accessParam);
+  const summary = browse
+    ? await fetchSummary("", null, null)
+    : await fetchSummary(options.query, options.orgPathParam, options.accessParam, ENTITIES_PAGE_SIZE);
 
   return {
-    mode: "search",
-    searchResults: summary.searchResults,
-    tabBadgeCounts: summary.tabBadgeCounts,
-    orgAggregationsByTab: summary.orgAggregationsByTab,
-    accessAggregationsByTab: summary.accessAggregationsByTab,
+    mode: browse ? "browse" : "search",
+    ...summary,
   };
 };
 

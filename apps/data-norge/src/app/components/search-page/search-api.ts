@@ -27,13 +27,7 @@ const postJson = async function <T>(url: string, body: unknown): Promise<T> {
 
 const tryPostJson = async function <T>(url: string, body: unknown): Promise<T | undefined> {
   try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    if (!res.ok) return undefined;
-    return (await res.json()) as T;
+    return await postJson<T>(url, body);
   } catch {
     return undefined;
   }

@@ -1,3 +1,4 @@
+import { parseCommaSeparatedParam } from "../parse-comma-separated-param";
 import { OPEN_DATA_AGGREGATION_KEY } from "./types";
 
 export const isOpenDataAggregationKey = (key: string): boolean => key === OPEN_DATA_AGGREGATION_KEY;
@@ -6,17 +7,7 @@ export const accessRightsKeyToFilterValue = (key: string): string | null => (key
 
 export const accessKeysToQueryParam = (keys: string[]): string => keys.join(",");
 
-export const parseAccessQueryParam = (value: string | null): string[] => {
-  if (!value) return [];
-  return Array.from(
-    new Set(
-      value
-        .split(",")
-        .map((part) => part.trim())
-        .filter((part) => part.length > 0),
-    ),
-  );
-};
+export const parseAccessQueryParam = (value: string | null): string[] => parseCommaSeparatedParam(value);
 
 export type AccessSearchFilter = {
   accessRights?: {

@@ -102,17 +102,24 @@ export const extractOrgPathAggregationForTab = function (
   );
 };
 
-export const buildOrgPathAggregationsByTab = function (
+const buildAggregationsByTab = function (
   summary: SearchSummary,
+  extract: (summary: SearchSummary, entityTab: Exclude<SearchSetSegment, "docs">) => AggregationKeyCount[],
 ): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
   const result: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> = {};
 
   for (const entityTab of ENTITY_TABS) {
     if (entityTab === "docs") continue;
-    result[entityTab] = extractOrgPathAggregationForTab(summary, entityTab);
+    result[entityTab] = extract(summary, entityTab);
   }
 
   return result;
+};
+
+export const buildOrgPathAggregationsByTab = function (
+  summary: SearchSummary,
+): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
+  return buildAggregationsByTab(summary, extractOrgPathAggregationForTab);
 };
 
 export const extractAccessAggregationForTab = function (
@@ -130,14 +137,7 @@ export const extractAccessAggregationForTab = function (
 export const buildAccessAggregationsByTab = function (
   summary: SearchSummary,
 ): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
-  const result: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> = {};
-
-  for (const entityTab of ENTITY_TABS) {
-    if (entityTab === "docs") continue;
-    result[entityTab] = extractAccessAggregationForTab(summary, entityTab);
-  }
-
-  return result;
+  return buildAggregationsByTab(summary, extractAccessAggregationForTab);
 };
 
 export const computeBadgeCountsFromSummary = function (summary: SearchSummary): Record<string, number> {
