@@ -1,6 +1,7 @@
 import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
 import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/provenance";
+import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
 
 type SearchPagination = {
@@ -11,7 +12,8 @@ type SearchPagination = {
 export type SearchFilters = Partial<NonNullable<ReturnType<typeof buildOrgPathSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildAccessSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildProvenanceSearchFilter>>> &
-  Partial<NonNullable<ReturnType<typeof buildSpatialSearchFilter>>>;
+  Partial<NonNullable<ReturnType<typeof buildSpatialSearchFilter>>> &
+  Partial<NonNullable<ReturnType<typeof buildFormatSearchFilter>>>;
 
 export type SearchRequestBody = {
   pagination: SearchPagination;
@@ -24,19 +26,22 @@ export const buildSearchFilters = function (
   accessParam: string | null,
   provenanceParam: string | null,
   spatialParam: string | null,
+  formatParam: string | null,
 ): SearchFilters | undefined {
   const orgPathFilter = buildOrgPathSearchFilter(orgPathParam);
   const accessFilter = buildAccessSearchFilter(accessParam);
   const provenanceFilter = buildProvenanceSearchFilter(provenanceParam);
   const spatialFilter = buildSpatialSearchFilter(spatialParam);
+  const formatFilter = buildFormatSearchFilter(formatParam);
 
-  if (!orgPathFilter && !accessFilter && !provenanceFilter && !spatialFilter) return undefined;
+  if (!orgPathFilter && !accessFilter && !provenanceFilter && !spatialFilter && !formatFilter) return undefined;
 
   return {
     ...orgPathFilter,
     ...accessFilter,
     ...provenanceFilter,
     ...spatialFilter,
+    ...formatFilter,
   };
 };
 
@@ -46,6 +51,7 @@ export const buildSearchRequestBody = function (options: {
   accessParam: string | null;
   provenanceParam: string | null;
   spatialParam: string | null;
+  formatParam: string | null;
   pagination: SearchPagination;
   includeQueryWhenEmpty?: boolean;
 }): SearchRequestBody {
@@ -55,6 +61,7 @@ export const buildSearchRequestBody = function (options: {
     options.accessParam,
     options.provenanceParam,
     options.spatialParam,
+    options.formatParam,
   );
   const includeQuery = options.includeQueryWhenEmpty === true || trimmedQuery.length > 0;
 

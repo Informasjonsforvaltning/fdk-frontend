@@ -21,6 +21,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const accessParam = searchParams.get("access");
   const provenanceParam = searchParams.get("provenance");
   const spatialParam = searchParams.get("spatial");
+  const formatParam = searchParams.get("format");
   const locale = (lang ?? langFromUrl) as LocaleCodes;
 
   const [{ entityLoading, llmLoading, data }, dispatch] = useReducer(searchPageReducer, initialSearchPageState);
@@ -33,12 +34,14 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     activeEntityTab && activeEntityTab !== "docs" ? data.provenanceAggregationsByTab?.[activeEntityTab] : undefined;
   const spatialAggregation =
     activeEntityTab && activeEntityTab !== "docs" ? data.spatialAggregationsByTab?.[activeEntityTab] : undefined;
+  const formatAggregation =
+    activeEntityTab && activeEntityTab !== "docs" ? data.formatAggregationsByTab?.[activeEntityTab] : undefined;
 
   useEffect(() => {
     let cancelled = false;
     dispatch({ type: "entity_fetch_started" });
 
-    loadEntitySearchState({ query, orgPathParam, accessParam, provenanceParam, spatialParam })
+    loadEntitySearchState({ query, orgPathParam, accessParam, provenanceParam, spatialParam, formatParam })
       .then((result) => {
         if (cancelled) return;
         dispatch({ type: "entity_fetch_succeeded", payload: result });
@@ -50,7 +53,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     return () => {
       cancelled = true;
     };
-  }, [query, orgPathParam, accessParam, provenanceParam, spatialParam]);
+  }, [query, orgPathParam, accessParam, provenanceParam, spatialParam, formatParam]);
 
   useEffect(() => {
     let cancelled = false;
@@ -85,6 +88,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       accessAggregation={accessAggregation}
       provenanceAggregation={provenanceAggregation}
       spatialAggregation={spatialAggregation}
+      formatAggregation={formatAggregation}
       entityLoading={entityLoading}
       llmLoading={llmLoading}
     />
