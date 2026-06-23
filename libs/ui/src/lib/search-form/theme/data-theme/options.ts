@@ -1,13 +1,16 @@
 import { type AggregationKeyCount } from "../../types";
-import { formatDataThemeCheckboxLabel } from "./labels";
+import { formatDataThemeCheckboxLabel, type DataThemeLabelMap } from "./labels";
 
 export type DataThemeFilterOption = {
   label: string;
   value: string;
 };
 
-export const buildDataThemeFilterOptions = (aggregation: AggregationKeyCount[]): DataThemeFilterOption[] =>
+export const buildDataThemeFilterOptions = (
+  aggregation: AggregationKeyCount[],
+  labels: DataThemeLabelMap,
+): DataThemeFilterOption[] =>
   aggregation.map(({ key, count }) => ({
-    label: formatDataThemeCheckboxLabel(key, count),
+    label: formatDataThemeCheckboxLabel(key, count, labels),
     value: key,
   }));
