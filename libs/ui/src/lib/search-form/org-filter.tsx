@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { Checkbox } from "@digdir/designsystemet-react";
 import { VStack } from "@fellesdatakatalog/ui";
+import type { LocaleCodes } from "@fdk-frontend/localization";
 
 import {
   enrichAggregationWithSelection,
@@ -10,7 +11,9 @@ import {
   getOrgPathChildren,
   isOrgPathSelected,
   MAX_ORG_PATH_DEPTH,
+  useOrgPathLabels,
   useSyncedOrgPathSelection,
+  type OrgPathLabelMap,
 } from "./org-path";
 import { type AggregationKeyCount } from "./types";
 import styles from "./search-form.module.scss";
@@ -20,10 +23,11 @@ type OrgPathLevelProps = {
   parentKey: string;
   depth: number;
   selected: string[];
+  labels: OrgPathLabelMap;
   onToggle: (key: string, checked: boolean) => void;
 };
 
-const OrgPathLevel = ({ aggregation, parentKey, depth, selected, onToggle }: OrgPathLevelProps) => {
+const OrgPathLevel = ({ aggregation, parentKey, depth, selected, labels, onToggle }: OrgPathLevelProps) => {
   if (depth > MAX_ORG_PATH_DEPTH) return null;
   if (depth > 1 && !isOrgPathSelected(parentKey, selected)) return null;
 
@@ -38,7 +42,7 @@ const OrgPathLevel = ({ aggregation, parentKey, depth, selected, onToggle }: Org
           className={styles.orgPathItem}
         >
           <Checkbox
-            label={formatOrgPathCheckboxLabel(key, count, selected)}
+            label={formatOrgPathCheckboxLabel(key, count, selected, labels)}
             checked={isOrgPathSelected(key, selected)}
             onChange={(e) => onToggle(key, e.target.checked)}
           />
@@ -48,6 +52,7 @@ const OrgPathLevel = ({ aggregation, parentKey, depth, selected, onToggle }: Org
               parentKey={key}
               depth={depth + 1}
               selected={selected}
+              labels={labels}
               onToggle={onToggle}
             />
           )}
@@ -58,13 +63,15 @@ const OrgPathLevel = ({ aggregation, parentKey, depth, selected, onToggle }: Org
 };
 
 export type OrgFilterProps = {
+  locale?: LocaleCodes;
   aggregation?: AggregationKeyCount[];
   value?: string[];
   onChange?: (value: string[]) => void;
 };
 
-const OrgFilter = ({ aggregation = [], value, onChange }: OrgFilterProps) => {
+const OrgFilter = ({ locale = "nb", aggregation = [], value, onChange }: OrgFilterProps) => {
   const { selected, onToggle } = useSyncedOrgPathSelection(value, onChange);
+  const labels = useOrgPathLabels(locale);
   const displayAggregation = useMemo(
     () => enrichAggregationWithSelection(aggregation, selected),
     [aggregation, selected],
@@ -78,6 +85,7 @@ const OrgFilter = ({ aggregation = [], value, onChange }: OrgFilterProps) => {
       parentKey=""
       depth={1}
       selected={selected}
+      labels={labels}
       onToggle={onToggle}
     />
   );

@@ -122,5 +122,10 @@ spec:
                 secretKeyRef:
                   name: commonurl
                   key: FDK_SPARQL_API_BASE_URI
+            - name: ORGANIZATION_CATALOG_BASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: commonurl
+                  key: ORGANIZATION_CATALOG_BASE_URI
             - name: SEARCH_PROTOTYPE_ENABLED
               value: "false"
