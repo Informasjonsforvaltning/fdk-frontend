@@ -9,3 +9,4 @@ export * from "./lib/search-service/api";
 export * from "./lib/access-request/api";
 export * from "./lib/preview-service/api";
 export * from "./lib/reference-data/api";
+export * from "./lib/organization-catalog/api";

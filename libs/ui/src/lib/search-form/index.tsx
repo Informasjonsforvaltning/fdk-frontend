@@ -295,6 +295,7 @@ const SearchForm = ({
                   <VStack>
                     <Box className={styles.box}>
                       <OrgFilter
+                        locale={locale}
                         aggregation={orgAggregation}
                         value={isUrlDriven ? selectedOrgPaths : undefined}
                         onChange={isUrlDriven ? handleOrgPathsChange : undefined}
