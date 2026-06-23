@@ -1,5 +1,6 @@
 "use client";
 
+import { parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Dropdown } from "@digdir/designsystemet-react";
@@ -70,7 +71,7 @@ export {
 export { buildSearchPageQueryUrl, buildSearchPageUrl } from "./search-page-url";
 
 export type SearchFormProps = {
-  lang?: string;
+  lang?: LocaleCodes;
   activeEntityTab?: SearchSetSegment;
   defaultQuery?: string;
   badgeCounts?: Record<string, number | undefined>;
@@ -139,7 +140,7 @@ const SearchForm = ({
     [query, searchParams, defaultQuery],
   );
 
-  const locale = lang ?? pathname.split("/")[1] ?? "nb";
+  const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
 
   const navigateToSearch = useCallback(
     ({
@@ -304,6 +305,7 @@ const SearchForm = ({
                 {showTemaFilter && (
                   <FilterDropdown label="Tema">
                     <ThemeFilter
+                      locale={locale}
                       losThemeAggregation={losThemeAggregation}
                       dataThemeAggregation={dataThemeAggregation}
                       losThemeValue={isUrlDriven ? selectedLosThemes : undefined}
