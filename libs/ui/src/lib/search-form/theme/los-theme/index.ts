@@ -19,7 +19,8 @@ export {
   enrichLosThemeAggregationWithSelection,
 } from "./tree";
 
-export { formatLosThemeLabel, formatLosThemeCheckboxLabel } from "./labels";
+export { formatLosThemeLabel, formatLosThemeCheckboxLabel, type LosThemeLabelMap } from "./labels";
+export { useLosThemeLabels } from "./use-los-theme-labels";
 
 export { useSyncedLosThemeSelection } from "./use-synced-selection";
 

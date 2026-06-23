@@ -59,6 +59,7 @@ const ThemeFilter = ({
           <VStack>
             <Box className={styles.box}>
               <LosThemeTreeFilter
+                locale={locale}
                 aggregation={losThemeAggregation}
                 value={losThemeValue}
                 onChange={onLosThemeChange}
