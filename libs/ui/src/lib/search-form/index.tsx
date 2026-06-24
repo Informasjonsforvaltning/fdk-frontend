@@ -291,7 +291,10 @@ const SearchForm = ({
           <HStack className={styles.searchToolbar}>
             {showFilters && (
               <HStack className={styles.filterToolbar}>
-                <FilterDropdown label="Virksomhet">
+                <FilterDropdown
+                  label="Virksomhet"
+                  filterCount={selectedOrgPaths.length}
+                >
                   <VStack>
                     <Box className={styles.box}>
                       <OrgFilter
@@ -304,7 +307,10 @@ const SearchForm = ({
                   </VStack>
                 </FilterDropdown>
                 {showTemaFilter && (
-                  <FilterDropdown label="Tema">
+                  <FilterDropdown
+                    label="Tema"
+                    filterCount={selectedDataThemes.length + selectedLosThemes.length}
+                  >
                     <ThemeFilter
                       locale={locale}
                       losThemeAggregation={losThemeAggregation}
@@ -317,7 +323,10 @@ const SearchForm = ({
                   </FilterDropdown>
                 )}
                 {showAccessFilter && (
-                  <FilterDropdown label="Tilgangsnivå">
+                  <FilterDropdown
+                    label="Tilgangsnivå"
+                    filterCount={selectedAccess.length}
+                  >
                     <Box className={styles.box}>
                       <AccessFilter
                         aggregation={accessAggregation}
@@ -328,7 +337,10 @@ const SearchForm = ({
                   </FilterDropdown>
                 )}
                 {showFormatFilter && (
-                  <FilterDropdown label="Data-format">
+                  <FilterDropdown
+                    label="Data-format"
+                    filterCount={selectedFormats.length}
+                  >
                     <FormatFilter
                       aggregation={formatAggregation}
                       value={isUrlDriven ? selectedFormats : undefined}
@@ -337,7 +349,10 @@ const SearchForm = ({
                   </FilterDropdown>
                 )}
                 {showSpatialFilter && (
-                  <FilterDropdown label="Geografi">
+                  <FilterDropdown
+                    label="Geografi"
+                    filterCount={selectedSpatial.length}
+                  >
                     <Box className={styles.box}>
                       <SpatialFilter
                         aggregation={spatialAggregation}
@@ -348,7 +363,10 @@ const SearchForm = ({
                   </FilterDropdown>
                 )}
                 {showProvenanceFilter && (
-                  <FilterDropdown label="Opphav">
+                  <FilterDropdown
+                    label="Opphav"
+                    filterCount={selectedProvenance.length}
+                  >
                     <Box className={styles.box}>
                       <ProvenanceFilter
                         aggregation={provenanceAggregation}
