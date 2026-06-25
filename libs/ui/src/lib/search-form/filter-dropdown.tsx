@@ -14,13 +14,13 @@ const FilterDropdown = ({ label, children, filterCount }: FilterDropdownProps) =
   <Dropdown.TriggerContext>
     <Dropdown.Trigger
       data-size="sm"
-      variant={filterCount ? "primary" : "secondary"}
+      variant="secondary"
     >
       {label}
       {filterCount ? (
         <Badge
           count={filterCount}
-          variant="tinted"
+          data-size="md"
         />
       ) : null}
       <ChevronDownIcon />

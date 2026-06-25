@@ -1,6 +1,6 @@
 "use client";
 
-import { ToggleGroup, Badge } from "@digdir/designsystemet-react";
+import { ToggleGroup, Badge, Heading } from "@digdir/designsystemet-react";
 import { SparklesFillIcon } from "@navikt/aksel-icons";
 import { useRef, type ReactNode } from "react";
 import styles from "./styles.module.scss";
@@ -86,11 +86,11 @@ const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {} }: 
             value={item.value}
             className={styles.tab}
           >
-            <SearchTabBadge count={count} />
             <div>
               {item.icon}
               {item.label}
             </div>
+            <SearchTabBadge count={count} />
           </ToggleGroup.Item>
         );
       })}

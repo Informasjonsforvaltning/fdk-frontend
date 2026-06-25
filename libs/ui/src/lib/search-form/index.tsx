@@ -301,7 +301,8 @@ const SearchForm = ({
       selectedSpatial.length +
       selectedFormats.length +
       selectedLosThemes.length +
-      selectedDataThemes.length >
+      selectedDataThemes.length +
+      selectedProvenance.length >
     0;
 
   const clearFilters = useCallback(() => {
@@ -488,7 +489,14 @@ const SearchForm = ({
                 onChipRemove={handleProvenanceChange}
                 chipLabels={PROVENANCE_LABELS}
               />
-              {hasFilter && <Chip.Button onClick={() => clearFilters()}>Tøm alle filtre</Chip.Button>}
+              {hasFilter && (
+                <Chip.Button
+                  onClick={() => clearFilters()}
+                  data-size="sm"
+                >
+                  Tøm alle filtre
+                </Chip.Button>
+              )}
             </HStack>
           </>
         </VStack>

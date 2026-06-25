@@ -18,6 +18,7 @@ const FilterChips = ({ selectedFilters, onChipRemove, chipLabels }: FilterChipsP
         <Chip.Removable
           onClick={() => handleChipClick(filterKey)}
           key={filterKey}
+          data-size="sm"
         >
           {chipLabels[filterKey] ?? filterKey}
         </Chip.Removable>
