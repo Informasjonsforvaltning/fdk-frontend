@@ -1,6 +1,6 @@
 "use client";
 
-import { ToggleGroup, Badge, Heading } from "@digdir/designsystemet-react";
+import { ToggleGroup, Badge } from "@digdir/designsystemet-react";
 import { SparklesFillIcon } from "@navikt/aksel-icons";
 import { useRef, type ReactNode } from "react";
 import styles from "./styles.module.scss";

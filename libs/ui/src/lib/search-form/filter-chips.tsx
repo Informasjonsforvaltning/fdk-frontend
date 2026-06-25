@@ -7,10 +7,10 @@ export type FilterChipsProps = {
 };
 
 const FilterChips = ({ selectedFilters, onChipRemove, chipLabels }: FilterChipsProps) => {
-  function handleChipClick(chipValue: string) {
+  const handleChipClick = (chipValue: string) => {
     const filteredArray = selectedFilters.filter((item) => item !== chipValue); // creates a new (filtered) instance of the array
     onChipRemove(filteredArray);
-  }
+  };
 
   return (
     <>
