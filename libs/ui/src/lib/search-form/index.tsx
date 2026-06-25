@@ -3,7 +3,7 @@
 import { parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Dropdown } from "@digdir/designsystemet-react";
+import { Chip, Dropdown } from "@digdir/designsystemet-react";
 import { HStack, VStack } from "@fellesdatakatalog/ui";
 import { SortDownIcon, CheckmarkIcon } from "@navikt/aksel-icons";
 
@@ -97,7 +97,7 @@ export type SearchFormProps = {
 };
 
 const SearchForm = ({
-  lang = "nb",
+  lang,
   activeEntityTab,
   defaultQuery = "",
   badgeCounts,
@@ -143,22 +143,24 @@ const SearchForm = ({
   const showFormatFilter = shouldShowFormatFilter(formatAggregation ?? []);
   const showTemaFilter = shouldShowTemaFilter(losThemeAggregation ?? [], dataThemeAggregation ?? []);
 
-  const losThemeLabels = useLosThemeLabels(lang);
-  const dataThemeLabels = useDataThemeLabels(lang);
+  const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
+
+  const orgKey = !selectedOrgPaths.length ? "" : selectedOrgPaths[selectedOrgPaths.length - 1];
+  const orgPathLabels: Record<string, string> = {
+    [orgKey]: formatOrgPathLabel(orgKey, useOrgPathLabels(locale)),
+  };
+  // TODO: handle useOrgPathLabels. Called more than once on each render when used like this (also called within org-filter component)
+  const losThemeLabels = useLosThemeLabels(locale);
+  const dataThemeLabels = useDataThemeLabels(locale);
   const formatLabels: Record<string, string> = Object.fromEntries(
     selectedFormats.map((key) => [key, formatLabel(key)]),
   );
   const spatialLabels: Record<string, string> = Object.fromEntries(selectedSpatial.map((key) => [key, key]));
-  const orgPathLabels: Record<string, string> = Object.fromEntries(
-    selectedOrgPaths.map((key) => [key, formatOrgPathLabel(key, useOrgPathLabels(lang))]),
-  );
 
   const getQueryForUrl = useCallback(
     () => query.trim() || (searchParams.get("q") ?? defaultQuery ?? ""),
     [query, searchParams, defaultQuery],
   );
-
-  const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
 
   const navigateToSearch = useCallback(
     ({
@@ -292,6 +294,29 @@ const SearchForm = ({
       setQuery(defaultQuery);
     }
   }, [isUrlDriven, defaultQuery]);
+
+  const hasFilter: boolean =
+    selectedOrgPaths.length +
+      selectedAccess.length +
+      selectedSpatial.length +
+      selectedFormats.length +
+      selectedLosThemes.length +
+      selectedDataThemes.length >
+    0;
+
+  const clearFilters = useCallback(() => {
+    if (!isUrlDriven) return;
+    const emptyStrings: string[] = [];
+    navigateToSearch({
+      orgPaths: emptyStrings,
+      access: emptyStrings,
+      provenance: emptyStrings,
+      spatial: emptyStrings,
+      formats: emptyStrings,
+      losThemes: emptyStrings,
+      dataThemes: emptyStrings,
+    });
+  }, [isUrlDriven, navigateToSearch]);
 
   return (
     <form
@@ -427,41 +452,44 @@ const SearchForm = ({
                 </Dropdown.TriggerContext>
               </div>
             </HStack>
-            <FilterChips
-              selectedFilters={isUrlDriven ? selectedOrgPaths : []}
-              onChipRemove={handleOrgPathsChange}
-              chipLabels={orgPathLabels}
-            />
-            <FilterChips
-              selectedFilters={isUrlDriven ? selectedLosThemes : []}
-              onChipRemove={handleLosThemeChange}
-              chipLabels={losThemeLabels}
-            />
-            <FilterChips
-              selectedFilters={isUrlDriven ? selectedDataThemes : []}
-              onChipRemove={handleDataThemeChange}
-              chipLabels={dataThemeLabels}
-            />
-            <FilterChips
-              selectedFilters={isUrlDriven ? selectedAccess : []}
-              onChipRemove={handleAccessChange}
-              chipLabels={ACCESS_RIGHTS_LABELS}
-            />
-            <FilterChips
-              selectedFilters={isUrlDriven ? selectedFormats : []}
-              onChipRemove={handleFormatChange}
-              chipLabels={formatLabels}
-            />
-            <FilterChips
-              selectedFilters={isUrlDriven ? selectedSpatial : []}
-              onChipRemove={handleSpatialChange}
-              chipLabels={spatialLabels}
-            />
-            <FilterChips
-              selectedFilters={isUrlDriven ? selectedProvenance : []}
-              onChipRemove={handleProvenanceChange}
-              chipLabels={PROVENANCE_LABELS}
-            />
+            <HStack>
+              <FilterChips
+                selectedFilters={selectedOrgPaths}
+                onChipRemove={handleOrgPathsChange}
+                chipLabels={orgPathLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedLosThemes}
+                onChipRemove={handleLosThemeChange}
+                chipLabels={losThemeLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedDataThemes}
+                onChipRemove={handleDataThemeChange}
+                chipLabels={dataThemeLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedAccess}
+                onChipRemove={handleAccessChange}
+                chipLabels={ACCESS_RIGHTS_LABELS}
+              />
+              <FilterChips
+                selectedFilters={selectedFormats}
+                onChipRemove={handleFormatChange}
+                chipLabels={formatLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedSpatial}
+                onChipRemove={handleSpatialChange}
+                chipLabels={spatialLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedProvenance}
+                onChipRemove={handleProvenanceChange}
+                chipLabels={PROVENANCE_LABELS}
+              />
+              {hasFilter && <Chip.Button onClick={() => clearFilters()}>Tøm alle filtre</Chip.Button>}
+            </HStack>
           </>
         </VStack>
       </VStack>
