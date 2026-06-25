@@ -1,6 +1,6 @@
 import { OPEN_DATA_AGGREGATION_KEY } from "./types";
 
-const ACCESS_RIGHTS_LABELS: Record<string, string> = {
+export const ACCESS_RIGHTS_LABELS: Record<string, string> = {
   [OPEN_DATA_AGGREGATION_KEY]: "Åpne data",
   PUBLIC: "Allmenn tilgang",
   RESTRICTED: "Begrenset tilgang",

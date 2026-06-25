@@ -3,22 +3,23 @@ import { Chip } from "@digdir/designsystemet-react";
 export type FilterChipsProps = {
   selectedFilters: string[];
   onChipRemove: (value: string[]) => void;
-  // TODO: display filter labels
+  chipLabels: Record<string, string>;
 };
 
-const FilterChips = ({ selectedFilters, onChipRemove }: FilterChipsProps) => {
+const FilterChips = ({ selectedFilters, onChipRemove, chipLabels }: FilterChipsProps) => {
   function handleChipClick(chipValue: string) {
-    const filteredArray = selectedFilters.filter((item) => item !== chipValue);
+    const filteredArray = selectedFilters.filter((item) => item !== chipValue); // creates a new (filtered) instance of the array
     onChipRemove(filteredArray);
   }
+
   return (
     <>
-      {selectedFilters.map((filter) => (
+      {selectedFilters.map((filterKey) => (
         <Chip.Removable
-          onClick={() => handleChipClick(filter)}
-          key={filter}
+          onClick={() => handleChipClick(filterKey)}
+          key={filterKey}
         >
-          {filter}
+          {chipLabels[filterKey] ?? filterKey}
         </Chip.Removable>
       ))}
     </>
