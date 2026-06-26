@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { Dropdown } from "@digdir/designsystemet-react";
+import { Badge, Dropdown } from "@digdir/designsystemet-react";
 import { ChevronDownIcon } from "@navikt/aksel-icons";
 
 import styles from "./search-form.module.scss";
@@ -7,15 +7,22 @@ import styles from "./search-form.module.scss";
 export type FilterDropdownProps = {
   label: ReactNode;
   children: ReactNode;
+  filterCount?: number;
 };
 
-const FilterDropdown = ({ label, children }: FilterDropdownProps) => (
+const FilterDropdown = ({ label, children, filterCount }: FilterDropdownProps) => (
   <Dropdown.TriggerContext>
     <Dropdown.Trigger
       data-size="sm"
       variant="secondary"
     >
       {label}
+      {filterCount ? (
+        <Badge
+          count={filterCount}
+          data-size="md"
+        />
+      ) : null}
       <ChevronDownIcon />
     </Dropdown.Trigger>
     <Dropdown

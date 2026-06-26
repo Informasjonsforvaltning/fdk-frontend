@@ -3,7 +3,7 @@
 import { parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Dropdown } from "@digdir/designsystemet-react";
+import { Chip, Dropdown } from "@digdir/designsystemet-react";
 import { HStack, VStack } from "@fellesdatakatalog/ui";
 import { SortDownIcon, CheckmarkIcon } from "@navikt/aksel-icons";
 
@@ -26,6 +26,14 @@ import { parseFormatQueryParam, shouldShowFormatFilter } from "./format";
 import { parseLosThemeQueryParam, parseDataThemeQueryParam, shouldShowTemaFilter } from "./theme";
 import { buildSearchPageUrl } from "./search-page-url";
 import styles from "./search-form.module.scss";
+import FilterChips from "./filter-chips";
+import { useDataThemeLabels } from "./theme/data-theme/use-data-theme-labels";
+import { useLosThemeLabels } from "./theme/los-theme/use-los-theme-labels";
+import { ACCESS_RIGHTS_LABELS } from "./access/labels";
+import { formatLabel } from "./format/labels";
+import { PROVENANCE_LABELS } from "./provenance/labels";
+import { useOrgPathLabels } from "./org-path/use-org-path-labels";
+import { formatOrgPathLabel } from "./org-path/labels";
 
 export type { AggregationKeyCount } from "./types";
 export { mergeOrgPathAggregations, buildOrgPathSearchFilter } from "./org-path";
@@ -135,12 +143,24 @@ const SearchForm = ({
   const showFormatFilter = shouldShowFormatFilter(formatAggregation ?? []);
   const showTemaFilter = shouldShowTemaFilter(losThemeAggregation ?? [], dataThemeAggregation ?? []);
 
+  const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
+
+  const orgKey = !selectedOrgPaths.length ? "" : selectedOrgPaths[selectedOrgPaths.length - 1];
+  const orgPathLabels: Record<string, string> = {
+    [orgKey]: formatOrgPathLabel(orgKey, useOrgPathLabels(locale)),
+  };
+  // TODO: handle useOrgPathLabels. Called more than once on each render when used like this (also called within org-filter component)
+  const losThemeLabels = useLosThemeLabels(locale);
+  const dataThemeLabels = useDataThemeLabels(locale);
+  const formatLabels: Record<string, string> = Object.fromEntries(
+    selectedFormats.map((key) => [key, formatLabel(key)]),
+  );
+  const spatialLabels: Record<string, string> = Object.fromEntries(selectedSpatial.map((key) => [key, key]));
+
   const getQueryForUrl = useCallback(
     () => query.trim() || (searchParams.get("q") ?? defaultQuery ?? ""),
     [query, searchParams, defaultQuery],
   );
-
-  const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
 
   const navigateToSearch = useCallback(
     ({
@@ -275,6 +295,30 @@ const SearchForm = ({
     }
   }, [isUrlDriven, defaultQuery]);
 
+  const hasFilter: boolean =
+    selectedOrgPaths.length +
+      selectedAccess.length +
+      selectedSpatial.length +
+      selectedFormats.length +
+      selectedLosThemes.length +
+      selectedDataThemes.length +
+      selectedProvenance.length >
+    0;
+
+  const clearFilters = useCallback(() => {
+    if (!isUrlDriven) return;
+    const emptyStrings: string[] = [];
+    navigateToSearch({
+      orgPaths: emptyStrings,
+      access: emptyStrings,
+      provenance: emptyStrings,
+      spatial: emptyStrings,
+      formats: emptyStrings,
+      losThemes: emptyStrings,
+      dataThemes: emptyStrings,
+    });
+  }, [isUrlDriven, navigateToSearch]);
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -288,108 +332,173 @@ const SearchForm = ({
             onChange={handleTabChange}
             badgeCounts={badgeCounts}
           />
-          <HStack className={styles.searchToolbar}>
-            {showFilters && (
-              <HStack className={styles.filterToolbar}>
-                <FilterDropdown label="Virksomhet">
-                  <VStack>
-                    <Box className={styles.box}>
-                      <OrgFilter
+          <>
+            <HStack className={styles.searchToolbar}>
+              {showFilters && (
+                <HStack className={styles.filterToolbar}>
+                  <FilterDropdown
+                    label="Virksomhet"
+                    filterCount={selectedOrgPaths.length}
+                  >
+                    <VStack>
+                      <Box className={styles.box}>
+                        <OrgFilter
+                          locale={locale}
+                          aggregation={orgAggregation}
+                          value={isUrlDriven ? selectedOrgPaths : undefined}
+                          onChange={isUrlDriven ? handleOrgPathsChange : undefined}
+                        />
+                      </Box>
+                    </VStack>
+                  </FilterDropdown>
+                  {showTemaFilter && (
+                    <FilterDropdown
+                      label="Tema"
+                      filterCount={selectedDataThemes.length + selectedLosThemes.length}
+                    >
+                      <ThemeFilter
                         locale={locale}
-                        aggregation={orgAggregation}
-                        value={isUrlDriven ? selectedOrgPaths : undefined}
-                        onChange={isUrlDriven ? handleOrgPathsChange : undefined}
+                        losThemeAggregation={losThemeAggregation}
+                        dataThemeAggregation={dataThemeAggregation}
+                        losThemeValue={isUrlDriven ? selectedLosThemes : undefined}
+                        dataThemeValue={isUrlDriven ? selectedDataThemes : undefined}
+                        onLosThemeChange={isUrlDriven ? handleLosThemeChange : undefined}
+                        onDataThemeChange={isUrlDriven ? handleDataThemeChange : undefined}
                       />
-                    </Box>
-                  </VStack>
-                </FilterDropdown>
-                {showTemaFilter && (
-                  <FilterDropdown label="Tema">
-                    <ThemeFilter
-                      locale={locale}
-                      losThemeAggregation={losThemeAggregation}
-                      dataThemeAggregation={dataThemeAggregation}
-                      losThemeValue={isUrlDriven ? selectedLosThemes : undefined}
-                      dataThemeValue={isUrlDriven ? selectedDataThemes : undefined}
-                      onLosThemeChange={isUrlDriven ? handleLosThemeChange : undefined}
-                      onDataThemeChange={isUrlDriven ? handleDataThemeChange : undefined}
-                    />
-                  </FilterDropdown>
-                )}
-                {showAccessFilter && (
-                  <FilterDropdown label="Tilgangsnivå">
-                    <Box className={styles.box}>
-                      <AccessFilter
-                        aggregation={accessAggregation}
-                        value={isUrlDriven ? selectedAccess : undefined}
-                        onChange={isUrlDriven ? handleAccessChange : undefined}
+                    </FilterDropdown>
+                  )}
+                  {showAccessFilter && (
+                    <FilterDropdown
+                      label="Tilgangsnivå"
+                      filterCount={selectedAccess.length}
+                    >
+                      <Box className={styles.box}>
+                        <AccessFilter
+                          aggregation={accessAggregation}
+                          value={isUrlDriven ? selectedAccess : undefined}
+                          onChange={isUrlDriven ? handleAccessChange : undefined}
+                        />
+                      </Box>
+                    </FilterDropdown>
+                  )}
+                  {showFormatFilter && (
+                    <FilterDropdown
+                      label="Data-format"
+                      filterCount={selectedFormats.length}
+                    >
+                      <FormatFilter
+                        aggregation={formatAggregation}
+                        value={isUrlDriven ? selectedFormats : undefined}
+                        onChange={isUrlDriven ? handleFormatChange : undefined}
                       />
-                    </Box>
-                  </FilterDropdown>
-                )}
-                {showFormatFilter && (
-                  <FilterDropdown label="Data-format">
-                    <FormatFilter
-                      aggregation={formatAggregation}
-                      value={isUrlDriven ? selectedFormats : undefined}
-                      onChange={isUrlDriven ? handleFormatChange : undefined}
-                    />
-                  </FilterDropdown>
-                )}
-                {showSpatialFilter && (
-                  <FilterDropdown label="Geografi">
-                    <Box className={styles.box}>
-                      <SpatialFilter
-                        aggregation={spatialAggregation}
-                        value={isUrlDriven ? selectedSpatial : undefined}
-                        onChange={isUrlDriven ? handleSpatialChange : undefined}
-                      />
-                    </Box>
-                  </FilterDropdown>
-                )}
-                {showProvenanceFilter && (
-                  <FilterDropdown label="Opphav">
-                    <Box className={styles.box}>
-                      <ProvenanceFilter
-                        aggregation={provenanceAggregation}
-                        value={isUrlDriven ? selectedProvenance : undefined}
-                        onChange={isUrlDriven ? handleProvenanceChange : undefined}
-                      />
-                    </Box>
-                  </FilterDropdown>
-                )}
-              </HStack>
-            )}
-            <div className={styles.sortToolbar}>
-              <Dropdown.TriggerContext>
-                <Dropdown.Trigger
+                    </FilterDropdown>
+                  )}
+                  {showSpatialFilter && (
+                    <FilterDropdown
+                      label="Geografi"
+                      filterCount={selectedSpatial.length}
+                    >
+                      <Box className={styles.box}>
+                        <SpatialFilter
+                          aggregation={spatialAggregation}
+                          value={isUrlDriven ? selectedSpatial : undefined}
+                          onChange={isUrlDriven ? handleSpatialChange : undefined}
+                        />
+                      </Box>
+                    </FilterDropdown>
+                  )}
+                  {showProvenanceFilter && (
+                    <FilterDropdown
+                      label="Opphav"
+                      filterCount={selectedProvenance.length}
+                    >
+                      <Box className={styles.box}>
+                        <ProvenanceFilter
+                          aggregation={provenanceAggregation}
+                          value={isUrlDriven ? selectedProvenance : undefined}
+                          onChange={isUrlDriven ? handleProvenanceChange : undefined}
+                        />
+                      </Box>
+                    </FilterDropdown>
+                  )}
+                </HStack>
+              )}
+              <div className={styles.sortToolbar}>
+                <Dropdown.TriggerContext>
+                  <Dropdown.Trigger
+                    data-size="sm"
+                    variant="tertiary"
+                  >
+                    <SortDownIcon />
+                    {/* TODO: localization remains to be implemented */}
+                    Relevans
+                  </Dropdown.Trigger>
+                  <Dropdown
+                    className={styles.orderbyDropdown}
+                    placement="bottom-end"
+                    data-size="sm"
+                  >
+                    <Dropdown.List>
+                      <Dropdown.Item>
+                        <Dropdown.Button aria-pressed>
+                          <CheckmarkIcon />
+                          Relevans
+                        </Dropdown.Button>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <Dropdown.Button>Sist publisert</Dropdown.Button>
+                      </Dropdown.Item>
+                    </Dropdown.List>
+                  </Dropdown>
+                </Dropdown.TriggerContext>
+              </div>
+            </HStack>
+            <HStack>
+              <FilterChips
+                selectedFilters={selectedOrgPaths}
+                onChipRemove={handleOrgPathsChange}
+                chipLabels={orgPathLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedLosThemes}
+                onChipRemove={handleLosThemeChange}
+                chipLabels={losThemeLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedDataThemes}
+                onChipRemove={handleDataThemeChange}
+                chipLabels={dataThemeLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedAccess}
+                onChipRemove={handleAccessChange}
+                chipLabels={ACCESS_RIGHTS_LABELS}
+              />
+              <FilterChips
+                selectedFilters={selectedFormats}
+                onChipRemove={handleFormatChange}
+                chipLabels={formatLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedSpatial}
+                onChipRemove={handleSpatialChange}
+                chipLabels={spatialLabels}
+              />
+              <FilterChips
+                selectedFilters={selectedProvenance}
+                onChipRemove={handleProvenanceChange}
+                chipLabels={PROVENANCE_LABELS}
+              />
+              {hasFilter && (
+                <Chip.Button
+                  onClick={() => clearFilters()}
                   data-size="sm"
-                  variant="tertiary"
                 >
-                  <SortDownIcon />
-                  {/* TODO: localization remains to be implemented */}
-                  Relevans
-                </Dropdown.Trigger>
-                <Dropdown
-                  className={styles.orderbyDropdown}
-                  placement="bottom-end"
-                  data-size="sm"
-                >
-                  <Dropdown.List>
-                    <Dropdown.Item>
-                      <Dropdown.Button aria-pressed>
-                        <CheckmarkIcon />
-                        Relevans
-                      </Dropdown.Button>
-                    </Dropdown.Item>
-                    <Dropdown.Item>
-                      <Dropdown.Button>Sist publisert</Dropdown.Button>
-                    </Dropdown.Item>
-                  </Dropdown.List>
-                </Dropdown>
-              </Dropdown.TriggerContext>
-            </div>
-          </HStack>
+                  Tøm alle filtre
+                </Chip.Button>
+              )}
+            </HStack>
+          </>
         </VStack>
       </VStack>
     </form>

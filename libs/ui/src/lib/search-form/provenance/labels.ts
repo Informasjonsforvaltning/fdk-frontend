@@ -1,4 +1,4 @@
-const PROVENANCE_LABELS: Record<string, string> = {
+export const PROVENANCE_LABELS: Record<string, string> = {
   NASJONAL: "Nasjonal",
   VEDTAK: "Vedtak",
   BRUKER: "Bruker",

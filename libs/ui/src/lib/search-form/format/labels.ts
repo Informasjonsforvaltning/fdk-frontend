@@ -16,6 +16,12 @@ export const formatMediaFormatLabel = (key: string): string => {
   return mediaType.startsWith(APPLICATION_PREFIX) ? mediaType.slice(APPLICATION_PREFIX.length) : mediaType;
 };
 
+export const formatLabel = (key: string): string => {
+  if (key.startsWith(FILE_TYPE_PREFIX)) return formatFileTypeLabel(key);
+  if (key.startsWith(MEDIA_TYPE_PREFIX)) return formatMediaFormatLabel(key);
+  return key;
+};
+
 export const formatFileTypeCheckboxLabel = (key: string, count: number): string =>
   `${formatFileTypeLabel(key)} (${count})`;
 

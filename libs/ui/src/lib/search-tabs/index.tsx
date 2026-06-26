@@ -86,11 +86,11 @@ const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {} }: 
             value={item.value}
             className={styles.tab}
           >
-            <SearchTabBadge count={count} />
             <div>
               {item.icon}
               {item.label}
             </div>
+            <SearchTabBadge count={count} />
           </ToggleGroup.Item>
         );
       })}
