@@ -14,15 +14,16 @@ export type AccessFilterProps = {
 };
 
 const AccessFilter = ({ aggregation = [], value, onChange }: AccessFilterProps) => {
-  const { selected, onChange: handleChange } = useSyncedAccessSelection(value, onChange);
+  const { checkboxValue, checkboxKey, onChange: handleChange } = useSyncedAccessSelection(value, onChange);
   const options = useMemo(() => buildAccessFilterOptions(aggregation), [aggregation]);
 
   if (!shouldShowAccessFilter(aggregation) || options.length === 0) return null;
 
   return (
     <CheckboxGroup
+      key={checkboxKey}
       options={options}
-      value={selected}
+      value={checkboxValue}
       onChange={handleChange}
     />
   );

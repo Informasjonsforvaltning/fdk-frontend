@@ -23,12 +23,12 @@ export type FormatFilterProps = {
 };
 
 const FormatFilter = ({ aggregation = [], value, onChange }: FormatFilterProps) => {
-  const { selected, onChange: handleChange } = useSyncedFormatSelection(value, onChange);
+  const { checkboxValue, checkboxKey, onChange: handleChange } = useSyncedFormatSelection(value, onChange);
   const fileTypeOptions = useMemo(() => buildFileTypeFilterOptions(aggregation), [aggregation]);
   const mediaFormatOptions = useMemo(() => buildMediaFormatFilterOptions(aggregation), [aggregation]);
 
-  const selectedFileTypes = useMemo(() => selected.filter(isFileTypeKey), [selected]);
-  const selectedMediaFormats = useMemo(() => selected.filter(isMediaTypeKey), [selected]);
+  const selectedFileTypes = useMemo(() => checkboxValue.filter(isFileTypeKey), [checkboxValue]);
+  const selectedMediaFormats = useMemo(() => checkboxValue.filter(isMediaTypeKey), [checkboxValue]);
 
   const handleFileTypeChange = (nextFileTypes: string[]) => {
     handleChange([...nextFileTypes, ...selectedMediaFormats]);
@@ -58,6 +58,7 @@ const FormatFilter = ({ aggregation = [], value, onChange }: FormatFilterProps) 
           <VStack>
             <Box className={styles.box}>
               <CheckboxGroup
+                key={`${checkboxKey}-media`}
                 options={mediaFormatOptions}
                 value={selectedMediaFormats}
                 onChange={handleMediaFormatChange}
@@ -74,6 +75,7 @@ const FormatFilter = ({ aggregation = [], value, onChange }: FormatFilterProps) 
           <VStack>
             <Box className={styles.box}>
               <CheckboxGroup
+                key={`${checkboxKey}-file`}
                 options={fileTypeOptions}
                 value={selectedFileTypes}
                 onChange={handleFileTypeChange}

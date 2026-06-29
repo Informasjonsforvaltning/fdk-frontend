@@ -14,15 +14,16 @@ export type ProvenanceFilterProps = {
 };
 
 const ProvenanceFilter = ({ aggregation = [], value, onChange }: ProvenanceFilterProps) => {
-  const { selected, onChange: handleChange } = useSyncedProvenanceSelection(value, onChange);
+  const { checkboxValue, checkboxKey, onChange: handleChange } = useSyncedProvenanceSelection(value, onChange);
   const options = useMemo(() => buildProvenanceFilterOptions(aggregation), [aggregation]);
 
   if (!shouldShowProvenanceFilter(aggregation) || options.length === 0) return null;
 
   return (
     <CheckboxGroup
+      key={checkboxKey}
       options={options}
-      value={selected}
+      value={checkboxValue}
       onChange={handleChange}
     />
   );

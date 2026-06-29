@@ -32,7 +32,10 @@ const ThemeFilter = ({
   onLosThemeChange,
   onDataThemeChange,
 }: ThemeFilterProps) => {
-  const { selected, onChange: handleDataThemeChange } = useSyncedDataThemeSelection(dataThemeValue, onDataThemeChange);
+  const { checkboxValue, checkboxKey, onChange: handleDataThemeChange } = useSyncedDataThemeSelection(
+    dataThemeValue,
+    onDataThemeChange,
+  );
   const dataThemeLabels = useDataThemeLabels(locale);
   const dataThemeOptions = useMemo(
     () => buildDataThemeFilterOptions(dataThemeAggregation, dataThemeLabels),
@@ -76,8 +79,9 @@ const ThemeFilter = ({
           <VStack>
             <Box className={styles.box}>
               <CheckboxGroup
+                key={checkboxKey}
                 options={dataThemeOptions}
-                value={selected}
+                value={checkboxValue}
                 onChange={handleDataThemeChange}
               />
             </Box>

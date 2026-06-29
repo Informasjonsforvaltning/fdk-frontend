@@ -14,9 +14,13 @@ export const useSyncedOrgPathSelection = function (
   onChange?: (value: string[]) => void,
 ): {
   selected: string[];
+  checkboxValue: string[];
   onToggle: (key: string, checked: boolean) => void;
 } {
-  const { selected, setSelected, pendingSelectionKeyRef } = useSyncedSelection(value, orgPathKeysToQueryParam);
+  const { selected, setSelected, pendingSelectionKeyRef, checkboxValue } = useSyncedSelection(
+    value,
+    orgPathKeysToQueryParam,
+  );
 
   const onToggle = useCallback(
     (key: string, checked: boolean) => {
@@ -31,5 +35,5 @@ export const useSyncedOrgPathSelection = function (
     [onChange, pendingSelectionKeyRef, setSelected],
   );
 
-  return { selected, onToggle };
+  return { selected, checkboxValue, onToggle };
 };

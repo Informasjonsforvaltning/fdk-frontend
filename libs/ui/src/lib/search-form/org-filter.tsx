@@ -70,11 +70,11 @@ export type OrgFilterProps = {
 };
 
 const OrgFilter = ({ locale = "nb", aggregation = [], value, onChange }: OrgFilterProps) => {
-  const { selected, onToggle } = useSyncedOrgPathSelection(value, onChange);
+  const { checkboxValue, onToggle } = useSyncedOrgPathSelection(value, onChange);
   const labels = useOrgPathLabels(locale);
   const displayAggregation = useMemo(
-    () => enrichAggregationWithSelection(aggregation, selected),
-    [aggregation, selected],
+    () => enrichAggregationWithSelection(aggregation, checkboxValue),
+    [aggregation, checkboxValue],
   );
 
   if (displayAggregation.length === 0) return null;
@@ -84,7 +84,7 @@ const OrgFilter = ({ locale = "nb", aggregation = [], value, onChange }: OrgFilt
       aggregation={displayAggregation}
       parentKey=""
       depth={1}
-      selected={selected}
+      selected={checkboxValue}
       labels={labels}
       onToggle={onToggle}
     />
