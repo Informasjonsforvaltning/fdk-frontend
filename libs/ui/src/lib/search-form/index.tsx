@@ -164,13 +164,13 @@ const SearchForm = ({
 
   const navigateToSearch = useCallback(
     ({
-      orgPaths = selectedOrgPaths,
-      access = selectedAccess,
-      provenance = selectedProvenance,
-      spatial = selectedSpatial,
-      formats = selectedFormats,
-      losThemes = selectedLosThemes,
-      dataThemes = selectedDataThemes,
+      orgPaths,
+      access,
+      provenance,
+      spatial,
+      formats,
+      losThemes,
+      dataThemes,
       tab = activeTab,
     }: {
       orgPaths?: string[];
@@ -182,34 +182,34 @@ const SearchForm = ({
       dataThemes?: string[];
       tab?: SearchTabsValue;
     } = {}) => {
-      router.replace(
-        buildSearchPageUrl({
-          locale,
-          tab,
-          query: getQueryForUrl(),
-          orgPaths,
-          access,
-          provenance,
-          spatial,
-          formats,
-          losThemes,
-          dataThemes,
-        }),
-      );
+      const resolvedOrgPaths = orgPaths ?? parseOrgPathQueryParam(searchParams.get("orgPath"));
+      const resolvedAccess = access ?? parseAccessQueryParam(searchParams.get("access"));
+      const resolvedProvenance = provenance ?? parseProvenanceQueryParam(searchParams.get("provenance"));
+      const resolvedSpatial = spatial ?? parseSpatialQueryParam(searchParams.get("spatial"));
+      const resolvedFormats = formats ?? parseFormatQueryParam(searchParams.get("format"));
+      const resolvedLosThemes = losThemes ?? parseLosThemeQueryParam(searchParams.get("losTheme"));
+      const resolvedDataThemes = dataThemes ?? parseDataThemeQueryParam(searchParams.get("dataTheme"));
+
+      const nextUrl = buildSearchPageUrl({
+        locale,
+        tab,
+        query: getQueryForUrl(),
+        orgPaths: resolvedOrgPaths,
+        access: resolvedAccess,
+        provenance: resolvedProvenance,
+        spatial: resolvedSpatial,
+        formats: resolvedFormats,
+        losThemes: resolvedLosThemes,
+        dataThemes: resolvedDataThemes,
+      });
+
+      const currentQueryString = searchParams.toString();
+      const currentUrl = currentQueryString ? `${pathname}?${currentQueryString}` : pathname;
+      if (nextUrl === currentUrl) return;
+
+      router.replace(nextUrl);
     },
-    [
-      locale,
-      activeTab,
-      getQueryForUrl,
-      router,
-      selectedOrgPaths,
-      selectedAccess,
-      selectedProvenance,
-      selectedSpatial,
-      selectedFormats,
-      selectedLosThemes,
-      selectedDataThemes,
-    ],
+    [locale, activeTab, getQueryForUrl, router, searchParams, pathname],
   );
 
   const handleTabChange = useCallback(

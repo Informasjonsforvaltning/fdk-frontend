@@ -27,9 +27,9 @@ export const useSyncedOrgPathSelection = function (
       let next: string[] = [];
       setSelected((currentSelected) => {
         next = computeNextOrgPathSelection(currentSelected, key, checked);
-        pendingSelectionKeyRef.current = orgPathKeysToQueryParam(next);
         return next;
       });
+      pendingSelectionKeyRef.current = orgPathKeysToQueryParam(next);
       onChange?.(next);
     },
     [onChange, pendingSelectionKeyRef, setSelected],

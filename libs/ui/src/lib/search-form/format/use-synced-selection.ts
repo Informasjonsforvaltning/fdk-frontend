@@ -24,9 +24,9 @@ export const useSyncedFormatSelection = function (
 
   const handleChange = useCallback(
     (next: string[]) => {
-      setSelected(next);
       pendingSelectionKeyRef.current = formatKeysToQueryParam(next);
       onChange?.(next);
+      setSelected(next);
     },
     [onChange, pendingSelectionKeyRef, setSelected],
   );

@@ -24,9 +24,9 @@ export const useSyncedDataThemeSelection = function (
 
   const handleChange = useCallback(
     (next: string[]) => {
-      setSelected(next);
       pendingSelectionKeyRef.current = dataThemeKeysToQueryParam(next);
       onChange?.(next);
+      setSelected(next);
     },
     [onChange, pendingSelectionKeyRef, setSelected],
   );

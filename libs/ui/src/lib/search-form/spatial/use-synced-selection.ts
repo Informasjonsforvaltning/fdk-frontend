@@ -24,9 +24,9 @@ export const useSyncedSpatialSelection = function (
 
   const handleChange = useCallback(
     (next: string[]) => {
-      setSelected(next);
       pendingSelectionKeyRef.current = spatialKeysToQueryParam(next);
       onChange?.(next);
+      setSelected(next);
     },
     [onChange, pendingSelectionKeyRef, setSelected],
   );

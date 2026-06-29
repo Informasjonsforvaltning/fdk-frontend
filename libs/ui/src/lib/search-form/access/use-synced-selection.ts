@@ -24,9 +24,9 @@ export const useSyncedAccessSelection = function (
 
   const handleChange = useCallback(
     (next: string[]) => {
-      setSelected(next);
       pendingSelectionKeyRef.current = accessKeysToQueryParam(next);
       onChange?.(next);
+      setSelected(next);
     },
     [onChange, pendingSelectionKeyRef, setSelected],
   );
