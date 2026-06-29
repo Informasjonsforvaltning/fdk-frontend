@@ -14,15 +14,16 @@ export type SpatialFilterProps = {
 };
 
 const SpatialFilter = ({ aggregation = [], value, onChange }: SpatialFilterProps) => {
-  const { selected, onChange: handleChange } = useSyncedSpatialSelection(value, onChange);
+  const { checkboxValue, checkboxKey, onChange: handleChange } = useSyncedSpatialSelection(value, onChange);
   const options = useMemo(() => buildSpatialFilterOptions(aggregation), [aggregation]);
 
   if (!shouldShowSpatialFilter(aggregation) || options.length === 0) return null;
 
   return (
     <CheckboxGroup
+      key={checkboxKey}
       options={options}
-      value={selected}
+      value={checkboxValue}
       onChange={handleChange}
     />
   );

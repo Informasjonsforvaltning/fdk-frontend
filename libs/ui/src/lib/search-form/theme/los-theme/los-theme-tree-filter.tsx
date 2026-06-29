@@ -66,11 +66,11 @@ export type LosThemeTreeFilterProps = {
 };
 
 const LosThemeTreeFilter = ({ locale = "nb", aggregation = [], value, onChange }: LosThemeTreeFilterProps) => {
-  const { selected, onToggle } = useSyncedLosThemeSelection(value, onChange);
+  const { checkboxValue, onToggle } = useSyncedLosThemeSelection(value, onChange);
   const labels = useLosThemeLabels(locale);
   const displayAggregation = useMemo(
-    () => enrichLosThemeAggregationWithSelection(aggregation, selected),
-    [aggregation, selected],
+    () => enrichLosThemeAggregationWithSelection(aggregation, checkboxValue),
+    [aggregation, checkboxValue],
   );
 
   if (displayAggregation.length === 0) return null;
@@ -80,7 +80,7 @@ const LosThemeTreeFilter = ({ locale = "nb", aggregation = [], value, onChange }
       aggregation={displayAggregation}
       parentKey=""
       depth={1}
-      selected={selected}
+      selected={checkboxValue}
       labels={labels}
       onToggle={onToggle}
     />

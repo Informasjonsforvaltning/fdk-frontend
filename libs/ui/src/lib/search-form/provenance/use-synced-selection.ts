@@ -13,9 +13,14 @@ export const useSyncedProvenanceSelection = function (
   onChange?: (value: string[]) => void,
 ): {
   selected: string[];
+  checkboxValue: string[];
+  checkboxKey: string;
   onChange: (value: string[]) => void;
 } {
-  const { selected, setSelected, pendingSelectionKeyRef } = useSyncedSelection(value, provenanceKeysToQueryParam);
+  const { selected, setSelected, pendingSelectionKeyRef, checkboxValue, checkboxKey } = useSyncedSelection(
+    value,
+    provenanceKeysToQueryParam,
+  );
 
   const handleChange = useCallback(
     (next: string[]) => {
@@ -26,5 +31,5 @@ export const useSyncedProvenanceSelection = function (
     [onChange, pendingSelectionKeyRef, setSelected],
   );
 
-  return { selected, onChange: handleChange };
+  return { selected, checkboxValue, checkboxKey, onChange: handleChange };
 };

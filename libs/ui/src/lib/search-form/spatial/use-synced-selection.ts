@@ -13,9 +13,14 @@ export const useSyncedSpatialSelection = function (
   onChange?: (value: string[]) => void,
 ): {
   selected: string[];
+  checkboxValue: string[];
+  checkboxKey: string;
   onChange: (value: string[]) => void;
 } {
-  const { selected, setSelected, pendingSelectionKeyRef } = useSyncedSelection(value, spatialKeysToQueryParam);
+  const { selected, setSelected, pendingSelectionKeyRef, checkboxValue, checkboxKey } = useSyncedSelection(
+    value,
+    spatialKeysToQueryParam,
+  );
 
   const handleChange = useCallback(
     (next: string[]) => {
@@ -26,5 +31,5 @@ export const useSyncedSpatialSelection = function (
     [onChange, pendingSelectionKeyRef, setSelected],
   );
 
-  return { selected, onChange: handleChange };
+  return { selected, checkboxValue, checkboxKey, onChange: handleChange };
 };
