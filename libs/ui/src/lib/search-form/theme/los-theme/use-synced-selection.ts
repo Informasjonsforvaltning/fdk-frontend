@@ -27,9 +27,9 @@ export const useSyncedLosThemeSelection = function (
       let next: string[] = [];
       setSelected((currentSelected) => {
         next = computeNextLosThemeSelection(currentSelected, key, checked);
-        pendingSelectionKeyRef.current = losThemeKeysToQueryParam(next);
         return next;
       });
+      pendingSelectionKeyRef.current = losThemeKeysToQueryParam(next);
       onChange?.(next);
     },
     [onChange, pendingSelectionKeyRef, setSelected],

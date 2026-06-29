@@ -24,9 +24,9 @@ export const useSyncedProvenanceSelection = function (
 
   const handleChange = useCallback(
     (next: string[]) => {
-      setSelected(next);
       pendingSelectionKeyRef.current = provenanceKeysToQueryParam(next);
       onChange?.(next);
+      setSelected(next);
     },
     [onChange, pendingSelectionKeyRef, setSelected],
   );
