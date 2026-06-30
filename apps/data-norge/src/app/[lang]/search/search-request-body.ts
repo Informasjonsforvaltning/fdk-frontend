@@ -4,6 +4,7 @@ import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/proven
 import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
+import { buildSearchSort } from "@fdk-frontend/ui/search-form/sort";
 
 type SearchPagination = {
   size: number;
@@ -18,10 +19,13 @@ export type SearchFilters = Partial<NonNullable<ReturnType<typeof buildOrgPathSe
   Partial<NonNullable<ReturnType<typeof buildLosThemeSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildDataThemeSearchFilter>>>;
 
+export type SearchSort = NonNullable<ReturnType<typeof buildSearchSort>>;
+
 export type SearchRequestBody = {
   pagination: SearchPagination;
   query?: string;
   filters?: SearchFilters;
+  sort?: SearchSort;
 };
 
 export const buildSearchFilters = function (
@@ -73,6 +77,7 @@ export const buildSearchRequestBody = function (options: {
   formatParam: string | null;
   losThemeParam: string | null;
   dataThemeParam: string | null;
+  sortParam: string | null;
   pagination: SearchPagination;
   includeQueryWhenEmpty?: boolean;
 }): SearchRequestBody {
@@ -86,11 +91,13 @@ export const buildSearchRequestBody = function (options: {
     options.losThemeParam,
     options.dataThemeParam,
   );
+  const sort = buildSearchSort(options.sortParam);
   const includeQuery = options.includeQueryWhenEmpty === true || trimmedQuery.length > 0;
 
   return {
     pagination: options.pagination,
     ...(includeQuery ? { query: trimmedQuery } : {}),
     ...(filters ? { filters } : {}),
+    ...(sort ? { sort } : {}),
   };
 };
