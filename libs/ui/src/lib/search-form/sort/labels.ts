@@ -1,7 +1,7 @@
-import { type SearchSortOption } from "./types";
+import { type SearchSortOption, SEARCH_SORT_OPTIONS } from "./types";
 
 export const SORT_OPTION_LABELS: Record<SearchSortOption, string> = {
-  relevance: "Relevans",
-  firstHarvestedDesc: "Sist publisert",
-  firstHarvestedAsc: "Først publisert",
+  [SEARCH_SORT_OPTIONS.relevance]: "Relevans",
+  [SEARCH_SORT_OPTIONS.firstHarvestedDesc]: "Sist publisert",
+  [SEARCH_SORT_OPTIONS.firstHarvestedAsc]: "Først publisert",
 };

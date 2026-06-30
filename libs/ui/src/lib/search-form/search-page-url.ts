@@ -6,7 +6,7 @@ import { formatKeysToQueryParam } from "./format";
 import { losThemeKeysToQueryParam } from "./theme/los-theme";
 import { dataThemeKeysToQueryParam } from "./theme/data-theme";
 import { spatialKeysToQueryParam } from "./spatial";
-import { sortOptionToQueryParam, type SearchSortOption } from "./sort";
+import { sortOptionToQueryParam, SEARCH_SORT_OPTIONS, type SearchSortOption } from "./sort";
 
 export type BuildSearchPageUrlOptions = {
   locale: string;
@@ -33,7 +33,7 @@ export const buildSearchPageUrl = function ({
   formats = [],
   losThemes = [],
   dataThemes = [],
-  sort = "relevance",
+  sort = SEARCH_SORT_OPTIONS.relevance,
 }: BuildSearchPageUrlOptions): string {
   const base = `/${locale}/search`;
   const path = tab === "ki" ? base : `${base}/${tab}`;

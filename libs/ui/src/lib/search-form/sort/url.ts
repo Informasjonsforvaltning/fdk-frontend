@@ -1,4 +1,11 @@
-import { type SearchSort, type SearchSortBody, type SearchSortOption } from "./types";
+import {
+  isFirstHarvestedAscSort,
+  isRelevanceSort,
+  SEARCH_SORT_OPTIONS,
+  type SearchSort,
+  type SearchSortBody,
+  type SearchSortOption,
+} from "./types";
 
 export const isSearchSortBody = (value: unknown): value is SearchSortBody => {
   if (!value || typeof value !== "object") return false;
@@ -8,22 +15,22 @@ export const isSearchSortBody = (value: unknown): value is SearchSortBody => {
 };
 
 export const parseSortQueryParam = (value: string | null): SearchSortOption => {
-  if (value === "firstHarvestedAsc") return "firstHarvestedAsc";
-  if (value === "firstHarvestedDesc") return "firstHarvestedDesc";
-  return "relevance";
+  if (value === SEARCH_SORT_OPTIONS.firstHarvestedAsc) return SEARCH_SORT_OPTIONS.firstHarvestedAsc;
+  if (value === SEARCH_SORT_OPTIONS.firstHarvestedDesc) return SEARCH_SORT_OPTIONS.firstHarvestedDesc;
+  return SEARCH_SORT_OPTIONS.relevance;
 };
 
 export const sortOptionToQueryParam = (option: SearchSortOption): string | undefined => {
-  if (option === "relevance") return undefined;
+  if (isRelevanceSort(option)) return undefined;
   return option;
 };
 
 export const buildSearchSort = (sortParam: string | null): SearchSort | undefined => {
   const option = parseSortQueryParam(sortParam);
-  if (option === "relevance") return undefined;
+  if (isRelevanceSort(option)) return undefined;
 
   return {
     field: "FIRST_HARVESTED",
-    direction: option === "firstHarvestedAsc" ? "ASC" : "DESC",
+    direction: isFirstHarvestedAscSort(option) ? "ASC" : "DESC",
   };
 };

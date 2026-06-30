@@ -34,7 +34,7 @@ import { formatLabel } from "./format/labels";
 import { PROVENANCE_LABELS } from "./provenance/labels";
 import { useOrgPathLabels } from "./org-path/use-org-path-labels";
 import { formatOrgPathLabel } from "./org-path/labels";
-import { parseSortQueryParam, SORT_OPTION_LABELS, type SearchSortOption } from "./sort";
+import { parseSortQueryParam, SEARCH_SORT_OPTION_LIST, SORT_OPTION_LABELS, type SearchSortOption } from "./sort";
 
 export type { AggregationKeyCount } from "./types";
 export { mergeOrgPathAggregations, buildOrgPathSearchFilter } from "./org-path";
@@ -78,7 +78,14 @@ export {
   shouldShowTemaFilter,
 } from "./theme";
 export { buildSearchPageQueryUrl, buildSearchPageUrl } from "./search-page-url";
-export { parseSortQueryParam, buildSearchSort, SORT_OPTION_LABELS, type SearchSortOption } from "./sort";
+export {
+  parseSortQueryParam,
+  buildSearchSort,
+  SEARCH_SORT_OPTION_LIST,
+  SEARCH_SORT_OPTIONS,
+  SORT_OPTION_LABELS,
+  type SearchSortOption,
+} from "./sort";
 
 export type SearchFormProps = {
   lang?: LocaleCodes;
@@ -456,33 +463,17 @@ const SearchForm = ({
                         data-size="sm"
                       >
                         <Dropdown.List>
-                          <Dropdown.Item>
-                            <Dropdown.Button
-                              aria-pressed={selectedSort === "relevance"}
-                              onClick={() => handleSortChange("relevance")}
-                            >
-                              {selectedSort === "relevance" && <CheckmarkIcon />}
-                              Relevans
-                            </Dropdown.Button>
-                          </Dropdown.Item>
-                          <Dropdown.Item>
-                            <Dropdown.Button
-                              aria-pressed={selectedSort === "firstHarvestedDesc"}
-                              onClick={() => handleSortChange("firstHarvestedDesc")}
-                            >
-                              {selectedSort === "firstHarvestedDesc" && <CheckmarkIcon />}
-                              Sist publisert
-                            </Dropdown.Button>
-                          </Dropdown.Item>
-                          <Dropdown.Item>
-                            <Dropdown.Button
-                              aria-pressed={selectedSort === "firstHarvestedAsc"}
-                              onClick={() => handleSortChange("firstHarvestedAsc")}
-                            >
-                              {selectedSort === "firstHarvestedAsc" && <CheckmarkIcon />}
-                              Først publisert
-                            </Dropdown.Button>
-                          </Dropdown.Item>
+                          {SEARCH_SORT_OPTION_LIST.map((option) => (
+                            <Dropdown.Item key={option}>
+                              <Dropdown.Button
+                                aria-pressed={selectedSort === option}
+                                onClick={() => handleSortChange(option)}
+                              >
+                                {selectedSort === option && <CheckmarkIcon />}
+                                {SORT_OPTION_LABELS[option]}
+                              </Dropdown.Button>
+                            </Dropdown.Item>
+                          ))}
                         </Dropdown.List>
                       </Dropdown>
                     </Dropdown.TriggerContext>
