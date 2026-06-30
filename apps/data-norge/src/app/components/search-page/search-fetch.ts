@@ -86,6 +86,7 @@ export const loadEntitySearchState = async function (options: {
   formatParam: string | null;
   losThemeParam: string | null;
   dataThemeParam: string | null;
+  sortParam: string | null;
 }): Promise<EntitySearchState> {
   const browse = isBrowseSearch(
     options.query,
@@ -98,7 +99,7 @@ export const loadEntitySearchState = async function (options: {
     options.dataThemeParam,
   );
   const summary = browse
-    ? await fetchSummary("", null, null, null, null, null, null, null)
+    ? await fetchSummary("", null, null, null, null, null, null, null, options.sortParam)
     : await fetchSummary(
         options.query,
         options.orgPathParam,
@@ -108,6 +109,7 @@ export const loadEntitySearchState = async function (options: {
         options.formatParam,
         options.losThemeParam,
         options.dataThemeParam,
+        options.sortParam,
         ENTITIES_PAGE_SIZE,
       );
 

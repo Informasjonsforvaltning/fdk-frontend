@@ -1,4 +1,5 @@
 import { searchEntitiesByPath } from "@fdk-frontend/data-access/server";
+import { isSearchSortBody, type SearchSortBody } from "@fdk-frontend/ui/search-form/sort";
 import { SUMMARY_ENTITY_PATHS } from "@fdk-frontend/ui/search-tabs/search-tab-config";
 
 import {
@@ -14,22 +15,26 @@ type SummarySearchOptions = {
   pagination: { size?: number; page?: number };
   query?: string;
   filters?: Record<string, unknown>;
+  sort?: SearchSortBody;
 };
 
 const buildSummarySearchOptions = function (body: {
   pagination?: { size?: number; page?: number };
   query?: unknown;
   filters?: unknown;
+  sort?: unknown;
 }): SummarySearchOptions {
   const pagination = body.pagination ?? { size: SEARCH_SUMMARY_PAGE_SIZE, page: SEARCH_SUMMARY_PAGE };
   const query = typeof body.query === "string" ? body.query : undefined;
   const filters =
     body.filters && typeof body.filters === "object" ? (body.filters as Record<string, unknown>) : undefined;
+  const sort = isSearchSortBody(body.sort) ? body.sort : undefined;
 
   return {
     pagination: { ...pagination },
     ...(query !== undefined ? { query } : {}),
     ...(filters ? { filters } : {}),
+    ...(sort ? { sort } : {}),
   };
 };
 

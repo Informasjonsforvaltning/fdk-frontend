@@ -59,6 +59,7 @@ export const fetchSummary = async function (
   formatParam: string | null,
   losThemeParam: string | null,
   dataThemeParam: string | null,
+  sortParam: string | null,
   pageSize: number = SEARCH_SUMMARY_PAGE_SIZE,
 ): Promise<SummaryFetchResult> {
   const json = await postJson<SearchSummaryResponse>(
@@ -72,6 +73,7 @@ export const fetchSummary = async function (
       formatParam,
       losThemeParam,
       dataThemeParam,
+      sortParam,
       pagination: { size: pageSize, page: SEARCH_SUMMARY_PAGE },
     }),
   );

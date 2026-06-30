@@ -24,6 +24,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const formatParam = searchParams.get("format");
   const losThemeParam = searchParams.get("losTheme");
   const dataThemeParam = searchParams.get("dataTheme");
+  const sortParam = searchParams.get("sort");
   const locale = (lang ?? langFromUrl) as LocaleCodes;
 
   const [{ entityLoading, llmLoading, data }, dispatch] = useReducer(searchPageReducer, initialSearchPageState);
@@ -56,6 +57,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       formatParam,
       losThemeParam,
       dataThemeParam,
+      sortParam,
     })
       .then((result) => {
         if (cancelled) return;
@@ -68,7 +70,17 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     return () => {
       cancelled = true;
     };
-  }, [query, orgPathParam, accessParam, provenanceParam, spatialParam, formatParam, losThemeParam, dataThemeParam]);
+  }, [
+    query,
+    orgPathParam,
+    accessParam,
+    provenanceParam,
+    spatialParam,
+    formatParam,
+    losThemeParam,
+    dataThemeParam,
+    sortParam,
+  ]);
 
   useEffect(() => {
     let cancelled = false;
