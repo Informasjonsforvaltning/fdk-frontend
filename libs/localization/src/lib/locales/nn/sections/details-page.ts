@@ -101,6 +101,7 @@ const detailsPage = {
     title: "Tenesteresultat",
     nameless: "Namnlaust tenesteresultat",
     placeholder: "Denne tenesta har inga tenesteresultat.",
+    language: "Språk",
   },
   apis: {
     title: "API-ar som tilbyr dette datasettet",

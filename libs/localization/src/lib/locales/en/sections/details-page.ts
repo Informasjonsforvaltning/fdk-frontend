@@ -101,6 +101,7 @@ const detailsPage = {
     title: "Service results",
     nameless: "Nameless service result",
     placeholder: "This service has no service results.",
+    language: "Language",
   },
   apis: {
     title: "APIs providing this dataset",

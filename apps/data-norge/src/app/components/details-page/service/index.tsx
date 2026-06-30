@@ -246,7 +246,18 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     <dt className={styles.producesDt}>
                       {printLocaleValue(locale, output.name) || dictionaries.detailsPage.produces.nameless}
                     </dt>
-                    <dd>{printLocaleValue(locale, output.description)}</dd>
+                    <dd>
+                      {printLocaleValue(locale, output.description)}
+                      {output.language?.length ? (
+                        <div className={styles.producesLanguage}>
+                          <strong>{dictionaries.detailsPage.produces.language}: </strong>
+                          {output.language
+                            .map((language) => printLocaleValue(locale, language.prefLabel))
+                            .filter(Boolean)
+                            .join(", ")}
+                        </div>
+                      ) : null}
+                    </dd>
                   </Fragment>
                 ))}
               </Dlist>
