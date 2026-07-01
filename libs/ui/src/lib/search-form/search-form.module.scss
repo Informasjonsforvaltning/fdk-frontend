@@ -17,6 +17,9 @@
 }
 
 .filterToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   :global(.ds-button) {
     white-space: nowrap;
   }

@@ -3,19 +3,27 @@
   max-width: 1000px;
   height: fit-content;
   gap: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 
   .tab {
-    width: 100%;
     display: flex;
     flex-direction: column;
     padding-bottom: 0;
     padding-top: var(--ds-size-1);
     gap: var(--ds-size-2);
+    height: unset;
     div {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: var(--ds-size-1);
+    }
+
+    @media (max-width: 460px) {
+      width: stretch;
     }
   }
 
