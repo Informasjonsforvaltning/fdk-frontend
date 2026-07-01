@@ -9,10 +9,14 @@ import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
 
-import { fetchDocsResults, fetchLlmResults, fetchSummary } from "./search-api";
-import { type DocsSearchResult, type SearchResultsProp } from "./search-page-types";
-
-const ENTITIES_PAGE_SIZE = 20;
+import {
+  type EntityTabFetchResult,
+  fetchDocsResults,
+  fetchEntityTabResults,
+  fetchLlmResults,
+  fetchSummary,
+} from "./search-api";
+import { type DocsSearchResult } from "./search-page-types";
 
 export const isBrowseSearch = function (
   query: string,
@@ -44,9 +48,8 @@ export const isBrowseSearch = function (
   );
 };
 
-export type BrowseSearchState = {
-  mode: "browse";
-  searchResults: SearchResultsProp;
+export type EntitySearchStateBase = {
+  entityTabResults?: EntityTabFetchResult;
   tabBadgeCounts: Record<string, number>;
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
@@ -57,11 +60,14 @@ export type BrowseSearchState = {
   dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
 };
 
+export type BrowseSearchState = EntitySearchStateBase & {
+  mode: "browse";
+};
+
 export type EntitySearchState =
   | BrowseSearchState
-  | {
+  | (EntitySearchStateBase & {
       mode: "search";
-      searchResults: SearchResultsProp | undefined;
       tabBadgeCounts: Record<string, number> | undefined;
       orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
@@ -70,7 +76,7 @@ export type EntitySearchState =
       formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-    };
+    });
 
 export type LlmDocsSearchState = {
   llmResults: LlmSearchResponse | undefined;
@@ -87,6 +93,9 @@ export const loadEntitySearchState = async function (options: {
   losThemeParam: string | null;
   dataThemeParam: string | null;
   sortParam: string | null;
+  activeEntityTab?: SearchSetSegment;
+  page: number;
+  size: number;
 }): Promise<EntitySearchState> {
   const browse = isBrowseSearch(
     options.query,
@@ -98,24 +107,43 @@ export const loadEntitySearchState = async function (options: {
     options.losThemeParam,
     options.dataThemeParam,
   );
-  const summary = browse
-    ? await fetchSummary("", null, null, null, null, null, null, null, options.sortParam)
-    : await fetchSummary(
-        options.query,
-        options.orgPathParam,
-        options.accessParam,
-        options.provenanceParam,
-        options.spatialParam,
-        options.formatParam,
-        options.losThemeParam,
-        options.dataThemeParam,
-        options.sortParam,
-        ENTITIES_PAGE_SIZE,
-      );
+
+  const summaryOptions = browse
+    ? {
+        query: "",
+        orgPathParam: null,
+        accessParam: null,
+        provenanceParam: null,
+        spatialParam: null,
+        formatParam: null,
+        losThemeParam: null,
+        dataThemeParam: null,
+        sortParam: options.sortParam,
+      }
+    : {
+        query: options.query,
+        orgPathParam: options.orgPathParam,
+        accessParam: options.accessParam,
+        provenanceParam: options.provenanceParam,
+        spatialParam: options.spatialParam,
+        formatParam: options.formatParam,
+        losThemeParam: options.losThemeParam,
+        dataThemeParam: options.dataThemeParam,
+        sortParam: options.sortParam,
+      };
+  const summaryPromise = fetchSummary(summaryOptions);
+
+  const entityTabPromise =
+    options.activeEntityTab && options.activeEntityTab !== "docs"
+      ? fetchEntityTabResults(options.activeEntityTab, options)
+      : Promise.resolve(undefined);
+
+  const [summary, entityTabResults] = await Promise.all([summaryPromise, entityTabPromise]);
 
   return {
     mode: browse ? "browse" : "search",
     ...summary,
+    entityTabResults,
   };
 };
 

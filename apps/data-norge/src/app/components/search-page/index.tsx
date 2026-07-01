@@ -6,24 +6,26 @@ import {
   EntityTeaser,
   SearchForm,
   type AggregationKeyCount,
+  type SearchPageInfo,
 } from "@fdk-frontend/ui";
 import { type SearchObject } from "@fellesdatakatalog/types";
 import { Alert, Heading } from "@digdir/designsystemet-react";
 import { type LlmSearchResponse } from "@fdk-frontend/data-access";
 import { getPrimarySearchTypeForTab, type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
-import { filterHitsForTab, mapLlmHitToSearchObject } from "../../[lang]/search/search-tab-helpers";
+import { mapLlmHitToSearchObject } from "../../[lang]/search/search-tab-helpers";
 
 import styles from "./search-page.module.scss";
 import { computeSearchPageDisplay, getDisplayCount, resolveSearchTabBadgeCounts } from "./search-page-display";
+import SearchPagination from "./search-pagination";
 import SearchResultsSkeleton from "./search-results-skeleton";
-import { type DocsSearchResult, type SearchResultsProp } from "./search-page-types";
+import { type DocsSearchResult } from "./search-page-types";
 
 export type SearchPageProps = {
   lang: LocaleCodes;
   query?: string;
   activeEntityTab?: SearchSetSegment;
   llmResults?: LlmSearchResponse;
-  searchResults?: SearchResultsProp;
+  entityTabResults?: { hits: SearchObject[]; page: SearchPageInfo };
   docsResults?: DocsSearchResult[];
   tabBadgeCounts?: Record<string, number>;
   orgAggregation?: AggregationKeyCount[];
@@ -42,7 +44,7 @@ const SearchPage = ({
   query,
   activeEntityTab,
   llmResults,
-  searchResults,
+  entityTabResults,
   docsResults,
   tabBadgeCounts,
   orgAggregation,
@@ -63,10 +65,9 @@ const SearchPage = ({
     },
   ];
 
-  const { llmHitsCount, docsHitsCount, badgeCounts, searchHits, totalResults } = computeSearchPageDisplay({
+  const { llmHitsCount, docsHitsCount, badgeCounts, totalResults } = computeSearchPageDisplay({
     activeEntityTab,
     llmResults,
-    searchResults,
     docsResults,
     tabBadgeCounts,
   });
@@ -76,13 +77,14 @@ const SearchPage = ({
     entityLoading,
     llmLoading,
   });
-  const filteredHits =
-    activeEntityTab && activeEntityTab !== "docs" ? filterHitsForTab(searchHits, activeEntityTab) : [];
+  const entityTabHits = entityTabResults?.hits ?? [];
+  const entityTabPage = entityTabResults?.page;
   const displayCount = getDisplayCount({
     activeEntityTab,
     llmHitsCount,
-    filteredHits,
+    filteredHits: entityTabHits,
     tabBadgeCounts,
+    entityTabPage,
   });
 
   return (
@@ -156,7 +158,7 @@ const SearchPage = ({
 
           {!entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
             <div className={styles.resultsSection}>
-              {filteredHits.length > 0 ? (
+              {entityTabHits.length > 0 ? (
                 <>
                   <Heading
                     data-size="sm"
@@ -165,7 +167,7 @@ const SearchPage = ({
                     {dictionary.entities[getPrimarySearchTypeForTab(activeEntityTab) ?? ""]} ({displayCount} treff)
                   </Heading>
                   <ul className="fdk-box-list">
-                    {filteredHits.map((hit: SearchObject, i: number) => {
+                    {entityTabHits.map((hit: SearchObject, i: number) => {
                       const hitId = hit.id ?? hit.uri ?? "";
                       return (
                         <li key={hitId || i}>
@@ -177,6 +179,7 @@ const SearchPage = ({
                       );
                     })}
                   </ul>
+                  {entityTabPage && <SearchPagination page={entityTabPage} />}
                 </>
               ) : (
                 <Alert>Ingen treff</Alert>

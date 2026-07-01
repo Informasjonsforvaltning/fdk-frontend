@@ -48,10 +48,7 @@ export const SEARCH_TAB_DEFINITIONS = [
     pathSegment: "services-and-events",
     label: "Tjenester og hendelser",
     searchTypes: ["SERVICE", "EVENT"],
-    summarySlices: [
-      { summaryKey: "services", entityPath: "services", searchType: "SERVICE" },
-      { summaryKey: "events", entityPath: "events", searchType: "EVENT" },
-    ],
+    summarySlices: [{ summaryKey: "servicesAndEvents", entityPath: "services-and-events", searchType: "SERVICE" }],
   },
   {
     tab: "docs",
