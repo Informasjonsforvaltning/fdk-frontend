@@ -92,17 +92,6 @@ const SearchPage = ({
         breadcrumbList={breadcrumbList}
       />
       <div className={styles.mainContent}>
-        {entityLoading ? (
-          <Heading data-size="md">
-            {/* TODO: localization remains to be implemented */}
-            {query ? `Søker etter '${query}'...` : "Laster..."}
-          </Heading>
-        ) : (
-          <Heading data-size="md">
-            {/* TODO: localization remains to be implemented */}
-            {query ? `${totalResults} treff for '${query}'` : `${totalResults} treff`}
-          </Heading>
-        )}
         <SearchForm
           lang={lang}
           activeEntityTab={activeEntityTab}
@@ -157,27 +146,19 @@ const SearchPage = ({
           {!entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
             <div className={styles.resultsSection}>
               {filteredHits.length > 0 ? (
-                <>
-                  <Heading
-                    data-size="sm"
-                    className={styles.sectionHeading}
-                  >
-                    {dictionary.entities[getPrimarySearchTypeForTab(activeEntityTab) ?? ""]} ({displayCount} treff)
-                  </Heading>
-                  <ul className="fdk-box-list">
-                    {filteredHits.map((hit: SearchObject, i: number) => {
-                      const hitId = hit.id ?? hit.uri ?? "";
-                      return (
-                        <li key={hitId || i}>
-                          <EntityTeaser
-                            locale={lang}
-                            entity={hit}
-                          />
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </>
+                <ul className="fdk-box-list">
+                  {filteredHits.map((hit: SearchObject, i: number) => {
+                    const hitId = hit.id ?? hit.uri ?? "";
+                    return (
+                      <li key={hitId || i}>
+                        <EntityTeaser
+                          locale={lang}
+                          entity={hit}
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
               ) : (
                 <Alert>Ingen treff</Alert>
               )}
