@@ -2,12 +2,14 @@ import { type LlmSearchResponse } from "@fdk-frontend/data-access";
 import { type AggregationKeyCount } from "@fdk-frontend/ui";
 import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
 
+import { type EntityTabFetchResult } from "./search-api";
 import { type EntitySearchState, type LlmDocsSearchState } from "./search-fetch";
 import { type DocsSearchResult, type SearchResultsProp } from "./search-page-types";
 
 export type SearchPageData = {
   llmResults: LlmSearchResponse | undefined;
   searchResults: SearchResultsProp | undefined;
+  entityTabResults: EntityTabFetchResult | undefined;
   docsResults: DocsSearchResult[] | undefined;
   tabBadgeCounts: Record<string, number> | undefined;
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
@@ -28,6 +30,7 @@ export type SearchPageReducerState = {
 export const initialSearchPageData: SearchPageData = {
   llmResults: undefined,
   searchResults: undefined,
+  entityTabResults: undefined,
   docsResults: undefined,
   tabBadgeCounts: undefined,
   orgAggregationsByTab: undefined,
@@ -60,6 +63,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
       llmResults: undefined,
       docsResults: undefined,
       searchResults: result.searchResults,
+      entityTabResults: result.entityTabResults,
       tabBadgeCounts: result.tabBadgeCounts,
       orgAggregationsByTab: result.orgAggregationsByTab,
       accessAggregationsByTab: result.accessAggregationsByTab,
@@ -74,6 +78,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
   return {
     ...data,
     searchResults: result.searchResults,
+    entityTabResults: result.entityTabResults,
     tabBadgeCounts: result.tabBadgeCounts,
     orgAggregationsByTab: result.orgAggregationsByTab,
     accessAggregationsByTab: result.accessAggregationsByTab,
@@ -105,6 +110,7 @@ export const searchPageReducer = function (
         data: {
           ...state.data,
           searchResults: undefined,
+          entityTabResults: undefined,
           tabBadgeCounts: undefined,
           orgAggregationsByTab: undefined,
           accessAggregationsByTab: undefined,
