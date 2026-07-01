@@ -1,9 +1,9 @@
 import { type LlmSearchResponse } from "@fdk-frontend/data-access";
+import { type SearchPageInfo } from "@fdk-frontend/ui";
 import { type SearchObject } from "@fellesdatakatalog/types";
 
-import { KI_TOGGLE_VALUE, type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
-import { getBadgeCounts } from "../../[lang]/search/search-tab-helpers";
-import { type DocsSearchResult, type SearchResultsProp } from "./search-page-types";
+import { ENTITY_TABS, KI_TOGGLE_VALUE, type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { type DocsSearchResult } from "./search-page-types";
 
 export const sumEntityBadgeCounts = function (counts: Record<string, number>): number {
   return Object.entries(counts).reduce((sum, [key, value]) => {
@@ -17,12 +17,14 @@ export const getDisplayCount = function (params: {
   llmHitsCount: number;
   filteredHits: SearchObject[];
   tabBadgeCounts?: Record<string, number>;
+  entityTabPage?: SearchPageInfo;
 }): number {
   if (params.activeEntityTab === undefined) {
     return params.llmHitsCount;
   }
 
   if (params.activeEntityTab !== "docs") {
+    if (params.entityTabPage) return params.entityTabPage.totalElements;
     return params.tabBadgeCounts?.[params.activeEntityTab] ?? params.filteredHits.length;
   }
 
@@ -60,21 +62,18 @@ export type SearchPageDisplayState = {
   llmHitsCount: number;
   docsHitsCount: number;
   badgeCounts: Record<string, number>;
-  searchHits: SearchObject[];
   totalResults: number;
 };
 
 export const computeSearchPageDisplay = function (params: {
   activeEntityTab?: SearchSetSegment;
   llmResults?: LlmSearchResponse;
-  searchResults?: SearchResultsProp;
   docsResults?: DocsSearchResult[];
   tabBadgeCounts?: Record<string, number>;
 }): SearchPageDisplayState {
   const llmHitsCount = params.llmResults?.hits?.length ?? 0;
-  const searchHits = params.searchResults?.hits ?? [];
   const docsHitsCount = params.docsResults?.length ?? 0;
-  const baseBadgeCounts = params.tabBadgeCounts ?? getBadgeCounts(searchHits, llmHitsCount);
+  const baseBadgeCounts = params.tabBadgeCounts ?? Object.fromEntries(ENTITY_TABS.map((tab) => [tab, 0]));
   const badgeCounts = {
     ...baseBadgeCounts,
     [KI_TOGGLE_VALUE]: llmHitsCount,
@@ -85,10 +84,9 @@ export const computeSearchPageDisplay = function (params: {
     llmHitsCount,
     docsHitsCount,
     badgeCounts,
-    searchHits,
     totalResults: getTotalResults({
       tabBadgeCounts: params.tabBadgeCounts,
-      searchHitsCount: searchHits.length,
+      searchHitsCount: 0,
     }),
   };
 };

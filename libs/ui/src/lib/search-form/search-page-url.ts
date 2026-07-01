@@ -1,12 +1,20 @@
+import { deriveSearchTabValueFromPathname } from "../search-tabs/search-tab-route";
 import { type SearchTabsValue } from "../search-tabs/search-tab-config";
-import { accessKeysToQueryParam } from "./access";
-import { orgPathKeysToQueryParam } from "./org-path";
-import { provenanceKeysToQueryParam } from "./provenance";
-import { formatKeysToQueryParam } from "./format";
-import { losThemeKeysToQueryParam } from "./theme/los-theme";
-import { dataThemeKeysToQueryParam } from "./theme/data-theme";
-import { spatialKeysToQueryParam } from "./spatial";
-import { sortOptionToQueryParam, SEARCH_SORT_OPTIONS, type SearchSortOption } from "./sort";
+import { parseLocaleFromPathname } from "@fdk-frontend/localization";
+import { accessKeysToQueryParam, parseAccessQueryParam } from "./access";
+import { orgPathKeysToQueryParam, parseOrgPathQueryParam } from "./org-path";
+import { provenanceKeysToQueryParam, parseProvenanceQueryParam } from "./provenance";
+import { formatKeysToQueryParam, parseFormatQueryParam } from "./format";
+import { losThemeKeysToQueryParam, parseLosThemeQueryParam } from "./theme/los-theme";
+import { dataThemeKeysToQueryParam, parseDataThemeQueryParam } from "./theme/data-theme";
+import { spatialKeysToQueryParam, parseSpatialQueryParam } from "./spatial";
+import { parseSortQueryParam, sortOptionToQueryParam, SEARCH_SORT_OPTIONS, type SearchSortOption } from "./sort";
+import {
+  parseSearchPageParam,
+  parseSearchPageSizeParam,
+  SEARCH_DEFAULT_PAGE,
+  SEARCH_DEFAULT_PAGE_SIZE,
+} from "./search-pagination";
 
 export type BuildSearchPageUrlOptions = {
   locale: string;
@@ -20,6 +28,8 @@ export type BuildSearchPageUrlOptions = {
   losThemes?: string[];
   dataThemes?: string[];
   sort?: SearchSortOption;
+  page?: number;
+  size?: number;
 };
 
 export const buildSearchPageUrl = function ({
@@ -34,6 +44,8 @@ export const buildSearchPageUrl = function ({
   losThemes = [],
   dataThemes = [],
   sort = SEARCH_SORT_OPTIONS.relevance,
+  page = SEARCH_DEFAULT_PAGE,
+  size = SEARCH_DEFAULT_PAGE_SIZE,
 }: BuildSearchPageUrlOptions): string {
   const base = `/${locale}/search`;
   const path = tab === "ki" ? base : `${base}/${tab}`;
@@ -50,9 +62,33 @@ export const buildSearchPageUrl = function ({
   if (dataThemes.length > 0) params.set("dataTheme", dataThemeKeysToQueryParam(dataThemes));
   const sortParam = sortOptionToQueryParam(sort);
   if (sortParam) params.set("sort", sortParam);
+  if (page !== SEARCH_DEFAULT_PAGE) params.set("page", String(page));
+  if (size !== SEARCH_DEFAULT_PAGE_SIZE) params.set("size", String(size));
 
   const queryString = params.toString();
   return queryString ? `${path}?${queryString}` : path;
+};
+
+export const buildSearchPageUrlFromSearchParams = function (
+  pathname: string,
+  searchParams: URLSearchParams,
+  overrides: { page?: number; size?: number; tab?: SearchTabsValue } = {},
+): string {
+  return buildSearchPageUrl({
+    locale: parseLocaleFromPathname(pathname),
+    tab: overrides.tab ?? deriveSearchTabValueFromPathname(pathname),
+    query: searchParams.get("q") ?? "",
+    orgPaths: parseOrgPathQueryParam(searchParams.get("orgPath")),
+    access: parseAccessQueryParam(searchParams.get("access")),
+    provenance: parseProvenanceQueryParam(searchParams.get("provenance")),
+    spatial: parseSpatialQueryParam(searchParams.get("spatial")),
+    formats: parseFormatQueryParam(searchParams.get("format")),
+    losThemes: parseLosThemeQueryParam(searchParams.get("losTheme")),
+    dataThemes: parseDataThemeQueryParam(searchParams.get("dataTheme")),
+    sort: parseSortQueryParam(searchParams.get("sort")),
+    page: overrides.page ?? parseSearchPageParam(searchParams.get("page")),
+    size: overrides.size ?? parseSearchPageSizeParam(searchParams.get("size")),
+  });
 };
 
 export const buildSearchPageQueryUrl = function (options: {
@@ -71,6 +107,9 @@ export const buildSearchPageQueryUrl = function (options: {
 
     if (trimmedQuery) params.set("q", trimmedQuery);
     else params.delete("q");
+
+    // Reset pagination to the first page on a new query.
+    params.delete("page");
 
     const queryString = params.toString();
     return queryString ? `${path}?${queryString}` : path;

@@ -8,12 +8,10 @@
   gap: 0.75rem;
 }
 
-.searchToolbar {
-  justify-content: space-between;
-
-  :global(.ds-button) {
-    flex-shrink: 0;
-  }
+.chipsToolbar {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .filterToolbar {
@@ -60,8 +58,11 @@
   min-width: auto;
 }
 
-.sortToolbar {
+.rightToolbar {
   margin-left: auto;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .orgPathLevel {

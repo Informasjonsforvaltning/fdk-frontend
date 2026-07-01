@@ -15,6 +15,7 @@ import {
   type SearchSetSegment,
   type SummarySliceKey,
 } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { isSearchSortBody, type SearchSortBody } from "@fdk-frontend/ui/search-form/sort";
 import { type SearchObject } from "@fellesdatakatalog/types";
 
 export type OrgPathAggregationEntry = {
@@ -51,6 +52,33 @@ export type SearchSummaryResponse = {
 
 export const SEARCH_SUMMARY_PAGE_SIZE = 10;
 export const SEARCH_SUMMARY_PAGE = 0;
+
+export type SearchApiOptions = {
+  pagination: { size?: number; page?: number };
+  query?: string;
+  filters?: Record<string, unknown>;
+  sort?: SearchSortBody;
+};
+
+export const buildSearchApiOptions = function (body: {
+  pagination?: { size?: number; page?: number };
+  query?: unknown;
+  filters?: unknown;
+  sort?: unknown;
+}): SearchApiOptions {
+  const pagination = body.pagination ?? { size: SEARCH_SUMMARY_PAGE_SIZE, page: SEARCH_SUMMARY_PAGE };
+  const query = typeof body.query === "string" ? body.query : undefined;
+  const filters =
+    body.filters && typeof body.filters === "object" ? (body.filters as Record<string, unknown>) : undefined;
+  const sort = isSearchSortBody(body.sort) ? body.sort : undefined;
+
+  return {
+    pagination: { ...pagination },
+    ...(query !== undefined ? { query } : {}),
+    ...(filters ? { filters } : {}),
+    ...(sort ? { sort } : {}),
+  };
+};
 
 export const createEmptySearchSummarySlice = (): SearchSummarySlice => ({
   hits: [],
@@ -262,22 +290,4 @@ export const computeBadgeCountsFromSummary = function (summary: SearchSummary): 
     docs: 0,
     ...Object.fromEntries(tabTotals),
   };
-};
-
-export const flattenSummaryHits = (summary: SearchSummary): SearchObject[] => {
-  const hits: SearchObject[] = [];
-
-  for (const slice of SUMMARY_SLICES) {
-    const summarySlice = summary[slice.summaryKey];
-    if (!summarySlice?.hits?.length) continue;
-
-    for (const hit of summarySlice.hits) {
-      hits.push({
-        ...hit,
-        searchType: (hit.searchType ?? slice.searchType) as SearchObject["searchType"],
-      });
-    }
-  }
-
-  return hits;
 };

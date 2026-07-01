@@ -3,6 +3,7 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useReducer } from "react";
 import { type LocaleCodes } from "@fdk-frontend/localization";
+import { parseSearchPageParam, parseSearchPageSizeParam } from "@fdk-frontend/ui/search-form";
 import { deriveActiveEntityTabFromPathname, deriveLangFromPathname } from "../../[lang]/search/search-route";
 import SearchPage, { type SearchPageProps } from "./index";
 import { loadEntitySearchState, loadLlmDocsSearchState } from "./search-fetch";
@@ -25,6 +26,8 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const losThemeParam = searchParams.get("losTheme");
   const dataThemeParam = searchParams.get("dataTheme");
   const sortParam = searchParams.get("sort");
+  const pageParam = parseSearchPageParam(searchParams.get("page"));
+  const sizeParam = parseSearchPageSizeParam(searchParams.get("size"));
   const locale = (lang ?? langFromUrl) as LocaleCodes;
 
   const [{ entityLoading, llmLoading, data }, dispatch] = useReducer(searchPageReducer, initialSearchPageState);
@@ -58,6 +61,9 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       losThemeParam,
       dataThemeParam,
       sortParam,
+      activeEntityTab,
+      page: pageParam,
+      size: sizeParam,
     })
       .then((result) => {
         if (cancelled) return;
@@ -80,6 +86,9 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
     losThemeParam,
     dataThemeParam,
     sortParam,
+    activeEntityTab,
+    pageParam,
+    sizeParam,
   ]);
 
   useEffect(() => {
@@ -108,7 +117,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       query={query}
       activeEntityTab={activeEntityTab}
       llmResults={llmLoading ? undefined : data.llmResults}
-      searchResults={entityLoading ? undefined : data.searchResults}
+      entityTabResults={entityLoading ? undefined : data.entityTabResults}
       docsResults={llmLoading ? undefined : data.docsResults}
       tabBadgeCounts={data.tabBadgeCounts}
       orgAggregation={orgAggregation}
