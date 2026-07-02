@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { Tabs } from "@digdir/designsystemet-react";
 import { CheckboxGroup, VStack } from "@fellesdatakatalog/ui";
+import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import Box from "../box";
 import {
@@ -17,13 +18,15 @@ import { useSyncedFormatSelection } from "./format/use-synced-selection";
 import styles from "./search-form.module.scss";
 
 export type FormatFilterProps = {
+  locale?: LocaleCodes;
   aggregation?: AggregationKeyCount[];
   value?: string[];
   onChange?: (value: string[]) => void;
 };
 
-const FormatFilter = ({ aggregation = [], value, onChange }: FormatFilterProps) => {
+const FormatFilter = ({ locale = "nb", aggregation = [], value, onChange }: FormatFilterProps) => {
   const { checkboxValue, checkboxKey, onChange: handleChange } = useSyncedFormatSelection(value, onChange);
+  const dict = getLocalization(locale).searchPage.searchForm.formatFilter;
   const fileTypeOptions = useMemo(() => buildFileTypeFilterOptions(aggregation), [aggregation]);
   const mediaFormatOptions = useMemo(() => buildMediaFormatFilterOptions(aggregation), [aggregation]);
 
@@ -46,9 +49,8 @@ const FormatFilter = ({ aggregation = [], value, onChange }: FormatFilterProps) 
       className={styles.filterTabs}
     >
       <Tabs.List>
-        {/* TODO: localization remains to be implemented */}
-        <Tabs.Tab value="media-format">Medieformat</Tabs.Tab>
-        <Tabs.Tab value="file-type">Filtype</Tabs.Tab>
+        <Tabs.Tab value="media-format">{dict.mediaFormat}</Tabs.Tab>
+        <Tabs.Tab value="file-type">{dict.fileType}</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel
         value="media-format"

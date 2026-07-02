@@ -99,7 +99,7 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 data-color="success"
                 data-size="sm"
               >
-                Åpne data
+                {localization.teaser.openData}
               </Tag>
             )}
           </TagList>
@@ -113,13 +113,13 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
         )}
         {entity && (
           <Paragraph className={styles.description}>
-            {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : "Mangler beskrivelse"}
+            {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : localization.teaser.missingDescription}
           </Paragraph>
         )}
         {entity && <div className={styles.orgName}>{printLocaleValue(locale, entity.organization?.prefLabel)}</div>}
         {entity && llm && (
           <Tooltip
-            content="Treff fra KI-søk"
+            content={localization.teaser.llmHitTooltip}
             placement="top"
           >
             <SparklesFillIcon className={styles.llmIcon} />

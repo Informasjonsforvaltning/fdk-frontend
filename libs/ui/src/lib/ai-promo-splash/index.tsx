@@ -14,6 +14,7 @@ const AiPromoSplash = ({ locale }: AiPromoSplashProps) => {
     exampleLinkText: string;
     aboutLinkText: string;
   };
+  const promo = dictionary.searchPage.aiPromoSplash;
 
   return (
     <div
@@ -21,12 +22,10 @@ const AiPromoSplash = ({ locale }: AiPromoSplashProps) => {
       data-color-scheme="light"
     >
       <Paragraph data-size="md">
-        <strong>KI-søket</strong> bruker metadata fra data.norge.no og hjelper deg med å finne det du leter etter i alle
-        våre datakataloger. Ved å bruke naturlig språk kan du søke fritt uten å måtte kjenne til spesifikke
-        datasettnavn, fagtermer eller tekniske formater.
+        <strong>{promo.introHighlight}</strong> {promo.intro}
       </Paragraph>
       <Fieldset className={styles.suggestions}>
-        <Fieldset.Legend data-size="md">Prøv f.eks. en av disse:</Fieldset.Legend>
+        <Fieldset.Legend data-size="md">{promo.suggestionsLegend}</Fieldset.Legend>
         {dictionary.frontpage.aiBanner.suggestions.list.slice(0, 5).map((suggestion: string) => (
           <Button
             data-size="sm"

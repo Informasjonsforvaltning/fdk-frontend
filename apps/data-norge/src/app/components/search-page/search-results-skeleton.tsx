@@ -4,18 +4,24 @@ import { Heading } from "@digdir/designsystemet-react";
 
 import styles from "./search-page.module.scss";
 
-export type SearchResultsSkeletonProps = {
-  locale: LocaleCodes;
+export type SearchResultsSkeletonDictionary = {
+  heading: {
+    loading: string;
+  };
 };
 
-const SearchResultsSkeleton = ({ locale }: SearchResultsSkeletonProps) => (
+export type SearchResultsSkeletonProps = {
+  locale: LocaleCodes;
+  dictionary: SearchResultsSkeletonDictionary;
+};
+
+const SearchResultsSkeleton = ({ locale, dictionary }: SearchResultsSkeletonProps) => (
   <>
     <Heading
       data-size="sm"
       className={styles.sectionHeading}
     >
-      {/* TODO: localization remains to be implemented */}
-      Laster...
+      {dictionary.heading.loading}
     </Heading>
     <ul className="fdk-box-list">
       <li>

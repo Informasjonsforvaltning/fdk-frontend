@@ -9,14 +9,22 @@ import {
   toDisplayPage,
   type SearchPageInfo,
 } from "@fdk-frontend/ui/search-form";
+import { interpolate } from "@fdk-frontend/localization";
 
 import styles from "./search-page.module.scss";
 
-export type SearchPaginationProps = {
-  page: SearchPageInfo;
+export type SearchPaginationDictionary = {
+  previous: string;
+  next: string;
+  pageAriaLabel: string;
 };
 
-const SearchPagination = function ({ page }: SearchPaginationProps) {
+export type SearchPaginationProps = {
+  page: SearchPageInfo;
+  dictionary: SearchPaginationDictionary;
+};
+
+const SearchPagination = function ({ page, dictionary }: SearchPaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -50,14 +58,14 @@ const SearchPagination = function ({ page }: SearchPaginationProps) {
         <Pagination>
           <Pagination.List>
             <Pagination.Item>
-              <Pagination.Button {...prevButtonProps}>Forrige</Pagination.Button>
+              <Pagination.Button {...prevButtonProps}>{dictionary.previous}</Pagination.Button>
             </Pagination.Item>
             {pages.map(({ page: pageNumber, itemKey, buttonProps }) =>
               typeof pageNumber === "number" && buttonProps ? (
                 <Pagination.Item key={itemKey}>
                   <Pagination.Button
                     {...buttonProps}
-                    aria-label={`Side ${pageNumber}`}
+                    aria-label={interpolate(dictionary.pageAriaLabel, { page: pageNumber })}
                   >
                     {pageNumber}
                   </Pagination.Button>
@@ -72,7 +80,7 @@ const SearchPagination = function ({ page }: SearchPaginationProps) {
               ),
             )}
             <Pagination.Item>
-              <Pagination.Button {...nextButtonProps}>Neste</Pagination.Button>
+              <Pagination.Button {...nextButtonProps}>{dictionary.next}</Pagination.Button>
             </Pagination.Item>
           </Pagination.List>
         </Pagination>

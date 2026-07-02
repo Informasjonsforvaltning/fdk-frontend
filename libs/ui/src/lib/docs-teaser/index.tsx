@@ -12,7 +12,8 @@ export type DocsTeaserProps = {
 };
 
 const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTeaserProps & Partial<CardProps>) => {
-  const docsTitles = getLocalization(locale).docs?.titles;
+  const localization = getLocalization(locale);
+  const docsTitles = localization.docs?.titles;
   const firstSegment = href?.split("/")[2];
   const sectionTitle = firstSegment && docsTitles ? docsTitles[`/${firstSegment}`] : undefined;
 
@@ -39,7 +40,11 @@ const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTease
         )}
         {href ? (
           <Paragraph className={styles.description}>
-            {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : "Mangler beskrivelse"}
+            {desc
+              ? desc.length > 500
+                ? `${desc.slice(0, 500)}...`
+                : desc
+              : localization.common.teaser.missingDescription}
           </Paragraph>
         ) : (
           <div style={{ marginTop: "0.5rem", lineHeight: "1.75rem" }}>

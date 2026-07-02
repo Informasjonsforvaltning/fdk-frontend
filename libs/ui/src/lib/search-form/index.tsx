@@ -1,6 +1,6 @@
 "use client";
 
-import { parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
+import { getLocalization, interpolate, parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Chip, Dropdown } from "@digdir/designsystemet-react";
@@ -111,7 +111,6 @@ export type SearchFormProps = {
   losThemeAggregation?: AggregationKeyCount[];
   dataThemeAggregation?: AggregationKeyCount[];
   defaultValue?: SearchTabsValue;
-  searchLabel?: string;
   onSearch?: (query: string, type: SearchTabsValue) => void;
   className?: string;
 };
@@ -129,7 +128,6 @@ const SearchForm = ({
   losThemeAggregation,
   dataThemeAggregation,
   defaultValue = "ki",
-  searchLabel = "Søk",
   onSearch,
   className,
 }: SearchFormProps) => {
@@ -167,6 +165,14 @@ const SearchForm = ({
   const showTemaFilter = shouldShowTemaFilter(losThemeAggregation ?? [], dataThemeAggregation ?? []);
 
   const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
+  const dict = getLocalization(locale).searchPage;
+
+  const getSortLabel = (option: SearchSortOption): string => {
+    if (option === "relevance") return dict.searchForm.sort.relevance;
+    if (option === "firstHarvestedDesc") return dict.searchForm.sort.newest;
+    if (option === "firstHarvestedAsc") return dict.searchForm.sort.oldest;
+    return SORT_OPTION_LABELS[option];
+  };
 
   const orgKey = !selectedOrgPaths.length ? "" : selectedOrgPaths[selectedOrgPaths.length - 1];
   const orgPathLabels: Record<string, string> = {
@@ -372,12 +378,13 @@ const SearchForm = ({
             defaultValue={defaultValue}
             onChange={handleTabChange}
             badgeCounts={badgeCounts}
+            locale={locale}
           />
           <>
             {showEntityToolbar && (
               <HStack className={styles.filterToolbar}>
                 <FilterDropdown
-                  label="Virksomhet"
+                  label={dict.searchForm.filters.organisation}
                   filterCount={selectedOrgPaths.length}
                 >
                   <VStack>
@@ -393,7 +400,7 @@ const SearchForm = ({
                 </FilterDropdown>
                 {showTemaFilter && (
                   <FilterDropdown
-                    label="Tema"
+                    label={dict.searchForm.filters.theme}
                     filterCount={selectedDataThemes.length + selectedLosThemes.length}
                   >
                     <ThemeFilter
@@ -409,7 +416,7 @@ const SearchForm = ({
                 )}
                 {showAccessFilter && (
                   <FilterDropdown
-                    label="Tilgangsnivå"
+                    label={dict.searchForm.filters.accessLevel}
                     filterCount={selectedAccess.length}
                   >
                     <Box className={styles.box}>
@@ -423,10 +430,11 @@ const SearchForm = ({
                 )}
                 {showFormatFilter && (
                   <FilterDropdown
-                    label="Data-format"
+                    label={dict.searchForm.filters.format}
                     filterCount={selectedFormats.length}
                   >
                     <FormatFilter
+                      locale={locale}
                       aggregation={formatAggregation}
                       value={isUrlDriven ? selectedFormats : undefined}
                       onChange={isUrlDriven ? handleFormatChange : undefined}
@@ -435,7 +443,7 @@ const SearchForm = ({
                 )}
                 {showSpatialFilter && (
                   <FilterDropdown
-                    label="Geografi"
+                    label={dict.searchForm.filters.geography}
                     filterCount={selectedSpatial.length}
                   >
                     <Box className={styles.box}>
@@ -449,7 +457,7 @@ const SearchForm = ({
                 )}
                 {showProvenanceFilter && (
                   <FilterDropdown
-                    label="Opphav"
+                    label={dict.searchForm.filters.provenance}
                     filterCount={selectedProvenance.length}
                   >
                     <Box className={styles.box}>
@@ -504,7 +512,7 @@ const SearchForm = ({
                   onClick={() => clearFilters()}
                   data-size="sm"
                 >
-                  Tøm alle filtre
+                  {dict.searchForm.clearAllFilters}
                 </Chip.Button>
               )}
               {showEntityToolbar && (
@@ -514,8 +522,7 @@ const SearchForm = ({
                       data-size="sm"
                       variant="tertiary"
                     >
-                      {/* TODO: localization remains to be implemented */}
-                      {selectedSize} treff <ChevronDownIcon />
+                      {interpolate(dict.searchForm.resultsCount, { count: selectedSize })} <ChevronDownIcon />
                     </Dropdown.Trigger>
                     <Dropdown
                       className={styles.orderbyDropdown}
@@ -530,8 +537,7 @@ const SearchForm = ({
                               onClick={() => navigateToSearch({ size: option })}
                             >
                               {selectedSize === option && <CheckmarkIcon />}
-                              {/* TODO: localization remains to be implemented */}
-                              {option} treff per side
+                              {interpolate(dict.searchForm.resultsPerPage, { count: option })}
                             </Dropdown.Button>
                           </Dropdown.Item>
                         ))}
@@ -544,8 +550,7 @@ const SearchForm = ({
                       variant="tertiary"
                     >
                       <SortDownIcon />
-                      {/* TODO: localization remains to be implemented */}
-                      {SORT_OPTION_LABELS[selectedSort]}
+                      {getSortLabel(selectedSort)}
                     </Dropdown.Trigger>
                     <Dropdown
                       className={styles.orderbyDropdown}
@@ -560,7 +565,7 @@ const SearchForm = ({
                               onClick={() => handleSortChange(option)}
                             >
                               {selectedSort === option && <CheckmarkIcon />}
-                              {SORT_OPTION_LABELS[option]}
+                              {getSortLabel(option)}
                             </Dropdown.Button>
                           </Dropdown.Item>
                         ))}

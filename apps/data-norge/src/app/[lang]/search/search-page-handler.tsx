@@ -14,14 +14,14 @@ export const getSearchPageMetadata = async function (props: SearchPageHandlerPro
   const params = await props.params;
   const searchParams = await props.searchParams;
   const locale = params.lang ?? i18n.defaultLocale;
-  const dictionary = getLocalization(locale).common;
+  const dictionary = getLocalization(locale).searchPage;
   const segmentPath = params.tab && isValidEntityTab(params.tab) ? `/${params.tab}` : "";
   const query = typeof searchParams.q === "string" ? searchParams.q : undefined;
   const qs = query ? `?q=${encodeURIComponent(query)}` : "";
 
   return {
-    title: `${dictionary.header.findDataButton || "Search"} - data.norge.no`,
-    description: `Search for data on data.norge.no`,
+    title: `${dictionary.metadata.title} - data.norge.no`,
+    description: dictionary.metadata.description,
     alternates: {
       canonical: `https://data.norge.no/${locale}/search${segmentPath}${qs}`,
       languages: {

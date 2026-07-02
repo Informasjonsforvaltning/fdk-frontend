@@ -6,6 +6,7 @@ import docs from "./sections/docs";
 import frontpage from "./sections/frontpage";
 import sparqlSandboxPage from "./sections/sparql-sandbox-page";
 import dataHunterPage from "./sections/data-hunter-page";
+import searchPage from "./sections/search-page";
 
 const localization: Localization = {
   common: common,
@@ -14,6 +15,7 @@ const localization: Localization = {
   frontpage: frontpage,
   sparqlSandboxPage: sparqlSandboxPage,
   dataHunterPage: dataHunterPage,
+  searchPage: searchPage,
 };
 
 export default localization;

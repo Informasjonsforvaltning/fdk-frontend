@@ -3,6 +3,7 @@
 import { ToggleGroup, Badge } from "@digdir/designsystemet-react";
 import { SparklesFillIcon } from "@navikt/aksel-icons";
 import { useRef, type ReactNode } from "react";
+import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import styles from "./styles.module.scss";
 
 import { KI_TOGGLE_VALUE, SEARCH_TAB_DEFINITIONS, type SearchTabsValue } from "./search-tab-config";
@@ -14,6 +15,7 @@ export type SearchTabsProps = {
   onChange?: (value: SearchTabsValue) => void;
   /** Badge counts per tab value. `undefined` renders a loading placeholder. */
   badgeCounts?: Record<string, number | undefined>;
+  locale?: LocaleCodes;
 };
 
 export type SearchTabItem = {
@@ -23,23 +25,34 @@ export type SearchTabItem = {
   badgeCount?: number;
 };
 
-// TODO: localization remains to be implemented
-export const searchTabItems: SearchTabItem[] = SEARCH_TAB_DEFINITIONS.map((tab) => ({
-  value: tab.tab,
-  label: tab.label,
-  ...(tab.tab === KI_TOGGLE_VALUE ? { icon: <SparklesFillIcon /> } : {}),
-  badgeCount: 0,
-}));
+export const getLocalizedSearchTabItems = (locale: LocaleCodes): SearchTabItem[] => {
+  const dict = getLocalization(locale).searchPage.searchTabs;
+  const labelMap: Record<string, string> = {
+    ki: dict.ki,
+    datasets: dict.datasets,
+    "data-services": dict.dataServices,
+    concepts: dict.concepts,
+    "information-models": dict.informationModels,
+    "services-and-events": dict.servicesAndEvents,
+    docs: dict.docs,
+  };
+  return SEARCH_TAB_DEFINITIONS.map((tab) => ({
+    value: tab.tab,
+    label: labelMap[tab.tab] ?? tab.label,
+    ...(tab.tab === KI_TOGGLE_VALUE ? { icon: <SparklesFillIcon /> } : {}),
+    badgeCount: 0,
+  }));
+};
 
 export { deriveSearchTabValueFromPathname } from "./search-tab-route";
 
-const SearchTabBadge = ({ count }: { count: number | undefined }) => {
+const SearchTabBadge = ({ count, loadingAriaLabel }: { count: number | undefined; loadingAriaLabel: string }) => {
   if (count === undefined) {
     return (
       <span
         className={styles.badgeLoading}
         aria-busy="true"
-        aria-label="Laster antall treff"
+        aria-label={loadingAriaLabel}
       />
     );
   }
@@ -53,10 +66,12 @@ const SearchTabBadge = ({ count }: { count: number | undefined }) => {
   );
 };
 
-const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {} }: SearchTabsProps) => {
+const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {}, locale = "nb" }: SearchTabsProps) => {
   const isControlled = value !== undefined;
   const toggleValue = isControlled ? value : defaultValue;
   const userInitiatedChangeRef = useRef(false);
+  const dict = getLocalization(locale).searchPage.searchTabs;
+  const localizedItems = getLocalizedSearchTabItems(locale);
 
   return (
     <ToggleGroup
@@ -78,7 +93,7 @@ const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {} }: 
       className={styles.tabs}
       variant="secondary"
     >
-      {searchTabItems.map((item) => {
+      {localizedItems.map((item) => {
         const count = badgeCounts[item.value];
         return (
           <ToggleGroup.Item
@@ -90,7 +105,10 @@ const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {} }: 
               {item.icon}
               {item.label}
             </div>
-            <SearchTabBadge count={count} />
+            <SearchTabBadge
+              count={count}
+              loadingAriaLabel={dict.loadingBadgeAriaLabel}
+            />
           </ToggleGroup.Item>
         );
       })}
