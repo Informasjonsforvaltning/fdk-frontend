@@ -101,6 +101,8 @@ const detailsPage = {
     title: "Tjenesteresultat",
     nameless: "Navnløst tjenesteresultat",
     placeholder: "Denne tjenesten har ingen tjenesteresultat.",
+    description: "Beskrivelse",
+    language: "Språk",
   },
   apis: {
     title: "API-er som tilgjengeliggjør dette datasettet",
