@@ -113,6 +113,28 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
       };
     }) || [];
 
+  const producesList: DetailsEntry[] =
+    service.produces?.map((output) => {
+      const contents: ContentRow[] = [];
+      if (output.description || showEmptyRows) {
+        contents.push({
+          label: dictionaries.detailsPage.produces.description,
+          value: printLocaleValue(locale, output.description),
+        });
+      }
+      if (output.language?.length || showEmptyRows) {
+        contents.push({
+          label: dictionaries.detailsPage.produces.language,
+          value: output.language?.map((language) => printLocaleValue(locale, language.prefLabel)).filter(Boolean).join(", "),
+        });
+      }
+
+      return {
+        title: printLocaleValue(locale, output.name) || dictionaries.detailsPage.produces.nameless,
+        content: contents,
+      };
+    }) || [];
+
   return (
     <div className={styles.detailsPage}>
       <ServiceStructuredData
@@ -240,27 +262,10 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
               </Hstack>
             </Heading>
             {sumArrayLengths(service.produces) > 0 ? (
-              <Dlist>
-                {service.produces?.map((output, index) => (
-                  <Fragment key={`${output.identifier}-${index}`}>
-                    <dt className={styles.producesDt}>
-                      {printLocaleValue(locale, output.name) || dictionaries.detailsPage.produces.nameless}
-                    </dt>
-                    <dd>
-                      {printLocaleValue(locale, output.description)}
-                      {output.language?.length ? (
-                        <div className={styles.producesLanguage}>
-                          <strong>{dictionaries.detailsPage.produces.language}: </strong>
-                          {output.language
-                            .map((language) => printLocaleValue(locale, language.prefLabel))
-                            .filter(Boolean)
-                            .join(", ")}
-                        </div>
-                      ) : null}
-                    </dd>
-                  </Fragment>
-                ))}
-              </Dlist>
+              <AccordionList
+                entries={producesList}
+                noDataText={dictionaries.detailsPage.details.noData}
+              />
             ) : (
               <PlaceholderBox>{dictionaries.detailsPage.produces.placeholder}</PlaceholderBox>
             )}
