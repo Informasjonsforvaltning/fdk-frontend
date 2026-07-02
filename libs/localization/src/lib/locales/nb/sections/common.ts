@@ -137,6 +137,11 @@ const common = {
     service: "Tjenester",
     publicService: "Offentlig tjenester",
   },
+  teaser: {
+    openData: "Åpne data",
+    missingDescription: "Mangler beskrivelse",
+    llmHitTooltip: "Treff fra KI-søk",
+  },
 };
 
 export default common;

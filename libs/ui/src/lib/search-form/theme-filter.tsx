@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { Tabs } from "@digdir/designsystemet-react";
 import { CheckboxGroup, VStack } from "@fellesdatakatalog/ui";
-import type { LocaleCodes } from "@fdk-frontend/localization";
+import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import Box from "../box";
 import { LosThemeTreeFilter } from "./theme/los-theme";
@@ -32,10 +32,12 @@ const ThemeFilter = ({
   onLosThemeChange,
   onDataThemeChange,
 }: ThemeFilterProps) => {
-  const { checkboxValue, checkboxKey, onChange: handleDataThemeChange } = useSyncedDataThemeSelection(
-    dataThemeValue,
-    onDataThemeChange,
-  );
+  const {
+    checkboxValue,
+    checkboxKey,
+    onChange: handleDataThemeChange,
+  } = useSyncedDataThemeSelection(dataThemeValue, onDataThemeChange);
+  const dict = getLocalization(locale).searchPage.searchForm.themeFilter;
   const dataThemeLabels = useDataThemeLabels(locale);
   const dataThemeOptions = useMemo(
     () => buildDataThemeFilterOptions(dataThemeAggregation, dataThemeLabels),
@@ -50,9 +52,8 @@ const ThemeFilter = ({
       className={styles.filterTabs}
     >
       <Tabs.List>
-        {/* TODO: localization remains to be implemented */}
-        <Tabs.Tab value="tema">Tema</Tabs.Tab>
-        <Tabs.Tab value="eu-tema">EU-tema</Tabs.Tab>
+        <Tabs.Tab value="tema">{dict.tema}</Tabs.Tab>
+        <Tabs.Tab value="eu-tema">{dict.euTema}</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panel
         value="tema"

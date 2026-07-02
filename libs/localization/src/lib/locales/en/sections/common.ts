@@ -137,6 +137,11 @@ const common = {
     service: "Service",
     publicService: "Public service",
   },
+  teaser: {
+    openData: "Open data",
+    missingDescription: "Missing description",
+    llmHitTooltip: "Result from AI search",
+  },
 };
 
 export default common;

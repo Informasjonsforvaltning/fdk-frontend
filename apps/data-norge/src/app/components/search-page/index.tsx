@@ -1,4 +1,4 @@
-import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
+import { type LocaleCodes, getLocalization, interpolate } from "@fdk-frontend/localization";
 import {
   AiPromoSplash,
   Breadcrumbs,
@@ -57,13 +57,14 @@ const SearchPage = ({
   entityLoading = false,
   llmLoading = false,
 }: SearchPageProps) => {
-  const dictionary = getLocalization(lang).common;
-  const breadcrumbList = [
-    {
-      // TODO: localization remains to be implemented
-      text: query ? `Søk etter "${query}"` : "Søk",
-    },
-  ];
+  const loc = getLocalization(lang);
+  const commonDictionary = loc.common;
+  const dictionary = loc.searchPage;
+
+  const breadcrumbLabel = query
+    ? interpolate(dictionary.breadcrumb.labelWithQuery, { query })
+    : dictionary.breadcrumb.label;
+  const breadcrumbList = [{ text: breadcrumbLabel }];
 
   const { llmHitsCount, docsHitsCount, badgeCounts, totalResults } = computeSearchPageDisplay({
     activeEntityTab,
@@ -87,6 +88,14 @@ const SearchPage = ({
     entityTabPage,
   });
 
+  const mainHeading = entityLoading
+    ? query
+      ? interpolate(dictionary.heading.loadingWithQuery, { query })
+      : dictionary.heading.loading
+    : query
+      ? interpolate(dictionary.heading.resultsWithQuery, { count: totalResults, query })
+      : interpolate(dictionary.heading.results, { count: totalResults });
+
   return (
     <div className={styles.searchPage}>
       <Breadcrumbs
@@ -94,17 +103,7 @@ const SearchPage = ({
         breadcrumbList={breadcrumbList}
       />
       <div className={styles.mainContent}>
-        {entityLoading ? (
-          <Heading data-size="md">
-            {/* TODO: localization remains to be implemented */}
-            {query ? `Søker etter '${query}'...` : "Laster..."}
-          </Heading>
-        ) : (
-          <Heading data-size="md">
-            {/* TODO: localization remains to be implemented */}
-            {query ? `${totalResults} treff for '${query}'` : `${totalResults} treff`}
-          </Heading>
-        )}
+        <Heading data-size="md">{mainHeading}</Heading>
         <SearchForm
           lang={lang}
           activeEntityTab={activeEntityTab}
@@ -121,22 +120,27 @@ const SearchPage = ({
         <div>
           {entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
             <div className={styles.resultsSection}>
-              <SearchResultsSkeleton locale={lang} />
+              <SearchResultsSkeleton
+                locale={lang}
+                dictionary={dictionary}
+              />
             </div>
           )}
 
           {!entityLoading && activeEntityTab === undefined && (
             <div className={styles.resultsSection}>
               {llmLoading ? (
-                <SearchResultsSkeleton locale={lang} />
+                <SearchResultsSkeleton
+                  locale={lang}
+                  dictionary={dictionary}
+                />
               ) : llmResults?.hits && llmResults.hits.length > 0 ? (
                 <>
                   <Heading
                     data-size="sm"
                     className={styles.sectionHeading}
                   >
-                    {/* TODO: localization remains to be implemented */}
-                    {`KI-søk (${llmHitsCount} treff)`}
+                    {interpolate(dictionary.aiSearch.headingWithCount, { count: llmHitsCount })}
                   </Heading>
                   <ul className="fdk-box-list">
                     {llmResults.hits.map((item, i) => (
@@ -164,7 +168,8 @@ const SearchPage = ({
                     data-size="sm"
                     className={styles.sectionHeading}
                   >
-                    {dictionary.entities[getPrimarySearchTypeForTab(activeEntityTab) ?? ""]} ({displayCount} treff)
+                    {commonDictionary.entities[getPrimarySearchTypeForTab(activeEntityTab) ?? ""]}{" "}
+                    {interpolate(dictionary.entitySearch.hitsCountLabel, { count: displayCount })}
                   </Heading>
                   <ul className="fdk-box-list">
                     {entityTabHits.map((hit: SearchObject, i: number) => {
@@ -179,10 +184,15 @@ const SearchPage = ({
                       );
                     })}
                   </ul>
-                  {entityTabPage && <SearchPagination page={entityTabPage} />}
+                  {entityTabPage && (
+                    <SearchPagination
+                      page={entityTabPage}
+                      dictionary={dictionary.pagination}
+                    />
+                  )}
                 </>
               ) : (
-                <Alert>Ingen treff</Alert>
+                <Alert>{dictionary.entitySearch.noResults}</Alert>
               )}
             </div>
           )}
@@ -193,8 +203,9 @@ const SearchPage = ({
                 data-size="sm"
                 className={styles.sectionHeading}
               >
-                {/* TODO: localization remains to be implemented */}
-                {`Dokumentasjon${query ? ` (${docsHitsCount} treff)` : ""}`}
+                {query
+                  ? interpolate(dictionary.docs.headingWithCount, { count: docsHitsCount })
+                  : dictionary.docs.heading}
               </Heading>
               {docsResults && docsResults.length > 0 ? (
                 <ul className="fdk-box-list">
@@ -210,9 +221,9 @@ const SearchPage = ({
                   ))}
                 </ul>
               ) : query ? (
-                <Alert>Ingen treff i dokumentasjon</Alert> // TODO: localization remains to be implemented
+                <Alert>{dictionary.docs.noResults}</Alert>
               ) : (
-                <Alert>Ingen dokumentasjon funnet.</Alert> // TODO: localization remains to be implemented
+                <Alert>{dictionary.docs.noContent}</Alert>
               )}
             </div>
           )}

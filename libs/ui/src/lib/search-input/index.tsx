@@ -4,7 +4,7 @@ import { useRef, useEffect, useState, type FormEvent } from "react";
 import cn from "classnames";
 import { Input, Tag } from "@digdir/designsystemet-react";
 import { MagnifyingGlassIcon } from "@navikt/aksel-icons";
-import { type LocaleCodes } from "@fdk-frontend/localization";
+import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import SearchInputTray from "../search-input-tray";
 import { buildSearchPageQueryUrl } from "../search-form/search-page-url";
@@ -35,14 +35,16 @@ const getInitialQFromUrl = function getInitialQFromUrl(searchParams: URLSearchPa
 const SearchInput = ({
   value: controlledValue,
   onChange: controlledOnChange,
-  // TODO: localization remains to be implemented
-  searchLabel = "Søk",
-  placeholder = "Hva leter du etter?",
+  searchLabel,
+  placeholder,
   className,
   locale,
   loading,
   ...rest
 }: SearchInputProps) => {
+  const inputDict = getLocalization(locale).searchPage.searchInput;
+  const resolvedSearchLabel = searchLabel ?? inputDict.label;
+  const resolvedPlaceholder = placeholder ?? inputDict.placeholder;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -135,8 +137,8 @@ const SearchInput = ({
           onChange={(e) => setValue(e.target.value)}
           onFocus={() => setIsTrayVisible(true)}
           className={styles.input}
-          placeholder={placeholder}
-          aria-label={searchLabel}
+          placeholder={resolvedPlaceholder}
+          aria-label={resolvedSearchLabel}
         />
         <Tag
           className={styles.hotkeyTag}
