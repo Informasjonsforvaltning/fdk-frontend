@@ -103,6 +103,7 @@ const detailsPage = {
     placeholder: "Denne tjenesten har ingen tjenesteresultat.",
     description: "Beskrivelse",
     language: "Språk",
+    isPartOf: "Er del av",
   },
   apis: {
     title: "API-er som tilgjengeliggjør dette datasettet",

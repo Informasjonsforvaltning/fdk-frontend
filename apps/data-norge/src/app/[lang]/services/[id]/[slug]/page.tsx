@@ -1,4 +1,10 @@
-import { getAllCommunityTopics, getOrgLogo, getService, searchConcepts } from "@fdk-frontend/data-access/server";
+import {
+  getAllCommunityTopics,
+  getOrgLogo,
+  getService,
+  searchConcepts,
+  searchDatasets,
+} from "@fdk-frontend/data-access/server";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
 import { SearchObject, type CommunityTopic, type PublicService } from "@fellesdatakatalog/types";
@@ -26,6 +32,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
   let orgLogo: string | null = null;
   let communityTopics: CommunityTopic[] = [];
   let concepts: SearchObject[] = [];
+  let producesDatasets: SearchObject[] = [];
 
   try {
     service = await getService(id);
@@ -68,10 +75,23 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Fail silently
   }
 
+  try {
+    const producesDatasetUris = [
+      ...new Set((service.produces ?? []).flatMap((output) => output.isPartOf ?? [])),
+    ];
+    if (producesDatasetUris.length) {
+      const results = await searchDatasets(producesDatasetUris);
+      producesDatasets = results?.hits ?? [];
+    }
+  } catch {
+    // Fail silently
+  }
+
   return (
     <ServiceDetailsPage
       baseUri={process.env.FDK_BASE_URI as string}
       concepts={concepts}
+      producesDatasets={producesDatasets}
       service={service}
       orgLogo={orgLogo}
       communityTopics={communityTopics}
