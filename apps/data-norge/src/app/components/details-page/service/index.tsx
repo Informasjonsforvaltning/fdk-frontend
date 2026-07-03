@@ -130,7 +130,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
           value: output.language?.map((language) => printLocaleValue(locale, language.prefLabel)).filter(Boolean).join(", "),
         });
       }
-      if (output.isPartOf?.length || showEmptyRows) {
+      if (output.isPartOf?.length) {
         contents.push({
           label: dictionaries.detailsPage.produces.isPartOf,
           value: output.isPartOf
