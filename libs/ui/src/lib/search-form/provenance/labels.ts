@@ -1,11 +1,18 @@
-export const PROVENANCE_LABELS: Record<string, string> = {
-  NASJONAL: "Nasjonal",
-  VEDTAK: "Vedtak",
-  BRUKER: "Bruker",
-  TREDJEPART: "Tredjepart",
+export type ProvenanceFilterDictionary = {
+  nasjonal: string;
+  vedtak: string;
+  bruker: string;
+  tredjepart: string;
 };
 
-export const formatProvenanceLabel = (key: string): string => PROVENANCE_LABELS[key] ?? key;
+export const getProvenanceLabels = (dict: ProvenanceFilterDictionary): Record<string, string> => ({
+  NASJONAL: dict.nasjonal,
+  VEDTAK: dict.vedtak,
+  BRUKER: dict.bruker,
+  TREDJEPART: dict.tredjepart,
+});
 
-export const formatProvenanceCheckboxLabel = (key: string, count: number): string =>
-  `${formatProvenanceLabel(key)} (${count})`;
+export const formatProvenanceLabel = (key: string, labels: Record<string, string>): string => labels[key] ?? key;
+
+export const formatProvenanceCheckboxLabel = (key: string, count: number, labels: Record<string, string>): string =>
+  `${formatProvenanceLabel(key, labels)} (${count})`;

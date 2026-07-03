@@ -1,5 +1,5 @@
 export { parseSortQueryParam, sortOptionToQueryParam, buildSearchSort, isSearchSortBody } from "./url";
-export { SORT_OPTION_LABELS } from "./labels";
+export { getSortLabel, type SortDictionary } from "./labels";
 export {
   isFirstHarvestedAscSort,
   isRelevanceSort,

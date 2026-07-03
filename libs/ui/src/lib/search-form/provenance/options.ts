@@ -6,8 +6,11 @@ export type ProvenanceFilterOption = {
   value: string;
 };
 
-export const buildProvenanceFilterOptions = (aggregation: AggregationKeyCount[]): ProvenanceFilterOption[] =>
+export const buildProvenanceFilterOptions = (
+  aggregation: AggregationKeyCount[],
+  labels: Record<string, string>,
+): ProvenanceFilterOption[] =>
   aggregation.map(({ key, count }) => ({
-    label: formatProvenanceCheckboxLabel(key, count),
+    label: formatProvenanceCheckboxLabel(key, count, labels),
     value: key,
   }));

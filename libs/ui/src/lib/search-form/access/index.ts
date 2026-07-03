@@ -1,6 +1,11 @@
 export { OPEN_DATA_AGGREGATION_KEY, ACCESS_KEY_ORDER } from "./types";
 export { mergeAccessAggregations } from "./aggregation";
-export { formatAccessLabel, formatAccessCheckboxLabel } from "./labels";
+export {
+  getAccessRightsLabels,
+  formatAccessLabel,
+  formatAccessCheckboxLabel,
+  type AccessFilterDictionary,
+} from "./labels";
 export { buildAccessFilterOptions, type AccessFilterOption } from "./options";
 export { shouldShowAccessFilter } from "./visibility";
 export {

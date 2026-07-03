@@ -6,8 +6,11 @@ export type AccessFilterOption = {
   value: string;
 };
 
-export const buildAccessFilterOptions = (aggregation: AggregationKeyCount[]): AccessFilterOption[] =>
+export const buildAccessFilterOptions = (
+  aggregation: AggregationKeyCount[],
+  labels: Record<string, string>,
+): AccessFilterOption[] =>
   aggregation.map(({ key, count }) => ({
-    label: formatAccessCheckboxLabel(key, count),
+    label: formatAccessCheckboxLabel(key, count, labels),
     value: key,
   }));

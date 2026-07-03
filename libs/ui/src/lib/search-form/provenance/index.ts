@@ -1,5 +1,10 @@
 export { mergeProvenanceAggregations } from "./aggregation";
-export { formatProvenanceLabel, formatProvenanceCheckboxLabel } from "./labels";
+export {
+  getProvenanceLabels,
+  formatProvenanceLabel,
+  formatProvenanceCheckboxLabel,
+  type ProvenanceFilterDictionary,
+} from "./labels";
 export { buildProvenanceFilterOptions, type ProvenanceFilterOption } from "./options";
 export { shouldShowProvenanceFilter } from "./visibility";
 export {

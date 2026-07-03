@@ -30,12 +30,17 @@ import styles from "./search-form.module.scss";
 import FilterChips from "./filter-chips";
 import { useDataThemeLabels } from "./theme/data-theme/use-data-theme-labels";
 import { useLosThemeLabels } from "./theme/los-theme/use-los-theme-labels";
-import { ACCESS_RIGHTS_LABELS } from "./access/labels";
+import { getAccessRightsLabels } from "./access/labels";
 import { formatLabel } from "./format/labels";
-import { PROVENANCE_LABELS } from "./provenance/labels";
+import { getProvenanceLabels } from "./provenance/labels";
 import { useOrgPathLabels } from "./org-path/use-org-path-labels";
 import { formatOrgPathLabel } from "./org-path/labels";
-import { parseSortQueryParam, SEARCH_SORT_OPTION_LIST, SORT_OPTION_LABELS, type SearchSortOption } from "./sort";
+import {
+  parseSortQueryParam,
+  getSortLabel as getSortLabelFromDict,
+  SEARCH_SORT_OPTION_LIST,
+  type SearchSortOption,
+} from "./sort";
 
 export type { AggregationKeyCount } from "./types";
 export { mergeOrgPathAggregations, buildOrgPathSearchFilter } from "./org-path";
@@ -94,7 +99,6 @@ export {
   buildSearchSort,
   SEARCH_SORT_OPTION_LIST,
   SEARCH_SORT_OPTIONS,
-  SORT_OPTION_LABELS,
   type SearchSortOption,
 } from "./sort";
 
@@ -166,17 +170,14 @@ const SearchForm = ({
 
   const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
   const dict = getLocalization(locale).searchPage;
+  const accessLabels = getAccessRightsLabels(dict.searchForm.accessFilter);
+  const provenanceLabels = getProvenanceLabels(dict.searchForm.provenanceFilter);
 
-  const getSortLabel = (option: SearchSortOption): string => {
-    if (option === "relevance") return dict.searchForm.sort.relevance;
-    if (option === "firstHarvestedDesc") return dict.searchForm.sort.newest;
-    if (option === "firstHarvestedAsc") return dict.searchForm.sort.oldest;
-    return SORT_OPTION_LABELS[option];
-  };
+  const getSortLabel = (option: SearchSortOption): string => getSortLabelFromDict(option, dict.searchForm.sort);
 
   const orgKey = !selectedOrgPaths.length ? "" : selectedOrgPaths[selectedOrgPaths.length - 1];
   const orgPathLabels: Record<string, string> = {
-    [orgKey]: formatOrgPathLabel(orgKey, useOrgPathLabels(locale)),
+    [orgKey]: formatOrgPathLabel(orgKey, useOrgPathLabels(locale), dict.searchForm.orgTypeFilter),
   };
   // TODO: handle useOrgPathLabels. Called more than once on each render when used like this (also called within org-filter component)
   const losThemeLabels = useLosThemeLabels(locale);
@@ -421,6 +422,7 @@ const SearchForm = ({
                   >
                     <Box className={styles.box}>
                       <AccessFilter
+                        locale={locale}
                         aggregation={accessAggregation}
                         value={isUrlDriven ? selectedAccess : undefined}
                         onChange={isUrlDriven ? handleAccessChange : undefined}
@@ -462,6 +464,7 @@ const SearchForm = ({
                   >
                     <Box className={styles.box}>
                       <ProvenanceFilter
+                        locale={locale}
                         aggregation={provenanceAggregation}
                         value={isUrlDriven ? selectedProvenance : undefined}
                         onChange={isUrlDriven ? handleProvenanceChange : undefined}
@@ -490,7 +493,7 @@ const SearchForm = ({
               <FilterChips
                 selectedFilters={selectedAccess}
                 onChipRemove={handleAccessChange}
-                chipLabels={ACCESS_RIGHTS_LABELS}
+                chipLabels={accessLabels}
               />
               <FilterChips
                 selectedFilters={selectedFormats}
@@ -505,7 +508,7 @@ const SearchForm = ({
               <FilterChips
                 selectedFilters={selectedProvenance}
                 onChipRemove={handleProvenanceChange}
-                chipLabels={PROVENANCE_LABELS}
+                chipLabels={provenanceLabels}
               />
               {hasFilter && (
                 <Chip.Button

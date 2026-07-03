@@ -1,7 +1,14 @@
-import { type SearchSortOption, SEARCH_SORT_OPTIONS } from "./types";
+import { type SearchSortOption } from "./types";
 
-export const SORT_OPTION_LABELS: Record<SearchSortOption, string> = {
-  [SEARCH_SORT_OPTIONS.relevance]: "Relevans",
-  [SEARCH_SORT_OPTIONS.firstHarvestedDesc]: "Sist publisert",
-  [SEARCH_SORT_OPTIONS.firstHarvestedAsc]: "Først publisert",
+export type SortDictionary = {
+  relevance: string;
+  newest: string;
+  oldest: string;
+};
+
+export const getSortLabel = (option: SearchSortOption, dict: SortDictionary): string => {
+  if (option === "relevance") return dict.relevance;
+  if (option === "firstHarvestedDesc") return dict.newest;
+  if (option === "firstHarvestedAsc") return dict.oldest;
+  return option;
 };
