@@ -152,6 +152,8 @@ const SearchInput = ({
         isVisible={isTrayVisible}
         loading={loading}
         locale={locale}
+        query={value}
+        onSuggestionSelect={() => setIsTrayVisible(false)}
       />
     </div>
   );

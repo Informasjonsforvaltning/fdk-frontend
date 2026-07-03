@@ -1,4 +1,18 @@
 import { type DatasetReference, type Dataset } from "@fellesdatakatalog/types";
+import type { LocaleCodes } from "@fdk-frontend/localization";
+
+export type SearchSuggestionTitle = Partial<Record<LocaleCodes | "no", string>>;
+
+export type SearchSuggestion = {
+  id: string;
+  title: SearchSuggestionTitle;
+  uri: string;
+  searchType: string;
+};
+
+export type SearchSuggestionsResponse = {
+  suggestions: SearchSuggestion[];
+};
 
 export type LinkObjectType = {
   href?: string;

@@ -1,11 +1,35 @@
-import { type DatasetReference, type SearchObject } from "@fellesdatakatalog/types";
+import { type DatasetReference } from "@fellesdatakatalog/types";
+import type { SearchSuggestionsResponse } from "@fdk-frontend/types";
 import { getResource } from "../../resource-service/api";
 
-// todo: move to fdk-types
-export interface SearchApiResponse {
-  hits?: SearchObject[];
-  [key: string]: unknown;
-}
+const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null;
+
+const isSuggestionsResponse = (value: unknown): value is SearchSuggestionsResponse =>
+  isRecord(value) && Array.isArray(value.suggestions);
+
+/**
+ * Fetches search typeahead suggestions from the FDK search service, `entityPath` scopes suggestions
+ * to a single entity type, omit it to search across all entities.
+ */
+export const getSearchSuggestions = async (query: string, entityPath?: string): Promise<SearchSuggestionsResponse> => {
+  const trimmed = query.trim();
+  if (!trimmed) return { suggestions: [] };
+
+  const subPath = entityPath ? `/${encodeURIComponent(entityPath)}` : "";
+  const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}/suggestions${subPath}?q=${encodeURIComponent(trimmed)}`;
+
+  const response = await fetch(uri, {
+    headers: { Accept: "application/json" },
+  });
+
+  if (!response.ok) {
+    console.error("suggestions failed", uri, response.status);
+    throw new Error("suggestions failed");
+  }
+
+  const json: unknown = await response.json();
+  return isSuggestionsResponse(json) ? json : { suggestions: [] };
+};
 
 export const searchApi = async (path: string, body: any) => {
   const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}${path}`;
