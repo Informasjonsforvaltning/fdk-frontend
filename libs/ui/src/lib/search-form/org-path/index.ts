@@ -26,7 +26,7 @@ export {
   enrichAggregationWithSelection,
 } from "./tree";
 
-export { formatOrgPathLabel, formatOrgPathCheckboxLabel, type OrgPathLabelMap } from "./labels";
+export { formatOrgPathLabel, formatOrgPathCheckboxLabel, type OrgPathLabelMap, type OrgTypeDictionary } from "./labels";
 export { useOrgPathLabels } from "./use-org-path-labels";
 
 export { useSyncedOrgPathSelection } from "./use-synced-selection";

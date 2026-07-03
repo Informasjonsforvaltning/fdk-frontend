@@ -1,13 +1,22 @@
 import { OPEN_DATA_AGGREGATION_KEY } from "./types";
 
-export const ACCESS_RIGHTS_LABELS: Record<string, string> = {
-  [OPEN_DATA_AGGREGATION_KEY]: "Åpne data",
-  PUBLIC: "Allmenn tilgang",
-  RESTRICTED: "Begrenset tilgang",
-  NON_PUBLIC: "Ikke-allmenn tilgang",
-  null: "Ukjent tilgang",
+export type AccessFilterDictionary = {
+  open: string;
+  public: string;
+  restricted: string;
+  nonPublic: string;
+  unknown: string;
 };
 
-export const formatAccessLabel = (key: string): string => ACCESS_RIGHTS_LABELS[key] ?? key;
+export const getAccessRightsLabels = (dict: AccessFilterDictionary): Record<string, string> => ({
+  [OPEN_DATA_AGGREGATION_KEY]: dict.open,
+  PUBLIC: dict.public,
+  RESTRICTED: dict.restricted,
+  NON_PUBLIC: dict.nonPublic,
+  null: dict.unknown,
+});
 
-export const formatAccessCheckboxLabel = (key: string, count: number): string => `${formatAccessLabel(key)} (${count})`;
+export const formatAccessLabel = (key: string, labels: Record<string, string>): string => labels[key] ?? key;
+
+export const formatAccessCheckboxLabel = (key: string, count: number, labels: Record<string, string>): string =>
+  `${formatAccessLabel(key, labels)} (${count})`;

@@ -70,6 +70,27 @@ const searchPage = {
       mediaFormat: "Medieformat",
       fileType: "Filtype",
     },
+    accessFilter: {
+      open: "Åpne data",
+      public: "Allmenn tilgang",
+      restricted: "Begrenset tilgang",
+      nonPublic: "Ikke-allmenn tilgang",
+      unknown: "Ukjent tilgang",
+    },
+    provenanceFilter: {
+      nasjonal: "Nasjonal",
+      vedtak: "Vedtak",
+      bruker: "Bruker",
+      tredjepart: "Tredjepart",
+    },
+    orgTypeFilter: {
+      kommune: "Kommune",
+      stat: "Stat",
+      privat: "Privat",
+      annet: "Annet",
+      fylke: "Fylke",
+      unknown: "Ukjent",
+    },
   },
   aiPromoSplash: {
     introHighlight: "KI-søket",

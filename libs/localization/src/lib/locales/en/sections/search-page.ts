@@ -70,6 +70,27 @@ const searchPage = {
       mediaFormat: "Media format",
       fileType: "File type",
     },
+    accessFilter: {
+      open: "Open data",
+      public: "Public access",
+      restricted: "Restricted access",
+      nonPublic: "Non-public access",
+      unknown: "Unknown access",
+    },
+    provenanceFilter: {
+      nasjonal: "National",
+      vedtak: "Decision",
+      bruker: "User",
+      tredjepart: "Third party",
+    },
+    orgTypeFilter: {
+      kommune: "Municipality",
+      stat: "State",
+      privat: "Private",
+      annet: "Other",
+      fylke: "County",
+      unknown: "Unknown",
+    },
   },
   aiPromoSplash: {
     introHighlight: "The AI search",
