@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Spinner } from "@digdir/designsystemet-react";
+import { Spinner, Tag, Button } from "@digdir/designsystemet-react";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import type { SearchSuggestion, SearchSuggestionsResponse, SearchSuggestionTitle } from "@fdk-frontend/types";
 
@@ -93,6 +93,7 @@ const SearchSuggestions = ({ query, locale, onSelect }: SearchSuggestionsProps) 
   }, [query, activeTab]);
 
   const entityLabels = getLocalization(locale).common.entities;
+  const dictionary = getLocalization(locale).searchPage;
 
   const handleSelect = (suggestion: SearchSuggestion) => {
     const title = getLocalizedTitle(suggestion.title, locale);
@@ -113,14 +114,11 @@ const SearchSuggestions = ({ query, locale, onSelect }: SearchSuggestionsProps) 
   }
 
   if (suggestions.length === 0) {
-    return null;
+    return dictionary.entitySearch.noResults;
   }
 
   return (
-    <ul
-      className={styles.list}
-      role="listbox"
-    >
+    <ul role="listbox">
       {suggestions.map((suggestion) => {
         const title = getLocalizedTitle(suggestion.title, locale);
         const typeLabel = entityLabels[suggestion.searchType];
@@ -130,14 +128,14 @@ const SearchSuggestions = ({ query, locale, onSelect }: SearchSuggestionsProps) 
             role="option"
             aria-selected={false}
           >
-            <button
-              type="button"
-              className={styles.item}
+            <Button
+              className={styles.searchSuggestionItem}
               onClick={() => handleSelect(suggestion)}
+              variant="tertiary"
             >
               <span className={styles.title}>{title}</span>
-              {typeLabel && <span className={styles.typeTag}>{typeLabel}</span>}
-            </button>
+              {typeLabel && <Tag data-size="sm">{typeLabel}</Tag>}
+            </Button>
           </li>
         );
       })}
