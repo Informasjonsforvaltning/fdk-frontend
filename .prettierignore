@@ -6,3 +6,4 @@
 /.github
 /deploy
 /.nx/cache
+*.mdx
