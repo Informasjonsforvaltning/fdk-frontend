@@ -132,9 +132,10 @@ const SearchSuggestions = ({ query, locale, onSelect }: SearchSuggestionsProps) 
               className={styles.searchSuggestionItem}
               onClick={() => handleSelect(suggestion)}
               variant="tertiary"
+              data-size="sm"
             >
               <span className={styles.title}>{title}</span>
-              {typeLabel && <Tag data-size="sm">{typeLabel}</Tag>}
+              {typeLabel && <Tag>{typeLabel}</Tag>}
             </Button>
           </li>
         );
