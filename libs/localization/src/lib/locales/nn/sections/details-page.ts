@@ -103,6 +103,7 @@ const detailsPage = {
     placeholder: "Denne tenesta har inga tenesteresultat.",
     description: "Beskriving",
     language: "Språk",
+    isPartOf: "Er del av",
   },
   apis: {
     title: "API-ar som tilbyr dette datasettet",

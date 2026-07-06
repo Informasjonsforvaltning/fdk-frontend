@@ -103,6 +103,7 @@ const detailsPage = {
     placeholder: "This service has no service results.",
     description: "Description",
     language: "Language",
+    isPartOf: "Is part of",
   },
   apis: {
     title: "APIs providing this dataset",

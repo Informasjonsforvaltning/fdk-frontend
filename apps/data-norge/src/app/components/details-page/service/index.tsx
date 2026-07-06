@@ -35,6 +35,7 @@ export type ServiceDetailsPageType = {
   communityTopics?: CommunityTopic[];
   communityBaseUri: string;
   concepts: SearchObject[];
+  producesDatasets: SearchObject[];
   defaultActiveTab?: string;
   dictionaries: {
     common: Localization;
@@ -52,6 +53,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
     communityTopics,
     communityBaseUri,
     concepts,
+    producesDatasets,
     defaultActiveTab,
     dictionaries,
     locale,
@@ -126,6 +128,17 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
         contents.push({
           label: dictionaries.detailsPage.produces.language,
           value: output.language?.map((language) => printLocaleValue(locale, language.prefLabel)).filter(Boolean).join(", "),
+        });
+      }
+      if (output.isPartOf?.length) {
+        contents.push({
+          label: dictionaries.detailsPage.produces.isPartOf,
+          value: output.isPartOf
+            ?.map((uri) => {
+              const dataset = producesDatasets.find((hit) => hit.uri === uri);
+              return printLocaleValue(locale, dataset?.title) || uri;
+            })
+            .join(", "),
         });
       }
 
