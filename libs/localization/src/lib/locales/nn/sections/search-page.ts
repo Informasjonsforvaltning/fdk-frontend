@@ -37,6 +37,7 @@ const searchPage = {
   },
   searchTabs: {
     loadingBadgeAriaLabel: "Lastar antal treff",
+    searchTabsAriaLabel: "vel søkjetype",
     ki: "KI",
     datasets: "Datasett",
     dataServices: "API",

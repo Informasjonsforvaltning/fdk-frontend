@@ -92,6 +92,7 @@ const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {}, lo
       }}
       className={styles.tabs}
       variant="secondary"
+      data-toggle-group={dict.searchTabsAriaLabel}
     >
       {localizedItems.map((item) => {
         const count = badgeCounts[item.value];

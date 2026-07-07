@@ -5,6 +5,7 @@ const common = {
   },
   footer: {
     digdirCredit: "ei teneste frå",
+    languageToggleGroup: "vel språk",
   },
   header: {
     findDataButton: "Finn data",
