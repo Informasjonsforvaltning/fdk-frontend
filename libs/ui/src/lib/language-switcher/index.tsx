@@ -9,10 +9,10 @@ import { getLocalization, i18n, LocaleCodes } from "@fdk-frontend/localization";
 import styles from "./language-switcher.module.scss";
 
 type LanguageSwitcherProps = {
-  locale?: LocaleCodes;
+  loc?: LocaleCodes;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const LanguageSwitcher = ({ locale, ...props }: LanguageSwitcherProps) => {
+const LanguageSwitcher = ({ loc, ...props }: LanguageSwitcherProps) => {
   const router = useRouter();
   const pathName = usePathname();
 
@@ -33,7 +33,7 @@ const LanguageSwitcher = ({ locale, ...props }: LanguageSwitcherProps) => {
         defaultValue={defaultCode}
         onChange={(code) => onLanguageSelect(code as LocaleCodes)}
         data-size="sm"
-        data-toggle-group={locale ? getLocalization(locale).common.footer.languageToggleGroup : "select language"}
+        data-toggle-group={loc ? getLocalization(loc).common.footer.languageToggleGroup : "select language"}
       >
         {i18n.locales.map((locale) => (
           <ToggleGroup.Item
