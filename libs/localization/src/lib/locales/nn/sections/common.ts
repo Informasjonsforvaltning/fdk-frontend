@@ -131,12 +131,12 @@ const common = {
     DATA_SERVICE: "API",
     CONCEPT: "Begrep",
     INFORMATION_MODEL: "Informasjonsmodell",
-    SERVICE: "Tjenestar",
-    EVENT: "Hendelsar",
+    SERVICE: "Teneste",
+    EVENT: "Hending",
   },
   specializedServices: {
-    service: "Tjenestar",
-    publicService: "Offentlege tenester",
+    service: "Tenestar",
+    publicService: "Offentleg teneste",
   },
   teaser: {
     openData: "Opne data",
