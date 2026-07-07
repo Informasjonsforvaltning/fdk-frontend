@@ -124,7 +124,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
           value: printLocaleValue(locale, output.description),
         });
       }
-      if (output.language?.length || showEmptyRows) {
+      if (output.language?.length) {
         contents.push({
           label: dictionaries.detailsPage.produces.language,
           value: output.language?.map((language) => printLocaleValue(locale, language.prefLabel)).filter(Boolean).join(", "),
