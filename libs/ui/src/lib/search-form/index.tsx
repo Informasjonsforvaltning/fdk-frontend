@@ -475,107 +475,109 @@ const SearchForm = ({
               </HStack>
             )}
             <HStack className={styles.chipsToolbar}>
-              <FilterChips
-                selectedFilters={selectedOrgPaths}
-                onChipRemove={handleOrgPathsChange}
-                chipLabels={orgPathLabels}
-              />
-              <FilterChips
-                selectedFilters={selectedLosThemes}
-                onChipRemove={handleLosThemeChange}
-                chipLabels={losThemeLabels}
-              />
-              <FilterChips
-                selectedFilters={selectedDataThemes}
-                onChipRemove={handleDataThemeChange}
-                chipLabels={dataThemeLabels}
-              />
-              <FilterChips
-                selectedFilters={selectedAccess}
-                onChipRemove={handleAccessChange}
-                chipLabels={accessLabels}
-              />
-              <FilterChips
-                selectedFilters={selectedFormats}
-                onChipRemove={handleFormatChange}
-                chipLabels={formatLabels}
-              />
-              <FilterChips
-                selectedFilters={selectedSpatial}
-                onChipRemove={handleSpatialChange}
-                chipLabels={spatialLabels}
-              />
-              <FilterChips
-                selectedFilters={selectedProvenance}
-                onChipRemove={handleProvenanceChange}
-                chipLabels={provenanceLabels}
-              />
-              {hasFilter && (
-                <Chip.Button
-                  onClick={() => clearFilters()}
-                  data-size="sm"
-                >
-                  {dict.searchForm.clearAllFilters}
-                </Chip.Button>
-              )}
               {showEntityToolbar && (
-                <HStack className={styles.rightToolbar}>
-                  <Dropdown.TriggerContext>
-                    <Dropdown.Trigger
+                <>
+                  <FilterChips
+                    selectedFilters={selectedOrgPaths}
+                    onChipRemove={handleOrgPathsChange}
+                    chipLabels={orgPathLabels}
+                  />
+                  <FilterChips
+                    selectedFilters={selectedLosThemes}
+                    onChipRemove={handleLosThemeChange}
+                    chipLabels={losThemeLabels}
+                  />
+                  <FilterChips
+                    selectedFilters={selectedDataThemes}
+                    onChipRemove={handleDataThemeChange}
+                    chipLabels={dataThemeLabels}
+                  />
+                  <FilterChips
+                    selectedFilters={selectedAccess}
+                    onChipRemove={handleAccessChange}
+                    chipLabels={accessLabels}
+                  />
+                  <FilterChips
+                    selectedFilters={selectedFormats}
+                    onChipRemove={handleFormatChange}
+                    chipLabels={formatLabels}
+                  />
+                  <FilterChips
+                    selectedFilters={selectedSpatial}
+                    onChipRemove={handleSpatialChange}
+                    chipLabels={spatialLabels}
+                  />
+                  <FilterChips
+                    selectedFilters={selectedProvenance}
+                    onChipRemove={handleProvenanceChange}
+                    chipLabels={provenanceLabels}
+                  />
+                  {hasFilter && (
+                    <Chip.Button
+                      onClick={() => clearFilters()}
                       data-size="sm"
-                      variant="tertiary"
                     >
-                      {interpolate(dict.searchForm.resultsCount, { count: selectedSize })} <ChevronDownIcon />
-                    </Dropdown.Trigger>
-                    <Dropdown
-                      className={styles.orderbyDropdown}
-                      placement="bottom-end"
-                      data-size="sm"
-                    >
-                      <Dropdown.List>
-                        {SEARCH_PAGE_SIZE_OPTIONS.map((option) => (
-                          <Dropdown.Item key={option}>
-                            <Dropdown.Button
-                              aria-pressed={selectedSize === option}
-                              onClick={() => navigateToSearch({ size: option })}
-                            >
-                              {selectedSize === option && <CheckmarkIcon />}
-                              {interpolate(dict.searchForm.resultsPerPage, { count: option })}
-                            </Dropdown.Button>
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.List>
-                    </Dropdown>
-                  </Dropdown.TriggerContext>
-                  <Dropdown.TriggerContext>
-                    <Dropdown.Trigger
-                      data-size="sm"
-                      variant="tertiary"
-                    >
-                      <SortDownIcon />
-                      {getSortLabel(selectedSort)}
-                    </Dropdown.Trigger>
-                    <Dropdown
-                      className={styles.orderbyDropdown}
-                      placement="bottom-end"
-                      data-size="sm"
-                    >
-                      <Dropdown.List>
-                        {SEARCH_SORT_OPTION_LIST.map((option) => (
-                          <Dropdown.Item key={option}>
-                            <Dropdown.Button
-                              aria-pressed={selectedSort === option}
-                              onClick={() => handleSortChange(option)}
-                            >
-                              {selectedSort === option && <CheckmarkIcon />}
-                              {getSortLabel(option)}
-                            </Dropdown.Button>
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.List>
-                    </Dropdown>
-                  </Dropdown.TriggerContext>
-                </HStack>
+                      {dict.searchForm.clearAllFilters}
+                    </Chip.Button>
+                  )}
+                  <HStack className={styles.rightToolbar}>
+                    <Dropdown.TriggerContext>
+                      <Dropdown.Trigger
+                        data-size="sm"
+                        variant="tertiary"
+                      >
+                        {interpolate(dict.searchForm.resultsCount, { count: selectedSize })} <ChevronDownIcon />
+                      </Dropdown.Trigger>
+                      <Dropdown
+                        className={styles.orderbyDropdown}
+                        placement="bottom-end"
+                        data-size="sm"
+                      >
+                        <Dropdown.List>
+                          {SEARCH_PAGE_SIZE_OPTIONS.map((option) => (
+                            <Dropdown.Item key={option}>
+                              <Dropdown.Button
+                                aria-pressed={selectedSize === option}
+                                onClick={() => navigateToSearch({ size: option })}
+                              >
+                                {selectedSize === option && <CheckmarkIcon />}
+                                {interpolate(dict.searchForm.resultsPerPage, { count: option })}
+                              </Dropdown.Button>
+                            </Dropdown.Item>
+                          ))}
+                        </Dropdown.List>
+                      </Dropdown>
+                    </Dropdown.TriggerContext>
+                    <Dropdown.TriggerContext>
+                      <Dropdown.Trigger
+                        data-size="sm"
+                        variant="tertiary"
+                      >
+                        <SortDownIcon />
+                        {getSortLabel(selectedSort)}
+                      </Dropdown.Trigger>
+                      <Dropdown
+                        className={styles.orderbyDropdown}
+                        placement="bottom-end"
+                        data-size="sm"
+                      >
+                        <Dropdown.List>
+                          {SEARCH_SORT_OPTION_LIST.map((option) => (
+                            <Dropdown.Item key={option}>
+                              <Dropdown.Button
+                                aria-pressed={selectedSort === option}
+                                onClick={() => handleSortChange(option)}
+                              >
+                                {selectedSort === option && <CheckmarkIcon />}
+                                {getSortLabel(option)}
+                              </Dropdown.Button>
+                            </Dropdown.Item>
+                          ))}
+                        </Dropdown.List>
+                      </Dropdown>
+                    </Dropdown.TriggerContext>
+                  </HStack>
+                </>
               )}
             </HStack>
           </>
