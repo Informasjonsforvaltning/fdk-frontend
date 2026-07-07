@@ -33,6 +33,9 @@
 .orgName {
   font-size: 0.9em;
   opacity: 0.75;
+  @media (max-width: 600px) {
+    display: none;
+  }
 }
 
 .orgButton {
@@ -43,4 +46,24 @@
 .keywords {
   font-size: 0.9em;
   opacity: 0.75;
+}
+
+.entityHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-size-3);
+  @media (max-width: 600px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.description {
+  @media (max-width: 600px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; // how many lines to show
+    -webkit-box-orient: vertical;
+  }
 }

@@ -44,73 +44,75 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
       {...rest}
     >
       <CardBlock>
-        {entity ? (
-          <div>
-            <OrgLogo
-              className={styles.orgLogo}
-              orgNr={entity.organization?.id}
-              title={printLocaleValue(locale, entity.organization?.prefLabel)}
-            />
-            <Heading>
-              <Link href={`/${locale}/${setFragments[entity.searchType]}/${entity.id}`}>
-                {printLocaleValue(locale, entity.title)}
-              </Link>
-            </Heading>
-          </div>
-        ) : (
-          <HStack>
-            <Skeleton
-              width="1.5rem"
-              height="1.5rem"
-              variant="circle"
-            />
-            <Heading data-size="sm">
+        <div className={styles.entityHeader}>
+          {entity ? (
+            <div>
+              <OrgLogo
+                className={styles.orgLogo}
+                orgNr={entity.organization?.id}
+                title={printLocaleValue(locale, entity.organization?.prefLabel)}
+              />
+              <Heading>
+                <Link href={`/${locale}/${setFragments[entity.searchType]}/${entity.id}`}>
+                  {printLocaleValue(locale, entity.title)}
+                </Link>
+              </Heading>
+            </div>
+          ) : (
+            <HStack>
               <Skeleton
-                variant="rectangle"
+                width="1.5rem"
                 height="1.5rem"
-                width="300px"
+                variant="circle"
               />
-            </Heading>
-          </HStack>
-        )}
-        {entity ? (
-          <TagList>
-            <Tag
-              data-color="info"
-              data-size="sm"
-            >
-              <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
-                {entity.searchType === EntityType.PUBLIC_SERVICE &&
-                (entity.specializedType as string | null) === "publicService"
-                  ? localization.specializedServices.publicService
-                  : localization.entities[entity.searchType]}
-              </Link>
-            </Tag>
-            {(entity.searchType === "DATASET" || entity.searchType === "DATA_SERVICE") && (
-              <AccessLevelTag
-                data-size="sm"
-                accessCode={entity.accessRights?.code as AccessRightsCodes}
-                nonInteractive
-                locale={locale}
-              />
-            )}
-            {entity.isOpenData && (
+              <Heading data-size="sm">
+                <Skeleton
+                  variant="rectangle"
+                  height="1.5rem"
+                  width="300px"
+                />
+              </Heading>
+            </HStack>
+          )}
+          {entity ? (
+            <TagList>
               <Tag
-                data-color="success"
+                data-color="info"
                 data-size="sm"
               >
-                {localization.teaser.openData}
+                <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
+                  {entity.searchType === EntityType.PUBLIC_SERVICE &&
+                  (entity.specializedType as string | null) === "publicService"
+                    ? localization.specializedServices.publicService
+                    : localization.entities[entity.searchType]}
+                </Link>
               </Tag>
-            )}
-          </TagList>
-        ) : (
-          <div style={{ marginTop: "0.5rem", lineHeight: "1.75rem" }}>
-            <Skeleton
-              variant="text"
-              width={300}
-            />
-          </div>
-        )}
+              {(entity.searchType === "DATASET" || entity.searchType === "DATA_SERVICE") && (
+                <AccessLevelTag
+                  data-size="sm"
+                  accessCode={entity.accessRights?.code as AccessRightsCodes}
+                  nonInteractive
+                  locale={locale}
+                />
+              )}
+              {entity.isOpenData && (
+                <Tag
+                  data-color="success"
+                  data-size="sm"
+                >
+                  {localization.teaser.openData}
+                </Tag>
+              )}
+            </TagList>
+          ) : (
+            <div style={{ marginTop: "0.5rem", lineHeight: "1.75rem" }}>
+              <Skeleton
+                variant="text"
+                width={300}
+              />
+            </div>
+          )}
+        </div>
         {entity && (
           <Paragraph className={styles.description}>
             {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : localization.teaser.missingDescription}
