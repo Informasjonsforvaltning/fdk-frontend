@@ -11,11 +11,11 @@ import {
 import { type SearchObject } from "@fellesdatakatalog/types";
 import { Alert, Heading } from "@digdir/designsystemet-react";
 import { type LlmSearchResponse } from "@fdk-frontend/data-access";
-import { getPrimarySearchTypeForTab, type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
 import { mapLlmHitToSearchObject } from "../../[lang]/search/search-tab-helpers";
 
 import styles from "./search-page.module.scss";
-import { computeSearchPageDisplay, getDisplayCount, resolveSearchTabBadgeCounts } from "./search-page-display";
+import { computeSearchPageDisplay, resolveSearchTabBadgeCounts } from "./search-page-display";
 import SearchPagination from "./search-pagination";
 import SearchResultsSkeleton from "./search-results-skeleton";
 import { type DocsSearchResult } from "./search-page-types";
@@ -58,7 +58,6 @@ const SearchPage = ({
   llmLoading = false,
 }: SearchPageProps) => {
   const loc = getLocalization(lang);
-  const commonDictionary = loc.common;
   const dictionary = loc.searchPage;
 
   const breadcrumbLabel = query
@@ -66,7 +65,7 @@ const SearchPage = ({
     : dictionary.breadcrumb.label;
   const breadcrumbList = [{ text: breadcrumbLabel }];
 
-  const { llmHitsCount, docsHitsCount, badgeCounts, totalResults } = computeSearchPageDisplay({
+  const { llmHitsCount, docsHitsCount, badgeCounts } = computeSearchPageDisplay({
     activeEntityTab,
     llmResults,
     docsResults,
@@ -80,21 +79,6 @@ const SearchPage = ({
   });
   const entityTabHits = entityTabResults?.hits ?? [];
   const entityTabPage = entityTabResults?.page;
-  const displayCount = getDisplayCount({
-    activeEntityTab,
-    llmHitsCount,
-    filteredHits: entityTabHits,
-    tabBadgeCounts,
-    entityTabPage,
-  });
-
-  const mainHeading = entityLoading
-    ? query
-      ? interpolate(dictionary.heading.loadingWithQuery, { query })
-      : dictionary.heading.loading
-    : query
-      ? interpolate(dictionary.heading.resultsWithQuery, { count: totalResults, query })
-      : interpolate(dictionary.heading.results, { count: totalResults });
 
   return (
     <div className={styles.searchPage}>
@@ -103,7 +87,6 @@ const SearchPage = ({
         breadcrumbList={breadcrumbList}
       />
       <div className={styles.mainContent}>
-        <Heading data-size="md">{mainHeading}</Heading>
         <SearchForm
           lang={lang}
           activeEntityTab={activeEntityTab}
@@ -164,13 +147,6 @@ const SearchPage = ({
             <div className={styles.resultsSection}>
               {entityTabHits.length > 0 ? (
                 <>
-                  <Heading
-                    data-size="sm"
-                    className={styles.sectionHeading}
-                  >
-                    {commonDictionary.entities[getPrimarySearchTypeForTab(activeEntityTab) ?? ""]}{" "}
-                    {interpolate(dictionary.entitySearch.hitsCountLabel, { count: displayCount })}
-                  </Heading>
                   <ul className="fdk-box-list">
                     {entityTabHits.map((hit: SearchObject, i: number) => {
                       const hitId = hit.id ?? hit.uri ?? "";
