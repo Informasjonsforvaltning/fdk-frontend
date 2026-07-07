@@ -104,6 +104,7 @@ const detailsPage = {
     description: "Description",
     language: "Language",
     isPartOf: "Is part of",
+    type: "Type",
   },
   apis: {
     title: "APIs providing this dataset",
