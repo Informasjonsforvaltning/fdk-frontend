@@ -104,6 +104,7 @@ const detailsPage = {
     description: "Beskrivelse",
     language: "Språk",
     isPartOf: "Er del av",
+    type: "Type",
   },
   apis: {
     title: "API-er som tilgjengeliggjør dette datasettet",

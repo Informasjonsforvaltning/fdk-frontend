@@ -141,6 +141,12 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
             .join(", "),
         });
       }
+      if (output.type?.length || showEmptyRows) {
+        contents.push({
+          label: dictionaries.detailsPage.produces.type,
+          value: output.type?.map((type) => printLocaleValue(locale, type.prefLabel)).filter(Boolean).join(", "),
+        });
+      }
 
       return {
         title: printLocaleValue(locale, output.name) || dictionaries.detailsPage.produces.nameless,
