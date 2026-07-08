@@ -5,6 +5,7 @@ const common = {
   },
   footer: {
     digdirCredit: "a service from",
+    languageToggleGroup: "select language",
   },
   header: {
     findDataButton: "Find data",

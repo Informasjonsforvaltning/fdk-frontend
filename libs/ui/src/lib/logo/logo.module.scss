@@ -17,6 +17,9 @@
     font-size: 1.33333rem;
     color: currentcolor;
     line-height: 1.33333rem;
+    @media (max-width: 650px) {
+      display: none;
+    }
   }
 }
 

@@ -22,7 +22,7 @@ export const Primary: Story = {
         <LanguageSwitcher />
       </div>
       <div style={{ background: "black", padding: "1rem" }}>
-        <LanguageSwitcher inverted />
+        <LanguageSwitcher />
       </div>
     </>
   ),

@@ -39,5 +39,8 @@
     position: absolute;
     right: 1rem;
     pointer-events: none;
+    @media (max-width: 800px) {
+      display: none;
+    }
   }
 }

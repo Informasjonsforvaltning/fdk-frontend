@@ -37,6 +37,7 @@ const searchPage = {
   },
   searchTabs: {
     loadingBadgeAriaLabel: "Loading result count",
+    searchTabsAriaLabel: "choose search type",
     ki: "AI",
     datasets: "Datasets",
     dataServices: "APIs",
