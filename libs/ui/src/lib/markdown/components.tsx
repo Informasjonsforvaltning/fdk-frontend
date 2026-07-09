@@ -118,7 +118,7 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
     a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
       if (rest.href?.startsWith("http")) {
         return <ExternalLink {...rest}>{children}</ExternalLink>;
-      } else if (rest.href?.startsWith("/docs")) {
+      } else if (rest.href?.startsWith("/docs") || rest.href?.startsWith("/transportportal")) {
         return (
           <Link
             {...rest}

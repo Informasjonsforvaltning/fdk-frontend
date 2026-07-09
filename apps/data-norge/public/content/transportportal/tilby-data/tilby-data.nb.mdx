@@ -1,0 +1,87 @@
+---
+title: Tilby data
+description: Slik legger du inn og registrerer metadata om datasett og tjenester i Transportportal.no.
+---
+
+# Tilby data
+
+Tilgangspunktet inneholder ikke selve datasettene og tjenestene som skal tilgjengeliggjøres, men kun metadata for disse. Som en del av metadataene vil man finne linker til de underliggende tjenestene og datasettene.
+
+## Legg inn metadata
+Innlegging av metadata kan skje på to måter:
+
+- Via automatisk høsting av metadata fra egen organisasjonsportal
+Dette passer for organisasjoner som allerede har en dataportal som lister deres åpne tjenester og datasett. Det må påregnes noe integrasjonsarbeide for at tilgangspunktet i Digitaliseringsdirektoratet skal kunne høste slike data automatisk. Statens vegvesen sin tjeneste på dataut.vegvesen.no er et eksempel på en intern portal med slik integrasjon.
+- Via direkte innlegging av metadata via webskjema
+Her bruker man Digitaliseringsdirektoratets registreringsløsning, men du må ha en rolle i Altinn som angir at du kan registrere metadata på vegne av din organisasjon. Dette må settes opp av noen i din organisasjon som har tilgang til å tilordne roller i Altinn. Når du siden logger inn i registreringsløsningen blir du først autentisert via IDporten, hvorpå dine eventuelle roller i Altinn blir sjekket. Hvis du har roller på vegne av minst en – evt flere organisasjoner – får du anledning til å velge organisasjonen du vil registrere for og kan gå videre med registrering.
+
+## Registrere datasett
+For at du skal kunne registrere datasett og tjenester i Transportportal.no gjennom registreringstjenesten, må du først ha fått tilordnet en rolle i Altinn som gir tilgang til å registrere data for din organisasjon. Dette settes opp av noen i din organisasjon som har tilgang til å tilordne roller i Altinn.
+
+Etter at du har fått tildelt en rolle i Altinn, kan du gå videre for å registrere metadata for et eller flere datasett. Du har da også tilgang til å slette og redigere egne metadata.
+
+<u>Registrere datasett:</u>
+Ikke alle metadata i registreringsløsningen må fylles ut, men en del felter er obligatoriske. Det er viktig å beskrive datasett godt slik at det blir lettere for utviklere å vite hva datasettet inneholder og hvordan de kan bruke dataene til å utvikle tjenester.
+
+Etter å ha registrert kontaktinformasjon, må tilgangsnivå spesifiseres. Her må det merkes av foroffentlig data for at datasettene skal bli tilgjengelige i transportportal.no. Også for private firma må alle datasett i Transportportal.no være åpne data.
+
+For å registrere datasett under Transportportal.no MÅ du velge noen bestemte tema. Se figur under,
+kolonne 2. Alle disse hører til under hovedtema <u>Transport</u>.
+
+
+
+
+Dersom du merker ditt datasett med en av emneordene i kolonne 2 vil du få en melding om at datasettet vil bli registrert i Transportportal.no. Utviklere som leter etter datasett i Transportportal.no vil kun finne de datasettene som er merket med et av emneordene.
+
+Datasett som naturlig hører hjemme i Transportportal.no karakteriseres i 3 hovedtema i samsvar 
+med ITS direktivet. Disse er:
+
+**Mobilitetstilbud**: Dette temaet dekker datasett innen alle områder knyttet til kollektivtransport samt nye mobilitetstjenester som utleie og bruk av bysykkel, sparkesykkel o.l. Her vil du også finne datasett om ferjestrekninger, gang- og sykkelveger, bussfelt o.l. 
+
+**Trafikkinformasjon**: Dette temaet dekker datasett på alle områder innen veg- og trafikkinformasjon til trafikanter som reiser med kollektivtransport eller individuelle reiser med bil, sykkel, sparkesykkel o.l. Temaet inkluderer for eksempel rutetider, sanntidsinformasjon, arbeid på veg/linje samt informasjon om statiske skilt, oppmerkinger, signaler og reguleringer.
+
+**Veg og vegregulering**: Dette temaet dekker alle statiske data om vegnett inklusive sykkel- og gangveger. Her finner du for eksempel data om type veg, høyde, bredde, bro, tunnel o.l. Temaet inneholder også datasett som gir informasjon om reguleringer som vegstengninger, fartsgrenser, omkjøringsruter o.l.
+
+For å lette søket etter datasett kan man knytte søkeord til hvert datasett. Dette gir utviklere bedre mulighet til å finne relevante datasett. Det er ingen begrensning på antall søkeord per datasett. Transportportal.no skal være en portal for en internasjonal brukergruppe så det er viktig å beskrive datasettene og dokumentasjon på engelsk. Gjerne da i tillegg til norsk. Det er gitt forklarende informasjon for hver type metadata. Dersom noe likevel er uklart; ta kontakt på: kontakt@transportportal.no.
+
+Vær oppmerksom på at alle datasett som er linket til i Transportportal.no er åpne, og det er ubegrenset tilgang for utviklere til å laste dem ned og bruke dem i egne tjenester. Eventuelle restriksjoner f.eks. kostnader ved bruk, må dataeier selv informere om og håndtere. 
+
+Når du legger data i Transportportal.no må en selverklæring om datasettene man gjør tilgjengelig
+fylles ut. Se **_samsvarserklæring_** for mer informasjon om dette. 
+
+For at flest mulig skal ta i bruk Transportportal.no er det svært viktig at dataene holder en høy  kvalitet og holdes oppdatert
+
+## Metadatastandard - DCAT-AP
+Felles datakatalog bruker metadatastandarden DCAT-AP-NO, som er kompatibel med den europeiske standarden DCAT-AP. Det betyr at datasettbeskrivelsene kan forstås og hentes inn også til internasjonale datakataloger. Hvis du er i tvil om enkelte av feltene og ikke får nok hjelp i registreringsløsningen kan du se på [beskrivelsen av standarden](https://data.norge.no/specification/dcat-ap-no).
+
+## Lisenser
+Du må oppgi en lisens som forteller brukeren hvilke vilkår som gjelder for bruk av dataene. De mest aktuelle lisensene er:
+
+[Norsk lisens for offentlige data](https://data.norge.no/nlod/no) (NLOD)
+[Creative Commons Navngivelse 4.0 Internasjonal](https://creativecommons.org/licenses/by/4.0/deed.en)
+[Creative Commons Universal Fristatus-erklæring](https://creativecommons.org/publicdomain/zero/1.0/deed.en)
+
+De to første er svært like (NLOD er gjeldende anbefaling fra Difi og mest brukt i Norge, mens Creative Commons har den fordelen at den er mer kjent internasjonalt).
+
+Den siste lisensen bruker du hvis du vil gi avkall på alle rettigheter til dataene.
+
+Hvis du ønsker å bruke en annen åpen lisens, kontakt oss slik at vi kan gjøre den tilgjengelig i registreringsløsningen.
+
+## Beskrivelse av datasett
+God beskrivelse av datasettene vil gjøre det enklere for tjenesteutviklere å finne relevante  data. Det er derfor viktig at alle dataeiere lager en utfyllende beskrivelse av innhold og  formater samt for hvordan tjenesteutviklere kan gå fram for å bruke dem i egne tjenester. 
+
+Under er det laget et forslag til mal for hva en slik beskrivelse bør inneholde av informasjon. Detaljene er selvsagt avhengig av typen datasett. 
+
+Beskrivelsen legges ut sammen med datasettet hos dataeier, og refereres til via passende metadatafelt.
+
+**1. Generell informasjon om datasettet**
+Her beskrives datasettet, hva representerer dataene som gis ut, hvilken oppdateringsfrekvens har de, datakvalitet, evt. geografisk område som dekkes, spesielle saker å bemerke om datasettet (f.eks. kostnader for å ta dem i bruk, eventuelle restriksjoner ved bruk. o.l.)
+
+**2. Hvordan få tak i dataene og eventuelt synliggjøre dem på kart.**
+Her gis en forklaring på hvordan dataen kan lastes ned og brukes, dvs. teknisk brukerveiledning. Det oppgis hvilke formater som benyttes, maskinlesbare filer, programmeringsgrensesnitt (APIer), geografisk lokasjonsmetode, eventuelle web grensesnitt som kan benyttes, bestillinger av datasett/statistikk o.l. URLer legges inn for tilgang til dataene. Eksempler kan angis om ønskelig. Det kan også være nyttig å henvise til standarder og håndbøker/retningslinjer om slike finnes.
+
+**3. Hvordan bruke dataene.**
+Her gis en rettledning på hvordan brukeren kan bruke dataen. Også eventuelle krav til å holde dataene oppdaterte i egne tjenester, gi referanse til dataeier, ikke misbruke  dataene eller videreselge dem, om det er restriksjoner om det, o.l.
+
+**4. Hvordan gi tilbakemeldinger**
+Det kan være hensiktsmessig å la brukere få mulighet til å gi tilbakemelding på datasettet eller tilgangen til dem. Informasjon om svartiden o.l. kan være nyttig informasjon. Legg ved kontaktinformasjon, helst i form av en felles e-postkasse for hjelp
