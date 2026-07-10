@@ -7,11 +7,6 @@ export const proxy = (request: NextRequest) => {
   const basePath = "/";
   const pathname = request.nextUrl.pathname;
 
-  // Serve static assets in `public/images` directly, bypassing the locale redirect
-  if (pathname.startsWith("/images/")) {
-    return NextResponse.next();
-  }
-
   if (
     [
       "/manifest.json",
