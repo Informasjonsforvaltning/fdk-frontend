@@ -12,12 +12,13 @@ import getMainMenuData from "./data";
 
 type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
   locale: LocaleCodes;
+  profile?: "default" | "transportportal";
   motionProps?: any;
 };
 
 const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
-const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProps) => {
+const MainMenu = ({ className, locale, profile = "default", motionProps = {}, ...rest }: MainMenuProps) => {
   const dictionary = getLocalization(locale).common;
   const data = getMainMenuData(dictionary, locale);
 
@@ -57,11 +58,98 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
       {...rest}
     >
       <div className={styles.links}>
-        <MotionNav
-          className={styles.linkSection}
-          variants={animations.section}
-          aria-labelledby="mainMenu.catalogs.heading"
-        >
+        {profile === "transportportal" && (
+          <>
+            <MotionNav
+              className={styles.linkSection}
+              variants={animations.section}
+              aria-labelledby="mainMenu.transportportal.heading"
+            >
+              <Heading
+                className={styles.linkSectionHeader}
+                level={2}
+                data-size="sm"
+                id="mainMenu.transportportal.heading"
+              >
+                {dictionary.mainMenu.transportportal.heading}
+              </Heading>
+              <ul>
+                {data.transportportal.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href}>{item.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </MotionNav>
+            <MotionNav
+              className={styles.linkSection}
+              variants={animations.section}
+              aria-labelledby="mainMenu.transportportalHelp.heading"
+            >
+              <Heading
+                className={styles.linkSectionHeader}
+                level={2}
+                data-size="sm"
+                id="mainMenu.transportportalHelp.heading"
+              >
+                {dictionary.mainMenu.help.heading}
+              </Heading>
+              <ul>
+                {data.transportportalHelp.map((item) => (
+                  <li key={item.href}>
+                    {item.external ? (
+                      <ExternalLink
+                        href={item.href}
+                        locale={locale}
+                      >
+                        {item.title}
+                      </ExternalLink>
+                    ) : (
+                      <Link href={item.href}>{item.title}</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </MotionNav>
+            <MotionNav
+              className={styles.linkSection}
+              variants={animations.section}
+              aria-labelledby="mainMenu.transportportalLegal.heading"
+            >
+              <Heading
+                className={styles.linkSectionHeader}
+                level={2}
+                data-size="sm"
+                id="mainMenu.transportportalLegal.heading"
+              >
+                {dictionary.mainMenu.transportportal.legalHeading}
+              </Heading>
+              <ul>
+                {data.transportportalLegal.map((item) => (
+                  <li key={item.href}>
+                    {item.external ? (
+                      <ExternalLink
+                        href={item.href}
+                        locale={locale}
+                      >
+                        {item.title}
+                      </ExternalLink>
+                    ) : (
+                      <Link href={item.href}>{item.title}</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </MotionNav>
+          </>
+        )}
+        {profile !== "transportportal" && (
+          <>
+            <MotionNav
+              className={styles.linkSection}
+              variants={animations.section}
+              aria-labelledby="mainMenu.catalogs.heading"
+            >
           <Heading
             className={styles.linkSectionHeader}
             level={2}
@@ -156,6 +244,8 @@ const MainMenu = ({ className, locale, motionProps = {}, ...rest }: MainMenuProp
             ))}
           </ul>
         </MotionNav>
+          </>
+        )}
       </div>
     </MotionNav>
   );

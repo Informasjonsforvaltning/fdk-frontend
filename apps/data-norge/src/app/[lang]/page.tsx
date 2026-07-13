@@ -3,6 +3,7 @@ import { type Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 import { type Locale, getLocalization } from "@fdk-frontend/localization";
 import { Header, Footer } from "@fdk-frontend/ui";
+import { getProfile } from "@fdk-frontend/utils/server";
 import { FrontpageBanner } from "../components/frontpage/frontpage-banner";
 import { ShareDataBanner } from "../components/frontpage/share-data-banner";
 import CatalogsBanner from "../components/frontpage/catalogs-banner";
@@ -23,12 +24,14 @@ const Frontpage = async (props: FrontpageProps) => {
 
   const loc = getLocalization(params.lang);
   const frontpageDictionary = loc.frontpage;
+  const profile = await getProfile();
 
   return (
     <>
       <Header
         locale={params.lang}
         frontpage
+        profile={profile}
       />
       <main id="main">
         <FrontpageBanner

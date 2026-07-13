@@ -3,8 +3,13 @@ import { type RootLayoutProps } from "../root-layout";
 import HeaderLayout from "../header-layout";
 import FooterLayout from "../footer-layout";
 import FeedbackBanner from "../../feedback-banner";
+import { type HeaderProfile } from "../../header";
 
-const NormalLayout = async ({ children, params }: PropsWithChildren & RootLayoutProps) => {
+type NormalLayoutProps = RootLayoutProps & {
+  profile?: HeaderProfile;
+};
+
+const NormalLayout = async ({ children, params, profile }: PropsWithChildren & NormalLayoutProps) => {
   const { lang } = await params;
   const communityBaseUri = process.env.FDK_COMMUNITY_BASE_URI;
   const showSearchInput = process.env.SEARCH_PROTOTYPE_ENABLED === "true";
@@ -13,6 +18,7 @@ const NormalLayout = async ({ children, params }: PropsWithChildren & RootLayout
     <HeaderLayout
       locale={lang}
       showSearchInput={showSearchInput}
+      profile={profile}
     >
       <FooterLayout locale={lang}>
         <main id="main">

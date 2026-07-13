@@ -6,6 +6,7 @@ const docs = {
     "/om-transportportal/nyheter": "Nyheiter",
     "/om-transportportal/tilby-data": "Tilby data",
     "/om-transportportal/samsvarserklaering": "Samsvarserklæring",
+    "/om-transportportal/hjelp-til-a-registrere": "Hjelp til å registrere",
     "/about": "Om oss",
     "/docs/catalogs": "Datakatalogar",
     "/docs/catalogs/datasets": "Datasett",

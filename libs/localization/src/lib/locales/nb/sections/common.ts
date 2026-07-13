@@ -12,6 +12,7 @@ const common = {
     menuButton: "Meny",
     shareDataButton: "Del data",
     skipToMain: "Hopp til hovedinnhold",
+    transportportalTagline: "Nasjonalt tilgangspunkt for veg- og transportdata",
     alert: {
       message: "Planlagt vedlikehold tirsdag kl. 18:00–23:00.",
       linkText: "Les mer på Datalandsbyen",
@@ -19,6 +20,21 @@ const common = {
   },
   mainMenu: {
     label: "Hovedmeny",
+    transportportal: {
+      heading: "Om Transportportal.no",
+      legalHeading: "Juridisk",
+      links: {
+        generalInfo: "Generell informasjon",
+        rolesResponsibilities: "Roller og ansvar",
+        itsDirective: "ITS-direktivet og forordninger",
+        news: "Nyheter",
+        offerData: "Tilby data",
+        declarationOfCompliance: "Samsvarserklæring",
+        registrationHelp: "Hjelp til å registrere",
+        reports: "Rapporter",
+        community: "Datalandsbyen",
+      },
+    },
     about: {
       heading: "Om data.norge.no",
       links: {

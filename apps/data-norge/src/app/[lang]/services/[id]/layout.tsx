@@ -1,4 +1,4 @@
-import { NormalLayout } from "@fdk-frontend/ui";
+import SiteLayout from "../../../components/site-layout";
 import { PropsWithChildren } from "react";
 import { LocaleCodes } from "@fdk-frontend/localization";
 
@@ -12,7 +12,7 @@ const ServiceLayout = async ({
   params: Promise<{ lang: string; id: string }>;
 }) => {
   const typedParams = params as Promise<{ lang: LocaleCodes; id: string }>;
-  return <NormalLayout params={typedParams}>{children}</NormalLayout>;
+  return <SiteLayout params={typedParams}>{children}</SiteLayout>;
 };
 
 export default ServiceLayout;
