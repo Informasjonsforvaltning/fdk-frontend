@@ -1,5 +1,11 @@
 const docs = {
   titles: {
+    "/om-transportportal": "Om Transportportal.no",
+    "/om-transportportal/roller-og-ansvar": "Roller og ansvar",
+    "/om-transportportal/its-direktiv-og-forordninger": "ITS-direktivet og forordningar",
+    "/om-transportportal/nyheter": "Nyheiter",
+    "/om-transportportal/tilby-data": "Tilby data",
+    "/om-transportportal/samsvarserklaering": "Samsvarserklæring",
     "/about": "Om oss",
     "/docs/catalogs": "Datakatalogar",
     "/docs/catalogs/datasets": "Datasett",

@@ -1,0 +1,87 @@
+---
+title: Offer data
+description: How to add and register metadata about datasets and services in Transportportal.no.
+---
+
+# Offer data
+
+The access point does not contain the datasets and services to be made available themselves, only the metadata for these. As part of the metadata, you will find links to the underlying services and datasets.
+
+## Add metadata
+Metadata can be added in two ways:
+
+- Via automatic harvesting of metadata from your own organisation's portal
+This is suitable for organisations that already have a data portal listing their open services and datasets. Some integration work must be expected in order for the access point at Digitaliseringsdirektoratet to be able to harvest such data automatically. Statens vegvesen's service at dataut.vegvesen.no is an example of an internal portal with such integration.
+- Via direct entry of metadata through a web form
+Here you use Digitaliseringsdirektoratet's registration solution, but you must have a role in Altinn indicating that you can register metadata on behalf of your organisation. This must be set up by someone in your organisation who has access to assign roles in Altinn. When you subsequently log in to the registration solution, you are first authenticated via ID-porten, after which any roles you have in Altinn are checked. If you have roles on behalf of at least one - or possibly several - organisations, you are given the opportunity to select the organisation you want to register for and can proceed with registration.
+
+## Register datasets
+In order to register datasets and services in Transportportal.no through the registration service, you must first have been assigned a role in Altinn that gives access to register data for your organisation. This is set up by someone in your organisation who has access to assign roles in Altinn.
+
+After you have been assigned a role in Altinn, you can proceed to register metadata for one or more datasets. You then also have access to delete and edit your own metadata.
+
+<u>Register datasets:</u>
+Not all metadata in the registration solution has to be filled in, but some fields are mandatory. It is important to describe datasets well so that it becomes easier for developers to know what the dataset contains and how they can use the data to develop services.
+
+After registering contact information, the access level must be specified. Here you must mark it as public data so that the datasets become available in transportportal.no. For private companies too, all datasets in Transportportal.no must be open data.
+
+To register datasets under Transportportal.no you MUST select certain specific themes. See the figure below,
+column 2. All of these fall under the main theme <u>Transport</u>.
+
+
+
+
+If you tag your dataset with one of the keywords in column 2, you will receive a message that the dataset will be registered in Transportportal.no. Developers looking for datasets in Transportportal.no will only find the datasets that are tagged with one of the keywords.
+
+Datasets that naturally belong in Transportportal.no are categorised into 3 main themes in accordance 
+with the ITS Directive. These are:
+
+**Mobility services**: This theme covers datasets within all areas related to public transport as well as new mobility services such as the rental and use of city bikes, e-scooters and the like. Here you will also find datasets about ferry routes, walking and cycling paths, bus lanes and the like. 
+
+**Traffic information**: This theme covers datasets in all areas within road and traffic information for road users travelling by public transport or making individual journeys by car, bicycle, e-scooter and the like. The theme includes, for example, timetables, real-time information, work on roads/lines as well as information about static signs, road markings, signals and regulations.
+
+**Roads and road regulation**: This theme covers all static data about the road network, including cycling and walking paths. Here you will find, for example, data about road type, height, width, bridge, tunnel and the like. The theme also contains datasets that provide information about regulations such as road closures, speed limits, diversion routes and the like.
+
+To make it easier to search for datasets, you can associate keywords with each dataset. This gives developers a better chance of finding relevant datasets. There is no limit to the number of keywords per dataset. Transportportal.no is intended to be a portal for an international user community, so it is important to describe the datasets and documentation in English. Preferably in addition to Norwegian. Explanatory information is provided for each type of metadata. If something is nevertheless unclear, get in touch at: kontakt@transportportal.no.
+
+Please note that all datasets linked to in Transportportal.no are open, and developers have unlimited access to download them and use them in their own services. Any restrictions, for example costs of use, must be communicated and handled by the data owner themselves. 
+
+When you add data to Transportportal.no, a self-declaration about the datasets you make available
+must be filled in. See **_declaration of conformity_** for more information about this. 
+
+For as many people as possible to make use of Transportportal.no, it is very important that the data is of high quality and kept up to date
+
+## Metadata standard - DCAT-AP
+Felles datakatalog uses the metadata standard DCAT-AP-NO, which is compatible with the European standard DCAT-AP. This means that the dataset descriptions can be understood and imported into international data catalogues as well. If you are in doubt about some of the fields and do not get enough help in the registration solution, you can look at the [description of the standard](https://data.norge.no/specification/dcat-ap-no).
+
+## Licences
+You must specify a licence that tells the user which terms apply to the use of the data. The most relevant licences are:
+
+[Norwegian Licence for Open Government Data](https://data.norge.no/nlod/no) (NLOD)
+[Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.en)
+[Creative Commons Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/deed.en)
+
+The first two are very similar (NLOD is the current recommendation from Difi and the most widely used in Norway, while Creative Commons has the advantage of being better known internationally).
+
+You use the last licence if you want to waive all rights to the data.
+
+If you wish to use another open licence, contact us so that we can make it available in the registration solution.
+
+## Describing datasets
+A good description of the datasets will make it easier for service developers to find relevant data. It is therefore important that all data owners create a comprehensive description of the content and formats as well as of how service developers can go about using them in their own services. 
+
+Below is a proposed template for what information such a description should contain. The details naturally depend on the type of dataset. 
+
+The description is published together with the dataset at the data owner's location, and is referenced via an appropriate metadata field.
+
+**1. General information about the dataset**
+Here the dataset is described: what the data being made available represents, what update frequency it has, data quality, any geographical area covered, and any special matters to note about the dataset (e.g. costs of using it, any restrictions on use, and the like).
+
+**2. How to obtain the data and, where relevant, display it on a map.**
+Here an explanation is given of how the data can be downloaded and used, i.e. a technical user guide. It states which formats are used, machine-readable files, application programming interfaces (APIs), geographical location method, any web interfaces that can be used, orders of datasets/statistics and the like. URLs are provided for access to the data. Examples can be given if desired. It can also be useful to refer to standards and manuals/guidelines if any exist.
+
+**3. How to use the data.**
+Here guidance is given on how the user can use the data. Also any requirements to keep the data up to date in their own services, to provide a reference to the data owner, not to misuse the data or resell it, if there are any restrictions on this, and the like.
+
+**4. How to give feedback**
+It can be useful to give users the opportunity to provide feedback on the dataset or on access to it. Information about response times and the like can be useful information. Include contact information, preferably in the form of a shared mailbox for help

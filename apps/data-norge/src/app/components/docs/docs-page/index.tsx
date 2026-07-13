@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
-import { mdxComponents, CatalogsMenu, AlertWithLinkButton } from "@fdk-frontend/ui";
+import { mdxComponents, CatalogsMenu, AlertWithLinkButton, YoutubeEmbed } from "@fdk-frontend/ui";
 import MdxPage from "../mdx-page";
 
 const getContentDirectory = (rootContentDirectory: string) => {
@@ -50,6 +50,7 @@ export default async function DocsPage(pageProps: DocsPageProps) {
       components: {
         ...mdxComponents({ locale }),
         AlertWithLinkButton,
+        YoutubeEmbed,
         CatalogsMenu: () => (
           <CatalogsMenu
             locale={locale}
