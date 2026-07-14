@@ -6,6 +6,11 @@ const common = {
   footer: {
     digdirCredit: "ei teneste frå",
     languageToggleGroup: "vel språk",
+    transportportal: {
+      collaboration:
+        "Dette er eit samarbeid mellom Statens vegvesen, Jernbanedirektoratet, Entur og Digitaliseringsdirektoratet.",
+      searchDatasets: "Søk i datasett",
+    },
   },
   header: {
     findDataButton: "Finn data",

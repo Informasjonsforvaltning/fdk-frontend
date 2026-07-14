@@ -40,9 +40,13 @@ body {
     sans-serif;
   background: var(--fdk-color-navy-dark);
   color: var(--fdk-color-text);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 
   main {
     background: white;
+    flex: 1 0 auto;
   }
 }
 
