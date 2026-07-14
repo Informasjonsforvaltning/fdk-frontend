@@ -10,15 +10,18 @@ import MainMenu from "../main-menu";
 import SearchInput from "../search-input";
 import styles from "./header.module.scss";
 
+export type HeaderProfile = "default" | "transportportal";
+
 export type HeaderProps = {
   locale: LocaleCodes;
   frontpage?: boolean;
   showSearchInput?: boolean;
+  profile?: HeaderProfile;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
+const Header = ({ locale, frontpage, showSearchInput, profile = "default" }: HeaderProps) => {
   const dictionary = getLocalization(locale).common;
   const headerRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);
@@ -87,6 +90,7 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
       })}
       ref={headerRef}
       data-color-scheme={!showMenu && frontpage ? "dark" : "light"}
+      data-profile={profile}
     >
       <div
         className={cn(styles.headerOuter, {
@@ -124,6 +128,8 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
           <LogoLink
             className={styles.headerLogo}
             href={`/${locale}`}
+            profile={profile}
+            tagline={profile === "transportportal" ? dictionary.header.transportportalTagline : undefined}
           />
           {showSearchInput ? (
             <SearchInput
@@ -176,7 +182,10 @@ const Header = ({ locale, frontpage, showSearchInput }: HeaderProps) => {
               initial="hidden"
               animate="show"
             >
-              <MainMenu locale={locale} />
+              <MainMenu
+                locale={locale}
+                profile={profile}
+              />
             </MotionDiv>
           </div>
         )}

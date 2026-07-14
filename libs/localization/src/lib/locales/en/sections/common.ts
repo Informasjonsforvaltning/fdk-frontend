@@ -12,6 +12,7 @@ const common = {
     menuButton: "Menu",
     shareDataButton: "Share data",
     skipToMain: "Skip to main content",
+    transportportalTagline: "National access point for road and transport data",
     alert: {
       message: "Planned maintenance Tuesday 6PM to 11PM.",
       linkText: "Read more at Datalandsbyen",
@@ -19,6 +20,21 @@ const common = {
   },
   mainMenu: {
     label: "Main menu",
+    transportportal: {
+      heading: "About Transportportal.no",
+      legalHeading: "Legal",
+      links: {
+        generalInfo: "General information",
+        rolesResponsibilities: "Roles and responsibilities",
+        itsDirective: "The ITS Directive and regulations",
+        news: "News",
+        offerData: "Offer data",
+        declarationOfCompliance: "Declaration of compliance",
+        registrationHelp: "Help with registration",
+        reports: "Reports",
+        community: "Datalandsbyen",
+      },
+    },
     about: {
       heading: "About data.norge.no",
       links: {

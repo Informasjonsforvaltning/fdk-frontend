@@ -39,3 +39,28 @@
   margin: -0.5rem;
   border-radius: 0.25rem;
 }
+
+.transportportalLogo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.1rem;
+  line-height: 1.15;
+}
+
+.transportportalWordmark {
+  font-size: 1.33333rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #58b02c;
+}
+
+.transportportalTagline {
+  font-size: 0.8125rem;
+  color: currentcolor;
+
+  @media (max-width: 650px) {
+    display: none;
+  }
+}

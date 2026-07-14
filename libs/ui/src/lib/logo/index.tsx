@@ -8,25 +8,41 @@ import DpgBadge from "../core/svg/dpg-badge";
 
 import styles from "./logo.module.scss";
 
-const Logo = () => (
-  <div className={styles.logo}>
-    <DigdirEmblem />
-    <span>data.norge.no</span>
-  </div>
-);
+export type LogoProfile = "default" | "transportportal";
+
+export type LogoProps = {
+  profile?: LogoProfile;
+  tagline?: string;
+};
+
+const Logo = ({ profile = "default", tagline }: LogoProps) =>
+  profile === "transportportal" ? (
+    <div className={styles.transportportalLogo}>
+      <span className={styles.transportportalWordmark}>Transportportal.no</span>
+      {tagline ? <span className={styles.transportportalTagline}>{tagline}</span> : null}
+    </div>
+  ) : (
+    <div className={styles.logo}>
+      <DigdirEmblem />
+      <span>data.norge.no</span>
+    </div>
+  );
 
 export type LogoLinkProps = {
   baseUri?: string;
-};
+} & LogoProps;
 
-const LogoLink = ({ className, ...rest }: LogoLinkProps & Omit<LinkProps, "children">) => (
+const LogoLink = ({ className, profile, tagline, ...rest }: LogoLinkProps & Omit<LinkProps, "children">) => (
   <Link
     className={cn(styles.logoLink, "ds-button", className)}
     data-size="sm"
     data-variant="tertiary"
     {...rest}
   >
-    <Logo />
+    <Logo
+      profile={profile}
+      tagline={tagline}
+    />
   </Link>
 );
 

@@ -1,6 +1,65 @@
 import { type Localization } from "@fdk-frontend/localization";
 
 const getMainMenuData = (dictionary: Localization, locale: string) => ({
+  transportportal: [
+    {
+      title: dictionary.mainMenu.transportportal.links.generalInfo,
+      href: `/${locale}/om-transportportal`,
+    },
+    {
+      title: dictionary.mainMenu.transportportal.links.rolesResponsibilities,
+      href: `/${locale}/om-transportportal/roller-og-ansvar`,
+    },
+    {
+      title: dictionary.mainMenu.transportportal.links.itsDirective,
+      href: `/${locale}/om-transportportal/its-direktiv-og-forordninger`,
+    },
+    {
+      title: dictionary.mainMenu.transportportal.links.news,
+      href: `/${locale}/om-transportportal/nyheter`,
+    },
+    {
+      title: dictionary.mainMenu.transportportal.links.offerData,
+      href: `/${locale}/om-transportportal/tilby-data`,
+    },
+  ],
+  transportportalHelp: [
+    {
+      title: dictionary.mainMenu.transportportal.links.registrationHelp,
+      href: `/${locale}/om-transportportal/hjelp-til-a-registrere`,
+    },
+    {
+      title: dictionary.mainMenu.transportportal.links.reports,
+      href: `https://transportportal.no/reports`,
+      external: true,
+    },
+    {
+      title: dictionary.mainMenu.transportportal.links.community,
+      href: `https://datalandsbyen.norge.no`,
+      external: true,
+    },
+  ],
+  transportportalLegal: [
+    {
+      title: dictionary.mainMenu.transportportal.links.declarationOfCompliance,
+      href: `/${locale}/om-transportportal/samsvarserklaering`,
+    },
+    {
+      title: dictionary.mainMenu.about.links.a11yStatement,
+      href: `https://uustatus.no/nb/erklaringer/publisert/8020b962-b706-4cdf-ab8b-cdb5f480a696`,
+      external: true,
+    },
+    {
+      title: dictionary.mainMenu.about.links.privacyPolicy,
+      href: `https://www.digdir.no/digdir/personvernerklaering/706`,
+      external: true,
+    },
+    {
+      title: dictionary.mainMenu.about.links.cookiePolicy,
+      href: `https://www.digdir.no/digdir/informasjonskapsler/707`,
+      external: true,
+    },
+  ],
   catalogs: [
     {
       key: "datasets",

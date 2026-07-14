@@ -129,3 +129,5 @@ spec:
                   key: ORGANIZATION_CATALOG_BASE_URI
             - name: SEARCH_PROTOTYPE_ENABLED
               value: "false"
+            - name: TRANSPORTPORTAL_HOSTS
+              value: "data.transportportal.no,transportportal.no"
