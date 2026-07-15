@@ -140,6 +140,12 @@ const common = {
       "Vær obs på følgende:\n- Destinasjonen er ikke en del av data.norge.no\n- Vi har ingen kontroll over innholdet på destinasjonen\n- Meld fra om brutte lenker til den ansvarlige virksomheten",
     abortButton: "Bli på data.norge.no",
     continueButton: "Fortsett",
+    transportportal: {
+      heading: "Obs! Du forlater nå Transportportal.no...",
+      alertText:
+        "Vær obs på følgende:\n- Destinasjonen er ikke en del av Transportportal.no\n- Vi har ingen kontroll over innholdet på destinasjonen\n- Meld fra om brutte lenker til den ansvarlige virksomheten",
+      abortButton: "Bli på Transportportal.no",
+    },
   },
   aiPromoSplash: {
     heading: "Spør vårt KI-søk med naturlig språk ✨",
