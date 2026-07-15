@@ -140,6 +140,12 @@ const common = {
       "Please be aware of the following:\n- The destination is not part of data.norge.no\n- We have no control over the content at the destination\n- Report broken links to the responsible organization",
     abortButton: "Stay on data.norge.no",
     continueButton: "Continue",
+    transportportal: {
+      heading: "Caution! You are now leaving Transportportal.no...",
+      alertText:
+        "Please be aware of the following:\n- The destination is not part of Transportportal.no\n- We have no control over the content at the destination\n- Report broken links to the responsible organization",
+      abortButton: "Stay on Transportportal.no",
+    },
   },
   aiPromoSplash: {
     heading: "Ask our AI search using natural language ✨",

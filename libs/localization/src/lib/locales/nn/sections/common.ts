@@ -140,6 +140,12 @@ const common = {
       "Vær merksam på følgjande:\n- Destinasjonen er ikkje ein del av data.norge.no\n- Vi har ingen kontroll over innhaldet på destinasjonen\n- Melde frå om brotne lenker til det ansvarlege organet",
     abortButton: "Bli på data.norge.no",
     continueButton: "Fortsett",
+    transportportal: {
+      heading: "Obs! Du forlet no Transportportal.no...",
+      alertText:
+        "Vær merksam på følgjande:\n- Destinasjonen er ikkje ein del av Transportportal.no\n- Vi har ingen kontroll over innhaldet på destinasjonen\n- Melde frå om brotne lenker til det ansvarlege organet",
+      abortButton: "Bli på Transportportal.no",
+    },
   },
   aiPromoSplash: {
     heading: "Spør KI-søket vårt med naturleg språk ✨",
