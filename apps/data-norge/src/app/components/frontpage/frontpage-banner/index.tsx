@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { HeadingWithDivider } from "@fdk-frontend/ui";
@@ -13,11 +14,12 @@ type FrontpageBannerProps = {
   dictionary: Localization;
   locale: LocaleCodes;
   endpoint: string;
+  profile?: "default" | "transportportal";
 };
 
-const FrontpageBanner = ({ dictionary, locale, endpoint }: FrontpageBannerProps) => (
+const FrontpageBanner = ({ dictionary, locale, endpoint, profile = "default" }: FrontpageBannerProps) => (
   <div
-    className={styles.outer}
+    className={cn(styles.outer, { [styles.transportportal]: profile === "transportportal" })}
     id="frontpage-banner"
   >
     <div className={styles.inner}>

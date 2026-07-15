@@ -38,6 +38,7 @@ const Frontpage = async (props: FrontpageProps) => {
           dictionary={frontpageDictionary}
           locale={params.lang}
           endpoint={`${llmSearchBaseUri}/llm`}
+          profile={profile}
         />
         <div className="main-content">
           <ShareDataBanner
