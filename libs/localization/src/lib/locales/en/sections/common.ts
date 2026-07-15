@@ -6,6 +6,11 @@ const common = {
   footer: {
     digdirCredit: "a service from",
     languageToggleGroup: "select language",
+    transportportal: {
+      collaboration:
+        "This is a collaboration between the Norwegian Public Roads Administration, the Norwegian Railway Directorate, Entur and the Norwegian Digitalisation Agency.",
+      searchDatasets: "Search datasets",
+    },
   },
   header: {
     findDataButton: "Find data",

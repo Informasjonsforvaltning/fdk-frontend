@@ -2,15 +2,24 @@ import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { LogoLink, DpgLink, DigdirLogoLink } from "../logo";
 import LanguageSwitcher from "../language-switcher";
 import MainMenu from "../main-menu";
+import TransportportalFooter from "./transportportal-footer";
 import styles from "./footer.module.scss";
 import { HStack } from "@fellesdatakatalog/ui";
 
+export type FooterProfile = "default" | "transportportal";
+
 export type FooterProps = {
   locale: LocaleCodes;
+  profile?: FooterProfile;
 };
 
-const Footer = ({ locale }: FooterProps) => {
+const Footer = ({ locale, profile = "default" }: FooterProps) => {
   const dictionary = getLocalization(locale).common;
+
+  if (profile === "transportportal") {
+    return <TransportportalFooter locale={locale} />;
+  }
+
   return (
     <footer
       className={styles.footer}

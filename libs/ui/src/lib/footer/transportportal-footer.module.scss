@@ -1,0 +1,110 @@
+.footer {
+  background-color: #444f55;
+  background-image: url("./images/illustration-footer-portal.svg");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 35%;
+  color: white;
+}
+
+.inner {
+  max-width: 1000px;
+  margin: auto;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  container-type: inline-size;
+
+  @media (max-width: 400px) {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.logo {
+  height: 2.5rem;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+}
+
+.statensVegvesen {
+  aspect-ratio: 200 / 104.7;
+  background-image: url("./images/logo-statens-vegvesen-negativ.svg");
+}
+
+.jernbanedirektoratet {
+  aspect-ratio: 141.3 / 51.2;
+  background-image: url("./images/logo-jernbanedirektoratet-hvit.svg");
+}
+
+.entur {
+  aspect-ratio: 2 / 1;
+  background-image: url("./images/logo-entur-hvit.svg");
+}
+
+.digdir {
+  aspect-ratio: 115.04 / 38.86;
+  background-image: url("./images/logo-digdir-negativ.svg");
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2rem;
+
+  @container (max-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @container (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  p {
+    margin: 0;
+    max-width: 30ch;
+  }
+
+  .email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+// Language switcher: blend the toggle with the grey footer background
+// instead of the default navy surface / blue selected state.
+.footer {
+  :global(fieldset) {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  :global(label.ds-button:has(input:checked)) {
+    background: #e6e8ea;
+    color: #1e2b3c;
+  }
+}

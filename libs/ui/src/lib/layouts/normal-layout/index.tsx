@@ -20,7 +20,10 @@ const NormalLayout = async ({ children, params, profile }: PropsWithChildren & N
       showSearchInput={showSearchInput}
       profile={profile}
     >
-      <FooterLayout locale={lang}>
+      <FooterLayout
+        locale={lang}
+        profile={profile}
+      >
         <main id="main">
           {children}
           <FeedbackBanner

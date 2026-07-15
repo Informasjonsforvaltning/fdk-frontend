@@ -51,7 +51,10 @@ const Frontpage = async (props: FrontpageProps) => {
           />
         </div>
       </main>
-      <Footer locale={params.lang} />
+      <Footer
+        locale={params.lang}
+        profile={profile}
+      />
     </>
   );
 };
