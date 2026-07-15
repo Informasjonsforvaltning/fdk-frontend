@@ -18,6 +18,15 @@
     background: radial-gradient(circle, var(--fdk-color-navy), var(--fdk-color-navy-dark));
     mix-blend-mode: hard-light;
   }
+
+  // Transportportal profile: grey banner to match the grey header/menu/footer
+  &.transportportal {
+    background: #3b444a;
+
+    .gradient {
+      background: radial-gradient(circle, #4d5860, #3b444a);
+    }
+  }
 }
 
 .inner {
