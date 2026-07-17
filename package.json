@@ -7,6 +7,8 @@
     "node": ">=20.11.1"
   },
   "resolutions": {
+    "websocket-driver": "^0.7.5",
+    "js-yaml": "^4.2.0",
     "esbuild": "^0.28.1",
     "shell-quote": "^1.8.4",
     "glob": "^10.5.0",
