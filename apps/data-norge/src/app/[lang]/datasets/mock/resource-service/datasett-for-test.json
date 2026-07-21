@@ -75,16 +75,18 @@
       "uri": null
     }
   ],
-  "dctType": {
-    "code": "TEST_DATA",
-    "prefLabel": {
-      "en": "Test data",
-      "nb": "Testdata",
-      "nn": "Testdata",
-      "no": "Testdata"
-    },
-    "uri": "http://publications.europa.eu/resource/authority/dataset-type/TEST_DATA"
-  },
+  "dctType": [
+    {
+      "code": "TEST_DATA",
+      "prefLabel": {
+        "en": "Test data",
+        "nb": "Testdata",
+        "nn": "Testdata",
+        "no": "Testdata"
+      },
+      "uri": "http://publications.europa.eu/resource/authority/dataset-type/TEST_DATA"
+    }
+  ],
   "description": {
     "en": "This is a test dataset created via the registration solution and where all the fields in the form are filled in.\n\n---\n\n**Purpose:** Test the new dataset details page in the portal.\n\n**Extra text:**\n\n**Dataens nye drakt**\n\nI et rike av nuller og enere,\\\nder data.norge skinner i scener.\\\nMed åpne kilder og innsikt brett,\\\nligger der skjulte skatter – et datasett.\n\nPå detaljesiden finner du svar,\\\nstatistikk og fakta står alltid klar.\\\nEt nytt design, så friskt og lett,\\\nåpner for kunnskap i riktig nett.\n\nFra tall til trender, fra kode til kunst,\\\nher bygges fremtiden – bit for bit, med lyst.\n\nBy ChatGPT 😊\n",
     "nb": "Dette er et testdatasett som er opprettet via registreringsløsningen og der alle feltene i skjemaet er fylt ut.\n\n---\n\n**Formål:** Test den nye detaljesiden for datasett i portalen.\n\n**Ekstra tekst:**\n\n**Dataens nye drakt**\n\nI et rike av nuller og enere,\\\nder data.norge skinner i scener.\\\nMed åpne kilder og innsikt brett,\\\nligger der skjulte skatter – et datasett.\n\nPå detaljesiden finner du svar,\\\nstatistikk og fakta står alltid klar.\\\nEt nytt design, så friskt og lett,\\\nåpner for kunnskap i riktig nett.\n\nFra tall til trender, fra kode til kunst,\\\nher bygges fremtiden – bit for bit, med lyst.\n\nBy ChatGPT 😊\n",
