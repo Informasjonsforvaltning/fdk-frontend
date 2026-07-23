@@ -73,6 +73,13 @@ const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {}, lo
   const dict = getLocalization(locale).searchPage.searchTabs;
   const localizedItems = getLocalizedSearchTabItems(locale);
 
+  // Hide tabs with 0 results. The KI tab and the currently active tab are always
+  // kept; a count of `undefined` means results are still loading, so keep it shown.
+  const visibleItems = localizedItems.filter((item) => {
+    if (item.value === KI_TOGGLE_VALUE || item.value === toggleValue) return true;
+    return badgeCounts[item.value] !== 0;
+  });
+
   return (
     <ToggleGroup
       value={toggleValue}
@@ -94,7 +101,7 @@ const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {}, lo
       variant="secondary"
       data-toggle-group={dict.searchTabsAriaLabel}
     >
-      {localizedItems.map((item) => {
+      {visibleItems.map((item) => {
         const count = badgeCounts[item.value];
         return (
           <ToggleGroup.Item
