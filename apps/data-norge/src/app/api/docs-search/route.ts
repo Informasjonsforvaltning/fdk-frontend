@@ -2,6 +2,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { NextResponse, type NextRequest } from "next/server";
 import type { LocaleCodes } from "@fdk-frontend/localization";
+import { getProfile } from "@fdk-frontend/utils/server";
+
+const TRANSPORTPORTAL_CONTENT_ROOT = "om-transportportal";
 
 type DocsSearchResult = {
   id: string;
@@ -14,6 +17,7 @@ type DocsSearchResult = {
 
 type DocsIndexEntry = DocsSearchResult & {
   content: string;
+  section?: string;
 };
 
 let docsIndex: DocsIndexEntry[] | null = null;
@@ -79,6 +83,13 @@ const extractLocaleFromFilename = (filename: string): LocaleCodes | undefined =>
   return isSupportedLocale(candidate) ? candidate : undefined;
 };
 
+const getContentRoot = (publicDir: string, filePath: string): string | undefined => {
+  const contentRoot = path.join(publicDir, "content");
+  if (!filePath.startsWith(contentRoot)) return undefined;
+  const relative = path.relative(contentRoot, filePath);
+  return relative.split(path.sep)[0] || undefined;
+};
+
 const buildUrlFromFile = (publicDir: string, filePath: string, locale: LocaleCodes): string | undefined => {
   const contentRoot = path.join(publicDir, "content");
   if (!filePath.startsWith(contentRoot)) {
@@ -141,6 +152,7 @@ const buildDocsIndex = async (): Promise<DocsIndexEntry[]> => {
         locale,
         updated,
         content: stripTagsAndWhitespace(source),
+        section: getContentRoot(publicDir, filePath),
       };
 
       return entry;
@@ -175,11 +187,15 @@ export const GET = async (request: NextRequest) => {
 
   const locale: LocaleCodes = isSupportedLocale(rawLang) ? rawLang : "nb";
 
+  const isTransportportal = (await getProfile()) === "transportportal";
+
   const index = await getDocsIndex();
   const qLower = query.toLowerCase();
 
   const matches = index.filter((entry) => {
     if (entry.locale !== locale) return false;
+    const isTransportportalDoc = entry.section === TRANSPORTPORTAL_CONTENT_ROOT;
+    if (isTransportportal !== isTransportportalDoc) return false;
     const haystack = `${entry.title} ${entry.summary} ${entry.content}`.toLowerCase();
     return haystack.includes(qLower);
   });
