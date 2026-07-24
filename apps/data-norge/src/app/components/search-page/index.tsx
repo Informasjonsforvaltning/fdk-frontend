@@ -37,6 +37,8 @@ export type SearchPageProps = {
   dataThemeAggregation?: AggregationKeyCount[];
   entityLoading?: boolean;
   llmLoading?: boolean;
+  /** Hide the KI (AI) tab and its result block, e.g. on the transportportal profile. */
+  hideKiTab?: boolean;
 };
 
 const SearchPage = ({
@@ -56,6 +58,7 @@ const SearchPage = ({
   dataThemeAggregation,
   entityLoading = false,
   llmLoading = false,
+  hideKiTab = false,
 }: SearchPageProps) => {
   const loc = getLocalization(lang);
   const dictionary = loc.searchPage;
@@ -99,6 +102,7 @@ const SearchPage = ({
           formatAggregation={formatAggregation}
           losThemeAggregation={losThemeAggregation}
           dataThemeAggregation={dataThemeAggregation}
+          hideKiTab={hideKiTab}
         />
         <div>
           {entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
@@ -110,7 +114,7 @@ const SearchPage = ({
             </div>
           )}
 
-          {!entityLoading && activeEntityTab === undefined && (
+          {!entityLoading && activeEntityTab === undefined && !hideKiTab && (
             <div className={styles.resultsSection}>
               {llmLoading ? (
                 <SearchResultsSkeleton

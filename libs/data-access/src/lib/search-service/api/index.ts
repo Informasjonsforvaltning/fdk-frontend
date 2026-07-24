@@ -193,13 +193,15 @@ export const searchEntitiesByPath = async (
     query?: string;
     filters?: Record<string, unknown>;
     sort?: { field?: string; direction?: "ASC" | "DESC" };
+    profile?: string;
   } = {},
 ) => {
-  const { pagination, query, filters, sort } = options;
+  const { pagination, query, filters, sort, profile } = options;
   return await searchApi(`/search/${path}`, {
     pagination: pagination ?? {},
     ...(query !== undefined ? { query } : {}),
     ...(filters ? { filters } : {}),
     ...(sort ? { sort } : {}),
+    ...(profile ? { profile } : {}),
   });
 };
