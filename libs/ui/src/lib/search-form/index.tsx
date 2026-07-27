@@ -117,6 +117,8 @@ export type SearchFormProps = {
   defaultValue?: SearchTabsValue;
   onSearch?: (query: string, type: SearchTabsValue) => void;
   className?: string;
+  /** Hide the KI (AI) tab, e.g. on the transportportal profile. */
+  hideKiTab?: boolean;
 };
 
 const SearchForm = ({
@@ -134,6 +136,7 @@ const SearchForm = ({
   defaultValue = "ki",
   onSearch,
   className,
+  hideKiTab = false,
 }: SearchFormProps) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -380,6 +383,7 @@ const SearchForm = ({
             onChange={handleTabChange}
             badgeCounts={badgeCounts}
             locale={locale}
+            hideKiTab={hideKiTab}
           />
           <>
             {showEntityToolbar && (

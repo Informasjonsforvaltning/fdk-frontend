@@ -53,11 +53,15 @@ export type SearchSummaryResponse = {
 export const SEARCH_SUMMARY_PAGE_SIZE = 10;
 export const SEARCH_SUMMARY_PAGE = 0;
 
+/** Search-service profile filter; scopes catalog results to the transportportal tag. */
+export const TRANSPORT_SEARCH_PROFILE = "TRANSPORT" as const;
+
 export type SearchApiOptions = {
   pagination: { size?: number; page?: number };
   query?: string;
   filters?: Record<string, unknown>;
   sort?: SearchSortBody;
+  profile?: typeof TRANSPORT_SEARCH_PROFILE;
 };
 
 export const buildSearchApiOptions = function (body: {

@@ -1,18 +1,20 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useReducer } from "react";
 import { type LocaleCodes } from "@fdk-frontend/localization";
+import { type Profile } from "@fdk-frontend/utils/server";
 import { parseSearchPageParam, parseSearchPageSizeParam } from "@fdk-frontend/ui/search-form";
 import { deriveActiveEntityTabFromPathname, deriveLangFromPathname } from "../../[lang]/search/search-route";
 import SearchPage, { type SearchPageProps } from "./index";
 import { loadEntitySearchState, loadLlmDocsSearchState } from "./search-fetch";
 import { initialSearchPageState, searchPageReducer } from "./search-page-state";
 
-export type SearchPageClientProps = Pick<SearchPageProps, "lang">;
+export type SearchPageClientProps = Pick<SearchPageProps, "lang"> & { profile?: Profile };
 
-const SearchPageClient = function ({ lang }: SearchPageClientProps) {
+const SearchPageClient = function ({ lang, profile = "default" }: SearchPageClientProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const langFromUrl = deriveLangFromPathname(pathname);
@@ -29,8 +31,17 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
   const pageParam = parseSearchPageParam(searchParams.get("page"));
   const sizeParam = parseSearchPageSizeParam(searchParams.get("size"));
   const locale = (lang ?? langFromUrl) as LocaleCodes;
+  const hideKiTab = profile === "transportportal";
 
   const [{ entityLoading, llmLoading, data }, dispatch] = useReducer(searchPageReducer, initialSearchPageState);
+
+  // The transportportal profile has no KI (AI) tab, so redirect its default landing
+  // (`/search` = KI) to the datasets tab, preserving any query and filters.
+  useEffect(() => {
+    if (!hideKiTab || activeEntityTab !== undefined) return;
+    const queryString = searchParams.toString();
+    router.replace(`/${locale}/search/datasets${queryString ? `?${queryString}` : ""}`);
+  }, [hideKiTab, activeEntityTab, locale, router, searchParams]);
 
   const orgAggregation =
     activeEntityTab && activeEntityTab !== "docs" ? data.orgAggregationsByTab?.[activeEntityTab] : undefined;
@@ -129,6 +140,7 @@ const SearchPageClient = function ({ lang }: SearchPageClientProps) {
       dataThemeAggregation={dataThemeAggregation}
       entityLoading={entityLoading}
       llmLoading={llmLoading}
+      hideKiTab={hideKiTab}
     />
   );
 };

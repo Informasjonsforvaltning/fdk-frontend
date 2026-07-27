@@ -1,9 +1,11 @@
 import { searchEntitiesByPath } from "@fdk-frontend/data-access/server";
+import { getProfile } from "@fdk-frontend/utils/server";
 
 import {
   buildSearchApiOptions,
   createEmptySearchSummarySlice,
   normalizeSearchSummarySlice,
+  TRANSPORT_SEARCH_PROFILE,
 } from "../../../[lang]/search/search-summary";
 
 export const POST = async function (request: Request) {
@@ -15,7 +17,11 @@ export const POST = async function (request: Request) {
       return Response.json({ error: "Missing path" }, { status: 400 });
     }
 
-    const searchOptions = buildSearchApiOptions(body);
+    const isTransportportal = (await getProfile()) === "transportportal";
+    const searchOptions = {
+      ...buildSearchApiOptions(body),
+      ...(isTransportportal ? { profile: TRANSPORT_SEARCH_PROFILE } : {}),
+    };
     const result = normalizeSearchSummarySlice(await searchEntitiesByPath(path, searchOptions));
 
     return Response.json(result);

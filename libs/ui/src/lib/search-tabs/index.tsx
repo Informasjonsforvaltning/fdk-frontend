@@ -16,6 +16,7 @@ export type SearchTabsProps = {
   /** Badge counts per tab value. `undefined` renders a loading placeholder. */
   badgeCounts?: Record<string, number | undefined>;
   locale?: LocaleCodes;
+  hideKiTab?: boolean;
 };
 
 export type SearchTabItem = {
@@ -66,17 +67,27 @@ const SearchTabBadge = ({ count, loadingAriaLabel }: { count: number | undefined
   );
 };
 
-const SearchTabs = ({ value, defaultValue = "ki", onChange, badgeCounts = {}, locale = "nb" }: SearchTabsProps) => {
+const SearchTabs = ({
+  value,
+  defaultValue = "ki",
+  onChange,
+  badgeCounts = {},
+  locale = "nb",
+  hideKiTab = false,
+}: SearchTabsProps) => {
   const isControlled = value !== undefined;
   const toggleValue = isControlled ? value : defaultValue;
   const userInitiatedChangeRef = useRef(false);
   const dict = getLocalization(locale).searchPage.searchTabs;
   const localizedItems = getLocalizedSearchTabItems(locale);
 
-  // Hide tabs with 0 results. The KI tab and the currently active tab are always
+  // Hide entity tabs with 0 results. The KI, docs, and currently active tabs are always
   // kept; a count of `undefined` means results are still loading, so keep it shown.
+  // The KI tab is dropped entirely when `hideKiTab` is set (transportportal profile).
   const visibleItems = localizedItems.filter((item) => {
-    if (item.value === KI_TOGGLE_VALUE || item.value === toggleValue) return true;
+    if (item.value === KI_TOGGLE_VALUE) return !hideKiTab;
+    if (item.value === "docs") return true;
+    if (item.value === toggleValue) return true;
     return badgeCounts[item.value] !== 0;
   });
 

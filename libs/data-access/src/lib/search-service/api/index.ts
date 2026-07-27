@@ -9,14 +9,20 @@ const isSuggestionsResponse = (value: unknown): value is SearchSuggestionsRespon
 
 /**
  * Fetches search typeahead suggestions from the FDK search service, `entityPath` scopes suggestions
- * to a single entity type, omit it to search across all entities.
+ * to a single entity type, omit it to search across all entities. `profile` scopes suggestions to a
+ * search profile (e.g. `TRANSPORT` for transportportal), matching the filtered catalog search.
  */
-export const getSearchSuggestions = async (query: string, entityPath?: string): Promise<SearchSuggestionsResponse> => {
+export const getSearchSuggestions = async (
+  query: string,
+  entityPath?: string,
+  profile?: string,
+): Promise<SearchSuggestionsResponse> => {
   const trimmed = query.trim();
   if (!trimmed) return { suggestions: [] };
 
   const subPath = entityPath ? `/${encodeURIComponent(entityPath)}` : "";
-  const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}/suggestions${subPath}?q=${encodeURIComponent(trimmed)}`;
+  const profileQuery = profile ? `&profile=${encodeURIComponent(profile)}` : "";
+  const uri = `${process.env.FDK_SEARCH_SERVICE_BASE_URI}/suggestions${subPath}?q=${encodeURIComponent(trimmed)}${profileQuery}`;
 
   const response = await fetch(uri, {
     headers: { Accept: "application/json" },
@@ -193,13 +199,15 @@ export const searchEntitiesByPath = async (
     query?: string;
     filters?: Record<string, unknown>;
     sort?: { field?: string; direction?: "ASC" | "DESC" };
+    profile?: string;
   } = {},
 ) => {
-  const { pagination, query, filters, sort } = options;
+  const { pagination, query, filters, sort, profile } = options;
   return await searchApi(`/search/${path}`, {
     pagination: pagination ?? {},
     ...(query !== undefined ? { query } : {}),
     ...(filters ? { filters } : {}),
     ...(sort ? { sort } : {}),
+    ...(profile ? { profile } : {}),
   });
 };
