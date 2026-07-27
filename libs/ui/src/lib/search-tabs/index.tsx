@@ -81,11 +81,12 @@ const SearchTabs = ({
   const dict = getLocalization(locale).searchPage.searchTabs;
   const localizedItems = getLocalizedSearchTabItems(locale);
 
-  // Hide tabs with 0 results. The KI tab and the currently active tab are always
+  // Hide entity tabs with 0 results. The KI, docs, and currently active tabs are always
   // kept; a count of `undefined` means results are still loading, so keep it shown.
   // The KI tab is dropped entirely when `hideKiTab` is set (transportportal profile).
   const visibleItems = localizedItems.filter((item) => {
     if (item.value === KI_TOGGLE_VALUE) return !hideKiTab;
+    if (item.value === "docs") return true;
     if (item.value === toggleValue) return true;
     return badgeCounts[item.value] !== 0;
   });
