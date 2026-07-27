@@ -35,6 +35,8 @@ export { default as ConceptPreviewBase } from "./lib/concept-preview-base";
 export * from "./lib/concept-preview-base";
 export { default as DatasetPreviewModal } from "./lib/dataset-preview-modal";
 export * from "./lib/dataset-preview-modal";
+export { default as DatasetPreviewPlainText } from "./lib/dataset-preview-plain-text";
+export * from "./lib/dataset-preview-plain-text";
 export { default as DatasetPreviewTable } from "./lib/dataset-preview-table";
 export * from "./lib/dataset-preview-table";
 export { default as DatasetPreviewWidget } from "./lib/dataset-preview-widget";

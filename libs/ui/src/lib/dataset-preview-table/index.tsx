@@ -1,9 +1,10 @@
 import React from "react";
 import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from "@digdir/designsystemet-react";
+import { type DatasetPreviewTable as DatasetPreviewTableData } from "@fdk-frontend/types";
 import styles from "./styles.module.scss";
 
 type DatasetPreviewTableProps = {
-  tableData: any;
+  tableData: DatasetPreviewTableData;
 };
 
 const DatasetPreviewTable = ({
@@ -17,7 +18,7 @@ const DatasetPreviewTable = ({
     >
       <TableHead>
         <TableRow>
-          {tableData.header.columns.map((th: string) => (
+          {tableData.header.columns.map((th) => (
             <TableHeaderCell
               className={styles.cell}
               key={th}
@@ -28,9 +29,9 @@ const DatasetPreviewTable = ({
         </TableRow>
       </TableHead>
       <TableBody>
-        {tableData.rows.map((row: any, i: number) => (
+        {tableData.rows.map((row, i) => (
           <TableRow key={`row-${i}`}>
-            {row.columns.map((column: string, j: number) => (
+            {row.columns.map((column, j) => (
               <TableCell
                 className={styles.cell}
                 key={`col-${j}`}
