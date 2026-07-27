@@ -34,7 +34,6 @@ const frontpage = {
         "Korleis presterer norske skular?",
         "Kor mykje skog har Noreg?",
         "Korleis går det med digitalisering i Noreg?",
-        "Kva for teknologiar er mest brukte i Noreg?",
       ],
       prefix: "Prøv t.d.",
     },
