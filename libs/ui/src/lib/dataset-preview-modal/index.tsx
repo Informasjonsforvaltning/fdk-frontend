@@ -5,13 +5,15 @@ import { Alert, Dialog, Button, Tag, Link, Paragraph, Heading } from "@digdir/de
 import { DownloadIcon, ArrowDownRightIcon } from "@navikt/aksel-icons";
 import styles from "./styles.module.scss";
 import DatasetPreviewTable from "../dataset-preview-table/";
+import DatasetPreviewPlainText from "../dataset-preview-plain-text/";
 import { type Localization } from "@fdk-frontend/localization";
+import { type DatasetPreviewData } from "@fdk-frontend/types";
 import { HStack } from "@fellesdatakatalog/ui";
 
 type DatasetPreviewModalProps = {
   trigger: ReactNode;
   title: string;
-  data: any;
+  data: DatasetPreviewData;
   downloadUrl: string;
   dictionary: Localization;
 };
@@ -41,13 +43,15 @@ const DatasetPreviewModal = ({
             data-size="xs"
           >
             {title}
-            <Tag
-              className={styles.maxRowsNotice}
-              data-size="sm"
-              data-color="warning"
-            >
-              {dictionary.datasetPreview.showingMaxRows}
-            </Tag>
+            {data.table ? (
+              <Tag
+                className={styles.maxRowsNotice}
+                data-size="sm"
+                data-color="warning"
+              >
+                {dictionary.datasetPreview.showingMaxRows}
+              </Tag>
+            ) : null}
           </Heading>
           <div>
             <ArrowDownRightIcon className={styles.arrowIcon} />
@@ -60,8 +64,10 @@ const DatasetPreviewModal = ({
           <div className={styles.inner}>
             {data.table ? (
               <DatasetPreviewTable tableData={data.table} />
+            ) : data.plain?.value ? (
+              <DatasetPreviewPlainText content={data.plain.value} />
             ) : (
-              <Alert data-size="sm">{dictionary.datasetPreview.noTableData}</Alert>
+              <Alert data-size="sm">{dictionary.datasetPreview.noPreviewData}</Alert>
             )}
           </div>
         </Dialog.Block>

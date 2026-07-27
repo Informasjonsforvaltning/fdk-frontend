@@ -1,0 +1,9 @@
+.plainText {
+  margin: 0;
+  padding: 1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--fds-font-family-mono, ui-monospace, monospace);
+  font-size: var(--fds-font-size-2, 0.875rem);
+  line-height: 1.5;
+}

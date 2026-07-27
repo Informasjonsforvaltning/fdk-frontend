@@ -303,12 +303,13 @@ const detailsPage = {
   datasetPreview: {
     generatingPreview: "Genererer førehandsvising...",
     previewNotAvailable: "Førehandsvising ikkje tilgjengeleg",
-    previewNotAvailableHelpText: "Førehandsvising er berre tilgjengeleg for datakjelder med CSV og XLS/XLSX-format.",
+    previewNotAvailableHelpText:
+      "Førehandsvising er berre tilgjengeleg for datakjelder med CSV, XLS/XLSX, JSON og XML-format.",
     showPreviewButton: "Vis førehandsvising",
     showingMaxRows: "Viser maks 100 rader",
     closeButton: "Lukk vindauge",
     downloadButton: "Last ned heile datasettet",
-    noTableData: "Ingen tabelldata tilgjengeleg",
+    noPreviewData: "Ingen førehandsvisingsdata tilgjengeleg",
   },
   statusCodes: {
     Completed: "Godkjent",

@@ -6,6 +6,7 @@ import { Spinner, Button } from "@digdir/designsystemet-react";
 import { EyeIcon } from "@navikt/aksel-icons";
 import DatasetPreviewModal from "../dataset-preview-modal/";
 import { type Localization } from "@fdk-frontend/localization";
+import { type DatasetPreviewData, hasDatasetPreviewData } from "@fdk-frontend/types";
 import {
   trackSiteImproveEvent,
   EventCategory,
@@ -32,7 +33,7 @@ const DatasetPreviewWidget = ({
 }: DatasetPreviewWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [data, setData] = useState<any>(undefined);
+  const [data, setData] = useState<DatasetPreviewData | undefined>(undefined);
 
   useEffect(() => {
     const getDatasetPreview = async () => {
@@ -49,7 +50,7 @@ const DatasetPreviewWidget = ({
 
         if (!response.ok) throw new Error("Request failed");
 
-        const json = await response.json();
+        const json: DatasetPreviewData = await response.json();
         setData(json);
       } catch {
         setError(true);
@@ -73,10 +74,10 @@ const DatasetPreviewWidget = ({
           />
         </div>
       )}
-      {!error && data?.table && (
+      {!error && hasDatasetPreviewData(data) && (
         <DatasetPreviewModal
           title={title}
-          data={data || {}}
+          data={data ?? {}}
           downloadUrl={downloadUrl}
           trigger={
             <Button
