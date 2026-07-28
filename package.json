@@ -103,7 +103,7 @@
     "leaflet": "^1.9.4",
     "marked": "^15.0.12",
     "mime-types": "^3.0.2",
-    "next": "^16.2.5",
+    "next": "^16.2.12",
     "next-mdx-remote": "^6.0.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
