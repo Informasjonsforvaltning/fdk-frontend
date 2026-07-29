@@ -20,12 +20,15 @@ type SiteImproveEventProps = {
 };
 
 export const trackSiteImproveEvent = ({ category, action, label }: SiteImproveEventProps) => {
-  if ((window as any)._sz === undefined) {
-    // eslint-disable-next-line no-console
-    console.error("Unable to find Site Improve event library.");
-  } else if (label) {
-    (window as any)._sz.push(["event", category, action, label]);
+  // The Siteimprove library is only present once the visitor consents to statistics.
+  // Without consent `_sz` is undefined, so events are silently dropped.
+  const sz = (window as any)._sz;
+  if (sz === undefined) {
+    return;
+  }
+  if (label) {
+    sz.push(["event", category, action, label]);
   } else {
-    (window as any)._sz.push(["event", category, action]);
+    sz.push(["event", category, action]);
   }
 };

@@ -147,6 +147,18 @@ const common = {
       abortButton: "Bli på Transportportal.no",
     },
   },
+  consent: {
+    heading: "Vi bruker statistikk for å forbedre nettstedet",
+    description:
+      "For å forstå hvordan nettstedet brukes samler vi anonym statistikk. Dette lagrer informasjon i nettleseren din. Du velger selv om du vil tillate det.",
+    necessaryNote:
+      "Vi lagrer også nødvendig informasjon som ikke kan velges bort, slik at nettstedet fungerer og er trygt.",
+    readMoreLinkText: "Les mer om informasjonskapsler",
+    readMoreHref: "https://www.digdir.no/digdir/informasjonskapsler/707",
+    acceptButton: "Godta",
+    rejectButton: "Avslå",
+    reopenLink: "Administrer informasjonskapsler",
+  },
   aiPromoSplash: {
     heading: "Spør vårt KI-søk med naturlig språk ✨",
     examplePrefix: "Prøv f.eks. ",

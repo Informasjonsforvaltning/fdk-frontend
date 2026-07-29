@@ -1,6 +1,26 @@
 import { type Localization } from "@fdk-frontend/localization";
 
-const getMainMenuData = (dictionary: Localization, locale: string) => ({
+export type MainMenuItem = {
+  title: string;
+  href?: string;
+  external?: boolean;
+  /** Renders the consent-reopen control in place of a link. */
+  consent?: boolean;
+  key?: string;
+  description?: string;
+};
+
+type MainMenuData = {
+  transportportal: MainMenuItem[];
+  transportportalHelp: MainMenuItem[];
+  transportportalLegal: MainMenuItem[];
+  catalogs: MainMenuItem[];
+  help: MainMenuItem[];
+  tools: MainMenuItem[];
+  about: MainMenuItem[];
+};
+
+const getMainMenuData = (dictionary: Localization, locale: string): MainMenuData => ({
   transportportal: [
     {
       title: dictionary.mainMenu.transportportal.links.generalInfo,
@@ -56,8 +76,7 @@ const getMainMenuData = (dictionary: Localization, locale: string) => ({
     },
     {
       title: dictionary.mainMenu.about.links.cookiePolicy,
-      href: `https://www.digdir.no/digdir/informasjonskapsler/707`,
-      external: true,
+      consent: true,
     },
   ],
   catalogs: [
@@ -153,8 +172,7 @@ const getMainMenuData = (dictionary: Localization, locale: string) => ({
     },
     {
       title: dictionary.mainMenu.about.links.cookiePolicy,
-      href: `https://www.digdir.no/digdir/informasjonskapsler/707`,
-      external: true,
+      consent: true,
     },
     {
       title: dictionary.mainMenu.about.links.githubFollow,
