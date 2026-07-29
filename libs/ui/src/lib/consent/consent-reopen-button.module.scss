@@ -1,5 +1,7 @@
 // Reset native <button> chrome so the control inherits the surrounding
-// designsystemet Link styling (colour, hover) from `asChild`.
+// designsystemet Link styling (colour, hover) from `asChild`. Underline is left to each
+// context: MainMenu links are not underlined, while other footers underline their links
+// and opt in via a local class.
 .reset {
   background: none;
   border: none;
@@ -8,7 +10,4 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
-  // designsystemet forces `text-decoration: none` on the non-anchor `.ds-link` (button
-  // variant), so re-apply the underline with !important to match the sibling footer links.
-  text-decoration: underline !important;
 }

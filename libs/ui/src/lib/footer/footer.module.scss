@@ -25,15 +25,6 @@
     color: white;
     container-type: inline-size;
 
-    .consentRow {
-      display: flex;
-      padding: 1rem 2rem 0;
-
-      @container (max-width: 500px) {
-        padding: 1rem 1.5rem 0;
-      }
-    }
-
     .bottomInner {
       display: flex;
       justify-content: space-between;

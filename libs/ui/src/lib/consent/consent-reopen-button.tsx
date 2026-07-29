@@ -9,13 +9,15 @@ import styles from "./consent-reopen-button.module.scss";
 export type ConsentReopenButtonProps = {
   locale: LocaleCodes;
   className?: string;
+  /** Override the link text (defaults to the localized "manage cookies" label). */
+  label?: string;
 };
 
 /**
- * Footer control that reopens the consent banner so a visitor can change their choice.
- * Rendered as a designsystemet Link (via `asChild`) so it matches the other footer links.
+ * Control that reopens the consent banner so a visitor can change their choice.
+ * Rendered as a designsystemet Link (via `asChild`) so it matches sibling links.
  */
-export const ConsentReopenButton = ({ locale, className }: ConsentReopenButtonProps) => {
+export const ConsentReopenButton = ({ locale, className, label }: ConsentReopenButtonProps) => {
   const { openBanner } = useConsent();
   const t = getLocalization(locale).common.consent;
 
@@ -26,7 +28,7 @@ export const ConsentReopenButton = ({ locale, className }: ConsentReopenButtonPr
         className={cn(styles.reset, className)}
         onClick={openBanner}
       >
-        {t.reopenLink}
+        {label ?? t.reopenLink}
       </button>
     </Link>
   );

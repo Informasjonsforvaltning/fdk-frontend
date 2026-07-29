@@ -81,12 +81,11 @@ const TransportportalFooter = ({ locale }: TransportportalFooterProps) => {
               </ExternalLink>
             </li>
             <li>
-              <ExternalLink
-                href="https://www.digdir.no/digdir/informasjonskapsler/707"
+              <ConsentReopenButton
                 locale={locale}
-              >
-                {mainMenu.about.links.cookiePolicy}
-              </ExternalLink>
+                label={mainMenu.about.links.cookiePolicy}
+                className={styles.consentLink}
+              />
             </li>
             <li>
               <ExternalLink
@@ -95,9 +94,6 @@ const TransportportalFooter = ({ locale }: TransportportalFooterProps) => {
               >
                 {mainMenu.about.links.a11yStatement}
               </ExternalLink>
-            </li>
-            <li>
-              <ConsentReopenButton locale={locale} />
             </li>
           </ul>
         </div>

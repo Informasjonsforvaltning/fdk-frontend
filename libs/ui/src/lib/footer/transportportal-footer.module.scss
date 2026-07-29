@@ -95,6 +95,11 @@
   gap: 0.75rem;
 }
 
+// Underline the consent-reopen button to match the underlined <a> links in this footer.
+.consentLink {
+  text-decoration: underline !important;
+}
+
 // Language switcher: blend the toggle with the grey footer background
 // instead of the default navy surface / blue selected state.
 .footer {

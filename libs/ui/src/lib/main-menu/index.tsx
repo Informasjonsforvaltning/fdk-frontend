@@ -6,6 +6,7 @@ import { ForwardRefComponent, motion } from "framer-motion";
 import { Link, Heading } from "@digdir/designsystemet-react";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import ExternalLink from "../external-link";
+import ConsentReopenButton from "../consent/consent-reopen-button";
 import styles from "./main-menu.module.scss";
 import GithubLogo from "./images/github-logo";
 import getMainMenuData from "./data";
@@ -228,13 +229,18 @@ const MainMenu = ({ className, locale, profile = "default", motionProps = {}, ..
           </Heading>
           <ul>
             {data.about.map((item) => (
-              <li key={item.href}>
-                {item.external ? (
+              <li key={item.href ?? item.title}>
+                {item.consent ? (
+                  <ConsentReopenButton
+                    locale={locale}
+                    label={item.title}
+                  />
+                ) : item.external ? (
                   <ExternalLink
                     href={item.href}
                     locale={locale}
                   >
-                    {isGithubUrl(item.href) && <GithubLogo style={{ marginRight: "0.125em" }} />}
+                    {item.href && isGithubUrl(item.href) && <GithubLogo style={{ marginRight: "0.125em" }} />}
                     {item.title}
                   </ExternalLink>
                 ) : (
