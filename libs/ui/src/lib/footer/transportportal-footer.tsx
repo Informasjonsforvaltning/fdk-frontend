@@ -4,6 +4,7 @@ import { EnvelopeClosedIcon } from "@navikt/aksel-icons";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import ExternalLink from "../external-link";
 import LanguageSwitcher from "../language-switcher";
+import ConsentReopenButton from "../consent/consent-reopen-button";
 import styles from "./transportportal-footer.module.scss";
 
 export type TransportportalFooterProps = {
@@ -94,6 +95,9 @@ const TransportportalFooter = ({ locale }: TransportportalFooterProps) => {
               >
                 {mainMenu.about.links.a11yStatement}
               </ExternalLink>
+            </li>
+            <li>
+              <ConsentReopenButton locale={locale} />
             </li>
           </ul>
         </div>

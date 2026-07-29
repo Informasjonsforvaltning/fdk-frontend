@@ -2,6 +2,7 @@ import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { LogoLink, DpgLink, DigdirLogoLink } from "../logo";
 import LanguageSwitcher from "../language-switcher";
 import MainMenu from "../main-menu";
+import ConsentReopenButton from "../consent/consent-reopen-button";
 import TransportportalFooter from "./transportportal-footer";
 import styles from "./footer.module.scss";
 import { HStack } from "@fellesdatakatalog/ui";
@@ -37,6 +38,9 @@ const Footer = ({ locale, profile = "default" }: FooterProps) => {
         <LanguageSwitcher loc={locale} />
       </div>
       <div className={styles.bottom}>
+        <div className={styles.consentRow}>
+          <ConsentReopenButton locale={locale} />
+        </div>
         <div className={styles.bottomInner}>
           <HStack className={styles.leftLogos}>
             <LogoLink

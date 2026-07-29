@@ -1,7 +1,9 @@
 import "../../core/global.scss";
 import { PropsWithChildren } from "react";
-import Script from "next/script";
 import { i18n, type Locale } from "@fdk-frontend/localization";
+import { ConsentProvider } from "../../consent/consent-context";
+import { ConsentBanner } from "../../consent/consent-banner";
+import { SiteimproveScript } from "../../consent/siteimprove-script";
 
 export type RootLayoutProps = {
   params: Promise<{
@@ -16,8 +18,13 @@ const RootLayout = async ({ children, params }: RootLayoutProps & PropsWithChild
 
   return (
     <html lang={lang}>
-      <body>{children}</body>
-      <Script src="https://siteimproveanalytics.com/js/siteanalyze_6255470.js" />
+      <body>
+        <ConsentProvider>
+          <ConsentBanner locale={lang} />
+          {children}
+          <SiteimproveScript />
+        </ConsentProvider>
+      </body>
     </html>
   );
 };
