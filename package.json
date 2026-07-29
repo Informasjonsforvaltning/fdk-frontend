@@ -38,7 +38,7 @@
     "brace-expansion@^5.0.2": "^5.0.8",
     "brace-expansion@^5.0.6": "^5.0.8",
     "follow-redirects": "^1.15.12",
-    "postcss": "^8.5.18",
+    "postcss": "8.5.18",
     "yaml@^2.0.0": "^2.8.3",
     "yaml@2.8.0": "2.8.3",
     "fast-uri": "^3.1.4",
