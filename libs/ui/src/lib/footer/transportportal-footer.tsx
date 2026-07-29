@@ -84,7 +84,6 @@ const TransportportalFooter = ({ locale }: TransportportalFooterProps) => {
               <ConsentReopenButton
                 locale={locale}
                 label={mainMenu.about.links.cookiePolicy}
-                className={styles.consentLink}
               />
             </li>
             <li>

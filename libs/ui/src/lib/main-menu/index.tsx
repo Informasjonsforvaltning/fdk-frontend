@@ -127,8 +127,13 @@ const MainMenu = ({ className, locale, profile = "default", motionProps = {}, ..
               </Heading>
               <ul>
                 {data.transportportalLegal.map((item) => (
-                  <li key={item.href}>
-                    {item.external ? (
+                  <li key={item.href ?? item.title}>
+                    {item.consent ? (
+                      <ConsentReopenButton
+                        locale={locale}
+                        label={item.title}
+                      />
+                    ) : item.external ? (
                       <ExternalLink
                         href={item.href}
                         locale={locale}

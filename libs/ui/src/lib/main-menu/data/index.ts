@@ -76,8 +76,7 @@ const getMainMenuData = (dictionary: Localization, locale: string): MainMenuData
     },
     {
       title: dictionary.mainMenu.about.links.cookiePolicy,
-      href: `https://www.digdir.no/digdir/informasjonskapsler/707`,
-      external: true,
+      consent: true,
     },
   ],
   catalogs: [
