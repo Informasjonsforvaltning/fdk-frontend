@@ -4,8 +4,17 @@ import { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type DataService, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
-import { AccessLevelTag, Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, UseApiPopover } from "@fdk-frontend/ui";
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag, Link } from "@digdir/designsystemet-react";
+import {
+  AccessLevelTag,
+  Badge,
+  Breadcrumbs,
+  ScrollShadows,
+  OrgButton,
+  TagList,
+  UseApiPopover,
+  TagLink,
+} from "@fdk-frontend/ui";
+import { Heading, Tabs, TabsList, TabsTab, TabsPanel } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
 import CommunityTab from "../community-tab";
 import DataServiceDetailsTab from "./data-service-details-tab";
@@ -86,12 +95,13 @@ export default function DataServiceDetailsPage({
             />
           </div>
           <TagList className={headerStyles.headerTags}>
-            <Tag
+            <TagLink
               data-color="info"
               data-size="md"
+              href="/data-services"
             >
-              <Link href="/data-services">{dictionaries.detailsPage.header.dataServicesTagLink}</Link>
-            </Tag>
+              {dictionaries.detailsPage.header.dataServicesTagLink}
+            </TagLink>
             <AccessLevelTag
               accessCode={resource.accessRights?.code}
               locale={locale}
