@@ -2,8 +2,7 @@ import React from "react";
 import { type Dataset } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import { type LocaleCodes } from "@fdk-frontend/localization";
-import { Tag, Link } from "@digdir/designsystemet-react";
-import { TagList } from "@fdk-frontend/ui";
+import { TagList, TagLink } from "@fdk-frontend/ui";
 
 type DatasetTagsProps = {
   locale: LocaleCodes;
@@ -14,20 +13,20 @@ const DatasetTags = ({ locale, dataset }: DatasetTagsProps & React.HTMLAttribute
   return (
     <TagList>
       {dataset.theme?.map((theme: any) => (
-        <Link
+        <TagLink
           key={theme.code}
           href={`/datasets?theme=${theme.code}`}
         >
-          <Tag data-size="sm">{printLocaleValue(locale, theme.title) || theme.code}</Tag>
-        </Link>
+          {printLocaleValue(locale, theme.title) || theme.code}
+        </TagLink>
       ))}
       {dataset.losTheme?.map((theme: any) => (
-        <Link
+        <TagLink
           key={theme.code}
           href={`/datasets?losTheme=${theme.code}`}
         >
-          <Tag data-size="sm">{printLocaleValue(locale, theme.name) || theme.code}</Tag>
-        </Link>
+          {printLocaleValue(locale, theme.name) || theme.code}
+        </TagLink>
       ))}
     </TagList>
   );
