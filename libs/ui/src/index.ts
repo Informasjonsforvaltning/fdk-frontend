@@ -121,6 +121,7 @@ export { default as SmartList } from "./lib/smart-list";
 export * from "./lib/smart-list";
 export { default as StarButton } from "./lib/star-button";
 export * from "./lib/star-button";
+export { default as TagLink } from "./lib/tag-link";
 export { default as TagList } from "./lib/tag-list";
 export * from "./lib/tag-list";
 export * from "./lib/typography";

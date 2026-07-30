@@ -11,6 +11,7 @@ import {
   AccessLevelTag,
   UseDatasetPopover,
   TagList,
+  TagLink,
 } from "@fdk-frontend/ui";
 import { Heading, Link, Tag } from "@digdir/designsystemet-react";
 import styles from "./dataset-header.module.scss";
@@ -73,12 +74,13 @@ const DatasetHeader = ({
         />
       </div>
       <TagList className={styles.headerTags}>
-        <Tag
+        <TagLink
           data-color="info"
           data-size="md"
+          href="/datasets"
         >
-          <Link href="/datasets">{dictionaries.detailsPage.header.datasetsTagLink}</Link>
-        </Tag>
+          {dictionaries.detailsPage.header.datasetsTagLink}
+        </TagLink>
         <AccessLevelTag
           accessCode={dataset.accessRights?.code}
           locale={locale}

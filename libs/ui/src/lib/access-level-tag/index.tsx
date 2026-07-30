@@ -2,6 +2,8 @@ import { Link, Tag, TagProps, Paragraph } from "@digdir/designsystemet-react";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { AccessRightsCodes } from "@fellesdatakatalog/types";
 import { HelpText } from "@fellesdatakatalog/ui";
+import TagLink from "../tag-link";
+import styles from "./styles.module.scss";
 
 type AccessLevelTagProps = {
   accessCode?: AccessRightsCodes | string;
@@ -22,6 +24,7 @@ const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: Access
 
   return (
     <Tag
+      className={styles.tag}
       data-color={color as TagProps["color"]}
       {...props}
     >
@@ -29,7 +32,7 @@ const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: Access
         label
       ) : (
         <>
-          <Link href={`/datasets?accessrights=${accessCode}`}>{label}</Link>&nbsp;
+          <TagLink href={`/datasets?accessrights=${accessCode}`}>{label}</TagLink>&nbsp;
           <HelpText aria-label={dictionary.accessRights.helpTextTitle}>
             <Paragraph data-size="sm">{helpText}</Paragraph>
             <Paragraph data-size="sm">

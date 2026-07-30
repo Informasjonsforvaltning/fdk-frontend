@@ -1,11 +1,18 @@
 import { useContext } from "react";
 import { Heading, Link, Tag, type TagProps, Paragraph } from "@digdir/designsystemet-react";
-import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, InputWithCopyButton } from "@fdk-frontend/ui";
+import {
+  Hstack,
+  PlaceholderText,
+  ExternalLink,
+  SmartList,
+  Dlist,
+  InputWithCopyButton,
+  TagLink,
+} from "@fdk-frontend/ui";
 import { calculateMetadataScore, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { i18n } from "@fdk-frontend/localization";
-import styles from "../../details-tab.module.scss";
 
 const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
@@ -134,7 +141,9 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
             <dt>{dictionary.details.general.type}:</dt>
             <dd>
               {dctTypes.length ? (
-                dctTypes.map((type) => printLocaleValue(locale, type.prefLabel)).join(", ")
+                dctTypes
+                  .map((type) => printLocaleValue(locale, typeof type === "string" ? type : type.prefLabel))
+                  .join(", ")
               ) : (
                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
               )}
@@ -156,15 +165,14 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
             </HelpText>
           </Hstack>
         </dt>
-        <dd className={styles.metadataQualityLink}>
-          <Link href={`/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`}>
-            <Tag
-              data-size="sm"
-              data-color={metadataQuality.color as TagProps["color"]}
-            >
-              {metadataQuality.label}
-            </Tag>
-          </Link>
+        <dd>
+          <TagLink
+            href={`/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`}
+            data-size="sm"
+            data-color={metadataQuality.color as TagProps["color"]}
+          >
+            {metadataQuality.label}
+          </TagLink>
         </dd>
         <dt>URI:</dt>
         <dd>
