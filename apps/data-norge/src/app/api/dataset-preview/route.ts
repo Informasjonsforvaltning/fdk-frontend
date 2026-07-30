@@ -1,4 +1,5 @@
 import { fetchCsrfToken, fetchDatasetPreview } from "@fdk-frontend/data-access/server";
+import { isFetchableExternalUrl } from "@fdk-frontend/utils";
 
 const { FDK_BASE_URI, FDK_DATASET_PREVIEW_API_KEY, FDK_DATASET_PREVIEW_LOCAL_BASE_URI } = process.env;
 
@@ -8,6 +9,12 @@ export const POST = async function (request: Request) {
       process.env.NODE_ENV === "development" ? FDK_DATASET_PREVIEW_LOCAL_BASE_URI : `${FDK_BASE_URI}/dataset`;
 
     const { downloadUrl } = await request.json();
+
+    // Guard against SSRF: only proxy absolute http(s) URLs to non-internal hosts.
+    if (typeof downloadUrl !== "string" || !isFetchableExternalUrl(downloadUrl)) {
+      return new Response("Invalid download URL", { status: 400 });
+    }
+
     const referer = request.headers.get("referer") ?? "";
 
     const csrfResponse = await fetchCsrfToken({
