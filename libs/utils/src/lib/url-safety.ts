@@ -1,14 +1,7 @@
-/**
- * Pure helpers for validating externally-supplied URLs. Used to block dangerous
- * schemes (javascript:, data:, …) on redirect/link targets and to guard server-side
- * fetches against SSRF to internal addresses.
- */
+// URL-validation helpers: block dangerous schemes (javascript:, data:, …) on link
+// targets, and guard server-side fetches against SSRF to internal addresses.
 
-/**
- * Parse a string as an absolute URL using the http or https protocol.
- * Returns the parsed URL, or `null` for anything that is not an absolute http(s) URL
- * (relative paths, `javascript:`, `data:`, `mailto:`, malformed input, …).
- */
+/** Absolute http(s) URL, or null for other schemes / relative / malformed input. */
 export const parseHttpUrl = (raw: string | undefined | null): URL | null => {
   if (!raw) {
     return null;
@@ -23,12 +16,9 @@ export const parseHttpUrl = (raw: string | undefined | null): URL | null => {
 };
 
 /**
- * True if the hostname is a loopback, private, link-local or otherwise non-routable
- * address that a server-side fetch should not be allowed to reach (SSRF guard).
- *
- * Note: this is a literal-address check. It does not resolve DNS, so a public hostname
- * that resolves to a private IP (DNS rebinding) is not covered here — the downstream
- * service should apply its own egress controls as defence in depth.
+ * True for loopback/private/link-local hosts a server-side fetch must not reach.
+ * Literal-address check only — a public hostname resolving to a private IP (DNS
+ * rebinding) is not covered; downstream egress controls remain the backstop.
  */
 export const isPrivateHostname = (hostname: string): boolean => {
   const host = hostname.toLowerCase().replace(/^\[|\]$/g, ""); // strip IPv6 brackets
@@ -52,10 +42,7 @@ export const isPrivateHostname = (hostname: string): boolean => {
   return false;
 };
 
-/**
- * True if the value is safe for a server-side fetch: an absolute http(s) URL whose host
- * is not a private/internal address.
- */
+/** True when safe for a server-side fetch: absolute http(s) to a non-internal host. */
 export const isFetchableExternalUrl = (raw: string | undefined | null): boolean => {
   const url = parseHttpUrl(raw);
   return url !== null && !isPrivateHostname(url.hostname);
