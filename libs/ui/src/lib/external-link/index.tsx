@@ -4,6 +4,7 @@ import { useState, useEffect, type PropsWithChildren } from "react";
 import { Link, type LinkProps } from "@digdir/designsystemet-react";
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
 import { i18n, type LocaleCodes } from "@fdk-frontend/localization";
+import { sanitizeLinkHref } from "@fdk-frontend/utils";
 
 /**
  * @prop {boolean} gateway - Determines if the link should go through /leaving-gateway.
@@ -18,7 +19,8 @@ export type ExternalLinkProps = Omit<LinkProps, "children"> &
 
 const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway, ...props }: ExternalLinkProps) => {
   const { href = "" } = props;
-  const [target, setTarget] = useState(href);
+  // Block javascript:/data: schemes from becoming an href (used directly on SSR).
+  const [target, setTarget] = useState(() => sanitizeLinkHref(href));
 
   useEffect(() => {
     const searchParams = new URLSearchParams();

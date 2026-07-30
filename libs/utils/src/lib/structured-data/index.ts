@@ -30,11 +30,14 @@ export const sanitizeArray = (arr: any[] | undefined): any[] | undefined => {
 // Safely stringify with error handling
 export const safeStringify = (obj: any): string => {
   try {
-    return JSON.stringify(obj, (key, value) => {
+    const json = JSON.stringify(obj, (key, value) => {
       // Remove any undefined values to prevent JSON injection
       if (value === undefined) return undefined;
       return value;
     });
+    if (typeof json !== "string") return "{}";
+    // Escape < > & so JSON-LD output can't break out of its <script> block.
+    return json.replace(/</g, "\\u003C").replace(/>/g, "\\u003E").replace(/&/g, "\\u0026");
   } catch (error) {
     console.error("Error stringifying structured data:", error);
     return "{}";
