@@ -40,7 +40,7 @@ export const POST = async function (request: Request) {
     const previewData = await previewResponse.json();
     return new Response(JSON.stringify(previewData), { status: 200 });
   } catch (err) {
-    console.error("Failed to get dataset preview", JSON.stringify(err));
+    console.error("Failed to get dataset preview", err instanceof Error ? err.message : "unknown error");
     return new Response("Failed to get dataset preview", { status: 500 });
   }
 };

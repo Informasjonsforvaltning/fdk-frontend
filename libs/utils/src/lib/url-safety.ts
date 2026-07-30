@@ -47,3 +47,20 @@ export const isFetchableExternalUrl = (raw: string | undefined | null): boolean 
   const url = parseHttpUrl(raw);
   return url !== null && !isPrivateHostname(url.hostname);
 };
+
+const SAFE_LINK_PROTOCOLS = new Set(["http:", "https:", "mailto:", "tel:"]);
+
+/**
+ * Sanitize an href for rendering as a link: allow relative URLs and safe absolute
+ * schemes (http/https/mailto/tel), block javascript:/data:/etc. Returns "#" for unsafe
+ * values so an unsanitized value can never become an executable href.
+ */
+export const sanitizeLinkHref = (raw: string | undefined | null): string => {
+  if (!raw) return "#";
+  if (/^[/#?]/.test(raw)) return raw; // relative path / query / fragment
+  try {
+    return SAFE_LINK_PROTOCOLS.has(new URL(raw).protocol) ? raw : "#";
+  } catch {
+    return "#";
+  }
+};

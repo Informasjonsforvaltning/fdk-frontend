@@ -29,7 +29,7 @@ export const getSearchSuggestions = async (
   });
 
   if (!response.ok) {
-    console.error("suggestions failed", uri, response.status);
+    console.error("suggestions failed", { status: response.status });
     throw new Error("suggestions failed");
   }
 
@@ -49,7 +49,7 @@ export const searchApi = async (path: string, body: any) => {
   };
   return await fetch(uri, options).then(async (response) => {
     if (!response.ok) {
-      console.error("search failed", uri, await response.json());
+      console.error("search failed", { status: response.status });
       throw new Error("search failed");
     }
     return response.json();
