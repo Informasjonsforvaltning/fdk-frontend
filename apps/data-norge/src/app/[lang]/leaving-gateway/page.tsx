@@ -3,6 +3,7 @@ import { Paragraph, Heading, Alert, Link, Button } from "@digdir/designsystemet-
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { Hstack, VStack, BackButton, Markdown } from "@fdk-frontend/ui";
 import { getProfile } from "@fdk-frontend/utils/server";
+import { parseHttpUrl } from "@fdk-frontend/utils";
 import styles from "./styles.module.scss";
 
 export type LeavingGatewayPageProps = {
@@ -16,7 +17,11 @@ export type LeavingGatewayPageProps = {
 
 const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
   const { lang } = await props.params;
-  const { url } = (await props.searchParams) || {};
+  const { url: rawUrl } = (await props.searchParams) || {};
+
+  // Only treat the target as a real link when it is an absolute http(s) URL. This blocks
+  // javascript:/data: XSS and keeps the "continue" action off unsafe destinations.
+  const safeUrl = parseHttpUrl(rawUrl)?.toString() ?? null;
 
   const dictionary = getLocalization(lang).common;
   const profile = await getProfile();
@@ -39,7 +44,7 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
         <VStack>
           <Paragraph data-size="sm">{gateway.linkLabel}</Paragraph>
           <div className={styles.urlBox}>
-            <Link href={url}>{url}</Link>
+            {safeUrl ? <Link href={safeUrl}>{safeUrl}</Link> : <span>{rawUrl}</span>}
           </div>
         </VStack>
         <Alert data-size="sm">
@@ -52,13 +57,15 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
           >
             {abortButton}
           </BackButton>
-          <Button
-            asChild
-            data-size="sm"
-            variant="primary"
-          >
-            <Link href={url}>{gateway.continueButton}</Link>
-          </Button>
+          {safeUrl && (
+            <Button
+              asChild
+              data-size="sm"
+              variant="primary"
+            >
+              <Link href={safeUrl}>{gateway.continueButton}</Link>
+            </Button>
+          )}
         </Hstack>
       </div>
     </div>
