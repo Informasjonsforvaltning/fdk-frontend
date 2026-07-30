@@ -50,11 +50,7 @@ export const isFetchableExternalUrl = (raw: string | undefined | null): boolean 
 
 const SAFE_LINK_PROTOCOLS = new Set(["http:", "https:", "mailto:", "tel:"]);
 
-/**
- * Sanitize an href for rendering as a link: allow relative URLs and safe absolute
- * schemes (http/https/mailto/tel), block javascript:/data:/etc. Returns "#" for unsafe
- * values so an unsanitized value can never become an executable href.
- */
+/** Href safe to render: relative URLs and http/https/mailto/tel; "#" for unsafe schemes. */
 export const sanitizeLinkHref = (raw: string | undefined | null): string => {
   if (!raw) return "#";
   if (/^[/#?]/.test(raw)) return raw; // relative path / query / fragment

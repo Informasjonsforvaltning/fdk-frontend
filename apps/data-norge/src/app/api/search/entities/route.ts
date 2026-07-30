@@ -3,8 +3,7 @@ import { searchAllEntities } from "@fdk-frontend/data-access/server";
 export const POST = async function (request: Request) {
   try {
     const body = await request.json();
-    // Only forward known fields; spreading `...body` let clients inject arbitrary
-    // parameters into the backend search request.
+    // Only forward known fields (spreading ...body let clients inject arbitrary params).
     const result = await searchAllEntities({
       query: typeof body?.query === "string" ? body.query.slice(0, 512) : undefined,
       pagination: body?.pagination ?? { size: 20, page: 0 },

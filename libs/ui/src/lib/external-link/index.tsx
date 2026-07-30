@@ -19,8 +19,7 @@ export type ExternalLinkProps = Omit<LinkProps, "children"> &
 
 const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway, ...props }: ExternalLinkProps) => {
   const { href = "" } = props;
-  // Block dangerous schemes (javascript:, data:, …) from rendering as an href; the SSR
-  // output uses this value directly before the gateway effect below runs.
+  // Block javascript:/data: schemes from becoming an href (used directly on SSR).
   const [target, setTarget] = useState(() => sanitizeLinkHref(href));
 
   useEffect(() => {
