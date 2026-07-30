@@ -13,7 +13,7 @@ import {
   TagList,
   TagLink,
 } from "@fdk-frontend/ui";
-import { Heading, Link, Tag } from "@digdir/designsystemet-react";
+import { Heading } from "@digdir/designsystemet-react";
 import styles from "./dataset-header.module.scss";
 
 type DatasetHeaderProps = {

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Heading, Link, Tag, type TagProps, Paragraph } from "@digdir/designsystemet-react";
+import { Heading, Link, type TagProps, Paragraph } from "@digdir/designsystemet-react";
 import {
   Hstack,
   PlaceholderText,
