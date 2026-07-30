@@ -21,8 +21,9 @@ import {
   OrgButton,
   TagList,
   StatusTag,
+  TagLink,
 } from "@fdk-frontend/ui";
-import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel, Button, Link, Tag } from "@digdir/designsystemet-react";
+import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel, Button, Link } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
 import CommunityTab from "../community-tab";
 import styles from "./service.module.scss";
@@ -127,7 +128,10 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
       if (output.language?.length) {
         contents.push({
           label: dictionaries.detailsPage.produces.language,
-          value: output.language?.map((language) => printLocaleValue(locale, language.prefLabel)).filter(Boolean).join(", "),
+          value: output.language
+            ?.map((language) => printLocaleValue(locale, language.prefLabel))
+            .filter(Boolean)
+            .join(", "),
         });
       }
       if (output.isPartOf?.length) {
@@ -144,7 +148,10 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
       if (output.type?.length) {
         contents.push({
           label: dictionaries.detailsPage.produces.type,
-          value: output.type?.map((type) => printLocaleValue(locale, type.prefLabel)).filter(Boolean).join(", "),
+          value: output.type
+            ?.map((type) => printLocaleValue(locale, type.prefLabel))
+            .filter(Boolean)
+            .join(", "),
         });
       }
 
@@ -184,13 +191,14 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
             {printLocaleValue(locale, service.title) || dictionaries.detailsPage.header.namelessService}
           </Heading>
           <TagList>
-            <Tag
+            <TagLink
               data-color="info"
               data-size="md"
+              href="/public-services-and-events"
             >
-              <Link href="/public-services-and-events">{dictionaries.detailsPage.header.servicesTagLink}</Link>
-            </Tag>
-            {service.admsStatus && (
+              {dictionaries.detailsPage.header.servicesTagLink}
+            </TagLink>
+            {service.admsStatus && service.admsStatus && (
               <StatusTag
                 locale={locale}
                 status={service.admsStatus}
@@ -640,12 +648,13 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 {service.dctType?.length ? (
                   <TagList>
                     {service.dctType.map((theme) => (
-                      <Link
+                      <TagLink
                         key={theme.code}
                         href={`/public-services-and-events?mainActivities=${theme.code}`}
+                        data-size="sm"
                       >
-                        <Tag data-size="sm">{printLocaleValue(locale, theme.prefLabel) || theme.code}</Tag>
-                      </Link>
+                        {printLocaleValue(locale, theme.prefLabel) || theme.code}
+                      </TagLink>
                     ))}
                   </TagList>
                 ) : (
@@ -666,21 +675,23 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 {service.eurovocThemes?.length || service.losThemes?.length ? (
                   <TagList>
                     {service.eurovocThemes?.map((theme) => (
-                      <Link
+                      <TagLink
                         key={theme.code}
                         href={`/public-services-and-events?eurovocTheme=${theme.code}`}
+                        data-size="sm"
                       >
-                        <Tag data-size="sm">{printLocaleValue(locale, theme.label) || theme.code}</Tag>
-                      </Link>
+                        {printLocaleValue(locale, theme.label) || theme.code}
+                      </TagLink>
                     ))}
 
                     {service.losThemes?.map((theme) => (
-                      <Link
+                      <TagLink
                         key={theme.code}
                         href={`/public-services-and-events?losTheme=${theme.code}`}
+                        data-size="sm"
                       >
-                        <Tag data-size="sm">{printLocaleValue(locale, theme.name) || theme.code}</Tag>
-                      </Link>
+                        {printLocaleValue(locale, theme.name) || theme.code}
+                      </TagLink>
                     ))}
                   </TagList>
                 ) : (

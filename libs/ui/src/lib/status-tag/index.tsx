@@ -21,7 +21,8 @@ type StatusTagProps = {
 const StatusTag = (props: StatusTagProps) => {
   const { locale, status } = props;
   const color = statusColorMap?.[status.code as StatusCode] || "neutral";
-  return <Tag data-color={color}>{printLocaleValue(locale, status.prefLabel)}</Tag>;
+  const label = printLocaleValue(locale, status.prefLabel);
+  return !label ? undefined : <Tag data-color={color}>{printLocaleValue(locale, status.prefLabel)}</Tag>;
 };
 
 export default StatusTag;
