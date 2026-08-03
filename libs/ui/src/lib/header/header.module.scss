@@ -50,9 +50,8 @@
           &:active {
             color: #82b56e; // primary, dark mode, active
             background-color: #304a26;
-            border-color: #82b56e;
           }
-          &[variant="secondary"] {
+          &[data-variant="secondary"] {
             border-color: #82b56e;
           }
 
