@@ -52,6 +52,9 @@
             background-color: #304a26;
             border-color: #82b56e;
           }
+          &[variant="secondary"] {
+            border-color: #82b56e;
+          }
 
           &:last-child {
             color: black !important;
