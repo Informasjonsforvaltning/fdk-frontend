@@ -43,15 +43,26 @@
         :global(.ds-button) {
           color: white !important;
 
+          border-color: #82b56e;
+          &:hover {
+            color: #82b56e; // primary, dark mode, hover
+            background-color: #263b1e;
+          }
+          &:active {
+            color: #82b56e; // primary, dark mode, active
+            background-color: #304a26;
+          }
+
           &:last-child {
             color: white !important;
+            background-color: #58b02c; //primary
 
             &:focus-visible,
             &:not(:hover):not(:active) {
-              background: var(--fdk-color-blue);
+              background-color: #a5d48d; // primary, active
             }
             &:hover {
-              background: var(--fdk-color-blue-dark);
+              background-color: #80c35f; // primary, hover
             }
           }
         }
