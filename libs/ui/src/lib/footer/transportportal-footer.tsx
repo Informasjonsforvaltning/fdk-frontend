@@ -26,27 +26,25 @@ const TransportportalFooter = ({ locale }: TransportportalFooterProps) => {
           <ExternalLink
             aria-label="Statens vegvesen"
             href="https://www.vegvesen.no/"
-          >
-            <span className={cn(styles.logo, styles.statensVegvesen)} />
-          </ExternalLink>
+            className={cn(styles.logo, styles.statensVegvesen)}
+          />
           <ExternalLink
             aria-label="Jernbanedirektoratet"
             href="https://www.jernbanedirektoratet.no/"
-          >
-            <span className={cn(styles.logo, styles.jernbanedirektoratet)} />
-          </ExternalLink>
+            className={cn(styles.logo, styles.jernbanedirektoratet)}
+          />
+
           <ExternalLink
             aria-label="Entur"
             href="https://entur.no/"
-          >
-            <span className={cn(styles.logo, styles.entur)} />
-          </ExternalLink>
+            className={cn(styles.logo, styles.entur)}
+          />
+
           <ExternalLink
             aria-label="Digdir"
             href="https://www.digdir.no/"
-          >
-            <span className={cn(styles.logo, styles.digdir)} />
-          </ExternalLink>
+            className={cn(styles.logo, styles.digdir)}
+          />
         </div>
 
         <div className={styles.columns}>

@@ -83,6 +83,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    color: #82b56e !important;
   }
 }
 
@@ -93,7 +94,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  color: #82b56e;
+  a {
+    color: #82b56e !important;
+  }
 }
 
 // Language switcher: blend the toggle with the grey footer background
