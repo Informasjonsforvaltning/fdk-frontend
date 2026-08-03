@@ -26,10 +26,12 @@ const NormalLayout = async ({ children, params, profile }: PropsWithChildren & N
       >
         <main id="main">
           {children}
-          <FeedbackBanner
-            locale={lang}
-            communityBaseUri={communityBaseUri as string}
-          />
+          {!(profile === "transportportal") && (
+            <FeedbackBanner
+              locale={lang}
+              communityBaseUri={communityBaseUri as string}
+            />
+          )}
         </main>
       </FooterLayout>
     </HeaderLayout>
