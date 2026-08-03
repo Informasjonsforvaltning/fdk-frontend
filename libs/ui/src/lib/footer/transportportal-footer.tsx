@@ -23,26 +23,30 @@ const TransportportalFooter = ({ locale }: TransportportalFooterProps) => {
     >
       <div className={styles.inner}>
         <div className={styles.logos}>
-          <span
-            role="img"
+          <ExternalLink
             aria-label="Statens vegvesen"
-            className={cn(styles.logo, styles.statensVegvesen)}
-          />
-          <span
-            role="img"
+            href="https://www.vegvesen.no/"
+          >
+            <span className={cn(styles.logo, styles.statensVegvesen)} />
+          </ExternalLink>
+          <ExternalLink
             aria-label="Jernbanedirektoratet"
-            className={cn(styles.logo, styles.jernbanedirektoratet)}
-          />
-          <span
-            role="img"
+            href="https://www.jernbanedirektoratet.no/"
+          >
+            <span className={cn(styles.logo, styles.jernbanedirektoratet)} />
+          </ExternalLink>
+          <ExternalLink
             aria-label="Entur"
-            className={cn(styles.logo, styles.entur)}
-          />
-          <span
-            role="img"
+            href="https://entur.no/"
+          >
+            <span className={cn(styles.logo, styles.entur)} />
+          </ExternalLink>
+          <ExternalLink
             aria-label="Digdir"
-            className={cn(styles.logo, styles.digdir)}
-          />
+            href="https://www.digdir.no/"
+          >
+            <span className={cn(styles.logo, styles.digdir)} />
+          </ExternalLink>
         </div>
 
         <div className={styles.columns}>
