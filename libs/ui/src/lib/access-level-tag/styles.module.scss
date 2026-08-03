@@ -1,4 +1,9 @@
 .tag {
   height: calc(var(--ds-size-8) - var(--ds-border-width-default) * 2);
-  padding-left: 0;
+}
+
+.innerTag {
+  margin-left: calc(-1 * (var(--ds-size-2)));
+  padding: 0 var(--ds-size-2);
+  line-height: var(--ds-size-8);
 }
