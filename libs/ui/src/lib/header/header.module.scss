@@ -59,7 +59,7 @@
             &:not(:hover):not(:active) {
               background-color: #a5d48d; // primary, active
             }
-            &:hover {
+            &:not(:hover) {
               background-color: #254a12; // primary, hover
             }
           }
