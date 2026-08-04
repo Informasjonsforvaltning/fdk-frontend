@@ -56,15 +56,15 @@
           }
 
           &:last-child {
-            color: black !important;
-            background-color: #58b02c !important; //primary
+            color: white !important;
+            background-color: #2f5f18 !important; //primary, dark mode, transportportal
 
             &:focus-visible,
             &:not(:hover):not(:active) {
               background-color: #a5d48d; // primary, active
             }
             &:hover {
-              background-color: #80c35f; // primary, hover
+              background-color: #254a12; // primary, hover
             }
           }
         }
