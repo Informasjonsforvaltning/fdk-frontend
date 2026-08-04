@@ -41,6 +41,7 @@
 
       .headerToolbar {
         :global(.ds-button) {
+          color: white !important;
           &:hover {
             background-color: #263b1e; // primary, dark mode, hover
           }
@@ -52,7 +53,6 @@
           }
 
           &:last-child {
-            color: white !important;
             background-color: #2f5f18 !important; //primary, dark mode, transportportal
 
             &:focus-visible,
