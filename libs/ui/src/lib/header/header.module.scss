@@ -41,15 +41,11 @@
 
       .headerToolbar {
         :global(.ds-button) {
-          color: #58b02c !important;
-
           &:hover {
-            color: #82b56e; // primary, dark mode, hover
-            background-color: #263b1e;
+            background-color: #263b1e; // primary, dark mode, hover
           }
           &:active {
-            color: #82b56e; // primary, dark mode, active
-            background-color: #304a26;
+            background-color: #304a26; // primary, dark mode, active
           }
           &[data-variant="secondary"] {
             border-color: #82b56e;
