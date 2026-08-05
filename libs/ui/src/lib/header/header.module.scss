@@ -38,6 +38,10 @@
       .headerLogo:not(:hover) {
         color: white !important;
       }
+      .headerLogo:hover {
+        background-color: transparent;
+        color: white;
+      }
 
       .headerToolbar {
         :global(.ds-button) {
