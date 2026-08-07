@@ -33,25 +33,38 @@
 
   &[data-profile="transportportal"] {
     .headerInner {
-      background: #444f55;
+      background: #1e2022;
 
       .headerLogo:not(:hover) {
         color: white !important;
+      }
+      .headerLogo:hover {
+        background-color: transparent;
+        color: white;
       }
 
       .headerToolbar {
         :global(.ds-button) {
           color: white !important;
+          &:hover {
+            background-color: #263b1e; // primary, dark mode, hover
+          }
+          &:active {
+            background-color: #304a26; // primary, dark mode, active
+          }
+          &[data-variant="secondary"] {
+            border-color: #82b56e;
+          }
 
           &:last-child {
-            color: white !important;
+            background-color: #2f5f18 !important; //primary, dark mode, transportportal
 
             &:focus-visible,
             &:not(:hover):not(:active) {
-              background: var(--fdk-color-blue);
+              background-color: #a5d48d; // primary, active
             }
-            &:hover {
-              background: var(--fdk-color-blue-dark);
+            &:not(:hover) {
+              background-color: #254a12; // primary, hover
             }
           }
         }

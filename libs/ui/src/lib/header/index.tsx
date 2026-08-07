@@ -89,7 +89,7 @@ const Header = ({ locale, frontpage, showSearchInput, profile = "default" }: Hea
         [styles.showHeaderMessage]: showHeaderMessage,
       })}
       ref={headerRef}
-      data-color-scheme={!showMenu && frontpage ? "dark" : "light"}
+      data-color-scheme={!showMenu && frontpage && !(profile === "transportportal") ? "dark" : "light"}
       data-profile={profile}
     >
       <div
