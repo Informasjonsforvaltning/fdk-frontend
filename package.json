@@ -11,7 +11,7 @@
     "adm-zip": "^0.6.0",
     "immutable": "^5.1.8",
     "sharp": "^0.35.0",
-    "js-yaml": "^4.3.0",
+    "js-yaml": "^4.3.1",
     "esbuild": "^0.28.1",
     "shell-quote": "^1.9.0",
     "glob": "^10.5.0",
