@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Link } from "@digdir/designsystemet-react";
+import { Heading } from "@digdir/designsystemet-react";
 import { PlaceholderBox, ExternalLink, SmartList, Dlist } from "@fdk-frontend/ui";
 import { printLocaleValue, getSlug } from "@fdk-frontend/utils";
 import { DatasetDetailsProps } from "../../";
