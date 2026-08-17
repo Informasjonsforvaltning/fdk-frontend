@@ -10,7 +10,7 @@ import {
   type CommunityTopic,
   type SearchObject,
 } from "@fellesdatakatalog/types";
-import { type PopulatedDatasetReference } from "@fdk-frontend/types";
+import { type PopulatedDatasetReference, type Profile } from "@fdk-frontend/types";
 import { sumArrayLengths, printLocaleValue } from "@fdk-frontend/utils";
 import {
   Badge,
@@ -55,6 +55,7 @@ export type DatasetDetailsPageType = {
   };
   resolvedDistributionDataServices?: SearchObject[];
   resolvedDistributionInformationModels?: SearchObject[];
+  profile?: Profile;
 };
 
 export default function DatasetDetailsPage({
@@ -75,6 +76,7 @@ export default function DatasetDetailsPage({
   dictionaries,
   resolvedDistributionDataServices,
   resolvedDistributionInformationModels,
+  profile,
 }: DatasetDetailsPageType) {
   const [activeTab, setActiveTab] = useState(defaultActiveTab);
   const isAvailable = !!sumArrayLengths(resource.distribution, resource.sample, apis);
@@ -214,6 +216,7 @@ export default function DatasetDetailsPage({
                   isRelatedToTransportportal={resource?.isRelatedToTransportportal}
                   resolvedDistributionDataServices={resolvedDistributionDataServices}
                   resolvedDistributionInformationModels={resolvedDistributionInformationModels}
+                  profile={profile}
                 />
               )}
             </section>
@@ -235,6 +238,7 @@ export default function DatasetDetailsPage({
                     datasets={internalRelatedDatasets}
                     locale={locale}
                     dictionary={dictionaries.detailsPage}
+                    profile={profile}
                   />
                 </ScrollShadows>
               </section>
@@ -252,6 +256,7 @@ export default function DatasetDetailsPage({
                     datasets={similarDatasets}
                     locale={locale}
                     dictionary={dictionaries.detailsPage}
+                    profile={profile}
                   />
                 </ScrollShadows>
               </section>
@@ -278,6 +283,7 @@ export default function DatasetDetailsPage({
                 isRelatedToTransportportal={resource?.isRelatedToTransportportal}
                 resolvedDistributionDataServices={resolvedDistributionDataServices}
                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
+                profile={profile}
               />
             )}
           </TabsPanel>
@@ -293,6 +299,7 @@ export default function DatasetDetailsPage({
               locale={locale}
               metadataScore={metadataScore}
               dictionary={dictionaries.detailsPage}
+              profile={profile}
             />
           </TabsPanel>
           <TabsPanel
