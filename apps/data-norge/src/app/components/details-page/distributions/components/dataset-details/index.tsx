@@ -9,6 +9,7 @@ import { DownloadButton } from "@fdk-frontend/ui";
 import styles from "../../distributions.module.scss";
 import DistributionDetails from "../distribution-details";
 import DistributionHeader from "../distribution-header";
+import { type Profile } from "@fdk-frontend/types";
 
 type DistributionListProps = {
   distribution: Distribution;
@@ -20,6 +21,7 @@ type DistributionListProps = {
   isRelatedToTransportportal: boolean;
   resolvedDistributionDataServices: SearchObject[];
   resolvedDistributionInformationModels: SearchObject[];
+  profile?: Profile;
 };
 
 const DistributionList = ({
@@ -29,6 +31,7 @@ const DistributionList = ({
   isRelatedToTransportportal,
   resolvedDistributionDataServices,
   resolvedDistributionInformationModels,
+  profile,
 }: DistributionListProps) => {
   const [hasBeenOpened, setHasBeenOpened] = useState(false);
 
@@ -60,6 +63,7 @@ const DistributionList = ({
             resolvedDistributionDataServices={resolvedDistributionDataServices}
             resolvedDistributionInformationModels={resolvedDistributionInformationModels}
             hasBeenOpened={hasBeenOpened}
+            profile={profile}
           />
         </Details.Content>
       </Details>

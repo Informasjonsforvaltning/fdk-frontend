@@ -2,7 +2,7 @@
 import cn from "classnames";
 import { Card, Details, Heading } from "@digdir/designsystemet-react";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
-import { type JSONValue } from "@fdk-frontend/types";
+import { type JSONValue, type Profile } from "@fdk-frontend/types";
 import { sumArrayLengths } from "@fdk-frontend/utils";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { type SearchObject, type DataService, type Distribution } from "@fellesdatakatalog/types";
@@ -26,6 +26,7 @@ export type DistributionsProps = {
   };
   resolvedDistributionDataServices?: SearchObject[];
   resolvedDistributionInformationModels?: SearchObject[];
+  profile?: Profile;
 };
 
 const Distributions = ({
@@ -38,6 +39,7 @@ const Distributions = ({
   dictionaries,
   resolvedDistributionDataServices = [],
   resolvedDistributionInformationModels = [],
+  profile,
 }: DistributionsProps) => {
   return (
     <div className={cn(styles.distributions, className)}>
@@ -62,6 +64,7 @@ const Distributions = ({
                 isRelatedToTransportportal={isRelatedToTransportportal}
                 resolvedDistributionDataServices={resolvedDistributionDataServices}
                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
+                profile={profile}
               />
             ))}
           {exampleData &&

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "@digdir/designsystemet-react";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import { type Distribution, type SearchObject } from "@fellesdatakatalog/types";
@@ -17,6 +16,8 @@ import {
   noHeadings,
 } from "@fdk-frontend/ui";
 import distStyles from "../../distributions.module.scss";
+import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
+import { type Profile } from "@fdk-frontend/types";
 
 type DistributionDetailsProps = {
   distribution: Distribution;
@@ -29,6 +30,7 @@ type DistributionDetailsProps = {
   resolvedDistributionDataServices?: SearchObject[];
   resolvedDistributionInformationModels?: SearchObject[];
   hasBeenOpened: boolean;
+  profile?: Profile;
 };
 
 const DistributionDetails = ({
@@ -39,6 +41,7 @@ const DistributionDetails = ({
   resolvedDistributionDataServices = [],
   resolvedDistributionInformationModels = [],
   hasBeenOpened,
+  profile,
 }: DistributionDetailsProps) => {
   return (
     <>
@@ -134,12 +137,14 @@ const DistributionDetails = ({
 
                 if (resolvedDataService) {
                   return (
-                    <Link
+                    <InternalLink
+                      entity={resolvedDataService}
                       href={`/data-services/${resolvedDataService.id}`}
                       className="fdk-box-link"
+                      profile={profile}
                     >
                       {printLocaleValue(locale, resolvedDataService.title) || resolvedDataService.uri}
-                    </Link>
+                    </InternalLink>
                   );
                 }
 
@@ -215,12 +220,14 @@ const DistributionDetails = ({
 
                 if (resolvedInformationModel) {
                   return (
-                    <Link
+                    <InternalLink
                       href={`/information-models/${resolvedInformationModel.id}`}
                       className="fdk-box-link"
+                      entity={resolvedInformationModel}
+                      profile={profile}
                     >
                       {printLocaleValue(locale, resolvedInformationModel.title) || resolvedInformationModel.uri}
-                    </Link>
+                    </InternalLink>
                   );
                 }
 

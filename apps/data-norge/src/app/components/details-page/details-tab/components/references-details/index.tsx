@@ -3,8 +3,14 @@ import { Heading, Link } from "@digdir/designsystemet-react";
 import { PlaceholderBox, ExternalLink, SmartList, Dlist } from "@fdk-frontend/ui";
 import { printLocaleValue, getSlug } from "@fdk-frontend/utils";
 import { DatasetDetailsProps } from "../../";
+import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
 
-const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<DatasetDetailsProps, "dataset">) => {
+const ReferencesDetails = ({
+  populatedReferences,
+  locale,
+  dictionary,
+  profile,
+}: Omit<DatasetDetailsProps, "dataset">) => {
   const relations =
     populatedReferences?.filter((r) => r.reference.referenceType.uri !== "http://purl.org/dc/terms/relation") || [];
   const other = populatedReferences?.filter((r) => !relations.includes(r)) || [];
@@ -28,9 +34,13 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
               </dt>
               <dd>
                 {r.resource ? (
-                  <Link href={`/${locale}/datasets/${r.resource?.id}/${getSlug(r.resource, locale)}`}>
+                  <InternalLink
+                    href={`/${locale}/datasets/${r.resource?.id}/${getSlug(r.resource, locale)}`}
+                    entity={r.resource}
+                    profile={profile}
+                  >
                     {printLocaleValue(locale, r.resource?.title)}
-                  </Link>
+                  </InternalLink>
                 ) : (
                   <ExternalLink
                     href={r.reference.source?.uri}
@@ -49,15 +59,17 @@ const ReferencesDetails = ({ populatedReferences, locale, dictionary }: Omit<Dat
               items={other}
               renderItem={(r) =>
                 r.resource ? (
-                  <Link
+                  <InternalLink
                     href={
                       r.resource
                         ? `/${locale}/datasets/${r.resource.id}/${getSlug(r.resource, locale)}`
                         : r.reference.source?.uri
                     }
+                    entity={r.resource}
+                    profile={profile}
                   >
                     {printLocaleValue(locale, r.resource?.title)}
-                  </Link>
+                  </InternalLink>
                 ) : (
                   <ExternalLink
                     href={r.reference.source?.uri}
