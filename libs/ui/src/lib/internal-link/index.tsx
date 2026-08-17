@@ -3,7 +3,7 @@
 import { type PropsWithChildren } from "react";
 import { Link, type LinkProps } from "@digdir/designsystemet-react";
 import { i18n, type LocaleCodes } from "@fdk-frontend/localization";
-import { Dataset, EntityType, type SearchObject } from "@fellesdatakatalog/types";
+import { Dataset, type SearchObject } from "@fellesdatakatalog/types";
 import ExternalLink from "../external-link";
 import { type Profile } from "@fdk-frontend/types";
 
