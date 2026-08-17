@@ -9,14 +9,13 @@ import { LogoLink } from "../logo";
 import MainMenu from "../main-menu";
 import SearchInput from "../search-input";
 import styles from "./header.module.scss";
-
-export type HeaderProfile = "default" | "transportportal";
+import { Profile } from "@fdk-frontend/libs/types/src";
 
 export type HeaderProps = {
   locale: LocaleCodes;
   frontpage?: boolean;
   showSearchInput?: boolean;
-  profile?: HeaderProfile;
+  profile?: Profile;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;

@@ -1,4 +1,3 @@
-import React from "react";
 import cn from "classnames";
 import { Link, type LinkProps } from "@digdir/designsystemet-react";
 
@@ -7,11 +6,10 @@ import DigdirLogo from "../core/svg/digdir-logo";
 import DpgBadge from "../core/svg/dpg-badge";
 
 import styles from "./logo.module.scss";
-
-export type LogoProfile = "default" | "transportportal";
+import { Profile } from "@fdk-frontend/libs/types/src";
 
 export type LogoProps = {
-  profile?: LogoProfile;
+  profile?: Profile;
   tagline?: string;
 };
 

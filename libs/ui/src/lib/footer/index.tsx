@@ -5,12 +5,11 @@ import MainMenu from "../main-menu";
 import TransportportalFooter from "./transportportal-footer";
 import styles from "./footer.module.scss";
 import { HStack } from "@fellesdatakatalog/ui";
-
-export type FooterProfile = "default" | "transportportal";
+import { Profile } from "@fdk-frontend/libs/types/src";
 
 export type FooterProps = {
   locale: LocaleCodes;
-  profile?: FooterProfile;
+  profile?: Profile;
 };
 
 const Footer = ({ locale, profile = "default" }: FooterProps) => {

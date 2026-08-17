@@ -10,10 +10,11 @@ import ConsentReopenButton from "../consent/consent-reopen-button";
 import styles from "./main-menu.module.scss";
 import GithubLogo from "./images/github-logo";
 import getMainMenuData from "./data";
+import { Profile } from "@fdk-frontend/libs/types/src";
 
 type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
   locale: LocaleCodes;
-  profile?: "default" | "transportportal";
+  profile?: Profile;
   motionProps?: any;
 };
 
@@ -156,105 +157,105 @@ const MainMenu = ({ className, locale, profile = "default", motionProps = {}, ..
               variants={animations.section}
               aria-labelledby="mainMenu.catalogs.heading"
             >
-          <Heading
-            className={styles.linkSectionHeader}
-            level={2}
-            data-size="sm"
-            id="mainMenu.catalogs.heading"
-          >
-            {dictionary.mainMenu.catalogs.heading}
-          </Heading>
-          <ul>
-            {data.catalogs.map((item) => (
-              <li key={item.key}>
-                <Link
-                  className={styles.iconLink}
-                  href={item.href}
-                >
-                  {item.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </MotionNav>
-        <MotionNav
-          className={styles.linkSection}
-          variants={animations.section}
-          aria-labelledby="mainMenu.help.heading"
-        >
-          <Heading
-            className={styles.linkSectionHeader}
-            level={2}
-            data-size="sm"
-            id="mainMenu.help.heading"
-          >
-            {dictionary.mainMenu.help.heading}
-          </Heading>
-          <ul>
-            {data.help.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href}>{item.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </MotionNav>
-        <MotionNav
-          className={styles.linkSection}
-          variants={animations.section}
-          aria-labelledby="mainMenu.tools.heading"
-        >
-          <Heading
-            className={styles.linkSectionHeader}
-            level={2}
-            data-size="sm"
-            id="mainMenu.tools.heading"
-          >
-            {dictionary.mainMenu.tools.heading}
-          </Heading>
-          <ul>
-            {data.tools.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href}>{item.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </MotionNav>
-        <MotionNav
-          className={styles.linkSection}
-          variants={animations.section}
-          aria-labelledby="mainMenu.about.heading"
-        >
-          <Heading
-            className={styles.linkSectionHeader}
-            level={2}
-            data-size="sm"
-            id="mainMenu.about.heading"
-          >
-            {dictionary.mainMenu.about.heading}
-          </Heading>
-          <ul>
-            {data.about.map((item) => (
-              <li key={item.href ?? item.title}>
-                {item.consent ? (
-                  <ConsentReopenButton
-                    locale={locale}
-                    label={item.title}
-                  />
-                ) : item.external ? (
-                  <ExternalLink
-                    href={item.href}
-                    locale={locale}
-                  >
-                    {item.href && isGithubUrl(item.href) && <GithubLogo style={{ marginRight: "0.125em" }} />}
-                    {item.title}
-                  </ExternalLink>
-                ) : (
-                  <Link href={item.href}>{item.title}</Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        </MotionNav>
+              <Heading
+                className={styles.linkSectionHeader}
+                level={2}
+                data-size="sm"
+                id="mainMenu.catalogs.heading"
+              >
+                {dictionary.mainMenu.catalogs.heading}
+              </Heading>
+              <ul>
+                {data.catalogs.map((item) => (
+                  <li key={item.key}>
+                    <Link
+                      className={styles.iconLink}
+                      href={item.href}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </MotionNav>
+            <MotionNav
+              className={styles.linkSection}
+              variants={animations.section}
+              aria-labelledby="mainMenu.help.heading"
+            >
+              <Heading
+                className={styles.linkSectionHeader}
+                level={2}
+                data-size="sm"
+                id="mainMenu.help.heading"
+              >
+                {dictionary.mainMenu.help.heading}
+              </Heading>
+              <ul>
+                {data.help.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href}>{item.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </MotionNav>
+            <MotionNav
+              className={styles.linkSection}
+              variants={animations.section}
+              aria-labelledby="mainMenu.tools.heading"
+            >
+              <Heading
+                className={styles.linkSectionHeader}
+                level={2}
+                data-size="sm"
+                id="mainMenu.tools.heading"
+              >
+                {dictionary.mainMenu.tools.heading}
+              </Heading>
+              <ul>
+                {data.tools.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href}>{item.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </MotionNav>
+            <MotionNav
+              className={styles.linkSection}
+              variants={animations.section}
+              aria-labelledby="mainMenu.about.heading"
+            >
+              <Heading
+                className={styles.linkSectionHeader}
+                level={2}
+                data-size="sm"
+                id="mainMenu.about.heading"
+              >
+                {dictionary.mainMenu.about.heading}
+              </Heading>
+              <ul>
+                {data.about.map((item) => (
+                  <li key={item.href ?? item.title}>
+                    {item.consent ? (
+                      <ConsentReopenButton
+                        locale={locale}
+                        label={item.title}
+                      />
+                    ) : item.external ? (
+                      <ExternalLink
+                        href={item.href}
+                        locale={locale}
+                      >
+                        {item.href && isGithubUrl(item.href) && <GithubLogo style={{ marginRight: "0.125em" }} />}
+                        {item.title}
+                      </ExternalLink>
+                    ) : (
+                      <Link href={item.href}>{item.title}</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </MotionNav>
           </>
         )}
       </div>

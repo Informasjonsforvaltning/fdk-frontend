@@ -3,10 +3,10 @@ import { type RootLayoutProps } from "../root-layout";
 import HeaderLayout from "../header-layout";
 import FooterLayout from "../footer-layout";
 import FeedbackBanner from "../../feedback-banner";
-import { type HeaderProfile } from "../../header";
+import { Profile } from "@fdk-frontend/libs/types/src";
 
 type NormalLayoutProps = RootLayoutProps & {
-  profile?: HeaderProfile;
+  profile?: Profile;
 };
 
 const NormalLayout = async ({ children, params, profile }: PropsWithChildren & NormalLayoutProps) => {
