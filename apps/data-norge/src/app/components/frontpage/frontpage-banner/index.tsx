@@ -9,12 +9,13 @@ import Norgeskart from "./components/norgeskart";
 import ScrollButton from "./components/scroll-button";
 
 import styles from "./frontpage-banner.module.scss";
+import { Profile } from "@fdk-frontend/libs/types/src";
 
 type FrontpageBannerProps = {
   dictionary: Localization;
   locale: LocaleCodes;
   endpoint: string;
-  profile?: "default" | "transportportal";
+  profile?: Profile;
 };
 
 const FrontpageBanner = ({ dictionary, locale, endpoint, profile = "default" }: FrontpageBannerProps) => (
