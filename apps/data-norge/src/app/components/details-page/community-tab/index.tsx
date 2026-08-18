@@ -12,11 +12,18 @@ export type CommunityTabProps = {
   topics?: JSONValue;
   dictionary: Localization;
   locale: LocaleCodes;
-  profile: Profile;
+  profile?: Profile;
   baseUri: string;
 };
 
-const CommunityTab = ({ communityBaseUri, topics, dictionary, locale, profile, baseUri }: CommunityTabProps) => {
+const CommunityTab = ({
+  communityBaseUri,
+  topics,
+  dictionary,
+  locale,
+  profile = "data.norge",
+  baseUri,
+}: CommunityTabProps) => {
   return (
     <section className={styles.section}>
       <Heading

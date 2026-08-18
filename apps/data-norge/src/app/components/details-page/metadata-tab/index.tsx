@@ -15,7 +15,7 @@ export type MetadataTabProps = {
   uri: string;
   dictionary: Localization;
   locale: LocaleCodes;
-  profile: Profile;
+  profile?: Profile;
   baseUri: string;
 };
 
@@ -24,7 +24,7 @@ const MetadataTab = ({
   uri,
   dictionary,
   locale,
-  profile,
+  profile = "data.norge",
   baseUri,
   ...props
 }: MetadataTabProps & React.HTMLAttributes<HTMLDivElement>) => {

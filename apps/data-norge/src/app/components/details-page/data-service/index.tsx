@@ -177,6 +177,7 @@ export default function DataServiceDetailsPage({
               communityBaseUri={communityBaseUri}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              baseUri={baseUri}
             />
           </TabsPanel>
           <TabsPanel
@@ -187,6 +188,7 @@ export default function DataServiceDetailsPage({
               uri={`${baseUri}/data-services/${resource.id}`}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              baseUri={baseUri}
             />
           </TabsPanel>
         </Tabs>
