@@ -142,6 +142,8 @@ export default function DataServiceOverviewTab({
               datasets={resolvedDatasets}
               locale={locale}
               dictionary={dictionary}
+              profile="data.norge"
+              baseUri=""
             />
           </ScrollShadows>
         </section>
