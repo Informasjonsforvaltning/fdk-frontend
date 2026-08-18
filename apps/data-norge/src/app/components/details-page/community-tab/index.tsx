@@ -1,19 +1,22 @@
 import cn from "classnames";
-import { Heading, Button, Link, Paragraph, Alert, Table } from "@digdir/designsystemet-react";
-import { type JSONValue } from "@fdk-frontend/types";
+import { Heading, Button, Paragraph, Alert, Table } from "@digdir/designsystemet-react";
+import { Profile, type JSONValue } from "@fdk-frontend/types";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
 import { Badge, ExternalLink, Hstack, VStack, ScrollShadows, PlaceholderBox } from "@fdk-frontend/ui";
 import styles from "./community-tab.module.scss";
 import TopicRow from "./components/topic-row";
+import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
 
 export type CommunityTabProps = {
   communityBaseUri: string;
   topics?: JSONValue;
   dictionary: Localization;
   locale: LocaleCodes;
+  profile: Profile;
+  baseUri: string;
 };
 
-const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: CommunityTabProps) => {
+const CommunityTab = ({ communityBaseUri, topics, dictionary, locale, profile, baseUri }: CommunityTabProps) => {
   return (
     <section className={styles.section}>
       <Heading
@@ -76,7 +79,13 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale }: Communit
               data-size="sm"
               asChild
             >
-              <Link href="/docs/community">{dictionary.community.notice.moreInfo}</Link>
+              <InternalLink
+                href="/docs/community"
+                profile={profile}
+                baseUri={baseUri}
+              >
+                {dictionary.community.notice.moreInfo}
+              </InternalLink>
             </Button>
           </Hstack>
         </VStack>

@@ -66,9 +66,13 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, b
               <div style={{ whiteSpace: "normal" }}>
                 <Paragraph data-size="sm">{dictionary.details.general.firstHarvestedHelpText}</Paragraph>
                 <Paragraph data-size="sm">
-                  <Link href="/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest">
+                  <InternalLink
+                    href="/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest"
+                    profile={profile}
+                    baseUri={baseUri}
+                  >
                     {dictionary.details.general.firstHarvestedHelpTextLink}
-                  </Link>
+                  </InternalLink>
                 </Paragraph>
               </div>
             </HelpText>

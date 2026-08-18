@@ -316,6 +316,8 @@ export default function DatasetDetailsPage({
               communityBaseUri={communityBaseUri}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              profile={profile}
+              baseUri={baseUri}
             />
           </TabsPanel>
           <TabsPanel
@@ -326,6 +328,8 @@ export default function DatasetDetailsPage({
               uri={`${baseUri}/datasets/${resource.id}`}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              profile={profile}
+              baseUri={baseUri}
             />
           </TabsPanel>
         </Tabs>
