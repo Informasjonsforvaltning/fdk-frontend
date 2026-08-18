@@ -55,7 +55,7 @@ export type DatasetDetailsPageType = {
   };
   resolvedDistributionDataServices?: SearchObject[];
   resolvedDistributionInformationModels?: SearchObject[];
-  profile?: Profile;
+  profile: Profile;
 };
 
 export default function DatasetDetailsPage({
@@ -217,6 +217,7 @@ export default function DatasetDetailsPage({
                   resolvedDistributionDataServices={resolvedDistributionDataServices}
                   resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                   profile={profile}
+                  baseUri={baseUri}
                 />
               )}
             </section>
@@ -239,6 +240,7 @@ export default function DatasetDetailsPage({
                     locale={locale}
                     dictionary={dictionaries.detailsPage}
                     profile={profile}
+                    baseUri={baseUri}
                   />
                 </ScrollShadows>
               </section>
@@ -257,6 +259,7 @@ export default function DatasetDetailsPage({
                     locale={locale}
                     dictionary={dictionaries.detailsPage}
                     profile={profile}
+                    baseUri={baseUri}
                   />
                 </ScrollShadows>
               </section>
@@ -284,6 +287,7 @@ export default function DatasetDetailsPage({
                 resolvedDistributionDataServices={resolvedDistributionDataServices}
                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                 profile={profile}
+                baseUri={baseUri}
               />
             )}
           </TabsPanel>
@@ -300,6 +304,7 @@ export default function DatasetDetailsPage({
               metadataScore={metadataScore}
               dictionary={dictionaries.detailsPage}
               profile={profile}
+              baseUri={baseUri}
             />
           </TabsPanel>
           <TabsPanel

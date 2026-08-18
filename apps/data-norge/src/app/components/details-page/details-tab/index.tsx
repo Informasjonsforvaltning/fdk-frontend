@@ -31,7 +31,8 @@ export type DatasetDetailsProps = {
   concepts?: SearchObject[];
   populatedReferences?: PopulatedDatasetReference[];
   internalRelatedDatasets?: DatasetWithIdentifier[];
-  profile?: Profile;
+  profile: Profile;
+  baseUri: string;
 };
 
 const DatasetDetailsTab = ({
@@ -44,6 +45,7 @@ const DatasetDetailsTab = ({
   populatedReferences,
   internalRelatedDatasets,
   profile,
+  baseUri,
 }: DatasetDetailsProps) => {
   const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
@@ -94,6 +96,7 @@ const DatasetDetailsTab = ({
             locale={locale}
             dictionary={dictionary}
             profile={profile}
+            baseUri={baseUri}
           />
         )}
         {!populatedReferences?.length && !showEmptyRows ? null : (
@@ -101,6 +104,8 @@ const DatasetDetailsTab = ({
             populatedReferences={populatedReferences}
             locale={locale}
             dictionary={dictionary}
+            profile={profile}
+            baseUri={baseUri}
           />
         )}
         {!dataset.costs?.length && !showEmptyRows ? null : (
@@ -171,6 +176,8 @@ const DatasetDetailsTab = ({
           locale={locale}
           dictionary={dictionary}
           metadataScore={metadataScore}
+          profile={profile}
+          baseUri={baseUri}
         />
         {!dataset.theme?.length && !showEmptyRows ? null : (
           <section>

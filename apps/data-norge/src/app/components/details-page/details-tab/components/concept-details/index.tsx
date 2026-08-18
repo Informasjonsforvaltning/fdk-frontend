@@ -5,7 +5,7 @@ import { DatasetDetailsProps } from "../../";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
 
-const ConceptDetails = ({ dataset, locale, dictionary, concepts, profile }: DatasetDetailsProps) => {
+const ConceptDetails = ({ dataset, locale, dictionary, concepts, profile, baseUri }: DatasetDetailsProps) => {
   return (
     <section>
       <Heading
@@ -24,6 +24,7 @@ const ConceptDetails = ({ dataset, locale, dictionary, concepts, profile }: Data
                     entity={concept}
                     href={`/concepts/${concept.id}`}
                     profile={profile}
+                    baseUri={baseUri}
                   >
                     {printLocaleValue(locale, concept.title) || concept.uri}
                   </InternalLink>

@@ -21,7 +21,8 @@ type DistributionListProps = {
   isRelatedToTransportportal: boolean;
   resolvedDistributionDataServices: SearchObject[];
   resolvedDistributionInformationModels: SearchObject[];
-  profile?: Profile;
+  profile: Profile;
+  baseUri: string;
 };
 
 const DistributionList = ({
@@ -32,6 +33,7 @@ const DistributionList = ({
   resolvedDistributionDataServices,
   resolvedDistributionInformationModels,
   profile,
+  baseUri,
 }: DistributionListProps) => {
   const [hasBeenOpened, setHasBeenOpened] = useState(false);
 
@@ -64,6 +66,7 @@ const DistributionList = ({
             resolvedDistributionInformationModels={resolvedDistributionInformationModels}
             hasBeenOpened={hasBeenOpened}
             profile={profile}
+            baseUri={baseUri}
           />
         </Details.Content>
       </Details>

@@ -26,7 +26,8 @@ export type DistributionsProps = {
   };
   resolvedDistributionDataServices?: SearchObject[];
   resolvedDistributionInformationModels?: SearchObject[];
-  profile?: Profile;
+  profile: Profile;
+  baseUri: string;
 };
 
 const Distributions = ({
@@ -40,6 +41,7 @@ const Distributions = ({
   resolvedDistributionDataServices = [],
   resolvedDistributionInformationModels = [],
   profile,
+  baseUri,
 }: DistributionsProps) => {
   return (
     <div className={cn(styles.distributions, className)}>
@@ -65,6 +67,7 @@ const Distributions = ({
                 resolvedDistributionDataServices={resolvedDistributionDataServices}
                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
                 profile={profile}
+                baseUri={baseUri}
               />
             ))}
           {exampleData &&
@@ -77,6 +80,8 @@ const Distributions = ({
                 isRelatedToTransportportal={isRelatedToTransportportal}
                 resolvedDistributionDataServices={resolvedDistributionDataServices}
                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
+                profile={profile}
+                baseUri={baseUri}
               />
             ))}
         </Card>

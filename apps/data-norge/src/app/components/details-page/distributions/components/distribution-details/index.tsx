@@ -30,7 +30,8 @@ type DistributionDetailsProps = {
   resolvedDistributionDataServices?: SearchObject[];
   resolvedDistributionInformationModels?: SearchObject[];
   hasBeenOpened: boolean;
-  profile?: Profile;
+  profile: Profile;
+  baseUri: string;
 };
 
 const DistributionDetails = ({
@@ -42,6 +43,7 @@ const DistributionDetails = ({
   resolvedDistributionInformationModels = [],
   hasBeenOpened,
   profile,
+  baseUri,
 }: DistributionDetailsProps) => {
   return (
     <>
@@ -142,6 +144,7 @@ const DistributionDetails = ({
                       href={`/data-services/${resolvedDataService.id}`}
                       className="fdk-box-link"
                       profile={profile}
+                      baseUri={baseUri}
                     >
                       {printLocaleValue(locale, resolvedDataService.title) || resolvedDataService.uri}
                     </InternalLink>
@@ -225,6 +228,7 @@ const DistributionDetails = ({
                       className="fdk-box-link"
                       entity={resolvedInformationModel}
                       profile={profile}
+                      baseUri={baseUri}
                     >
                       {printLocaleValue(locale, resolvedInformationModel.title) || resolvedInformationModel.uri}
                     </InternalLink>

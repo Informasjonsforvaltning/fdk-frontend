@@ -4,7 +4,7 @@ import { PlaceholderText, PlaceholderBox, ExternalLink, Dlist } from "@fdk-front
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { i18n } from "@fdk-frontend/localization";
 
-const ContactDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
+const ContactDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
   const printContactPointName = (contactPoint: any) => {

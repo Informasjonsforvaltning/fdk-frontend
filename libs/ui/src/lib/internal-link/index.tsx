@@ -15,7 +15,8 @@ export type InternalLinkProps = Omit<LinkProps, "children"> &
   PropsWithChildren & {
     entity?: SearchObject | Dataset;
     locale?: LocaleCodes;
-    profile?: Profile;
+    profile: Profile;
+    baseUri: string;
   };
 
 const InternalLink = ({
@@ -23,6 +24,7 @@ const InternalLink = ({
   entity,
   locale = i18n.defaultLocale,
   profile = "default",
+  baseUri,
   ...props
 }: InternalLinkProps) => {
   const dataset = entity as TransportDataset;
@@ -30,11 +32,10 @@ const InternalLink = ({
     return <Link {...props}>{children} </Link>;
   }
 
-  const defaultBaseUrl = "https://staging.fellesdatakatalog.digdir.no"; // TODO: actual method for this
   return (
     <ExternalLink
       {...props}
-      href={defaultBaseUrl + props.href}
+      href={baseUri + props.href}
       gateway
     >
       {children}

@@ -14,7 +14,8 @@ type DatasetTableProps = {
   locale: LocaleCodes;
   dictionary: Localization;
   datasets: any[];
-  profile?: Profile;
+  profile: Profile;
+  baseUri: string;
 };
 
 const DatasetTable = ({
@@ -23,6 +24,7 @@ const DatasetTable = ({
   locale,
   dictionary,
   profile,
+  baseUri,
   ...props
 }: DatasetTableProps & React.HTMLAttributes<HTMLDivElement>) => {
   return (
@@ -42,6 +44,7 @@ const DatasetTable = ({
                   className={styles.datasetLink}
                   profile={profile}
                   entity={dataset}
+                  baseUri={baseUri}
                 >
                   {printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset}
                 </InternalLink>

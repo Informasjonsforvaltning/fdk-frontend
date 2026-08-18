@@ -10,6 +10,7 @@ const ReferencesDetails = ({
   locale,
   dictionary,
   profile,
+  baseUri,
 }: Omit<DatasetDetailsProps, "dataset">) => {
   const relations =
     populatedReferences?.filter((r) => r.reference.referenceType.uri !== "http://purl.org/dc/terms/relation") || [];
@@ -38,6 +39,7 @@ const ReferencesDetails = ({
                     href={`/${locale}/datasets/${r.resource?.id}/${getSlug(r.resource, locale)}`}
                     entity={r.resource}
                     profile={profile}
+                    baseUri={baseUri}
                   >
                     {printLocaleValue(locale, r.resource?.title)}
                   </InternalLink>
@@ -67,6 +69,7 @@ const ReferencesDetails = ({
                     }
                     entity={r.resource}
                     profile={profile}
+                    baseUri={baseUri}
                   >
                     {printLocaleValue(locale, r.resource?.title)}
                   </InternalLink>
