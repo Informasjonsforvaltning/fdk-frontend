@@ -20,7 +20,7 @@ export type HeaderProps = {
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ locale, frontpage, showSearchInput, profile = "default" }: HeaderProps) => {
+const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: HeaderProps) => {
   const dictionary = getLocalization(locale).common;
   const headerRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);

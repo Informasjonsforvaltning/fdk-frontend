@@ -23,12 +23,12 @@ const InternalLink = ({
   children,
   entity,
   locale = i18n.defaultLocale,
-  profile = "default",
+  profile = "data.norge",
   baseUri,
   ...props
 }: InternalLinkProps) => {
   const dataset = entity as TransportDataset;
-  if (!(profile === "transportportal") || (profile === "transportportal" && dataset?.isRelatedToTransportportal)) {
+  if (profile !== "transportportal" || dataset?.isRelatedToTransportportal) {
     return <Link {...props}>{children}</Link>;
   }
 

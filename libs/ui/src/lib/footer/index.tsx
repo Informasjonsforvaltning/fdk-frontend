@@ -12,7 +12,7 @@ export type FooterProps = {
   profile?: Profile;
 };
 
-const Footer = ({ locale, profile = "default" }: FooterProps) => {
+const Footer = ({ locale, profile = "data.norge" }: FooterProps) => {
   const dictionary = getLocalization(locale).common;
 
   if (profile === "transportportal") {

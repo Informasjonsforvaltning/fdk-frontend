@@ -13,7 +13,7 @@ export type LogoProps = {
   tagline?: string;
 };
 
-const Logo = ({ profile = "default", tagline }: LogoProps) =>
+const Logo = ({ profile = "data.norge", tagline }: LogoProps) =>
   profile === "transportportal" ? (
     <div className={styles.transportportalLogo}>
       <span className={styles.transportportalWordmark}>Transportportal.no</span>

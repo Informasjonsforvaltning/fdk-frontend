@@ -12,7 +12,7 @@ import { Profile } from "@fdk-frontend/types";
 
 export type SearchPageClientProps = Pick<SearchPageProps, "lang"> & { profile?: Profile };
 
-const SearchPageClient = function ({ lang, profile = "default" }: SearchPageClientProps) {
+const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageClientProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();

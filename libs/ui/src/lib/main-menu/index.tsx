@@ -20,7 +20,7 @@ type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const MotionNav: ForwardRefComponent<any, any> = motion.nav;
 
-const MainMenu = ({ className, locale, profile = "default", motionProps = {}, ...rest }: MainMenuProps) => {
+const MainMenu = ({ className, locale, profile = "data.norge", motionProps = {}, ...rest }: MainMenuProps) => {
   const dictionary = getLocalization(locale).common;
   const data = getMainMenuData(dictionary, locale);
 
