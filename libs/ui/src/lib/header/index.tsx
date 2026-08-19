@@ -9,7 +9,7 @@ import { LogoLink } from "../logo";
 import MainMenu from "../main-menu";
 import SearchInput from "../search-input";
 import styles from "./header.module.scss";
-import { Profile } from "@fdk-frontend/libs/types/src";
+import { Profile } from "@fdk-frontend/types";
 
 export type HeaderProps = {
   locale: LocaleCodes;

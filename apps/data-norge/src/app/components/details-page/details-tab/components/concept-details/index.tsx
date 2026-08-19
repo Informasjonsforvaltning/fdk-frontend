@@ -1,9 +1,8 @@
 import React from "react";
 import { Heading } from "@digdir/designsystemet-react";
-import { PlaceholderBox, Dlist } from "@fdk-frontend/ui";
+import { PlaceholderBox, Dlist, InternalLink } from "@fdk-frontend/ui";
 import { DatasetDetailsProps } from "../../";
 import { printLocaleValue } from "@fdk-frontend/utils";
-import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
 
 const ConceptDetails = ({ dataset, locale, dictionary, concepts, profile, baseUri }: DatasetDetailsProps) => {
   return (

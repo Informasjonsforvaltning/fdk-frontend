@@ -6,13 +6,12 @@ import { type JSONValue, type Profile } from "@fdk-frontend/types";
 import { sumArrayLengths } from "@fdk-frontend/utils";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { type SearchObject, type DataService, type Distribution } from "@fellesdatakatalog/types";
-import { Badge, Hstack, PlaceholderBox } from "@fdk-frontend/ui";
+import { Badge, Hstack, PlaceholderBox, InternalLink } from "@fdk-frontend/ui";
 import styles from "./distributions.module.scss";
 import DistributionList from "./components/dataset-details";
 import ExampleDataDetails from "./components/example-data-details";
 import ApiHeader from "./components/api-header";
 import ApiDetails from "./components/api-details";
-import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
 
 export type DistributionsProps = {
   datasets?: JSONValue[];

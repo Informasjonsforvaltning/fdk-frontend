@@ -14,9 +14,9 @@ import {
   Article,
   DownloadDistributionWidget,
   noHeadings,
+  InternalLink,
 } from "@fdk-frontend/ui";
 import distStyles from "../../distributions.module.scss";
-import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
 import { type Profile } from "@fdk-frontend/types";
 
 type DistributionDetailsProps = {

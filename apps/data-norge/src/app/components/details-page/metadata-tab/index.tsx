@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import cn from "classnames";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { InputWithCopyButton, Hstack } from "@fdk-frontend/ui";
+import { InputWithCopyButton, Hstack, InternalLink } from "@fdk-frontend/ui";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { ToggleGroup, Heading, Spinner, Paragraph } from "@digdir/designsystemet-react";
 import { CopyButton, HelpText } from "@fellesdatakatalog/ui";
 
 import styles from "./metadata-tab.module.scss";
-import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
-import { Profile } from "@fdk-frontend/libs/types/src";
+import { Profile } from "@fdk-frontend/types";
 
 export type MetadataTabProps = {
   uri: string;

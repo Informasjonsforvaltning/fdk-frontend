@@ -8,7 +8,7 @@ import { deriveActiveEntityTabFromPathname, deriveLangFromPathname } from "../..
 import SearchPage, { type SearchPageProps } from "./index";
 import { loadEntitySearchState, loadLlmDocsSearchState } from "./search-fetch";
 import { initialSearchPageState, searchPageReducer } from "./search-page-state";
-import { Profile } from "@fdk-frontend/libs/types/src";
+import { Profile } from "@fdk-frontend/types";
 
 export type SearchPageClientProps = Pick<SearchPageProps, "lang"> & { profile?: Profile };
 

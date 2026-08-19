@@ -5,7 +5,7 @@ import MainMenu from "../main-menu";
 import TransportportalFooter from "./transportportal-footer";
 import styles from "./footer.module.scss";
 import { HStack } from "@fellesdatakatalog/ui";
-import { Profile } from "@fdk-frontend/libs/types/src";
+import { Profile } from "@fdk-frontend/types";
 
 export type FooterProps = {
   locale: LocaleCodes;

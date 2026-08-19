@@ -3,7 +3,7 @@ import { type RootLayoutProps } from "../root-layout";
 import HeaderLayout from "../header-layout";
 import FooterLayout from "../footer-layout";
 import FeedbackBanner from "../../feedback-banner";
-import { Profile } from "@fdk-frontend/libs/types/src";
+import { Profile } from "@fdk-frontend/types";
 
 type NormalLayoutProps = RootLayoutProps & {
   profile?: Profile;

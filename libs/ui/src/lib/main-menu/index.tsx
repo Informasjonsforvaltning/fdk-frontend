@@ -10,7 +10,7 @@ import ConsentReopenButton from "../consent/consent-reopen-button";
 import styles from "./main-menu.module.scss";
 import GithubLogo from "./images/github-logo";
 import getMainMenuData from "./data";
-import { Profile } from "@fdk-frontend/libs/types/src";
+import { Profile } from "@fdk-frontend/types";
 
 type MainMenuProps = React.HTMLAttributes<HTMLDivElement> & {
   locale: LocaleCodes;

@@ -2,10 +2,9 @@ import cn from "classnames";
 import { Heading, Button, Paragraph, Alert, Table } from "@digdir/designsystemet-react";
 import { Profile, type JSONValue } from "@fdk-frontend/types";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
-import { Badge, ExternalLink, Hstack, VStack, ScrollShadows, PlaceholderBox } from "@fdk-frontend/ui";
+import { Badge, ExternalLink, Hstack, InternalLink, VStack, ScrollShadows, PlaceholderBox } from "@fdk-frontend/ui";
 import styles from "./community-tab.module.scss";
 import TopicRow from "./components/topic-row";
-import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
 
 export type CommunityTabProps = {
   communityBaseUri: string;

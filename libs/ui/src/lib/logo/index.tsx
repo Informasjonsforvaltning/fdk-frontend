@@ -6,7 +6,7 @@ import DigdirLogo from "../core/svg/digdir-logo";
 import DpgBadge from "../core/svg/dpg-badge";
 
 import styles from "./logo.module.scss";
-import { Profile } from "@fdk-frontend/libs/types/src";
+import { Profile } from "@fdk-frontend/types";
 
 export type LogoProps = {
   profile?: Profile;

@@ -1,9 +1,8 @@
 import React from "react";
 import { Heading } from "@digdir/designsystemet-react";
-import { PlaceholderBox, ExternalLink, SmartList, Dlist } from "@fdk-frontend/ui";
+import { PlaceholderBox, ExternalLink, SmartList, Dlist, InternalLink } from "@fdk-frontend/ui";
 import { printLocaleValue, getSlug } from "@fdk-frontend/utils";
 import { DatasetDetailsProps } from "../../";
-import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
 
 const ReferencesDetails = ({
   populatedReferences,

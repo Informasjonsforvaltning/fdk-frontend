@@ -13,7 +13,7 @@ import { calculateMetadataScore, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { i18n } from "@fdk-frontend/localization";
-import InternalLink from "@fdk-frontend/libs/ui/src/lib/internal-link";
+import { InternalLink } from "@fdk-frontend/ui";
 
 const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, baseUri }: DatasetDetailsProps) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);

@@ -29,7 +29,7 @@ const InternalLink = ({
 }: InternalLinkProps) => {
   const dataset = entity as TransportDataset;
   if (!(profile === "transportportal") || (profile === "transportportal" && dataset?.isRelatedToTransportportal)) {
-    return <Link {...props}>{children} </Link>;
+    return <Link {...props}>{children}</Link>;
   }
 
   return (

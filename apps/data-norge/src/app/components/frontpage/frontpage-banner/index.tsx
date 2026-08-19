@@ -9,7 +9,7 @@ import Norgeskart from "./components/norgeskart";
 import ScrollButton from "./components/scroll-button";
 
 import styles from "./frontpage-banner.module.scss";
-import { Profile } from "@fdk-frontend/libs/types/src";
+import { Profile } from "@fdk-frontend/types";
 
 type FrontpageBannerProps = {
   dictionary: Localization;
