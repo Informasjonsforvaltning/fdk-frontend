@@ -3,16 +3,16 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useReducer } from "react";
 import { type LocaleCodes } from "@fdk-frontend/localization";
-import { type Profile } from "@fdk-frontend/utils/server";
 import { parseSearchPageParam, parseSearchPageSizeParam } from "@fdk-frontend/ui/search-form";
 import { deriveActiveEntityTabFromPathname, deriveLangFromPathname } from "../../[lang]/search/search-route";
 import SearchPage, { type SearchPageProps } from "./index";
 import { loadEntitySearchState, loadLlmDocsSearchState } from "./search-fetch";
 import { initialSearchPageState, searchPageReducer } from "./search-page-state";
+import { Profile } from "@fdk-frontend/types";
 
 export type SearchPageClientProps = Pick<SearchPageProps, "lang"> & { profile?: Profile };
 
-const SearchPageClient = function ({ lang, profile = "default" }: SearchPageClientProps) {
+const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageClientProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();

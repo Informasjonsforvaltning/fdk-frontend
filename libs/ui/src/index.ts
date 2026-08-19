@@ -80,6 +80,8 @@ export { default as IconBadge } from "./lib/icon-badge";
 export * from "./lib/icon-badge";
 export { default as InputWithCopyButton } from "./lib/input-with-copy-button";
 export * from "./lib/input-with-copy-button";
+export { default as InternalLink } from "./lib/internal-link";
+export * from "./lib/internal-link";
 export * from "./lib/label-with-tag";
 export { default as LanguageSwitcher } from "./lib/language-switcher";
 export * from "./lib/language-switcher";

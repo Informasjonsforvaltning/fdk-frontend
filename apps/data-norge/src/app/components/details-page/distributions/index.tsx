@@ -1,12 +1,12 @@
 "use client";
 import cn from "classnames";
-import { Card, Details, Heading } from "@digdir/designsystemet-react";
+import { Button, Card, Details, Heading } from "@digdir/designsystemet-react";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
-import { type JSONValue } from "@fdk-frontend/types";
+import { type JSONValue, type Profile } from "@fdk-frontend/types";
 import { sumArrayLengths } from "@fdk-frontend/utils";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { type SearchObject, type DataService, type Distribution } from "@fellesdatakatalog/types";
-import { Badge, Hstack, PlaceholderBox, ActionButton } from "@fdk-frontend/ui";
+import { Badge, Hstack, PlaceholderBox, InternalLink } from "@fdk-frontend/ui";
 import styles from "./distributions.module.scss";
 import DistributionList from "./components/dataset-details";
 import ExampleDataDetails from "./components/example-data-details";
@@ -26,6 +26,8 @@ export type DistributionsProps = {
   };
   resolvedDistributionDataServices?: SearchObject[];
   resolvedDistributionInformationModels?: SearchObject[];
+  profile: Profile;
+  baseUri: string;
 };
 
 const Distributions = ({
@@ -38,6 +40,8 @@ const Distributions = ({
   dictionaries,
   resolvedDistributionDataServices = [],
   resolvedDistributionInformationModels = [],
+  profile,
+  baseUri,
 }: DistributionsProps) => {
   return (
     <div className={cn(styles.distributions, className)}>
@@ -62,6 +66,8 @@ const Distributions = ({
                 isRelatedToTransportportal={isRelatedToTransportportal}
                 resolvedDistributionDataServices={resolvedDistributionDataServices}
                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
+                profile={profile}
+                baseUri={baseUri}
               />
             ))}
           {exampleData &&
@@ -74,6 +80,8 @@ const Distributions = ({
                 isRelatedToTransportportal={isRelatedToTransportportal}
                 resolvedDistributionDataServices={resolvedDistributionDataServices}
                 resolvedDistributionInformationModels={resolvedDistributionInformationModels}
+                profile={profile}
+                baseUri={baseUri}
               />
             ))}
         </Card>
@@ -115,16 +123,27 @@ const Distributions = ({
                   />
                 </Details.Content>
               </Details>
-              <ActionButton
-                uri={`/${locale}/data-services/${api.id}`}
+              <Button
+                asChild
+                data-size="sm"
+                variant="secondary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
                 className={styles.actionButton}
               >
-                {dictionaries.detailsPage.apis.header.gotoBtn}
-                <ArrowRightIcon
-                  aria-hidden
-                  fontSize="1.2em"
-                />
-              </ActionButton>
+                <InternalLink
+                  href={`/${locale}/data-services/${api.id}`}
+                  profile={profile}
+                  baseUri={baseUri}
+                >
+                  {dictionaries.detailsPage.apis.header.gotoBtn}
+                  <ArrowRightIcon
+                    aria-hidden
+                    fontSize="1.2em"
+                  />
+                </InternalLink>
+              </Button>
             </div>
           ))}
         </Card>

@@ -1,17 +1,21 @@
 import React from "react";
 import cn from "classnames";
-import { Link, Table } from "@digdir/designsystemet-react";
+import { Table } from "@digdir/designsystemet-react";
 import AccessLevelTag from "../access-level-tag";
 import HStack from "../hstack";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { AccessRightsCodes } from "@fellesdatakatalog/types";
 import styles from "./dataset-table.module.scss";
+import InternalLink from "../internal-link";
+import { type Profile } from "@fdk-frontend/types";
 
 type DatasetTableProps = {
   locale: LocaleCodes;
   dictionary: Localization;
   datasets: any[];
+  profile: Profile;
+  baseUri: string;
 };
 
 const DatasetTable = ({
@@ -19,6 +23,8 @@ const DatasetTable = ({
   datasets,
   locale,
   dictionary,
+  profile,
+  baseUri,
   ...props
 }: DatasetTableProps & React.HTMLAttributes<HTMLDivElement>) => {
   return (
@@ -33,12 +39,15 @@ const DatasetTable = ({
           datasets.map((dataset: any, index: number) => (
             <tr key={`${dataset.id}-${index}`}>
               <td>
-                <Link
+                <InternalLink
                   href={`/${locale}/datasets/${dataset.id}`}
                   className={styles.datasetLink}
+                  profile={profile}
+                  entity={dataset}
+                  baseUri={baseUri}
                 >
                   {printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset}
-                </Link>
+                </InternalLink>
               </td>
               <td>
                 <span className={styles.relatedPublisher}>

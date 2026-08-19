@@ -9,19 +9,18 @@ import { LogoLink } from "../logo";
 import MainMenu from "../main-menu";
 import SearchInput from "../search-input";
 import styles from "./header.module.scss";
-
-export type HeaderProfile = "default" | "transportportal";
+import { Profile } from "@fdk-frontend/types";
 
 export type HeaderProps = {
   locale: LocaleCodes;
   frontpage?: boolean;
   showSearchInput?: boolean;
-  profile?: HeaderProfile;
+  profile?: Profile;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ locale, frontpage, showSearchInput, profile = "default" }: HeaderProps) => {
+const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: HeaderProps) => {
   const dictionary = getLocalization(locale).common;
   const headerRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);

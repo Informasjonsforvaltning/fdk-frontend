@@ -19,6 +19,8 @@ const RelatedDetails = ({ related, locale, dictionary }: Omit<DatasetDetailsProp
             datasets={related}
             locale={locale}
             dictionary={dictionary}
+            profile="data.norge"
+            baseUri=""
           />
         </ScrollShadows>
       ) : (

@@ -8,13 +8,14 @@ import {
   Dlist,
   InputWithCopyButton,
   TagLink,
+  InternalLink,
 } from "@fdk-frontend/ui";
 import { calculateMetadataScore, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { i18n } from "@fdk-frontend/localization";
 
-const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetDetailsProps) => {
+const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, baseUri }: DatasetDetailsProps) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
   // dctType may be a single object (not-yet-reparsed datasets) or a list — normalize to a list.
@@ -65,9 +66,13 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
               <div style={{ whiteSpace: "normal" }}>
                 <Paragraph data-size="sm">{dictionary.details.general.firstHarvestedHelpText}</Paragraph>
                 <Paragraph data-size="sm">
-                  <Link href="/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest">
+                  <InternalLink
+                    href="/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest"
+                    profile={profile}
+                    baseUri={baseUri}
+                  >
                     {dictionary.details.general.firstHarvestedHelpTextLink}
-                  </Link>
+                  </InternalLink>
                 </Paragraph>
               </div>
             </HelpText>
@@ -157,9 +162,13 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore }: DatasetD
               <div style={{ whiteSpace: "normal" }}>
                 <Paragraph data-size="sm">{dictionary.details.general.metadataQuality.helpText}</Paragraph>
                 <Paragraph data-size="sm">
-                  <Link href="/nb/docs/metadata-quality">
+                  <InternalLink
+                    href="/nb/docs/metadata-quality"
+                    profile={profile}
+                    baseUri={baseUri}
+                  >
                     {dictionary.details.general.metadataQuality.helpTextLink}
-                  </Link>
+                  </InternalLink>
                 </Paragraph>
               </div>
             </HelpText>

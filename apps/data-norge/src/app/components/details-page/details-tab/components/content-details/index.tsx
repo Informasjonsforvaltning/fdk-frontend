@@ -5,7 +5,7 @@ import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { formatTemporalDate, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
 
-const ContentDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
+const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
   return (

@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import cn from "classnames";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { InputWithCopyButton, Hstack } from "@fdk-frontend/ui";
+import { InputWithCopyButton, Hstack, InternalLink } from "@fdk-frontend/ui";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
-import { ToggleGroup, Heading, Spinner, Paragraph, Link } from "@digdir/designsystemet-react";
+import { ToggleGroup, Heading, Spinner, Paragraph } from "@digdir/designsystemet-react";
 import { CopyButton, HelpText } from "@fellesdatakatalog/ui";
 
 import styles from "./metadata-tab.module.scss";
+import { Profile } from "@fdk-frontend/types";
 
 export type MetadataTabProps = {
   uri: string;
   dictionary: Localization;
   locale: LocaleCodes;
+  profile?: Profile;
+  baseUri: string;
 };
 
 const MetadataTab = ({
@@ -20,6 +23,8 @@ const MetadataTab = ({
   uri,
   dictionary,
   locale,
+  profile = "data.norge",
+  baseUri,
   ...props
 }: MetadataTabProps & React.HTMLAttributes<HTMLDivElement>) => {
   const [contentType, setContentType] = useState<string>("text/turtle");
@@ -77,7 +82,13 @@ const MetadataTab = ({
             <HelpText aria-label={dictionary.rdf.titleHelpTextTitle}>
               <Paragraph data-size="md">{dictionary.rdf.titleHelpText}</Paragraph>
               <Paragraph data-size="md">
-                <Link href={`/${locale}/docs/sharing-data/rdf`}>{dictionary.rdf.titleHelpTextLink}</Link>
+                <InternalLink
+                  href={`/${locale}/docs/sharing-data/rdf`}
+                  profile={profile}
+                  baseUri={baseUri}
+                >
+                  {dictionary.rdf.titleHelpTextLink}
+                </InternalLink>
               </Paragraph>
             </HelpText>
           </Hstack>

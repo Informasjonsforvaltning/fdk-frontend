@@ -27,6 +27,7 @@ import {
   searchDataServices,
   searchInformationModels,
 } from "@fdk-frontend/data-access/server";
+import { getProfile } from "@fdk-frontend/utils/server";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -209,6 +210,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     }
   }
 
+  const profile = await getProfile();
+
   return (
     <DatasetDetailsPage
       baseUri={FDK_BASE_URI as string}
@@ -227,6 +230,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
       defaultActiveTab={activeTab}
       resolvedDistributionDataServices={resolvedDistributionDataServices}
       resolvedDistributionInformationModels={resolvedDistributionInformationModels}
+      profile={profile}
     />
   );
 };

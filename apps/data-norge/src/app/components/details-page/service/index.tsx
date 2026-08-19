@@ -709,6 +709,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
               communityBaseUri={communityBaseUri}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              baseUri={baseUri}
             />
           </TabsPanel>
           <TabsPanel
@@ -719,6 +720,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
               uri={`${baseUri}/services/${service.id}`}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              baseUri={baseUri}
             />
           </TabsPanel>
         </Tabs>

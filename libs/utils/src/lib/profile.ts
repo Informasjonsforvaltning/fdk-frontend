@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
-
-export type Profile = "default" | "transportportal";
+import { type Profile } from "@fdk-frontend/types";
 
 const transportportalHosts = (process.env.TRANSPORTPORTAL_HOSTS ?? "data.transportportal.no,transportportal.no")
   .split(",")
@@ -16,5 +15,5 @@ export const getProfile = async (): Promise<Profile> => {
 
   const host = (headerList.get("x-forwarded-host") ?? headerList.get("host") ?? "").split(":")[0];
 
-  return transportportalHosts.includes(host) ? "transportportal" : "default";
+  return transportportalHosts.includes(host) ? "transportportal" : "data.norge";
 };

@@ -7,7 +7,7 @@ import { printLocaleValue } from "@fdk-frontend/utils";
 export const hasLegalBasis = (dataset: any) =>
   dataset.legalBasisForAccess || dataset.legalBasisForProcessing || dataset.legalBasisForRestriction;
 
-const LegalDetails = ({ dataset, locale, dictionary }: DatasetDetailsProps) => {
+const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
   const printLegalBasis = (legalBasis: any) => {

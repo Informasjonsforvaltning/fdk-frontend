@@ -30,3 +30,5 @@ export interface PopulatedDatasetReference {
   reference: DatasetReference;
   resource: Dataset;
 }
+
+export type Profile = "data.norge" | "transportportal";

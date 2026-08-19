@@ -7,7 +7,7 @@ import {
   type SearchObject,
   type ReferenceDataCode,
 } from "@fellesdatakatalog/types";
-import { type PopulatedDatasetReference } from "@fdk-frontend/types";
+import { type PopulatedDatasetReference, type Profile } from "@fdk-frontend/types";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
 import { PlaceholderBox, PlaceholderText, TagList, Dlist, ExternalLink, SmartList, TagLink } from "@fdk-frontend/ui";
 import GeneralDetails from "./components/general-details";
@@ -31,6 +31,8 @@ export type DatasetDetailsProps = {
   concepts?: SearchObject[];
   populatedReferences?: PopulatedDatasetReference[];
   internalRelatedDatasets?: DatasetWithIdentifier[];
+  profile: Profile;
+  baseUri: string;
 };
 
 const DatasetDetailsTab = ({
@@ -42,6 +44,8 @@ const DatasetDetailsTab = ({
   concepts,
   populatedReferences,
   internalRelatedDatasets,
+  profile,
+  baseUri,
 }: DatasetDetailsProps) => {
   const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
@@ -91,6 +95,8 @@ const DatasetDetailsTab = ({
             concepts={concepts}
             locale={locale}
             dictionary={dictionary}
+            profile={profile}
+            baseUri={baseUri}
           />
         )}
         {!populatedReferences?.length && !showEmptyRows ? null : (
@@ -98,6 +104,8 @@ const DatasetDetailsTab = ({
             populatedReferences={populatedReferences}
             locale={locale}
             dictionary={dictionary}
+            profile={profile}
+            baseUri={baseUri}
           />
         )}
         {!dataset.costs?.length && !showEmptyRows ? null : (
@@ -168,6 +176,8 @@ const DatasetDetailsTab = ({
           locale={locale}
           dictionary={dictionary}
           metadataScore={metadataScore}
+          profile={profile}
+          baseUri={baseUri}
         />
         {!dataset.theme?.length && !showEmptyRows ? null : (
           <section>
