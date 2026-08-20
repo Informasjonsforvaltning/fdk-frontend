@@ -20,6 +20,7 @@ export type SearchInputProps = {
   className?: string;
   locale: LocaleCodes;
   loading?: boolean;
+  showTray?: boolean;
 };
 
 const getInitialQFromUrl = function getInitialQFromUrl(searchParams: URLSearchParams): string {
@@ -40,6 +41,7 @@ const SearchInput = ({
   className,
   locale,
   loading,
+  showTray = true,
   ...rest
 }: SearchInputProps) => {
   const inputDict = getLocalization(locale).searchPage.searchInput;
@@ -135,7 +137,7 @@ const SearchInput = ({
           ref={inputRef}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          onFocus={() => setIsTrayVisible(true)}
+          onFocus={showTray ? () => setIsTrayVisible(true) : undefined}
           className={styles.input}
           placeholder={resolvedPlaceholder}
           aria-label={resolvedSearchLabel}
@@ -148,13 +150,15 @@ const SearchInput = ({
           {isMac ? "⌘ + K" : "Ctrl + K"}
         </Tag>
       </form>
-      <SearchInputTray
-        isVisible={isTrayVisible}
-        loading={loading}
-        locale={locale}
-        query={value}
-        onSuggestionSelect={() => setIsTrayVisible(false)}
-      />
+      {showTray && (
+        <SearchInputTray
+          isVisible={isTrayVisible}
+          loading={loading}
+          locale={locale}
+          query={value}
+          onSuggestionSelect={() => setIsTrayVisible(false)}
+        />
+      )}
     </div>
   );
 };
