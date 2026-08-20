@@ -134,6 +134,7 @@ const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: 
             <SearchInput
               locale={locale}
               className={styles.headerSearchInput}
+              showTray={profile !== "transportportal"}
             />
           ) : (
             <div style={{ flexGrow: 1 }} />
