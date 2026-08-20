@@ -24,6 +24,7 @@ const ConceptDetails = ({ dataset, locale, dictionary, concepts, profile, baseUr
                     href={`/concepts/${concept.id}`}
                     profile={profile}
                     baseUri={baseUri}
+                    locale={locale}
                   >
                     {printLocaleValue(locale, concept.title) || concept.uri}
                   </InternalLink>

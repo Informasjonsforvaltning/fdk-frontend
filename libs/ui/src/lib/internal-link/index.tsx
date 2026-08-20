@@ -37,6 +37,7 @@ const InternalLink = ({
       {...props}
       href={baseUri + props.href}
       gateway
+      locale={locale}
     >
       {children}
     </ExternalLink>

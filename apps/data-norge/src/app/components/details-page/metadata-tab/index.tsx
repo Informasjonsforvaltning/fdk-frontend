@@ -86,6 +86,7 @@ const MetadataTab = ({
                   href={`/${locale}/docs/sharing-data/rdf`}
                   profile={profile}
                   baseUri={baseUri}
+                  locale={locale}
                 >
                   {dictionary.rdf.titleHelpTextLink}
                 </InternalLink>
