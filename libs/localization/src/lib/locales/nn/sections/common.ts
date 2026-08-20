@@ -123,6 +123,12 @@ const common = {
     helpText:
       "Dette datasettet har ingen distribusjoner. Det betyr at kun beskrivelsen av datasettet er tilgjengelig, mens selve innholdet og dataene ennå ikke er publisert.",
   },
+  mobilityDcatTag: {
+    label: "MobilityDCAT",
+    helpTextTitle: "Omgrepsforklaring",
+    helpText:
+      "Datasettet er beskrive i medhald av mobilityDCAT-AP, ein standard for beskriving av samferdsels- og mobilitetsdata",
+  },
   general: {
     loading: "Lastar...",
     redirecting: "Videresendar...",

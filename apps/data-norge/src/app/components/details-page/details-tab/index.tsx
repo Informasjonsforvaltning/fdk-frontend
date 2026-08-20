@@ -197,7 +197,7 @@ const DatasetDetailsTab = ({
             )}
           </section>
         )}
-        {!dataset.isRelatedToTransportportal ? null : (
+        {dataset.mobilityTheme && dataset.mobilityTheme.length > 0 && (
           <section>
             <Heading
               level={2}
