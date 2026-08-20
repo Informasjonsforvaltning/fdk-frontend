@@ -32,6 +32,10 @@
   .headerTags {
     grid-area: d;
     grid-column: 1 / -1;
+    .tag {
+      display: inline-flex;
+      gap: var(--ds-size-2);
+    }
   }
 
   .lastUpdated {

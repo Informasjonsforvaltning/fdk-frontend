@@ -13,8 +13,9 @@ import {
   TagList,
   TagLink,
 } from "@fdk-frontend/ui";
-import { Heading } from "@digdir/designsystemet-react";
+import { Heading, Paragraph, Tag } from "@digdir/designsystemet-react";
 import styles from "./dataset-header.module.scss";
+import { HelpText } from "@fellesdatakatalog/ui";
 
 type DatasetHeaderProps = {
   dataset: DatasetWithIdentifier;
@@ -81,6 +82,14 @@ const DatasetHeader = ({
         >
           {dictionaries.detailsPage.header.datasetsTagLink}
         </TagLink>
+        {dataset?.mobilityTheme && dataset.mobilityTheme?.length > 0 && (
+          <Tag className={styles.tag}>
+            {dictionaries.common.mobilityDcatTag.label}
+            <HelpText aria-label={dictionaries.common.mobilityDcatTag.helpTextTitle}>
+              <Paragraph data-size="sm">{dictionaries.common.mobilityDcatTag.helpText}</Paragraph>
+            </HelpText>
+          </Tag>
+        )}
         <AccessLevelTag
           accessCode={dataset.accessRights?.code}
           locale={locale}
