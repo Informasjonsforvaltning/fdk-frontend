@@ -67,9 +67,10 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, b
                 <Paragraph data-size="sm">{dictionary.details.general.firstHarvestedHelpText}</Paragraph>
                 <Paragraph data-size="sm">
                   <InternalLink
-                    href="/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest"
+                    href={`/${locale}/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest`}
                     profile={profile}
                     baseUri={baseUri}
+                    locale={locale}
                   >
                     {dictionary.details.general.firstHarvestedHelpTextLink}
                   </InternalLink>
@@ -163,9 +164,10 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, b
                 <Paragraph data-size="sm">{dictionary.details.general.metadataQuality.helpText}</Paragraph>
                 <Paragraph data-size="sm">
                   <InternalLink
-                    href="/nb/docs/metadata-quality"
+                    href={`/${locale}/docs/metadata-quality`}
                     profile={profile}
                     baseUri={baseUri}
+                    locale={locale}
                   >
                     {dictionary.details.general.metadataQuality.helpTextLink}
                   </InternalLink>

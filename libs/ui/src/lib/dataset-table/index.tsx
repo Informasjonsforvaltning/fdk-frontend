@@ -45,6 +45,7 @@ const DatasetTable = ({
                   profile={profile}
                   entity={dataset}
                   baseUri={baseUri}
+                  locale={locale}
                 >
                   {printLocaleValue(locale, dataset.title) || dictionary.header.namelessDataset}
                 </InternalLink>

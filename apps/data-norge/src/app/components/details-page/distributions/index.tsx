@@ -136,6 +136,7 @@ const Distributions = ({
                   href={`/${locale}/data-services/${api.id}`}
                   profile={profile}
                   baseUri={baseUri}
+                  locale={locale}
                 >
                   {dictionaries.detailsPage.apis.header.gotoBtn}
                   <ArrowRightIcon

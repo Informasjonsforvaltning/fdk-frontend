@@ -86,9 +86,10 @@ const CommunityTab = ({
               asChild
             >
               <InternalLink
-                href="/docs/community"
+                href={`/${locale}/docs/community`}
                 profile={profile}
                 baseUri={baseUri}
+                locale={locale}
               >
                 {dictionary.community.notice.moreInfo}
               </InternalLink>

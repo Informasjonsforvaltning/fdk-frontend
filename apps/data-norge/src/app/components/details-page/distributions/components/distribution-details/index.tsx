@@ -141,10 +141,11 @@ const DistributionDetails = ({
                   return (
                     <InternalLink
                       entity={resolvedDataService}
-                      href={`/data-services/${resolvedDataService.id}`}
+                      href={`/${locale}/data-services/${resolvedDataService.id}`}
                       className="fdk-box-link"
                       profile={profile}
                       baseUri={baseUri}
+                      locale={locale}
                     >
                       {printLocaleValue(locale, resolvedDataService.title) || resolvedDataService.uri}
                     </InternalLink>
@@ -229,6 +230,7 @@ const DistributionDetails = ({
                       entity={resolvedInformationModel}
                       profile={profile}
                       baseUri={baseUri}
+                      locale={locale}
                     >
                       {printLocaleValue(locale, resolvedInformationModel.title) || resolvedInformationModel.uri}
                     </InternalLink>
