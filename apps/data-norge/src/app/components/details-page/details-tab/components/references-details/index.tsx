@@ -39,6 +39,7 @@ const ReferencesDetails = ({
                     entity={r.resource}
                     profile={profile}
                     baseUri={baseUri}
+                    locale={locale}
                   >
                     {printLocaleValue(locale, r.resource?.title)}
                   </InternalLink>
@@ -69,6 +70,7 @@ const ReferencesDetails = ({
                     entity={r.resource}
                     profile={profile}
                     baseUri={baseUri}
+                    locale={locale}
                   >
                     {printLocaleValue(locale, r.resource?.title)}
                   </InternalLink>
