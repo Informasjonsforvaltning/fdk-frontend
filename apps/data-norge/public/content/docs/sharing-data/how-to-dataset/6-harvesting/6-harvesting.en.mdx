@@ -18,7 +18,7 @@ We will use this URL when registering the data source.
 
 ## Registering the data source in the administration portal
 
-The next step is to register the data source in the Data.norge.no administration portal. You log in via the page https://data.norge.no/publishing where you click "Log in to manage harvesting."
+The next step is to register the data source in the Data.norge.no administration portal. You log in to the [administration solution for harvesting endpoints](https://admin.fellesdatakatalog.digdir.no/). See [Get started with harvesting](/docs/sharing-data/about-harvesting) for a walkthrough.
 
 <Alert>
   **Note**: You must have the correct permissions and rights to register the data source on behalf of your organization.
@@ -31,7 +31,7 @@ Once you are in the administration portal, click the "Add data source" button.
 
 Check that the publisher is correct; this should be the organization publishing the dataset.
 
-![The Norwegian Digitalisation Agency is selected as Publisher](https://cms.fellesdatakatalog.digdir.no/uploads/publisher_436431d9fc.png)
+![The Norwegian Digitalisation Agency is selected as Publisher](/images/content/publisher_436431d9fc.png)
 
 <Alert>
   **Note**: If you do not see your organization here, check that you have the correct permissions and rights on behalf
@@ -40,29 +40,29 @@ Check that the publisher is correct; this should be the organization publishing 
 
 The Catalog should be "Dataset" and Data Source Type should be "DCAT-AP-NO."
 
-![Dataset is selected under Catalog](https://cms.fellesdatakatalog.digdir.no/uploads/catalog_5b32c1d760.png)
+![Dataset is selected under Catalog](/images/content/catalog_5b32c1d760.png)
 
-![DCAT-AP-NO is selected for Data Source Type](https://cms.fellesdatakatalog.digdir.no/uploads/data_source_type_7945b706f1.png)
+![DCAT-AP-NO is selected for Data Source Type](/images/content/data_source_type_7945b706f1.png)
 
 The format (in our case) is Turtle, but here you select the RDF format you provide the description in.
 
-![Turtle is selected for Format](https://cms.fellesdatakatalog.digdir.no/uploads/format_a178ba8a09.png)
+![Turtle is selected for Format](/images/content/format_a178ba8a09.png)
 
 The name of the data source is used only in the administration portal's display of all data sources. It is only meant for the organization to keep track of its data sources and is not displayed publicly.
 
-![Name of data source is filled out with "Data Catalog for the Norwegian Digitalisation Agency"](https://cms.fellesdatakatalog.digdir.no/uploads/name_995474230a.png)
+![Name of data source is filled out with "Data Catalog for the Norwegian Digitalisation Agency"](/images/content/name_995474230a.png)
 
 The URL to the data source should be the URL where you provide the data description from. In our case, it is the URL `https://raw.githubusercontent.com/Informasjonsforvaltning/ai-project-service/main/ai_projects_norwegian_state_dataset_description.ttl`.
 
-![URL to the data source is filled out with the link to the file on Github](https://cms.fellesdatakatalog.digdir.no/uploads/url_20dd8399c0.png)
+![URL to the data source is filled out with the link to the file on Github](/images/content/url_20dd8399c0.png)
 
 We have no authentication for this data source, so we leave those fields empty:
-![The two fields under Authentication - HTTP Header are left empty](https://cms.fellesdatakatalog.digdir.no/uploads/authentication_c4674b80ce.png)
+![The two fields under Authentication - HTTP Header are left empty](/images/content/authentication_c4674b80ce.png)
 
 Then click "Save."
 
 The data source should now appear in the list of data sources. Ours looks like this:
-![The entry "Data Catalog for the Norwegian Digitalisation Agency" is displayed, with information about publisher, URI to the data source, format, and with the buttons Harvest, Harvest Status, Edit, Validate, and Delete](https://cms.fellesdatakatalog.digdir.no/uploads/data_source_entry_d25303217f.png)
+![The entry "Data Catalog for the Norwegian Digitalisation Agency" is displayed, with information about publisher, URI to the data source, format, and with the buttons Harvest, Harvest Status, Edit, Validate, and Delete](/images/content/data_source_entry_d25303217f.png)
 
 <Alert>
   **Note**: You can validate the description by clicking "Validate." You will be taken to Data.norge.no's [validation
