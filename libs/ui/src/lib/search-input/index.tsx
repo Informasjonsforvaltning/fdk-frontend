@@ -156,7 +156,7 @@ const SearchInput = ({
         locale={locale}
         query={value}
         onSuggestionSelect={() => setIsTrayVisible(false)}
-        showTrayNav={false}
+        showTrayNav={showTrayNav}
       />
     </div>
   );
