@@ -61,6 +61,17 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      // Static images referenced from MDX live in `public/images`, but data.norge.no only routes
+      // locale-prefixed paths to this app (`/images/*` at the root is served by fdk-portal).
+      // Images are therefore requested as `/{lang}/images/...` and rewritten to the public file here.
+      {
+        source: "/:lang(nb|nn|en)/images/:path*",
+        destination: "/images/:path*",
+      },
+    ];
+  },
   async redirects() {
     return [
       // Content redirects

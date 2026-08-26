@@ -115,6 +115,18 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
         <div>{children}</div>
       </Paragraph>
     ),
+    img: ({ src, alt = "", ...rest }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+      // Images in `public/images` are only reachable through a locale-prefixed URL on data.norge.no,
+      // where the root `/images/*` path is served by fdk-portal. See rewrites in next.config.js.
+      const localisedSrc = typeof src === "string" && src.startsWith("/images/") ? `/${locale}${src}` : src;
+      return (
+        <img
+          src={localisedSrc}
+          alt={alt}
+          {...rest}
+        />
+      );
+    },
     a: ({ children, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
       if (rest.href?.startsWith("http")) {
         return <ExternalLink {...rest}>{children}</ExternalLink>;

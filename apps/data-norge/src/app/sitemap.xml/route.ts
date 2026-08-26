@@ -337,12 +337,6 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/publishing/terms-of-use`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.6,
-    },
-    {
       url: `${baseUrl}/publishing/service-messages`,
       lastModified: new Date(),
       changeFrequency: "daily" as const,
