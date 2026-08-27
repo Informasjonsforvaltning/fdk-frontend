@@ -2,7 +2,7 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useRef, useEffect, useState, type FormEvent } from "react";
 import cn from "classnames";
-import { Input, Tag } from "@digdir/designsystemet-react";
+import { Tag, Search } from "@digdir/designsystemet-react";
 import { MagnifyingGlassIcon } from "@navikt/aksel-icons";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
@@ -46,7 +46,6 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const inputDict = getLocalization(locale).searchPage.searchInput;
   const resolvedSearchLabel = searchLabel ?? inputDict.label;
-  const resolvedPlaceholder = placeholder ?? inputDict.placeholder;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -109,6 +108,7 @@ const SearchInput = ({
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsTrayVisible(false);
     router.push(
       buildSearchPageQueryUrl({
         pathname,
@@ -129,26 +129,36 @@ const SearchInput = ({
         onSubmit={handleSubmit}
         {...rest}
       >
-        <MagnifyingGlassIcon
-          aria-hidden
-          className={styles.searchIcon}
-        />
-        <Input
-          ref={inputRef}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onFocus={() => setIsTrayVisible(true)}
-          className={styles.input}
-          placeholder={resolvedPlaceholder}
-          aria-label={resolvedSearchLabel}
-        />
-        <Tag
-          className={styles.hotkeyTag}
-          data-size="sm"
-          data-color="neutral"
-        >
-          {isMac ? "⌘ + K" : "Ctrl + K"}
-        </Tag>
+        <Search className={cn(styles.search, className, { [styles.visible]: isTrayVisible })}>
+          <Search.Input
+            ref={inputRef}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onFocus={() => setIsTrayVisible(true)}
+            className={styles.input}
+            aria-label={resolvedSearchLabel}
+          />
+          {value && <Search.Clear className={styles.searchCancelBtn} />}
+          {(isTrayVisible || value) && (
+            <Search.Button
+              type="submit"
+              className={styles.searchBtn}
+              icon
+            >
+              Søk
+              <MagnifyingGlassIcon />
+            </Search.Button>
+          )}
+        </Search>
+        {!isTrayVisible && !value && (
+          <Tag
+            className={styles.hotkeyTag}
+            data-size="sm"
+            data-color="neutral"
+          >
+            {isMac ? "⌘ + K" : "Ctrl + K"}
+          </Tag>
+        )}
       </form>
       <SearchInputTray
         isVisible={isTrayVisible}
