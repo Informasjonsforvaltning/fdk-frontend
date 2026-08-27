@@ -3,7 +3,6 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useRef, useEffect, useState, type FormEvent } from "react";
 import cn from "classnames";
 import { Tag, Search } from "@digdir/designsystemet-react";
-import { MagnifyingGlassIcon } from "@navikt/aksel-icons";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import SearchInputTray from "../search-input-tray";
@@ -143,10 +142,9 @@ const SearchInput = ({
             <Search.Button
               type="submit"
               className={styles.searchBtn}
-              icon
+              variant="secondary"
             >
               Søk
-              <MagnifyingGlassIcon />
             </Search.Button>
           )}
         </Search>

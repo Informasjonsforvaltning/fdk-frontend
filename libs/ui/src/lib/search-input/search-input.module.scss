@@ -13,22 +13,24 @@
     white-space: nowrap;
     position: absolute;
     right: 0;
-    width: 5rem;
+    width: 4rem;
     @media (max-width: 800px) {
       display: none;
     }
-    background-color: #2f5f18;
-    color: #ffffff;
+
+    color: #35691a;
+    border-color: #35691a;
+    border-inline-start: 1px solid #35691a;
+    background-color: #edf6e8;
   }
   .searchCancelBtn {
-    margin-right: 5rem;
-    color: #2f5f18;
+    margin-right: 4rem;
+    color: #35691a;
   }
 
   .input {
     border-top-right-radius: var(--ds-border-radius-md);
     border-bottom-right-radius: var(--ds-border-radius-md);
-    font-size: 1.25em;
   }
 
   .search::before {
