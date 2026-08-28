@@ -17,15 +17,10 @@
     @media (max-width: 800px) {
       display: none;
     }
-
-    color: #35691a;
-    border-color: #35691a;
-    border-inline-start: 1px solid #35691a;
-    background-color: #edf6e8;
+    border-inline-start: 1px solid;
   }
   .searchCancelBtn {
     margin-right: 4rem;
-    color: #35691a;
   }
 
   .input {

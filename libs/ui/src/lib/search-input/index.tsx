@@ -128,7 +128,10 @@ const SearchInput = ({
         onSubmit={handleSubmit}
         {...rest}
       >
-        <Search className={cn(styles.search, className, { [styles.visible]: isTrayVisible })}>
+        <Search
+          className={cn(styles.search, className, { [styles.visible]: isTrayVisible })}
+          data-color="neutral"
+        >
           <Search.Input
             ref={inputRef}
             value={value}
