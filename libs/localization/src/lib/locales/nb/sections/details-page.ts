@@ -312,11 +312,15 @@ const detailsPage = {
     noPreviewData: "Ingen forhåndsvisningsdata tilgjengelig",
   },
   statusCodes: {
-    Completed: "Godkjent",
-    UnderDevelopment: "Under utvikling",
-    Withdrawn: "Trukket",
-    Deprecated: "Utgått",
-    Discontinued: "Avsluttet",
+    COMPLETED: "Godkjent",
+    DEVELOP: "Under utvikling",
+    WITHDRAWN: "Trukket",
+    DEPRECATED: "Utgått",
+    DISCONTINUED: "Avsluttet",
+    ARCHIVE: "Arkivert",
+    ONGOING: "Pågående",
+    PLANNED: "Planlagt",
+    REQUIRED: "Påkrevd",
   },
 };
 
