@@ -27,6 +27,12 @@ type DataServiceDetailsTabProps = {
 export default function DataServiceDetailsTab({ resource, locale, dictionary }: DataServiceDetailsTabProps) {
   const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
 
+  const availabilityLabel = resource?.availability?.code
+    ? dictionary.availablilityCodes[resource.availability.code]
+    : resource.availability?.prefLabel
+      ? printLocaleValue(locale, resource?.availability.prefLabel)
+      : undefined;
+
   return (
     <div className={styles.details}>
       <Button
@@ -202,7 +208,14 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
           {!resource.version && !showEmptyRows ? null : (
             <>
               <dt>{dictionary.details.general.version}:</dt>
+
               <dd>{resource.version || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
+            </>
+          )}
+          {availabilityLabel && !showEmptyRows ? null : (
+            <>
+              <dt>{dictionary.details.content.availabilityAnnotation}:</dt>
+              <dd>{availabilityLabel || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
             </>
           )}
           {!resource.landingPage?.length && !showEmptyRows ? null : (
