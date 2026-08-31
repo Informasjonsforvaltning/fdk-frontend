@@ -108,12 +108,12 @@ export default function DataServiceDetailsPage({
             >
               {dictionaries.detailsPage.header.dataServicesTagLink}
             </TagLink>
+            {statusLabel && <Tag style={{ textTransform: "capitalize" }}>{statusLabel}</Tag>}
             <AccessLevelTag
               accessCode={resource.accessRights?.code}
               locale={locale}
               data-size="md"
             />
-            {statusLabel && <Tag>{statusLabel}</Tag>}
           </TagList>
         </div>
         <Tabs

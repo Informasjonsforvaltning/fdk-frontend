@@ -322,12 +322,6 @@ const detailsPage = {
     PLANNED: "Planlagd",
     REQUIRED: "Påkravd",
   },
-  availablilityCodes: {
-    AVAILABLE: "Tilgjengelig",
-    EXPERIMENTAL: "Eksperimentell",
-    STABLE: "Stabil",
-    TEMPORARY: "Midlertidig",
-  },
 };
 
 export default detailsPage;

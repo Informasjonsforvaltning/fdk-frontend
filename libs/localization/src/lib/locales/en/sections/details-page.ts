@@ -321,12 +321,6 @@ const detailsPage = {
     PLANNED: "Planned",
     REQUIRED: "Required",
   },
-  availablilityCodes: {
-    AVAILABLE: "Available",
-    EXPERIMENTAL: "Experimental",
-    STABLE: "Stable",
-    TEMPORARY: "Temporary",
-  },
 };
 
 export default detailsPage;
