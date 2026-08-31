@@ -312,10 +312,10 @@ const detailsPage = {
     noPreviewData: "Ingen førehandsvisingsdata tilgjengeleg",
   },
   statusCodes: {
-    COMPLETED: "Godkjent",
+    COMPLETED: "Ferdigstilt",
     DEVELOP: "Under utvikling",
-    WITHDRAWN: "Trekt",
-    DEPRECATED: "Utgått",
+    WITHDRAWN: "Trekt tilbake",
+    DEPRECATED: "Frarådd",
     DISCONTINUED: "Avsluttet",
     ARCHIVE: "Arkivert",
     ONGOING: "Pågåande",
