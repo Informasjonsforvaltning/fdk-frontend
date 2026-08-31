@@ -212,7 +212,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
               <dd>{resource.version || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
             </>
           )}
-          {availabilityLabel && !showEmptyRows ? null : (
+          {!availabilityLabel && !showEmptyRows ? null : (
             <>
               <dt>{dictionary.details.content.availabilityAnnotation}:</dt>
               <dd>{availabilityLabel || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
