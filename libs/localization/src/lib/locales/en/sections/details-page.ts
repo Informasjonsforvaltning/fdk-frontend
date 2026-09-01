@@ -311,11 +311,15 @@ const detailsPage = {
     noPreviewData: "No preview data available",
   },
   statusCodes: {
-    Completed: "Completed",
-    UnderDevelopment: "Under development",
-    Withdrawn: "Withdrawn",
-    Deprecated: "Deprecated",
-    Discontinued: "Discontinued",
+    COMPLETED: "Completed",
+    DEVELOP: "Under development",
+    WITHDRAWN: "Withdrawn",
+    DEPRECATED: "Deprecated",
+    DISCONTINUED: "Discontinued",
+    ARCHIVE: "Historical archive",
+    ONGOING: "Ongoing",
+    PLANNED: "Planned",
+    REQUIRED: "Required",
   },
 };
 

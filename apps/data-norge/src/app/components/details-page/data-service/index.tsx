@@ -14,7 +14,7 @@ import {
   UseApiPopover,
   TagLink,
 } from "@fdk-frontend/ui";
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel } from "@digdir/designsystemet-react";
+import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
 import CommunityTab from "../community-tab";
 import DataServiceDetailsTab from "./data-service-details-tab";
@@ -64,6 +64,12 @@ export default function DataServiceDetailsPage({
     window.history.pushState(null, "", `?tab=${tab}`);
   };
 
+  const statusLabel = resource?.status?.code
+    ? dictionaries.detailsPage.statusCodes[resource.status.code]
+    : resource.status?.prefLabel
+      ? printLocaleValue(locale, resource?.status.prefLabel)
+      : undefined;
+
   return (
     <div className={styles.detailsPage}>
       <Breadcrumbs
@@ -102,6 +108,7 @@ export default function DataServiceDetailsPage({
             >
               {dictionaries.detailsPage.header.dataServicesTagLink}
             </TagLink>
+            {statusLabel && <Tag style={{ textTransform: "capitalize" }}>{statusLabel}</Tag>}
             <AccessLevelTag
               accessCode={resource.accessRights?.code}
               locale={locale}
