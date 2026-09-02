@@ -51,7 +51,8 @@
     "undici@npm:7.24.7": "^7.29.0",
     "undici@npm:6.23.0": "^6.28.0",
     "nanoid": "^3.3.18",
-    "decode-uri-component": "^0.5.0"
+    "decode-uri-component": "^0.5.0",
+    "postcss-selector-parser": "^7.1.3"
   },
   "packageManager": "yarn@4.14.1",
   "lint-staged": {
