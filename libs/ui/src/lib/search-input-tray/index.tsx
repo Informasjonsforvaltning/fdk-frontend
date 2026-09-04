@@ -14,6 +14,7 @@ export type SearchInputTrayProps = HTMLAttributes<HTMLDivElement> & {
   locale: LocaleCodes;
   query?: string;
   onSuggestionSelect?: () => void;
+  showTrayNav?: boolean;
 };
 
 const SearchInputTray = ({
@@ -23,6 +24,7 @@ const SearchInputTray = ({
   locale,
   query = "",
   onSuggestionSelect,
+  showTrayNav,
   ...props
 }: SearchInputTrayProps) => {
   const hasQuery = query.trim().length > 0;
@@ -32,24 +34,29 @@ const SearchInputTray = ({
       className={cn(styles.tray, className, { [styles.visible]: isVisible })}
       {...props}
     >
-      <div className={styles.trayContent}>
-        {loading && !hasQuery && (
-          <div className={styles.spinnerContainer}>
-            <Spinner
-              data-size="sm"
-              aria-hidden="true"
-            />
-          </div>
-        )}
-        {!loading && !hasQuery && <SearchTrayNav locale={locale} />}
-        {isVisible && hasQuery && (
+      {loading && !hasQuery && (
+        <div className={styles.spinnerContainer}>
+          <Spinner
+            data-size="sm"
+            aria-hidden="true"
+          />
+        </div>
+      )}
+      {showTrayNav && !loading && !hasQuery && (
+        <SearchTrayNav
+          className={styles.trayContent}
+          locale={locale}
+        />
+      )}
+      {isVisible && hasQuery && (
+        <div className={styles.trayContent}>
           <SearchSuggestions
             query={query}
             locale={locale}
             onSelect={onSuggestionSelect}
           />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
