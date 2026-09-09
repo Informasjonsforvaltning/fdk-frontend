@@ -204,6 +204,8 @@ const detailsPage = {
       conformsTo: "Conforms to",
       conformsToHelpText:
         "Reference to an implementation rule or other specification that forms the basis for the dataset.",
+      dataServiceConformsToHelpText:
+        "Reference to an established technical standard or specification that the API conforms to.",
     },
     legal: {
       title: "Legal basis",

@@ -204,6 +204,8 @@ const detailsPage = {
       conformsTo: "I samsvar med",
       conformsToHelpText:
         "Referanse til en implementasjonsregel eller annen spesifikasjon, som ligger til grunn for opprettelsen av datasettet.",
+      dataServiceConformsToHelpText:
+        "Referanse til en etablert teknisk standard eller spesifikasjon som API-et er i samsvar med.",
     },
     legal: {
       title: "Lovhjemler",

@@ -14,7 +14,8 @@ import {
   SmartList,
   LicenseBoxLink,
 } from "@fdk-frontend/ui";
-import { Heading, Tag, Link, Button } from "@digdir/designsystemet-react";
+import { Heading, Tag, Link, Button, Paragraph } from "@digdir/designsystemet-react";
+import { HelpText } from "@fellesdatakatalog/ui";
 import { EyeIcon, EyeSlashIcon } from "@navikt/aksel-icons";
 import styles from "./data-service.module.scss";
 
@@ -232,6 +233,36 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                         gateway
                       >
                         {url}
+                      </ExternalLink>
+                    )}
+                  />
+                ) : (
+                  <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                )}
+              </dd>
+            </>
+          )}
+          {!resource.conformsTo?.length && !showEmptyRows ? null : (
+            <>
+              <dt>
+                <Hstack>
+                  {dictionary.details.content.conformsTo}:
+                  <HelpText aria-label={dictionary.details.content.dataServiceConformsToHelpText}>
+                    <Paragraph>{dictionary.details.content.dataServiceConformsToHelpText}</Paragraph>
+                  </HelpText>
+                </Hstack>
+              </dt>
+              <dd>
+                {resource.conformsTo?.length ? (
+                  <SmartList
+                    items={resource.conformsTo}
+                    renderItem={(item) => (
+                      <ExternalLink
+                        href={item.uri}
+                        locale={locale}
+                        gateway
+                      >
+                        {printLocaleValue(locale, item?.prefLabel) || item.uri}
                       </ExternalLink>
                     )}
                   />
