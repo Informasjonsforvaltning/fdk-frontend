@@ -36,8 +36,6 @@ const nextConfig = {
   experimental: {
     // Optimize for development
     optimizePackageImports: ["@digdir/designsystemet-react"],
-    // Enable CSS modules with better HMR support
-    cssChunking: "strict",
   },
   // Note: serverExternalPackages removed - Turbopack bundles server dependencies differently
   // Turbopack configuration - set root to monorepo root
