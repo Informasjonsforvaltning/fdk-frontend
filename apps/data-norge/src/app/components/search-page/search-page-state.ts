@@ -14,6 +14,7 @@ export type SearchPageData = {
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+  dcatProfileAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
   losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
@@ -34,6 +35,7 @@ export const initialSearchPageData: SearchPageData = {
   orgAggregationsByTab: undefined,
   accessAggregationsByTab: undefined,
   provenanceAggregationsByTab: undefined,
+  dcatProfileAggregationsByTab: undefined,
   spatialAggregationsByTab: undefined,
   formatAggregationsByTab: undefined,
   losThemeAggregationsByTab: undefined,
@@ -65,6 +67,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
       orgAggregationsByTab: result.orgAggregationsByTab,
       accessAggregationsByTab: result.accessAggregationsByTab,
       provenanceAggregationsByTab: result.provenanceAggregationsByTab,
+      dcatProfileAggregationsByTab: result.dcatProfileAggregationsByTab,
       spatialAggregationsByTab: result.spatialAggregationsByTab,
       formatAggregationsByTab: result.formatAggregationsByTab,
       losThemeAggregationsByTab: result.losThemeAggregationsByTab,
@@ -79,6 +82,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
     orgAggregationsByTab: result.orgAggregationsByTab,
     accessAggregationsByTab: result.accessAggregationsByTab,
     provenanceAggregationsByTab: result.provenanceAggregationsByTab,
+    dcatProfileAggregationsByTab: result.dcatProfileAggregationsByTab,
     spatialAggregationsByTab: result.spatialAggregationsByTab,
     formatAggregationsByTab: result.formatAggregationsByTab,
     losThemeAggregationsByTab: result.losThemeAggregationsByTab,
@@ -110,6 +114,7 @@ export const searchPageReducer = function (
           orgAggregationsByTab: undefined,
           accessAggregationsByTab: undefined,
           provenanceAggregationsByTab: undefined,
+          dcatProfileAggregationsByTab: undefined,
           spatialAggregationsByTab: undefined,
           formatAggregationsByTab: undefined,
           losThemeAggregationsByTab: undefined,

@@ -16,6 +16,7 @@ import {
 import { Heading, Paragraph, Tag } from "@digdir/designsystemet-react";
 import styles from "./dataset-header.module.scss";
 import { HelpText } from "@fellesdatakatalog/ui";
+import { DCAT_PROFILE_MOBILITY } from "@fdk-frontend/ui/search-form/dcat-profile";
 
 type DatasetHeaderProps = {
   dataset: DatasetWithIdentifier;
@@ -41,6 +42,9 @@ const DatasetHeader = ({
   isAvailable,
   ...props
 }: DatasetHeaderProps & React.HTMLAttributes<HTMLDivElement>) => {
+  const isMobilityDataset =
+    dataset?.dcatProfiles?.includes(DCAT_PROFILE_MOBILITY) || (dataset?.mobilityTheme?.length ?? 0) > 0;
+
   return (
     <div className={styles.header}>
       <OrgButton
@@ -82,7 +86,7 @@ const DatasetHeader = ({
         >
           {dictionaries.detailsPage.header.datasetsTagLink}
         </TagLink>
-        {dataset?.mobilityTheme && dataset.mobilityTheme?.length > 0 && (
+        {isMobilityDataset && (
           <Tag className={styles.tag}>
             {dictionaries.common.mobilityDcatTag.label}
             <HelpText aria-label={dictionaries.common.mobilityDcatTag.helpTextTitle}>

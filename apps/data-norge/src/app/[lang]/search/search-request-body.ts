@@ -1,6 +1,7 @@
 import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
 import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/provenance";
+import { buildDcatProfileSearchFilter } from "@fdk-frontend/ui/search-form/dcat-profile";
 import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
@@ -14,6 +15,7 @@ type SearchPagination = {
 export type SearchFilters = Partial<NonNullable<ReturnType<typeof buildOrgPathSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildAccessSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildProvenanceSearchFilter>>> &
+  Partial<NonNullable<ReturnType<typeof buildDcatProfileSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildSpatialSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildFormatSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildLosThemeSearchFilter>>> &
@@ -32,6 +34,7 @@ export const buildSearchFilters = function (
   orgPathParam: string | null,
   accessParam: string | null,
   provenanceParam: string | null,
+  dcatProfileParam: string | null,
   spatialParam: string | null,
   formatParam: string | null,
   losThemeParam: string | null,
@@ -40,6 +43,7 @@ export const buildSearchFilters = function (
   const orgPathFilter = buildOrgPathSearchFilter(orgPathParam);
   const accessFilter = buildAccessSearchFilter(accessParam);
   const provenanceFilter = buildProvenanceSearchFilter(provenanceParam);
+  const dcatProfileFilter = buildDcatProfileSearchFilter(dcatProfileParam);
   const spatialFilter = buildSpatialSearchFilter(spatialParam);
   const formatFilter = buildFormatSearchFilter(formatParam);
   const losThemeFilter = buildLosThemeSearchFilter(losThemeParam);
@@ -49,6 +53,7 @@ export const buildSearchFilters = function (
     !orgPathFilter &&
     !accessFilter &&
     !provenanceFilter &&
+    !dcatProfileFilter &&
     !spatialFilter &&
     !formatFilter &&
     !losThemeFilter &&
@@ -61,6 +66,7 @@ export const buildSearchFilters = function (
     ...orgPathFilter,
     ...accessFilter,
     ...provenanceFilter,
+    ...dcatProfileFilter,
     ...spatialFilter,
     ...formatFilter,
     ...losThemeFilter,
@@ -73,6 +79,7 @@ export const buildSearchRequestBody = function (options: {
   orgPathParam: string | null;
   accessParam: string | null;
   provenanceParam: string | null;
+  dcatProfileParam: string | null;
   spatialParam: string | null;
   formatParam: string | null;
   losThemeParam: string | null;
@@ -86,6 +93,7 @@ export const buildSearchRequestBody = function (options: {
     options.orgPathParam,
     options.accessParam,
     options.provenanceParam,
+    options.dcatProfileParam,
     options.spatialParam,
     options.formatParam,
     options.losThemeParam,

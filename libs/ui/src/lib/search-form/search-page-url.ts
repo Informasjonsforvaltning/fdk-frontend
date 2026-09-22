@@ -4,6 +4,7 @@ import { parseLocaleFromPathname } from "@fdk-frontend/localization";
 import { accessKeysToQueryParam, parseAccessQueryParam } from "./access";
 import { orgPathKeysToQueryParam, parseOrgPathQueryParam } from "./org-path";
 import { provenanceKeysToQueryParam, parseProvenanceQueryParam } from "./provenance";
+import { dcatProfileKeysToQueryParam, parseDcatProfileQueryParam } from "./dcat-profile";
 import { formatKeysToQueryParam, parseFormatQueryParam } from "./format";
 import { losThemeKeysToQueryParam, parseLosThemeQueryParam } from "./theme/los-theme";
 import { dataThemeKeysToQueryParam, parseDataThemeQueryParam } from "./theme/data-theme";
@@ -23,6 +24,7 @@ export type BuildSearchPageUrlOptions = {
   orgPaths?: string[];
   access?: string[];
   provenance?: string[];
+  dcatProfiles?: string[];
   spatial?: string[];
   formats?: string[];
   losThemes?: string[];
@@ -39,6 +41,7 @@ export const buildSearchPageUrl = function ({
   orgPaths = [],
   access = [],
   provenance = [],
+  dcatProfiles = [],
   spatial = [],
   formats = [],
   losThemes = [],
@@ -56,6 +59,7 @@ export const buildSearchPageUrl = function ({
   if (orgPaths.length > 0) params.set("orgPath", orgPathKeysToQueryParam(orgPaths));
   if (access.length > 0) params.set("access", accessKeysToQueryParam(access));
   if (provenance.length > 0) params.set("provenance", provenanceKeysToQueryParam(provenance));
+  if (dcatProfiles.length > 0) params.set("dcatProfile", dcatProfileKeysToQueryParam(dcatProfiles));
   if (spatial.length > 0) params.set("spatial", spatialKeysToQueryParam(spatial));
   if (formats.length > 0) params.set("format", formatKeysToQueryParam(formats));
   if (losThemes.length > 0) params.set("losTheme", losThemeKeysToQueryParam(losThemes));
@@ -81,6 +85,7 @@ export const buildSearchPageUrlFromSearchParams = function (
     orgPaths: parseOrgPathQueryParam(searchParams.get("orgPath")),
     access: parseAccessQueryParam(searchParams.get("access")),
     provenance: parseProvenanceQueryParam(searchParams.get("provenance")),
+    dcatProfiles: parseDcatProfileQueryParam(searchParams.get("dcatProfile")),
     spatial: parseSpatialQueryParam(searchParams.get("spatial")),
     formats: parseFormatQueryParam(searchParams.get("format")),
     losThemes: parseLosThemeQueryParam(searchParams.get("losTheme")),
