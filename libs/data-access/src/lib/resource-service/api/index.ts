@@ -1,4 +1,4 @@
-import { PublicService } from "@fellesdatakatalog/types";
+import { type InformationModel, type PublicService } from "@fellesdatakatalog/types";
 
 const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
 
@@ -41,5 +41,10 @@ export const getApis = async (apiIds: string[]): Promise<unknown[]> => {
 
 export const getService = async (serviceId: string): Promise<PublicService> => {
   const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/services/${serviceId}`;
+  return getResource(uri);
+};
+
+export const getInformationModel = async (informationModelId: string): Promise<InformationModel> => {
+  const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/information-models/${informationModelId}`;
   return getResource(uri);
 };
