@@ -43,7 +43,7 @@ const DatasetHeader = ({
   ...props
 }: DatasetHeaderProps & React.HTMLAttributes<HTMLDivElement>) => {
   const isMobilityDataset =
-    dataset?.dcatProfiles?.includes(DCAT_PROFILE_MOBILITY) || (dataset?.mobilityTheme?.length ?? 0) > 0;
+    dataset?.dcatProfiles?.includes(DCAT_PROFILE_MOBILITY);
 
   return (
     <div className={styles.header}>
