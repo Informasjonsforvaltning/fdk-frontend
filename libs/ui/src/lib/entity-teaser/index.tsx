@@ -14,6 +14,11 @@ import {
 import { TagList, HStack } from "@fellesdatakatalog/ui";
 import { AccessRightsCodes, EntityType, type SearchObject } from "@fellesdatakatalog/types";
 import AccessLevelTag from "../access-level-tag";
+import {
+  DCAT_PROFILE_DEFAULT,
+  formatDcatProfileLabel,
+  getDcatProfileLabels,
+} from "../search-form/dcat-profile";
 import { OrgLogo } from "../org-logo";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import styles from "./styles.module.scss";
@@ -38,6 +43,8 @@ const setFragments: Record<EntityType, string> = {
 const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
   const desc = entity && printLocaleValue(locale, entity.description);
   const localization = getLocalization(locale).common;
+  const dcatProfileLabels = getDcatProfileLabels(getLocalization(locale).searchPage.searchForm.dcatProfileFilter);
+  const dcatProfiles = (entity?.dcatProfiles ?? []).filter((profile) => profile !== DCAT_PROFILE_DEFAULT);
   return (
     <Card
       className={cn(styles.container, className, { [styles.llm]: llm })}
@@ -103,6 +110,15 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                   {localization.teaser.openData}
                 </Tag>
               )}
+              {entity.searchType === EntityType.DATASET &&
+                dcatProfiles.map((profile) => (
+                  <Tag
+                    key={profile}
+                    data-size="sm"
+                  >
+                    {formatDcatProfileLabel(profile, dcatProfileLabels)}
+                  </Tag>
+                ))}
             </TagList>
           ) : (
             <div style={{ marginTop: "0.5rem", lineHeight: "1.75rem" }}>
