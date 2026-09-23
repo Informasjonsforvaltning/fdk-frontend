@@ -64,11 +64,10 @@ export default function DataServiceDetailsPage({
     window.history.pushState(null, "", `?tab=${tab}`);
   };
 
-  const statusLabel = resource?.status?.code
-    ? dictionaries.detailsPage.statusCodes[resource.status.code]
-    : resource.status?.prefLabel
-      ? printLocaleValue(locale, resource?.status.prefLabel)
-      : undefined;
+  const status =
+    (resource?.status?.code ? dictionaries.detailsPage.statusCodes[resource.status.code] : undefined) ??
+    (resource.status?.prefLabel ? printLocaleValue(locale, resource.status.prefLabel) : undefined);
+  const statusLabel = status ?? dictionaries.detailsPage.unknownStatusLabel;
 
   return (
     <div className={styles.detailsPage}>
@@ -108,7 +107,7 @@ export default function DataServiceDetailsPage({
             >
               {dictionaries.detailsPage.header.dataServicesTagLink}
             </TagLink>
-            {statusLabel && <Tag style={{ textTransform: "capitalize" }}>{statusLabel}</Tag>}
+            <Tag style={status ? { textTransform: "capitalize" } : undefined}>{statusLabel}</Tag>
             <AccessLevelTag
               accessCode={resource.accessRights?.code}
               locale={locale}

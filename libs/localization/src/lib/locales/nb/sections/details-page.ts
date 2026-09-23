@@ -313,6 +313,7 @@ const detailsPage = {
     downloadButton: "Last ned hele datasettet",
     noPreviewData: "Ingen forhåndsvisningsdata tilgjengelig",
   },
+  unknownStatusLabel: "Ukjent status",
   statusCodes: {
     COMPLETED: "Ferdigstilt",
     DEVELOP: "Under utvikling",
