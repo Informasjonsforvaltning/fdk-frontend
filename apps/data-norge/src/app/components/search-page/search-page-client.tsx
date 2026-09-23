@@ -23,6 +23,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
   const orgPathParam = searchParams.get("orgPath");
   const accessParam = searchParams.get("access");
   const provenanceParam = searchParams.get("provenance");
+  const dcatProfileParam = searchParams.get("dcatProfile");
   const spatialParam = searchParams.get("spatial");
   const formatParam = searchParams.get("format");
   const losThemeParam = searchParams.get("losTheme");
@@ -49,6 +50,8 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
     activeEntityTab && activeEntityTab !== "docs" ? data.accessAggregationsByTab?.[activeEntityTab] : undefined;
   const provenanceAggregation =
     activeEntityTab && activeEntityTab !== "docs" ? data.provenanceAggregationsByTab?.[activeEntityTab] : undefined;
+  const dcatProfileAggregation =
+    activeEntityTab && activeEntityTab !== "docs" ? data.dcatProfileAggregationsByTab?.[activeEntityTab] : undefined;
   const spatialAggregation =
     activeEntityTab && activeEntityTab !== "docs" ? data.spatialAggregationsByTab?.[activeEntityTab] : undefined;
   const formatAggregation =
@@ -67,6 +70,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
       orgPathParam,
       accessParam,
       provenanceParam,
+      dcatProfileParam,
       spatialParam,
       formatParam,
       losThemeParam,
@@ -92,6 +96,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
     orgPathParam,
     accessParam,
     provenanceParam,
+    dcatProfileParam,
     spatialParam,
     formatParam,
     losThemeParam,
@@ -134,6 +139,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
       orgAggregation={orgAggregation}
       accessAggregation={accessAggregation}
       provenanceAggregation={provenanceAggregation}
+      dcatProfileAggregation={dcatProfileAggregation}
       spatialAggregation={spatialAggregation}
       formatAggregation={formatAggregation}
       losThemeAggregation={losThemeAggregation}

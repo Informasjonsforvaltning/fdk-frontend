@@ -54,6 +54,7 @@ const searchPage = {
       format: "Dataformat",
       geography: "Geografi",
       provenance: "Opphav",
+      dcatProfile: "Spesifikasjon",
     },
     clearAllFilters: "Tøm alle filter",
     resultsCount: "{{count}} treff",
@@ -83,6 +84,11 @@ const searchPage = {
       vedtak: "Vedtak",
       bruker: "Brukar",
       tredjepart: "Tredjepart",
+    },
+    dcatProfileFilter: {
+      mobilityDcatAp: "MobilityDCAT-AP",
+      hvdDcatApNo: "HVD-DCAT-AP-NO",
+      dcatApNo: "DCAT-AP-NO",
     },
     orgTypeFilter: {
       kommune: "Kommune",

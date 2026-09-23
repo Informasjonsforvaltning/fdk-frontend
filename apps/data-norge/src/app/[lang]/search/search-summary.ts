@@ -2,6 +2,7 @@ import {
   mergeAccessAggregations,
   mergeOrgPathAggregations,
   mergeProvenanceAggregations,
+  mergeDcatProfileAggregations,
   mergeSpatialAggregations,
   mergeFormatAggregations,
   mergeLosThemeAggregations,
@@ -36,6 +37,7 @@ export type SearchSummarySlice = {
     openData: OrgPathAggregationEntry[];
     orgPath: OrgPathAggregationEntry[];
     provenance: OrgPathAggregationEntry[];
+    dcatProfiles: OrgPathAggregationEntry[];
     spatial: OrgPathAggregationEntry[];
     format: OrgPathAggregationEntry[];
     losTheme: OrgPathAggregationEntry[];
@@ -97,6 +99,7 @@ export const createEmptySearchSummarySlice = (): SearchSummarySlice => ({
     openData: [],
     orgPath: [],
     provenance: [],
+    dcatProfiles: [],
     spatial: [],
     format: [],
     losTheme: [],
@@ -130,6 +133,7 @@ export const normalizeSearchSummarySlice = function (value: unknown): SearchSumm
       openData: Array.isArray(candidate.aggregations?.openData) ? candidate.aggregations.openData : [],
       orgPath: Array.isArray(candidate.aggregations?.orgPath) ? candidate.aggregations.orgPath : [],
       provenance: Array.isArray(candidate.aggregations?.provenance) ? candidate.aggregations.provenance : [],
+      dcatProfiles: Array.isArray(candidate.aggregations?.dcatProfiles) ? candidate.aggregations.dcatProfiles : [],
       spatial: Array.isArray(candidate.aggregations?.spatial) ? candidate.aggregations.spatial : [],
       format: Array.isArray(candidate.aggregations?.format) ? candidate.aggregations.format : [],
       losTheme: Array.isArray(candidate.aggregations?.losTheme) ? candidate.aggregations.losTheme : [],
@@ -211,6 +215,23 @@ export const buildProvenanceAggregationsByTab = function (
   summary: SearchSummary,
 ): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
   return buildAggregationsByTab(summary, extractProvenanceAggregationForTab);
+};
+
+export const extractDcatProfileAggregationForTab = function (
+  summary: SearchSummary,
+  entityTab: Exclude<SearchSetSegment, "docs">,
+): AggregationKeyCount[] {
+  return mergeDcatProfileAggregations(
+    SUMMARY_SLICES.filter((slice) => slice.tabKey === entityTab).map(
+      (slice) => summary[slice.summaryKey]?.aggregations?.dcatProfiles ?? [],
+    ),
+  );
+};
+
+export const buildDcatProfileAggregationsByTab = function (
+  summary: SearchSummary,
+): Partial<Record<SearchSetSegment, AggregationKeyCount[]>> {
+  return buildAggregationsByTab(summary, extractDcatProfileAggregationForTab);
 };
 
 export const extractSpatialAggregationForTab = function (

@@ -13,6 +13,7 @@ import {
   buildAccessAggregationsByTab,
   buildOrgPathAggregationsByTab,
   buildProvenanceAggregationsByTab,
+  buildDcatProfileAggregationsByTab,
   buildSpatialAggregationsByTab,
   buildFormatAggregationsByTab,
   buildLosThemeAggregationsByTab,
@@ -50,6 +51,7 @@ export type SummaryFetchResult = {
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  dcatProfileAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
@@ -66,6 +68,7 @@ export type FetchSummaryOptions = {
   orgPathParam: string | null;
   accessParam: string | null;
   provenanceParam: string | null;
+  dcatProfileParam: string | null;
   spatialParam: string | null;
   formatParam: string | null;
   losThemeParam: string | null;
@@ -81,6 +84,7 @@ export const fetchSummary = async function (options: FetchSummaryOptions): Promi
       orgPathParam: options.orgPathParam,
       accessParam: options.accessParam,
       provenanceParam: options.provenanceParam,
+      dcatProfileParam: options.dcatProfileParam,
       spatialParam: options.spatialParam,
       formatParam: options.formatParam,
       losThemeParam: options.losThemeParam,
@@ -95,6 +99,7 @@ export const fetchSummary = async function (options: FetchSummaryOptions): Promi
     orgAggregationsByTab: buildOrgPathAggregationsByTab(json.summary),
     accessAggregationsByTab: buildAccessAggregationsByTab(json.summary),
     provenanceAggregationsByTab: buildProvenanceAggregationsByTab(json.summary),
+    dcatProfileAggregationsByTab: buildDcatProfileAggregationsByTab(json.summary),
     spatialAggregationsByTab: buildSpatialAggregationsByTab(json.summary),
     formatAggregationsByTab: buildFormatAggregationsByTab(json.summary),
     losThemeAggregationsByTab: buildLosThemeAggregationsByTab(json.summary),
@@ -107,6 +112,7 @@ type EntityTabFetchOptions = {
   orgPathParam: string | null;
   accessParam: string | null;
   provenanceParam: string | null;
+  dcatProfileParam: string | null;
   spatialParam: string | null;
   formatParam: string | null;
   losThemeParam: string | null;
@@ -152,6 +158,7 @@ export const fetchEntityTabResults = async function (
       orgPathParam: options.orgPathParam,
       accessParam: options.accessParam,
       provenanceParam: options.provenanceParam,
+      dcatProfileParam: options.dcatProfileParam,
       spatialParam: options.spatialParam,
       formatParam: options.formatParam,
       losThemeParam: options.losThemeParam,

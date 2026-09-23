@@ -31,6 +31,7 @@ export type SearchPageProps = {
   orgAggregation?: AggregationKeyCount[];
   accessAggregation?: AggregationKeyCount[];
   provenanceAggregation?: AggregationKeyCount[];
+  dcatProfileAggregation?: AggregationKeyCount[];
   spatialAggregation?: AggregationKeyCount[];
   formatAggregation?: AggregationKeyCount[];
   losThemeAggregation?: AggregationKeyCount[];
@@ -52,6 +53,7 @@ const SearchPage = ({
   orgAggregation,
   accessAggregation,
   provenanceAggregation,
+  dcatProfileAggregation,
   spatialAggregation,
   formatAggregation,
   losThemeAggregation,
@@ -98,6 +100,7 @@ const SearchPage = ({
           orgAggregation={orgAggregation}
           accessAggregation={accessAggregation}
           provenanceAggregation={provenanceAggregation}
+          dcatProfileAggregation={dcatProfileAggregation}
           spatialAggregation={spatialAggregation}
           formatAggregation={formatAggregation}
           losThemeAggregation={losThemeAggregation}

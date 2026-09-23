@@ -5,6 +5,7 @@ import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-c
 import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
 import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/provenance";
+import { buildDcatProfileSearchFilter } from "@fdk-frontend/ui/search-form/dcat-profile";
 import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
@@ -23,6 +24,7 @@ export const isBrowseSearch = function (
   orgPathParam: string | null,
   accessParam: string | null,
   provenanceParam: string | null,
+  dcatProfileParam: string | null,
   spatialParam: string | null,
   formatParam: string | null,
   losThemeParam: string | null,
@@ -32,6 +34,7 @@ export const isBrowseSearch = function (
   const hasOrgFilter = buildOrgPathSearchFilter(orgPathParam) !== undefined;
   const hasAccessFilter = buildAccessSearchFilter(accessParam) !== undefined;
   const hasProvenanceFilter = buildProvenanceSearchFilter(provenanceParam) !== undefined;
+  const hasDcatProfileFilter = buildDcatProfileSearchFilter(dcatProfileParam) !== undefined;
   const hasSpatialFilter = buildSpatialSearchFilter(spatialParam) !== undefined;
   const hasFormatFilter = buildFormatSearchFilter(formatParam) !== undefined;
   const hasLosThemeFilter = buildLosThemeSearchFilter(losThemeParam) !== undefined;
@@ -41,6 +44,7 @@ export const isBrowseSearch = function (
     !hasOrgFilter &&
     !hasAccessFilter &&
     !hasProvenanceFilter &&
+    !hasDcatProfileFilter &&
     !hasSpatialFilter &&
     !hasFormatFilter &&
     !hasLosThemeFilter &&
@@ -54,6 +58,7 @@ export type EntitySearchStateBase = {
   orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  dcatProfileAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
   losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
@@ -72,6 +77,7 @@ export type EntitySearchState =
       orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+      dcatProfileAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
       losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
@@ -88,6 +94,7 @@ export const loadEntitySearchState = async function (options: {
   orgPathParam: string | null;
   accessParam: string | null;
   provenanceParam: string | null;
+  dcatProfileParam: string | null;
   spatialParam: string | null;
   formatParam: string | null;
   losThemeParam: string | null;
@@ -102,6 +109,7 @@ export const loadEntitySearchState = async function (options: {
     options.orgPathParam,
     options.accessParam,
     options.provenanceParam,
+    options.dcatProfileParam,
     options.spatialParam,
     options.formatParam,
     options.losThemeParam,
@@ -114,6 +122,7 @@ export const loadEntitySearchState = async function (options: {
         orgPathParam: null,
         accessParam: null,
         provenanceParam: null,
+        dcatProfileParam: null,
         spatialParam: null,
         formatParam: null,
         losThemeParam: null,
@@ -125,6 +134,7 @@ export const loadEntitySearchState = async function (options: {
         orgPathParam: options.orgPathParam,
         accessParam: options.accessParam,
         provenanceParam: options.provenanceParam,
+        dcatProfileParam: options.dcatProfileParam,
         spatialParam: options.spatialParam,
         formatParam: options.formatParam,
         losThemeParam: options.losThemeParam,
