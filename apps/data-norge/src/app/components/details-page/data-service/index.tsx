@@ -107,7 +107,7 @@ export default function DataServiceDetailsPage({
             >
               {dictionaries.detailsPage.header.dataServicesTagLink}
             </TagLink>
-            <Tag style={status ? { textTransform: "capitalize" } : undefined}>{statusLabel}</Tag>
+            <Tag style={{ textTransform: "capitalize" }}>{statusLabel}</Tag>
             <AccessLevelTag
               accessCode={resource.accessRights?.code}
               locale={locale}
