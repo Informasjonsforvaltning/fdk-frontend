@@ -202,7 +202,7 @@ const detailsPage = {
         "Denne datoen seier når dataa i dette datasettet først blei utgitt. Det kan ha skjedd før datasettet blei publisert på data.norge.no.",
       modified: "Sist oppdatert",
       accuracyAnnotation: "Nøyaktigheit",
-      availabilityAnnotation: "Tilgjenge",
+      availabilityAnnotation: "Tilgjengelegheit",
       completenessAnnotation: "Fullstendigheit",
       currentnessAnnotation: "Aktualitet",
       relevanceAnnotation: "Relevans",
