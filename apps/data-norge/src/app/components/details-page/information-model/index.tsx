@@ -5,7 +5,7 @@ import { type Localization, type LocaleCodes } from "@fdk-frontend/localization"
 import { type InformationModel, type CommunityTopic } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import { Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, TagLink } from "@fdk-frontend/ui";
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel } from "@digdir/designsystemet-react";
+import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
 import CommunityTab from "../community-tab";
 import InformationModelDetailsTab from "./information-model-details-tab";
@@ -53,6 +53,11 @@ export default function InformationModelDetailsPage({
     window.history.pushState(null, "", `?tab=${tab}`);
   };
 
+  const statusLabel =
+    (resource.statusCode?.code ? dictionaries.detailsPage.statusCodes[resource.statusCode.code] : undefined) ??
+    printLocaleValue(locale, resource.statusCode?.prefLabel) ??
+    dictionaries.detailsPage.unknownStatusLabel;
+
   return (
     <div className={styles.detailsPage}>
       <Breadcrumbs
@@ -86,6 +91,7 @@ export default function InformationModelDetailsPage({
             >
               {dictionaries.detailsPage.header.informationModelsTagLink}
             </TagLink>
+            <Tag style={{ textTransform: "capitalize" }}>{statusLabel}</Tag>
           </TagList>
         </div>
         <Tabs
