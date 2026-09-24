@@ -321,6 +321,7 @@ const detailsPage = {
     downloadButton: "Download full dataset",
     noPreviewData: "No preview data available",
   },
+  unknownStatusLabel: "Unknown status",
   statusCodes: {
     COMPLETED: "Completed",
     DEVELOP: "Under development",
