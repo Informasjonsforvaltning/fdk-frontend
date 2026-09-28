@@ -152,6 +152,24 @@ export default function InformationModelDetailsTab({
               <dd>{resource.versionInfo || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
             </>
           )}
+          {!resource.homepage && !showEmptyRows ? null : (
+            <>
+              <dt>{dictionary.details.general.homepage}:</dt>
+              <dd>
+                {resource.homepage ? (
+                  <ExternalLink
+                    href={resource.homepage}
+                    locale={locale}
+                    gateway
+                  >
+                    {resource.homepage}
+                  </ExternalLink>
+                ) : (
+                  <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                )}
+              </dd>
+            </>
+          )}
           <dt>
             <Hstack>
               <span>{dictionary.details.general.firstHarvested}:</span>
