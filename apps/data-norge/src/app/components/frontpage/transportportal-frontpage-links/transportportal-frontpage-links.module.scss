@@ -1,0 +1,52 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, auto);
+  gap: 1rem;
+  max-width: 1000px;
+  list-style: none;
+  padding: 0;
+  background: transparent;
+
+  :global(.ds-link) {
+    &:not(.ds-button):not(:hover):not(:focus):not(:focus-visible):not(:active) {
+      color: white;
+    }
+  }
+
+  :global(.ds-heading) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+
+    :global(.ds-paragraph) {
+      line-height: 0;
+      color: var(--fdk-tp-color-green);
+      font-size: 3rem;
+    }
+  }
+
+  :global(.ds-paragraph) {
+    opacity: 0.75;
+  }
+
+  li {
+    display: flex;
+  }
+
+  :global(.ds-card) {
+    flex: 1;
+    border: 0;
+
+    &:not(.ds-button):not(:hover):not(:focus):not(:focus-visible):not(:active) {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  @container (max-width: 700px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+}

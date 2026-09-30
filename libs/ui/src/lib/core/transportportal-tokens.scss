@@ -1,0 +1,7 @@
+// Tokens for Transportportal. Scoped to the profile so data.norge does not inherit them.
+body[data-profile="transportportal"] {
+  --fdk-tp-color-dark-background: #1e2022;
+  --fdk-tp-color-green: #58b02c;
+  --fdk-tp-color-green-matte: #82b56e;
+  --fdk-tp-color-green-dark: #263b1e;
+}

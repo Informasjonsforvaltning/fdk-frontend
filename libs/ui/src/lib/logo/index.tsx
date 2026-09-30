@@ -17,7 +17,6 @@ const Logo = ({ profile = "data.norge", tagline }: LogoProps) =>
   profile === "transportportal" ? (
     <div className={styles.transportportalLogo}>
       <span className={styles.transportportalWordmark}>Transportportal.no</span>
-      {tagline ? <span className={styles.transportportalTagline}>{tagline}</span> : null}
     </div>
   ) : (
     <div className={styles.logo}>

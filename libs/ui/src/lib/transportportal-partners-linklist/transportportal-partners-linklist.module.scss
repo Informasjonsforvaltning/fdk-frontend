@@ -1,0 +1,45 @@
+.logos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+
+  &:hover {
+    :global(.ds-link) {
+      opacity: 0.5;
+    }
+  }
+
+  :global(.ds-link) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.logo {
+  height: 2.5rem;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+}
+
+.statensVegvesen {
+  aspect-ratio: 200 / 104.7;
+  background-image: url("./images/logo-statens-vegvesen-negativ.svg");
+}
+
+.jernbanedirektoratet {
+  aspect-ratio: 141.3 / 51.2;
+  background-image: url("./images/logo-jernbanedirektoratet-hvit.svg");
+}
+
+.entur {
+  aspect-ratio: 2 / 1;
+  background-image: url("./images/logo-entur-hvit.svg");
+}
+
+.digdir {
+  aspect-ratio: 115.04 / 38.86;
+  background-image: url("./images/logo-digdir-negativ.svg");
+}
