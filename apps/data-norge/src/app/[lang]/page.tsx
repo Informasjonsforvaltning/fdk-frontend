@@ -7,6 +7,7 @@ import { getProfile } from "@fdk-frontend/utils/server";
 import { FrontpageBanner } from "../components/frontpage/frontpage-banner";
 import { ShareDataBanner } from "../components/frontpage/share-data-banner";
 import CatalogsBanner from "../components/frontpage/catalogs-banner";
+import { TransportportalFrontpage } from "../components/frontpage/transportportal-frontpage";
 
 export type FrontpageProps = {
   params: Promise<{
@@ -34,23 +35,31 @@ const Frontpage = async (props: FrontpageProps) => {
         profile={profile}
       />
       <main id="main">
-        <FrontpageBanner
-          dictionary={frontpageDictionary}
-          locale={params.lang}
-          endpoint={`${llmSearchBaseUri}/llm`}
-          profile={profile}
-        />
-        <div className="main-content">
-          <ShareDataBanner
-            dictionary={frontpageDictionary}
+        {profile === "transportportal" ? (
+          <TransportportalFrontpage
+            dictionary={loc.common}
             locale={params.lang}
           />
-          <CatalogsBanner
-            frontpageDictionary={frontpageDictionary}
-            commonDictionary={loc.common}
-            locale={params.lang}
-          />
-        </div>
+        ) : (
+          <>
+            <FrontpageBanner
+              dictionary={frontpageDictionary}
+              locale={params.lang}
+              endpoint={`${llmSearchBaseUri}/llm`}
+            />
+            <div className="main-content">
+              <ShareDataBanner
+                dictionary={frontpageDictionary}
+                locale={params.lang}
+              />
+              <CatalogsBanner
+                frontpageDictionary={frontpageDictionary}
+                commonDictionary={loc.common}
+                locale={params.lang}
+              />
+            </div>
+          </>
+        )}
       </main>
       <Footer
         locale={params.lang}

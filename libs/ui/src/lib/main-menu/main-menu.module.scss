@@ -56,3 +56,19 @@
     }
   }
 }
+
+[data-profile="transportportal"] {
+  .links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  [data-color-scheme="dark"] {
+    .links {
+      :global(.ds-link) {
+        &:not(.ds-button):not(:hover):not(:focus):not(:focus-visible):not(:active) {
+          color: var(--fdk-tp-color-green-matte);
+        }
+      }
+    }
+  }
+}

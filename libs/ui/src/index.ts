@@ -72,6 +72,7 @@ export { default as FeedbackBanner } from "./lib/feedback-banner";
 export * from "./lib/feedback-banner";
 export { default as Footer } from "./lib/footer";
 export * from "./lib/footer";
+export { default as TransportportalPartnersLinklist } from "./lib/transportportal-partners-linklist";
 export { default as Header } from "./lib/header";
 export * from "./lib/header";
 export { default as Hstack } from "./lib/hstack";

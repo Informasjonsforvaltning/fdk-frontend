@@ -8,6 +8,7 @@
   border-bottom-right-radius: 0.5rem;
   background: white;
   display: none;
+  z-index: 1;
 
   &.visible {
     display: block;

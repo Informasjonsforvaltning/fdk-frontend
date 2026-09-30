@@ -1,0 +1,118 @@
+.outer {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  container-type: inline-size;
+  background: var(--fdk-color-navy-dark);
+
+  .gradient {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(circle, var(--fdk-color-navy), var(--fdk-color-navy-dark));
+    mix-blend-mode: hard-light;
+  }
+
+  .backgroundImage {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 4rem;
+
+  h1::after {
+    background: var(--fdk-tp-color-green);
+  }
+}
+
+.headline {
+  font-size: 4rem;
+  line-height: 1em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  max-width: 800px;
+
+  @container (max-width: 960px) {
+    margin-top: 4rem;
+    font-size: 4rem;
+  }
+
+  @container (max-width: 500px) {
+    margin-top: 2rem;
+    font-size: 3rem;
+  }
+
+  :global(.ds-link) {
+    &:not(.ds-button):not(:hover):not(:focus):not(:focus-visible):not(:active) {
+      color:white;
+      text-decoration:none;
+    }
+
+    &:hover {
+      color:white;
+      text-decoration: underline;
+      text-decoration-thickness: 4px;
+      text-underline-offset: 0.5rem;
+      text-decoration-color: var(--fdk-tp-color-green);
+    }
+  }
+}
+
+.partners {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+
+  .partnersTitle {
+    color: white;
+    font-size: 1rem;
+
+    :global(.ds-link) {
+      &:not(.ds-button):not(:hover):not(:focus):not(:focus-visible):not(:active) {
+        color: white;
+        text-decoration: underline;
+      }
+
+      &:hover,
+      &:focus-visible {
+        color: var(--fdk-tp-color-green-matte);
+      }
+    }
+  }
+
+  .partnersLinks {
+    :global(.ds-link) {
+      height: 4rem;
+    }
+  }
+}
+
+.search {
+  background: transparent;
+  width: 100%;
+}
+
+.searchInput {
+  width: min(600px, 100%);
+  margin: auto;
+  flex-grow: 0;
+}
