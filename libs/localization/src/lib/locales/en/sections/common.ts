@@ -8,7 +8,7 @@ const common = {
     languageToggleGroup: "select language",
     transportportal: {
       collaboration:
-        "This is a collaboration between the Norwegian Public Roads Administration, the Norwegian Railway Directorate, Entur and the Norwegian Digitalisation Agency.",
+        "Transportportal is a collaboration between the Norwegian Public Roads Administration, the Norwegian Railway Directorate, Entur and the Norwegian Digitalisation Agency.",
       searchDatasets: "Search datasets",
     },
   },
@@ -17,10 +17,26 @@ const common = {
     menuButton: "Menu",
     shareDataButton: "Share data",
     skipToMain: "Skip to main content",
-    transportportalTagline: "National access point for road and transport data",
     alert: {
       message: "Planned maintenance Tuesday 6PM to 11PM.",
       linkText: "Read more at Datalandsbyen",
+    },
+  },
+  search: {
+    searchButton: "Search",
+  },
+  tp: {
+    tagline: "National access point for road and transport data",
+    searchPlaceholder: 'Search for datasets, e.g. "public transport"',
+    partnersTitle: "A {{link}} between",
+    partnersTitleLink: "collaboration",
+    frontpageLinks: {
+      roadNetwork: "Road network",
+      commuterTraffic: "Public transport",
+      seaTransport: "Ferry and sea transport",
+      realtimeTraffic: "Real-time traffic information",
+      statistics: "Traffic statistics",
+      parkingMobility: "Parking and mobility services",
     },
   },
   mainMenu: {

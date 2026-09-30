@@ -2,7 +2,7 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useRef, useEffect, useState, type FormEvent } from "react";
 import cn from "classnames";
-import { Tag, Search } from "@digdir/designsystemet-react";
+import { Search } from "@digdir/designsystemet-react";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import SearchInputTray from "../search-input-tray";
@@ -43,14 +43,14 @@ const SearchInput = ({
   showTrayNav = true,
   ...rest
 }: SearchInputProps) => {
-  const inputDict = getLocalization(locale).searchPage.searchInput;
+  const dictionary = getLocalization(locale);
+  const inputDict = dictionary.searchPage.searchInput;
   const resolvedSearchLabel = searchLabel ?? inputDict.label;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isMac, setIsMac] = useState(false);
   const [isTrayVisible, setIsTrayVisible] = useState(false);
   const [internalValue, setInternalValue] = useState(() => getInitialQFromUrl(searchParams));
 
@@ -64,10 +64,6 @@ const SearchInput = ({
   const isControlled = controlledValue !== undefined;
   const value = isControlled ? controlledValue : internalValue;
   const setValue = isControlled ? (controlledOnChange ?? (() => undefined)) : setInternalValue;
-
-  useEffect(() => {
-    setIsMac(typeof navigator !== "undefined" && /Mac|iPod|iPhone|iPad/.test(navigator.platform));
-  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -122,6 +118,7 @@ const SearchInput = ({
     <div
       ref={containerRef}
       className={cn(styles.container, className)}
+      data-color-scheme={isTrayVisible ? "light" : null}
     >
       <form
         className={styles.form}
@@ -139,27 +136,17 @@ const SearchInput = ({
             onFocus={() => setIsTrayVisible(true)}
             className={styles.input}
             aria-label={resolvedSearchLabel}
+            placeholder={placeholder}
           />
           {value && <Search.Clear className={styles.searchCancelBtn} />}
-          {(isTrayVisible || value) && (
-            <Search.Button
-              type="submit"
-              className={styles.searchBtn}
-              variant="secondary"
-            >
-              Søk
-            </Search.Button>
-          )}
-        </Search>
-        {!isTrayVisible && !value && (
-          <Tag
-            className={styles.hotkeyTag}
-            data-size="sm"
-            data-color="neutral"
+          <Search.Button
+            type="submit"
+            className={styles.searchBtn}
+            variant="secondary"
           >
-            {isMac ? "⌘ + K" : "Ctrl + K"}
-          </Tag>
-        )}
+            {dictionary.common.search.searchButton}
+          </Search.Button>
+        </Search>
       </form>
       <SearchInputTray
         isVisible={isTrayVisible}
