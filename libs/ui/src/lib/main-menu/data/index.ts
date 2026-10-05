@@ -142,10 +142,6 @@ const getMainMenuData = (dictionary: Localization, locale: string): MainMenuData
       title: dictionary.mainMenu.tools.links.sparqlSandbox,
       href: `/sparql`,
     },
-    {
-      title: dictionary.mainMenu.catalogs.ai.title,
-      href: `/kunstig-intelligens`,
-    },
   ],
   about: [
     {
