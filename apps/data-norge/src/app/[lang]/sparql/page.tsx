@@ -1,9 +1,10 @@
 import "server-only";
 import React from "react";
 import type { Metadata } from "next";
-import { Heading, Paragraph } from "@digdir/designsystemet-react";
+import { Heading, Link, Paragraph } from "@digdir/designsystemet-react";
 import { getLocalization, type Locale } from "@fdk-frontend/localization";
 import { Breadcrumbs } from "@fdk-frontend/ui";
+import { getProfile } from "@fdk-frontend/utils/server";
 import styles from "./page.module.css";
 import { SparqlEditor } from "./components/sparql-editor";
 
@@ -21,6 +22,10 @@ const SparqlPage = async (props: SparqlPageProps) => {
 
   const loc = getLocalization(lang);
   const dictionary = loc.sparqlSandboxPage;
+  const profile = await getProfile();
+
+  const docsHref =
+    profile === "transportportal" ? `/${lang}/om-transportportal/sparql` : `/${lang}/docs/finding-data/sparql`;
 
   const breadcrumbList = [
     {
@@ -40,6 +45,9 @@ const SparqlPage = async (props: SparqlPageProps) => {
       <div className={styles.contentContainer}>
         <Heading data-size="xl">{dictionary.title}</Heading>
         <Paragraph data-size="lg">{dictionary.description}</Paragraph>
+        <Paragraph>
+          <Link href={docsHref}>{dictionary.docsLink}</Link>
+        </Paragraph>
         {FDK_SPARQL_ENDPOINT && (
           <SparqlEditor
             endpoint={FDK_SPARQL_ENDPOINT}

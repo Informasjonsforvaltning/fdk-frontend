@@ -34,6 +34,7 @@ const common = {
         itsDirective: "The ITS Directive and regulations",
         news: "News",
         offerData: "Offer data",
+        sparql: "SPARQL search",
         declarationOfCompliance: "Declaration of compliance",
         registrationHelp: "Help with registration",
         reports: "Reports",

@@ -34,6 +34,7 @@ const common = {
         itsDirective: "ITS-direktivet og forordninger",
         news: "Nyheter",
         offerData: "Tilby data",
+        sparql: "SPARQL-søk",
         declarationOfCompliance: "Samsvarserklæring",
         registrationHelp: "Hjelp til å registrere",
         reports: "Rapporter",
