@@ -21,7 +21,7 @@
     "qs": "^6.16.0",
     "serialize-javascript": "^7.0.5",
     "path-to-regexp@0.1.12": "0.1.13",
-    "axios": "^1.18.0",
+    "axios": "^1.20.0",
     "ip-address": "^10.7.1",
     "http-proxy-middleware": "^3.0.7",
     "lodash-es": "^4.18.1",
@@ -59,7 +59,8 @@
     "baseline-browser-mapping": "^2.11.0",
     "undici@^6.23.0": "^6.28.1",
     "undici@^7.29.0": "^7.29.1",
-    "brace-expansion@^5.0.5": "^5.0.12"
+    "brace-expansion@^5.0.5": "^5.0.12",
+    "brace-expansion@5.0.8": "^5.0.12"
   },
   "packageManager": "yarn@4.14.1",
   "lint-staged": {
@@ -112,7 +113,7 @@
     "leaflet": "^1.9.4",
     "marked": "^15.0.12",
     "mime-types": "^3.0.2",
-    "next": "^16.3.3",
+    "next": "^16.3.6",
     "next-mdx-remote": "^6.0.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
