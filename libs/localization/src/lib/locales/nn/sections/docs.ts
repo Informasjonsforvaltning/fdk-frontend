@@ -7,6 +7,7 @@ const docs = {
     "/om-transportportal/tilby-data": "Tilby data",
     "/om-transportportal/samsvarserklaering": "Samsvarserklæring",
     "/om-transportportal/hjelp-til-a-registrere": "Hjelp til å registrere",
+    "/om-transportportal/sparql": "SPARQL-søk",
     "/about": "Om oss",
     "/docs/catalogs": "Datakatalogar",
     "/docs/catalogs/datasets": "Datasett",

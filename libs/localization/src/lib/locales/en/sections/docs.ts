@@ -7,6 +7,7 @@ const docs = {
     "/om-transportportal/tilby-data": "Offer data",
     "/om-transportportal/samsvarserklaering": "Declaration of compliance",
     "/om-transportportal/hjelp-til-a-registrere": "Help with registration",
+    "/om-transportportal/sparql": "SPARQL search",
     "/about": "About us",
     "/docs/catalogs": "Data catalogs",
     "/docs/catalogs/datasets": "Datasets",

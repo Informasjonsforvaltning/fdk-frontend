@@ -1,0 +1,74 @@
+---
+title: SPARQL search
+description: Use SPARQL to query and export metadata from Transportportal.no.
+---
+
+# SPARQL search
+
+SPARQL lets you retrieve dataset metadata from Transportportal.no programmatically.
+
+The endpoint covers the entire National Data Catalog (Felles datakatalog). To limit results to Transportportal, filter on the `fdk:isRelatedToTransportportal` property.
+
+## Tools
+
+- [SPARQL sandbox](/en/sparql) – interactive interface for testing queries
+- [W3C SPARQL documentation](https://www.w3.org/TR/sparql11-overview/).
+
+## Fetch Transportportal datasets
+
+This query retrieves datasets related to Transportportal.no:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX fdk: <https://raw.githubusercontent.com/Informasjonsforvaltning/fdk-reasoning-service/main/src/main/resources/ontology/fdk.owl#>
+
+SELECT ?dataset ?title
+WHERE {
+  ?dataset a dcat:Dataset .
+  ?dataset fdk:isRelatedToTransportportal true .
+  ?dataset dct:title ?title .
+}
+LIMIT 20
+```
+
+## Filter by publisher
+
+Find Transportportal datasets from a specific organisation (here by searching the publisher name):
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX fdk: <https://raw.githubusercontent.com/Informasjonsforvaltning/fdk-reasoning-service/main/src/main/resources/ontology/fdk.owl#>
+
+SELECT ?dataset ?title ?publisherName
+WHERE {
+  ?dataset a dcat:Dataset .
+  ?dataset fdk:isRelatedToTransportportal true .
+  ?dataset dct:title ?title .
+  ?dataset dct:publisher ?publisher .
+  ?publisher foaf:name ?publisherName .
+  FILTER(CONTAINS(LCASE(?publisherName), "vegvesen"))
+}
+LIMIT 20
+```
+
+## Filter by description
+
+Search for Transportportal datasets whose description contains a given word:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX fdk: <https://raw.githubusercontent.com/Informasjonsforvaltning/fdk-reasoning-service/main/src/main/resources/ontology/fdk.owl#>
+
+SELECT ?dataset ?description
+WHERE {
+  ?dataset a dcat:Dataset .
+  ?dataset fdk:isRelatedToTransportportal true .
+  ?dataset dct:description ?description .
+  FILTER(CONTAINS(LCASE(?description), "rutetider"))
+}
+LIMIT 20
+```

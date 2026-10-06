@@ -38,12 +38,16 @@ const getMainMenuData = (dictionary: Localization, locale: string): MainMenuData
       title: dictionary.mainMenu.transportportal.links.news,
       href: `/${locale}/om-transportportal/nyheter`,
     },
+  ],
+  transportportalHelp: [
     {
       title: dictionary.mainMenu.transportportal.links.offerData,
       href: `/${locale}/om-transportportal/tilby-data`,
     },
-  ],
-  transportportalHelp: [
+    {
+      title: dictionary.mainMenu.transportportal.links.sparql,
+      href: `/${locale}/om-transportportal/sparql`,
+    },
     {
       title: dictionary.mainMenu.transportportal.links.registrationHelp,
       href: `/${locale}/om-transportportal/hjelp-til-a-registrere`,

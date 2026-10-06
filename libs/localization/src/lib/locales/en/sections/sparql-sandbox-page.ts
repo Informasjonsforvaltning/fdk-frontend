@@ -7,6 +7,7 @@ const sparqlSandboxPage = {
   title: "SPARQL sandbox",
   description:
     "Execute SPARQL queries to search and explore Norwegian public data. Query datasets, concepts, APIs, and information models from over 125 organizations. Test and refine your queries in this interactive environment.",
+  docsLink: "Read more about SPARQL search",
 };
 
 export default sparqlSandboxPage;

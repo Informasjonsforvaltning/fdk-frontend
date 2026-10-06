@@ -7,6 +7,7 @@ const sparqlSandboxPage = {
   title: "SPARQL-sandkasse",
   description:
     "Utfør SPARQL-spørjingar for å søke og utforske norske offentlege data. Spør etter datasett, omgrep, API-ar og informasjonsmodellar frå over 125 organisasjonar. Test og finjuster dine spørjingar i dette interaktive miljøet.",
+  docsLink: "Les meir om SPARQL-søk",
 };
 
 export default sparqlSandboxPage;
