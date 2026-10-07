@@ -49,6 +49,10 @@ const getMainMenuData = (dictionary: Localization, locale: string): MainMenuData
       href: `/${locale}/om-transportportal/sparql`,
     },
     {
+      title: dictionary.mainMenu.transportportal.links.oaiPmh,
+      href: `/${locale}/om-transportportal/oai-pmh`,
+    },
+    {
       title: dictionary.mainMenu.transportportal.links.registrationHelp,
       href: `/${locale}/om-transportportal/hjelp-til-a-registrere`,
     },
