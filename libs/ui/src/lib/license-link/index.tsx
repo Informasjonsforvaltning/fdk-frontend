@@ -2,33 +2,32 @@ import React from "react";
 import cn from "classnames";
 import { type LocaleCodes } from "@fdk-frontend/localization";
 import { isOpenLicense } from "@fdk-frontend/utils";
-import Box from "../box";
 import ExternalLink from "../external-link";
 import { Tag } from "@digdir/designsystemet-react";
 import styles from "./styles.module.scss";
 
-type LicenseBoxLinkProps = {
+type LicenseLinkProps = {
   uri: string;
   locale: LocaleCodes;
   openLicenseLabel: string;
 };
 
-const LicenseBoxLink = ({
+const LicenseLink = ({
   children,
   uri,
   locale,
   openLicenseLabel,
   ...props
-}: LicenseBoxLinkProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: LicenseLinkProps & React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <Box
+    <div
       className={cn(styles.wrapper, { [styles.isOpenLicense]: isOpenLicense(uri) })}
       {...props}
     >
       <ExternalLink
         href={uri}
         locale={locale}
-        className="fdk-box-link"
+        gateway
       >
         {children}
       </ExternalLink>
@@ -42,8 +41,8 @@ const LicenseBoxLink = ({
           </Tag>
         </div>
       )}
-    </Box>
+    </div>
   );
 };
 
-export default LicenseBoxLink;
+export default LicenseLink;

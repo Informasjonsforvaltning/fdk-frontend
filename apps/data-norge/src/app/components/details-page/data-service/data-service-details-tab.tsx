@@ -12,7 +12,7 @@ import {
   Hstack,
   InputWithCopyButton,
   SmartList,
-  LicenseBoxLink,
+  LicenseLink,
 } from "@fdk-frontend/ui";
 import { Heading, Tag, Link, Button, Paragraph } from "@digdir/designsystemet-react";
 import { HelpText } from "@fellesdatakatalog/ui";
@@ -277,7 +277,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
               <dt>{dictionary.details.general.license}:</dt>
               <dd>
                 {resource.license?.uri ? (
-                  <LicenseBoxLink
+                  <LicenseLink
                     uri={resource.license.uri}
                     openLicenseLabel={dictionary.details.general.openLicense}
                     locale={locale}
@@ -285,7 +285,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                     {resource.license.prefLabel
                       ? printLocaleValue(locale, resource.license.prefLabel)
                       : resource.license.uri}
-                  </LicenseBoxLink>
+                  </LicenseLink>
                 ) : (
                   <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
                 )}

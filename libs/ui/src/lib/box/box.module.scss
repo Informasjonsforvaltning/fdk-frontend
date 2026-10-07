@@ -9,6 +9,6 @@
   background: #fafafa;
 }
 
-.box {
+:global(.fdk-box) {
   @include box-mixin();
 }

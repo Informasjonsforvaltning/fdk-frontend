@@ -1,15 +1,20 @@
 import React from "react";
+import cn from "classnames";
+import styles from "./styles.module.scss";
 
 interface SmartListProps<T> {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   listType?: "ul" | "ol";
+  listItemWrapper?: React.ComponentType<React.PropsWithChildren>;
 }
 
 const SmartList = <T,>({
   items,
   renderItem,
   listType = "ul",
+  listItemWrapper: ListItemWrapper,
+  className,
   ...rest
 }: SmartListProps<T> & React.HTMLAttributes<HTMLUListElement | HTMLOListElement>) => {
   if (items.length === 0) return null;
@@ -18,10 +23,17 @@ const SmartList = <T,>({
   const ListTag = listType;
 
   return (
-    <ListTag {...rest}>
-      {items.map((item, index) => (
-        <li key={`item-${index}`}>{renderItem(item, index)}</li>
-      ))}
+    <ListTag
+      className={cn(styles.list, className)}
+      {...rest}
+    >
+      {items.map((item, index) => {
+        const content = renderItem(item, index);
+
+        return (
+          <li key={`item-${index}`}>{ListItemWrapper ? <ListItemWrapper>{content}</ListItemWrapper> : content}</li>
+        );
+      })}
     </ListTag>
   );
 };
