@@ -100,8 +100,8 @@
     "format": "nx format:write"
   },
   "dependencies": {
-    "@digdir/designsystemet-css": "^1.13.0",
-    "@digdir/designsystemet-react": "^1.13.0",
+    "@digdir/designsystemet-css": "^1.23.0",
+    "@digdir/designsystemet-react": "^1.23.0",
     "@digdir/designsystemet-theme": "^1.11.0",
     "@fellesdatakatalog/types": "^1.0.32",
     "@fellesdatakatalog/ui": "^1.0.34",
@@ -141,8 +141,8 @@
     "@nx/storybook": "^22.7.0",
     "@nx/vite": "^22.7.0",
     "@playwright/test": "^1.59.1",
-    "@storybook/addon-docs": "10.3.5",
-    "@storybook/react-vite": "10.3.5",
+    "@storybook/addon-docs": "10.6.1",
+    "@storybook/react-vite": "10.6.1",
     "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.15.32",
     "@swc/helpers": "^0.5.21",
@@ -159,7 +159,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.59.0",
-    "@typescript-eslint/parser": "^8.59.0",
+    "@typescript-eslint/parser": "^8.71.1",
     "babel-jest": "^30.3.0",
     "eslint": "^9.39.2",
     "eslint-config-next": "15.5.10",
@@ -168,7 +168,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-playwright": "^2.10.2",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-storybook": "10.3.5",
+    "eslint-plugin-storybook": "10.6.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.3.0",
     "jest-axe": "^10.0.0",
@@ -179,10 +179,10 @@
     "prettier": "^3.8.3",
     "react-markdown": "^10.1.0",
     "sass": "^1.99.0",
-    "storybook": "10.3.5",
+    "storybook": "10.6.1",
     "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
     "typescript": "~6.0.3",
-    "vite": "^7.3.5"
+    "vite": "^8.3.3"
   }
 }
