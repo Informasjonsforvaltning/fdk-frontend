@@ -74,6 +74,11 @@ const nextConfig = {
     return [
       // Content redirects
       {
+        source: "/:lang(nb|nn|en)/catalogs/:path*",
+        destination: "/:lang/docs/catalogs/:path*",
+        permanent: true,
+      },
+      {
         source: "/:lang/docs/tutorials/:slug",
         destination: "/:lang/docs/sharing-data/:slug",
         permanent: true,
