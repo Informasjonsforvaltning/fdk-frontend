@@ -32,12 +32,16 @@ const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: Access
         label
       ) : (
         <>
-          <TagLink
-            className={styles.innerTag}
-            href={`/datasets?accessrights=${accessCode}`}
-          >
-            {label}
-          </TagLink>
+          {accessCode ? (
+            <TagLink
+              className={styles.innerTag}
+              href={`/datasets?accessrights=${accessCode}`}
+            >
+              {label}
+            </TagLink>
+          ) : (
+            label
+          )}
           &nbsp;
           <HelpText aria-label={dictionary.accessRights.helpTextTitle}>
             <Paragraph data-size="sm">{helpText}</Paragraph>
