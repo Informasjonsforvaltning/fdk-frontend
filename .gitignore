@@ -28,6 +28,7 @@ node_modules
 npm-debug.log
 yarn-error.log
 testem.log
+storybook-app/debug-storybook.log
 /typings
 **/tsconfig.tsbuildinfo
 
