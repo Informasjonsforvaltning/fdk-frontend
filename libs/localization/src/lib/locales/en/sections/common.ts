@@ -35,6 +35,7 @@ const common = {
         news: "News",
         offerData: "Offer data",
         sparql: "SPARQL search",
+        oaiPmh: "Fetch data via OAI-PMH",
         declarationOfCompliance: "Declaration of compliance",
         registrationHelp: "Help with registration",
         reports: "Reports",

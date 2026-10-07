@@ -1,0 +1,67 @@
+---
+title: Fetch data via OAI-PMH
+description: Guide to fetching extracts via the OAI-PMH endpoint.
+---
+
+# Fetch data via OAI-PMH
+
+## How it works
+
+The OAI-PMH endpoint delivers the extract as a list of records. Each record describes one resource, for example one dataset or one concept, depending on which extract you fetch. Large lists are split across multiple pages. Each time you open an address you get one page with up to 50 records. You fetch the next page by changing the address. Every page except the last ends with a continuation key (`resumptionToken`) that you use to fetch the next page.
+
+## Step 1: Choose an extract
+
+Find the ID of the extract you want to fetch. These extracts are available today:
+
+| Extract | Content | ID |
+| --- | --- | --- |
+| Transportportal Datasets | Datasets in Transportportal | `d097da12-e13b-4696-be30-4165b45a8374` |
+| EU-OpenData | Open datasets harvested by the EU data portal | `ea654341-b155-423f-97e6-e64946187d34` |
+| EU-Non-OpenData | Protected data (datasets that are not open) harvested by the EU data portal | `3658f833-1ddf-4efc-85a0-844b53f64f3a` |
+| All concepts | All concepts, updated every 24 hours | `834ebf4d-0e40-4645-8e4a-9f1a087f5e96` |
+
+An up-to-date overview with the number of records in each extract is available in the [API documentation](https://resource.api.fellesdatakatalog.digdir.no/swagger-ui/index.html#/Union%20Graphs/getAvailableOrders).
+
+## Step 2: Fetch the first page
+
+Paste this address into the address bar. Replace `<ID>` with the ID of the extract you chose in step 1:
+
+```
+https://resource.api.fellesdatakatalog.digdir.no/v1/union-graphs/<ID>/oai-pmh?verb=ListRecords&metadataPrefix=rdfxml
+```
+
+You get XML with the first 50 records. Save the page with **Ctrl+S** (Mac: **Cmd+S**) if you want to keep it.
+
+## Step 3: Find the continuation key
+
+Press **Ctrl+F** (Mac: **Cmd+F**) and search for `resumptionToken`. At the bottom of the page you will find a line similar to this:
+
+```xml
+<resumptionToken completeListSize="81"><ID>:rdfxml:50</resumptionToken>
+```
+
+`completeListSize` shows how many records the extract contains in total. The text between the tags is the key to the next page.
+
+If you do not find `resumptionToken`, this is the last page and you have received all records.
+
+## Step 4: Fetch the next page
+
+Replace everything after `?` in the address with `verb=ListRecords&resumptionToken=` followed by the key you found:
+
+```
+https://resource.api.fellesdatakatalog.digdir.no/v1/union-graphs/<ID>/oai-pmh?verb=ListRecords&resumptionToken=<ID>:rdfxml:50
+```
+
+**Note:** `metadataPrefix=rdfxml` must not be included on this and the following pages. The key remembers which format you chose in step 2.
+
+## Step 5: Repeat until you are done
+
+Repeat steps 3 and 4 for each new page. The key only changes in the number at the end, which increases by 50 for each page (`:50`, `:100`, `:150`, and so on). You can therefore also fetch the next page by increasing the number yourself. When the page has no `resumptionToken`, or it is empty (`<resumptionToken/>`), you have fetched all records.
+
+If you increase the number past the end of the list, you get an empty response with no records (`<ListRecords/>`). Then you have also fetched everything.
+
+## Tips
+
+- Firefox and Chrome display XML as a readable tree. If the page looks empty or only shows text, try **Ctrl+U** (Mac: **Cmd+Option+U**) to view the source code.
+- The colons in the key usually work without change. If you get an error, try replacing `:` with `%3A`.
+- If you only want to see which records exist, you can use `verb=ListIdentifiers` instead of `verb=ListRecords` in step 2. The pages will be much smaller, and the procedure is the same.

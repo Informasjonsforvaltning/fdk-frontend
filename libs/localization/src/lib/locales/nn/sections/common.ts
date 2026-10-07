@@ -35,6 +35,7 @@ const common = {
         news: "Nyheiter",
         offerData: "Tilby data",
         sparql: "SPARQL-søk",
+        oaiPmh: "Hente data via OAI-PMH",
         declarationOfCompliance: "Samsvarserklæring",
         registrationHelp: "Hjelp til å registrere",
         reports: "Rapportar",

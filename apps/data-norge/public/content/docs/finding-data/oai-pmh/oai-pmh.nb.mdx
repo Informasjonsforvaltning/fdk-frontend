@@ -1,0 +1,67 @@
+---
+title: Hente data via OAI-PMH
+description: Veiledning for å hente uttrekk via OAI-PMH-endepunktet.
+---
+
+# Hente data via OAI-PMH
+
+## Slik fungerer det
+
+OAI-PMH-endepunktet leverer uttrekket som en liste med poster. Hver post beskriver én ressurs, for eksempel ett datasett eller ett begrep, avhengig av hvilket uttrekk du henter. Store lister deles opp i flere sider. Hver gang du åpner en adresse får du én side med inntil 50 poster. Neste side henter du ved å endre adressen. Hver side, bortsett fra den siste, slutter med en fortsettelsesnøkkel (`resumptionToken`) som du bruker for å hente neste side.
+
+## Steg 1: Velg uttrekk
+
+Finn ID-en for uttrekket du vil hente. Disse uttrekkene er tilgjengelige i dag:
+
+| Uttrekk | Innhold | ID |
+| --- | --- | --- |
+| Transportportal Datasets | Datasett i Transportportalen | `d097da12-e13b-4696-be30-4165b45a8374` |
+| EU-OpenData | Åpne datasett som høstes av EUs dataportal | `ea654341-b155-423f-97e6-e64946187d34` |
+| EU-Non-OpenData | Beskyttede data (datasett som ikke er åpne) som høstes av EUs dataportal | `3658f833-1ddf-4efc-85a0-844b53f64f3a` |
+| All concepts | Alle begreper, oppdateres hver 24. time | `834ebf4d-0e40-4645-8e4a-9f1a087f5e96` |
+
+En oppdatert oversikt med antall poster i hvert uttrekk finner du i [API-dokumentasjonen](https://resource.api.fellesdatakatalog.digdir.no/swagger-ui/index.html#/Union%20Graphs/getAvailableOrders).
+
+## Steg 2: Hent første side
+
+Lim inn denne adressen i adressefeltet. Bytt ut `<ID>` med ID-en for uttrekket du valgte i steg 1:
+
+```
+https://resource.api.fellesdatakatalog.digdir.no/v1/union-graphs/<ID>/oai-pmh?verb=ListRecords&metadataPrefix=rdfxml
+```
+
+Du får opp XML med de første 50 postene. Lagre siden med **Ctrl+S** (Mac: **Cmd+S**) hvis du vil ta vare på den.
+
+## Steg 3: Finn fortsettelsesnøkkelen
+
+Trykk **Ctrl+F** (Mac: **Cmd+F**) og søk etter `resumptionToken`. Nederst på siden finner du en linje som ligner på denne:
+
+```xml
+<resumptionToken completeListSize="81"><ID>:rdfxml:50</resumptionToken>
+```
+
+`completeListSize` viser hvor mange poster uttrekket inneholder totalt. Teksten mellom taggene er nøkkelen til neste side.
+
+Finner du ikke `resumptionToken`, er dette siste side, og du har fått alle postene.
+
+## Steg 4: Hent neste side
+
+Bytt ut alt etter `?` i adressen med `verb=ListRecords&resumptionToken=` etterfulgt av nøkkelen du fant:
+
+```
+https://resource.api.fellesdatakatalog.digdir.no/v1/union-graphs/<ID>/oai-pmh?verb=ListRecords&resumptionToken=<ID>:rdfxml:50
+```
+
+**Merk:** `metadataPrefix=rdfxml` skal ikke være med på denne og de neste sidene. Nøkkelen husker hvilket format du valgte i steg 2.
+
+## Steg 5: Gjenta til du er ferdig
+
+Gjenta steg 3 og 4 for hver ny side. Nøkkelen endrer seg bare i tallet på slutten, som øker med 50 for hver side (`:50`, `:100`, `:150` osv.). Du kan derfor også hente neste side ved å øke tallet selv. Når siden ikke har noe `resumptionToken`, eller det er tomt (`<resumptionToken/>`), har du hentet alle postene.
+
+Øker du tallet forbi slutten av lista, får du et tomt svar uten poster (`<ListRecords/>`). Da har du også hentet alt.
+
+## Tips
+
+- Firefox og Chrome viser XML som et lesbart tre. Hvis siden ser tom ut eller bare viser tekst, prøv **Ctrl+U** (Mac: **Cmd+Option+U**) for å se kildekoden.
+- Kolonene i nøkkelen fungerer vanligvis uten endring. Får du feil, prøv å bytte `:` med `%3A`.
+- Vil du bare se hvilke poster som finnes, kan du bruke `verb=ListIdentifiers` i stedet for `verb=ListRecords` i steg 2. Da blir sidene mye mindre, og framgangsmåten er den samme.
