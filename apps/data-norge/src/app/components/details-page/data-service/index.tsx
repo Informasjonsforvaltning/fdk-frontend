@@ -21,6 +21,7 @@ import DataServiceDetailsTab from "./data-service-details-tab";
 import DataServiceOverviewTab from "./data-service-overview-tab";
 import styles from "../details-page.module.scss";
 import headerStyles from "../dataset-header/dataset-header.module.scss";
+import dataServiceStyles from './data-service.module.scss';
 
 export type DataServiceDetailsPageType = {
   baseUri: string;
@@ -107,7 +108,7 @@ export default function DataServiceDetailsPage({
             >
               {dictionaries.detailsPage.header.dataServicesTagLink}
             </TagLink>
-            <Tag style={{ textTransform: "capitalize" }}>{statusLabel}</Tag>
+            <Tag className={dataServiceStyles.status}>{statusLabel}</Tag>
             <AccessLevelTag
               accessCode={resource.accessRights?.code}
               locale={locale}
