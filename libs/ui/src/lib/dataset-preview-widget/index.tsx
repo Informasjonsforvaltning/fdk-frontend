@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import cn from "classnames";
-import { Spinner, Button } from "@digdir/designsystemet-react";
+import { Spinner, Button, Tag } from "@digdir/designsystemet-react";
 import { EyeIcon } from "@navikt/aksel-icons";
 import DatasetPreviewModal from "../dataset-preview-modal/";
 import { type Localization } from "@fdk-frontend/localization";
@@ -61,6 +61,10 @@ const DatasetPreviewWidget = ({
 
     getDatasetPreview();
   }, [hasBeenOpened]);
+
+  if (error && !isLoading) {
+    return <Tag data-color="neutral">{dictionary.datasetPreview.previewNotAvailable}</Tag>;
+  }
 
   return (
     <div {...props}>

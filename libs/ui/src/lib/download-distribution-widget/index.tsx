@@ -28,23 +28,19 @@ const DownloadDistributionWidget = ({
       {...props}
     >
       <ExternalLink
-        className="fdk-box-link"
         href={downloadUrl}
         locale={locale}
         gateway
       >
         {downloadUrl}
       </ExternalLink>
-      <div className={styles.previewWidgetContainer}>
-        <DatasetPreviewWidget
-          className={styles.previewWidget}
-          downloadUrl={downloadUrl}
-          dictionary={dictionary}
-          title={datasetPreviewTitle}
-          triggerBtnClass={styles.previewTriggerBtn}
-          hasBeenOpened={hasBeenOpened}
-        />
-      </div>
+      <DatasetPreviewWidget
+        downloadUrl={downloadUrl}
+        dictionary={dictionary}
+        title={datasetPreviewTitle}
+        triggerBtnClass={styles.previewTriggerBtn}
+        hasBeenOpened={hasBeenOpened}
+      />
     </Box>
   );
 };

@@ -1,0 +1,5 @@
+@use "../box-list/styles.module" as box-list;
+
+.list:has(> li > :global(.fdk-box)) {
+  @include box-list.box-list-mixin();
+}
