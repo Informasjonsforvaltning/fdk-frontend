@@ -48,7 +48,7 @@ const DatasetHeader = ({
   return (
     <div className={styles.header}>
       <OrgButton
-        href={`/organizations/${dataset.publisher?.id}`}
+        href={dataset.publisher?.id ? `/organizations/${dataset.publisher?.id}` : undefined}
         orgLogoSrc={orgLogo}
         className={styles.orgBtn}
       >

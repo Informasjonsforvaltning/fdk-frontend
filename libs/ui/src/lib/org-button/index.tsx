@@ -18,22 +18,31 @@ const OrgButton = ({
   reverse,
   ...props
 }: OrgButtonProps & ButtonProps) => {
+  const classNames = cn(styles.wrapper, className, { [styles.reverse]: reverse });
+  const content = (
+    <>
+      <OrgLogo
+        className={styles.orgLogo}
+        orgLogoSrc={orgLogoSrc}
+        orgNr={orgNr}
+      />
+      {children}
+    </>
+  );
+
+  if (!href) {
+    return <div className={classNames}>{content}</div>;
+  }
+
   return (
     <Button
       asChild
       data-size="sm"
       variant="tertiary"
-      className={cn(styles.wrapper, className, { [styles.reverse]: reverse })}
+      className={classNames}
       {...props}
     >
-      <Link href={href}>
-        <OrgLogo
-          className={styles.orgLogo}
-          orgLogoSrc={orgLogoSrc}
-          orgNr={orgNr}
-        />
-        {children}
-      </Link>
+      <Link href={href}>{content}</Link>
     </Button>
   );
 };
