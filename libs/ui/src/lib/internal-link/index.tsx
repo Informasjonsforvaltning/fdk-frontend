@@ -28,6 +28,9 @@ const InternalLink = ({
   ...props
 }: InternalLinkProps) => {
   const dataset = entity as TransportDataset;
+
+  if (!props?.href) return children;
+
   if (profile !== "transportportal" || dataset?.isRelatedToTransportportal) {
     return <Link {...props}>{children}</Link>;
   }

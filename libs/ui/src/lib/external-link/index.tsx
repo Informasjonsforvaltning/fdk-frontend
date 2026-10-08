@@ -37,6 +37,8 @@ const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway
     }
   }, []);
 
+  if (!href) return children;
+
   return (
     <Link
       {...props}
