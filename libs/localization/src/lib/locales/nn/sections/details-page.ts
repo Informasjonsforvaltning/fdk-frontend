@@ -139,6 +139,7 @@ const detailsPage = {
       informationModelTitle: "Om informasjonsmodellen",
       endpointTitle: "Endepunkt",
       publisher: "Utgjevar",
+      creator: "Produsent",
       identifier: "Identifikator",
       uri: "URI",
       firstHarvested: "Publisert",
