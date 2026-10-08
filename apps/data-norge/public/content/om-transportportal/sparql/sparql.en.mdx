@@ -7,12 +7,39 @@ description: Use SPARQL to query and export metadata from Transportportal.no.
 
 SPARQL lets you retrieve dataset metadata from Transportportal.no programmatically.
 
-The endpoint covers the entire National Data Catalog (Felles datakatalog). To limit results to Transportportal, filter on the `fdk:isRelatedToTransportportal` property.
+The endpoint covers the entire National Data Catalog (Data.norge.no). To limit results to Transportportal, filter on the `fdk:isRelatedToTransportportal` property.
 
 ## Tools
 
 - [SPARQL sandbox](/en/sparql) – interactive interface for testing queries
 - [W3C SPARQL documentation](https://www.w3.org/TR/sparql11-overview/).
+
+## Execute a query with curl
+
+You can execute SPARQL queries by sending a GET request with the query as a URL-encoded query parameter. Here is an example using curl:
+
+```bash
+curl "https://sparql.fellesdatakatalog.digdir.no?query=\
+PREFIX%20dcat%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Fdcat%23%3E%0A\
+PREFIX%20fdk%3A%20%3Chttps%3A%2F%2Fraw.githubusercontent.com%2FInformasjonsforvaltning%2Ffdk-reasoning-service%2Fmain%2Fsrc%2Fmain%2Fresources%2Fontology%2Ffdk.owl%23%3E%0A\
+SELECT%20*%0AWHERE%20%7B%0A%20%20%3Fdataset%20a%20dcat%3ADataset%20.%0A%20%20%3Fdataset%20fdk%3AisRelatedToTransportportal%20true%20.%0A%7D%0A\
+LIMIT%2010"
+```
+
+In the example above, the SPARQL query is URL-encoded. The decoded query is:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX fdk: <https://raw.githubusercontent.com/Informasjonsforvaltning/fdk-reasoning-service/main/src/main/resources/ontology/fdk.owl#>
+SELECT *
+WHERE {
+  ?dataset a dcat:Dataset .
+  ?dataset fdk:isRelatedToTransportportal true .
+}
+LIMIT 10
+```
+
+You can also use POST requests with the query in the request body to avoid URL length limitations for complex queries.
 
 ## Fetch Transportportal datasets
 
@@ -31,6 +58,8 @@ WHERE {
 }
 LIMIT 20
 ```
+
+The result is a table with URI and title for up to 20 Transportportal datasets.
 
 ## Filter by publisher
 
@@ -54,6 +83,8 @@ WHERE {
 LIMIT 20
 ```
 
+The result is a table with URI, title and publisher name for datasets where the publisher name contains "vegvesen".
+
 ## Filter by description
 
 Search for Transportportal datasets whose description contains a given word:
@@ -72,3 +103,125 @@ WHERE {
 }
 LIMIT 20
 ```
+
+The result is a table with URI and description for datasets whose description contains "rutetider".
+
+## Advanced: rich metadata for Transportportal datasets
+
+This query retrieves more detailed metadata for each Transportportal dataset, including themes, keywords, contact point, landing page, access URLs, formats and licences. Multiple values for the same field are joined with ` | `:
+
+```sparql
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX fdk: <https://raw.githubusercontent.com/Informasjonsforvaltning/fdk-reasoning-service/main/src/main/resources/ontology/fdk.owl#>
+
+SELECT ?dataset ?tittel ?beskrivelse ?utgiver ?tilgangsnivaa ?oppdateringsfrekvens
+       ?utgitt ?endret ?temaer ?emneord ?kontakt ?landingsside
+       ?tilgangsURLer ?formater ?lisenser
+WHERE {
+  # Grunnopplysninger (én verdi per datasett)
+  {
+    SELECT ?dataset
+      (SAMPLE(?t) AS ?tittel) (SAMPLE(?d) AS ?beskrivelse) (SAMPLE(?pubName) AS ?utgiver)
+      (SAMPLE(?a) AS ?tilgangsnivaa) (SAMPLE(?f) AS ?oppdateringsfrekvens)
+      (SAMPLE(?i) AS ?utgitt) (SAMPLE(?m) AS ?endret)
+    WHERE {
+      ?dataset a dcat:Dataset ; fdk:isRelatedToTransportportal true .
+      OPTIONAL { ?dataset dct:title ?t . FILTER(langMatches(lang(?t), "nb")) }
+      OPTIONAL { ?dataset dct:description ?d . FILTER(langMatches(lang(?d), "nb")) }
+      OPTIONAL {
+        ?dataset dct:publisher ?pub .
+        OPTIONAL { ?pub foaf:name ?pn . FILTER(langMatches(lang(?pn), "nb") || lang(?pn) = "") }
+        BIND(COALESCE(?pn, STR(?pub)) AS ?pubName)
+      }
+      OPTIONAL { ?dataset dct:accessRights ?ar . BIND(REPLACE(STR(?ar), "^.*[/#]", "") AS ?a) }
+      OPTIONAL { ?dataset dct:accrualPeriodicity ?fr . BIND(REPLACE(STR(?fr), "^.*[/#]", "") AS ?f) }
+      OPTIONAL { ?dataset dct:issued ?i }
+      OPTIONAL { ?dataset dct:modified ?m }
+    }
+    GROUP BY ?dataset
+  }
+
+  # Temaer
+  OPTIONAL {
+    SELECT ?dataset (GROUP_CONCAT(DISTINCT ?lbl; separator=" | ") AS ?temaer)
+    WHERE {
+      ?dataset a dcat:Dataset ; fdk:isRelatedToTransportportal true ; dcat:theme ?th .
+      OPTIONAL { ?th skos:prefLabel ?tl . FILTER(langMatches(lang(?tl), "nb")) }
+      BIND(COALESCE(?tl, STR(?th)) AS ?lbl)
+    }
+    GROUP BY ?dataset
+  }
+
+  # Emneord
+  OPTIONAL {
+    SELECT ?dataset (GROUP_CONCAT(DISTINCT ?kw; separator=" | ") AS ?emneord)
+    WHERE {
+      ?dataset a dcat:Dataset ; fdk:isRelatedToTransportportal true ; dcat:keyword ?kw .
+      FILTER(langMatches(lang(?kw), "nb"))
+    }
+    GROUP BY ?dataset
+  }
+
+  # Kontaktpunkt
+  OPTIONAL {
+    SELECT ?dataset (GROUP_CONCAT(DISTINCT ?email; separator=" | ") AS ?kontakt)
+    WHERE {
+      ?dataset a dcat:Dataset ; fdk:isRelatedToTransportportal true ;
+               dcat:contactPoint/vcard:hasEmail ?e .
+      BIND(REPLACE(STR(?e), "^mailto:", "") AS ?email)
+    }
+    GROUP BY ?dataset
+  }
+
+  # Landingsside
+  OPTIONAL {
+    SELECT ?dataset (GROUP_CONCAT(DISTINCT STR(?lp); separator=" | ") AS ?landingsside)
+    WHERE {
+      ?dataset a dcat:Dataset ; fdk:isRelatedToTransportportal true ; dcat:landingPage ?lp .
+    }
+    GROUP BY ?dataset
+  }
+
+  # Distribusjoner: tilgangs-URL
+  OPTIONAL {
+    SELECT ?dataset (GROUP_CONCAT(DISTINCT STR(?url); separator=" | ") AS ?tilgangsURLer)
+    WHERE {
+      ?dataset a dcat:Dataset ; fdk:isRelatedToTransportportal true ;
+               dcat:distribution/dcat:accessURL ?url .
+    }
+    GROUP BY ?dataset
+  }
+
+  # Distribusjoner: format
+  OPTIONAL {
+    SELECT ?dataset (GROUP_CONCAT(DISTINCT ?lbl; separator=" | ") AS ?formater)
+    WHERE {
+      ?dataset a dcat:Dataset ; fdk:isRelatedToTransportportal true ;
+               dcat:distribution/dct:format ?fmt .
+      OPTIONAL { ?fmt skos:prefLabel ?fl . FILTER(langMatches(lang(?fl), "en") || lang(?fl) = "") }
+      BIND(COALESCE(?fl, REPLACE(STR(?fmt), "^.*[/#]", "")) AS ?lbl)
+    }
+    GROUP BY ?dataset
+  }
+
+  # Distribusjoner: lisens
+  OPTIONAL {
+    SELECT ?dataset (GROUP_CONCAT(DISTINCT ?lbl; separator=" | ") AS ?lisenser)
+    WHERE {
+      ?dataset a dcat:Dataset ; fdk:isRelatedToTransportportal true ;
+               dcat:distribution/dct:license ?lic .
+      OPTIONAL { ?lic dct:title|skos:prefLabel ?ll . FILTER(langMatches(lang(?ll), "nb") || lang(?ll) = "") }
+      BIND(COALESCE(?ll, STR(?lic)) AS ?lbl)
+    }
+    GROUP BY ?dataset
+  }
+}
+ORDER BY ?tittel
+LIMIT 20
+```
+
+The result is a table with one row per dataset. The columns include title, description, publisher, access level, update frequency, issued and modified dates, themes, keywords, contact, landing page, access URLs, formats and licences. Where a dataset has multiple values for the same field, they are joined in one cell separated by ` | `.

@@ -34,15 +34,15 @@ Du får opp XML med de første 50 postene. Lagre siden med **Ctrl+S** (Mac: **Cm
 
 ## Steg 3: Finn fortsettelsesnøkkelen
 
-Trykk **Ctrl+F** (Mac: **Cmd+F**) og søk etter `resumptionToken`. Nederst på siden finner du en linje som ligner på denne:
+Trykk **Ctrl+F** (Mac: **Cmd+F**) og søk etter `resumptionToken`. Nederst på siden finner du en linje som ligner på denne. Eksempel for et uttrekk med 81 poster:
 
 ```xml
-<resumptionToken completeListSize="81"><ID>:rdfxml:50</resumptionToken>
+<resumptionToken completeListSize="81" cursor="0"><ID>:rdfxml:50</resumptionToken>
 ```
 
-`completeListSize` viser hvor mange poster uttrekket inneholder totalt. Teksten mellom taggene er nøkkelen til neste side.
+`completeListSize` viser hvor mange poster uttrekket inneholder totalt. `cursor` viser hvor mange poster som kom før denne siden. På første side er den 0. Står det `cursor="50"`, starter siden på post nummer 51. Teksten mellom taggene er nøkkelen til neste side.
 
-Finner du ikke `resumptionToken`, er dette siste side, og du har fått alle postene.
+Finner du ikke `resumptionToken`, fikk hele uttrekket plass på én side, og du er ferdig. Antall poster finner du da ved å søke etter `<record>` med **Ctrl+F** (Mac: **Cmd+F**). Antall treff er antall poster på siden.
 
 ## Steg 4: Hent neste side
 
@@ -52,13 +52,21 @@ Bytt ut alt etter `?` i adressen med `verb=ListRecords&resumptionToken=` etterfu
 https://resource.api.fellesdatakatalog.digdir.no/v1/union-graphs/<ID>/oai-pmh?verb=ListRecords&resumptionToken=<ID>:rdfxml:50
 ```
 
-**Merk:** `metadataPrefix=rdfxml` skal ikke være med på denne og de neste sidene. Nøkkelen husker hvilket format du valgte i steg 2.
+**Merk:** `metadataPrefix=rdfxml` skal ikke være med på denne og de neste sidene. Tar du den med, får du feilmeldingen `badArgument`. Nøkkelen husker hvilket format du valgte i steg 2.
 
 ## Steg 5: Gjenta til du er ferdig
 
-Gjenta steg 3 og 4 for hver ny side. Nøkkelen endrer seg bare i tallet på slutten, som øker med 50 for hver side (`:50`, `:100`, `:150` osv.). Du kan derfor også hente neste side ved å øke tallet selv. Når siden ikke har noe `resumptionToken`, eller det er tomt (`<resumptionToken/>`), har du hentet alle postene.
+Gjenta steg 3 og 4 for hver ny side. Nøkkelen endrer seg bare i tallet på slutten, som øker med 50 for hver side (`:50`, `:100`, `:150` osv.). Du kan derfor også hente neste side ved å øke tallet selv.
 
-Øker du tallet forbi slutten av lista, får du et tomt svar uten poster (`<ListRecords/>`). Da har du også hentet alt.
+Når `resumptionToken` er tomt, har du hentet alle postene. Eksempel for et uttrekk med 81 poster:
+
+```xml
+<resumptionToken completeListSize="81" cursor="50"/>
+```
+
+I eksempelet er 50 poster levert tidligere, så siste side viser post 51 til 81 av 81.
+
+Øker du tallet forbi slutten av lista, får du feilmeldingen `badResumptionToken`. Da har du også hentet alt.
 
 ## Tips
 

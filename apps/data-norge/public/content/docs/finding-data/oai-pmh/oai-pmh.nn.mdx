@@ -34,15 +34,15 @@ Du får opp XML med dei første 50 postane. Lagre sida med **Ctrl+S** (Mac: **Cm
 
 ## Steg 3: Finn fortsetjingsnøkkelen
 
-Trykk **Ctrl+F** (Mac: **Cmd+F**) og søk etter `resumptionToken`. Nedst på sida finn du ei linje som liknar på denne:
+Trykk **Ctrl+F** (Mac: **Cmd+F**) og søk etter `resumptionToken`. Nedst på sida finn du ei linje som liknar på denne. Døme for eit uttrekk med 81 postar:
 
 ```xml
-<resumptionToken completeListSize="81"><ID>:rdfxml:50</resumptionToken>
+<resumptionToken completeListSize="81" cursor="0"><ID>:rdfxml:50</resumptionToken>
 ```
 
-`completeListSize` viser kor mange postar uttrekket inneheld totalt. Teksten mellom taggane er nøkkelen til neste side.
+`completeListSize` viser kor mange postar uttrekket inneheld totalt. `cursor` viser kor mange postar som kom før denne sida. På første side er den 0. Står det `cursor="50"`, startar sida på post nummer 51. Teksten mellom taggane er nøkkelen til neste side.
 
-Finn du ikkje `resumptionToken`, er dette siste side, og du har fått alle postane.
+Finn du ikkje `resumptionToken`, fekk heile uttrekket plass på éi side, og du er ferdig. Talet på postar finn du då ved å søkje etter `<record>` med **Ctrl+F** (Mac: **Cmd+F**). Talet på treff er talet på postar på sida.
 
 ## Steg 4: Hent neste side
 
@@ -52,13 +52,21 @@ Byt ut alt etter `?` i adressa med `verb=ListRecords&resumptionToken=` etterføl
 https://resource.api.fellesdatakatalog.digdir.no/v1/union-graphs/<ID>/oai-pmh?verb=ListRecords&resumptionToken=<ID>:rdfxml:50
 ```
 
-**Merk:** `metadataPrefix=rdfxml` skal ikkje vere med på denne og dei neste sidene. Nøkkelen hugsar kva format du valde i steg 2.
+**Merk:** `metadataPrefix=rdfxml` skal ikkje vere med på denne og dei neste sidene. Tek du den med, får du feilmeldinga `badArgument`. Nøkkelen hugsar kva format du valde i steg 2.
 
 ## Steg 5: Gjenta til du er ferdig
 
-Gjenta steg 3 og 4 for kvar ny side. Nøkkelen endrar seg berre i talet på slutten, som aukar med 50 for kvar side (`:50`, `:100`, `:150` osv.). Du kan derfor også hente neste side ved å auke talet sjølv. Når sida ikkje har noko `resumptionToken`, eller det er tomt (`<resumptionToken/>`), har du henta alle postane.
+Gjenta steg 3 og 4 for kvar ny side. Nøkkelen endrar seg berre i talet på slutten, som aukar med 50 for kvar side (`:50`, `:100`, `:150` osv.). Du kan derfor også hente neste side ved å auke talet sjølv.
 
-Aukar du talet forbi slutten av lista, får du eit tomt svar utan postar (`<ListRecords/>`). Då har du også henta alt.
+Når `resumptionToken` er tomt, har du henta alle postane. Døme for eit uttrekk med 81 postar:
+
+```xml
+<resumptionToken completeListSize="81" cursor="50"/>
+```
+
+I dømet er 50 postar leverte tidlegare, så siste side viser post 51 til 81 av 81.
+
+Aukar du talet forbi slutten av lista, får du feilmeldinga `badResumptionToken`. Då har du også henta alt.
 
 ## Tips
 
