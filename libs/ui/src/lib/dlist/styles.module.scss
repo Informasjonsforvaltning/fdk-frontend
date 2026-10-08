@@ -1,3 +1,5 @@
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
+
 .container {
   container-type: inline-size;
 }
@@ -39,6 +41,10 @@
   dt:first-child,
   dt:first-child + dd {
     border-top: 0;
+  }
+
+  dd {
+    @include core-mixins.article();
   }
 
   @container (max-width: 600px) {
