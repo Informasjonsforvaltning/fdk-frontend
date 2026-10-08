@@ -140,6 +140,18 @@ export default function InformationModelDetailsTab({
               )
             )}
           </dd>
+          <dt>{dictionary.details.general.creator}:</dt>
+          <dd>
+            {resource.creator?.id ? (
+              <Link href={`/organizations/${resource.creator.id}`}>
+                {printLocaleValue(locale, resource.creator?.prefLabel) || dictionary.header.namelessOrganization}
+              </Link>
+            ) : (
+              printLocaleValue(locale, resource.creator?.prefLabel) || (
+                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+              )
+            )}
+          </dd>
           {!resource.identifier && !showEmptyRows ? null : (
             <>
               <dt>{dictionary.details.general.identifier}:</dt>

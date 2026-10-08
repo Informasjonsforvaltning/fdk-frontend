@@ -139,6 +139,7 @@ const detailsPage = {
       informationModelTitle: "About this information model",
       endpointTitle: "Endpoint",
       publisher: "Publisher",
+      creator: "Creator",
       identifier: "Identifier",
       uri: "URI",
       firstHarvested: "Published",
