@@ -24,7 +24,7 @@ const SmartList = <T,>({
 
   return (
     <ListTag
-      className={cn(styles.list, className)}
+      className={cn({ [styles.list]: ListItemWrapper }, className) || undefined}
       {...rest}
     >
       {items.map((item, index) => {

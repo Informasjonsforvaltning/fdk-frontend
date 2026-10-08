@@ -1,6 +1,5 @@
 import React from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
-import Box from "../box";
 import ExternalLink from "../external-link";
 import DatasetPreviewWidget from "../dataset-preview-widget/";
 import styles from "./styles.module.scss";
@@ -23,7 +22,7 @@ const DownloadDistributionWidget = ({
 }: DownloadDistributionWidgetProps & React.HTMLAttributes<HTMLDivElement>) => {
   const datasetPreviewTitle = title || downloadUrl || dictionary.distributions.header.nameless;
   return (
-    <Box
+    <div
       className={styles.wrapper}
       {...props}
     >
@@ -41,7 +40,7 @@ const DownloadDistributionWidget = ({
         triggerBtnClass={styles.previewTriggerBtn}
         hasBeenOpened={hasBeenOpened}
       />
-    </Box>
+    </div>
   );
 };
 
