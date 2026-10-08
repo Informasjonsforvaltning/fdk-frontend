@@ -34,15 +34,15 @@ You get XML with the first 50 records. Save the page with **Ctrl+S** (Mac: **Cmd
 
 ## Step 3: Find the continuation key
 
-Press **Ctrl+F** (Mac: **Cmd+F**) and search for `resumptionToken`. At the bottom of the page you will find a line similar to this:
+Press **Ctrl+F** (Mac: **Cmd+F**) and search for `resumptionToken`. At the bottom of the page you will find a line similar to this. Example for an extract with 81 records:
 
 ```xml
-<resumptionToken completeListSize="81"><ID>:rdfxml:50</resumptionToken>
+<resumptionToken completeListSize="81" cursor="0"><ID>:rdfxml:50</resumptionToken>
 ```
 
-`completeListSize` shows how many records the extract contains in total. The text between the tags is the key to the next page.
+`completeListSize` shows how many records the extract contains in total. `cursor` shows how many records came before this page. On the first page it is 0. If it says `cursor="50"`, the page starts at record number 51. The text between the tags is the key to the next page.
 
-If you do not find `resumptionToken`, this is the last page and you have received all records.
+If you do not find `resumptionToken`, the entire extract fit on one page, and you are done. You can then find the number of records by searching for `<record>` with **Ctrl+F** (Mac: **Cmd+F**). The number of matches is the number of records on the page.
 
 ## Step 4: Fetch the next page
 
@@ -52,13 +52,21 @@ Replace everything after `?` in the address with `verb=ListRecords&resumptionTok
 https://resource.api.fellesdatakatalog.digdir.no/v1/union-graphs/<ID>/oai-pmh?verb=ListRecords&resumptionToken=<ID>:rdfxml:50
 ```
 
-**Note:** `metadataPrefix=rdfxml` must not be included on this and the following pages. The key remembers which format you chose in step 2.
+**Note:** `metadataPrefix=rdfxml` must not be included on this and the following pages. If you include it, you get the error message `badArgument`. The key remembers which format you chose in step 2.
 
 ## Step 5: Repeat until you are done
 
-Repeat steps 3 and 4 for each new page. The key only changes in the number at the end, which increases by 50 for each page (`:50`, `:100`, `:150`, and so on). You can therefore also fetch the next page by increasing the number yourself. When the page has no `resumptionToken`, or it is empty (`<resumptionToken/>`), you have fetched all records.
+Repeat steps 3 and 4 for each new page. The key only changes in the number at the end, which increases by 50 for each page (`:50`, `:100`, `:150`, and so on). You can therefore also fetch the next page by increasing the number yourself.
 
-If you increase the number past the end of the list, you get an empty response with no records (`<ListRecords/>`). Then you have also fetched everything.
+When `resumptionToken` is empty, you have fetched all records. Example for an extract with 81 records:
+
+```xml
+<resumptionToken completeListSize="81" cursor="50"/>
+```
+
+In the example, 50 records were delivered earlier, so the last page shows records 51 to 81 of 81.
+
+If you increase the number past the end of the list, you get the error message `badResumptionToken`. Then you have also fetched everything.
 
 ## Tips
 
