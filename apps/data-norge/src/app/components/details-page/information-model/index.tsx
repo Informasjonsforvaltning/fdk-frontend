@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
-import { type InformationModel, type CommunityTopic } from "@fellesdatakatalog/types";
+import { type InformationModel, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import { Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, TagLink } from "@fdk-frontend/ui";
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag } from "@digdir/designsystemet-react";
@@ -16,6 +16,8 @@ import headerStyles from "../dataset-header/dataset-header.module.scss";
 export type InformationModelDetailsPageType = {
   baseUri: string;
   resource: InformationModel;
+  concepts?: SearchObject[];
+  containedConcepts?: SearchObject[];
   communityTopics?: CommunityTopic[];
   communityBaseUri: string;
   defaultActiveTab?: string;
@@ -29,6 +31,8 @@ export type InformationModelDetailsPageType = {
 export default function InformationModelDetailsPage({
   baseUri,
   resource,
+  concepts,
+  containedConcepts,
   communityTopics,
   communityBaseUri,
   orgLogo,
@@ -148,6 +152,8 @@ export default function InformationModelDetailsPage({
           >
             <InformationModelDetailsTab
               resource={resource}
+              concepts={concepts}
+              containedConcepts={containedConcepts}
               locale={locale}
               dictionary={dictionaries.detailsPage}
               baseUri={baseUri}

@@ -1,9 +1,14 @@
 import { notFound, redirect } from "next/navigation";
 import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
-import { type InformationModel, type CommunityTopic } from "@fellesdatakatalog/types";
+import { type InformationModel, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import InformationModelDetailsPage from "../../../../components/details-page/information-model";
-import { getOrgLogo, getInformationModel, getAllCommunityTopics } from "@fdk-frontend/data-access/server";
+import {
+  getOrgLogo,
+  getInformationModel,
+  getAllCommunityTopics,
+  searchConcepts,
+} from "@fdk-frontend/data-access/server";
 import { buildQueryString } from "../../build-query-string";
 
 export type DetailsPageWrapperProps = {
@@ -69,6 +74,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
   let informationModel: InformationModel;
   let orgLogo: string | null = null;
   let communityTopics: CommunityTopic[] = [];
+  let concepts: SearchObject[] = [];
+  let containedConcepts: SearchObject[] = [];
 
   try {
     informationModel = await getInformationModel(params.id);
@@ -84,9 +91,15 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     redirect(queryString ? `${path}?${queryString}` : path);
   }
 
-  [orgLogo, communityTopics] = await Promise.all([
+  [orgLogo, communityTopics, concepts, containedConcepts] = await Promise.all([
     getOrgLogo(informationModel.publisher?.id).catch(() => null),
     getAllCommunityTopics(informationModel.id).catch((): CommunityTopic[] => []),
+    searchConcepts(informationModel.subjects)
+      .then((results) => results?.hits ?? [])
+      .catch((): SearchObject[] => []),
+    searchConcepts(informationModel.containsSubjects)
+      .then((results) => results?.hits ?? [])
+      .catch((): SearchObject[] => []),
   ]);
 
   return (
@@ -94,6 +107,8 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
       baseUri={FDK_BASE_URI as string}
       resource={informationModel}
       orgLogo={orgLogo}
+      concepts={concepts}
+      containedConcepts={containedConcepts}
       communityTopics={communityTopics}
       communityBaseUri={FDK_COMMUNITY_BASE_URI as string}
       locale={locale}
