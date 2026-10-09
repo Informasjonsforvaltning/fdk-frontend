@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
-import { type InformationModel } from "@fellesdatakatalog/types";
+import { type InformationModel, type SearchObject } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import {
   PlaceholderText,
@@ -20,6 +20,8 @@ import styles from "./information-model.module.scss";
 
 type InformationModelDetailsTabProps = {
   resource: InformationModel;
+  concepts?: SearchObject[];
+  containedConcepts?: SearchObject[];
   locale: LocaleCodes;
   dictionary: Localization;
   baseUri: string;
@@ -27,6 +29,8 @@ type InformationModelDetailsTabProps = {
 
 export default function InformationModelDetailsTab({
   resource,
+  concepts,
+  containedConcepts,
   locale,
   dictionary,
   baseUri,
@@ -53,6 +57,60 @@ export default function InformationModelDetailsTab({
           </>
         )}
       </Button>
+
+      {!resource.subjects?.length && !showEmptyRows ? null : (
+        <section>
+          <Heading
+            level={2}
+            data-size="xs"
+          >
+            {dictionary.details.subjects.title}
+          </Heading>
+          {concepts && concepts.length > 0 ? (
+            <Dlist>
+              {concepts.map((concept) => (
+                <React.Fragment key={concept.uri}>
+                  <dt>
+                    <Link href={`/concepts/${concept.id}`}>
+                      {printLocaleValue(locale, concept.title) || concept.uri}
+                    </Link>
+                  </dt>
+                  <dd>{printLocaleValue(locale, concept.description)}</dd>
+                </React.Fragment>
+              ))}
+            </Dlist>
+          ) : (
+            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+          )}
+        </section>
+      )}
+
+      {!resource.containsSubjects?.length && !showEmptyRows ? null : (
+        <section>
+          <Heading
+            level={2}
+            data-size="xs"
+          >
+            {dictionary.details.containsSubjects.title}
+          </Heading>
+          {containedConcepts && containedConcepts.length > 0 ? (
+            <Dlist>
+              {containedConcepts.map((concept) => (
+                <React.Fragment key={concept.uri}>
+                  <dt>
+                    <Link href={`/concepts/${concept.id}`}>
+                      {printLocaleValue(locale, concept.title) || concept.uri}
+                    </Link>
+                  </dt>
+                  <dd>{printLocaleValue(locale, concept.description)}</dd>
+                </React.Fragment>
+              ))}
+            </Dlist>
+          ) : (
+            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+          )}
+        </section>
+      )}
 
       {!resource.contactPoint?.length && !showEmptyRows ? null : (
         <section>
