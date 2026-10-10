@@ -4,6 +4,7 @@ import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from "@fdk-fr
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { formatTemporalDate, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
+import styles from '../../details-tab.module.scss';
 
 const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
@@ -208,7 +209,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProp
               {dataset?.temporal ? (
                 <SmartList
                   items={dataset.temporal}
-                  style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+                  className={styles.spacialList}
                   renderItem={(temporal) => (
                     <Dlist>
                       {temporal.startDate && (

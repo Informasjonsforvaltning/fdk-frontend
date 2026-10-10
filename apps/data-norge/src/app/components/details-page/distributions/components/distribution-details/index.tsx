@@ -81,7 +81,6 @@ const DistributionDetails = ({
           {distribution.accessURL?.length ? (
             <SmartList
               listType="ol"
-              listItemWrapper={Box}
               items={distribution.accessURL}
               renderItem={(url) => (
                 <ExternalLink
@@ -110,6 +109,7 @@ const DistributionDetails = ({
           {distribution.downloadURL?.length ? (
             <SmartList
               listType="ol"
+              listItemWrapper={Box}
               items={distribution.downloadURL}
               renderItem={(url) => (
                 <DownloadDistributionWidget
@@ -130,7 +130,6 @@ const DistributionDetails = ({
           {distribution.accessService?.length ? (
             <SmartList
               listType="ol"
-              listItemWrapper={Box}
               items={distribution.accessService}
               renderItem={(api) => {
                 const resolvedDataService = resolvedDistributionDataServices.find((service) => service.uri === api.uri);
@@ -169,7 +168,6 @@ const DistributionDetails = ({
           {distribution.page ? (
             <SmartList
               listType="ol"
-              listItemWrapper={Box}
               items={distribution.page}
               renderItem={(page) => (
                 <ExternalLink
@@ -210,7 +208,6 @@ const DistributionDetails = ({
           {distribution.conformsTo ? (
             <SmartList
               listType="ol"
-              listItemWrapper={Box}
               items={distribution.conformsTo}
               renderItem={(standard) => {
                 const resolvedInformationModel = resolvedDistributionInformationModels.find(
