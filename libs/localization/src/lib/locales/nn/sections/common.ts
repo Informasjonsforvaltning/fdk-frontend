@@ -8,7 +8,7 @@ const common = {
     languageToggleGroup: "vel språk",
     transportportal: {
       collaboration:
-        "Dette er eit samarbeid mellom Statens vegvesen, Jernbanedirektoratet, Entur og Digitaliseringsdirektoratet.",
+        "Transportportal er eit samarbeid mellom Statens vegvesen, Jernbanedirektoratet, Entur og Digitaliseringsdirektoratet.",
       searchDatasets: "Søk i datasett",
     },
   },
@@ -17,10 +17,26 @@ const common = {
     menuButton: "Meny",
     shareDataButton: "Del data",
     skipToMain: "Hopp til hovudinnhald",
-    transportportalTagline: "Nasjonalt tilgangspunkt for veg- og transportdata",
     alert: {
       message: "Planlagt vedlikehald tysdag kl. 18:00–23:00.",
       linkText: "Les meir på Datalandsbyen",
+    },
+  },
+  search: {
+    searchButton: "Søk",
+  },
+  tp: {
+    tagline: "Nasjonalt tilgangspunkt for veg- og transportdata",
+    searchPlaceholder: 'Søk etter datasett, t.d. "kollektivtransport"',
+    partnersTitle: "Eit {{link}} mellom",
+    partnersTitleLink: "samarbeid",
+    frontpageLinks: {
+      roadNetwork: "Vegnett",
+      commuterTraffic: "Kollektivtrafikk",
+      seaTransport: "Ferje og sjøtransport",
+      realtimeTraffic: "Sanntids trafikkinformasjon",
+      statistics: "Trafikkstatistikk",
+      parkingMobility: "Parkering og mobilitetstenester",
     },
   },
   mainMenu: {

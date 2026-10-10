@@ -1,10 +1,10 @@
-import cn from "classnames";
 import { Link } from "@digdir/designsystemet-react";
 import { EnvelopeClosedIcon } from "@navikt/aksel-icons";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import ExternalLink from "../external-link";
 import LanguageSwitcher from "../language-switcher";
 import ConsentReopenButton from "../consent/consent-reopen-button";
+import TransportportalPartnersLinklist from "../transportportal-partners-linklist";
 import styles from "./transportportal-footer.module.scss";
 
 export type TransportportalFooterProps = {
@@ -22,31 +22,6 @@ const TransportportalFooter = ({ locale }: TransportportalFooterProps) => {
       data-color-scheme="dark"
     >
       <div className={styles.inner}>
-        <div className={styles.logos}>
-          <ExternalLink
-            aria-label="Statens vegvesen"
-            href="https://www.vegvesen.no/"
-            className={cn(styles.logo, styles.statensVegvesen)}
-          />
-          <ExternalLink
-            aria-label="Jernbanedirektoratet"
-            href="https://www.jernbanedirektoratet.no/"
-            className={cn(styles.logo, styles.jernbanedirektoratet)}
-          />
-
-          <ExternalLink
-            aria-label="Entur"
-            href="https://entur.no/"
-            className={cn(styles.logo, styles.entur)}
-          />
-
-          <ExternalLink
-            aria-label="Digdir"
-            href="https://www.digdir.no/"
-            className={cn(styles.logo, styles.digdir)}
-          />
-        </div>
-
         <div className={styles.columns}>
           <div className={styles.about}>
             <p>{footer.transportportal.collaboration}</p>
@@ -100,6 +75,9 @@ const TransportportalFooter = ({ locale }: TransportportalFooterProps) => {
         </div>
 
         <LanguageSwitcher loc={locale} />
+      </div>
+      <div className={styles.bottomRight}>
+        <TransportportalPartnersLinklist className={styles.partners} />
       </div>
     </footer>
   );

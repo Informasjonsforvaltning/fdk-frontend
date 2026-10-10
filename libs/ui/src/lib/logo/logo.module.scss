@@ -53,14 +53,21 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  color: #58b02c;
+  color: var(--fdk-tp-color-green);
 }
 
 .transportportalTagline {
+  display: none;
   font-size: 0.8125rem;
   color: currentcolor;
 
   @media (max-width: 650px) {
     display: none;
+  }
+}
+
+[data-color-scheme="dark"] {
+  .transportportalTagline {
+    color: white;
   }
 }

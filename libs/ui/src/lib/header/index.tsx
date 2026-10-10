@@ -88,8 +88,7 @@ const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: 
         [styles.showHeaderMessage]: showHeaderMessage,
       })}
       ref={headerRef}
-      data-color-scheme={!showMenu && frontpage && !(profile === "transportportal") ? "dark" : "light"}
-      data-profile={profile}
+      data-color-scheme={!showMenu && frontpage ? "dark" : profile === "transportportal" ? "dark" : "light"}
     >
       <div
         className={cn(styles.headerOuter, {
@@ -128,19 +127,20 @@ const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: 
             className={styles.headerLogo}
             href={`/${locale}`}
             profile={profile}
-            tagline={profile === "transportportal" ? dictionary.header.transportportalTagline : undefined}
+            tagline={profile === "transportportal" ? dictionary.tp.tagline : undefined}
           />
           {showSearchInput ? (
             <SearchInput
               locale={locale}
               className={styles.headerSearchInput}
               showTrayNav={profile !== "transportportal"}
+              placeholder={profile === "transportportal" ? dictionary.tp.searchPlaceholder : undefined}
             />
           ) : (
             <div style={{ flexGrow: 1 }} />
           )}
           <div className={styles.headerToolbar}>
-            {!showSearchInput && (
+            {!showSearchInput && profile !== "transportportal" && (
               <Button
                 asChild
                 data-size="sm"

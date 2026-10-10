@@ -27,20 +27,4 @@
     border-top-right-radius: var(--ds-border-radius-md);
     border-bottom-right-radius: var(--ds-border-radius-md);
   }
-
-  .search::before {
-    height: 1.25rem;
-    opacity: 0.5;
-    position: absolute;
-  }
-
-  .hotkeyTag {
-    white-space: nowrap;
-    position: absolute;
-    right: 1rem;
-    pointer-events: none;
-    @media (max-width: 800px) {
-      display: none;
-    }
-  }
 }

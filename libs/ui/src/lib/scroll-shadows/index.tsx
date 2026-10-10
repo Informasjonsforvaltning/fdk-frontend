@@ -5,7 +5,13 @@ import cn from "classnames";
 
 import styles from "./scroll-shadows.module.scss";
 
-const ScrollShadows = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+export type ScrollShadowsOrientation = "all" | "horizontal" | "vertical";
+
+type ScrollShadowsProps = React.HTMLAttributes<HTMLDivElement> & {
+  orientation?: ScrollShadowsOrientation;
+};
+
+const ScrollShadows = ({ children, className, orientation = "horizontal", ...props }: ScrollShadowsProps) => {
   const scrollerRef = useRef(null);
   const [overflow, setOverflow] = useState({
     overflowLeft: false,
@@ -44,20 +50,26 @@ const ScrollShadows = ({ children, className, ...props }: React.HTMLAttributes<H
     };
   }, []);
 
+  const showHorizontal = orientation === "all" || orientation === "horizontal";
+  const showVertical = orientation === "all" || orientation === "vertical";
+
   return (
     <div
       className={cn(styles.container, className, {
-        [styles.shadowTop]: overflow.overflowTop,
-        [styles.shadowRight]: overflow.overflowRight,
-        [styles.shadowBottom]: overflow.overflowBottom,
-        [styles.shadowLeft]: overflow.overflowLeft,
+        [styles.shadowTop]: showVertical && overflow.overflowTop,
+        [styles.shadowRight]: showHorizontal && overflow.overflowRight,
+        [styles.shadowBottom]: showVertical && overflow.overflowBottom,
+        [styles.shadowLeft]: showHorizontal && overflow.overflowLeft,
       })}
-      data-overflows={Object.values(overflow).some((p) => p === true)}
+      data-overflows={
+        (showHorizontal && (overflow.overflowLeft || overflow.overflowRight)) ||
+        (showVertical && (overflow.overflowTop || overflow.overflowBottom))
+      }
       {...props}
     >
       <div
         ref={scrollerRef}
-        className={styles.scroller}
+        className={cn(styles.scroller, styles[orientation])}
       >
         {children}
       </div>
