@@ -2279,9 +2279,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fellesdatakatalog/ui@npm:^1.0.34":
-  version: 1.0.34
-  resolution: "@fellesdatakatalog/ui@npm:1.0.34"
+"@fellesdatakatalog/ui@npm:^1.0.54":
+  version: 1.0.54
+  resolution: "@fellesdatakatalog/ui@npm:1.0.54"
   dependencies:
     "@navikt/aksel-icons": "npm:^7.39.0"
     classnames: "npm:^2.5.1"
@@ -2289,7 +2289,7 @@ __metadata:
     "@digdir/designsystemet-react": ^1.1.9
     react: ^19.1.1
     react-dom: ^19.1.1
-  checksum: 10c0/402c5d9642c116a1036fe76df23e6a729ee2d79bb53dc7cc8630a9879624c949e25bfd521f5db103538cff855208bcb08f840af2db07ba95549c689f15da75f4
+  checksum: 10c0/6145578c235d40c9c72c069cc2b26447085a86123cf6b086795a0ffffff121d289b4092e86a67ebc6dcaa75378cd609bcc7685bf7f8179066c63d7dc760ae9e8
   languageName: node
   linkType: hard
 
@@ -11816,7 +11816,7 @@ __metadata:
     "@digdir/designsystemet-react": "npm:^1.23.0"
     "@digdir/designsystemet-theme": "npm:^1.11.0"
     "@fellesdatakatalog/types": "npm:^1.0.33"
-    "@fellesdatakatalog/ui": "npm:^1.0.34"
+    "@fellesdatakatalog/ui": "npm:^1.0.54"
     "@mdx-js/loader": "npm:^3.1.1"
     "@mdx-js/react": "npm:^3.1.1"
     "@navikt/aksel-icons": "npm:^7.40.0"
