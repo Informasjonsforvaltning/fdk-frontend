@@ -115,7 +115,7 @@
     "framer-motion": "^12.29.2",
     "jsonld": "^9.0.0",
     "leaflet": "^1.9.4",
-    "marked": "^15.0.12",
+    "marked": "^18.1.0",
     "mime-types": "^3.0.2",
     "next": "^16.3.6",
     "next-mdx-remote": "^6.0.0",
