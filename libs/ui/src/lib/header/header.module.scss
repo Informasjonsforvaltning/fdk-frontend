@@ -180,11 +180,11 @@
               color: white;
               
               &:last-child:not(:hover):not(:active){
-                background: green;
+                background: var(--fdk-tp-color-btn-primary-passive);
               }
 
               &:hover {
-                background:darkgreen;
+                background: var(--fdk-tp-btn-hover);
               }
             }
           }
@@ -215,7 +215,7 @@
               color:white;
 
               &:hover {
-                background:darkgreen;
+                background: var(--fdk-tp-btn-hover);
               }
 
               &[data-variant="secondary"] {
