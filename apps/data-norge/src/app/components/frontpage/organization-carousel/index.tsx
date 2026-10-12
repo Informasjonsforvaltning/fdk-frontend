@@ -42,7 +42,6 @@ const OrganizationCarousel = ({ dictionary }: Props) => {
   return (
     <div>
       <Tooltip
-        className={styles.tooltip}
         content={isPaused ? dictionary.shareDataBanner.popover.start : dictionary.shareDataBanner.popover.pause}
         placement="top"
       >
