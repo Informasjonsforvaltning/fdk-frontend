@@ -11879,7 +11879,7 @@ __metadata:
     jsonld: "npm:^9.0.0"
     leaflet: "npm:^1.9.4"
     lodash: "npm:^4.18.1"
-    marked: "npm:^15.0.12"
+    marked: "npm:^18.1.0"
     mime-types: "npm:^3.0.2"
     next: "npm:^16.3.6"
     next-mdx-remote: "npm:^6.0.0"
@@ -15319,12 +15319,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^15.0.12":
-  version: 15.0.12
-  resolution: "marked@npm:15.0.12"
+"marked@npm:^18.1.0":
+  version: 18.1.0
+  resolution: "marked@npm:18.1.0"
   bin:
     marked: bin/marked.js
-  checksum: 10c0/e09da211544b787ecfb25fed07af206060bf7cd6d9de6cb123f15c496a57f83b7aabea93340aaa94dae9c94e097ae129377cad6310abc16009590972e85f4212
+  checksum: 10c0/6022a30a15d25fe0eb2958f84ebb45518290e512b61afbf9a0b9452297b30cb5f1af8289fc0057a83fa8232e6115d902d85546aba5036063a97f93be88f4df70
   languageName: node
   linkType: hard
 
