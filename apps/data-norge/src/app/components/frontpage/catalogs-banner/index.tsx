@@ -14,7 +14,7 @@ const CatalogsBanner = ({ commonDictionary, frontpageDictionary, locale }: Catal
     <div className={styles.inner}>
       <HeadingWithDivider
         className={styles.headline}
-        level={1}
+        level={2}
         data-size="md"
       >
         {frontpageDictionary.catalogsBanner.title}

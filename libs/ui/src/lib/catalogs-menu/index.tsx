@@ -27,7 +27,7 @@ const CatalogsMenu = ({ dictionary, locale }: CatalogsMenuProps) => {
                   <Heading
                     className={styles.catalogTitle}
                     data-size="2xs"
-                    level={2}
+                    level={3}
                   >
                     <span>{item.title}</span>
                   </Heading>
