@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import cn from "classnames";
 
 import { Heading, Link } from "@digdir/designsystemet-react";
@@ -60,9 +61,14 @@ const TransportportalFrontpageBanner = ({
       </div>
     </div>
     <div className={styles.gradient} />
-    <div
+    <Image
+      src="/images/content/transportportal/1.jpg"
+      alt=""
+      fill
+      preload
+      fetchPriority="high"
+      sizes="100vw"
       className={styles.backgroundImage}
-      style={{ backgroundImage: `url("/${locale}/images/content/transportportal/1.jpg")` }}
     />
   </div>
 );

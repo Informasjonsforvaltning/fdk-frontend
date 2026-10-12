@@ -45,6 +45,7 @@ const nextConfig = {
   // Optimize images
   images: {
     unoptimized: process.env.NODE_ENV === "development",
+    formats: ["image/avif", "image/webp"],
   },
   async headers() {
     return [
