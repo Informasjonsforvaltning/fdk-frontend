@@ -232,9 +232,6 @@ const detailsPage = {
     subjects: {
       title: "Begreper brukt i informasjonsmodellen",
     },
-    containsSubjects: {
-      title: "Begreper brukt i modellens elementer",
-    },
     related: {
       title: "Relasjoner til andre ressurser",
       namelessDataset: "Navnløst datasett",

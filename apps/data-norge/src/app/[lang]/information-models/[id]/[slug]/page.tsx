@@ -74,7 +74,6 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
   let informationModel: InformationModel;
   let orgLogo: string | null = null;
   let communityTopics: CommunityTopic[] = [];
-  let concepts: SearchObject[] = [];
   let containedConcepts: SearchObject[] = [];
 
   try {
@@ -91,12 +90,9 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     redirect(queryString ? `${path}?${queryString}` : path);
   }
 
-  [orgLogo, communityTopics, concepts, containedConcepts] = await Promise.all([
+  [orgLogo, communityTopics, containedConcepts] = await Promise.all([
     getOrgLogo(informationModel.publisher?.id).catch(() => null),
     getAllCommunityTopics(informationModel.id).catch((): CommunityTopic[] => []),
-    searchConcepts(informationModel.subjects)
-      .then((results) => results?.hits ?? [])
-      .catch((): SearchObject[] => []),
     searchConcepts(informationModel.containsSubjects)
       .then((results) => results?.hits ?? [])
       .catch((): SearchObject[] => []),
@@ -107,7 +103,6 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
       baseUri={FDK_BASE_URI as string}
       resource={informationModel}
       orgLogo={orgLogo}
-      concepts={concepts}
       containedConcepts={containedConcepts}
       communityTopics={communityTopics}
       communityBaseUri={FDK_COMMUNITY_BASE_URI as string}

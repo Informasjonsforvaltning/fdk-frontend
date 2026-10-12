@@ -232,9 +232,6 @@ const detailsPage = {
     subjects: {
       title: "Concepts used in the information model",
     },
-    containsSubjects: {
-      title: "Concepts used in the model's elements",
-    },
     related: {
       title: "Relation to other resources",
       namelessDataset: "Nameless dataset",

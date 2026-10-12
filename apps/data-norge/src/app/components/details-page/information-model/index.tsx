@@ -16,7 +16,6 @@ import headerStyles from "../dataset-header/dataset-header.module.scss";
 export type InformationModelDetailsPageType = {
   baseUri: string;
   resource: InformationModel;
-  concepts?: SearchObject[];
   containedConcepts?: SearchObject[];
   communityTopics?: CommunityTopic[];
   communityBaseUri: string;
@@ -31,7 +30,6 @@ export type InformationModelDetailsPageType = {
 export default function InformationModelDetailsPage({
   baseUri,
   resource,
-  concepts,
   containedConcepts,
   communityTopics,
   communityBaseUri,
@@ -152,7 +150,6 @@ export default function InformationModelDetailsPage({
           >
             <InformationModelDetailsTab
               resource={resource}
-              concepts={concepts}
               containedConcepts={containedConcepts}
               locale={locale}
               dictionary={dictionaries.detailsPage}

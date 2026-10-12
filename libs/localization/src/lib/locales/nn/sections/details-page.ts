@@ -232,9 +232,6 @@ const detailsPage = {
     subjects: {
       title: "Omgrep brukte i informasjonsmodellen",
     },
-    containsSubjects: {
-      title: "Omgrep brukte i modellens element",
-    },
     related: {
       title: "Relasjonar til andre ressursar",
       namelessDataset: "Namnlaust datasett",
