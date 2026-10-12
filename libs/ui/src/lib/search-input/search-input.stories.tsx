@@ -24,7 +24,7 @@ type Story = StoryObj<typeof SearchInput>;
 export const Uncontrolled: Story = {};
 
 export const Controlled: Story = {
-  render: (args) => {
+  render: function ControlledRender(args) {
     const [value, setValue] = useState("initial value");
     return (
       <SearchInput
