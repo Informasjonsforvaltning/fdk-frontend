@@ -63,6 +63,10 @@ const config: StorybookConfig = {
             replacement: path.join(root, "libs/data-access/src/index.ts"),
           },
           {
+            find: /^@fdk-frontend\/images\/(.+)$/,
+            replacement: path.join(root, "apps/data-norge/public/images/content/$1"),
+          },
+          {
             find: "@fdk-frontend/localization",
             replacement: path.join(root, "libs/localization/src/index.ts"),
           },
