@@ -150,6 +150,7 @@ const detailsPage = {
       firstHarvestedHelpTextTitle: "Explanation",
       firstHarvestedHelpTextLink: "Read more about harvesting here",
       modified: "Last updated",
+      changeDate: "Modified",
       page: "Documentation",
       type: "Dataset type",
       landingPage: "Landing page",

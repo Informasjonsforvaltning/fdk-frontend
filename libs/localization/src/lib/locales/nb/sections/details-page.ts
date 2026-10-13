@@ -150,6 +150,7 @@ const detailsPage = {
       firstHarvestedHelpTextTitle: "Begrepsforklaring",
       firstHarvestedHelpTextLink: "Les mer om høsting her",
       modified: "Sist oppdatert",
+      changeDate: "Endringsdato",
       page: "Dokumentasjon",
       type: "Datasettype",
       landingPage: "Landingsside",
