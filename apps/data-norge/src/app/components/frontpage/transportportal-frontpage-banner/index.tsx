@@ -9,6 +9,8 @@ import { TransportportalFrontpageLinks } from "../transportportal-frontpage-link
 
 import styles from "./transportportal-frontpage-banner.module.scss";
 import { Profile } from "@fdk-frontend/types";
+import heroPhoto1 from "../../../../../public/images/content/transportportal/1.jpg";
+import heroPhoto2 from "../../../../../public/images/content/transportportal/2.jpg";
 
 type TransportportalFrontpageBannerProps = {
   dictionary: Localization;
@@ -16,7 +18,7 @@ type TransportportalFrontpageBannerProps = {
   profile?: Profile;
 };
 
-const backgroundImages = ["/images/content/transportportal/1.jpg", "/images/content/transportportal/2.jpg"];
+const backgroundImages = [heroPhoto1, heroPhoto2];
 
 const TransportportalFrontpageBanner = ({
   dictionary,
