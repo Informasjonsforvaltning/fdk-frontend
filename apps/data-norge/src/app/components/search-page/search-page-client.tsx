@@ -6,7 +6,7 @@ import { type LocaleCodes } from "@fdk-frontend/localization";
 import { parseSearchPageParam, parseSearchPageSizeParam } from "@fdk-frontend/ui/search-form";
 import { deriveActiveEntityTabFromPathname, deriveLangFromPathname } from "../../[lang]/search/search-route";
 import SearchPage, { type SearchPageProps } from "./index";
-import { loadEntitySearchState, loadLlmDocsSearchState } from "./search-fetch";
+import { loadDocsSearchState, loadEntitySearchState, loadLlmSearchState } from "./search-fetch";
 import { initialSearchPageState, searchPageReducer } from "./search-page-state";
 import { Profile } from "@fdk-frontend/types";
 
@@ -34,7 +34,10 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
   const locale = (lang ?? langFromUrl) as LocaleCodes;
   const hideKiTab = profile === "transportportal";
 
-  const [{ entityLoading, llmLoading, data }, dispatch] = useReducer(searchPageReducer, initialSearchPageState);
+  const [{ entityLoading, docsLoading, llmLoading, data }, dispatch] = useReducer(
+    searchPageReducer,
+    initialSearchPageState,
+  );
 
   // The transportportal profile has no KI (AI) tab, so redirect its default landing
   // (`/search` = KI) to the datasets tab, preserving any query and filters.
@@ -109,15 +112,33 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
 
   useEffect(() => {
     let cancelled = false;
-    dispatch({ type: "llm_docs_fetch_started" });
+    dispatch({ type: "llm_fetch_started" });
 
-    loadLlmDocsSearchState(query, locale)
+    loadLlmSearchState(query)
       .then((result) => {
         if (cancelled) return;
-        dispatch({ type: "llm_docs_fetch_succeeded", payload: result });
+        dispatch({ type: "llm_fetch_succeeded", payload: result });
       })
       .catch(() => {
-        if (!cancelled) dispatch({ type: "llm_docs_fetch_failed" });
+        if (!cancelled) dispatch({ type: "llm_fetch_failed" });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [query]);
+
+  useEffect(() => {
+    let cancelled = false;
+    dispatch({ type: "docs_fetch_started" });
+
+    loadDocsSearchState(query, locale)
+      .then((result) => {
+        if (cancelled) return;
+        dispatch({ type: "docs_fetch_succeeded", payload: result });
+      })
+      .catch(() => {
+        if (!cancelled) dispatch({ type: "docs_fetch_failed" });
       });
 
     return () => {
@@ -134,7 +155,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
       activeEntityTab={activeEntityTab}
       llmResults={llmLoading ? undefined : data.llmResults}
       entityTabResults={entityLoading ? undefined : data.entityTabResults}
-      docsResults={llmLoading ? undefined : data.docsResults}
+      docsResults={docsLoading ? undefined : data.docsResults}
       tabBadgeCounts={data.tabBadgeCounts}
       orgAggregation={orgAggregation}
       accessAggregation={accessAggregation}
@@ -145,6 +166,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
       losThemeAggregation={losThemeAggregation}
       dataThemeAggregation={dataThemeAggregation}
       entityLoading={entityLoading}
+      docsLoading={docsLoading}
       llmLoading={llmLoading}
       hideKiTab={hideKiTab}
     />

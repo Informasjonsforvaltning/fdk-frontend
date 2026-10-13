@@ -10,6 +10,7 @@ import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
 
+import { type DocsSearchResult } from "./search-page-types";
 import {
   type EntityTabFetchResult,
   fetchDocsResults,
@@ -17,7 +18,6 @@ import {
   fetchLlmResults,
   fetchSummary,
 } from "./search-api";
-import { type DocsSearchResult } from "./search-page-types";
 
 export const isBrowseSearch = function (
   query: string,
@@ -84,9 +84,13 @@ export type EntitySearchState =
       dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
     });
 
-export type LlmDocsSearchState = {
-  llmResults: LlmSearchResponse | undefined;
-  docsResults: DocsSearchResult[];
+export const loadLlmSearchState = async function (query: string): Promise<LlmSearchResponse | undefined> {
+  if (!query.trim()) return undefined;
+  return fetchLlmResults(query);
+};
+
+export const loadDocsSearchState = async function (query: string, locale: LocaleCodes): Promise<DocsSearchResult[]> {
+  return fetchDocsResults(query, locale);
 };
 
 export const loadEntitySearchState = async function (options: {
@@ -155,15 +159,4 @@ export const loadEntitySearchState = async function (options: {
     ...summary,
     entityTabResults,
   };
-};
-
-export const loadLlmDocsSearchState = async function (query: string, locale: LocaleCodes): Promise<LlmDocsSearchState> {
-  const trimmedQuery = query.trim();
-  if (!trimmedQuery) {
-    return { llmResults: undefined, docsResults: [] };
-  }
-
-  const [llmResults, docsResults] = await Promise.all([fetchLlmResults(query), fetchDocsResults(query, locale)]);
-
-  return { llmResults, docsResults };
 };
