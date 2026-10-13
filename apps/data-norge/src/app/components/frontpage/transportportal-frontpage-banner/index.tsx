@@ -3,14 +3,14 @@ import Image from "next/image";
 import cn from "classnames";
 
 import { Heading, Link } from "@digdir/designsystemet-react";
+import heroPhoto1 from "@fdk-frontend/images/transportportal/1.jpg";
+import heroPhoto2 from "@fdk-frontend/images/transportportal/2.jpg";
 import { interpolate, type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { Profile } from "@fdk-frontend/types";
 import { HeadingWithDivider, SearchInput, TransportportalPartnersLinklist } from "@fdk-frontend/ui";
 import { TransportportalFrontpageLinks } from "../transportportal-frontpage-links";
 
 import styles from "./transportportal-frontpage-banner.module.scss";
-import { Profile } from "@fdk-frontend/types";
-import heroPhoto1 from "../../../../../public/images/content/transportportal/1.jpg";
-import heroPhoto2 from "../../../../../public/images/content/transportportal/2.jpg";
 
 type TransportportalFrontpageBannerProps = {
   dictionary: Localization;

@@ -35,7 +35,7 @@ export default [
       "@nx/enforce-module-boundaries": [
         "error",
         {
-          allow: [],
+          allow: ["@fdk-frontend/images/**"],
           depConstraints: [
             {
               onlyDependOnLibsWithTags: ["*"],
