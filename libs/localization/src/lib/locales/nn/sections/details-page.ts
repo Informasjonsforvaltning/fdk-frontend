@@ -287,7 +287,7 @@ const detailsPage = {
       },
     },
     themes: "Tema",
-    mobilityThemes: "Mobility-tema",
+    mobilityThemes: "Mobilitetstema",
     thematicArea: "Temaområde",
     keywords: "Nøkkelord",
   },
