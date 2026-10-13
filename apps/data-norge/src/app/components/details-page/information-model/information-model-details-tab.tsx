@@ -211,6 +211,18 @@ export default function InformationModelDetailsTab({
               </dd>
             </>
           )}
+          {!resource.modified && !showEmptyRows ? null : (
+            <>
+              <dt>{dictionary.details.general.changeDate}:</dt>
+              <dd>
+                {resource.modified ? (
+                  new Date(resource.modified).toLocaleString(locale, { dateStyle: "long" })
+                ) : (
+                  <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                )}
+              </dd>
+            </>
+          )}
           <dt>
             <Hstack>
               <span>{dictionary.details.general.firstHarvested}:</span>
