@@ -4,6 +4,7 @@ import Frontpage from "../page-object-model/frontpage";
 import DocsPage from "../page-object-model/docsPage";
 import DatasetDetailsPage from "../page-object-model/datasetDetailsPage";
 import ServiceDetailsPage from "../page-object-model/serviceDetailsPage";
+import SearchPage from "../page-object-model/searchPage";
 import { generateAccessibilityBuilder } from "../utils/helpers";
 
 export const test = base.extend<{
@@ -12,6 +13,7 @@ export const test = base.extend<{
   docsPage: DocsPage;
   datasetDetailsPage: DatasetDetailsPage;
   serviceDetailsPage: ServiceDetailsPage;
+  searchPage: SearchPage;
 }>({
   dataHunterFormPage: async ({ page, context }, use) => {
     const accessibilityBuilder = await generateAccessibilityBuilder(page);
@@ -42,6 +44,12 @@ export const test = base.extend<{
     const datasetDetailsPage = new DatasetDetailsPage(page, context, accessibilityBuilder);
     await datasetDetailsPage.goto();
     await use(datasetDetailsPage);
+  },
+  searchPage: async ({ page, context }, use) => {
+    const accessibilityBuilder = await generateAccessibilityBuilder(page);
+    const searchPage = new SearchPage(page, context, accessibilityBuilder);
+    await searchPage.goto();
+    await use(searchPage);
   },
 });
 

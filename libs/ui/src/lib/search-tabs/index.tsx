@@ -40,7 +40,7 @@ export const getLocalizedSearchTabItems = (locale: LocaleCodes): SearchTabItem[]
   return SEARCH_TAB_DEFINITIONS.map((tab) => ({
     value: tab.tab,
     label: labelMap[tab.tab] ?? tab.label,
-    ...(tab.tab === KI_TOGGLE_VALUE ? { icon: <SparklesFillIcon /> } : {}),
+    ...(tab.tab === KI_TOGGLE_VALUE ? { icon: <SparklesFillIcon aria-hidden /> } : {}),
     badgeCount: 0,
   }));
 };

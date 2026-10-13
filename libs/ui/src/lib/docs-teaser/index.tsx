@@ -1,6 +1,15 @@
 import React from "react";
 import cn from "classnames";
-import { Card, CardBlock, type CardProps, Heading, Link, Paragraph, Skeleton } from "@digdir/designsystemet-react";
+import {
+  Card,
+  CardBlock,
+  type CardProps,
+  Heading,
+  type HeadingProps,
+  Link,
+  Paragraph,
+  Skeleton,
+} from "@digdir/designsystemet-react";
 import styles from "./styles.module.scss";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
@@ -9,9 +18,18 @@ export type DocsTeaserProps = {
   title?: string;
   desc?: string;
   href?: string;
+  headingLevel?: HeadingProps["level"];
 };
 
-const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTeaserProps & Partial<CardProps>) => {
+const DocsTeaser = ({
+  className,
+  locale,
+  title,
+  desc,
+  href,
+  headingLevel = 3,
+  ...rest
+}: DocsTeaserProps & Partial<CardProps>) => {
   const localization = getLocalization(locale);
   const docsTitles = localization.docs?.titles;
   const firstSegment = href?.split("/")[2];
@@ -25,18 +43,16 @@ const DocsTeaser = ({ className, locale, title, desc, href, ...rest }: DocsTease
       <CardBlock>
         {title ? (
           <div>
-            <Heading>
+            <Heading level={headingLevel}>
               <Link href={href ?? `/${locale}/docs`}>{title}</Link>
             </Heading>
           </div>
         ) : (
-          <Heading data-size="sm">
-            <Skeleton
-              variant="rectangle"
-              height="1.5rem"
-              width="300px"
-            />
-          </Heading>
+          <Skeleton
+            variant="rectangle"
+            height="1.5rem"
+            width="300px"
+          />
         )}
         {href ? (
           <Paragraph className={styles.description}>

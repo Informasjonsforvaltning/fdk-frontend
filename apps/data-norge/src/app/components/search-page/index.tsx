@@ -4,6 +4,7 @@ import {
   Breadcrumbs,
   DocsTeaser,
   EntityTeaser,
+  getLocalizedSearchTabItems,
   SearchForm,
   type AggregationKeyCount,
   type SearchPageInfo,
@@ -15,7 +16,7 @@ import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-c
 import { mapLlmHitToSearchObject } from "../../[lang]/search/search-tab-helpers";
 
 import styles from "./search-page.module.scss";
-import { computeSearchPageDisplay, resolveSearchTabBadgeCounts } from "./search-page-display";
+import { computeSearchPageDisplay, getDisplayCount, resolveSearchTabBadgeCounts } from "./search-page-display";
 import SearchPagination from "./search-pagination";
 import SearchResultsSkeleton from "./search-results-skeleton";
 import { type DocsSearchResult } from "./search-page-types";
@@ -37,6 +38,7 @@ export type SearchPageProps = {
   losThemeAggregation?: AggregationKeyCount[];
   dataThemeAggregation?: AggregationKeyCount[];
   entityLoading?: boolean;
+  docsLoading?: boolean;
   llmLoading?: boolean;
   /** Hide the KI (AI) tab and its result block, e.g. on the transportportal profile. */
   hideKiTab?: boolean;
@@ -59,6 +61,7 @@ const SearchPage = ({
   losThemeAggregation,
   dataThemeAggregation,
   entityLoading = false,
+  docsLoading = false,
   llmLoading = false,
   hideKiTab = false,
 }: SearchPageProps) => {
@@ -70,7 +73,7 @@ const SearchPage = ({
     : dictionary.breadcrumb.label;
   const breadcrumbList = [{ text: breadcrumbLabel }];
 
-  const { llmHitsCount, docsHitsCount, badgeCounts } = computeSearchPageDisplay({
+  const { llmHitsCount, docsHitsCount, badgeCounts, totalResults } = computeSearchPageDisplay({
     activeEntityTab,
     llmResults,
     docsResults,
@@ -80,10 +83,28 @@ const SearchPage = ({
     badgeCounts,
     tabBadgeCounts,
     entityLoading,
+    docsLoading,
     llmLoading,
   });
   const entityTabHits = entityTabResults?.hits ?? [];
   const entityTabPage = entityTabResults?.page;
+  const catalogAndDocsReady = !entityLoading && !docsLoading;
+  const headlineCount = totalResults + docsHitsCount;
+  const mainHeading = !catalogAndDocsReady
+    ? query
+      ? interpolate(dictionary.heading.loadingWithQuery, { query })
+      : dictionary.heading.loading
+    : query
+      ? interpolate(dictionary.heading.resultsWithQuery, { count: headlineCount.toLocaleString(lang), query })
+      : interpolate(dictionary.heading.results, { count: headlineCount.toLocaleString(lang) });
+  const entityHeadingLabel = getLocalizedSearchTabItems(lang).find((item) => item.value === activeEntityTab)?.label;
+  const entityHeadingCount = getDisplayCount({
+    activeEntityTab,
+    llmHitsCount,
+    filteredHits: entityTabHits,
+    tabBadgeCounts,
+    entityTabPage,
+  });
 
   return (
     <div className={styles.searchPage}>
@@ -92,6 +113,12 @@ const SearchPage = ({
         breadcrumbList={breadcrumbList}
       />
       <div className={styles.mainContent}>
+        <Heading
+          level={1}
+          data-size="md"
+        >
+          {mainHeading}
+        </Heading>
         <SearchForm
           lang={lang}
           activeEntityTab={activeEntityTab}
@@ -108,27 +135,21 @@ const SearchPage = ({
           hideKiTab={hideKiTab}
         />
         <div>
-          {entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
+          {!catalogAndDocsReady && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
             <div className={styles.resultsSection}>
-              <SearchResultsSkeleton
-                locale={lang}
-                dictionary={dictionary}
-              />
+              <SearchResultsSkeleton locale={lang} />
             </div>
           )}
 
           {!entityLoading && activeEntityTab === undefined && !hideKiTab && (
             <div className={styles.resultsSection}>
               {llmLoading ? (
-                <SearchResultsSkeleton
-                  locale={lang}
-                  dictionary={dictionary}
-                />
+                <SearchResultsSkeleton locale={lang} />
               ) : llmResults?.hits && llmResults.hits.length > 0 ? (
                 <>
                   <Heading
+                    level={2}
                     data-size="sm"
-                    className={styles.sectionHeading}
                   >
                     {interpolate(dictionary.aiSearch.headingWithCount, { count: llmHitsCount })}
                   </Heading>
@@ -150,10 +171,17 @@ const SearchPage = ({
             </div>
           )}
 
-          {!entityLoading && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
+          {catalogAndDocsReady && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
             <div className={styles.resultsSection}>
               {entityTabHits.length > 0 ? (
                 <>
+                  <Heading
+                    level={2}
+                    data-size="sm"
+                  >
+                    {entityHeadingLabel}{" "}
+                    {interpolate(dictionary.entitySearch.hitsCountLabel, { count: entityHeadingCount })}
+                  </Heading>
                   <ul className="fdk-box-list">
                     {entityTabHits.map((hit: SearchObject, i: number) => {
                       const hitId = hit.id ?? hit.uri ?? "";
@@ -180,11 +208,11 @@ const SearchPage = ({
             </div>
           )}
 
-          {!llmLoading && activeEntityTab === "docs" && (
+          {!docsLoading && activeEntityTab === "docs" && (
             <div className={styles.resultsSection}>
               <Heading
+                level={2}
                 data-size="sm"
-                className={styles.sectionHeading}
               >
                 {query
                   ? interpolate(dictionary.docs.headingWithCount, { count: docsHitsCount })

@@ -3,7 +3,7 @@ import { type AggregationKeyCount } from "@fdk-frontend/ui";
 import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
 
 import { type EntityTabFetchResult } from "./search-api";
-import { type EntitySearchState, type LlmDocsSearchState } from "./search-fetch";
+import { type EntitySearchState } from "./search-fetch";
 import { type DocsSearchResult } from "./search-page-types";
 
 export type SearchPageData = {
@@ -23,6 +23,7 @@ export type SearchPageData = {
 
 export type SearchPageReducerState = {
   entityLoading: boolean;
+  docsLoading: boolean;
   llmLoading: boolean;
   data: SearchPageData;
 };
@@ -43,7 +44,8 @@ export const initialSearchPageData: SearchPageData = {
 };
 
 export const initialSearchPageState: SearchPageReducerState = {
-  entityLoading: false,
+  entityLoading: true,
+  docsLoading: true,
   llmLoading: false,
   data: initialSearchPageData,
 };
@@ -52,16 +54,18 @@ export type SearchPageAction =
   | { type: "entity_fetch_started" }
   | { type: "entity_fetch_succeeded"; payload: EntitySearchState }
   | { type: "entity_fetch_failed" }
-  | { type: "llm_docs_fetch_started" }
-  | { type: "llm_docs_fetch_succeeded"; payload: LlmDocsSearchState }
-  | { type: "llm_docs_fetch_failed" };
+  | { type: "docs_fetch_started" }
+  | { type: "docs_fetch_succeeded"; payload: DocsSearchResult[] }
+  | { type: "docs_fetch_failed" }
+  | { type: "llm_fetch_started" }
+  | { type: "llm_fetch_succeeded"; payload: LlmSearchResponse | undefined }
+  | { type: "llm_fetch_failed" };
 
 const applyEntitySearchState = function (data: SearchPageData, result: EntitySearchState): SearchPageData {
   if (result.mode === "browse") {
     return {
       ...data,
       llmResults: undefined,
-      docsResults: undefined,
       entityTabResults: result.entityTabResults,
       tabBadgeCounts: result.tabBadgeCounts,
       orgAggregationsByTab: result.orgAggregationsByTab,
@@ -121,27 +125,37 @@ export const searchPageReducer = function (
           dataThemeAggregationsByTab: undefined,
         },
       };
-    case "llm_docs_fetch_started":
-      return { ...state, llmLoading: true };
-    case "llm_docs_fetch_succeeded":
+    case "docs_fetch_started":
       return {
         ...state,
-        llmLoading: false,
-        data: {
-          ...state.data,
-          llmResults: action.payload.llmResults,
-          docsResults: action.payload.docsResults,
-        },
+        docsLoading: true,
+        data: { ...state.data, docsResults: undefined },
       };
-    case "llm_docs_fetch_failed":
+    case "docs_fetch_succeeded":
+      return {
+        ...state,
+        docsLoading: false,
+        data: { ...state.data, docsResults: action.payload },
+      };
+    case "docs_fetch_failed":
+      return {
+        ...state,
+        docsLoading: false,
+        data: { ...state.data, docsResults: [] },
+      };
+    case "llm_fetch_started":
+      return { ...state, llmLoading: true };
+    case "llm_fetch_succeeded":
       return {
         ...state,
         llmLoading: false,
-        data: {
-          ...state.data,
-          llmResults: undefined,
-          docsResults: undefined,
-        },
+        data: { ...state.data, llmResults: action.payload },
+      };
+    case "llm_fetch_failed":
+      return {
+        ...state,
+        llmLoading: false,
+        data: { ...state.data, llmResults: undefined },
       };
     default:
       return state;

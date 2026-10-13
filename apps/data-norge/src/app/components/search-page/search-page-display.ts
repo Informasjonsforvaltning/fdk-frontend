@@ -3,6 +3,7 @@ import { type SearchPageInfo } from "@fdk-frontend/ui";
 import { type SearchObject } from "@fellesdatakatalog/types";
 
 import { ENTITY_TABS, KI_TOGGLE_VALUE, type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+
 import { type DocsSearchResult } from "./search-page-types";
 
 export const sumEntityBadgeCounts = function (counts: Record<string, number>): number {
@@ -42,6 +43,7 @@ export const resolveSearchTabBadgeCounts = function (params: {
   badgeCounts: Record<string, number>;
   tabBadgeCounts?: Record<string, number>;
   entityLoading: boolean;
+  docsLoading: boolean;
   llmLoading: boolean;
 }): Record<string, number | undefined> {
   const entityCountsPending = params.entityLoading && params.tabBadgeCounts === undefined;
@@ -49,8 +51,12 @@ export const resolveSearchTabBadgeCounts = function (params: {
 
   return Object.fromEntries(
     Object.entries(params.badgeCounts).map(([tab, count]) => {
-      if (tab === KI_TOGGLE_VALUE || tab === "docs") {
+      if (tab === KI_TOGGLE_VALUE) {
         return [tab, llmCountsPending ? undefined : count];
+      }
+
+      if (tab === "docs") {
+        return [tab, params.docsLoading ? undefined : count];
       }
 
       return [tab, entityCountsPending ? undefined : count];

@@ -178,7 +178,7 @@ export const GET = async (request: NextRequest) => {
   const rawQuery = searchParams.get("q") ?? "";
   const rawLang = searchParams.get("lang");
   const page = Number.parseInt(searchParams.get("page") ?? "0", 10);
-  const size = Number.parseInt(searchParams.get("size") ?? "10", 10);
+  const size = Number.parseInt(searchParams.get("size") ?? "20", 10);
 
   const query = rawQuery.trim();
   if (!query) {

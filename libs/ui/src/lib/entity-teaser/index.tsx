@@ -5,6 +5,7 @@ import {
   CardBlock,
   type CardProps,
   Heading,
+  type HeadingProps,
   Link,
   Paragraph,
   Tag,
@@ -14,11 +15,7 @@ import {
 import { TagList, HStack } from "@fellesdatakatalog/ui";
 import { AccessRightsCodes, EntityType, type SearchObject } from "@fellesdatakatalog/types";
 import AccessLevelTag from "../access-level-tag";
-import {
-  DCAT_PROFILE_DEFAULT,
-  formatDcatProfileLabel,
-  getDcatProfileLabels,
-} from "../search-form/dcat-profile";
+import { DCAT_PROFILE_DEFAULT, formatDcatProfileLabel, getDcatProfileLabels } from "../search-form/dcat-profile";
 import { OrgLogo } from "../org-logo";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import styles from "./styles.module.scss";
@@ -29,6 +26,7 @@ export type EntityTeaserProps = {
   locale: LocaleCodes;
   entity?: SearchObject;
   llm?: boolean;
+  headingLevel?: HeadingProps["level"];
 };
 
 const setFragments: Record<EntityType, string> = {
@@ -40,7 +38,14 @@ const setFragments: Record<EntityType, string> = {
   [EntityType.EVENT]: "services-and-events",
 };
 
-const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserProps & Partial<CardProps>) => {
+const EntityTeaser = ({
+  entity,
+  className,
+  locale,
+  llm,
+  headingLevel = 3,
+  ...rest
+}: EntityTeaserProps & Partial<CardProps>) => {
   const desc = entity && printLocaleValue(locale, entity.description);
   const localization = getLocalization(locale).common;
   const dcatProfileLabels = getDcatProfileLabels(getLocalization(locale).searchPage.searchForm.dcatProfileFilter);
@@ -59,7 +64,7 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 orgNr={entity.organization?.id}
                 title={printLocaleValue(locale, entity.organization?.prefLabel)}
               />
-              <Heading>
+              <Heading level={headingLevel}>
                 <Link href={`/${locale}/${setFragments[entity.searchType]}/${entity.id}`}>
                   {printLocaleValue(locale, entity.title)}
                 </Link>
@@ -72,13 +77,11 @@ const EntityTeaser = ({ entity, className, locale, llm, ...rest }: EntityTeaserP
                 height="1.5rem"
                 variant="circle"
               />
-              <Heading data-size="sm">
-                <Skeleton
-                  variant="rectangle"
-                  height="1.5rem"
-                  width="300px"
-                />
-              </Heading>
+              <Skeleton
+                variant="rectangle"
+                height="1.5rem"
+                width="300px"
+              />
             </HStack>
           )}
           {entity ? (

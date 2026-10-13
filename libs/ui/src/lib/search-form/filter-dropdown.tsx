@@ -23,7 +23,7 @@ const FilterDropdown = ({ label, children, filterCount }: FilterDropdownProps) =
           data-size="md"
         />
       ) : null}
-      <ChevronDownIcon />
+      <ChevronDownIcon aria-hidden />
     </Dropdown.Trigger>
     <Dropdown
       className={styles.filterDropdown}

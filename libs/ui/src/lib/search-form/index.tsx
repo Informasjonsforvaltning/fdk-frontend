@@ -580,7 +580,7 @@ const SearchForm = ({
                         data-size="sm"
                         variant="tertiary"
                       >
-                        {interpolate(dict.searchForm.resultsCount, { count: selectedSize })} <ChevronDownIcon />
+                        {interpolate(dict.searchForm.resultsCount, { count: selectedSize })} <ChevronDownIcon aria-hidden />
                       </Dropdown.Trigger>
                       <Dropdown
                         className={styles.orderbyDropdown}
@@ -594,7 +594,7 @@ const SearchForm = ({
                                 aria-pressed={selectedSize === option}
                                 onClick={() => navigateToSearch({ size: option })}
                               >
-                                {selectedSize === option && <CheckmarkIcon />}
+                                {selectedSize === option && <CheckmarkIcon aria-hidden />}
                                 {interpolate(dict.searchForm.resultsPerPage, { count: option })}
                               </Dropdown.Button>
                             </Dropdown.Item>
@@ -607,7 +607,7 @@ const SearchForm = ({
                         data-size="sm"
                         variant="tertiary"
                       >
-                        <SortDownIcon />
+                        <SortDownIcon aria-hidden />
                         {getSortLabel(selectedSort)}
                       </Dropdown.Trigger>
                       <Dropdown
