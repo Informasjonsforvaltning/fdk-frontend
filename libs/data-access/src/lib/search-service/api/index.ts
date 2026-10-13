@@ -82,7 +82,7 @@ export const searchOrgDatasets = async (orgPath?: string) => {
   return await searchApi("/search/datasets", {
     filters: {
       orgPath: {
-        value: orgPath,
+        value: [orgPath],
       },
     },
   });

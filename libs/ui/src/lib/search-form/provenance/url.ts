@@ -6,7 +6,7 @@ export const parseProvenanceQueryParam = (value: string | null): string[] => par
 
 export type ProvenanceSearchFilter = {
   provenance: {
-    value: string | Array<string>;
+    value: string[];
   };
 };
 
@@ -16,7 +16,7 @@ export const buildProvenanceSearchFilter = (provenanceParam: string | null): Pro
 
   return {
     provenance: {
-      value: keys.length === 1 ? keys[0] : keys,
+      value: keys,
     },
   };
 };
