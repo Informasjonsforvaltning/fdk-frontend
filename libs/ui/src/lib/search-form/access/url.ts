@@ -3,15 +3,13 @@ import { OPEN_DATA_AGGREGATION_KEY } from "./types";
 
 export const isOpenDataAggregationKey = (key: string): boolean => key === OPEN_DATA_AGGREGATION_KEY;
 
-export const accessRightsKeyToFilterValue = (key: string): string | null => (key === "null" ? null : key);
-
 export const accessKeysToQueryParam = (keys: string[]): string => keys.join(",");
 
 export const parseAccessQueryParam = (value: string | null): string[] => parseCommaSeparatedParam(value);
 
 export type AccessSearchFilter = {
   accessRights?: {
-    value: string | null | Array<string | null>;
+    value: string[];
   };
   openData?: {
     value: boolean;
@@ -28,9 +26,8 @@ export const buildAccessSearchFilter = (accessParam: string | null): AccessSearc
   const filter: AccessSearchFilter = {};
 
   if (accessRightsKeys.length > 0) {
-    const values = accessRightsKeys.map(accessRightsKeyToFilterValue);
     filter.accessRights = {
-      value: values.length === 1 ? values[0] : values,
+      value: accessRightsKeys,
     };
   }
 

@@ -10,7 +10,7 @@ export const parseOrgPathQueryParam = (value: string | null): string[] =>
 
 export type OrgPathSearchFilter = {
   orgPath: {
-    value: string | null | Array<string | null>;
+    value: string[];
   };
 };
 
@@ -18,10 +18,9 @@ export const buildOrgPathSearchFilter = (orgPathParam: string | null): OrgPathSe
   const keys = parseOrgPathQueryParam(orgPathParam);
   if (keys.length === 0) return undefined;
 
-  const values = keys.map(orgPathKeyToFilterValue);
   return {
     orgPath: {
-      value: values.length === 1 ? values[0] : values,
+      value: keys.map(orgPathKeyToFilterValue),
     },
   };
 };
