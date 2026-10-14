@@ -1,15 +1,21 @@
 "use client";
 
-import { getLocalization, interpolate, parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
+import { getLocalization, parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Chip, Dropdown } from "@digdir/designsystemet-react";
+import { Chip } from "@digdir/designsystemet-react";
 import { HStack, VStack } from "@fellesdatakatalog/ui";
-import { SortDownIcon, CheckmarkIcon, ChevronDownIcon } from "@navikt/aksel-icons";
+
+import {
+  isCatalogSet,
+  parseSearchPageSizeParam,
+  parseSortQueryParam,
+  SEARCH_DEFAULT_PAGE,
+  type SearchSetId,
+  type SearchSortOption,
+} from "@fdk-frontend/utils";
 
 import Box from "../box";
-import SearchTabs, { deriveSearchTabValueFromPathname } from "../search-tabs";
-import { type SearchSetSegment, type SearchTabsValue } from "../search-tabs/search-tab-config";
 import OrgFilter from "./org-filter";
 import AccessFilter from "./access-filter";
 import ProvenanceFilter from "./provenance-filter";
@@ -27,7 +33,6 @@ import { parseSpatialQueryParam, shouldShowSpatialFilter } from "./spatial";
 import { parseFormatQueryParam, shouldShowFormatFilter } from "./format";
 import { parseLosThemeQueryParam, parseDataThemeQueryParam, shouldShowTemaFilter } from "./theme";
 import { buildSearchPageUrl } from "./search-page-url";
-import { parseSearchPageSizeParam, SEARCH_DEFAULT_PAGE, SEARCH_PAGE_SIZE_OPTIONS } from "./search-pagination";
 import styles from "./search-form.module.scss";
 import FilterChips from "./filter-chips";
 import { useDataThemeLabels } from "./theme/data-theme/use-data-theme-labels";
@@ -38,12 +43,6 @@ import { getProvenanceLabels } from "./provenance/labels";
 import { getDcatProfileLabels } from "./dcat-profile/labels";
 import { useOrgPathLabels } from "./org-path/use-org-path-labels";
 import { formatOrgPathLabel } from "./org-path/labels";
-import {
-  parseSortQueryParam,
-  getSortLabel as getSortLabelFromDict,
-  SEARCH_SORT_OPTION_LIST,
-  type SearchSortOption,
-} from "./sort";
 
 export type { AggregationKeyCount } from "./types";
 export { mergeOrgPathAggregations, buildOrgPathSearchFilter } from "./org-path";
@@ -93,30 +92,12 @@ export {
   parseDataThemeQueryParam,
   shouldShowTemaFilter,
 } from "./theme";
-export { buildSearchPageQueryUrl, buildSearchPageUrl, buildSearchPageUrlFromSearchParams } from "./search-page-url";
-export {
-  parseSearchPageParam,
-  parseSearchPageSizeParam,
-  SEARCH_DEFAULT_PAGE,
-  SEARCH_DEFAULT_PAGE_SIZE,
-  SEARCH_PAGE_SIZE_OPTIONS,
-  toApiPage,
-  toDisplayPage,
-  type SearchPageInfo,
-} from "./search-pagination";
-export {
-  parseSortQueryParam,
-  buildSearchSort,
-  SEARCH_SORT_OPTION_LIST,
-  SEARCH_SORT_OPTIONS,
-  type SearchSortOption,
-} from "./sort";
+export { buildSearchPageUrl } from "./search-page-url";
 
 export type SearchFormProps = {
   lang?: LocaleCodes;
-  activeEntityTab?: SearchSetSegment;
+  activeSet: SearchSetId;
   defaultQuery?: string;
-  badgeCounts?: Record<string, number | undefined>;
   orgAggregation?: AggregationKeyCount[];
   accessAggregation?: AggregationKeyCount[];
   provenanceAggregation?: AggregationKeyCount[];
@@ -125,18 +106,13 @@ export type SearchFormProps = {
   formatAggregation?: AggregationKeyCount[];
   losThemeAggregation?: AggregationKeyCount[];
   dataThemeAggregation?: AggregationKeyCount[];
-  defaultValue?: SearchTabsValue;
-  onSearch?: (query: string, type: SearchTabsValue) => void;
   className?: string;
-  /** Hide the KI (AI) tab, e.g. on the transportportal profile. */
-  hideKiTab?: boolean;
 };
 
 const SearchForm = ({
   lang,
-  activeEntityTab,
+  activeSet,
   defaultQuery = "",
-  badgeCounts,
   orgAggregation,
   accessAggregation,
   provenanceAggregation,
@@ -145,15 +121,11 @@ const SearchForm = ({
   formatAggregation,
   losThemeAggregation,
   dataThemeAggregation,
-  defaultValue = "ki",
-  onSearch,
   className,
-  hideKiTab = false,
 }: SearchFormProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [searchType, setSearchType] = useState<SearchTabsValue>(defaultValue);
   const [query, setQuery] = useState(defaultQuery);
 
   const isUrlDriven = lang !== undefined;
@@ -165,7 +137,6 @@ const SearchForm = ({
   const formatParam = searchParams.get("format");
   const losThemeParam = searchParams.get("losTheme");
   const dataThemeParam = searchParams.get("dataTheme");
-  const sortParam = searchParams.get("sort");
   const selectedOrgPaths = useMemo(() => parseOrgPathQueryParam(orgPathParam), [orgPathParam]);
   const selectedAccess = useMemo(() => parseAccessQueryParam(accessParam), [accessParam]);
   const selectedProvenance = useMemo(() => parseProvenanceQueryParam(provenanceParam), [provenanceParam]);
@@ -174,21 +145,13 @@ const SearchForm = ({
   const selectedFormats = useMemo(() => parseFormatQueryParam(formatParam), [formatParam]);
   const selectedLosThemes = useMemo(() => parseLosThemeQueryParam(losThemeParam), [losThemeParam]);
   const selectedDataThemes = useMemo(() => parseDataThemeQueryParam(dataThemeParam), [dataThemeParam]);
-  const selectedSort = useMemo(() => parseSortQueryParam(sortParam), [sortParam]);
-  const selectedSize = parseSearchPageSizeParam(searchParams.get("size"));
-
-  const activeTab = (isUrlDriven ? deriveSearchTabValueFromPathname(pathname) : searchType) as SearchTabsValue;
-  const showEntityToolbar = activeEntityTab !== undefined && activeEntityTab !== "docs";
-  const showAccessFilter =
-    shouldShowAccessFilter(accessAggregation ?? []) || selectedAccess.length > 0;
-  const showProvenanceFilter =
-    shouldShowProvenanceFilter(provenanceAggregation ?? []) || selectedProvenance.length > 0;
+  const showEntityToolbar = isCatalogSet(activeSet);
+  const showAccessFilter = shouldShowAccessFilter(accessAggregation ?? []) || selectedAccess.length > 0;
+  const showProvenanceFilter = shouldShowProvenanceFilter(provenanceAggregation ?? []) || selectedProvenance.length > 0;
   const showDcatProfileFilter =
     shouldShowDcatProfileFilter(dcatProfileAggregation ?? []) || selectedDcatProfiles.length > 0;
-  const showSpatialFilter =
-    shouldShowSpatialFilter(spatialAggregation ?? []) || selectedSpatial.length > 0;
-  const showFormatFilter =
-    shouldShowFormatFilter(formatAggregation ?? []) || selectedFormats.length > 0;
+  const showSpatialFilter = shouldShowSpatialFilter(spatialAggregation ?? []) || selectedSpatial.length > 0;
+  const showFormatFilter = shouldShowFormatFilter(formatAggregation ?? []) || selectedFormats.length > 0;
   const showTemaFilter =
     shouldShowTemaFilter(losThemeAggregation ?? [], dataThemeAggregation ?? []) ||
     selectedLosThemes.length > 0 ||
@@ -199,8 +162,6 @@ const SearchForm = ({
   const accessLabels = getAccessRightsLabels(dict.searchForm.accessFilter);
   const provenanceLabels = getProvenanceLabels(dict.searchForm.provenanceFilter);
   const dcatProfileLabels = getDcatProfileLabels(dict.searchForm.dcatProfileFilter);
-
-  const getSortLabel = (option: SearchSortOption): string => getSortLabelFromDict(option, dict.searchForm.sort);
 
   const orgKey = !selectedOrgPaths.length ? "" : selectedOrgPaths[selectedOrgPaths.length - 1];
   const orgPathLabels: Record<string, string> = {
@@ -229,7 +190,7 @@ const SearchForm = ({
       formats,
       losThemes,
       dataThemes,
-      tab = activeTab,
+      setId = activeSet,
       sort,
       size,
     }: {
@@ -241,7 +202,7 @@ const SearchForm = ({
       formats?: string[];
       losThemes?: string[];
       dataThemes?: string[];
-      tab?: SearchTabsValue;
+      setId?: SearchSetId;
       sort?: SearchSortOption;
       size?: number;
     } = {}) => {
@@ -258,7 +219,7 @@ const SearchForm = ({
 
       const nextUrl = buildSearchPageUrl({
         locale,
-        tab,
+        setId,
         query: getQueryForUrl(),
         orgPaths: resolvedOrgPaths,
         access: resolvedAccess,
@@ -279,28 +240,13 @@ const SearchForm = ({
 
       router.replace(nextUrl);
     },
-    [locale, activeTab, getQueryForUrl, router, searchParams, pathname],
-  );
-
-  const handleTabChange = useCallback(
-    (value: SearchTabsValue) => {
-      if (isUrlDriven) {
-        if (value === activeTab) return;
-        navigateToSearch({ tab: value });
-      } else {
-        setSearchType(value);
-      }
-    },
-    [isUrlDriven, activeTab, navigateToSearch],
+    [locale, activeSet, getQueryForUrl, router, searchParams, pathname],
   );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isUrlDriven) {
-      navigateToSearch();
-    } else {
-      onSearch?.(query, searchType);
-    }
+    if (!isUrlDriven) return;
+    navigateToSearch();
   };
 
   const handleOrgPathsChange = useCallback(
@@ -367,15 +313,6 @@ const SearchForm = ({
     [isUrlDriven, navigateToSearch],
   );
 
-  const handleSortChange = useCallback(
-    (nextSort: SearchSortOption) => {
-      if (!isUrlDriven) return;
-      if (nextSort === selectedSort) return;
-      navigateToSearch({ sort: nextSort });
-    },
-    [isUrlDriven, navigateToSearch, selectedSort],
-  );
-
   useEffect(() => {
     if (isUrlDriven && defaultQuery !== undefined) {
       setQuery(defaultQuery);
@@ -408,6 +345,8 @@ const SearchForm = ({
     });
   }, [isUrlDriven, navigateToSearch]);
 
+  if (!showEntityToolbar) return null;
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -415,234 +354,161 @@ const SearchForm = ({
     >
       <VStack className={styles.searchForm}>
         <VStack className={styles.searchControls}>
-          <SearchTabs
-            value={activeTab}
-            defaultValue={defaultValue}
-            onChange={handleTabChange}
-            badgeCounts={badgeCounts}
-            locale={locale}
-            hideKiTab={hideKiTab}
-          />
-          <>
-            {showEntityToolbar && (
-              <HStack className={styles.filterToolbar}>
-                <FilterDropdown
-                  label={dict.searchForm.filters.organisation}
-                  filterCount={selectedOrgPaths.length}
-                >
-                  <VStack>
-                    <Box className={styles.box}>
-                      <OrgFilter
-                        locale={locale}
-                        aggregation={orgAggregation}
-                        value={isUrlDriven ? selectedOrgPaths : undefined}
-                        onChange={isUrlDriven ? handleOrgPathsChange : undefined}
-                      />
-                    </Box>
-                  </VStack>
-                </FilterDropdown>
-                {showTemaFilter && (
-                  <FilterDropdown
-                    label={dict.searchForm.filters.theme}
-                    filterCount={selectedDataThemes.length + selectedLosThemes.length}
-                  >
-                    <ThemeFilter
-                      locale={locale}
-                      losThemeAggregation={losThemeAggregation}
-                      dataThemeAggregation={dataThemeAggregation}
-                      losThemeValue={isUrlDriven ? selectedLosThemes : undefined}
-                      dataThemeValue={isUrlDriven ? selectedDataThemes : undefined}
-                      onLosThemeChange={isUrlDriven ? handleLosThemeChange : undefined}
-                      onDataThemeChange={isUrlDriven ? handleDataThemeChange : undefined}
-                    />
-                  </FilterDropdown>
-                )}
-                {showAccessFilter && (
-                  <FilterDropdown
-                    label={dict.searchForm.filters.accessLevel}
-                    filterCount={selectedAccess.length}
-                  >
-                    <Box className={styles.box}>
-                      <AccessFilter
-                        locale={locale}
-                        aggregation={accessAggregation}
-                        value={isUrlDriven ? selectedAccess : undefined}
-                        onChange={isUrlDriven ? handleAccessChange : undefined}
-                      />
-                    </Box>
-                  </FilterDropdown>
-                )}
-                {showFormatFilter && (
-                  <FilterDropdown
-                    label={dict.searchForm.filters.format}
-                    filterCount={selectedFormats.length}
-                  >
-                    <FormatFilter
-                      locale={locale}
-                      aggregation={formatAggregation}
-                      value={isUrlDriven ? selectedFormats : undefined}
-                      onChange={isUrlDriven ? handleFormatChange : undefined}
-                    />
-                  </FilterDropdown>
-                )}
-                {showSpatialFilter && (
-                  <FilterDropdown
-                    label={dict.searchForm.filters.geography}
-                    filterCount={selectedSpatial.length}
-                  >
-                    <Box className={styles.box}>
-                      <SpatialFilter
-                        aggregation={spatialAggregation}
-                        value={isUrlDriven ? selectedSpatial : undefined}
-                        onChange={isUrlDriven ? handleSpatialChange : undefined}
-                      />
-                    </Box>
-                  </FilterDropdown>
-                )}
-                {showProvenanceFilter && (
-                  <FilterDropdown
-                    label={dict.searchForm.filters.provenance}
-                    filterCount={selectedProvenance.length}
-                  >
-                    <Box className={styles.box}>
-                      <ProvenanceFilter
-                        locale={locale}
-                        aggregation={provenanceAggregation}
-                        value={isUrlDriven ? selectedProvenance : undefined}
-                        onChange={isUrlDriven ? handleProvenanceChange : undefined}
-                      />
-                    </Box>
-                  </FilterDropdown>
-                )}
-                {showDcatProfileFilter && (
-                  <FilterDropdown
-                    label={dict.searchForm.filters.dcatProfile}
-                    filterCount={selectedDcatProfiles.length}
-                  >
-                    <Box className={styles.box}>
-                      <DcatProfileFilter
-                        locale={locale}
-                        aggregation={dcatProfileAggregation}
-                        value={isUrlDriven ? selectedDcatProfiles : undefined}
-                        onChange={isUrlDriven ? handleDcatProfileChange : undefined}
-                      />
-                    </Box>
-                  </FilterDropdown>
-                )}
-              </HStack>
+          <HStack className={styles.filterToolbar}>
+            <FilterDropdown
+              label={dict.searchForm.filters.organisation}
+              filterCount={selectedOrgPaths.length}
+            >
+              <VStack>
+                <Box className={styles.box}>
+                  <OrgFilter
+                    locale={locale}
+                    aggregation={orgAggregation}
+                    value={isUrlDriven ? selectedOrgPaths : undefined}
+                    onChange={isUrlDriven ? handleOrgPathsChange : undefined}
+                  />
+                </Box>
+              </VStack>
+            </FilterDropdown>
+            {showTemaFilter && (
+              <FilterDropdown
+                label={dict.searchForm.filters.theme}
+                filterCount={selectedDataThemes.length + selectedLosThemes.length}
+              >
+                <ThemeFilter
+                  locale={locale}
+                  losThemeAggregation={losThemeAggregation}
+                  dataThemeAggregation={dataThemeAggregation}
+                  losThemeValue={isUrlDriven ? selectedLosThemes : undefined}
+                  dataThemeValue={isUrlDriven ? selectedDataThemes : undefined}
+                  onLosThemeChange={isUrlDriven ? handleLosThemeChange : undefined}
+                  onDataThemeChange={isUrlDriven ? handleDataThemeChange : undefined}
+                />
+              </FilterDropdown>
             )}
-            <HStack className={styles.chipsToolbar}>
-              {showEntityToolbar && (
-                <>
-                  <FilterChips
-                    selectedFilters={selectedOrgPaths}
-                    onChipRemove={handleOrgPathsChange}
-                    chipLabels={orgPathLabels}
+            {showAccessFilter && (
+              <FilterDropdown
+                label={dict.searchForm.filters.accessLevel}
+                filterCount={selectedAccess.length}
+              >
+                <Box className={styles.box}>
+                  <AccessFilter
+                    locale={locale}
+                    aggregation={accessAggregation}
+                    value={isUrlDriven ? selectedAccess : undefined}
+                    onChange={isUrlDriven ? handleAccessChange : undefined}
                   />
-                  <FilterChips
-                    selectedFilters={selectedLosThemes}
-                    onChipRemove={handleLosThemeChange}
-                    chipLabels={losThemeLabels}
+                </Box>
+              </FilterDropdown>
+            )}
+            {showFormatFilter && (
+              <FilterDropdown
+                label={dict.searchForm.filters.format}
+                filterCount={selectedFormats.length}
+              >
+                <FormatFilter
+                  locale={locale}
+                  aggregation={formatAggregation}
+                  value={isUrlDriven ? selectedFormats : undefined}
+                  onChange={isUrlDriven ? handleFormatChange : undefined}
+                />
+              </FilterDropdown>
+            )}
+            {showSpatialFilter && (
+              <FilterDropdown
+                label={dict.searchForm.filters.geography}
+                filterCount={selectedSpatial.length}
+              >
+                <Box className={styles.box}>
+                  <SpatialFilter
+                    aggregation={spatialAggregation}
+                    value={isUrlDriven ? selectedSpatial : undefined}
+                    onChange={isUrlDriven ? handleSpatialChange : undefined}
                   />
-                  <FilterChips
-                    selectedFilters={selectedDataThemes}
-                    onChipRemove={handleDataThemeChange}
-                    chipLabels={dataThemeLabels}
+                </Box>
+              </FilterDropdown>
+            )}
+            {showProvenanceFilter && (
+              <FilterDropdown
+                label={dict.searchForm.filters.provenance}
+                filterCount={selectedProvenance.length}
+              >
+                <Box className={styles.box}>
+                  <ProvenanceFilter
+                    locale={locale}
+                    aggregation={provenanceAggregation}
+                    value={isUrlDriven ? selectedProvenance : undefined}
+                    onChange={isUrlDriven ? handleProvenanceChange : undefined}
                   />
-                  <FilterChips
-                    selectedFilters={selectedAccess}
-                    onChipRemove={handleAccessChange}
-                    chipLabels={accessLabels}
+                </Box>
+              </FilterDropdown>
+            )}
+            {showDcatProfileFilter && (
+              <FilterDropdown
+                label={dict.searchForm.filters.dcatProfile}
+                filterCount={selectedDcatProfiles.length}
+              >
+                <Box className={styles.box}>
+                  <DcatProfileFilter
+                    locale={locale}
+                    aggregation={dcatProfileAggregation}
+                    value={isUrlDriven ? selectedDcatProfiles : undefined}
+                    onChange={isUrlDriven ? handleDcatProfileChange : undefined}
                   />
-                  <FilterChips
-                    selectedFilters={selectedFormats}
-                    onChipRemove={handleFormatChange}
-                    chipLabels={formatLabels}
-                  />
-                  <FilterChips
-                    selectedFilters={selectedSpatial}
-                    onChipRemove={handleSpatialChange}
-                    chipLabels={spatialLabels}
-                  />
-                  <FilterChips
-                    selectedFilters={selectedProvenance}
-                    onChipRemove={handleProvenanceChange}
-                    chipLabels={provenanceLabels}
-                  />
-                  <FilterChips
-                    selectedFilters={selectedDcatProfiles}
-                    onChipRemove={handleDcatProfileChange}
-                    chipLabels={dcatProfileLabels}
-                  />
-                  {hasFilter && (
-                    <Chip.Button
-                      onClick={() => clearFilters()}
-                      data-size="sm"
-                    >
-                      {dict.searchForm.clearAllFilters}
-                    </Chip.Button>
-                  )}
-                  <HStack className={styles.rightToolbar}>
-                    <Dropdown.TriggerContext>
-                      <Dropdown.Trigger
-                        data-size="sm"
-                        variant="tertiary"
-                      >
-                        {interpolate(dict.searchForm.resultsCount, { count: selectedSize })} <ChevronDownIcon aria-hidden />
-                      </Dropdown.Trigger>
-                      <Dropdown
-                        className={styles.orderbyDropdown}
-                        placement="bottom-end"
-                        data-size="sm"
-                      >
-                        <Dropdown.List>
-                          {SEARCH_PAGE_SIZE_OPTIONS.map((option) => (
-                            <Dropdown.Item key={option}>
-                              <Dropdown.Button
-                                aria-pressed={selectedSize === option}
-                                onClick={() => navigateToSearch({ size: option })}
-                              >
-                                {selectedSize === option && <CheckmarkIcon aria-hidden />}
-                                {interpolate(dict.searchForm.resultsPerPage, { count: option })}
-                              </Dropdown.Button>
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.List>
-                      </Dropdown>
-                    </Dropdown.TriggerContext>
-                    <Dropdown.TriggerContext>
-                      <Dropdown.Trigger
-                        data-size="sm"
-                        variant="tertiary"
-                      >
-                        <SortDownIcon aria-hidden />
-                        {getSortLabel(selectedSort)}
-                      </Dropdown.Trigger>
-                      <Dropdown
-                        className={styles.orderbyDropdown}
-                        placement="bottom-end"
-                        data-size="sm"
-                      >
-                        <Dropdown.List>
-                          {SEARCH_SORT_OPTION_LIST.map((option) => (
-                            <Dropdown.Item key={option}>
-                              <Dropdown.Button
-                                aria-pressed={selectedSort === option}
-                                onClick={() => handleSortChange(option)}
-                              >
-                                {selectedSort === option && <CheckmarkIcon />}
-                                {getSortLabel(option)}
-                              </Dropdown.Button>
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.List>
-                      </Dropdown>
-                    </Dropdown.TriggerContext>
-                  </HStack>
-                </>
-              )}
-            </HStack>
-          </>
+                </Box>
+              </FilterDropdown>
+            )}
+          </HStack>
+          <HStack className={styles.chipsToolbar}>
+            <FilterChips
+              selectedFilters={selectedOrgPaths}
+              onChipRemove={handleOrgPathsChange}
+              chipLabels={orgPathLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedLosThemes}
+              onChipRemove={handleLosThemeChange}
+              chipLabels={losThemeLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedDataThemes}
+              onChipRemove={handleDataThemeChange}
+              chipLabels={dataThemeLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedAccess}
+              onChipRemove={handleAccessChange}
+              chipLabels={accessLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedFormats}
+              onChipRemove={handleFormatChange}
+              chipLabels={formatLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedSpatial}
+              onChipRemove={handleSpatialChange}
+              chipLabels={spatialLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedProvenance}
+              onChipRemove={handleProvenanceChange}
+              chipLabels={provenanceLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedDcatProfiles}
+              onChipRemove={handleDcatProfileChange}
+              chipLabels={dcatProfileLabels}
+            />
+            {hasFilter && (
+              <Chip.Button
+                onClick={() => clearFilters()}
+                data-size="sm"
+              >
+                {dict.searchForm.clearAllFilters}
+              </Chip.Button>
+            )}
+          </HStack>
         </VStack>
       </VStack>
     </form>

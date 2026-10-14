@@ -21,8 +21,6 @@ const Frontpage = async (props: FrontpageProps) => {
   // Opt-in dynamic rendering
   await noStore();
 
-  const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = "" } = process.env;
-
   const loc = getLocalization(params.lang);
   const frontpageDictionary = loc.frontpage;
   const profile = await getProfile();
@@ -45,7 +43,6 @@ const Frontpage = async (props: FrontpageProps) => {
             <FrontpageBanner
               dictionary={frontpageDictionary}
               locale={params.lang}
-              endpoint={`${llmSearchBaseUri}/llm`}
             />
             <div className="main-content">
               <ShareDataBanner

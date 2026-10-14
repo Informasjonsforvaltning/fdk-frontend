@@ -1,29 +1,24 @@
 import slugify from "slugify";
-import cn from "classnames";
+import { Heading } from "@digdir/designsystemet-react";
 
-import { Heading, Link } from "@digdir/designsystemet-react";
+import { NavLinkList, type NavLinkListItem } from "@fdk-frontend/ui";
 import { type Localization } from "@fdk-frontend/localization";
 
 import { type MdxHeadlineObjectNode } from "../mdx-page/utils";
 
-import styles from "../sidebar/sidebar.module.scss";
+import styles from "./table-of-contents.module.scss";
 
-const TocList = ({ headlines }: { headlines?: MdxHeadlineObjectNode[] }) => {
-  if (!headlines || headlines.length === 0) return null;
-  return (
-    <ul className={cn(styles.sidebarList, styles.sidebarListFlat)}>
-      {headlines.map((headline, index) => {
-        const slug = slugify(headline.text, { lower: true, strict: true });
-        return (
-          <li key={index}>
-            <Link href={`#${slug}`}>{headline.text}</Link>
-            <TocList headlines={headline.children} />
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
+const toLinkItems = (headlines: MdxHeadlineObjectNode[] | undefined, prefix = ""): NavLinkListItem[] =>
+  (headlines ?? []).map((headline, index) => {
+    const slug = slugify(headline.text, { lower: true, strict: true });
+    const id = prefix ? `${prefix}.${index}` : String(index);
+    return {
+      id,
+      href: `#${slug}`,
+      label: headline.text,
+      children: headline.children?.length ? toLinkItems(headline.children, id) : undefined,
+    };
+  });
 
 type TableOfContentsProps = {
   dictionary: Localization;
@@ -31,8 +26,8 @@ type TableOfContentsProps = {
 };
 
 const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
-  <aside
-    className={styles.sidebar}
+  <nav
+    className={styles.tableOfContents}
     aria-labelledby="tableOfContents.onThisPage"
   >
     <Heading
@@ -42,8 +37,8 @@ const TableOfContents = ({ headlines, dictionary }: TableOfContentsProps) => (
     >
       {dictionary.tableOfContents.onThisPage}
     </Heading>
-    <TocList headlines={headlines} />
-  </aside>
+    <NavLinkList items={toLinkItems(headlines)} />
+  </nav>
 );
 
 export default TableOfContents;

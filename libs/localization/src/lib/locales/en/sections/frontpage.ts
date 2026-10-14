@@ -5,25 +5,9 @@ const frontpage = {
       "data.norge.no is Norway's official portal for sharing data from Norwegian organizations that you can use for innovation and research.",
   },
   aiBanner: {
-    advancedSearchPrompt: {
-      link: "Find data",
-      text: "Not finding what you're looking for?",
-    },
     prompt: {
-      button: "Ask",
-      disclaimer: "Do not enter personal or other sensitive information.",
-      errors: {
-        generic: "An error occurred. Please try again later.",
-        queryTooShort: "The query must have at least three characters. Please try again.",
-        queryTooLong: "The query cannot have more than 255 characters. Please try again.",
-      },
       label: "Ask our AI about data from over 125 organizations:",
-      loading: "Loading",
       placeholder: "What are you looking for?",
-      responses: {
-        noResults: "Unfortunately, I didn't find any relevant results. Please try another query.",
-        resultsFound: "I found {{num}} results that might be relevant:",
-      },
     },
     suggestions: {
       list: [
@@ -38,12 +22,6 @@ const frontpage = {
       prefix: "Try for example:",
     },
     title: "Where Norway shares data",
-    tooltip: {
-      disclaimer: "Do not enter personal information in the search field.",
-      label: "About AI Search",
-      readMoreLinkText: "Read more about the AI Search here",
-      text: "Our AI Search makes it easy to find data using natural language without needing to know specific names, technical terms, or formats. Please note that the AI Search may be both incomplete and contain errors.",
-    },
   },
   catalogsBanner: {
     title: "Our data catalogs",

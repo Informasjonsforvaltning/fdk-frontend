@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { Checkbox } from "@digdir/designsystemet-react";
-import { VStack } from "@fellesdatakatalog/ui";
 import type { LocaleCodes } from "@fdk-frontend/localization";
 
 import { type AggregationKeyCount } from "../../types";
@@ -31,7 +30,7 @@ const LosThemeTreeLevel = ({ aggregation, parentKey, depth, selected, labels, on
   if (children.length === 0) return null;
 
   return (
-    <VStack className={depth > 1 ? styles.orgPathNested : styles.orgPathLevel}>
+    <div className={depth > 1 ? styles.orgPathNested : styles.orgPathLevel}>
       {children.map(({ key, count }) => (
         <div
           key={key}
@@ -54,7 +53,7 @@ const LosThemeTreeLevel = ({ aggregation, parentKey, depth, selected, labels, on
           )}
         </div>
       ))}
-    </VStack>
+    </div>
   );
 };
 

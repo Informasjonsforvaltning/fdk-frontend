@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import cn from "classnames";
 import { ForwardRefComponent, motion } from "framer-motion";
 import { Link, Button, Alert, Paragraph } from "@digdir/designsystemet-react";
-import { MenuHamburgerIcon, XMarkIcon, MagnifyingGlassIcon } from "@navikt/aksel-icons";
+import { MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { LogoLink } from "../logo";
 import MainMenu from "../main-menu";
@@ -134,25 +134,13 @@ const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: 
               locale={locale}
               className={styles.headerSearchInput}
               showTrayNav={profile !== "transportportal"}
+              hideAiSet={profile === "transportportal"}
               placeholder={profile === "transportportal" ? dictionary.tp.searchPlaceholder : undefined}
             />
           ) : (
             <div style={{ flexGrow: 1 }} />
           )}
           <div className={styles.headerToolbar}>
-            {!showSearchInput && profile !== "transportportal" && (
-              <Button
-                asChild
-                data-size="sm"
-                variant="tertiary"
-                aria-label={dictionary.header.findDataButton}
-              >
-                <Link href={`/search-all`}>
-                  <MagnifyingGlassIcon aria-hidden />
-                  <span>{dictionary.header.findDataButton}</span>
-                </Link>
-              </Button>
-            )}
             <Button
               data-size="sm"
               variant={showMenu ? "secondary" : "tertiary"}

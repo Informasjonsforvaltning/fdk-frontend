@@ -1,7 +1,13 @@
-import { type LlmSearchResponse } from "@fdk-frontend/data-access";
 import { type LocaleCodes } from "@fdk-frontend/localization";
 import { type AggregationKeyCount } from "@fdk-frontend/ui";
-import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import {
+  isCatalogSet,
+  readLlmSearchBody,
+  readLlmSearchCache,
+  writeLlmSearchCache,
+  type LlmSearchCacheBody,
+  type SearchSetId,
+} from "@fdk-frontend/utils";
 import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
 import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/provenance";
@@ -12,33 +18,25 @@ import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
 
 import { type DocsSearchResult } from "./search-page-types";
 import {
-  type EntityTabFetchResult,
+  type CatalogFetchOptions,
+  type CatalogFetchResult,
+  type FetchSummaryOptions,
   fetchDocsResults,
-  fetchEntityTabResults,
+  fetchCatalogResults,
   fetchLlmResults,
   fetchSummary,
 } from "./search-api";
 
-export const isBrowseSearch = function (
-  query: string,
-  orgPathParam: string | null,
-  accessParam: string | null,
-  provenanceParam: string | null,
-  dcatProfileParam: string | null,
-  spatialParam: string | null,
-  formatParam: string | null,
-  losThemeParam: string | null,
-  dataThemeParam: string | null,
-): boolean {
-  const trimmedQuery = query.trim();
-  const hasOrgFilter = buildOrgPathSearchFilter(orgPathParam) !== undefined;
-  const hasAccessFilter = buildAccessSearchFilter(accessParam) !== undefined;
-  const hasProvenanceFilter = buildProvenanceSearchFilter(provenanceParam) !== undefined;
-  const hasDcatProfileFilter = buildDcatProfileSearchFilter(dcatProfileParam) !== undefined;
-  const hasSpatialFilter = buildSpatialSearchFilter(spatialParam) !== undefined;
-  const hasFormatFilter = buildFormatSearchFilter(formatParam) !== undefined;
-  const hasLosThemeFilter = buildLosThemeSearchFilter(losThemeParam) !== undefined;
-  const hasDataThemeFilter = buildDataThemeSearchFilter(dataThemeParam) !== undefined;
+export const isBrowseSearch = function (options: FetchSummaryOptions): boolean {
+  const trimmedQuery = options.query.trim();
+  const hasOrgFilter = buildOrgPathSearchFilter(options.orgPathParam) !== undefined;
+  const hasAccessFilter = buildAccessSearchFilter(options.accessParam) !== undefined;
+  const hasProvenanceFilter = buildProvenanceSearchFilter(options.provenanceParam) !== undefined;
+  const hasDcatProfileFilter = buildDcatProfileSearchFilter(options.dcatProfileParam) !== undefined;
+  const hasSpatialFilter = buildSpatialSearchFilter(options.spatialParam) !== undefined;
+  const hasFormatFilter = buildFormatSearchFilter(options.formatParam) !== undefined;
+  const hasLosThemeFilter = buildLosThemeSearchFilter(options.losThemeParam) !== undefined;
+  const hasDataThemeFilter = buildDataThemeSearchFilter(options.dataThemeParam) !== undefined;
   return (
     trimmedQuery.length === 0 &&
     !hasOrgFilter &&
@@ -53,16 +51,16 @@ export const isBrowseSearch = function (
 };
 
 export type EntitySearchStateBase = {
-  entityTabResults?: EntityTabFetchResult;
-  tabBadgeCounts: Record<string, number>;
-  orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  dcatProfileAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  catalogResults?: CatalogFetchResult;
+  setBadgeCounts: Record<string, number>;
+  orgAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  accessAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  provenanceAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  dcatProfileAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  spatialAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  formatAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  losThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  dataThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
 };
 
 export type BrowseSearchState = EntitySearchStateBase & {
@@ -73,90 +71,50 @@ export type EntitySearchState =
   | BrowseSearchState
   | (EntitySearchStateBase & {
       mode: "search";
-      tabBadgeCounts: Record<string, number> | undefined;
-      orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-      accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-      provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-      dcatProfileAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-      spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-      formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-      losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-      dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+      setBadgeCounts: Record<string, number> | undefined;
+      orgAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+      accessAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+      provenanceAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+      dcatProfileAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+      spatialAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+      formatAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+      losThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+      dataThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
     });
 
-export const loadLlmSearchState = async function (query: string): Promise<LlmSearchResponse | undefined> {
-  if (!query.trim()) return undefined;
-  return fetchLlmResults(query);
+export const loadLlmSearchState = async function (query: string): Promise<LlmSearchCacheBody | undefined> {
+  const trimmed = query.trim();
+  if (!trimmed) return undefined;
+
+  const cached = readLlmSearchCache(trimmed);
+  if (cached) return cached;
+
+  const body = readLlmSearchBody(await fetchLlmResults(trimmed));
+  if (!body) return undefined;
+  writeLlmSearchCache(trimmed, body);
+  return body;
 };
 
 export const loadDocsSearchState = async function (query: string, locale: LocaleCodes): Promise<DocsSearchResult[]> {
   return fetchDocsResults(query, locale);
 };
 
-export const loadEntitySearchState = async function (options: {
-  query: string;
-  orgPathParam: string | null;
-  accessParam: string | null;
-  provenanceParam: string | null;
-  dcatProfileParam: string | null;
-  spatialParam: string | null;
-  formatParam: string | null;
-  losThemeParam: string | null;
-  dataThemeParam: string | null;
-  sortParam: string | null;
-  activeEntityTab?: SearchSetSegment;
-  page: number;
-  size: number;
-}): Promise<EntitySearchState> {
-  const browse = isBrowseSearch(
-    options.query,
-    options.orgPathParam,
-    options.accessParam,
-    options.provenanceParam,
-    options.dcatProfileParam,
-    options.spatialParam,
-    options.formatParam,
-    options.losThemeParam,
-    options.dataThemeParam,
-  );
+export const loadEntitySearchState = async function (
+  options: CatalogFetchOptions & { activeSet?: SearchSetId },
+): Promise<EntitySearchState> {
+  const browse = isBrowseSearch(options);
+  const summaryPromise = fetchSummary(options);
 
-  const summaryOptions = browse
-    ? {
-        query: "",
-        orgPathParam: null,
-        accessParam: null,
-        provenanceParam: null,
-        dcatProfileParam: null,
-        spatialParam: null,
-        formatParam: null,
-        losThemeParam: null,
-        dataThemeParam: null,
-        sortParam: options.sortParam,
-      }
-    : {
-        query: options.query,
-        orgPathParam: options.orgPathParam,
-        accessParam: options.accessParam,
-        provenanceParam: options.provenanceParam,
-        dcatProfileParam: options.dcatProfileParam,
-        spatialParam: options.spatialParam,
-        formatParam: options.formatParam,
-        losThemeParam: options.losThemeParam,
-        dataThemeParam: options.dataThemeParam,
-        sortParam: options.sortParam,
-      };
-  const summaryPromise = fetchSummary(summaryOptions);
-
-  const entityTabPromise =
-    options.activeEntityTab && options.activeEntityTab !== "docs"
-      ? fetchEntityTabResults(options.activeEntityTab, options)
+  const catalogResultsPromise =
+    options.activeSet && isCatalogSet(options.activeSet)
+      ? fetchCatalogResults(options.activeSet, options)
       : Promise.resolve(undefined);
 
-  const [summary, entityTabResults] = await Promise.all([summaryPromise, entityTabPromise]);
+  const [summary, catalogResults] = await Promise.all([summaryPromise, catalogResultsPromise]);
 
   return {
     mode: browse ? "browse" : "search",
     ...summary,
-    entityTabResults,
+    catalogResults,
   };
 };
