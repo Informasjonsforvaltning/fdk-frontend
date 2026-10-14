@@ -46,7 +46,7 @@ const Norgeskart = () => {
       if (mapRef.current !== null) {
         mapInstanceRef.current = L.map(mapRef.current, {
           attributionControl: false,
-          center: [initCoords.lat - initCoords.offset, initCoords.lng],
+          center: [initCoords.lat, initCoords.lng],
           keyboard: false,
           zoom: initCoords.zoom,
           zoomControl: false,

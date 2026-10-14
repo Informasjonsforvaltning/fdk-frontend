@@ -33,7 +33,7 @@ const AiPromoSplash = ({ locale }: AiPromoSplashProps) => {
             asChild
             key={suggestion}
           >
-            <Link href={`/${locale}/search?q=${suggestion}`}>{suggestion}</Link>
+            <Link href={`/${locale}/search/ai?q=${suggestion}`}>{suggestion}</Link>
           </Button>
         ))}
       </Fieldset>

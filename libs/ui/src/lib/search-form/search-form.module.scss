@@ -11,7 +11,7 @@
 .chipsToolbar {
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 3.5rem;
 }
 
 .filterToolbar {
@@ -33,11 +33,12 @@
     max-height: 350px;
     overflow-y: auto;
     overflow-x: hidden;
-  }
+    padding: 0;
 
-  > div {
     :global(.ds-field) {
       width: 100%;
+      margin: 0;
+      padding: 0.5rem;
 
       &:hover {
         background: #eee;
@@ -53,18 +54,6 @@
   }
 }
 
-.orderbyDropdown {
-  width: 200px;
-  min-width: auto;
-}
-
-.rightToolbar {
-  margin-left: auto;
-  align-items: center;
-  gap: 0.75rem;
-  flex-shrink: 0;
-}
-
 .orgPathLevel {
   gap: 0;
 }
@@ -72,10 +61,10 @@
 .orgPathItem {
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 
 .orgPathNested {
   padding-left: 1rem;
   border-left: 1px solid #e5e5e5;
-  margin-top: 0.25rem;
 }

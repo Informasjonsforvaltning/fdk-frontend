@@ -47,6 +47,7 @@ const TransportportalFrontpageBanner = ({
             locale={locale}
             className={styles.searchInput}
             showTrayNav={profile !== "transportportal"}
+            hideAiSet={profile === "transportportal"}
             placeholder={dictionary.tp.searchPlaceholder}
           />
         </div>

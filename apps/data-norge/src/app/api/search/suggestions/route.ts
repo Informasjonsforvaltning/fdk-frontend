@@ -1,11 +1,11 @@
 import { getSearchSuggestions } from "@fdk-frontend/data-access/server";
-import { SEARCH_TAB_PATH_SEGMENTS } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { SEARCH_SUMMARY_PATHS } from "@fdk-frontend/utils";
 import { getProfile } from "@fdk-frontend/utils/server";
 
 /** Search-service profile filter; scopes suggestions to the transportportal tag. */
 const TRANSPORT_SEARCH_PROFILE = "TRANSPORT";
 
-const VALID_ENTITY_PATHS = new Set<string>(SEARCH_TAB_PATH_SEGMENTS.filter((segment) => segment !== "docs"));
+const VALID_ENTITY_PATHS = new Set<string>(SEARCH_SUMMARY_PATHS);
 
 const emptyResponse = () =>
   Response.json({ suggestions: [] }, { status: 200, headers: { "Content-Type": "application/json" } });

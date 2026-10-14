@@ -14,7 +14,14 @@ export default meta;
 type Story = StoryObj<typeof FrontpageBanner>;
 
 export const Primary: Story = {
-  render: () => <FrontpageBanner dictionary={dictionary} />,
+  render: () => (
+    <FrontpageBanner
+      dictionary={dictionary}
+      locale="nb"
+      endpoint=""
+      searchPrototypeEnabled
+    />
+  ),
   parameters: {
     nextjs: {
       appDirectory: true,

@@ -63,8 +63,8 @@ const LlmSearch = ({ endpoint, dictionary, locale }: LlmSearchProps) => {
     return true;
   };
 
-  const submitQuery = async (e: any, overrideStateQuery?: string) => {
-    if (e) e.preventDefault();
+  const submitQuery = async (event: React.FormEvent<HTMLFormElement> | null, overrideStateQuery?: string) => {
+    if (event) event.preventDefault();
 
     const queryToSubmit = overrideStateQuery || query;
 

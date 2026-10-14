@@ -5,7 +5,7 @@ import { buildDcatProfileSearchFilter } from "@fdk-frontend/ui/search-form/dcat-
 import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
-import { buildSearchSort } from "@fdk-frontend/ui/search-form/sort";
+import { buildSearchSort } from "@fdk-frontend/utils";
 
 type SearchPagination = {
   size: number;

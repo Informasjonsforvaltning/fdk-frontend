@@ -6,16 +6,72 @@
     margin: 0 1.5rem 1rem;
   }
 
-  .mainContent {
-    max-width: 1000px;
-    margin: 2rem auto 0;
+  .content {
+    display: grid;
+    // Side tracks stay 20%. The center is the remaining 60% after the column gaps,
+    // which a literal 60% track would push past the page edge.
+    grid-template-columns: 20% minmax(0, 1fr) 20%;
+    grid-template-areas: "left main right";
+    align-items: start;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    @container (max-width: 900px) {
+      grid-template-columns: 20% minmax(0, 1fr);
+      grid-template-areas: "left main";
+
+      .rightColumn {
+        display: none;
+      }
+    }
+
+    @container (max-width: 800px) {
+      display: block;
+
+      .leftColumn {
+        position: static;
+        margin: 0 -2rem;
+        padding: 1rem 2rem;
+        background: #f8f8f8;
+      }
+
+      .mainColumn {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  .pageHeading {
+    margin-bottom: 1rem;
+  }
+
+  .leftColumn {
+    grid-area: left;
+    position: sticky;
+    top: 100px;
+  }
+
+  .mainColumn {
+    grid-area: main;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    min-width: 0;
+  }
 
-    @media (max-width: 650px) {
-      margin-top: 1rem;
-    }
+  .rightColumn {
+    grid-area: right;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .resultsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .resultsSection {
@@ -28,5 +84,12 @@
     display: flex;
     justify-content: center;
     margin-top: 0.5rem;
+  }
+
+  @media (max-width: 500px) {
+    .content .leftColumn {
+      margin-inline: -1.5rem;
+      padding-inline: 1.5rem;
+    }
   }
 }

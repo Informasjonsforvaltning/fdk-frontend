@@ -1,24 +1,23 @@
-import { type LlmSearchResponse } from "@fdk-frontend/data-access";
 import { type AggregationKeyCount } from "@fdk-frontend/ui";
-import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { type LlmSearchCacheBody, type SearchSetId } from "@fdk-frontend/utils";
 
-import { type EntityTabFetchResult } from "./search-api";
+import { type CatalogFetchResult } from "./search-api";
 import { type EntitySearchState } from "./search-fetch";
 import { type DocsSearchResult } from "./search-page-types";
 
 export type SearchPageData = {
-  llmResults: LlmSearchResponse | undefined;
-  entityTabResults: EntityTabFetchResult | undefined;
+  llmResults: LlmSearchCacheBody | undefined;
+  catalogResults: CatalogFetchResult | undefined;
   docsResults: DocsSearchResult[] | undefined;
-  tabBadgeCounts: Record<string, number> | undefined;
-  orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-  accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-  provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-  dcatProfileAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-  spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-  formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-  losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
-  dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>> | undefined;
+  setBadgeCounts: Record<string, number> | undefined;
+  orgAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+  accessAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+  provenanceAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+  dcatProfileAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+  spatialAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+  formatAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+  losThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+  dataThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
 };
 
 export type SearchPageReducerState = {
@@ -30,17 +29,17 @@ export type SearchPageReducerState = {
 
 export const initialSearchPageData: SearchPageData = {
   llmResults: undefined,
-  entityTabResults: undefined,
+  catalogResults: undefined,
   docsResults: undefined,
-  tabBadgeCounts: undefined,
-  orgAggregationsByTab: undefined,
-  accessAggregationsByTab: undefined,
-  provenanceAggregationsByTab: undefined,
-  dcatProfileAggregationsByTab: undefined,
-  spatialAggregationsByTab: undefined,
-  formatAggregationsByTab: undefined,
-  losThemeAggregationsByTab: undefined,
-  dataThemeAggregationsByTab: undefined,
+  setBadgeCounts: undefined,
+  orgAggregationsBySet: undefined,
+  accessAggregationsBySet: undefined,
+  provenanceAggregationsBySet: undefined,
+  dcatProfileAggregationsBySet: undefined,
+  spatialAggregationsBySet: undefined,
+  formatAggregationsBySet: undefined,
+  losThemeAggregationsBySet: undefined,
+  dataThemeAggregationsBySet: undefined,
 };
 
 export const initialSearchPageState: SearchPageReducerState = {
@@ -58,7 +57,7 @@ export type SearchPageAction =
   | { type: "docs_fetch_succeeded"; payload: DocsSearchResult[] }
   | { type: "docs_fetch_failed" }
   | { type: "llm_fetch_started" }
-  | { type: "llm_fetch_succeeded"; payload: LlmSearchResponse | undefined }
+  | { type: "llm_fetch_succeeded"; payload: LlmSearchCacheBody | undefined }
   | { type: "llm_fetch_failed" };
 
 const applyEntitySearchState = function (data: SearchPageData, result: EntitySearchState): SearchPageData {
@@ -66,31 +65,31 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
     return {
       ...data,
       llmResults: undefined,
-      entityTabResults: result.entityTabResults,
-      tabBadgeCounts: result.tabBadgeCounts,
-      orgAggregationsByTab: result.orgAggregationsByTab,
-      accessAggregationsByTab: result.accessAggregationsByTab,
-      provenanceAggregationsByTab: result.provenanceAggregationsByTab,
-      dcatProfileAggregationsByTab: result.dcatProfileAggregationsByTab,
-      spatialAggregationsByTab: result.spatialAggregationsByTab,
-      formatAggregationsByTab: result.formatAggregationsByTab,
-      losThemeAggregationsByTab: result.losThemeAggregationsByTab,
-      dataThemeAggregationsByTab: result.dataThemeAggregationsByTab,
+      catalogResults: result.catalogResults,
+      setBadgeCounts: result.setBadgeCounts,
+      orgAggregationsBySet: result.orgAggregationsBySet,
+      accessAggregationsBySet: result.accessAggregationsBySet,
+      provenanceAggregationsBySet: result.provenanceAggregationsBySet,
+      dcatProfileAggregationsBySet: result.dcatProfileAggregationsBySet,
+      spatialAggregationsBySet: result.spatialAggregationsBySet,
+      formatAggregationsBySet: result.formatAggregationsBySet,
+      losThemeAggregationsBySet: result.losThemeAggregationsBySet,
+      dataThemeAggregationsBySet: result.dataThemeAggregationsBySet,
     };
   }
 
   return {
     ...data,
-    entityTabResults: result.entityTabResults,
-    tabBadgeCounts: result.tabBadgeCounts,
-    orgAggregationsByTab: result.orgAggregationsByTab,
-    accessAggregationsByTab: result.accessAggregationsByTab,
-    provenanceAggregationsByTab: result.provenanceAggregationsByTab,
-    dcatProfileAggregationsByTab: result.dcatProfileAggregationsByTab,
-    spatialAggregationsByTab: result.spatialAggregationsByTab,
-    formatAggregationsByTab: result.formatAggregationsByTab,
-    losThemeAggregationsByTab: result.losThemeAggregationsByTab,
-    dataThemeAggregationsByTab: result.dataThemeAggregationsByTab,
+    catalogResults: result.catalogResults,
+    setBadgeCounts: result.setBadgeCounts,
+    orgAggregationsBySet: result.orgAggregationsBySet,
+    accessAggregationsBySet: result.accessAggregationsBySet,
+    provenanceAggregationsBySet: result.provenanceAggregationsBySet,
+    dcatProfileAggregationsBySet: result.dcatProfileAggregationsBySet,
+    spatialAggregationsBySet: result.spatialAggregationsBySet,
+    formatAggregationsBySet: result.formatAggregationsBySet,
+    losThemeAggregationsBySet: result.losThemeAggregationsBySet,
+    dataThemeAggregationsBySet: result.dataThemeAggregationsBySet,
   };
 };
 
@@ -113,16 +112,16 @@ export const searchPageReducer = function (
         entityLoading: false,
         data: {
           ...state.data,
-          entityTabResults: undefined,
-          tabBadgeCounts: undefined,
-          orgAggregationsByTab: undefined,
-          accessAggregationsByTab: undefined,
-          provenanceAggregationsByTab: undefined,
-          dcatProfileAggregationsByTab: undefined,
-          spatialAggregationsByTab: undefined,
-          formatAggregationsByTab: undefined,
-          losThemeAggregationsByTab: undefined,
-          dataThemeAggregationsByTab: undefined,
+          catalogResults: undefined,
+          setBadgeCounts: undefined,
+          orgAggregationsBySet: undefined,
+          accessAggregationsBySet: undefined,
+          provenanceAggregationsBySet: undefined,
+          dcatProfileAggregationsBySet: undefined,
+          spatialAggregationsBySet: undefined,
+          formatAggregationsBySet: undefined,
+          losThemeAggregationsBySet: undefined,
+          dataThemeAggregationsBySet: undefined,
         },
       };
     case "docs_fetch_started":

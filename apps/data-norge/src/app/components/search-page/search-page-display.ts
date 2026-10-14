@@ -1,65 +1,28 @@
-import { type LlmSearchResponse } from "@fdk-frontend/data-access";
-import { type SearchPageInfo } from "@fdk-frontend/ui";
-import { type SearchObject } from "@fellesdatakatalog/types";
-
-import { ENTITY_TABS, KI_TOGGLE_VALUE, type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { SEARCH_SETS, type LlmSearchCacheBody } from "@fdk-frontend/utils";
 
 import { type DocsSearchResult } from "./search-page-types";
 
-export const sumEntityBadgeCounts = function (counts: Record<string, number>): number {
-  return Object.entries(counts).reduce((sum, [key, value]) => {
-    if (key === KI_TOGGLE_VALUE || key === "docs") return sum;
-    return sum + value;
-  }, 0);
-};
-
-export const getDisplayCount = function (params: {
-  activeEntityTab?: SearchSetSegment;
-  llmHitsCount: number;
-  filteredHits: SearchObject[];
-  tabBadgeCounts?: Record<string, number>;
-  entityTabPage?: SearchPageInfo;
-}): number {
-  if (params.activeEntityTab === undefined) {
-    return params.llmHitsCount;
-  }
-
-  if (params.activeEntityTab !== "docs") {
-    if (params.entityTabPage) return params.entityTabPage.totalElements;
-    return params.tabBadgeCounts?.[params.activeEntityTab] ?? params.filteredHits.length;
-  }
-
-  return params.filteredHits.length;
-};
-
-export const getTotalResults = function (params: {
-  tabBadgeCounts?: Record<string, number>;
-  searchHitsCount: number;
-}): number {
-  return params.tabBadgeCounts ? sumEntityBadgeCounts(params.tabBadgeCounts) : params.searchHitsCount;
-};
-
-export const resolveSearchTabBadgeCounts = function (params: {
+export const resolveSearchSetBadgeCounts = function (params: {
   badgeCounts: Record<string, number>;
-  tabBadgeCounts?: Record<string, number>;
+  setBadgeCounts?: Record<string, number>;
   entityLoading: boolean;
   docsLoading: boolean;
   llmLoading: boolean;
 }): Record<string, number | undefined> {
-  const entityCountsPending = params.entityLoading && params.tabBadgeCounts === undefined;
+  const entityCountsPending = params.entityLoading && params.setBadgeCounts === undefined;
   const llmCountsPending = params.llmLoading;
 
   return Object.fromEntries(
-    Object.entries(params.badgeCounts).map(([tab, count]) => {
-      if (tab === KI_TOGGLE_VALUE) {
-        return [tab, llmCountsPending ? undefined : count];
+    Object.entries(params.badgeCounts).map(([setId, count]) => {
+      if (setId === "ai") {
+        return [setId, llmCountsPending ? undefined : count];
       }
 
-      if (tab === "docs") {
-        return [tab, params.docsLoading ? undefined : count];
+      if (setId === "docs") {
+        return [setId, params.docsLoading ? undefined : count];
       }
 
-      return [tab, entityCountsPending ? undefined : count];
+      return [setId, entityCountsPending ? undefined : count];
     }),
   );
 };
@@ -68,21 +31,19 @@ export type SearchPageDisplayState = {
   llmHitsCount: number;
   docsHitsCount: number;
   badgeCounts: Record<string, number>;
-  totalResults: number;
 };
 
 export const computeSearchPageDisplay = function (params: {
-  activeEntityTab?: SearchSetSegment;
-  llmResults?: LlmSearchResponse;
+  llmResults?: LlmSearchCacheBody;
   docsResults?: DocsSearchResult[];
-  tabBadgeCounts?: Record<string, number>;
+  setBadgeCounts?: Record<string, number>;
 }): SearchPageDisplayState {
   const llmHitsCount = params.llmResults?.hits?.length ?? 0;
   const docsHitsCount = params.docsResults?.length ?? 0;
-  const baseBadgeCounts = params.tabBadgeCounts ?? Object.fromEntries(ENTITY_TABS.map((tab) => [tab, 0]));
+  const baseBadgeCounts = params.setBadgeCounts ?? Object.fromEntries(SEARCH_SETS.map((set) => [set.id, 0]));
   const badgeCounts = {
     ...baseBadgeCounts,
-    [KI_TOGGLE_VALUE]: llmHitsCount,
+    ai: llmHitsCount,
     docs: docsHitsCount,
   };
 
@@ -90,9 +51,5 @@ export const computeSearchPageDisplay = function (params: {
     llmHitsCount,
     docsHitsCount,
     badgeCounts,
-    totalResults: getTotalResults({
-      tabBadgeCounts: params.tabBadgeCounts,
-      searchHitsCount: 0,
-    }),
   };
 };

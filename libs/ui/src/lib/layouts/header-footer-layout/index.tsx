@@ -6,7 +6,10 @@ import FooterLayout from "../footer-layout";
 const HeaderFooterLayout = async ({ children, params }: PropsWithChildren & RootLayoutProps) => {
   const { lang } = await params;
   return (
-    <HeaderLayout locale={lang}>
+    <HeaderLayout
+      locale={lang}
+      showFindDataButton={process.env.SEARCH_PROTOTYPE_ENABLED !== "true"}
+    >
       <FooterLayout locale={lang}>{children}</FooterLayout>
     </HeaderLayout>
   );

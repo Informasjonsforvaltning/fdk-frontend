@@ -8,21 +8,14 @@ const searchPage = {
     labelWithQuery: 'Search for "{{query}}"',
   },
   heading: {
-    loading: "Loading...",
-    loadingWithQuery: "Searching for '{{query}}'...",
-    results: "{{count}} results",
-    resultsWithQuery: "{{count}} results for '{{query}}'",
-  },
-  aiSearch: {
-    headingWithCount: "AI search ({{count}} results)",
+    label: "Search",
+    queryPrefix: "Search for",
   },
   entitySearch: {
     hitsCountLabel: "({{count}} results)",
     noResults: "No results",
   },
   docs: {
-    heading: "Documentation",
-    headingWithCount: "Documentation ({{count}} results)",
     noResults: "No results in documentation",
     noContent: "No documentation found.",
   },
@@ -34,16 +27,29 @@ const searchPage = {
   searchInput: {
     label: "Search",
     placeholder: "What are you looking for?",
+    seeAllResults: "See all results",
+    dataCatalogs: "Data catalogs",
+    aiSearch: "AI search",
   },
-  searchTabs: {
+  searchSuggestions: {
+    heading: "Search suggestions",
+  },
+  searchHistory: {
+    heading: "Recent searches",
+    clear: "Clear history",
+    delete: "Delete search {{query}}",
+  },
+  searchSets: {
     loadingBadgeAriaLabel: "Loading result count",
-    searchTabsAriaLabel: "choose search type",
-    ki: "AI",
+    ariaLabel: "choose search type",
+    navAriaLabel: "choose set of results",
+    "all-catalogs": "All data catalogs",
+    ai: "AI",
     datasets: "Datasets",
-    dataServices: "APIs",
+    "data-services": "APIs",
     concepts: "Concepts",
-    informationModels: "Information models",
-    servicesAndEvents: "Services and events",
+    "information-models": "Information models",
+    "services-and-events": "Services and events",
     docs: "Documentation",
   },
   searchForm: {
@@ -57,10 +63,9 @@ const searchPage = {
       dcatProfile: "Specification",
     },
     clearAllFilters: "Clear all filters",
-    resultsCount: "{{count}} results",
     resultsPerPage: "{{count}} results per page",
     sort: {
-      relevance: "Relevance",
+      relevance: "Most relevant",
       newest: "Newest first",
       oldest: "Oldest first",
     },

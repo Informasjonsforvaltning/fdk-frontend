@@ -25,15 +25,15 @@ export default class SearchPage {
     const summary = await summaryLoaded;
     expect(summary.ok()).toBeTruthy();
 
-    // Transportportal redirects /search to the datasets tab, so the settled page is
-    // either the KI promo or a result list. The skeleton reuses the result list markup.
-    const loadingHeading = this.page.getByRole("heading", { name: this.dictionary.heading.loading });
+    // /search lists all catalog hits. /search/ai shows the KI promo when there is no query.
+    // The skeleton reuses the result list markup.
+    const settledHeading = this.page.getByRole("heading", { level: 1, name: this.dictionary.heading.label });
     const settledContent = this.page
       .getByText(this.dictionary.aiPromoSplash.suggestionsLegend)
       .or(this.page.locator(".fdk-box-list"))
       .or(this.page.getByText(this.dictionary.entitySearch.noResults));
 
-    await expect(loadingHeading).toBeHidden();
+    await expect(settledHeading).toBeVisible();
     await expect(settledContent.first()).toBeVisible();
   }
 

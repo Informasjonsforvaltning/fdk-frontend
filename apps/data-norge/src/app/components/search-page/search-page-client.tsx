@@ -2,13 +2,60 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useReducer } from "react";
-import { type LocaleCodes } from "@fdk-frontend/localization";
-import { parseSearchPageParam, parseSearchPageSizeParam } from "@fdk-frontend/ui/search-form";
-import { deriveActiveEntityTabFromPathname, deriveLangFromPathname } from "../../[lang]/search/search-route";
+import { parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
+import { type AggregationKeyCount, isTransportportalMenuSet } from "@fdk-frontend/ui";
+import {
+  deriveSearchSetIdFromPathname,
+  isCatalogSet,
+  parseSearchPageParam,
+  parseSearchPageSizeParam,
+  readLlmSearchCache,
+  type SearchSetId,
+} from "@fdk-frontend/utils";
 import SearchPage, { type SearchPageProps } from "./index";
 import { loadDocsSearchState, loadEntitySearchState, loadLlmSearchState } from "./search-fetch";
-import { initialSearchPageState, searchPageReducer } from "./search-page-state";
+import { initialSearchPageState, searchPageReducer, type SearchPageData } from "./search-page-state";
 import { Profile } from "@fdk-frontend/types";
+
+const CATALOG_AGGREGATION_FIELDS = [
+  "orgAggregationsBySet",
+  "accessAggregationsBySet",
+  "provenanceAggregationsBySet",
+  "dcatProfileAggregationsBySet",
+  "spatialAggregationsBySet",
+  "formatAggregationsBySet",
+  "losThemeAggregationsBySet",
+  "dataThemeAggregationsBySet",
+] as const satisfies readonly (keyof SearchPageData)[];
+
+type CatalogAggregationField = (typeof CATALOG_AGGREGATION_FIELDS)[number];
+
+type CatalogAggregationProps = {
+  orgAggregation: AggregationKeyCount[] | undefined;
+  accessAggregation: AggregationKeyCount[] | undefined;
+  provenanceAggregation: AggregationKeyCount[] | undefined;
+  dcatProfileAggregation: AggregationKeyCount[] | undefined;
+  spatialAggregation: AggregationKeyCount[] | undefined;
+  formatAggregation: AggregationKeyCount[] | undefined;
+  losThemeAggregation: AggregationKeyCount[] | undefined;
+  dataThemeAggregation: AggregationKeyCount[] | undefined;
+};
+
+const aggregationsForActiveSet = (pageData: SearchPageData, setId: SearchSetId): CatalogAggregationProps => {
+  const catalogSet = isCatalogSet(setId);
+  const forSet = (field: CatalogAggregationField) => (catalogSet ? pageData[field]?.[setId] : undefined);
+
+  return {
+    orgAggregation: forSet("orgAggregationsBySet"),
+    accessAggregation: forSet("accessAggregationsBySet"),
+    provenanceAggregation: forSet("provenanceAggregationsBySet"),
+    dcatProfileAggregation: forSet("dcatProfileAggregationsBySet"),
+    spatialAggregation: forSet("spatialAggregationsBySet"),
+    formatAggregation: forSet("formatAggregationsBySet"),
+    losThemeAggregation: forSet("losThemeAggregationsBySet"),
+    dataThemeAggregation: forSet("dataThemeAggregationsBySet"),
+  };
+};
 
 export type SearchPageClientProps = Pick<SearchPageProps, "lang"> & { profile?: Profile };
 
@@ -17,8 +64,8 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const langFromUrl = deriveLangFromPathname(pathname);
-  const activeEntityTab = deriveActiveEntityTabFromPathname(pathname);
+  const langFromUrl = parseLocaleFromPathname(pathname);
+  const activeSet = deriveSearchSetIdFromPathname(pathname);
   const query = searchParams.get("q") ?? "";
   const orgPathParam = searchParams.get("orgPath");
   const accessParam = searchParams.get("access");
@@ -31,38 +78,22 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
   const sortParam = searchParams.get("sort");
   const pageParam = parseSearchPageParam(searchParams.get("page"));
   const sizeParam = parseSearchPageSizeParam(searchParams.get("size"));
-  const locale = (lang ?? langFromUrl) as LocaleCodes;
-  const hideKiTab = profile === "transportportal";
+  const locale: LocaleCodes = lang ?? langFromUrl;
+  const hideAiSet = profile === "transportportal";
 
   const [{ entityLoading, docsLoading, llmLoading, data }, dispatch] = useReducer(
     searchPageReducer,
     initialSearchPageState,
   );
 
-  // The transportportal profile has no KI (AI) tab, so redirect its default landing
-  // (`/search` = KI) to the datasets tab, preserving any query and filters.
+  // The transportportal menu is all-catalogs, datasets, and docs. Any other set falls back to all-catalogs.
   useEffect(() => {
-    if (!hideKiTab || activeEntityTab !== undefined) return;
+    if (!hideAiSet || isTransportportalMenuSet(activeSet)) return;
     const queryString = searchParams.toString();
-    router.replace(`/${locale}/search/datasets${queryString ? `?${queryString}` : ""}`);
-  }, [hideKiTab, activeEntityTab, locale, router, searchParams]);
+    router.replace(`/${locale}/search${queryString ? `?${queryString}` : ""}`);
+  }, [hideAiSet, activeSet, locale, router, searchParams]);
 
-  const orgAggregation =
-    activeEntityTab && activeEntityTab !== "docs" ? data.orgAggregationsByTab?.[activeEntityTab] : undefined;
-  const accessAggregation =
-    activeEntityTab && activeEntityTab !== "docs" ? data.accessAggregationsByTab?.[activeEntityTab] : undefined;
-  const provenanceAggregation =
-    activeEntityTab && activeEntityTab !== "docs" ? data.provenanceAggregationsByTab?.[activeEntityTab] : undefined;
-  const dcatProfileAggregation =
-    activeEntityTab && activeEntityTab !== "docs" ? data.dcatProfileAggregationsByTab?.[activeEntityTab] : undefined;
-  const spatialAggregation =
-    activeEntityTab && activeEntityTab !== "docs" ? data.spatialAggregationsByTab?.[activeEntityTab] : undefined;
-  const formatAggregation =
-    activeEntityTab && activeEntityTab !== "docs" ? data.formatAggregationsByTab?.[activeEntityTab] : undefined;
-  const losThemeAggregation =
-    activeEntityTab && activeEntityTab !== "docs" ? data.losThemeAggregationsByTab?.[activeEntityTab] : undefined;
-  const dataThemeAggregation =
-    activeEntityTab && activeEntityTab !== "docs" ? data.dataThemeAggregationsByTab?.[activeEntityTab] : undefined;
+  const aggregations = aggregationsForActiveSet(data, activeSet);
 
   useEffect(() => {
     let cancelled = false;
@@ -79,7 +110,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
       losThemeParam,
       dataThemeParam,
       sortParam,
-      activeEntityTab,
+      activeSet,
       page: pageParam,
       size: sizeParam,
     })
@@ -105,13 +136,19 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
     losThemeParam,
     dataThemeParam,
     sortParam,
-    activeEntityTab,
+    activeSet,
     pageParam,
     sizeParam,
   ]);
 
   useEffect(() => {
     let cancelled = false;
+    const cached = readLlmSearchCache(query);
+    if (cached) {
+      dispatch({ type: "llm_fetch_succeeded", payload: cached });
+      return;
+    }
+
     dispatch({ type: "llm_fetch_started" });
 
     loadLlmSearchState(query)
@@ -152,23 +189,16 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
     <SearchPage
       lang={displayLang}
       query={query}
-      activeEntityTab={activeEntityTab}
+      activeSet={activeSet}
       llmResults={llmLoading ? undefined : data.llmResults}
-      entityTabResults={entityLoading ? undefined : data.entityTabResults}
+      catalogResults={entityLoading ? undefined : data.catalogResults}
       docsResults={docsLoading ? undefined : data.docsResults}
-      tabBadgeCounts={data.tabBadgeCounts}
-      orgAggregation={orgAggregation}
-      accessAggregation={accessAggregation}
-      provenanceAggregation={provenanceAggregation}
-      dcatProfileAggregation={dcatProfileAggregation}
-      spatialAggregation={spatialAggregation}
-      formatAggregation={formatAggregation}
-      losThemeAggregation={losThemeAggregation}
-      dataThemeAggregation={dataThemeAggregation}
+      setBadgeCounts={data.setBadgeCounts}
+      {...aggregations}
       entityLoading={entityLoading}
       docsLoading={docsLoading}
       llmLoading={llmLoading}
-      hideKiTab={hideKiTab}
+      hideAiSet={hideAiSet}
     />
   );
 };
