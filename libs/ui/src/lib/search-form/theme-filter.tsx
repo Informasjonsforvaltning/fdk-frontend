@@ -6,8 +6,9 @@ import { CheckboxGroup, VStack } from "@fellesdatakatalog/ui";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import Box from "../box";
+import { enrichAggregationWithSelection } from "./enrich-aggregation";
 import { LosThemeTreeFilter } from "./theme/los-theme";
-import { buildDataThemeFilterOptions, shouldShowTemaFilter } from "./theme";
+import { buildDataThemeFilterOptions } from "./theme";
 import { useSyncedDataThemeSelection } from "./theme/data-theme/use-synced-selection";
 import { useDataThemeLabels } from "./theme/data-theme/use-data-theme-labels";
 import { type AggregationKeyCount } from "./types";
@@ -39,12 +40,19 @@ const ThemeFilter = ({
   } = useSyncedDataThemeSelection(dataThemeValue, onDataThemeChange);
   const dict = getLocalization(locale).searchPage.searchForm.themeFilter;
   const dataThemeLabels = useDataThemeLabels(locale);
-  const dataThemeOptions = useMemo(
-    () => buildDataThemeFilterOptions(dataThemeAggregation, dataThemeLabels),
-    [dataThemeAggregation, dataThemeLabels],
+  const displayDataThemeAggregation = useMemo(
+    () => enrichAggregationWithSelection(dataThemeAggregation, checkboxValue),
+    [dataThemeAggregation, checkboxValue],
   );
+  const dataThemeOptions = useMemo(
+    () => buildDataThemeFilterOptions(displayDataThemeAggregation, dataThemeLabels),
+    [displayDataThemeAggregation, dataThemeLabels],
+  );
+  const showLosTheme = losThemeAggregation.length > 0 || (losThemeValue?.length ?? 0) > 0;
 
-  if (!shouldShowTemaFilter(losThemeAggregation, dataThemeAggregation)) return null;
+  if (!showLosTheme && dataThemeOptions.length === 0) {
+    return null;
+  }
 
   return (
     <Tabs
@@ -59,7 +67,7 @@ const ThemeFilter = ({
         value="tema"
         style={{ padding: 0, paddingTop: "0.5rem" }}
       >
-        {losThemeAggregation.length > 0 ? (
+        {showLosTheme ? (
           <VStack>
             <Box className={styles.box}>
               <LosThemeTreeFilter

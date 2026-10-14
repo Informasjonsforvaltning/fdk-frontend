@@ -179,12 +179,20 @@ const SearchForm = ({
 
   const activeTab = (isUrlDriven ? deriveSearchTabValueFromPathname(pathname) : searchType) as SearchTabsValue;
   const showEntityToolbar = activeEntityTab !== undefined && activeEntityTab !== "docs";
-  const showAccessFilter = shouldShowAccessFilter(accessAggregation ?? []);
-  const showProvenanceFilter = shouldShowProvenanceFilter(provenanceAggregation ?? []);
-  const showDcatProfileFilter = shouldShowDcatProfileFilter(dcatProfileAggregation ?? []);
-  const showSpatialFilter = shouldShowSpatialFilter(spatialAggregation ?? []);
-  const showFormatFilter = shouldShowFormatFilter(formatAggregation ?? []);
-  const showTemaFilter = shouldShowTemaFilter(losThemeAggregation ?? [], dataThemeAggregation ?? []);
+  const showAccessFilter =
+    shouldShowAccessFilter(accessAggregation ?? []) || selectedAccess.length > 0;
+  const showProvenanceFilter =
+    shouldShowProvenanceFilter(provenanceAggregation ?? []) || selectedProvenance.length > 0;
+  const showDcatProfileFilter =
+    shouldShowDcatProfileFilter(dcatProfileAggregation ?? []) || selectedDcatProfiles.length > 0;
+  const showSpatialFilter =
+    shouldShowSpatialFilter(spatialAggregation ?? []) || selectedSpatial.length > 0;
+  const showFormatFilter =
+    shouldShowFormatFilter(formatAggregation ?? []) || selectedFormats.length > 0;
+  const showTemaFilter =
+    shouldShowTemaFilter(losThemeAggregation ?? [], dataThemeAggregation ?? []) ||
+    selectedLosThemes.length > 0 ||
+    selectedDataThemes.length > 0;
 
   const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
   const dict = getLocalization(locale).searchPage;

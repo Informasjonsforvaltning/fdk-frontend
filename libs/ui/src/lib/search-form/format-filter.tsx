@@ -6,6 +6,7 @@ import { CheckboxGroup, VStack } from "@fellesdatakatalog/ui";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import Box from "../box";
+import { enrichAggregationWithSelection } from "./enrich-aggregation";
 import {
   buildFileTypeFilterOptions,
   buildMediaFormatFilterOptions,
@@ -27,8 +28,18 @@ export type FormatFilterProps = {
 const FormatFilter = ({ locale = "nb", aggregation = [], value, onChange }: FormatFilterProps) => {
   const { checkboxValue, checkboxKey, onChange: handleChange } = useSyncedFormatSelection(value, onChange);
   const dict = getLocalization(locale).searchPage.searchForm.formatFilter;
-  const fileTypeOptions = useMemo(() => buildFileTypeFilterOptions(aggregation), [aggregation]);
-  const mediaFormatOptions = useMemo(() => buildMediaFormatFilterOptions(aggregation), [aggregation]);
+  const displayAggregation = useMemo(
+    () => enrichAggregationWithSelection(aggregation, checkboxValue),
+    [aggregation, checkboxValue],
+  );
+  const fileTypeOptions = useMemo(
+    () => buildFileTypeFilterOptions(displayAggregation),
+    [displayAggregation],
+  );
+  const mediaFormatOptions = useMemo(
+    () => buildMediaFormatFilterOptions(displayAggregation),
+    [displayAggregation],
+  );
 
   const selectedFileTypes = useMemo(() => checkboxValue.filter(isFileTypeKey), [checkboxValue]);
   const selectedMediaFormats = useMemo(() => checkboxValue.filter(isMediaTypeKey), [checkboxValue]);
@@ -41,7 +52,7 @@ const FormatFilter = ({ locale = "nb", aggregation = [], value, onChange }: Form
     handleChange([...selectedFileTypes, ...nextMediaFormats]);
   };
 
-  if (!shouldShowFormatFilter(aggregation)) return null;
+  if (!shouldShowFormatFilter(displayAggregation)) return null;
 
   return (
     <Tabs
