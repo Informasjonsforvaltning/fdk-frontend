@@ -8,21 +8,14 @@ const searchPage = {
     labelWithQuery: 'Søk etter "{{query}}"',
   },
   heading: {
-    loading: "Lastar...",
-    loadingWithQuery: "Søkjer etter '{{query}}'...",
-    results: "{{count}} treff",
-    resultsWithQuery: "{{count}} treff for '{{query}}'",
-  },
-  aiSearch: {
-    headingWithCount: "KI-søk ({{count}} treff)",
+    label: "Søk",
+    queryPrefix: "Søk etter",
   },
   entitySearch: {
     hitsCountLabel: "({{count}} treff)",
     noResults: "Ingen treff",
   },
   docs: {
-    heading: "Dokumentasjon",
-    headingWithCount: "Dokumentasjon ({{count}} treff)",
     noResults: "Ingen treff i dokumentasjon",
     noContent: "Ingen dokumentasjon funne.",
   },
@@ -34,16 +27,29 @@ const searchPage = {
   searchInput: {
     label: "Søk",
     placeholder: "Kva leitar du etter?",
+    seeAllResults: "Sjå alle treff",
+    dataCatalogs: "Datakatalogar",
+    aiSearch: "KI-søk",
   },
-  searchTabs: {
+  searchSuggestions: {
+    heading: "Søkeforslag",
+  },
+  searchHistory: {
+    heading: "Tidlegare søk",
+    clear: "Tøm historikk",
+    delete: "Slett søket {{query}}",
+  },
+  searchSets: {
     loadingBadgeAriaLabel: "Lastar antal treff",
-    searchTabsAriaLabel: "vel søkjetype",
-    ki: "KI",
+    ariaLabel: "vel søkjetype",
+    navAriaLabel: "vel sett av resultat",
+    "all-catalogs": "Alle datakatalogar",
+    ai: "KI",
     datasets: "Datasett",
-    dataServices: "API",
+    "data-services": "API",
     concepts: "Omgrep",
-    informationModels: "Informasjonsmodellar",
-    servicesAndEvents: "Tenester og hendingar",
+    "information-models": "Informasjonsmodellar",
+    "services-and-events": "Tenester og hendingar",
     docs: "Dokumentasjon",
   },
   searchForm: {
@@ -57,12 +63,11 @@ const searchPage = {
       dcatProfile: "Spesifikasjon",
     },
     clearAllFilters: "Tøm alle filter",
-    resultsCount: "{{count}} treff",
     resultsPerPage: "{{count}} treff per side",
     sort: {
-      relevance: "Relevans",
-      newest: "Sist publisert",
-      oldest: "Fyrst publisert",
+      relevance: "Mest relevant",
+      newest: "Nyaste fyst",
+      oldest: "Eldste fyst",
     },
     themeFilter: {
       tema: "Tema",

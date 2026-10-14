@@ -15,12 +15,14 @@ export type HeaderProps = {
   locale: LocaleCodes;
   frontpage?: boolean;
   showSearchInput?: boolean;
+  showFindDataButton?: boolean;
   profile?: Profile;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: HeaderProps) => {
+const Header = ({ locale, frontpage, showSearchInput, showFindDataButton, profile = "data.norge" }: HeaderProps) => {
+  const findDataButtonVisible = (showFindDataButton ?? !showSearchInput) && profile !== "transportportal";
   const dictionary = getLocalization(locale).common;
   const headerRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);
@@ -134,13 +136,14 @@ const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: 
               locale={locale}
               className={styles.headerSearchInput}
               showTrayNav={profile !== "transportportal"}
+              hideAiSet={profile === "transportportal"}
               placeholder={profile === "transportportal" ? dictionary.tp.searchPlaceholder : undefined}
             />
           ) : (
             <div style={{ flexGrow: 1 }} />
           )}
           <div className={styles.headerToolbar}>
-            {!showSearchInput && profile !== "transportportal" && (
+            {findDataButtonVisible && (
               <Button
                 asChild
                 data-size="sm"

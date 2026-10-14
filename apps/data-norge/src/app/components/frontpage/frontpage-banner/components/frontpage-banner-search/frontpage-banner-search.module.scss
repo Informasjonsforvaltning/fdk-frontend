@@ -1,0 +1,24 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+  background: transparent;
+  width: 100%;
+  max-width: 600px;
+
+  :global(.ds-heading) {
+    color: white;
+    text-align: center;
+  }
+}
+
+.searchInput {
+  width: 100%;
+
+  &:not([data-color-scheme="light"]) {
+    :global(.ds-input) {
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
+}

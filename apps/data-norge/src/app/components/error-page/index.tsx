@@ -9,6 +9,7 @@ export default async function ErrorPage({ children }: PropsWithChildren) {
       <Header
         locale={lang}
         frontpage
+        showFindDataButton={process.env.SEARCH_PROTOTYPE_ENABLED !== "true"}
       />
       <main
         id="main"

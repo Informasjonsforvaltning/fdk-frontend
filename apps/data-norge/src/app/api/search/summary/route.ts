@@ -1,5 +1,5 @@
 import { searchEntitiesByPath } from "@fdk-frontend/data-access/server";
-import { SUMMARY_ENTITY_PATHS } from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { SEARCH_SUMMARY_PATHS } from "@fdk-frontend/utils";
 import { getProfile } from "@fdk-frontend/utils/server";
 
 import {
@@ -21,7 +21,7 @@ export const POST = async function (request: Request) {
     };
 
     const results = await Promise.all(
-      SUMMARY_ENTITY_PATHS.map(async (path) => {
+      SEARCH_SUMMARY_PATHS.map(async (path) => {
         try {
           return normalizeSearchSummarySlice(await searchEntitiesByPath(path, searchOptions));
         } catch (err) {

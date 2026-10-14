@@ -21,6 +21,7 @@ const Frontpage = async (props: FrontpageProps) => {
   // Opt-in dynamic rendering
   await noStore();
 
+  const searchPrototypeEnabled = process.env.SEARCH_PROTOTYPE_ENABLED === "true";
   const { FDK_LLM_SEARCH_BASE_URI: llmSearchBaseUri = "" } = process.env;
 
   const loc = getLocalization(params.lang);
@@ -33,6 +34,7 @@ const Frontpage = async (props: FrontpageProps) => {
         locale={params.lang}
         frontpage
         profile={profile}
+        showFindDataButton={!searchPrototypeEnabled}
       />
       <main id="main">
         {profile === "transportportal" ? (
@@ -46,6 +48,7 @@ const Frontpage = async (props: FrontpageProps) => {
               dictionary={frontpageDictionary}
               locale={params.lang}
               endpoint={`${llmSearchBaseUri}/llm`}
+              searchPrototypeEnabled={searchPrototypeEnabled}
             />
             <div className="main-content">
               <ShareDataBanner

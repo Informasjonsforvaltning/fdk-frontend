@@ -1,25 +1,27 @@
-import { deriveSearchTabValueFromPathname } from "../search-tabs/search-tab-route";
-import { type SearchTabsValue } from "../search-tabs/search-tab-config";
-import { parseLocaleFromPathname } from "@fdk-frontend/localization";
-import { accessKeysToQueryParam, parseAccessQueryParam } from "./access";
-import { orgPathKeysToQueryParam, parseOrgPathQueryParam } from "./org-path";
-import { provenanceKeysToQueryParam, parseProvenanceQueryParam } from "./provenance";
-import { dcatProfileKeysToQueryParam, parseDcatProfileQueryParam } from "./dcat-profile";
-import { formatKeysToQueryParam, parseFormatQueryParam } from "./format";
-import { losThemeKeysToQueryParam, parseLosThemeQueryParam } from "./theme/los-theme";
-import { dataThemeKeysToQueryParam, parseDataThemeQueryParam } from "./theme/data-theme";
-import { spatialKeysToQueryParam, parseSpatialQueryParam } from "./spatial";
-import { parseSortQueryParam, sortOptionToQueryParam, SEARCH_SORT_OPTIONS, type SearchSortOption } from "./sort";
 import {
-  parseSearchPageParam,
-  parseSearchPageSizeParam,
+  buildSearchSetPath,
   SEARCH_DEFAULT_PAGE,
   SEARCH_DEFAULT_PAGE_SIZE,
-} from "./search-pagination";
+  SEARCH_SORT_OPTIONS,
+  sortOptionToQueryParam,
+  type SearchSetId,
+  type SearchSortOption,
+} from "@fdk-frontend/utils";
+
+import { accessKeysToQueryParam } from "./access";
+import { orgPathKeysToQueryParam } from "./org-path";
+import { provenanceKeysToQueryParam } from "./provenance";
+import { dcatProfileKeysToQueryParam } from "./dcat-profile";
+import { formatKeysToQueryParam } from "./format";
+import { losThemeKeysToQueryParam } from "./theme/los-theme";
+import { dataThemeKeysToQueryParam } from "./theme/data-theme";
+import { spatialKeysToQueryParam } from "./spatial";
+
+export type { SearchSetId, SearchSortOption };
 
 export type BuildSearchPageUrlOptions = {
   locale: string;
-  tab: SearchTabsValue;
+  setId: SearchSetId;
   query: string;
   orgPaths?: string[];
   access?: string[];
@@ -36,7 +38,7 @@ export type BuildSearchPageUrlOptions = {
 
 export const buildSearchPageUrl = function ({
   locale,
-  tab,
+  setId,
   query,
   orgPaths = [],
   access = [],
@@ -50,8 +52,7 @@ export const buildSearchPageUrl = function ({
   page = SEARCH_DEFAULT_PAGE,
   size = SEARCH_DEFAULT_PAGE_SIZE,
 }: BuildSearchPageUrlOptions): string {
-  const base = `/${locale}/search`;
-  const path = tab === "ki" ? base : `${base}/${tab}`;
+  const path = buildSearchSetPath(locale, setId);
   const params = new URLSearchParams();
   const trimmedQuery = query.trim();
 
@@ -71,58 +72,4 @@ export const buildSearchPageUrl = function ({
 
   const queryString = params.toString();
   return queryString ? `${path}?${queryString}` : path;
-};
-
-export const buildSearchPageUrlFromSearchParams = function (
-  pathname: string,
-  searchParams: URLSearchParams,
-  overrides: { page?: number; size?: number; tab?: SearchTabsValue } = {},
-): string {
-  return buildSearchPageUrl({
-    locale: parseLocaleFromPathname(pathname),
-    tab: overrides.tab ?? deriveSearchTabValueFromPathname(pathname),
-    query: searchParams.get("q") ?? "",
-    orgPaths: parseOrgPathQueryParam(searchParams.get("orgPath")),
-    access: parseAccessQueryParam(searchParams.get("access")),
-    provenance: parseProvenanceQueryParam(searchParams.get("provenance")),
-    dcatProfiles: parseDcatProfileQueryParam(searchParams.get("dcatProfile")),
-    spatial: parseSpatialQueryParam(searchParams.get("spatial")),
-    formats: parseFormatQueryParam(searchParams.get("format")),
-    losThemes: parseLosThemeQueryParam(searchParams.get("losTheme")),
-    dataThemes: parseDataThemeQueryParam(searchParams.get("dataTheme")),
-    sort: parseSortQueryParam(searchParams.get("sort")),
-    page: overrides.page ?? parseSearchPageParam(searchParams.get("page")),
-    size: overrides.size ?? parseSearchPageSizeParam(searchParams.get("size")),
-  });
-};
-
-export const buildSearchPageQueryUrl = function (options: {
-  pathname: string;
-  locale: string;
-  searchParams: URLSearchParams;
-  query: string;
-}): string {
-  const path = options.pathname.split("?")[0];
-  const segments = path.split("/").filter(Boolean);
-  const isOnSearchPage = segments.length >= 2 && segments[0] === options.locale && segments[1] === "search";
-
-  if (isOnSearchPage) {
-    const params = new URLSearchParams(options.searchParams.toString());
-    const trimmedQuery = options.query.trim();
-
-    if (trimmedQuery) params.set("q", trimmedQuery);
-    else params.delete("q");
-
-    // Reset pagination to the first page on a new query.
-    params.delete("page");
-
-    const queryString = params.toString();
-    return queryString ? `${path}?${queryString}` : path;
-  }
-
-  return buildSearchPageUrl({
-    locale: options.locale,
-    tab: "ki",
-    query: options.query,
-  });
 };

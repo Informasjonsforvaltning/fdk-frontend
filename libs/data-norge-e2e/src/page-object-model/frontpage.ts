@@ -3,6 +3,7 @@ import { expect, Page, BrowserContext } from "@playwright/test";
 import type AxeBuilder from "@axe-core/playwright";
 
 const dictionary = getLocalization("en").frontpage;
+const searchInputLabel = getLocalization("nb").searchPage.searchInput.label;
 
 export default class Frontpage {
   page: Page;
@@ -20,8 +21,7 @@ export default class Frontpage {
 
   // Locators
   pageTitle = () => this.page.getByRole("heading", { name: this.dictionary.aiBanner.title });
-  aiSearchInput = () => this.page.getByLabel(this.dictionary.aiBanner.prompt.label);
-  submitButton = () => this.page.getByRole("button", { name: this.dictionary.aiBanner.prompt.button });
+  aiSearchInput = () => this.page.getByLabel(searchInputLabel);
 
   // Helpers
   public async goto(url: string = this.url) {
