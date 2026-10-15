@@ -6,17 +6,15 @@ description: KI-søkjeendepunktet lar deg søkje i data på Data.norge.no ved hj
 # KI-søk API
 
 <Ingress>
-  KI-søket brukar metadata frå Data.norge.no og hjelper deg med å finne datasett ved hjelp av kunstig intelligens.
-  Tenesta som er ansvarleg for å handtere KI-søk er
+  KI-søket brukar metadata frå Data.norge.no og hjelper deg med å finne datasett, API-ar, omgrep, informasjonsmodellar,
+  tenester og hendingar ved hjelp av kunstig intelligens. Tenesta som er ansvarleg for å handtere KI-søk er
   [fdk-llm-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-llm-search-service).
 </Ingress>
 
 <Alert data-color="warning">
-  **Viktig**: Dette API-et vert nytta internt i tenesteutviklinga på Data.norge.no, og kan av den grunn bli endra over
-  tid. Vi anbefaler ikkje å nytte dette API-et om ein er avhengig av stabilitet og konsistens.
+  **Viktig**: Dette API-et er laga for intern bruk på Data.norge.no og kan bli endra over tid. Vi tilrår ikkje å bruke
+  det dersom du er avhengig av stabilitet og konsistens.
 </Alert>
-
-<Alert>Tenesta støttar for augneblinken berre datasettressursar.</Alert>
 
 ## Endepunkt i ulike miljø
 
@@ -42,7 +40,11 @@ Viss du overskrid desse grensene, vil du motta ein HTTP 429 (Too Many Requests) 
 
 ## Utforming av spørjingar
 
-KI-søket let deg stille spurnader i naturleg språk. I eksempelet under har vi stilt spurnaden "Kva område i Noreg er verna?". KI-søket vil tolke spurnaden og finne relevante datasett basert på metadata.
+KI-søket let deg stille spurnader i naturleg språk. I eksempelet under har vi stilt spurnaden "Kva område i Noreg er verna?". KI-søket vil tolke spurnaden og finne relevante ressursar basert på metadata. Utan feltet `type` søkjer det berre i datasett.
+
+`query` må vere mellom **3 og 255 teikn**. Kortare eller lengre spørjingar gjev HTTP 400.
+
+Typisk responstid er rundt **5 sekund**. Embeddingsøket er avgrensa til om lag **10 kandidatar**; KI-filteret returnerer vanlegvis færre treff.
 
 ```Shell
 curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
@@ -52,14 +54,72 @@ curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
 
 ### Naturleg språk
 
-I motsetning til standard søk, kan du bruka naturleg språk i KI-søket. Du treng ikkje kjenne til spesifikke datasettnamn, fagomgrep eller tekniske format. Døme på spurnader:
+I motsetning til standard søk, kan du bruka naturleg språk i KI-søket. Du treng ikkje kjenne til spesifikke ressursnamn, fagomgrep eller tekniske format.
+
+Tenesta er primært tilpassa **norsk**. Metadataoppsummeringane som det vert søkt i, er på norsk, og forklaringane i svara vert gjevne på norsk. Engelske spurnader kan fungere, men svarteksten vil likevel vere på norsk.
+
+Døme på spurnader:
 
 - "Kva datasett handlar om miljøvern?"
-- "Finn data om sjukefråvær i offentleg sektor"
-- "Vis meg datasett om vegtrafikk i Oslo"
+- "Finn omgrep om sjukefråvær"
+- "Vis meg API-ar om vegtrafikk i Oslo"
 
 ```Shell
 curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
   -H 'Content-Type: application/json' \
   -d '{"query":"Finn data om sjukefråvær i offentleg sektor"}'
 ```
+
+### Ressurstypar
+
+Du kan avgrense søket til éin ressurstype med det valfrie feltet `type`. Viss `type` ikkje er oppgitt, er standardverdien `DATASET` — søket gjeld då berre datasett. Bruk `ALL` for å søkje på tvers av alle ressurstypar.
+
+| Verdi               | Ressurstype          |
+| ------------------- | -------------------- |
+| `DATASET`           | Datasett (standard)  |
+| `DATA_SERVICE`      | API-ar               |
+| `CONCEPT`           | Omgrep               |
+| `INFORMATION_MODEL` | Informasjonsmodellar |
+| `SERVICE`           | Tenester             |
+| `EVENT`             | Hendingar            |
+| `ALL`               | Alle ressurstypar    |
+
+```Shell
+curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"Finn omgrep om sjukefråvær","type":"CONCEPT"}'
+```
+
+### Svarformat
+
+Svaret er eit JSON-objekt med lista `hits`. Kvart treff har desse felta:
+
+| Felt          | Skildring                                                                   |
+| ------------- | --------------------------------------------------------------------------- |
+| `id`          | Identifikatoren til ressursen                                               |
+| `title`       | Tittelen på ressursen                                                       |
+| `description` | KI-generert forklaring (Markdown) på kvifor ressursen passar — **ikkje** katalogskildringa |
+| `type`        | Ressurstype, til dømes `DATASET` eller `CONCEPT`                            |
+| `publisher`   | Namn på utgjevar                                                            |
+| `publisherId` | Identifikator for utgjevar                                                  |
+
+Illustrativt døme på svarformat (ikkje ekte katalogdata):
+
+```json
+{
+  "hits": [
+    {
+      "id": "<resource-id>",
+      "title": "Eksempelressurs",
+      "description": "Denne ressursen passar til spurnaden fordi den handlar om …",
+      "type": "DATASET",
+      "publisher": "Eksempelutgjevar",
+      "publisherId": "<publisher-id>"
+    }
+  ]
+}
+```
+
+### Lagring av spørjingar
+
+Alle spørjingar vert lagra (tekst, tal på treff og om spørjinga er vurdert som sensitiv) for å analysere søkjemønster og forbetre tenesta. Spørjingane vert lagra utan brukar- eller sesjonsidentifikatorar. Unngå å sende personopplysningar i `query`.

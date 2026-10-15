@@ -6,17 +6,15 @@ description: The AI search endpoint allows you to search data on Data.norge.no u
 # AI Search API
 
 <Ingress>
-  The AI search uses metadata from Data.norge.no and helps you find datasets using artificial intelligence. The service
-  that is responsible for handling AI searches is
+  The AI search uses metadata from Data.norge.no and helps you find datasets, APIs, concepts, information models,
+  services and events using artificial intelligence. The service that is responsible for handling AI searches is
   [fdk-llm-search-service(Github)](https://github.com/Informasjonsforvaltning/fdk-llm-search-service).
 </Ingress>
 
 <Alert data-color="warning">
-  **Important**: This API is used internally in the service development on Data.norge.no, and may therefore be altered
-  over time. We do not recommend using this API if you are dependent on stability and consistency.
+  **Important**: This API is built for internal use by Data.norge.no and may change over time. We do not recommend using
+  it if you depend on stability and consistency.
 </Alert>
-
-<Alert>The service currently only supports dataset resources.</Alert>
 
 ## Endpoints to different environments
 
@@ -42,7 +40,11 @@ If you exceed these limits, you will receive an HTTP 429 (Too Many Requests) res
 
 ## Design queries
 
-The AI search allows you to ask questions in natural language. In the example below, we have asked "Which areas in Norway are protected?". The AI search will interpret the question and find relevant datasets based on metadata.
+The AI search allows you to ask questions in natural language. In the example below, we have asked "Which areas in Norway are protected?". The AI search will interpret the question and find relevant resources based on metadata. Without the `type` field, the search is limited to datasets.
+
+`query` must be between **3 and 255 characters**. Shorter or longer queries return HTTP 400.
+
+Typical response time is around **5 seconds**. The embedding search is capped at about **10 candidates**; the LLM filter usually returns fewer hits.
 
 ```Shell
 curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
@@ -52,14 +54,72 @@ curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
 
 ### Natural language
 
-Unlike standard search, you can use natural language in AI search. You don't need to know specific dataset names, technical terms, or formats. Examples of questions:
+Unlike standard search, you can use natural language in AI search. You don't need to know specific resource names, technical terms, or formats.
+
+The service is primarily adapted for **Norwegian**. The metadata summaries searched against are in Norwegian, and explanations in the response are given in Norwegian. English questions may work, but the response text will still be in Norwegian.
+
+Examples of questions:
 
 - "Which datasets are about environmental protection?"
-- "Find data about sick leave in the public sector"
-- "Show me datasets about road traffic in Oslo"
+- "Find concepts about sick leave"
+- "Show me APIs about road traffic in Oslo"
 
 ```Shell
 curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
   -H 'Content-Type: application/json' \
   -d '{"query":"Find data about sick leave in the public sector"}'
 ```
+
+### Resource types
+
+You can limit the search to one resource type with the optional `type` field. If `type` is not specified, the default is `DATASET` — the search then covers datasets only. Use `ALL` to search across all resource types.
+
+| Value               | Resource type      |
+| ------------------- | ------------------ |
+| `DATASET`           | Datasets (default) |
+| `DATA_SERVICE`      | APIs               |
+| `CONCEPT`           | Concepts           |
+| `INFORMATION_MODEL` | Information models |
+| `SERVICE`           | Services           |
+| `EVENT`             | Events             |
+| `ALL`               | All resource types |
+
+```Shell
+curl -X POST 'https://aisearch.api.demo.fellesdatakatalog.digdir.no/llm' \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"Find concepts about sick leave","type":"CONCEPT"}'
+```
+
+### Response format
+
+The response is a JSON object with the `hits` list. Each hit has these fields:
+
+| Field         | Description                                                                              |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| `id`          | Resource identifier                                                                      |
+| `title`       | Resource title                                                                           |
+| `description` | AI-generated explanation (Markdown) of why the resource matches — **not** the catalog description |
+| `type`        | Resource type, for example `DATASET` or `CONCEPT`                                        |
+| `publisher`   | Publisher name                                                                           |
+| `publisherId` | Publisher identifier                                                                     |
+
+Illustrative example of the response format (not real catalog data):
+
+```json
+{
+  "hits": [
+    {
+      "id": "<resource-id>",
+      "title": "Example resource",
+      "description": "This resource matches the question because it covers …",
+      "type": "DATASET",
+      "publisher": "Example publisher",
+      "publisherId": "<publisher-id>"
+    }
+  ]
+}
+```
+
+### Storage of queries
+
+All queries are stored (text, hit counts, and whether the query was assessed as sensitive) to analyse search patterns and improve the service. Queries are stored without user or session identifiers. Do not send personal data in `query`.
