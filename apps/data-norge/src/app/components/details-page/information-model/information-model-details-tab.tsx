@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type InformationModel, type SearchObject } from "@fellesdatakatalog/types";
-import { printLocaleValue } from "@fdk-frontend/utils";
+import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
 import {
   PlaceholderText,
   PlaceholderBox,
@@ -17,10 +17,12 @@ import { Heading, Link, Button, Paragraph } from "@digdir/designsystemet-react";
 import { HelpText } from "@fellesdatakatalog/ui";
 import { EyeIcon, EyeSlashIcon } from "@navikt/aksel-icons";
 import styles from "./information-model.module.scss";
+import { getInformationModelRelations } from "./information-model-relations";
 
 type InformationModelDetailsTabProps = {
   resource: InformationModel;
   containedConcepts?: SearchObject[];
+  relatedInformationModels?: SearchObject[];
   locale: LocaleCodes;
   dictionary: Localization;
   baseUri: string;
@@ -29,11 +31,13 @@ type InformationModelDetailsTabProps = {
 export default function InformationModelDetailsTab({
   resource,
   containedConcepts,
+  relatedInformationModels,
   locale,
   dictionary,
   baseUri,
 }: InformationModelDetailsTabProps) {
   const [showEmptyRows, setShowEmptyRows] = useState(true);
+  const relations = getInformationModelRelations(resource);
 
   return (
     <div className={styles.details}>
@@ -76,6 +80,58 @@ export default function InformationModelDetailsTab({
                   <dd>{printLocaleValue(locale, concept.description)}</dd>
                 </React.Fragment>
               ))}
+            </Dlist>
+          ) : (
+            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+          )}
+        </section>
+      )}
+
+      {!relations.length && !showEmptyRows ? null : (
+        <section>
+          <Heading
+            level={2}
+            data-size="xs"
+          >
+            {dictionary.details.references.title}
+          </Heading>
+          {relations.length > 0 ? (
+            <Dlist>
+              {relations.map((relation) => {
+                const relatedModel = relatedInformationModels?.find(
+                  (model) => model.uri === relation.source,
+                );
+                return (
+                  <React.Fragment key={`${relation.type}-${relation.source}`}>
+                    <dt>
+                      {dictionary.details.references.relationLabels[relation.type] ||
+                        dictionary.details.references.relationLabels.unknown}
+                      :
+                    </dt>
+                    <dd>
+                      {relatedModel?.id ? (
+                        <InternalLink
+                          href={`/${locale}/information-models/${relatedModel.id}/${getSlug(relatedModel, locale)}`}
+                          entity={relatedModel}
+                          profile="data.norge"
+                          baseUri={baseUri}
+                          locale={locale}
+                        >
+                          {printLocaleValue(locale, relatedModel.title) || relatedModel.uri}
+                        </InternalLink>
+                      ) : (
+                        <ExternalLink
+                          href={relation.source}
+                          locale={locale}
+                          gateway
+                        >
+                          {relation.source}
+                        </ExternalLink>
+                      )}
+                    </dd>
+                  </React.Fragment>
+                );
+              })}
             </Dlist>
           ) : (
             <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
