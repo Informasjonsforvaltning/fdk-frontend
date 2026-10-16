@@ -17,6 +17,7 @@ export type InformationModelDetailsPageType = {
   baseUri: string;
   resource: InformationModel;
   containedConcepts?: SearchObject[];
+  relatedInformationModels?: SearchObject[];
   communityTopics?: CommunityTopic[];
   communityBaseUri: string;
   defaultActiveTab?: string;
@@ -31,6 +32,7 @@ export default function InformationModelDetailsPage({
   baseUri,
   resource,
   containedConcepts,
+  relatedInformationModels,
   communityTopics,
   communityBaseUri,
   orgLogo,
@@ -151,6 +153,7 @@ export default function InformationModelDetailsPage({
             <InformationModelDetailsTab
               resource={resource}
               containedConcepts={containedConcepts}
+              relatedInformationModels={relatedInformationModels}
               locale={locale}
               dictionary={dictionaries.detailsPage}
               baseUri={baseUri}
