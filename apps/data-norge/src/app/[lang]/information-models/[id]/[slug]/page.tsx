@@ -8,8 +8,10 @@ import {
   getInformationModel,
   getAllCommunityTopics,
   searchConcepts,
+  searchInformationModels,
 } from "@fdk-frontend/data-access/server";
 import { buildQueryString } from "../../build-query-string";
+import { getInformationModelRelationUris } from "../../../../components/details-page/information-model/information-model-relations";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -75,6 +77,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
   let orgLogo: string | null = null;
   let communityTopics: CommunityTopic[] = [];
   let containedConcepts: SearchObject[] = [];
+  let relatedInformationModels: SearchObject[] = [];
 
   try {
     informationModel = await getInformationModel(params.id);
@@ -90,20 +93,27 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     redirect(queryString ? `${path}?${queryString}` : path);
   }
 
-  [orgLogo, communityTopics, containedConcepts] = await Promise.all([
+  const relationUris = getInformationModelRelationUris(informationModel);
+
+  [orgLogo, communityTopics, containedConcepts, relatedInformationModels] = await Promise.all([
     getOrgLogo(informationModel.publisher?.id).catch(() => null),
     getAllCommunityTopics(informationModel.id).catch((): CommunityTopic[] => []),
     searchConcepts(informationModel.containsSubjects)
       .then((results) => results?.hits ?? [])
       .catch((): SearchObject[] => []),
+    relationUris.length > 0
+      ? searchInformationModels(relationUris)
+          .then((results) => results?.hits ?? [])
+          .catch((): SearchObject[] => [])
+      : Promise.resolve([] as SearchObject[]),
   ]);
-
   return (
     <InformationModelDetailsPage
       baseUri={FDK_BASE_URI as string}
       resource={informationModel}
       orgLogo={orgLogo}
       containedConcepts={containedConcepts}
+      relatedInformationModels={relatedInformationModels}
       communityTopics={communityTopics}
       communityBaseUri={FDK_COMMUNITY_BASE_URI as string}
       locale={locale}
