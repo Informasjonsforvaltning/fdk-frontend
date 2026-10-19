@@ -4,6 +4,7 @@ import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
 import { type DataService, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import DataServiceDetailsPage from "../../../../components/details-page/data-service";
 import { getOrgLogo, getApi, getAllCommunityTopics, searchDatasets } from "@fdk-frontend/data-access/server";
+import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -23,15 +24,18 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
     const dataService = await getApi(params.id);
     const title = printLocaleValue(locale, dataService.title) || dictionary.header.namelessDataService;
     const description = printLocaleValue(locale, dataService.description) ?? dictionary.breadcrumbs.dataServices;
+    const pageUrl = `https://data.norge.no/${locale}/data-services/${dataService.id}/${getSlug(dataService, locale)}`;
+    const isRemovedFromFDK = dataService.isRemovedFromFDK;
 
     return {
       title: `${title} - ${dictionary.breadcrumbs.dataServices} - data.norge.no`,
       description: description,
+      robots: getResourceRobots(isRemovedFromFDK),
       openGraph: {
         title: title,
         description: description,
         type: "website",
-        url: `https://data.norge.no/${locale}/data-services/${dataService.id}/${getSlug(dataService, locale)}`,
+        url: pageUrl,
         siteName: "data.norge.no",
         locale: locale,
       },
@@ -40,14 +44,15 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         title: title,
         description: description,
       },
-      alternates: {
-        canonical: `https://data.norge.no/${locale}/data-services/${dataService.id}/${getSlug(dataService, locale)}`,
+      alternates: getResourceAlternates({
+        canonical: pageUrl,
         languages: {
           nb: `https://data.norge.no/nb/data-services/${dataService.id}/${getSlug(dataService, "nb")}`,
           en: `https://data.norge.no/en/data-services/${dataService.id}/${getSlug(dataService, "en")}`,
           nn: `https://data.norge.no/nn/data-services/${dataService.id}/${getSlug(dataService, "nn")}`,
         },
-      },
+        isRemovedFromFDK,
+      }),
     };
   } catch (err) {
     console.error(`Failed generate metadata for data service with ID ${params.id}`, JSON.stringify(err));

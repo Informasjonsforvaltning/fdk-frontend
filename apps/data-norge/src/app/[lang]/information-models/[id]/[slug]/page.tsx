@@ -12,6 +12,7 @@ import {
 } from "@fdk-frontend/data-access/server";
 import { buildQueryString } from "../../build-query-string";
 import { getInformationModelRelationUris } from "../../../../components/details-page/information-model/information-model-relations";
+import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -33,15 +34,18 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       printLocaleValue(locale, informationModel.title) || dictionary.header.namelessInformationModel;
     const description =
       printLocaleValue(locale, informationModel.description) ?? dictionary.breadcrumbs.informationModels;
+    const pageUrl = `https://data.norge.no/${locale}/information-models/${informationModel.id}/${getSlug(informationModel, locale)}`;
+    const isRemovedFromFDK = informationModel.isRemovedFromFDK;
 
     return {
       title: `${title} - ${dictionary.breadcrumbs.informationModels} - data.norge.no`,
       description: description,
+      robots: getResourceRobots(isRemovedFromFDK),
       openGraph: {
         title: title,
         description: description,
         type: "website",
-        url: `https://data.norge.no/${locale}/information-models/${informationModel.id}/${getSlug(informationModel, locale)}`,
+        url: pageUrl,
         siteName: "data.norge.no",
         locale: locale,
       },
@@ -50,14 +54,15 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         title: title,
         description: description,
       },
-      alternates: {
-        canonical: `https://data.norge.no/${locale}/information-models/${informationModel.id}/${getSlug(informationModel, locale)}`,
+      alternates: getResourceAlternates({
+        canonical: pageUrl,
         languages: {
           nb: `https://data.norge.no/nb/information-models/${informationModel.id}/${getSlug(informationModel, "nb")}`,
           en: `https://data.norge.no/en/information-models/${informationModel.id}/${getSlug(informationModel, "en")}`,
           nn: `https://data.norge.no/nn/information-models/${informationModel.id}/${getSlug(informationModel, "nn")}`,
         },
-      },
+        isRemovedFromFDK,
+      }),
     };
   } catch (err) {
     console.error(`Failed generate metadata for information model with ID ${params.id}`, JSON.stringify(err));

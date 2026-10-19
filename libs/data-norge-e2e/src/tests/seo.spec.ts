@@ -5,6 +5,7 @@ import { test, expect } from "../fixtures/basePage";
 declare const process: {
   env: {
     E2E_DATASET_ID?: string;
+    E2E_REMOVED_DATASET_ID?: string;
   };
 };
 
@@ -525,6 +526,45 @@ test.describe("SEO Tests", () => {
     });
   });
 
+  test.describe("Unpublished resources", () => {
+    test("should noindex unpublished datasets without schema.org or hreflang", async ({ page }) => {
+      const removedDatasetId = process.env.E2E_REMOVED_DATASET_ID;
+      if (!removedDatasetId) {
+        test.skip(true, "E2E_REMOVED_DATASET_ID not set, skipping unpublished resource SEO test");
+        return;
+      }
+
+      const response = await page.goto(`/nb/datasets/${removedDatasetId}`);
+      if (response?.status() === 404) {
+        test.skip(true, `Removed dataset ${removedDatasetId} not found, skipping test`);
+        return;
+      }
+
+      expect(response?.status()).toBe(200);
+
+      const robotsLocator = page.locator('meta[name="robots"]');
+      const robotsContent = await robotsLocator.getAttribute("content");
+      if (!robotsContent?.includes("noindex")) {
+        test.skip(
+          true,
+          `Dataset ${removedDatasetId} is not flagged isRemovedFromFDK yet (no noindex meta), skipping test`,
+        );
+        return;
+      }
+
+      await expect(robotsLocator).toHaveAttribute("content", /noindex/);
+
+      // Direct links still work; canonical is kept, but hreflang and Dataset JSON-LD are omitted
+      const canonicalLocator = page.locator('link[rel="canonical"]');
+      await expect(canonicalLocator).toHaveCount(1);
+      await expect(canonicalLocator).toHaveAttribute("href", /data\.norge\.no/);
+
+      await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(0);
+      await expect(page.locator('script[id="dataset-structured-data"][type="application/ld+json"]')).toHaveCount(0);
+      await expect(page.locator('script[id="breadcrumb-structured-data"][type="application/ld+json"]')).toHaveCount(0);
+    });
+  });
+
   test.describe("Meta Tags and Headers", () => {
     test("should have proper meta tags for SEO", async ({ page }) => {
       const datasetId = process.env.E2E_DATASET_ID || "test-dataset";
@@ -554,8 +594,17 @@ test.describe("SEO Tests", () => {
       const success = await navigateToDataset(page, datasetId);
       if (!success) return;
 
-      // Check for hreflang tags
-      await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(3);
+      // Check for hreflang tags (nb, en, nn, x-default)
+      const hreflangLocator = page.locator('link[rel="alternate"][hreflang]');
+      await expect(hreflangLocator).toHaveCount(4);
+      await expect(page.locator('link[rel="alternate"][hreflang="nb"]')).toHaveCount(1);
+      await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveCount(1);
+      await expect(page.locator('link[rel="alternate"][hreflang="nn"]')).toHaveCount(1);
+      await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
+      await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveAttribute(
+        "href",
+        /\/nb\/datasets\//,
+      );
       const canonicalLocator = page.locator('link[rel="canonical"]');
       await expect(canonicalLocator).toHaveCount(1);
       await expect(canonicalLocator).toHaveAttribute("href", /data\.norge\.no/);
@@ -854,9 +903,9 @@ test.describe("SEO Tests", () => {
       const success = await navigateToDataset(page, datasetId);
       if (!success) return;
 
-      // Check hreflang tags
+      // Check hreflang tags (nb, en, nn, x-default)
       const hreflangLocator = page.locator('link[rel="alternate"][hreflang]');
-      await expect(hreflangLocator).toHaveCount(3); // nb, en, nn
+      await expect(hreflangLocator).toHaveCount(4);
 
       // Get all href attributes concurrently
       const hrefPromises = (await hreflangLocator.all()).map(async (tag) => {
@@ -878,6 +927,11 @@ test.describe("SEO Tests", () => {
         // Should contain dataset ID
         expect(href).toContain(datasetId);
       });
+
+      await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveAttribute(
+        "href",
+        /\/nb\/datasets\//,
+      );
     });
 
     test("should have proper structured data URLs with slugs", async ({ page }) => {

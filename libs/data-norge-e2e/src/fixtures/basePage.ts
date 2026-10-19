@@ -41,9 +41,9 @@ export const test = base.extend<{
   },
   serviceDetailsPage: async ({ page, context }, use) => {
     const accessibilityBuilder = await generateAccessibilityBuilder(page);
-    const datasetDetailsPage = new DatasetDetailsPage(page, context, accessibilityBuilder);
-    await datasetDetailsPage.goto();
-    await use(datasetDetailsPage);
+    const serviceDetailsPage = new ServiceDetailsPage(page, context, accessibilityBuilder);
+    await serviceDetailsPage.goto();
+    await use(serviceDetailsPage);
   },
   searchPage: async ({ page, context }, use) => {
     const accessibilityBuilder = await generateAccessibilityBuilder(page);

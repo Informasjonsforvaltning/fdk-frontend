@@ -1,7 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
-import { type PopulatedDatasetReference } from "@fdk-frontend/types";
+import { type PopulatedDatasetReference, type WithRemovedFromFDKFlag } from "@fdk-frontend/types";
 import {
   type DatasetWithIdentifier,
   type DatasetScores,
@@ -28,6 +28,7 @@ import {
   searchInformationModels,
 } from "@fdk-frontend/data-access/server";
 import { getProfile } from "@fdk-frontend/utils/server";
+import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -53,7 +54,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     detailsPage: loc.detailsPage,
   };
 
-  let dataset: DatasetWithIdentifier;
+  let dataset: WithRemovedFromFDKFlag<DatasetWithIdentifier>;
   let metadataScore: DatasetScore | undefined = undefined;
   let orgLogo: string | null = null;
   let apis: DataService[] = [];
@@ -258,43 +259,49 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       return firstLicense?.uri;
     };
 
-    // Create structured data for better SEO
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Dataset",
-      name: title,
-      description: description,
-      url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
-      identifier: dataset.id,
-      ...(publisher && {
-        publisher: {
-          "@type": "Organization",
-          name: publisher,
-        },
-      }),
-      dateModified: dataset.modified,
-      datePublished: dataset.issued,
-      keywords: keywords,
-      isAccessibleForFree: dataset.isOpenData,
-      ...(getFirstLicenseUrl() && { license: getFirstLicenseUrl() }),
-      distribution: dataset.distribution
-        ?.filter((dist: any) => dist.accessURL || dist.downloadURL)
-        .map((dist: any) => ({
-          "@type": "DataDownload",
-          ...(dist.fdkFormat?.uri && { encodingFormat: dist.fdkFormat.uri }),
-          contentUrl: dist.downloadURL || dist.accessURL,
-        })),
-    };
+    const pageUrl = `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`;
+    const isRemovedFromFDK = dataset.isRemovedFromFDK;
+
+    // Create structured data for better SEO (omit for unpublished resources)
+    const structuredData = !isRemovedFromFDK
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          name: title,
+          description: description,
+          url: pageUrl,
+          identifier: dataset.id,
+          ...(publisher && {
+            publisher: {
+              "@type": "Organization",
+              name: publisher,
+            },
+          }),
+          dateModified: dataset.modified,
+          datePublished: dataset.issued,
+          keywords: keywords,
+          isAccessibleForFree: dataset.isOpenData,
+          ...(getFirstLicenseUrl() && { license: getFirstLicenseUrl() }),
+          distribution: dataset.distribution
+            ?.filter((dist: any) => dist.accessURL || dist.downloadURL)
+            .map((dist: any) => ({
+              "@type": "DataDownload",
+              ...(dist.fdkFormat?.uri && { encodingFormat: dist.fdkFormat.uri }),
+              contentUrl: dist.downloadURL || dist.accessURL,
+            })),
+        }
+      : undefined;
 
     return {
       title: `${title} - ${dictionary.breadcrumbs.datasets} - data.norge.no`,
       description: description,
       keywords: keywords,
+      robots: getResourceRobots(isRemovedFromFDK),
       openGraph: {
         title: title,
         description: description,
         type: "website",
-        url: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
+        url: pageUrl,
         siteName: "data.norge.no",
         locale: locale,
       },
@@ -303,17 +310,20 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         title: title,
         description: description,
       },
-      alternates: {
-        canonical: `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`,
+      alternates: getResourceAlternates({
+        canonical: pageUrl,
         languages: {
           nb: `https://data.norge.no/nb/datasets/${dataset.id}/${getSlug(dataset, "nb")}`,
           en: `https://data.norge.no/en/datasets/${dataset.id}/${getSlug(dataset, "en")}`,
           nn: `https://data.norge.no/nn/datasets/${dataset.id}/${getSlug(dataset, "nn")}`,
         },
-      },
-      other: {
-        "structured-data": JSON.stringify(structuredData),
-      },
+        isRemovedFromFDK,
+      }),
+      ...(structuredData && {
+        other: {
+          "structured-data": JSON.stringify(structuredData),
+        },
+      }),
     };
   } catch (err) {
     console.error(`Failed generate metadata for dataset with ID ${params.id}`, JSON.stringify(err));
