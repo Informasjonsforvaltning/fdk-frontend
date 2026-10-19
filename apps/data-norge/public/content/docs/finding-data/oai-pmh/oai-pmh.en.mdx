@@ -5,6 +5,14 @@ description: Guide to fetching extracts via the OAI-PMH endpoint.
 
 # Fetch data via OAI-PMH
 
+## About OAI-PMH
+
+OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting) is an international standard for retrieving descriptions of resources from a catalogue. It is widely used for harvesting between catalogues and data portals. The standard is described in [OAI-PMH version 2.0](https://www.openarchives.org/OAI/openarchivesprotocol.html).
+
+## What you get
+
+Each record in the extract is described in RDF and delivered in [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/) format (selected with `metadataPrefix=rdfxml` in step 2). The descriptions follow a standard for each resource type, for example [DCAT-AP-NO](https://data.norge.no/specification/dcat-ap-no) for datasets and [SKOS-AP-NO-Begrep](https://data.norge.no/specification/skos-ap-no-begrep) for concepts.
+
 ## How it works
 
 The OAI-PMH endpoint delivers the extract as a list of records. Each record describes one resource, for example one dataset or one concept, depending on which extract you fetch. Large lists are split across multiple pages. Each time you open an address you get one page with up to 50 records. You fetch the next page by changing the address. Every page except the last ends with a continuation key (`resumptionToken`) that you use to fetch the next page.
