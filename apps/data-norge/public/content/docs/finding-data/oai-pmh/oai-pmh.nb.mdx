@@ -5,6 +5,14 @@ description: Veiledning for å hente uttrekk via OAI-PMH-endepunktet.
 
 # Hente data via OAI-PMH
 
+## Om OAI-PMH
+
+OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting) er en internasjonal standard for å hente ut beskrivelser av ressurser fra en katalog. Den brukes mye til høsting mellom kataloger og dataportaler. Standarden er beskrevet i [OAI-PMH versjon 2.0](https://www.openarchives.org/OAI/openarchivesprotocol.html).
+
+## Hva du får ut
+
+Hver post i uttrekket er beskrevet i RDF og leveres i formatet [RDF/XML](https://www.w3.org/TR/rdf-syntax-grammar/) (valgt med `metadataPrefix=rdfxml` i steg 2). Beskrivelsene følger en standard for hver ressurstype, for eksempel [DCAT-AP-NO](https://data.norge.no/specification/dcat-ap-no) for datasett og [SKOS-AP-NO-Begrep](https://data.norge.no/specification/skos-ap-no-begrep) for begreper.
+
 ## Slik fungerer det
 
 OAI-PMH-endepunktet leverer uttrekket som en liste med poster. Hver post beskriver én ressurs, for eksempel ett datasett eller ett begrep, avhengig av hvilket uttrekk du henter. Store lister deles opp i flere sider. Hver gang du åpner en adresse får du én side med inntil 50 poster. Neste side henter du ved å endre adressen. Hver side, bortsett fra den siste, slutter med en fortsettelsesnøkkel (`resumptionToken`) som du bruker for å hente neste side.
