@@ -2,6 +2,7 @@ export { mergeDcatProfileAggregations } from "./aggregation";
 export {
   DCAT_PROFILE_DEFAULT,
   DCAT_PROFILE_MOBILITY,
+  DCAT_PROFILE_HVD,
   getDcatProfileLabels,
   formatDcatProfileLabel,
   formatDcatProfileCheckboxLabel,

@@ -87,7 +87,7 @@ const searchPage = {
     },
     dcatProfileFilter: {
       mobilityDcatAp: "MobilityDCAT-AP",
-      hvdDcatApNo: "HVD-DCAT-AP-NO",
+      hvdDcatApNo: "HVD",
       dcatApNo: "DCAT-AP-NO",
     },
     orgTypeFilter: {

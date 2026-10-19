@@ -6,6 +6,8 @@ export const DCAT_PROFILE_DEFAULT = "DCAT_AP_NO";
 
 export const DCAT_PROFILE_MOBILITY = "MOBILITY_DCAT_AP";
 
+export const DCAT_PROFILE_HVD = "HVD_DCAT_AP_NO";
+
 export type DcatProfileFilterDictionary = {
   mobilityDcatAp: string;
   hvdDcatApNo: string;
