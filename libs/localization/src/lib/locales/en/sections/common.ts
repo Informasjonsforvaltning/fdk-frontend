@@ -146,6 +146,12 @@ const common = {
     helpTextTitle: "Explanation",
     helpText: "The dataset is described in accordance to mobilityDCAT, a standardization for mobility data.",
   },
+  hvdTag: {
+    label: "HVD",
+    helpTextTitle: "Explanation",
+    helpText:
+      "The dataset is a high-value dataset (HVD) under Commission Implementing Regulation (EU) 2023/138, as declared by the publisher.",
+  },
   general: {
     loading: "Loading...",
     redirecting: "Redirecting...",

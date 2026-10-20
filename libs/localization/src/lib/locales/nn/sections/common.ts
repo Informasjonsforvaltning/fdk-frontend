@@ -147,6 +147,12 @@ const common = {
     helpText:
       "Datasettet er beskrive i medhald av mobilityDCAT-AP, ein standard for beskriving av samferdsels- og mobilitetsdata",
   },
+  hvdTag: {
+    label: "HVD",
+    helpTextTitle: "Omgrepsforklaring",
+    helpText:
+      "Datasettet er eit datasett med høg verdi (HVD) etter EUs gjennomføringsforordning (EU) 2023/138. Det er utgjevaren som har oppgitt dette.",
+  },
   general: {
     loading: "Lastar...",
     redirecting: "Videresendar...",
