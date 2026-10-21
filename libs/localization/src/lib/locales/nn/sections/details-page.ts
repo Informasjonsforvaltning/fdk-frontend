@@ -233,6 +233,13 @@ const detailsPage = {
     subjects: {
       title: "Omgrep brukte i informasjonsmodellen",
     },
+    hasFormat: {
+      title: "Dokument som representerer modellen",
+      documentTitle: "Tittel",
+      language: "Språk",
+      format: "Format",
+      url: "URL",
+    },
     related: {
       title: "Relasjonar til andre ressursar",
       namelessDataset: "Namnlaust datasett",

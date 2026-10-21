@@ -139,6 +139,73 @@ export default function InformationModelDetailsTab({
         </section>
       )}
 
+      {!resource.hasFormat?.length && !showEmptyRows ? null : (
+        <section>
+          <Heading
+            level={2}
+            data-size="xs"
+          >
+            {dictionary.details.hasFormat.title}
+          </Heading>
+          {resource.hasFormat && resource.hasFormat.length > 0 ? (
+            resource.hasFormat.map((document, index) => {
+              const title = printLocaleValue(locale, document.title);
+              const language =
+                printLocaleValue(locale, document.language?.prefLabel) || document.language?.code;
+              const format = document.format?.split("/").pop() || document.format;
+              const seeAlso = document.seeAlso;
+
+              if (!showEmptyRows && !title && !language && !format && !seeAlso) {
+                return null;
+              }
+
+              return (
+                <Dlist key={document.uri || index}>
+                  {!title && !showEmptyRows ? null : (
+                    <>
+                      <dt>{dictionary.details.hasFormat.documentTitle}:</dt>
+                      <dd>{title || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
+                    </>
+                  )}
+                  {!language && !showEmptyRows ? null : (
+                    <>
+                      <dt>{dictionary.details.hasFormat.language}:</dt>
+                      <dd>{language || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
+                    </>
+                  )}
+                  {!format && !showEmptyRows ? null : (
+                    <>
+                      <dt>{dictionary.details.hasFormat.format}:</dt>
+                      <dd>{format || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
+                    </>
+                  )}
+                  {!seeAlso && !showEmptyRows ? null : (
+                    <>
+                      <dt>{dictionary.details.hasFormat.url}:</dt>
+                      <dd>
+                        {seeAlso ? (
+                          <ExternalLink
+                            href={seeAlso}
+                            locale={locale}
+                            gateway
+                          >
+                            {seeAlso}
+                          </ExternalLink>
+                        ) : (
+                          <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                        )}
+                      </dd>
+                    </>
+                  )}
+                </Dlist>
+              );
+            })
+          ) : (
+            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+          )}
+        </section>
+      )}
+
       {!resource.contactPoint?.length && !showEmptyRows ? null : (
         <section>
           <Heading

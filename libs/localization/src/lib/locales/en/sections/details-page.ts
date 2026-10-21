@@ -233,6 +233,13 @@ const detailsPage = {
     subjects: {
       title: "Concepts used in the information model",
     },
+    hasFormat: {
+      title: "Documents representing the model",
+      documentTitle: "Title",
+      language: "Language",
+      format: "Format",
+      url: "URL",
+    },
     related: {
       title: "Relation to other resources",
       namelessDataset: "Nameless dataset",
