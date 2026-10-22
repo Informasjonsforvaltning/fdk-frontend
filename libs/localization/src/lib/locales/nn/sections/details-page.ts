@@ -68,6 +68,7 @@ const detailsPage = {
       title: "Skildring",
       placeholder: "Dette datasettet har inga skildring",
       informationModelPlaceholder: "Denne informasjonsmodellen har inga skildring",
+      servicePlaceholder: "Denne tenesta har inga skildring",
     },
     servesDataset: {
       title: "Tilgjengeleggjer datasett",

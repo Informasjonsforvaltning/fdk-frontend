@@ -68,6 +68,7 @@ const detailsPage = {
       title: "Description",
       placeholder: "This dataset has no description",
       informationModelPlaceholder: "This information model has no description",
+      servicePlaceholder: "This service has no description",
     },
     servesDataset: {
       title: "Serves datasets",

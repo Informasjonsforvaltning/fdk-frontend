@@ -68,6 +68,7 @@ const detailsPage = {
       title: "Beskrivelse",
       placeholder: "Dette datasettet har ingen beskrivelse",
       informationModelPlaceholder: "Denne informasjonsmodellen har ingen beskrivelse",
+      servicePlaceholder: "Denne tjenesten har ingen beskrivelse",
     },
     servesDataset: {
       title: "Tilgjengeliggjør datasett",
