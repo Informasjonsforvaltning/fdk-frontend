@@ -235,7 +235,6 @@ const detailsPage = {
     },
     hasFormat: {
       title: "Documents representing the model",
-      documentTitle: "Title",
       language: "Language",
       format: "Format",
       url: "URL",

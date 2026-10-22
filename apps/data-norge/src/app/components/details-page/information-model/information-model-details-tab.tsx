@@ -18,6 +18,11 @@ import { HelpText } from "@fellesdatakatalog/ui";
 import { EyeIcon, EyeSlashIcon } from "@navikt/aksel-icons";
 import styles from "./information-model.module.scss";
 import { getInformationModelRelations } from "./information-model-relations";
+import {
+  AccordionList,
+  type DetailsEntry,
+  type ContentRow,
+} from "../details-tab/components/accordion-list";
 
 type InformationModelDetailsTabProps = {
   resource: InformationModel;
@@ -38,6 +43,40 @@ export default function InformationModelDetailsTab({
 }: InformationModelDetailsTabProps) {
   const [showEmptyRows, setShowEmptyRows] = useState(true);
   const relations = getInformationModelRelations(resource);
+
+  const hasFormatList: DetailsEntry[] =
+    resource.hasFormat?.map((document) => {
+      const title = printLocaleValue(locale, document.title);
+      const language =
+        printLocaleValue(locale, document.language?.prefLabel) || document.language?.code;
+      const format = document.format?.split("/").pop() || document.format;
+      const seeAlso = document.seeAlso;
+      const contents: ContentRow[] = [];
+
+      if (language || showEmptyRows) {
+        contents.push({
+          label: dictionary.details.hasFormat.language,
+          value: language,
+        });
+      }
+      if (format || showEmptyRows) {
+        contents.push({
+          label: dictionary.details.hasFormat.format,
+          value: format,
+        });
+      }
+      if (seeAlso || showEmptyRows) {
+        contents.push({
+          label: dictionary.details.hasFormat.url,
+          value: seeAlso,
+        });
+      }
+
+      return {
+        title: title || document.uri || dictionary.details.noData,
+        content: contents,
+      };
+    }) || [];
 
   return (
     <div className={styles.details}>
@@ -147,62 +186,10 @@ export default function InformationModelDetailsTab({
           >
             {dictionary.details.hasFormat.title}
           </Heading>
-          {resource.hasFormat && resource.hasFormat.length > 0 ? (
-            resource.hasFormat.map((document, index) => {
-              const title = printLocaleValue(locale, document.title);
-              const language =
-                printLocaleValue(locale, document.language?.prefLabel) || document.language?.code;
-              const format = document.format?.split("/").pop() || document.format;
-              const seeAlso = document.seeAlso;
-
-              if (!showEmptyRows && !title && !language && !format && !seeAlso) {
-                return null;
-              }
-
-              return (
-                <Dlist key={document.uri || index}>
-                  {!title && !showEmptyRows ? null : (
-                    <>
-                      <dt>{dictionary.details.hasFormat.documentTitle}:</dt>
-                      <dd>{title || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
-                    </>
-                  )}
-                  {!language && !showEmptyRows ? null : (
-                    <>
-                      <dt>{dictionary.details.hasFormat.language}:</dt>
-                      <dd>{language || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
-                    </>
-                  )}
-                  {!format && !showEmptyRows ? null : (
-                    <>
-                      <dt>{dictionary.details.hasFormat.format}:</dt>
-                      <dd>{format || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}</dd>
-                    </>
-                  )}
-                  {!seeAlso && !showEmptyRows ? null : (
-                    <>
-                      <dt>{dictionary.details.hasFormat.url}:</dt>
-                      <dd>
-                        {seeAlso ? (
-                          <ExternalLink
-                            href={seeAlso}
-                            locale={locale}
-                            gateway
-                          >
-                            {seeAlso}
-                          </ExternalLink>
-                        ) : (
-                          <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-                        )}
-                      </dd>
-                    </>
-                  )}
-                </Dlist>
-              );
-            })
-          ) : (
-            <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-          )}
+          <AccordionList
+            entries={hasFormatList}
+            noDataText={dictionary.details.noData}
+          />
         </section>
       )}
 
