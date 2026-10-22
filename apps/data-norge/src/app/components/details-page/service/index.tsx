@@ -278,7 +278,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 </ExpandableContent>
               </Card>
             ) : (
-              <PlaceholderBox>{dictionaries.detailsPage.overview.description.placeholder}</PlaceholderBox>
+              <PlaceholderBox>{dictionaries.detailsPage.overview.description.servicePlaceholder}</PlaceholderBox>
             )}
 
             <Heading
