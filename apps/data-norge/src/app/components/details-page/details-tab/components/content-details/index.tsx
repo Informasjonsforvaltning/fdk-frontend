@@ -8,6 +8,10 @@ import styles from '../../details-tab.module.scss';
 
 const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
+  const languageLabels =
+    dataset.language
+      ?.map((language) => printLocaleValue(locale, language.prefLabel))
+      .filter((label): label is string => typeof label === "string" && label.trim() !== "") ?? [];
 
   return (
     <section>
@@ -18,12 +22,12 @@ const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProp
         {dictionary.details.content.title}
       </Heading>
       <Dlist>
-        {!dataset.language && !showEmptyRows ? null : (
+        {!languageLabels.length && !showEmptyRows ? null : (
           <>
             <dt>{dictionary.details.content.language}:</dt>
             <dd>
-              {dataset.language ? (
-                dataset.language.map((language: any) => printLocaleValue(locale, language.prefLabel)).join(", ")
+              {languageLabels.length ? (
+                languageLabels.join(", ")
               ) : (
                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
               )}
