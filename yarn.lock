@@ -9035,7 +9035,7 @@ __metadata:
   resolution: "fdk-frontend@workspace:."
   dependencies:
     "@axe-core/playwright": "npm:^4.11.2"
-    "@babel/core": "npm:^7.29.6"
+    "@babel/core": "npm:^8.0.7"
     "@babel/preset-react": "npm:^7.28.5"
     "@digdir/designsystemet-css": "npm:^1.23.0"
     "@digdir/designsystemet-react": "npm:^1.23.0"
