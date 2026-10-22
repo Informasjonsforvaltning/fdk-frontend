@@ -3,12 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { Pagination, usePagination } from "@digdir/designsystemet-react";
-import {
-  buildSearchPageUrlFromSearchParams,
-  toApiPage,
-  toDisplayPage,
-  type SearchPageInfo,
-} from "@fdk-frontend/ui/search-form";
+import { buildSearchPageUrlFromSearchParams, toApiPage, toDisplayPage, type SearchPageInfo } from "@fdk-frontend/utils";
 import { interpolate } from "@fdk-frontend/localization";
 
 import styles from "./search-page.module.scss";

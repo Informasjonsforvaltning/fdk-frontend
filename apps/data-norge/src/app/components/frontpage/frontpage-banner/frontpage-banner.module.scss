@@ -59,12 +59,27 @@
   width: 100%;
 }
 
-.searchInput {
-  width: 650px;
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
   background: transparent;
-  flex-grow: 0;
+  width: 100%;
+  max-width: 600px;
 
-  :global(.ds-input) {
-    background: rgba(0, 0, 0, 0.5);
+  :global(.ds-heading) {
+    color: white;
+    text-align: center;
+  }
+}
+
+.searchInput {
+  width: 100%;
+
+  &:not([data-color-scheme="light"]) {
+    :global(.ds-input) {
+      background: rgba(0, 0, 0, 0.4);
+    }
   }
 }

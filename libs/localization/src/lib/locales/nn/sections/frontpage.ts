@@ -5,25 +5,9 @@ const frontpage = {
       "data.norge.no er Noregs offisielle portal for deling av data frå offentlege og private verksemder som du kan bruke til å lage tenester eller drive forsking.",
   },
   aiBanner: {
-    advancedSearchPrompt: {
-      link: "Finn data",
-      text: "Finn du ikkje det du leitar etter?",
-    },
     prompt: {
-      button: "Spør",
-      disclaimer: "Ikkje legg inn personopplysningar eller anna sensitiv informasjon.",
-      errors: {
-        generic: "Ein feil oppstod. Ver venleg å prøv igjen seinare.",
-        queryTooShort: "Spurnaden må innehalde minst tre teikn. Prøv igjen.",
-        queryTooLong: "Spurnaden kan ikkje innehalde meir enn 255 teikn. Prøv igjen.",
-      },
       label: "Spør vår KI om data frå over 125 verksemder:",
-      loading: "Lastar",
       placeholder: "Kva leitar du etter?",
-      responses: {
-        noResults: "Eg fann dessverre ingen relevante resultat. Prøv gjerne ei anna spurnad.",
-        resultsFound: "Eg fann {{num}} resultat som kan vere relevante:",
-      },
     },
     suggestions: {
       list: [
@@ -38,12 +22,6 @@ const frontpage = {
       prefix: "Prøv t.d.",
     },
     title: "Der Noreg deler data",
-    tooltip: {
-      disclaimer: "Ikkje skriv inn personopplysningar i søkjefeltet.",
-      label: "Om KI-søket",
-      readMoreLinkText: "Les meir om KI-søket her",
-      text: "Vårt KI-søk gjer det enkelt å finne data ved å bruke naturleg språk utan at du treng å kjenne til spesifikke namn, fagomgrep eller tekniske format. Ver obs på at KI-søket kan vere både ufullstendig og innehalde feil.",
-    },
   },
   catalogsBanner: {
     title: "Våre datakatalogar",

@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { Checkbox } from "@digdir/designsystemet-react";
-import { VStack } from "@fellesdatakatalog/ui";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import {
@@ -37,7 +36,7 @@ const OrgPathLevel = ({ aggregation, parentKey, depth, selected, labels, orgType
   if (children.length === 0) return null;
 
   return (
-    <VStack className={depth > 1 ? styles.orgPathNested : styles.orgPathLevel}>
+    <div className={depth > 1 ? styles.orgPathNested : styles.orgPathLevel}>
       {children.map(({ key, count }) => (
         <div
           key={key}
@@ -61,7 +60,7 @@ const OrgPathLevel = ({ aggregation, parentKey, depth, selected, labels, orgType
           )}
         </div>
       ))}
-    </VStack>
+    </div>
   );
 };
 

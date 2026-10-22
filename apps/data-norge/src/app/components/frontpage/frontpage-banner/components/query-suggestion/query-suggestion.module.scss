@@ -1,0 +1,13 @@
+@use "@fellesdatakatalog/ui/src/components/core/mixins" as core-mixins;
+
+.querySuggestion {
+  background: transparent;
+  text-align: center;
+  font-size: 1.125rem;
+
+  .customLink {
+    &:not(:hover):not(:focus):not(:active):not(:focus-visible) {
+      color: white;
+    }
+  }
+}

@@ -4,19 +4,20 @@ import {
   Breadcrumbs,
   DocsTeaser,
   EntityTeaser,
-  getLocalizedSearchTabItems,
   SearchForm,
+  SearchHistory,
+  SearchMenu,
+  SearchResultListControls,
+  SearchSuggestions,
   type AggregationKeyCount,
-  type SearchPageInfo,
 } from "@fdk-frontend/ui";
 import { type SearchObject } from "@fellesdatakatalog/types";
 import { Alert, Heading } from "@digdir/designsystemet-react";
-import { type LlmSearchResponse } from "@fdk-frontend/data-access";
-import { type SearchSetSegment } from "@fdk-frontend/ui/search-tabs/search-tab-config";
-import { mapLlmHitToSearchObject } from "../../[lang]/search/search-tab-helpers";
+import { isCatalogSet, type LlmSearchCacheBody, type SearchPageInfo, type SearchSetId } from "@fdk-frontend/utils";
+import { mapLlmHitToSearchObject } from "../../[lang]/search/map-llm-hit";
 
 import styles from "./search-page.module.scss";
-import { computeSearchPageDisplay, getDisplayCount, resolveSearchTabBadgeCounts } from "./search-page-display";
+import { computeSearchPageDisplay, resolveSearchSetBadgeCounts } from "./search-page-display";
 import SearchPagination from "./search-pagination";
 import SearchResultsSkeleton from "./search-results-skeleton";
 import { type DocsSearchResult } from "./search-page-types";
@@ -24,11 +25,11 @@ import { type DocsSearchResult } from "./search-page-types";
 export type SearchPageProps = {
   lang: LocaleCodes;
   query?: string;
-  activeEntityTab?: SearchSetSegment;
-  llmResults?: LlmSearchResponse;
-  entityTabResults?: { hits: SearchObject[]; page: SearchPageInfo };
+  activeSet: SearchSetId;
+  llmResults?: LlmSearchCacheBody;
+  catalogResults?: { hits: SearchObject[]; page: SearchPageInfo };
   docsResults?: DocsSearchResult[];
-  tabBadgeCounts?: Record<string, number>;
+  setBadgeCounts?: Record<string, number>;
   orgAggregation?: AggregationKeyCount[];
   accessAggregation?: AggregationKeyCount[];
   provenanceAggregation?: AggregationKeyCount[];
@@ -40,18 +41,18 @@ export type SearchPageProps = {
   entityLoading?: boolean;
   docsLoading?: boolean;
   llmLoading?: boolean;
-  /** Hide the KI (AI) tab and its result block, e.g. on the transportportal profile. */
-  hideKiTab?: boolean;
+  /** Transportportal: menu is all-catalogs, datasets, and docs. The AI result block stays hidden. */
+  hideAiSet?: boolean;
 };
 
 const SearchPage = ({
   lang,
   query,
-  activeEntityTab,
+  activeSet,
   llmResults,
-  entityTabResults,
+  catalogResults,
   docsResults,
-  tabBadgeCounts,
+  setBadgeCounts,
   orgAggregation,
   accessAggregation,
   provenanceAggregation,
@@ -63,7 +64,7 @@ const SearchPage = ({
   entityLoading = false,
   docsLoading = false,
   llmLoading = false,
-  hideKiTab = false,
+  hideAiSet = false,
 }: SearchPageProps) => {
   const loc = getLocalization(lang);
   const dictionary = loc.searchPage;
@@ -73,38 +74,34 @@ const SearchPage = ({
     : dictionary.breadcrumb.label;
   const breadcrumbList = [{ text: breadcrumbLabel }];
 
-  const { llmHitsCount, docsHitsCount, badgeCounts, totalResults } = computeSearchPageDisplay({
-    activeEntityTab,
+  const { llmHitsCount, docsHitsCount, badgeCounts } = computeSearchPageDisplay({
     llmResults,
     docsResults,
-    tabBadgeCounts,
+    setBadgeCounts,
   });
-  const resolvedTabBadgeCounts = resolveSearchTabBadgeCounts({
+  const resolvedBadgeCounts = resolveSearchSetBadgeCounts({
     badgeCounts,
-    tabBadgeCounts,
+    setBadgeCounts,
     entityLoading,
     docsLoading,
     llmLoading,
   });
-  const entityTabHits = entityTabResults?.hits ?? [];
-  const entityTabPage = entityTabResults?.page;
+  const catalogHits = catalogResults?.hits ?? [];
+  const catalogPage = catalogResults?.page;
   const catalogAndDocsReady = !entityLoading && !docsLoading;
-  const headlineCount = totalResults + docsHitsCount;
-  const mainHeading = !catalogAndDocsReady
-    ? query
-      ? interpolate(dictionary.heading.loadingWithQuery, { query })
-      : dictionary.heading.loading
-    : query
-      ? interpolate(dictionary.heading.resultsWithQuery, { count: headlineCount.toLocaleString(lang), query })
-      : interpolate(dictionary.heading.results, { count: headlineCount.toLocaleString(lang) });
-  const entityHeadingLabel = getLocalizedSearchTabItems(lang).find((item) => item.value === activeEntityTab)?.label;
-  const entityHeadingCount = getDisplayCount({
-    activeEntityTab,
-    llmHitsCount,
-    filteredHits: entityTabHits,
-    tabBadgeCounts,
-    entityTabPage,
-  });
+  const showCatalog = isCatalogSet(activeSet);
+  const sectionLabel = dictionary.searchSets[activeSet] ?? activeSet;
+  // all-catalogs is the sum of the catalog sets. The combined search reports at most 10 000 hits.
+  const allCatalogsHitCount = setBadgeCounts?.["all-catalogs"];
+  const sectionHitCount =
+    activeSet === "ai"
+      ? llmHitsCount
+      : activeSet === "docs"
+        ? docsHitsCount
+        : activeSet === "all-catalogs" && allCatalogsHitCount !== undefined
+          ? allCatalogsHitCount
+          : (catalogPage?.totalElements ?? setBadgeCounts?.[activeSet] ?? catalogHits.length);
+  const sectionHeading = `${sectionLabel} ${interpolate(dictionary.entitySearch.hitsCountLabel, { count: sectionHitCount })}`;
 
   return (
     <div className={styles.searchPage}>
@@ -112,47 +109,65 @@ const SearchPage = ({
         locale={lang}
         breadcrumbList={breadcrumbList}
       />
-      <div className={styles.mainContent}>
-        <Heading
-          level={1}
-          data-size="md"
-        >
-          {mainHeading}
-        </Heading>
-        <SearchForm
-          lang={lang}
-          activeEntityTab={activeEntityTab}
-          defaultQuery={query ?? ""}
-          badgeCounts={resolvedTabBadgeCounts}
-          orgAggregation={orgAggregation}
-          accessAggregation={accessAggregation}
-          provenanceAggregation={provenanceAggregation}
-          dcatProfileAggregation={dcatProfileAggregation}
-          spatialAggregation={spatialAggregation}
-          formatAggregation={formatAggregation}
-          losThemeAggregation={losThemeAggregation}
-          dataThemeAggregation={dataThemeAggregation}
-          hideKiTab={hideKiTab}
-        />
-        <div>
-          {!catalogAndDocsReady && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
-            <div className={styles.resultsSection}>
-              <SearchResultsSkeleton locale={lang} />
-            </div>
-          )}
-
-          {!entityLoading && activeEntityTab === undefined && !hideKiTab && (
-            <div className={styles.resultsSection}>
-              {llmLoading ? (
+      <div className={styles.content}>
+        <div className={styles.leftColumn}>
+          <Heading
+            level={1}
+            data-size="sm"
+            className={styles.pageHeading}
+          >
+            {query ? (
+              <>
+                {dictionary.heading.queryPrefix} <strong>&apos;{query}&apos;</strong>
+              </>
+            ) : (
+              dictionary.heading.label
+            )}
+          </Heading>
+          <SearchMenu
+            locale={lang}
+            badgeCounts={resolvedBadgeCounts}
+            hideAiSet={hideAiSet}
+          />
+        </div>
+        <div className={styles.mainColumn}>
+          <div className={styles.resultsHeader}>
+            <Heading
+              level={2}
+              data-size="sm"
+            >
+              {sectionHeading}
+            </Heading>
+            <SearchResultListControls
+              lang={lang}
+              activeSet={activeSet}
+            />
+          </div>
+          <SearchForm
+            lang={lang}
+            activeSet={activeSet}
+            defaultQuery={query ?? ""}
+            orgAggregation={orgAggregation}
+            accessAggregation={accessAggregation}
+            provenanceAggregation={provenanceAggregation}
+            dcatProfileAggregation={dcatProfileAggregation}
+            spatialAggregation={spatialAggregation}
+            formatAggregation={formatAggregation}
+            losThemeAggregation={losThemeAggregation}
+            dataThemeAggregation={dataThemeAggregation}
+          />
+          <div>
+            {!catalogAndDocsReady && showCatalog && (
+              <div className={styles.resultsSection}>
                 <SearchResultsSkeleton locale={lang} />
-              ) : llmResults?.hits && llmResults.hits.length > 0 ? (
-                <>
-                  <Heading
-                    level={2}
-                    data-size="sm"
-                  >
-                    {interpolate(dictionary.aiSearch.headingWithCount, { count: llmHitsCount })}
-                  </Heading>
+              </div>
+            )}
+
+            {!entityLoading && activeSet === "ai" && !hideAiSet && (
+              <div className={styles.resultsSection}>
+                {llmLoading ? (
+                  <SearchResultsSkeleton locale={lang} />
+                ) : llmResults?.hits && llmResults.hits.length > 0 ? (
                   <ul className="fdk-box-list">
                     {llmResults.hits.map((item, i) => (
                       <li key={item.id ?? i}>
@@ -164,80 +179,69 @@ const SearchPage = ({
                       </li>
                     ))}
                   </ul>
-                </>
-              ) : (
-                <AiPromoSplash locale={lang} />
-              )}
-            </div>
-          )}
+                ) : (
+                  <AiPromoSplash locale={lang} />
+                )}
+              </div>
+            )}
 
-          {catalogAndDocsReady && activeEntityTab !== undefined && activeEntityTab !== "docs" && (
-            <div className={styles.resultsSection}>
-              {entityTabHits.length > 0 ? (
-                <>
-                  <Heading
-                    level={2}
-                    data-size="sm"
-                  >
-                    {entityHeadingLabel}{" "}
-                    {interpolate(dictionary.entitySearch.hitsCountLabel, { count: entityHeadingCount })}
-                  </Heading>
-                  <ul className="fdk-box-list">
-                    {entityTabHits.map((hit: SearchObject, i: number) => {
-                      const hitId = hit.id ?? hit.uri ?? "";
-                      return (
-                        <li key={hitId || i}>
-                          <EntityTeaser
-                            locale={lang}
-                            entity={hit}
-                          />
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  {entityTabPage && (
-                    <SearchPagination
-                      page={entityTabPage}
-                      dictionary={dictionary.pagination}
-                    />
-                  )}
-                </>
-              ) : (
-                <Alert>{dictionary.entitySearch.noResults}</Alert>
-              )}
-            </div>
-          )}
-
-          {!docsLoading && activeEntityTab === "docs" && (
-            <div className={styles.resultsSection}>
-              <Heading
-                level={2}
-                data-size="sm"
-              >
-                {query
-                  ? interpolate(dictionary.docs.headingWithCount, { count: docsHitsCount })
-                  : dictionary.docs.heading}
-              </Heading>
-              {docsResults && docsResults.length > 0 ? (
-                <ul className="fdk-box-list">
-                  {docsResults.map((doc) => (
-                    <li key={doc.id}>
-                      <DocsTeaser
-                        locale={lang}
-                        title={doc.title}
-                        desc={doc.summary}
-                        href={doc.url}
+            {catalogAndDocsReady && showCatalog && (
+              <div className={styles.resultsSection}>
+                {catalogHits.length > 0 ? (
+                  <>
+                    <ul className="fdk-box-list">
+                      {catalogHits.map((hit: SearchObject, i: number) => {
+                        const hitId = hit.id ?? hit.uri ?? "";
+                        return (
+                          <li key={hitId || i}>
+                            <EntityTeaser
+                              locale={lang}
+                              entity={hit}
+                            />
+                          </li>
+                        );
+                      })}
+                    </ul>
+                    {catalogPage && (
+                      <SearchPagination
+                        page={catalogPage}
+                        dictionary={dictionary.pagination}
                       />
-                    </li>
-                  ))}
-                </ul>
-              ) : query ? (
-                <Alert>{dictionary.docs.noResults}</Alert>
-              ) : (
-                <Alert>{dictionary.docs.noContent}</Alert>
-              )}
-            </div>
-          )}
+                    )}
+                  </>
+                ) : (
+                  <Alert>{dictionary.entitySearch.noResults}</Alert>
+                )}
+              </div>
+            )}
+
+            {!docsLoading && activeSet === "docs" && (
+              <div className={styles.resultsSection}>
+                {docsResults && docsResults.length > 0 ? (
+                  <ul className="fdk-box-list">
+                    {docsResults.map((doc) => (
+                      <li key={doc.id}>
+                        <DocsTeaser
+                          locale={lang}
+                          title={doc.title}
+                          desc={doc.summary}
+                          href={doc.url}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                ) : query ? (
+                  <Alert>{dictionary.docs.noResults}</Alert>
+                ) : (
+                  <Alert>{dictionary.docs.noContent}</Alert>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className={styles.rightColumn}>
+          <SearchHistory lang={lang} />
+          <SearchSuggestions lang={lang} />
         </div>
       </div>
     </div>

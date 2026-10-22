@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Tabs } from "@digdir/designsystemet-react";
-import { CheckboxGroup, VStack } from "@fellesdatakatalog/ui";
+import { CheckboxGroup } from "@fellesdatakatalog/ui";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import Box from "../box";
@@ -68,16 +68,14 @@ const ThemeFilter = ({
         style={{ padding: 0, paddingTop: "0.5rem" }}
       >
         {showLosTheme ? (
-          <VStack>
-            <Box className={styles.box}>
-              <LosThemeTreeFilter
-                locale={locale}
-                aggregation={losThemeAggregation}
-                value={losThemeValue}
-                onChange={onLosThemeChange}
-              />
-            </Box>
-          </VStack>
+          <Box className={styles.box}>
+            <LosThemeTreeFilter
+              locale={locale}
+              aggregation={losThemeAggregation}
+              value={losThemeValue}
+              onChange={onLosThemeChange}
+            />
+          </Box>
         ) : null}
       </Tabs.Panel>
       <Tabs.Panel
@@ -85,16 +83,14 @@ const ThemeFilter = ({
         style={{ padding: 0, paddingTop: "0.5rem" }}
       >
         {dataThemeOptions.length > 0 ? (
-          <VStack>
-            <Box className={styles.box}>
-              <CheckboxGroup
-                key={checkboxKey}
-                options={dataThemeOptions}
-                value={checkboxValue}
-                onChange={handleDataThemeChange}
-              />
-            </Box>
-          </VStack>
+          <Box className={styles.box}>
+            <CheckboxGroup
+              key={checkboxKey}
+              options={dataThemeOptions}
+              value={checkboxValue}
+              onChange={handleDataThemeChange}
+            />
+          </Box>
         ) : null}
       </Tabs.Panel>
     </Tabs>

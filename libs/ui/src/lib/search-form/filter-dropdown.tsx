@@ -20,7 +20,8 @@ const FilterDropdown = ({ label, children, filterCount }: FilterDropdownProps) =
       {filterCount ? (
         <Badge
           count={filterCount}
-          data-size="md"
+          data-size="sm"
+          variant="tinted"
         />
       ) : null}
       <ChevronDownIcon aria-hidden />

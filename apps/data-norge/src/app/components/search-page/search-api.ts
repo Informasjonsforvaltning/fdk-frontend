@@ -1,24 +1,21 @@
 import { type LlmSearchResponse } from "@fdk-frontend/data-access";
 import { type LocaleCodes } from "@fdk-frontend/localization";
-import { type AggregationKeyCount, type SearchPageInfo } from "@fdk-frontend/ui";
-import {
-  SUMMARY_SLICES,
-  type SearchSetSegment,
-  type SummarySliceConfig,
-} from "@fdk-frontend/ui/search-tabs/search-tab-config";
+import { type AggregationKeyCount } from "@fdk-frontend/ui";
+import { SEARCH_SUMMARY_SLICES, type SearchPageInfo, type SearchSetId } from "@fdk-frontend/utils";
 import { type SearchObject } from "@fellesdatakatalog/types";
 
 import { buildSearchRequestBody } from "../../[lang]/search/search-request-body";
 import {
-  buildAccessAggregationsByTab,
-  buildOrgPathAggregationsByTab,
-  buildProvenanceAggregationsByTab,
-  buildDcatProfileAggregationsByTab,
-  buildSpatialAggregationsByTab,
-  buildFormatAggregationsByTab,
-  buildLosThemeAggregationsByTab,
-  buildDataThemeAggregationsByTab,
+  buildAccessAggregationsBySet,
+  buildOrgPathAggregationsBySet,
+  buildProvenanceAggregationsBySet,
+  buildDcatProfileAggregationsBySet,
+  buildSpatialAggregationsBySet,
+  buildFormatAggregationsBySet,
+  buildLosThemeAggregationsBySet,
+  buildDataThemeAggregationsBySet,
   computeBadgeCountsFromSummary,
+  normalizeSearchSummarySlice,
   SEARCH_SUMMARY_PAGE,
   type SearchSummaryResponse,
   type SearchSummarySlice,
@@ -47,18 +44,18 @@ const tryPostJson = async function <T>(url: string, body: unknown): Promise<T | 
 };
 
 export type SummaryFetchResult = {
-  tabBadgeCounts: Record<string, number>;
-  orgAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  accessAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  provenanceAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  dcatProfileAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  spatialAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  formatAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  losThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
-  dataThemeAggregationsByTab: Partial<Record<SearchSetSegment, AggregationKeyCount[]>>;
+  setBadgeCounts: Record<string, number>;
+  orgAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  accessAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  provenanceAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  dcatProfileAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  spatialAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  formatAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  losThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  dataThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
 };
 
-export type EntityTabFetchResult = {
+export type CatalogFetchResult = {
   hits: SearchObject[];
   page: SearchPageInfo;
 };
@@ -80,52 +77,30 @@ export const fetchSummary = async function (options: FetchSummaryOptions): Promi
   const json = await postJson<SearchSummaryResponse>(
     "/api/search/summary",
     buildSearchRequestBody({
-      query: options.query,
-      orgPathParam: options.orgPathParam,
-      accessParam: options.accessParam,
-      provenanceParam: options.provenanceParam,
-      dcatProfileParam: options.dcatProfileParam,
-      spatialParam: options.spatialParam,
-      formatParam: options.formatParam,
-      losThemeParam: options.losThemeParam,
-      dataThemeParam: options.dataThemeParam,
-      sortParam: options.sortParam,
+      ...options,
       pagination: { size: SUMMARY_AGGREGATIONS_PAGE_SIZE, page: SEARCH_SUMMARY_PAGE },
     }),
   );
 
   return {
-    tabBadgeCounts: computeBadgeCountsFromSummary(json.summary),
-    orgAggregationsByTab: buildOrgPathAggregationsByTab(json.summary),
-    accessAggregationsByTab: buildAccessAggregationsByTab(json.summary),
-    provenanceAggregationsByTab: buildProvenanceAggregationsByTab(json.summary),
-    dcatProfileAggregationsByTab: buildDcatProfileAggregationsByTab(json.summary),
-    spatialAggregationsByTab: buildSpatialAggregationsByTab(json.summary),
-    formatAggregationsByTab: buildFormatAggregationsByTab(json.summary),
-    losThemeAggregationsByTab: buildLosThemeAggregationsByTab(json.summary),
-    dataThemeAggregationsByTab: buildDataThemeAggregationsByTab(json.summary),
+    setBadgeCounts: computeBadgeCountsFromSummary(json.summary),
+    orgAggregationsBySet: buildOrgPathAggregationsBySet(json.summary),
+    accessAggregationsBySet: buildAccessAggregationsBySet(json.summary),
+    provenanceAggregationsBySet: buildProvenanceAggregationsBySet(json.summary),
+    dcatProfileAggregationsBySet: buildDcatProfileAggregationsBySet(json.summary),
+    spatialAggregationsBySet: buildSpatialAggregationsBySet(json.summary),
+    formatAggregationsBySet: buildFormatAggregationsBySet(json.summary),
+    losThemeAggregationsBySet: buildLosThemeAggregationsBySet(json.summary),
+    dataThemeAggregationsBySet: buildDataThemeAggregationsBySet(json.summary),
   };
 };
 
-type EntityTabFetchOptions = {
-  query: string;
-  orgPathParam: string | null;
-  accessParam: string | null;
-  provenanceParam: string | null;
-  dcatProfileParam: string | null;
-  spatialParam: string | null;
-  formatParam: string | null;
-  losThemeParam: string | null;
-  dataThemeParam: string | null;
-  sortParam: string | null;
+export type CatalogFetchOptions = FetchSummaryOptions & {
   page: number;
   size: number;
 };
 
-const applySliceSearchType = function (
-  hits: SearchObject[] | undefined,
-  searchType: SummarySliceConfig["searchType"],
-): SearchObject[] {
+const applySliceSearchType = function (hits: SearchObject[] | undefined, searchType: string): SearchObject[] {
   return (hits ?? []).map((hit) => ({
     ...hit,
     searchType: (hit.searchType ?? searchType) as SearchObject["searchType"],
@@ -141,12 +116,31 @@ const buildPageInfo = function (page: number, size: number, totalElements: numbe
   };
 };
 
-export const fetchEntityTabResults = async function (
-  entityTab: Exclude<SearchSetSegment, "docs">,
-  options: EntityTabFetchOptions,
-): Promise<EntityTabFetchResult> {
+export const fetchAllCatalogResults = async function (options: CatalogFetchOptions): Promise<CatalogFetchResult> {
   const { page, size } = options;
-  const slice = SUMMARY_SLICES.find((candidate) => candidate.tabKey === entityTab);
+  const result = await postJson<SearchSummarySlice>(
+    "/api/search/entities",
+    buildSearchRequestBody({
+      ...options,
+      pagination: { page, size },
+    }),
+  );
+  const normalized = normalizeSearchSummarySlice(result);
+
+  return {
+    hits: normalized.hits ?? [],
+    page: buildPageInfo(page, size, normalized.page?.totalElements ?? 0),
+  };
+};
+
+export const fetchCatalogResults = async function (
+  setId: SearchSetId,
+  options: CatalogFetchOptions,
+): Promise<CatalogFetchResult> {
+  if (setId === "all-catalogs") return fetchAllCatalogResults(options);
+
+  const { page, size } = options;
+  const slice = SEARCH_SUMMARY_SLICES.find((candidate) => candidate.setId === setId);
 
   if (!slice) {
     return { hits: [], page: buildPageInfo(page, size, 0) };
@@ -154,19 +148,10 @@ export const fetchEntityTabResults = async function (
 
   const result = await postJson<SearchSummarySlice>("/api/search/entity", {
     ...buildSearchRequestBody({
-      query: options.query,
-      orgPathParam: options.orgPathParam,
-      accessParam: options.accessParam,
-      provenanceParam: options.provenanceParam,
-      dcatProfileParam: options.dcatProfileParam,
-      spatialParam: options.spatialParam,
-      formatParam: options.formatParam,
-      losThemeParam: options.losThemeParam,
-      dataThemeParam: options.dataThemeParam,
-      sortParam: options.sortParam,
+      ...options,
       pagination: { page, size },
     }),
-    path: slice.entityPath,
+    path: slice.setId,
   });
 
   return {

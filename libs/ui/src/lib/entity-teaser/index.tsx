@@ -15,9 +15,9 @@ import {
 import { TagList, HStack } from "@fellesdatakatalog/ui";
 import { AccessRightsCodes, EntityType, type SearchObject } from "@fellesdatakatalog/types";
 import AccessLevelTag from "../access-level-tag";
+import { buildResourcePath, buildSearchSetPath, getSetIdForHitSearchType, printLocaleValue } from "@fdk-frontend/utils";
 import { DCAT_PROFILE_DEFAULT, formatDcatProfileLabel, getDcatProfileLabels } from "../search-form/dcat-profile";
 import { OrgLogo } from "../org-logo";
-import { printLocaleValue } from "@fdk-frontend/utils";
 import styles from "./styles.module.scss";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { SparklesFillIcon } from "@navikt/aksel-icons";
@@ -27,15 +27,6 @@ export type EntityTeaserProps = {
   entity?: SearchObject;
   llm?: boolean;
   headingLevel?: HeadingProps["level"];
-};
-
-const setFragments: Record<EntityType, string> = {
-  [EntityType.DATASET]: "datasets",
-  [EntityType.DATA_SERVICE]: "data-services",
-  [EntityType.CONCEPT]: "concepts",
-  [EntityType.INFORMATION_MODEL]: "information-models",
-  [EntityType.PUBLIC_SERVICE]: "services-and-events",
-  [EntityType.EVENT]: "services-and-events",
 };
 
 const EntityTeaser = ({
@@ -65,7 +56,7 @@ const EntityTeaser = ({
                 title={printLocaleValue(locale, entity.organization?.prefLabel)}
               />
               <Heading level={headingLevel}>
-                <Link href={`/${locale}/${setFragments[entity.searchType]}/${entity.id}`}>
+                <Link href={buildResourcePath(locale, entity.searchType, entity.id ?? "") ?? "#"}>
                   {printLocaleValue(locale, entity.title)}
                 </Link>
               </Heading>
@@ -90,7 +81,7 @@ const EntityTeaser = ({
                 data-color="info"
                 data-size="sm"
               >
-                <Link href={`/${locale}/search/${setFragments[entity.searchType]}`}>
+                <Link href={buildSearchSetPath(locale, getSetIdForHitSearchType(entity.searchType) ?? "all-catalogs")}>
                   {entity.searchType === EntityType.PUBLIC_SERVICE &&
                   (entity.specializedType as string | null) === "publicService"
                     ? localization.specializedServices.publicService
