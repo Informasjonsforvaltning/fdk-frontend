@@ -102,9 +102,9 @@ const common = {
     help: {
       heading: "Hjelp og rettleiing",
       links: {
-        community: "Datafellesskapet",
+        community: "Datalandsbyen",
         technical: "Teknisk dokumentasjon",
-        userGuide: "Brukerveileiing",
+        userGuide: "Brukarrettleiing",
       },
     },
     tools: {
