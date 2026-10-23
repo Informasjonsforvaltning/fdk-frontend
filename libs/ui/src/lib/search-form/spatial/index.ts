@@ -1,5 +1,6 @@
 export { mergeSpatialAggregations } from "./aggregation";
-export { formatSpatialLabel, formatSpatialCheckboxLabel } from "./labels";
+export { formatSpatialLabel, formatSpatialCheckboxLabel, type SpatialLabelMap } from "./labels";
+export { useSpatialLabels } from "./use-spatial-labels";
 export { buildSpatialFilterOptions, type SpatialFilterOption } from "./options";
 export { shouldShowSpatialFilter } from "./visibility";
 export {

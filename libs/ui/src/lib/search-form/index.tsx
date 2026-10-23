@@ -23,7 +23,7 @@ import { parseOrgPathQueryParam } from "./org-path";
 import { type AggregationKeyCount } from "./types";
 import { parseProvenanceQueryParam, shouldShowProvenanceFilter } from "./provenance";
 import { parseDcatProfileQueryParam, shouldShowDcatProfileFilter } from "./dcat-profile";
-import { parseSpatialQueryParam, shouldShowSpatialFilter } from "./spatial";
+import { parseSpatialQueryParam, shouldShowSpatialFilter, useSpatialLabels } from "./spatial";
 import { parseFormatQueryParam, shouldShowFormatFilter } from "./format";
 import { parseLosThemeQueryParam, parseDataThemeQueryParam, shouldShowTemaFilter } from "./theme";
 import { buildSearchPageUrl } from "./search-page-url";
@@ -212,7 +212,11 @@ const SearchForm = ({
   const formatLabels: Record<string, string> = Object.fromEntries(
     selectedFormats.map((key) => [key, formatLabel(key)]),
   );
-  const spatialLabels: Record<string, string> = Object.fromEntries(selectedSpatial.map((key) => [key, key]));
+  const spatialUris = useMemo(
+    () => [...(spatialAggregation ?? []).map(({ key }) => key), ...selectedSpatial],
+    [spatialAggregation, selectedSpatial],
+  );
+  const spatialLabels = useSpatialLabels(spatialUris, locale);
 
   const getQueryForUrl = useCallback(
     () => query.trim() || (searchParams.get("q") ?? defaultQuery ?? ""),
@@ -493,6 +497,7 @@ const SearchForm = ({
                     <Box className={styles.box}>
                       <SpatialFilter
                         aggregation={spatialAggregation}
+                        labels={spatialLabels}
                         value={isUrlDriven ? selectedSpatial : undefined}
                         onChange={isUrlDriven ? handleSpatialChange : undefined}
                       />
