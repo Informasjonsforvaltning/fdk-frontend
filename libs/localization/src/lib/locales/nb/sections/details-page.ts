@@ -219,7 +219,7 @@ const detailsPage = {
         "Referanse til en etablert teknisk standard eller spesifikasjon som API-et er i samsvar med.",
     },
     legal: {
-      title: "Lovhjemler",
+      title: "Gjeldende lovgiving",
       legalBasisForAccess: "Utleveringshjemmel",
       legalBasisForProcessing: "Behandlingshjemmel",
       legalBasisForRestriction: "Skjermingshjemmel",
