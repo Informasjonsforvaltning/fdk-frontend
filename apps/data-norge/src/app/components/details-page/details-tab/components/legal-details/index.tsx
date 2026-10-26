@@ -52,7 +52,8 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
           {dataset.applicableLegislation && dataset.applicableLegislation.length > 0 && (
             <>
               {dataset.applicableLegislation.map((legislation, i) => {
-                if (!legislation) return <PlaceholderText>{dictionary.details.noData}</PlaceholderText>;
+                if (!legislation)
+                  return <PlaceholderText key={`legislation-${i}`}>{dictionary.details.noData}</PlaceholderText>;
                 return (
                   <React.Fragment key={`legislation-${i}`}>
                     <dt>{printLocaleValue(locale, legislation.title)}</dt>
