@@ -8,8 +8,10 @@ import {
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
 import { SearchObject, type CommunityTopic, type PublicService } from "@fellesdatakatalog/types";
+import { type WithRemovedFromFDKFlag } from "@fdk-frontend/types";
 import ServiceDetailsPage from "../../../../components/details-page/service";
 import { notFound, redirect } from "next/navigation";
+import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -28,7 +30,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     common: loc.common,
     detailsPage: loc.detailsPage,
   };
-  let service: PublicService;
+  let service: WithRemovedFromFDKFlag<PublicService>;
   let orgLogo: string | null = null;
   let communityTopics: CommunityTopic[] = [];
   let concepts: SearchObject[] = [];
@@ -120,34 +122,40 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       .filter(Boolean)
       .join(", ");
 
-    // Create structured data for better SEO
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: title,
-      description: description,
-      url: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
-      identifier: service.id,
-      ...(publisher && {
-        publisher: {
-          "@type": "Organization",
-          name: publisher,
-        },
-      }),
-      dateModified: service.harvest?.modified,
-      datePublished: service.harvest?.firstHarvested,
-      keywords: keywords,
-    };
+    const pageUrl = `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`;
+    const isRemovedFromFDK = service.isRemovedFromFDK;
+
+    // Create structured data for better SEO (omit for unpublished resources)
+    const structuredData = !isRemovedFromFDK
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: title,
+          description: description,
+          url: pageUrl,
+          identifier: service.id,
+          ...(publisher && {
+            publisher: {
+              "@type": "Organization",
+              name: publisher,
+            },
+          }),
+          dateModified: service.harvest?.modified,
+          datePublished: service.harvest?.firstHarvested,
+          keywords: keywords,
+        }
+      : undefined;
 
     return {
       title: `${title} - ${dictionary.breadcrumbs.services} - data.norge.no`,
       description: description,
       keywords: keywords,
+      robots: getResourceRobots(isRemovedFromFDK),
       openGraph: {
         title: title,
         description: description,
         type: "website",
-        url: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
+        url: pageUrl,
         siteName: "data.norge.no",
         locale: lang,
       },
@@ -156,17 +164,20 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         title: title,
         description: description,
       },
-      alternates: {
-        canonical: `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`,
+      alternates: getResourceAlternates({
+        canonical: pageUrl,
         languages: {
           nb: `https://data.norge.no/nb/services/${service.id}/${getSlug(service, "nb")}`,
           en: `https://data.norge.no/en/services/${service.id}/${getSlug(service, "en")}`,
           nn: `https://data.norge.no/nn/services/${service.id}/${getSlug(service, "nn")}`,
         },
-      },
-      other: {
-        "structured-data": JSON.stringify(structuredData),
-      },
+        isRemovedFromFDK,
+      }),
+      ...(structuredData && {
+        other: {
+          "structured-data": JSON.stringify(structuredData),
+        },
+      }),
     };
   } catch (err) {
     console.error(`Failed generate metadata for service with ID ${id}`, JSON.stringify(err));

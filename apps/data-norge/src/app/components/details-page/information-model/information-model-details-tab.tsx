@@ -18,6 +18,11 @@ import { HelpText } from "@fellesdatakatalog/ui";
 import { EyeIcon, EyeSlashIcon } from "@navikt/aksel-icons";
 import styles from "./information-model.module.scss";
 import { getInformationModelRelations } from "./information-model-relations";
+import {
+  AccordionList,
+  type DetailsEntry,
+  type ContentRow,
+} from "../details-tab/components/accordion-list";
 
 type InformationModelDetailsTabProps = {
   resource: InformationModel;
@@ -38,6 +43,40 @@ export default function InformationModelDetailsTab({
 }: InformationModelDetailsTabProps) {
   const [showEmptyRows, setShowEmptyRows] = useState(true);
   const relations = getInformationModelRelations(resource);
+
+  const hasFormatList: DetailsEntry[] =
+    resource.hasFormat?.map((document) => {
+      const title = printLocaleValue(locale, document.title);
+      const language =
+        printLocaleValue(locale, document.language?.prefLabel) || document.language?.code;
+      const format = document.format?.split("/").pop() || document.format;
+      const seeAlso = document.seeAlso;
+      const contents: ContentRow[] = [];
+
+      if (language || showEmptyRows) {
+        contents.push({
+          label: dictionary.details.hasFormat.language,
+          value: language,
+        });
+      }
+      if (format || showEmptyRows) {
+        contents.push({
+          label: dictionary.details.hasFormat.format,
+          value: format,
+        });
+      }
+      if (seeAlso || showEmptyRows) {
+        contents.push({
+          label: dictionary.details.hasFormat.url,
+          value: seeAlso,
+        });
+      }
+
+      return {
+        title: title || document.uri || dictionary.details.noData,
+        content: contents,
+      };
+    }) || [];
 
   return (
     <div className={styles.details}>
@@ -136,6 +175,21 @@ export default function InformationModelDetailsTab({
           ) : (
             <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
           )}
+        </section>
+      )}
+
+      {!resource.hasFormat?.length && !showEmptyRows ? null : (
+        <section>
+          <Heading
+            level={2}
+            data-size="xs"
+          >
+            {dictionary.details.hasFormat.title}
+          </Heading>
+          <AccordionList
+            entries={hasFormatList}
+            noDataText={dictionary.details.noData}
+          />
         </section>
       )}
 

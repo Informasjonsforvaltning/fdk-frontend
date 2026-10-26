@@ -36,14 +36,11 @@ export const proxy = (request: NextRequest) => {
     );
   }
 
-  // Add X-Robots-Tag header based on domain logic (same as robots.txt)
+  // Only set X-Robots-Tag on non-canonical domains. On production we leave the
+  // header unset so page-level meta robots is not contradicted by a blanket index, follow header.
   const response = NextResponse.next();
 
-  if (isCanonicalDomain()) {
-    // Allow crawling on canonical domain
-    response.headers.set("X-Robots-Tag", "index, follow");
-  } else {
-    // Block crawling on non-canonical domains (staging, demo, development)
+  if (!isCanonicalDomain()) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
 
