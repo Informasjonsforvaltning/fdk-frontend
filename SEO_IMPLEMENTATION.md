@@ -149,7 +149,7 @@ The sitemap uses a Next.js API route handler (`/sitemap.xml/route.ts`) instead o
 
 ### 5. Robots.txt
 
-- **Location**: `apps/data-norge/public/robots.txt`
+- **Location**: `apps/data-norge/src/app/robots.txt/route.ts`
 - **Features**:
   - Allows crawling of all public pages
   - References sitemap location
