@@ -9111,7 +9111,7 @@ __metadata:
     remark-gfm: "npm:^4.0.1"
     sass: "npm:^1.105.1"
     slugify: "npm:^1.6.9"
-    storybook: "npm:10.6.1"
+    storybook: "npm:^10.6.4"
     ts-jest: "npm:^29.4.9"
     ts-node: "npm:^10.9.2"
     tslib: "npm:^2.8.1"
@@ -15088,9 +15088,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:10.6.1":
-  version: 10.6.1
-  resolution: "storybook@npm:10.6.1"
+"storybook@npm:^10.6.4":
+  version: 10.6.4
+  resolution: "storybook@npm:10.6.4"
   dependencies:
     "@storybook/global": "npm:^5.0.0"
     "@storybook/icons": "npm:^2.0.2"
@@ -15122,7 +15122,7 @@ __metadata:
       optional: true
   bin:
     storybook: ./dist/bin/dispatcher.js
-  checksum: 10c0/fb95ae0e08f8db68d8564bfcbaf3fbeae87f49dbb6c9cb83d18573bbb51d2c58adf18f92dc8f6bf58fed433ed3c27bcb2b483c7137f1c6f1baf6fc8363d85a76
+  checksum: 10c0/4e3336c3674b7a2043e079203d420f873376bfc07c2e490e8c383451edc1c8387b4e098811cd3190db0df1c9bcc9db4fc2f528534080255121c97c53da7cbd4b
   languageName: node
   linkType: hard
 
