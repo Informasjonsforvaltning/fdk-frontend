@@ -36,6 +36,22 @@
   background: #fafafa;
 }
 
+.qualityAnnotations {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  cursor: default;
+  background: #fafafa;
+}
+
+.qualityAnnotation {
+  padding: 0.5rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
 .spacialList {
   display:flex;
   flex-direction:column;

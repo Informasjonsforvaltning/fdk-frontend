@@ -114,66 +114,6 @@ const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProp
             </dd>
           </>
         )}
-        {!dataset?.hasAccuracyAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.accuracyAnnotation}:</dt>
-            <dd>
-              {dataset?.hasAccuracyAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasAccuracyAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
-        {!dataset?.hasAvailabilityAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.availabilityAnnotation}:</dt>
-            <dd>
-              {dataset?.hasAvailabilityAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasAvailabilityAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
-        {!dataset?.hasCompletenessAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.completenessAnnotation}:</dt>
-            <dd>
-              {dataset?.hasCompletenessAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasCompletenessAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
-        {!dataset?.hasCurrentnessAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.currentnessAnnotation}:</dt>
-            <dd>
-              {dataset?.hasCurrentnessAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasCurrentnessAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
-        {!dataset?.hasRelevanceAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.relevanceAnnotation}:</dt>
-            <dd>
-              {dataset?.hasRelevanceAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasRelevanceAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
         {!dataset?.spatial && !showEmptyRows ? null : (
           <>
             <dt>{dictionary.details.content.spatial}:</dt>

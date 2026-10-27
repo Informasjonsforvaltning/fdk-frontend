@@ -203,11 +203,6 @@ const detailsPage = {
       issuedHelpText:
         "Denne datoen seier når dataa i dette datasettet først blei utgitt. Det kan ha skjedd før datasettet blei publisert på data.norge.no.",
       modified: "Sist oppdatert",
-      accuracyAnnotation: "Nøyaktigheit",
-      availabilityAnnotation: "Tilgjengelegheit",
-      completenessAnnotation: "Fullstendigheit",
-      currentnessAnnotation: "Aktualitet",
-      relevanceAnnotation: "Relevans",
       spatial: "Geografisk område",
       temporal: "Tidsrom",
       temporalFrom: "Frå",
@@ -217,6 +212,14 @@ const detailsPage = {
         "Referanse til ei implementeringsregel eller anna spesifikasjon som ligg til grunn for datasettet.",
       dataServiceConformsToHelpText:
         "Referanse til ein etablert teknisk standard eller spesifikasjon som API-et er i samsvar med.",
+    },
+    quality: {
+      title: "Kvalitetsmerknader",
+      accuracyAnnotation: "Nøyaktigheit",
+      availabilityAnnotation: "Tilgjengelegheit",
+      completenessAnnotation: "Fullstendigheit",
+      currentnessAnnotation: "Aktualitet",
+      relevanceAnnotation: "Relevans",
     },
     legal: {
       title: "Gjeldande lovgiving",
