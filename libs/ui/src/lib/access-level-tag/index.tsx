@@ -1,17 +1,19 @@
-import { Link, Tag, TagProps, Paragraph } from "@digdir/designsystemet-react";
+import { Tag, TagProps, Paragraph } from "@digdir/designsystemet-react";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { AccessRightsCodes } from "@fellesdatakatalog/types";
 import { HelpText } from "@fellesdatakatalog/ui";
 import TagLink from "../tag-link";
 import styles from "./styles.module.scss";
+import ExternalLink from "../external-link";
 
 type AccessLevelTagProps = {
   accessCode?: AccessRightsCodes | string;
   nonInteractive?: boolean;
   locale: LocaleCodes;
+  baseUri?: string;
 };
 
-const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: AccessLevelTagProps & TagProps) => {
+const AccessLevelTag = ({ accessCode, nonInteractive, locale, baseUri, ...props }: AccessLevelTagProps & TagProps) => {
   const dictionary = getLocalization(locale).detailsPage;
   let color = "neutral";
 
@@ -46,7 +48,13 @@ const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: Access
           <HelpText aria-label={dictionary.accessRights.helpTextTitle}>
             <Paragraph data-size="sm">{helpText}</Paragraph>
             <Paragraph data-size="sm">
-              <Link href={`/${locale}/docs/finding-data/access-data`}>{dictionary.accessRights.readMoreLinkText}</Link>
+              <ExternalLink
+                href={`/${locale}/docs/finding-data/access-data`}
+                baseUri={baseUri}
+                gateway
+              >
+                {dictionary.accessRights.readMoreLinkText}
+              </ExternalLink>
             </Paragraph>
           </HelpText>
         </>

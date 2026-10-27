@@ -15,20 +15,28 @@ export type ExternalLinkProps = Omit<LinkProps, "children"> &
     locale?: LocaleCodes;
     showIcon?: boolean;
     gateway?: boolean;
+    baseUri?: string;
   };
 
-const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway, ...props }: ExternalLinkProps) => {
+const ExternalLink = ({
+  children,
+  showIcon,
+  locale = i18n.defaultLocale,
+  gateway,
+  baseUri,
+  ...props
+}: ExternalLinkProps) => {
   const { href = "" } = props;
   // Block javascript:/data: schemes from becoming an href (used directly on SSR).
   const [target, setTarget] = useState(() => sanitizeLinkHref(href));
 
   useEffect(() => {
     const searchParams = new URLSearchParams();
-    searchParams.set("url", href);
+    searchParams.set("url", `${baseUri}${href}`);
     const gatewayLink = `/${locale}/leaving-gateway?${searchParams}`;
 
     // Needed to bypass gateway where an assumed external link actually points to data.norge.no
-    const destination = new URL(href, window.location.href);
+    const destination = new URL(href, baseUri);
     const current = new URL(window.location.href);
     const isSameHostname = destination.hostname === current.hostname;
 
