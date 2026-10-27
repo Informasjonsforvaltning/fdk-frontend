@@ -219,7 +219,7 @@ const detailsPage = {
         "Reference to an established technical standard or specification that the API conforms to.",
     },
     legal: {
-      title: "Legal basis",
+      title: "Applicable legislation",
       legalBasisForAccess: "Legal basis for access",
       legalBasisForProcessing: "Legal basis for processing",
       legalBasisForRestriction: "Legal basis for restriction",
