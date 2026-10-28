@@ -92,6 +92,14 @@ podman build -f apps/data-norge/Dockerfile -t fdk-frontend .
 podman run -p 8080:8080 fdk-frontend
 ```
 
+## Deployment
+
+Pull requests against `main` are deployed to staging automatically, except drafts. To deploy a draft PR to staging, run the "Deploy to staging" workflow manually on its branch (Actions → Deploy to staging → Run workflow), or:
+
+```bash
+gh workflow run deploy-staging.yaml --ref <branch>
+```
+
 ## Troubleshooting
 
 ### Frontpage Hanging/Performance Issues
