@@ -293,6 +293,7 @@ const detailsPage = {
     },
     themes: "Themes",
     mobilityThemes: "Mobility themes",
+    hvdCategories: "HVD category",
     thematicArea: "Thematic area",
     keywords: "Keywords",
   },
