@@ -4,11 +4,10 @@ import {
   type InformationModel,
   type PublicService,
 } from "@fellesdatakatalog/types";
-import { type WithRemovedFromFDKFlag } from "@fdk-frontend/types";
 
 const { FDK_RESOURCE_SERVICE_BASE_URI } = process.env;
 
-export const getResource = async <T>(uri: string): Promise<WithRemovedFromFDKFlag<T>> =>
+export const getResource = async <T>(uri: string): Promise<T> =>
   fetch(uri, {
     method: "GET",
     headers: {
@@ -20,17 +19,17 @@ export const getResource = async <T>(uri: string): Promise<WithRemovedFromFDKFla
     return response.json();
   });
 
-export const getDataset = async (datasetId: string): Promise<WithRemovedFromFDKFlag<DatasetWithIdentifier>> => {
+export const getDataset = async (datasetId: string): Promise<DatasetWithIdentifier> => {
   const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/datasets/${datasetId}`;
   return getResource<DatasetWithIdentifier>(uri);
 };
 
-export const getApi = async (apiId: string): Promise<WithRemovedFromFDKFlag<DataService>> => {
+export const getApi = async (apiId: string): Promise<DataService> => {
   const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/data-services/${apiId}`;
   return getResource<DataService>(uri);
 };
 
-export const getApis = async (apiIds: string[]): Promise<WithRemovedFromFDKFlag<DataService>[]> => {
+export const getApis = async (apiIds: string[]): Promise<DataService[]> => {
   const apis = await Promise.all(
     apiIds?.map(async (id: string) => {
       try {
@@ -42,17 +41,15 @@ export const getApis = async (apiIds: string[]): Promise<WithRemovedFromFDKFlag<
   );
 
   // Filter out failed requests (null values)
-  return apis.filter((api): api is WithRemovedFromFDKFlag<DataService> => api !== null);
+  return apis.filter((api): api is DataService => api !== null);
 };
 
-export const getService = async (serviceId: string): Promise<WithRemovedFromFDKFlag<PublicService>> => {
+export const getService = async (serviceId: string): Promise<PublicService> => {
   const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/services/${serviceId}`;
   return getResource<PublicService>(uri);
 };
 
-export const getInformationModel = async (
-  informationModelId: string,
-): Promise<WithRemovedFromFDKFlag<InformationModel>> => {
+export const getInformationModel = async (informationModelId: string): Promise<InformationModel> => {
   const uri = `${FDK_RESOURCE_SERVICE_BASE_URI}/information-models/${informationModelId}`;
   return getResource<InformationModel>(uri);
 };

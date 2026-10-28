@@ -32,8 +32,3 @@ export interface PopulatedDatasetReference {
 }
 
 export type Profile = "data.norge" | "transportportal";
-
-/** Top-level flag from fdk-resource-service by-ID endpoints when a resource is removed. */
-export type WithRemovedFromFDKFlag<T> = T & {
-  isRemovedFromFDK?: boolean;
-};
