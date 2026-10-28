@@ -3,7 +3,6 @@
 import React, { Fragment, useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type Organization, type CommunityTopic, type PublicService, SearchObject } from "@fellesdatakatalog/types";
-import { type WithRemovedFromFDKFlag } from "@fdk-frontend/types";
 import { getSlug, printLocaleValue, sumArrayLengths } from "@fdk-frontend/utils";
 import {
   Badge,
@@ -46,7 +45,7 @@ export type ServiceDetailsPageType = {
   locale: LocaleCodes;
   orgLogo?: string | null;
   publisher?: Partial<Organization>;
-  service: WithRemovedFromFDKFlag<PublicService>;
+  service: PublicService;
 };
 
 export default function ServiceDetailsPage(props: ServiceDetailsPageType) {

@@ -10,7 +10,7 @@ import {
   type CommunityTopic,
   type SearchObject,
 } from "@fellesdatakatalog/types";
-import { type PopulatedDatasetReference, type Profile, type WithRemovedFromFDKFlag } from "@fdk-frontend/types";
+import { type PopulatedDatasetReference, type Profile } from "@fdk-frontend/types";
 import { sumArrayLengths, printLocaleValue } from "@fdk-frontend/utils";
 import {
   Badge,
@@ -36,7 +36,7 @@ import styles from "../details-page.module.scss";
 
 export type DatasetDetailsPageType = {
   baseUri: string;
-  resource: WithRemovedFromFDKFlag<DatasetWithIdentifier>;
+  resource: DatasetWithIdentifier;
   apis?: DataService[];
   concepts?: SearchObject[];
   populatedReferences?: PopulatedDatasetReference[];
