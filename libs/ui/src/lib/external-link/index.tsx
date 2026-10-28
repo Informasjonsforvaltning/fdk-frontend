@@ -49,7 +49,7 @@ const ExternalLink = ({
 
 export default ExternalLink;
 
-export function ExternalHref(props: ExternalLinkProps) {
+export const ExternalHref = (props: ExternalLinkProps): string => {
   const { href = "", baseUri, locale, gateway } = props;
   // Block javascript:/data: schemes from becoming an href (used directly on SSR).
   const [target, setTarget] = useState(() => sanitizeLinkHref(href));
@@ -70,4 +70,4 @@ export function ExternalHref(props: ExternalLinkProps) {
   }, []);
 
   return target;
-}
+};
