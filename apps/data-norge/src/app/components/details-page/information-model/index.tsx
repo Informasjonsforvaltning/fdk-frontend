@@ -4,7 +4,7 @@ import { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type InformationModel, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
-import { Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, TagLink } from "@fdk-frontend/ui";
+import { Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, TagLink, UnpublishedTag } from "@fdk-frontend/ui";
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
 import CommunityTab from "../community-tab";
@@ -96,6 +96,12 @@ export default function InformationModelDetailsPage({
               {dictionaries.detailsPage.header.informationModelsTagLink}
             </TagLink>
             <Tag style={{ textTransform: "capitalize" }}>{statusLabel}</Tag>
+            {resource.isRemovedFromFDK && (
+              <UnpublishedTag
+                locale={locale}
+                lastModified={resource.harvest?.modified}
+              />
+            )}
           </TagList>
         </div>
         <Tabs

@@ -12,6 +12,7 @@ import {
   UseDatasetPopover,
   TagList,
   TagLink,
+  UnpublishedTag,
 } from "@fdk-frontend/ui";
 import { Heading, Paragraph, Tag } from "@digdir/designsystemet-react";
 import styles from "./dataset-header.module.scss";
@@ -109,6 +110,12 @@ const DatasetHeader = ({
           data-size="md"
         />
         {dataset.isOpenData && <OpenDataTag locale={locale} />}
+        {dataset.isRemovedFromFDK && (
+          <UnpublishedTag
+            locale={locale}
+            lastModified={dataset.harvest?.modified}
+          />
+        )}
       </TagList>
     </div>
   );
