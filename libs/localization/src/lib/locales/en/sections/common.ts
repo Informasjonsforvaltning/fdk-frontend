@@ -152,6 +152,13 @@ const common = {
     helpText:
       "The dataset is a high-value dataset (HVD) under Commission Implementing Regulation (EU) 2023/138, as declared by the publisher.",
   },
+  unpublishedTag: {
+    label: "Unpublished",
+    helpTextTitle: "Explanation",
+    helpText:
+      "This resource has been unpublished from data.norge.no by the publisher. The resource is no longer maintained or updated. The information may be outdated and unavailable.",
+    lastUpdated: "Last updated {{date}}",
+  },
   general: {
     loading: "Loading...",
     redirecting: "Redirecting...",

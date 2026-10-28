@@ -22,6 +22,7 @@ import {
   TagList,
   StatusTag,
   TagLink,
+  UnpublishedTag,
 } from "@fdk-frontend/ui";
 import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel, Button, Link } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
@@ -204,6 +205,12 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
               <StatusTag
                 locale={locale}
                 status={service.admsStatus}
+              />
+            )}
+            {service.isRemovedFromFDK && (
+              <UnpublishedTag
+                locale={locale}
+                lastModified={service.harvest?.modified}
               />
             )}
           </TagList>
