@@ -78,15 +78,12 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
               })}
             </>
           )}
-          {!dataset.legalBasisForAccess && !showEmptyRows
-            ? null
-            : printLegalBasis(dataset.legalBasisForAccess, dictionary.details.legal.legalBasisForAccess)}
-          {!dataset.legalBasisForProcessing && !showEmptyRows
-            ? null
-            : printLegalBasis(dataset.legalBasisForProcessing, dictionary.details.legal.legalBasisForProcessing)}
-          {!dataset.legalBasisForRestriction && !showEmptyRows
-            ? null
-            : printLegalBasis(dataset.legalBasisForRestriction, dictionary.details.legal.legalBasisForRestriction)}
+          {dataset.legalBasisForAccess &&
+            printLegalBasis(dataset.legalBasisForAccess, dictionary.details.legal.legalBasisForAccess)}
+          {dataset.legalBasisForProcessing &&
+            printLegalBasis(dataset.legalBasisForProcessing, dictionary.details.legal.legalBasisForProcessing)}
+          {dataset.legalBasisForRestriction &&
+            printLegalBasis(dataset.legalBasisForRestriction, dictionary.details.legal.legalBasisForRestriction)}
         </Dlist>
       ) : (
         <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
