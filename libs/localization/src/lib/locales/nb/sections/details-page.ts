@@ -293,6 +293,7 @@ const detailsPage = {
     },
     themes: "Tema",
     mobilityThemes: "Mobilitetstema",
+    hvdCategories: "HVD-kategori",
     thematicArea: "Temaområde",
     keywords: "Nøkkelord",
     dctType: "Type tjeneste",
