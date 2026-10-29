@@ -199,6 +199,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
       docsLoading={docsLoading}
       llmLoading={llmLoading}
       hideAiSet={hideAiSet}
+      pathname={pathname}
     />
   );
 };

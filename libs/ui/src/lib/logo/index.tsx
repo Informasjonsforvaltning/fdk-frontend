@@ -16,7 +16,7 @@ export type LogoProps = {
 const Logo = ({ profile = "data.norge", tagline }: LogoProps) =>
   profile === "transportportal" ? (
     <div className={styles.transportportalLogo}>
-      <span className={styles.transportportalWordmark}>Transportportal.no</span>
+      <div className={styles.transportportalWordmark}>Transportportal.no</div>
     </div>
   ) : (
     <div className={styles.logo}>

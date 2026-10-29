@@ -128,7 +128,7 @@ export default function DatasetDetailsPage({
             setActiveTab(value);
           }}
         >
-          <ScrollShadows className={styles.tabsScrollShadows}>
+          <ScrollShadows>
             <TabsList>
               <TabsTab
                 value="overview"
@@ -236,7 +236,7 @@ export default function DatasetDetailsPage({
                 >
                   {dictionaries.detailsPage.internalRelations}
                 </Heading>
-                <ScrollShadows className={styles.tableScroller}>
+                <ScrollShadows>
                   <DatasetTable
                     datasets={internalRelatedDatasets}
                     locale={locale}
@@ -255,7 +255,7 @@ export default function DatasetDetailsPage({
                 >
                   {dictionaries.detailsPage.similarDatasets}
                 </Heading>
-                <ScrollShadows className={styles.tableScroller}>
+                <ScrollShadows>
                   <DatasetTable
                     datasets={similarDatasets}
                     locale={locale}

@@ -113,7 +113,7 @@ export default function InformationModelDetailsPage({
             setActiveTab(value);
           }}
         >
-          <ScrollShadows className={styles.tabsScrollShadows}>
+          <ScrollShadows>
             <TabsList>
               <TabsTab
                 value="overview"
