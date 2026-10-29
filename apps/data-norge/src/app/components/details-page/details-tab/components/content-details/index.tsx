@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
-import { Heading, Paragraph } from "@digdir/designsystemet-react";
-import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist } from "@fdk-frontend/ui";
+import { Heading, Paragraph, Table, Tag } from "@digdir/designsystemet-react";
+import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, TagList } from "@fdk-frontend/ui";
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { formatTemporalDate, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
+import { getQualityAnnotations } from "./get-quality-annotations";
 import styles from '../../details-tab.module.scss';
 
 const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
+  const qualityAnnotations = getQualityAnnotations(dataset, locale, dictionary);
 
   return (
     <section>
@@ -114,66 +116,6 @@ const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProp
             </dd>
           </>
         )}
-        {!dataset?.hasAccuracyAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.accuracyAnnotation}:</dt>
-            <dd>
-              {dataset?.hasAccuracyAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasAccuracyAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
-        {!dataset?.hasAvailabilityAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.availabilityAnnotation}:</dt>
-            <dd>
-              {dataset?.hasAvailabilityAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasAvailabilityAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
-        {!dataset?.hasCompletenessAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.completenessAnnotation}:</dt>
-            <dd>
-              {dataset?.hasCompletenessAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasCompletenessAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
-        {!dataset?.hasCurrentnessAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.currentnessAnnotation}:</dt>
-            <dd>
-              {dataset?.hasCurrentnessAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasCurrentnessAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
-        {!dataset?.hasRelevanceAnnotation?.hasBody && !showEmptyRows ? null : (
-          <>
-            <dt>{dictionary.details.content.relevanceAnnotation}:</dt>
-            <dd>
-              {dataset?.hasRelevanceAnnotation?.hasBody ? (
-                printLocaleValue(locale, dataset?.hasRelevanceAnnotation?.hasBody)
-              ) : (
-                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
-              )}
-            </dd>
-          </>
-        )}
         {!dataset?.spatial && !showEmptyRows ? null : (
           <>
             <dt>{dictionary.details.content.spatial}:</dt>
@@ -258,6 +200,42 @@ const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProp
                     </ExternalLink>
                   )}
                 />
+              ) : (
+                <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+              )}
+            </dd>
+          </>
+        )}
+        {!qualityAnnotations.length && !showEmptyRows ? null : (
+          <>
+            <dt>{dictionary.details.quality.title}:</dt>
+            <dd className="article">
+              {qualityAnnotations.length > 0 ? (
+                <Table border>
+                  <Table.Body>
+                    {qualityAnnotations.map((annotation, index) => (
+                      <Table.Row key={`quality-annotation-${index}`}>
+                        <Table.Cell>
+                          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                            <Paragraph>{printLocaleValue(locale, annotation.body)}</Paragraph>
+                            {annotation.dimensions.length > 0 && (
+                              <TagList>
+                                {annotation.dimensions.map((dimension) => (
+                                  <Tag
+                                    key={dimension}
+                                    data-size="sm"
+                                  >
+                                    {dimension}
+                                  </Tag>
+                                ))}
+                              </TagList>
+                            )}
+                          </div>
+                        </Table.Cell>
+                      </Table.Row>
+                    ))}
+                  </Table.Body>
+                </Table>
               ) : (
                 <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
               )}
