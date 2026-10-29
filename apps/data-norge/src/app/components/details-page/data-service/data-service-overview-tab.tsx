@@ -137,7 +137,7 @@ export default function DataServiceOverviewTab({
           >
             {dictionary.overview.servesDataset.title}
           </Heading>
-          <ScrollShadows className={styles.tableScroller}>
+          <ScrollShadows>
             <DatasetTable
               datasets={resolvedDatasets}
               locale={locale}

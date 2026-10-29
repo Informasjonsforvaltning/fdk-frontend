@@ -1,6 +1,39 @@
 .container {
   position: relative;
   flex-grow: 1;
+
+  .mobileCloseButton {
+    display:none;
+  }
+
+  @media (max-width: 700px) {
+    &.trayVisible {
+      position:fixed;
+      inset:0;
+      box-sizing:border-box;
+      padding:1rem;
+      z-index:1700 !important;
+
+      .searchWrapper {
+        display:grid;
+        grid-template-columns: min-content 1fr;
+        gap:0.5rem;
+        .mobileCloseButton {
+          display:flex;
+        }
+      }
+
+      .form + div[class] {
+        position:static;
+        box-shadow:none;
+  
+        > div {
+          inset:0;
+          padding:1rem 0;
+        }
+      }
+    }
+  }
 }
 
 .form {

@@ -21,7 +21,7 @@ export type HeaderProps = {
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ locale, frontpage, showSearchInput, showFindDataButton, profile = "data.norge" }: HeaderProps) => {
+const Header = ({ locale, frontpage, showSearchInput, showFindDataButton = true, profile = "data.norge" }: HeaderProps) => {
   const findDataButtonVisible = (showFindDataButton ?? !showSearchInput) && profile !== "transportportal";
   const dictionary = getLocalization(locale).common;
   const headerRef = useRef<HTMLDivElement>(null);
@@ -124,7 +124,9 @@ const Header = ({ locale, frontpage, showSearchInput, showFindDataButton, profil
             </Button>
           </Alert>
         )}
-        <div className={styles.headerInner}>
+        <div className={cn(styles.headerInner, {
+          [styles.oldContent]: showFindDataButton && !showSearchInput
+        })}>
           <LogoLink
             className={styles.headerLogo}
             href={`/${locale}`}
@@ -142,40 +144,41 @@ const Header = ({ locale, frontpage, showSearchInput, showFindDataButton, profil
           ) : (
             <div style={{ flexGrow: 1 }} />
           )}
-          <div className={styles.headerToolbar}>
-            {findDataButtonVisible && (
-              <Button
-                asChild
-                data-size="sm"
-                variant="tertiary"
-                aria-label={dictionary.header.findDataButton}
-              >
-                <Link href={`/search-all`}>
-                  <MagnifyingGlassIcon aria-hidden />
-                  <span>{dictionary.header.findDataButton}</span>
-                </Link>
-              </Button>
-            )}
-            <Button
-              data-size="sm"
-              variant={showMenu ? "secondary" : "tertiary"}
-              onClick={() => setShowMenu(!showMenu)}
-              aria-label={dictionary.header.menuButton}
-              aria-pressed={showMenu}
-            >
-              {showMenu ? <XMarkIcon aria-hidden /> : <MenuHamburgerIcon aria-hidden />}
-              <span>{dictionary.header.menuButton}</span>
-            </Button>
+          {findDataButtonVisible && !showSearchInput && (
             <Button
               asChild
               data-size="sm"
-              variant="primary"
+              variant="tertiary"
+              aria-label={dictionary.header.findDataButton}
+              className={styles.findDataButton}
             >
-              <Link href={`/publishing`}>
-                <span>{dictionary.header.shareDataButton}</span>
+              <Link href={`/search-all`}>
+                <MagnifyingGlassIcon aria-hidden />
+                <span>{dictionary.header.findDataButton}</span>
               </Link>
             </Button>
-          </div>
+          )}
+          <Button
+            className={styles.menuButton}
+            data-size="sm"
+            variant={showMenu ? "secondary" : "tertiary"}
+            onClick={() => setShowMenu(!showMenu)}
+            aria-label={dictionary.header.menuButton}
+            aria-pressed={showMenu}
+          >
+            {showMenu ? <XMarkIcon aria-hidden /> : <MenuHamburgerIcon aria-hidden />}
+            <span>{dictionary.header.menuButton}</span>
+          </Button>
+          <Button
+            className={styles.shareButton}
+            asChild
+            data-size="sm"
+            variant="primary"
+          >
+            <Link href={`/publishing`}>
+              <span>{dictionary.header.shareDataButton}</span>
+            </Link>
+          </Button>
         </div>
         {showMenu && (
           <div className={styles.drawer}>

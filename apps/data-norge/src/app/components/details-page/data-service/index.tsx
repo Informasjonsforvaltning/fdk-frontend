@@ -132,7 +132,7 @@ export default function DataServiceDetailsPage({
             setActiveTab(value);
           }}
         >
-          <ScrollShadows className={styles.tabsScrollShadows}>
+          <ScrollShadows>
             <TabsList>
               <TabsTab
                 value="overview"

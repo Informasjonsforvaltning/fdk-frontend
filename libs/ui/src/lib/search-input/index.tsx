@@ -2,7 +2,8 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useRef, useEffect, useState, type FormEvent, type Ref } from "react";
 import cn from "classnames";
-import { Search } from "@digdir/designsystemet-react";
+import { Button, Search } from "@digdir/designsystemet-react";
+import { ChevronLeftIcon } from "@navikt/aksel-icons";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
 import SearchInputTray, { type SearchTrayPanel } from "../search-input-tray";
@@ -52,6 +53,9 @@ const SearchInput = ({
   inputRef: inputRefProp,
   ...rest
 }: SearchInputProps) => {
+  // Pull searchLabel off the form. It is not a DOM attribute.
+  void searchLabel;
+
   const dictionary = getLocalization(locale);
   const inputDict = dictionary.searchPage.searchInput;
   const router = useRouter();
@@ -136,7 +140,7 @@ const SearchInput = ({
   return (
     <div
       ref={containerRef}
-      className={cn(styles.container, className)}
+      className={cn(styles.container, className, { [styles.trayVisible]: isTrayVisible })}
       data-color-scheme={isTrayVisible ? "light" : null}
     >
       <form
@@ -144,21 +148,33 @@ const SearchInput = ({
         onSubmit={handleSubmit}
         {...rest}
       >
-        <Search
-          className={cn(styles.search, {
-            [styles.visible]: isTrayVisible,
-          })}
-        >
-          <Search.Input
-            ref={setInputRef}
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onFocus={() => setIsTrayVisible(true)}
-            aria-label={inputDict.label}
-            placeholder={placeholder}
-          />
-          <Search.Clear />
-        </Search>
+        <div className={styles.searchWrapper}>
+          <Button
+            className={styles.mobileCloseButton}
+            variant="tertiary"
+            icon
+            type="button"
+            aria-label={inputDict.close}
+            onClick={() => setIsTrayVisible(false)}
+          >
+            <ChevronLeftIcon aria-hidden />
+          </Button>
+          <Search
+            className={cn(styles.search, {
+              [styles.visible]: isTrayVisible,
+            })}
+          >
+            <Search.Input
+              ref={setInputRef}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onFocus={() => setIsTrayVisible(true)}
+              aria-label={inputDict.label}
+              placeholder={placeholder}
+            />
+            <Search.Clear />
+          </Search>
+        </div>
       </form>
       <SearchInputTray
         isVisible={isTrayVisible}

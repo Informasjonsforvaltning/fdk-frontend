@@ -26,6 +26,7 @@ const searchPage = {
   },
   searchInput: {
     label: "Søk",
+    close: "Lukk søk",
     placeholder: "Hva leter du etter?",
     seeAllResults: "Se alle treff",
     dataCatalogs: "Datakataloger",
@@ -63,6 +64,7 @@ const searchPage = {
       dcatProfile: "Spesifikasjon",
     },
     clearAllFilters: "Tøm alle filtre",
+    listSettings: "Listeinnstillinger",
     resultsPerPage: "{{count}} treff per side",
     sort: {
       relevance: "Mest relevant",

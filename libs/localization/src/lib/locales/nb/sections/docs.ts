@@ -65,6 +65,9 @@ const docs = {
     "/docs/community": "Datalandsbyen",
     "/validator": "Valideringsverktøy",
   },
+  sidebar: {
+    menuLabel: "Sidemeny",
+  },
   tableOfContents: {
     onThisPage: "På denne siden:",
   },
