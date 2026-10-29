@@ -4,7 +4,7 @@ import { Hstack, PlaceholderText, ExternalLink, SmartList, Dlist, TagList } from
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { formatTemporalDate, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
-import { getQualityAnnotations } from "../quality-details";
+import { getQualityAnnotations } from "./get-quality-annotations";
 import styles from '../../details-tab.module.scss';
 
 const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
