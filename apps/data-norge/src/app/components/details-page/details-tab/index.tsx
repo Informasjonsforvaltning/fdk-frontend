@@ -13,7 +13,6 @@ import { PlaceholderBox, PlaceholderText, TagList, Dlist, ExternalLink, SmartLis
 import GeneralDetails from "./components/general-details";
 import ContactDetails from "./components/contact-details";
 import ContentDetails from "./components/content-details";
-import QualityDetails, { getQualityAnnotations } from "./components/quality-details";
 import LegalDetails, { hasLegalBasis } from "./components/legal-details";
 import ConceptDetails from "./components/concept-details";
 import ReferencesDetails from "./components/references-details";
@@ -83,13 +82,6 @@ const DatasetDetailsTab = ({
           locale={locale}
           dictionary={dictionary}
         />
-        {!getQualityAnnotations(dataset, locale, dictionary).length && !showEmptyRows ? null : (
-          <QualityDetails
-            dataset={dataset}
-            locale={locale}
-            dictionary={dictionary}
-          />
-        )}
         {!hasLegalBasis(dataset) && !showEmptyRows ? null : (
           <LegalDetails
             dataset={dataset}

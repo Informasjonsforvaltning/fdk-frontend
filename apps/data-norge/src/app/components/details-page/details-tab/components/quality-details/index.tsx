@@ -1,11 +1,6 @@
-import React from "react";
-import { Card, Heading, Tag } from "@digdir/designsystemet-react";
 import { type DatasetWithIdentifier } from "@fellesdatakatalog/types";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
-import { Article, ExpandableContent, ExternalLink, Markdown, PlaceholderBox, TagList } from "@fdk-frontend/ui";
 import { printLocaleValue } from "@fdk-frontend/utils";
-import { DatasetDetailsProps } from "../../";
-import styles from "../../details-tab.module.scss";
 
 type QualityAnnotationItem = {
   body: DatasetWithIdentifier["qualityAnnotations"][number]["hasBody"];
@@ -33,7 +28,7 @@ const legacyAnnotationFields: { field: LegacyAnnotationField; uri: string; label
   {
     field: "hasAccuracyAnnotation",
     uri: "http://iso.org/25012/2008/dataquality/Accuracy",
-    labelKey: "accuracyAnnotation"
+    labelKey: "accuracyAnnotation",
   },
   {
     field: "hasAvailabilityAnnotation",
@@ -53,7 +48,7 @@ const legacyAnnotationFields: { field: LegacyAnnotationField; uri: string; label
   {
     field: "hasRelevanceAnnotation",
     uri: "http://iso.org/25012/2008/dataquality/Relevance",
-    labelKey: "relevanceAnnotation"
+    labelKey: "relevanceAnnotation",
   },
 ];
 
@@ -95,61 +90,3 @@ export const getQualityAnnotations = (
 
   return getLegacyQualityAnnotations(dataset, dictionary);
 };
-
-const QualityDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
-  const qualityAnnotations = getQualityAnnotations(dataset, locale, dictionary);
-
-  return (
-    <section>
-      <Heading
-        level={2}
-        data-size="xs"
-      >
-        {dictionary.details.quality.title}
-      </Heading>
-      {qualityAnnotations.length > 0 ? (
-        <Card className={styles.qualityAnnotations}>
-          {qualityAnnotations.map((annotation, index) => (
-            <div
-              key={`quality-annotation-${index}`}
-              className={styles.qualityAnnotation}
-            >
-              <ExpandableContent>
-                <Article>
-                  <Markdown
-                    locale={locale}
-                    components={{
-                      a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-                        <ExternalLink
-                          {...props}
-                          locale={locale}
-                          gateway
-                        />
-                      ),
-                    }}
-                  >
-                    {printLocaleValue(locale, annotation.body)}
-                  </Markdown>
-                </Article>
-              </ExpandableContent>
-              <TagList>
-                {annotation.dimensions.map((dimension) => (
-                  <Tag
-                    key={dimension}
-                    data-size="sm"
-                  >
-                    {dimension}
-                  </Tag>
-                ))}
-              </TagList>
-            </div>
-          ))}
-        </Card>
-      ) : (
-        <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
-      )}
-    </section>
-  );
-};
-
-export default QualityDetails;
