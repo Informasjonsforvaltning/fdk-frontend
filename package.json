@@ -105,7 +105,7 @@
     "@digdir/designsystemet-css": "^1.23.0",
     "@digdir/designsystemet-react": "^1.23.0",
     "@digdir/designsystemet-theme": "^1.11.0",
-    "@fellesdatakatalog/types": "^1.0.39",
+    "@fellesdatakatalog/types": "^1.0.40",
     "@fellesdatakatalog/ui": "^1.0.54",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
