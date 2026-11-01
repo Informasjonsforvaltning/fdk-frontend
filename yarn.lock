@@ -8602,15 +8602,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:10.6.1":
-  version: 10.6.1
-  resolution: "eslint-plugin-storybook@npm:10.6.1"
+"eslint-plugin-storybook@npm:10.6.5":
+  version: 10.6.5
+  resolution: "eslint-plugin-storybook@npm:10.6.5"
   dependencies:
     "@typescript-eslint/types": "npm:^8.60.0"
     "@typescript-eslint/utils": "npm:^8.60.0"
   peerDependencies:
     eslint: ">=8"
-  checksum: 10c0/68b097c63c55a664fdf92a2a8e296115f283fc8713e0f6d68278f6e4b27f8ade1a0a4837c4fbffc493b7db1afee2a837a28d8c823111c190ee92bfc8fdb7497c
+  checksum: 10c0/a47758eb5b2fe3c0d6bd1db4eb303b3be95b02e07db3ccb9a62683f447d249d0d84c581b27e147403166abaefecd3f12902a11de5923c8eab3093e9cbebd806b
   languageName: node
   linkType: hard
 
@@ -9092,7 +9092,7 @@ __metadata:
     eslint-plugin-jsx-a11y: "npm:^6.10.2"
     eslint-plugin-playwright: "npm:^2.12.1"
     eslint-plugin-react: "npm:^7.37.5"
-    eslint-plugin-storybook: "npm:10.6.1"
+    eslint-plugin-storybook: "npm:10.6.5"
     framer-motion: "npm:^12.29.2"
     identity-obj-proxy: "npm:^3.0.0"
     jest: "npm:^30.3.0"
