@@ -5,7 +5,8 @@ import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { formatTemporalDate, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
 import { getQualityAnnotations } from "./get-quality-annotations";
-import styles from '../../details-tab.module.scss';
+import styles from "../../details-tab.module.scss";
+import StandardItem from "../../../standard-item";
 
 const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
@@ -191,13 +192,10 @@ const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProp
                   listType="ol"
                   items={dataset.conformsTo}
                   renderItem={(item) => (
-                    <ExternalLink
-                      href={item.uri}
+                    <StandardItem
+                      standard={item}
                       locale={locale}
-                      gateway
-                    >
-                      {printLocaleValue(locale, item?.prefLabel) || item.uri}
-                    </ExternalLink>
+                    />
                   )}
                 />
               ) : (
