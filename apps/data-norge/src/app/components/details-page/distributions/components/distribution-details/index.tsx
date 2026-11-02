@@ -245,8 +245,26 @@ const DistributionDetails = ({
         </dd>
         <dt>{dictionaries.detailsPage.distributions.details.rightsType}:</dt>
         <dd>
-          {distribution?.rights?.type?.prefLabel ? (
-            <span>{printLocaleValue(locale, distribution?.rights?.type?.prefLabel)}</span>
+          {distribution?.rights?.type?.prefLabel || distribution?.rights?.reuserGuidelines?.length ? (
+            <>
+              {distribution.rights.type?.prefLabel && (
+                <div>{printLocaleValue(locale, distribution.rights.type.prefLabel)}</div>
+              )}
+              {distribution.rights.reuserGuidelines?.length ? (
+                <SmartList
+                  items={distribution.rights.reuserGuidelines}
+                  renderItem={(url) => (
+                    <ExternalLink
+                      href={url}
+                      locale={locale}
+                      gateway
+                    >
+                      {url}
+                    </ExternalLink>
+                  )}
+                />
+              ) : null}
+            </>
           ) : (
             <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
           )}
