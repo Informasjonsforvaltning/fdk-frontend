@@ -3,8 +3,7 @@ import { Heading } from "@digdir/designsystemet-react";
 import { PlaceholderText, PlaceholderBox, ExternalLink, SmartList, Dlist, Article } from "@fdk-frontend/ui";
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { printLocaleValue } from "@fdk-frontend/utils";
-import { Dataset, LegalResource } from "@fellesdatakatalog/types";
-import Link from "next/link";
+import { Dataset } from "@fellesdatakatalog/types";
 
 export const hasLegalBasis = (dataset: Dataset) =>
   dataset.applicableLegislation ||
@@ -56,7 +55,13 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
                   return <PlaceholderText key={`legislation-${i}`}>{dictionary.details.noData}</PlaceholderText>;
                 return (
                   <React.Fragment key={`legislation-${i}`}>
-                    <dt>{printLocaleValue(locale, legislation.title)}</dt>
+                    <dt>
+                      {legislation.title ? (
+                        printLocaleValue(locale, legislation.title)
+                      ) : (
+                        <PlaceholderText>{dictionary.details.legal.noTitle}</PlaceholderText>
+                      )}
+                    </dt>
                     <dd className="article">
                       <Article>{printLocaleValue(locale, legislation.description)}</Article>
                       {legislation.references && legislation.references.length > 0 && (
