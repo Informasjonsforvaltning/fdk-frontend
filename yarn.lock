@@ -7109,7 +7109,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brace-expansion@npm:5.0.12, brace-expansion@npm:^5.0.12":
+"brace-expansion@npm:5.0.12, brace-expansion@npm:^5.0.12, brace-expansion@npm:^5.0.8":
   version: 5.0.12
   resolution: "brace-expansion@npm:5.0.12"
   dependencies:
@@ -7792,10 +7792,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"decode-uri-component@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "decode-uri-component@npm:0.5.0"
-  checksum: 10c0/b913bb2ec3a83b4c96d961dcd7808c538f2f69f9a8581ab1bfbbb3d48c90e36779cc4580334198315d4c17f9c32d88ae4467c96582419a70b5f35df2c5a05cb1
+"decode-uri-component@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "decode-uri-component@npm:0.5.1"
+  checksum: 10c0/70e30722bb8671c9795a1301bd20b12e6011a401a8703becf480846c3ad13e8c6ee3c9cbd2b3a82532197eb4d422f54b1151b9a617d8ec3b74874fac1e87e14c
   languageName: node
   linkType: hard
 
@@ -9206,13 +9206,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.16.1":
-  version: 1.16.1
-  resolution: "follow-redirects@npm:1.16.1"
+"follow-redirects@npm:^1.16.2":
+  version: 1.16.2
+  resolution: "follow-redirects@npm:1.16.2"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 10c0/544e24ccb93b7afb5dd5a2199bd556e167b84de2af7c13b2ced08494239677359d7883bae56ae43a9ca98ac5451e75cf4834a5fadd6fa79053b9248fac5447a4
+  checksum: 10c0/ff38c8ceb904e505021057f58d395ea5f2e7c34257032960a76b21df1726395ce753f5678b6ee3b15210a557277c00b2607c67b682ee4dec1f33cb5147e08e90
   languageName: node
   linkType: hard
 
@@ -12580,11 +12580,11 @@ __metadata:
   linkType: hard
 
 "minimatch@npm:^10.2.2":
-  version: 10.2.3
-  resolution: "minimatch@npm:10.2.3"
+  version: 10.2.6
+  resolution: "minimatch@npm:10.2.6"
   dependencies:
-    brace-expansion: "npm:^5.0.2"
-  checksum: 10c0/d9ae5f355e8bb77a42dd8c20b950141cec8773ef8716a2bb6df7a6840cc44a00ed828883884e4f1c7b5cb505fa06a17e3ea9ca2edb18fd1dec865ea7f9fcf0e5
+    brace-expansion: "npm:^5.0.8"
+  checksum: 10c0/4559a836243b98bd4d17ea9f7edae698717c76399eea7be374f3737f33164e4907f19e9726891ddeb122f750a5a7fa80d2ac43e851d6e5984dc4ff42ec127d3a
   languageName: node
   linkType: hard
 
