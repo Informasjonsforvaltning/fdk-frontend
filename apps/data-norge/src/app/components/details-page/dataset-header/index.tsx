@@ -30,6 +30,7 @@ type DatasetHeaderProps = {
   orgLogo?: string | null;
   accessRequestDemo?: boolean;
   isAvailable?: boolean;
+  baseUri?: string;
 };
 
 const DatasetHeader = ({
@@ -41,10 +42,10 @@ const DatasetHeader = ({
   locale,
   accessRequestDemo,
   isAvailable,
+  baseUri,
   ...props
 }: DatasetHeaderProps & React.HTMLAttributes<HTMLDivElement>) => {
-  const isMobilityDataset =
-    dataset?.dcatProfiles?.includes(DCAT_PROFILE_MOBILITY);
+  const isMobilityDataset = dataset?.dcatProfiles?.includes(DCAT_PROFILE_MOBILITY);
   const isHvdDataset = dataset?.dcatProfiles?.includes(DCAT_PROFILE_HVD);
 
   return (
@@ -108,6 +109,7 @@ const DatasetHeader = ({
           accessCode={dataset.accessRights?.code}
           locale={locale}
           data-size="md"
+          baseUri={baseUri}
         />
         {dataset.isOpenData && <OpenDataTag locale={locale} />}
         {dataset.isRemovedFromFDK && (

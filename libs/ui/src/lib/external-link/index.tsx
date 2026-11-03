@@ -15,29 +15,20 @@ export type ExternalLinkProps = Omit<LinkProps, "children"> &
     locale?: LocaleCodes;
     showIcon?: boolean;
     gateway?: boolean;
+    baseUri?: string;
   };
 
-const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway, ...props }: ExternalLinkProps) => {
+const ExternalLink = ({
+  children,
+  showIcon,
+  locale = i18n.defaultLocale,
+  gateway,
+  baseUri = "",
+  ...props
+}: ExternalLinkProps) => {
   const { href = "" } = props;
-  // Block javascript:/data: schemes from becoming an href (used directly on SSR).
-  const [target, setTarget] = useState(() => sanitizeLinkHref(href));
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams();
-    searchParams.set("url", href);
-    const gatewayLink = `/${locale}/leaving-gateway?${searchParams}`;
-
-    // Needed to bypass gateway where an assumed external link actually points to data.norge.no
-    const destination = new URL(href, window.location.href);
-    const current = new URL(window.location.href);
-    const isSameHostname = destination.hostname === current.hostname;
-
-    if (gateway && !isSameHostname) {
-      setTarget(gatewayLink);
-    }
-  }, []);
-
   if (!href) return children;
+  const target = ExternalHref({ locale: locale, gateway: gateway, baseUri: baseUri, ...props });
 
   return (
     <Link
@@ -57,3 +48,26 @@ const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway
 };
 
 export default ExternalLink;
+
+export const ExternalHref = (props: ExternalLinkProps): string => {
+  const { href = "", baseUri, locale, gateway } = props;
+  // Block javascript:/data: schemes from becoming an href (used directly on SSR).
+  const [target, setTarget] = useState(() => sanitizeLinkHref(href));
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams();
+    searchParams.set("url", `${baseUri}${href}`);
+    const gatewayLink = `/${locale}/leaving-gateway?${searchParams}`;
+
+    // Needed to bypass gateway where an assumed external link actually points to data.norge.no
+    const destination = new URL(href, baseUri || window.location.href);
+    const current = new URL(window.location.href);
+    const isSameHostname = destination.hostname === current.hostname;
+
+    if (gateway && !isSameHostname) {
+      setTarget(gatewayLink);
+    }
+  }, []);
+
+  return target;
+};

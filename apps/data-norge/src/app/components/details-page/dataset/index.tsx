@@ -118,6 +118,7 @@ export default function DatasetDetailsPage({
           orgLogo={orgLogo}
           accessRequestDemo={accessRequestDemo}
           isAvailable={isAvailable}
+          baseUri={baseUri}
         />
         <Tabs
           className={styles.tabs}
