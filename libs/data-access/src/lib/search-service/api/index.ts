@@ -140,6 +140,10 @@ export const searchInformationModels = async (uris?: string[]) => {
         value: uris,
       },
     },
+    pagination: {
+      size: uris.length,
+      page: 0,
+    },
   });
 };
 

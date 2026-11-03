@@ -6,5 +6,6 @@ export * from "./lib/context/env";
 export * from "./lib/structured-data";
 export * from "./lib/temporalDate";
 export * from "./lib/hvd";
+export * from "./lib/standard";
 export * from "./lib/url-safety";
 export * from "./lib/search";
