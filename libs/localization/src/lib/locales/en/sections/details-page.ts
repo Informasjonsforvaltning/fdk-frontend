@@ -226,6 +226,7 @@ const detailsPage = {
       legalBasisForAccess: "Legal basis for access",
       legalBasisForProcessing: "Legal basis for processing",
       legalBasisForRestriction: "Legal basis for restriction",
+      type: "Type",
     },
     concepts: {
       title: "Concepts used in the dataset",

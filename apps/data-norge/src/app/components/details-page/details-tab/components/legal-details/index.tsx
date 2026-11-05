@@ -59,7 +59,10 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
                     <dt>{printLocaleValue(locale, legislation.title)}</dt>
                     <dd className="article">
                       {legislation.type && (
-                        <div>{printLocaleValue(locale, legislation.type.prefLabel) || legislation.type.code}</div>
+                        <div>
+                          {dictionary.details.legal.type}:{" "}
+                          {printLocaleValue(locale, legislation.type.prefLabel) || legislation.type.code}
+                        </div>
                       )}
                       <Article>{printLocaleValue(locale, legislation.description)}</Article>
                       {legislation.references && legislation.references.length > 0 && (
