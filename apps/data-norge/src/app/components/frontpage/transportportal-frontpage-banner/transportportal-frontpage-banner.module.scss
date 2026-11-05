@@ -26,12 +26,13 @@
 
 .inner {
   position: relative;
-  z-index: 2;
+  z-index: 1600;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3rem;
+  margin: 3rem;
   margin-top: 4rem;
 
   h1::after {
@@ -59,12 +60,12 @@
 
   :global(.ds-link) {
     &:not(.ds-button):not(:hover):not(:focus):not(:focus-visible):not(:active) {
-      color:white;
-      text-decoration:none;
+      color: white;
+      text-decoration: none;
     }
 
     &:hover {
-      color:white;
+      color: white;
       text-decoration: underline;
       text-decoration-thickness: 4px;
       text-underline-offset: 0.5rem;
@@ -98,8 +99,20 @@
   }
 
   .partnersLinks {
+    justify-content: center;
+
     :global(.ds-link) {
       height: 4rem;
+    }
+  }
+
+  @media (max-width: 850px) {
+    gap: 2rem;
+
+    .partnersLinks {
+      :global(.ds-link) {
+        height: 3rem;
+      }
     }
   }
 }
@@ -113,4 +126,10 @@
   width: min(600px, 100%);
   margin: auto;
   flex-grow: 0;
+
+  &:not([data-color-scheme="light"]) {
+    :global(.ds-input) {
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
 }
