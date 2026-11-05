@@ -58,6 +58,9 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
                   <React.Fragment key={`legislation-${i}`}>
                     <dt>{printLocaleValue(locale, legislation.title)}</dt>
                     <dd className="article">
+                      {legislation.type && (
+                        <div>{printLocaleValue(locale, legislation.type.prefLabel) || legislation.type.code}</div>
+                      )}
                       <Article>{printLocaleValue(locale, legislation.description)}</Article>
                       {legislation.references && legislation.references.length > 0 && (
                         <SmartList
