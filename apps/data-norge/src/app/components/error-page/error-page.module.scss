@@ -1,17 +1,19 @@
 .errorPage {
+  display:flex;
+  align-items:center;
   background: transparent;
 
   .inner {
-    text-align: center;
-    padding: 10rem 2rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 1.5rem;
+    justify-content: center;
     color: white;
+    flex:1;
 
     :global(.fds-heading) {
       color: white;
-    }
-
-    > * + * {
-      margin-top: 1rem;
     }
   }
 }
