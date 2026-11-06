@@ -16,8 +16,8 @@
     gap: 2rem;
     margin-top: 2rem;
 
-    @container (max-width: 900px) {
-      grid-template-columns: 20% minmax(0, 1fr);
+    @container (max-width: 1200px) {
+      grid-template-columns: 25% minmax(0, 1fr);
       grid-template-areas: "left main";
 
       .rightColumn {
@@ -25,20 +25,23 @@
       }
     }
 
-    @container (max-width: 800px) {
-      display: block;
+    @container (max-width: 900px) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "main";
 
-      .leftColumn {
-        position: static;
-        margin: 0 -2rem;
-        padding: 1rem 2rem;
-        background: #f8f8f8;
+      .leftColumn,
+      .rightColumn {
+        display: none;
       }
 
-      .mainColumn {
-        margin-top: 2rem;
+      .menuDrawer {
+        display: inline-flex;
       }
     }
+  }
+
+  .menuDrawer {
+    display: none;
   }
 
   .pageHeading {
@@ -70,8 +73,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
     gap: 1rem;
+  }
+
+  .resultsHeading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
   }
 
   .resultsSection {
@@ -84,12 +93,5 @@
     display: flex;
     justify-content: center;
     margin-top: 0.5rem;
-  }
-
-  @media (max-width: 500px) {
-    .content .leftColumn {
-      margin-inline: -1.5rem;
-      padding-inline: 1.5rem;
-    }
   }
 }

@@ -2,7 +2,6 @@ import React from "react";
 import { Heading } from "@digdir/designsystemet-react";
 import { ScrollShadows, PlaceholderBox, DatasetTable } from "@fdk-frontend/ui";
 import { DatasetDetailsProps } from "../../";
-import styles from "../../details-tab.module.scss";
 
 const RelatedDetails = ({ related, locale, dictionary }: Omit<DatasetDetailsProps, "dataset">) => {
   return (
@@ -14,7 +13,7 @@ const RelatedDetails = ({ related, locale, dictionary }: Omit<DatasetDetailsProp
         {dictionary.details.related.title}
       </Heading>
       {related && related.length ? (
-        <ScrollShadows className={styles.tableScroller}>
+        <ScrollShadows>
           <DatasetTable
             datasets={related}
             locale={locale}

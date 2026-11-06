@@ -39,6 +39,7 @@ const Footer = ({ locale, profile = "data.norge" }: FooterProps) => {
         <div className={styles.bottomInner}>
           <HStack className={styles.leftLogos}>
             <LogoLink
+              className={styles.footerLogo}
               href={`/${locale}`}
               data-color-scheme="dark"
             />

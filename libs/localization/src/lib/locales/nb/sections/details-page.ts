@@ -226,6 +226,7 @@ const detailsPage = {
       legalBasisForAccess: "Utleveringshjemmel",
       legalBasisForProcessing: "Behandlingshjemmel",
       legalBasisForRestriction: "Skjermingshjemmel",
+      type: "Type",
     },
     concepts: {
       title: "Begreper brukt i datasett",
