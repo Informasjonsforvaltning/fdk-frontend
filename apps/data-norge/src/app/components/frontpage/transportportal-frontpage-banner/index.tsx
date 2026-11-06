@@ -49,6 +49,7 @@ const TransportportalFrontpageBanner = ({
             showTrayNav={profile !== "transportportal"}
             hideAiSet={profile === "transportportal"}
             placeholder={dictionary.tp.searchPlaceholder}
+            data-size="lg"
           />
         </div>
         <TransportportalFrontpageLinks
