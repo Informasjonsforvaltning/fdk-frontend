@@ -1,13 +1,24 @@
 .container {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
 
   .scroller {
+    min-width: 0;
+
     &.all {
       overflow: auto;
     }
 
     &.horizontal {
       overflow-x: auto;
+    }
+
+    &.all,
+    &.horizontal {
+      width: 0;
+      min-width: 100%;
     }
 
     &.vertical {
