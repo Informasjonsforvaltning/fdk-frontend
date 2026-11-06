@@ -26,6 +26,10 @@ const MdxPage = async ({ children, sidebars = true, currentPath, locale, source 
 
   const headlines: MdxHeadlineObjectNode[] = extractHeadlines(source);
   const menuLabel = docsDictionary.sidebar.menuLabel;
+  const rootSection = currentPath[0];
+  const sectionTitle = docsDictionary.titles[`/${rootSection}`];
+  const toggleLabel =
+    rootSection === "docs" || rootSection === "technical" ? sectionTitle : menuLabel;
 
   return (
     <div className={pageStyles.mdxPage}>
@@ -54,10 +58,10 @@ const MdxPage = async ({ children, sidebars = true, currentPath, locale, source 
             >
               <DrawerToggleButton
                 variant="secondary"
-                aria-label={menuLabel}
+                aria-label={toggleLabel}
               >
                 <MenuHamburgerIcon aria-hidden />
-                {menuLabel}
+                {toggleLabel}
               </DrawerToggleButton>
               <DrawerPanel aria-label={menuLabel}>
                 <Sidebar
