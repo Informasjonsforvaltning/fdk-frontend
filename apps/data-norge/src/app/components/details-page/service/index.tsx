@@ -138,12 +138,20 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
       if (output.isPartOf?.length) {
         contents.push({
           label: dictionaries.detailsPage.produces.isPartOf,
-          value: output.isPartOf
-            ?.map((uri) => {
-              const dataset = producesDatasets.find((hit) => hit.uri === uri);
-              return printLocaleValue(locale, dataset?.title) || uri;
-            })
-            .join(", "),
+          value: output.isPartOf.map((uri, index) => {
+            const dataset = producesDatasets.find((hit) => hit.uri === uri);
+            const label = printLocaleValue(locale, dataset?.title) || uri;
+            return (
+              <Fragment key={uri}>
+                {index > 0 && ", "}
+                {dataset?.id ? (
+                  <Link href={`/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`}>{label}</Link>
+                ) : (
+                  label
+                )}
+              </Fragment>
+            );
+          }),
         });
       }
       if (output.type?.length) {
