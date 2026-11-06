@@ -6,7 +6,42 @@
   margin-left: auto;
 }
 
-.orderbyDropdown {
+.desktopControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mobileControls {
+  display: none;
+}
+
+.orderbyDropdown,
+.mobileDropdown {
   width: 200px;
   min-width: auto;
+}
+
+.mobileDropdown {
+  :global(.ds-divider) {
+    margin-block: 0.25rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .desktopControls {
+    display: none;
+  }
+
+  .mobileControls {
+    display: flex;
+  }
+}
+
+@media (max-width: 500px) {
+  .mobileControlsTrigger {
+    span {
+      display:none;
+    }
+  }
 }

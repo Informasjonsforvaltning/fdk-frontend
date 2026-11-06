@@ -1,6 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
-import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
+import { getSlug, getStandardLinks, printLocaleValue } from "@fdk-frontend/utils";
 import { type PopulatedDatasetReference } from "@fdk-frontend/types";
 import {
   type DatasetWithIdentifier,
@@ -113,7 +113,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
       ...(dataset.distribution ?? []).reduce<any[]>((acc, dist) => acc.concat(dist.conformsTo ?? []), []),
       ...(dataset.sample ?? []).reduce<any[]>((acc, sample) => acc.concat((sample as any).conformsTo ?? []), []),
     ];
-    const uris = conformsTo.map((standard) => standard?.uri).filter((uri) => !!uri);
+    const uris = [...new Set(conformsTo.flatMap((standard) => (standard ? getStandardLinks(standard) : [])))];
     const { hits = [] } = await searchInformationModels(uris);
     resolvedDistributionInformationModels = hits;
   } catch {

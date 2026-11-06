@@ -1,11 +1,11 @@
 import { Card, Details } from "@digdir/designsystemet-react";
 import { Dlist, PlaceholderText, PlaceholderBox } from "@fdk-frontend/ui";
 import styles from "./accordion-list.module.scss";
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 
 export type ContentRow = {
   label: string;
-  value?: string;
+  value?: ReactNode;
 };
 
 export type DetailsEntry = {

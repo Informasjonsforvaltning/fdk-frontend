@@ -27,7 +27,8 @@ export default class SearchPage {
 
     // /search lists all catalog hits. /search/ai shows the KI promo when there is no query.
     // The skeleton reuses the result list markup.
-    const settledHeading = this.page.getByRole("heading", { level: 1, name: this.dictionary.heading.label });
+    // The page title is an h2. The result-set heading is the h1.
+    const settledHeading = this.page.getByRole("heading", { level: 2, name: this.dictionary.heading.label });
     const settledContent = this.page
       .getByText(this.dictionary.aiPromoSplash.suggestionsLegend)
       .or(this.page.locator(".fdk-box-list"))

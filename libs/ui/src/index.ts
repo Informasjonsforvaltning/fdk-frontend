@@ -58,6 +58,8 @@ export { default as DownloadButton } from "./lib/download-button";
 export * from "./lib/download-button";
 export { default as DownloadDistributionWidget } from "./lib/download-distribution-widget";
 export * from "./lib/download-distribution-widget";
+export { default as Drawer } from "./lib/drawer";
+export * from "./lib/drawer";
 export { default as DynamicBreadcrumbs } from "./lib/dynamic-breadcrumbs";
 export * from "./lib/dynamic-breadcrumbs";
 export { default as EntityTeaser } from "./lib/entity-teaser";

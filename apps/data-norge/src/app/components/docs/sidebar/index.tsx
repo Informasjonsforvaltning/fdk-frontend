@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
 
@@ -114,7 +114,6 @@ const NestedList = ({ items, locale, pathname, dictionary }: NestedListProps) =>
                 <Link
                   href={itemPathWithLocale}
                   aria-expanded={hasChildren ? isOpen : undefined}
-                  id={item.path}
                 >
                   {item.title}
                 </Link>
@@ -138,16 +137,17 @@ const NestedList = ({ items, locale, pathname, dictionary }: NestedListProps) =>
 
 const Sidebar = ({ dictionary, currentPath, locale }: SidebarProps) => {
   const pathname = usePathname();
+  const headingId = useId();
   const basePath = `/${currentPath.at(0)}`;
   const nestedData = buildNestedStructure(dictionary.titles, basePath, locale);
 
   return (
     <nav
       className={styles.sidebar}
-      aria-labelledby="sidebar-heading"
+      aria-labelledby={headingId}
     >
       <Heading
-        id="sidebar-heading"
+        id={headingId}
         level={2}
         data-size="xs"
       >

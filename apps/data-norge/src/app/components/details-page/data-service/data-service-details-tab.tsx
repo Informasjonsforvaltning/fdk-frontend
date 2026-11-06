@@ -18,6 +18,7 @@ import { Heading, Tag, Link, Button, Paragraph } from "@digdir/designsystemet-re
 import { HelpText } from "@fellesdatakatalog/ui";
 import { EyeIcon, EyeSlashIcon } from "@navikt/aksel-icons";
 import styles from "./data-service.module.scss";
+import StandardItem from "../standard-item";
 
 type DataServiceDetailsTabProps = {
   resource: DataService;
@@ -257,13 +258,10 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
                   <SmartList
                     items={resource.conformsTo}
                     renderItem={(item) => (
-                      <ExternalLink
-                        href={item.uri}
+                      <StandardItem
+                        standard={item}
                         locale={locale}
-                        gateway
-                      >
-                        {printLocaleValue(locale, item?.prefLabel) || item.uri}
-                      </ExternalLink>
+                      />
                     )}
                   />
                 ) : (

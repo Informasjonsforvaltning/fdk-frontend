@@ -26,6 +26,7 @@ const searchPage = {
   },
   searchInput: {
     label: "Search",
+    close: "Close search",
     placeholder: "What are you looking for?",
     seeAllResults: "See all results",
     dataCatalogs: "Data catalogs",
@@ -63,6 +64,7 @@ const searchPage = {
       dcatProfile: "Specification",
     },
     clearAllFilters: "Clear all filters",
+    listSettings: "List settings",
     resultsPerPage: "{{count}} results per page",
     sort: {
       relevance: "Most relevant",

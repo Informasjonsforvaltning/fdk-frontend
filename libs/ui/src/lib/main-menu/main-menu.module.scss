@@ -60,6 +60,10 @@
 [data-profile="transportportal"] {
   .links {
     grid-template-columns: repeat(3, 1fr);
+
+    @container (max-width: 750px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   [data-color-scheme="dark"] {

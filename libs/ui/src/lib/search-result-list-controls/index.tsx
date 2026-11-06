@@ -1,7 +1,7 @@
 "use client";
 
 import { getLocalization, interpolate, parseLocaleFromPathname, type LocaleCodes } from "@fdk-frontend/localization";
-import { Dropdown } from "@digdir/designsystemet-react";
+import { Divider, Dropdown } from "@digdir/designsystemet-react";
 import { CheckmarkIcon, ChevronDownIcon, SortDownIcon } from "@navikt/aksel-icons";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -50,66 +50,92 @@ const SearchResultListControls = ({ lang, activeSet }: SearchResultListControlsP
 
   const getSortLabel = (option: SearchSortOption): string => getSortLabelFromDict(option, dict.searchForm.sort);
 
+  const sizeOptions = () =>
+    SEARCH_PAGE_SIZE_OPTIONS.map((option) => (
+      <Dropdown.Item key={option}>
+        <Dropdown.Button
+          aria-pressed={selectedSize === option}
+          onClick={() => replaceListSettings({ size: option })}
+        >
+          {selectedSize === option && <CheckmarkIcon aria-hidden />}
+          {interpolate(dict.searchForm.resultsPerPage, { count: option })}
+        </Dropdown.Button>
+      </Dropdown.Item>
+    ));
+
+  const sortOptions = () =>
+    SEARCH_SORT_OPTION_LIST.map((option) => (
+      <Dropdown.Item key={option}>
+        <Dropdown.Button
+          aria-pressed={selectedSort === option}
+          onClick={() => {
+            if (option === selectedSort) return;
+            replaceListSettings({ sort: option });
+          }}
+        >
+          {selectedSort === option && <CheckmarkIcon aria-hidden />}
+          {getSortLabel(option)}
+        </Dropdown.Button>
+      </Dropdown.Item>
+    ));
+
   return (
     <div className={styles.controls}>
-      <Dropdown.TriggerContext>
-        <Dropdown.Trigger
-          data-size="sm"
-          variant="tertiary"
-        >
-          {interpolate(dict.searchForm.resultsPerPage, { count: selectedSize })} <ChevronDownIcon aria-hidden />
-        </Dropdown.Trigger>
-        <Dropdown
-          className={styles.orderbyDropdown}
-          placement="bottom-end"
-          data-size="sm"
-        >
-          <Dropdown.List>
-            {SEARCH_PAGE_SIZE_OPTIONS.map((option) => (
-              <Dropdown.Item key={option}>
-                <Dropdown.Button
-                  aria-pressed={selectedSize === option}
-                  onClick={() => replaceListSettings({ size: option })}
-                >
-                  {selectedSize === option && <CheckmarkIcon aria-hidden />}
-                  {interpolate(dict.searchForm.resultsPerPage, { count: option })}
-                </Dropdown.Button>
-              </Dropdown.Item>
-            ))}
-          </Dropdown.List>
-        </Dropdown>
-      </Dropdown.TriggerContext>
-      <Dropdown.TriggerContext>
-        <Dropdown.Trigger
-          data-size="sm"
-          variant="tertiary"
-        >
-          <SortDownIcon aria-hidden />
-          {getSortLabel(selectedSort)}
-        </Dropdown.Trigger>
-        <Dropdown
-          className={styles.orderbyDropdown}
-          placement="bottom-end"
-          data-size="sm"
-        >
-          <Dropdown.List>
-            {SEARCH_SORT_OPTION_LIST.map((option) => (
-              <Dropdown.Item key={option}>
-                <Dropdown.Button
-                  aria-pressed={selectedSort === option}
-                  onClick={() => {
-                    if (option === selectedSort) return;
-                    replaceListSettings({ sort: option });
-                  }}
-                >
-                  {selectedSort === option && <CheckmarkIcon aria-hidden />}
-                  {getSortLabel(option)}
-                </Dropdown.Button>
-              </Dropdown.Item>
-            ))}
-          </Dropdown.List>
-        </Dropdown>
-      </Dropdown.TriggerContext>
+      <div className={styles.desktopControls}>
+        <Dropdown.TriggerContext>
+          <Dropdown.Trigger
+            data-size="sm"
+            variant="tertiary"
+          >
+            {interpolate(dict.searchForm.resultsPerPage, { count: selectedSize })} <ChevronDownIcon aria-hidden />
+          </Dropdown.Trigger>
+          <Dropdown
+            className={styles.orderbyDropdown}
+            placement="bottom-end"
+            data-size="sm"
+          >
+            <Dropdown.List>{sizeOptions()}</Dropdown.List>
+          </Dropdown>
+        </Dropdown.TriggerContext>
+        <Dropdown.TriggerContext>
+          <Dropdown.Trigger
+            data-size="sm"
+            variant="tertiary"
+          >
+            <SortDownIcon aria-hidden />
+            {getSortLabel(selectedSort)}
+          </Dropdown.Trigger>
+          <Dropdown
+            className={styles.orderbyDropdown}
+            placement="bottom-end"
+            data-size="sm"
+          >
+            <Dropdown.List>{sortOptions()}</Dropdown.List>
+          </Dropdown>
+        </Dropdown.TriggerContext>
+      </div>
+      <div className={styles.mobileControls}>
+        <Dropdown.TriggerContext>
+          <Dropdown.Trigger
+            data-size="sm"
+            variant="tertiary"
+            aria-label={dict.searchForm.listSettings}
+            className={styles.mobileControlsTrigger}
+          >
+            <SortDownIcon aria-hidden />
+            <span>{getSortLabel(selectedSort)}</span>
+          </Dropdown.Trigger>
+          <Dropdown
+            className={styles.mobileDropdown}
+            placement="bottom-end"
+            data-size="sm"
+          >
+            <Dropdown.List>{sortOptions()}</Dropdown.List>
+            <Divider />
+            <Dropdown.List>{sizeOptions()}</Dropdown.List>
+          </Dropdown>
+        </Dropdown.TriggerContext>
+      </div>
     </div>
   );
 };

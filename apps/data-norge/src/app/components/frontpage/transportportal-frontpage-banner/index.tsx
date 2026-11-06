@@ -41,7 +41,7 @@ const TransportportalFrontpageBanner = ({
         </HeadingWithDivider>
         <div
           className={styles.search}
-          data-color-scheme="light"
+          data-color-scheme="dark"
         >
           <SearchInput
             locale={locale}
