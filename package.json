@@ -184,7 +184,7 @@
     "react-markdown": "^10.1.0",
     "sass": "^1.105.1",
     "storybook": "^10.6.4",
-    "ts-jest": "^29.4.9",
+    "ts-jest": "^29.4.15",
     "ts-node": "^10.9.2",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.58.0",
