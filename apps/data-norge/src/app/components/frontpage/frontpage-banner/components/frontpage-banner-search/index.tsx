@@ -39,6 +39,7 @@ const FrontpageBannerSearch = ({ dictionary, locale }: FrontpageBannerSearchProp
         defaultTrayPanel="ai"
         inputRef={inputRef}
         placeholder={dictionary.aiBanner.prompt.placeholder}
+        data-size="lg"
       />
       <QuerySuggestion
         dictionary={dictionary}
