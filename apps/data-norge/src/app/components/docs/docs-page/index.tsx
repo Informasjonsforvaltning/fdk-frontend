@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
@@ -55,12 +54,6 @@ export default async function DocsPage(pageProps: DocsPageProps) {
           <CatalogsMenu
             locale={locale}
             dictionary={dictionary}
-          />
-        ),
-        NegativeMargin: (props: React.HTMLAttributes<HTMLDivElement>) => (
-          <div
-            style={{ marginLeft: "-1rem", marginRight: "-1rem" }}
-            {...props}
           />
         ),
       },
