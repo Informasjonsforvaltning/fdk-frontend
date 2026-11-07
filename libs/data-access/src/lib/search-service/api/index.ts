@@ -1,6 +1,9 @@
-import { type DatasetReference } from "@fellesdatakatalog/types";
-import type { SearchSuggestionsResponse } from "@fdk-frontend/types";
+import { type DatasetReference, type SearchSuggestion } from "@fellesdatakatalog/types";
 import { getResource } from "../../resource-service/api";
+
+export type SearchSuggestionsResponse = {
+  suggestions: SearchSuggestion[];
+};
 
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null;
 

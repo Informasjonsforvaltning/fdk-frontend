@@ -18,10 +18,18 @@ type TrayAiHit = {
   id: string;
   title: string;
   type: string;
+  publisher: string;
+  publisherId: string;
 };
 
 const toTrayHits = (body: LlmSearchCacheBody): TrayAiHit[] =>
-  body.hits.map((hit) => ({ id: hit.id, title: hit.title, type: hit.type }));
+  body.hits.map((hit) => ({
+    id: hit.id,
+    title: hit.title,
+    type: hit.type,
+    publisher: hit.publisher,
+    publisherId: hit.publisherId,
+  }));
 
 const fetchAiHits = async (query: string, signal: AbortSignal): Promise<TrayAiHit[]> => {
   const cached = readLlmSearchCache(query);
@@ -63,6 +71,8 @@ const SearchTrayAiSuggestions = ({ locale, query, onSelect }: SearchTrayAiSugges
         id: `${hit.type}:${hit.id}`,
         href,
         label: hit.title,
+        orgNr: hit.publisherId.trim(),
+        orgTitle: hit.publisher.trim() || undefined,
         suffix: typeLabel ? <Tag data-size="sm">{typeLabel}</Tag> : undefined,
         onClick: onSelect,
       },
