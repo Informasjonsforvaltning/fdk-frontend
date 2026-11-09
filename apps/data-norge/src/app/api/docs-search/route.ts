@@ -162,13 +162,21 @@ const buildDocsIndex = async (): Promise<DocsIndexEntry[]> => {
   return entries.filter(isNonNullable);
 };
 
+// Production keeps the index for the life of the server. Development rebuilds it so
+// content edits, including frontmatter titles, show up without a restart.
+const reuseDocsIndex = process.env.NODE_ENV === "production";
+
 const getDocsIndex = async (): Promise<DocsIndexEntry[]> => {
-  if (docsIndex) return docsIndex;
+  if (reuseDocsIndex && docsIndex) return docsIndex;
   if (!docsIndexPromise) {
-    docsIndexPromise = buildDocsIndex().then((built) => {
-      docsIndex = built;
-      return built;
-    });
+    docsIndexPromise = buildDocsIndex()
+      .then((built) => {
+        if (reuseDocsIndex) docsIndex = built;
+        return built;
+      })
+      .finally(() => {
+        docsIndexPromise = null;
+      });
   }
   return docsIndexPromise;
 };

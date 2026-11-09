@@ -65,6 +65,9 @@ const docs = {
     "/docs/resources": "Ressursar",
     "/validator": "Valideringsverktøy",
   },
+  sidebar: {
+    menuLabel: "Sidemeny",
+  },
   tableOfContents: {
     onThisPage: "På denne sida:",
   },

@@ -15,7 +15,13 @@ import {
 import { TagList, HStack } from "@fellesdatakatalog/ui";
 import { AccessRightsCodes, EntityType, type SearchObject } from "@fellesdatakatalog/types";
 import AccessLevelTag from "../access-level-tag";
-import { buildResourcePath, buildSearchSetPath, getSetIdForHitSearchType, printLocaleValue } from "@fdk-frontend/utils";
+import {
+  buildResourcePath,
+  buildSearchSetPath,
+  getSetIdForHitSearchType,
+  printLocaleValue,
+  printOrganizationLabel,
+} from "@fdk-frontend/utils";
 import { DCAT_PROFILE_DEFAULT, formatDcatProfileLabel, getDcatProfileLabels } from "../search-form/dcat-profile";
 import { OrgLogo } from "../org-logo";
 import styles from "./styles.module.scss";
@@ -53,7 +59,7 @@ const EntityTeaser = ({
               <OrgLogo
                 className={styles.orgLogo}
                 orgNr={entity.organization?.id}
-                title={printLocaleValue(locale, entity.organization?.prefLabel)}
+                title={printOrganizationLabel(locale, entity.organization)}
               />
               <Heading level={headingLevel}>
                 <Link href={buildResourcePath(locale, entity.searchType, entity.id ?? "") ?? "#"}>
@@ -128,7 +134,7 @@ const EntityTeaser = ({
             {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : localization.teaser.missingDescription}
           </Paragraph>
         )}
-        {entity && <div className={styles.orgName}>{printLocaleValue(locale, entity.organization?.prefLabel)}</div>}
+        {entity && <div className={styles.orgName}>{printOrganizationLabel(locale, entity.organization)}</div>}
         {entity && llm && (
           <Tooltip
             content={localization.teaser.llmHitTooltip}

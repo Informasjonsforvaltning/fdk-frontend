@@ -1,7 +1,6 @@
 .list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(2, auto);
   gap: 1rem;
   max-width: 1000px;
   list-style: none;
@@ -45,7 +44,12 @@
     }
   }
 
-  @container (max-width: 700px) {
+  @container (max-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+  }
+
+  @container (max-width: 500px) {
     grid-template-columns: 1fr;
     grid-template-rows: none;
   }

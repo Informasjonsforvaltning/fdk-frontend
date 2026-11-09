@@ -203,11 +203,6 @@ const detailsPage = {
       issuedHelpText:
         "This date indicates when the data in this dataset was first released. It may have happened before the dataset was published on data.norge.no.",
       modified: "Last updated",
-      accuracyAnnotation: "Accuracy",
-      availabilityAnnotation: "Availability",
-      completenessAnnotation: "Completeness",
-      currentnessAnnotation: "Currentness",
-      relevanceAnnotation: "Relevance",
       spatial: "Geographical scope",
       temporal: "Temporal scope",
       temporalFrom: "From",
@@ -218,12 +213,21 @@ const detailsPage = {
       dataServiceConformsToHelpText:
         "Reference to an established technical standard or specification that the API conforms to.",
     },
+    quality: {
+      title: "Quality annotations",
+      accuracyAnnotation: "Accuracy",
+      availabilityAnnotation: "Availability",
+      completenessAnnotation: "Completeness",
+      currentnessAnnotation: "Currentness",
+      relevanceAnnotation: "Relevance",
+    },
     legal: {
       title: "Applicable legislation",
       legalBasisForAccess: "Legal basis for access",
       legalBasisForProcessing: "Legal basis for processing",
       legalBasisForRestriction: "Legal basis for restriction",
       noTitle: "No title",
+      type: "Type",
     },
     concepts: {
       title: "Concepts used in the dataset",

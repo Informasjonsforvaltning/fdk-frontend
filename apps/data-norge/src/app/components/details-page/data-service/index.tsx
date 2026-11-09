@@ -13,6 +13,7 @@ import {
   TagList,
   UseApiPopover,
   TagLink,
+  UnpublishedTag,
 } from "@fdk-frontend/ui";
 import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
@@ -114,6 +115,12 @@ export default function DataServiceDetailsPage({
               locale={locale}
               data-size="md"
             />
+            {resource.isRemovedFromFDK && (
+              <UnpublishedTag
+                locale={locale}
+                lastModified={resource.harvest?.modified}
+              />
+            )}
           </TagList>
         </div>
         <Tabs
@@ -125,7 +132,7 @@ export default function DataServiceDetailsPage({
             setActiveTab(value);
           }}
         >
-          <ScrollShadows className={styles.tabsScrollShadows}>
+          <ScrollShadows>
             <TabsList>
               <TabsTab
                 value="overview"

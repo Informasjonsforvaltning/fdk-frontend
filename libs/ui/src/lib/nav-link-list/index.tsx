@@ -1,12 +1,16 @@
 import { type ReactNode } from "react";
 import { Link } from "@digdir/designsystemet-react";
 
+import OrgLogo from "../org-logo";
 import styles from "./nav-link-list.module.scss";
 
 export type NavLinkListItem = {
   id: string;
   href: string;
   label: string;
+  orgNr?: string;
+  orgLogoSrc?: string | null;
+  orgTitle?: string;
   suffix?: ReactNode;
   action?: ReactNode;
   onClick?: () => void;
@@ -26,6 +30,14 @@ const LinkItems = ({ items }: { items: readonly NavLinkListItem[] }) => (
             href={item.href}
             onClick={item.onClick}
           >
+            {typeof item.orgNr === "string" || item.orgLogoSrc ? (
+              <OrgLogo
+                className={styles.orgLogo}
+                orgNr={item.orgNr}
+                orgLogoSrc={item.orgLogoSrc}
+                title={item.orgTitle}
+              />
+            ) : null}
             <span className={styles.label}>{item.label}</span>
             {item.suffix}
           </Link>

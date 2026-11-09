@@ -19,6 +19,9 @@
 
     .mainColumn {
       grid-area: article;
+      min-width: 0;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .rightColumn {
@@ -44,59 +47,30 @@
 
     .article {
       @include core-mixins.article();
-      max-width: 700px;
-      margin: 0 auto;
+    }
+
+    .menuDrawer {
+      display: none;
     }
 
     @container (max-width: 900px) {
-      grid-template-columns: calc(35% - 1rem) calc(65% - 1rem);
-      grid-template-areas: ". article";
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "article";
 
-      .rightColumn {
-        display: none;
-      }
-    }
-
-    @container (max-width: 800px) {
-      display: block;
-      margin-top: 0;
-
-      .mainColumn {
-        margin-top: 2rem;
-      }
-
-      .leftColumn {
-        position: static;
-      }
-
+      .leftColumn,
       .rightColumn {
         display: none;
       }
 
-      .asideContent {
-        max-width: inherit;
-        margin: 0 -2rem;
-        padding: 1rem 2rem;
-        border-radius: 0.25rem;
-        background: var(--fds-brand-alt2-200);
-        background: #f8f8f8;
-
-        .asideContent {
-          max-width: 700px;
-          margin: 0 auto;
-        }
+      .menuDrawer {
+        display: inline-block;
+        max-width: 700px;
+        margin: 0 auto 1.5rem;
       }
     }
   }
 
   @media (max-width: 400px) {
     margin: 0 1.5rem 3rem;
-
-    .content {
-      .asideContent {
-        margin: 0 -1.5rem;
-        padding: 1rem 1.5rem;
-      }
-    }
   }
 }

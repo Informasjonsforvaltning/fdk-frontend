@@ -63,7 +63,15 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
                       )}
                     </dt>
                     <dd className="article">
-                      <Article>{printLocaleValue(locale, legislation.description)}</Article>
+                      <div>
+                        {legislation.type && (
+                          <div>
+                            {dictionary.details.legal.type}:{" "}
+                            {printLocaleValue(locale, legislation.type.prefLabel) || legislation.type.code}
+                          </div>
+                        )}
+                        <Article>{printLocaleValue(locale, legislation.description)}</Article>
+                      </div>
                       {legislation.references && legislation.references.length > 0 && (
                         <SmartList
                           items={legislation.references}

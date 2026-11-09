@@ -203,11 +203,6 @@ const detailsPage = {
       issuedHelpText:
         "Denne datoen sier når dataene i dette datasettet første gang ble utgitt. Det kan ha skjedd før datasettet ble publisert på data.norge.no.",
       modified: "Sist oppdatert",
-      accuracyAnnotation: "Nøyaktighet",
-      availabilityAnnotation: "Tilgjengelighet",
-      completenessAnnotation: "Kompletthet",
-      currentnessAnnotation: "Aktualitet",
-      relevanceAnnotation: "Relevans",
       spatial: "Geografisk avgrensning",
       temporal: "Tidsmessig avgrensning",
       temporalFrom: "Fra",
@@ -218,12 +213,21 @@ const detailsPage = {
       dataServiceConformsToHelpText:
         "Referanse til en etablert teknisk standard eller spesifikasjon som API-et er i samsvar med.",
     },
+    quality: {
+      title: "Kvalitetsmerknader",
+      accuracyAnnotation: "Nøyaktighet",
+      availabilityAnnotation: "Tilgjengelighet",
+      completenessAnnotation: "Kompletthet",
+      currentnessAnnotation: "Aktualitet",
+      relevanceAnnotation: "Relevans",
+    },
     legal: {
       title: "Gjeldende lovgiving",
       legalBasisForAccess: "Utleveringshjemmel",
       legalBasisForProcessing: "Behandlingshjemmel",
       legalBasisForRestriction: "Skjermingshjemmel",
       noTitle: "Uten tittel",
+      type: "Type",
     },
     concepts: {
       title: "Begreper brukt i datasett",

@@ -101,7 +101,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: commonurl
-                  key: FDK_MQA_API_BASE_URI
+                  key: METADATA_QUALITY_ASSESSMENT_SERVICE_HOST
             - name: DIGDIR_ORGLOGO_API_BASE_URI
               valueFrom:
                 secretKeyRef:

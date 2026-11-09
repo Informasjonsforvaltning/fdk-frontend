@@ -3,20 +3,6 @@
 .header {
   + main {
     padding-top: 74px;
-
-    @media (max-width: 650px) {
-      padding-top: 63px;
-    }
-  }
-
-  &.showHeaderMessage {
-    + main {
-      padding-top: 132px;
-
-      @media (max-width: 650px) {
-        padding-top: 121px;
-      }
-    }
   }
 
   .headerMessage {
@@ -30,41 +16,46 @@
       margin: 0;
     }
   }
+}
 
-  &.frontpageHeader {
-    + main {
-      padding-top: 0;
-    }
+.header.showHeaderMessage {
+  + main {
+    padding-top: 132px;
+  }
+}
 
-    .headerOuter {
-      position: absolute;
+.header.frontpageHeader {
+  + main {
+    padding-top: 0;
+  }
 
-      &:not(.headerSticky) {
-        background: transparent;
+  .headerOuter {
+    position: absolute;
 
-        .headerLogo {
-          &:not(:hover) {
-            color: white !important;
-          }
+    &:not(.headerSticky) {
+      background: transparent;
+
+      .headerLogo {
+        &:not(:hover) {
+          color: white !important;
         }
+      }
 
-        /*
-          Override dark mode styles for passive header buttons on frontpage
-        */
-        .headerToolbar {
-          :global(.ds-button) {
-            color: white !important;
+      /*
+        Override dark mode styles for passive header buttons on frontpage
+      */
 
-            &:last-child {
-              &:focus-visible,
-              &:not(:hover):not(:active) {
-                background: var(--fdk-color-blue);
-              }
-              &:hover {
-                background: var(--fdk-color-blue-dark);
-              }
-            }
-          }
+      :global(.ds-button) {
+        color:white !important;
+      }
+
+      .shareButton {
+        &:focus-visible,
+        &:not(:hover):not(:active) {
+          background: var(--fdk-color-blue);
+        }
+        &:hover {
+          background: var(--fdk-color-blue-dark);
         }
       }
     }
@@ -75,12 +66,16 @@
   position: fixed;
   z-index: 1700;
   display: block;
-  width: 100%;
   padding: 1rem;
+  top:0.75rem;
+  left:0.75rem;
+  right:0.75rem;
   border: 0;
+  border-radius:0.25rem;
   text-align: center;
   text-decoration: none;
   box-shadow: none;
+  background:white;
 
   &:not(:focus) {
     @include core-mixins.sr-only();
@@ -95,98 +90,68 @@
   max-height: 100vh;
   background: white;
 
-  @media (max-width: 460px) {
-    overflow: auto;
-  }
-
   &.headerSticky {
     position: fixed;
     box-shadow: var(--ds-shadow-md);
+    z-index:1601;
   }
+}
 
-  .headerInner {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    padding: 1rem 2rem;
-    justify-content: space-between;
-    position: relative;
-    z-index: 1601;
-    container-type: inline-size;
-    gap: 4rem;
+.headerInner {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content min-content;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  position: relative;
+  z-index: 1601;
+  container-type: inline-size;
 
-    &.full {
-      max-width: none;
-      padding: 2rem 4rem;
-    }
-
-    .headerLogo {
-      &:not(:hover) {
-        color: var(--fdk-color-text) !important;
-      }
-    }
-
-    .headerSearchInput {
-      flex-grow: 1;
-      max-width: 600px;
-    }
-
-    .headerToolbar {
-      display: flex;
-      gap: 1rem;
-
-      @container (max-width: 500px) {
-        gap: 0.5rem;
-
-        a,
-        button {
-          svg + span {
-            display: none;
-          }
-        }
-      }
-    }
-
-    @media (max-width: 650px) {
-      padding: 1rem 1.5rem;
-      gap: 2rem;
-
-      .headerToolbar {
-        a:last-child {
-          display: none;
-        }
-      }
-    }
+  // TODO: Remove these styles when search prototype is released
+  &.oldContent {
+    grid-template-columns: min-content 1fr min-content min-content min-content;
   }
+}
 
-  .drawerInner {
-    max-width: 1000px;
-    margin: auto;
-    padding: 1rem 2rem;
+.headerLogo {
+  margin-left:-0.5rem;
 
-    @media (max-width: 400px) {
-      padding: 1rem 1.5rem;
-    }
+  &:not(:hover) {
+    color: var(--fdk-color-text) !important;
   }
+}
+
+.headerSearchInput {
+  width: 100%;
+  max-width: 600px;
+  justify-self: center;
+  box-sizing: border-box;
+}
+
+.shareButton,
+.findDataButton {
+  white-space: nowrap;
+}
+
+.drawerInner {
+  max-width: 1000px;
+  margin: auto;
+  padding: 1rem 2rem;
 }
 
 [data-profile="transportportal"] {
   .header {
     .headerOuter {
       .headerInner {
-        .headerToolbar {
-          :global(.ds-button) {
-            &[data-variant="primary"] {
-              color: white;
-              
-              &:last-child:not(:hover):not(:active){
-                background: var(--fdk-tp-color-btn-primary-passive);
-              }
+        .shareButton {
+          color: white !important;
 
-              &:hover {
-                background: var(--fdk-tp-btn-hover);
-              }
-            }
+          &:not(:hover):not(:active) {
+            background: var(--fdk-tp-color-btn-primary-passive);
+          }
+
+          &:hover {
+            background: var(--fdk-tp-btn-hover);
           }
         }
       }
@@ -210,21 +175,83 @@
     &[data-color-scheme="dark"].frontpageHeader {
       .headerOuter {
         .headerInner {
-          .headerToolbar {
-            :global(.ds-button) {
-              color:white;
+          .menuButton,
+          .findDataButton,
+          .shareButton {
+            color: white;
 
-              &:hover {
-                background: var(--fdk-tp-btn-hover);
-              }
-
-              &[data-variant="secondary"] {
-                border-color: var(--fdk-tp-color-green-matte);
-              }
+            &:hover {
+              background: var(--fdk-tp-btn-hover);
             }
+          }
+
+          .menuButton[data-variant="secondary"] {
+            border-color: var(--fdk-tp-color-green-matte);
           }
         }
       }
     }
+  }
+}
+
+@media (max-width: 850px) {
+  .headerLogo {
+    margin:0;
+    
+    span {
+      display:none;
+    }
+  }
+
+  .menuButton {
+    span {
+      display:none;
+    }
+  }
+
+  .shareButton {
+    display:none;
+  }
+
+  .headerOuter .headerInner {
+    padding: 1rem 1.5rem;
+    grid-template-columns: min-content 1fr min-content;
+
+    &.oldContent {
+      grid-template-columns: min-content 1fr min-content min-content;
+
+      .findDataButton {
+        span {
+          display:none;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 700px) {
+  .headerSearchInput {
+    max-width:none;
+  }
+}
+
+@media (max-width: 650px) {
+  .header {
+    + main {
+      padding-top: 63px;
+    }
+
+    &.showHeaderMessage {
+      + main {
+        padding-top: 121px;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .headerOuter .headerInner {
+    padding:1rem;
   }
 }

@@ -36,6 +36,7 @@ const SearchSetBadge = ({ count, loadingAriaLabel }: { count: number | undefined
     return (
       <span
         className={styles.badgeLoading}
+        role="img"
         aria-busy="true"
         aria-label={loadingAriaLabel}
       />

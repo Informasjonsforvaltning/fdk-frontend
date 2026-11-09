@@ -11,6 +11,7 @@ import {
   Paragraph,
   Divider,
   Table,
+  type TableProps,
   TableHead,
   TableBody,
   TableRow,
@@ -21,6 +22,7 @@ import {
 } from "@digdir/designsystemet-react";
 import { type LocaleCodes, i18n } from "@fdk-frontend/localization";
 import ExternalLink from "../external-link";
+import ScrollShadows from "../scroll-shadows";
 import MdxHeading from "../mdx-heading";
 import ConceptPreview, { type ConceptPreviewProps } from "../concept-preview";
 import CodeBlockWrapper from "./code-block-wrapper";
@@ -87,8 +89,10 @@ export const mdxComponents = ({ locale = i18n.defaultLocale }: MdxComponentMapPr
     Link,
     Divider,
     Image,
-    table: ({ children, ...props }: React.TableHTMLAttributes<HTMLTableElement>) => (
-      <Table {...(props as any)}>{children}</Table>
+    table: ({ children, ...props }: TableProps) => (
+      <ScrollShadows>
+        <Table {...props}>{children}</Table>
+      </ScrollShadows>
     ),
     thead: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
       <TableHead {...props}>{children}</TableHead>
