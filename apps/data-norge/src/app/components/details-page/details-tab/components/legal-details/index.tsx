@@ -7,9 +7,9 @@ import { Dataset } from "@fellesdatakatalog/types";
 
 export const hasLegalBasis = (dataset: Dataset) =>
   (dataset.applicableLegislation && dataset?.applicableLegislation.length) ||
-  dataset.legalBasisForAccess ||
-  dataset.legalBasisForProcessing ||
-  dataset.legalBasisForRestriction;
+  (dataset.legalBasisForAccess && dataset?.legalBasisForAccess.length) ||
+  (dataset.legalBasisForProcessing && dataset?.legalBasisForProcessing.length) ||
+  (dataset.legalBasisForRestriction && dataset?.legalBasisForRestriction.length);
 
 const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
   const printLegalBasis = (legalBasis?: any[], description?: string) => {
