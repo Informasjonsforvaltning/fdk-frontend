@@ -31,6 +31,11 @@ export type SearchMenuProps = {
 export const isTransportportalMenuSet = (setId: SearchSetId): boolean =>
   setId === "all-catalogs" || setId === "datasets" || setId === "docs";
 
+type SearchMenuSet = (typeof SEARCH_SETS)[number];
+
+/** Catalog sets that are included in all-catalogs. Docs and AI are separate. */
+const isCatalogSubset = (set: SearchMenuSet): boolean => "summary" in set;
+
 const SearchSetBadge = ({ count, loadingAriaLabel }: { count: number | undefined; loadingAriaLabel: string }) => {
   if (count === undefined) {
     return (
@@ -52,13 +57,67 @@ const SearchSetBadge = ({ count, loadingAriaLabel }: { count: number | undefined
   );
 };
 
+const SearchMenuEntry = ({
+  set,
+  label,
+  count,
+  isActive,
+  loadingAriaLabel,
+  href,
+  onNavigate,
+}: {
+  set: SearchMenuSet;
+  label: string;
+  count: number | undefined;
+  isActive: boolean;
+  loadingAriaLabel: string;
+  href: string;
+  onNavigate: (event: MouseEvent<HTMLAnchorElement>, href: string) => void;
+}) => {
+  const content = (
+    <>
+      <span className={styles.label}>
+        {set.id === "ai" && <SparklesFillIcon aria-hidden />}
+        {label}
+      </span>
+      <SearchSetBadge
+        count={count}
+        loadingAriaLabel={loadingAriaLabel}
+      />
+    </>
+  );
+
+  if (isActive) {
+    return (
+      <strong
+        className={cn(styles.item, styles.current)}
+        aria-current="page"
+      >
+        {content}
+      </strong>
+    );
+  }
+
+  return (
+    <Link
+      className={styles.item}
+      href={href}
+      onClick={(event) => onNavigate(event, href)}
+    >
+      {content}
+    </Link>
+  );
+};
+
 const SearchMenu = ({ badgeCounts = {}, locale = "nb", hideAiSet = false }: SearchMenuProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
   const activeSet = deriveSearchSetIdFromPathname(pathname);
   const dict = getLocalization(locale).searchPage.searchSets;
-  const sets = SEARCH_SETS.filter((set) => (hideAiSet ? isTransportportalMenuSet(set.id) : true));
+  const visibleSets = SEARCH_SETS.filter((set) => (hideAiSet ? isTransportportalMenuSet(set.id) : true));
+  const catalogSubsets = visibleSets.filter(isCatalogSubset);
+  const topLevelSets = visibleSets.filter((set) => !isCatalogSubset(set));
 
   const hrefForSet = (setId: SearchSetId): string =>
     buildSearchPageUrlFromSearchParams(pathname, new URLSearchParams(searchParams.toString()), {
@@ -75,55 +134,36 @@ const SearchMenu = ({ badgeCounts = {}, locale = "nb", hideAiSet = false }: Sear
     router.replace(href);
   };
 
+  const renderEntry = (set: SearchMenuSet) => (
+    <SearchMenuEntry
+      set={set}
+      label={dict[set.id] ?? set.id}
+      count={badgeCounts[set.id]}
+      isActive={set.id === activeSet}
+      loadingAriaLabel={dict.loadingBadgeAriaLabel}
+      href={hrefForSet(set.id)}
+      onNavigate={handleNavigate}
+    />
+  );
+
   return (
     <nav
       className={styles.menu}
       aria-label={dict.navAriaLabel}
     >
       <ul className={styles.list}>
-        {sets.map((set) => {
-          const label = dict[set.id] ?? set.id;
-          const count = badgeCounts[set.id];
-          const isActive = set.id === activeSet;
-          const content = (
-            <>
-              <span className={styles.label}>
-                {set.id === "ai" && <SparklesFillIcon aria-hidden />}
-                {label}
-              </span>
-              <SearchSetBadge
-                count={count}
-                loadingAriaLabel={dict.loadingBadgeAriaLabel}
-              />
-            </>
-          );
-
-          if (isActive) {
-            return (
-              <li key={set.id}>
-                <strong
-                  className={cn(styles.item, styles.current)}
-                  aria-current="page"
-                >
-                  {content}
-                </strong>
-              </li>
-            );
-          }
-
-          const href = hrefForSet(set.id);
-          return (
-            <li key={set.id}>
-              <Link
-                className={styles.item}
-                href={href}
-                onClick={(event) => handleNavigate(event, href)}
-              >
-                {content}
-              </Link>
-            </li>
-          );
-        })}
+        {topLevelSets.map((set) => (
+          <li key={set.id}>
+            {renderEntry(set)}
+            {set.id === "all-catalogs" && catalogSubsets.length > 0 ? (
+              <ul className={cn(styles.list, styles.sublist)}>
+                {catalogSubsets.map((subset) => (
+                  <li key={subset.id}>{renderEntry(subset)}</li>
+                ))}
+              </ul>
+            ) : null}
+          </li>
+        ))}
       </ul>
     </nav>
   );
