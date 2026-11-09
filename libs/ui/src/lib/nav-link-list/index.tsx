@@ -30,7 +30,7 @@ const LinkItems = ({ items }: { items: readonly NavLinkListItem[] }) => (
             href={item.href}
             onClick={item.onClick}
           >
-            {item.orgNr != null || item.orgLogoSrc ? (
+            {typeof item.orgNr === "string" || item.orgLogoSrc ? (
               <OrgLogo
                 className={styles.orgLogo}
                 orgNr={item.orgNr}
