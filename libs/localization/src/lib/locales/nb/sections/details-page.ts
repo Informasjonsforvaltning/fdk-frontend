@@ -226,6 +226,7 @@ const detailsPage = {
       legalBasisForAccess: "Utleveringshjemmel",
       legalBasisForProcessing: "Behandlingshjemmel",
       legalBasisForRestriction: "Skjermingshjemmel",
+      noTitle: "Uten tittel",
       type: "Type",
     },
     concepts: {
