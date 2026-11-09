@@ -1,19 +1,17 @@
 import React, { useContext } from "react";
 import { Heading } from "@digdir/designsystemet-react";
 import { PlaceholderText, PlaceholderBox, ExternalLink, SmartList, Dlist, Article } from "@fdk-frontend/ui";
-import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
+import { DatasetDetailsProps } from "../../";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import { Dataset } from "@fellesdatakatalog/types";
 
 export const hasLegalBasis = (dataset: Dataset) =>
-  dataset.applicableLegislation ||
+  (dataset.applicableLegislation && dataset?.applicableLegislation.length) ||
   dataset.legalBasisForAccess ||
   dataset.legalBasisForProcessing ||
   dataset.legalBasisForRestriction;
 
 const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
-  const { showEmptyRows } = useContext(DatasetDetailsTabContext);
-
   const printLegalBasis = (legalBasis?: any[], description?: string) => {
     if (!legalBasis) return <PlaceholderText>{dictionary.details.noData}</PlaceholderText>;
     return legalBasis.map((legal, i) => {
