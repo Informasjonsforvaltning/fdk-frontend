@@ -286,6 +286,8 @@ const detailsPage = {
         "http://purl.org/dc/terms/isClassifiedBy": "Er klassifisert av",
         "http://purl.org/dc/terms/isDescribedAt": "Er beskreven på",
         "http://purl.org/dc/terms/relation": "Relasjon",
+        "http://www.w3.org/ns/dcat#hasVersion": "Har versjon",
+        "http://www.w3.org/ns/dcat#isVersionOf": "Er versjon av",
         "http://purl.org/dc/terms/hasVersion": "Har versjon",
         "http://purl.org/dc/terms/isVersionOf": "Er versjon av",
         "http://purl.org/dc/terms/references": "Refererer til",
