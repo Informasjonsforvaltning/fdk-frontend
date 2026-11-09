@@ -21,15 +21,14 @@ export type SearchMenuProps = {
   badgeCounts?: Record<string, number | undefined>;
   locale?: LocaleCodes;
   /**
-   * Transportportal menu: all-catalogs, datasets, and docs.
-   * The other catalog sets and AI are omitted.
+   * Transportportal menu: all-catalogs and docs.
+   * Catalog subsets and AI are omitted.
    */
   hideAiSet?: boolean;
 };
 
-/** Sets listed in the search menu on the transportportal profile. */
-export const isTransportportalMenuSet = (setId: SearchSetId): boolean =>
-  setId === "all-catalogs" || setId === "datasets" || setId === "docs";
+/** Sets listed in the search menu on the transportportal profile. Catalog subsets are hidden. */
+export const isTransportportalMenuSet = (setId: SearchSetId): boolean => setId === "all-catalogs" || setId === "docs";
 
 type SearchMenuSet = (typeof SEARCH_SETS)[number];
 
