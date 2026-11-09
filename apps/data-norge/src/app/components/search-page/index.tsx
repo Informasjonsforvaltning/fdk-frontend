@@ -43,7 +43,7 @@ export type SearchPageProps = {
   entityLoading?: boolean;
   docsLoading?: boolean;
   llmLoading?: boolean;
-  /** Transportportal: menu is all-catalogs, datasets, and docs. The AI result block stays hidden. */
+  /** Transportportal: menu is all-catalogs and docs. Catalog subsets and the AI result block stay hidden. */
   hideAiSet?: boolean;
   /** Closes the set-menu drawer when the result set changes. */
   pathname: string;
