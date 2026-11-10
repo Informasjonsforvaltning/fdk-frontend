@@ -25,7 +25,7 @@ type DistributionStatusCode = keyof typeof DISTRIBUTION_STATUS_COLORS;
 type DistributionStatusColor = (typeof DISTRIBUTION_STATUS_COLORS)[DistributionStatusCode] | "neutral";
 
 const isDistributionStatusCode = (code: string): code is DistributionStatusCode =>
-  Object.hasOwn(DISTRIBUTION_STATUS_COLORS, code);
+  Object.prototype.hasOwnProperty.call(DISTRIBUTION_STATUS_COLORS, code);
 
 const normalizeStatusCode = (statusCode?: string) => {
   if (!statusCode) return undefined;
