@@ -1,12 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { isCanonicalDomain } from "../../utils/domain";
+import { getSite } from "../../utils/site";
 
 export const dynamic = "force-dynamic";
 
-export const GET = async (request: NextRequest) => {
+export const GET = async () => {
   let robotsContent: string;
 
   if (isCanonicalDomain()) {
+    const site = await getSite();
+
     // Allow crawling on canonical domain
     robotsContent = `# Allow crawling of all public pages
 User-agent: *
@@ -24,7 +27,7 @@ Disallow: /internal/
 Disallow: /*?
 
 # Sitemap
-Sitemap: https://data.norge.no/sitemap.xml
+Sitemap: ${site.origin}/sitemap.xml
 
 # Crawl delay (be respectful to your servers)
 Crawl-delay: 1`;
@@ -35,7 +38,7 @@ User-agent: *
 Disallow: /
 
 # This is not the canonical domain
-# Only https://data.norge.no should be crawled by search engines`;
+# Only the production sites should be crawled by search engines`;
   }
 
   return new NextResponse(robotsContent, {
