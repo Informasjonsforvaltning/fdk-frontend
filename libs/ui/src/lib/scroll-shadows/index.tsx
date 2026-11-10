@@ -16,21 +16,17 @@ const ScrollShadows = ({ children, className, orientation = "horizontal", ...pro
   const [overflow, setOverflow] = useState({
     overflowLeft: false,
     overflowRight: false,
-    overflowTop: false,
-    overflowBottom: false,
   });
 
   const updateOverflow = () => {
     const container = scrollerRef.current;
     if (!container) return;
 
-    const { scrollLeft, scrollTop, scrollWidth, scrollHeight, clientWidth, clientHeight } = container;
+    const { scrollLeft, scrollWidth, clientWidth } = container;
 
     setOverflow({
       overflowLeft: scrollLeft > 0,
       overflowRight: scrollLeft + clientWidth < scrollWidth,
-      overflowTop: scrollTop > 0,
-      overflowBottom: scrollTop + clientHeight < scrollHeight,
     });
   };
 
@@ -50,21 +46,13 @@ const ScrollShadows = ({ children, className, orientation = "horizontal", ...pro
     };
   }, []);
 
-  const showHorizontal = orientation === "all" || orientation === "horizontal";
-  const showVertical = orientation === "all" || orientation === "vertical";
-
   return (
     <div
       className={cn(styles.container, className, {
-        [styles.shadowTop]: showVertical && overflow.overflowTop,
-        [styles.shadowRight]: showHorizontal && overflow.overflowRight,
-        [styles.shadowBottom]: showVertical && overflow.overflowBottom,
-        [styles.shadowLeft]: showHorizontal && overflow.overflowLeft,
+        [styles.shadowRight]: overflow.overflowRight,
+        [styles.shadowLeft]: overflow.overflowLeft,
       })}
-      data-overflows={
-        (showHorizontal && (overflow.overflowLeft || overflow.overflowRight)) ||
-        (showVertical && (overflow.overflowTop || overflow.overflowBottom))
-      }
+      data-overflows={overflow.overflowLeft || overflow.overflowRight}
       {...props}
     >
       <div
