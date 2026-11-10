@@ -3,6 +3,7 @@ import { Paragraph, Heading, Alert, Link, Button } from "@digdir/designsystemet-
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { Hstack, VStack, BackButton, Markdown } from "@fdk-frontend/ui";
 import { getProfile } from "@fdk-frontend/utils/server";
+import { getSite } from "../../../utils/site";
 import { parseHttpUrl } from "@fdk-frontend/utils";
 import styles from "./styles.module.scss";
 
@@ -75,15 +76,15 @@ const LeavingGatewayPage = async (props: LeavingGatewayPageProps) => {
 export const generateMetadata = async (props: LeavingGatewayPageProps) => {
   const params = await props.params;
   const dictionary = getLocalization(params.lang).common;
-  const profile = await getProfile();
+  const site = await getSite();
 
   const heading =
-    profile === "transportportal"
+    site.profile === "transportportal"
       ? dictionary.leavingGateway.transportportal.heading
       : dictionary.leavingGateway.heading;
 
   return {
-    title: `${heading} - data.norge.no`,
+    title: `${heading} - ${site.name}`,
   };
 };
 
