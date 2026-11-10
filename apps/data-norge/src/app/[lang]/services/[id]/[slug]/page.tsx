@@ -8,7 +8,6 @@ import {
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
 import { SearchObject, type CommunityTopic, type PublicService } from "@fellesdatakatalog/types";
-import { type WithRemovedFromFDKFlag } from "@fdk-frontend/types";
 import ServiceDetailsPage from "../../../../components/details-page/service";
 import { notFound, redirect } from "next/navigation";
 import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
@@ -30,7 +29,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     common: loc.common,
     detailsPage: loc.detailsPage,
   };
-  let service: WithRemovedFromFDKFlag<PublicService>;
+  let service: PublicService;
   let orgLogo: string | null = null;
   let communityTopics: CommunityTopic[] = [];
   let concepts: SearchObject[] = [];

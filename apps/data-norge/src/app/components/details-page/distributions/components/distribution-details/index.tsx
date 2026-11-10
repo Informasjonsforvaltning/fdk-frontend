@@ -18,6 +18,7 @@ import {
 } from "@fdk-frontend/ui";
 import distStyles from "../../distributions.module.scss";
 import { type Profile } from "@fdk-frontend/types";
+import StandardItem from "../../../standard-item";
 
 type DistributionDetailsProps = {
   distribution: Distribution;
@@ -209,35 +210,41 @@ const DistributionDetails = ({
             <SmartList
               listType="ol"
               items={distribution.conformsTo}
-              renderItem={(standard) => {
-                const resolvedInformationModel = resolvedDistributionInformationModels.find(
-                  (infoModel) => infoModel.uri === standard.uri,
-                );
+              renderItem={(standard) => (
+                <StandardItem
+                  standard={standard}
+                  locale={locale}
+                  renderLink={(url, label) => {
+                    const resolvedInformationModel = resolvedDistributionInformationModels.find(
+                      (infoModel) => infoModel.uri === url,
+                    );
 
-                if (resolvedInformationModel) {
-                  return (
-                    <InternalLink
-                      href={`/information-models/${resolvedInformationModel.id}`}
-                      entity={resolvedInformationModel}
-                      profile={profile}
-                      baseUri={baseUri}
-                      locale={locale}
-                    >
-                      {printLocaleValue(locale, resolvedInformationModel.title) || resolvedInformationModel.uri}
-                    </InternalLink>
-                  );
-                }
+                    if (resolvedInformationModel) {
+                      return (
+                        <InternalLink
+                          href={`/information-models/${resolvedInformationModel.id}`}
+                          entity={resolvedInformationModel}
+                          profile={profile}
+                          baseUri={baseUri}
+                          locale={locale}
+                        >
+                          {printLocaleValue(locale, resolvedInformationModel.title) || resolvedInformationModel.uri}
+                        </InternalLink>
+                      );
+                    }
 
-                return (
-                  <ExternalLink
-                    href={standard.uri}
-                    locale={locale}
-                    gateway
-                  >
-                    {printLocaleValue(locale, standard.prefLabel) || standard.uri}
-                  </ExternalLink>
-                );
-              }}
+                    return (
+                      <ExternalLink
+                        href={url}
+                        locale={locale}
+                        gateway
+                      >
+                        {label}
+                      </ExternalLink>
+                    );
+                  }}
+                />
+              )}
             />
           ) : (
             <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
@@ -245,8 +252,26 @@ const DistributionDetails = ({
         </dd>
         <dt>{dictionaries.detailsPage.distributions.details.rightsType}:</dt>
         <dd>
-          {distribution?.rights?.type?.prefLabel ? (
-            <span>{printLocaleValue(locale, distribution?.rights?.type?.prefLabel)}</span>
+          {distribution?.rights?.type?.prefLabel || distribution?.rights?.reuserGuidelines?.length ? (
+            <>
+              {distribution.rights.type?.prefLabel && (
+                <div>{printLocaleValue(locale, distribution.rights.type.prefLabel)}</div>
+              )}
+              {distribution.rights.reuserGuidelines?.length ? (
+                <SmartList
+                  items={distribution.rights.reuserGuidelines}
+                  renderItem={(url) => (
+                    <ExternalLink
+                      href={url}
+                      locale={locale}
+                      gateway
+                    >
+                      {url}
+                    </ExternalLink>
+                  )}
+                />
+              ) : null}
+            </>
           ) : (
             <PlaceholderText>{dictionaries.detailsPage.distributions.details.noData}</PlaceholderText>
           )}

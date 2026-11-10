@@ -1,13 +1,15 @@
 "use client";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Tag } from "@digdir/designsystemet-react";
+import type { SearchSuggestion } from "@fellesdatakatalog/types";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
-import type { SearchSuggestion, SearchSuggestionTitle } from "@fdk-frontend/types";
 import {
   buildResourcePath,
   buildSearchPageQueryUrl,
   deriveSearchSetIdFromPathname,
   isCatalogSet,
+  printLocaleValue,
+  printOrganizationLabel,
   type SearchSetId,
 } from "@fdk-frontend/utils";
 
@@ -15,33 +17,10 @@ import NavLinkList from "../nav-link-list";
 import { readEntityLabel, SearchTraySeeAll, TrayPanelStatus } from "./search-tray-panel";
 import { fetchTrayJson, isTrayRecord, useDebouncedTrayFetch } from "./use-debounced-tray-fetch";
 
-const TITLE_LOCALES = ["nb", "nn", "en", "no"] as const;
-
-const readSuggestionTitle = (value: unknown): SearchSuggestionTitle | undefined => {
-  if (!isTrayRecord(value)) return undefined;
-  const title: SearchSuggestionTitle = {};
-  for (const key of TITLE_LOCALES) {
-    const candidate = value[key];
-    if (typeof candidate === "string") title[key] = candidate;
-  }
-  return title;
-};
-
-const readSuggestion = (value: unknown): SearchSuggestion | undefined => {
-  if (!isTrayRecord(value)) return undefined;
-  if (typeof value.id !== "string" || typeof value.searchType !== "string") return undefined;
-  const title = readSuggestionTitle(value.title);
-  if (!title) return undefined;
-  const uri = typeof value.uri === "string" ? value.uri : "";
-  return { id: value.id, searchType: value.searchType, uri, title };
-};
-
+/** The suggestions route returns the search-service body. This only checks that `suggestions` is an array. */
 const readSuggestions = (value: unknown): SearchSuggestion[] => {
   if (!isTrayRecord(value) || !Array.isArray(value.suggestions)) return [];
-  return value.suggestions.flatMap((item) => {
-    const suggestion = readSuggestion(item);
-    return suggestion ? [suggestion] : [];
-  });
+  return value.suggestions as SearchSuggestion[];
 };
 
 const getSuggestionsUrl = (setId: SearchSetId, query: string): string => {
@@ -57,14 +36,6 @@ const fetchSuggestions = async (url: string, signal: AbortSignal): Promise<Searc
     if (err instanceof Error && err.name === "AbortError") throw err;
     return [];
   }
-};
-
-const getLocalizedTitle = (title: SearchSuggestionTitle, locale: LocaleCodes): string => {
-  const candidates = [title[locale], title.nb, title.no, title.nn, title.en];
-  for (const candidate of candidates) {
-    if (candidate && candidate.trim() !== "") return candidate;
-  }
-  return "";
 };
 
 export type SearchTraySuggestionsProps = {
@@ -93,12 +64,16 @@ const SearchTraySuggestions = ({ locale, query, onSelect }: SearchTraySuggestion
   const items = suggestions.flatMap((suggestion) => {
     const href = buildResourcePath(locale, suggestion.searchType, suggestion.id);
     if (!href) return [];
+    const label = printLocaleValue(locale, suggestion.title);
+    if (!label) return [];
     const typeLabel = readEntityLabel(entityLabels, suggestion.searchType);
     return [
       {
         id: suggestion.id,
         href,
-        label: getLocalizedTitle(suggestion.title, locale),
+        label,
+        orgNr: suggestion.organization?.id?.trim() ?? "",
+        orgTitle: printOrganizationLabel(locale, suggestion.organization) || undefined,
         suffix: typeLabel ? <Tag data-size="sm">{typeLabel}</Tag> : undefined,
         onClick: onSelect,
       },

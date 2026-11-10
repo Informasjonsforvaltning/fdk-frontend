@@ -153,6 +153,13 @@ const common = {
     helpText:
       "Datasettet er et datasett med høy verdi (HVD) etter EUs gjennomføringsforordning (EU) 2023/138. Det er utgiveren som har oppgitt dette.",
   },
+  unpublishedTag: {
+    label: "Avpublisert",
+    helpTextTitle: "Begrepsforklaring",
+    helpText:
+      "Denne ressursen er avpublisert fra data.norge.no av utgiver. Ressursen blir ikke vedlikeholdt eller oppdatert. Informasjonen kan være utdatert og utilgjengelig.",
+    lastUpdated: "Sist oppdatert {{date}}",
+  },
   general: {
     loading: "Laster...",
     redirecting: "Videresender...",

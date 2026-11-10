@@ -18,7 +18,7 @@ import ConceptDetails from "./components/concept-details";
 import ReferencesDetails from "./components/references-details";
 import DatasetTags from "../dataset-tags";
 import styles from "./details-tab.module.scss";
-import { printLocaleValue } from "@fdk-frontend/utils";
+import { isHvdRegulated, printLocaleValue } from "@fdk-frontend/utils";
 
 const DatasetDetailsTabContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
 
@@ -217,6 +217,30 @@ const DatasetDetailsTab = ({
             </TagList>
           </section>
         )}
+        {dataset.hvdCategory?.length || (isHvdRegulated(dataset.applicableLegislation) && showEmptyRows) ? (
+          <section>
+            <Heading
+              level={2}
+              data-size="xs"
+            >
+              {dictionary.details.hvdCategories}
+            </Heading>
+            {dataset.hvdCategory?.length ? (
+              <TagList>
+                {dataset.hvdCategory.map((category: ReferenceDataCode) => (
+                  <Tag
+                    key={category.uri}
+                    data-size="sm"
+                  >
+                    {printLocaleValue(locale, category.prefLabel) || category.code}
+                  </Tag>
+                ))}
+              </TagList>
+            ) : (
+              <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>
+            )}
+          </section>
+        ) : null}
         {!dataset.keyword?.length && !showEmptyRows ? null : (
           <section>
             <Heading

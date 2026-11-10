@@ -1,20 +1,17 @@
 import React, { useContext } from "react";
 import { Heading } from "@digdir/designsystemet-react";
 import { PlaceholderText, PlaceholderBox, ExternalLink, SmartList, Dlist, Article } from "@fdk-frontend/ui";
-import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
+import { DatasetDetailsProps } from "../../";
 import { printLocaleValue } from "@fdk-frontend/utils";
-import { Dataset, LegalResource } from "@fellesdatakatalog/types";
-import Link from "next/link";
+import { Dataset } from "@fellesdatakatalog/types";
 
 export const hasLegalBasis = (dataset: Dataset) =>
-  dataset.applicableLegislation ||
-  dataset.legalBasisForAccess ||
-  dataset.legalBasisForProcessing ||
-  dataset.legalBasisForRestriction;
+  (dataset.applicableLegislation && dataset?.applicableLegislation.length) ||
+  (dataset.legalBasisForAccess && dataset?.legalBasisForAccess.length) ||
+  (dataset.legalBasisForProcessing && dataset?.legalBasisForProcessing.length) ||
+  (dataset.legalBasisForRestriction && dataset?.legalBasisForRestriction.length);
 
 const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
-  const { showEmptyRows } = useContext(DatasetDetailsTabContext);
-
   const printLegalBasis = (legalBasis?: any[], description?: string) => {
     if (!legalBasis) return <PlaceholderText>{dictionary.details.noData}</PlaceholderText>;
     return legalBasis.map((legal, i) => {
@@ -56,9 +53,23 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
                   return <PlaceholderText key={`legislation-${i}`}>{dictionary.details.noData}</PlaceholderText>;
                 return (
                   <React.Fragment key={`legislation-${i}`}>
-                    <dt>{printLocaleValue(locale, legislation.title)}</dt>
+                    <dt>
+                      {legislation.title ? (
+                        printLocaleValue(locale, legislation.title)
+                      ) : (
+                        <PlaceholderText>{dictionary.details.legal.noTitle}</PlaceholderText>
+                      )}
+                    </dt>
                     <dd className="article">
-                      <Article>{printLocaleValue(locale, legislation.description)}</Article>
+                      <div>
+                        {legislation.type && (
+                          <div>
+                            {dictionary.details.legal.type}:{" "}
+                            {printLocaleValue(locale, legislation.type.prefLabel) || legislation.type.code}
+                          </div>
+                        )}
+                        <Article>{printLocaleValue(locale, legislation.description)}</Article>
+                      </div>
                       {legislation.references && legislation.references.length > 0 && (
                         <SmartList
                           items={legislation.references}
@@ -78,15 +89,12 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
               })}
             </>
           )}
-          {!dataset.legalBasisForAccess && !showEmptyRows
-            ? null
-            : printLegalBasis(dataset.legalBasisForAccess, dictionary.details.legal.legalBasisForAccess)}
-          {!dataset.legalBasisForProcessing && !showEmptyRows
-            ? null
-            : printLegalBasis(dataset.legalBasisForProcessing, dictionary.details.legal.legalBasisForProcessing)}
-          {!dataset.legalBasisForRestriction && !showEmptyRows
-            ? null
-            : printLegalBasis(dataset.legalBasisForRestriction, dictionary.details.legal.legalBasisForRestriction)}
+          {dataset.legalBasisForAccess &&
+            printLegalBasis(dataset.legalBasisForAccess, dictionary.details.legal.legalBasisForAccess)}
+          {dataset.legalBasisForProcessing &&
+            printLegalBasis(dataset.legalBasisForProcessing, dictionary.details.legal.legalBasisForProcessing)}
+          {dataset.legalBasisForRestriction &&
+            printLegalBasis(dataset.legalBasisForRestriction, dictionary.details.legal.legalBasisForRestriction)}
         </Dlist>
       ) : (
         <PlaceholderBox>{dictionary.details.noData}</PlaceholderBox>

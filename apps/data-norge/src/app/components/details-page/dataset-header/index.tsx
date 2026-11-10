@@ -3,7 +3,7 @@
 import React from "react";
 import { type DatasetWithIdentifier, type DataService } from "@fellesdatakatalog/types";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
-import { printLocaleValue } from "@fdk-frontend/utils";
+import { printLocaleValue, printOrganizationLabel } from "@fdk-frontend/utils";
 import {
   OrgButton,
   OpenDataTag,
@@ -12,6 +12,7 @@ import {
   UseDatasetPopover,
   TagList,
   TagLink,
+  UnpublishedTag,
 } from "@fdk-frontend/ui";
 import { Heading, Paragraph, Tag } from "@digdir/designsystemet-react";
 import styles from "./dataset-header.module.scss";
@@ -54,7 +55,7 @@ const DatasetHeader = ({
         orgLogoSrc={orgLogo}
         className={styles.orgBtn}
       >
-        {printLocaleValue(locale, dataset.publisher?.prefLabel) ?? dictionaries.detailsPage.header.namelessOrganization}
+        {printOrganizationLabel(locale, dataset.publisher) ?? dictionaries.detailsPage.header.namelessOrganization}
       </OrgButton>
       <Heading
         level={1}
@@ -111,6 +112,12 @@ const DatasetHeader = ({
           baseUri={baseUri}
         />
         {dataset.isOpenData && <OpenDataTag locale={locale} />}
+        {dataset.isRemovedFromFDK && (
+          <UnpublishedTag
+            locale={locale}
+            lastModified={dataset.harvest?.modified}
+          />
+        )}
       </TagList>
     </div>
   );

@@ -41,7 +41,7 @@ const TransportportalFrontpageBanner = ({
         </HeadingWithDivider>
         <div
           className={styles.search}
-          data-color-scheme="light"
+          data-color-scheme="dark"
         >
           <SearchInput
             locale={locale}
@@ -49,6 +49,7 @@ const TransportportalFrontpageBanner = ({
             showTrayNav={profile !== "transportportal"}
             hideAiSet={profile === "transportportal"}
             placeholder={dictionary.tp.searchPlaceholder}
+            data-size="lg"
           />
         </div>
         <TransportportalFrontpageLinks

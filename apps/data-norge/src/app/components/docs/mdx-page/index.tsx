@@ -2,8 +2,9 @@ import cn from "classnames";
 
 import { PropsWithChildren } from "react";
 
-import { DynamicBreadcrumbs } from "@fdk-frontend/ui";
+import { Drawer, DrawerPanel, DrawerToggleButton, DynamicBreadcrumbs } from "@fdk-frontend/ui";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
+import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 
 import Sidebar from "../sidebar";
 import TableOfContents from "../table-of-contents";
@@ -24,6 +25,11 @@ const MdxPage = async ({ children, sidebars = true, currentPath, locale, source 
   const docsDictionary = loc.docs;
 
   const headlines: MdxHeadlineObjectNode[] = extractHeadlines(source);
+  const menuLabel = docsDictionary.sidebar.menuLabel;
+  const rootSection = currentPath[0];
+  const sectionTitle = docsDictionary.titles[`/${rootSection}`];
+  const toggleLabel =
+    rootSection === "docs" || rootSection === "technical" ? sectionTitle : menuLabel;
 
   return (
     <div className={pageStyles.mdxPage}>
@@ -44,7 +50,31 @@ const MdxPage = async ({ children, sidebars = true, currentPath, locale, source 
           </div>
         )}
         <div className={pageStyles.mainColumn}>
-          <article className={cn(pageStyles.article)}>{children}</article>
+          {sidebars && (
+            <Drawer
+              side="left"
+              closeOnChange={currentPath.join("/")}
+              className={pageStyles.menuDrawer}
+            >
+              <DrawerToggleButton
+                variant="secondary"
+                aria-label={toggleLabel}
+              >
+                <MenuHamburgerIcon aria-hidden />
+                {toggleLabel}
+              </DrawerToggleButton>
+              <DrawerPanel aria-label={menuLabel}>
+                <Sidebar
+                  dictionary={docsDictionary}
+                  currentPath={currentPath}
+                  locale={locale}
+                />
+              </DrawerPanel>
+            </Drawer>
+          )}
+          <article className={pageStyles.article}>
+            {children}
+          </article>
         </div>
         {sidebars && (
           <div className={pageStyles.rightColumn}>

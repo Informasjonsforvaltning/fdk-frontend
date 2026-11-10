@@ -1,18 +1,4 @@
 import { type DatasetReference, type Dataset } from "@fellesdatakatalog/types";
-import type { LocaleCodes } from "@fdk-frontend/localization";
-
-export type SearchSuggestionTitle = Partial<Record<LocaleCodes | "no", string>>;
-
-export type SearchSuggestion = {
-  id: string;
-  title: SearchSuggestionTitle;
-  uri: string;
-  searchType: string;
-};
-
-export type SearchSuggestionsResponse = {
-  suggestions: SearchSuggestion[];
-};
 
 export type LinkObjectType = {
   href?: string;
@@ -32,8 +18,3 @@ export interface PopulatedDatasetReference {
 }
 
 export type Profile = "data.norge" | "transportportal";
-
-/** Top-level flag from fdk-resource-service by-ID endpoints when a resource is removed. */
-export type WithRemovedFromFDKFlag<T> = T & {
-  isRemovedFromFDK?: boolean;
-};

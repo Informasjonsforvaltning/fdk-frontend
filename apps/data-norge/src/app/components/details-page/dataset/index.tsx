@@ -10,7 +10,7 @@ import {
   type CommunityTopic,
   type SearchObject,
 } from "@fellesdatakatalog/types";
-import { type PopulatedDatasetReference, type Profile, type WithRemovedFromFDKFlag } from "@fdk-frontend/types";
+import { type PopulatedDatasetReference, type Profile } from "@fdk-frontend/types";
 import { sumArrayLengths, printLocaleValue } from "@fdk-frontend/utils";
 import {
   Badge,
@@ -36,7 +36,7 @@ import styles from "../details-page.module.scss";
 
 export type DatasetDetailsPageType = {
   baseUri: string;
-  resource: WithRemovedFromFDKFlag<DatasetWithIdentifier>;
+  resource: DatasetWithIdentifier;
   apis?: DataService[];
   concepts?: SearchObject[];
   populatedReferences?: PopulatedDatasetReference[];
@@ -129,7 +129,7 @@ export default function DatasetDetailsPage({
             setActiveTab(value);
           }}
         >
-          <ScrollShadows className={styles.tabsScrollShadows}>
+          <ScrollShadows>
             <TabsList>
               <TabsTab
                 value="overview"
@@ -237,7 +237,7 @@ export default function DatasetDetailsPage({
                 >
                   {dictionaries.detailsPage.internalRelations}
                 </Heading>
-                <ScrollShadows className={styles.tableScroller}>
+                <ScrollShadows>
                   <DatasetTable
                     datasets={internalRelatedDatasets}
                     locale={locale}
@@ -256,7 +256,7 @@ export default function DatasetDetailsPage({
                 >
                   {dictionaries.detailsPage.similarDatasets}
                 </Heading>
-                <ScrollShadows className={styles.tableScroller}>
+                <ScrollShadows>
                   <DatasetTable
                     datasets={similarDatasets}
                     locale={locale}

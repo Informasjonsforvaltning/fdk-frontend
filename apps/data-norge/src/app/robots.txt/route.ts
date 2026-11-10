@@ -18,6 +18,11 @@ Disallow: /_next/
 Disallow: /admin/
 Disallow: /internal/
 
+# Faceted search URLs. Query parameters combine into an unbounded URL space
+# with no unique content. The canonical pages are the server-rendered detail
+# pages listed in the sitemap below.
+Disallow: /*?
+
 # Sitemap
 Sitemap: https://data.norge.no/sitemap.xml
 

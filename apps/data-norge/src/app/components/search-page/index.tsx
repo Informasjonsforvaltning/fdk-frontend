@@ -3,6 +3,7 @@ import {
   AiPromoSplash,
   Breadcrumbs,
   DocsTeaser,
+  Drawer,
   EntityTeaser,
   SearchForm,
   SearchHistory,
@@ -11,6 +12,7 @@ import {
   SearchSuggestions,
   type AggregationKeyCount,
 } from "@fdk-frontend/ui";
+import { MenuHamburgerIcon } from "@navikt/aksel-icons";
 import { type SearchObject } from "@fellesdatakatalog/types";
 import { Alert, Heading } from "@digdir/designsystemet-react";
 import { isCatalogSet, type LlmSearchCacheBody, type SearchPageInfo, type SearchSetId } from "@fdk-frontend/utils";
@@ -43,6 +45,8 @@ export type SearchPageProps = {
   llmLoading?: boolean;
   /** Transportportal: menu is all-catalogs, datasets, and docs. The AI result block stays hidden. */
   hideAiSet?: boolean;
+  /** Closes the set-menu drawer when the result set changes. */
+  pathname: string;
 };
 
 const SearchPage = ({
@@ -65,6 +69,7 @@ const SearchPage = ({
   docsLoading = false,
   llmLoading = false,
   hideAiSet = false,
+  pathname,
 }: SearchPageProps) => {
   const loc = getLocalization(lang);
   const dictionary = loc.searchPage;
@@ -102,6 +107,11 @@ const SearchPage = ({
           ? allCatalogsHitCount
           : (catalogPage?.totalElements ?? setBadgeCounts?.[activeSet] ?? catalogHits.length);
   const sectionHeading = `${sectionLabel} ${interpolate(dictionary.entitySearch.hitsCountLabel, { count: sectionHitCount })}`;
+  const searchMenuProps = {
+    locale: lang,
+    badgeCounts: resolvedBadgeCounts,
+    hideAiSet,
+  };
 
   return (
     <div className={styles.searchPage}>
@@ -110,34 +120,44 @@ const SearchPage = ({
         breadcrumbList={breadcrumbList}
       />
       <div className={styles.content}>
-        <div className={styles.leftColumn}>
-          <Heading
-            level={1}
-            data-size="sm"
-            className={styles.pageHeading}
-          >
-            {query ? (
-              <>
-                {dictionary.heading.queryPrefix} <strong>&apos;{query}&apos;</strong>
-              </>
-            ) : (
-              dictionary.heading.label
-            )}
-          </Heading>
-          <SearchMenu
-            locale={lang}
-            badgeCounts={resolvedBadgeCounts}
-            hideAiSet={hideAiSet}
-          />
-        </div>
         <div className={styles.mainColumn}>
           <div className={styles.resultsHeader}>
-            <Heading
-              level={2}
-              data-size="sm"
-            >
-              {sectionHeading}
-            </Heading>
+            <div className={styles.resultsHeading}>
+              <Drawer
+                side="left"
+                closeOnChange={pathname}
+                className={styles.menuDrawer}
+              >
+                <Drawer.ToggleButton
+                  aria-label={dictionary.searchSets.navAriaLabel}
+                  variant="secondary"
+                >
+                  <MenuHamburgerIcon aria-hidden />
+                </Drawer.ToggleButton>
+                <Drawer.Panel aria-label={dictionary.searchSets.navAriaLabel}>
+                  <Heading
+                    level={2}
+                    data-size="sm"
+                    className={styles.pageHeading}
+                  >
+                    {query ? (
+                      <>
+                        {dictionary.heading.queryPrefix} <strong>&apos;{query}&apos;</strong>
+                      </>
+                    ) : (
+                      dictionary.heading.label
+                    )}
+                  </Heading>
+                  <SearchMenu {...searchMenuProps} />
+                </Drawer.Panel>
+              </Drawer>
+              <Heading
+                level={1}
+                data-size="sm"
+              >
+                {sectionHeading}
+              </Heading>
+            </div>
             <SearchResultListControls
               lang={lang}
               activeSet={activeSet}
@@ -174,6 +194,7 @@ const SearchPage = ({
                         <EntityTeaser
                           locale={lang}
                           entity={mapLlmHitToSearchObject(item)}
+                          headingLevel={2}
                           llm
                         />
                       </li>
@@ -197,6 +218,7 @@ const SearchPage = ({
                             <EntityTeaser
                               locale={lang}
                               entity={hit}
+                              headingLevel={2}
                             />
                           </li>
                         );
@@ -226,6 +248,7 @@ const SearchPage = ({
                           title={doc.title}
                           desc={doc.summary}
                           href={doc.url}
+                          headingLevel={2}
                         />
                       </li>
                     ))}
@@ -238,6 +261,22 @@ const SearchPage = ({
               </div>
             )}
           </div>
+        </div>
+        <div className={styles.leftColumn}>
+          <Heading
+            level={2}
+            data-size="sm"
+            className={styles.pageHeading}
+          >
+            {query ? (
+              <>
+                {dictionary.heading.queryPrefix} <strong>&apos;{query}&apos;</strong>
+              </>
+            ) : (
+              dictionary.heading.label
+            )}
+          </Heading>
+          <SearchMenu {...searchMenuProps} />
         </div>
         <div className={styles.rightColumn}>
           <SearchHistory lang={lang} />

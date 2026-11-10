@@ -15,8 +15,9 @@ on:
 jobs:
   test:
     name: Test
-    if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
+    # Draft PRs are not deployed automatically; run this workflow manually on the branch to deploy one.
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
@@ -25,7 +26,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set SHAs
-        uses: nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1 # v5.0.1
+        uses: nrwl/nx-set-shas@e602fada7ad5987b0f7b1905e7a99ea1c661514c # v5.1.0
 
       - name: Enable corepack
         run: corepack enable
@@ -52,7 +53,7 @@ jobs:
   build-app:
     name: Build data-norge app
     needs: [test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
@@ -61,7 +62,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set SHAs
-        uses: nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1 # v5.0.1
+        uses: nrwl/nx-set-shas@e602fada7ad5987b0f7b1905e7a99ea1c661514c # v5.1.0
 
       - name: Enable corepack
         run: corepack enable

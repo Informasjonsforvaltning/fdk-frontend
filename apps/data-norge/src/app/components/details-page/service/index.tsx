@@ -3,7 +3,6 @@
 import React, { Fragment, useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type Organization, type CommunityTopic, type PublicService, SearchObject } from "@fellesdatakatalog/types";
-import { type WithRemovedFromFDKFlag } from "@fdk-frontend/types";
 import { getSlug, printLocaleValue, sumArrayLengths } from "@fdk-frontend/utils";
 import {
   Badge,
@@ -23,6 +22,7 @@ import {
   TagList,
   StatusTag,
   TagLink,
+  UnpublishedTag,
 } from "@fdk-frontend/ui";
 import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel, Button, Link } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
@@ -46,7 +46,7 @@ export type ServiceDetailsPageType = {
   locale: LocaleCodes;
   orgLogo?: string | null;
   publisher?: Partial<Organization>;
-  service: WithRemovedFromFDKFlag<PublicService>;
+  service: PublicService;
 };
 
 export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
@@ -138,12 +138,20 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
       if (output.isPartOf?.length) {
         contents.push({
           label: dictionaries.detailsPage.produces.isPartOf,
-          value: output.isPartOf
-            ?.map((uri) => {
-              const dataset = producesDatasets.find((hit) => hit.uri === uri);
-              return printLocaleValue(locale, dataset?.title) || uri;
-            })
-            .join(", "),
+          value: output.isPartOf.map((uri, index) => {
+            const dataset = producesDatasets.find((hit) => hit.uri === uri);
+            const label = printLocaleValue(locale, dataset?.title) || uri;
+            return (
+              <Fragment key={uri}>
+                {index > 0 && ", "}
+                {dataset?.id ? (
+                  <Link href={`/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`}>{label}</Link>
+                ) : (
+                  label
+                )}
+              </Fragment>
+            );
+          }),
         });
       }
       if (output.type?.length) {
@@ -205,6 +213,12 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
               <StatusTag
                 locale={locale}
                 status={service.admsStatus}
+              />
+            )}
+            {service.isRemovedFromFDK && (
+              <UnpublishedTag
+                locale={locale}
+                lastModified={service.harvest?.modified}
               />
             )}
           </TagList>

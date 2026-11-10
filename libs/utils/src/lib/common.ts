@@ -12,6 +12,11 @@ export const printLocaleValue = (locale: LocaleCodes, value: any) => {
   return value[locale] || value[i18n.defaultLocale] || value["no"] || value["nn"] || value["en"];
 };
 
+export const printOrganizationLabel = (
+  locale: LocaleCodes,
+  organization?: { prefLabel?: unknown; name?: unknown } | null,
+) => printLocaleValue(locale, organization?.prefLabel) || printLocaleValue(locale, organization?.name);
+
 export const sumArrayLengths = (...arrays: (any[] | undefined)[]) => {
   return arrays.reduce((sum, array) => sum + (array?.length || 0), 0);
 };
