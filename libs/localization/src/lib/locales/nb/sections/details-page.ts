@@ -159,6 +159,7 @@ const detailsPage = {
       endpointDescription: "Endepunktbeskrivelse",
       format: "Format",
       version: "Versjon",
+      availability: "Tilgjengelighet",
       license: "Lisens",
       openAccess: "Åpen tilgang",
       openLicense: "Åpen lisens",
