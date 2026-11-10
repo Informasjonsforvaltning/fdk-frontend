@@ -51,6 +51,7 @@ export { default as DatasetTable } from "./lib/dataset-table";
 export * from "./lib/dataset-table";
 export { default as DistributionTags } from "./lib/distribution-tags";
 export * from "./lib/distribution-tags";
+export { default as DistributionStatusTag } from "./lib/distribution-status-tag";
 export * from "./lib/divider";
 export { default as Dlist } from "./lib/dlist";
 export * from "./lib/dlist";
