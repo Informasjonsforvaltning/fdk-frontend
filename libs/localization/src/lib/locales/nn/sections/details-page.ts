@@ -342,6 +342,8 @@ const detailsPage = {
     noPreviewData: "Ingen førehandsvisingsdata tilgjengeleg",
   },
   unknownStatusLabel: "Ukjend status",
+  statusHelpTextTitle: "Forklaring av status",
+  statusHelpReadMore: "Sjå definisjonen i EU sitt vokabular",
   statusCodes: {
     COMPLETED: "Ferdigstilt",
     DEVELOP: "Under utvikling",
@@ -352,6 +354,16 @@ const detailsPage = {
     ONGOING: "Pågåande",
     PLANNED: "Planlagd",
     REQUIRED: "Påkravd",
+  },
+  statusDescriptions: {
+    ARCHIVE: "Distribusjonen er lagra i eit fråkopla lagringsanlegg.",
+    COMPLETED: "Distribusjonen inneheld all informasjon som er meint å publiserast.",
+    DEPRECATED: "Distribusjonen er ikkje lenger tilrådd.",
+    DEVELOP: "Distribusjonen er under samanstilling og kan vere ufullstendig eller feilaktig.",
+    ONGOING: "Distribusjonen blir oppdatert fortløpande.",
+    PLANNED: "Distribusjonen er planlagd oppretta eller oppdatert på ein fastsett dato.",
+    REQUIRED: "Distribusjonen må opprettast eller oppdaterast.",
+    WITHDRAWN: "Distribusjonen er ikkje lenger meint å publiserast.",
   },
 };
 

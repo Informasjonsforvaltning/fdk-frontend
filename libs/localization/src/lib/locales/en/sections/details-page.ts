@@ -341,6 +341,8 @@ const detailsPage = {
     noPreviewData: "No preview data available",
   },
   unknownStatusLabel: "Unknown status",
+  statusHelpTextTitle: "Status explanation",
+  statusHelpReadMore: "See the definition in the EU vocabulary",
   statusCodes: {
     COMPLETED: "Completed",
     DEVELOP: "Under development",
@@ -351,6 +353,16 @@ const detailsPage = {
     ONGOING: "Ongoing",
     PLANNED: "Planned",
     REQUIRED: "Required",
+  },
+  statusDescriptions: {
+    ARCHIVE: "Distribution stored in an offline storage facility.",
+    COMPLETED: "Distribution containing all information intended for publication.",
+    DEPRECATED: "Distribution no longer recommended for use.",
+    DEVELOP: "Distribution being assembled and possibly incomplete or erroneous.",
+    ONGOING: "Distribution undergoing continual updating.",
+    PLANNED: "Distribution scheduled for creation or update on an established date.",
+    REQUIRED: "Distribution needing creation or update.",
+    WITHDRAWN: "Distribution no longer intended for publication.",
   },
 };
 
