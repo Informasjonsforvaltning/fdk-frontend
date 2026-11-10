@@ -1,32 +1,42 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { MetadataRoute } from "next";
+import { LanguageCodes, type TextLanguage } from "@fellesdatakatalog/types";
 import { i18n } from "@fdk-frontend/localization";
-import { getAllDatasets, getAllServices } from "@fdk-frontend/data-access/server";
+import { getAllDatasets, getAllServices, searchEntitiesByPath } from "@fdk-frontend/data-access/server";
 import { readdir, stat } from "fs/promises";
 import { join } from "path";
 import { getSlug } from "@fdk-frontend/utils";
+import { type Profile } from "@fdk-frontend/types";
+import { type Site, getSite } from "../../utils/site";
 
 export const dynamic = "force-dynamic";
 
-// Atomic cache for sitemap
-const SITEMAP_CACHE = {
-  sitemap: null as string | null,
-  timestamp: 0,
-  duration: 5 * 60 * 1000,
+const SITEMAP_CACHE_DURATION = 5 * 60 * 1000;
+const TRANSPORT_SEARCH_PROFILE = "TRANSPORT";
+const TRANSPORT_CONTENT_ROOT = "om-transportportal";
+
+type SitemapCacheEntry = {
+  sitemap: string;
+  timestamp: number;
 };
 
-// Atomic update function
-const atomicUpdateSitemapCache = (newSitemap: string): boolean => {
+// Separate cache per site so one host cannot serve the other's sitemap.
+const SITEMAP_CACHE = new Map<Profile, SitemapCacheEntry>();
+
+const readCachedSitemap = (profile: Profile, now: number): SitemapCacheEntry | undefined => {
+  const entry = SITEMAP_CACHE.get(profile);
+  if (!entry || now - entry.timestamp >= SITEMAP_CACHE_DURATION) return undefined;
+  return entry;
+};
+
+const storeSitemap = (profile: Profile, sitemap: string): SitemapCacheEntry => {
   const now = Date.now();
+  const current = readCachedSitemap(profile, now);
+  if (current) return current;
 
-  // Atomic check and update
-  if (!SITEMAP_CACHE.sitemap || now - SITEMAP_CACHE.timestamp >= SITEMAP_CACHE.duration) {
-    SITEMAP_CACHE.sitemap = newSitemap;
-    SITEMAP_CACHE.timestamp = now;
-    return true; // Updated
-  }
-
-  return false; // Not updated
+  const entry = { sitemap, timestamp: now };
+  SITEMAP_CACHE.set(profile, entry);
+  return entry;
 };
 
 // Function to fetch and parse specification links
@@ -118,13 +128,15 @@ const scanContentDirectory = async (dirPath: string, basePath = ""): Promise<str
 };
 
 // Generate sitemap entries for content pages
-const generateContentPages = async (baseUrl: string): Promise<MetadataRoute.Sitemap> => {
+const generateContentPages = async (baseUrl: string, roots?: readonly string[]): Promise<MetadataRoute.Sitemap> => {
   const contentDir = join(process.cwd(), "public/content");
   const pages: MetadataRoute.Sitemap = [];
 
   try {
     // Get all content paths
-    const contentPaths = await scanContentDirectory(contentDir);
+    const contentPaths = (await scanContentDirectory(contentDir)).filter((path) =>
+      roots ? roots.some((root) => path === root || path.startsWith(`${root}/`)) : true,
+    );
 
     // Define priority mappings for different content types
     const priorityMap: Record<string, number> = {
@@ -172,9 +184,116 @@ const generateContentPages = async (baseUrl: string): Promise<MetadataRoute.Site
   return pages;
 };
 
+const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null;
+
+const readLocalizedTitle = (value: unknown): string | Partial<TextLanguage> | undefined => {
+  if (typeof value === "string") return value;
+  if (!isRecord(value)) return undefined;
+
+  const title: Partial<TextLanguage> = {};
+  for (const code of Object.values(LanguageCodes)) {
+    if (!code) continue;
+    const entry = value[code];
+    if (typeof entry === "string") title[code] = entry;
+  }
+
+  return Object.keys(title).length > 0 ? title : undefined;
+};
+
+type SitemapDataset = {
+  id: string;
+  modified?: string;
+  title?: string | Partial<TextLanguage>;
+};
+
+const readDatasetPage = (value: unknown): { hits: SitemapDataset[]; totalPages: number } => {
+  if (!isRecord(value)) return { hits: [], totalPages: 0 };
+
+  const hits = Array.isArray(value.hits)
+    ? value.hits.flatMap((hit): SitemapDataset[] => {
+        if (!isRecord(hit) || typeof hit.id !== "string") return [];
+        return [
+          {
+            id: hit.id,
+            modified: typeof hit.modified === "string" ? hit.modified : undefined,
+            title: readLocalizedTitle(hit.title),
+          },
+        ];
+      })
+    : [];
+
+  const totalPages = isRecord(value.page) && typeof value.page.totalPages === "number" ? value.page.totalPages : 0;
+  return { hits, totalPages };
+};
+
+const fetchTransportDatasets = async (): Promise<SitemapDataset[]> => {
+  const size = 1000;
+  const datasets: SitemapDataset[] = [];
+  const first = readDatasetPage(
+    await searchEntitiesByPath("datasets", {
+      pagination: { size, page: 0 },
+      profile: TRANSPORT_SEARCH_PROFILE,
+    }),
+  );
+  datasets.push(...first.hits);
+
+  for (let page = 1; page < first.totalPages; page++) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      const pageResult = await searchEntitiesByPath("datasets", {
+        pagination: { size, page },
+        profile: TRANSPORT_SEARCH_PROFILE,
+      });
+      datasets.push(...readDatasetPage(pageResult).hits);
+    } catch (error) {
+      console.error(`Failed to fetch transport dataset page ${page}:`, error);
+    }
+  }
+
+  return datasets;
+};
+
+const localizedPage = (
+  baseUrl: string,
+  path: string,
+  changeFrequency: "daily" | "weekly",
+  priority: number,
+): MetadataRoute.Sitemap =>
+  i18n.locales.map((locale) => ({
+    url: `${baseUrl}/${locale.code}${path}`,
+    lastModified: new Date(),
+    changeFrequency,
+    priority,
+  }));
+
+const generateTransportportalSitemapEntries = async (baseUrl: string): Promise<MetadataRoute.Sitemap> => {
+  const datasets = await fetchTransportDatasets();
+  const contentPages = await generateContentPages(baseUrl, [TRANSPORT_CONTENT_ROOT]);
+  const datasetPages = datasets.flatMap((dataset) => {
+    const lastModified = dataset.modified ? new Date(dataset.modified) : new Date();
+    return i18n.locales.map((locale) => ({
+      url: `${baseUrl}/${locale.code}/datasets/${dataset.id}/${getSlug(dataset, locale.code)}`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    }));
+  });
+
+  return [
+    ...localizedPage(baseUrl, "", "daily", 1),
+    ...localizedPage(baseUrl, "/search", "daily", 0.8),
+    ...contentPages,
+    ...datasetPages,
+  ];
+};
+
 // Internal function to generate sitemap entries
-const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://data.norge.no";
+const generateSitemapEntries = async (site: Site): Promise<MetadataRoute.Sitemap> => {
+  const baseUrl = site.profile === "transportportal" ? site.origin : process.env.NEXT_PUBLIC_BASE_URL || site.origin;
+
+  if (site.profile === "transportportal") {
+    return generateTransportportalSitemapEntries(baseUrl);
+  }
 
   // Fetch all datasets and services with pagination - using a more efficient approach
   const allDatasets: any[] = [];
@@ -382,8 +501,8 @@ const generateSitemapEntries = async (): Promise<MetadataRoute.Sitemap> => {
 };
 
 // Export the sitemap generation function for use in route handler
-const generateSitemap = async (): Promise<string> => {
-  const sitemapEntries = await generateSitemapEntries();
+const generateSitemap = async (site: Site): Promise<string> => {
+  const sitemapEntries = await generateSitemapEntries(site);
 
   // Convert to XML format
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -408,39 +527,33 @@ ${sitemapEntries
   return xml;
 };
 
-export const GET = async (request: NextRequest) => {
-  const now = Date.now();
+const sitemapResponse = (sitemap: string, timestamp: number) =>
+  new NextResponse(sitemap, {
+    status: 200,
+    headers: {
+      "Content-Type": "application/xml",
+      "Cache-Control": "public, max-age=300, s-maxage=600",
+      ETag: `sitemap-${timestamp}`,
+    },
+  });
 
-  // Return cached version if still valid
-  if (SITEMAP_CACHE.sitemap && now - SITEMAP_CACHE.timestamp < SITEMAP_CACHE.duration) {
-    return new NextResponse(SITEMAP_CACHE.sitemap, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/xml",
-        "Cache-Control": "public, max-age=300, s-maxage=600",
-        ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
-      },
-    });
+export const GET = async () => {
+  const site = await getSite();
+  const now = Date.now();
+  const cached = readCachedSitemap(site.profile, now);
+
+  if (cached) {
+    return sitemapResponse(cached.sitemap, cached.timestamp);
   }
 
   try {
-    // Generate fresh sitemap
-    const sitemap = await generateSitemap();
-
-    // Atomic update
-    const wasUpdated = atomicUpdateSitemapCache(sitemap);
-    if (wasUpdated) {
-      console.log("Sitemap cache updated");
+    const sitemap = await generateSitemap(site);
+    const stored = storeSitemap(site.profile, sitemap);
+    if (stored.sitemap === sitemap) {
+      console.log(`Sitemap cache updated for ${site.profile}`);
     }
 
-    return new NextResponse(sitemap, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/xml",
-        "Cache-Control": "public, max-age=300, s-maxage=600",
-        ETag: `sitemap-${SITEMAP_CACHE.timestamp}`,
-      },
-    });
+    return sitemapResponse(stored.sitemap, stored.timestamp);
   } catch (error) {
     console.error("Error generating sitemap:", error);
     return new NextResponse("Error generating sitemap", { status: 500 });
