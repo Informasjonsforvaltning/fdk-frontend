@@ -29,6 +29,7 @@ import {
 } from "@fdk-frontend/data-access/server";
 import { getProfile } from "@fdk-frontend/utils/server";
 import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
+import { absoluteUrl, getSite } from "../../../../../utils/site";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -240,6 +241,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
   const params = await props.params;
   const locale = params.lang ?? i18n.defaultLocale;
   const dictionary = getLocalization(locale).detailsPage;
+  const site = await getSite();
 
   try {
     const dataset = await getDataset(params.id);
@@ -259,7 +261,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       return firstLicense?.uri;
     };
 
-    const pageUrl = `https://data.norge.no/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`;
+    const pageUrl = absoluteUrl(site.origin, `/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`);
     const isRemovedFromFDK = dataset.isRemovedFromFDK;
 
     // Create structured data for better SEO (omit for unpublished resources)
@@ -293,7 +295,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       : undefined;
 
     return {
-      title: `${title} - ${dictionary.breadcrumbs.datasets} - data.norge.no`,
+      title: `${title} - ${dictionary.breadcrumbs.datasets} - ${site.name}`,
       description: description,
       keywords: keywords,
       robots: getResourceRobots(isRemovedFromFDK),
@@ -302,7 +304,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         description: description,
         type: "website",
         url: pageUrl,
-        siteName: "data.norge.no",
+        siteName: site.name,
         locale: locale,
       },
       twitter: {
@@ -313,9 +315,9 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       alternates: getResourceAlternates({
         canonical: pageUrl,
         languages: {
-          nb: `https://data.norge.no/nb/datasets/${dataset.id}/${getSlug(dataset, "nb")}`,
-          en: `https://data.norge.no/en/datasets/${dataset.id}/${getSlug(dataset, "en")}`,
-          nn: `https://data.norge.no/nn/datasets/${dataset.id}/${getSlug(dataset, "nn")}`,
+          nb: absoluteUrl(site.origin, `/nb/datasets/${dataset.id}/${getSlug(dataset, "nb")}`),
+          en: absoluteUrl(site.origin, `/en/datasets/${dataset.id}/${getSlug(dataset, "en")}`),
+          nn: absoluteUrl(site.origin, `/nn/datasets/${dataset.id}/${getSlug(dataset, "nn")}`),
         },
         isRemovedFromFDK,
       }),

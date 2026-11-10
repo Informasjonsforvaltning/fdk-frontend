@@ -6,6 +6,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { mdxComponents, CatalogsMenu, AlertWithLinkButton, YoutubeEmbed } from "@fdk-frontend/ui";
+import { absoluteUrl, getSite } from "../../../../utils/site";
 import MdxPage from "../mdx-page";
 
 const getContentDirectory = (rootContentDirectory: string) => {
@@ -101,12 +102,13 @@ export const generateMetadata = async function (pageProps: DocsPageProps): Promi
       options: { parseFrontmatter: true },
     });
 
-    const title = frontmatter.title ? `${frontmatter.title} - data.norge.no` : `data.norge.no`;
+    const site = await getSite();
+    const title = frontmatter.title ? `${frontmatter.title} - ${site.name}` : site.name;
     const description = frontmatter.description as string | undefined;
 
     // Construct canonical URL based on current path
     const canonicalPath = [rootContentDirectory, ...slug].join("/");
-    const canonicalUrl = `https://data.norge.no/${locale}/${canonicalPath}`;
+    const canonicalUrl = absoluteUrl(site.origin, `/${locale}/${canonicalPath}`);
 
     return {
       title,

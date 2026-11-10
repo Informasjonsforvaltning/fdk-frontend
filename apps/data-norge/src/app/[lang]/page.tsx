@@ -4,6 +4,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import { type Locale, getLocalization } from "@fdk-frontend/localization";
 import { Header, Footer } from "@fdk-frontend/ui";
 import { getProfile } from "@fdk-frontend/utils/server";
+import { absoluteUrl, getSite } from "../../utils/site";
 import { FrontpageBanner } from "../components/frontpage/frontpage-banner";
 import { ShareDataBanner } from "../components/frontpage/share-data-banner";
 import CatalogsBanner from "../components/frontpage/catalogs-banner";
@@ -75,12 +76,15 @@ const Frontpage = async (props: FrontpageProps) => {
 export const generateMetadata = async (props: FrontpageProps): Promise<Metadata> => {
   const params = await props.params;
   const frontpageDictionary = getLocalization(params.lang).frontpage;
+  const site = await getSite();
+  const metadata =
+    site.profile === "transportportal" ? frontpageDictionary.metadata.transportportal : frontpageDictionary.metadata;
 
   return {
-    title: `${frontpageDictionary.metadata.title} - data.norge.no`,
-    description: frontpageDictionary.metadata.description,
+    title: `${metadata.title} - ${site.name}`,
+    description: metadata.description,
     alternates: {
-      canonical: `https://data.norge.no/${params.lang}`,
+      canonical: absoluteUrl(site.origin, `/${params.lang}`),
     },
   };
 };

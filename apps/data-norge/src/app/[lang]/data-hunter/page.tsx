@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 import { Heading, Paragraph } from "@digdir/designsystemet-react";
 import { getLocalization, type Locale } from "@fdk-frontend/localization";
+import { absoluteUrl, getSite } from "../../../utils/site";
 import { Breadcrumbs } from "@fdk-frontend/ui";
 import DataHunterForm from "./components/data-hunter-form";
 import styles from "./page.module.css";
@@ -53,12 +54,13 @@ const DataHunterPage = async (props: DataHunterPageProps) => {
 export const generateMetadata = async (props: DataHunterPageProps): Promise<Metadata> => {
   const params = await props.params;
   const dictionary = getLocalization(params.lang).dataHunterPage;
+  const site = await getSite();
 
   return {
-    title: dictionary.metadata.title,
+    title: dictionary.metadata.title.replace("data.norge.no", site.name),
     description: dictionary.metadata.description,
     alternates: {
-      canonical: `https://data.norge.no/${params.lang}/data-hunter`,
+      canonical: absoluteUrl(site.origin, `/${params.lang}/data-hunter`),
     },
   };
 };
