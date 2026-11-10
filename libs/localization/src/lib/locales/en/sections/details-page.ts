@@ -159,6 +159,7 @@ const detailsPage = {
       endpointDescription: "Endpoint description",
       format: "Format",
       version: "Version",
+      availability: "Availability",
       license: "License",
       openAccess: "Open access",
       openLicense: "Open license",
