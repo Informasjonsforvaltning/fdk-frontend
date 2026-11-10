@@ -7,47 +7,13 @@
   .scroller {
     min-width: 0;
 
-    &.all {
-      overflow: auto;
-    }
-
-    &.horizontal {
-      overflow-x: auto;
-    }
-
     &.all,
-    &.horizontal {
+    &.horizontal,
+    &.vertical {
+      overflow-x: auto;
+      overflow-y: hidden;
       width: 0;
       min-width: 100%;
-    }
-
-    &.vertical {
-      overflow-y: auto;
-    }
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-      z-index: 1;
-      transition: opacity 0.3s;
-      opacity: 0;
-    }
-
-    &:before {
-      left: 0;
-      right: 0;
-      height: 1rem;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
-    }
-
-    &:after {
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 1rem;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
     }
   }
 
@@ -82,14 +48,6 @@
   }
 
   &.shadowRight::after {
-    opacity: 0.5;
-  }
-
-  &.shadowTop .scroller::before {
-    opacity: 0.5;
-  }
-
-  &.shadowBottom .scroller::after {
     opacity: 0.5;
   }
 }
