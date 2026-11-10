@@ -3,8 +3,8 @@
 import React, { useEffect } from "react";
 import { type DataService } from "@fellesdatakatalog/types";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
-import ExternalLink from "../external-link";
 import ApiTags from "../api-tags";
+import InputWithCopyButton from "../input-with-copy-button";
 import PlaceholderBox from "../placeholder-box";
 import {
   trackSiteImproveEvent,
@@ -51,13 +51,12 @@ const UseApiPopoverContent = ({
               className={styles.endpointItem}
             >
               <span className={styles.endpointLabel}>{dictionary.useApiPopover.endpointLabel}:</span>
-              <ExternalLink
-                href={url}
-                locale={locale}
-                gateway
-              >
-                {url}
-              </ExternalLink>
+              <InputWithCopyButton
+                value={url}
+                inputLabel={dictionary.useApiPopover.endpointLabel}
+                copyLabel={dictionary.details.general.copyButton[0]}
+                copiedLabel={dictionary.details.general.copyButton[1]}
+              />
               {hasFormats && <ApiTags api={dataService} />}
             </li>
           ))}
