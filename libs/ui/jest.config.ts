@@ -11,6 +11,10 @@ const config: Config = {
       "<rootDir>/../../__mocks__/fileMock.js",
     "\\.module.css$": "identity-obj-proxy",
   },
+  // remark and unified are ESM-only. Jest runs tests as CommonJS, so these packages have to be transformed.
+  transformIgnorePatterns: [
+    "/node_modules/(?!unified/|vfile/|vfile-message/|remark-|mdast-|micromark|unist-|devlop/|bail/|trough/|is-plain-obj/|decode-named-character-reference/|character-entities|ccount/|markdown-table/|longest-streak/|escape-string-regexp/|zwitch/|trim-lines/|html-url-attributes/|property-information/|space-separated-tokens/|comma-separated-tokens/|hast-util-|web-namespaces/|extend/)",
+  ],
   setupFilesAfterEnv: ["./jest.setup.tsx"],
 };
 

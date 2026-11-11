@@ -69,3 +69,26 @@ export const Loading: Story = {
     locale: "nb",
   },
 };
+
+const markdownDataset: SearchObject = {
+  ...datasetEntity,
+  description: {
+    nb: `Dette er et testdatasett som er opprettet via registreringsløsningen og der alle feltene i skjemaet er fylt ut.
+
+---
+
+**Formål:** Test den nye detaljesiden for datasett i portalen.
+
+**Ekstra tekst:** **Dataens nye drakt**
+
+I et rike av nuller og enere,\\
+der data.norge skinner i scener.`,
+  },
+};
+
+export const MarkdownDescription: Story = {
+  args: {
+    locale: "nb",
+    entity: markdownDataset,
+  },
+};
