@@ -108,30 +108,32 @@ const UseDatasetPopoverDialog = ({
         </TabsPanel>
         <TabsPanel value="apis">
           {apis.length ? (
-            <ul className="fdk-box-list">
-              {apis.map((api, index) => (
-                <li key={`api-${index}`}>
-                  <div className={styles.popoverListItem}>
-                    <div className={styles.itemDetails}>
-                      <span className={styles.itemTitle}>
-                        {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
-                      </span>
-                      <ApiTags api={api} />
+            <ScrollShadows className={styles.popoverScroller}>
+              <ul className="fdk-box-list">
+                {apis.map((api, index) => (
+                  <li key={`api-${index}`}>
+                    <div className={styles.popoverListItem}>
+                      <div className={styles.itemDetails}>
+                        <span className={styles.itemTitle}>
+                          {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
+                        </span>
+                        <ApiTags api={api} />
+                      </div>
+                      <ActionButton
+                        uri={`/data-services/${api.id}`}
+                        className={styles.actionButton}
+                      >
+                        {dictionary.apis.header.gotoBtn}
+                        <ArrowRightIcon
+                          aria-hidden
+                          fontSize="1.2em"
+                        />
+                      </ActionButton>
                     </div>
-                    <ActionButton
-                      uri={`/data-services/${api.id}`}
-                      className={styles.actionButton}
-                    >
-                      {dictionary.apis.header.gotoBtn}
-                      <ArrowRightIcon
-                        aria-hidden
-                        fontSize="1.2em"
-                      />
-                    </ActionButton>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                  </li>
+                ))}
+              </ul>
+            </ScrollShadows>
           ) : (
             <PlaceholderBox>{dictionary.apis.placeholder}</PlaceholderBox>
           )}
