@@ -9633,6 +9633,7 @@ __metadata:
     react-markdown: "npm:^10.1.0"
     react-syntax-highlighter: "npm:^16.1.2"
     remark-gfm: "npm:^4.0.1"
+    remark-parse: "npm:^11.0.0"
     sass: "npm:^1.105.1"
     slugify: "npm:^1.6.9"
     storybook: "npm:^10.6.5"
@@ -9641,6 +9642,7 @@ __metadata:
     tslib: "npm:^2.8.1"
     typescript: "npm:~6.0.3"
     typescript-eslint: "npm:^8.58.0"
+    unified: "npm:^11.0.5"
     vite: "npm:^8.3.3"
     zod: "npm:^4.3.6"
   languageName: unknown
@@ -16557,7 +16559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unified@npm:^11.0.0":
+"unified@npm:^11.0.0, unified@npm:^11.0.5":
   version: 11.0.5
   resolution: "unified@npm:11.0.5"
   dependencies:
