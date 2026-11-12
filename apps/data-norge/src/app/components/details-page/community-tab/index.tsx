@@ -80,7 +80,6 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale, baseUri }:
               <ExternalLink
                 href={`/${locale}/docs/community`}
                 baseUri={baseUri}
-                locale={locale}
               >
                 {dictionary.community.notice.moreInfo}
               </ExternalLink>

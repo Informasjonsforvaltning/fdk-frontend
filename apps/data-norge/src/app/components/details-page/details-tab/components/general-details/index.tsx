@@ -54,7 +54,6 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }:
           {dataset.publisher ? (
             <ExternalLink
               href={`/organizations/${dataset.publisher?.id}`}
-              locale={locale}
               baseUri={baseUri}
             >
               {dataset.publisher?.prefLabel?.[locale] || dataset.publisher?.prefLabel?.[i18n.defaultLocale]}
@@ -168,7 +167,6 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }:
                   <ExternalLink
                     href={`/${locale}/docs/metadata-quality`}
                     baseUri={baseUri}
-                    locale={locale}
                   >
                     {dictionary.details.general.metadataQuality.helpTextLink}
                   </ExternalLink>
