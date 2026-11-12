@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { type Profile } from "@fdk-frontend/types";
 import { type DataService, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import {
@@ -26,6 +27,7 @@ import headerStyles from "../dataset-header/dataset-header.module.scss";
 
 export type DataServiceDetailsPageType = {
   baseUri: string;
+  profile: Profile;
   resource: DataService;
   communityTopics?: CommunityTopic[];
   communityBaseUri: string;
@@ -41,6 +43,7 @@ export type DataServiceDetailsPageType = {
 
 export default function DataServiceDetailsPage({
   baseUri,
+  profile,
   resource,
   communityTopics,
   communityBaseUri,
@@ -170,6 +173,8 @@ export default function DataServiceDetailsPage({
               locale={locale}
               dictionary={dictionaries.detailsPage}
               resolvedDatasets={resolvedDatasets}
+              profile={profile}
+              baseUri={baseUri}
             />
           </TabsPanel>
           <TabsPanel
@@ -191,6 +196,7 @@ export default function DataServiceDetailsPage({
               communityBaseUri={communityBaseUri}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              profile={profile}
               baseUri={baseUri}
             />
           </TabsPanel>
@@ -202,6 +208,7 @@ export default function DataServiceDetailsPage({
               uri={`${baseUri}/data-services/${resource.id}`}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              profile={profile}
               baseUri={baseUri}
             />
           </TabsPanel>

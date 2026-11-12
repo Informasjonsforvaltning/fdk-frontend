@@ -1,11 +1,7 @@
 import { cache } from "react";
 import { headers } from "next/headers";
 import { type Profile } from "@fdk-frontend/types";
-
-const transportportalHosts = (process.env.TRANSPORTPORTAL_HOSTS ?? "data.transportportal.no,transportportal.no")
-  .split(",")
-  .map((host) => host.trim())
-  .filter(Boolean);
+import { hostnameFromHeaderValue, isTransportportalHost } from "./transportportal-host";
 
 export const getProfile = cache(async (): Promise<Profile> => {
   const headerList = await headers();
@@ -14,7 +10,7 @@ export const getProfile = cache(async (): Promise<Profile> => {
     return "transportportal";
   }
 
-  const host = (headerList.get("x-forwarded-host") ?? headerList.get("host") ?? "").split(":")[0];
+  const host = hostnameFromHeaderValue(headerList.get("x-forwarded-host") ?? headerList.get("host"));
 
-  return transportportalHosts.includes(host) ? "transportportal" : "data.norge";
+  return isTransportportalHost(host) ? "transportportal" : "data.norge";
 });

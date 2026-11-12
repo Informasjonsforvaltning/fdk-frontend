@@ -131,3 +131,5 @@ spec:
               value: "false"
             - name: TRANSPORTPORTAL_HOSTS
               value: "data.transportportal.no,transportportal.no"
+            - name: DATA_NORGE_PUBLIC_ORIGIN
+              value: "https://data.norge.no"

@@ -115,6 +115,8 @@ export default function DatasetDetailsPage({
           apis={apis}
           dictionaries={dictionaries}
           locale={locale}
+          profile={profile}
+          baseUri={baseUri}
           orgLogo={orgLogo}
           accessRequestDemo={accessRequestDemo}
           isAvailable={isAvailable}

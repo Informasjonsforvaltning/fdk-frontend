@@ -6,8 +6,9 @@ import { ArrowRightIcon } from "@navikt/aksel-icons";
 import Badge from "../badge";
 import PlaceholderBox from "../placeholder-box";
 import DownloadButton from "../download-button";
-import ActionButton from "../action-button";
-import { Tabs, TabsList, TabsTab, TabsPanel } from "@digdir/designsystemet-react";
+import InternalLink from "../internal-link";
+import { Button, Tabs, TabsList, TabsTab, TabsPanel } from "@digdir/designsystemet-react";
+import { type Profile } from "@fdk-frontend/types";
 import ApiTags from "../api-tags";
 import DistributionTags from "../distribution-tags";
 import ScrollShadows from "../scroll-shadows";
@@ -26,6 +27,8 @@ export type UseDatasetPopoverDialogProps = {
   apis?: DataService[];
   dictionary: Localization;
   locale: LocaleCodes;
+  profile: Profile;
+  baseUri: string;
 };
 
 const UseDatasetPopoverDialog = ({
@@ -34,6 +37,8 @@ const UseDatasetPopoverDialog = ({
   apis = [],
   dictionary,
   locale,
+  profile,
+  baseUri,
   ...props
 }: UseDatasetPopoverDialogProps & React.HTMLAttributes<HTMLDivElement>) => {
   const distributions = [...(dataset.distribution ?? []), ...(dataset.sample ?? [])];
@@ -119,16 +124,28 @@ const UseDatasetPopoverDialog = ({
                         </span>
                         <ApiTags api={api} />
                       </div>
-                      <ActionButton
-                        uri={`/data-services/${api.id}`}
+                      <Button
+                        asChild
+                        data-size="sm"
+                        variant="secondary"
                         className={styles.actionButton}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
-                        {dictionary.apis.header.gotoBtn}
-                        <ArrowRightIcon
-                          aria-hidden
-                          fontSize="1.2em"
-                        />
-                      </ActionButton>
+                        <InternalLink
+                          href={`/${locale}/data-services/${api.id}`}
+                          profile={profile}
+                          baseUri={baseUri}
+                          locale={locale}
+                        >
+                          {dictionary.apis.header.gotoBtn}
+                          <ArrowRightIcon
+                            aria-hidden
+                            fontSize="1.2em"
+                          />
+                        </InternalLink>
+                      </Button>
                     </div>
                   </li>
                 ))}
