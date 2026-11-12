@@ -263,6 +263,7 @@ const detailsPage = {
       language: "Språk",
       page: "Om dokumentasjonen",
       dctType: "Type dokumentasjon",
+      isPartOf: "Er del av",
     },
     references: {
       title: "Referanser",

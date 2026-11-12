@@ -263,6 +263,7 @@ const detailsPage = {
       language: "Language(s)",
       page: "Documentation",
       dctType: "Evidence type",
+      isPartOf: "Is part of",
     },
     references: {
       title: "References",
