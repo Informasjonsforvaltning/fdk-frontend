@@ -46,6 +46,8 @@ const nextConfig = {
   images: {
     unoptimized: process.env.NODE_ENV === "development",
     formats: ["image/avif", "image/webp"],
+    // 60 is used by the transportportal banner, which sits under a heavy color wash.
+    qualities: [60, 75],
     // `/_next/image` at the site root is served by fdk-portal. Static assets already use
     // `assetPrefix: "/nb"` so the gateway routes them here; the optimizer has to as well.
     path: "/nb/_next/image",
