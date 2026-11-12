@@ -67,6 +67,9 @@ export const ExternalHref = (props: ExternalLinkProps): string => {
     if (gateway && !isSameHostname) {
       setTarget(gatewayLink);
     }
+    if (!isSameHostname) {
+      setTarget(`${searchParams}`);
+    }
   }, []);
 
   return target;
