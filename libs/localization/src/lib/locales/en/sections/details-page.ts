@@ -264,6 +264,7 @@ const detailsPage = {
       page: "Documentation",
       dctType: "Evidence type",
       isPartOf: "Is part of",
+      validityDuration: "Validity period",
     },
     references: {
       title: "References",

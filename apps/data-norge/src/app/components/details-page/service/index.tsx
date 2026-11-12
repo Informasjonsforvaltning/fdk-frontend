@@ -3,7 +3,7 @@
 import React, { Fragment, useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type Organization, type CommunityTopic, type PublicService, SearchObject } from "@fellesdatakatalog/types";
-import { getSlug, printLocaleValue, sumArrayLengths } from "@fdk-frontend/utils";
+import { formatIsoDuration, getSlug, printLocaleValue, sumArrayLengths } from "@fdk-frontend/utils";
 import {
   Badge,
   Breadcrumbs,
@@ -124,6 +124,12 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
         contents.push({
           label: dictionaries.detailsPage.details.requiredEvidence.dctType,
           value: evidence.dctType?.map((dctType) => printLocaleValue(locale, dctType.prefLabel)).join(", "),
+        });
+      }
+      if (evidence.validityDuration || showEmptyRows) {
+        contents.push({
+          label: dictionaries.detailsPage.details.requiredEvidence.validityDuration,
+          value: formatIsoDuration(evidence.validityDuration, locale),
         });
       }
       if (evidence.isPartOf?.length) {
