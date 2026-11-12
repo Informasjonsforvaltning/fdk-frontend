@@ -1,6 +1,6 @@
 import React from "react";
-import { Heading } from "@digdir/designsystemet-react";
-import { PlaceholderBox, Dlist, InternalLink } from "@fdk-frontend/ui";
+import { Heading, Link } from "@digdir/designsystemet-react";
+import { PlaceholderBox, Dlist } from "@fdk-frontend/ui";
 import { DatasetDetailsProps } from "../../";
 import { printLocaleValue } from "@fdk-frontend/utils";
 
@@ -19,15 +19,9 @@ const ConceptDetails = ({ dataset, locale, dictionary, concepts, profile, baseUr
             return (
               <React.Fragment key={concept.uri}>
                 <dt>
-                  <InternalLink
-                    entity={concept}
-                    href={`/concepts/${concept.id}`}
-                    profile={profile}
-                    baseUri={baseUri}
-                    locale={locale}
-                  >
+                  <Link href={`${baseUri}/concepts/${concept.id}`}>
                     {printLocaleValue(locale, concept.title) || concept.uri}
-                  </InternalLink>
+                  </Link>
                 </dt>
                 <dd>{printLocaleValue(locale, concept.description)}</dd>
               </React.Fragment>

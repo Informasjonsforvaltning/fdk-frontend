@@ -4,25 +4,13 @@ import React, { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type InformationModel, type SearchObject } from "@fellesdatakatalog/types";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
-import {
-  PlaceholderText,
-  PlaceholderBox,
-  ExternalLink,
-  Dlist,
-  Hstack,
-  InputWithCopyButton,
-  InternalLink,
-} from "@fdk-frontend/ui";
+import { PlaceholderText, PlaceholderBox, ExternalLink, Dlist, Hstack, InputWithCopyButton } from "@fdk-frontend/ui";
 import { Heading, Link, Button, Paragraph } from "@digdir/designsystemet-react";
 import { HelpText } from "@fellesdatakatalog/ui";
 import { EyeIcon, EyeSlashIcon } from "@navikt/aksel-icons";
 import styles from "./information-model.module.scss";
 import { getInformationModelRelations } from "./information-model-relations";
-import {
-  AccordionList,
-  type DetailsEntry,
-  type ContentRow,
-} from "../details-tab/components/accordion-list";
+import { AccordionList, type DetailsEntry, type ContentRow } from "../details-tab/components/accordion-list";
 
 type InformationModelDetailsTabProps = {
   resource: InformationModel;
@@ -47,8 +35,7 @@ export default function InformationModelDetailsTab({
   const hasFormatList: DetailsEntry[] =
     resource.hasFormat?.map((document) => {
       const title = printLocaleValue(locale, document.title);
-      const language =
-        printLocaleValue(locale, document.language?.prefLabel) || document.language?.code;
+      const language = printLocaleValue(locale, document.language?.prefLabel) || document.language?.code;
       const format = document.format?.split("/").pop() || document.format;
       const seeAlso = document.seeAlso;
       const contents: ContentRow[] = [];
@@ -137,9 +124,7 @@ export default function InformationModelDetailsTab({
           {relations.length > 0 ? (
             <Dlist>
               {relations.map((relation) => {
-                const relatedModel = relatedInformationModels?.find(
-                  (model) => model.uri === relation.source,
-                );
+                const relatedModel = relatedInformationModels?.find((model) => model.uri === relation.source);
                 return (
                   <React.Fragment key={`${relation.type}-${relation.source}`}>
                     <dt>
@@ -149,15 +134,11 @@ export default function InformationModelDetailsTab({
                     </dt>
                     <dd>
                       {relatedModel?.id ? (
-                        <InternalLink
-                          href={`/${locale}/information-models/${relatedModel.id}/${getSlug(relatedModel, locale)}`}
-                          entity={relatedModel}
-                          profile="data.norge"
-                          baseUri={baseUri}
-                          locale={locale}
+                        <Link
+                          href={`${baseUri}/${locale}/information-models/${relatedModel.id}/${getSlug(relatedModel, locale)}`}
                         >
                           {printLocaleValue(locale, relatedModel.title) || relatedModel.uri}
-                        </InternalLink>
+                        </Link>
                       ) : (
                         <ExternalLink
                           href={relation.source}
@@ -208,8 +189,9 @@ export default function InformationModelDetailsTab({
                   <>
                     <dt>{dictionary.details.contactPoint.formattedName}:</dt>
                     <dd>
-                      {printLocaleValue(locale, contactPoint.formattedName) ||
-                        contactPoint.fullname || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}
+                      {printLocaleValue(locale, contactPoint.formattedName) || contactPoint.fullname || (
+                        <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
+                      )}
                     </dd>
                   </>
                 )}
@@ -342,14 +324,11 @@ export default function InformationModelDetailsTab({
                     {dictionary.details.general.firstHarvestedInformationModelHelpText}
                   </Paragraph>
                   <Paragraph data-size="sm">
-                    <InternalLink
-                      href={`/${locale}/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest`}
-                      profile="data.norge"
-                      baseUri={baseUri}
-                      locale={locale}
+                    <Link
+                      href={`${baseUri}/${locale}/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest`}
                     >
                       {dictionary.details.general.firstHarvestedHelpTextLink}
-                    </InternalLink>
+                    </Link>
                   </Paragraph>
                 </div>
               </HelpText>

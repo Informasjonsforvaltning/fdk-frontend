@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import cn from "classnames";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { InputWithCopyButton, Hstack, InternalLink } from "@fdk-frontend/ui";
+import { InputWithCopyButton, Hstack } from "@fdk-frontend/ui";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
-import { ToggleGroup, Heading, Spinner, Paragraph } from "@digdir/designsystemet-react";
+import { ToggleGroup, Heading, Spinner, Paragraph, Link } from "@digdir/designsystemet-react";
 import { CopyButton, HelpText } from "@fellesdatakatalog/ui";
 
 import styles from "./metadata-tab.module.scss";
@@ -82,14 +82,7 @@ const MetadataTab = ({
             <HelpText aria-label={dictionary.rdf.titleHelpTextTitle}>
               <Paragraph data-size="md">{dictionary.rdf.titleHelpText}</Paragraph>
               <Paragraph data-size="md">
-                <InternalLink
-                  href={`/${locale}/docs/sharing-data/rdf`}
-                  profile={profile}
-                  baseUri={baseUri}
-                  locale={locale}
-                >
-                  {dictionary.rdf.titleHelpTextLink}
-                </InternalLink>
+                <Link href={`${baseUri}/${locale}/docs/sharing-data/rdf`}>{dictionary.rdf.titleHelpTextLink}</Link>
               </Paragraph>
             </HelpText>
           </Hstack>

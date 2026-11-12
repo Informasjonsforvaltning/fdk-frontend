@@ -14,11 +14,11 @@ import {
   Article,
   DownloadDistributionWidget,
   noHeadings,
-  InternalLink,
 } from "@fdk-frontend/ui";
 import distStyles from "../../distributions.module.scss";
 import { type Profile } from "@fdk-frontend/types";
 import StandardItem from "../../../standard-item";
+import { Link } from "@digdir/designsystemet-react";
 
 type DistributionDetailsProps = {
   distribution: Distribution;
@@ -137,15 +137,9 @@ const DistributionDetails = ({
 
                 if (resolvedDataService) {
                   return (
-                    <InternalLink
-                      entity={resolvedDataService}
-                      href={`/${locale}/data-services/${resolvedDataService.id}`}
-                      profile={profile}
-                      baseUri={baseUri}
-                      locale={locale}
-                    >
+                    <Link href={`${baseUri}/${locale}/data-services/${resolvedDataService.id}`}>
                       {printLocaleValue(locale, resolvedDataService.title) || resolvedDataService.uri}
-                    </InternalLink>
+                    </Link>
                   );
                 }
 
@@ -221,15 +215,9 @@ const DistributionDetails = ({
 
                     if (resolvedInformationModel) {
                       return (
-                        <InternalLink
-                          href={`/information-models/${resolvedInformationModel.id}`}
-                          entity={resolvedInformationModel}
-                          profile={profile}
-                          baseUri={baseUri}
-                          locale={locale}
-                        >
+                        <Link href={`${baseUri}/information-models/${resolvedInformationModel.id}`}>
                           {printLocaleValue(locale, resolvedInformationModel.title) || resolvedInformationModel.uri}
-                        </InternalLink>
+                        </Link>
                       );
                     }
 

@@ -1,12 +1,12 @@
 "use client";
 import cn from "classnames";
-import { Button, Card, Details, Heading } from "@digdir/designsystemet-react";
+import { Button, Card, Details, Heading, Link } from "@digdir/designsystemet-react";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
 import { type JSONValue, type Profile } from "@fdk-frontend/types";
 import { sumArrayLengths } from "@fdk-frontend/utils";
 import { ArrowRightIcon } from "@navikt/aksel-icons";
 import { type SearchObject, type DataService, type Distribution } from "@fellesdatakatalog/types";
-import { Badge, Hstack, PlaceholderBox, InternalLink } from "@fdk-frontend/ui";
+import { Badge, Hstack, PlaceholderBox } from "@fdk-frontend/ui";
 import styles from "./distributions.module.scss";
 import DistributionList from "./components/dataset-details";
 import ExampleDataDetails from "./components/example-data-details";
@@ -132,18 +132,13 @@ const Distributions = ({
                 }}
                 className={styles.actionButton}
               >
-                <InternalLink
-                  href={`/${locale}/data-services/${api.id}`}
-                  profile={profile}
-                  baseUri={baseUri}
-                  locale={locale}
-                >
+                <Link href={`${baseUri}/${locale}/data-services/${api.id}`}>
                   {dictionaries.detailsPage.apis.header.gotoBtn}
                   <ArrowRightIcon
                     aria-hidden
                     fontSize="1.2em"
                   />
-                </InternalLink>
+                </Link>
               </Button>
             </div>
           ))}
