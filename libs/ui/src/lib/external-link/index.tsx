@@ -15,17 +15,9 @@ export type ExternalLinkProps = Omit<LinkProps, "children"> &
     locale?: LocaleCodes;
     showIcon?: boolean;
     gateway?: boolean;
-    baseUri?: string;
   };
 
-const ExternalLink = ({
-  children,
-  showIcon,
-  locale = i18n.defaultLocale,
-  gateway,
-  baseUri = "",
-  ...props
-}: ExternalLinkProps) => {
+const ExternalLink = ({ children, showIcon, locale = i18n.defaultLocale, gateway, ...props }: ExternalLinkProps) => {
   const { href = "" } = props;
   // Block javascript:/data: schemes from becoming an href (used directly on SSR).
   const [target, setTarget] = useState(() => sanitizeLinkHref(href));
@@ -44,7 +36,9 @@ const ExternalLink = ({
       setTarget(gatewayLink);
     }
   }, []);
+
   if (!href) return children;
+
   return (
     <Link
       {...props}
