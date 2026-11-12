@@ -107,7 +107,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
       if (evidence.dctType?.length || showEmptyRows) {
         contents.push({
           label: dictionaries.detailsPage.details.requiredEvidence.dctType,
-          value: evidence.dctType?.map((dctType) => printLocaleValue(locale, dctType)).join(", "),
+          value: evidence.dctType?.map((dctType) => printLocaleValue(locale, dctType.prefLabel)).join(", "),
         });
       }
 
