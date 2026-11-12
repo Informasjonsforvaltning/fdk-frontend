@@ -1,4 +1,5 @@
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { type Profile } from "@fdk-frontend/types";
 import { type DataService, type SearchObject } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import {
@@ -22,6 +23,8 @@ type DataServiceOverviewTabProps = {
   locale: LocaleCodes;
   dictionary: Localization;
   resolvedDatasets?: SearchObject[];
+  profile: Profile;
+  baseUri: string;
 };
 
 export default function DataServiceOverviewTab({
@@ -29,6 +32,8 @@ export default function DataServiceOverviewTab({
   locale,
   dictionary,
   resolvedDatasets = [],
+  profile,
+  baseUri,
 }: DataServiceOverviewTabProps) {
   return (
     <>
@@ -142,8 +147,8 @@ export default function DataServiceOverviewTab({
               datasets={resolvedDatasets}
               locale={locale}
               dictionary={dictionary}
-              profile="data.norge"
-              baseUri=""
+              profile={profile}
+              baseUri={baseUri}
             />
           </ScrollShadows>
         </section>

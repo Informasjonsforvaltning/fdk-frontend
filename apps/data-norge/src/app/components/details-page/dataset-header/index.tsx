@@ -2,6 +2,7 @@
 
 import React from "react";
 import { type DatasetWithIdentifier, type DataService } from "@fellesdatakatalog/types";
+import { type Profile } from "@fdk-frontend/types";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { printLocaleValue, printOrganizationLabel } from "@fdk-frontend/utils";
 import {
@@ -27,6 +28,8 @@ type DatasetHeaderProps = {
     detailsPage: Localization;
   };
   locale: LocaleCodes;
+  profile: Profile;
+  baseUri: string;
   orgLogo?: string | null;
   accessRequestDemo?: boolean;
   isAvailable?: boolean;
@@ -39,6 +42,8 @@ const DatasetHeader = ({
   dictionaries,
   orgLogo,
   locale,
+  profile,
+  baseUri,
   accessRequestDemo,
   isAvailable,
   ...props
@@ -78,6 +83,8 @@ const DatasetHeader = ({
           apis={apis}
           dictionary={dictionaries.detailsPage}
           locale={locale}
+          profile={profile}
+          baseUri={baseUri}
         />
       </div>
       <TagList className={styles.headerTags}>

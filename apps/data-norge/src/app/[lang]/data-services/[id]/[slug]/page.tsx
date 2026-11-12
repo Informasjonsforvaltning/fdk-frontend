@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
+import { getProfile } from "@fdk-frontend/utils/server";
 import { type DataService, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import DataServiceDetailsPage from "../../../../components/details-page/data-service";
 import { getOrgLogo, getApi, getAllCommunityTopics, searchDatasets } from "@fdk-frontend/data-access/server";
@@ -111,9 +112,12 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
       .catch((): SearchObject[] => []),
   ]);
 
+  const profile = await getProfile();
+
   return (
     <DataServiceDetailsPage
       baseUri={FDK_BASE_URI as string}
+      profile={profile}
       resource={dataService}
       orgLogo={orgLogo}
       communityTopics={communityTopics}

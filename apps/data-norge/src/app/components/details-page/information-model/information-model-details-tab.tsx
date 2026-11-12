@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type InformationModel, type SearchObject } from "@fellesdatakatalog/types";
+import { type Profile } from "@fdk-frontend/types";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
 import {
   PlaceholderText,
@@ -30,6 +31,7 @@ type InformationModelDetailsTabProps = {
   relatedInformationModels?: SearchObject[];
   locale: LocaleCodes;
   dictionary: Localization;
+  profile: Profile;
   baseUri: string;
 };
 
@@ -39,6 +41,7 @@ export default function InformationModelDetailsTab({
   relatedInformationModels,
   locale,
   dictionary,
+  profile,
   baseUri,
 }: InformationModelDetailsTabProps) {
   const [showEmptyRows, setShowEmptyRows] = useState(true);
@@ -152,7 +155,7 @@ export default function InformationModelDetailsTab({
                         <InternalLink
                           href={`/${locale}/information-models/${relatedModel.id}/${getSlug(relatedModel, locale)}`}
                           entity={relatedModel}
-                          profile="data.norge"
+                          profile={profile}
                           baseUri={baseUri}
                           locale={locale}
                         >
@@ -344,7 +347,7 @@ export default function InformationModelDetailsTab({
                   <Paragraph data-size="sm">
                     <InternalLink
                       href={`/${locale}/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest`}
-                      profile="data.norge"
+                      profile={profile}
                       baseUri={baseUri}
                       locale={locale}
                     >

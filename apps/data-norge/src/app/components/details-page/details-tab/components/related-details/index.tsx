@@ -3,7 +3,13 @@ import { Heading } from "@digdir/designsystemet-react";
 import { ScrollShadows, PlaceholderBox, DatasetTable } from "@fdk-frontend/ui";
 import { DatasetDetailsProps } from "../../";
 
-const RelatedDetails = ({ related, locale, dictionary }: Omit<DatasetDetailsProps, "dataset">) => {
+const RelatedDetails = ({
+  related,
+  locale,
+  dictionary,
+  profile,
+  baseUri,
+}: Omit<DatasetDetailsProps, "dataset">) => {
   return (
     <section>
       <Heading
@@ -18,8 +24,8 @@ const RelatedDetails = ({ related, locale, dictionary }: Omit<DatasetDetailsProp
             datasets={related}
             locale={locale}
             dictionary={dictionary}
-            profile="data.norge"
-            baseUri=""
+            profile={profile}
+            baseUri={baseUri}
           />
         </ScrollShadows>
       ) : (

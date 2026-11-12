@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { i18n, getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { getSlug, printLocaleValue } from "@fdk-frontend/utils";
+import { getProfile } from "@fdk-frontend/utils/server";
 import { type InformationModel, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import InformationModelDetailsPage from "../../../../components/details-page/information-model";
 import {
@@ -126,9 +127,12 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
           .catch((): SearchObject[] => [])
       : Promise.resolve([] as SearchObject[]),
   ]);
+  const profile = await getProfile();
+
   return (
     <InformationModelDetailsPage
       baseUri={FDK_BASE_URI as string}
+      profile={profile}
       resource={informationModel}
       orgLogo={orgLogo}
       containedConcepts={containedConcepts}

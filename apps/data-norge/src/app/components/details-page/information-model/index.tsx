@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
+import { type Profile } from "@fdk-frontend/types";
 import { type InformationModel, type CommunityTopic, type SearchObject } from "@fellesdatakatalog/types";
 import { printLocaleValue } from "@fdk-frontend/utils";
 import { Badge, Breadcrumbs, ScrollShadows, OrgButton, TagList, TagLink, UnpublishedTag } from "@fdk-frontend/ui";
@@ -15,6 +16,7 @@ import headerStyles from "../dataset-header/dataset-header.module.scss";
 
 export type InformationModelDetailsPageType = {
   baseUri: string;
+  profile: Profile;
   resource: InformationModel;
   containedConcepts?: SearchObject[];
   relatedInformationModels?: SearchObject[];
@@ -30,6 +32,7 @@ export type InformationModelDetailsPageType = {
 
 export default function InformationModelDetailsPage({
   baseUri,
+  profile,
   resource,
   containedConcepts,
   relatedInformationModels,
@@ -162,6 +165,7 @@ export default function InformationModelDetailsPage({
               relatedInformationModels={relatedInformationModels}
               locale={locale}
               dictionary={dictionaries.detailsPage}
+              profile={profile}
               baseUri={baseUri}
             />
           </TabsPanel>
@@ -174,6 +178,7 @@ export default function InformationModelDetailsPage({
               communityBaseUri={communityBaseUri}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              profile={profile}
               baseUri={baseUri}
             />
           </TabsPanel>
@@ -185,6 +190,7 @@ export default function InformationModelDetailsPage({
               uri={`${baseUri}/information-models/${resource.id}`}
               dictionary={dictionaries.detailsPage}
               locale={locale}
+              profile={profile}
               baseUri={baseUri}
             />
           </TabsPanel>

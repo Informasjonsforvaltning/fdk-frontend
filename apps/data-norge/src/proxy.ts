@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { i18n, Locale } from "@fdk-frontend/localization";
 import { isCanonicalDomain } from "./utils/domain";
+import { sharedDocsRedirectUrl } from "./utils/shared-docs-redirect";
 
 export const proxy = (request: NextRequest) => {
   // Get the pathname and remove basePath
@@ -22,6 +23,18 @@ export const proxy = (request: NextRequest) => {
     ].includes(pathname)
   ) {
     return NextResponse.next();
+  }
+
+  // Shared docs are written for data.norge. A transportportal host would render them
+  // inside the transportportal skin, including relative links inside the MDX.
+  const docsRedirect = sharedDocsRedirectUrl(
+    pathname,
+    request.nextUrl.search,
+    request.headers.get("x-forwarded-host") ?? request.headers.get("host"),
+    request.headers.get("x-fdk-profile"),
+  );
+  if (docsRedirect) {
+    return NextResponse.redirect(docsRedirect);
   }
 
   // Check if there is any supported locale in the pathname
