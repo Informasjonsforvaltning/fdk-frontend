@@ -1,8 +1,8 @@
 import cn from "classnames";
-import { Heading, Button, Paragraph, Alert, Table } from "@digdir/designsystemet-react";
+import { Heading, Button, Paragraph, Alert, Table, Link } from "@digdir/designsystemet-react";
 import { type JSONValue } from "@fdk-frontend/types";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
-import { Badge, Hstack, VStack, ScrollShadows, PlaceholderBox, ExternalLink } from "@fdk-frontend/ui";
+import { Badge, ExternalLink, Hstack, VStack, ScrollShadows, PlaceholderBox } from "@fdk-frontend/ui";
 import styles from "./community-tab.module.scss";
 import TopicRow from "./components/topic-row";
 
@@ -77,12 +77,7 @@ const CommunityTab = ({ communityBaseUri, topics, dictionary, locale, baseUri }:
               data-size="sm"
               asChild
             >
-              <ExternalLink
-                href={`/${locale}/docs/community`}
-                baseUri={baseUri}
-              >
-                {dictionary.community.notice.moreInfo}
-              </ExternalLink>
+              <Link href={`${baseUri}/${locale}/docs/community`}>{dictionary.community.notice.moreInfo}</Link>
             </Button>
           </Hstack>
         </VStack>

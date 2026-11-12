@@ -1,9 +1,8 @@
 import React from "react";
 import cn from "classnames";
-import { Button, type ButtonProps } from "@digdir/designsystemet-react";
+import { Button, Link, type ButtonProps } from "@digdir/designsystemet-react";
 import { OrgLogo, type OrgLogoProps } from "../org-logo";
 import styles from "./org-button.module.scss";
-import ExternalLink from "../external-link";
 
 export type OrgButtonProps = {
   href?: string;
@@ -45,12 +44,7 @@ const OrgButton = ({
       className={classNames}
       {...props}
     >
-      <ExternalLink
-        href={href}
-        baseUri={baseUri}
-      >
-        {content}
-      </ExternalLink>
+      <Link href={`${baseUri}/${href}`}>{content}</Link>
     </Button>
   );
 };

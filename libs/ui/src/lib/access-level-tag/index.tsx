@@ -1,10 +1,9 @@
-import { Tag, TagProps, Paragraph } from "@digdir/designsystemet-react";
+import { Tag, TagProps, Paragraph, Link } from "@digdir/designsystemet-react";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { AccessRightsCodes } from "@fellesdatakatalog/types";
 import { HelpText } from "@fellesdatakatalog/ui";
 import TagLink from "../tag-link";
 import styles from "./styles.module.scss";
-import ExternalLink from "../external-link";
 
 type AccessLevelTagProps = {
   accessCode?: AccessRightsCodes | string;
@@ -54,12 +53,9 @@ const AccessLevelTag = ({
           <HelpText aria-label={dictionary.accessRights.helpTextTitle}>
             <Paragraph data-size="sm">{helpText}</Paragraph>
             <Paragraph data-size="sm">
-              <ExternalLink
-                href={`/${locale}/docs/finding-data/access-data`}
-                baseUri={baseUri}
-              >
+              <Link href={`${baseUri}/${locale}/docs/finding-data/access-data`}>
                 {dictionary.accessRights.readMoreLinkText}
-              </ExternalLink>
+              </Link>
             </Paragraph>
           </HelpText>
         </>

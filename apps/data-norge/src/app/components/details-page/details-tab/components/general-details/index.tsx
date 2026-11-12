@@ -8,7 +8,6 @@ import {
   Dlist,
   InputWithCopyButton,
   TagLink,
-  ExternalHref,
 } from "@fdk-frontend/ui";
 import { calculateMetadataScore, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
@@ -52,12 +51,9 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }:
         <dt>{dictionary.details.general.publisher}:</dt>
         <dd>
           {dataset.publisher ? (
-            <ExternalLink
-              href={`/organizations/${dataset.publisher?.id}`}
-              baseUri={baseUri}
-            >
+            <Link href={`${baseUri}/organizations/${dataset.publisher?.id}`}>
               {dataset.publisher?.prefLabel?.[locale] || dataset.publisher?.prefLabel?.[i18n.defaultLocale]}
-            </ExternalLink>
+            </Link>
           ) : (
             <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
           )}
@@ -69,12 +65,11 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }:
               <div style={{ whiteSpace: "normal" }}>
                 <Paragraph data-size="sm">{dictionary.details.general.firstHarvestedHelpText}</Paragraph>
                 <Paragraph data-size="sm">
-                  <ExternalLink
-                    href={`/${locale}/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest`}
-                    baseUri={baseUri}
+                  <Link
+                    href={`${baseUri}/${locale}/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest`}
                   >
                     {dictionary.details.general.firstHarvestedHelpTextLink}
-                  </ExternalLink>
+                  </Link>
                 </Paragraph>
               </div>
             </HelpText>
@@ -164,12 +159,9 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }:
               <div style={{ whiteSpace: "normal" }}>
                 <Paragraph data-size="sm">{dictionary.details.general.metadataQuality.helpText}</Paragraph>
                 <Paragraph data-size="sm">
-                  <ExternalLink
-                    href={`/${locale}/docs/metadata-quality`}
-                    baseUri={baseUri}
-                  >
+                  <Link href={`${baseUri}/${locale}/docs/metadata-quality`}>
                     {dictionary.details.general.metadataQuality.helpTextLink}
-                  </ExternalLink>
+                  </Link>
                 </Paragraph>
               </div>
             </HelpText>
@@ -177,10 +169,7 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }:
         </dt>
         <dd>
           <TagLink
-            href={ExternalHref({
-              baseUri: baseUri,
-              href: `/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`,
-            })}
+            href={`${baseUri}/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`}
             data-size="sm"
             data-color={metadataQuality.color as TagProps["color"]}
           >

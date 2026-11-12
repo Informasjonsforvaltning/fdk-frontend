@@ -20,7 +20,6 @@ import {
 import { type DatasetWithIdentifier, type DataService } from "@fellesdatakatalog/types";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import styles from "./styles.module.scss";
-import { ExternalHref } from "../external-link";
 
 export type UseDatasetPopoverDialogProps = {
   dataset: DatasetWithIdentifier;
@@ -113,34 +112,28 @@ const UseDatasetPopoverDialog = ({
           {apis.length ? (
             <ScrollShadows className={styles.popoverScroller}>
               <ul className="fdk-box-list">
-                {apis.map((api, index) => {
-                  const href = ExternalHref({
-                    baseUri: baseUri,
-                    href: `/${locale}/data-services/${api.id}`,
-                  });
-                  return (
-                    <li key={`api-${index}`}>
-                      <div className={styles.popoverListItem}>
-                        <div className={styles.itemDetails}>
-                          <span className={styles.itemTitle}>
-                            {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
-                          </span>
-                          <ApiTags api={api} />
-                        </div>
-                        <ActionButton
-                          uri={href}
-                          className={styles.actionButton}
-                        >
-                          {dictionary.apis.header.gotoBtn}
-                          <ArrowRightIcon
-                            aria-hidden
-                            fontSize="1.2em"
-                          />
-                        </ActionButton>
+                {apis.map((api, index) => (
+                  <li key={`api-${index}`}>
+                    <div className={styles.popoverListItem}>
+                      <div className={styles.itemDetails}>
+                        <span className={styles.itemTitle}>
+                          {printLocaleValue(locale, api.title) || dictionary.apis.header.nameless}
+                        </span>
+                        <ApiTags api={api} />
                       </div>
-                    </li>
-                  );
-                })}
+                      <ActionButton
+                        uri={`${baseUri}/${locale}/data-services/${api.id}`}
+                        className={styles.actionButton}
+                      >
+                        {dictionary.apis.header.gotoBtn}
+                        <ArrowRightIcon
+                          aria-hidden
+                          fontSize="1.2em"
+                        />
+                      </ActionButton>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </ScrollShadows>
           ) : (

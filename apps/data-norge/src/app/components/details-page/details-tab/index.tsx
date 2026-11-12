@@ -9,16 +9,7 @@ import {
 } from "@fellesdatakatalog/types";
 import { type PopulatedDatasetReference, type Profile } from "@fdk-frontend/types";
 import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
-import {
-  PlaceholderBox,
-  PlaceholderText,
-  TagList,
-  Dlist,
-  ExternalLink,
-  SmartList,
-  TagLink,
-  ExternalHref,
-} from "@fdk-frontend/ui";
+import { PlaceholderBox, PlaceholderText, TagList, Dlist, ExternalLink, SmartList, TagLink } from "@fdk-frontend/ui";
 import GeneralDetails from "./components/general-details";
 import ContactDetails from "./components/contact-details";
 import ContentDetails from "./components/content-details";
@@ -262,21 +253,14 @@ const DatasetDetailsTab = ({
               <TagList>
                 {dataset.keyword
                   .filter((keyword: any) => keyword[locale])
-                  .map((keyword: any, i: number) => {
-                    const externalHref = ExternalHref({
-                      locale: locale,
-                      baseUri: baseUri,
-                      href: `/datasets?q=${keyword[locale]}`,
-                    });
-                    return (
-                      <TagLink
-                        key={`keyword-${i}`}
-                        href={externalHref}
-                      >
-                        {keyword[locale]}
-                      </TagLink>
-                    );
-                  })}
+                  .map((keyword: any, i: number) => (
+                    <TagLink
+                      key={`keyword-${i}`}
+                      href={`${baseUri}/datasets?q=${keyword[locale]}`}
+                    >
+                      {keyword[locale]}
+                    </TagLink>
+                  ))}
               </TagList>
             ) : (
               <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
