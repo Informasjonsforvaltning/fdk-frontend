@@ -10,6 +10,7 @@ import {
   buildOrgPathAggregationsBySet,
   buildProvenanceAggregationsBySet,
   buildDcatProfileAggregationsBySet,
+  buildDatasetTypeAggregationsBySet,
   buildSpatialAggregationsBySet,
   buildFormatAggregationsBySet,
   buildLosThemeAggregationsBySet,
@@ -49,6 +50,7 @@ export type SummaryFetchResult = {
   accessAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   provenanceAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   dcatProfileAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  datasetTypeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   spatialAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   formatAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   losThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
@@ -66,6 +68,7 @@ export type FetchSummaryOptions = {
   accessParam: string | null;
   provenanceParam: string | null;
   dcatProfileParam: string | null;
+  datasetTypeParam: string | null;
   spatialParam: string | null;
   formatParam: string | null;
   losThemeParam: string | null;
@@ -88,6 +91,7 @@ export const fetchSummary = async function (options: FetchSummaryOptions): Promi
     accessAggregationsBySet: buildAccessAggregationsBySet(json.summary),
     provenanceAggregationsBySet: buildProvenanceAggregationsBySet(json.summary),
     dcatProfileAggregationsBySet: buildDcatProfileAggregationsBySet(json.summary),
+    datasetTypeAggregationsBySet: buildDatasetTypeAggregationsBySet(json.summary),
     spatialAggregationsBySet: buildSpatialAggregationsBySet(json.summary),
     formatAggregationsBySet: buildFormatAggregationsBySet(json.summary),
     losThemeAggregationsBySet: buildLosThemeAggregationsBySet(json.summary),

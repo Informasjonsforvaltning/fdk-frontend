@@ -63,6 +63,7 @@ const searchPage = {
       geography: "Geografi",
       provenance: "Opphav",
       dcatProfile: "Spesifikasjon",
+      datasetType: "Datasett av høg verdi",
     },
     clearAllFilters: "Tøm alle filter",
     listSettings: "Listeinnstillingar",
@@ -97,6 +98,11 @@ const searchPage = {
       mobilityDcatAp: "MobilityDCAT-AP",
       hvdDcatApNo: "HVD",
       dcatApNo: "DCAT-AP-NO",
+    },
+    datasetTypeFilter: {
+      euHvd: "Datasett av høg verdi (EU)",
+      nationalHvd: "Nasjonalt datasett av høg verdi",
+      nationalBasicData: "Nasjonale grunndata",
     },
     orgTypeFilter: {
       kommune: "Kommune",

@@ -215,6 +215,7 @@ const common = {
   },
   teaser: {
     openData: "Open data",
+    highValueDataset: "High-value dataset",
     missingDescription: "Missing description",
     llmHitTooltip: "Result from AI search",
   },

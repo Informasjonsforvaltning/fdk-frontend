@@ -14,6 +14,7 @@ export type SearchPageData = {
   accessAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
   provenanceAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
   dcatProfileAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+  datasetTypeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
   spatialAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
   formatAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
   losThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
@@ -36,6 +37,7 @@ export const initialSearchPageData: SearchPageData = {
   accessAggregationsBySet: undefined,
   provenanceAggregationsBySet: undefined,
   dcatProfileAggregationsBySet: undefined,
+  datasetTypeAggregationsBySet: undefined,
   spatialAggregationsBySet: undefined,
   formatAggregationsBySet: undefined,
   losThemeAggregationsBySet: undefined,
@@ -71,6 +73,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
       accessAggregationsBySet: result.accessAggregationsBySet,
       provenanceAggregationsBySet: result.provenanceAggregationsBySet,
       dcatProfileAggregationsBySet: result.dcatProfileAggregationsBySet,
+      datasetTypeAggregationsBySet: result.datasetTypeAggregationsBySet,
       spatialAggregationsBySet: result.spatialAggregationsBySet,
       formatAggregationsBySet: result.formatAggregationsBySet,
       losThemeAggregationsBySet: result.losThemeAggregationsBySet,
@@ -86,6 +89,7 @@ const applyEntitySearchState = function (data: SearchPageData, result: EntitySea
     accessAggregationsBySet: result.accessAggregationsBySet,
     provenanceAggregationsBySet: result.provenanceAggregationsBySet,
     dcatProfileAggregationsBySet: result.dcatProfileAggregationsBySet,
+    datasetTypeAggregationsBySet: result.datasetTypeAggregationsBySet,
     spatialAggregationsBySet: result.spatialAggregationsBySet,
     formatAggregationsBySet: result.formatAggregationsBySet,
     losThemeAggregationsBySet: result.losThemeAggregationsBySet,
@@ -118,6 +122,7 @@ export const searchPageReducer = function (
           accessAggregationsBySet: undefined,
           provenanceAggregationsBySet: undefined,
           dcatProfileAggregationsBySet: undefined,
+          datasetTypeAggregationsBySet: undefined,
           spatialAggregationsBySet: undefined,
           formatAggregationsBySet: undefined,
           losThemeAggregationsBySet: undefined,

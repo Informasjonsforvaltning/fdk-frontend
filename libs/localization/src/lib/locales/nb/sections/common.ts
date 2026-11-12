@@ -216,6 +216,7 @@ const common = {
   },
   teaser: {
     openData: "Åpne data",
+    highValueDataset: "Datasett av høy verdi",
     missingDescription: "Mangler beskrivelse",
     llmHitTooltip: "Treff fra KI-søk",
   },

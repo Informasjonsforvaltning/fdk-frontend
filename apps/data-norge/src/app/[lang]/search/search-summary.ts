@@ -3,6 +3,7 @@ import {
   mergeOrgPathAggregations,
   mergeProvenanceAggregations,
   mergeDcatProfileAggregations,
+  mergeDatasetTypeAggregations,
   mergeSpatialAggregations,
   mergeFormatAggregations,
   mergeLosThemeAggregations,
@@ -40,6 +41,7 @@ export type SearchSummarySlice = {
     orgPath: OrgPathAggregationEntry[];
     provenance: OrgPathAggregationEntry[];
     dcatProfiles: OrgPathAggregationEntry[];
+    datasetType: OrgPathAggregationEntry[];
     spatial: OrgPathAggregationEntry[];
     format: OrgPathAggregationEntry[];
     losTheme: OrgPathAggregationEntry[];
@@ -102,6 +104,7 @@ export const createEmptySearchSummarySlice = (): SearchSummarySlice => ({
     orgPath: [],
     provenance: [],
     dcatProfiles: [],
+    datasetType: [],
     spatial: [],
     format: [],
     losTheme: [],
@@ -136,6 +139,7 @@ export const normalizeSearchSummarySlice = function (value: unknown): SearchSumm
       orgPath: Array.isArray(candidate.aggregations?.orgPath) ? candidate.aggregations.orgPath : [],
       provenance: Array.isArray(candidate.aggregations?.provenance) ? candidate.aggregations.provenance : [],
       dcatProfiles: Array.isArray(candidate.aggregations?.dcatProfiles) ? candidate.aggregations.dcatProfiles : [],
+      datasetType: Array.isArray(candidate.aggregations?.datasetType) ? candidate.aggregations.datasetType : [],
       spatial: Array.isArray(candidate.aggregations?.spatial) ? candidate.aggregations.spatial : [],
       format: Array.isArray(candidate.aggregations?.format) ? candidate.aggregations.format : [],
       losTheme: Array.isArray(candidate.aggregations?.losTheme) ? candidate.aggregations.losTheme : [],
@@ -233,6 +237,21 @@ export const buildDcatProfileAggregationsBySet = function (
   summary: SearchSummary,
 ): Partial<Record<SearchSetId, AggregationKeyCount[]>> {
   return buildAggregationsBySet(summary, extractDcatProfileAggregationForSet);
+};
+
+export const extractDatasetTypeAggregationForSet = function (
+  summary: SearchSummary,
+  setId: SearchSetId,
+): AggregationKeyCount[] {
+  return mergeDatasetTypeAggregations(
+    slicesForSet(setId).map((slice) => summary[slice.summaryKey]?.aggregations?.datasetType ?? []),
+  );
+};
+
+export const buildDatasetTypeAggregationsBySet = function (
+  summary: SearchSummary,
+): Partial<Record<SearchSetId, AggregationKeyCount[]>> {
+  return buildAggregationsBySet(summary, extractDatasetTypeAggregationForSet);
 };
 
 export const extractSpatialAggregationForSet = function (

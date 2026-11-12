@@ -22,6 +22,7 @@ const CATALOG_AGGREGATION_FIELDS = [
   "accessAggregationsBySet",
   "provenanceAggregationsBySet",
   "dcatProfileAggregationsBySet",
+  "datasetTypeAggregationsBySet",
   "spatialAggregationsBySet",
   "formatAggregationsBySet",
   "losThemeAggregationsBySet",
@@ -35,6 +36,7 @@ type CatalogAggregationProps = {
   accessAggregation: AggregationKeyCount[] | undefined;
   provenanceAggregation: AggregationKeyCount[] | undefined;
   dcatProfileAggregation: AggregationKeyCount[] | undefined;
+  datasetTypeAggregation: AggregationKeyCount[] | undefined;
   spatialAggregation: AggregationKeyCount[] | undefined;
   formatAggregation: AggregationKeyCount[] | undefined;
   losThemeAggregation: AggregationKeyCount[] | undefined;
@@ -50,6 +52,7 @@ const aggregationsForActiveSet = (pageData: SearchPageData, setId: SearchSetId):
     accessAggregation: forSet("accessAggregationsBySet"),
     provenanceAggregation: forSet("provenanceAggregationsBySet"),
     dcatProfileAggregation: forSet("dcatProfileAggregationsBySet"),
+    datasetTypeAggregation: forSet("datasetTypeAggregationsBySet"),
     spatialAggregation: forSet("spatialAggregationsBySet"),
     formatAggregation: forSet("formatAggregationsBySet"),
     losThemeAggregation: forSet("losThemeAggregationsBySet"),
@@ -71,6 +74,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
   const accessParam = searchParams.get("access");
   const provenanceParam = searchParams.get("provenance");
   const dcatProfileParam = searchParams.get("dcatProfile");
+  const datasetTypeParam = searchParams.get("datasetType");
   const spatialParam = searchParams.get("spatial");
   const formatParam = searchParams.get("format");
   const losThemeParam = searchParams.get("losTheme");
@@ -105,6 +109,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
       accessParam,
       provenanceParam,
       dcatProfileParam,
+      datasetTypeParam,
       spatialParam,
       formatParam,
       losThemeParam,
@@ -131,6 +136,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
     accessParam,
     provenanceParam,
     dcatProfileParam,
+    datasetTypeParam,
     spatialParam,
     formatParam,
     losThemeParam,
