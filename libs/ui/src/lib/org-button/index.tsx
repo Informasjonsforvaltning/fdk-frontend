@@ -1,12 +1,14 @@
 import React from "react";
 import cn from "classnames";
-import { Button, type ButtonProps, Link } from "@digdir/designsystemet-react";
+import { Button, type ButtonProps } from "@digdir/designsystemet-react";
 import { OrgLogo, type OrgLogoProps } from "../org-logo";
 import styles from "./org-button.module.scss";
+import ExternalLink from "../external-link";
 
 export type OrgButtonProps = {
   href?: string;
   reverse?: boolean;
+  baseUri?: string;
 } & OrgLogoProps;
 
 const OrgButton = ({
@@ -16,6 +18,7 @@ const OrgButton = ({
   orgLogoSrc,
   orgNr,
   reverse,
+  baseUri = "",
   ...props
 }: OrgButtonProps & ButtonProps) => {
   const classNames = cn(styles.wrapper, className, { [styles.reverse]: reverse });
@@ -42,7 +45,12 @@ const OrgButton = ({
       className={classNames}
       {...props}
     >
-      <Link href={href}>{content}</Link>
+      <ExternalLink
+        href={href}
+        baseUri={baseUri}
+      >
+        {content}
+      </ExternalLink>
     </Button>
   );
 };

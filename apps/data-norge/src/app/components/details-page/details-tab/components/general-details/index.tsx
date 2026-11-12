@@ -8,14 +8,14 @@ import {
   Dlist,
   InputWithCopyButton,
   TagLink,
-  InternalLink,
+  ExternalHref,
 } from "@fdk-frontend/ui";
 import { calculateMetadataScore, printLocaleValue } from "@fdk-frontend/utils";
 import { HelpText } from "@fellesdatakatalog/ui";
 import { DatasetDetailsProps, DatasetDetailsTabContext } from "../../";
 import { i18n } from "@fdk-frontend/localization";
 
-const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, baseUri }: DatasetDetailsProps) => {
+const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }: DatasetDetailsProps) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
 
   // dctType may be a single object (not-yet-reparsed datasets) or a list — normalize to a list.
@@ -52,9 +52,13 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, b
         <dt>{dictionary.details.general.publisher}:</dt>
         <dd>
           {dataset.publisher ? (
-            <Link href={`/organizations/${dataset.publisher?.id}`}>
+            <ExternalLink
+              href={`/organizations/${dataset.publisher?.id}`}
+              locale={locale}
+              baseUri={baseUri}
+            >
               {dataset.publisher?.prefLabel?.[locale] || dataset.publisher?.prefLabel?.[i18n.defaultLocale]}
-            </Link>
+            </ExternalLink>
           ) : (
             <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
           )}
@@ -66,14 +70,13 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, b
               <div style={{ whiteSpace: "normal" }}>
                 <Paragraph data-size="sm">{dictionary.details.general.firstHarvestedHelpText}</Paragraph>
                 <Paragraph data-size="sm">
-                  <InternalLink
+                  <ExternalLink
                     href={`/${locale}/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest`}
-                    profile={profile}
                     baseUri={baseUri}
                     locale={locale}
                   >
                     {dictionary.details.general.firstHarvestedHelpTextLink}
-                  </InternalLink>
+                  </ExternalLink>
                 </Paragraph>
               </div>
             </HelpText>
@@ -163,14 +166,13 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, b
               <div style={{ whiteSpace: "normal" }}>
                 <Paragraph data-size="sm">{dictionary.details.general.metadataQuality.helpText}</Paragraph>
                 <Paragraph data-size="sm">
-                  <InternalLink
+                  <ExternalLink
                     href={`/${locale}/docs/metadata-quality`}
-                    profile={profile}
                     baseUri={baseUri}
                     locale={locale}
                   >
                     {dictionary.details.general.metadataQuality.helpTextLink}
-                  </InternalLink>
+                  </ExternalLink>
                 </Paragraph>
               </div>
             </HelpText>
@@ -178,7 +180,11 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, profile, b
         </dt>
         <dd>
           <TagLink
-            href={`/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`}
+            href={ExternalHref({
+              locale: locale,
+              baseUri: baseUri,
+              href: `/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`,
+            })}
             data-size="sm"
             data-color={metadataQuality.color as TagProps["color"]}
           >

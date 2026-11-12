@@ -30,7 +30,7 @@ type DatasetHeaderProps = {
   orgLogo?: string | null;
   accessRequestDemo?: boolean;
   isAvailable?: boolean;
-  baseUri?: string;
+  baseUri: string;
 };
 
 const DatasetHeader = ({
@@ -54,6 +54,7 @@ const DatasetHeader = ({
         href={dataset.publisher?.id ? `/organizations/${dataset.publisher?.id}` : undefined}
         orgLogoSrc={orgLogo}
         className={styles.orgBtn}
+        baseUri={baseUri}
       >
         {printOrganizationLabel(locale, dataset.publisher) ?? dictionaries.detailsPage.header.namelessOrganization}
       </OrgButton>
@@ -79,6 +80,7 @@ const DatasetHeader = ({
           apis={apis}
           dictionary={dictionaries.detailsPage}
           locale={locale}
+          baseUri={baseUri}
         />
       </div>
       <TagList className={styles.headerTags}>

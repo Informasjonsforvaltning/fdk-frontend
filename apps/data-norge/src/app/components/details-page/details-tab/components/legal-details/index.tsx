@@ -77,6 +77,7 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
                             <ExternalLink
                               href={reference}
                               key={`legislation-${i}-ref-${j}`}
+                              gateway
                             >
                               {reference}
                             </ExternalLink>
