@@ -61,3 +61,5 @@ const ExternalLink = ({
     </Link>
   );
 };
+
+export default ExternalLink;
