@@ -2,6 +2,7 @@
 import { redirect, notFound } from "next/navigation";
 import { Spinner, Paragraph } from "@digdir/designsystemet-react";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
+import { getSite } from "../../../../utils/site";
 import { getAccessRequestDestination } from "@fdk-frontend/data-access/server";
 import { type CatalogTypes } from "@fdk-frontend/types";
 import styles from "./access-request-page.module.scss";
@@ -46,9 +47,10 @@ const AccessRequestPage = async (props: AccessRequestPageProps) => {
 export const generateMetadata = async (props: AccessRequestPageProps) => {
   const params = await props.params;
   const dictionary = getLocalization(params.lang).common;
+  const site = await getSite();
 
   return {
-    title: `${dictionary.general.redirecting} - data.norge.no`,
+    title: `${dictionary.general.redirecting} - ${site.name}`,
   };
 };
 

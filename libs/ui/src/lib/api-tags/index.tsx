@@ -15,7 +15,7 @@ const ApiTags = ({ children, api, ...props }: ApiTagsProps & React.HTMLAttribute
         ?.filter((format: any) => format?.code)
         .map((format: any, i: number) => (
           <Tag
-            data-size="md"
+            data-size="sm"
             key={format.code}
           >
             {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}

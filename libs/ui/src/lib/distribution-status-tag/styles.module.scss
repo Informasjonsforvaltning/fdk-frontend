@@ -1,0 +1,9 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-size-2);
+}
+
+.label::first-letter {
+  text-transform: uppercase;
+}

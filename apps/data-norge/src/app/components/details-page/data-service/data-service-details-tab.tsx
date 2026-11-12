@@ -214,7 +214,7 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
           )}
           {!availabilityLabel && !showEmptyRows ? null : (
             <>
-              <dt>{dictionary.details.content.availabilityAnnotation}:</dt>
+              <dt>{dictionary.details.general.availability}:</dt>
               <dd style={{ textTransform: "capitalize" }}>
                 {availabilityLabel || <PlaceholderText>{dictionary.details.noData}</PlaceholderText>}
               </dd>

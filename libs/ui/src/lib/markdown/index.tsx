@@ -4,6 +4,8 @@ import { i18n, type LocaleCodes } from "@fdk-frontend/localization";
 import remarkGfm from "remark-gfm";
 import { mdxComponents } from "./components";
 
+export { markdownToPlainText } from "./to-plain-text";
+
 export const defaultAllowedElements = [
   "p",
   "h1",

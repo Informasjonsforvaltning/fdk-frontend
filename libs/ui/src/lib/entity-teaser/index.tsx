@@ -27,6 +27,9 @@ import { OrgLogo } from "../org-logo";
 import styles from "./styles.module.scss";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 import { SparklesFillIcon } from "@navikt/aksel-icons";
+import { markdownToPlainText } from "../markdown/to-plain-text";
+
+const DESCRIPTION_PREVIEW_LENGTH = 500;
 
 export type EntityTeaserProps = {
   locale: LocaleCodes;
@@ -43,7 +46,12 @@ const EntityTeaser = ({
   headingLevel = 3,
   ...rest
 }: EntityTeaserProps & Partial<CardProps>) => {
-  const desc = entity && printLocaleValue(locale, entity.description);
+  const rawDescription = entity ? printLocaleValue(locale, entity.description) : undefined;
+  const plainDescription = typeof rawDescription === "string" ? markdownToPlainText(rawDescription) : undefined;
+  const description =
+    plainDescription && plainDescription.length > DESCRIPTION_PREVIEW_LENGTH
+      ? `${plainDescription.slice(0, DESCRIPTION_PREVIEW_LENGTH)}...`
+      : plainDescription;
   const localization = getLocalization(locale).common;
   const dcatProfileLabels = getDcatProfileLabels(getLocalization(locale).searchPage.searchForm.dcatProfileFilter);
   const dcatProfiles = (entity?.dcatProfiles ?? []).filter((profile) => profile !== DCAT_PROFILE_DEFAULT);
@@ -130,9 +138,7 @@ const EntityTeaser = ({
           )}
         </div>
         {entity && (
-          <Paragraph className={styles.description}>
-            {desc ? (desc.length > 500 ? `${desc.slice(0, 500)}...` : desc) : localization.teaser.missingDescription}
-          </Paragraph>
+          <Paragraph className={styles.description}>{description || localization.teaser.missingDescription}</Paragraph>
         )}
         {entity && <div className={styles.orgName}>{printOrganizationLabel(locale, entity.organization)}</div>}
         {entity && llm && (

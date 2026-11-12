@@ -2,6 +2,7 @@ const searchPage = {
   metadata: {
     title: "Search",
     description: "Search for data on data.norge.no",
+    transportportalDescription: "Search for data on Transportportal.no",
   },
   breadcrumb: {
     label: "Search",

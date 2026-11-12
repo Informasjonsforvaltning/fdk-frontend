@@ -11,6 +11,12 @@
   list-style: none;
 }
 
+.sublist {
+  margin: 0.25rem 0 0.25rem 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--ds-color-surface-hover);
+}
+
 .item {
   display: flex;
   align-items: center;

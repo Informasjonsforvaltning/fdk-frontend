@@ -6,6 +6,7 @@ import { type DataService, type CommunityTopic, type SearchObject } from "@felle
 import { printLocaleValue } from "@fdk-frontend/utils";
 import {
   AccessLevelTag,
+  DistributionStatusTag,
   Badge,
   Breadcrumbs,
   ScrollShadows,
@@ -15,14 +16,13 @@ import {
   TagLink,
   UnpublishedTag,
 } from "@fdk-frontend/ui";
-import { Heading, Tabs, TabsList, TabsTab, TabsPanel, Tag } from "@digdir/designsystemet-react";
+import { Heading, Tabs, TabsList, TabsTab, TabsPanel } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
 import CommunityTab from "../community-tab";
 import DataServiceDetailsTab from "./data-service-details-tab";
 import DataServiceOverviewTab from "./data-service-overview-tab";
 import styles from "../details-page.module.scss";
 import headerStyles from "../dataset-header/dataset-header.module.scss";
-import dataServiceStyles from './data-service.module.scss';
 
 export type DataServiceDetailsPageType = {
   baseUri: string;
@@ -66,11 +66,6 @@ export default function DataServiceDetailsPage({
     window.history.pushState(null, "", `?tab=${tab}`);
   };
 
-  const status =
-    (resource?.status?.code ? dictionaries.detailsPage.statusCodes[resource.status.code] : undefined) ??
-    (resource.status?.prefLabel ? printLocaleValue(locale, resource.status.prefLabel) : undefined);
-  const statusLabel = status ?? dictionaries.detailsPage.unknownStatusLabel;
-
   return (
     <div className={styles.detailsPage}>
       <Breadcrumbs
@@ -109,9 +104,14 @@ export default function DataServiceDetailsPage({
             >
               {dictionaries.detailsPage.header.dataServicesTagLink}
             </TagLink>
-            <Tag className={dataServiceStyles.status}>{statusLabel}</Tag>
             <AccessLevelTag
               accessCode={resource.accessRights?.code}
+              locale={locale}
+              data-size="md"
+            />
+            <DistributionStatusTag
+              statusCode={resource.status?.code}
+              prefLabel={resource.status?.prefLabel}
               locale={locale}
               data-size="md"
             />

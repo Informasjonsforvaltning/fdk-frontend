@@ -13,6 +13,7 @@ import {
 import { buildQueryString } from "../../build-query-string";
 import { getInformationModelRelationUris } from "../../../../components/details-page/information-model/information-model-relations";
 import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
+import { absoluteUrl, getSite } from "../../../../../utils/site";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -27,6 +28,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
   const params = await props.params;
   const locale = params.lang ?? i18n.defaultLocale;
   const dictionary = getLocalization(locale).detailsPage;
+  const site = await getSite();
 
   try {
     const informationModel = await getInformationModel(params.id);
@@ -34,11 +36,14 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       printLocaleValue(locale, informationModel.title) || dictionary.header.namelessInformationModel;
     const description =
       printLocaleValue(locale, informationModel.description) ?? dictionary.breadcrumbs.informationModels;
-    const pageUrl = `https://data.norge.no/${locale}/information-models/${informationModel.id}/${getSlug(informationModel, locale)}`;
+    const pageUrl = absoluteUrl(
+      site.origin,
+      `/${locale}/information-models/${informationModel.id}/${getSlug(informationModel, locale)}`,
+    );
     const isRemovedFromFDK = informationModel.isRemovedFromFDK;
 
     return {
-      title: `${title} - ${dictionary.breadcrumbs.informationModels} - data.norge.no`,
+      title: `${title} - ${dictionary.breadcrumbs.informationModels} - ${site.name}`,
       description: description,
       robots: getResourceRobots(isRemovedFromFDK),
       openGraph: {
@@ -46,7 +51,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         description: description,
         type: "website",
         url: pageUrl,
-        siteName: "data.norge.no",
+        siteName: site.name,
         locale: locale,
       },
       twitter: {
@@ -57,9 +62,18 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       alternates: getResourceAlternates({
         canonical: pageUrl,
         languages: {
-          nb: `https://data.norge.no/nb/information-models/${informationModel.id}/${getSlug(informationModel, "nb")}`,
-          en: `https://data.norge.no/en/information-models/${informationModel.id}/${getSlug(informationModel, "en")}`,
-          nn: `https://data.norge.no/nn/information-models/${informationModel.id}/${getSlug(informationModel, "nn")}`,
+          nb: absoluteUrl(
+            site.origin,
+            `/nb/information-models/${informationModel.id}/${getSlug(informationModel, "nb")}`,
+          ),
+          en: absoluteUrl(
+            site.origin,
+            `/en/information-models/${informationModel.id}/${getSlug(informationModel, "en")}`,
+          ),
+          nn: absoluteUrl(
+            site.origin,
+            `/nn/information-models/${informationModel.id}/${getSlug(informationModel, "nn")}`,
+          ),
         },
         isRemovedFromFDK,
       }),

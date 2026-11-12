@@ -86,7 +86,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
     initialSearchPageState,
   );
 
-  // The transportportal menu is all-catalogs, datasets, and docs. Any other set falls back to all-catalogs.
+  // The transportportal menu is all-catalogs and docs. Any other set falls back to all-catalogs.
   useEffect(() => {
     if (!hideAiSet || isTransportportalMenuSet(activeSet)) return;
     const queryString = searchParams.toString();

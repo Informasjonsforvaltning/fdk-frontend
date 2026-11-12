@@ -3,6 +3,10 @@ const frontpage = {
     title: "Where Norway shares data",
     description:
       "data.norge.no is Norway's official portal for sharing data from Norwegian organizations that you can use for innovation and research.",
+    transportportal: {
+      title: "National access point for road and transport data",
+      description: "Transportportal.no is the national access point for road and transport data in Norway.",
+    },
   },
   aiBanner: {
     advancedSearchPrompt: {

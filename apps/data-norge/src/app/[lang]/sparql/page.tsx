@@ -5,6 +5,7 @@ import { Heading, Link, Paragraph } from "@digdir/designsystemet-react";
 import { getLocalization, type Locale } from "@fdk-frontend/localization";
 import { Breadcrumbs } from "@fdk-frontend/ui";
 import { getProfile } from "@fdk-frontend/utils/server";
+import { absoluteUrl, getSite } from "../../../utils/site";
 import styles from "./page.module.css";
 import { SparqlEditor } from "./components/sparql-editor";
 
@@ -62,12 +63,13 @@ const SparqlPage = async (props: SparqlPageProps) => {
 export const generateMetadata = async (props: SparqlPageProps): Promise<Metadata> => {
   const params = await props.params;
   const dictionary = getLocalization(params.lang).sparqlSandboxPage;
+  const site = await getSite();
 
   return {
-    title: dictionary.metadata.title,
+    title: dictionary.metadata.title.replace("data.norge.no", site.name),
     description: dictionary.metadata.description,
     alternates: {
-      canonical: `https://data.norge.no/${params.lang}/sparql-sandbox`,
+      canonical: absoluteUrl(site.origin, `/${params.lang}/sparql-sandbox`),
     },
   };
 };

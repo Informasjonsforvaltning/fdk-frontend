@@ -24,7 +24,6 @@ const InputWithCopyButton = ({
     >
       <Textfield
         className={styles.input}
-        data-size="md"
         value={value}
         aria-label={inputLabel}
         readOnly
@@ -34,6 +33,7 @@ const InputWithCopyButton = ({
         copyLabel={copyLabel}
         copiedLabel={copiedLabel}
         copyOnClick={value}
+        icon
       />
     </div>
   );

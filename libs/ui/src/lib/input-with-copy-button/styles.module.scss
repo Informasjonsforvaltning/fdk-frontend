@@ -10,6 +10,9 @@
     position: absolute;
     top: 3px;
     right: 3px;
+    bottom: 3px;
+    height:auto;
+    min-height: 0;
     z-index: 1;
 
     &:not(:hover):not(:active) {

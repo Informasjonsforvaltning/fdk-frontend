@@ -11,6 +11,7 @@ import { SearchObject, type CommunityTopic, type PublicService } from "@fellesda
 import ServiceDetailsPage from "../../../../components/details-page/service";
 import { notFound, redirect } from "next/navigation";
 import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
+import { absoluteUrl, getSite } from "../../../../../utils/site";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -110,6 +111,7 @@ export default DetailsPageWrapper;
 export const generateMetadata = async (props: DetailsPageWrapperProps) => {
   const { id, lang } = await props.params;
   const dictionary = getLocalization(lang).detailsPage;
+  const site = await getSite();
 
   try {
     const service = await getService(id);
@@ -121,7 +123,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       .filter(Boolean)
       .join(", ");
 
-    const pageUrl = `https://data.norge.no/${lang}/services/${service.id}/${getSlug(service, lang)}`;
+    const pageUrl = absoluteUrl(site.origin, `/${lang}/services/${service.id}/${getSlug(service, lang)}`);
     const isRemovedFromFDK = service.isRemovedFromFDK;
 
     // Create structured data for better SEO (omit for unpublished resources)
@@ -146,7 +148,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       : undefined;
 
     return {
-      title: `${title} - ${dictionary.breadcrumbs.services} - data.norge.no`,
+      title: `${title} - ${dictionary.breadcrumbs.services} - ${site.name}`,
       description: description,
       keywords: keywords,
       robots: getResourceRobots(isRemovedFromFDK),
@@ -155,7 +157,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         description: description,
         type: "website",
         url: pageUrl,
-        siteName: "data.norge.no",
+        siteName: site.name,
         locale: lang,
       },
       twitter: {
@@ -166,9 +168,9 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       alternates: getResourceAlternates({
         canonical: pageUrl,
         languages: {
-          nb: `https://data.norge.no/nb/services/${service.id}/${getSlug(service, "nb")}`,
-          en: `https://data.norge.no/en/services/${service.id}/${getSlug(service, "en")}`,
-          nn: `https://data.norge.no/nn/services/${service.id}/${getSlug(service, "nn")}`,
+          nb: absoluteUrl(site.origin, `/nb/services/${service.id}/${getSlug(service, "nb")}`),
+          en: absoluteUrl(site.origin, `/en/services/${service.id}/${getSlug(service, "en")}`),
+          nn: absoluteUrl(site.origin, `/nn/services/${service.id}/${getSlug(service, "nn")}`),
         },
         isRemovedFromFDK,
       }),

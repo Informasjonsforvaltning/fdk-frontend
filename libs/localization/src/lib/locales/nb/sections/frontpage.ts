@@ -3,6 +3,10 @@ const frontpage = {
     title: "Der Norge deler data",
     description:
       "data.norge.no er Norges offisielle portal for deling av data fra offentlige og private virksomheter som du kan bruke til å lage tjenester eller drive forskning.",
+    transportportal: {
+      title: "Nasjonalt tilgangspunkt for veg- og transportdata",
+      description: "Transportportal.no er det nasjonale tilgangspunktet for data om veg- og transport i Norge.",
+    },
   },
   aiBanner: {
     advancedSearchPrompt: {

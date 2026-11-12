@@ -14,12 +14,16 @@ const TransportportalFrontpageLinks = ({ dictionary, locale }: TransportportalFr
   const items = [
     {
       title: links.roadNetwork,
-      href: `/${locale}/search/datasets?losTheme=trafikk-og-transport%2Fveg-og-vegregulering%2Fvegnett`,
+      href: `/${locale}/search?losTheme=trafikk-og-transport%2Fveg-og-vegregulering%2Fvegnett`,
       icon: <CarIcon />,
     },
-    { title: links.commuterTraffic, href: `/${locale}/search?q=kollektivtransport`, icon: <BusIcon /> },
-    { title: links.seaTransport, href: `/${locale}/search?q=ferge`, icon: <BoatIcon /> },
-    { title: links.realtimeTraffic, href: `/${locale}/search?q=sanntid`, icon: <AreaChartIcon /> },
+    { title: links.commuterTraffic, href: `/${locale}/search?q=kollektiv`, icon: <BusIcon /> },
+    { title: links.seaTransport, href: `/${locale}/search?q=ferje`, icon: <BoatIcon /> },
+    {
+      title: links.realtimeTraffic,
+      href: `/${locale}/search?losTheme=trafikk-og-transport%2Ftrafikkinformasjon%2Fsanntids-trafikkinformasjon`,
+      icon: <AreaChartIcon />,
+    },
     { title: links.statistics, href: `/${locale}/search?q=statistikk`, icon: <BarChartIcon /> },
     {
       title: links.parkingMobility,

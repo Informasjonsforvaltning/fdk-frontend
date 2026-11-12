@@ -159,6 +159,7 @@ const detailsPage = {
       endpointDescription: "Endepunktbeskrivelse",
       format: "Format",
       version: "Versjon",
+      availability: "Tilgjengelighet",
       license: "Lisens",
       openAccess: "Åpen tilgang",
       openLicense: "Åpen lisens",
@@ -342,6 +343,8 @@ const detailsPage = {
     noPreviewData: "Ingen forhåndsvisningsdata tilgjengelig",
   },
   unknownStatusLabel: "Ukjent status",
+  statusHelpTextTitle: "Forklaring av status",
+  statusHelpReadMore: "Se definisjonen i EUs vokabular",
   statusCodes: {
     COMPLETED: "Ferdigstilt",
     DEVELOP: "Under utvikling",
@@ -352,6 +355,16 @@ const detailsPage = {
     ONGOING: "Pågående",
     PLANNED: "Planlagt",
     REQUIRED: "Påkrevd",
+  },
+  statusDescriptions: {
+    ARCHIVE: "Distribusjonen er lagret i et frakoblet lagringsanlegg.",
+    COMPLETED: "Distribusjonen inneholder all informasjon som er ment å publiseres.",
+    DEPRECATED: "Distribusjonen anbefales ikke lenger brukt.",
+    DEVELOP: "Distribusjonen er under sammenstilling og kan være ufullstendig eller feilaktig.",
+    ONGOING: "Distribusjonen oppdateres fortløpende.",
+    PLANNED: "Distribusjonen er planlagt opprettet eller oppdatert på en fastsatt dato.",
+    REQUIRED: "Distribusjonen må opprettes eller oppdateres.",
+    WITHDRAWN: "Distribusjonen er ikke lenger ment å publiseres.",
   },
 };
 

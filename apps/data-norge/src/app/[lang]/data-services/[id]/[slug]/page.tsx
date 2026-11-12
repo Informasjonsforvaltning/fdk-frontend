@@ -5,6 +5,7 @@ import { type DataService, type CommunityTopic, type SearchObject } from "@felle
 import DataServiceDetailsPage from "../../../../components/details-page/data-service";
 import { getOrgLogo, getApi, getAllCommunityTopics, searchDatasets } from "@fdk-frontend/data-access/server";
 import { getResourceAlternates, getResourceRobots } from "../../../../../utils/resource-seo";
+import { absoluteUrl, getSite } from "../../../../../utils/site";
 
 export type DetailsPageWrapperProps = {
   params: Promise<{
@@ -19,16 +20,20 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
   const params = await props.params;
   const locale = params.lang ?? i18n.defaultLocale;
   const dictionary = getLocalization(locale).detailsPage;
+  const site = await getSite();
 
   try {
     const dataService = await getApi(params.id);
     const title = printLocaleValue(locale, dataService.title) || dictionary.header.namelessDataService;
     const description = printLocaleValue(locale, dataService.description) ?? dictionary.breadcrumbs.dataServices;
-    const pageUrl = `https://data.norge.no/${locale}/data-services/${dataService.id}/${getSlug(dataService, locale)}`;
+    const pageUrl = absoluteUrl(
+      site.origin,
+      `/${locale}/data-services/${dataService.id}/${getSlug(dataService, locale)}`,
+    );
     const isRemovedFromFDK = dataService.isRemovedFromFDK;
 
     return {
-      title: `${title} - ${dictionary.breadcrumbs.dataServices} - data.norge.no`,
+      title: `${title} - ${dictionary.breadcrumbs.dataServices} - ${site.name}`,
       description: description,
       robots: getResourceRobots(isRemovedFromFDK),
       openGraph: {
@@ -36,7 +41,7 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
         description: description,
         type: "website",
         url: pageUrl,
-        siteName: "data.norge.no",
+        siteName: site.name,
         locale: locale,
       },
       twitter: {
@@ -47,9 +52,9 @@ export const generateMetadata = async (props: DetailsPageWrapperProps) => {
       alternates: getResourceAlternates({
         canonical: pageUrl,
         languages: {
-          nb: `https://data.norge.no/nb/data-services/${dataService.id}/${getSlug(dataService, "nb")}`,
-          en: `https://data.norge.no/en/data-services/${dataService.id}/${getSlug(dataService, "en")}`,
-          nn: `https://data.norge.no/nn/data-services/${dataService.id}/${getSlug(dataService, "nn")}`,
+          nb: absoluteUrl(site.origin, `/nb/data-services/${dataService.id}/${getSlug(dataService, "nb")}`),
+          en: absoluteUrl(site.origin, `/en/data-services/${dataService.id}/${getSlug(dataService, "en")}`),
+          nn: absoluteUrl(site.origin, `/nn/data-services/${dataService.id}/${getSlug(dataService, "nn")}`),
         },
         isRemovedFromFDK,
       }),
