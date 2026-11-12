@@ -12,6 +12,7 @@ import { buildAccessSearchFilter } from "@fdk-frontend/ui/search-form/access";
 import { buildOrgPathSearchFilter } from "@fdk-frontend/ui/search-form/org-path";
 import { buildProvenanceSearchFilter } from "@fdk-frontend/ui/search-form/provenance";
 import { buildDcatProfileSearchFilter } from "@fdk-frontend/ui/search-form/dcat-profile";
+import { buildDatasetTypeSearchFilter } from "@fdk-frontend/ui/search-form/dataset-type";
 import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
@@ -33,6 +34,7 @@ export const isBrowseSearch = function (options: FetchSummaryOptions): boolean {
   const hasAccessFilter = buildAccessSearchFilter(options.accessParam) !== undefined;
   const hasProvenanceFilter = buildProvenanceSearchFilter(options.provenanceParam) !== undefined;
   const hasDcatProfileFilter = buildDcatProfileSearchFilter(options.dcatProfileParam) !== undefined;
+  const hasDatasetTypeFilter = buildDatasetTypeSearchFilter(options.datasetTypeParam) !== undefined;
   const hasSpatialFilter = buildSpatialSearchFilter(options.spatialParam) !== undefined;
   const hasFormatFilter = buildFormatSearchFilter(options.formatParam) !== undefined;
   const hasLosThemeFilter = buildLosThemeSearchFilter(options.losThemeParam) !== undefined;
@@ -43,6 +45,7 @@ export const isBrowseSearch = function (options: FetchSummaryOptions): boolean {
     !hasAccessFilter &&
     !hasProvenanceFilter &&
     !hasDcatProfileFilter &&
+    !hasDatasetTypeFilter &&
     !hasSpatialFilter &&
     !hasFormatFilter &&
     !hasLosThemeFilter &&
@@ -57,6 +60,7 @@ export type EntitySearchStateBase = {
   accessAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   provenanceAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   dcatProfileAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
+  datasetTypeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   spatialAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   formatAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
   losThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>>;
@@ -76,6 +80,7 @@ export type EntitySearchState =
       accessAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
       provenanceAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
       dcatProfileAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
+      datasetTypeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
       spatialAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
       formatAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;
       losThemeAggregationsBySet: Partial<Record<SearchSetId, AggregationKeyCount[]>> | undefined;

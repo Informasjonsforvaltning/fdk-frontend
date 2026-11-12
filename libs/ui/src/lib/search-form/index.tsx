@@ -20,6 +20,7 @@ import OrgFilter from "./org-filter";
 import AccessFilter from "./access-filter";
 import ProvenanceFilter from "./provenance-filter";
 import DcatProfileFilter from "./dcat-profile-filter";
+import DatasetTypeFilter from "./dataset-type-filter";
 import SpatialFilter from "./spatial-filter";
 import FormatFilter from "./format-filter";
 import ThemeFilter from "./theme-filter";
@@ -29,6 +30,7 @@ import { parseOrgPathQueryParam } from "./org-path";
 import { type AggregationKeyCount } from "./types";
 import { parseProvenanceQueryParam, shouldShowProvenanceFilter } from "./provenance";
 import { parseDcatProfileQueryParam, shouldShowDcatProfileFilter } from "./dcat-profile";
+import { parseDatasetTypeQueryParam, shouldShowDatasetTypeFilter } from "./dataset-type";
 import { parseSpatialQueryParam, shouldShowSpatialFilter, useSpatialLabels } from "./spatial";
 import { parseFormatQueryParam, shouldShowFormatFilter } from "./format";
 import { parseLosThemeQueryParam, parseDataThemeQueryParam, shouldShowTemaFilter } from "./theme";
@@ -41,6 +43,7 @@ import { getAccessRightsLabels } from "./access/labels";
 import { formatLabel } from "./format/labels";
 import { getProvenanceLabels } from "./provenance/labels";
 import { getDcatProfileLabels } from "./dcat-profile/labels";
+import { getDatasetTypeLabels } from "./dataset-type/labels";
 import { useOrgPathLabels } from "./org-path/use-org-path-labels";
 import { formatOrgPathLabel } from "./org-path/labels";
 
@@ -67,6 +70,13 @@ export {
   parseDcatProfileQueryParam,
   shouldShowDcatProfileFilter,
 } from "./dcat-profile";
+export {
+  mergeDatasetTypeAggregations,
+  buildDatasetTypeFilterOptions,
+  buildDatasetTypeSearchFilter,
+  parseDatasetTypeQueryParam,
+  shouldShowDatasetTypeFilter,
+} from "./dataset-type";
 export {
   mergeSpatialAggregations,
   buildSpatialFilterOptions,
@@ -102,6 +112,7 @@ export type SearchFormProps = {
   accessAggregation?: AggregationKeyCount[];
   provenanceAggregation?: AggregationKeyCount[];
   dcatProfileAggregation?: AggregationKeyCount[];
+  datasetTypeAggregation?: AggregationKeyCount[];
   spatialAggregation?: AggregationKeyCount[];
   formatAggregation?: AggregationKeyCount[];
   losThemeAggregation?: AggregationKeyCount[];
@@ -117,6 +128,7 @@ const SearchForm = ({
   accessAggregation,
   provenanceAggregation,
   dcatProfileAggregation,
+  datasetTypeAggregation,
   spatialAggregation,
   formatAggregation,
   losThemeAggregation,
@@ -133,6 +145,7 @@ const SearchForm = ({
   const accessParam = searchParams.get("access");
   const provenanceParam = searchParams.get("provenance");
   const dcatProfileParam = searchParams.get("dcatProfile");
+  const datasetTypeParam = searchParams.get("datasetType");
   const spatialParam = searchParams.get("spatial");
   const formatParam = searchParams.get("format");
   const losThemeParam = searchParams.get("losTheme");
@@ -141,6 +154,7 @@ const SearchForm = ({
   const selectedAccess = useMemo(() => parseAccessQueryParam(accessParam), [accessParam]);
   const selectedProvenance = useMemo(() => parseProvenanceQueryParam(provenanceParam), [provenanceParam]);
   const selectedDcatProfiles = useMemo(() => parseDcatProfileQueryParam(dcatProfileParam), [dcatProfileParam]);
+  const selectedDatasetTypes = useMemo(() => parseDatasetTypeQueryParam(datasetTypeParam), [datasetTypeParam]);
   const selectedSpatial = useMemo(() => parseSpatialQueryParam(spatialParam), [spatialParam]);
   const selectedFormats = useMemo(() => parseFormatQueryParam(formatParam), [formatParam]);
   const selectedLosThemes = useMemo(() => parseLosThemeQueryParam(losThemeParam), [losThemeParam]);
@@ -150,6 +164,8 @@ const SearchForm = ({
   const showProvenanceFilter = shouldShowProvenanceFilter(provenanceAggregation ?? []) || selectedProvenance.length > 0;
   const showDcatProfileFilter =
     shouldShowDcatProfileFilter(dcatProfileAggregation ?? []) || selectedDcatProfiles.length > 0;
+  const showDatasetTypeFilter =
+    shouldShowDatasetTypeFilter(datasetTypeAggregation ?? []) || selectedDatasetTypes.length > 0;
   const showSpatialFilter = shouldShowSpatialFilter(spatialAggregation ?? []) || selectedSpatial.length > 0;
   const showFormatFilter = shouldShowFormatFilter(formatAggregation ?? []) || selectedFormats.length > 0;
   const showTemaFilter =
@@ -162,6 +178,7 @@ const SearchForm = ({
   const accessLabels = getAccessRightsLabels(dict.searchForm.accessFilter);
   const provenanceLabels = getProvenanceLabels(dict.searchForm.provenanceFilter);
   const dcatProfileLabels = getDcatProfileLabels(dict.searchForm.dcatProfileFilter);
+  const datasetTypeLabels = getDatasetTypeLabels(dict.searchForm.datasetTypeFilter);
 
   const orgKey = !selectedOrgPaths.length ? "" : selectedOrgPaths[selectedOrgPaths.length - 1];
   const orgPathLabels: Record<string, string> = {
@@ -190,6 +207,7 @@ const SearchForm = ({
       access,
       provenance,
       dcatProfiles,
+      datasetTypes,
       spatial,
       formats,
       losThemes,
@@ -202,6 +220,7 @@ const SearchForm = ({
       access?: string[];
       provenance?: string[];
       dcatProfiles?: string[];
+      datasetTypes?: string[];
       spatial?: string[];
       formats?: string[];
       losThemes?: string[];
@@ -214,6 +233,7 @@ const SearchForm = ({
       const resolvedAccess = access ?? parseAccessQueryParam(searchParams.get("access"));
       const resolvedProvenance = provenance ?? parseProvenanceQueryParam(searchParams.get("provenance"));
       const resolvedDcatProfiles = dcatProfiles ?? parseDcatProfileQueryParam(searchParams.get("dcatProfile"));
+      const resolvedDatasetTypes = datasetTypes ?? parseDatasetTypeQueryParam(searchParams.get("datasetType"));
       const resolvedSpatial = spatial ?? parseSpatialQueryParam(searchParams.get("spatial"));
       const resolvedFormats = formats ?? parseFormatQueryParam(searchParams.get("format"));
       const resolvedLosThemes = losThemes ?? parseLosThemeQueryParam(searchParams.get("losTheme"));
@@ -229,6 +249,7 @@ const SearchForm = ({
         access: resolvedAccess,
         provenance: resolvedProvenance,
         dcatProfiles: resolvedDcatProfiles,
+        datasetTypes: resolvedDatasetTypes,
         spatial: resolvedSpatial,
         formats: resolvedFormats,
         losThemes: resolvedLosThemes,
@@ -285,6 +306,14 @@ const SearchForm = ({
     [isUrlDriven, navigateToSearch],
   );
 
+  const handleDatasetTypeChange = useCallback(
+    (nextSelected: string[]) => {
+      if (!isUrlDriven) return;
+      navigateToSearch({ datasetTypes: nextSelected });
+    },
+    [isUrlDriven, navigateToSearch],
+  );
+
   const handleSpatialChange = useCallback(
     (nextSelected: string[]) => {
       if (!isUrlDriven) return;
@@ -331,7 +360,8 @@ const SearchForm = ({
       selectedLosThemes.length +
       selectedDataThemes.length +
       selectedProvenance.length +
-      selectedDcatProfiles.length >
+      selectedDcatProfiles.length +
+      selectedDatasetTypes.length >
     0;
 
   const clearFilters = useCallback(() => {
@@ -342,6 +372,7 @@ const SearchForm = ({
       access: emptyStrings,
       provenance: emptyStrings,
       dcatProfiles: emptyStrings,
+      datasetTypes: emptyStrings,
       spatial: emptyStrings,
       formats: emptyStrings,
       losThemes: emptyStrings,
@@ -463,6 +494,21 @@ const SearchForm = ({
                 </Box>
               </FilterDropdown>
             )}
+            {showDatasetTypeFilter && (
+              <FilterDropdown
+                label={dict.searchForm.filters.datasetType}
+                filterCount={selectedDatasetTypes.length}
+              >
+                <Box className={styles.box}>
+                  <DatasetTypeFilter
+                    locale={locale}
+                    aggregation={datasetTypeAggregation}
+                    value={isUrlDriven ? selectedDatasetTypes : undefined}
+                    onChange={isUrlDriven ? handleDatasetTypeChange : undefined}
+                  />
+                </Box>
+              </FilterDropdown>
+            )}
           </HStack>
           <HStack className={styles.chipsToolbar}>
             <FilterChips
@@ -504,6 +550,11 @@ const SearchForm = ({
               selectedFilters={selectedDcatProfiles}
               onChipRemove={handleDcatProfileChange}
               chipLabels={dcatProfileLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedDatasetTypes}
+              onChipRemove={handleDatasetTypeChange}
+              chipLabels={datasetTypeLabels}
             />
             {hasFilter && (
               <Chip.Button

@@ -23,6 +23,7 @@ import {
   printOrganizationLabel,
 } from "@fdk-frontend/utils";
 import { DCAT_PROFILE_DEFAULT, formatDcatProfileLabel, getDcatProfileLabels } from "../search-form/dcat-profile";
+import { isHighValueDatasetType } from "../search-form/dataset-type";
 import { OrgLogo } from "../org-logo";
 import styles from "./styles.module.scss";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
@@ -55,6 +56,7 @@ const EntityTeaser = ({
   const localization = getLocalization(locale).common;
   const dcatProfileLabels = getDcatProfileLabels(getLocalization(locale).searchPage.searchForm.dcatProfileFilter);
   const dcatProfiles = (entity?.dcatProfiles ?? []).filter((profile) => profile !== DCAT_PROFILE_DEFAULT);
+  const isHighValueDataset = entity?.datasetType?.some(({ uri }) => isHighValueDatasetType(uri)) ?? false;
   return (
     <Card
       className={cn(styles.container, className, { [styles.llm]: llm })}
@@ -127,6 +129,9 @@ const EntityTeaser = ({
                     {formatDcatProfileLabel(profile, dcatProfileLabels)}
                   </Tag>
                 ))}
+              {entity.searchType === EntityType.DATASET && isHighValueDataset && (
+                <Tag data-size="sm">{localization.teaser.highValueDataset}</Tag>
+              )}
             </TagList>
           ) : (
             <div style={{ marginTop: "0.5rem", lineHeight: "1.75rem" }}>

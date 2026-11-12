@@ -12,6 +12,7 @@ import { accessKeysToQueryParam } from "./access";
 import { orgPathKeysToQueryParam } from "./org-path";
 import { provenanceKeysToQueryParam } from "./provenance";
 import { dcatProfileKeysToQueryParam } from "./dcat-profile";
+import { datasetTypeKeysToQueryParam } from "./dataset-type";
 import { formatKeysToQueryParam } from "./format";
 import { losThemeKeysToQueryParam } from "./theme/los-theme";
 import { dataThemeKeysToQueryParam } from "./theme/data-theme";
@@ -27,6 +28,7 @@ export type BuildSearchPageUrlOptions = {
   access?: string[];
   provenance?: string[];
   dcatProfiles?: string[];
+  datasetTypes?: string[];
   spatial?: string[];
   formats?: string[];
   losThemes?: string[];
@@ -44,6 +46,7 @@ export const buildSearchPageUrl = function ({
   access = [],
   provenance = [],
   dcatProfiles = [],
+  datasetTypes = [],
   spatial = [],
   formats = [],
   losThemes = [],
@@ -61,6 +64,7 @@ export const buildSearchPageUrl = function ({
   if (access.length > 0) params.set("access", accessKeysToQueryParam(access));
   if (provenance.length > 0) params.set("provenance", provenanceKeysToQueryParam(provenance));
   if (dcatProfiles.length > 0) params.set("dcatProfile", dcatProfileKeysToQueryParam(dcatProfiles));
+  if (datasetTypes.length > 0) params.set("datasetType", datasetTypeKeysToQueryParam(datasetTypes));
   if (spatial.length > 0) params.set("spatial", spatialKeysToQueryParam(spatial));
   if (formats.length > 0) params.set("format", formatKeysToQueryParam(formats));
   if (losThemes.length > 0) params.set("losTheme", losThemeKeysToQueryParam(losThemes));
