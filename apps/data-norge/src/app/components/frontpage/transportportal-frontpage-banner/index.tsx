@@ -74,6 +74,7 @@ const TransportportalFrontpageBanner = ({
         fill
         preload
         fetchPriority="high"
+        quality={60}
         sizes="100vw"
         className={styles.backgroundImage}
       />
