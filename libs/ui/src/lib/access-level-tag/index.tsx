@@ -10,10 +10,16 @@ type AccessLevelTagProps = {
   accessCode?: AccessRightsCodes | string;
   nonInteractive?: boolean;
   locale: LocaleCodes;
-  baseUri: string;
+  baseUri?: string;
 };
 
-const AccessLevelTag = ({ accessCode, nonInteractive, locale, baseUri, ...props }: AccessLevelTagProps & TagProps) => {
+const AccessLevelTag = ({
+  accessCode,
+  nonInteractive,
+  locale,
+  baseUri = "",
+  ...props
+}: AccessLevelTagProps & TagProps) => {
   const dictionary = getLocalization(locale).detailsPage;
   let color = "neutral";
 
