@@ -73,7 +73,6 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }:
                   <ExternalLink
                     href={`/${locale}/docs/sharing-data/publishing-data-descriptions/4-triggering-harvest`}
                     baseUri={baseUri}
-                    locale={locale}
                   >
                     {dictionary.details.general.firstHarvestedHelpTextLink}
                   </ExternalLink>
@@ -181,7 +180,6 @@ const GeneralDetails = ({ dataset, locale, dictionary, metadataScore, baseUri }:
         <dd>
           <TagLink
             href={ExternalHref({
-              locale: locale,
               baseUri: baseUri,
               href: `/organizations/${dataset.publisher?.id}/datasets/${dataset.id}`,
             })}

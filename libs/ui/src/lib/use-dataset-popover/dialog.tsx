@@ -113,7 +113,10 @@ const UseDatasetPopoverDialog = ({
           {apis.length ? (
             <ul className="fdk-box-list">
               {apis.map((api, index) => {
-                const href = ExternalHref({ locale: locale, baseUri: baseUri, href: `/data-services/${api.id}` });
+                const href = ExternalHref({
+                  baseUri: baseUri,
+                  href: `/${locale}/data-services/${api.id}`,
+                });
                 return (
                   <li key={`api-${index}`}>
                     <div className={styles.popoverListItem}>
