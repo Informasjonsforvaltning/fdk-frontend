@@ -264,6 +264,7 @@ const detailsPage = {
       page: "Om dokumentasjonen",
       dctType: "Type dokumentasjon",
       isPartOf: "Er del av",
+      validityDuration: "Gyldighetsperiode",
     },
     references: {
       title: "Referanser",

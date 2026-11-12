@@ -264,6 +264,7 @@ const detailsPage = {
       page: "Om dokumentasjonen",
       dctType: "Type dokumentasjon",
       isPartOf: "Er del av",
+      validityDuration: "Gyldigheitsperiode",
       rdfType: "RDF-type",
     },
     references: {
