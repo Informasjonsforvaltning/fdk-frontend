@@ -55,8 +55,9 @@ export const ExternalHref = (props: ExternalLinkProps): string => {
   const [target, setTarget] = useState(() => sanitizeLinkHref(href));
 
   useEffect(() => {
+    const newUrl = `${baseUri}${href}`;
     const searchParams = new URLSearchParams();
-    searchParams.set("url", `${baseUri}${href}`);
+    searchParams.set("url", newUrl);
     const gatewayLink = `/${locale}/leaving-gateway?${searchParams}`;
 
     // Needed to bypass gateway where an assumed external link actually points to data.norge.no
@@ -68,7 +69,7 @@ export const ExternalHref = (props: ExternalLinkProps): string => {
       setTarget(gatewayLink);
     }
     if (!isSameHostname) {
-      setTarget(`${searchParams}`);
+      setTarget(newUrl);
     }
   }, []);
 
