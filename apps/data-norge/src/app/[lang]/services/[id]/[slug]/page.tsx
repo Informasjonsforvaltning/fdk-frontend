@@ -34,7 +34,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
   let orgLogo: string | null = null;
   let communityTopics: CommunityTopic[] = [];
   let concepts: SearchObject[] = [];
-  let producesDatasets: SearchObject[] = [];
+  let referencedDatasets: SearchObject[] = [];
 
   try {
     service = await getService(id);
@@ -78,12 +78,15 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
   }
 
   try {
-    const producesDatasetUris = [
-      ...new Set((service.produces ?? []).flatMap((output) => output.isPartOf ?? [])),
+    const referencedDatasetUris = [
+      ...new Set([
+        ...(service.produces ?? []).flatMap((output) => output.isPartOf ?? []),
+        ...(service.hasInput ?? []).flatMap((evidence) => evidence.isPartOf ?? []),
+      ]),
     ];
-    if (producesDatasetUris.length) {
-      const results = await searchDatasets(producesDatasetUris);
-      producesDatasets = results?.hits ?? [];
+    if (referencedDatasetUris.length) {
+      const results = await searchDatasets(referencedDatasetUris);
+      referencedDatasets = results?.hits ?? [];
     }
   } catch {
     // Fail silently
@@ -93,7 +96,7 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     <ServiceDetailsPage
       baseUri={process.env.FDK_BASE_URI as string}
       concepts={concepts}
-      producesDatasets={producesDatasets}
+      referencedDatasets={referencedDatasets}
       service={service}
       orgLogo={orgLogo}
       communityTopics={communityTopics}

@@ -37,7 +37,7 @@ export type ServiceDetailsPageType = {
   communityTopics?: CommunityTopic[];
   communityBaseUri: string;
   concepts: SearchObject[];
-  producesDatasets: SearchObject[];
+  referencedDatasets: SearchObject[];
   defaultActiveTab?: string;
   dictionaries: {
     common: Localization;
@@ -55,7 +55,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
     communityTopics,
     communityBaseUri,
     concepts,
-    producesDatasets,
+    referencedDatasets,
     defaultActiveTab,
     dictionaries,
     locale,
@@ -83,6 +83,22 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
     window.history.pushState(null, "", `?tab=${tab}`);
   };
 
+  const renderIsPartOf = (uris: string[]) =>
+    uris.map((uri, index) => {
+      const dataset = referencedDatasets.find((hit) => hit.uri === uri);
+      const label = printLocaleValue(locale, dataset?.title) || uri;
+      return (
+        <Fragment key={uri}>
+          {index > 0 && ", "}
+          {dataset?.id ? (
+            <Link href={`/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`}>{label}</Link>
+          ) : (
+            label
+          )}
+        </Fragment>
+      );
+    });
+
   const requiredEvidenceList: DetailsEntry[] =
     service.hasInput?.map((evidence) => {
       const contents: ContentRow[] = [];
@@ -108,6 +124,12 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
         contents.push({
           label: dictionaries.detailsPage.details.requiredEvidence.dctType,
           value: evidence.dctType?.map((dctType) => printLocaleValue(locale, dctType.prefLabel)).join(", "),
+        });
+      }
+      if (evidence.isPartOf?.length) {
+        contents.push({
+          label: dictionaries.detailsPage.details.requiredEvidence.isPartOf,
+          value: renderIsPartOf(evidence.isPartOf),
         });
       }
 
@@ -138,20 +160,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
       if (output.isPartOf?.length) {
         contents.push({
           label: dictionaries.detailsPage.produces.isPartOf,
-          value: output.isPartOf.map((uri, index) => {
-            const dataset = producesDatasets.find((hit) => hit.uri === uri);
-            const label = printLocaleValue(locale, dataset?.title) || uri;
-            return (
-              <Fragment key={uri}>
-                {index > 0 && ", "}
-                {dataset?.id ? (
-                  <Link href={`/${locale}/datasets/${dataset.id}/${getSlug(dataset, locale)}`}>{label}</Link>
-                ) : (
-                  label
-                )}
-              </Fragment>
-            );
-          }),
+          value: renderIsPartOf(output.isPartOf),
         });
       }
       if (output.type?.length) {
