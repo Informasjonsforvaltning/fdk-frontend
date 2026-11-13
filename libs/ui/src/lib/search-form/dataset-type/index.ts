@@ -19,3 +19,4 @@ export {
   type DatasetTypeSearchFilter,
 } from "./url";
 export { useSyncedDatasetTypeSelection } from "./use-synced-selection";
+export { useDatasetTypeLabels } from "./use-dataset-type-labels";
