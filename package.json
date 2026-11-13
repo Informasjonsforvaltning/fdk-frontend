@@ -114,7 +114,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "@zazuko/yasgui": "^4.6.1",
     "classnames": "^2.5.1",
-    "framer-motion": "^14.9.1",
+    "framer-motion": "^14.10.1",
     "jsonld": "^9.0.0",
     "leaflet": "^1.9.4",
     "marked": "^18.1.0",
