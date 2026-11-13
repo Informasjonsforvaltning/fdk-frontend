@@ -30,6 +30,7 @@ const common = {
     searchPlaceholder: 'Search for datasets, e.g. "public transport"',
     partnersTitle: "A {{link}} between",
     partnersTitleLink: "collaboration",
+    photoBy: "Photo by {{photographer}}",
     frontpageLinks: {
       roadNetwork: "Road network",
       commuterTraffic: "Public transport",
