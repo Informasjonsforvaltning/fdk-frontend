@@ -7,7 +7,7 @@ import heroPhoto1 from "@fdk-frontend/images/transportportal/1.jpg";
 import heroPhoto2 from "@fdk-frontend/images/transportportal/2.jpg";
 import { interpolate, type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { Profile } from "@fdk-frontend/types";
-import { HeadingWithDivider, SearchInput, TransportportalPartnersLinklist } from "@fdk-frontend/ui";
+import { ExternalLink, HeadingWithDivider, SearchInput, TransportportalPartnersLinklist } from "@fdk-frontend/ui";
 import { TransportportalFrontpageLinks } from "../transportportal-frontpage-links";
 
 import styles from "./transportportal-frontpage-banner.module.scss";
@@ -18,14 +18,25 @@ type TransportportalFrontpageBannerProps = {
   profile?: Profile;
 };
 
-const backgroundImages = [heroPhoto1, heroPhoto2];
+const backgroundImages = [
+  {
+    src: heroPhoto1,
+    credit: "Bernd Dittrich",
+    creditHref: "https://unsplash.com/photos/an-aerial-view-of-a-highway-with-cars-on-it-mXG463mXYGI",
+  },
+  {
+    src: heroPhoto2,
+    credit: "Stig Husby",
+    creditHref: "https://unsplash.com/photos/a-long-road-with-a-mountain-in-the-background-3Gh8XAGvNwU",
+  },
+];
 
 const TransportportalFrontpageBanner = ({
   dictionary,
   locale,
   profile = "data.norge",
 }: TransportportalFrontpageBannerProps) => {
-  const backgroundImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+  const backgroundImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)] ?? backgroundImages[0];
 
   return (
     <div
@@ -68,8 +79,17 @@ const TransportportalFrontpageBanner = ({
         </div>
       </div>
       <div className={styles.gradient} />
+      <p className={styles.attribution}>
+        {interpolate(dictionary.tp.photoBy, {
+          photographer: backgroundImage.creditHref ? (
+            <ExternalLink href={backgroundImage.creditHref}>{backgroundImage.credit}</ExternalLink>
+          ) : (
+            backgroundImage.credit
+          ),
+        })}
+      </p>
       <Image
-        src={backgroundImage}
+        src={backgroundImage.src}
         alt=""
         fill
         preload
