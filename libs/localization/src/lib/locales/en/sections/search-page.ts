@@ -63,7 +63,7 @@ const searchPage = {
       geography: "Geography",
       provenance: "Provenance",
       dcatProfile: "Specification",
-      datasetType: "High-value datasets",
+      datasetType: "Dataset type",
     },
     clearAllFilters: "Clear all filters",
     listSettings: "List settings",

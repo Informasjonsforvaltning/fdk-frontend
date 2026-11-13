@@ -63,7 +63,7 @@ const searchPage = {
       geography: "Geografi",
       provenance: "Opphav",
       dcatProfile: "Spesifikasjon",
-      datasetType: "Datasett av høy verdi",
+      datasetType: "Datasettype",
     },
     clearAllFilters: "Tøm alle filtre",
     listSettings: "Listeinnstillinger",
