@@ -84,7 +84,7 @@ export default function DatasetDetailsPage({
 
   const breadcrumbList = [
     {
-      href: `/datasets`,
+      href: `/${locale}/search/datasets`,
       text: dictionaries.detailsPage.breadcrumbs.datasets,
     },
     {

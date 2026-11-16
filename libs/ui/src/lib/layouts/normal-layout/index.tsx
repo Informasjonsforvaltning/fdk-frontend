@@ -12,12 +12,11 @@ type NormalLayoutProps = RootLayoutProps & {
 const NormalLayout = async ({ children, params, profile }: PropsWithChildren & NormalLayoutProps) => {
   const { lang } = await params;
   const communityBaseUri = process.env.FDK_COMMUNITY_BASE_URI;
-  const showSearchInput = process.env.SEARCH_PROTOTYPE_ENABLED === "true";
 
   return (
     <HeaderLayout
       locale={lang}
-      showSearchInput={showSearchInput}
+      showSearchInput
       profile={profile}
     >
       <FooterLayout

@@ -13,7 +13,6 @@ const common = {
     },
   },
   header: {
-    findDataButton: "Find data",
     menuButton: "Menu",
     shareDataButton: "Share data",
     skipToMain: "Skip to main content",

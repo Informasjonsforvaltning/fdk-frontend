@@ -16,5 +16,10 @@ export const Primary: Story = {
       appDirectory: true,
     },
   },
-  render: () => <Header locale="en" />,
+  render: () => (
+    <Header
+      locale="en"
+      showSearchInput
+    />
+  ),
 };

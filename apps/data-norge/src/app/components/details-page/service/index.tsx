@@ -71,7 +71,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
 
   const breadcrumbList = [
     {
-      href: "/public-services-and-events",
+      href: `/${locale}/search/services-and-events`,
       text: dictionaries.detailsPage.breadcrumbs.services,
     },
     {
@@ -220,7 +220,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
             <TagLink
               data-color="info"
               data-size="md"
-              href="/public-services-and-events"
+              href={`/${locale}/search/services-and-events`}
             >
               {dictionaries.detailsPage.header.servicesTagLink}
             </TagLink>
@@ -682,7 +682,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     {service.dctType.map((theme) => (
                       <TagLink
                         key={theme.code}
-                        href={`/public-services-and-events?mainActivities=${theme.code}`}
+                        href={`/${locale}/search/services-and-events`}
                         data-size="sm"
                       >
                         {printLocaleValue(locale, theme.prefLabel) || theme.code}
@@ -709,7 +709,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     {service.eurovocThemes?.map((theme) => (
                       <TagLink
                         key={theme.code}
-                        href={`/public-services-and-events?eurovocTheme=${theme.code}`}
+                        href={`/${locale}/search/services-and-events`}
                         data-size="sm"
                       >
                         {printLocaleValue(locale, theme.label) || theme.code}
@@ -719,7 +719,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                     {service.losThemes?.map((theme) => (
                       <TagLink
                         key={theme.code}
-                        href={`/public-services-and-events?losTheme=${theme.code}`}
+                        href={`/${locale}/search/services-and-events?losTheme=${theme.code}`}
                         data-size="sm"
                       >
                         {printLocaleValue(locale, theme.name) || theme.code}

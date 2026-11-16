@@ -109,6 +109,13 @@ const nextConfig = {
         destination: "/:lang/docs/sharing-data/rdf/rdf-crash-course",
         permanent: true,
       },
+      // Concept detail pages still live on fdk-portal at /concepts/{id}.
+      // Teasers link to /{lang}/concepts/{id}. Remove this when that route exists here.
+      {
+        source: "/:lang(nb|nn|en)/concepts/:path+",
+        destination: "/concepts/:path+",
+        permanent: false,
+      },
     ];
   },
 };

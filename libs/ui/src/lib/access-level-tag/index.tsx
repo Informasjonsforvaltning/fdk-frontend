@@ -35,7 +35,7 @@ const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: Access
           {accessCode ? (
             <TagLink
               className={styles.innerTag}
-              href={`/datasets?accessrights=${accessCode}`}
+              href={`/${locale}/search/datasets?access=${accessCode}`}
             >
               {label}
             </TagLink>

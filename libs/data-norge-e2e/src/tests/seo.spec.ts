@@ -116,9 +116,9 @@ test.describe("SEO Tests", () => {
       expect(content).toContain("<loc>https://data.norge.no/nn</loc>");
 
       // Check for dataset pages in all locales
-      expect(content).toContain("<loc>https://data.norge.no/nb/datasets</loc>");
-      expect(content).toContain("<loc>https://data.norge.no/en/datasets</loc>");
-      expect(content).toContain("<loc>https://data.norge.no/nn/datasets</loc>");
+      expect(content).toContain("<loc>https://data.norge.no/nb/search/datasets</loc>");
+      expect(content).toContain("<loc>https://data.norge.no/en/search/datasets</loc>");
+      expect(content).toContain("<loc>https://data.norge.no/nn/search/datasets</loc>");
 
       // Check for about pages in all locales
       expect(content).toContain("<loc>https://data.norge.no/nb/about</loc>");

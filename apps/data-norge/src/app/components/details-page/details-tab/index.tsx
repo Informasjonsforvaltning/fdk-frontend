@@ -256,7 +256,7 @@ const DatasetDetailsTab = ({
                   .map((keyword: any, i: number) => (
                     <TagLink
                       key={`keyword-${i}`}
-                      href={`/datasets?q=${keyword[locale]}`}
+                      href={`/${locale}/search/datasets?q=${encodeURIComponent(keyword[locale])}`}
                     >
                       {keyword[locale]}
                     </TagLink>
