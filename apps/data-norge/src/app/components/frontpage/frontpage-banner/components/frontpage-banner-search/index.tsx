@@ -31,16 +31,19 @@ const FrontpageBannerSearch = ({ dictionary, locale }: FrontpageBannerSearchProp
       data-color-scheme="dark"
     >
       <Heading level={2}>{dictionary.aiBanner.prompt.label}</Heading>
-      <SearchInput
-        locale={locale}
-        className={styles.searchInput}
-        value={query}
-        onChange={setQuery}
-        defaultTrayPanel="ai"
-        inputRef={inputRef}
-        placeholder={dictionary.aiBanner.prompt.placeholder}
-        data-size="lg"
-      />
+      <div className={styles.searchInputWrapper}>
+        <SearchInput
+          locale={locale}
+          className={styles.searchInput}
+          value={query}
+          onChange={setQuery}
+          defaultTrayPanel="ai"
+          inputRef={inputRef}
+          placeholder={dictionary.aiBanner.prompt.placeholder}
+          data-size="lg"
+        />
+        <div className={styles.disclaimer}>{dictionary.aiBanner.prompt.disclaimer}</div>
+      </div>
       <QuerySuggestion
         dictionary={dictionary}
         onClick={handleSuggestion}

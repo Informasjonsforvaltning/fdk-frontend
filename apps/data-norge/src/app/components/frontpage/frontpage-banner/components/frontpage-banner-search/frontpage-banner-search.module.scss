@@ -13,9 +13,18 @@
   }
 }
 
-.searchInput {
-  width: 100%;
+.searchInputWrapper {
+  width:100%;
 
+  .disclaimer {
+    padding:0.5rem 0 0;
+    color: var(--ds-color-accent-text-subtle);
+    font-size:0.8em;
+    text-align:center;
+  }
+}
+
+.searchInput {
   &:not([data-color-scheme="light"]) {
     :global(.ds-input) {
       background: rgba(0, 0, 0, 0.4);
