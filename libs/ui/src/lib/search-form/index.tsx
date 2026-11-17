@@ -180,11 +180,13 @@ const SearchForm = ({
   const dcatProfileLabels = getDcatProfileLabels(dict.searchForm.dcatProfileFilter);
   const datasetTypeLabels = useDatasetTypeLabels(locale);
 
-  const orgKey = !selectedOrgPaths.length ? "" : selectedOrgPaths[selectedOrgPaths.length - 1];
-  const orgPathLabels: Record<string, string> = {
-    [orgKey]: formatOrgPathLabel(orgKey, useOrgPathLabels(locale), dict.searchForm.orgTypeFilter),
-  };
-  // TODO: handle useOrgPathLabels. Called more than once on each render when used like this (also called within org-filter component)
+  const orgPathLabelMap = useOrgPathLabels(locale);
+  const orgTypeDict = dict.searchForm.orgTypeFilter;
+  const orgPathLabels: Record<string, string> = useMemo(
+    () =>
+      Object.fromEntries(selectedOrgPaths.map((key) => [key, formatOrgPathLabel(key, orgPathLabelMap, orgTypeDict)])),
+    [selectedOrgPaths, orgPathLabelMap, orgTypeDict],
+  );
   const losThemeLabels = useLosThemeLabels(locale);
   const dataThemeLabels = useDataThemeLabels(locale);
   const formatLabels: Record<string, string> = Object.fromEntries(
