@@ -100,6 +100,7 @@ export { mdxComponents } from "./lib/markdown/components";
 export { default as MdxHeading } from "./lib/mdx-heading";
 export * from "./lib/mdx-heading";
 export { default as OpenDataTag } from "./lib/open-data-tag";
+export { default as HighValueTag, isHighValue } from "./lib/high-value-tag";
 export * from "./lib/open-data-tag";
 export { default as OrgButton } from "./lib/org-button";
 export * from "./lib/org-button";

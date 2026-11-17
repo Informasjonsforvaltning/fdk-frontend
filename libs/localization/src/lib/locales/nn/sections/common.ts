@@ -148,11 +148,10 @@ const common = {
     helpText:
       "Datasettet er beskrive i medhald av mobilityDCAT-AP, ein standard for beskriving av samferdsels- og mobilitetsdata",
   },
-  hvdTag: {
-    label: "HVD",
+  highValueTag: {
+    label: "Høg verdi",
     helpTextTitle: "Omgrepsforklaring",
-    helpText:
-      "Datasettet er eit datasett med høg verdi (HVD) etter EUs gjennomføringsforordning (EU) 2023/138. Det er utgjevaren som har oppgitt dette.",
+    helpText: "Datasettet er merkt som Høg verdi eller som Nasjonale grunndata av utgjevaren.",
   },
   unpublishedTag: {
     label: "Avpublisert",
@@ -217,7 +216,6 @@ const common = {
   },
   teaser: {
     openData: "Opne data",
-    highValueDataset: "Datasett av høg verdi",
     missingDescription: "Manglar skildring",
     llmHitTooltip: "Treff frå KI-søk",
   },
