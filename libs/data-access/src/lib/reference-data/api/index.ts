@@ -194,3 +194,56 @@ export const getLosThemesAndWords = async (): Promise<LosThemesAndWordsResponse>
 
   return parseLosThemesAndWordsResponse(await response.json());
 };
+
+export type DatasetTypeLabel = Partial<Record<"en" | "nb" | "nn", string>>;
+
+export type DatasetType = {
+  uri: string;
+  label: DatasetTypeLabel;
+};
+
+export type DatasetTypesResponse = {
+  datasetTypes: DatasetType[];
+};
+
+const parseDatasetTypes = (value: unknown, key: string): DatasetType[] => {
+  if (!isRecord(value) || !Array.isArray(value[key])) return [];
+
+  return value[key].flatMap((entry: unknown) =>
+    isRecord(entry) && typeof entry.uri === "string" && isRecord(entry.label)
+      ? [
+          {
+            uri: entry.uri,
+            label: Object.fromEntries(
+              Object.entries(entry.label).filter(
+                ([lang, text]) => ["en", "nb", "nn"].includes(lang) && typeof text === "string",
+              ),
+            ),
+          },
+        ]
+      : [],
+  );
+};
+
+const fetchDatasetTypes = async (path: string, key: string): Promise<DatasetType[]> => {
+  const response = await fetch(`${FDK_BASE_URI}/reference-data/${path}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+    next: { revalidate: 3600 },
+  });
+
+  if (!response.ok) throw new Error(`Failed to fetch ${path}`);
+
+  return parseDatasetTypes(await response.json(), key);
+};
+
+export const getDatasetTypes = async (): Promise<DatasetTypesResponse> => {
+  const [euDatasetTypes, highValueDatasetTypes] = await Promise.all([
+    fetchDatasetTypes("eu/dataset-types", "datasetTypes"),
+    fetchDatasetTypes("digdir/high-value-dataset-types", "highValueDatasetTypes"),
+  ]);
+
+  return { datasetTypes: [...highValueDatasetTypes, ...euDatasetTypes] };
+};

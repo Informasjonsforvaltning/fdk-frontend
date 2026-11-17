@@ -22,8 +22,13 @@ import {
   printLocaleValue,
   printOrganizationLabel,
 } from "@fdk-frontend/utils";
-import { DCAT_PROFILE_DEFAULT, formatDcatProfileLabel, getDcatProfileLabels } from "../search-form/dcat-profile";
-import { isHighValueDatasetType } from "../search-form/dataset-type";
+import {
+  DCAT_PROFILE_DEFAULT,
+  DCAT_PROFILE_HVD,
+  formatDcatProfileLabel,
+  getDcatProfileLabels,
+} from "../search-form/dcat-profile";
+import HighValueTag, { isHighValue } from "../high-value-tag";
 import { OrgLogo } from "../org-logo";
 import styles from "./styles.module.scss";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
@@ -55,8 +60,10 @@ const EntityTeaser = ({
       : plainDescription;
   const localization = getLocalization(locale).common;
   const dcatProfileLabels = getDcatProfileLabels(getLocalization(locale).searchPage.searchForm.dcatProfileFilter);
-  const dcatProfiles = (entity?.dcatProfiles ?? []).filter((profile) => profile !== DCAT_PROFILE_DEFAULT);
-  const isHighValueDataset = entity?.datasetType?.some(({ uri }) => isHighValueDatasetType(uri)) ?? false;
+  const dcatProfiles = (entity?.dcatProfiles ?? []).filter(
+    (profile) => profile !== DCAT_PROFILE_DEFAULT && profile !== DCAT_PROFILE_HVD,
+  );
+  const isHighValueDataset = isHighValue(entity?.dcatProfiles, entity?.datasetType);
   return (
     <Card
       className={cn(styles.container, className, { [styles.llm]: llm })}
@@ -130,7 +137,11 @@ const EntityTeaser = ({
                   </Tag>
                 ))}
               {entity.searchType === EntityType.DATASET && isHighValueDataset && (
-                <Tag data-size="sm">{localization.teaser.highValueDataset}</Tag>
+                <HighValueTag
+                  data-size="sm"
+                  locale={locale}
+                  nonInteractive
+                />
               )}
             </TagList>
           ) : (

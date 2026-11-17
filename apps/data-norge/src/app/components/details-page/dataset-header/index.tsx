@@ -8,6 +8,8 @@ import { printLocaleValue, printOrganizationLabel } from "@fdk-frontend/utils";
 import {
   OrgButton,
   OpenDataTag,
+  HighValueTag,
+  isHighValue,
   AccessRequestButton,
   AccessLevelTag,
   UseDatasetPopover,
@@ -18,7 +20,7 @@ import {
 import { Heading, Paragraph, Tag } from "@digdir/designsystemet-react";
 import styles from "./dataset-header.module.scss";
 import { HelpText } from "@fellesdatakatalog/ui";
-import { DCAT_PROFILE_HVD, DCAT_PROFILE_MOBILITY } from "@fdk-frontend/ui/search-form/dcat-profile";
+import { DCAT_PROFILE_MOBILITY } from "@fdk-frontend/ui/search-form/dcat-profile";
 
 type DatasetHeaderProps = {
   dataset: DatasetWithIdentifier;
@@ -48,9 +50,12 @@ const DatasetHeader = ({
   isAvailable,
   ...props
 }: DatasetHeaderProps & React.HTMLAttributes<HTMLDivElement>) => {
-  const isMobilityDataset =
-    dataset?.dcatProfiles?.includes(DCAT_PROFILE_MOBILITY);
-  const isHvdDataset = dataset?.dcatProfiles?.includes(DCAT_PROFILE_HVD);
+  const isMobilityDataset = dataset?.dcatProfiles?.includes(DCAT_PROFILE_MOBILITY);
+  const dctTypes = dataset?.dctType;
+  const isHighValueDataset = isHighValue(
+    dataset?.dcatProfiles,
+    Array.isArray(dctTypes) ? dctTypes : dctTypes ? [dctTypes] : undefined,
+  );
 
   return (
     <div className={styles.header}>
@@ -103,20 +108,13 @@ const DatasetHeader = ({
             </HelpText>
           </Tag>
         )}
-        {isHvdDataset && (
-          <Tag className={styles.tag}>
-            {dictionaries.common.hvdTag.label}
-            <HelpText aria-label={dictionaries.common.hvdTag.helpTextTitle}>
-              <Paragraph data-size="sm">{dictionaries.common.hvdTag.helpText}</Paragraph>
-            </HelpText>
-          </Tag>
-        )}
         <AccessLevelTag
           accessCode={dataset.accessRights?.code}
           locale={locale}
           data-size="md"
         />
         {dataset.isOpenData && <OpenDataTag locale={locale} />}
+        {isHighValueDataset && <HighValueTag locale={locale} />}
         {dataset.isRemovedFromFDK && (
           <UnpublishedTag
             locale={locale}

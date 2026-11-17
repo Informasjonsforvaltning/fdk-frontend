@@ -43,7 +43,7 @@ import { getAccessRightsLabels } from "./access/labels";
 import { formatLabel } from "./format/labels";
 import { getProvenanceLabels } from "./provenance/labels";
 import { getDcatProfileLabels } from "./dcat-profile/labels";
-import { getDatasetTypeLabels } from "./dataset-type/labels";
+import { useDatasetTypeLabels } from "./dataset-type/use-dataset-type-labels";
 import { useOrgPathLabels } from "./org-path/use-org-path-labels";
 import { formatOrgPathLabel } from "./org-path/labels";
 
@@ -178,7 +178,7 @@ const SearchForm = ({
   const accessLabels = getAccessRightsLabels(dict.searchForm.accessFilter);
   const provenanceLabels = getProvenanceLabels(dict.searchForm.provenanceFilter);
   const dcatProfileLabels = getDcatProfileLabels(dict.searchForm.dcatProfileFilter);
-  const datasetTypeLabels = getDatasetTypeLabels(dict.searchForm.datasetTypeFilter);
+  const datasetTypeLabels = useDatasetTypeLabels(locale);
 
   const orgKey = !selectedOrgPaths.length ? "" : selectedOrgPaths[selectedOrgPaths.length - 1];
   const orgPathLabels: Record<string, string> = {

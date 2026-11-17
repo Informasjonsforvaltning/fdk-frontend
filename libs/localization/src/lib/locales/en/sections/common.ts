@@ -147,11 +147,10 @@ const common = {
     helpTextTitle: "Explanation",
     helpText: "The dataset is described in accordance to mobilityDCAT, a standardization for mobility data.",
   },
-  hvdTag: {
-    label: "HVD",
+  highValueTag: {
+    label: "High value",
     helpTextTitle: "Explanation",
-    helpText:
-      "The dataset is a high-value dataset (HVD) under Commission Implementing Regulation (EU) 2023/138, as declared by the publisher.",
+    helpText: "The dataset is marked as High value or as National basic data.",
   },
   unpublishedTag: {
     label: "Unpublished",
@@ -216,7 +215,6 @@ const common = {
   },
   teaser: {
     openData: "Open data",
-    highValueDataset: "High-value dataset",
     missingDescription: "Missing description",
     llmHitTooltip: "Result from AI search",
   },
