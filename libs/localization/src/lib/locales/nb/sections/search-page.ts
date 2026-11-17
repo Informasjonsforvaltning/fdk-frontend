@@ -32,7 +32,6 @@ const searchPage = {
     seeAllResults: "Se alle treff",
     dataCatalogs: "Datakataloger",
     aiSearch: "KI-søk",
-    disclaimer: "Ikke legg inn personopplysninger eller annen sensitiv informasjon.",
   },
   searchSuggestions: {
     heading: "Søkeforslag",

@@ -32,7 +32,6 @@ const searchPage = {
     seeAllResults: "See all results",
     dataCatalogs: "Data catalogs",
     aiSearch: "AI search",
-    disclaimer: "Do not enter personal or other sensitive information.",
   },
   searchSuggestions: {
     heading: "Search suggestions",
