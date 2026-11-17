@@ -4,6 +4,7 @@ import { useState, type HTMLAttributes } from "react";
 import { ToggleGroup, Spinner } from "@digdir/designsystemet-react";
 import { SparklesFillIcon } from "@navikt/aksel-icons";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
+import { ExclamationmarkTriangleIcon } from "@navikt/aksel-icons";
 
 import SearchTrayNav from "./search-tray-nav";
 import SearchTrayAiSuggestions from "./search-tray-ai-suggestions";
@@ -54,6 +55,15 @@ const SearchInputTray = ({
       className={cn(styles.tray, className, { [styles.visible]: isVisible })}
       {...props}
     >
+      {showTrayNav && (
+        <div className={styles.disclaimer}>
+          <ExclamationmarkTriangleIcon
+            className={styles.disclaimerIcon}
+            aria-hidden
+          />
+          {dictionary.searchInput.disclaimer}
+        </div>
+      )}
       {loading && !hasQuery && (
         <div className={styles.spinnerContainer}>
           <Spinner
