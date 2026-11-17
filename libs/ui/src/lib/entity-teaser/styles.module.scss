@@ -55,6 +55,8 @@
 }
 
 .description {
+  overflow-wrap: anywhere;
+
   @media (max-width: 600px) {
     overflow: hidden;
     text-overflow: ellipsis;
