@@ -96,7 +96,7 @@ export default function DatasetStructuredData({ dataset, locale, baseUri }: Data
         "@type": "ListItem",
         position: 2,
         name: "Datasets",
-        item: `${baseUri}/${locale}/datasets`,
+        item: `${baseUri}/${locale}/search/datasets`,
       },
       {
         "@type": "ListItem",

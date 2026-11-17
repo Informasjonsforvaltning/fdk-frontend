@@ -360,25 +360,21 @@ const generateSitemapEntries = async (site: Site): Promise<MetadataRoute.Sitemap
       priority: 1,
     },
 
-    // Dataset pages for all locales
-    {
-      url: `${baseUrl}/nb/datasets`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/en/datasets`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/nn/datasets`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
+    // Search pages for all locales. Catalog roots live under /search/{set}.
+    ...["nb", "en", "nn"].flatMap((locale) => [
+      {
+        url: `${baseUrl}/${locale}/search`,
+        lastModified: new Date(),
+        changeFrequency: "daily" as const,
+        priority: 0.8,
+      },
+      ...["datasets", "data-services", "concepts", "information-models", "services-and-events"].map((setId) => ({
+        url: `${baseUrl}/${locale}/search/${setId}`,
+        lastModified: new Date(),
+        changeFrequency: "daily" as const,
+        priority: 0.9,
+      })),
+    ]),
 
     // Data hunter pages for all locales
     {
@@ -400,37 +396,6 @@ const generateSitemapEntries = async (site: Site): Promise<MetadataRoute.Sitemap
       priority: 0.7,
     },
 
-    // Legacy pages
-    {
-      url: `${baseUrl}/search-all`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/dataservices`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/concepts`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/informationmodels`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/public-services-and-events`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
     {
       url: `${baseUrl}/organizations`,
       lastModified: new Date(),

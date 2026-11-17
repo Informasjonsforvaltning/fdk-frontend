@@ -46,7 +46,7 @@
       */
 
       :global(.ds-button) {
-        color:white !important;
+        color: white !important;
       }
 
       .shareButton {
@@ -67,15 +67,15 @@
   z-index: 1700;
   display: block;
   padding: 1rem;
-  top:0.75rem;
-  left:0.75rem;
-  right:0.75rem;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
   border: 0;
-  border-radius:0.25rem;
+  border-radius: 0.25rem;
   text-align: center;
   text-decoration: none;
   box-shadow: none;
-  background:white;
+  background: white;
 
   &:not(:focus) {
     @include core-mixins.sr-only();
@@ -93,7 +93,7 @@
   &.headerSticky {
     position: fixed;
     box-shadow: var(--ds-shadow-md);
-    z-index:1601;
+    z-index: 1601;
   }
 }
 
@@ -106,15 +106,10 @@
   position: relative;
   z-index: 1601;
   container-type: inline-size;
-
-  // TODO: Remove these styles when search prototype is released
-  &.oldContent {
-    grid-template-columns: min-content 1fr min-content min-content min-content;
-  }
 }
 
 .headerLogo {
-  margin-left:-0.5rem;
+  margin-left: -0.5rem;
 
   &:not(:hover) {
     color: var(--fdk-color-text) !important;
@@ -128,8 +123,7 @@
   box-sizing: border-box;
 }
 
-.shareButton,
-.findDataButton {
+.shareButton {
   white-space: nowrap;
 }
 
@@ -176,7 +170,6 @@
       .headerOuter {
         .headerInner {
           .menuButton,
-          .findDataButton,
           .shareButton {
             color: white;
 
@@ -196,43 +189,32 @@
 
 @media (max-width: 850px) {
   .headerLogo {
-    margin:0;
-    
+    margin: 0;
+
     span {
-      display:none;
+      display: none;
     }
   }
 
   .menuButton {
     span {
-      display:none;
+      display: none;
     }
   }
 
   .shareButton {
-    display:none;
+    display: none;
   }
 
   .headerOuter .headerInner {
     padding: 1rem 1.5rem;
     grid-template-columns: min-content 1fr min-content;
-
-    &.oldContent {
-      grid-template-columns: min-content 1fr min-content min-content;
-
-      .findDataButton {
-        span {
-          display:none;
-        }
-      }
-    }
   }
 }
 
-
 @media (max-width: 700px) {
   .headerSearchInput {
-    max-width:none;
+    max-width: none;
   }
 }
 
@@ -252,6 +234,6 @@
 
 @media (max-width: 500px) {
   .headerOuter .headerInner {
-    padding:1rem;
+    padding: 1rem;
   }
 }

@@ -24,7 +24,7 @@ import {
   TagLink,
   UnpublishedTag,
 } from "@fdk-frontend/ui";
-import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel, Button, Link } from "@digdir/designsystemet-react";
+import { Card, Heading, Tabs, TabsList, TabsTab, TabsPanel, Button, Link, Tag } from "@digdir/designsystemet-react";
 import MetadataTab from "../metadata-tab";
 import CommunityTab from "../community-tab";
 import styles from "./service.module.scss";
@@ -71,7 +71,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
 
   const breadcrumbList = [
     {
-      href: "/public-services-and-events",
+      href: `/${locale}/search/services-and-events`,
       text: dictionaries.detailsPage.breadcrumbs.services,
     },
     {
@@ -220,7 +220,7 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
             <TagLink
               data-color="info"
               data-size="md"
-              href="/public-services-and-events"
+              href={`/${locale}/search/services-and-events`}
             >
               {dictionaries.detailsPage.header.servicesTagLink}
             </TagLink>
@@ -680,13 +680,12 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 {service.dctType?.length ? (
                   <TagList>
                     {service.dctType.map((theme) => (
-                      <TagLink
+                      <Tag
                         key={theme.code}
-                        href={`/public-services-and-events?mainActivities=${theme.code}`}
                         data-size="sm"
                       >
                         {printLocaleValue(locale, theme.prefLabel) || theme.code}
-                      </TagLink>
+                      </Tag>
                     ))}
                   </TagList>
                 ) : (
@@ -707,23 +706,21 @@ export default function ServiceDetailsPage(props: ServiceDetailsPageType) {
                 {service.eurovocThemes?.length || service.losThemes?.length ? (
                   <TagList>
                     {service.eurovocThemes?.map((theme) => (
-                      <TagLink
+                      <Tag
                         key={theme.code}
-                        href={`/public-services-and-events?eurovocTheme=${theme.code}`}
                         data-size="sm"
                       >
                         {printLocaleValue(locale, theme.label) || theme.code}
-                      </TagLink>
+                      </Tag>
                     ))}
 
                     {service.losThemes?.map((theme) => (
-                      <TagLink
-                        key={theme.code}
-                        href={`/public-services-and-events?losTheme=${theme.code}`}
+                      <Tag
+                        key={theme.uri}
                         data-size="sm"
                       >
                         {printLocaleValue(locale, theme.name) || theme.code}
-                      </TagLink>
+                      </Tag>
                     ))}
                   </TagList>
                 ) : (

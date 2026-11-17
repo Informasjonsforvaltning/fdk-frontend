@@ -109,6 +109,33 @@ const nextConfig = {
         destination: "/:lang/docs/sharing-data/rdf/rdf-crash-course",
         permanent: true,
       },
+      // Concept detail pages still live on fdk-portal at /concepts/{id}.
+      // Teasers link to /{lang}/concepts/{id}. Remove this when that route exists here.
+      {
+        source: "/:lang(nb|nn|en)/concepts/:path+",
+        destination: "/concepts/:path+",
+        permanent: false,
+      },
+      // Information-model pages in this app are not ready. Hits and related-model
+      // links use /{lang}/information-models/{id} and sometimes a slug. The portal
+      // route is /information-models/{id}. Remove these when the page here is ready.
+      {
+        source: "/:lang(nb|nn|en)/information-models/:id/:slug",
+        destination: "/information-models/:id",
+        permanent: false,
+      },
+      {
+        source: "/:lang(nb|nn|en)/information-models/:id",
+        destination: "/information-models/:id",
+        permanent: false,
+      },
+      // Event hits use /{lang}/events/{id}. fdk-portal serves /events/{id}.
+      // Remove this when an event detail page exists here.
+      {
+        source: "/:lang(nb|nn|en)/events/:id",
+        destination: "/events/:id",
+        permanent: false,
+      },
     ];
   },
 };

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import cn from "classnames";
 import { ForwardRefComponent, motion } from "framer-motion";
 import { Link, Button, Alert, Paragraph } from "@digdir/designsystemet-react";
-import { MenuHamburgerIcon, XMarkIcon, MagnifyingGlassIcon } from "@navikt/aksel-icons";
+import { MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { LogoLink } from "../logo";
 import MainMenu from "../main-menu";
@@ -15,14 +15,12 @@ export type HeaderProps = {
   locale: LocaleCodes;
   frontpage?: boolean;
   showSearchInput?: boolean;
-  showFindDataButton?: boolean;
   profile?: Profile;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ locale, frontpage, showSearchInput, showFindDataButton = true, profile = "data.norge" }: HeaderProps) => {
-  const findDataButtonVisible = (showFindDataButton ?? !showSearchInput) && profile !== "transportportal";
+const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: HeaderProps) => {
   const dictionary = getLocalization(locale).common;
   const headerRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);
@@ -124,9 +122,7 @@ const Header = ({ locale, frontpage, showSearchInput, showFindDataButton = true,
             </Button>
           </Alert>
         )}
-        <div className={cn(styles.headerInner, {
-          [styles.oldContent]: showFindDataButton && !showSearchInput
-        })}>
+        <div className={styles.headerInner}>
           <LogoLink
             className={styles.headerLogo}
             href={`/${locale}`}
@@ -143,20 +139,6 @@ const Header = ({ locale, frontpage, showSearchInput, showFindDataButton = true,
             />
           ) : (
             <div style={{ flexGrow: 1 }} />
-          )}
-          {findDataButtonVisible && !showSearchInput && (
-            <Button
-              asChild
-              data-size="sm"
-              variant="tertiary"
-              aria-label={dictionary.header.findDataButton}
-              className={styles.findDataButton}
-            >
-              <Link href={`/search-all`}>
-                <MagnifyingGlassIcon aria-hidden />
-                <span>{dictionary.header.findDataButton}</span>
-              </Link>
-            </Button>
           )}
           <Button
             className={styles.menuButton}

@@ -27,7 +27,7 @@
         position:static;
         box-shadow:none;
   
-        > div {
+        > div:first-child {
           inset:0;
           padding:1rem 0;
         }

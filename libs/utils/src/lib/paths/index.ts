@@ -6,7 +6,6 @@ export const getPaths = (baseUri: string) => {
     organizations: `${baseUriWithoutSlash}/organizations`,
     tools: `${baseUriWithoutSlash}/tools`,
     dataHunter: `${baseUriWithoutSlash}/data-hunter`,
-    searchAll: `${baseUriWithoutSlash}/search-all`,
     datasets: `${baseUriWithoutSlash}/datasets`,
     dataServices: `${baseUriWithoutSlash}/data-services`,
     concepts: `${baseUriWithoutSlash}/concepts`,

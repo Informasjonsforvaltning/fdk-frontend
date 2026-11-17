@@ -7,10 +7,6 @@
   container-type: inline-size;
   background: var(--fdk-color-navy-dark);
 
-  &.contained {
-    overflow: hidden;
-  }
-
   .gradient {
     content: "";
     display: block;

@@ -18,8 +18,6 @@ export const Primary: Story = {
     <FrontpageBanner
       dictionary={dictionary}
       locale="nb"
-      endpoint=""
-      searchPrototypeEnabled
     />
   ),
   parameters: {

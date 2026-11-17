@@ -8,7 +8,7 @@ const HeaderFooterLayout = async ({ children, params }: PropsWithChildren & Root
   return (
     <HeaderLayout
       locale={lang}
-      showFindDataButton={process.env.SEARCH_PROTOTYPE_ENABLED !== "true"}
+      showSearchInput
     >
       <FooterLayout locale={lang}>{children}</FooterLayout>
     </HeaderLayout>

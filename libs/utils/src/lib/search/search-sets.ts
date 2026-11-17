@@ -88,10 +88,15 @@ export const getSetIdForHitSearchType = (searchType: string): SearchSetId | unde
   return undefined;
 };
 
-/** Details-page path for a catalog hit. Services and events live under `/services/{id}`. */
+/**
+ * Details-page path for a catalog hit.
+ * Services stay on `/{locale}/services/{id}`. Events use `/{locale}/events/{id}`,
+ * which next.config.js redirects to the portal until an event page exists here.
+ */
 export const buildResourcePath = (locale: string, searchType: string, resourceId: string): string | undefined => {
   const setId = getSetIdForHitSearchType(searchType);
   if (!setId || setId === "all-catalogs") return undefined;
+  if (searchType === "EVENT") return `/${locale}/events/${resourceId}`;
   if (setId === "services-and-events") return `/${locale}/services/${resourceId}`;
   return `/${locale}/${setId}/${resourceId}`;
 };

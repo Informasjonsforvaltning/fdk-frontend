@@ -96,7 +96,7 @@ const DatasetHeader = ({
         <TagLink
           data-color="info"
           data-size="md"
-          href="/datasets"
+          href={`/${locale}/search/datasets`}
         >
           {dictionaries.detailsPage.header.datasetsTagLink}
         </TagLink>

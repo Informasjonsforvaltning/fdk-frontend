@@ -23,7 +23,7 @@
 }
 
 .trayContent {
-  padding: 5rem 1rem 1rem;
+  padding: 5rem 1rem 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -52,6 +52,14 @@
 .seeAll {
   height: auto;
   width: 100%;
+}
+
+.disclaimer {
+  font-size: 0.8em;
+  padding: 0rem 1rem 0.75rem;
+  border: 0;
+  text-align: center;
+  color: var(--ds-color-neutral-text-subtle);
 }
 
 .nav {

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { i18n, Locale } from "@fdk-frontend/localization";
 import { isCanonicalDomain } from "./utils/domain";
 import { sharedDocsRedirectUrl } from "./utils/shared-docs-redirect";
+import { legacySearchRedirectUrl } from "./utils/legacy-search-params";
 
 export const proxy = (request: NextRequest) => {
   // Get the pathname and remove basePath
@@ -37,6 +38,12 @@ export const proxy = (request: NextRequest) => {
     return NextResponse.redirect(docsRedirect);
   }
 
+  // Old fdk-portal search URLs (/datasets, /search-all, ...) and their legacy param names.
+  const legacySearchRedirect = legacySearchRedirectUrl(request.nextUrl);
+  if (legacySearchRedirect) {
+    return NextResponse.redirect(legacySearchRedirect, 308);
+  }
+
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale: Locale) => !pathname.startsWith(`/${locale.code}/`) && pathname !== `/${locale.code}`,
@@ -45,7 +52,10 @@ export const proxy = (request: NextRequest) => {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     return NextResponse.redirect(
-      new URL(`${basePath}${i18n.defaultLocale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url),
+      new URL(
+        `${basePath}${i18n.defaultLocale}${pathname.startsWith("/") ? "" : "/"}${pathname}${request.nextUrl.search}`,
+        request.url,
+      ),
     );
   }
 

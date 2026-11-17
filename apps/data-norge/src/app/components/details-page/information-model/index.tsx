@@ -48,7 +48,7 @@ export default function InformationModelDetailsPage({
 
   const breadcrumbList = [
     {
-      href: `/information-models`,
+      href: `/${locale}/search/information-models`,
       text: dictionaries.detailsPage.breadcrumbs.informationModels,
     },
     {
@@ -94,7 +94,7 @@ export default function InformationModelDetailsPage({
             <TagLink
               data-color="info"
               data-size="md"
-              href="/information-models"
+              href={`/${locale}/search/information-models`}
             >
               {dictionaries.detailsPage.header.informationModelsTagLink}
             </TagLink>

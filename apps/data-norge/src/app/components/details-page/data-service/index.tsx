@@ -57,7 +57,7 @@ export default function DataServiceDetailsPage({
 
   const breadcrumbList = [
     {
-      href: `/data-services`,
+      href: `/${locale}/search/data-services`,
       text: dictionaries.detailsPage.breadcrumbs.dataServices,
     },
     {
@@ -103,7 +103,7 @@ export default function DataServiceDetailsPage({
             <TagLink
               data-color="info"
               data-size="md"
-              href="/data-services"
+              href={`/${locale}/search/data-services`}
             >
               {dictionaries.detailsPage.header.dataServicesTagLink}
             </TagLink>

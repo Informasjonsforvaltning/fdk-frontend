@@ -62,7 +62,7 @@ export default function ServiceStructuredData({ service, locale, baseUri }: Serv
         "@type": "ListItem",
         position: 2,
         name: "Services",
-        item: `${baseUri}/${locale}/services`,
+        item: `${baseUri}/${locale}/search/services-and-events`,
       },
       {
         "@type": "ListItem",
