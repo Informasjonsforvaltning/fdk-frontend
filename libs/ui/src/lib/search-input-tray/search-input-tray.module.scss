@@ -9,9 +9,23 @@
   background: white;
   display: none;
   z-index: 1;
+  padding-top: 4.5rem;
+  min-height: 0.5rem;
 
   &.visible {
     display: block;
+  }
+  .disclaimer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ds-color-neutral-text-subtle);
+    font-size: 0.8rem;
+
+    .disclaimerIcon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
   }
 }
 
@@ -23,7 +37,7 @@
 }
 
 .trayContent {
-  padding: 5rem 1rem 1rem;
+  padding: 0.5rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
