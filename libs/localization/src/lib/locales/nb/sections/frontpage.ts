@@ -15,7 +15,7 @@ const frontpage = {
     },
     prompt: {
       button: "Spør",
-      disclaimer: "Ikke legg inn personopplysninger eller annen sensitiv informasjon.",
+      disclaimer: "Ikke legg inn personopplysninger eller annen sensitiv informasjon i søket.",
       errors: {
         generic: "En feil oppstod. Vennligst prøv igjen senere.",
         queryTooShort: "Spørringen må inneholde minst tre tegn. Prøv igjen.",

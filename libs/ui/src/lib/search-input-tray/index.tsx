@@ -45,7 +45,8 @@ const SearchInputTray = ({
   const trimmedQuery = query.trim();
   const hasQuery = trimmedQuery.length > 0;
   const [activePanel, setActivePanel] = useState(defaultTrayPanel);
-  const dictionary = getLocalization(locale).searchPage;
+  const localization = getLocalization(locale);
+  const dictionary = localization.searchPage;
   // Stay mounted while the query is set. The tray root is hidden when closed.
   const showResults = hasQuery;
 
@@ -121,6 +122,7 @@ const SearchInputTray = ({
           )}
         </div>
       )}
+      {!hideAiSet && <div className={styles.disclaimer}>{localization.frontpage.aiBanner.prompt.disclaimer}</div>}
     </div>
   );
 };
