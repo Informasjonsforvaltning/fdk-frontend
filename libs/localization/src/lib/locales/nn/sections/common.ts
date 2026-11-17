@@ -151,7 +151,7 @@ const common = {
   highValueTag: {
     label: "Høg verdi",
     helpTextTitle: "Omgrepsforklaring",
-    helpText: "Datasettet er merkt som Høg verdi eller som Nasjonale grunndata av utgjevaren.",
+    helpText: "Datasettet er merkt som Høg verdi eller som Nasjonale grunndata.",
   },
   unpublishedTag: {
     label: "Avpublisert",

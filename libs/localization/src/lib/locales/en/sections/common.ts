@@ -150,7 +150,7 @@ const common = {
   highValueTag: {
     label: "High value",
     helpTextTitle: "Explanation",
-    helpText: "The dataset is marked as High value or as National basic data by the publisher.",
+    helpText: "The dataset is marked as High value or as National basic data.",
   },
   unpublishedTag: {
     label: "Unpublished",
