@@ -99,11 +99,6 @@ const searchPage = {
       hvdDcatApNo: "HVD",
       dcatApNo: "DCAT-AP-NO",
     },
-    datasetTypeFilter: {
-      euHvd: "High-value dataset (EU)",
-      nationalHvd: "National high-value dataset",
-      nationalBasicData: "National basic data",
-    },
     orgTypeFilter: {
       kommune: "Municipality",
       stat: "State",

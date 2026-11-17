@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
-
-import { getDatasetTypeLabels } from "./labels";
+import { useEffect, useState } from "react";
+import { type LocaleCodes } from "@fdk-frontend/localization";
 
 type DatasetTypeApiEntry = {
   uri: string;
@@ -34,7 +32,7 @@ const buildLabelMap = (datasetTypes: DatasetTypeApiEntry[], locale: LocaleCodes)
   );
 
 export const useDatasetTypeLabels = (locale: LocaleCodes): Record<string, string> => {
-  const [fetchedLabels, setFetchedLabels] = useState<Record<string, string>>({});
+  const [labels, setLabels] = useState<Record<string, string>>({});
 
   useEffect(() => {
     let cancelled = false;
@@ -42,7 +40,7 @@ export const useDatasetTypeLabels = (locale: LocaleCodes): Record<string, string
     fetchDatasetTypes().then((response) => {
       if (cancelled) return;
       const datasetTypes = Array.isArray(response.datasetTypes) ? response.datasetTypes : [];
-      setFetchedLabels(buildLabelMap(datasetTypes, locale));
+      setLabels(buildLabelMap(datasetTypes, locale));
     });
 
     return () => {
@@ -50,11 +48,5 @@ export const useDatasetTypeLabels = (locale: LocaleCodes): Record<string, string
     };
   }, [locale]);
 
-  return useMemo(
-    () => ({
-      ...getDatasetTypeLabels(getLocalization(locale).searchPage.searchForm.datasetTypeFilter),
-      ...fetchedLabels,
-    }),
-    [locale, fetchedLabels],
-  );
+  return labels;
 };
