@@ -217,6 +217,25 @@ const common = {
     missingDescription: "Missing description",
     llmHitTooltip: "Result from AI search",
   },
+  shareDataDialog: {
+    heading: "Share your data",
+    helpHeading: "Help and guidance",
+    accessLink: "How to get access to our solutions",
+    registration: {
+      title: "Manual registration",
+      description: "Use our registration solution to manually register datasets, APIs, concepts and services.",
+      cta: "Go to registration",
+      getStartedLink: "Get started with registration",
+      createDescriptionsLink: "How to create descriptions in the registration solution",
+    },
+    harvesting: {
+      title: "Automatic harvesting",
+      description: "Use our harvesting solution to automatically harvest data from your own data catalogs.",
+      cta: "Go to harvesting",
+      getStartedLink: "Get started with harvesting",
+      registerEndpointLink: "How to register an endpoint for harvesting",
+    },
+  },
 };
 
 export default common;

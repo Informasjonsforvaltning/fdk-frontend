@@ -9,6 +9,8 @@ const HeaderFooterLayout = async ({ children, params }: PropsWithChildren & Root
     <HeaderLayout
       locale={lang}
       showSearchInput
+      catalogPortalBaseUri={process.env.CATALOG_PORTAL_BASE_URI ?? ""}
+      adminGuiBaseUri={process.env.ADMIN_GUI_BASE_URI ?? ""}
     >
       <FooterLayout locale={lang}>{children}</FooterLayout>
     </HeaderLayout>

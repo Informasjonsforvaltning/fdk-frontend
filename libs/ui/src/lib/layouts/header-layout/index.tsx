@@ -2,7 +2,15 @@ import { PropsWithChildren } from "react";
 
 import Header, { type HeaderProps } from "../../header";
 
-const HeaderLayout = ({ children, locale, frontpage, showSearchInput, profile }: HeaderProps & PropsWithChildren) => {
+const HeaderLayout = ({
+  children,
+  locale,
+  frontpage,
+  showSearchInput,
+  profile,
+  catalogPortalBaseUri,
+  adminGuiBaseUri,
+}: HeaderProps & PropsWithChildren) => {
   return (
     <>
       <Header
@@ -10,6 +18,8 @@ const HeaderLayout = ({ children, locale, frontpage, showSearchInput, profile }:
         frontpage={frontpage}
         showSearchInput={showSearchInput}
         profile={profile}
+        catalogPortalBaseUri={catalogPortalBaseUri}
+        adminGuiBaseUri={adminGuiBaseUri}
       />
       {children}
     </>

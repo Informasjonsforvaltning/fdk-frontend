@@ -19,6 +19,8 @@ export default async function ErrorPage({ children }: PropsWithChildren) {
         locale={locale}
         frontpage
         showSearchInput
+        catalogPortalBaseUri={process.env.CATALOG_PORTAL_BASE_URI ?? ""}
+        adminGuiBaseUri={process.env.ADMIN_GUI_BASE_URI ?? ""}
       />
       <main
         id="main"

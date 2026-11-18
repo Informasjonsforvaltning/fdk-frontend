@@ -6,24 +6,20 @@
     font-size: 2rem;
   }
 
-  p {
+  > p {
     margin: 1rem 0;
-  }
-
-  div {
-    display: flex;
-    justify-content: center;
   }
 
   .buttons {
     display: flex;
+    justify-content: center;
     gap: 1rem;
 
     @media (max-width: 350px) {
       flex-direction: column;
     }
 
-    a {
+    > a {
       text-decoration: none;
     }
   }
