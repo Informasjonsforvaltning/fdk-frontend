@@ -128,6 +128,7 @@ export { default as SearchSuggestions } from "./lib/search-suggestions";
 export * from "./lib/search-suggestions";
 export { default as SearchInput } from "./lib/search-input";
 export * from "./lib/search-input";
+export { default as ShareDataDialog } from "./lib/share-data-dialog";
 export { default as SearchInputTray } from "./lib/search-input-tray";
 export * from "./lib/search-input-tray";
 export { default as SearchTrayNav } from "./lib/search-input-tray/search-tray-nav";

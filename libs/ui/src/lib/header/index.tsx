@@ -8,6 +8,7 @@ import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { LogoLink } from "../logo";
 import MainMenu from "../main-menu";
 import SearchInput from "../search-input";
+import ShareDataDialog from "../share-data-dialog";
 import styles from "./header.module.scss";
 import { Profile } from "@fdk-frontend/types";
 
@@ -16,11 +17,20 @@ export type HeaderProps = {
   frontpage?: boolean;
   showSearchInput?: boolean;
   profile?: Profile;
+  catalogPortalBaseUri: string;
+  adminGuiBaseUri: string;
 };
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: HeaderProps) => {
+const Header = ({
+  locale,
+  frontpage,
+  showSearchInput,
+  profile = "data.norge",
+  catalogPortalBaseUri,
+  adminGuiBaseUri,
+}: HeaderProps) => {
   const dictionary = getLocalization(locale).common;
   const headerRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);
@@ -151,16 +161,13 @@ const Header = ({ locale, frontpage, showSearchInput, profile = "data.norge" }: 
             {showMenu ? <XMarkIcon aria-hidden /> : <MenuHamburgerIcon aria-hidden />}
             <span>{dictionary.header.menuButton}</span>
           </Button>
-          <Button
+          <ShareDataDialog
             className={styles.shareButton}
-            asChild
-            data-size="sm"
-            variant="primary"
-          >
-            <Link href={`/publishing`}>
-              <span>{dictionary.header.shareDataButton}</span>
-            </Link>
-          </Button>
+            label={dictionary.header.shareDataButton}
+            locale={locale}
+            catalogPortalBaseUri={catalogPortalBaseUri}
+            adminGuiBaseUri={adminGuiBaseUri}
+          />
         </div>
         {showMenu && (
           <div className={styles.drawer}>

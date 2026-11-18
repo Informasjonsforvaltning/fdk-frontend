@@ -20,6 +20,8 @@ export const Primary: Story = {
     <Header
       locale="en"
       showSearchInput
+      catalogPortalBaseUri="https://catalog-portal.staging.fellesdatakatalog.digdir.no"
+      adminGuiBaseUri="https://admin.staging.fellesdatakatalog.digdir.no"
     />
   ),
 };

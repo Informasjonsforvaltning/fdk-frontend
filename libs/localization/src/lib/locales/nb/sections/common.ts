@@ -218,6 +218,25 @@ const common = {
     missingDescription: "Mangler beskrivelse",
     llmHitTooltip: "Treff fra KI-søk",
   },
+  shareDataDialog: {
+    heading: "Del dine data",
+    helpHeading: "Hjelp og veiledning",
+    accessLink: "Hvordan få tilgang til våre løsninger",
+    registration: {
+      title: "Manuell registrering",
+      description: "Bruk vår registreringsløsning til å manuelt registrere datasett, API, begreper og tjenester.",
+      cta: "Gå til registrering",
+      getStartedLink: "Kom i gang med registrering",
+      createDescriptionsLink: "Hvordan lage beskrivelser i registreringsløsningen",
+    },
+    harvesting: {
+      title: "Automatisk høsting",
+      description: "Bruk vår høsteløsning til å automatisk høste data fra dine egne datakataloger.",
+      cta: "Gå til høsting",
+      getStartedLink: "Kom i gang med høsting",
+      registerEndpointLink: "Hvordan registrere endepunkt for høsting",
+    },
+  },
 };
 
 export default common;

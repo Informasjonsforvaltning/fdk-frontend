@@ -18,6 +18,8 @@ const NormalLayout = async ({ children, params, profile }: PropsWithChildren & N
       locale={lang}
       showSearchInput
       profile={profile}
+      catalogPortalBaseUri={process.env.CATALOG_PORTAL_BASE_URI ?? ""}
+      adminGuiBaseUri={process.env.ADMIN_GUI_BASE_URI ?? ""}
     >
       <FooterLayout
         locale={lang}

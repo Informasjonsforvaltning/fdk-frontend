@@ -1,7 +1,7 @@
 import { Button, Paragraph, Link } from "@digdir/designsystemet-react";
 import { type Localization, type LocaleCodes, interpolate } from "@fdk-frontend/localization";
 
-import { HeadingWithDivider } from "@fdk-frontend/ui";
+import { HeadingWithDivider, ShareDataDialog } from "@fdk-frontend/ui";
 
 import styles from "./share-data-banner.module.scss";
 import OrganizationCarousel from "../organization-carousel";
@@ -9,9 +9,11 @@ import OrganizationCarousel from "../organization-carousel";
 type ShareDataBannerProps = {
   dictionary: Localization;
   locale: LocaleCodes;
+  catalogPortalBaseUri: string;
+  adminGuiBaseUri: string;
 };
 
-const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
+const ShareDataBanner = ({ dictionary, locale, catalogPortalBaseUri, adminGuiBaseUri }: ShareDataBannerProps) => (
   <div className={styles.shareDataBanner}>
     <HeadingWithDivider
       level={2}
@@ -24,18 +26,20 @@ const ShareDataBanner = ({ dictionary, locale }: ShareDataBannerProps) => (
         link: <Link href={`/organizations`}>{dictionary.shareDataBanner.organizationsLinkText}</Link>,
       })}
     </Paragraph>
-    <div>
-      <div className={styles.buttons}>
-        <Button asChild>
-          <Link href={`/publishing`}>{dictionary.shareDataBanner.shareDataLinkText}</Link>
-        </Button>
-        <Button
-          asChild
-          variant="secondary"
-        >
-          <Link href={`/${locale}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
-        </Button>
-      </div>
+    <div className={styles.buttons}>
+      <ShareDataDialog
+        label={dictionary.shareDataBanner.shareDataLinkText}
+        locale={locale}
+        catalogPortalBaseUri={catalogPortalBaseUri}
+        adminGuiBaseUri={adminGuiBaseUri}
+      />
+      <Button
+        asChild
+        data-size="sm"
+        variant="secondary"
+      >
+        <Link href={`/${locale}/docs`}>{dictionary.shareDataBanner.documentationLinkText}</Link>
+      </Button>
     </div>
   </div>
 );

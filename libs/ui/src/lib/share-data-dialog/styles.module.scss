@@ -1,0 +1,52 @@
+.dialog {
+  animation: none;
+  width: min(850px, calc(100vw - 2rem));
+  max-width: 850px;
+  text-align: start;
+  background:#f8f8f8;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  width:100%;
+  gap:1rem;
+
+  :global(.ds-button) {
+    width:100%;
+  }
+
+  @media (max-width: 600px) {
+    display:flex;
+    flex-direction:column;
+  }
+}
+
+.card {
+  display:grid;
+  grid-template-rows:subgrid;
+  grid-row:span 2;
+  background:white;
+
+  > :global(.ds-card__block):first-child {
+    display:flex;
+    flex-direction:column;
+    gap:var(--ds-size-3);
+
+    > * {
+      margin-block:0;
+    }
+
+    :global(.ds-button) {
+      margin-top:auto;
+    }
+  }
+}
+
+[data-profile="transportportal"] {
+  .cards {
+    :global(.ds-button) {
+      background: var(--fdk-tp-color-btn-primary-passive);
+    }
+  }
+}

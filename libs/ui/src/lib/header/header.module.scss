@@ -45,11 +45,13 @@
         Override dark mode styles for passive header buttons on frontpage
       */
 
-      :global(.ds-button) {
+      .menuButton {
         color: white !important;
       }
 
       .shareButton {
+        color: white !important;
+
         &:focus-visible,
         &:not(:hover):not(:active) {
           background: var(--fdk-color-blue);

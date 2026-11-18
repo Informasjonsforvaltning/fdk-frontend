@@ -25,6 +25,8 @@ const Frontpage = async (props: FrontpageProps) => {
   const loc = getLocalization(params.lang);
   const frontpageDictionary = loc.frontpage;
   const profile = await getProfile();
+  const catalogPortalBaseUri = process.env.CATALOG_PORTAL_BASE_URI ?? "";
+  const adminGuiBaseUri = process.env.ADMIN_GUI_BASE_URI ?? "";
 
   return (
     <>
@@ -32,6 +34,8 @@ const Frontpage = async (props: FrontpageProps) => {
         locale={params.lang}
         frontpage
         profile={profile}
+        catalogPortalBaseUri={catalogPortalBaseUri}
+        adminGuiBaseUri={adminGuiBaseUri}
       />
       <main id="main">
         {profile === "transportportal" ? (
@@ -49,6 +53,8 @@ const Frontpage = async (props: FrontpageProps) => {
               <ShareDataBanner
                 dictionary={frontpageDictionary}
                 locale={params.lang}
+                catalogPortalBaseUri={catalogPortalBaseUri}
+                adminGuiBaseUri={adminGuiBaseUri}
               />
               <CatalogsBanner
                 frontpageDictionary={frontpageDictionary}
