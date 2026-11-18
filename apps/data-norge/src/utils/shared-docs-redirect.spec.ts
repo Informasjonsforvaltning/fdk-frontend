@@ -32,6 +32,10 @@ describe("sharedDocsRedirectUrl", () => {
     expect(destination?.toString()).toBe("https://data.norge.no/nb/docs/metadata-quality?source=help");
   });
 
+  it("keeps the documentation search set on the transportportal host", () => {
+    expect(sharedDocsRedirectUrl("/nb/search/docs", "?q=kart", "transportportal.no", null)).toBeNull();
+  });
+
   it("keeps om-transportportal on the transportportal host", () => {
     expect(sharedDocsRedirectUrl("/nb/om-transportportal", "", "transportportal.no", null)).toBeNull();
   });
