@@ -70,11 +70,11 @@ const Header = ({
     localStorage.setItem("fdk-header-message-dismissed", "true");
   };
 
-  // useEffect(() => {
-  //     if (!localStorage.getItem('fdk-header-message-dismissed')) {
-  //         setShowHeaderMessage(true);
-  //     }
-  // }, []);
+  useEffect(() => {
+      if (!localStorage.getItem('fdk-header-message-dismissed')) {
+          setShowHeaderMessage(true);
+      }
+  }, []);
 
   useEffect(() => {
     toggleSticky();
@@ -119,7 +119,7 @@ const Header = ({
           >
             <Paragraph>
               {dictionary.header.alert.message}&nbsp;
-              <Link href="https://datalandsbyen.norge.no/topic/736/planlagt-vedlikehold-tirsdag-03.03.2026-kl-18-00-23-00">
+              <Link href="https://datalandsbyen.norge.no/topic/815/planlagt-vedlikehold-fredag-20.11.2026-kl-22-00">
                 {dictionary.header.alert.linkText}
               </Link>
             </Paragraph>
