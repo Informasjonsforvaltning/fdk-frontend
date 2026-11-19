@@ -131,9 +131,10 @@ const Header = ({
             <Button
               variant="tertiary"
               data-size="sm"
+              aria-label={dictionary.header.alert.closeButton}
               onClick={() => disableHeaderMessage()}
             >
-              <XMarkIcon />
+              <XMarkIcon aria-hidden />
             </Button>
           </Alert>
         )}
