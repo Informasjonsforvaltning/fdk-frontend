@@ -31,12 +31,12 @@ const common = {
     partnersTitleLink: "samarbeid",
     photoBy: "Foto av {{photographer}}",
     frontpageLinks: {
-      roadNetwork: "Vegnett",
-      commuterTraffic: "Kollektivtrafikk",
-      seaTransport: "Ferje og sjøtransport",
-      realtimeTraffic: "Sanntids trafikkinformasjon",
-      statistics: "Trafikkstatistikk",
-      parkingMobility: "Parkering og mobilitetstenester",
+      roadAndInfrastructure: "Veg og infrastruktur",
+      publicTransport: "Kollektivtransport",
+      trafficAndTravelInformation: "Trafikk og reiseinformasjon",
+      mobilityServices: "Mobilitetstenester",
+      vehicles: "Køyretøy",
+      allDatasets: "Alle datasett",
     },
   },
   mainMenu: {

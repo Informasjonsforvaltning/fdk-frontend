@@ -31,12 +31,12 @@ const common = {
     partnersTitleLink: "collaboration",
     photoBy: "Photo by {{photographer}}",
     frontpageLinks: {
-      roadNetwork: "Road network",
-      commuterTraffic: "Public transport",
-      seaTransport: "Ferry and sea transport",
-      realtimeTraffic: "Real-time traffic information",
-      statistics: "Traffic statistics",
-      parkingMobility: "Parking and mobility services",
+      roadAndInfrastructure: "Road and infrastructure",
+      publicTransport: "Public transport",
+      trafficAndTravelInformation: "Traffic and travel information",
+      mobilityServices: "Mobility services",
+      vehicles: "Vehicles",
+      allDatasets: "All datasets",
     },
   },
   mainMenu: {

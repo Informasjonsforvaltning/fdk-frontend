@@ -1,6 +1,13 @@
 import { Link, Card, CardBlock, Heading, Paragraph } from "@digdir/designsystemet-react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
-import { CarIcon, BusIcon, BoatIcon, AreaChartIcon, BarChartIcon, ParkingIcon } from "@navikt/aksel-icons";
+import {
+  BicycleIcon,
+  BusIcon,
+  CarIcon,
+  FilesIcon,
+  InformationSquareIcon,
+  RoadblockIcon,
+} from "@navikt/aksel-icons";
 
 import styles from "./transportportal-frontpage-links.module.scss";
 
@@ -13,22 +20,34 @@ const TransportportalFrontpageLinks = ({ dictionary, locale }: TransportportalFr
   const links = dictionary.tp.frontpageLinks ?? {};
   const items = [
     {
-      title: links.roadNetwork,
-      href: `/${locale}/search?losTheme=trafikk-og-transport%2Fveg-og-vegregulering%2Fvegnett`,
+      title: links.roadAndInfrastructure,
+      href: `/${locale}/search?q=vegnett`,
+      icon: <RoadblockIcon />,
+    },
+    {
+      title: links.publicTransport,
+      href: `/${locale}/search?losTheme=trafikk-og-transport%2Fmobilitetstilbud%2Freisebillett%2Ctrafikk-og-transport%2Fmobilitetstilbud%2Freisegaranti%2Ctrafikk-og-transport%2Fmobilitetstilbud%2Fruteinformasjon%2Ctrafikk-og-transport%2Fmobilitetstilbud%2Fruteplanlegger%2Ctrafikk-og-transport%2Fmobilitetstilbud%2Ftakster-og-kjopsinformasjon`,
+      icon: <BusIcon />,
+    },
+    {
+      title: links.trafficAndTravelInformation,
+      href: `/${locale}/search?losTheme=trafikk-og-transport%2Ftrafikkinformasjon`,
+      icon: <InformationSquareIcon />,
+    },
+    {
+      title: links.mobilityServices,
+      href: `/${locale}/search?losTheme=trafikk-og-transport%2Fmobilitetstilbud`,
+      icon: <BicycleIcon />,
+    },
+    {
+      title: links.vehicles,
+      href: `/${locale}/search?losTheme=trafikk-og-transport%2Fkjoretoy`,
       icon: <CarIcon />,
     },
-    { title: links.commuterTraffic, href: `/${locale}/search?q=kollektiv`, icon: <BusIcon /> },
-    { title: links.seaTransport, href: `/${locale}/search?q=ferje`, icon: <BoatIcon /> },
     {
-      title: links.realtimeTraffic,
-      href: `/${locale}/search?losTheme=trafikk-og-transport%2Ftrafikkinformasjon%2Fsanntids-trafikkinformasjon`,
-      icon: <AreaChartIcon />,
-    },
-    { title: links.statistics, href: `/${locale}/search?q=statistikk`, icon: <BarChartIcon /> },
-    {
-      title: links.parkingMobility,
-      href: `/${locale}/search?losTheme=trafikk-og-transport%2Fyrkestransport%2Fparkering-og-hvileplasser%2Ctrafikk-og-transport%2Fmobilitetstilbud`,
-      icon: <ParkingIcon />,
+      title: links.allDatasets,
+      href: `/${locale}/search`,
+      icon: <FilesIcon />,
     },
   ];
 
