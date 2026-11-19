@@ -228,6 +228,7 @@ const detailsPage = {
       legalBasisForProcessing: "Behandlingshjemmel",
       legalBasisForRestriction: "Skjermingshjemmel",
       noTitle: "Uten tittel",
+      hvdRegulationSubtitle: "om datasett med høy verdi",
       type: "Type",
     },
     concepts: {

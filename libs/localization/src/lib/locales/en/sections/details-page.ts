@@ -228,6 +228,7 @@ const detailsPage = {
       legalBasisForProcessing: "Legal basis for processing",
       legalBasisForRestriction: "Legal basis for restriction",
       noTitle: "No title",
+      hvdRegulationSubtitle: "on high-value datasets",
       type: "Type",
     },
     concepts: {
