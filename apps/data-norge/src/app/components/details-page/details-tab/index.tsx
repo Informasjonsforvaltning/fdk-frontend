@@ -18,7 +18,7 @@ import ConceptDetails from "./components/concept-details";
 import ReferencesDetails from "./components/references-details";
 import DatasetTags from "../dataset-tags";
 import styles from "./details-tab.module.scss";
-import { isHvdRegulated, printLocaleValue } from "@fdk-frontend/utils";
+import { getLocalizedKeywords, isHvdRegulated, printLocaleValue } from "@fdk-frontend/utils";
 
 const DatasetDetailsTabContext = createContext<{ showEmptyRows: boolean }>({ showEmptyRows: true });
 
@@ -48,6 +48,7 @@ const DatasetDetailsTab = ({
   baseUri,
 }: DatasetDetailsProps) => {
   const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
+  const keywords = getLocalizedKeywords(locale, dataset.keyword);
 
   return (
     <DatasetDetailsTabContext.Provider value={{ showEmptyRows }}>
@@ -249,18 +250,16 @@ const DatasetDetailsTab = ({
             >
               {dictionary.details.keywords}
             </Heading>
-            {dataset.keyword && dataset.keyword.filter((keyword: any) => keyword[locale]).length ? (
+            {keywords.length ? (
               <TagList>
-                {dataset.keyword
-                  .filter((keyword: any) => keyword[locale])
-                  .map((keyword: any, i: number) => (
-                    <TagLink
-                      key={`keyword-${i}`}
-                      href={`/${locale}/search/datasets?q=${encodeURIComponent(keyword[locale])}`}
-                    >
-                      {keyword[locale]}
-                    </TagLink>
-                  ))}
+                {keywords.map((keyword, i) => (
+                  <TagLink
+                    key={`keyword-${i}`}
+                    href={`/${locale}/search/datasets?q=${encodeURIComponent(keyword)}`}
+                  >
+                    {keyword}
+                  </TagLink>
+                ))}
               </TagList>
             ) : (
               <PlaceholderText>{dictionary.details.noData}</PlaceholderText>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { type Localization, type LocaleCodes } from "@fdk-frontend/localization";
 import { type DataService } from "@fellesdatakatalog/types";
-import { printLocaleValue } from "@fdk-frontend/utils";
+import { getLocalizedKeywords, printLocaleValue } from "@fdk-frontend/utils";
 import {
   PlaceholderText,
   PlaceholderBox,
@@ -28,6 +28,7 @@ type DataServiceDetailsTabProps = {
 
 export default function DataServiceDetailsTab({ resource, locale, dictionary }: DataServiceDetailsTabProps) {
   const [showEmptyRows, setShowEmptyRows] = useState<boolean>(true);
+  const keywords = getLocalizedKeywords(locale, resource.keyword);
 
   const availabilityLabel = resource.availability?.prefLabel
     ? printLocaleValue(locale, resource?.availability.prefLabel)
@@ -332,18 +333,16 @@ export default function DataServiceDetailsTab({ resource, locale, dictionary }: 
           >
             {dictionary.details.keywords}
           </Heading>
-          {resource.keyword?.filter((keyword) => keyword[locale]).length ? (
+          {keywords.length ? (
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-              {resource.keyword
-                .filter((keyword) => keyword[locale])
-                .map((keyword, i) => (
-                  <Tag
-                    key={`keyword-${i}`}
-                    data-size="sm"
-                  >
-                    {keyword[locale]}
-                  </Tag>
-                ))}
+              {keywords.map((keyword, i) => (
+                <Tag
+                  key={`keyword-${i}`}
+                  data-size="sm"
+                >
+                  {keyword}
+                </Tag>
+              ))}
             </div>
           ) : (
             <PlaceholderText>{dictionary.details.noData}</PlaceholderText>
