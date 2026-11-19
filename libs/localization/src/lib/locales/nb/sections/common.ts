@@ -17,7 +17,7 @@ const common = {
     shareDataButton: "Del data",
     skipToMain: "Hopp til hovedinnhold",
     alert: {
-      message: "Planlagt vedlikehold tirsdag kl. 18:00–23:00.",
+      message: "Planlagt vedlikehold fredag kl. 22:00.",
       linkText: "Les mer på Datalandsbyen",
     },
   },
