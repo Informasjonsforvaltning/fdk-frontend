@@ -19,6 +19,7 @@ const common = {
     alert: {
       message: "Planlagt vedlikehold fredag kl. 22:00.",
       linkText: "Les mer på Datalandsbyen",
+      closeButton: "Lukk melding",
     },
   },
   search: {
