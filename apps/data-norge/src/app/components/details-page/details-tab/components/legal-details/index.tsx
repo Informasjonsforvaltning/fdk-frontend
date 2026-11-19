@@ -2,8 +2,24 @@ import React, { useContext } from "react";
 import { Heading } from "@digdir/designsystemet-react";
 import { PlaceholderText, PlaceholderBox, ExternalLink, SmartList, Dlist, Article } from "@fdk-frontend/ui";
 import { DatasetDetailsProps } from "../../";
-import { printLocaleValue } from "@fdk-frontend/utils";
-import { Dataset } from "@fellesdatakatalog/types";
+import { HVD_REGULATION_TITLE, HVD_REGULATION_URI, printLocaleValue } from "@fdk-frontend/utils";
+import { Dataset, LegalResource } from "@fellesdatakatalog/types";
+import { type LocaleCodes, type Localization } from "@fdk-frontend/localization";
+
+const getLegislationTitle = (
+  locale: LocaleCodes,
+  dictionary: Localization,
+  legislation: LegalResource,
+): string | undefined =>
+  printLocaleValue(locale, legislation.title) ||
+  (legislation.uri === HVD_REGULATION_URI
+    ? `${HVD_REGULATION_TITLE} ${dictionary.details.legal.hvdRegulationSubtitle}`
+    : undefined);
+
+const getLegislationLinks = (legislation: LegalResource): string[] => {
+  if (legislation.references?.length) return legislation.references;
+  return legislation.uri ? [legislation.uri] : [];
+};
 
 export const hasLegalBasis = (dataset: Dataset) =>
   (dataset.applicableLegislation && dataset?.applicableLegislation.length) ||
@@ -51,15 +67,11 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
               {dataset.applicableLegislation.map((legislation, i) => {
                 if (!legislation)
                   return <PlaceholderText key={`legislation-${i}`}>{dictionary.details.noData}</PlaceholderText>;
+                const title = getLegislationTitle(locale, dictionary, legislation);
+                const links = getLegislationLinks(legislation);
                 return (
                   <React.Fragment key={`legislation-${i}`}>
-                    <dt>
-                      {legislation.title ? (
-                        printLocaleValue(locale, legislation.title)
-                      ) : (
-                        <PlaceholderText>{dictionary.details.legal.noTitle}</PlaceholderText>
-                      )}
-                    </dt>
+                    <dt>{title ? title : <PlaceholderText>{dictionary.details.legal.noTitle}</PlaceholderText>}</dt>
                     <dd className="article">
                       <div>
                         {legislation.type && (
@@ -70,9 +82,9 @@ const LegalDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps,
                         )}
                         <Article>{printLocaleValue(locale, legislation.description)}</Article>
                       </div>
-                      {legislation.references && legislation.references.length > 0 && (
+                      {links.length > 0 && (
                         <SmartList
-                          items={legislation.references}
+                          items={links}
                           renderItem={(reference, j) => (
                             <ExternalLink
                               href={reference}
