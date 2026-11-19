@@ -12,6 +12,19 @@ export const printLocaleValue = (locale: LocaleCodes, value: any) => {
   return value[locale] || value[i18n.defaultLocale] || value["no"] || value["nn"] || value["en"];
 };
 
+export const getLocalizedKeywords = (
+  locale: LocaleCodes,
+  keywords?: Partial<Record<string, string>>[] | null,
+): string[] => {
+  if (!keywords?.length) return [];
+  const languages = [locale, i18n.defaultLocale, "no", "nn", "en"];
+  for (const lang of languages) {
+    const values = keywords.map((keyword) => keyword[lang]).filter((value): value is string => Boolean(value));
+    if (values.length) return values;
+  }
+  return [];
+};
+
 export const printOrganizationLabel = (
   locale: LocaleCodes,
   organization?: { prefLabel?: unknown; name?: unknown } | null,
