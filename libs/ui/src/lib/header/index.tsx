@@ -23,6 +23,10 @@ export type HeaderProps = {
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
+/** Hide after Friday night, 21 Nov 2026 00:00 Europe/Oslo (CET, UTC+1). */
+const HEADER_MESSAGE_UNTIL = Date.parse("2026-11-21T00:00:00+01:00");
+const HEADER_MESSAGE_DISMISSED_KEY = "fdk-header-message-dismissed:2026-11-20";
+
 const Header = ({
   locale,
   frontpage,
@@ -67,13 +71,14 @@ const Header = ({
 
   const disableHeaderMessage = () => {
     setShowHeaderMessage(false);
-    localStorage.setItem("fdk-header-message-dismissed", "true");
+    localStorage.setItem(HEADER_MESSAGE_DISMISSED_KEY, "true");
   };
 
   useEffect(() => {
-      if (!localStorage.getItem('fdk-header-message-dismissed')) {
-          setShowHeaderMessage(true);
-      }
+    if (Date.now() >= HEADER_MESSAGE_UNTIL) return;
+    if (!localStorage.getItem(HEADER_MESSAGE_DISMISSED_KEY)) {
+      setShowHeaderMessage(true);
+    }
   }, []);
 
   useEffect(() => {
