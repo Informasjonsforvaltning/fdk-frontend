@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import cn from "classnames";
 import { ForwardRefComponent, motion } from "framer-motion";
-import { Link, Button, Alert, Paragraph } from "@digdir/designsystemet-react";
+import { Link, Button } from "@digdir/designsystemet-react";
 import { MenuHamburgerIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { LogoLink } from "../logo";
@@ -10,6 +10,7 @@ import MainMenu from "../main-menu";
 import SearchInput from "../search-input";
 import ShareDataDialog from "../share-data-dialog";
 import styles from "./header.module.scss";
+import HeaderBanner from "./header-banner";
 import { Profile } from "@fdk-frontend/types";
 
 export type HeaderProps = {
@@ -23,10 +24,6 @@ export type HeaderProps = {
 
 const MotionDiv: ForwardRefComponent<any, any> = motion.div;
 
-/** Hide after Friday night, 21 Nov 2026 00:00 Europe/Oslo (CET, UTC+1). */
-const HEADER_MESSAGE_UNTIL = Date.parse("2026-11-21T00:00:00+01:00");
-const HEADER_MESSAGE_DISMISSED_KEY = "fdk-header-message-dismissed:2026-11-20";
-
 const Header = ({
   locale,
   frontpage,
@@ -39,7 +36,6 @@ const Header = ({
   const headerRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const [showHeaderMessage, setShowHeaderMessage] = useState(false);
 
   const animations = {
     drawerInner: {
@@ -69,18 +65,6 @@ const Header = ({
     }
   };
 
-  const disableHeaderMessage = () => {
-    setShowHeaderMessage(false);
-    localStorage.setItem(HEADER_MESSAGE_DISMISSED_KEY, "true");
-  };
-
-  useEffect(() => {
-    if (Date.now() >= HEADER_MESSAGE_UNTIL) return;
-    if (!localStorage.getItem(HEADER_MESSAGE_DISMISSED_KEY)) {
-      setShowHeaderMessage(true);
-    }
-  }, []);
-
   useEffect(() => {
     toggleSticky();
 
@@ -100,7 +84,6 @@ const Header = ({
       aria-label="Header"
       className={cn(styles.header, {
         [styles.frontpageHeader]: frontpage,
-        [styles.showHeaderMessage]: showHeaderMessage,
       })}
       ref={headerRef}
       data-color-scheme={!showMenu && frontpage ? "dark" : profile === "transportportal" ? "dark" : "light"}
@@ -117,27 +100,7 @@ const Header = ({
         >
           {dictionary.header.skipToMain}
         </Link>
-        {showHeaderMessage && (
-          <Alert
-            data-color="info"
-            className={styles.headerMessage}
-          >
-            <Paragraph>
-              {dictionary.header.alert.message}&nbsp;
-              <Link href="https://datalandsbyen.norge.no/topic/815/planlagt-vedlikehold-fredag-20.11.2026-kl-22-00">
-                {dictionary.header.alert.linkText}
-              </Link>
-            </Paragraph>
-            <Button
-              variant="tertiary"
-              data-size="sm"
-              aria-label={dictionary.header.alert.closeButton}
-              onClick={() => disableHeaderMessage()}
-            >
-              <XMarkIcon aria-hidden />
-            </Button>
-          </Alert>
-        )}
+        <HeaderBanner locale={locale} />
         <div className={styles.headerInner}>
           <LogoLink
             className={styles.headerLogo}
