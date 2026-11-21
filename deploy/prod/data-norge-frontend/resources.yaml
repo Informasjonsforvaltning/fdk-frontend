@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-norge-frontend
+spec:
+  template:
+    spec:
+      containers:
+        - name: data-norge-frontend
+          resources:
+            requests:
+              memory: 1Gi
+            limits:
+              memory: 1Gi
