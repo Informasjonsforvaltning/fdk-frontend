@@ -16,6 +16,7 @@ import SearchPage, { type SearchPageProps } from "./index";
 import { loadDocsSearchState, loadEntitySearchState, loadLlmSearchState } from "./search-fetch";
 import { initialSearchPageState, searchPageReducer, type SearchPageData } from "./search-page-state";
 import { Profile } from "@fdk-frontend/types";
+import { LAST_X_DAYS_QUERY_PARAM } from "@fdk-frontend/ui/search-form/published";
 
 const CATALOG_AGGREGATION_FIELDS = [
   "orgAggregationsBySet",
@@ -79,6 +80,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
   const formatParam = searchParams.get("format");
   const losThemeParam = searchParams.get("losTheme");
   const dataThemeParam = searchParams.get("dataTheme");
+  const lastXDaysParam = searchParams.get(LAST_X_DAYS_QUERY_PARAM);
   const sortParam = searchParams.get("sort");
   const pageParam = parseSearchPageParam(searchParams.get("page"));
   const sizeParam = parseSearchPageSizeParam(searchParams.get("size"));
@@ -114,6 +116,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
       formatParam,
       losThemeParam,
       dataThemeParam,
+      lastXDaysParam,
       sortParam,
       activeSet,
       page: pageParam,
@@ -141,6 +144,7 @@ const SearchPageClient = function ({ lang, profile = "data.norge" }: SearchPageC
     formatParam,
     losThemeParam,
     dataThemeParam,
+    lastXDaysParam,
     sortParam,
     activeSet,
     pageParam,

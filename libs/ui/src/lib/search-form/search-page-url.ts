@@ -17,6 +17,7 @@ import { formatKeysToQueryParam } from "./format";
 import { losThemeKeysToQueryParam } from "./theme/los-theme";
 import { dataThemeKeysToQueryParam } from "./theme/data-theme";
 import { spatialKeysToQueryParam } from "./spatial";
+import { LAST_X_DAYS_QUERY_PARAM, lastXDaysKeysToQueryParam } from "./published";
 
 export type { SearchSetId, SearchSortOption };
 
@@ -33,6 +34,7 @@ export type BuildSearchPageUrlOptions = {
   formats?: string[];
   losThemes?: string[];
   dataThemes?: string[];
+  lastXDays?: string[];
   sort?: SearchSortOption;
   page?: number;
   size?: number;
@@ -51,6 +53,7 @@ export const buildSearchPageUrl = function ({
   formats = [],
   losThemes = [],
   dataThemes = [],
+  lastXDays = [],
   sort = SEARCH_SORT_OPTIONS.relevance,
   page = SEARCH_DEFAULT_PAGE,
   size = SEARCH_DEFAULT_PAGE_SIZE,
@@ -69,6 +72,8 @@ export const buildSearchPageUrl = function ({
   if (formats.length > 0) params.set("format", formatKeysToQueryParam(formats));
   if (losThemes.length > 0) params.set("losTheme", losThemeKeysToQueryParam(losThemes));
   if (dataThemes.length > 0) params.set("dataTheme", dataThemeKeysToQueryParam(dataThemes));
+  const lastXDaysParam = lastXDaysKeysToQueryParam(lastXDays);
+  if (lastXDaysParam) params.set(LAST_X_DAYS_QUERY_PARAM, lastXDaysParam);
   const sortParam = sortOptionToQueryParam(sort);
   if (sortParam) params.set("sort", sortParam);
   if (page !== SEARCH_DEFAULT_PAGE) params.set("page", String(page));

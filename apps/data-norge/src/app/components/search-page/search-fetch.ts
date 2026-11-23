@@ -16,6 +16,7 @@ import { buildDatasetTypeSearchFilter } from "@fdk-frontend/ui/search-form/datas
 import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
+import { buildLastXDaysSearchFilter } from "@fdk-frontend/ui/search-form/published";
 
 import { type DocsSearchResult } from "./search-page-types";
 import {
@@ -39,6 +40,7 @@ export const isBrowseSearch = function (options: FetchSummaryOptions): boolean {
   const hasFormatFilter = buildFormatSearchFilter(options.formatParam) !== undefined;
   const hasLosThemeFilter = buildLosThemeSearchFilter(options.losThemeParam) !== undefined;
   const hasDataThemeFilter = buildDataThemeSearchFilter(options.dataThemeParam) !== undefined;
+  const hasLastXDaysFilter = buildLastXDaysSearchFilter(options.lastXDaysParam) !== undefined;
   return (
     trimmedQuery.length === 0 &&
     !hasOrgFilter &&
@@ -49,7 +51,8 @@ export const isBrowseSearch = function (options: FetchSummaryOptions): boolean {
     !hasSpatialFilter &&
     !hasFormatFilter &&
     !hasLosThemeFilter &&
-    !hasDataThemeFilter
+    !hasDataThemeFilter &&
+    !hasLastXDaysFilter
   );
 };
 

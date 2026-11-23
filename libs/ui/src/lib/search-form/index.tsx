@@ -25,6 +25,7 @@ import SpatialFilter from "./spatial-filter";
 import FormatFilter from "./format-filter";
 import ThemeFilter from "./theme-filter";
 import FilterDropdown from "./filter-dropdown";
+import PublishedFilter from "./published-filter";
 import { parseAccessQueryParam, shouldShowAccessFilter } from "./access";
 import { parseOrgPathQueryParam } from "./org-path";
 import { type AggregationKeyCount } from "./types";
@@ -34,6 +35,7 @@ import { parseDatasetTypeQueryParam, shouldShowDatasetTypeFilter } from "./datas
 import { parseSpatialQueryParam, shouldShowSpatialFilter, useSpatialLabels } from "./spatial";
 import { parseFormatQueryParam, shouldShowFormatFilter } from "./format";
 import { parseLosThemeQueryParam, parseDataThemeQueryParam, shouldShowTemaFilter } from "./theme";
+import { LAST_X_DAYS_QUERY_PARAM, parseLastXDaysQueryParam, getPublishedLabels } from "./published";
 import { buildSearchPageUrl } from "./search-page-url";
 import styles from "./search-form.module.scss";
 import FilterChips from "./filter-chips";
@@ -103,6 +105,7 @@ export {
   shouldShowTemaFilter,
 } from "./theme";
 export { buildSearchPageUrl } from "./search-page-url";
+export { LAST_X_DAYS_QUERY_PARAM, buildLastXDaysSearchFilter, parseLastXDaysQueryParam } from "./published";
 
 export type SearchFormProps = {
   lang?: LocaleCodes;
@@ -150,6 +153,7 @@ const SearchForm = ({
   const formatParam = searchParams.get("format");
   const losThemeParam = searchParams.get("losTheme");
   const dataThemeParam = searchParams.get("dataTheme");
+  const lastXDaysParam = searchParams.get(LAST_X_DAYS_QUERY_PARAM);
   const selectedOrgPaths = useMemo(() => parseOrgPathQueryParam(orgPathParam), [orgPathParam]);
   const selectedAccess = useMemo(() => parseAccessQueryParam(accessParam), [accessParam]);
   const selectedProvenance = useMemo(() => parseProvenanceQueryParam(provenanceParam), [provenanceParam]);
@@ -159,6 +163,7 @@ const SearchForm = ({
   const selectedFormats = useMemo(() => parseFormatQueryParam(formatParam), [formatParam]);
   const selectedLosThemes = useMemo(() => parseLosThemeQueryParam(losThemeParam), [losThemeParam]);
   const selectedDataThemes = useMemo(() => parseDataThemeQueryParam(dataThemeParam), [dataThemeParam]);
+  const selectedLastXDays = useMemo(() => parseLastXDaysQueryParam(lastXDaysParam), [lastXDaysParam]);
   const showEntityToolbar = isCatalogSet(activeSet);
   const showAccessFilter = shouldShowAccessFilter(accessAggregation ?? []) || selectedAccess.length > 0;
   const showProvenanceFilter = shouldShowProvenanceFilter(provenanceAggregation ?? []) || selectedProvenance.length > 0;
@@ -179,6 +184,11 @@ const SearchForm = ({
   const provenanceLabels = getProvenanceLabels(dict.searchForm.provenanceFilter);
   const dcatProfileLabels = getDcatProfileLabels(dict.searchForm.dcatProfileFilter);
   const datasetTypeLabels = useDatasetTypeLabels(locale);
+  const publishedDict = dict.searchForm.publishedFilter;
+  const publishedLabels = useMemo(
+    () => getPublishedLabels(selectedLastXDays, publishedDict),
+    [selectedLastXDays, publishedDict],
+  );
 
   const orgPathLabelMap = useOrgPathLabels(locale);
   const orgTypeDict = dict.searchForm.orgTypeFilter;
@@ -214,6 +224,7 @@ const SearchForm = ({
       formats,
       losThemes,
       dataThemes,
+      lastXDays,
       setId = activeSet,
       sort,
       size,
@@ -227,6 +238,7 @@ const SearchForm = ({
       formats?: string[];
       losThemes?: string[];
       dataThemes?: string[];
+      lastXDays?: string[];
       setId?: SearchSetId;
       sort?: SearchSortOption;
       size?: number;
@@ -240,6 +252,7 @@ const SearchForm = ({
       const resolvedFormats = formats ?? parseFormatQueryParam(searchParams.get("format"));
       const resolvedLosThemes = losThemes ?? parseLosThemeQueryParam(searchParams.get("losTheme"));
       const resolvedDataThemes = dataThemes ?? parseDataThemeQueryParam(searchParams.get("dataTheme"));
+      const resolvedLastXDays = lastXDays ?? parseLastXDaysQueryParam(searchParams.get(LAST_X_DAYS_QUERY_PARAM));
       const resolvedSort = sort ?? parseSortQueryParam(searchParams.get("sort"));
       const resolvedSize = size ?? parseSearchPageSizeParam(searchParams.get("size"));
 
@@ -256,6 +269,7 @@ const SearchForm = ({
         formats: resolvedFormats,
         losThemes: resolvedLosThemes,
         dataThemes: resolvedDataThemes,
+        lastXDays: resolvedLastXDays,
         sort: resolvedSort,
         size: resolvedSize,
         page: SEARCH_DEFAULT_PAGE,
@@ -348,6 +362,14 @@ const SearchForm = ({
     [isUrlDriven, navigateToSearch],
   );
 
+  const handleLastXDaysChange = useCallback(
+    (nextSelected: string[]) => {
+      if (!isUrlDriven) return;
+      navigateToSearch({ lastXDays: nextSelected });
+    },
+    [isUrlDriven, navigateToSearch],
+  );
+
   useEffect(() => {
     if (isUrlDriven && defaultQuery !== undefined) {
       setQuery(defaultQuery);
@@ -363,7 +385,8 @@ const SearchForm = ({
       selectedDataThemes.length +
       selectedProvenance.length +
       selectedDcatProfiles.length +
-      selectedDatasetTypes.length >
+      selectedDatasetTypes.length +
+      selectedLastXDays.length >
     0;
 
   const clearFilters = useCallback(() => {
@@ -379,6 +402,7 @@ const SearchForm = ({
       formats: emptyStrings,
       losThemes: emptyStrings,
       dataThemes: emptyStrings,
+      lastXDays: emptyStrings,
     });
   }, [isUrlDriven, navigateToSearch]);
 
@@ -511,6 +535,18 @@ const SearchForm = ({
                 </Box>
               </FilterDropdown>
             )}
+            <FilterDropdown
+              label={dict.searchForm.filters.published}
+              filterCount={selectedLastXDays.length}
+            >
+              <Box className={styles.box}>
+                <PublishedFilter
+                  locale={locale}
+                  value={isUrlDriven ? selectedLastXDays : undefined}
+                  onChange={isUrlDriven ? handleLastXDaysChange : undefined}
+                />
+              </Box>
+            </FilterDropdown>
           </HStack>
           <HStack className={styles.chipsToolbar}>
             <FilterChips
@@ -557,6 +593,11 @@ const SearchForm = ({
               selectedFilters={selectedDatasetTypes}
               onChipRemove={handleDatasetTypeChange}
               chipLabels={datasetTypeLabels}
+            />
+            <FilterChips
+              selectedFilters={selectedLastXDays}
+              onChipRemove={handleLastXDaysChange}
+              chipLabels={publishedLabels}
             />
             {hasFilter && (
               <Chip.Button

@@ -64,6 +64,7 @@ const searchPage = {
       provenance: "Provenance",
       dcatProfile: "Specification",
       datasetType: "Dataset type",
+      published: "Published",
     },
     clearAllFilters: "Clear all filters",
     listSettings: "List settings",
@@ -93,6 +94,12 @@ const searchPage = {
       vedtak: "Decision",
       bruker: "User",
       tredjepart: "Third party",
+    },
+    publishedFilter: {
+      today: "New today",
+      last7Days: "Last 7 days",
+      last30Days: "Last 30 days",
+      lastXDays: "Last {{count}} days",
     },
     dcatProfileFilter: {
       mobilityDcatAp: "MobilityDCAT-AP",

@@ -73,6 +73,7 @@ export type FetchSummaryOptions = {
   formatParam: string | null;
   losThemeParam: string | null;
   dataThemeParam: string | null;
+  lastXDaysParam: string | null;
   sortParam: string | null;
 };
 
