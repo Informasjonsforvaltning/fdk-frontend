@@ -6,6 +6,7 @@ import { buildDatasetTypeSearchFilter } from "@fdk-frontend/ui/search-form/datas
 import { buildFormatSearchFilter } from "@fdk-frontend/ui/search-form/format";
 import { buildLosThemeSearchFilter, buildDataThemeSearchFilter } from "@fdk-frontend/ui/search-form/theme";
 import { buildSpatialSearchFilter } from "@fdk-frontend/ui/search-form/spatial";
+import { buildLastXDaysSearchFilter } from "@fdk-frontend/ui/search-form/published";
 import { buildSearchSort } from "@fdk-frontend/utils";
 
 type SearchPagination = {
@@ -21,7 +22,8 @@ export type SearchFilters = Partial<NonNullable<ReturnType<typeof buildOrgPathSe
   Partial<NonNullable<ReturnType<typeof buildSpatialSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildFormatSearchFilter>>> &
   Partial<NonNullable<ReturnType<typeof buildLosThemeSearchFilter>>> &
-  Partial<NonNullable<ReturnType<typeof buildDataThemeSearchFilter>>>;
+  Partial<NonNullable<ReturnType<typeof buildDataThemeSearchFilter>>> &
+  Partial<NonNullable<ReturnType<typeof buildLastXDaysSearchFilter>>>;
 
 export type SearchSort = NonNullable<ReturnType<typeof buildSearchSort>>;
 
@@ -42,6 +44,7 @@ export const buildSearchFilters = function (
   formatParam: string | null,
   losThemeParam: string | null,
   dataThemeParam: string | null,
+  lastXDaysParam: string | null,
 ): SearchFilters | undefined {
   const orgPathFilter = buildOrgPathSearchFilter(orgPathParam);
   const accessFilter = buildAccessSearchFilter(accessParam);
@@ -52,6 +55,7 @@ export const buildSearchFilters = function (
   const formatFilter = buildFormatSearchFilter(formatParam);
   const losThemeFilter = buildLosThemeSearchFilter(losThemeParam);
   const dataThemeFilter = buildDataThemeSearchFilter(dataThemeParam);
+  const lastXDaysFilter = buildLastXDaysSearchFilter(lastXDaysParam);
 
   if (
     !orgPathFilter &&
@@ -62,7 +66,8 @@ export const buildSearchFilters = function (
     !spatialFilter &&
     !formatFilter &&
     !losThemeFilter &&
-    !dataThemeFilter
+    !dataThemeFilter &&
+    !lastXDaysFilter
   ) {
     return undefined;
   }
@@ -77,6 +82,7 @@ export const buildSearchFilters = function (
     ...formatFilter,
     ...losThemeFilter,
     ...dataThemeFilter,
+    ...lastXDaysFilter,
   };
 };
 
@@ -91,6 +97,7 @@ export const buildSearchRequestBody = function (options: {
   formatParam: string | null;
   losThemeParam: string | null;
   dataThemeParam: string | null;
+  lastXDaysParam: string | null;
   sortParam: string | null;
   pagination: SearchPagination;
   includeQueryWhenEmpty?: boolean;
@@ -106,6 +113,7 @@ export const buildSearchRequestBody = function (options: {
     options.formatParam,
     options.losThemeParam,
     options.dataThemeParam,
+    options.lastXDaysParam,
   );
   const sort = buildSearchSort(options.sortParam);
   const includeQuery = options.includeQueryWhenEmpty === true || trimmedQuery.length > 0;

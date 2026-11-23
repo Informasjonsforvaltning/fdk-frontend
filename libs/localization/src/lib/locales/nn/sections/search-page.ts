@@ -64,6 +64,7 @@ const searchPage = {
       provenance: "Opphav",
       dcatProfile: "Spesifikasjon",
       datasetType: "Datasettype",
+      published: "Publisert",
     },
     clearAllFilters: "Tøm alle filter",
     listSettings: "Listeinnstillingar",
@@ -93,6 +94,12 @@ const searchPage = {
       vedtak: "Vedtak",
       bruker: "Brukar",
       tredjepart: "Tredjepart",
+    },
+    publishedFilter: {
+      today: "Nye i dag",
+      last7Days: "Siste 7 dagar",
+      last30Days: "Siste 30 dagar",
+      lastXDays: "Siste {{count}} dagar",
     },
     dcatProfileFilter: {
       mobilityDcatAp: "MobilityDCAT-AP",
