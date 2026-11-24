@@ -23,7 +23,7 @@ spec:
         prometheus.io/scrape: "false"
     spec:
       # preStop sleep plus time to finish in-flight requests.
-      terminationGracePeriodSeconds: 45
+      terminationGracePeriodSeconds: 60
       containers:
         - name: data-norge-frontend
           image: data-norge-frontend
@@ -32,7 +32,7 @@ spec:
           lifecycle:
             preStop:
               sleep:
-                seconds: 15
+                seconds: 30
           ports:
             - containerPort: 8080
           livenessProbe:
