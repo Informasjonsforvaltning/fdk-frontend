@@ -12,6 +12,9 @@ spec:
       app: data-norge-frontend
   strategy:
     type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -19,10 +22,17 @@ spec:
       annotations:
         prometheus.io/scrape: "false"
     spec:
+      # preStop sleep plus time to finish in-flight requests.
+      terminationGracePeriodSeconds: 45
       containers:
         - name: data-norge-frontend
           image: data-norge-frontend
           imagePullPolicy: Always
+          # Keep serving until the pod is removed from the Service endpoints.
+          lifecycle:
+            preStop:
+              sleep:
+                seconds: 15
           ports:
             - containerPort: 8080
           livenessProbe:
