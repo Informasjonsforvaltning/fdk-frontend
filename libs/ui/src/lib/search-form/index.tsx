@@ -420,16 +420,12 @@ const SearchForm = ({
               label={dict.searchForm.filters.organisation}
               filterCount={selectedOrgPaths.length}
             >
-              <VStack>
-                <Box className={styles.box}>
-                  <OrgFilter
-                    locale={locale}
-                    aggregation={orgAggregation}
-                    value={isUrlDriven ? selectedOrgPaths : undefined}
-                    onChange={isUrlDriven ? handleOrgPathsChange : undefined}
-                  />
-                </Box>
-              </VStack>
+              <OrgFilter
+                locale={locale}
+                aggregation={orgAggregation}
+                value={isUrlDriven ? selectedOrgPaths : undefined}
+                onChange={isUrlDriven ? handleOrgPathsChange : undefined}
+              />
             </FilterDropdown>
             {showTemaFilter && (
               <FilterDropdown
@@ -480,14 +476,13 @@ const SearchForm = ({
                 label={dict.searchForm.filters.geography}
                 filterCount={selectedSpatial.length}
               >
-                <Box className={styles.box}>
-                  <SpatialFilter
-                    aggregation={spatialAggregation}
-                    labels={spatialLabels}
-                    value={isUrlDriven ? selectedSpatial : undefined}
-                    onChange={isUrlDriven ? handleSpatialChange : undefined}
-                  />
-                </Box>
+                <SpatialFilter
+                  locale={locale}
+                  aggregation={spatialAggregation}
+                  labels={spatialLabels}
+                  value={isUrlDriven ? selectedSpatial : undefined}
+                  onChange={isUrlDriven ? handleSpatialChange : undefined}
+                />
               </FilterDropdown>
             )}
             {showProvenanceFilter && (

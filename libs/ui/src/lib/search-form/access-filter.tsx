@@ -24,10 +24,7 @@ const AccessFilter = ({ locale = "nb", aggregation = [], value, onChange }: Acce
     () => enrichAggregationWithSelection(aggregation, checkboxValue),
     [aggregation, checkboxValue],
   );
-  const options = useMemo(
-    () => buildAccessFilterOptions(displayAggregation, labels),
-    [displayAggregation, labels],
-  );
+  const options = useMemo(() => buildAccessFilterOptions(displayAggregation, labels), [displayAggregation, labels]);
 
   if (options.length === 0) return null;
   if (!shouldShowAccessFilter(displayAggregation) && checkboxValue.length === 0) return null;

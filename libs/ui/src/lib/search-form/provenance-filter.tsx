@@ -24,10 +24,7 @@ const ProvenanceFilter = ({ locale = "nb", aggregation = [], value, onChange }: 
     () => enrichAggregationWithSelection(aggregation, checkboxValue),
     [aggregation, checkboxValue],
   );
-  const options = useMemo(
-    () => buildProvenanceFilterOptions(displayAggregation, labels),
-    [displayAggregation, labels],
-  );
+  const options = useMemo(() => buildProvenanceFilterOptions(displayAggregation, labels), [displayAggregation, labels]);
 
   if (!shouldShowProvenanceFilter(displayAggregation) || options.length === 0) return null;
 

@@ -47,8 +47,17 @@
   }
 }
 
+.filterSearch {
+  margin-bottom: 0.5rem;
+}
+
 .filterTabs {
   margin-top: -0.5rem;
+
+  .filterSearch + & {
+    margin-top: 0;
+  }
+
   ds-tab {
     width: 50%;
   }
