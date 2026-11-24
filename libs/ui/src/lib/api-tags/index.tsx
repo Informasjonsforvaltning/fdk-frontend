@@ -1,5 +1,5 @@
 import React from "react";
-import mime from "mime-types";
+import { getMediaTypeLabel } from "@fdk-frontend/utils";
 import { type DataService } from "@fellesdatakatalog/types";
 import { Tag } from "@digdir/designsystemet-react";
 import TagList, { type TagListProps } from "../tag-list";
@@ -12,13 +12,13 @@ const ApiTags = ({ children, api, ...props }: ApiTagsProps & React.HTMLAttribute
   return (
     <TagList {...props}>
       {api.fdkFormat
-        ?.filter((format: any) => format?.code)
-        .map((format: any, i: number) => (
+        ?.filter((format) => format?.code)
+        .map((format) => (
           <Tag
             data-size="sm"
             key={format.code}
           >
-            {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}
+            {getMediaTypeLabel(format)}
           </Tag>
         ))}
     </TagList>
