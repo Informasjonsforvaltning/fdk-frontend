@@ -6,3 +6,6 @@ resources:
   - ../../base/data-norge-frontend
 patches:
   - path: resources.yaml
+replicas:
+  - name: data-norge-frontend
+    count: 2
