@@ -54,9 +54,7 @@ const loadLabels = (uris: string[]): Promise<void> => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ uris: missing }),
     })
-      .then((response) =>
-        response.ok ? response.json() : Promise.reject(new Error("Failed to fetch spatial labels")),
-      )
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error("Failed to fetch spatial labels"))))
       .then((value) => {
         const labels = parseLabelsResponse(value);
         for (const uri of missing) {

@@ -1,13 +1,17 @@
 "use client";
 
-import { useMemo } from "react";
-import { Checkbox } from "@digdir/designsystemet-react";
+import { useMemo, useState } from "react";
+import { Checkbox, Paragraph } from "@digdir/designsystemet-react";
 import { getLocalization, type LocaleCodes } from "@fdk-frontend/localization";
 
+import Box from "../box";
+import { FilterSearchInput, getTreeSearchState, type TreeSearchState } from "./filter-search";
 import {
   enrichAggregationWithSelection,
   formatOrgPathCheckboxLabel,
+  formatOrgPathLabel,
   getOrgPathChildren,
+  getOrgPathParent,
   isOrgPathSelected,
   MAX_ORG_PATH_DEPTH,
   useOrgPathLabels,
@@ -26,13 +30,28 @@ type OrgPathLevelProps = {
   labels: OrgPathLabelMap;
   orgTypes: OrgTypeDictionary;
   onToggle: (key: string, checked: boolean) => void;
+  searchState?: TreeSearchState;
 };
 
-const OrgPathLevel = ({ aggregation, parentKey, depth, selected, labels, orgTypes, onToggle }: OrgPathLevelProps) => {
+const OrgPathLevel = ({
+  aggregation,
+  parentKey,
+  depth,
+  selected,
+  labels,
+  orgTypes,
+  onToggle,
+  searchState,
+}: OrgPathLevelProps) => {
   if (depth > MAX_ORG_PATH_DEPTH) return null;
-  if (depth > 1 && !isOrgPathSelected(parentKey, selected)) return null;
 
-  const children = getOrgPathChildren(aggregation, parentKey, depth);
+  const isExpanded = (key: string): boolean =>
+    isOrgPathSelected(key, selected) || (searchState?.expanded.has(key) ?? false);
+  if (depth > 1 && !isExpanded(parentKey)) return null;
+
+  const children = getOrgPathChildren(aggregation, parentKey, depth).filter(
+    ({ key }) => !searchState || searchState.visible.has(key),
+  );
   if (children.length === 0) return null;
 
   return (
@@ -47,7 +66,7 @@ const OrgPathLevel = ({ aggregation, parentKey, depth, selected, labels, orgType
             checked={isOrgPathSelected(key, selected)}
             onChange={(e) => onToggle(key, e.target.checked)}
           />
-          {isOrgPathSelected(key, selected) && (
+          {isExpanded(key) && (
             <OrgPathLevel
               aggregation={aggregation}
               parentKey={key}
@@ -56,6 +75,7 @@ const OrgPathLevel = ({ aggregation, parentKey, depth, selected, labels, orgType
               labels={labels}
               orgTypes={orgTypes}
               onToggle={onToggle}
+              searchState={searchState}
             />
           )}
         </div>
@@ -74,24 +94,49 @@ export type OrgFilterProps = {
 const OrgFilter = ({ locale = "nb", aggregation = [], value, onChange }: OrgFilterProps) => {
   const { checkboxValue, onToggle } = useSyncedOrgPathSelection(value, onChange);
   const labels = useOrgPathLabels(locale);
-  const orgTypes = getLocalization(locale).searchPage.searchForm.orgTypeFilter;
+  const { orgTypeFilter: orgTypes, filterSearch } = getLocalization(locale).searchPage.searchForm;
+  const [searchQuery, setSearchQuery] = useState("");
   const displayAggregation = useMemo(
     () => enrichAggregationWithSelection(aggregation, checkboxValue),
     [aggregation, checkboxValue],
+  );
+  const searchState = useMemo(
+    () =>
+      getTreeSearchState(
+        displayAggregation.map(({ key }) => key),
+        searchQuery,
+        (key) => formatOrgPathLabel(key, labels, orgTypes),
+        getOrgPathParent,
+      ),
+    [displayAggregation, searchQuery, labels, orgTypes],
   );
 
   if (displayAggregation.length === 0) return null;
 
   return (
-    <OrgPathLevel
-      aggregation={displayAggregation}
-      parentKey=""
-      depth={1}
-      selected={checkboxValue}
-      labels={labels}
-      orgTypes={orgTypes}
-      onToggle={onToggle}
-    />
+    <>
+      <FilterSearchInput
+        label={filterSearch.organisation}
+        value={searchQuery}
+        onChange={setSearchQuery}
+      />
+      {searchState?.visible.size === 0 ? (
+        <Paragraph data-size="sm">{filterSearch.noResults}</Paragraph>
+      ) : (
+        <Box className={styles.box}>
+          <OrgPathLevel
+            aggregation={displayAggregation}
+            parentKey=""
+            depth={1}
+            selected={checkboxValue}
+            labels={labels}
+            orgTypes={orgTypes}
+            onToggle={onToggle}
+            searchState={searchState}
+          />
+        </Box>
+      )}
+    </>
   );
 };
 

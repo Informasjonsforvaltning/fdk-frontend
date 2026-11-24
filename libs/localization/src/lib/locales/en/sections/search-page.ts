@@ -66,6 +66,13 @@ const searchPage = {
       datasetType: "Dataset type",
       published: "Published",
     },
+    filterSearch: {
+      organisation: "Search for organisation",
+      theme: "Search for theme",
+      format: "Search for format",
+      geography: "Search for geographic area",
+      noResults: "No results",
+    },
     clearAllFilters: "Clear all filters",
     listSettings: "List settings",
     resultsPerPage: "{{count}} results per page",

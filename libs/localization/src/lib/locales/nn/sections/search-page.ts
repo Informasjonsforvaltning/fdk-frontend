@@ -66,6 +66,13 @@ const searchPage = {
       datasetType: "Datasettype",
       published: "Publisert",
     },
+    filterSearch: {
+      organisation: "Søk etter verksemd",
+      theme: "Søk etter tema",
+      format: "Søk etter format",
+      geography: "Søk etter geografisk område",
+      noResults: "Ingen treff",
+    },
     clearAllFilters: "Tøm alle filter",
     listSettings: "Listeinnstillingar",
     resultsPerPage: "{{count}} treff per side",
