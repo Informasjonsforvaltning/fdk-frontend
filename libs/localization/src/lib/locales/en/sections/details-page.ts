@@ -40,17 +40,14 @@ const detailsPage = {
     readMoreLinkText: "Read more about access levels here",
     codes: {
       NON_PUBLIC: {
-        label: "Non-public access",
         helpText:
           "Not publicly available due to privacy, security, or other reasons. This category may include resources containing sensitive or personal information.",
       },
       RESTRICTED: {
-        label: "Restricted access",
         helpText:
           "Only available under certain conditions. This category may include resources requiring payment, resources shared under confidentiality agreements, or resources where the publisher or owner has not yet decided if they can be made public.",
       },
       PUBLIC: {
-        label: "Public access",
         helpText:
           "Publicly available to everyone. Access may still require registration and an API key request, as long as anyone can request such registration and/or API keys.",
       },

@@ -84,9 +84,6 @@ const searchPage = {
     },
     accessFilter: {
       open: "Open data",
-      public: "Public access",
-      restricted: "Restricted access",
-      nonPublic: "Non-public access",
       unknown: "Unknown access",
     },
     provenanceFilter: {

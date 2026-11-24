@@ -84,9 +84,6 @@ const searchPage = {
     },
     accessFilter: {
       open: "Opne data",
-      public: "Allmenn tilgang",
-      restricted: "Avgrensa tilgang",
-      nonPublic: "Ikkje-allmenn tilgang",
       unknown: "Ukjend tilgang",
     },
     provenanceFilter: {
