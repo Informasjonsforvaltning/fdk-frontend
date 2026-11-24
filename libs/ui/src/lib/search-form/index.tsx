@@ -42,6 +42,7 @@ import FilterChips from "./filter-chips";
 import { useDataThemeLabels } from "./theme/data-theme/use-data-theme-labels";
 import { useLosThemeLabels } from "./theme/los-theme/use-los-theme-labels";
 import { getAccessRightsLabels } from "./access/labels";
+import { useAccessRightsLabels } from "../access-rights/use-access-rights-labels";
 import { formatLabel } from "./format/labels";
 import { getProvenanceLabels } from "./provenance/labels";
 import { getDcatProfileLabels } from "./dcat-profile/labels";
@@ -180,7 +181,11 @@ const SearchForm = ({
 
   const locale: LocaleCodes = lang ?? parseLocaleFromPathname(pathname);
   const dict = getLocalization(locale).searchPage;
-  const accessLabels = getAccessRightsLabels(dict.searchForm.accessFilter);
+  const accessReferenceLabels = useAccessRightsLabels(locale);
+  const accessLabels = useMemo(
+    () => getAccessRightsLabels(dict.searchForm.accessFilter, accessReferenceLabels),
+    [dict.searchForm.accessFilter, accessReferenceLabels],
+  );
   const provenanceLabels = getProvenanceLabels(dict.searchForm.provenanceFilter);
   const dcatProfileLabels = getDcatProfileLabels(dict.searchForm.dcatProfileFilter);
   const datasetTypeLabels = useDatasetTypeLabels(locale);

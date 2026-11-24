@@ -1,8 +1,11 @@
+"use client";
+
 import { Link, Tag, TagProps, Paragraph } from "@digdir/designsystemet-react";
 import { type LocaleCodes, getLocalization } from "@fdk-frontend/localization";
 import { AccessRightsCodes } from "@fellesdatakatalog/types";
 import { HelpText } from "@fellesdatakatalog/ui";
 import TagLink from "../tag-link";
+import { useAccessRightsLabels } from "../access-rights/use-access-rights-labels";
 import styles from "./styles.module.scss";
 
 type AccessLevelTagProps = {
@@ -13,9 +16,10 @@ type AccessLevelTagProps = {
 
 const AccessLevelTag = ({ accessCode, nonInteractive, locale, ...props }: AccessLevelTagProps & TagProps) => {
   const dictionary = getLocalization(locale).detailsPage;
+  const referenceLabels = useAccessRightsLabels(locale);
   let color = "neutral";
 
-  const label = accessCode ? dictionary.accessRights.codes[accessCode]?.label : dictionary.accessRights.unknownLabel;
+  const label = accessCode ? (referenceLabels[accessCode] ?? accessCode) : dictionary.accessRights.unknownLabel;
   const helpText = accessCode ? dictionary.accessRights.codes[accessCode]?.helpText : "";
 
   if (accessCode === AccessRightsCodes.NON_PUBLIC) color = "danger";

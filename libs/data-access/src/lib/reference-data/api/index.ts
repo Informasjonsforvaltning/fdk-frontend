@@ -247,3 +247,39 @@ export const getDatasetTypes = async (): Promise<DatasetTypesResponse> => {
 
   return { datasetTypes: [...highValueDatasetTypes, ...euDatasetTypes] };
 };
+
+export type AccessRight = {
+  uri: string;
+  code: string;
+  label: Partial<TextLanguage>;
+};
+
+export type AccessRightsResponse = {
+  accessRights: AccessRight[];
+};
+
+const parseAccessRightsResponse = (value: unknown): AccessRightsResponse => {
+  if (!isRecord(value) || !Array.isArray(value.accessRights)) return { accessRights: [] };
+
+  return {
+    accessRights: value.accessRights.flatMap((entry: unknown) =>
+      isRecord(entry) && typeof entry.uri === "string" && typeof entry.code === "string"
+        ? [{ uri: entry.uri, code: entry.code, label: parseTextLanguage(entry.label) }]
+        : [],
+    ),
+  };
+};
+
+export const getAccessRights = async (): Promise<AccessRightsResponse> => {
+  const response = await fetch(`${FDK_BASE_URI}/reference-data/eu/access-rights`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+    next: { revalidate: 3600 },
+  });
+
+  if (!response.ok) throw new Error("Failed to fetch access rights");
+
+  return parseAccessRightsResponse(await response.json());
+};

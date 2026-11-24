@@ -40,17 +40,14 @@ const detailsPage = {
     readMoreLinkText: "Les meir om tilgangsnivå her",
     codes: {
       NON_PUBLIC: {
-        label: "Ikkje-allmenn tilgang",
         helpText:
           "Ikkje offentleg tilgjengeleg grunna personvern, tryggleik eller andre årsaker. Denne kategorien kan omfatte ressursar som inneheld sensitiv eller personleg informasjon.",
       },
       RESTRICTED: {
-        label: "Avgrensa tilgang",
         helpText:
           "Berre tilgjengeleg under visse vilkår. Kan inkludere ressursar som krev betaling, ressursar delt under teiepliktsavtalar, eller ressursar der utgjevar eller eigar ikkje har avgjort om dei kan offentleggjerast.",
       },
       PUBLIC: {
-        label: "Allmenn tilgang",
         helpText:
           "Tilgjengeleg for alle. Tilgang kan likevel krevje registrering og førespurnad om API-nøklar, så lenge kven som helst kan be om slik registrering og/eller API-nøklar.",
       },
