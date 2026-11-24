@@ -1,7 +1,6 @@
 import React from "react";
-import mime from "mime-types";
 import { type Distribution } from "@fellesdatakatalog/types";
-import { isOpenLicense } from "@fdk-frontend/utils";
+import { getMediaTypeLabel, isOpenLicense } from "@fdk-frontend/utils";
 import { type Localization } from "@fdk-frontend/localization";
 import { Tag } from "@digdir/designsystemet-react";
 import TagList, { type TagListProps } from "../tag-list";
@@ -47,13 +46,13 @@ const DistributionTags = ({
         </Tag>
       )}
       {distribution.fdkFormat
-        ?.filter((format: any) => format?.code)
-        .map((format: any) => (
+        ?.filter((format) => format?.code)
+        .map((format) => (
           <Tag
             data-color="info"
             key={format.code}
           >
-            {(mime.extension(format.code) || format.name || format.code)?.toLowerCase()}
+            {getMediaTypeLabel(format)}
           </Tag>
         ))}
     </TagList>

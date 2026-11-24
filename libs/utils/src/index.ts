@@ -10,3 +10,4 @@ export * from "./lib/hvd";
 export * from "./lib/standard";
 export * from "./lib/url-safety";
 export * from "./lib/search";
+export * from "./lib/media-type";
