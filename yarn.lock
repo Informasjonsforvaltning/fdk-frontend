@@ -2796,20 +2796,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/console@npm:30.3.0":
-  version: 30.3.0
-  resolution: "@jest/console@npm:30.3.0"
-  dependencies:
-    "@jest/types": "npm:30.3.0"
-    "@types/node": "npm:*"
-    chalk: "npm:^4.1.2"
-    jest-message-util: "npm:30.3.0"
-    jest-util: "npm:30.3.0"
-    slash: "npm:^3.0.0"
-  checksum: 10c0/5458f26b0591b847b719a707cbd1d6b2b99960784a1480a28d19200a807b6092f066c1bd1810df8c6adebf934a64de7b6022dc35082cd7c8f09f35940da104d9
-  languageName: node
-  linkType: hard
-
 "@jest/console@npm:30.5.2":
   version: 30.5.2
   resolution: "@jest/console@npm:30.5.2"
@@ -3147,42 +3133,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/reporters@npm:^30.0.2":
-  version: 30.2.0
-  resolution: "@jest/reporters@npm:30.2.0"
-  dependencies:
-    "@bcoe/v8-coverage": "npm:^0.2.3"
-    "@jest/console": "npm:30.2.0"
-    "@jest/test-result": "npm:30.2.0"
-    "@jest/transform": "npm:30.2.0"
-    "@jest/types": "npm:30.2.0"
-    "@jridgewell/trace-mapping": "npm:^0.3.25"
-    "@types/node": "npm:*"
-    chalk: "npm:^4.1.2"
-    collect-v8-coverage: "npm:^1.0.2"
-    exit-x: "npm:^0.2.2"
-    glob: "npm:^10.3.10"
-    graceful-fs: "npm:^4.2.11"
-    istanbul-lib-coverage: "npm:^3.0.0"
-    istanbul-lib-instrument: "npm:^6.0.0"
-    istanbul-lib-report: "npm:^3.0.0"
-    istanbul-lib-source-maps: "npm:^5.0.0"
-    istanbul-reports: "npm:^3.1.3"
-    jest-message-util: "npm:30.2.0"
-    jest-util: "npm:30.2.0"
-    jest-worker: "npm:30.2.0"
-    slash: "npm:^3.0.0"
-    string-length: "npm:^4.0.2"
-    v8-to-istanbul: "npm:^9.0.1"
-  peerDependencies:
-    node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-  peerDependenciesMeta:
-    node-notifier:
-      optional: true
-  checksum: 10c0/1f25d0896f857f220466cae3145a20f9e13e7d73aeccf87a1f8a5accb42bb7a564864ba63befa3494d76d1335b86c24d66054d62330c3dcffc9c2c5f4e740d6e
-  languageName: node
-  linkType: hard
-
 "@jest/schemas@npm:30.0.5":
   version: 30.0.5
   resolution: "@jest/schemas@npm:30.0.5"
@@ -3278,18 +3228,6 @@ __metadata:
     "@types/istanbul-lib-coverage": "npm:^2.0.6"
     collect-v8-coverage: "npm:^1.0.2"
   checksum: 10c0/936ceb0a647e09eb00fa10bae0c19dd45c8029a1ba984ab4c22871fea68a72c0e5db9eebb48166af31c305b351978a2bcd23cbe59567587ca41c095d6c09c3c7
-  languageName: node
-  linkType: hard
-
-"@jest/test-result@npm:^30.0.2":
-  version: 30.3.0
-  resolution: "@jest/test-result@npm:30.3.0"
-  dependencies:
-    "@jest/console": "npm:30.3.0"
-    "@jest/types": "npm:30.3.0"
-    "@types/istanbul-lib-coverage": "npm:^2.0.6"
-    collect-v8-coverage: "npm:^1.0.2"
-  checksum: 10c0/67bcd405d0a1ac85b55afabf26e0ee0f184f9cfe0e659a44e0e4a4456c1c7fed9d2288f0116b017eaddfa49ded8c44426b8694c44f9a8a2af35be9202b8a9165
   languageName: node
   linkType: hard
 
@@ -3830,6 +3768,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nx/devkit@npm:24.0.6":
+  version: 24.0.6
+  resolution: "@nx/devkit@npm:24.0.6"
+  dependencies:
+    ejs: "npm:5.0.1"
+    minimatch: "npm:10.2.5"
+    semver: "npm:^7.6.3"
+    tslib: "npm:^2.3.0"
+    yargs-parser: "npm:21.1.1"
+  peerDependencies:
+    nx: ">= 23 <= 25 || ^24.0.0-0"
+  checksum: 10c0/40ba328acfb7045d1be33b237e862c5c4ae24bcdba6e36b6841e283ccd8a5e34ad4c5ba30d386ece61afe2ec9f7ee492157c971f21f999d25e70685048b6713f
+  languageName: node
+  linkType: hard
+
 "@nx/eslint-plugin@npm:23.3.0":
   version: 23.3.0
   resolution: "@nx/eslint-plugin@npm:23.3.0"
@@ -3879,22 +3832,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/jest@npm:23.3.0":
-  version: 23.3.0
-  resolution: "@nx/jest@npm:23.3.0"
+"@nx/jest@npm:24.0.6":
+  version: 24.0.6
+  resolution: "@nx/jest@npm:24.0.6"
   dependencies:
-    "@jest/reporters": "npm:^30.0.2"
-    "@jest/test-result": "npm:^30.0.2"
-    "@nx/devkit": "npm:23.3.0"
-    "@nx/js": "npm:23.3.0"
+    "@nx/devkit": "npm:24.0.6"
+    "@nx/js": "npm:24.0.6"
     "@phenomnomnominal/tsquery": "npm:~6.2.0"
     identity-obj-proxy: "npm:3.0.0"
     jest-config: "npm:^30.0.2"
     jest-resolve: "npm:^30.0.2"
-    jest-util: "npm:^30.0.2"
     jsonc-parser: "npm:^3.2.0"
     minimatch: "npm:10.2.5"
-    picocolors: "npm:^1.1.0"
+    picomatch: "npm:^4.0.7"
     resolve.exports: "npm:2.0.3"
     semver: "npm:^7.6.3"
     tslib: "npm:^2.3.0"
@@ -3907,7 +3857,7 @@ __metadata:
       optional: true
     ts-jest:
       optional: true
-  checksum: 10c0/7d134b725176d0f48f0312a8a2c8967cdf8e82fa71f629a7333323ebac538dce8f40f195c2c4646632ba1389ae106c33a36ed4ab5952a044a2122bd705e5aa90
+  checksum: 10c0/dd0326c2d1012b069e09da42676ec19ce3bda30a26321b224154ab226534176d461a911b6f157966b201f7e723d816b0ae0f0b712e87e646f246ddb8d4b6d120
   languageName: node
   linkType: hard
 
@@ -3953,6 +3903,51 @@ __metadata:
     verdaccio:
       optional: true
   checksum: 10c0/5acc9ad6aa884f74c9cc832ef4b01e880ef9f73ae44f9753859a0fafd1b536ad2dd52f9c5b1b01dbc0859e4866cab34c3790613b2f89cd57b42341eacc46d563
+  languageName: node
+  linkType: hard
+
+"@nx/js@npm:24.0.6":
+  version: 24.0.6
+  resolution: "@nx/js@npm:24.0.6"
+  dependencies:
+    "@babel/core": "npm:^7.29.6"
+    "@babel/plugin-proposal-decorators": "npm:^7.22.7"
+    "@babel/plugin-transform-class-properties": "npm:^7.22.5"
+    "@babel/plugin-transform-class-static-block": "npm:^7.22.5"
+    "@babel/plugin-transform-private-methods": "npm:^7.22.5"
+    "@babel/plugin-transform-private-property-in-object": "npm:^7.22.5"
+    "@babel/plugin-transform-runtime": "npm:^7.23.2"
+    "@babel/preset-env": "npm:^7.23.2"
+    "@babel/preset-typescript": "npm:^7.22.5"
+    "@babel/runtime": "npm:^7.22.6"
+    "@nx/devkit": "npm:24.0.6"
+    "@nx/workspace": "npm:24.0.6"
+    "@zkochan/js-yaml": "npm:0.0.7"
+    babel-plugin-const-enum: "npm:^1.0.1"
+    babel-plugin-macros: "npm:^3.1.0"
+    babel-plugin-transform-typescript-metadata: "npm:^0.3.1"
+    chalk: "npm:^4.1.0"
+    columnify: "npm:^1.6.0"
+    detect-port: "npm:^2.1.0"
+    ignore: "npm:^7.0.5"
+    js-tokens: "npm:^4.0.0"
+    jsonc-parser: "npm:^3.2.0"
+    npm-run-path: "npm:^4.0.1"
+    picocolors: "npm:^1.1.0"
+    picomatch: "npm:^4.0.7"
+    semver: "npm:^7.6.3"
+    source-map-support: "npm:0.5.21"
+    tinyglobby: "npm:^0.2.12"
+    tslib: "npm:^2.3.0"
+  peerDependencies:
+    "@swc/cli": ">=0.6.0 <0.9.0"
+    verdaccio: ^6.0.5
+  peerDependenciesMeta:
+    "@swc/cli":
+      optional: true
+    verdaccio:
+      optional: true
+  checksum: 10c0/d3b2245b956cece8eca3bbc999e00f72285e23a59ac1c3f253a3d8dce300a8bd35e1d31cdebe47af18fdee8b249baf54a87d54430a365b81c7db25de718b34a4
   languageName: node
   linkType: hard
 
@@ -4220,6 +4215,22 @@ __metadata:
     tslib: "npm:^2.3.0"
     yargs-parser: "npm:21.1.1"
   checksum: 10c0/24c1876b662124c598e847d4f168eb13affd0a81d6bd5465b5f02071021c979a27146f519b59fab9a800b50687f589e25464e5789a3baa9b0e9968737ddfeb8f
+  languageName: node
+  linkType: hard
+
+"@nx/workspace@npm:24.0.6":
+  version: 24.0.6
+  resolution: "@nx/workspace@npm:24.0.6"
+  dependencies:
+    "@nx/devkit": "npm:24.0.6"
+    "@zkochan/js-yaml": "npm:0.0.7"
+    chalk: "npm:^4.1.0"
+    nx: "npm:24.0.6"
+    picomatch: "npm:^4.0.7"
+    semver: "npm:^7.6.3"
+    tslib: "npm:^2.3.0"
+    yargs-parser: "npm:21.1.1"
+  checksum: 10c0/91e00d0e70796b9699ae039193bbde1abc2311714b471f63757b9e841b54cdf455df352605e681f213464e86989a07a0fb453e46fdec78b1637e2fac907b1e49
   languageName: node
   linkType: hard
 
@@ -9531,7 +9542,7 @@ __metadata:
     "@nx/devkit": "npm:23.3.0"
     "@nx/eslint": "npm:23.3.0"
     "@nx/eslint-plugin": "npm:23.3.0"
-    "@nx/jest": "npm:23.3.0"
+    "@nx/jest": "npm:24.0.6"
     "@nx/next": "npm:23.3.0"
     "@nx/playwright": "npm:23.3.0"
     "@nx/react": "npm:23.3.0"
@@ -11685,7 +11696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-util@npm:30.3.0, jest-util@npm:^30.0.2":
+"jest-util@npm:30.3.0":
   version: 30.3.0
   resolution: "jest-util@npm:30.3.0"
   dependencies:
@@ -15568,7 +15579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.21":
+"source-map-support@npm:0.5.21, source-map-support@npm:^0.5.21":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
   dependencies:
