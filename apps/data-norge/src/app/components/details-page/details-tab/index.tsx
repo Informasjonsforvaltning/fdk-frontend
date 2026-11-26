@@ -31,6 +31,7 @@ export type DatasetDetailsProps = {
   concepts?: SearchObject[];
   populatedReferences?: PopulatedDatasetReference[];
   internalRelatedDatasets?: DatasetWithIdentifier[];
+  resolvedInformationModels?: SearchObject[];
   profile: Profile;
   baseUri: string;
 };
@@ -44,6 +45,7 @@ const DatasetDetailsTab = ({
   concepts,
   populatedReferences,
   internalRelatedDatasets,
+  resolvedInformationModels,
   profile,
   baseUri,
 }: DatasetDetailsProps) => {
@@ -82,6 +84,9 @@ const DatasetDetailsTab = ({
           dataset={dataset}
           locale={locale}
           dictionary={dictionary}
+          resolvedInformationModels={resolvedInformationModels}
+          profile={profile}
+          baseUri={baseUri}
         />
         {!hasLegalBasis(dataset) && !showEmptyRows ? null : (
           <LegalDetails
