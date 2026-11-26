@@ -108,9 +108,10 @@ const DetailsPageWrapper = async (props: DetailsPageWrapperProps) => {
     // Do nothing
   }
 
-  // Resolve information models from distribution & sample conformsTo property
+  // Resolve information models from dataset, distribution & sample conformsTo property
   try {
     const conformsTo = [
+      ...(dataset.conformsTo ?? []),
       ...(dataset.distribution ?? []).reduce<any[]>((acc, dist) => acc.concat(dist.conformsTo ?? []), []),
       ...(dataset.sample ?? []).reduce<any[]>((acc, sample) => acc.concat((sample as any).conformsTo ?? []), []),
     ];

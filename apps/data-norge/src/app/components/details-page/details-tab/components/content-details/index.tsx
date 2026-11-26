@@ -8,7 +8,14 @@ import { getQualityAnnotations } from "./get-quality-annotations";
 import styles from "../../details-tab.module.scss";
 import StandardItem from "../../../standard-item";
 
-const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProps, "baseUri" | "profile">) => {
+const ContentDetails = ({
+  dataset,
+  locale,
+  dictionary,
+  resolvedInformationModels = [],
+  profile,
+  baseUri,
+}: DatasetDetailsProps) => {
   const { showEmptyRows } = useContext(DatasetDetailsTabContext);
   const qualityAnnotations = getQualityAnnotations(dataset, locale, dictionary);
 
@@ -195,6 +202,7 @@ const ContentDetails = ({ dataset, locale, dictionary }: Omit<DatasetDetailsProp
                     <StandardItem
                       standard={item}
                       locale={locale}
+                      resolved={{ informationModels: resolvedInformationModels, profile, baseUri }}
                     />
                   )}
                 />

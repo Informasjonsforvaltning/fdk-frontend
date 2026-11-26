@@ -307,6 +307,7 @@ export default function DatasetDetailsPage({
               locale={locale}
               metadataScore={metadataScore}
               dictionary={dictionaries.detailsPage}
+              resolvedInformationModels={resolvedDistributionInformationModels}
               profile={profile}
               baseUri={baseUri}
             />

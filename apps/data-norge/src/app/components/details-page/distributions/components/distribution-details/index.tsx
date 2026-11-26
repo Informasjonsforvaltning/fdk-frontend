@@ -214,34 +214,10 @@ const DistributionDetails = ({
                 <StandardItem
                   standard={standard}
                   locale={locale}
-                  renderLink={(url, label) => {
-                    const resolvedInformationModel = resolvedDistributionInformationModels.find(
-                      (infoModel) => infoModel.uri === url,
-                    );
-
-                    if (resolvedInformationModel) {
-                      return (
-                        <InternalLink
-                          href={`/information-models/${resolvedInformationModel.id}`}
-                          entity={resolvedInformationModel}
-                          profile={profile}
-                          baseUri={baseUri}
-                          locale={locale}
-                        >
-                          {printLocaleValue(locale, resolvedInformationModel.title) || resolvedInformationModel.uri}
-                        </InternalLink>
-                      );
-                    }
-
-                    return (
-                      <ExternalLink
-                        href={url}
-                        locale={locale}
-                        gateway
-                      >
-                        {label}
-                      </ExternalLink>
-                    );
+                  resolved={{
+                    informationModels: resolvedDistributionInformationModels,
+                    profile,
+                    baseUri,
                   }}
                 />
               )}
